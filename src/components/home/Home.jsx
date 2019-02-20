@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import './Home.css';
 import './text.css';
 
-import HomeHeader from './components/HomeHeader/HomeHeader.js'
-import HomeBody from './components/HomeBody/HomeBody.js'
-import Footer from '../Footer/Footer.js'
+import HomeHeader from './components/HomeHeader/HomeHeader.jsx'
+import HomeBody from './components/HomeBody/HomeBody.jsx'
+import Footer from '../Footer/Footer.jsx'
 import {Link, Route, BrowserRouter, Redirect, Switch} from 'react-router-dom';
 import { request } from 'https';
 import { withRouter } from 'react-router';

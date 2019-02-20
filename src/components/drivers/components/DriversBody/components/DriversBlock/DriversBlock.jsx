@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './DriversBlock.css'
 import './InfoBlock.css'
 import './TripBlock.css'
-import DriversBlockManipulator from './components/DriversBlockManipulator.js';
+import DriversBlockManipulator from './components/DriversBlockManipulator.jsx';
 export default class DriversBlock extends React.Component {
   constructor(props) {
     super(props);

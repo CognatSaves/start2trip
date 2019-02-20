@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Home from './components/home/Home.js';
-import Drivers from './components/drivers/Drivers.js';
+import Home from './components/home/Home.jsx';
+import Drivers from './components/drivers/Drivers.jsx';
 import { connect } from 'react-redux'
 import {Link, Route, BrowserRouter, Redirect} from 'react-router-dom';
 

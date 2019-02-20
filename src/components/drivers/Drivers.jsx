@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './Drivers.css';
-import DriversBody from './components/DriversBody/DriversBody.js';
-import DriversHeader from './components/DriversHeader/DriversHeader.js';
-import DriversRoute from './components/DriversRoute/DriversRoute.js';
-import Footer from '../Footer/Footer.js'
+import DriversBody from './components/DriversBody/DriversBody.jsx';
+import DriversHeader from './components/DriversHeader/DriversHeader.jsx';
+import DriversRoute from './components/DriversRoute/DriversRoute.jsx';
+import Footer from '../Footer/Footer.jsx'
 import { connect } from 'react-redux'
 
 class DriversClass extends React.Component {

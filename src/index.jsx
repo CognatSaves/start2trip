@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import Home from './components/home/Home.js';
-import Drivers from './components/drivers/Drivers.js';
+import Home from './components/home/Home.jsx';
+import Drivers from './components/drivers/Drivers.jsx';
 
 
 import * as serviceWorker from './serviceWorker';

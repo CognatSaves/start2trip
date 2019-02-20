@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './HomeBody.css'
-import RouteMenu from './components/RouteMenu.js'
-import MapContainer from './components/MapContainer.js'
+import RouteMenu from './components/RouteMenu.jsx'
+import MapContainer from './components/MapContainer.jsx'
 import Calendar from 'react-calendar'
 import './calendary.css';
 import { connect } from 'react-redux'

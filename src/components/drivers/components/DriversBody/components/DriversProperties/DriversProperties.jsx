@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import './DriversProperties.css'
-import LanguageMenu from './components/LanguageMenu/LanguageMenu.js'
-import PeopleMenu from './components/PeopleMenu/PeopleMenu.js'
-import SortMenu from './components/SortMenu/SortMenu.js'
-import PagesMenu from './components/PagesMenu/PagesMenu.js'
-import ValueMenu from './components/ValueMenu/ValueMenu.js'
-import AutoMenu from './components/AutoMenu/AutoMenu.js'
+import LanguageMenu from './components/LanguageMenu/LanguageMenu.jsx'
+import PeopleMenu from './components/PeopleMenu/PeopleMenu.jsx'
+import SortMenu from './components/SortMenu/SortMenu.jsx'
+import PagesMenu from './components/PagesMenu/PagesMenu.jsx'
+import ValueMenu from './components/ValueMenu/ValueMenu.jsx'
+import AutoMenu from './components/AutoMenu/AutoMenu.jsx'
 
 export default class DriversProperties extends React.Component {
   constructor(props) {
