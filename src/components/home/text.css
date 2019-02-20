@@ -1,0 +1,20 @@
+.text_firstLine{
+
+  text-align: center;
+
+  font-size: 46px;
+  color:#304269;
+  font-family: "Roboto Bold";
+  text-transform: uppercase;
+}
+.text_secondLine{
+
+  text-align: center;
+  font-family: "Roboto Regular";
+  color:#304269;
+
+}
+@media (max-width: 360px){
+  .text_firstLine {font-size: 20px; color: #ffffff; text-transform: none}
+  .text_secondLine {font-size: 12px;  color: #ffffff; padding: 0 40px 20px 40px }
+}

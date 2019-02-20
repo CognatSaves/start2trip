@@ -1,0 +1,140 @@
+.drivers_properties_peopleMenu{
+    position: absolute;
+    top: 34px;
+    right: 0px;
+    height: 120px;
+    width:191px; 
+    background-color: #ffffff;
+    border-radius: 3px;
+    box-shadow: 0 0 1px 1px rgb(236, 236, 236);
+}
+.peopleMenu_element{
+    position: absolute;    
+    width: 100%;
+    height: 100%;
+}
+.peopleMenu_element_part{
+    position: relative;
+    width: 191px;
+    height: 43px;
+}
+.element_part_peopleType{
+    position: absolute;
+    left: 10px;    
+    width: 90px;    
+    background-color: transparent;   
+    text-align: left;
+}
+.element_part_adults{
+    top: 0px;
+    height: 43px;
+    font-family: "Roboto Regular";
+    font-size:9pt;
+    color: #304269;
+    line-height: 43px;
+}
+.element_part_children{
+    top: 0px;
+    height: 21px;
+    font-family: "Roboto Regular";
+    font-size:9pt;
+    color: #304269;   
+}
+.element_part_commentary{
+    top: 22px;
+    height: 21px;
+    font-family: "Roboto Light";
+    font-size:7.5pt;
+    color: #999999;
+    line-height: 21px;
+}
+.element_part_valueBlock{
+    position: absolute;
+    left: 100px;
+    top:5px;
+    width: 80px;
+    height: 30px;
+}
+.valueBlock_button{
+    display: block;
+    float: left;
+       
+    border-radius: 5px;    
+    box-shadow: 0 0 1px 1px rgb(236, 236, 236);
+    text-align: center;
+}
+.valueBlock_buttonSize{
+    height: 30px;
+    width: 30px;
+}
+.valueBlock_buttonColor_canUse{
+    background-color: #304269;
+    border-color: #304269;
+    color: #ffffff;
+}
+.valueBlock_buttonColor_cannotUse{
+    background-color: #ffffff;
+    border-color: #ffffff;
+    color: #304269;
+}
+.valueBlock_button_symbol{
+    position: relative;
+    top:0px;
+    left:1px;
+    text-align: center;
+    height: 16px;
+    line-height: 16px;
+
+    font-family: "Roboto Regular";
+    font-size: 12pt;
+}
+.valueBlock_value{
+    display: block;
+    float:left;
+    bottom: 0px;
+    height: 30px;
+    width: 20px;
+    text-align: center;
+}
+.valueBlock_value_text{
+    position: absolute;
+    top:2px;
+    height: 30px;
+    width: 20px;
+    line-height: 26px;
+
+    font-family: "Roboto Regular";
+    font-size: 9pt;
+    
+}
+.peopleMenu_element_stateBlock{
+    position: absolute;
+    top: 90px;
+    right: 10px;
+    height: 25px;
+    width: 155px;
+    font-size: 9pt;
+    font-family: "Roboto Regular";
+}
+.peopleMenu_stateBlock_applyButton{
+    right: 0px;
+    color: #304269
+    
+}
+.peopleMenu_stateBlock_cancelButton{
+
+    right: 65px;
+    color: #b2b2b2;
+
+}
+.peopleMenu_stateBlock_buttonStyle{
+    position: absolute;
+    top: 0px;
+    height: 100%;
+    text-align: center;
+    line-height: 15px;
+    border: none;
+    font-size: 9pt;
+    font-family: "Roboto Regular";
+    background-color: transparent
+}

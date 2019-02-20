@@ -1,0 +1,9 @@
+.drivers_body{
+  position:absolute;
+  left:0;
+  right: 0;
+  margin: auto;
+  top:30px;
+  width:1200px;
+  height:1120px;
+}

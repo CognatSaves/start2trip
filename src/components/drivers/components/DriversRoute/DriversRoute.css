@@ -1,0 +1,129 @@
+.drivers_route{
+  position:absolute;
+  top:110px;
+  width:1200px;
+  height:240px;
+  background-color: #304269;
+  opacity:0.7;
+  left:0;
+  right: 0;
+  margin: auto;
+}
+.route_date{
+  position:absolute;
+  top:20px;
+  left:25px;
+  font-size: 18pt;
+  color:#ffffff;
+  font-family: "Roboto Regular";
+}
+.route_date_text{
+  position:absolute;
+  width:400px;
+  top:0px
+}
+.route_date_value{
+  position:inherit;
+  top:0px;
+  left:405px;
+  width:400px;
+}
+.route_show{
+  position:absolute;
+  top:80px;
+  left:25px;
+  width:1160px;
+  height:45px;
+}
+.route_show_element{
+  display: inline-block;
+  height: 40px;
+  width:128px;
+}
+.route_show_icon{
+  position:absolute;
+  top:8px;
+  left:0px;
+  background: url(pictures/drivers_point_icon.png);
+  width:32px;
+  height:32px;
+}
+.route_show_text{
+  position:absolute;
+  top:0px;
+  left:32px;
+  height: 32px;
+  font-family: "Roboto Regular";
+
+  font-size: 15px;
+  color:#ffffff;
+}
+.route_show_line{
+  position:absolute;
+  top:4px;
+  left:32px;
+  height: 32px;
+  width:96px;
+  color:#ffffff;
+}
+.route_time_text{
+  position:absolute;
+  top:185px;
+  left:30px;
+  font-family: "Roboto";
+
+  font-size: 18px;
+  color:#ffffff;
+}
+.route_time_value{
+  position:absolute;
+  top: 185px;
+  left:275px;
+  color:#ffffff;
+  /*font-family: "Roboto Medium";
+  font-size: 18px;*/
+}
+.route_time_value p1{
+  font-family: "Roboto Medium";
+  font-size: 18px;
+}
+.route_time_value p2{
+  font-family: "Roboto";
+  font-size: 18px;
+}
+.route_comment{
+  position:absolute;
+  top:210px;
+  left:30px;
+  color:#ffffff;
+  font-family: "Roboto";
+  font-size: 12px;
+}
+.route_change{
+  position: absolute;
+  top: 15px;
+  right: 23px;
+  background-color:  purple;
+  height: 21px;
+}
+.route_change_emblem{
+  position: absolute;
+  top:0px;
+  right: 0px;
+  background: url(pictures/drivers_edit_route.png) no-repeat;
+  width:21px;
+  height: 21px;
+}
+.route_change_text{
+  position:absolute;
+  top:0px;
+  right: 25px;
+  height: 21px;
+  width: 180px;
+  text-align: right;
+  text-decoration: underline;
+
+  font-family: "Roboto Light";
+  font-size: 9pt;
+  color: #ffffff;
+}

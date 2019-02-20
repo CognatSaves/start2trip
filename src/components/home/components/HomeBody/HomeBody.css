@@ -1,0 +1,18 @@
+.body_menu{
+  display: inline-block;
+  height: 640px;
+  width: 350px;
+  padding: 10px 0 0 0;
+  background-color: #304269;
+}
+
+.body_map{
+  display: inline-block;
+  height: 640px;
+  width: 850px;
+  background-color: white;
+}
+@media (max-width: 360px){
+  .body_map {display: none}
+  .body_menu {width: 100%; height: auto}
+}

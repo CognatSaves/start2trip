@@ -1,0 +1,23 @@
+.drivers_commercial{
+  position:absolute;
+  top:40px;
+  left:900px;
+  width:310px;
+  height:895px;
+}
+.commercial_picture1{
+  position: absolute;
+  top: 15px;
+  left:40px;
+  width: 240px;
+  height: 345px;
+  background: url(pictures/commercial_picture1.png);
+}
+.commercial_picture2{
+  position:absolute;
+  top: 405px;
+  left:40px;
+  width: 240px;
+  height: 400px;
+  background: url(pictures/commercial_picture2.png);
+}

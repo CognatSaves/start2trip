@@ -1,0 +1,104 @@
+.block_element_tripBlock{
+    position:absolute;
+    float: left;
+    left: 510px;
+    top:25px;
+    width:355px;
+    height: 170px;
+  }
+.tripBlock_carInfo{
+    position:absolute;
+    top:5px;
+    left:25px;
+    width:305px;
+    height:45px;
+  }
+  .tripBlock_carInfo_carImage{
+    position:absolute;
+    top:10px;
+    left:0px;
+    width:75px;
+    height: 30px;
+    background: url(pictures/driver1/drivers_car_image.png) no-repeat;
+  }
+  .tripBlock_carInfo_carData{
+    position:absolute;
+    top:0px;
+    left:75px;
+    width:230px;
+    height: 100%;
+    text-align: top;
+  }
+  .tripBlock_buttonBlock{
+    position:absolute;
+    top:65px;
+    left: 15px;
+    width:340px;
+    height: 60px;
+  }
+  .tripBlock_buttonBlock_value{
+      position:absolute;
+      top: 0px;
+      left: 0px;
+      text-align: center;
+      width:80px;
+      height: 40px;
+      line-height: 40px;
+
+      font-family: "Roboto Bold";
+      font-size: 24px;
+      color: #ff6600;
+  }
+  .tripBlock_buttonBlock_button{
+      position:absolute;
+      top:0px;
+      left: 85px;
+      height: 40px;
+      width: 256px;
+      text-align: center;
+      line-height: 40px;
+      background: url(pictures/driver1/drivers_tripBlock_button.png) no-repeat;
+
+      font-family: "Roboto Medium";
+      font-size: 16px;
+      color: #ffffff;
+  }
+  .tripBlock_buttonBlock_commentary{
+      position: absolute;
+      top:38px;
+      right: 0px;
+      font-size: 10pt;
+      color: #304269;
+      font-family: "Roboto Regular";
+  }
+  .tripBlock_detailed{
+    position:absolute;
+    top:145px;
+    right: 0px;
+    font-size: 12pt;
+    color: #304269;
+    font-family: "Roboto Medium";
+  }
+.carBrand_style{
+    top:0px;
+    float: left;
+    font-family: "Roboto Medium";
+    font-size: 16pt;
+    text-align: top;
+}
+.fuelType_style{
+    font-family: "Roboto Regular";
+    font-size: 14pt;
+    text-align: top;
+}
+.carProps_style{
+    position: absolute;
+    font-family: "Roboto Regular";
+    font-size: 14pt;
+    left:0px;
+    top: 20px;
+}
+.hidden_enter_carBrand{
+    visibility: hidden;
+    float: left;
+}

@@ -1,0 +1,16 @@
+
+.drivers_top_background{
+  position:absolute;
+  top:0px;
+  width:100%;
+  height:400px;
+  background: url(pictures/drivers_header_background.png) no-repeat;
+  padding:30px;
+}
+.drivers_bottom_background{
+  position:absolute;
+  top:400px;
+  width:100%;
+  height:1200px;
+  background: url(pictures/drivers_body_background.png) no-repeat;
+}

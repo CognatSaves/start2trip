@@ -1,0 +1,172 @@
+.header_label {
+  display: flex;
+  float: left;
+  width: 240px;
+  height:36px;
+  background: url(pictures/the_label.png) no-repeat;
+ 
+  margin: 0 30px 0 0;
+}
+
+.header_geo_block{
+  display:  flex;
+  float: left;
+  width: 100px;
+  height: 36px;
+  margin: 0 160px 0 0;
+}
+.header_geo_emblem{
+  display: inline-block;
+  top: 0px;
+  left: 0px;
+  text-align: center;
+  
+  width:34px;
+  height: 100%;
+  background:url(pictures/earth_emblem.png) no-repeat;
+  background-size:cover;
+  margin: 0 8px 0 0;
+  
+}
+.header_geo_buttonPosition{
+  display: inline-block;
+  text-align: center;
+  width:47px;
+  height: 36px;
+  margin: 0 0 5px 0;  
+}
+
+.header_geo_button{
+  display: inline-block;
+  text-align: center;
+  width:49px;
+  height: 28px;
+  border: none;
+  
+  
+  text-align: center;
+  font-size: 14px;
+  font-family: "Roboto Light";
+  color: #ffffff;
+ 
+}
+.header_button{
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #97a3b4;
+}
+.geo_button_value{
+  width: 100%;
+  height: 100%;
+  border-bottom: 1px dashed;
+}
+.geo_button_icon{
+  display: inline-block;
+  width: 12px;
+  height: 10px;
+  background: url(./pictures/geo_icon.png) no-repeat;
+  margin-bottom: 2px;
+}
+.header_buttonMass{
+  display:  flex;
+  float: left;
+  text-align: center;
+  padding: 0 0 5px 0;
+}
+.buttonMass_button{
+  display: inline-block;
+  height: 30px;
+  border: none;
+  background-color: transparent;
+
+  font-family: "Roboto Medium";
+
+  font-size: 16px;
+  color:#304269;
+  margin:0px 12.5px 0px 12.5px;
+  vertical-align: 12px;
+}
+
+
+.header_rightButtonsClass{
+  display:  flex;
+  float: left;
+  text-align: center;
+  width: 52px;
+  height: 28px;
+  border: none;
+
+  font-size: 12px;
+  color:#ffffff;
+  font-family: "Roboto Medium";
+}
+.header_currency{
+  
+  vertical-align: 14px;
+  margin: 0 6px 0 0;
+}
+
+.header_currency_value{
+  display: block;
+  height: 100%;
+  width:100%;
+  text-align: left;
+}
+.header_language{
+  vertical-align: 6px;
+  margin: 0 10px 0 0;
+}
+
+.header_language_flag{
+  display: block;
+  float: left;
+  width:13px;
+  height:9px;
+  text-align: left;
+  background: url(pictures/flag.png) no-repeat;
+  margin: 4px 2px 0 0;
+}
+.header_language_value{
+  display: block;
+  float: left;
+  height: 100%;
+  text-align: left;
+}
+
+.header_registration{
+  display: flex;
+  float: left;
+  height: 30px;
+  width: 145px;
+  border:none;
+  text-align: center;
+
+  background:url(pictures/home_header_registr.png) no-repeat;
+
+  vertical-align: 14px;
+}
+
+.header_registration_text{
+  display: block;
+  text-align:center;
+
+  font-size: 12px;
+  color:#304269;
+  font-family: "Roboto Light";
+}
+@media (max-width: 360px){
+  .header_label { width: 120px;height: 18px; margin: 0;  background-size:cover; background: url(pictures/label_mobile.png) no-repeat;}
+  .geo_button_icon {display: none;}
+
+  .header_geo_block {height: 18px; margin: 0; width: 60px}
+  .header_geo_emblem {width: 18px; margin: 0 3px 0 0}
+  .header_geo_buttonPosition {width: 30px;height: 18px;}
+  .header_geo_button {height: 17px;width: 30px;vertical-align: 0px; padding: 0px; background-color: transparent; border-radius: 0px; }
+  .header_buttonMass {display: none;}
+  .header_currency { background: none; height: 14px; margin: 0px; padding: 0; width: 40px;}
+  .header_language { background: none;height: 14px; margin: 0px;  padding: 0;width: 40px;}
+  .header_currency_value {margin-top: 0; font-size: 10px;}
+  .header_language_value {margin-top: 0; font-size: 10px;}
+  .header_language_flag {display: none}
+  .header_registration {display: none;}
+}

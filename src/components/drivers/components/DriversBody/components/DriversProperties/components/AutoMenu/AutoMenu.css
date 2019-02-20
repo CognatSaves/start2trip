@@ -1,0 +1,42 @@
+.drivers_properties_autoMenu{
+    position: absolute;
+    top: 34px;
+    right: 0px;
+    width:128px;
+    background-color: #ffffff;
+    border-radius: 3px;
+    box-shadow: 0 0 1px 1px rgb(236, 236, 236);
+}
+.autoMenu_element{
+    position: relative;
+    width: 128px;
+    height: 30px;
+    background-color: #ffffff;
+}
+.autoMenu_element:hover{
+    background-color: #91bed4;
+}
+.autoMenu_element_textBlock{
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+}
+.autoMenu_element_picture{
+    position: absolute;
+    left:6px;
+    top:10px;
+    width: 19px;
+    height: 9px;
+    background: url(./pictures/sedan_19x9.png) no-repeat;
+}
+.autoMenu_element_text{
+    position:absolute;
+    left: 32px;
+    width: 90px;
+    height: 100%;
+    text-align: left;
+    font-family: "Roboto Regular";
+    font-size:9pt;
+    color: #304269;
+}

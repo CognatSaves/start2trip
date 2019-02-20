@@ -1,0 +1,42 @@
+.drivers_properties_languageMenu{
+    position: absolute;
+    top:34px;
+    right: 0px;
+    
+    background-color: #ffffff;
+    border-radius: 3px;
+    box-shadow: 0 0 1px 1px rgb(236, 236, 236);
+}
+
+.languageMenu_element{
+    position: relative;
+    width: 116px;
+    height: 30px;
+    
+}
+
+.languageMenu_element:hover{
+    background-color:  #91bed4;
+}
+
+
+.languageMenu_element_flag{
+    position: absolute;
+    top: 10px;
+    left: 12px;
+    width: 15px;
+    height: 9px;
+    background: url(./pictures/languageMenu_RU_flag.png) no-repeat;
+    border-radius: 3px;
+    
+}
+
+.textBlock_value{
+    position:absolute;
+    display: inline-block;
+    left: 30px;
+    font-family: "Roboto Regular";
+    font-size:9pt;
+    color: #304269;
+    background-color: transparent;
+}

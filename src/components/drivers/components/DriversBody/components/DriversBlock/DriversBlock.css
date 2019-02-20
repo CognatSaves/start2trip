@@ -1,0 +1,38 @@
+.drivers_block{
+  position:absolute;
+  top:30px;
+  left:0px;
+  width:890px;
+  height:1090px;
+}
+.hiddenString{
+  float: right;
+  visibility: hidden;
+}
+.visibleString{
+  float: right;
+  font-size: 14pt;
+  font-family: "Roboto Regular";
+}
+.infoString{
+  float: left;
+  font-size: 14pt;
+  font-family: "Roboto Medium";
+}
+.drivers_block_element{
+  position: absolute;
+  height:215px;
+  width:100%;
+  box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
+}
+
+.block_element_photo{
+  position: absolute;
+  left:20px;
+  top:30px;
+  width:156px;
+  height: 156px;
+  background: url(pictures/driver1/drivers_body_photo.png) no-repeat
+}
+
+

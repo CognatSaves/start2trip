@@ -1,0 +1,33 @@
+.block_element_infoBlock{
+    position: absolute;
+    float: left;
+    left:210px;
+    top:30px;
+    width:305px;
+    height: 165px;
+    border-right: 1px solid black;
+    color:  #304269;
+    
+  }
+  .block_element_infoBlock_name{
+    position: absolute;
+    left:0px;
+    top:0px;
+    font-size: 24pt;
+    font-family: "Roboto Medium";
+  }
+  .block_element_infoBlock_age{
+    position: absolute;
+    left:0px;
+    top: 80px;
+  }
+  .block_element_infoBlock_language{
+    position:absolute;
+    left:0px;
+    top: 100px;
+  }
+  .block_element_infoBlock_drivingAge{
+    position:absolute;
+    left:0px;
+    top:120px;
+  }

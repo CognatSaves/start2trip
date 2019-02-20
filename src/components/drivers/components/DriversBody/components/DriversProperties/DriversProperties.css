@@ -1,0 +1,94 @@
+.drivers_properties{
+  position:absolute;
+  top:0px;
+  left:0px;
+  width:890px;
+  height:30px;
+}
+.drivers_properties_text{
+  float: left;
+  top:5px;
+  left:0px;
+  width: 70px;
+  height: 30px;
+  font-size: 12px;
+  color:#666666;
+  font-family: "Roboto Light";
+  line-height: 30px;
+  text-align: left;
+}
+
+.properties_leftButton{
+  float: left; 
+}
+.properties_rightButton{
+  float: right;
+}
+.properties_buttonStyle{
+  position: relative;
+  font-family: "Roboto Regular";
+  font-size: 9pt;
+  color: #304269;
+  background-color: #d9e8f5;
+  border-radius: 3px;
+  text-align: center;
+  line-height: 30px;
+}
+.properties_leftHidden{
+  visibility: hidden;
+  float: left;
+  position: relative
+}
+.properties_rightHidden{
+  visibility: hidden;
+  float: right;
+  position: relative
+}
+.properties_arrow{
+  position: relative;
+  float: right;
+  top:11px;
+  right: 5px;
+  width: 8px;
+  height: 8px;
+  background: url(pictures/drivers_properties_arrow.png) no-repeat;
+}
+.properties_leftSpace{
+  float: left;
+  height: 100%;
+  width: 5px;
+}
+
+.properties_rightBlock{
+  position: absolute;
+  top:0px;
+  right: 0px;
+  width: 375px;
+  height: 30px;
+}
+
+.properties_rightSpace{
+  float: right;
+  height: 100%;
+  width: 5px;
+  
+}
+.properties_rightButton_characteristic{
+  position: relative;
+  float: left;
+  left: 0px;
+  top: 0px;
+  height: 100%;
+  line-height: 30px; 
+
+}
+.properties_rightButton_value{
+  position: relative;
+  float: left;
+  right: 0px;
+  top:0px;
+  height: 100%;
+  line-height: 30px; 
+  font-family: "Roboto Medium";
+  font-size: 9pt;
+}
