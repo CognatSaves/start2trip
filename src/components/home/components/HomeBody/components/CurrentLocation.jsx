@@ -4,8 +4,9 @@ import ReactDOM from 'react-dom';
 const mapStyles = {
   map: {
     position: 'absolute',
-    width: '850px',
-    height: '640px'
+    width: '60%',
+    height: '100%',
+    borderRadius: '0 5px 5px 0',
   }
 };
 
@@ -20,7 +21,7 @@ export class CurrentLocation extends React.Component {
         lat: lat,
         lng: lng
       },
-      time:0
+      time: 0
     };
   }
 
@@ -31,7 +32,7 @@ export class CurrentLocation extends React.Component {
     if (prevState.currentLocation !== this.state.currentLocation) {
       this.recenterMap();
     }
-    if(prevProps.cities !== this.props.google){
+    if (prevProps.cities !== this.props.google) {
       this.loadMap();
     }
   }
@@ -64,21 +65,21 @@ export class CurrentLocation extends React.Component {
     this.loadMap();
   }
   loadMap() {
-    function createRequestElement(cities, google){
+    function createRequestElement(cities, google) {
       let waypoints = [];
-      for (let i=1; i<cities.length-1;i++){
-        waypoints[i-1]={
+      for (let i = 1; i < cities.length - 1; i++) {
+        waypoints[i - 1] = {
           location: cities[i],
-          stopover:true
+          stopover: true
         }
       }
       let request =
-        {
-          origin: cities[0], //точка старта
-          destination: cities[cities.length-1], //точка финиша
-          waypoints:waypoints,
-          travelMode: google.maps.DirectionsTravelMode.DRIVING //режим прокладки маршрута
-        };
+      {
+        origin: cities[0], //точка старта
+        destination: cities[cities.length - 1], //точка финиша
+        waypoints: waypoints,
+        travelMode: google.maps.DirectionsTravelMode.DRIVING //режим прокладки маршрута
+      };
       return request;
     }
 
@@ -101,19 +102,19 @@ export class CurrentLocation extends React.Component {
       );
 
       this.map = new maps.Map(node, mapConfig);
-      let request = createRequestElement(this.props.cities,google);
+      let request = createRequestElement(this.props.cities, google);
 
       let service = new google.maps.DirectionsService();
-      let directionsDisplay=new google.maps.DirectionsRenderer();
+      let directionsDisplay = new google.maps.DirectionsRenderer();
 
-      service.route(request, function(response, status) {
+      service.route(request, function (response, status) {
         console.log("status");
         console.log(status);
         console.log(response);
         if (status == google.maps.DirectionsStatus.OK) {
           //it must be some markers with distance, but ...
           console.log("Distance");
-          for(var i=0;i<response.routes[0].legs.length; i++){
+          for (var i = 0; i < response.routes[0].legs.length; i++) {
             console.log(response.routes[0].legs[i].distance.text);
           }
           console.log("response");
@@ -124,20 +125,20 @@ export class CurrentLocation extends React.Component {
       });
       directionsDisplay.setMap(this.map);
 
-      var uluru = {lat: 37, lng: 55};
+      var uluru = { lat: 37, lng: 55 };
       var contentString = '<div id="content" style="color: black">Help Me!</div>';;
       var infowindow = new google.maps.InfoWindow({
         content: contentString
       });
-/*
-      var marker = new google.maps.Marker({
-        position: uluru,
-        map: this.map,
-        title: 'Uluru (Ayers Rock)'
-      });
-
-        infowindow.open(this.map, marker);
-*/
+      /*
+            var marker = new google.maps.Marker({
+              position: uluru,
+              map: this.map,
+              title: 'Uluru (Ayers Rock)'
+            });
+      
+              infowindow.open(this.map, marker);
+      */
       console.log("map");
       console.log(this.map);
 
