@@ -10,8 +10,8 @@ export default class LanguageMenu extends React.Component{
             return(
                 <div className="drivers_properties_languageMenu" >
                     {this.props.languages.map((element,index)=>
-                        <div className="languageMenu_element">                               
-                            <div className="languageMenu_element_flag"/>
+                        <div className="languageMenu_element" onClick={()=>this.props.languageValueChoose(element.languageName)}>                               
+                            <div className="languageMenu_element_flag" />
                                 <div className="textBlock_value">
                                     {element.languageName}
                                 </div>                                 

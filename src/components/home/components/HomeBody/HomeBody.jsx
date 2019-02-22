@@ -5,85 +5,122 @@ import MapContainer from './components/MapContainer.jsx'
 import Calendar from 'react-calendar'
 import './calendary.css';
 import { connect } from 'react-redux'
-import {Link, Route, BrowserRouter, Redirect, Switch} from 'react-router-dom';
 
 class HomeBodyClass extends React.Component {
   constructor(props) {
     super(props);
-    this.state=this.props.storeState
     
+   /* this.state={
+      cities: this.props.storeState.cities,
+      calendaryVisibility: this.props.storeState.calendaryVisibility,
+      date: this.props.storeState.date,
+      picture: this.props.storeState.picture
+    }*/
+    this.state = JSON.parse(JSON.stringify(this.props.storeState));
+    this.state = {...this.state, "mapUpdate": true, calendaryVisibility: 'hidden'}
+
     this.changeCity=this.changeCity.bind(this);
     this.addCity=this.addCity.bind(this);
     this.removeCity=this.removeCity.bind(this);
     this.openChooseDate=this.openChooseDate.bind(this);
     this.closeChooseDate=this.closeChooseDate.bind(this);
     this.goToDrivers=this.goToDrivers.bind(this);
+    this.setLengthTime=this.setLengthTime.bind(this);
   }
-  changeCity(index,e){
+  
+  changeCity(index,value){
     let cities = this.state.cities;
-    cities[index]=e.target.value;
+    cities[index]=value;
     this.setState({
-      cities:cities
+      cities:cities,
+      mapUpdate: true
     });
-    //this.props.changeCity(index,e.target.value);
   }
   addCity(){
     let cities=this.state.cities;
     cities[cities.length]="";
     this.setState({
-      cities:cities
+      cities:cities,
+      mapUpdate:true
     })
-    //this.props.addCity();
   }
   removeCity(index){
+    console.log("removeCity");
+    console.log("index:"+index);
     let cities = this.state.cities;
     cities.splice(index,1);
     this.setState({
-      cities:cities
+      cities:cities,
+      mapUpdate:true
     })
-    //this.props.removeCity(index);
   }
   openChooseDate(){
-    console.log("OpenChooseDate call");
+    console.log("openChooseDate call");
     this.setState({
+      mapUpdate: false,
+    })
+    this.setState({     
       calendaryVisibility: 'visible'
     })
-    //this.props.calendaryVisibility('visible');
+    //this.props.calendaryVisibility('visible');  
   }
   closeChooseDate(){
+    this.setState({
+      mapUpdate: false,
+    })
     this.setState({
       calendaryVisibility: 'hidden'
     })
     //this.props.calendaryVisibility('hidden');
+    
   }
   chooseDate(value){
-    //console.log("chooseDate call");
-   // console.log(value);
-
     let dayMass = ["Вс","Пн","Вт","Ср","Чт","Пт","Сб"];
     let monthMass=["января","февраля","марта","апреля","мая",
       "июня","июля","августа","сентября","октября","ноября","декабря"];
     let resultString = dayMass[value.getDay()]+", "+value.getDate()+" "+monthMass[value.getMonth()]+" "+value.getFullYear();
-   // console.log("result");
-    //console.log(resultString);
     this.setState({
-      date: resultString
+      date: resultString,
+      mapUpdate:false
     });
-    //this.props.setDate(resultString);
-    //this.closeChooseDate();
-
   }
   goToDrivers(){
-    console.log("Go to Drivers call");
-    this.props.setState(this.state.cities, this.state.date, this.state.calendaryVisibility, "drivers");  
-    /*this.setState({
-      picture: "drivers"
-    }  )*/
+    this.props.setState(this.state.cities, this.state.date, "drivers");
+    //this.props.calendaryVisibility('hidden'); 
     this.props.redirectToDrivers();
+  }
+  setLengthTime(travelLength,travelTime){
+    function getLengthString(travelLength){
+      let length = travelLength;
+      length=Math.ceil(length/1000);
+      let lengthString = length+" км";
+      return lengthString;
+    }
+    function getTimeString(travelTime){
+      let hours = travelTime/3600 ^ 0;
+      let minutes = (travelTime-hours*3600)/60 ^ 0;
+      let days = hours/24 ^ 0;
+      hours = hours - days* 24;
+      let timeString = "";
+      if(days!==0){
+        timeString+=days+ " дн. " + hours + " ч.";
+      }
+      else{
+        if(hours!==0){
+          timeString+=hours+" ч. ";
+        }
+        timeString+=minutes +" мин.";
+      }
+      return timeString;
+    }
+    let lengthString = getLengthString(travelLength);
+    let timeString = getTimeString(travelTime);
+    
+    this.props.setLengthTime(lengthString,timeString);
   }
   render() {
     console.log("HomeBody render");
-    console.log(this.props);
+    console.log(this.state);
     return(
       <React.Fragment>
         <div className="body_menu">
@@ -96,7 +133,7 @@ class HomeBodyClass extends React.Component {
           </div>
         </div>
         <div className="body_map">
-          <MapContainer cities={this.props.storeState.cities}/>
+          <MapContainer cities={this.state.cities} setLengthTime={this.setLengthTime} mapUpdate={/*this.state.mapUpdate*/true}/>
         </div>
         
       </React.Fragment>
@@ -104,19 +141,24 @@ class HomeBodyClass extends React.Component {
   }
 
 }
+/*
+
+
+props.storeState
+
+*/
+
 
 
 const HomeBody = connect(
   (state) =>({
-    storeState: state.AppReduser
+    storeState: state.AppReduser,
+    stateReduserState: state.StateReduser
   }),
   (dispatch) => ({
     goToDrivers:() => dispatch({type:"CHANGE_PICTURE", picture:"drivers"}),
-    changeCity:(index,value) => dispatch({type:"CHANGE_CITY", index: index, value: value}),
-    addCity:()=>dispatch({type: "ADD_CITY"}),
-    removeCity:(index)=>dispatch({type:"REMOVE_CITY",index: index}),
     calendaryVisibility:(visibility)=>dispatch({type:"CHOOSE_DATE_VIS", visibility: visibility}),
-    setDate: (date)=>dispatch({type:"SET_DATE",date:date}),
+    setLengthTime:(travelLength, travelTime)=>dispatch({type:"SET_LENGTH_TIME", travelTime: travelTime, travelLength: travelLength}),
     setState: (cities, date, visibility, picture)=>dispatch({type:"SET_STATE", sourse:"HomeBody", cities: cities, date: date, calendaryVisibility: visibility, picture: picture})
   })
 )(HomeBodyClass);

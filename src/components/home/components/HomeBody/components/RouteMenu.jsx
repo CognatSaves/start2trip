@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './RouteMenu.css'
 import {Redirect} from 'react-router-dom';
+import LocationSearchInput from './Search'
 
 const CityRouteTable = (props) => {
   const {cities, changeCity,removeCity} = props;
@@ -16,14 +17,14 @@ const CityRouteTable = (props) => {
   return(
     <tbody align="center">
     {cities.map((element,index)=>
-      <tr key={index}>
-        <td key={index+"el0"}>
+      <tr key={element}>
+        <td key={element+"el0"}>
           <div className={dotClasses[index]}/>
         </td>
-        <td key={index+"el1"}>
-          <input value={element} className="city_input" onChange={changeCity.bind(this,index)}/>
+        <td key={element+"el1"}>
+          <LocationSearchInput address={element} changeCity={changeCity} index={index}/>
         </td>
-        <td  key={index+"el2"} style={{visibility: isVisibleArray[index]}} onClick={()=>removeCity(index)}>
+        <td  key={element+"el2"} style={{visibility: isVisibleArray[index]}} onClick={()=>removeCity(index)}>
           <div className="crossBox">
           </div>
         </td>
@@ -36,11 +37,13 @@ const CityRouteTable = (props) => {
 export default class HomeBody extends React.Component {
   constructor(props) {
     super(props);
-
+   
   }
-
+  
   render() {
-    console.log("RouteMenu render call");
+    console.log("RouteMenu render");
+    console.log("cities:");
+    console.log(this.props.cities);
     let parameters_text="Дополнительные параметры    ";
     return(
       <React.Fragment>
@@ -72,35 +75,8 @@ export default class HomeBody extends React.Component {
         <div className="routemenu_comment">
           <div className="routemenu_comment_text">*Возврат в точку отправления в этот же день бесплатно</div>
         </div>
+      
       </React.Fragment>
     );
   }
 }
-
-/*
-
-
-
-/*
-<table className="routemenu_table">
-          <CityRouteTable cities={this.props.cities} changeCity={this.props.changeCity} removeCity={this.props.removeCity}/>
-        </table>
-<div className="routemenu_city_add_button" onClick={()=>this.props.addCity()}></div>
-        <div className="routemenu_city_add_text">Добавить пункт назначения</div>
-        <div className="routemenu_calendary"></div>
-        <input className="routemenu_date" value={this.props.date} placeholder="Дата отправления" onClick={()=>this.props.chooseDate()}></input>
-        <div className="routemenu_parameters">
-          <div className="routemenu_parameters_text"><p>{parameters_text}</p></div>
-          <div className="routemenu_parameters_arrow"/>
-        </div>
-        <button className="routemenu_search" onClick={()=>this.props.goToDrivers(this.props.cities, this.props.date)}>
-          <div className="routemenu_search_loupe"/>
-          <div className="routemenu_search_text">ПОИСК</div>
-        </button>
-        <div className="routemenu_comment">*Возврат в точку отправления в этот же день бесплатно</div>
-
-
-
-
-
-*/

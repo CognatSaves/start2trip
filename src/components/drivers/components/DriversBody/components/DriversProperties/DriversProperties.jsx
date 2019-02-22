@@ -22,8 +22,9 @@ export default class DriversProperties extends React.Component {
       pagesMenuValue: "10",
       pagesMenuVariants: ["10","20","40"],
       persons: [1,0],
-      autoValue: "Седан",
+      autoValue: "Тип авто",
       autoVariants: ["Седан","Внедорожник","Минивен","Микроавтобус"],
+      languageValue: "Язык",
       languages: [        
         {
           languageName: "Русский",
@@ -46,9 +47,14 @@ export default class DriversProperties extends React.Component {
     this.sortMenuChoose=this.sortMenuChoose.bind(this);
     this.pagesMenuCall=this.pagesMenuCall.bind(this);
     this.pagesMenuChoose=this.pagesMenuChoose.bind(this);
-    this.changePersonsNumber=this.changePersonsNumber.bind(this);
+    
     this.valueMenuCall=this.valueMenuCall.bind(this);
     this.autoMenuCall=this.autoMenuCall.bind(this);
+
+    this.autoValueChoose=this.autoValueChoose.bind(this);
+    this.languageValueChoose=this.languageValueChoose.bind(this);
+
+    this.changePersonsNumber=this.changePersonsNumber.bind(this);
   }
   changePersonsNumber(index, value){
     // console.log("changePersonsNumber call");
@@ -106,6 +112,20 @@ export default class DriversProperties extends React.Component {
       autoMenu: !this.state.autoMenu
     })
   }
+  autoValueChoose(value){
+    this.setState({
+      autoValue: value,
+      autoMenu: false
+    })
+  }
+  languageValueChoose(value){
+    console.log("languageValueChoose");
+    console.log(value);
+    this.setState({
+      languageValue: value,
+      languageMenu: false
+    })
+  }
   render() {
     function personsCalculation(people){
       let result=0;
@@ -121,7 +141,9 @@ export default class DriversProperties extends React.Component {
       }
       return resultString;
     }
-    let personsNumberString = personsCalculation(this.state.persons)
+    let personsNumberString = personsCalculation(this.state.persons);
+    console.log("Drivers properties render");
+    console.log(this.state);
     return (
       <div className = "drivers_properties" >
         <div className="drivers_properties_text">Подобрать:       
@@ -129,21 +151,21 @@ export default class DriversProperties extends React.Component {
         <div className="properties_buttonStyle properties_leftButton" onClick={()=>this.languageMenuCall()}>
           <div>
             <div className="properties_leftHidden">_</div>
-            Язык
+            {this.state.languageValue}
             <div className="properties_arrow"></div>
             <div className="properties_rightHidden">_</div>
           </div>         
-          <LanguageMenu isVisible = {this.state.languageMenu} languages = {this.state.languages}/>
+          <LanguageMenu isVisible = {this.state.languageMenu} languages = {this.state.languages} languageValueChoose={this.languageValueChoose}/>
         </div>
         <div className="properties_leftSpace"></div>
         <div className="properties_buttonStyle properties_leftButton">
           <div onClick={()=>this.autoMenuCall()}>
             <div className="properties_leftHidden">_</div>  
-            Тип авто
+            {this.state.autoValue}
             <div className="properties_arrow"></div>
             <div className="properties_rightHidden">_</div>
           </div>
-          <AutoMenu isVisible={this.state.autoMenu} autoVariants={this.state.autoVariants}/>
+          <AutoMenu isVisible={this.state.autoMenu} autoVariants={this.state.autoVariants} autoValueChoose={this.autoValueChoose}/>
         </div>
         <div className="properties_leftSpace"></div>
         <div className="properties_buttonStyle properties_leftButton" >
