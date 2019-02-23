@@ -5,9 +5,13 @@ import './text.css';
 import HomeHeader from './components/HomeHeader/HomeHeader.jsx'
 import HomeBody from './components/HomeBody/HomeBody.jsx'
 import Footer from '../Footer/Footer.jsx'
+<<<<<<< HEAD:src/components/home/Home.jsx
 import {Link, Route, BrowserRouter, Redirect, Switch} from 'react-router-dom';
 import { request } from 'https';
 import { withRouter } from 'react-router';
+=======
+
+>>>>>>> da1eb07d9edf2bd6db74e88cb2803fb818a08866:src/components/home/Home.jsx
 
 class Home extends React.Component {
   constructor(props){
@@ -20,11 +24,11 @@ class Home extends React.Component {
   render(){
     console.log("Home render");
     console.log(this.props);
+    console.log("window.google");
+    console.log(window.google);
     return (
       <React.Fragment>
-      
       <div className="home_window">
-
         <div className="home_block">
           <div className="home_header">
             <HomeHeader/>
@@ -42,9 +46,10 @@ class Home extends React.Component {
           </div>
           
         </div>
+        
         <Footer/>
+        
       </div>
-      
     
       
       
@@ -55,3 +60,9 @@ class Home extends React.Component {
 
 
 export default Home;
+
+/*
+
+
+ 
+      */

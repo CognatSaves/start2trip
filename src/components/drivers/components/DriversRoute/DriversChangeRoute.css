@@ -1,0 +1,41 @@
+
+.driversRoute_changeCityBlock{
+    display: flow-root;
+    margin: 50px 45px 0 25px;
+    background-color: red;
+    padding: 10px 0 10px 0;
+    flex-flow: row;
+}
+.changeCityBlock_elementStyle{
+    
+    width: 260px;
+    height: 30px;
+    
+    border: 1px solid black;
+}
+.changeCityBlock_city{
+    display: flex;
+    float: left;
+    padding: 0 10px 0 10px;
+    margin: 5px 5px 5px 5px; 
+    background-color: fuchsia;
+}
+.changeCityBlock_addCityBlock{
+    display: block;
+    flex-flow: column;
+    margin: 0 45px 0 30px;
+    background-color: aqua;
+}
+.driversRoute_applyCityBlock{
+    display: block;
+    float:left;
+}
+.applyCityBlock_infoBlock{
+    display: flex;
+    float: left;
+    background-color: blueviolet;
+}
+.applyCityBlock_applyButton{
+    display: block;
+    float: left;
+}

@@ -18,7 +18,7 @@ class DriversClass extends React.Component {
           <div>
             <div className = "drivers_top_background" >
               <DriversHeader/>
-              <DriversRoute cities={this.props.storeState.cities} date={this.props.storeState.date}/>
+              <DriversRoute/>
             </div>
             <div className = "drivers_bottom_background" >
               <DriversBody/>
@@ -30,7 +30,8 @@ class DriversClass extends React.Component {
 }
 const Drivers = connect(
   (state) =>({
-    storeState: state.AppReduser
+    storeState: state.AppReduser,
+    driversState: state.DriversReduser
   }),
   (dispatch) => ({
    // setCities:(cities) => dispatch({type:"SET_CITIES",cities:cities})

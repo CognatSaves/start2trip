@@ -8,14 +8,16 @@ import Drivers from './components/drivers/Drivers.jsx';
 
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
-import {AppReduser} from './redusers/AppReduser'
+import {AppReduser} from './redusers/AppReduser';
+import {DriversReduser} from './redusers/DriversReduser';
+import {StateReduser} from './redusers/StateReduser';
 import {Link, Route, BrowserRouter, Redirect, Switch} from 'react-router-dom';
 require('require-context/register');
 
 
 const redux = require('redux');
 
-const reducers = redux.combineReducers({ AppReduser });
+const reducers = redux.combineReducers({ AppReduser, DriversReduser, StateReduser });
 
 const store = redux.createStore(reducers);
 
@@ -24,9 +26,9 @@ ReactDOM.render(
     <BrowserRouter>
     <React.Fragment>
         <Switch>                
-                <Route path="/home" component={Home}/>
-                <Route path="/drivers" component={Drivers}/>
-                <Redirect from="/" to="/home"/>
+            <Route path="/home" component={Home}/>
+            <Route path="/drivers" component={Drivers}/>
+            <Redirect from="/" to="/home"/>
         </Switch>       
     </React.Fragment>
     </BrowserRouter>

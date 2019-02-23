@@ -1,0 +1,33 @@
+.infowindowClass{
+    color: black;
+    z-index: 999;
+}
+.infowindowClass_firstLine{
+    display: block;
+    height: 22px;
+}
+.infowindowClass_carEmblem{
+    display: block;
+    float: left;
+    width: 20px;
+    height: 22px;
+    background: url(car-solid.svg) no-repeat;
+    margin-right: 10px;
+
+    
+}
+.infowindowClass_duration{
+    
+    display: block;
+    float: left;
+    height: 22px;
+    font-family: "Roboto Medium";
+    font-size: 14px;
+    line-height: 22px;
+}
+.infowindowClass_distance{
+    display: block;
+    height: 22px;
+    font-size: 12px;
+    font-size: "Roboto";
+}

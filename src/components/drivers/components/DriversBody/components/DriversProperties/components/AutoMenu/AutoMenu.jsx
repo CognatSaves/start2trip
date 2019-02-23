@@ -11,7 +11,7 @@ export default class LanguageMenu extends React.Component{
                 <div className="drivers_properties_autoMenu" >
                     {this.props.autoVariants.map((element,index)=>
                         <div className="autoMenu_element">
-                            <div className="autoMenu_element_textBlock">
+                            <div className="autoMenu_element_textBlock" onClick={()=>this.props.autoValueChoose(element)}>
                                 <div className="autoMenu_element_picture"/>
                                 <div className="autoMenu_element_text">{element}</div>
                             </div>
