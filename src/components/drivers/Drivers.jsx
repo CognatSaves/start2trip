@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './Drivers.css';
-import DriversBody from './components/DriversBody/DriversBody.jsx';
-import DriversHeader from './components/DriversHeader/DriversHeader.jsx';
-import DriversRoute from './components/DriversRoute/DriversRoute.jsx';
+import DriversBody from './DriversBody/DriversBody.jsx';
+import DriversHeader from './DriversHeader/DriversHeader.jsx';
+import DriversRoute from './DriversRoute/DriversRoute.jsx';
 import Footer from '../Footer/Footer.jsx'
 import { connect } from 'react-redux'
 

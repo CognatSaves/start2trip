@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Footer.css'
 import "./Footer(mobile).css"
-import HomeBody from '../home/components/HomeBody/HomeBody';
+import HomeBody from '../home/HomeBody/HomeBody';
 
 export default class Footer extends React.Component {
   constructor(props) {

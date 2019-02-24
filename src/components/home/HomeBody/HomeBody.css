@@ -1,10 +1,11 @@
 .body_menu{
   display: flex;
   flex-direction: column;
-  flex-shrink: inherit;
-  height: 100%;
-  min-height: 500px;
+  justify-content: stretch;
   width: 25%;
+  min-height: 500px;
+  max-width: 500px;
+  max-height: 800px;
   border-radius: 5px 0 0 5px;
   padding: 10px 0 0 0;
   background-color: #304269;

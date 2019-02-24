@@ -3,7 +3,20 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    max-height: 50px;
+}
+
+.headerLogo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    order: 0;
+}
+
+.headerSelect {
+    display: flex;
+    flex-direction: row;
+    order: 2;
 }
 
 .header_geo_block {
@@ -45,6 +58,7 @@
 
 .header_buttonMass {
     margin: 2% 3% 2% 5%;
+    order: 1;
 }
 
 .buttonMass_button {
@@ -124,6 +138,8 @@ label.selectGeneral label {
 label.selectGeneral div {
     min-width: 100%;
     max-height: 500px;
+    background: #97a3b4;
+    border-radius: 5px;
     overflow-x: hidden;
 }
 
@@ -148,9 +164,10 @@ label.selectGeneral input[type="radio"]:checked+label {
     background: none;
     min-height: 30px;
     min-width: 180px;
-    border: 1.2px solid #304269;
+    border: 1.4px solid #304269;
     border-radius: 5px;
     text-align: center;
+    cursor: pointer;
 }
 
 .header_registration p {
@@ -162,67 +179,18 @@ label.selectGeneral input[type="radio"]:checked+label {
     font-family: "Roboto Light";
 }
 
-/* @media (max-width: 360px) {
-    .header_label {
-        width: 120px;
-        height: 18px;
-        margin: 0;
-        background-size: cover;
-        background: url(pictures/label_mobile.png) no-repeat;
+@media (max-width: 1060px) {
+    .header {
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin: 0 2%;
     }
-    .geo_button_icon {
-        display: none;
-    }
-    .header_geo_block {
-        height: 18px;
-        margin: 0;
-        width: 60px
-    }
-    .header_geo_emblem {
-        width: 18px;
-        margin: 0 3px 0 0
-    }
-    .header_geo_buttonPosition {
-        width: 30px;
-        height: 18px;
-    }
-    .header_geo_button {
-        height: 17px;
-        width: 30px;
-        vertical-align: 0px;
-        padding: 0px;
-        background-color: transparent;
-        border-radius: 0px;
+    .headerSelect {
+        order: 1;
     }
     .header_buttonMass {
-        display: none;
+        margin: 2% auto;
+        order: 2;
     }
-    .header_currency {
-        background: none;
-        height: 14px;
-        margin: 0px;
-        padding: 0;
-        width: 40px;
-    }
-    .header_language {
-        background: none;
-        height: 14px;
-        margin: 0px;
-        padding: 0;
-        width: 40px;
-    }
-    .header_currency_value {
-        margin-top: 0;
-        font-size: 10px;
-    }
-    .header_language_value {
-        margin-top: 0;
-        font-size: 10px;
-    }
-    .header_language_flag {
-        display: none
-    }
-    .header_registration {
-        display: none;
-    }
-} */
+}

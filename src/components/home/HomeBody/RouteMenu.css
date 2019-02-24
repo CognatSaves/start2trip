@@ -23,13 +23,6 @@
     border-spacing: 0px;
 }
 
-.routemenu_table thead tr {
-    display: block;
-    left: 0px;
-    width: 60%;
-    border-collapse: collapse;
-}
-
 .routemenu_addCity {
     display: flex;
     flex-direction: row;
@@ -66,7 +59,8 @@
     border-width: 0 0 1px;
     border-color: white;
     background-color: transparent;
-    min-width: 200px;
+    width: 50%;
+    min-width: 13vw;
     font-size: 0.9rem;
     margin-left: 10px;
     color: #ffffff;
@@ -78,58 +72,68 @@
 }
 
 .routemenu_parameters {
-    display: table;
-    width: 350px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
     height: 42px;
     text-align: center;
     background-color: rgba(196, 205, 224, 0.11);
     border: none;
-    padding: 12px 17px 15px 40px;
     margin-bottom: 19px;
 }
 
-.routemenu_parameters_text {
-    float: left;
-    font-size: 15px;
-    color: #ffffff;
+.routemenu_parameters p {
+    margin: 0;
+    line-height: 42px;
+    font-size: 0.9rem;
+    color: #fff;
     font-family: "Roboto Regular";
-    height: 15px;
-    ;
 }
 
-.routemenu_parameters_arrow {
-    float: right;
-    height: 15px;
-    width: 40px;
-    background: url(da_tru_big_arrow.png) no-repeat;
+.routemenu_parameters img {
+    margin: auto 10px;
 }
 
 .routemenu_search {
-    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
     width: 100%;
-    padding: 0 45px 0 45px;
+    
 }
 
 .routemenu_search_button {
-    height: 50px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    max-height: 50px;
     background-color: #f26101;
-    width: 260px;
+    width: 50%;
+    max-width: 260px;
     border: none;
     padding: 14px 92px 12px 75px;
     border-radius: 5px;
 }
 
-.routemenu_search_loupe {
+.routemenu_search_button img {
+    margin: auto 0;
+}
+
+/* .routemenu_search_loupe {
     float: left;
     width: 40px;
     height: 40px;
-    background: url(da_tru_loupe.png) no-repeat;
-}
+    background: url(pictures/da_tru_loupe.png) no-repeat;
+} */
 
 .routemenu_search_text {
-    float: right;
-    font-size: 15px;
-    color: #ffffff;
+    font-size: 1rem;
+    color: #fff;
     font-family: "Roboto Medium";
 }
 
@@ -152,22 +156,25 @@
     border-color: white;
     background-color: transparent;
     color: white;
-    font-size: 1em;
+    font-size: 1rem;
+    height: 50%;
+    width: 50%;
+    min-width: 13vw;
 }
 
 .dotBox {
     position: relative;
     width: 40px;
     height: 40px;
-    background: url(Shape.svg) no-repeat;
+    background: url(pictures/Shape.svg) no-repeat;
 }
 
 .firstDotBox {
     position: relative;
     top: 11px;
-    width: 40px;
+    width: 20px;
     height: 35px;
-    background: url(Ellipse.svg) no-repeat;
+    background: url(pictures/Ellipse.svg) no-repeat;
 }
 
 .lastDotBox {
@@ -175,7 +182,7 @@
     top: 1px;
     width: 40px;
     height: 43px;
-    background: url(../../HomeHeader/pictures/geo_icon.png) no-repeat;
+    background: url(../HomeHeader/pictures/geo_icon.png) no-repeat;
 }
 
 .crossBox {
@@ -184,24 +191,9 @@
     margin: 14px 0 0 5px;
 }
 
-/* @media (max-width: 360px){
-  .routemenu_container {background-color: #ffffff}
-  .dotBox {background: url(da_1st_dots_mobile.png) no-repeat; top: 10px;}
-  .firstDotBox {background: url(da_1st_dots_mobile.png) no-repeat}
-  .lastDotBox {background: url(da_last_dots_mobile.png) no-repeat; top: 10px;}
-  .crossBox {background: url(da_tru_kross_mobile.png) no-repeat}
-  .city_input {border-color: #cccccc; color: #333333;width: 222px}
-  .routemenu_date {border-color: #cccccc; color: #333333}
-  .routemenu_parameters {width: 100%; background-color: transparent;}
-  .routemenu_calendary {background: url(da_kalendar_mobile.png) no-repeat; margin: 2px 9px 0 23px;}
-  .routemenu_addCity {padding-top: 0;height: auto;}
-  .routemenu_city_add_button{background: url(da_plus_button_mobile.png) no-repeat; margin: 0 10px 0 22px;} 
-  .routemenu_table {width: 100%}
-  .routemenu_city_add_text {border-color: #cccccc; color: #333333}  
-  .routemenu_date {border-color: #cccccc; color: #333333; width: 222px;}
-  ::-webkit-input-placeholder {
-    color: #333333;
-  }
-  .routemenu_parameters_arrow {width: 23px}
+@media (max-width: 1077px){
+    .routemenu_parameters p {
+        line-height: normal;
+    }
   
-} */
+}
