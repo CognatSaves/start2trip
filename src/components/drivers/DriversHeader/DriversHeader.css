@@ -1,126 +1,187 @@
 .drivers_header {
-    position: absolute;
-    top: 34px;
-    width: 1200px;
-    height: 36px;
-    left: 0;
-    right: 0;
-    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.drivers_header_logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    order: 0;
+}
+.drivers_header_buttonMass {
+    margin: 2% 3% 2% 5%;
+    order: 1;
+}
+.drivers_header_select {
+    display: flex;
+    flex-direction: row;
+    order: 2;
 }
 
-.drivers_header_label {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 240px;
-    height: 34px;
-    background: url(pictures/drivers_header_label.png) no-repeat;
-}
 
-.drivers_header_earth {
-    position: absolute;
-    top: 0px;
-    left: 268px;
-    width: 31px;
-    height: 34px;
-    background: url(pictures/drivers_header_earth.png) no-repeat;
+.drivers_geo_block {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 2%;
+    width: 6%;
+    min-width: 90px;
 }
 
 .drivers_geo_button {
-    position: absolute;
-    top: 0px;
-    left: 305px;
-    width: 47px;
-    height: 31px;
-    background: url(pictures/drivers_geo_button.png) no-repeat;
+    color: #fff;
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+}
+.drivers_geo_button:hover {
+    color: #fff;
+    text-decoration: none;
+    outline: none;
+}
+.geo_button_value {
+    min-width: 50px;
+    border-radius: 5px;
+    padding: 2px 4px 4px;
+    background-color: #97a3b4;
+}
+.geo_button_value>div {
+    height: 22px;
+    padding: 0;
+    border-bottom: 1px #fff dashed;
 }
 
-.drivers_user {
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    width: 45px;
-    height: 100%;
+.selectСgvicurrency {
+    min-width: 74px;
+    border-radius: 5px;
+    padding: 3px 4px 4px;
+    margin-right: 5px;
+    background-color: #97a3b4;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
 }
 
-.drivers_user_photo {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    background: url(pictures/drivers_user_image.png) no-repeat;
-    width: 29px;
-    height: 29px;
+label.selectGeneral {
+    display: block;
+    position: relative;
+    min-width: 70px;
+    height: 30px;
+    font-size: 1rem;
+    margin: 0;
+    margin-right: 10px;
+    border-radius: 5px;
+    background: #97a3b4;
+    color: #fff;
 }
 
-.drivers_user_arrow {
+label.selectGeneral::after {
+    content: ">";
     position: absolute;
-    top: 0px;
-    right: 0px;
-    background: url(pictures/drivers_user_arrow.png) no-repeat;
-    width: 13px;
-    height: 29px;
-}
-
-.drivers_header_language {
-    position: absolute;
-    top: 0px;
-    right: 157px;
-    width: 52px;
-    height: 28px;
-    background: url(pictures/drivers_header_button.png) no-repeat;
-}
-
-.drivers_language_value {
-    position: absolute;
-    left: 20px;
-    top: 6px;
-    width: 25px;
-    font-size: 12px;
-    color: #304269;
-    font-family: "Roboto Medium";
-}
-
-.drivers_language_flag {
-    position: absolute;
-    left: 4px;
-    width: 13px;
-    top: 10px;
-    height: 9px;
-    background: url(pictures/drivers_flag.png) no-repeat;
-}
-
-.drivers_header_currency {
-    position: absolute;
-    top: 0px;
-    right: 215px;
-    width: 52px;
-    height: 28px;
-    background: url(pictures/drivers_header_button.png) no-repeat;
-}
-
-.drivers_currency_value {
-    position: absolute;
-    left: 3px;
-    top: 6px;
+    right: -10px;
+    border-radius: 5px;
+    top: 1px;
+    z-index: 2;
     width: 40px;
-    font-size: 12px;
-    color: #304269;
-    font-family: "Roboto Medium";
+    height: 26px;
+    text-align: center;
+    line-height: 26px;
+    color: #fff;
+    transform: rotate(90deg);
+    cursor: pointer;
 }
 
-.drivers_header_buttonMass {
-    position: absolute;
-    text-align: center;
-    right: 330px;
+label.selectGeneral label {
+    display: inline-block;
+    min-width: 70px;
+    height: 30px;
+    margin: 0;
+    line-height: 28px;
+    border-radius: 5px;
+    white-space: nowrap;
+    padding: 0 14px 0 6px;
+    background: #97a3b4;
 }
+
+label.selectGeneral label img {
+    margin-right: 2px;
+}
+
+label.selectGeneral input,
+label.selectGeneral label {
+    display: none;
+}
+
+label.selectGeneral div {
+    min-width: 100%;
+    max-height: 500px;
+    background: #97a3b4;
+    border-radius: 5px;
+    overflow-x: hidden;
+}
+
+label.selectGeneral input[type="radio"]:checked~div {
+    position: absolute;
+    top: 28px;
+    z-index: 999;
+    overflow-y: auto;
+}
+
+label.selectGeneral input[type="radio"]:checked~div>label,
+label.selectGeneral input[type="radio"]:checked+label {
+    display: block;
+}
+
+.header_registration {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    text-align: center;
+    background: none;
+    min-height: 30px;
+    min-width: 180px;
+    border: 1.4px solid #304269;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.header_registration p {
+    width: 100%;
+    margin: 0;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #304269;
+    font-family: "Roboto Light";
+}
+
+@media (max-width: 1060px) {
+    .header {
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin: 0 2%;
+    }
+    .headerSelect {
+        order: 1;
+    }
+    .header_buttonMass {
+        margin: 2% auto;
+        order: 2;
+    }
+}
+
 
 .drivers_buttonMass_button {
-    top: 0px;
-    height: 30px;
-    border: none;
+    text-decoration: none;
     background-color: transparent;
     font-family: "Roboto Medium";
-    font-size: 16px;
-    color: #ffffff;
+    font-size: 1rem;
+    color: #304269;
     margin: 0px 12.5px 0px 12.5px;
 }

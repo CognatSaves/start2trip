@@ -1,129 +1,105 @@
 .drivers_route{
-  position:absolute;
-  top:110px;
-  width:1200px;
-  height:240px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
   background-color: #304269;
-  opacity:0.7;
-  left:0;
-  right: 0;
-  margin: auto;
+  margin: 0.5% 0;
+  padding: 2% 2% 0 2%;
 }
 .route_date{
-  position:absolute;
-  top:20px;
-  left:25px;
-  font-size: 18pt;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  order: 0;
+
+  width: 100%;
+  font-size: 1.5rem;
   color:#ffffff;
   font-family: "Roboto Regular";
+  margin-bottom: 2%;
 }
 .route_date_text{
-  position:absolute;
-  width:400px;
-  top:0px
+  display:flex;
 }
 .route_date_value{
-  position:inherit;
-  top:0px;
-  left:405px;
-  width:400px;
-}
-.route_show{
-  position:absolute;
-  top:80px;
-  left:25px;
-  width:1160px;
-  height:45px;
-}
-.route_show_element{
-  display: inline-block;
-  height: 40px;
-  width:128px;
-}
-.route_show_icon{
-  position:absolute;
-  top:8px;
-  left:0px;
-  background: url(pictures/drivers_point_icon.png);
-  width:32px;
-  height:32px;
-}
-.route_show_text{
-  position:absolute;
-  top:0px;
-  left:32px;
-  height: 32px;
-  font-family: "Roboto Regular";
-
-  font-size: 15px;
-  color:#ffffff;
-}
-.route_show_line{
-  position:absolute;
-  top:4px;
-  left:32px;
-  height: 32px;
-  width:96px;
-  color:#ffffff;
-}
-.route_time_text{
-  position:absolute;
-  top:185px;
-  left:30px;
-  font-family: "Roboto";
-
-  font-size: 18px;
-  color:#ffffff;
-}
-.route_time_value{
-  position:absolute;
-  top: 185px;
-  left:275px;
-  color:#ffffff;
-  /*font-family: "Roboto Medium";
-  font-size: 18px;*/
-}
-.route_time_value p1{
-  font-family: "Roboto Medium";
-  font-size: 18px;
-}
-.route_time_value p2{
-  font-family: "Roboto";
-  font-size: 18px;
-}
-.route_comment{
-  position:absolute;
-  top:210px;
-  left:30px;
-  color:#ffffff;
-  font-family: "Roboto";
-  font-size: 12px;
+  display:flex;
 }
 .route_change{
-  position: absolute;
-  top: 15px;
-  right: 23px;
-  background-color:  purple;
-  height: 21px;
+  display: flex;
+  flex-direction: row;
+
 }
 .route_change_emblem{
-  position: absolute;
-  top:0px;
-  right: 0px;
-  background: url(pictures/drivers_edit_route.png) no-repeat;
-  width:21px;
-  height: 21px;
+  display:flex;
+  
+  width:14%;
+  height: 100%;
 }
 .route_change_text{
-  position:absolute;
-  top:0px;
-  right: 25px;
-  height: 21px;
-  width: 180px;
+  display:flex;
+
+  height:100%;
   text-align: right;
   text-decoration: underline;
 
   font-family: "Roboto Light";
-  font-size: 9pt;
+  font-size: 0.8rem;
   color: #ffffff;
+  margin: 2px;
+}
+
+
+
+.route_show{
+  display: flex;
+  flex-direction: row;
+  padding: 1% 0;
+  margin-bottom: 2%;
+}
+.route_show_element{
+  display: flex;
+  position: relative;
+  height: 100%;
+  width:20%;
+}
+.route_show_text{
+  position: absolute;
+  height:100%;
+  font-family: "Roboto Regular";
+  left: 25%;
+  font-size: 15px;
+  color:#ffffff;
+}
+.route_show_line{
+  position: absolute;
+  height: 50%;
+  left:20%;
+  width:80%;
+  color:#ffffff;
+  border-bottom: 1px solid;
+}
+
+
+
+
+.route_bottomBlock{
+  display: flex;
+  flex-direction:column;
+  padding: 1% 0;
+}
+.route_time_text{
+  display: flex;
+  font-family: "Roboto";
+
+  font-size: 18px;
+  color:#ffffff;
+}
+.route_comment{
+  display: flex;
+  color:#ffffff;
+  font-family: "Roboto";
+  font-size: 12px;
 }

@@ -11,12 +11,17 @@ export const AppReduser = (state = initialState, action) =>{
     case "SET_STATE":
         let newStateSS = JSON.parse(JSON.stringify(state));
         switch (action.sourse){
-            case "HomeBody", "DriversRoute":
+            case "HomeBody":
             newStateSS.cities = action.cities;
             newStateSS.date = action.date;
             //newStateSS.picture = action.picture;
             break;
 
+            case "DriversRoute":
+            newStateSS.cities = action.cities;
+            newStateSS.date = action.date;
+            //newStateSS.picture = action.picture;
+            break;
             
             default:
         }

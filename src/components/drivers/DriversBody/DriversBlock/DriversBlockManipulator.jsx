@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './DriversBlockManipulator.css'
+import leftArrow from './pictures/drivers_manipulator_leftArrow.png'
+import rightArrow from './pictures/drivers_manipulator_rightArrow.png'
 
 export default class DriversBlockManipulator extends React.Component{
     constructor(props){
@@ -30,12 +32,42 @@ export default class DriversBlockManipulator extends React.Component{
         console.log("page number");
         console.log(this.props.number+" "+maxPage);
         let numberArray = numbersCalculation(maxPage, this.props.page);
-        let spaceWidthSize = ["","","","","20px","16px","11px","7px"];
+        let spaceWidthSize = ["","","","","0 4%","0 2%","0 1%","0 1%"];
         let pageIndex = numberArray.indexOf(this.props.page);
         let numberStyle =Array(numberArray.length).fill("numberPosition_numberBlock_value");
         numberStyle[pageIndex]= "numberPosition_numberBlock_value numberPosition_numberBlock_selected";
         return(
-         <React.Fragment>
+         <div className="drivers_block_manipulator">
+            <button className="driversBlockManipulator_button">
+                <div className="driversBlockManipulator_button_value">Показать ещё</div>
+            </button>
+            <div className="driversBlockManipulator_pageNumbers">
+                <button className="pageNumbers_arrow" onClick={()=>{ if(this.props.page>1){this.props.setPage(this.props.page-1)}}}>
+                    <img src={leftArrow} width="100%" height="100%" alt="leftA" style={{borderRadius: "5px"}}></img>
+                </button>               
+                <div className="pageNumbers_text" onClick={()=>this.props.setPage(1)}>в начало</div>
+                <div className="pageNumbers_numberPosition">
+                    {numberArray.map((element,index)=>                  
+                        <div className="numberPosition_numberBlock" style={{padding: spaceWidthSize[numberArray.length]}}>
+                            <button className={numberStyle[index]} onClick={()=>this.props.setPage(element)}>{element}</button>
+                        </div>
+                                              
+                    )}
+                </div>
+                <div className="pageNumbers_text" onClick={()=>this.props.setPage(maxPage)}>в конец</div>
+                <button className="pageNumbers_arrow" onClick={()=>{ if(this.props.page<maxPage){this.props.setPage(this.props.page+1)}}}>
+                    <img src={rightArrow} width="100%" height="100%" alt="rightA" style={{borderRadius: "5px"}}></img>
+                </button>
+
+            </div>
+         </div>
+        )
+
+    }
+}
+/*
+
+<React.Fragment>
              <button className="driversBlockManipulator_button">Показать ещё</button>
              <div className="driversBlockManipulator_pageNumbers">
                 <div className="pageNumbers_leftArrow" onClick={()=>{ if(this.props.page>1){this.props.setPage(this.props.page-1)}}}></div>               
@@ -57,7 +89,5 @@ export default class DriversBlockManipulator extends React.Component{
                 <div className="pageNumbers_rightArrow" onClick={()=>{ if(this.props.page<maxPage){this.props.setPage(this.props.page+1)}}}></div>
              </div>
          </React.Fragment>
-        )
 
-    }
-}
+         */

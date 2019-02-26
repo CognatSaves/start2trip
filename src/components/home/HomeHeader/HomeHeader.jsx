@@ -7,7 +7,7 @@ import geoFlag from './pictures/georgia.svg'
 import ruFlag from './pictures/russia.svg'
 import enFlag from './pictures/united-kingdom.svg'
 import espFlag from './pictures/spain.svg'
-import styled from 'styled-components'
+//import styled from 'styled-components'
 import { Link } from 'react-router-dom';
 export default class HomeHeader extends React.Component {
   constructor(props) {

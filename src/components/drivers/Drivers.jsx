@@ -15,7 +15,7 @@ class DriversClass extends React.Component {
       console.log("Drivers render");
       console.log(this.props);
         return (
-          <div>
+          <React.Fragment>
             <div className = "drivers_top_background" >
               <DriversHeader/>
               <DriversRoute/>
@@ -24,10 +24,27 @@ class DriversClass extends React.Component {
               <DriversBody/>
               <Footer/>
             </div>
-          </div>
+          </React.Fragment>
         );
     }
 }
+
+/*
+<div>
+            <div className = "drivers_top_background" >
+              <DriversHeader/>
+              <DriversRoute/>
+              
+            </div>
+            <div className = "drivers_bottom_background" >
+              <DriversBody/>
+              <Footer/>
+            </div>
+          </div>
+
+
+*/
+
 const Drivers = connect(
   (state) =>({
     storeState: state.AppReduser,

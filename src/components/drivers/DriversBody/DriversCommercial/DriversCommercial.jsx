@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import './DriversCommercial.css'
+import picture1 from './pictures/commercial_picture1.png';
+import picture2 from './pictures/commercial_picture2.png';
+
 
 export default class DriversCommercial extends React.Component {
   constructor(props) {
@@ -13,10 +16,17 @@ export default class DriversCommercial extends React.Component {
     
     return (
       <div className = "drivers_commercial">
-        <div className="commercial_picture1"></div>
-        <div className="commercial_picture2"></div>
+        <div className="commercial_picture1">
+          <img src={picture1} width="100%" height="100%" alt="pic1"></img>
+        </div>
+        <div className="commercial_picture2">
+          <img src={picture2} width="100%" height="100%" alt="pic2"></img>
+        </div>
       </div>
     )
   }
 
 }
+/*
+
+*/

@@ -85,8 +85,9 @@ class HomeBodyClass extends React.Component {
     });
   }
   goToDrivers() {
+    console.log("Go to drivers call");
+    console.log(this.state);
     this.props.setState(this.state.cities, this.state.date, "drivers");
-    //this.props.calendaryVisibility('hidden'); 
     this.props.redirectToDrivers();
   }
   setLengthTime(travelLength, travelTime) {

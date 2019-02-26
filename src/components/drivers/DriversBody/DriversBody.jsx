@@ -12,12 +12,22 @@ export default class DriversBody extends React.Component {
     render() {
         return (
           <div className = "drivers_body">
+            <div className="left_body_part">
+              <DriversProperties/>
+              <DriversBlock/>
+            </div>
+            <div className="right_body_part">
+              <DriversCommercial/>
+            </div>
             
-            <DriversBlock/>
-            <DriversCommercial/>
-            <DriversProperties/>
           </div>
         )
     }
 
 }
+/*
+ 
+ 
+ 
+
+*/

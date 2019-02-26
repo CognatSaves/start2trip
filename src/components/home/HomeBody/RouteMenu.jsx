@@ -9,6 +9,7 @@ import shapeIcon from './pictures/Shape.svg'
 import ellipseIcon from './pictures/Ellipse.svg'
 import geoIcon from '../HomeHeader/pictures/geo_icon.png'
 import { Redirect } from 'react-router-dom';
+import LocationSearchInput from './Search'
 
 const CityRouteTable = (props) => {
   const { cities, changeCity, removeCity } = props;
@@ -24,19 +25,20 @@ const CityRouteTable = (props) => {
   //TODO css make 
   return (
     <tbody align="center">
-      {cities.map((element, index) =>
-        <tr key={index}>
-          <td key={index + "el0"}>
-            <div className={dotClasses[index]} />
-          </td>
-          <td key={index + "el1"}>
-            <input value={element} className="city_input" onChange={changeCity.bind(this, index)} />
-          </td>
-          <td key={index + "el2"} style={{ visibility: isVisibleArray[index] }} onClick={() => removeCity(index)}>
-            <img src={crossIcon} className="crossBox" alt="crossIcon" />
-          </td>
-        </tr>
-      )}
+    {cities.map((element,index)=>
+      <tr key={element}>
+        <td key={element+"el0"}>
+          <div className={dotClasses[index]}/>
+        </td>
+        <td key={element+"el1"}>
+          <LocationSearchInput address={element} changeCity={changeCity} index={index} class={"city_input"}/>
+        </td>
+        <td  key={element+"el2"} style={{visibility: isVisibleArray[index]}} onClick={()=>removeCity(index)}>
+          <div className="crossBox">
+          </div>
+        </td>
+      </tr>
+    )}
     </tbody>
   )
 }
