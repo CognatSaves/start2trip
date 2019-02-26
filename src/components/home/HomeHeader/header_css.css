@@ -64,7 +64,7 @@
 .buttonMass_button {
     text-decoration: none;
     background-color: transparent;
-    font-family: "Roboto Medium";
+    /* font-family: "Roboto Medium"; */
     font-size: 1rem;
     color: #304269;
     margin: 0px 12.5px 0px 12.5px;
@@ -192,5 +192,14 @@ label.selectGeneral input[type="radio"]:checked+label {
     .header_buttonMass {
         margin: 2% auto;
         order: 2;
+    }
+    .headerLogo {
+        width: 40%;
+    }
+}
+
+@media (max-width: 800px) {
+    .headerLogo {
+        width: 45%;
     }
 }

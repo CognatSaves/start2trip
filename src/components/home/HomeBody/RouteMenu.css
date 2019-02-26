@@ -1,8 +1,12 @@
 .routemenu_container {
-    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    width: 90%;
 }
 
-.routemenu_table {
+/* .routemenu_table {
     width: 60%;
     position: relative;
     background-color: transparent;
@@ -11,7 +15,7 @@
 }
 
 .routemenu_table tbody {
-    /* display: block; */
+    
     overflow: hidden;
     position: relative;
     height: 100%;
@@ -21,23 +25,19 @@
     font-family: "Roboto Regular";
     border-collapse: collapse;
     border-spacing: 0px;
-}
+} */
 
 .routemenu_addCity {
     display: flex;
     flex-direction: row;
-    height: 20px;
-    width: 100%;
-    margin-bottom: 25px;
-    padding-top: 10px;
-    margin-left: 14px;
     cursor: pointer;
+    margin-top: 20px;
 }
 
 .routemenu_city_add_text {
     height: 20px;
     margin-left: 10px;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: #fff;
     font-family: "Roboto Light";
 }
@@ -45,24 +45,21 @@
 .routemenu_setDate {
     display: flex;
     flex-direction: row;
-    margin-left: 14px;
     cursor: pointer;
-    height: 55px;
-    width: 100%;
-    padding-bottom: 25px;
-    padding-top: 10px;
+    margin-top: 20px;
 }
 
 .routemenu_date {
-    height: 20px;
+    /* height: 20px; */
     text-align: left;
     border-width: 0 0 1px;
     border-color: white;
     background-color: transparent;
     width: 50%;
     min-width: 13vw;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     margin-left: 10px;
+    margin-bottom: 30px;
     color: #ffffff;
     font-family: "Roboto Regular";
 }
@@ -131,6 +128,43 @@
     background: url(pictures/da_tru_loupe.png) no-repeat;
 } */
 
+.addCities{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+}
+.startCity,.endCity,
+.newCity{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+    min-height: 32px;
+}
+
+.iconMass{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: 20px;
+}
+
+.icon{
+    margin-left: 4px;
+    margin-bottom: 2px;
+    
+}
+.crossIcon{
+    cursor: pointer;
+    visibility: hidden;
+}
+.newCity:hover .crossIcon{
+    visibility: visible;
+}
+
 .routemenu_search_text {
     font-size: 1rem;
     color: #fff;
@@ -156,13 +190,14 @@
     border-color: white;
     background-color: transparent;
     color: white;
-    font-size: 1rem;
+    font-size: 0.8rem;
     height: 50%;
-    width: 50%;
-    min-width: 13vw;
+    
+    width: 60%;
+    min-width: 14vw;
 }
 
-.dotBox {
+/* .dotBox {
     position: relative;
     width: 40px;
     height: 40px;
@@ -189,7 +224,7 @@
     width: 15px;
     height: 15px;
     margin: 14px 0 0 5px;
-}
+} */
 
 @media (max-width: 1077px){
     .routemenu_parameters p {

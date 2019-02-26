@@ -10,12 +10,12 @@ class HomeBodyClass extends React.Component {
   constructor(props) {
     super(props);
 
-    /* this.state={
+     this.state={
        cities: this.props.storeState.cities,
        calendaryVisibility: this.props.storeState.calendaryVisibility,
        date: this.props.storeState.date,
        picture: this.props.storeState.picture
-     }*/
+     }
     this.state = JSON.parse(JSON.stringify(this.props.storeState));
     this.state = { ...this.state, "mapUpdate": true, calendaryVisibility: 'hidden' }
 
