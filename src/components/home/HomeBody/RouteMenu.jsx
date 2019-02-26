@@ -9,6 +9,7 @@ import shapeIcon from './pictures/Shape.svg'
 import ellipseIcon from './pictures/Ellipse.svg'
 import geoIcon from '../HomeHeader/pictures/geo_icon.png'
 import { Redirect } from 'react-router-dom';
+import LocationSearchInput from './Search'
 
 const AddCities = (props) => {
   const { cities, changeCity, removeCity } = props;
@@ -52,6 +53,22 @@ const AddCities = (props) => {
         <img src={crossIcon} className="crossIcon" alt="crossIcon" width="12px" height="12px" />
       </div>
     </div>
+    // <tbody align="center">
+    // {cities.map((element,index)=>
+    //   <tr key={element}>
+    //     <td key={element+"el0"}>
+    //       <div className={dotClasses[index]}/>
+    //     </td>
+    //     <td key={element+"el1"}>
+    //       <LocationSearchInput address={element} changeCity={changeCity} index={index} class={"city_input"}/>
+    //     </td>
+    //     <td  key={element+"el2"} style={{visibility: isVisibleArray[index]}} onClick={()=>removeCity(index)}>
+    //       <div className="crossBox">
+    //       </div>
+    //     </td>
+    //   </tr>
+    // )}
+    // </tbody>
   )
 }
 

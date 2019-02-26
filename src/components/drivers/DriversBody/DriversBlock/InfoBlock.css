@@ -1,33 +1,25 @@
 .block_element_infoBlock{
-    position: absolute;
-    float: left;
-    left:210px;
-    top:30px;
-    width:305px;
-    height: 165px;
-    border-right: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 65%;
     color:  #304269;
     
   }
+  .infoBlock_starsBlock{
+    display: flex;
+    height: 10px;
+    width: 100%;
+    border: 1px solid;
+  }
   .block_element_infoBlock_name{
-    position: absolute;
-    left:0px;
-    top:0px;
-    font-size: 24pt;
+    display: flex;
+    font-size: 1.5rem;
     font-family: "Roboto Medium";
+    text-align: left;
   }
-  .block_element_infoBlock_age{
-    position: absolute;
-    left:0px;
-    top: 80px;
+  .block_element_infoBlock_element{
+    display: flex;
+    width: 100%;
   }
-  .block_element_infoBlock_language{
-    position:absolute;
-    left:0px;
-    top: 100px;
-  }
-  .block_element_infoBlock_drivingAge{
-    position:absolute;
-    left:0px;
-    top:120px;
-  }
+  

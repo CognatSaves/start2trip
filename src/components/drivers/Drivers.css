@@ -1,16 +1,28 @@
 
 .drivers_top_background{
-  position:absolute;
-  top:0px;
+  display: flex;
+  flex-direction: column;
+  top:0;
   width:100%;
-  height:400px;
+  height: auto;
   background: url(pictures/drivers_header_background.png) no-repeat;
-  padding:30px;
+
+  padding:0% 17% 1% 17%;
 }
+ 
 .drivers_bottom_background{
-  position:absolute;
-  top:400px;
+  display: flex;
+  flex-direction: column;
+  top:25%;
   width:100%;
-  height:1200px;
-  background: url(pictures/drivers_body_background.png) no-repeat;
+  
+  padding:0% 17% 1% 17%;
+}
+@media (max-width: 1150px){
+  .drivers_top_background {padding: 0% 5% 1% 5%;}
+  .drivers_bottom_background { padding: 0% 5% 1% 5%;}
+}
+@media (max-width: 900px){
+  .drivers_top_background {padding: 0;}
+  .drivers_bottom_background { padding: 0;}
 }

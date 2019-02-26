@@ -142,81 +142,48 @@ export default class DriversProperties extends React.Component {
       return resultString;
     }
     let personsNumberString = personsCalculation(this.state.persons);
-    console.log("Drivers properties render");
-    console.log(this.state);
     return (
       <div className = "drivers_properties" >
-        <div className="drivers_properties_text">Подобрать:       
-        </div>
-        <div className="properties_buttonStyle properties_leftButton" onClick={()=>this.languageMenuCall()}>
-          <div>
-            <div className="properties_leftHidden">_</div>
-            {this.state.languageValue}
-            <div className="properties_arrow"></div>
-            <div className="properties_rightHidden">_</div>
-          </div>         
-          <LanguageMenu isVisible = {this.state.languageMenu} languages = {this.state.languages} languageValueChoose={this.languageValueChoose}/>
-        </div>
-        <div className="properties_leftSpace"></div>
-        <div className="properties_buttonStyle properties_leftButton">
-          <div onClick={()=>this.autoMenuCall()}>
-            <div className="properties_leftHidden">_</div>  
-            {this.state.autoValue}
-            <div className="properties_arrow"></div>
-            <div className="properties_rightHidden">_</div>
+        
+        <div className="properties_leftBlock">
+          <div className="drivers_properties_text">Подобрать:       
           </div>
-          <AutoMenu isVisible={this.state.autoMenu} autoVariants={this.state.autoVariants} autoValueChoose={this.autoValueChoose}/>
-        </div>
-        <div className="properties_leftSpace"></div>
-        <div className="properties_buttonStyle properties_leftButton" >
-          <div onClick={()=>this.peopleMenuCall()}>
-            <div className="properties_leftHidden" >_</div>  
-            {personsNumberString}
-            <div className="properties_arrow"></div>
-            <div className="properties_rightHidden">_</div>
+          <div className="properties_buttonStyle properties_leftButton" onClick={()=>this.languageMenuCall()}>
+            <div className="properties_value">{this.state.languageValue}</div>
+            <div className="properties_arrow"></div>     
+            <LanguageMenu isVisible = {this.state.languageMenu} languages = {this.state.languages} languageValueChoose={this.languageValueChoose}/>
           </div>
-          
-          <PeopleMenu isVisible = {this.state.peopleMenu} close={this.peopleMenuCall} changePersonsNumber={this.changePersonsNumber} persons={this.state.persons}/>
-        </div>
-        <div className="properties_leftSpace"></div>
-        <div className="properties_buttonStyle properties_leftButton">
-          <div onClick = {()=>this.valueMenuCall()}>
-            <div className="properties_leftHidden">_</div>  
-            Цена
+          <div className="properties_buttonStyle properties_leftButton" onClick={()=>this.autoMenuCall()}>
+            <div className="properties_value">{this.state.autoValue}</div>             
             <div className="properties_arrow"></div>
-            <div className="properties_rightHidden">_</div>
+            <AutoMenu isVisible={this.state.autoMenu} autoVariants={this.state.autoVariants} autoValueChoose={this.autoValueChoose}/>
           </div>
-          <ValueMenu isVisible={this.state.valueMenu}/>
+          <div className="properties_buttonStyle properties_leftButton" onClick={()=>this.peopleMenuCall()}>
+            <div className="properties_value">{personsNumberString}</div>
+            <div className="properties_arrow"></div>          
+            <PeopleMenu isVisible = {this.state.peopleMenu} close={this.peopleMenuCall} changePersonsNumber={this.changePersonsNumber} persons={this.state.persons}/>
+          </div>
+          <div className="properties_buttonStyle properties_leftButton" onClick = {()=>this.valueMenuCall()}>
+            <div className="properties_value">Цена</div>
+            <div className="properties_arrow"></div>            
+            <ValueMenu isVisible={this.state.valueMenu}/>
+          </div>
         </div>
-
-
-        <div className="properties_rightBlock">
-          
-          <div className="properties_buttonStyle properties_rightButton" onClick={()=>this.pagesMenuCall()}>
-            <div className="properties_leftHidden">_</div> 
-            {this.state.pagesMenuValue} / страниц
-            <div className="properties_arrow"></div>
-            <div className="properties_rightHidden">_</div>
-            <PagesMenu isVisible = {this.state.pagesMenu} variants={this.state.pagesMenuVariants} chooseFunc={this.pagesMenuChoose}/>
-          </div>
-          <div className="properties_rightSpace"></div>
+        <div className="properties_rightBlock">         
           <div className="properties_buttonStyle properties_rightButton" onClick={()=>this.sortMenuCall()}>
-            <div className="properties_leftHidden">_</div> 
             <div className="properties_rightButton_characteristic">Сортировать:</div>
-            <div className="properties_leftHidden">_</div> 
             <div className="properties_rightButton_value">{this.state.sortMenuValue}</div>
-            <div className="properties_leftHidden">_</div> 
             <div className="properties_arrow"></div>
             <SortMenu isVisible = {this.state.sortMenu} variants={this.state.sortMenuVariants} chooseFunc={this.sortMenuChoose}/>
           </div>
-          <div className="properties_rightSpace"></div>
-        </div>
-      
-        
-        
-        
+          <div className="properties_buttonStyle properties_rightButton" onClick={()=>this.pagesMenuCall()}>
+            <div className="properties_rightButton_characteristic">{this.state.pagesMenuValue} / страниц</div>            
+            <div className="properties_arrow"></div>
+            <PagesMenu isVisible = {this.state.pagesMenu} variants={this.state.pagesMenuVariants} chooseFunc={this.pagesMenuChoose}/>
+          </div>
+        </div>         
       </div>
+      
     )
   }
-
 }
