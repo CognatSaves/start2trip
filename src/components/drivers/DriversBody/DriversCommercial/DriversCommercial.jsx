@@ -16,10 +16,10 @@ export default class DriversCommercial extends React.Component {
     
     return (
       <div className = "drivers_commercial">
-        <div className="commercial_picture1">
+        <div className="commercial_picture picture1">
           <img src={picture1} width="100%" height="100%" alt="pic1"></img>
         </div>
-        <div className="commercial_picture2">
+        <div className="commercial_picture picture2">
           <img src={picture2} width="100%" height="100%" alt="pic2"></img>
         </div>
       </div>

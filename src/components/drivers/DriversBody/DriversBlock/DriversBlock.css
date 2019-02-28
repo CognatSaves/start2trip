@@ -1,14 +1,12 @@
 .drivers_block{
   display: flex;
+
   flex-direction: column;
   width:100%;
   height:80%;
   margin-top: 2%;
 }
-.hiddenString{
-  float: right;
-  visibility: hidden;
-}
+
 .visibleString{
   float: right;
   font-size: 1rem;
@@ -21,6 +19,7 @@
 }
 .drivers_block_element{
   display: flex;
+  position: relative;
   flex-direction: row;
   height:15%;
   width:100%;
@@ -56,5 +55,16 @@
   height:100%;
   margin-right: auto;
 }
+.myHeart{
+  position: absolute;
+  width: auto;
+  height: 12%;
+  top:0;
+  right: 0;
+  margin: 1.5%;
+}
 
-
+@media (min-width: 1350px){
+    .infoString{font-size: 1.1rem}
+    .visibleString{font-size: 1.1rem}
+} 

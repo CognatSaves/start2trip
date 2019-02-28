@@ -5,16 +5,17 @@
   padding: 5% 0;
   box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
 }
-.commercial_picture1{
+.commercial_picture{
   display:flex;
-  width: 90%;
-  height: 40%;
+  width: 80%;
   margin: 0 auto 4% auto;
-
 }
-.commercial_picture2{
-  display: flex;
-  width: 90%;
-  height: 55%;
-  margin: 0 auto 4% auto;
+.picture1{ 
+  height: 40%;
+}
+.picture2{
+  height: 55%; 
+}
+@media (max-width: 1200px){
+  .commercial_picture {width: 90%}
 }
