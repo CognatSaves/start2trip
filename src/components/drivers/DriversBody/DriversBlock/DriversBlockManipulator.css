@@ -52,7 +52,7 @@
 .pageNumbers_text{
     display: flex;
     height: 20px;
-    width: 75px;
+    width: 80px;
     text-align: center;
     line-height: 20px;
 
@@ -63,11 +63,14 @@
     background-color: transparent;
     padding: 0 2%;
 }
+.pageNumbers_text:hover{
+    cursor: pointer;
+}
 .pageNumbers_numberPosition{
     display: flex;
     flex-direction: row;
     height: 20px;
-    padding: 0 2%;
+    width: 50%;
 }
 .numberPosition_numberBlock{
     display: flex;
@@ -88,6 +91,9 @@
     
     border: none;
     background-color: transparent;
+}
+.numberPosition_numberBlock_value:hover{
+    cursor: pointer;
 }
 .numberPosition_numberBlock_selected{
     background: url(pictures/drivers_number_focus.png) no-repeat;

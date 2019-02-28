@@ -11,6 +11,13 @@ import ruFlag from './components/LanguageMenu/pictures/russia.svg'
 import enFlag from './components/LanguageMenu/pictures/united-kingdom.svg'
 import espFlag from './components/LanguageMenu/pictures/spain.svg'
 
+import sedan from './components/AutoMenu/pictures/sedan.svg';
+import jeep from './components/AutoMenu/pictures/jeep.svg';
+import microbus from './components/AutoMenu/pictures/microbus.svg';
+import minivan from './components/AutoMenu/pictures/minivan.svg';
+
+
+
 export default class DriversProperties extends React.Component {
   constructor(props) {
     super(props);
@@ -162,6 +169,9 @@ export default class DriversProperties extends React.Component {
             <LanguageMenu isVisible = {this.state.languageMenu} languages = {this.state.languages} languageValueChoose={this.languageValueChoose}/>
           </div>
           <div className="properties_buttonStyle properties_leftButton" onClick={()=>this.autoMenuCall()}>
+            <div className="properties_carPicture">
+              <img src={sedan} width="100%" height="100%" alt="carImage"></img>
+            </div>
             <div className="properties_value">{this.state.autoValue}</div>             
             <div className="properties_arrow"></div>
             <AutoMenu isVisible={this.state.autoMenu} autoVariants={this.state.autoVariants} autoValueChoose={this.autoValueChoose}/>
@@ -171,7 +181,7 @@ export default class DriversProperties extends React.Component {
             <div className="properties_arrow"></div>          
             <PeopleMenu isVisible = {this.state.peopleMenu} close={this.peopleMenuCall} changePersonsNumber={this.changePersonsNumber} persons={this.state.persons}/>
           </div>
-          <div className="properties_buttonStyle properties_leftButton" onClick = {()=>this.valueMenuCall()}>
+          <div className="properties_buttonStyle properties_leftButton" onClick = {()=>this.valueMenuCall()}>           
             <div className="properties_value">Цена</div>
             <div className="properties_arrow"></div>            
             <ValueMenu isVisible={this.state.valueMenu}/>

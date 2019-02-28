@@ -8,9 +8,54 @@
   }
   .infoBlock_starsBlock{
     display: flex;
-    height: 10px;
-    width: 100%;
-    border: 1px solid;
+    position: relative;
+    flex-direction: row;
+    height: 5%;
+    width: 75%;
+    font-size: 0.7rem;
+  }
+  .infoBlock_starsBlock_value{
+    display: flex;
+    height: 100%;
+    width: 10%;
+    margin: auto 0;
+    
+  }
+  .infoBlock_starsBlock_stars{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width:37.5%;
+    height: 100%;
+    margin:auto auto;
+    /* padding: 0 1%; */
+    
+  }
+  .starsBlock_stars_element{
+    display: flex;
+    position: relative;
+    width: 20%;
+    height: 100%;
+    z-index: 1;  
+  }
+  .background_stars{
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    margin: 10%;
+    background-image: linear-gradient(to right,#ff6600 50%, #999999 50% );
+  }
+  .infoBlock_starsBlock_stars img{ 
+    padding: 0;
+    margin: 0;
+    z-index:2;
+  }
+  .infoBlock_starsBlock_number{
+    display: flex;
+    width: 50%;
+    height: 100%; 
+    margin: auto 0; 
+    text-align: center;
   }
   .block_element_infoBlock_name{
     display: flex;

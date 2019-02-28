@@ -7,7 +7,7 @@
 .left_body_part{
   display: flex;
   flex-direction: column;
-  width: 70%;
+  width: 73%;
   height: 100%;
   margin-right: 2%;
   margin-top: 1%;
@@ -16,9 +16,9 @@
 .right_body_part{
   display: flex;
   flex-direction: column;
-  width: 23%;
+  width: 24%;
   height: 100%;
-  margin: 5% 5% 0 auto;
+  margin: 5% 0 0 auto;
   min-width: 150px;
 }
 @media (max-width: 1150px){

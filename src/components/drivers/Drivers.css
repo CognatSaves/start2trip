@@ -18,11 +18,16 @@
   
   padding:0% 17% 1% 17%;
 }
-@media (max-width: 1150px){
+
+@media (max-width: 1400px){
+  .drivers_top_background {padding: 0% 10% 1% 10%;}
+  .drivers_bottom_background { padding: 0% 10% 1% 10%;}
+}
+@media (max-width: 1200px){
   .drivers_top_background {padding: 0% 5% 1% 5%;}
   .drivers_bottom_background { padding: 0% 5% 1% 5%;}
 }
-@media (max-width: 900px){
+@media (max-width: 1000px){
   .drivers_top_background {padding: 0;}
   .drivers_bottom_background { padding: 0;}
 }

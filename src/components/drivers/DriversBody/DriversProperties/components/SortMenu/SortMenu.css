@@ -5,6 +5,7 @@
     background-color: #ffffff;
     border-radius: 3px;
     box-shadow: 0 0 1px 1px rgb(236, 236, 236);
+    z-index: 4;
 }
 .sortMenu_element{
     position: relative;

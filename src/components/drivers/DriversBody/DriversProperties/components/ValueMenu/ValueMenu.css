@@ -9,8 +9,8 @@
     width: 200px;
     height: 82px;
 
-    background-color: #ffffff
-
+    background-color: #ffffff;
+    z-index: 4;
 }
 .valueMenu_valueBlock{
     position: absolute;

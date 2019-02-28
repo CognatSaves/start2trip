@@ -5,7 +5,13 @@ import './TripBlock.css'
 import DriversBlockManipulator from './DriversBlockManipulator.jsx';
 import { connect } from 'react-redux';
 import driverPhoto from './pictures/driver1/drivers_body_photo.png';
-import car1 from './pictures/driver1/drivers_car_image.png';
+import emptyStar from './pictures/star.svg';
+import emptyLike from './pictures/like_contour.svg';
+import filledLike from './pictures/like_blue.svg';
+import selectedFilledLike from './pictures/like_orange.svg';
+import sedan from './pictures/sedan.svg';
+import jeep from './pictures/jeep.svg';
+
 class DriversBlockClass extends React.Component {
   constructor(props) {
     super(props);
@@ -35,7 +41,7 @@ class DriversBlockClass extends React.Component {
 
 
     let selectedElements = this.props.driversState.drivers.slice((this.state.page-1)*4,(this.state.page)*4);
-  
+    let srcArray = [selectedFilledLike, filledLike, emptyLike, emptyLike];
 
     return (
       <div className = "drivers_block">
@@ -48,7 +54,30 @@ class DriversBlockClass extends React.Component {
               <div className="block_element_infoBlock">
                 <div className="block_element_infoBlock_name">{element.name}</div>
                 <div className="infoBlock_starsBlock">
-
+                  <div className="infoBlock_starsBlock_value">5.0</div> 
+                  <div className="infoBlock_starsBlock_stars">
+                    <div className="starsBlock_stars_element">
+                      <div className="background_stars"/>
+                      <img src={emptyStar} width="100%" height="100%" alt="star1"></img>                     
+                    </div>
+                    <div className="starsBlock_stars_element">
+                      <div className="background_stars"/>
+                      <img src={emptyStar} width="100%" height="100%" alt="star2"></img>
+                    </div>
+                    <div className="starsBlock_stars_element">
+                      <div className="background_stars"/>
+                      <img src={emptyStar} width="100%" height="100%" alt="star3"></img>
+                    </div>
+                    <div className="starsBlock_stars_element">
+                      <div className="background_stars"/>
+                      <img src={emptyStar} width="100%" height="100%" alt="star4"></img>
+                    </div>
+                    <div className="starsBlock_stars_element">
+                      <div className="background_stars"/>
+                      <img src={emptyStar} width="100%" height="100%" alt="star5"></img>
+                    </div>
+                  </div>
+                  <div className="infoBlock_starsBlock_number">10000 отзывов</div>
                 </div>
                 <div className="block_element_infoBlock_element">
                   <div className="infoString">Возраст:</div>
@@ -67,7 +96,7 @@ class DriversBlockClass extends React.Component {
             <div className="block_element_right">
               <div className="element_right_line">
                 <div className="tripBlock_carImage">
-                  <img src={car1} width="100%" height="100%" alt={"car"+element}></img>
+                  <img src={sedan} width="100%" height="100%" alt={"car"+element}></img>
                 </div>
                 <div className="tripBlock_carData">
                   <div className="carInfo_line">
@@ -93,6 +122,9 @@ class DriversBlockClass extends React.Component {
                 </div>
               </div>
               <div className="tripBlock_detailed">Подробнее</div>
+            </div>
+            <div className="myHeart">
+              <img src={srcArray[index]} width="auto" height="100%" alt="emptyLike"></img> 
             </div>
           </div>     
         )}

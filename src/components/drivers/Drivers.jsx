@@ -24,6 +24,7 @@ class DriversClass extends React.Component {
               <DriversBody/>
               <Footer/>
             </div>
+            
           </React.Fragment>
         );
     }
