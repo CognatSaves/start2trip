@@ -6,27 +6,6 @@
     width: 90%;
 }
 
-/* .routemenu_table {
-    width: 60%;
-    position: relative;
-    background-color: transparent;
-    border-collapse: collapse;
-    border-spacing: 0px;
-}
-
-.routemenu_table tbody {
-    
-    overflow: hidden;
-    position: relative;
-    height: 100%;
-    width: 100%;
-    font-size: 1rem;
-    color: #fff;
-    font-family: "Roboto Regular";
-    border-collapse: collapse;
-    border-spacing: 0px;
-} */
-
 .routemenu_addCity {
     display: flex;
     flex-direction: row;
@@ -56,7 +35,7 @@
     border-color: white;
     background-color: transparent;
     width: 50%;
-    min-width: 13vw;
+    min-width: 13.5vw;
     font-size: 0.8rem;
     margin-left: 10px;
     margin-bottom: 30px;
@@ -70,26 +49,39 @@
 
 .routemenu_parameters {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    flex-direction: column;
+    /* justify-content: center; */
     align-content: center;
     width: 100%;
-    height: 42px;
+    height: 100%;
     text-align: center;
     background-color: rgba(196, 205, 224, 0.11);
     border: none;
     margin-bottom: 19px;
 }
 
-.routemenu_parameters p {
+.routemenu_parametersAdd{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+    text-align: center;
+    background-color: rgba(196, 205, 224, 0.11);
+    border: none;
+    margin-bottom: 19px;
+}
+
+.routemenu_parametersAdd p {
     margin: 0;
+    padding-left: 15px;
     line-height: 42px;
     font-size: 0.9rem;
     color: #fff;
     font-family: "Roboto Regular";
 }
 
-.routemenu_parameters img {
+.routemenu_parametersAdd img {
     margin: auto 10px;
 }
 
@@ -99,7 +91,6 @@
     justify-content: center;
     align-content: center;
     width: 100%;
-    
 }
 
 .routemenu_search_button {
@@ -107,13 +98,13 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-content: center;
-    max-height: 50px;
+    align-items: center;
+    max-height: 42px;
+    margin-bottom: 1%;
     background-color: #f26101;
-    width: 50%;
+    width: 80%;
     max-width: 260px;
     border: none;
-    padding: 14px 92px 12px 75px;
     border-radius: 5px;
 }
 
@@ -121,22 +112,16 @@
     margin: auto 0;
 }
 
-/* .routemenu_search_loupe {
-    float: left;
-    width: 40px;
-    height: 40px;
-    background: url(pictures/da_tru_loupe.png) no-repeat;
-} */
-
-.addCities{
+.addCities {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
-
 }
-.startCity,.endCity,
-.newCity{
+
+.startCity,
+.endCity,
+.newCity {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -145,30 +130,34 @@
     min-height: 32px;
 }
 
-.iconMass{
+.iconMass {
     display: flex;
     flex-direction: column;
     position: relative;
     top: 20px;
 }
 
-.icon{
+.icon {
     margin-left: 4px;
     margin-bottom: 2px;
-    
 }
-.crossIcon{
+
+.crossIcon {
     cursor: pointer;
     visibility: hidden;
 }
-.newCity:hover .crossIcon{
+
+.newCity:hover .crossIcon {
     visibility: visible;
 }
 
 .routemenu_search_text {
     font-size: 1rem;
     color: #fff;
-    font-family: "Roboto Medium";
+}
+
+p.routemenu_search_text {
+    margin: 16px 0;
 }
 
 .routemenu_comment {
@@ -192,43 +181,105 @@
     color: white;
     font-size: 0.8rem;
     height: 50%;
-    
     width: 60%;
     min-width: 14vw;
 }
 
-/* .dotBox {
-    position: relative;
-    width: 40px;
-    height: 40px;
-    background: url(pictures/Shape.svg) no-repeat;
+.peopleSelect{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+.peopleSelect input{
+    max-width: 20px;
+    margin: 5px;
 }
 
-.firstDotBox {
-    position: relative;
-    top: 11px;
-    width: 20px;
-    height: 35px;
-    background: url(pictures/Ellipse.svg) no-repeat;
+/* .selectСar {
+    min-width: 154px;
+    border-radius: 5px;
+    
+    margin-right: 5px;
+    background-color: #97a3b4;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
 }
 
-.lastDotBox {
+label.selectСar {
+    display: block;
     position: relative;
+    min-width: 70px;
+    height: 30px;
+    font-size: 1rem;
+    margin: 0;
+    margin-right: 10px;
+    border-radius: 5px;
+    background: #97a3b4;
+    color: #fff;
+}
+
+label.selectСar::after {
+    content: ">";
+    position: absolute;
+    right: -10px;
+    border-radius: 5px;
     top: 1px;
+    z-index: 2;
     width: 40px;
-    height: 43px;
-    background: url(../HomeHeader/pictures/geo_icon.png) no-repeat;
+    height: 26px;
+    text-align: center;
+    line-height: 26px;
+    color: #fff;
+    transform: rotate(90deg);
+    cursor: pointer;
 }
 
-.crossBox {
-    width: 15px;
-    height: 15px;
-    margin: 14px 0 0 5px;
+label.selectСar label {
+    display: inline-block;
+    min-width: 70px;
+    height: 30px;
+    margin: 0;
+    line-height: 28px;
+    border-radius: 5px;
+    white-space: nowrap;
+    padding: 0 14px 0 6px;
+    background: #0e62d6;
+}
+
+label.selectСar label img {
+    margin-right: 2px;
+}
+
+label.selectСar input,
+label.selectСar label {
+    display: none;
+}
+
+label.selectСar div {
+    display: flex;
+    flex-direction: column;
+    min-width: 100%;
+    max-height: 500px;
+    background: #97a3b4;
+    border-radius: 5px;
+    overflow-x: hidden;
+}
+
+label.selectСar input[type="radio"]:checked~div {
+    position: absolute;
+    top: 28px;
+    z-index: 999;
+    overflow-y: auto;
+}
+
+label.selectСar input[type="radio"]:checked~div>label,
+label.selectСar input[type="radio"]:checked+label {
+    display: block;
 } */
 
-@media (max-width: 1077px){
+@media (max-width: 1077px) {
     .routemenu_parameters p {
         line-height: normal;
     }
-  
 }
