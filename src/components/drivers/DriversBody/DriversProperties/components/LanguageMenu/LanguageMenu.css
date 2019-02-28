@@ -12,23 +12,16 @@
     position: relative;
     width: 116px;
     height: 30px;
-    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5px;
+    cursor: pointer;
 }
 
 .languageMenu_element:hover{
     background-color:  #91bed4;
-}
-
-
-.languageMenu_element_flag{
-    position: absolute;
-    top: 10px;
-    left: 12px;
-    width: 15px;
-    height: 9px;
-    background: url(./pictures/languageMenu_RU_flag.png) no-repeat;
-    border-radius: 3px;
-    
 }
 
 .textBlock_value{

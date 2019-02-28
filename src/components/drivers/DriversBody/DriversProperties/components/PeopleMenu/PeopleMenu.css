@@ -1,140 +1,108 @@
-.drivers_properties_peopleMenu{
+.drivers_properties_peopleMenu {
     position: absolute;
     top: 34px;
-    right: 0px;
-    height: 120px;
-    width:191px; 
-    background-color: #ffffff;
-    border-radius: 3px;
+    height: 160px;
+    width: 250px;
+    background-color: #fff;
+    border-radius: 5px;
     box-shadow: 0 0 1px 1px rgb(236, 236, 236);
 }
-.peopleMenu_element{
-    position: absolute;    
+
+.peopleMenu_element {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
     height: 100%;
 }
-.peopleMenu_element_part{
-    position: relative;
-    width: 191px;
-    height: 43px;
+
+.peopleMenu_element_part {
+    width: 80%;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px;
 }
-.element_part_peopleType{
-    position: absolute;
-    left: 10px;    
-    width: 90px;    
-    background-color: transparent;   
-    text-align: left;
+
+.peopleMenu_element_part p {
+    font-size: 0.9rem;
+    line-height: 15px;
+    color: #3c4043;
+    margin: 0;
+    padding: 0;
 }
-.element_part_adults{
-    top: 0px;
-    height: 43px;
-    font-family: "Roboto Regular";
-    font-size:9pt;
-    color: #304269;
-    line-height: 43px;
+.peopleMenu_element_part p.cildren{
+    font-size: 0.8rem;
 }
-.element_part_children{
-    top: 0px;
-    height: 21px;
-    font-family: "Roboto Regular";
-    font-size:9pt;
-    color: #304269;   
-}
-.element_part_commentary{
-    top: 22px;
-    height: 21px;
-    font-family: "Roboto Light";
-    font-size:7.5pt;
-    color: #999999;
-    line-height: 21px;
+
+.element_part_children {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 .element_part_valueBlock{
-    position: absolute;
-    left: 100px;
-    top:5px;
-    width: 80px;
-    height: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 55%;
 }
 .valueBlock_button{
-    display: block;
-    float: left;
-       
-    border-radius: 5px;    
-    box-shadow: 0 0 1px 1px rgb(236, 236, 236);
-    text-align: center;
-}
-.valueBlock_buttonSize{
-    height: 30px;
-    width: 30px;
-}
-.valueBlock_buttonColor_canUse{
-    background-color: #304269;
-    border-color: #304269;
-    color: #ffffff;
-}
-.valueBlock_buttonColor_cannotUse{
-    background-color: #ffffff;
-    border-color: #ffffff;
-    color: #304269;
-}
-.valueBlock_button_symbol{
-    position: relative;
-    top:0px;
-    left:1px;
-    text-align: center;
-    height: 16px;
-    line-height: 16px;
-
-    font-family: "Roboto Regular";
-    font-size: 12pt;
-}
-.valueBlock_value{
-    display: block;
-    float:left;
-    bottom: 0px;
-    height: 30px;
-    width: 20px;
-    text-align: center;
-}
-.valueBlock_value_text{
-    position: absolute;
-    top:2px;
-    height: 30px;
-    width: 20px;
-    line-height: 26px;
-
-    font-family: "Roboto Regular";
-    font-size: 9pt;
-    
-}
-.peopleMenu_element_stateBlock{
-    position: absolute;
-    top: 90px;
-    right: 10px;
-    height: 25px;
-    width: 155px;
-    font-size: 9pt;
-    font-family: "Roboto Regular";
-}
-.peopleMenu_stateBlock_applyButton{
-    right: 0px;
-    color: #304269
-    
-}
-.peopleMenu_stateBlock_cancelButton{
-
-    right: 65px;
-    color: #b2b2b2;
-
-}
-.peopleMenu_stateBlock_buttonStyle{
-    position: absolute;
-    top: 0px;
-    height: 100%;
-    text-align: center;
-    line-height: 15px;
+    outline: none;
     border: none;
-    font-size: 9pt;
-    font-family: "Roboto Regular";
-    background-color: transparent
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    line-height: 25px;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    background: #ff6600;
+    border-radius: 5px;
+}
+.valueBlock_button::selection{
+    outline: none;
+    border: none;
+    text-decoration: none;
+}
+.valueBlock_button:disabled{
+    color: #bdbdbd;
+    background: #f4f5f6;
+}
+
+.valueBlock_value_text{
+    color: #3c4043;
+    font-size: 1rem;
+    margin: 0 5px;
+}
+
+.peopleMenu_element_stateBlock{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 20px;
+    width: 100%;
+}
+
+.peopleMenu_stateBlock_cancelButton{
+    outline: none;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+    color: #3c4043;
+    font-size: 1rem;
+    background: none;
+}
+
+.peopleMenu_stateBlock_applyButton{
+    outline: none;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+    color: #304269;
+    font-size: 1rem;
+    font-weight: bold;
+    background: none;
 }

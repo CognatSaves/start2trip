@@ -6,6 +6,10 @@ import SortMenu from './components/SortMenu/SortMenu.jsx'
 import PagesMenu from './components/PagesMenu/PagesMenu.jsx'
 import ValueMenu from './components/ValueMenu/ValueMenu.jsx'
 import AutoMenu from './components/AutoMenu/AutoMenu.jsx'
+import geoFlag from './components/LanguageMenu/pictures/georgia.svg'
+import ruFlag from './components/LanguageMenu/pictures/russia.svg'
+import enFlag from './components/LanguageMenu/pictures/united-kingdom.svg'
+import espFlag from './components/LanguageMenu/pictures/spain.svg'
 
 export default class DriversProperties extends React.Component {
   constructor(props) {
@@ -28,15 +32,19 @@ export default class DriversProperties extends React.Component {
       languages: [        
         {
           languageName: "Русский",
+          icon:ruFlag,
         },
         {
           languageName: "English",
+          icon:enFlag,
         },
         {
-          languageName: "Deutsch",
+          languageName: "Georgian",
+          icon:geoFlag,
         },
         {
-          languageName: "Français",
+          languageName: "Spanish",
+          icon:espFlag,
         },
         
       ]

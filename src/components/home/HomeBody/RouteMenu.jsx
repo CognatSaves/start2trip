@@ -4,7 +4,10 @@ import addIcon from './pictures/add.svg'
 import calendarIcon from './pictures/calendar.svg'
 import crossIcon from './pictures/close.svg'
 import arrowIcon from './pictures/da_tru_big_arrow.png'
-import loupeIcon from './pictures/da_tru_loupe.png'
+import sedanIcon from './pictures/sedan.svg'
+import jeepIcon from './pictures/jeep.svg'
+import minivanIcon from './pictures/minivan.svg'
+import microbusIcon from './pictures/microbus.svg'
 import shapeIcon from './pictures/Shape.svg'
 import ellipseIcon from './pictures/Ellipse.svg'
 import geoIcon from '../HomeHeader/pictures/geo_icon.png'
@@ -43,14 +46,14 @@ const AddCities = (props) => {
           <img src={ellipseIcon} alt="ellipseIcon" width="10px" height="12px" />
           <img src={shapeIcon} alt="shapeIcon" width="7px" height="25px" />
         </div>
-        <input type="text" className="city_input" placeholder="Укажите точку отправки" value={cities[0]} onChange={changeCity.bind(this,0)} />
+        <input type="text" className="city_input" placeholder="Укажите точку отправки" value={cities[0]} onChange={changeCity.bind(this, 0)} />
         <img src={crossIcon} className="crossIcon" alt="crossIcon" width="12px" height="12px" />
       </div>
       {newCity()}
       <div className="endCity">
         <img src={geoIcon} alt="geoIcon" className="geoIcon" width="10px" height="12px" />
-        <input type="text" className="city_input" placeholder="Укажите пункт назначения" value={cities[cities.length]}  />
-        <img src={crossIcon} className="crossIcon" alt="crossIcon" width="12px" height="12px" />
+        <input type="text" className="city_input" placeholder="Укажите пункт назначения" value={cities[cities.length]} />
+        <img src={crossIcon} className="crossIcon" alt="crossIcon" width="13px" height="12px" />
       </div>
     </div>
     // <tbody align="center">
@@ -120,22 +123,99 @@ export default class HomeBody extends React.Component {
             <CityRouteTable cities={this.props.cities} changeCity={this.props.changeCity} removeCity={this.props.removeCity} />
           </table> */}
           <div className="routemenu_addCity">
-            <img src={addIcon} alt="add" width="18px" height="18px" onClick={() => this.props.addCity()} />
+            <img src={addIcon} alt="add" width="15px" height="15px" onClick={() => this.props.addCity()} />
             <div className="routemenu_city_add_text" onClick={() => this.props.addCity()}>Добавить пункт назначения</div>
           </div>
           <div className="routemenu_setDate">
-            <img src={calendarIcon} alt="calendarIcon" width="18px" height="18px" />
+            <img src={calendarIcon} alt="calendarIcon" width="15px" height="15px" />
             <input className="routemenu_date" value={this.props.date} placeholder="Дата отправления" onClick={() => this.props.chooseDate()}></input>
-
           </div>
         </div>
         <div className="routemenu_parameters">
-          <p>{parameters_text}</p>
-          <img src={arrowIcon} alt="arrow" width="18px" height="18px" />
+          <div className="routemenu_parametersAdd">
+            <p>{parameters_text}</p>
+            <img src={arrowIcon} alt="arrow" width="15px" height="15px" />
+          </div>
+          <div>
+            <div className="peopleSelect">
+              
+            </div>
+            <div>
+              {/* <label className="selectCar" placeholder="Тип авто">
+                <input type="radio" name="Car" />
+                <div>
+                  <input
+                    type="radio"
+                    name="Car"
+                    value="Se"
+                    id="Car[Se]"
+                    defaultChecked
+                  />
+                  <label htmlFor="Car[Se]"><img src={sedanIcon} height="15px" width="15px" alt="sedanIcon" />Седан</label>
+                  <input
+                    type="radio"
+                    name="Car"
+                    value="Je"
+                    id="Car[Je]"
+                  />
+                  <label htmlFor="Car[Je]"><img src={jeepIcon} height="15px" width="15px" alt="jeepIcon" />Внедорожник</label>
+                  <input
+                    type="radio"
+                    name="Car"
+                    value="Min"
+                    id="Car[Min]"
+                  />
+                  <label htmlFor="Car[Min]"><img src={minivanIcon} height="15px" width="15px" alt="minivanIcon" />Минивен</label>
+                  <input
+                    type="radio"
+                    name="Car"
+                    value="Mic"
+                    id="Car[Mic]"
+                  />
+                  <label htmlFor="Car[Mic]"><img src={microbusIcon} height="15px" width="15px" alt="microbusIcon" />Микроавтобус</label>
+                </div>
+              </label> */}
+            </div>
+            <div>
+              {/* <label className="selectGeneral" placeholder="select Language">
+                <input type="radio" name="Lang" />
+                <div>
+                  <input
+                    type="radio"
+                    name="Lang"
+                    value="RU"
+                    id="Lang[Ru]"
+                    defaultChecked
+                  />
+                  <label htmlFor="Lang[Ru]"><img src={ruFlag} height="15px" width="15px" alt="RU" />RU</label>
+                  <input
+                    type="radio"
+                    name="Lang"
+                    value="EN"
+                    id="Lang[En]"
+                  />
+                  <label htmlFor="Lang[En]"><img src={enFlag} height="15px" width="15px" alt="EN" />EN</label>
+                  <input
+                    type="radio"
+                    name="Lang"
+                    value="GEO"
+                    id="Lang[GEO]"
+                  />
+                  <label htmlFor="Lang[GEO]"><img src={geoFlag} height="15px" width="15px" alt="GEO" />GEO</label>
+                  <input
+                    type="radio"
+                    name="Lang"
+                    value="ESP"
+                    id="Lang[ESP]"
+                  />
+                  <label htmlFor="Lang[ESP]"><img src={espFlag} height="15px" width="15px" alt="ESP" />ESP</label>
+                </div>
+              </label> */}
+            </div>
+          </div>
         </div>
         <div className="routemenu_search" onClick={() => { return (<Redirect to="/drivers" />) }}>
           <div className="routemenu_search_button" onClick={() => this.props.goToDrivers(this.props.cities, this.props.date)}>
-            <img src={loupeIcon} alt="calendarIcon" width="25px" height="20px" />
             <p className="routemenu_search_text">ПОИСК</p>
           </div>
         </div>
