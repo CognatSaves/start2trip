@@ -14,7 +14,7 @@ export default class DriversBody extends React.Component {
           <div className = "drivers_body">
             <div className="left_body_part">
               <DriversProperties/>
-              <DriversBlock/>
+              <DriversBlock changeTravelVisibility={this.props.changeTravelVisibility}/>
             </div>
             <div className="right_body_part">
               <DriversCommercial/>

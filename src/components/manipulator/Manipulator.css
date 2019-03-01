@@ -96,7 +96,9 @@
     cursor: pointer;
 }
 .numberPosition_numberBlock_selected{
-    background: url(pictures/drivers_number_focus.png) no-repeat;
+    background: #ff6600;
+    border-radius: 5px;
+    border-color: #ff6600;
     color: #ffffff;
 }
 
