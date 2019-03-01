@@ -10,7 +10,6 @@ import geoFlag from './components/LanguageMenu/pictures/georgia.svg'
 import ruFlag from './components/LanguageMenu/pictures/russia.svg'
 import enFlag from './components/LanguageMenu/pictures/united-kingdom.svg'
 import espFlag from './components/LanguageMenu/pictures/spain.svg'
-
 import sedan from './components/AutoMenu/pictures/sedan.svg';
 import jeep from './components/AutoMenu/pictures/jeep.svg';
 import microbus from './components/AutoMenu/pictures/microbus.svg';

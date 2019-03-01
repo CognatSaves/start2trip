@@ -1,4 +1,4 @@
-.footer_mobile{
+.footer_mobile {
     display: none;
     position: fixed;
     bottom: 0;
@@ -7,40 +7,50 @@
     padding: 10px 16px 10px 16px;
     border-bottom: 1px solid black;
 }
-@media (max-width: 360px){
-    .footer_mobile{display: block}
+
+@media (max-width: 360px) {
+    .footer_mobile {
+        display: block
+    }
 }
-.footer_mobile_element{
+
+.footer_mobile_element {
     display: inline-block;
     width: 20%;
-    
 }
-.footer_mobile_icon{
+
+.footer_mobile_icon {
     width: 20px;
     height: 20px;
     background-size: 100%;
     margin: 0 auto;
 }
-#footer_mobile_routes{
+
+#footer_mobile_routes {
     background: url(./pictures/footer_mobile_routes.png) no-repeat;
 }
-#footer_mobile_tours{
+
+#footer_mobile_tours {
     background: url(./pictures/footer_mobile_tours.png) no-repeat;
 }
-#footer_mobile_profile{
+
+#footer_mobile_profile {
     background: url(./pictures/footer_mobile_profile.png) no-repeat;
 }
-#footer_mobile_planeTickets{
+
+#footer_mobile_planeTickets {
     background: url(./pictures/footer_mobile_planeTickets.png) no-repeat;
 }
-#footer_mobile_places{
+
+#footer_mobile_places {
     background: url(./pictures/footer_mobile_places.png) no-repeat;
-    
 }
-.footer_mobile_text{
+
+.footer_mobile_text {
     margin: 0 auto;
     width: 100%;
     text-align: center;
     font-size: 10px;
-    font-family: "Roboto Regular";
+    font-family: "Roboto";
+    font-weight: 400;
 }

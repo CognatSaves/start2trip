@@ -1,4 +1,4 @@
-.drivers_properties_sortMenu{
+.drivers_properties_sortMenu {
     position: absolute;
     top: 33px;
     right: 0px;
@@ -7,26 +7,31 @@
     box-shadow: 0 0 1px 1px rgb(236, 236, 236);
     z-index: 4;
 }
-.sortMenu_element{
+
+.sortMenu_element {
     position: relative;
     height: 28px;
     width: 155px;
     background-color: transparent;
 }
-.sortMenu_element :hover{
+
+.sortMenu_element :hover {
     background-color: #91bed4;
 }
-.sortMenu_element_text{
+
+.sortMenu_element_text {
     position: absolute;
     height: 100%;
     width: 100%;
 }
-.sortMenu_element_text_value{
+
+.sortMenu_element_text_value {
     position: absolute;
     height: 100%;
     line-height: 28px;
-    left:10px; 
+    left: 10px;
     text-align: left;
-    font-family: "Roboto Regular";
+    font-family: "Roboto";
+    font-weight: 400;
     font-size: 9pt;
 }

@@ -3,14 +3,16 @@
     font-size: 3rem;
     color: #304269;
     font-weight: 500;
-    /* font-family: "Roboto Bold"; */
+    font-family: "Roboto";
+    font-weight: 700;
     text-transform: uppercase;
 }
 
 .text_secondLine {
-    font-size: 1rem;
+    font-size: 10.5pt;
     text-align: center;
-    /* font-family: "Roboto Regular"; */
+    font-family: "Roboto";
+    font-weight: 400;
     color: #304269;
 }
 

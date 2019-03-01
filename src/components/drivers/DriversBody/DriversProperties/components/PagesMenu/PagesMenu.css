@@ -1,4 +1,4 @@
-.drivers_properties_pagesMenu{
+.drivers_properties_pagesMenu {
     position: absolute;
     top: 33px;
     right: 0px;
@@ -7,26 +7,31 @@
     box-shadow: 0 0 1px 1px rgb(236, 236, 236);
     z-index: 4;
 }
-.pagesMenu_element{
+
+.pagesMenu_element {
     position: relative;
     height: 28px;
     width: 90px;
     background-color: transparent;
 }
-.pagesMenu_element :hover{
+
+.pagesMenu_element :hover {
     background-color: #91bed4;
 }
-.pagesMenu_element_text{
+
+.pagesMenu_element_text {
     position: absolute;
     height: 100%;
     width: 100%;
 }
-.pagesMenu_element_text_value{
+
+.pagesMenu_element_text_value {
     position: absolute;
     height: 100%;
     line-height: 28px;
-    left:10px; 
+    left: 10px;
     text-align: left;
-    font-family: "Roboto Regular";
+    font-family: "Roboto";
+    font-weight: 400;
     font-size: 9pt;
 }

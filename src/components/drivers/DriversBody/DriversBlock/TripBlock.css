@@ -1,118 +1,164 @@
-.element_right_line{
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-}
-.tripBlock_carImage{
-  display: flex;
-  width:15%;
-  height: 10%;
-}
- 
-.tripBlock_carData{
-  display: flex;
-  flex-direction: column;
-  width:80%;
-  margin-left: auto;
-  height: 100%;
-  text-align: top;
-}
-
-.tripBlock_priceBlock{
-  display: flex;
-  text-align: center;
-  width:15%;
-  height: 15%; 
-}
-.tripBlock_priceBlock_price{
-  display: flex;
-  margin: auto;
-  font-family: "Roboto Bold";
-  font-size: 1.3rem;
-  color: #ff6600;
-}
-
-.tripBlock_buttonBlock{
-  display: flex;
-  flex-direction: column;
-
-  width:80%;
-  height: 20%;
-  margin-left:auto;
-  padding: 2% 0;
-}
-.tripBlock_buttonBlock_button{
-  display: flex;
-  height: 15%;
-  width: 100%;
-  background-color: #304269;
-  border-color: #304269;
-  margin: 0 auto;
-  border-radius: 5px;
-}
-.drivers_block_element:hover .tripBlock_buttonBlock_button{
-  background-color: #ff6600;
-  border-color:#ff6600;
-}
-
-.buttonBlock_button_value{
-  display: flex;
-  font-family: "Roboto Medium";
-  font-size: 0.9rem;
-  color: #ffffff;
-  border-radius: 5px;
-  margin: 0 auto;
-}
-
-.tripBlock_buttonBlock_commentary{
-  display: flex;
-  font-size:0.59rem;
-  color: #304269;
-  font-family: "Roboto Regular";
-  margin: 0 auto;
-}
-.tripBlock_detailed{
-  display:flex;
-  margin: auto 0 0 auto;
-  font-size: 0.8rem;
-  color: #304269;
-  font-family: "Roboto Medium";
-}
-.drivers_block_element:hover .tripBlock_detailed{
-  color: #ff6600;
-}
-
-.carInfo_line{
-  display: flex;
-  flex-direction: row;
-}
-.carBrand_style{
+.element_right_line {
     display: flex;
-    font-family: "Roboto Medium";
-    font-size: 1.2rem;
+    flex-direction: row;
+    width: 95%;
+}
+.element_right_line:nth-child(1) {
+    margin-bottom: 15px;
+}
+
+.tripBlock_carImage {
+    width: 15%;
+    height: 10%;
+}
+
+.tripBlock_carData {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin-left: 20px;
+    height: 100%;
     text-align: top;
 }
-.fuelType_style{
-    font-family: "Roboto Regular";
-    font-size: 1rem;
+
+.tripBlock_priceBlock {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    font-family: "Roboto";
+    font-weight: bold;
+    font-size: 18pt;
+    color: #ff6600;
+}
+
+.tripBlock_priceBlock_price {
+    display: flex;
+    font-family: "Roboto";
+    font-weight: bold;
+    font-size: 18pt;
+    color: #ff6600;
+}
+
+.tripBlock_buttonBlock {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 20%;
+    margin-left: auto;
+    padding: 2% 0;
+}
+
+.tripBlock_buttonBlock_button {
+    display: flex;
+    justify-content: center;
+    font-family: "Roboto";
+    font-weight: 500;
+    font-size: 12pt;
+    color: #fff;
+    height: 15%;
+    min-height: 42px;
+    width: 85%;
+    margin-left: 13px;
+    background-color: #304269;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.drivers_block_element:hover .tripBlock_buttonBlock_button {
+    background-color: #ff6600;
+    border-color: #ff6600;
+}
+
+.buttonBlock_button_value {
+    display: flex;
+    font-family: "Roboto";
+    max-height: 40px;
+    line-height: 40px;
+    font-weight: 500;
+    font-size: 12pt;
+    color: #ffffff;
+    border-radius: 5px;
+    margin: 0 auto;
+}
+
+.tripBlock_buttonBlock_commentary {
+    width: 90%;
+    font-size: 9pt;
+    color: #304269;
+    font-family: "Roboto";
+    font-weight: 400;
+    text-align: right;
+}
+
+.tripBlock_detailed {
+    display: flex;
+    margin: auto 0 0 auto;
+    font-size: 9pt;
+    color: #304269;
+    font-family: "Roboto";
+    font-weight: 400;
+}
+
+.drivers_block_element:hover .tripBlock_detailed {
+    color: #ff6600;
+}
+
+.carInfo_line {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.carBrand_style {
+    display: flex;
+    font-family: "Roboto";
+    font-weight: 500;
+    font-size: 12pt;
+    text-align: top;
+}
+
+.fuelType_style {
+  font-family: "Roboto";
+  font-weight: 400;
+    font-size: 12pt;
     text-align: top;
     padding-top: 1.5%;
     margin-left: 2%;
 }
-.carProps_style{
-    font-family: "Roboto Regular";
-    font-size: 1rem;
+
+.carProps_style {
+  font-family: "Roboto";
+  font-weight: 400;
+    font-size: 10.5pt;
 }
-.hidden_enter_carBrand{
+
+.hidden_enter_carBrand {
     visibility: hidden;
     float: left;
 }
-@media (min-width: 1350px){
-  .tripBlock_priceBlock_price {font-size: 1.5rem}
-  .buttonBlock_button_value {font-size: 0.9rem}
-  .tripBlock_buttonBlock_commentary {font-size: 0.8rem}
-  .tripBlock_detailed {font-size: 1rem}
-  .carBrand_style {font-size: 1.3rem}
-  .fuelType_style {font-size: 1.1rem}
-  .carProps_style {font-size: 1.1rem}
+
+@media (min-width: 1350px) {
+    .tripBlock_priceBlock_price {
+        font-size: 1.5rem
+    }
+    .buttonBlock_button_value {
+        font-size: 0.9rem
+    }
+    .tripBlock_buttonBlock_commentary {
+        font-size: 0.8rem
+    }
+    .tripBlock_detailed {
+        font-size: 1rem
+    }
+    .carBrand_style {
+        font-size: 1.3rem
+    }
+    .fuelType_style {
+        font-size: 1.1rem
+    }
+    .carProps_style {
+        font-size: 1.1rem
+    }
 }

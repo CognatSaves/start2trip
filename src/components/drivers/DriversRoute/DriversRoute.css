@@ -1,110 +1,111 @@
-.drivers_route{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-
-  background-color: #304269;
-  margin: 0.5% 0;
-  padding: 2% 2% 0 2%;
-}
-.route_date{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  order: 0;
-
-  width: 100%;
-  font-size: 1.5rem;
-  color:#ffffff;
-  font-family: "Roboto Regular";
-  margin-bottom: 2%;
-}
-.route_date_text{
-  display:flex;
-}
-.route_date_value{
-  display:flex;
-}
-.route_change{
-  display: flex;
-  flex-direction: row;
-
-}
-.route_change_emblem{
-  display:flex;
-  
-  width:14%;
-  height: 100%;
-}
-.route_change_text{
-  display:flex;
-
-  height:100%;
-  text-align: right;
-  text-decoration: underline;
-
-  font-family: "Roboto Light";
-  font-size: 0.8rem;
-  color: #ffffff;
-  margin: 2px;
+.drivers_route {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: #304269;
+    margin: 0.5% 0;
+    padding: 2% 2% 0 2%;
 }
 
-
-
-.route_show{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  padding-bottom: 1%;
-}
-.route_show_element{
-  display: flex;
-  position: relative;
-  height: 100%;
-  width:25%;
-  margin-bottom: 1%;
+.route_date {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    order: 0;
+    width: 100%;
+    font-size: 1.5rem;
+    color: #ffffff;
+    font-family: "Roboto";
+    font-weight: 400;
+    margin-bottom: 2%;
 }
 
-
-.route_show_text{
-  position: absolute;
-  height:100%;
-  font-family: "Roboto Regular";
-  left: 25%;
-  font-size: 15px;
-  color:#ffffff;
-}
-.route_show_line{
-  position: absolute;
-  height: 50%;
-  left:20%;
-  width:80%;
-  color:#ffffff;
-  border-bottom: 1px solid;
+.route_date_text {
+    display: flex;
 }
 
-
-
-
-.route_bottomBlock{
-  display: flex;
-  flex-direction:column;
-  padding: 1% 0;
-  width: 50%;
+.route_date_value {
+    display: flex;
 }
 
-.route_time_text{
-  display: flex;
-  font-family: "Roboto";
-
-  font-size: 18px;
-  color:#ffffff;
+.route_change {
+    display: flex;
+    flex-direction: row;
 }
-.route_comment{
-  display: flex;
-  color:#ffffff;
-  font-family: "Roboto";
-  font-size: 12px;
+
+.route_change_emblem {
+    display: flex;
+    width: 14%;
+    height: 100%;
+}
+
+.route_change_text {
+    display: flex;
+    height: 100%;
+    text-align: right;
+    text-decoration: underline;
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 0.8rem;
+    color: #ffffff;
+    margin: 2px;
+}
+
+.route_show {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-bottom: 1%;
+}
+
+.route_show_element {
+    display: flex;
+    position: relative;
+    height: 100%;
+    width: 25%;
+    margin-bottom: 1%;
+}
+
+.route_show_text {
+    position: absolute;
+    height: 100%;
+    font-family: "Roboto";
+    font-weight: 400;
+    left: 25%;
+    font-size: 15px;
+    color: #ffffff;
+}
+
+.route_show_line {
+    position: absolute;
+    height: 50%;
+    left: 20%;
+    width: 80%;
+    color: #ffffff;
+    border-bottom: 1px solid;
+}
+
+.route_bottomBlock {
+    display: flex;
+    flex-direction: column;
+    padding: 1% 0;
+    width: 50%;
+}
+
+.route_time_text {
+    display: flex;
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 18px;
+    color: #ffffff;
+}
+
+.route_comment {
+    display: flex;
+    color: #ffffff;
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 12px;
 }

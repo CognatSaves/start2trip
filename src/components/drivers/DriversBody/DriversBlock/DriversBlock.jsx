@@ -15,120 +15,119 @@ import jeep from './pictures/jeep.svg';
 class DriversBlockClass extends React.Component {
   constructor(props) {
     super(props);
-    this.state={    
+    this.state = {
       page: 1,
     };
-    this.setPage=this.setPage.bind(this);
+    this.setPage = this.setPage.bind(this);
   }
-  setPage(page){
+  setPage(page) {
     console.log("setPage called");
     console.log(page);
     console.log("elements now");
     console.log(this.props.driversState.drivers.length);
-    if(page!=="..."){
+    if (page !== "...") {
       this.setState(
         {
-          page:page
+          page: page
         }
       )
     }
   }
   render() {
-    let ageStep="____";
-    let langStep="___''''''";
-    let driverStep="___";
-    let positionArray = [15, 240,465,690];
+    let ageStep = "____";
+    let langStep = "___''''''";
+    let driverStep = "___";
+    let positionArray = [15, 240, 465, 690];
 
 
-    let selectedElements = this.props.driversState.drivers.slice((this.state.page-1)*4,(this.state.page)*4);
+    let selectedElements = this.props.driversState.drivers.slice((this.state.page - 1) * 4, (this.state.page) * 4);
     let srcArray = [selectedFilledLike, filledLike, emptyLike, emptyLike];
 
     return (
-      <div className = "drivers_block">
-        {selectedElements.map((element, index) => 
-          <div className = "drivers_block_element">
+      <div className="drivers_block">
+        {selectedElements.map((element, index) =>
+          <div className="drivers_block_element">
             <div className="block_element_left">
               <div className="block_element_photo">
-                <img src={driverPhoto} width="100%" height="100%" alt={"photo"+element}></img>
+                <img src={driverPhoto} width="100%" height="100%" alt={"photo" + element} />
               </div>
               <div className="block_element_infoBlock">
-                <div className="block_element_infoBlock_name">{element.name}</div>
-                <div className="infoBlock_starsBlock">
-                  <div className="infoBlock_starsBlock_value">5.0</div> 
-                  <div className="infoBlock_starsBlock_stars">
-                    <div className="starsBlock_stars_element">
-                      <div className="background_stars"/>
-                      <img src={emptyStar} width="100%" height="100%" alt="star1"></img>                     
+                <div className="block_element_infoBlock_top">
+                  <div className="block_element_infoBlock_name">{element.name}</div>
+                  <div className="infoBlock_starsBlock">
+                    <div className="infoBlock_starsBlock_value">5.0</div>
+                    <div className="infoBlock_starsBlock_stars">
+                      <div className="starsBlock_stars_element">
+                        <div className="background_stars" />
+                        <img src={emptyStar} width="15px" height="18px" alt="star1"></img>
+                      </div>
+                      <div className="starsBlock_stars_element">
+                        <div className="background_stars" />
+                        <img src={emptyStar} width="15px" height="18px" alt="star2"></img>
+                      </div>
+                      <div className="starsBlock_stars_element">
+                        <div className="background_stars" />
+                        <img src={emptyStar} width="15px" height="18px" alt="star3"></img>
+                      </div>
+                      <div className="starsBlock_stars_element">
+                        <div className="background_stars" />
+                        <img src={emptyStar} width="15px" height="18px" alt="star4"></img>
+                      </div>
+                      <div className="starsBlock_stars_element">
+                        <div className="background_stars" />
+                        <img src={emptyStar} width="15px" height="18px" alt="star5"></img>
+                      </div>
                     </div>
-                    <div className="starsBlock_stars_element">
-                      <div className="background_stars"/>
-                      <img src={emptyStar} width="100%" height="100%" alt="star2"></img>
-                    </div>
-                    <div className="starsBlock_stars_element">
-                      <div className="background_stars"/>
-                      <img src={emptyStar} width="100%" height="100%" alt="star3"></img>
-                    </div>
-                    <div className="starsBlock_stars_element">
-                      <div className="background_stars"/>
-                      <img src={emptyStar} width="100%" height="100%" alt="star4"></img>
-                    </div>
-                    <div className="starsBlock_stars_element">
-                      <div className="background_stars"/>
-                      <img src={emptyStar} width="100%" height="100%" alt="star5"></img>
-                    </div>
+                    <div className="infoBlock_starsBlock_number">10000 отзывов</div>
                   </div>
-                  <div className="infoBlock_starsBlock_number">10000 отзывов</div>
                 </div>
-                <div className="block_element_infoBlock_element">
-                  <div className="infoString">Возраст:</div>
-                  <div className="visibleString">{element.age}</div>
+                <div className="block_element_infoBlock_bot">
+                  <div className="block_element_infoBlock_element">
+                    <div className="infoString">Возраст:</div>
+                    <div className="visibleString">{element.age}</div>
+                  </div>
+                  <div className="block_element_infoBlock_element">
+                    <div className="infoString">Языки:</div>
+                    <div className="visibleString">{element.language}</div>
+                  </div>
+                  <div className="block_element_infoBlock_element">
+                    <div className="infoString">За рулём:</div>
+                    <div className="visibleString">{element.drivingAge}</div>
+                  </div>
                 </div>
-                <div className="block_element_infoBlock_element">
-                  <div className="infoString">Языки:</div>
-                  <div className="visibleString">{element.language}</div>                
-                </div>
-                <div className="block_element_infoBlock_element">
-                  <div className="infoString">За рулём:</div>
-                  <div className="visibleString">{element.drivingAge}</div>
-                </div> 
+
               </div>
             </div>
             <div className="block_element_right">
               <div className="element_right_line">
                 <div className="tripBlock_carImage">
-                  <img src={sedan} width="100%" height="100%" alt={"car"+element}></img>
+                  <img src={sedan} width="100%" height="100%" alt={"car" + element}></img>
                 </div>
                 <div className="tripBlock_carData">
                   <div className="carInfo_line">
                     <div className="carBrand_style">{element.carBrand},</div>
                     <div className="fuelType_style">{element.fuelType}</div>
-                  </div>  
+                  </div>
                   <div className="carInfo_line">
                     <div className="carProps_style">{element.carProps}</div>
-                  </div>                                    
+                  </div>
                 </div>
               </div>
               <div className="element_right_line">
                 <div className="tripBlock_priceBlock">
-                  <div className="tripBlock_priceBlock_price">
-                    {element.price}
-                  </div>
-                </div>
-                <div className="tripBlock_buttonBlock">
-                  <button className="tripBlock_buttonBlock_button">
-                    <div className="buttonBlock_button_value">ЗАБРОНИРОВАТЬ ПОЕЗДКУ</div>
-                  </button>
-                  <div className="tripBlock_buttonBlock_commentary">Стоимость окончательная. Топливо включено</div>
+                  {element.price}
+                  <button className="tripBlock_buttonBlock_button">ЗАБРОНИРОВАТЬ ПОЕЗДКУ</button>
                 </div>
               </div>
+              <div className="tripBlock_buttonBlock_commentary">Стоимость окончательная. Топливо включено</div>
               <div className="tripBlock_detailed">Подробнее</div>
             </div>
             <div className="myHeart">
-              <img src={srcArray[index]} width="auto" height="100%" alt="emptyLike"></img> 
+              <img src={srcArray[index]} width="auto" height="100%" alt="emptyLike"></img>
             </div>
-          </div>     
+          </div>
         )}
-        <DriversBlockManipulator number = {this.props.driversState.drivers.length} page = {this.state.page} setPage = {this.setPage}/>
+        <DriversBlockManipulator number={this.props.driversState.drivers.length} page={this.state.page} setPage={this.setPage} />
       </div>
 
     )
@@ -137,12 +136,12 @@ class DriversBlockClass extends React.Component {
 }
 
 const DriversBlock = connect(
-  (state) =>({
+  (state) => ({
     storeState: state.AppReduser,
     driversState: state.DriversReduser
   }),
   (dispatch) => ({
-   // setCities:(cities) => dispatch({type:"SET_CITIES",cities:cities})
+    // setCities:(cities) => dispatch({type:"SET_CITIES",cities:cities})
   })
 )(DriversBlockClass);
 

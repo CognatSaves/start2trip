@@ -1,18 +1,16 @@
-.drivers_properties_valueMenu{
+.drivers_properties_valueMenu {
     position: absolute;
-    top:34px;
+    top: 34px;
     right: 0px;
-    
     border-radius: 3px;
     box-shadow: 0 0 1px 1px rgb(236, 236, 236);
-
     width: 200px;
     height: 82px;
-
     background-color: #ffffff;
     z-index: 4;
 }
-.valueMenu_valueBlock{
+
+.valueMenu_valueBlock {
     position: absolute;
     top: 0px;
     left: 10px;
@@ -20,72 +18,81 @@
     height: 45px;
     background-color: black
 }
-.valueMenu_borderElement{
+
+.valueMenu_borderElement {
     position: absolute;
-    top: 0px; 
+    top: 0px;
     font-size: 9pt;
-    font-family: "Roboto Regular";
+    font-family: "Roboto";
+    font-weight: 400;
 }
-.valueMenu_leftBorder{   
-    left:10px;     
+
+.valueMenu_leftBorder {
+    left: 10px;
 }
-.valueMenu_rightBorder{
-    right: 10px; 
+
+.valueMenu_rightBorder {
+    right: 10px;
 }
-.valueMenu_selectBlock{
+
+.valueMenu_selectBlock {
     position: absolute;
-    top:20px;
+    top: 20px;
     width: 180px;
-    left:10px;
+    left: 10px;
     height: 30px;
 }
-.valueMenu_selectBlock_sliderLine{
+
+.valueMenu_selectBlock_sliderLine {
     position: absolute;
-    top:0px;
+    top: 0px;
     height: 50%;
     width: 100%;
     border-bottom: 2px solid black;
 }
-.valueMenu_selectBlock_selectBall{
+
+.valueMenu_selectBlock_selectBall {
     position: absolute;
     width: 10px;
     height: 10px;
-    top:10px;
-    
+    top: 10px;
     border-radius: 5px;
 }
-.valueMenu_selectBlock_leftBall{
-    left:0px;
+
+.valueMenu_selectBlock_leftBall {
+    left: 0px;
     background-color: #ffffff;
     box-shadow: 0 0 1px 1px rgb(236, 236, 236);
 }
-.valueMenu_selectBlock_rightBall{
+
+.valueMenu_selectBlock_rightBall {
     right: 0px;
     background-color: #304269;
     box-shadow: 0 0 1px 1px rgb(236, 236, 236);
 }
-.valueMenu_stateBlock{
+
+.valueMenu_stateBlock {
     position: absolute;
     bottom: 0px;
     right: 10px;
     height: 25px;
     width: 155px;
-    font-size:9pt;
-    font-family: "Roboto Regular";
-
+    font-size: 9pt;
+    font-family: "Roboto";
+    font-weight: 400;
 }
-.valueMenu_stateBlock_applyButton{
+
+.valueMenu_stateBlock_applyButton {
     right: 0px;
     color: #304269
-    
 }
-.valueMenu_stateBlock_cancelButton{
 
+.valueMenu_stateBlock_cancelButton {
     right: 65px;
     color: #b2b2b2;
-
 }
-.valueMenu_stateBlock_buttonStyle{
+
+.valueMenu_stateBlock_buttonStyle {
     position: absolute;
     top: 0px;
     height: 100%;
@@ -93,6 +100,7 @@
     line-height: 15px;
     border: none;
     font-size: 9pt;
-    font-family: "Roboto Regular";
+    font-family: "Roboto";
+    font-weight: 400;
     background-color: transparent
 }

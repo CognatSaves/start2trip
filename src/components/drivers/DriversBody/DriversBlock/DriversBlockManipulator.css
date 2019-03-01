@@ -1,103 +1,109 @@
-.drivers_block_manipulator{
+.drivers_block_manipulator {
     display: flex;
     flex-direction: column;
     width: 100%;
     height: 190px;
 }
-.driversBlockManipulator_button{
+
+.driversBlockManipulator_button {
     display: flex;
-    width:206px;
+    width: 206px;
     height: 40px;
     border-color: transparent;
     border-radius: 5px;
     box-shadow: 0 0 1px 1px rgba(221, 221, 221, 1);
-
     background-color: #ffffff;
     margin: 5% auto 3% auto;
 }
-.driversBlockManipulator_button:hover{
+
+.driversBlockManipulator_button:hover {
     cursor: pointer;
     box-shadow: 0 0 2px 5px rgba(221, 221, 221, 1);
 }
-.driversBlockManipulator_button_value{
-    display: flex;
-    font-family: "Roboto Medium";
-    font-size: 16pt;
 
+.driversBlockManipulator_button_value {
+    display: flex;
+    font-family: "Roboto";
+    font-weight: 500;
+    font-size: 12pt;
     color: #304269;
     margin: auto;
 }
 
-
-.driversBlockManipulator_pageNumbers{
+.driversBlockManipulator_pageNumbers {
     display: flex;
     flex-direction: row;
     height: 20px;
     margin: 0 auto;
 }
 
-.pageNumbers_arrow{
+.pageNumbers_arrow {
     display: flex;
     width: 20px;
-    height: 20px;   
+    height: 20px;
     padding: 0;
     border-radius: 5px;
     border: none;
 }
-.pageNumbers_arrow:hover{
+
+.pageNumbers_arrow:hover {
     border-radius: 10px;
     box-shadow: 0 0 4px 4px rgba(221, 221, 221, 1);
     cursor: pointer;
 }
-.pageNumbers_text{
+
+.pageNumbers_text {
     display: flex;
     height: 20px;
     width: 80px;
     text-align: center;
     line-height: 20px;
-
     font-size: 12pt;
-    font-family: "Robot Regular";
+    font-family: "Roboto";
+    font-weight: 400;
     color: #999999;
     border: none;
     background-color: transparent;
     padding: 0 2%;
 }
-.pageNumbers_text:hover{
+
+.pageNumbers_text:hover {
     cursor: pointer;
 }
-.pageNumbers_numberPosition{
+
+.pageNumbers_numberPosition {
     display: flex;
     flex-direction: row;
     height: 20px;
     width: 50%;
 }
-.numberPosition_numberBlock{
+
+.numberPosition_numberBlock {
     display: flex;
     height: 100%;
     width: 20%;
     padding: 0 5%;
 }
-.numberPosition_numberBlock_value{
+
+.numberPosition_numberBlock_value {
     float: left;
     height: 100%;
-    width:20px;
+    width: 20px;
     text-align: center;
     line-height: 100%;
-
-    font-family: "Roboto Regular";
+    font-family: "Roboto";
+    font-weight: 400;
     font-size: 13pt;
     color: #999999;
-    
     border: none;
     background-color: transparent;
 }
-.numberPosition_numberBlock_value:hover{
+
+.numberPosition_numberBlock_value:hover {
     cursor: pointer;
 }
-.numberPosition_numberBlock_selected{
+
+.numberPosition_numberBlock_selected {
     background: url(pictures/drivers_number_focus.png) no-repeat;
     color: #ffffff;
 }
-
-

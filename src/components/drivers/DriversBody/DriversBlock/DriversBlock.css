@@ -1,70 +1,79 @@
-.drivers_block{
-  display: flex;
-
-  flex-direction: column;
-  width:100%;
-  height:80%;
-  margin-top: 2%;
+.drivers_block {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 80%;
+    margin-top: 2%;
 }
 
-.visibleString{
-  float: right;
-  font-size: 1rem;
-  font-family: "Roboto Regular";
-}
-.infoString{
-  font-size: 1rem;
-  font-family: "Roboto Medium";
-  margin-right: 1%;
-}
-.drivers_block_element{
-  display: flex;
-  position: relative;
-  flex-direction: row;
-  height:15%;
-  width:100%;
-  box-shadow: 0 0 1px 1px rgba(221, 221, 221, 1);
-  padding: 3% 1.5%;
-  margin-bottom: 1%;
-}
-.drivers_block_element:hover{
-  box-shadow: 0 0 2px 5px rgba(221, 221, 221, 1);
-  cursor: pointer;
+.visibleString {
+    float: right;
+    font-size: 10.5pt;
+    font-family: "Roboto";
+    font-weight: 400;
 }
 
-.block_element_left{
-  display: flex;
-  flex-direction: row;
-  height: 100%;
-  width: 57%;
-  border-right: 1px solid black;
-}
-.block_element_right{
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: 43%;
-  padding-left: 2%;
+.infoString {
+    font-size: 10.5pt;
+    font-family: "Roboto";
+    font-weight: 500;
+    margin-right: 1%;
 }
 
-
-
-.block_element_photo{
-  display: flex;
-  width:33.5%;
-  height:100%;
-  margin-right: auto;
-}
-.myHeart{
-  position: absolute;
-  width: auto;
-  height: 12%;
-  top:0;
-  right: 0;
-  margin: 1.5%;
+.drivers_block_element {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    box-shadow: 0 0 1px 1px rgba(221, 221, 221, 1);
+    padding: 3% 1.5%;
+    margin-bottom: 1%;
 }
 
-@media (min-width: 1350px){
-    .infoString{font-size: 1.1rem}
-    .visibleString{font-size: 1.1rem}
-} 
+.drivers_block_element:hover {
+    box-shadow: 0 0 2px 5px rgba(221, 221, 221, 1);
+    cursor: pointer;
+}
+
+.block_element_left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+    width: 50%;
+    border-right: 1px solid black;
+}
+
+.block_element_right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 50%;
+}
+
+.block_element_photo {
+    display: flex;
+    width: 33.5%;
+    height: 100%;
+    margin-right: auto;
+}
+
+.myHeart {
+    position: absolute;
+    width: auto;
+    height: 12%;
+    top: 0;
+    right: 0;
+    margin: 1.5% 3%;
+}
+
+@media (min-width: 1350px) {
+    .infoString {
+        font-size: 11pt
+    }
+    .visibleString {
+        font-size: 11pt
+    }
+}

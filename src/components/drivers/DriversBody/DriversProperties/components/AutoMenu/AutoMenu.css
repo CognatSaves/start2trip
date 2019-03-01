@@ -1,42 +1,48 @@
-.drivers_properties_autoMenu{
+.drivers_properties_autoMenu {
     position: absolute;
     top: 34px;
     right: 0px;
-    width:128px;
+    width: 128px;
     background-color: #ffffff;
     border-radius: 3px;
     box-shadow: 0 0 1px 1px rgb(236, 236, 236);
     z-index: 4;
 }
-.autoMenu_element{
+
+.autoMenu_element {
     position: relative;
     width: 128px;
     height: 30px;
     background-color: #ffffff;
 }
-.autoMenu_element:hover{
+
+.autoMenu_element:hover {
     background-color: #91bed4;
 }
-.autoMenu_element_textBlock{
+
+.autoMenu_element_textBlock {
     position: absolute;
     top: 0px;
     width: 100%;
     height: 100%;
 }
-.autoMenu_element_picture{
+
+.autoMenu_element_picture {
     position: absolute;
-    left:2%;
-    top:-2px;
+    left: 2%;
+    top: -2px;
     width: 20%;
     height: 100%;
 }
-.autoMenu_element_text{
-    position:absolute;
+
+.autoMenu_element_text {
+    position: absolute;
     left: 32px;
     width: 90px;
     height: 100%;
     text-align: left;
-    font-family: "Roboto Regular";
-    font-size:9pt;
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 9pt;
     color: #304269;
 }
