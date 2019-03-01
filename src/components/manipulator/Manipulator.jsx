@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import './DriversBlockManipulator.css'
+import './Manipulator.css'
 import leftArrow from './pictures/drivers_manipulator_leftArrow.png'
 import rightArrow from './pictures/drivers_manipulator_rightArrow.png'
 
-export default class DriversBlockManipulator extends React.Component{
+export default class Manipulator extends React.Component{
     constructor(props){
         super(props);        
     }

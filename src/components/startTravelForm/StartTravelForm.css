@@ -1,5 +1,118 @@
 .startTravelForm{
-    position: absolute;
-    margin: 10% auto 0 auto;
-    width: 300px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto auto auto;
+    width: 420px;
+    padding: 30px;
+    background-color: #ffffff;
+    box-shadow: 0 0 2px 2px rgba(221, 221, 221, 1);
+    border-radius: 5px;
+}
+.startTravelForm_element{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+.startTravelForm_headerText{
+    display: flex;
+
+    font-size: 16pt;
+    margin: 0 auto 30px 0;
+    
+    font-family: "Roboto";
+    font-weight: 700;
+    color: #304269;
+}
+.startTravelForm_crossPlace{
+    display: flex;
+    margin-top: 7px;
+    width: 25px;
+    height: 25px;
+    margin-left: auto;
+
+    border-radius: 5px;
+    border-color: transparent;
+    background-color: transparent;
+}
+.startTravelForm_text{
+    display: flex;
+
+    font-size: 12px;
+    margin-bottom: 10px;
+    margin-right: auto;
+    font-family: "Roboto";
+    font-weight: 400;
+}
+.startTravelForm_inputStyle{
+    display: flex;
+    font-size: 14px;
+    color: #304269;
+    font-family: "Roboto";
+    font-weight: 400;
+
+    margin-bottom: 30px;
+    margin-right: auto;
+    background-color: transparent;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #999999;
+}
+.startTravelForm_commentary{
+    display: flex;
+    font-size: 14px;
+    color: #304263;
+    margin-bottom: 30px;
+    margin-right: auto;
+    background-color: transparent;
+    height: 125px;
+    width: 100%;
+    border: none;
+    padding: 5px;
+    border: 1px solid #999999;
+    border-radius: 5px;
+    
+    font-family: "Roboto";
+    font-weight: 400;
+}
+.startTravelForm_inputStyle::placeholder{
+    color: #999999;
+}
+.startTravelForm_commentary::placeholder{
+    color: #999999;
+}
+.startTravelForm_checkbox{
+    display: flex;
+    height: 25px;
+    width: 20px;
+}
+.startTravelForm_checkboxText{
+    display: flex;
+    font-size: 12px;
+    color: #304269;
+    margin-left: 2px; 
+    font-family: "Roboto";
+    font-weight:400; 
+}
+.startTravelForm_link{
+    margin: auto 0 auto 3px;
+    text-decoration: underline;
+    color:#304269;
+    font-weight: 700;
+}
+.startTravelForm_button{
+    display: flex;
+    width: 250px;
+    height: 50px;
+    margin: 20px auto 0 auto;
+    background-color: #ff6600;
+    border-radius: 5px;
+    border-color: #ff6600;
+    color: #ffffff;
+
+    font-family: "Roboto";
+    font-weight: 600;
+}
+.startTravelForm_buttonText{
+    display: flex;
+    margin: auto;
 }

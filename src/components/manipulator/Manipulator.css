@@ -102,8 +102,9 @@
 .numberPosition_numberBlock_value:hover {
     cursor: pointer;
 }
-
-.numberPosition_numberBlock_selected {
-    background: url(pictures/drivers_number_focus.png) no-repeat;
+.numberPosition_numberBlock_selected{
+    background: #ff6600;
+    border-radius: 5px;
+    border-color: #ff6600;
     color: #ffffff;
 }

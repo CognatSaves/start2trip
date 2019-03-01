@@ -4,6 +4,8 @@ import './index.css';
 import App from './App';
 import Home from './components/home/Home.jsx';
 import Drivers from './components/drivers/Drivers.jsx';
+import DriverProfile from './components/driverProfile/DriverProfile.jsx';
+
 
 
 import * as serviceWorker from './serviceWorker';
@@ -28,6 +30,7 @@ ReactDOM.render(
         <Switch>                
             <Route path="/home" component={Home}/>
             <Route path="/drivers" component={Drivers}/>
+            <Route path="/driverProfile/:number" component={DriverProfile}/>
             <Redirect from="/" to="/home"/>
         </Switch>       
     </React.Fragment>

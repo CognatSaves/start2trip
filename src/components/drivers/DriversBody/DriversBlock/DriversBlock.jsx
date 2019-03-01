@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './DriversBlock.css'
 import './InfoBlock.css'
 import './TripBlock.css'
-import DriversBlockManipulator from './DriversBlockManipulator.jsx';
+import Manipulator from '../../../manipulator/Manipulator';
 import { connect } from 'react-redux';
 import driverPhoto from './pictures/driver1/drivers_body_photo.png';
 import emptyStar from './pictures/star.svg';
@@ -116,7 +116,7 @@ class DriversBlockClass extends React.Component {
               <div className="element_right_line">
                 <div className="tripBlock_priceBlock">
                   {element.price}
-                  <button className="tripBlock_buttonBlock_button">ЗАБРОНИРОВАТЬ ПОЕЗДКУ</button>
+                  <button className="tripBlock_buttonBlock_button" onClick={()=>this.props.changeTravelVisibility('block')}>ЗАБРОНИРОВАТЬ ПОЕЗДКУ</button>
                 </div>
               </div>
               <div className="tripBlock_buttonBlock_commentary">Стоимость окончательная. Топливо включено</div>
@@ -127,7 +127,7 @@ class DriversBlockClass extends React.Component {
             </div>
           </div>
         )}
-        <DriversBlockManipulator number={this.props.driversState.drivers.length} page={this.state.page} setPage={this.setPage} />
+        <Manipulator number = {this.props.driversState.drivers.length} page = {this.state.page} setPage = {this.setPage}/>
       </div>
 
     )
