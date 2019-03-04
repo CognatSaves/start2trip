@@ -1,0 +1,31 @@
+.driverAdaptedRoute_bottomBlock{
+    width: 100%;
+}
+.driversAdaptedRoute_price{
+    text-align: center;
+    font-size: 34px;
+    font-family: "Roboto";
+    font-weight: bold;
+    color: #ffffff;
+}
+.driversAdaptedRoute_sendRequest{
+    width: 70%;
+    height: 25%;
+    background-color: #ff6600;
+    border: 1px solid #ff6600;
+    border-radius: 5px;
+
+    margin: 0 auto;
+
+    font-family: "Roboto";
+    font-size: 16px;
+    font-weight: 500;
+    color: #ffffff;
+}
+.driversAdaptedRoute_requestCommentary{
+    text-align: center;
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 12px;
+    color: #ffffff;
+}

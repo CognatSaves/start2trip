@@ -18,7 +18,6 @@ const AddCities = (props) => {
   const { cities, changeCity, removeCity } = props;
 
   const newCity = () => {
-    debugger
     if (cities.length > 2) {
       let thisCities = cities;
       thisCities.shift()

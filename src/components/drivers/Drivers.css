@@ -6,7 +6,7 @@
   width:100%;
   height: auto;
   background: url(pictures/drivers_header_background.png) no-repeat;
-
+  background-size: cover;
   padding:0% 17% 1% 17%;
 }
  

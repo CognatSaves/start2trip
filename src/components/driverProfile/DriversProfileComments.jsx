@@ -6,9 +6,10 @@ import emptyStar from './pictures/star.svg';
 export default class DriversProfileComments extends React.Component{
     constructor(props){
         super(props);
+        
     }
     render(){
-        let tempText = "Мороз и солнце; день чудесный! Еще ты дремлешь, друг прелестный — Пора, красавица, проснись: Открой сомкнуты негой взоры.Навстречу северной Авроры,Звездою севера явись!Вечор, ты помнишь, вьюга злилась,На мутном небе мгла носилась;Луна, как бледное пятно,Сквозь тучи мрачные желтела,И ты печальная сидела —А нынче... погляди в окно:";
+        let selectedComments = this.props.comments.slice((this.props.page - 1) * 5, (this.props.page) * 5);
         return(
             <React.Fragment>
                 <div className="driverProfileComments_panel">
@@ -52,74 +53,47 @@ export default class DriversProfileComments extends React.Component{
                         <button className="createComment_sendButton"><div className="createComment_sendButton_value">Отправить</div></button>
                         
                     </div> 
-                    <div className="commentBlock_element">
-                        <div className="commentBlock_picture">
-                            <img src={tempPicture} width="auto" height="100%" alt=""></img>
-                        </div>
-                        <div className="commentBlock_valueBlock">
-                            <div className="valueBlock_firstElement">
-                                <div className="valueBlock_firstElement_name">Очень важный человек</div>
-                                <div className="valueBlock_firstElement_date">99 никогдабря 0001</div>
+                    <div className="commentBlock_comments">
+                    {selectedComments.map((element,index)=>                       
+                        <div className="commentBlock_element" key={element+"/"+index}>
+                            <div className="commentBlock_picture">
+                                <img src={tempPicture} width="auto" height="100%" alt=""></img>
                             </div>
-                            <div className="valueBlock_starsBlock">Stars must be here</div>
-                            <p className="valueBlock_commentary">{tempText}</p>
-                        </div>
-                    </div> 
-                    <div className="commentBlock_element">
-                        <div className="commentBlock_picture">
-                            <img src={tempPicture} width="auto" height="100%" alt=""></img>
-                        </div>
-                        <div className="commentBlock_valueBlock">
-                            <div className="valueBlock_firstElement">
-                                <div className="valueBlock_firstElement_name">Очень важный человек</div>
-                                <div className="valueBlock_firstElement_date">99 никогдабря 0001</div>
+                            <div className="commentBlock_valueBlock">
+                                <div className="valueBlock_firstElement">
+                                    <div className="valueBlock_firstElement_name">{element.name}</div>
+                                    <div className="valueBlock_firstElement_date">{element.date}</div>
+                                </div>
+                                <div className="valueBlock_starsBlock">
+                                    <div className="valueBlock_starsBlock_value">5.0</div>
+                                        <div className="valueBlock_starsBlock_stars">
+                                            <div className="createComment_starsBlock_element">
+                                                <img src={emptyStar} width="100%" height="100%" alt="" style={{zIndex: 2}}></img>
+                                                <div className="createComment_starsBlock_starColor"></div> 
+                                            </div>
+                                            <div className="createComment_starsBlock_element">
+                                                <img src={emptyStar} width="100%" height="100%" alt="" style={{zIndex: 2}}></img>
+                                                <div className="createComment_starsBlock_starColor"></div> 
+                                            </div>
+                                            <div className="createComment_starsBlock_element">
+                                                <img src={emptyStar} width="100%" height="100%" alt="" style={{zIndex: 2}}></img>
+                                                <div className="createComment_starsBlock_starColor"></div> 
+                                            </div>
+                                            <div className="createComment_starsBlock_element">
+                                                <img src={emptyStar} width="100%" height="100%" alt="" style={{zIndex: 2}}></img>
+                                                <div className="createComment_starsBlock_starColor"></div> 
+                                            </div>
+                                            <div className="createComment_starsBlock_element">
+                                                <img src={emptyStar} width="100%" height="100%" alt="" style={{zIndex: 2}}></img>
+                                                <div className="createComment_starsBlock_starColor"></div> 
+                                            </div>
+                                    </div>
+                                </div>
+                                <p className="valueBlock_commentary">{element.value}</p>
                             </div>
-                            <div className="valueBlock_starsBlock">
-                                <div className="valueBlock_starsBlock_value">5.0</div>
-                                
-                            </div>
-                            <p className="valueBlock_commentary">{tempText}</p>
-                        </div>
-                    </div>  
-                    <div className="commentBlock_element">
-                        <div className="commentBlock_picture">
-                            <img src={tempPicture} width="auto" height="100%" alt=""></img>
-                        </div>
-                        <div className="commentBlock_valueBlock">
-                            <div className="valueBlock_firstElement">
-                                <div className="valueBlock_firstElement_name">Очень важный человек</div>
-                                <div className="valueBlock_firstElement_date">99 никогдабря 0001</div>
-                            </div>
-                            <div className="valueBlock_starsBlock">Stars must be here</div>
-                            <p className="valueBlock_commentary">{tempText}</p>
-                        </div>
-                    </div> 
-                    <div className="commentBlock_element">
-                        <div className="commentBlock_picture">
-                            <img src={tempPicture} width="auto" height="100%" alt=""></img>
-                        </div>
-                        <div className="commentBlock_valueBlock">
-                            <div className="valueBlock_firstElement">
-                                <div className="valueBlock_firstElement_name">Очень важный человек</div>
-                                <div className="valueBlock_firstElement_date">99 никогдабря 0001</div>
-                            </div>
-                            <div className="valueBlock_starsBlock">Stars must be here</div>
-                            <p className="valueBlock_commentary">{tempText}</p>
-                        </div>
-                    </div> 
-                    <div className="commentBlock_element">
-                        <div className="commentBlock_picture">
-                            <img src={tempPicture} width="auto" height="100%" alt=""></img>
-                        </div>
-                        <div className="commentBlock_valueBlock">
-                            <div className="valueBlock_firstElement">
-                                <div className="valueBlock_firstElement_name">Очень важный человек</div>
-                                <div className="valueBlock_firstElement_date">99 никогдабря 0001</div>
-                            </div>
-                            <div className="valueBlock_starsBlock">Stars must be here</div>
-                            <p className="valueBlock_commentary">{tempText}</p>
-                        </div>
-                    </div>                
+                        </div> 
+                    )}
+                    </div>               
                 </div>
             </React.Fragment>
         )

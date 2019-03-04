@@ -28,7 +28,7 @@ export default class Manipulator extends React.Component{
         console.log("render DriversBlockManupulator");
         console.log("props");
         console.log(this.props);
-        let maxPage = Math.ceil(this.props.number/4);
+        let maxPage = Math.ceil(this.props.number/this.props.elementsNumber);
         console.log("page number");
         console.log(this.props.number+" "+maxPage);
         let numberArray = numbersCalculation(maxPage, this.props.page);
@@ -36,9 +36,14 @@ export default class Manipulator extends React.Component{
         let pageIndex = numberArray.indexOf(this.props.page);
         let numberStyle =Array(numberArray.length).fill("numberPosition_numberBlock_value");
         numberStyle[pageIndex]= "numberPosition_numberBlock_value numberPosition_numberBlock_selected";
+
+        let showMoreButtonState = false;
+        if(this.props.page === maxPage){
+            showMoreButtonState=true;
+        }
         return(
          <div className="drivers_block_manipulator">
-            <button className="driversBlockManipulator_button">
+            <button className="driversBlockManipulator_button" onClick={()=>this.props.showMorePages()} disabled={showMoreButtonState}>
                 <div className="driversBlockManipulator_button_value">Показать ещё</div>
             </button>
             <div className="driversBlockManipulator_pageNumbers">
