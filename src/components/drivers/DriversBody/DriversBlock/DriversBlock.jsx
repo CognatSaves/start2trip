@@ -18,8 +18,11 @@ class DriversBlockClass extends React.Component {
     super(props);
     this.state = {
       page: 1,
+      elementNumber: 10,
+      showPages: 1
     };
     this.setPage = this.setPage.bind(this);
+    this.showMorePages = this.showMorePages.bind(this);
   }
   setPage(page) {
     console.log("setPage called");
@@ -29,21 +32,28 @@ class DriversBlockClass extends React.Component {
     if (page !== "...") {
       this.setState(
         {
-          page: page
+          page: page,
+          showPages: 1
         }
       )
     }
   }
+  showMorePages(){
+    console.log("DriversBlock showMorePages call");
+    this.setState({
+      showPages: this.state.showPages+1,
+      page: this.state.page+1
+    })
+  }
   render() {
-    let ageStep = "____";
-    let langStep = "___''''''";
-    let driverStep = "___";
-    let positionArray = [15, 240, 465, 690];
+    console.log("DriversBlock render");
+    console.log((this.state.page - this.state.showPages) * this.state.elementNumber);
+    console.log((this.state.page) * this.state.elementNumber);
+    let selectedElements = this.props.driversState.drivers.slice((this.state.page - this.state.showPages) * this.state.elementNumber, (this.state.page) * this.state.elementNumber);
 
-
-    let selectedElements = this.props.driversState.drivers.slice((this.state.page - 1) * 4, (this.state.page) * 4);
-    let srcArray = [selectedFilledLike, filledLike, emptyLike, emptyLike];
-
+    let srcArray = Array(this.state.elementNumber).fill(emptyLike);
+    srcArray[0]=selectedFilledLike;
+    srcArray[1]=filledLike;
     return (
       <div className="drivers_block">
         {selectedElements.map((element, index) =>
@@ -129,7 +139,8 @@ class DriversBlockClass extends React.Component {
             </div>
           </div>
         )}
-        <Manipulator number={this.props.driversState.drivers.length} page={this.state.page} setPage={this.setPage} />
+        <Manipulator number = {this.props.driversState.drivers.length} page = {this.state.page} setPage = {this.setPage} 
+        elementsNumber={this.state.elementNumber} showMorePages={this.showMorePages}/>
       </div>
 
     )

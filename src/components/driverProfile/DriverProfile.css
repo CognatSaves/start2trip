@@ -1,8 +1,40 @@
 @import '../drivers/Drivers.css';
 @import '../drivers/DriversBody/DriversBody.css';
+@import '../drivers/DriversBody/DriversBlock/DriversBlock.css';
+@import '../drivers/DriversBody/DriversBlock/InfoBlock.css';
+@import '../drivers/DriversBody/DriversBlock/TripBlock.css';
 .header_placeholder{
     display: flex;
     height:75px;
     width:100%;
     background-color: brown;
+}
+.driverInfo_carPhotoBlock_switchCarPicture{
+    display: flex;
+    position: absolute;
+
+    top: 50%;                         
+    transform: translate(0, -50%);   
+    width:10%;
+    height: 18%;
+    border-radius: 100%;
+    text-align: center;
+
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.15);
+}
+.switchCarPicture_selected{
+    background-color:#304269;
+    margin: auto;
+    font-family: "Roboto";
+    font-size: 16px;
+    color: #cccccc;
+    border-radius: 100%;
+}
+.switchCarPicture_unselected{
+    background-color:#cccccc;
+    margin: auto;
+    font-family: "Roboto";
+    font-size: 16px;
+    color: #999999;
+    border-radius: 100%;
 }
