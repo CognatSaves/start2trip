@@ -12,6 +12,7 @@ import selectedFilledLike from './pictures/like_orange.svg';
 import sedan from './pictures/sedan.svg';
 import jeep from './pictures/jeep.svg';
 
+
 class DriversBlockClass extends React.Component {
   constructor(props) {
     super(props);
@@ -95,39 +96,40 @@ class DriversBlockClass extends React.Component {
                     <div className="visibleString">{element.drivingAge}</div>
                   </div>
                 </div>
-
               </div>
             </div>
             <div className="block_element_right">
-              <div className="element_right_line">
-                <div className="tripBlock_carImage">
-                  <img src={sedan} width="100%" height="100%" alt={"car" + element}></img>
-                </div>
-                <div className="tripBlock_carData">
-                  <div className="carInfo_line">
-                    <div className="carBrand_style">{element.carBrand},</div>
-                    <div className="fuelType_style">{element.fuelType}</div>
+              <div className="block_element_right_div">
+                <div className="element_right_line">
+                  <div className="tripBlock_carImage">
+                    <img src={sedan} width="100%" height="100%" alt={"car" + element}></img>
                   </div>
-                  <div className="carInfo_line">
-                    <div className="carProps_style">{element.carProps}</div>
+                  <div className="tripBlock_carData">
+                    <div className="carInfo_line">
+                      <div className="carBrand_style">{element.carBrand},</div>
+                      <div className="fuelType_style">{element.fuelType}</div>
+                    </div>
+                    <div className="carInfo_line">
+                      <div className="carProps_style">{element.carProps}</div>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="element_right_line">
-                <div className="tripBlock_priceBlock">
-                  {element.price}
-                  <button className="tripBlock_buttonBlock_button" onClick={()=>this.props.changeTravelVisibility('block')}>ЗАБРОНИРОВАТЬ ПОЕЗДКУ</button>
+                <div className="element_right_line">
+                  <div className="tripBlock_priceBlock">
+                    {element.price}
+                    <button className="tripBlock_buttonBlock_button" onClick={() => this.props.changeTravelVisibility('block')}>ЗАБРОНИРОВАТЬ ПОЕЗДКУ</button>
+                  </div>
                 </div>
+                <div className="tripBlock_buttonBlock_commentary">Стоимость окончательная. Топливо включено</div>
+                <div className="tripBlock_detailed">Подробнее</div>
               </div>
-              <div className="tripBlock_buttonBlock_commentary">Стоимость окончательная. Топливо включено</div>
-              <div className="tripBlock_detailed">Подробнее</div>
             </div>
             <div className="myHeart">
               <img src={srcArray[index]} width="auto" height="100%" alt="emptyLike"></img>
             </div>
           </div>
         )}
-        <Manipulator number = {this.props.driversState.drivers.length} page = {this.state.page} setPage = {this.setPage}/>
+        <Manipulator number={this.props.driversState.drivers.length} page={this.state.page} setPage={this.setPage} />
       </div>
 
     )

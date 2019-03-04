@@ -14,7 +14,8 @@ import sedan from './components/AutoMenu/pictures/sedan.svg';
 import jeep from './components/AutoMenu/pictures/jeep.svg';
 import microbus from './components/AutoMenu/pictures/microbus.svg';
 import minivan from './components/AutoMenu/pictures/minivan.svg';
-
+import languageBlueIcon from '../DriversBlock/pictures/language_blue.svg'
+import userBlueIcon from '../DriversBlock/pictures/user_blue.svg'
 
 
 export default class DriversProperties extends React.Component {
@@ -35,25 +36,8 @@ export default class DriversProperties extends React.Component {
       autoValue: "Тип авто",
       autoVariants: ["Седан","Внедорожник","Минивен","Микроавтобус"],
       languageValue: "Язык",
-      languages: [        
-        {
-          languageName: "Русский",
-          icon:ruFlag,
-        },
-        {
-          languageName: "English",
-          icon:enFlag,
-        },
-        {
-          languageName: "Georgian",
-          icon:geoFlag,
-        },
-        {
-          languageName: "Spanish",
-          icon:espFlag,
-        },
-        
-      ]
+      languageIcon: languageBlueIcon,
+      autoIcon:sedan,
     }
     this.languageMenuCall=this.languageMenuCall.bind(this);
     this.peopleMenuCall=this.peopleMenuCall.bind(this);
@@ -86,7 +70,12 @@ export default class DriversProperties extends React.Component {
       languageMenu: !this.state.languageMenu
     })
   }
-  peopleMenuCall(){
+  peopleMenuCall(clear){
+    if(clear){
+      this.setState({
+        persons: [1,0]
+    })
+    }
     this.setState({
       peopleMenu: !this.state.peopleMenu
     })
@@ -126,18 +115,18 @@ export default class DriversProperties extends React.Component {
       autoMenu: !this.state.autoMenu
     })
   }
-  autoValueChoose(value){
+  autoValueChoose(value,icon){
     this.setState({
       autoValue: value,
-      autoMenu: false
+      autoMenu: false,
+      autoIcon: icon
     })
   }
-  languageValueChoose(value){
-    console.log("languageValueChoose");
-    console.log(value);
+  languageValueChoose(value,icon){
     this.setState({
       languageValue: value,
-      languageMenu: false
+      languageMenu: false,
+      languageIcon: icon
     })
   }
   render() {
@@ -163,21 +152,23 @@ export default class DriversProperties extends React.Component {
           <div className="drivers_properties_text">Подобрать:       
           </div>
           <div className="properties_buttonStyle properties_leftButton" onClick={()=>this.languageMenuCall()}>
-            <div className="properties_value">{this.state.languageValue}</div>
+            <div className="properties_value"><img src={this.state.languageIcon} width="15px" height="15px"/>{this.state.languageValue}</div>
             <div className="properties_arrow"></div>     
-            <LanguageMenu isVisible = {this.state.languageMenu} languages = {this.state.languages} languageValueChoose={this.languageValueChoose}/>
+            <LanguageMenu isVisible = {this.state.languageMenu} languages = {this.state.languages}  languageValueChoose={this.languageValueChoose}/>
           </div>
           <div className="properties_buttonStyle properties_leftButton" onClick={()=>this.autoMenuCall()}>
             <div className="properties_carPicture">
-              <img src={sedan} width="100%" height="100%" alt="carImage"></img>
+              <img src={this.state.autoIcon} width="100%" height="100%" alt="carImage"/>
             </div>
             <div className="properties_value">{this.state.autoValue}</div>             
             <div className="properties_arrow"></div>
             <AutoMenu isVisible={this.state.autoMenu} autoVariants={this.state.autoVariants} autoValueChoose={this.autoValueChoose}/>
           </div>
+          <div style={{position:"relative"}}>
           <div className="properties_buttonStyle properties_leftButton" onClick={()=>this.peopleMenuCall()}>
-            <div className="properties_value">{personsNumberString}</div>
-            <div className="properties_arrow"></div>          
+             <div className="properties_value"><img src={userBlueIcon} width="12px" height="12px"/>{personsNumberString}</div>
+            <div className="properties_arrow"></div>  
+          </div>                  
             <PeopleMenu isVisible = {this.state.peopleMenu} close={this.peopleMenuCall} changePersonsNumber={this.changePersonsNumber} persons={this.state.persons}/>
           </div>
           <div className="properties_buttonStyle properties_leftButton" onClick = {()=>this.valueMenuCall()}>           

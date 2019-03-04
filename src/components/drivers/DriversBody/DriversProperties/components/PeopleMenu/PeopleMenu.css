@@ -56,12 +56,16 @@
     width: 25px;
     height: 25px;
     text-align: center;
-    line-height: 25px;
+    line-height: 15px;
     color: #fff;
     font-size: 20px;
     font-weight: bold;
     background: #ff6600;
     border-radius: 5px;
+}
+
+.valueBlock_button.minus{
+    background: #304269;
 }
 .valueBlock_button::selection{
     outline: none;

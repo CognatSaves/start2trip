@@ -59,6 +59,7 @@
     height: 15%;
     min-height: 42px;
     width: 85%;
+    max-width: 300px;
     margin-left: 13px;
     background-color: #304269;
     border: none;
@@ -84,7 +85,7 @@
 }
 
 .tripBlock_buttonBlock_commentary {
-    width: 90%;
+    width: 95%;
     font-size: 9pt;
     color: #304269;
     font-family: "Roboto";
@@ -94,11 +95,12 @@
 
 .tripBlock_detailed {
     display: flex;
-    margin: auto 0 0 auto;
+    justify-content: flex-end;
     font-size: 9pt;
     color: #304269;
     font-family: "Roboto";
     font-weight: 400;
+    width: 95%;
 }
 
 .drivers_block_element:hover .tripBlock_detailed {
@@ -139,7 +141,7 @@
     float: left;
 }
 
-@media (min-width: 1350px) {
+/* @media (min-width: 1350px) {
     .tripBlock_priceBlock_price {
         font-size: 1.5rem
     }
@@ -161,4 +163,4 @@
     .carProps_style {
         font-size: 1.1rem
     }
-}
+} */
