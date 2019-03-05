@@ -38,9 +38,9 @@
 .driverInfo_carImage{
     width: 10%;
 }
-.element_right_line:nth-child(1){
+/* .element_right_line:nth-child(1){
     margin: 0;
-}
+} */
 .driverInfo_iconLine{
     margin-left: 25%;
     line-height: 0px;

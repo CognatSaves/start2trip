@@ -25,7 +25,6 @@ class AutoMenuClass extends React.Component{
                             </div>
                         </div>
                     )}
-                    
                 </div>
             )
         }

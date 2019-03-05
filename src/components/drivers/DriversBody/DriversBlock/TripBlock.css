@@ -4,7 +4,7 @@
     width: 95%;
 }
 .element_right_line:nth-child(1) {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .tripBlock_carImage {
@@ -67,7 +67,7 @@
     border-radius: 5px;
 }
 
-.drivers_block_element:hover .tripBlock_buttonBlock_button {
+.tripBlock_buttonBlock_button:hover  {
     background-color: #ff6600;
     border-color: #ff6600;
 }
@@ -101,10 +101,12 @@
     font-family: "Roboto";
     font-weight: 400;
     width: 95%;
+    margin-top: 10px;
 }
 
-.drivers_block_element:hover .tripBlock_detailed {
+.tripBlock_detailed:hover  {
     color: #ff6600;
+    cursor: pointer;
 }
 
 .carInfo_line {
