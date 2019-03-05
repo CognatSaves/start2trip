@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import './Drivers.css';
+
 import DriversBody from './DriversBody/DriversBody.jsx';
-import DriversHeader from './DriversHeader/DriversHeader.jsx';
 import DriversRoute from './DriversRoute/DriversRoute.jsx';
 import Footer from '../Footer/Footer.jsx'
 import { connect } from 'react-redux'
 import StartTravelForm from '../startTravelForm/StartTravelForm'
 import StartTravelSuccess from '../startTravelForm/StartTravelSuccess'
+import Header from '../header/Header'
 
 class DriversClass extends React.Component {
     constructor(props) {
@@ -40,38 +41,23 @@ class DriversClass extends React.Component {
           <React.Fragment>
               <div className = "drivers_top_background">
                 <div className="travelFormBlock">
-                  <StartTravelForm changeTravelVisibility={this.changeTravelVisibility} changeSuccessVisibility={this.changeSuccessVisibility}
+                <StartTravelForm changeTravelVisibility={this.changeTravelVisibility} changeSuccessVisibility={this.changeSuccessVisibility}
                   travelVisibility={this.state.travelVisibility} successVisibility={this.changeSuccessVisibility}/>
-                  <StartTravelSuccess successVisibility={this.state.successVisibility} changeSuccessVisibility={this.changeSuccessVisibility}/>
-                </div>
-                <DriversHeader/>
+                <StartTravelSuccess successVisibility={this.state.successVisibility} changeSuccessVisibility={this.changeSuccessVisibility}/>               
+                 </div>
+                <Header colorClass="colorClass" colorClass2="colorClass2" backgroundColorClass="backgroundColorClass"
+                 borderColorClass="borderColorClass" labelColorClass="labelColorClass" type={1}/>
                 <DriversRoute/>
               </div>
               <div className = "drivers_bottom_background" >
                 <DriversBody changeTravelVisibility={this.changeTravelVisibility}/>
-                <Footer/>
-              </div>           
+                
+              </div>
+              <Footer/>           
           </React.Fragment>
         );
     }
 }
-
-/*
-<div>
-            <div className = "drivers_top_background" >
-              <DriversHeader/>
-              <DriversRoute/>
-              
-            </div>
-            <div className = "drivers_bottom_background" >
-              <DriversBody/>
-              <Footer/>
-            </div>
-          </div>
-
-
-*/
-
 const Drivers = connect(
   (state) =>({
     storeState: state.AppReduser,

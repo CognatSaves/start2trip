@@ -7,6 +7,7 @@ const initialState = {
     cities: ["Тбилиси","Минск"],
     date:"",
     autoVariants: ["Седан","Внедорожник","Минивен","Микроавтобус"],
+    autoValue: "Тип авто",
     languages: [        
         {
           languageName: "Русский",
@@ -26,7 +27,10 @@ const initialState = {
         },
         
       ],
-        
+    pagesMenuVariants: [10,20,40],
+    pagesMenuValue: 10,
+    sortMenuValue: "Популярность",
+    sortMenuVariants: ["Популярность","Рейтинг","Цена"],    
 };
 
 export const AppReduser = (state = initialState, action) =>{
@@ -54,8 +58,19 @@ export const AppReduser = (state = initialState, action) =>{
         let newStateSC = JSON.parse(JSON.stringify(state));
         newStateSC.cities = action.cities;
         return newStateSC;
-    
-    
+    case "SET_AUTO":
+        let newStateSA = {...state};
+        newStateSA.autoValue = action.autoValue;
+        return newStateSA;
+    case "SET_PAGES":
+        let newStateSP = {...state};
+        newStateSP.pagesMenuValue = action.pagesMenuValue;
+        return newStateSP;
+    case "SET_SORT_MENU":
+        let newStateSSM = {...state};
+        newStateSSM.sortMenuValue = action.sortMenuValue;
+        return newStateSSM;
+
     default: return state;
     }
 }

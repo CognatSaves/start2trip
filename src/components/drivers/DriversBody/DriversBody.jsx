@@ -8,9 +8,6 @@ import DriversProperties from './DriversProperties/DriversProperties.jsx';
 export default class DriversBody extends React.Component {
     constructor(props) {
         super(props);
-        this.state={
-          pagesMenuValue: "10",
-        }
     }
     render() {
         return (

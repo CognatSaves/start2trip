@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Home.css';
 import './text.css';
 
-import HomeHeader from './HomeHeader/HomeHeader.jsx'
+//import HomeHeader from './HomeHeader/HomeHeader.jsx'
+import Header from '../header/Header';
 import HomeBody from './HomeBody/HomeBody.jsx'
 import Footer from '../Footer/Footer.jsx'
 
@@ -24,7 +25,8 @@ class Home extends React.Component {
       <div className="home_window">
         <div className="home_block">
           <div className="home_header">
-            <HomeHeader/>
+            <Header colorClass="homeColorClass" colorClass2="homeColorClass2" backgroundColorClass="homeBackgroundColorClass"
+                 borderColorClass="homeBorderColorClass" labelColorClass="homeLabelColorClass" type={0}/>
           </div>
           <div className="home_text">
             <div className="text_firstLine">Cпланируйте свою экскурсию</div>
@@ -40,10 +42,10 @@ class Home extends React.Component {
           
         </div>
         
-        <Footer/>
         
+        <Footer/>
       </div>
-    
+      
       
       
       </React.Fragment>

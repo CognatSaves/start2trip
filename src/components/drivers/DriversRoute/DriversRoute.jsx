@@ -28,7 +28,7 @@ class DriversRouteClass extends React.Component {
       let isVisibleArray = Array(this.props.storeState.cities.length).fill("visible");
       isVisibleArray[isVisibleArray.length-1]="hidden";
       let cities = this.props.storeState.cities;
-      let routeElementWidth=100/isVisibleArray.length;
+      let routeElementWidth=100/(isVisibleArray.length+1);
       routeElementWidth=routeElementWidth+"%";
       console.log("DriversRoute Render");
       console.log(this.props);

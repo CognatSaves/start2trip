@@ -1,0 +1,25 @@
+.colorClass{
+    color: #304269
+}
+.colorClass2{
+    color: #fff;
+}
+.backgroundColorClass{
+    background-color: #fff;
+}
+.borderColorClass{
+    border-color: #fff;
+}
+.labelColorClass{
+    background: #fff;
+    color:#304269;
+}
+.labelColorClass::after{
+    color:#304269;
+}
+.labelColorClass label{
+    background: #fff;
+}
+.labelColorClass div{
+    background: #fff;
+}

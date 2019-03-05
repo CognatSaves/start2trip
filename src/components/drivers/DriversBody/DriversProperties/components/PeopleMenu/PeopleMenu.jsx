@@ -50,7 +50,7 @@ export default class PeopleMenu extends React.Component {
                         </div>
                         <div className="peopleMenu_element_stateBlock">
                             <button className="peopleMenu_stateBlock_cancelButton" onClick={() => { this.props.close(true) }}>Отмена</button>
-                            <button className="peopleMenu_stateBlock_applyButton">Готово</button>
+                            <button className="peopleMenu_stateBlock_applyButton" onClick={()=>this.props.close(false)}>Готово</button>
                         </div>
                     </div>
                 </div>
