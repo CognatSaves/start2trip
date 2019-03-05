@@ -14,12 +14,16 @@ import sedan from './pictures/sedan.svg';
 import lukas from './pictures/like_blue.svg';
 import noSmoking from './pictures/no-smoking.svg';
 import { relative } from 'path';
-import superMachine from './pictures/the_car.jpg';
+
 import changeElement from '../drivers/DriversRoute/pictures/drivers_edit_route.png';
 import pointIcon from '../drivers/DriversRoute/pictures/location.svg';
+import Header from '../header/Header';
 
 
 
+import superMachine from './pictures/the_car.jpg';
+import superMachine2 from './pictures/superMachine2.png';
+import superMachine3 from './pictures/superMachine3.webp';
 const DriverAdaptedRoute = (props)=>
 {
     const {date,cities,travelLength,travelTime} = props;
@@ -68,7 +72,9 @@ const DriverAdaptedRoute = (props)=>
         );
 }
 const DriverInfo = (props) =>{
-    const {element} = props;
+    const {element, changeCar, carImageNumber, carImages} = props;
+    console.log("DriverInfo creation");
+    console.log(changeCar);
     let arrowLeft = "<";
     let arrowRight=">";
     let driverInfo = "Несмотря на дым и грохот, обучиться стрельбы из гладкоствольного дульнозарядного мушкета может любой, если только он не клинический идиот. Как только человек осваивает основой прием заряжания, остается только направить на врага дуло и спустить курок, остальное в руках Божьих!";
@@ -162,13 +168,16 @@ const DriverInfo = (props) =>{
               </div>
               <div className="element_right_line">
                 <div className="driverInfo_carPhotoBlock">
-                    <img src={superMachine} width="100%" height="100%" alt="car" style={{margin: "auto"}}></img>
-                    <div className="driverInfo_carPhotoBlock_switchCarPicture switchCarPicture_selected" style={{left: "-5%"}}>                   
+                    <div className="album_photo">
+                        <img class="carImageStyles" src={carImages[carImageNumber]} alt="car" style={{margin: "auto", borderRadius: "5px"}}></img>
+                    </div>
+                    
+                    <button className="driverInfo_carPhotoBlock_switchCarPicture switchCarPicture_selected" style={{left: "-7%"}} onClick={()=>changeCar(-1)}>                   
                         <div style={{margin: "auto"}}>{arrowLeft}</div>
-                    </div>
-                    <div className="driverInfo_carPhotoBlock_switchCarPicture switchCarPicture_unselected" style={{right: "-5%"}}>
+                    </button>
+                    <button className="driverInfo_carPhotoBlock_switchCarPicture switchCarPicture_unselected" style={{right: "-7%"}} onClick={()=>changeCar(-1)}>
                         <div style={{margin: "auto"}}>{arrowRight}</div>
-                    </div>
+                    </button>
                 </div>
               </div>
             </div>
@@ -184,6 +193,8 @@ class DriverProfileClass extends React.Component{
         super(props);   
         this.state ={
             page: 1,
+            carImageNumber: 0,
+            carImages: [superMachine, superMachine2, superMachine3],
             comments: [
                 {
                     name: "Очень важный человек1",
@@ -258,6 +269,7 @@ class DriverProfileClass extends React.Component{
                ]
         }    
         this.setPage=this.setPage.bind(this); 
+        this.changeCar=this.changeCar.bind(this);
     }
     setPage(page) {
         if (page !== "...") {
@@ -268,15 +280,37 @@ class DriverProfileClass extends React.Component{
           )
         }
       }
+    changeCar(to){
+        console.log("changeCar call!!!!!!!!!!!!!!!");
+        let carImageNumber = this.state.carImageNumber+to;
+        if(carImageNumber<0){
+            carImageNumber=this.state.carImages.length-1;
+        }
+        if(carImageNumber>this.state.carImages.length-1){
+            carImageNumber=0;
+        }
+        this.setState({
+            carImageNumber: carImageNumber
+        })
+    }
     render(){
         console.log("DriverProfile render");
-        let driver = this.props.driversState.drivers[0];
-
+        let driver = this.props.driversState.drivers[this.props.match.params.id];
+        
+    
+        
+        /*
+        console.log("Props");
+        console.log(this.props);
+        console.log("State");
+        console.log(this.state);*/
+        
         return(
             <React.Fragment>
                 <div className = "drivers_top_background">
-                    <div className="header_placeholder"></div>
-                    <DriverInfo element={driver}/>
+                    <Header colorClass="colorClass" colorClass2="colorClass2" backgroundColorClass="backgroundColorClass"
+                    borderColorClass="borderColorClass" labelColorClass="labelColorClass" type={1}/>
+                    <DriverInfo element={driver} changeCar={this.changeCar} carImageNumber={this.state.carImageNumber} carImages={this.state.carImages}/>
                     <DriverAdaptedRoute date={this.props.storeState.date} cities={this.props.storeState.cities}
                         travelTime={this.props.driversState.travelTime} travelLength={this.props.driversState.travelLength}
                     />
@@ -293,9 +327,9 @@ class DriverProfileClass extends React.Component{
                         </div>
                         
                     </div>
-                    <Footer/>
+                    
                 </div>
-
+                <Footer/>
             </React.Fragment>
             
         )

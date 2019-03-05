@@ -6,7 +6,8 @@ import Home from './components/home/Home.jsx';
 import Drivers from './components/drivers/Drivers.jsx';
 import DriverProfile from './components/driverProfile/DriverProfile.jsx';
 
-
+import './components/header/StandartHeaderStyles.css';
+import './components/header/HomeHeaderStyles.css';
 
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
@@ -30,7 +31,7 @@ ReactDOM.render(
         <Switch>                
             <Route path="/home" component={Home}/>
             <Route path="/drivers" component={Drivers}/>
-            <Route path="/driverProfile/:number" component={DriverProfile}/>
+            <Route path="/driverProfile/:id,:temp1,:temp2" component={DriverProfile}/>
             <Redirect from="/" to="/home"/>
         </Switch>       
     </React.Fragment>

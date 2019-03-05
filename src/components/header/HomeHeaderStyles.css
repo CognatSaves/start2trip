@@ -1,0 +1,25 @@
+.homeColorClass{
+    color: #fff;
+}
+.homeColorClass2{
+    color: #304269;
+}
+.homeBackgroundColorClass{
+    background-color: #97a3b4;
+}
+.homeBorderColorClass{
+    border-color: #304269;
+}
+.homeLabelColorClass{
+    background: #97a3b4;
+    color:#fff;
+}
+.homeLabelColorClass::after{
+    color:#fff;
+}
+.homeLabelColorClass label{
+    background: #97a3b4;
+}
+.homeLabelColorClass div{
+    background: #97a3b4;
+}

@@ -58,6 +58,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     padding-bottom: 1%;
+    width: 100%;
 }
 
 .route_show_element {

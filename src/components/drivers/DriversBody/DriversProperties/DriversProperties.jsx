@@ -6,19 +6,14 @@ import SortMenu from './components/SortMenu/SortMenu.jsx'
 import PagesMenu from './components/PagesMenu/PagesMenu.jsx'
 import ValueMenu from './components/ValueMenu/ValueMenu.jsx'
 import AutoMenu from './components/AutoMenu/AutoMenu.jsx'
-import geoFlag from './components/LanguageMenu/pictures/georgia.svg'
-import ruFlag from './components/LanguageMenu/pictures/russia.svg'
-import enFlag from './components/LanguageMenu/pictures/united-kingdom.svg'
-import espFlag from './components/LanguageMenu/pictures/spain.svg'
+import { connect } from 'react-redux';
 import sedan from './components/AutoMenu/pictures/sedan.svg';
-import jeep from './components/AutoMenu/pictures/jeep.svg';
-import microbus from './components/AutoMenu/pictures/microbus.svg';
-import minivan from './components/AutoMenu/pictures/minivan.svg';
+
 import languageBlueIcon from '../DriversBlock/pictures/language_blue.svg'
 import userBlueIcon from '../DriversBlock/pictures/user_blue.svg'
 
 
-export default class DriversProperties extends React.Component {
+class DriversPropertiesClass extends React.Component {
   constructor(props) {
     super(props);
     this.state={
@@ -30,11 +25,10 @@ export default class DriversProperties extends React.Component {
       autoMenu: false,
       sortMenuValue: "Популярность",
       sortMenuVariants: ["Популярность","Рейтинг","Цена"],
-      pagesMenuValue: "10",
-      pagesMenuVariants: ["10","20","40"],
+      //pagesMenuValue: 10,
+      //pagesMenuVariants: ["10","20","40"],
       persons: [1,0],
-      autoValue: "Тип авто",
-      autoVariants: ["Седан","Внедорожник","Минивен","Микроавтобус"],
+      //autoValue: "Тип авто",
       languageValue: "Язык",
       languageIcon: languageBlueIcon,
       autoIcon:sedan,
@@ -86,9 +80,10 @@ export default class DriversProperties extends React.Component {
     })
   }
   sortMenuChoose(value){
+    this.props.setSortMenu(value);
     this.setState({
       sortMenu: false,
-      sortMenuValue: value
+      //sortMenuValue: value
     })
   }
   pagesMenuCall(){
@@ -105,9 +100,10 @@ export default class DriversProperties extends React.Component {
   }
   pagesMenuChoose(value){
     console.log("pagesMenuChoose");
+    this.props.setPages(value);
     this.setState({
       pagesMenu: false,
-      pagesMenuValue: value
+      //pagesMenuValue: value
     })
   }
   autoMenuCall(){
@@ -116,8 +112,9 @@ export default class DriversProperties extends React.Component {
     })
   }
   autoValueChoose(value,icon){
+    this.props.setAuto(value);
     this.setState({
-      autoValue: value,
+      //autoValue: value,
       autoMenu: false,
       autoIcon: icon
     })
@@ -160,7 +157,7 @@ export default class DriversProperties extends React.Component {
             <div className="properties_carPicture">
               <img src={this.state.autoIcon} width="100%" height="100%" alt="carImage"/>
             </div>
-            <div className="properties_value">{this.state.autoValue}</div>             
+            <div className="properties_value">{this.props.storeState.autoValue}</div>             
             <div className="properties_arrow"></div>
             <AutoMenu isVisible={this.state.autoMenu} autoVariants={this.state.autoVariants} autoValueChoose={this.autoValueChoose}/>
           </div>
@@ -180,14 +177,14 @@ export default class DriversProperties extends React.Component {
         <div className="properties_rightBlock">         
           <div className="properties_buttonStyle properties_rightButton" onClick={()=>this.sortMenuCall()}>
             <div className="properties_rightButton_characteristic">Сортировать:</div>
-            <div className="properties_rightButton_value">{this.state.sortMenuValue}</div>
+            <div className="properties_rightButton_value">{this.props.storeState.sortMenuValue}</div>
             <div className="properties_arrow"></div>
-            <SortMenu isVisible = {this.state.sortMenu} variants={this.state.sortMenuVariants} chooseFunc={this.sortMenuChoose}/>
+            <SortMenu isVisible = {this.state.sortMenu} chooseFunc={this.sortMenuChoose} variants = {this.props.storeState.sortMenuVariants}/>
           </div>
           <div className="properties_buttonStyle properties_rightButton" onClick={()=>this.pagesMenuCall()}>
-            <div className="properties_rightButton_characteristic">{this.state.pagesMenuValue} / страниц</div>            
+            <div className="properties_rightButton_characteristic">{this.props.storeState.pagesMenuValue} / страниц</div>            
             <div className="properties_arrow"></div>
-            <PagesMenu isVisible = {this.state.pagesMenu} variants={this.state.pagesMenuVariants} chooseFunc={this.pagesMenuChoose}/>
+            <PagesMenu isVisible = {this.state.pagesMenu} chooseFunc={this.pagesMenuChoose}/>
           </div>
         </div>         
       </div>
@@ -195,3 +192,15 @@ export default class DriversProperties extends React.Component {
     )
   }
 }
+const DriversProperties = connect(
+  (state) => ({
+    storeState: state.AppReduser,
+  }),
+  (dispatch) => ({
+    setAuto: (autoValue) => dispatch({type: "SET_AUTO", autoValue: autoValue}),
+    setPages: (pagesMenuValue) => dispatch({type: "SET_PAGES", pagesMenuValue: pagesMenuValue}),
+    setSortMenu: (sortMenuValue) => dispatch({type: "SET_SORT_MENU", sortMenuValue: sortMenuValue})
+  })
+)(DriversPropertiesClass);
+
+export default DriversProperties;
