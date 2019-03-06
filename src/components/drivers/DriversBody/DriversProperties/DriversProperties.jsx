@@ -7,17 +7,10 @@ import PagesMenu from './components/PagesMenu/PagesMenu.jsx'
 import ValueMenu from './components/ValueMenu/ValueMenu.jsx'
 import AutoMenu from './components/AutoMenu/AutoMenu.jsx'
 import { connect } from 'react-redux';
-<<<<<<< HEAD
 import {
-  setAuto, setPages, setSortMenu, setTempPricePart, languageMenuIsVisibal,
+   setPages, setSortMenu, setTempPricePart, languageMenuIsVisibal,
   changePersonsNumberDispatch, changePersonsNumberDispatchOld, peopleMenuCall, autoMenuCall} from "../../../../redusers/Action"
 
-=======
-import sedan from './components/AutoMenu/pictures/sedan.svg';
-import { setAuto, setPages, setSortMenu, setTempPricePart,
-   changePersonsNumberDispatch, changePersonsNumberDispatchOld, peopleMenuCall, languageValueChooseDispatch } from "../../../../redusers/Action"
-import languageBlueIcon from '../DriversBlock/pictures/language_blue.svg'
->>>>>>> 80da54732317b516ba02029ddf0b6d9e20f55dfc
 import userBlueIcon from '../DriversBlock/pictures/user_blue.svg'
 
 
