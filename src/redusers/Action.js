@@ -22,6 +22,10 @@ const PEOPLE_MENU_CALL = 'PEOPLE_MENU_CALL';
 
 const LANGUAGE_VALUE_CHOOSE = 'LANGUAGE_VALUE_CHOOSE';
 
+const LANGUAGE_MENU_IS_VISIBAL = 'LANGUAGE_MENU_IS_VISIBAL';
+
+const AUTO_MENU_CALL = 'AUTO_MENU_CALL';
+
 const set_state = function (sourse, cities, date, calendaryVisibility, picture) {
   return {
     type: 'SET_STATE',
@@ -40,12 +44,20 @@ const setCities = function (cities){
   }
 }
 
-const setAuto = function (autoValue){
+const setAuto = function (autoValue,autoIcon){
   return {
     type: 'SET_AUTO',
-    autoValue: autoValue
+    autoValue: autoValue,
+    autoIcon: autoIcon,
   }
 }
+const autoMenuCall = function (autoMenu){
+  return {
+    type: 'AUTO_MENU_CALL',
+    autoMenu: autoMenu,
+  }
+}
+
 
 const setPages = function (pagesMenuValue){
   return {
@@ -103,11 +115,16 @@ const peopleMenuCall = function (peopleMenu) {
   };
 }
 
-const languageValueChooseDispatch = function (languageValue,languageIcon,languageMenu) {
+const languageValueChooseDispatch = function (languageValue,languageIcon) {
   return {
     type: 'LANGUAGE_VALUE_CHOOSE',
     languageValue: languageValue,
     languageIcon:languageIcon,
+  };
+}
+const languageMenuIsVisibal = function (languageMenu) {
+  return {
+    type: 'LANGUAGE_MENU_IS_VISIBAL',
     languageMenu:languageMenu,
   };
 }
@@ -126,4 +143,6 @@ export {
   peopleMenuCall, PEOPLE_MENU_CALL,
   changePersonsNumberDispatchOld, CHANGE_PERSONS_NUMBER_OLD,
   languageValueChooseDispatch, LANGUAGE_VALUE_CHOOSE,
+  languageMenuIsVisibal, LANGUAGE_MENU_IS_VISIBAL,
+  autoMenuCall, AUTO_MENU_CALL,
 }

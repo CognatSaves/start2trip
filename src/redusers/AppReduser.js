@@ -3,15 +3,18 @@ import ruFlag from '../components/drivers/DriversBody/DriversProperties/componen
 import enFlag from '../components/drivers/DriversBody/DriversProperties/components/LanguageMenu/pictures/united-kingdom.svg'
 import espFlag from '../components/drivers/DriversBody/DriversProperties/components/LanguageMenu/pictures/spain.svg'
 import languageBlueIcon from '../components/drivers/DriversBody/DriversBlock/pictures/language_blue.svg'
-import { SET_STATE, SET_CITIES, SET_AUTO, SET_PAGES, SET_SORT_MENU, SET_MAX_PRICE,LANGUAGE_VALUE_CHOOSE,
-  SET_TEMP_PRICE_PART, SET_PRICE_PART, CHANGE_PERSONS_NUMBER, PEOPLE_MENU_CALL, CHANGE_PERSONS_NUMBER_OLD } from './Action';
+import sedan from '../components/drivers/DriversBody/DriversProperties/components/AutoMenu/pictures/sedan.svg';
+import { SET_STATE, SET_CITIES, SET_AUTO, SET_PAGES, SET_SORT_MENU, SET_MAX_PRICE,LANGUAGE_VALUE_CHOOSE,LANGUAGE_MENU_IS_VISIBAL,
+  SET_TEMP_PRICE_PART, SET_PRICE_PART, CHANGE_PERSONS_NUMBER, PEOPLE_MENU_CALL, CHANGE_PERSONS_NUMBER_OLD, AUTO_MENU_CALL } from './Action';
 
 
 const initialState = {
   cities: ["Тбилиси", "Минск"],
   date: "",
   autoVariants: ["Седан", "Внедорожник", "Минивен", "Микроавтобус"],
+  autoIcon: sedan,
   autoValue: "Тип авто",
+  autoMenu: false,
   languages: [
     {
       languageName: "Русский",
@@ -77,6 +80,13 @@ export const AppReduser = (state = initialState, action) => {
     case SET_AUTO: {
       let newState = { ...state };
       newState.autoValue = action.autoValue;
+      newState.autoIcon = action.autoIcon;
+      return newState;
+    }
+
+    case AUTO_MENU_CALL: {
+      let newState = { ...state };
+      newState.autoMenu = action.autoMenu;
       return newState;
     }
 
@@ -135,6 +145,12 @@ export const AppReduser = (state = initialState, action) => {
       let newState = { ...state };
       newState.languageValue = action.languageValue;
       newState.languageIcon = action.languageIcon;
+      newState.languageMenu = action.languageMenu;
+
+      return newState;
+    }
+    case LANGUAGE_MENU_IS_VISIBAL: {
+      let newState = { ...state };
       newState.languageMenu = action.languageMenu;
 
       return newState;

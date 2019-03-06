@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './AutoMenu.css'
 import { connect } from 'react-redux';
+import {setAuto} from "../../../../../../redusers/Action"
 import sedan from './pictures/sedan.svg';
 import jeep from './pictures/jeep.svg';
 import microbus from './pictures/microbus.svg';
@@ -17,7 +18,7 @@ class AutoMenuClass extends React.Component{
                 <div className="drivers_properties_autoMenu" >
                     {this.props.storeState.autoVariants.map((element,index)=>
                         <div className="autoMenu_element">
-                            <div className="autoMenu_element_textBlock" onClick={()=>this.props.autoValueChoose(element,pictureArray[index])}>
+                            <div className="autoMenu_element_textBlock" onClick={()=>this.props.dispatch(setAuto(element,pictureArray[index]))}>
                                 <div className="autoMenu_element_picture">
                                     <img src={pictureArray[index]} width="100%" height="100%" alt={"auto_"+index}></img>
                                 </div>
