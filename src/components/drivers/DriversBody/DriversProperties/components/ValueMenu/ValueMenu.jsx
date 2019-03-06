@@ -1,48 +1,36 @@
 import React, { Component } from 'react';
 import './ValueMenu.css'
+import Slider from './Slider';
+import { connect } from 'react-redux';
 
-
-export default class ValueMenu extends React.Component{
+class ValueMenuClass extends React.Component{
     constructor(props){
         super(props);
-        this.state={
-            isMove: [false,false]
-        }
-        this.changeSelectBlockState=this.changeSelectBlockState.bind(this);
+        this.changeTempPrice=this.changeTempPrice.bind(this);
+        this.close=this.close.bind(this);
     }
-    changeSelectBlockState(blockId, state, containerId){
-        console.log("changeSelectBlockState call");
-        console.log(state);
-        console.log(blockId);
-        let isMove = this.state.isMove.slice();
-        isMove[blockId]=state;
-        this.setState({
-            isMove: isMove
-        })
+    changeTempPrice(value){
+        this.props.setTempPricePart(value);
     }
+    setPrice(){
+        let tempValue = this.props.storeState.tempPricePart;
+        this.props.setPricePart(tempValue);
+        this.props.close();
+    }
+    close(){
+        this.props.close();
+    }
+    
     render(){
-        console.log("valueMenu render");
-        console.log(this.state);
-        let idLeft = "selectBlock_leftBall";
-        let idRight = "selectBlock_rightBall";
         let containerId = "drivers_properties_valueMenu";
         if(this.props.isVisible){
             return(
                 <div id={containerId} className="drivers_properties_valueMenu">
-                        <div className="valueMenu_borderElement valueMenu_leftBorder">от 100</div>
-                        <div className="valueMenu_borderElement valueMenu_rightBorder">до 1999</div>
-                        <div className="valueMenu_selectBlock">
-                            <div className="valueMenu_selectBlock_sliderLine"></div>
-                            <div id={idLeft} className="valueMenu_selectBlock_selectBall valueMenu_selectBlock_leftBall" 
-                            onMouseDown={(event)=>this.changeSelectBlockState(0,true, idLeft, containerId)}
-                            onMouseMove={(event)=>console.log(event.clientX+" / "+event.clientY)} >                            
-                            </div>
-                            <div className="valueMenu_selectBlock_selectBall valueMenu_selectBlock_rightBall" onClick={()=>alert("Не трожь, подумой!")}></div>
-                        </div>
-                           
+                        <div className="valueMenu_borderElement valueMenu_rightBorder">{"до "+this.props.storeState.maxPrice*this.props.storeState.tempPricePart/100}</div>
+                        <Slider changeMaxValue={this.changeTempPrice} defaultValue={[0, this.props.storeState.tempPricePart]}/>                          
                         <div className="valueMenu_stateBlock">
-                            <button className="valueMenu_stateBlock_buttonStyle valueMenu_stateBlock_applyButton">Готово</button>
-                            <button className="valueMenu_stateBlock_buttonStyle valueMenu_stateBlock_cancelButton">Отмена</button>
+                            <button className="valueMenu_stateBlock_buttonStyle valueMenu_stateBlock_applyButton" onClick={()=>this.setPrice()}>Готово</button>
+                            <button className="valueMenu_stateBlock_buttonStyle valueMenu_stateBlock_cancelButton" onClick={()=>this.close()}>Отмена</button>
                         </div>
                 </div>
             )
@@ -54,3 +42,14 @@ export default class ValueMenu extends React.Component{
         }
     }
 }
+const ValueMenu = connect(
+    (state) => ({
+      storeState: state.AppReduser,
+    }),
+    (dispatch) => ({
+      setPricePart: (pricePart) => dispatch({type: "SET_PRICE_PART", pricePart: pricePart}),
+      setTempPricePart: (tempPricePart)=>dispatch({type: "SET_TEMP_PRICE_PART", tempPricePart: tempPricePart})
+    })
+  )(ValueMenuClass);
+  
+  export default ValueMenu;

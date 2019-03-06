@@ -12,14 +12,18 @@ import emptyStar from './pictures/star.svg';
 import driverPhoto from './pictures/drivers_body_photo.png';
 import sedan from './pictures/sedan.svg';
 import lukas from './pictures/like_blue.svg';
+
+
 import noSmoking from './pictures/no-smoking.svg';
+import seat from './pictures/seat.svg';
+import wifi from './pictures/wifi.svg';
+import snowflake from './pictures/snowflake.svg';
+
 import { relative } from 'path';
 
 import changeElement from '../drivers/DriversRoute/pictures/drivers_edit_route.png';
 import pointIcon from '../drivers/DriversRoute/pictures/location.svg';
 import Header from '../header/Header';
-
-
 
 import superMachine from './pictures/the_car.jpg';
 import superMachine2 from './pictures/superMachine2.png';
@@ -34,7 +38,7 @@ const DriverAdaptedRoute = (props)=>
       
         return (
           <div className = "drivers_route">
-            <div className="route_date">
+            <div className="route_date" style={{margin: 0}}>
               <div className="route_date_text">Ваш индивидуальный маршрут на: {date}</div>
               <div className="route_change" onClick={()=>{alert("Here must be transfer to /drivers with changeRoute selected")}}>               
                 <div className="route_change_text">Изменить маршрут</div>
@@ -43,9 +47,9 @@ const DriverAdaptedRoute = (props)=>
                 </div>
               </div>
             </div>
-            <div style={{display: "flex", flexDirection: "row", width: "100%"}}>
-                <div style={{display: "flex", flexDirection: "column", width: "70%", marginRight: "auto"}}>
-                    <div className="route_show">
+            <div className="driversAdaptedRoute_routeBlock" >
+                <div style={{display: "flex", flexDirection: "column", width: "60%", marginRight: "auto", marginTop: "2%"}}>
+                    <div className="route_show" >
                     {cities.map((element, index) =>
                     <div className="route_show_element" style={{width: routeElementWidth}}>
                         <img src={pointIcon} height="100%" width="25%" alt={"icon"+index}/>
@@ -61,7 +65,7 @@ const DriverAdaptedRoute = (props)=>
                     <div className="route_comment">*Возврат в точку отправления в этот же день бесплатно</div>
                     </div> 
                 </div>
-                <div style={{display: "flex", flexDirection: "column", width: "30%", marginLeft: "auto"}}>
+                <div style={{display: "flex", flexDirection: "column", width: "30%", marginLeft: "auto", marginRight: "10%"}}>
                     <div className="driversAdaptedRoute_price">$188</div>
                     <button className="driversAdaptedRoute_sendRequest">ЗАБРОНИРОВАТЬ ПОЕЗДКУ</button>
                     <div className="driversAdaptedRoute_requestCommentary">Стоимость окончательная. Топливо включено</div>
@@ -78,6 +82,18 @@ const DriverInfo = (props) =>{
     let arrowLeft = "<";
     let arrowRight=">";
     let driverInfo = "Несмотря на дым и грохот, обучиться стрельбы из гладкоствольного дульнозарядного мушкета может любой, если только он не клинический идиот. Как только человек осваивает основой прием заряжания, остается только направить на врага дуло и спустить курок, остальное в руках Божьих!";
+    
+    console.log("element");
+    console.log(element);
+    let carComfortVisibility = Array(element.carComfort.length).fill('flex');
+    for(let i=0; i<carComfortVisibility.length; i++){
+        if(element.carComfort[i]===false){
+            carComfortVisibility[i]='none';
+        }
+    }
+    console.log("carComfortVisibility");
+    console.log(carComfortVisibility);
+    let carComfortImages = [snowflake, seat, wifi, noSmoking];
     return(
         <div className="drivers_block_element driverInfo_background">
             <div className="block_element_left driverInfo_element_left">
@@ -134,7 +150,7 @@ const DriverInfo = (props) =>{
                 </div>
                 <div className="driverInfo_left_line">
                     <div className="valueBlock_commentary">
-                        {driverInfo}
+                        {element.selfInfo}
                     </div>
                 </div>
             </div>
@@ -146,25 +162,17 @@ const DriverInfo = (props) =>{
                 <div className="tripBlock_carData driverInfo_carData">
                     <div className="driverInfo_carBrand">{element.carBrand+","}</div>
                     <div className="driverInfo_fuelType">{element.fuelType}</div>
-                    <div className="driverInfo_carProps">{element.carProps}</div>
+                    <div className="driverInfo_carProps">{element.carType+", "+element.carCapacity+" места"}</div>
                 </div>
               </div>
               <div className="element_right_line driverInfo_iconLine">
-                  <div className="driverInfo_iconLine_icon">
-                    <img src={noSmoking} width="100%" height="100%" alt=""></img>
-                  </div>
-                  <div className="driverInfo_iconLine_icon">
-                    <img src={noSmoking} width="100%" height="100%" alt=""></img>
-                  </div>
-                  <div className="driverInfo_iconLine_icon">
-                    <img src={noSmoking} width="100%" height="100%" alt=""></img>
-                  </div>
-                  <div className="driverInfo_iconLine_icon">
-                    <img src={noSmoking} width="100%" height="100%" alt=""></img>
-                  </div>
-                  <div className="driverInfo_iconLine_icon">
-                    <img src={noSmoking} width="100%" height="100%" alt=""></img>
-                  </div>
+              {
+                  carComfortVisibility.map((elem,index)=>
+                      <div className="driverInfo_iconLine_icon" style={{display:carComfortVisibility[index]}}>
+                        <img src={carComfortImages[index]} width="100%" height="100%" alt=""></img>
+                      </div>                 
+                  )
+              }
               </div>
               <div className="element_right_line">
                 <div className="driverInfo_carPhotoBlock">
@@ -296,15 +304,6 @@ class DriverProfileClass extends React.Component{
     render(){
         console.log("DriverProfile render");
         let driver = this.props.driversState.drivers[this.props.match.params.id];
-        
-    
-        
-        /*
-        console.log("Props");
-        console.log(this.props);
-        console.log("State");
-        console.log(this.state);*/
-        
         return(
             <React.Fragment>
                 <div className = "drivers_top_background">

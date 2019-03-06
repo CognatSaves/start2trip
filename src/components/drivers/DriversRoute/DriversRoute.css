@@ -3,9 +3,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    background-color: #304269;
+    background-color: rgba(48, 66, 105, 0.7);
     margin: 0.5% 0;
     padding: 2% 2% 0 2%;
+
 }
 
 .route_date {

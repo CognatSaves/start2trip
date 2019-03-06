@@ -32,6 +32,7 @@ class DriversPropertiesClass extends React.Component {
       languageValue: "Язык",
       languageIcon: languageBlueIcon,
       autoIcon:sedan,
+      selectedPrice: this.props.maxValue
     }
     this.languageMenuCall=this.languageMenuCall.bind(this);
     this.peopleMenuCall=this.peopleMenuCall.bind(this);
@@ -94,6 +95,7 @@ class DriversPropertiesClass extends React.Component {
     })
   }
   valueMenuCall(){
+    this.props.setTempPricePart(this.props.storeState.pricePart);
     this.setState({
       valueMenu: !this.state.valueMenu
     })
@@ -126,7 +128,17 @@ class DriversPropertiesClass extends React.Component {
       languageIcon: icon
     })
   }
+  
   render() {
+    function valueTextGenerator(pricePart, maxPrice){
+      if(pricePart<100){
+        let price = pricePart*maxPrice/100;
+        return "до "+price;
+      }
+      else{
+        return "Цена";
+      }
+    }
     function personsCalculation(people){
       let result=0;
       people.forEach(function(item, i,people){
@@ -142,6 +154,9 @@ class DriversPropertiesClass extends React.Component {
       return resultString;
     }
     let personsNumberString = personsCalculation(this.state.persons);
+
+
+    let valueText = valueTextGenerator(this.props.storeState.pricePart, this.props.storeState.maxPrice);
     return (
       <div className = "drivers_properties" >
         
@@ -162,17 +177,21 @@ class DriversPropertiesClass extends React.Component {
             <AutoMenu isVisible={this.state.autoMenu} autoVariants={this.state.autoVariants} autoValueChoose={this.autoValueChoose}/>
           </div>
           <div style={{position:"relative"}}>
-          <div className="properties_buttonStyle properties_leftButton" onClick={()=>this.peopleMenuCall()}>
-             <div className="properties_value"><img src={userBlueIcon} width="12px" height="12px"/>{personsNumberString}</div>
-            <div className="properties_arrow"></div>  
-          </div>                  
+            <div className="properties_buttonStyle properties_leftButton" onClick={()=>this.peopleMenuCall()}>
+              <div className="properties_value"><img src={userBlueIcon} width="12px" height="12px"/>{personsNumberString}</div>
+              <div className="properties_arrow"></div>  
+            </div>                  
             <PeopleMenu isVisible = {this.state.peopleMenu} close={this.peopleMenuCall} changePersonsNumber={this.changePersonsNumber} persons={this.state.persons}/>
           </div>
-          <div className="properties_buttonStyle properties_leftButton" onClick = {()=>this.valueMenuCall()}>           
-            <div className="properties_value">Цена</div>
-            <div className="properties_arrow"></div>            
-            <ValueMenu isVisible={this.state.valueMenu}/>
+          <div style={{position: "relative"}} >
+            <div className="properties_buttonStyle properties_leftButton" onClick = {()=>
+            {this.valueMenuCall()}}>           
+              <div className="properties_value">{valueText}</div>
+              <div className="properties_arrow"></div>
+            </div>            
+            <ValueMenu isVisible={this.state.valueMenu} maxPrice={this.props.maxPrice} price={this.props.price} changePrice={this.props.changePrice} close={this.valueMenuCall}/>           
           </div>
+          
         </div>
         <div className="properties_rightBlock">         
           <div className="properties_buttonStyle properties_rightButton" onClick={()=>this.sortMenuCall()}>
@@ -199,7 +218,8 @@ const DriversProperties = connect(
   (dispatch) => ({
     setAuto: (autoValue) => dispatch({type: "SET_AUTO", autoValue: autoValue}),
     setPages: (pagesMenuValue) => dispatch({type: "SET_PAGES", pagesMenuValue: pagesMenuValue}),
-    setSortMenu: (sortMenuValue) => dispatch({type: "SET_SORT_MENU", sortMenuValue: sortMenuValue})
+    setSortMenu: (sortMenuValue) => dispatch({type: "SET_SORT_MENU", sortMenuValue: sortMenuValue}),
+    setTempPricePart: (tempPricePart)=>dispatch({type: "SET_TEMP_PRICE_PART", tempPricePart: tempPricePart})
   })
 )(DriversPropertiesClass);
 

@@ -46,10 +46,12 @@ class DriversBlockClass extends React.Component {
       page: this.state.page+1
     })
   }
+  
   render() {
+
     let selectedElements = this.props.driversState.drivers.slice((this.state.page - this.state.showPages) * this.props.storeState.pagesMenuValue, (this.state.page) * this.props.storeState.pagesMenuValue);
 
-    let srcArray = Array(this.props.storeState.pagesMenuValue).fill(emptyLike);
+    let srcArray = Array(this.props.storeState.pagesMenuValue*this.state.showPages).fill(emptyLike);
     srcArray[0]=selectedFilledLike;
     srcArray[1]=filledLike;
     return (
@@ -101,7 +103,7 @@ class DriversBlockClass extends React.Component {
                   </div>
                   <div className="block_element_infoBlock_element">
                     <div className="infoString">За рулём:</div>
-                    <div className="visibleString">{element.drivingAge}</div>
+                    <div className="visibleString">{element.drivingAge+" лет"}</div>
                   </div>
                 </div>
               </div>
@@ -118,13 +120,13 @@ class DriversBlockClass extends React.Component {
                       <div className="fuelType_style">{element.fuelType}</div>
                     </div>
                     <div className="carInfo_line">
-                      <div className="carProps_style">{element.carProps}</div>
+                      <div className="carProps_style">{element.carType+", "+element.carCapacity+" места"}</div>
                     </div>
                   </div>
                 </div>
                 <div className="element_right_line">
                   <div className="tripBlock_priceBlock">
-                    {element.price}
+                    {"$"+element.price}
                     <button className="tripBlock_buttonBlock_button" onClick={() => this.props.changeTravelVisibility('block')}>ЗАБРОНИРОВАТЬ ПОЕЗДКУ</button>
                   </div>
                 </div>

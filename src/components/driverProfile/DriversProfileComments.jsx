@@ -89,7 +89,12 @@ export default class DriversProfileComments extends React.Component{
                                             </div>
                                     </div>
                                 </div>
-                                <p className="valueBlock_commentary">{element.value}</p>
+                                <input className="put" id={"put"+element+index} type="checkbox"></input>
+                                <div class="news">
+                                    <label for={"put"+element+index}>{element.value}</label>
+                                </div>
+                                
+                                
                             </div>
                         </div> 
                     )}
@@ -99,3 +104,13 @@ export default class DriversProfileComments extends React.Component{
         )
     }
 }
+/*
+<p className="valueBlock_commentary">{element.value}</p>
+
+<div class="news">
+<label for="put">
+ Компании AMD, ARM, Huawei, IBM, Mellanox, Qualcomm и Xilinx объявили о сотрудничестве, направленном на разработку спецификации ddddddddddddddddd Cache Coherent Interconnect for Accelerators (CCIX). Она позволит процессорам разных архитектур и ускорителям использовать данные совместно.
+Лидеры отрасли объединяют усилия</label>
+
+</div>
+*/

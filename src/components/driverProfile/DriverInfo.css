@@ -1,5 +1,6 @@
 .driverInfo_background{
-    background-color: #ffffff;   
+    background-color: #ffffff;  
+    padding-bottom: 1.5%; 
 }
 .driverInfo_element_left{
     width: 58.5%;
@@ -49,7 +50,7 @@
 }
 .driverInfo_iconLine_icon{
     min-width: 16px;
-    margin-right: 2px;
+    margin-right: 2%;
     width: 4%;
 }
 .driverInfo_carPhotoBlock{

@@ -30,7 +30,10 @@ const initialState = {
     pagesMenuVariants: [10,20,40],
     pagesMenuValue: 10,
     sortMenuValue: "Популярность",
-    sortMenuVariants: ["Популярность","Рейтинг","Цена"],    
+    sortMenuVariants: ["Популярность","Рейтинг","Цена"],
+    pricePart:100,
+    tempPricePart: 100,
+    maxPrice: 0
 };
 
 export const AppReduser = (state = initialState, action) =>{
@@ -70,7 +73,20 @@ export const AppReduser = (state = initialState, action) =>{
         let newStateSSM = {...state};
         newStateSSM.sortMenuValue = action.sortMenuValue;
         return newStateSSM;
-
+    case "SET_MAX_PRICE":
+        let newStateSMP = {...state};
+        newStateSMP.pricePart = action.pricePart;
+        newStateSMP.tempPricePart = action.pricePart;
+        newStateSMP.maxPrice = action.maxPrice;
+        return newStateSMP;
+    case "SET_TEMP_PRICE_PART":
+        let newStateSTPP = {...state};
+        newStateSTPP.tempPricePart = action.tempPricePart;
+        return newStateSTPP;
+    case "SET_PRICE_PART":
+        let newStateSPP = {...state};
+        newStateSPP.pricePart = action.pricePart;
+        return newStateSPP;
     default: return state;
     }
 }
