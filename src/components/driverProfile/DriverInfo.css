@@ -1,58 +1,69 @@
-.driverInfo_background{
-    background-color: #ffffff;   
+.driverInfo_background {
+    background-color: #ffffff;
 }
-.driverInfo_element_left{
+
+.driverInfo_element_left {
     width: 58.5%;
     flex-direction: column;
     margin-top: 1.5%;
     margin-bottom: auto;
 }
-.driverInfo_left_line{
+
+.driverInfo_left_line {
     display: flex;
     flex-direction: row;
     width: 100%;
 }
-.driverInfo_element_right{
+
+.driverInfo_element_right {
     width: 41.5%;
 }
 
-.driverInfo_carData{
+.driverInfo_carData {
     flex-direction: row;
     font-size: 14px;
     color: #304269;
     margin: auto 0 auto 3%;
 }
-.driverInfo_carBrand{
+
+.driverInfo_carBrand {
     font-weight: 600;
 }
-.driverInfo_fuelType{
+
+.driverInfo_fuelType {
     padding-right: 2%;
     padding-left: 2px;
     border-right: 1px solid #cccccc;
     font-weight: 400;
 }
-.driverInfo_carProps{
+
+.driverInfo_carProps {
     padding-left: 2%;
     font-weight: 300;
 }
-.driverInfo_carImage{
+
+.driverInfo_carImage {
     width: 10%;
 }
+
 /* .element_right_line:nth-child(1){
     margin: 0;
 } */
-.driverInfo_iconLine{
+
+.driverInfo_iconLine {
     margin-left: 25%;
     line-height: 0px;
     min-height: 16px;
     height: 4%;
 }
-.driverInfo_iconLine_icon{
+
+.driverInfo_iconLine_icon {
     min-width: 16px;
     margin-right: 2px;
     width: 4%;
 }
-.driverInfo_carPhotoBlock{
+
+.driverInfo_carPhotoBlock {
     display: flex;
     position: relative;
     width: 70%;
@@ -61,20 +72,37 @@
     min-width: 150px;
     min-height: 100px;
 }
-.driverInfo_carPhotoBlock_switchCarPicture{
+
+.driverInfo_carPhotoBlock_switchCarPicture {
     display: flex;
     position: absolute;
-
-    top: 50%;                         
-    transform: translate(0, -50%);   
-    width:14%;
+    top: 50%;
+    transform: translate(0, -50%);
+    width: 13%;
     height: 18%;
     border-radius: 100%;
     text-align: center;
     border: 1px solid transparent;
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.15);
+    background-color: #fff;
+    margin: auto;
+    font-family: "Roboto";
+    font-size: 16px;
+    color: #999999;
+    border-radius: 100%;
+    cursor: pointer;
 }
-.driverInfo_myHeart{
+
+.driverInfo_carPhotoBlock_switchCarPicture:hover {
+    background-color: #304269;
+    color: #999999;
+}
+.driverInfo_carPhotoBlock_switchCarPicture:focus {
+    border: none;
+    outline: none;
+}
+
+.driverInfo_myHeart {
     height: 8%;
 }
 
@@ -83,13 +111,13 @@
     width: 100%;
     padding-bottom: 70%;
     overflow: hidden;
- }
- 
- .carImageStyles {
+}
+
+.carImageStyles {
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
     width: 100%;
- }
+}

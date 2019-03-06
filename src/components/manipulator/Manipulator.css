@@ -11,14 +11,24 @@
     height: 40px;
     border-color: transparent;
     border-radius: 5px;
-    box-shadow: 0 0 1px 1px rgba(221, 221, 221, 1);
+    box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.25);
     background-color: #ffffff;
     margin: 5% auto 3% auto;
 }
 
 .driversBlockManipulator_button:hover {
     cursor: pointer;
-    box-shadow: 0 0 2px 5px rgba(221, 221, 221, 1);
+    background: #ff6600;
+
+    box-shadow: 0 0 15px 0px rgba(0, 0, 0, 0.25);
+}
+.driversBlockManipulator_button:hover .driversBlockManipulator_button_value {
+    color: #fff;
+}
+.driversBlockManipulator_button:focus{
+    border: none;
+    text-decoration: none;
+    outline: none;
 }
 
 .driversBlockManipulator_button_value {

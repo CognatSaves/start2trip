@@ -172,10 +172,10 @@ const DriverInfo = (props) =>{
                         <img class="carImageStyles" src={carImages[carImageNumber]} alt="car" style={{margin: "auto", borderRadius: "5px"}}></img>
                     </div>
                     
-                    <button className="driverInfo_carPhotoBlock_switchCarPicture switchCarPicture_selected" style={{left: "-7%"}} onClick={()=>changeCar(-1)}>                   
+                    <button className="driverInfo_carPhotoBlock_switchCarPicture " style={{left: "-7%"}} onClick={()=>changeCar(-1)}>                   
                         <div style={{margin: "auto"}}>{arrowLeft}</div>
                     </button>
-                    <button className="driverInfo_carPhotoBlock_switchCarPicture switchCarPicture_unselected" style={{right: "-7%"}} onClick={()=>changeCar(-1)}>
+                    <button className="driverInfo_carPhotoBlock_switchCarPicture " style={{right: "-7%"}} onClick={()=>changeCar(-1)}>
                         <div style={{margin: "auto"}}>{arrowRight}</div>
                     </button>
                 </div>

@@ -477,7 +477,7 @@ name: "Валерий39",
 export const DriversReduser = (state=initialState, action)=>{
     switch(action.type){
         case "SET_LENGTH_TIME":
-        let newStateLT = JSON.parse(JSON.stringify(state));
+        let newStateLT = {...state};
         newStateLT.travelTime=action.travelTime;
         newStateLT.travelLength=action.travelLength;
         return newStateLT;

@@ -3,27 +3,6 @@
 @import '../drivers/DriversBody/DriversBlock/DriversBlock.css';
 @import '../drivers/DriversBody/DriversBlock/InfoBlock.css';
 @import '../drivers/DriversBody/DriversBlock/TripBlock.css';
-.header_placeholder{
-    display: flex;
-    height:75px;
-    width:100%;
-    background-color: brown;
-}
 
-.switchCarPicture_selected{
-    background-color:#304269;
-    margin: auto;
-    font-family: "Roboto";
-    font-size: 16px;
-    color: #cccccc;
-    border-radius: 100%;
-}
-.switchCarPicture_unselected{
-    background-color:#cccccc;
-    margin: auto;
-    font-family: "Roboto";
-    font-size: 16px;
-    color: #999999;
-    border-radius: 100%;
-}
+
 
