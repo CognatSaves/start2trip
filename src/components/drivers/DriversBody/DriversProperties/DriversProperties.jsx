@@ -8,8 +8,7 @@ import ValueMenu from './components/ValueMenu/ValueMenu.jsx'
 import AutoMenu from './components/AutoMenu/AutoMenu.jsx'
 import { connect } from 'react-redux';
 import sedan from './components/AutoMenu/pictures/sedan.svg';
-import { changePersonsNumberDispatch, changePersonsNumberDispatchOld, peopleMenuCall } from "../../../../redusers/Action"
-import languageBlueIcon from '../DriversBlock/pictures/language_blue.svg'
+import { changePersonsNumberDispatch, changePersonsNumberDispatchOld, peopleMenuCall, languageValueChooseDispatch } from "../../../../redusers/Action"
 import userBlueIcon from '../DriversBlock/pictures/user_blue.svg'
 
 
@@ -17,20 +16,13 @@ class DriversPropertiesClass extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      languageMenu: false,
       sortMenu: false,
       pagesMenu: false,
       valueMenu: false,
       autoMenu: false,
       sortMenuValue: "Популярность",
       sortMenuVariants: ["Популярность", "Рейтинг", "Цена"],
-      //pagesMenuValue: 10,
-      //pagesMenuVariants: ["10","20","40"],
-      // persons: [1,0],
-      //autoValue: "Тип авто",
-      languageValue: "Язык",
-      languageIcon: languageBlueIcon,
-      autoIcon:sedan,
+      autoIcon: sedan,
       selectedPrice: this.props.maxValue
     }
     this.languageMenuCall = this.languageMenuCall.bind(this);
@@ -57,37 +49,40 @@ class DriversPropertiesClass extends React.Component {
       sortMenu: !this.state.sortMenu
     })
   }
+
   sortMenuChoose(value) {
     this.props.setSortMenu(value);
     this.setState({
       sortMenu: false,
     })
   }
-  pagesMenuCall() {
-    console.log("pagesMenuCall");
 
+  pagesMenuCall() {
     this.setState({
       pagesMenu: !this.state.pagesMenu
     })
   }
-  valueMenuCall(){
+
+  valueMenuCall() {
     this.props.setTempPricePart(this.props.storeState.pricePart);
     this.setState({
       valueMenu: !this.state.valueMenu
     })
   }
+
   pagesMenuChoose(value) {
-    console.log("pagesMenuChoose");
     this.props.setPages(value);
     this.setState({
       pagesMenu: false,
     })
   }
+
   autoMenuCall() {
     this.setState({
       autoMenu: !this.state.autoMenu
     })
   }
+
   autoValueChoose(value, icon) {
     this.props.setAuto(value);
     this.setState({
@@ -95,21 +90,16 @@ class DriversPropertiesClass extends React.Component {
       autoIcon: icon
     })
   }
-  languageValueChoose(value, icon) {
-    this.setState({
-      languageValue: value,
-      languageMenu: false,
-      languageIcon: icon
-    })
-  }
-  
+
+
+
   render() {
-    function valueTextGenerator(pricePart, maxPrice){
-      if(pricePart<100){
-        let price = pricePart*maxPrice/100;
-        return "до "+price;
+    function valueTextGenerator(pricePart, maxPrice) {
+      if (pricePart < 100) {
+        let price = pricePart * maxPrice / 100;
+        return "до " + price;
       }
-      else{
+      else {
         return "Цена";
       }
     }
@@ -137,10 +127,10 @@ class DriversPropertiesClass extends React.Component {
         <div className="properties_leftBlock">
           <div className="drivers_properties_text">Подобрать:
           </div>
-          <div className="properties_buttonStyle properties_leftButton" onClick={() => this.languageMenuCall()}>
-            <div className="properties_value"><img src={this.state.languageIcon} width="15px" height="15px" />{this.state.languageValue}</div>
+          <div className="properties_buttonStyle properties_leftButton" onClick={() => this.props.dispatch(languageValueChooseDispatch(this.props.storeState.languageValue,this.props.storeState.languageIcon,true))}>
+            <div className="properties_value"><img src={this.props.storeState.languageIcon} width="15px" height="15px" />{this.props.storeState.languageValue}</div>
             <div className="properties_arrow"></div>
-            <LanguageMenu isVisible={this.state.languageMenu} languages={this.state.languages} languageValueChoose={this.languageValueChoose} />
+            <LanguageMenu isVisible={this.props.storeState.languageMenu}  />
           </div>
           <div className="properties_buttonStyle properties_leftButton" onClick={() => this.autoMenuCall()}>
             <div className="properties_carPicture">
@@ -166,15 +156,14 @@ class DriversPropertiesClass extends React.Component {
             </div>
             <PeopleMenu isVisible={this.props.storeState.peopleMenu} />
           </div>
-          <div style={{position: "relative"}} >
-            <div className="properties_buttonStyle properties_leftButton" onClick = {()=>
-            {this.valueMenuCall()}}>           
+          <div style={{ position: "relative" }} >
+            <div className="properties_buttonStyle properties_leftButton" onClick={() => { this.valueMenuCall() }}>
               <div className="properties_value">{valueText}</div>
               <div className="properties_arrow"></div>
-            </div>            
-            <ValueMenu isVisible={this.state.valueMenu} maxPrice={this.props.maxPrice} price={this.props.price} changePrice={this.props.changePrice} close={this.valueMenuCall}/>           
+            </div>
+            <ValueMenu isVisible={this.state.valueMenu} maxPrice={this.props.maxPrice} price={this.props.price} changePrice={this.props.changePrice} close={this.valueMenuCall} />
           </div>
-          
+
         </div>
         <div className="properties_rightBlock">
           <div className="properties_buttonStyle properties_rightButton" onClick={() => this.sortMenuCall()}>

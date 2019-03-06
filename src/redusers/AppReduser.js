@@ -2,11 +2,11 @@ import geoFlag from '../components/drivers/DriversBody/DriversProperties/compone
 import ruFlag from '../components/drivers/DriversBody/DriversProperties/components/LanguageMenu/pictures/russia.svg'
 import enFlag from '../components/drivers/DriversBody/DriversProperties/components/LanguageMenu/pictures/united-kingdom.svg'
 import espFlag from '../components/drivers/DriversBody/DriversProperties/components/LanguageMenu/pictures/spain.svg'
-import { SET_STATE, CHANGE_PERSONS_NUMBER, PEOPLE_MENU_CALL, CHANGE_PERSONS_NUMBER_OLD } from './Action';
+import languageBlueIcon from '../components/drivers/DriversBody/DriversBlock/pictures/language_blue.svg'
+import { SET_STATE, CHANGE_PERSONS_NUMBER, PEOPLE_MENU_CALL, CHANGE_PERSONS_NUMBER_OLD, LANGUAGE_VALUE_CHOOSE, } from './Action';
 
 
 const initialState = {
-<<<<<<< HEAD
   cities: ["Тбилиси", "Минск"],
   date: "",
   autoVariants: ["Седан", "Внедорожник", "Минивен", "Микроавтобус"],
@@ -37,38 +37,12 @@ const initialState = {
   persons: [1, 0],
   personsOld: "",
   peopleMenu: false,
-=======
-    cities: ["Тбилиси","Минск"],
-    date:"",
-    autoVariants: ["Седан","Внедорожник","Минивен","Микроавтобус"],
-    autoValue: "Тип авто",
-    languages: [
-        {
-          languageName: "Русский",
-          icon:ruFlag,
-        },
-        {
-          languageName: "English",
-          icon:enFlag,
-        },
-        {
-          languageName: "Georgian",
-          icon:geoFlag,
-        },
-        {
-          languageName: "Spanish",
-          icon:espFlag,
-        },
-
-      ],
-    pagesMenuVariants: [10,20,40],
-    pagesMenuValue: 10,
-    sortMenuValue: "Популярность",
-    sortMenuVariants: ["Популярность","Рейтинг","Цена"],
-    pricePart:100,
-    tempPricePart: 100,
-    maxPrice: 0
->>>>>>> 8a9639cdc738e7123fcba6d644c5d2daddacfecf
+  pricePart: 100,
+  tempPricePart: 100,
+  maxPrice: 0,
+  languageValue:"Язык",
+  languageIcon:languageBlueIcon,
+  languageMenu:false,
 };
 
 export const AppReduser = (state = initialState, action) => {
@@ -115,7 +89,7 @@ export const AppReduser = (state = initialState, action) => {
       newState.sortMenuValue = action.sortMenuValue;
       return newState;
     }
-    
+
     case "SET_MAX_PRICE":
       let newStateSMP = { ...state };
       newStateSMP.pricePart = action.pricePart;
@@ -150,6 +124,14 @@ export const AppReduser = (state = initialState, action) => {
     case PEOPLE_MENU_CALL: {
       let newState = { ...state };
       newState.peopleMenu = action.peopleMenu;
+
+      return newState;
+    }
+    case LANGUAGE_VALUE_CHOOSE: {
+      let newState = { ...state };
+      newState.languageValue = action.languageValue;
+      newState.languageIcon = action.languageIcon;
+      newState.languageMenu = action.languageMenu;
 
       return newState;
     }

@@ -6,6 +6,8 @@ const CHANGE_PERSONS_NUMBER_OLD = 'CHANGE_PERSONS_NUMBER_OLD';
 
 const PEOPLE_MENU_CALL = 'PEOPLE_MENU_CALL';
 
+const LANGUAGE_VALUE_CHOOSE = 'LANGUAGE_VALUE_CHOOSE';
+
 const set_state = function (sourse, cities, date, calendaryVisibility, picture) {
   return {
     type: 'SET_STATE',
@@ -36,11 +38,20 @@ const peopleMenuCall = function (peopleMenu) {
   };
 }
 
+const languageValueChooseDispatch = function (languageValue,languageIcon,languageMenu) {
+  return {
+    type: 'LANGUAGE_VALUE_CHOOSE',
+    languageValue: languageValue,
+    languageIcon:languageIcon,
+    languageMenu:languageMenu,
+  };
+}
+
 
 export {
   set_state, SET_STATE, 
   changePersonsNumberDispatch, CHANGE_PERSONS_NUMBER, 
   peopleMenuCall, PEOPLE_MENU_CALL,
   changePersonsNumberDispatchOld, CHANGE_PERSONS_NUMBER_OLD,
-  
+  languageValueChooseDispatch, LANGUAGE_VALUE_CHOOSE,
 }
