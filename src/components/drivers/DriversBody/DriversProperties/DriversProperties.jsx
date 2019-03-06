@@ -8,13 +8,9 @@ import ValueMenu from './components/ValueMenu/ValueMenu.jsx'
 import AutoMenu from './components/AutoMenu/AutoMenu.jsx'
 import { connect } from 'react-redux';
 import sedan from './components/AutoMenu/pictures/sedan.svg';
-<<<<<<< HEAD
-import { changePersonsNumberDispatch, changePersonsNumberDispatchOld, peopleMenuCall, languageValueChooseDispatch } from "../../../../redusers/Action"
-=======
 import { setAuto, setPages, setSortMenu, setTempPricePart,
-   changePersonsNumberDispatch, changePersonsNumberDispatchOld, peopleMenuCall } from "../../../../redusers/Action"
+   changePersonsNumberDispatch, changePersonsNumberDispatchOld, peopleMenuCall, languageValueChooseDispatch } from "../../../../redusers/Action"
 import languageBlueIcon from '../DriversBlock/pictures/language_blue.svg'
->>>>>>> 5b66318567979a7bdfd52580290694d76d8ff147
 import userBlueIcon from '../DriversBlock/pictures/user_blue.svg'
 
 
@@ -24,7 +20,6 @@ class DriversPropertiesClass extends React.Component {
     this.state = {
       sortMenu: false,
       pagesMenu: false,
-      valueMenu: false,
       autoMenu: false,
       sortMenuValue: "Популярность",
       sortMenuVariants: ["Популярность", "Рейтинг", "Цена"],
@@ -41,7 +36,7 @@ class DriversPropertiesClass extends React.Component {
     this.autoMenuCall = this.autoMenuCall.bind(this);
 
     this.autoValueChoose = this.autoValueChoose.bind(this);
-    this.languageValueChoose = this.languageValueChoose.bind(this);
+    //this.languageValueChoose = this.languageValueChoose.bind(this);
   }
 
   languageMenuCall() {
@@ -67,11 +62,8 @@ class DriversPropertiesClass extends React.Component {
       pagesMenu: !this.state.pagesMenu
     })
   }
-  valueMenuCall(){
-    this.props.dispatch(setTempPricePart(this.props.storeState.pricePart));
-    this.setState({
-      valueMenu: !this.state.valueMenu
-    })
+  valueMenuCall(valueMenu){
+    this.props.dispatch(setTempPricePart(this.props.storeState.pricePart, valueMenu));
   }
 
   pagesMenuChoose(value) {
@@ -161,11 +153,11 @@ class DriversPropertiesClass extends React.Component {
             <PeopleMenu isVisible={this.props.storeState.peopleMenu} />
           </div>
           <div style={{ position: "relative" }} >
-            <div className="properties_buttonStyle properties_leftButton" onClick={() => { this.valueMenuCall() }}>
+            <div className="properties_buttonStyle properties_leftButton" onClick={() => { this.valueMenuCall(true) }}>
               <div className="properties_value">{valueText}</div>
               <div className="properties_arrow"></div>
             </div>
-            <ValueMenu isVisible={this.state.valueMenu} maxPrice={this.props.maxPrice} price={this.props.price} changePrice={this.props.changePrice} close={this.valueMenuCall} />
+            <ValueMenu isVisible={this.props.storeState.valueMenu} maxPrice={this.props.maxPrice} price={this.props.price} changePrice={this.props.changePrice}  />
           </div>
 
         </div>

@@ -26,10 +26,12 @@ class DriversBlockClass extends React.Component {
     this.showMorePages = this.showMorePages.bind(this);
   }
   setPage(page) {
+    /*
     console.log("setPage called");
     console.log(page);
     console.log("elements now");
     console.log(this.props.driversState.drivers.length);
+    */
     if (page !== "...") {
       this.setState(
         {

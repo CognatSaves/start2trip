@@ -4,7 +4,6 @@ import './DriverInfo.css';
 import './DriverAdaptedRoute.css';
 import { connect } from 'react-redux'
 import Footer from '../Footer/Footer.jsx'
-import DriversRoute from '../drivers/DriversRoute/DriversRoute';
 import DriversCommercial from '../drivers/DriversBody/DriversCommercial/DriversCommercial';
 import DriversProfileComments from './DriversProfileComments';
 import Manipulator from '../manipulator/Manipulator';
@@ -19,7 +18,6 @@ import seat from './pictures/seat.svg';
 import wifi from './pictures/wifi.svg';
 import snowflake from './pictures/snowflake.svg';
 
-import { relative } from 'path';
 
 import changeElement from '../drivers/DriversRoute/pictures/drivers_edit_route.png';
 import pointIcon from '../drivers/DriversRoute/pictures/location.svg';
@@ -28,9 +26,15 @@ import Header from '../header/Header';
 import superMachine from './pictures/the_car.jpg';
 import superMachine2 from './pictures/superMachine2.png';
 import superMachine3 from './pictures/superMachine3.webp';
+
+import { Link } from 'react-router-dom';
+import {setDriversRouteChange} from '../../redusers/ActionDrivers';
+import StartTravelForm from '../startTravelForm/StartTravelForm'
+import StartTravelSuccess from '../startTravelForm/StartTravelSuccess'
+
 const DriverAdaptedRoute = (props)=>
 {
-    const {date,cities,travelLength,travelTime} = props;
+    const {element, date,cities,travelLength,travelTime,goToDrivers, changeTravelVisibility} = props;
     let isVisibleArray = Array(cities.length).fill("visible");
       isVisibleArray[isVisibleArray.length-1]="hidden";
       let routeElementWidth=100/(isVisibleArray.length+1);
@@ -40,7 +44,7 @@ const DriverAdaptedRoute = (props)=>
           <div className = "drivers_route">
             <div className="route_date" style={{margin: 0}}>
               <div className="route_date_text">Ваш индивидуальный маршрут на: {date}</div>
-              <div className="route_change" onClick={()=>{alert("Here must be transfer to /drivers with changeRoute selected")}}>               
+              <div className="route_change" to="/drivers" onClick={()=>goToDrivers()}>                              
                 <div className="route_change_text">Изменить маршрут</div>
                 <div className="route_change_emblem">
                   <img src={changeElement} width="100%" height="100%" alt="change"></img>
@@ -66,8 +70,8 @@ const DriverAdaptedRoute = (props)=>
                     </div> 
                 </div>
                 <div style={{display: "flex", flexDirection: "column", width: "30%", marginLeft: "auto", marginRight: "10%"}}>
-                    <div className="driversAdaptedRoute_price">$188</div>
-                    <button className="driversAdaptedRoute_sendRequest">ЗАБРОНИРОВАТЬ ПОЕЗДКУ</button>
+                    <div className="driversAdaptedRoute_price">{"$"+element.price}</div>
+                    <button className="driversAdaptedRoute_sendRequest" onClick={()=>changeTravelVisibility('block')}>ЗАБРОНИРОВАТЬ ПОЕЗДКУ</button>
                     <div className="driversAdaptedRoute_requestCommentary">Стоимость окончательная. Топливо включено</div>
                 </div>
             </div>
@@ -142,7 +146,7 @@ const DriverInfo = (props) =>{
                     </div>
                     <div className="block_element_infoBlock_element">
                         <div className="infoString">За рулём:</div>
-                        <div className="visibleString">{element.drivingAge}</div>
+                        <div className="visibleString">{element.drivingAge + " лет"}</div>
                     </div>
                     </div>
 
@@ -200,84 +204,18 @@ class DriverProfileClass extends React.Component{
     constructor(props){
         super(props);   
         this.state ={
+            travelVisibility: 'none',
+            successVisibility: 'none',
             page: 1,
             carImageNumber: 0,
             carImages: [superMachine, superMachine2, superMachine3],
-            comments: [
-                {
-                    name: "Очень важный человек1",
-                    date: "99 никогдабря 0001",
-                    value: "Мороз и солнце; день чудесный! Еще ты дремлешь, друг прелестный — Пора, красавица, проснись: Открой сомкнуты негой взоры.Навстречу северной Авроры,Звездою севера явись!Вечор, ты помнишь, вьюга злилась,На мутном небе мгла носилась;Луна, как бледное пятно,Сквозь тучи мрачные желтела,И ты печальная сидела —А нынче... погляди в окно:"    
-                },
-                {
-                    name: "Очень важный человек2",
-                    date: "99 никогдабря 0001",
-                    value: "Мороз и солнце; день чудесный! Еще ты дремлешь, друг прелестный — Пора, красавица, проснись: Открой сомкнуты негой взоры.Навстречу северной Авроры,Звездою севера явись!Вечор, ты помнишь, вьюга злилась,На мутном небе мгла носилась;Луна, как бледное пятно,Сквозь тучи мрачные желтела,И ты печальная сидела —А нынче... погляди в окно:"    
-                },
-                {
-                    name: "Очень важный человек3",
-                    date: "99 никогдабря 0001",
-                    value: "Мороз и солнце; день чудесный! Еще ты дремлешь, друг прелестный — Пора, красавица, проснись: Открой сомкнуты негой взоры.Навстречу северной Авроры,Звездою севера явись!Вечор, ты помнишь, вьюга злилась,На мутном небе мгла носилась;Луна, как бледное пятно,Сквозь тучи мрачные желтела,И ты печальная сидела —А нынче... погляди в окно:"    
-                },
-                {
-                    name: "Очень важный человек4",
-                    date: "99 никогдабря 0001",
-                    value: "Мороз и солнце; день чудесный! Еще ты дремлешь, друг прелестный — Пора, красавица, проснись: Открой сомкнуты негой взоры.Навстречу северной Авроры,Звездою севера явись!Вечор, ты помнишь, вьюга злилась,На мутном небе мгла носилась;Луна, как бледное пятно,Сквозь тучи мрачные желтела,И ты печальная сидела —А нынче... погляди в окно:"    
-                },
-                {
-                    name: "Очень важный человек5",
-                    date: "99 никогдабря 0001",
-                    value: "Мороз и солнце; день чудесный! Еще ты дремлешь, друг прелестный — Пора, красавица, проснись: Открой сомкнуты негой взоры.Навстречу северной Авроры,Звездою севера явись!Вечор, ты помнишь, вьюга злилась,На мутном небе мгла носилась;Луна, как бледное пятно,Сквозь тучи мрачные желтела,И ты печальная сидела —А нынче... погляди в окно:"    
-                },
-                {
-                    name: "Очень важный человек6",
-                    date: "99 никогдабря 0001",
-                    value: "Мороз и солнце; день чудесный! Еще ты дремлешь, друг прелестный — Пора, красавица, проснись: Открой сомкнуты негой взоры.Навстречу северной Авроры,Звездою севера явись!Вечор, ты помнишь, вьюга злилась,На мутном небе мгла носилась;Луна, как бледное пятно,Сквозь тучи мрачные желтела,И ты печальная сидела —А нынче... погляди в окно:"    
-                },
-                {
-                    name: "Очень важный человек7",
-                    date: "99 никогдабря 0001",
-                    value: "Мороз и солнце; день чудесный! Еще ты дремлешь, друг прелестный — Пора, красавица, проснись: Открой сомкнуты негой взоры.Навстречу северной Авроры,Звездою севера явись!Вечор, ты помнишь, вьюга злилась,На мутном небе мгла носилась;Луна, как бледное пятно,Сквозь тучи мрачные желтела,И ты печальная сидела —А нынче... погляди в окно:"    
-                },
-                {
-                    name: "Очень важный человек8",
-                    date: "99 никогдабря 0001",
-                    value: "Мороз и солнце; день чудесный! Еще ты дремлешь, друг прелестный — Пора, красавица, проснись: Открой сомкнуты негой взоры.Навстречу северной Авроры,Звездою севера явись!Вечор, ты помнишь, вьюга злилась,На мутном небе мгла носилась;Луна, как бледное пятно,Сквозь тучи мрачные желтела,И ты печальная сидела —А нынче... погляди в окно:"    
-                },
-                {
-                    name: "Очень важный человек9",
-                    date: "99 никогдабря 0001",
-                    value: "Мороз и солнце; день чудесный! Еще ты дремлешь, друг прелестный — Пора, красавица, проснись: Открой сомкнуты негой взоры.Навстречу северной Авроры,Звездою севера явись!Вечор, ты помнишь, вьюга злилась,На мутном небе мгла носилась;Луна, как бледное пятно,Сквозь тучи мрачные желтела,И ты печальная сидела —А нынче... погляди в окно:"    
-                },
-                {
-                    name: "Очень важный человек10",
-                    date: "99 никогдабря 0001",
-                    value: "Мороз и солнце; день чудесный! Еще ты дремлешь, друг прелестный — Пора, красавица, проснись: Открой сомкнуты негой взоры.Навстречу северной Авроры,Звездою севера явись!Вечор, ты помнишь, вьюга злилась,На мутном небе мгла носилась;Луна, как бледное пятно,Сквозь тучи мрачные желтела,И ты печальная сидела —А нынче... погляди в окно:"    
-                },
-                {
-                    name: "Очень важный человек11",
-                    date: "99 никогдабря 0001",
-                    value: "Мороз и солнце; день чудесный! Еще ты дремлешь, друг прелестный — Пора, красавица, проснись: Открой сомкнуты негой взоры.Навстречу северной Авроры,Звездою севера явись!Вечор, ты помнишь, вьюга злилась,На мутном небе мгла носилась;Луна, как бледное пятно,Сквозь тучи мрачные желтела,И ты печальная сидела —А нынче... погляди в окно:"    
-                },
-                {
-                    name: "Очень важный человек12",
-                    date: "99 никогдабря 0001",
-                    value: "Мороз и солнце; день чудесный! Еще ты дремлешь, друг прелестный — Пора, красавица, проснись: Открой сомкнуты негой взоры.Навстречу северной Авроры,Звездою севера явись!Вечор, ты помнишь, вьюга злилась,На мутном небе мгла носилась;Луна, как бледное пятно,Сквозь тучи мрачные желтела,И ты печальная сидела —А нынче... погляди в окно:"    
-                },
-                {
-                    name: "Очень важный человек13",
-                    date: "99 никогдабря 0001",
-                    value: "Мороз и солнце; день чудесный! Еще ты дремлешь, друг прелестный — Пора, красавица, проснись: Открой сомкнуты негой взоры.Навстречу северной Авроры,Звездою севера явись!Вечор, ты помнишь, вьюга злилась,На мутном небе мгла носилась;Луна, как бледное пятно,Сквозь тучи мрачные желтела,И ты печальная сидела —А нынче... погляди в окно:"    
-                },
-                {
-                    name: "Очень важный человек14",
-                    date: "99 никогдабря 0001",
-                    value: "Мороз и солнце; день чудесный! Еще ты дремлешь, друг прелестный — Пора, красавица, проснись: Открой сомкнуты негой взоры.Навстречу северной Авроры,Звездою севера явись!Вечор, ты помнишь, вьюга злилась,На мутном небе мгла носилась;Луна, как бледное пятно,Сквозь тучи мрачные желтела,И ты печальная сидела —А нынче... погляди в окно:"    
-                }
-               ]
         }    
         this.setPage=this.setPage.bind(this); 
         this.changeCar=this.changeCar.bind(this);
+        this.goToDrivers=this.goToDrivers.bind(this);
+
+        this.changeTravelVisibility=this.changeTravelVisibility.bind(this);
+        this.changeSuccessVisibility=this.changeSuccessVisibility.bind(this);
     }
     setPage(page) {
         if (page !== "...") {
@@ -287,7 +225,11 @@ class DriverProfileClass extends React.Component{
             }
           )
         }
-      }
+    }
+    goToDrivers(){
+        this.props.dispatch(setDriversRouteChange(true));
+        this.props.history.push('/drivers');
+    }
     changeCar(to){
         console.log("changeCar call!!!!!!!!!!!!!!!");
         let carImageNumber = this.state.carImageNumber+to;
@@ -301,35 +243,53 @@ class DriverProfileClass extends React.Component{
             carImageNumber: carImageNumber
         })
     }
+    changeTravelVisibility(value){
+        this.setState({
+          travelVisibility: value
+        })
+    }
+    changeSuccessVisibility(value){
+    this.setState({
+        successVisibility: value
+    })
+    }
     render(){
-        console.log("DriverProfile render");
-        let driver = this.props.driversState.drivers[this.props.match.params.id];
-        return(
-            <React.Fragment>
-                <div className = "drivers_top_background">
-                    <Header colorClass="colorClass" colorClass2="colorClass2" backgroundColorClass="backgroundColorClass"
-                    borderColorClass="borderColorClass" labelColorClass="labelColorClass" type={1}/>
-                    <DriverInfo element={driver} changeCar={this.changeCar} carImageNumber={this.state.carImageNumber} carImages={this.state.carImages}/>
-                    <DriverAdaptedRoute date={this.props.storeState.date} cities={this.props.storeState.cities}
-                        travelTime={this.props.driversState.travelTime} travelLength={this.props.driversState.travelLength}
-                    />
+    console.log("DriverProfile render");
+    let driver = this.props.driversState.drivers[this.props.match.params.id];
+    console.log("this.props.commentState");
+    console.log(this.props.commentState);
+    return(
+        <React.Fragment>
+            <div className = "drivers_top_background">
+                <div className="travelFormBlock">
+                    <StartTravelForm changeTravelVisibility={this.changeTravelVisibility} changeSuccessVisibility={this.changeSuccessVisibility}
+                    travelVisibility={this.state.travelVisibility} successVisibility={this.changeSuccessVisibility}/>
+                    <StartTravelSuccess successVisibility={this.state.successVisibility} changeSuccessVisibility={this.changeSuccessVisibility}/>               
                 </div>
+                <Header colorClass="colorClass" colorClass2="colorClass2" backgroundColorClass="backgroundColorClass"
+                borderColorClass="borderColorClass" labelColorClass="labelColorClass" type={1}/>
+                <DriverInfo element={driver} changeCar={this.changeCar} carImageNumber={this.state.carImageNumber} carImages={this.state.carImages}/>
+                <DriverAdaptedRoute element={driver} date={this.props.storeState.date} cities={this.props.storeState.cities}
+                    travelTime={this.props.driversState.travelTime} travelLength={this.props.driversState.travelLength} goToDrivers={this.goToDrivers}
+                    changeTravelVisibility={this.changeTravelVisibility}
+                />
+            </div>
 
-                <div className = "drivers_bottom_background" >
-                    <div className = "drivers_body">
-                        <div className="left_body_part">
-                            <DriversProfileComments page={this.state.page} comments={this.state.comments}/>
-                            <Manipulator number = {this.state.comments.length} page={this.state.page} elementsNumber={5} setPage={this.setPage}/>
-                        </div>
-                        <div className="right_body_part">
-                            <DriversCommercial/>
-                        </div>
-                        
+            <div className = "drivers_bottom_background" >
+                <div className = "drivers_body">
+                    <div className="left_body_part">
+                        <DriversProfileComments page={this.state.page} />
+                        <Manipulator number = {this.props.commentState.comments.length} page={this.state.page} elementsNumber={5} setPage={this.setPage}/>
+                    </div>
+                    <div className="right_body_part">
+                        <DriversCommercial/>
                     </div>
                     
                 </div>
-                <Footer/>
-            </React.Fragment>
+                
+            </div>
+            <Footer/>
+        </React.Fragment>
             
         )
     }
@@ -338,11 +298,13 @@ class DriverProfileClass extends React.Component{
 const DriverProfile = connect(
     (state) =>({
       storeState: state.AppReduser,
-      driversState: state.DriversReduser
+      driversState: state.DriversReduser,
+      commentState: state.CommentReduser
     }),
+    /*
     (dispatch) => ({
      // setCities:(cities) => dispatch({type:"SET_CITIES",cities:cities})
-    })
+    })*/
   )(DriverProfileClass);
   
   export default DriverProfile;

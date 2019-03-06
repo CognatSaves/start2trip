@@ -14,13 +14,14 @@ import { Provider } from 'react-redux';
 import {AppReduser} from './redusers/AppReduser';
 import {DriversReduser} from './redusers/DriversReduser';
 import {StateReduser} from './redusers/StateReduser';
+import {CommentReduser} from './redusers/CommentReduser';
 import {Link, Route, BrowserRouter, Redirect, Switch} from 'react-router-dom';
 require('require-context/register');
 
 
 const redux = require('redux');
 
-const reducers = redux.combineReducers({ AppReduser, DriversReduser, StateReduser });
+const reducers = redux.combineReducers({ AppReduser, DriversReduser, StateReduser, CommentReduser });
 
 const store = redux.createStore(reducers);
 

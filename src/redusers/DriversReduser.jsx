@@ -1,6 +1,7 @@
 const initialState = {
     travelTime: '',
     travelLength: '',
+    driversRouteChange: false,
     drivers: [//на данный момент адреса картинок не используются, всё прописано статически в css. Названия хранятся как декорации))))
     {
     name: "Валерий1",
@@ -598,7 +599,12 @@ export const DriversReduser = (state=initialState, action)=>{
         newStateLT.travelTime=action.travelTime;
         newStateLT.travelLength=action.travelLength;
         return newStateLT;
-
+        
+        case "SET_DRIVERS_ROUTE_CHANGE":
+        let newStateSDRC = {...state};
+        newStateSDRC.driversRouteChange = action.driversRouteChange;
+        return newStateSDRC;
+        
         default: return state;
     }
 
