@@ -8,7 +8,8 @@ import ValueMenu from './components/ValueMenu/ValueMenu.jsx'
 import AutoMenu from './components/AutoMenu/AutoMenu.jsx'
 import { connect } from 'react-redux';
 import sedan from './components/AutoMenu/pictures/sedan.svg';
-import { changePersonsNumberDispatch, changePersonsNumberDispatchOld, peopleMenuCall } from "../../../../redusers/Action"
+import { setAuto, setPages, setSortMenu, setTempPricePart,
+   changePersonsNumberDispatch, changePersonsNumberDispatchOld, peopleMenuCall } from "../../../../redusers/Action"
 import languageBlueIcon from '../DriversBlock/pictures/language_blue.svg'
 import userBlueIcon from '../DriversBlock/pictures/user_blue.svg'
 
@@ -58,27 +59,24 @@ class DriversPropertiesClass extends React.Component {
     })
   }
   sortMenuChoose(value) {
-    this.props.setSortMenu(value);
+    this.props.dispatch(setSortMenu(value));
     this.setState({
       sortMenu: false,
     })
   }
   pagesMenuCall() {
-    console.log("pagesMenuCall");
-
     this.setState({
       pagesMenu: !this.state.pagesMenu
     })
   }
   valueMenuCall(){
-    this.props.setTempPricePart(this.props.storeState.pricePart);
+    this.props.dispatch(setTempPricePart(this.props.storeState.pricePart));
     this.setState({
       valueMenu: !this.state.valueMenu
     })
   }
   pagesMenuChoose(value) {
-    console.log("pagesMenuChoose");
-    this.props.setPages(value);
+    this.props.dispatch(setPages(value));
     this.setState({
       pagesMenu: false,
     })
@@ -89,7 +87,7 @@ class DriversPropertiesClass extends React.Component {
     })
   }
   autoValueChoose(value, icon) {
-    this.props.setAuto(value);
+    this.props.dispatch(setAuto(value));
     this.setState({
       autoMenu: false,
       autoIcon: icon

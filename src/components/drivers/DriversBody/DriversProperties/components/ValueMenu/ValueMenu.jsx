@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './ValueMenu.css'
 import Slider from './Slider';
 import { connect } from 'react-redux';
+import {setPricePart, setTempPricePart} from '../../../../../../redusers/Action';
 
 class ValueMenuClass extends React.Component{
     constructor(props){
@@ -10,11 +11,11 @@ class ValueMenuClass extends React.Component{
         this.close=this.close.bind(this);
     }
     changeTempPrice(value){
-        this.props.setTempPricePart(value);
+        this.props.dispatch(setTempPricePart(value));
     }
     setPrice(){
         let tempValue = this.props.storeState.tempPricePart;
-        this.props.setPricePart(tempValue);
+        this.props.dispatch(setPricePart(tempValue));
         this.props.close();
     }
     close(){
@@ -46,10 +47,11 @@ const ValueMenu = connect(
     (state) => ({
       storeState: state.AppReduser,
     }),
+    /*
     (dispatch) => ({
       setPricePart: (pricePart) => dispatch({type: "SET_PRICE_PART", pricePart: pricePart}),
       setTempPricePart: (tempPricePart)=>dispatch({type: "SET_TEMP_PRICE_PART", tempPricePart: tempPricePart})
-    })
+    })*/
   )(ValueMenuClass);
   
   export default ValueMenu;
