@@ -30,7 +30,8 @@ class DriversPropertiesClass extends React.Component {
       //autoValue: "Тип авто",
       languageValue: "Язык",
       languageIcon: languageBlueIcon,
-      autoIcon: sedan,
+      autoIcon:sedan,
+      selectedPrice: this.props.maxValue
     }
     this.languageMenuCall = this.languageMenuCall.bind(this);
     this.sortMenuCall = this.sortMenuCall.bind(this);
@@ -69,7 +70,8 @@ class DriversPropertiesClass extends React.Component {
       pagesMenu: !this.state.pagesMenu
     })
   }
-  valueMenuCall() {
+  valueMenuCall(){
+    this.props.setTempPricePart(this.props.storeState.pricePart);
     this.setState({
       valueMenu: !this.state.valueMenu
     })
@@ -100,7 +102,17 @@ class DriversPropertiesClass extends React.Component {
       languageIcon: icon
     })
   }
+  
   render() {
+    function valueTextGenerator(pricePart, maxPrice){
+      if(pricePart<100){
+        let price = pricePart*maxPrice/100;
+        return "до "+price;
+      }
+      else{
+        return "Цена";
+      }
+    }
     function personsCalculation(people) {
       let result = 0;
       people.forEach(function (item, i, people) {
@@ -116,6 +128,9 @@ class DriversPropertiesClass extends React.Component {
       return resultString;
     }
     let personsNumberString = personsCalculation(this.props.storeState.persons);
+
+
+    let valueText = valueTextGenerator(this.props.storeState.pricePart, this.props.storeState.maxPrice);
     return (
       <div className="drivers_properties" >
 
@@ -151,11 +166,15 @@ class DriversPropertiesClass extends React.Component {
             </div>
             <PeopleMenu isVisible={this.props.storeState.peopleMenu} />
           </div>
-          <div className="properties_buttonStyle properties_leftButton" onClick={() => this.valueMenuCall()}>
-            <div className="properties_value">Цена</div>
-            <div className="properties_arrow"></div>
-            <ValueMenu isVisible={this.state.valueMenu} />
+          <div style={{position: "relative"}} >
+            <div className="properties_buttonStyle properties_leftButton" onClick = {()=>
+            {this.valueMenuCall()}}>           
+              <div className="properties_value">{valueText}</div>
+              <div className="properties_arrow"></div>
+            </div>            
+            <ValueMenu isVisible={this.state.valueMenu} maxPrice={this.props.maxPrice} price={this.props.price} changePrice={this.props.changePrice} close={this.valueMenuCall}/>           
           </div>
+          
         </div>
         <div className="properties_rightBlock">
           <div className="properties_buttonStyle properties_rightButton" onClick={() => this.sortMenuCall()}>
@@ -183,7 +202,7 @@ const DriversProperties = connect(
 )(DriversPropertiesClass);
 
 export default DriversProperties;
-
+// setTempPricePart: (tempPricePart)=>dispatch({type: "SET_TEMP_PRICE_PART", tempPricePart: tempPricePart})
 // const DriversProperties = connect(
 //   (state) => ({
 //     storeState: state.AppReduser,

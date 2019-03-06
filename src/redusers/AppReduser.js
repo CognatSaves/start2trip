@@ -6,6 +6,7 @@ import { SET_STATE, CHANGE_PERSONS_NUMBER, PEOPLE_MENU_CALL, CHANGE_PERSONS_NUMB
 
 
 const initialState = {
+<<<<<<< HEAD
   cities: ["Тбилиси", "Минск"],
   date: "",
   autoVariants: ["Седан", "Внедорожник", "Минивен", "Микроавтобус"],
@@ -33,9 +34,41 @@ const initialState = {
   pagesMenuValue: 10,
   sortMenuValue: "Популярность",
   sortMenuVariants: ["Популярность", "Рейтинг", "Цена"],
-  persons: [1,0],
+  persons: [1, 0],
   personsOld: "",
   peopleMenu: false,
+=======
+    cities: ["Тбилиси","Минск"],
+    date:"",
+    autoVariants: ["Седан","Внедорожник","Минивен","Микроавтобус"],
+    autoValue: "Тип авто",
+    languages: [
+        {
+          languageName: "Русский",
+          icon:ruFlag,
+        },
+        {
+          languageName: "English",
+          icon:enFlag,
+        },
+        {
+          languageName: "Georgian",
+          icon:geoFlag,
+        },
+        {
+          languageName: "Spanish",
+          icon:espFlag,
+        },
+
+      ],
+    pagesMenuVariants: [10,20,40],
+    pagesMenuValue: 10,
+    sortMenuValue: "Популярность",
+    sortMenuVariants: ["Популярность","Рейтинг","Цена"],
+    pricePart:100,
+    tempPricePart: 100,
+    maxPrice: 0
+>>>>>>> 8a9639cdc738e7123fcba6d644c5d2daddacfecf
 };
 
 export const AppReduser = (state = initialState, action) => {
@@ -82,6 +115,25 @@ export const AppReduser = (state = initialState, action) => {
       newState.sortMenuValue = action.sortMenuValue;
       return newState;
     }
+    
+    case "SET_MAX_PRICE":
+      let newStateSMP = { ...state };
+      newStateSMP.pricePart = action.pricePart;
+      newStateSMP.tempPricePart = action.pricePart;
+      newStateSMP.maxPrice = action.maxPrice;
+      return newStateSMP;
+
+    case "SET_TEMP_PRICE_PART":
+      let newStateSTPP = { ...state };
+      newStateSTPP.tempPricePart = action.tempPricePart;
+      return newStateSTPP;
+
+    case "SET_PRICE_PART":
+      let newStateSPP = { ...state };
+      newStateSPP.pricePart = action.pricePart;
+      return newStateSPP;
+
+
 
     case CHANGE_PERSONS_NUMBER: {
       let newState = { ...state };
