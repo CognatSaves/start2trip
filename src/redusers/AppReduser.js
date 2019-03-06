@@ -3,7 +3,8 @@ import ruFlag from '../components/drivers/DriversBody/DriversProperties/componen
 import enFlag from '../components/drivers/DriversBody/DriversProperties/components/LanguageMenu/pictures/united-kingdom.svg'
 import espFlag from '../components/drivers/DriversBody/DriversProperties/components/LanguageMenu/pictures/spain.svg'
 import languageBlueIcon from '../components/drivers/DriversBody/DriversBlock/pictures/language_blue.svg'
-import { SET_STATE, CHANGE_PERSONS_NUMBER, PEOPLE_MENU_CALL, CHANGE_PERSONS_NUMBER_OLD, LANGUAGE_VALUE_CHOOSE, } from './Action';
+import { SET_STATE, SET_CITIES, SET_AUTO, SET_PAGES, SET_SORT_MENU, SET_MAX_PRICE,LANGUAGE_VALUE_CHOOSE,
+  SET_TEMP_PRICE_PART, SET_PRICE_PART, CHANGE_PERSONS_NUMBER, PEOPLE_MENU_CALL, CHANGE_PERSONS_NUMBER_OLD } from './Action';
 
 
 const initialState = {
@@ -48,7 +49,7 @@ const initialState = {
 export const AppReduser = (state = initialState, action) => {
   switch (action.type) {
 
-    case "SET_STATE":
+    case SET_STATE:{
       let newStateSS = { ...state };
       switch (action.sourse) {
         case "HomeBody":
@@ -66,47 +67,50 @@ export const AppReduser = (state = initialState, action) => {
         default:
       }
       return newStateSS;
-    case "SET_CITIES": {
+    }
+    case SET_CITIES: {
       let newState = { ...state };
       newState.cities = action.cities;
       return newState;
     }
 
-    case "SET_AUTO": {
+    case SET_AUTO: {
       let newState = { ...state };
       newState.autoValue = action.autoValue;
       return newState;
     }
 
-    case "SET_PAGES": {
+    case SET_PAGES: {
       let newState = { ...state };
       newState.pagesMenuValue = action.pagesMenuValue;
       return newState;
     }
 
-    case "SET_SORT_MENU": {
+    case SET_SORT_MENU: {
       let newState = { ...state };
       newState.sortMenuValue = action.sortMenuValue;
       return newState;
     }
-
-    case "SET_MAX_PRICE":
+    
+    case SET_MAX_PRICE:{
       let newStateSMP = { ...state };
       newStateSMP.pricePart = action.pricePart;
       newStateSMP.tempPricePart = action.pricePart;
       newStateSMP.maxPrice = action.maxPrice;
       return newStateSMP;
+    }
 
-    case "SET_TEMP_PRICE_PART":
+    case SET_TEMP_PRICE_PART:{
       let newStateSTPP = { ...state };
       newStateSTPP.tempPricePart = action.tempPricePart;
       return newStateSTPP;
+    }
 
-    case "SET_PRICE_PART":
+    case SET_PRICE_PART:{
       let newStateSPP = { ...state };
       newStateSPP.pricePart = action.pricePart;
       return newStateSPP;
-
+    }
 
 
     case CHANGE_PERSONS_NUMBER: {
