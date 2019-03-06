@@ -10,20 +10,11 @@ import addIcon from './pictures/add.svg';
 import calendarIcon from './pictures/calendar.svg';
 import loupe from './pictures/da_loupe.png';
 import cityMarker from './pictures/location_white.svg';
+import {set_state} from '../../../redusers/Action'
+import {setDriversRouteChange} from '../../../redusers/ActionDrivers'
+
 
 class DriversRouteClass extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state={
-          change: false
-        }
-        this.changeRouteClick=this.changeRouteClick.bind(this);
-    }
-    changeRouteClick(){
-      this.setState({
-        change: !this.state.change
-      })
-    }
     render() {
       let isVisibleArray = Array(this.props.storeState.cities.length).fill("visible");
       isVisibleArray[isVisibleArray.length-1]="hidden";
@@ -32,12 +23,12 @@ class DriversRouteClass extends React.Component {
       routeElementWidth=routeElementWidth+"%";
       console.log("DriversRoute Render");
       console.log(this.props);
-      if(!this.state.change){
+      if(!this.props.driversState.driversRouteChange){
         return (
           <div className = "drivers_route">
             <div className="route_date">
               <div className="route_date_text">Ваш индивидуальный маршрут на: {this.props.storeState.date}</div>
-              <div className="route_change" onClick={()=>this.changeRouteClick()}>               
+              <div className="route_change" onClick={()=>this.props.dispatch(setDriversRouteChange(!this.props.driversState.driversRouteChange))}>               
                 <div className="route_change_text">Изменить маршрут</div>
                 <div className="route_change_emblem">
                   <img src={changeElement} width="100%" height="100%" alt="change"></img>
@@ -67,7 +58,7 @@ class DriversRouteClass extends React.Component {
           <div className = "drivers_route">
             <div className="route_date">
               <div className="route_date_text">Ваш индивидуальный маршрут на: {this.props.storeState.date}</div>
-              <div className="route_change" onClick={()=>this.changeRouteClick()}>               
+              <div className="route_change" onClick={()=>this.props.dispatch(setDriversRouteChange(!this.props.driversState.driversRouteChange))}>               
                 <div className="route_change_text">Изменить маршрут</div>
                 <div className="route_change_emblem">
                   <img src={changeElement} width="100%" height="100%" alt="change"></img>
@@ -181,9 +172,6 @@ const DriversRoute = connect(
   (state) =>({
     storeState: state.AppReduser,
     driversState: state.DriversReduser
-  }),
-  (dispatch) => ({
-    setState: (cities, date, visibility, picture)=>dispatch({type:"SET_STATE", sourse:"HomeBody", cities: cities, date: date, calendaryVisibility: visibility, picture: picture}) 
   })
 )(DriversRouteClass);
 

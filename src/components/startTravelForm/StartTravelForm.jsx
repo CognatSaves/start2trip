@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './StartTravelForm.css';
+import './StartTravelBlockStyles.css';
 import { Link } from 'react-router-dom';
 import grayCross from './pictures/close_gray.svg';
 

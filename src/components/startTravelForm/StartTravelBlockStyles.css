@@ -1,0 +1,7 @@
+.travelFormBlock {
+    position: absolute;
+    width: 66%;
+    top: 10%;
+    margin: 0 auto;
+    z-index: 10;
+}

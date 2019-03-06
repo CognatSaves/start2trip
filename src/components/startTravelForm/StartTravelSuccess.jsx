@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import './StartTravelForm.css';
 import './StartTravelSuccess.css';
+import './StartTravelBlockStyles.css';
 import successImage from './pictures/success.svg'
 
 export default class StartTravelSuccess extends React.Component{

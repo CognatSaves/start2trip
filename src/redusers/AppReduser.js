@@ -44,6 +44,7 @@ const initialState = {
   pricePart: 100,
   tempPricePart: 100,
   maxPrice: 0,
+  valueMenu: false,
   languageValue:"Язык",
   languageIcon:languageBlueIcon,
   languageMenu:false,
@@ -113,12 +114,14 @@ export const AppReduser = (state = initialState, action) => {
     case SET_TEMP_PRICE_PART:{
       let newStateSTPP = { ...state };
       newStateSTPP.tempPricePart = action.tempPricePart;
+      newStateSTPP.valueMenu = action.valueMenu;
       return newStateSTPP;
     }
 
     case SET_PRICE_PART:{
       let newStateSPP = { ...state };
       newStateSPP.pricePart = action.pricePart;
+      newStateSPP.valueMenu = action.valueMenu;
       return newStateSPP;
     }
 

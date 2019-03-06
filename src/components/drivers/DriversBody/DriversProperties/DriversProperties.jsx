@@ -7,10 +7,17 @@ import PagesMenu from './components/PagesMenu/PagesMenu.jsx'
 import ValueMenu from './components/ValueMenu/ValueMenu.jsx'
 import AutoMenu from './components/AutoMenu/AutoMenu.jsx'
 import { connect } from 'react-redux';
+<<<<<<< HEAD
 import {
   setAuto, setPages, setSortMenu, setTempPricePart, languageMenuIsVisibal,
   changePersonsNumberDispatch, changePersonsNumberDispatchOld, peopleMenuCall, autoMenuCall} from "../../../../redusers/Action"
 
+=======
+import sedan from './components/AutoMenu/pictures/sedan.svg';
+import { setAuto, setPages, setSortMenu, setTempPricePart,
+   changePersonsNumberDispatch, changePersonsNumberDispatchOld, peopleMenuCall, languageValueChooseDispatch } from "../../../../redusers/Action"
+import languageBlueIcon from '../DriversBlock/pictures/language_blue.svg'
+>>>>>>> 80da54732317b516ba02029ddf0b6d9e20f55dfc
 import userBlueIcon from '../DriversBlock/pictures/user_blue.svg'
 
 
@@ -50,8 +57,8 @@ class DriversPropertiesClass extends React.Component {
       pagesMenu: !this.state.pagesMenu
     })
   }
-  valueMenuCall() {
-    this.props.dispatch(setTempPricePart(this.props.storeState.pricePart));
+  valueMenuCall(valueMenu){
+    this.props.dispatch(setTempPricePart(this.props.storeState.pricePart, valueMenu));
   }
 
   pagesMenuChoose(value) {
@@ -130,11 +137,11 @@ class DriversPropertiesClass extends React.Component {
             <PeopleMenu isVisible={this.props.storeState.peopleMenu} />
           </div>
           <div style={{ position: "relative" }} >
-            <div className="properties_buttonStyle properties_leftButton" onClick={() => { this.valueMenuCall() }}>
+            <div className="properties_buttonStyle properties_leftButton" onClick={() => { this.valueMenuCall(true) }}>
               <div className="properties_value">{valueText}</div>
               <div className="properties_arrow"></div>
             </div>
-            <ValueMenu isVisible={this.state.valueMenu} maxPrice={this.props.maxPrice} price={this.props.price} changePrice={this.props.changePrice} close={this.valueMenuCall} />
+            <ValueMenu isVisible={this.props.storeState.valueMenu} maxPrice={this.props.maxPrice} price={this.props.price} changePrice={this.props.changePrice}  />
           </div>
         </div>
         <div className="properties_rightBlock">

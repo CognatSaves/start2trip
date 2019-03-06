@@ -2,14 +2,15 @@ import React, {Component} from 'react';
 import './DriversProfileComments.css';
 import tempPicture from './pictures/drivers_body_photo.png'
 import emptyStar from './pictures/star.svg';
+import { connect } from 'react-redux'
 
-export default class DriversProfileComments extends React.Component{
+class DriversProfileCommentsClass extends React.Component{
     constructor(props){
         super(props);
         
     }
     render(){
-        let selectedComments = this.props.comments.slice((this.props.page - 1) * 5, (this.props.page) * 5);
+        let selectedComments = this.props.commentState.comments.slice((this.props.page - 1) * 5, (this.props.page) * 5);
         return(
             <React.Fragment>
                 <div className="driverProfileComments_panel">
@@ -104,13 +105,11 @@ export default class DriversProfileComments extends React.Component{
         )
     }
 }
-/*
-<p className="valueBlock_commentary">{element.value}</p>
+const DriversProfileComments = connect(
+    (state) =>({
+      commentState: state.CommentReduser
+    }),
 
-<div class="news">
-<label for="put">
- Компании AMD, ARM, Huawei, IBM, Mellanox, Qualcomm и Xilinx объявили о сотрудничестве, направленном на разработку спецификации ddddddddddddddddd Cache Coherent Interconnect for Accelerators (CCIX). Она позволит процессорам разных архитектур и ускорителям использовать данные совместно.
-Лидеры отрасли объединяют усилия</label>
-
-</div>
-*/
+  )(DriversProfileCommentsClass);
+  
+  export default DriversProfileComments;

@@ -82,17 +82,19 @@ const setMaxPrice = function (pricePart, maxPrice){
   }
 }
 
-const setTempPricePart = function (tempPricePart){
+const setTempPricePart = function (tempPricePart, valueMenu){
   return {
     type: 'SET_TEMP_PRICE_PART',
-    tempPricePart: tempPricePart
+    tempPricePart: tempPricePart,
+    valueMenu: valueMenu
   }
 }
 
-const setPricePart = function (pricePart){
+const setPricePart = function (pricePart, valueMenu){
   return {
     type: 'SET_PRICE_PART',
-    pricePart: pricePart
+    pricePart: pricePart,
+    valueMenu: valueMenu
   }
 }
 const changePersonsNumberDispatch = function (persons) {

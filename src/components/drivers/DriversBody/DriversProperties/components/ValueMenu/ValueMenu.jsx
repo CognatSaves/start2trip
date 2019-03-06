@@ -9,17 +9,17 @@ class ValueMenuClass extends React.Component{
         super(props);
         this.changeTempPrice=this.changeTempPrice.bind(this);
         this.close=this.close.bind(this);
+        this.setPrice=this.setPrice.bind(this);
     }
     changeTempPrice(value){
-        this.props.dispatch(setTempPricePart(value));
+        this.props.dispatch(setTempPricePart(value, true));
     }
     setPrice(){
         let tempValue = this.props.storeState.tempPricePart;
-        this.props.dispatch(setPricePart(tempValue));
-        this.props.close();
+        this.props.dispatch(setPricePart(tempValue, false));
     }
     close(){
-        this.props.close();
+        this.props.dispatch(setTempPricePart(this.props.storeState.pricePart, false));
     }
     
     render(){
