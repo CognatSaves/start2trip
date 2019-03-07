@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import './SortMenu.css'
+import { connect } from 'react-redux';
+import {setSortMenu} from '../../../../../../redusers/Action'
 
 
-export default class SortMenu extends React.Component{
+class SortMenuClass extends React.Component{
     constructor(props){
         super(props);
     }
@@ -10,9 +12,9 @@ export default class SortMenu extends React.Component{
         if(this.props.isVisible){
             return(
                 <div className="drivers_properties_sortMenu">
-                    {this.props.variants.map((element,index) => 
+                    {this.props.storeState.sortMenuVariants.map((element,index) => 
                         <div className="sortMenu_element">
-                            <div className="sortMenu_element_text" onClick={()=>this.props.chooseFunc(element)}>
+                            <div className="sortMenu_element_text" onClick={()=>this.props.dispatch(setSortMenu(element))}>
                                 <div className="sortMenu_element_text_value">{element}</div>
                             </div>
                         </div>
@@ -27,6 +29,14 @@ export default class SortMenu extends React.Component{
         }
     }
 }
+
+const SortMenu = connect(
+    (state) => ({
+      storeState: state.AppReduser,
+    }),
+  )(SortMenuClass);
+  
+  export default SortMenu;
 
 
 /*

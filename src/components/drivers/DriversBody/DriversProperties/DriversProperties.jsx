@@ -8,8 +8,9 @@ import ValueMenu from './components/ValueMenu/ValueMenu.jsx'
 import AutoMenu from './components/AutoMenu/AutoMenu.jsx'
 import { connect } from 'react-redux';
 import {
-   setPages, setSortMenu, setTempPricePart, languageMenuIsVisibal,
-  changePersonsNumberDispatch, changePersonsNumberDispatchOld, peopleMenuCall, autoMenuCall} from "../../../../redusers/Action"
+  setPagesVisible, setTempPricePart, languageMenuIsVisibal, setSortMenuVisible,
+  changePersonsNumberDispatch, changePersonsNumberDispatchOld, peopleMenuCall, autoMenuCall
+} from "../../../../redusers/Action"
 
 import userBlueIcon from '../DriversBlock/pictures/user_blue.svg'
 
@@ -18,51 +19,14 @@ class DriversPropertiesClass extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sortMenu: false,
-      pagesMenu: false,
-      sortMenuValue: "Популярность",
-      sortMenuVariants: ["Популярность", "Рейтинг", "Цена"],
       selectedPrice: this.props.maxValue
     }
-    this.sortMenuCall = this.sortMenuCall.bind(this);
-    this.sortMenuChoose = this.sortMenuChoose.bind(this);
-    this.pagesMenuCall = this.pagesMenuCall.bind(this);
-    this.pagesMenuChoose = this.pagesMenuChoose.bind(this);
     this.valueMenuCall = this.valueMenuCall.bind(this);
   }
 
-
-  sortMenuCall() {
-    this.setState({
-      sortMenu: !this.state.sortMenu
-    })
-  }
-
-  sortMenuChoose(value) {
-    debugger
-    this.props.dispatch(setSortMenu(value));
-    this.setState({
-      sortMenu: false,
-    })
-  }
-  pagesMenuCall() {
-    this.setState({
-      pagesMenu: !this.state.pagesMenu
-    })
-  }
-  valueMenuCall(valueMenu){
+  valueMenuCall(valueMenu) {
     this.props.dispatch(setTempPricePart(this.props.storeState.pricePart, valueMenu));
   }
-
-  pagesMenuChoose(value) {
-    this.props.dispatch(setPages(value));
-    this.setState({
-      pagesMenu: false,
-    })
-  }
-
-
-
 
 
   render() {
@@ -94,6 +58,7 @@ class DriversPropertiesClass extends React.Component {
     let personsNumberString = personsCalculation(this.props.storeState.persons);
 
     let valueText = valueTextGenerator(this.props.storeState.pricePart, this.props.storeState.maxPrice);
+
     return (
       <div className="drivers_properties" >
 
@@ -134,24 +99,23 @@ class DriversPropertiesClass extends React.Component {
               <div className="properties_value">{valueText}</div>
               <div className="properties_arrow"></div>
             </div>
-            <ValueMenu isVisible={this.props.storeState.valueMenu} maxPrice={this.props.maxPrice} price={this.props.price} changePrice={this.props.changePrice}  />
+            <ValueMenu isVisible={this.props.storeState.valueMenu} maxPrice={this.props.maxPrice} price={this.props.price} changePrice={this.props.changePrice} />
           </div>
         </div>
         <div className="properties_rightBlock">
-          <div className="properties_buttonStyle properties_rightButton" onClick={() => this.sortMenuCall()}>
+          <div className="properties_buttonStyle properties_rightButton" onClick={() => this.props.dispatch(setSortMenuVisible(!this.props.storeState.sortMenu))}>
             <div className="properties_rightButton_characteristic">Сортировать:</div>
             <div className="properties_rightButton_value">{this.props.storeState.sortMenuValue}</div>
             <div className="properties_arrow"></div>
-            <SortMenu isVisible={this.state.sortMenu} chooseFunc={this.sortMenuChoose} variants={this.props.storeState.sortMenuVariants} />
+            <SortMenu isVisible={this.props.storeState.sortMenu} />
           </div>
-          <div className="properties_buttonStyle properties_rightButton" onClick={() => this.pagesMenuCall()}>
+          <div className="properties_buttonStyle properties_rightButton" onClick={() => this.props.dispatch(setPagesVisible(!this.props.storeState.pagesMenu))}>
             <div className="properties_rightButton_characteristic">{this.props.storeState.pagesMenuValue} / страниц</div>
             <div className="properties_arrow"></div>
-            <PagesMenu isVisible={this.state.pagesMenu} chooseFunc={this.pagesMenuChoose} />
+            <PagesMenu isVisible={this.props.storeState.pagesMenu} />
           </div>
         </div>
       </div>
-
     )
   }
 }
@@ -163,16 +127,3 @@ const DriversProperties = connect(
 )(DriversPropertiesClass);
 
 export default DriversProperties;
-// setTempPricePart: (tempPricePart)=>dispatch({type: "SET_TEMP_PRICE_PART", tempPricePart: tempPricePart})
-// const DriversProperties = connect(
-//   (state) => ({
-//     storeState: state.AppReduser,
-//   }),
-//   (dispatch) => ({
-//     setAuto: (autoValue) => dispatch({type: "SET_AUTO", autoValue: autoValue}),
-//     setPages: (pagesMenuValue) => dispatch({type: "SET_PAGES", pagesMenuValue: pagesMenuValue}),
-//     setSortMenu: (sortMenuValue) => dispatch({type: "SET_SORT_MENU", sortMenuValue: sortMenuValue})
-//   })
-// )(DriversPropertiesClass);
-
-// export default DriversProperties;

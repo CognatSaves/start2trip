@@ -6,7 +6,7 @@
 .rc-slider {
     position: relative;
     height: 14px;
-    padding: 5px 0;
+    padding: 15px 0;
     width: 100%;
     border-radius: 6px;
     -ms-touch-action: none;
@@ -29,14 +29,14 @@
   .rc-slider-track {
     position: absolute;
     left: 0;
-    height: 4px;
+    height: 2px;
     border-radius: 6px;
-    background-color:#304269;
+    background-color:#f60;
   }
   .rc-slider-handle {
     position: absolute;
     margin-left: -7px;
-    margin-top: -5px;
+    margin-top: -6px;
     width: 14px;
     height: 14px;
     cursor: pointer;
@@ -44,7 +44,7 @@
     cursor: grab;
     border-radius: 50%;
     box-shadow: 0 0 10px 0px rgba(221, 221,221, 1);
-    background-color: #fff;
+    background-color: #f60;
     -ms-touch-action: pan-x;
         touch-action: pan-x;
   }

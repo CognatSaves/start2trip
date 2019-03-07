@@ -4,7 +4,7 @@ import enFlag from '../components/drivers/DriversBody/DriversProperties/componen
 import espFlag from '../components/drivers/DriversBody/DriversProperties/components/LanguageMenu/pictures/spain.svg'
 import languageBlueIcon from '../components/drivers/DriversBody/DriversBlock/pictures/language_blue.svg'
 import sedan from '../components/drivers/DriversBody/DriversProperties/components/AutoMenu/pictures/sedan.svg';
-import { SET_STATE, SET_CITIES, SET_AUTO, SET_PAGES, SET_SORT_MENU, SET_MAX_PRICE,LANGUAGE_VALUE_CHOOSE,LANGUAGE_MENU_IS_VISIBAL,
+import { SET_STATE, SET_CITIES, SET_AUTO, SET_PAGES, SET_PAGES_VISIBLE, SET_SORT_MENU, SET_SORT_MENU_VISIBLE, SET_MAX_PRICE,LANGUAGE_VALUE_CHOOSE,LANGUAGE_MENU_IS_VISIBAL,
   SET_TEMP_PRICE_PART, SET_PRICE_PART, CHANGE_PERSONS_NUMBER, PEOPLE_MENU_CALL, CHANGE_PERSONS_NUMBER_OLD, AUTO_MENU_CALL } from './Action';
 
 
@@ -36,8 +36,10 @@ const initialState = {
   ],
   pagesMenuVariants: [10, 20, 40],
   pagesMenuValue: 10,
+  pagesMenu: false,
   sortMenuValue: "Популярность",
   sortMenuVariants: ["Популярность", "Рейтинг", "Цена"],
+  sortMenu: false,
   persons: [1, 0],
   personsOld: "",
   peopleMenu: false,
@@ -97,9 +99,21 @@ export const AppReduser = (state = initialState, action) => {
       return newState;
     }
 
+    case SET_PAGES_VISIBLE: {
+      let newState = { ...state };
+      newState.pagesMenu = action.pagesMenu;
+      return newState;
+    }
+
     case SET_SORT_MENU: {
       let newState = { ...state };
       newState.sortMenuValue = action.sortMenuValue;
+      return newState;
+    }
+
+    case SET_SORT_MENU_VISIBLE: {
+      let newState = { ...state };
+      newState.sortMenu = action.sortMenu;
       return newState;
     }
     

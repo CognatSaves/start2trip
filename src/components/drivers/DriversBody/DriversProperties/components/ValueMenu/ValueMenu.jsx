@@ -2,42 +2,42 @@ import React, { Component } from 'react';
 import './ValueMenu.css'
 import Slider from './Slider';
 import { connect } from 'react-redux';
-import {setPricePart, setTempPricePart} from '../../../../../../redusers/Action';
+import { setPricePart, setTempPricePart } from '../../../../../../redusers/Action';
 
-class ValueMenuClass extends React.Component{
-    constructor(props){
+class ValueMenuClass extends React.Component {
+    constructor(props) {
         super(props);
-        this.changeTempPrice=this.changeTempPrice.bind(this);
-        this.close=this.close.bind(this);
-        this.setPrice=this.setPrice.bind(this);
+        this.changeTempPrice = this.changeTempPrice.bind(this);
+        this.close = this.close.bind(this);
+        this.setPrice = this.setPrice.bind(this);
     }
-    changeTempPrice(value){
+    changeTempPrice(value) {
         this.props.dispatch(setTempPricePart(value, true));
     }
-    setPrice(){
+    setPrice() {
         let tempValue = this.props.storeState.tempPricePart;
         this.props.dispatch(setPricePart(tempValue, false));
     }
-    close(){
+    close() {
         this.props.dispatch(setTempPricePart(this.props.storeState.pricePart, false));
     }
-    
-    render(){
+
+    render() {
         let containerId = "drivers_properties_valueMenu";
-        if(this.props.isVisible){
-            return(
+        if (this.props.isVisible) {
+            return (
                 <div id={containerId} className="drivers_properties_valueMenu">
-                        <div className="valueMenu_borderElement valueMenu_rightBorder">{"до "+this.props.storeState.maxPrice*this.props.storeState.tempPricePart/100}</div>
-                        <Slider changeMaxValue={this.changeTempPrice} defaultValue={[0, this.props.storeState.tempPricePart]}/>                          
-                        <div className="valueMenu_stateBlock">
-                            <button className="valueMenu_stateBlock_buttonStyle valueMenu_stateBlock_applyButton" onClick={()=>this.setPrice()}>Готово</button>
-                            <button className="valueMenu_stateBlock_buttonStyle valueMenu_stateBlock_cancelButton" onClick={()=>this.close()}>Отмена</button>
-                        </div>
+                    <div className="valueMenu_borderElement valueMenu_rightBorder"><p>До</p><p>{this.props.storeState.maxPrice * this.props.storeState.tempPricePart / 100 +" Br"}</p></div>
+                    <Slider changeMaxValue={this.changeTempPrice} defaultValue={[0, this.props.storeState.tempPricePart]} />
+                    <div className="valueMenu_stateBlock">
+                        <button className="valueMenu_stateBlock_cancelButton" onClick={() => this.close()}>Отмена</button>
+                        <button className="valueMenu_stateBlock_applyButton" onClick={() => this.setPrice()}>Готово</button>
+                    </div>
                 </div>
             )
         }
-        else{
-            return(
+        else {
+            return (
                 <React.Fragment></React.Fragment>
             )
         }
@@ -45,13 +45,13 @@ class ValueMenuClass extends React.Component{
 }
 const ValueMenu = connect(
     (state) => ({
-      storeState: state.AppReduser,
+        storeState: state.AppReduser,
     }),
     /*
     (dispatch) => ({
       setPricePart: (pricePart) => dispatch({type: "SET_PRICE_PART", pricePart: pricePart}),
       setTempPricePart: (tempPricePart)=>dispatch({type: "SET_TEMP_PRICE_PART", tempPricePart: tempPricePart})
     })*/
-  )(ValueMenuClass);
-  
-  export default ValueMenu;
+)(ValueMenuClass);
+
+export default ValueMenu;

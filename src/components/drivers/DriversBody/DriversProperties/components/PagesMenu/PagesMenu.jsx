@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './PagesMenu.css'
 import { connect } from 'react-redux';
+import {setPages} from '../../../../../../redusers/Action'
 
 
 class PagesMenuClass extends React.Component{
@@ -13,7 +14,7 @@ class PagesMenuClass extends React.Component{
                 <div className="drivers_properties_pagesMenu">
                     {this.props.storeState.pagesMenuVariants.map((element,index) => 
                         <div className="pagesMenu_element" key={element}>
-                            <div className="pagesMenu_element_text" onClick={()=>this.props.chooseFunc(element)}>
+                            <div className="pagesMenu_element_text" onClick={()=>this.props.dispatch(setPages(element))}>
                                 <div className="pagesMenu_element_text_value">{element}</div>
                             </div>
                         </div>

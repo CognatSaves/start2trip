@@ -6,7 +6,11 @@ const SET_AUTO = 'SET_AUTO';
 
 const SET_PAGES = 'SET_PAGES';
 
+const SET_PAGES_VISIBLE = 'SET_PAGES_VISIBLE';
+
 const SET_SORT_MENU = 'SET_SORT_MENU';
+
+const SET_SORT_MENU_VISIBLE = 'SET_SORT_MENU_VISIBLE';
 
 const SET_MAX_PRICE = 'SET_MAX_PRICE';
 
@@ -25,6 +29,8 @@ const LANGUAGE_VALUE_CHOOSE = 'LANGUAGE_VALUE_CHOOSE';
 const LANGUAGE_MENU_IS_VISIBAL = 'LANGUAGE_MENU_IS_VISIBAL';
 
 const AUTO_MENU_CALL = 'AUTO_MENU_CALL';
+
+
 
 const set_state = function (sourse, cities, date, calendaryVisibility, picture) {
   return {
@@ -66,10 +72,24 @@ const setPages = function (pagesMenuValue){
   }
 }
 
+const setPagesVisible = function (pagesMenu){
+  return {
+    type: 'SET_PAGES_VISIBLE',
+    pagesMenu: pagesMenu
+  }
+}
+
 const setSortMenu = function (sortMenuValue){
   return {
     type: 'SET_SORT_MENU',
     sortMenuValue: sortMenuValue
+  }
+}
+
+const setSortMenuVisible = function (sortMenu){
+  return {
+    type: 'SET_SORT_MENU_VISIBLE',
+    sortMenu: sortMenu
   }
 }
 
@@ -137,7 +157,9 @@ export {
   setCities, SET_CITIES,
   setAuto, SET_AUTO,
   setPages, SET_PAGES,
+  setPagesVisible, SET_PAGES_VISIBLE,
   setSortMenu, SET_SORT_MENU,
+  setSortMenuVisible, SET_SORT_MENU_VISIBLE,
   setMaxPrice, SET_MAX_PRICE,
   setTempPricePart, SET_TEMP_PRICE_PART,
   setPricePart, SET_PRICE_PART,
