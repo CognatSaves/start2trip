@@ -17,13 +17,29 @@ import LocationSearchInput from './Search'
 const AddCities = (props) => {
   const { cities, changeCity, removeCity } = props;
 
+  const cityElement = (props) =>{
+
+    let {city, changeCity, index, removeCity} = props;
+    return (
+      <div className="startCity">
+        <div className="iconMass">
+          <img src={ellipseIcon} alt="ellipseIcon" width="10px" height="12px" />
+          <img src={shapeIcon} alt="shapeIcon" width="7px" height="25px" />
+        </div>
+        {/* <input type="text" className="city_input" placeholder="Укажите точку отправки" value={city} onChange={changeCity.bind(this, 0)} /> */}
+        <LocationSearchInput address={city} changeCity={changeCity} index={index} class={"city_input"}/>
+        <img src={crossIcon} className="crossIcon" alt="crossIcon" width="12px" height="12px" onClick={() => removeCity(index)}/>
+      </div>
+    )
+  }
+
   const newCity = () => {
     if (cities.length > 2) {
       let thisCities = cities;
       thisCities.shift()
       thisCities.pop()
       return (
-        thisCities.map((element, index) =>
+       /* thisCities.map((element, index) =>
           <div key={index} className="newCity">
             <div className="iconMass">
               <img src={ellipseIcon} alt="ellipseIcon" width="10px" height="12px" />
@@ -31,8 +47,13 @@ const AddCities = (props) => {
             </div>
             <input type="text" className="city_input" value={element} placeholder="Укажите пункт назначения" value={cities[index]} onChange={changeCity.bind(this, index)} />
             <img src={crossIcon} className="crossIcon" alt="crossIcon" width="12px" height="12px" onClick={() => removeCity(index)} />
-          </div>
+          </div>*/
+        thisCities.map((element, index)=>
+          {
+            cityElement(element, changeCity, index, removeCity);
+          }
         )
+        
       )
     }
 
@@ -40,20 +61,23 @@ const AddCities = (props) => {
 
   return (
     <div className="addCities">
-      <div className="startCity">
+      {/* <div className="startCity">
         <div className="iconMass">
           <img src={ellipseIcon} alt="ellipseIcon" width="10px" height="12px" />
           <img src={shapeIcon} alt="shapeIcon" width="7px" height="25px" />
         </div>
         <input type="text" className="city_input" placeholder="Укажите точку отправки" value={cities[0]} onChange={changeCity.bind(this, 0)} />
         <img src={crossIcon} className="crossIcon" alt="crossIcon" width="12px" height="12px" />
-      </div>
+      </div> */}
+      {cityElement(cities[0],changeCity,0)}
       {newCity()}
+     
       <div className="endCity">
         <img src={geoIcon} alt="geoIcon" className="geoIcon" width="10px" height="12px" />
-        <input type="text" className="city_input" placeholder="Укажите пункт назначения" value={cities[cities.length]} />
+        {/* <input type="text" className="city_input" placeholder="Укажите пункт назначения" value={cities[cities.length]} /> */}
+        <LocationSearchInput address={cities[cities.length]} changeCity={changeCity} index={cities.length} class={"city_input"}/>
         <img src={crossIcon} className="crossIcon" alt="crossIcon" width="13px" height="12px" />
-      </div>
+      </div> 
     </div>
     // <tbody align="center">
     // {cities.map((element,index)=>
@@ -136,8 +160,8 @@ export default class HomeBody extends React.Component {
             <img src={arrowIcon} alt="arrow" width="15px" height="15px" />
           </div>
           <div>
-            <div className="peopleSelect">
-              
+            <div >
+            {/* className="peopleSelect" */}
             </div>
             <div>
               {/* <label className="selectCar" placeholder="Тип авто">

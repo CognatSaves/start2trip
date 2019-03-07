@@ -5,6 +5,7 @@ import App from './App';
 import Home from './components/home/Home.jsx';
 import Drivers from './components/drivers/Drivers.jsx';
 import DriverProfile from './components/driverProfile/DriverProfile.jsx';
+import Places from './components/Places/Places.jsx';
 
 import './components/header/StandartHeaderStyles.css';
 import './components/header/HomeHeaderStyles.css';
@@ -15,13 +16,14 @@ import {AppReduser} from './redusers/AppReduser';
 import {DriversReduser} from './redusers/DriversReduser';
 import {StateReduser} from './redusers/StateReduser';
 import {CommentReduser} from './redusers/CommentReduser';
+import {PlacesReduser} from './redusers/PlacesReduser';
 import {Link, Route, BrowserRouter, Redirect, Switch} from 'react-router-dom';
 require('require-context/register');
 
 
 const redux = require('redux');
 
-const reducers = redux.combineReducers({ AppReduser, DriversReduser, StateReduser, CommentReduser });
+const reducers = redux.combineReducers({ AppReduser, DriversReduser, StateReduser, CommentReduser, PlacesReduser });
 
 const store = redux.createStore(reducers);
 
@@ -33,6 +35,7 @@ ReactDOM.render(
             <Route path="/home" component={Home}/>
             <Route path="/drivers" component={Drivers}/>
             <Route path="/driverProfile/:id,:temp1,:temp2" component={DriverProfile}/>
+            <Route path="/places" component={Places}/>
             <Redirect from="/" to="/home"/>
         </Switch>       
     </React.Fragment>
