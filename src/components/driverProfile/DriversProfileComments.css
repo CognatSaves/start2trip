@@ -14,17 +14,15 @@
     height: 100%;
     background: transparent;
     border:none;
-    border-bottom: 1px solid #cccccc;
 }
 .driverProfileComments_panel_selectedElement{
     height: 100%;
     background: transparent;
     border:none;
-    border-bottom: 1px solid #ff6600;
+    border-bottom: 3px solid #ff6600;
     color: #ff6600;
 }
 .driverProfileComments_commentBlock{ 
-
     display: flex;
     flex-direction: column;
     width:100%;

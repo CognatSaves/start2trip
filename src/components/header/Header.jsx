@@ -38,7 +38,7 @@ export default class Header extends React.Component {
             </div>
           </div>
           <div className={"header_buttonMass "+this.props.colorClass2}>
-            <Link to="/" className={"buttonMass_button "+this.props.colorClass2}>МЕСТА</Link>
+            <Link to="/places" className={"buttonMass_button "+this.props.colorClass2}>МЕСТА</Link>
             <Link to="/" className={"buttonMass_button "+this.props.colorClass2}>ТУРЫ</Link>
             <Link to="/" className={"buttonMass_button "+this.props.colorClass2}>ОТЕЛИ</Link>
             <Link to="/" className={"buttonMass_button "+this.props.colorClass2}>АВИАБИЛЕТЫ</Link>
