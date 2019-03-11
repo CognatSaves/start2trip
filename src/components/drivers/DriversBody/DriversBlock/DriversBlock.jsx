@@ -13,6 +13,7 @@ import sedan from './pictures/sedan.svg';
 import jeep from './pictures/jeep.svg';
 import { Link } from 'react-router-dom';
 
+import Stars from '../../../stars/Stars';
 
 class DriversBlockClass extends React.Component {
   constructor(props) {
@@ -67,32 +68,7 @@ class DriversBlockClass extends React.Component {
               <div className="block_element_infoBlock">
                 <div className="block_element_infoBlock_top">
                   <Link to={`/driverProfile/${index},${index},${index}`} className="block_element_infoBlock_name">{element.name}</Link>
-                  <div className="infoBlock_starsBlock">
-                    <div className="infoBlock_starsBlock_value">5.0</div>
-                    <div className="infoBlock_starsBlock_stars">
-                      <div className="starsBlock_stars_element">
-                        <div className="background_stars" />
-                        <img src={emptyStar} width="15px" height="18px" alt="star1"></img>
-                      </div>
-                      <div className="starsBlock_stars_element">
-                        <div className="background_stars" />
-                        <img src={emptyStar} width="15px" height="18px" alt="star2"></img>
-                      </div>
-                      <div className="starsBlock_stars_element">
-                        <div className="background_stars" />
-                        <img src={emptyStar} width="15px" height="18px" alt="star3"></img>
-                      </div>
-                      <div className="starsBlock_stars_element">
-                        <div className="background_stars" />
-                        <img src={emptyStar} width="15px" height="18px" alt="star4"></img>
-                      </div>
-                      <div className="starsBlock_stars_element">
-                        <div className="background_stars" />
-                        <img src={emptyStar} width="15px" height="18px" alt="star5"></img>
-                      </div>
-                    </div>
-                    <div className="infoBlock_starsBlock_number">10000 отзывов</div>
-                  </div>
+                  <Stars value="5.0" commentNumber="10000 отзывов" valueDisplay="none" commentNumberDisplay="none"/>
                 </div>
                 <div className="block_element_infoBlock_bot">
                   <div className="block_element_infoBlock_element">

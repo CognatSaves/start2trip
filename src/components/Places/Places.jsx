@@ -5,6 +5,7 @@ import Footer from '../Footer/Footer';
 import PlacesCountryInfo from './PlacesCountryInfo'
 import PlacesPanel from './PlacesPanel';
 import DriversCommercial from '../drivers/DriversBody/DriversCommercial/DriversCommercial';
+import PlacesList from './PlacesList';
 
 import Manipulator from '../manipulator/Manipulator';
 export default class Places extends React.Component {
@@ -20,6 +21,7 @@ export default class Places extends React.Component {
                 <div className="drivers_body">
                   <div className="left_body_part">
                     <PlacesPanel/>
+                    <PlacesList/>
                     <Manipulator/>
                   </div>
                   <div className="right_body_part">

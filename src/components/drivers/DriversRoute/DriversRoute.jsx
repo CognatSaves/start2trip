@@ -38,7 +38,7 @@ class DriversRouteClass extends React.Component {
             <div className="route_show">
               {cities.map((element, index) =>
               <div className="route_show_element" style={{width: routeElementWidth}}>
-                <img src={pointIcon} height="100%" width="25%" alt={"icon"+index}/>
+                <img src={pointIcon} style={{marginTop: "10px"}} height="75%" width="auto" alt={"icon"+index}/>
                 <div className="route_show_text" >{cities[index]}</div>
                 <div className="route_show_line" style={{visibility: isVisibleArray[index]}}></div>
               </div>
