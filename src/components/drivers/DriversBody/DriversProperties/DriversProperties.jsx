@@ -6,13 +6,14 @@ import SortMenu from './components/SortMenu/SortMenu.jsx'
 import PagesMenu from './components/PagesMenu/PagesMenu.jsx'
 import ValueMenu from './components/ValueMenu/ValueMenu.jsx'
 import AutoMenu from './components/AutoMenu/AutoMenu.jsx'
+import userBlueIcon from '../DriversBlock/pictures/user_blue.svg'
 import { connect } from 'react-redux';
 import {
   setPagesVisible, setTempPricePart, languageMenuIsVisibal, setSortMenuVisible,
   changePersonsNumberDispatch, changePersonsNumberDispatchOld, peopleMenuCall, autoMenuCall
 } from "../../../../redusers/Action"
 
-import userBlueIcon from '../DriversBlock/pictures/user_blue.svg'
+
 
 
 class DriversPropertiesClass extends React.Component {
@@ -27,7 +28,6 @@ class DriversPropertiesClass extends React.Component {
   valueMenuCall(valueMenu) {
     this.props.dispatch(setTempPricePart(this.props.storeState.pricePart, valueMenu));
   }
-
 
   render() {
     function valueTextGenerator(pricePart, maxPrice) {
@@ -61,10 +61,8 @@ class DriversPropertiesClass extends React.Component {
 
     return (
       <div className="drivers_properties" >
-
         <div className="properties_leftBlock">
-          <div className="drivers_properties_text">Подобрать:
-          </div>
+          <div className="drivers_properties_text">Подобрать:</div>
           <div className="properties_buttonStyle properties_leftButton" onClick={() => this.props.dispatch(languageMenuIsVisibal(!this.props.storeState.languageMenu))}>
             <div className="properties_value"><img src={this.props.storeState.languageIcon} width="15px" height="15px" />{this.props.storeState.languageValue}</div>
             <div className="properties_arrow"></div>

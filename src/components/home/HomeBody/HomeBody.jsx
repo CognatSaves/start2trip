@@ -85,8 +85,6 @@ class HomeBodyClass extends React.Component {
     });
   }
   goToDrivers() {
-    console.log("Go to drivers call");
-    console.log(this.state);
     this.props.setState(this.state.cities, this.state.date, "drivers");
     this.props.redirectToDrivers();
   }
@@ -120,8 +118,6 @@ class HomeBodyClass extends React.Component {
     this.props.setLengthTime(lengthString, timeString);
   }
   render() {
-    console.log("HomeBody render");
-    console.log(this.state);
     return (
       <React.Fragment>
         <div className="body_menu">
@@ -142,12 +138,6 @@ class HomeBodyClass extends React.Component {
   }
 
 }
-/*
-
-
-props.storeState
-
-*/
 
 
 

@@ -1,19 +1,23 @@
 .header {
     display: flex;
     flex-direction: row;
-    justify-content: center;
     align-items: center;
+    margin-top: 30px;
 }
 
 .headerLogo {
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    margin-right: 160px;
     order: 0;
 }
 
 .headerSelect {
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: row;
     order: 2;
@@ -22,45 +26,38 @@
 .header_geo_block {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
-    margin: 0 2%;
-    width: 6%;
-    min-width: 90px;
 }
 
 .header_geo_button {
-    /*color: #fff;*/
-    /*color: #304269;*/
     text-decoration: none;
     outline: none;
     cursor: pointer;
-    /* pointer-events: none;  */
 }
 
 .header_geo_button:hover {
-    /*color: #fff;*/
-    /*color: #304269;*/
     text-decoration: none;
     outline: none;
 }
 
 .geo_button_value {
-    min-width: 50px;
+    width: 50px;
+    height: 28px;
     border-radius: 5px;
     padding: 2px 4px 4px;
-    /*background-color: #97a3b4;*/
-    /*background-color: #fff;*/
 }
 
 .geo_button_value>div {
     height: 22px;
     padding: 0;
-    /*border-bottom: 1px #fff dashed;*/
 }
 
 .header_buttonMass {
-    margin: 2% 3% 2% 5%;
+    position: relative;
+    z-index: 1;
+    width: 290px;
+    height: 20px;
+    margin-right: 105px;
     order: 1;
 }
 
@@ -69,10 +66,8 @@
     background-color: transparent;
     font-family: "Roboto";
     font-weight: 500;
-    font-size: 10.5pt;
-    /*color: #304269;*/
-    /*color: #fff;*/
-    margin: 0px 12.5px 0px 12.5px;
+    font-size: 12pt;
+    margin: 0px 15px;
 }
 
 .buttonMass_button:hover {
@@ -80,30 +75,24 @@
 }
 
 .selectСgvicurrency {
-    min-width: 74px;
     border-radius: 5px;
-    padding: 3px 4px 4px;
     margin-right: 5px;
-    /*background-color: #97a3b4;*/
-    /*background-color: #fff;*/
     text-decoration: none;
     outline: none;
-    /*color: #fff;*/
     color: #304269;
 }
-
 
 .selectGeneral {
     display: block;
     position: relative;
     min-width: 70px;
     height: 30px;
+    font-family: "Roboto";
+    font-weight: 500;
     font-size: 10.5pt;
     margin: 0;
-    margin-right: 10px;
+    margin-right: 14px;
     border-radius: 5px;
-    /*background: #97a3b4;*/  
-    /*color: #fff;*/   
 }
 
 .selectGeneral::after {
@@ -117,8 +106,6 @@
     height: 26px;
     text-align: center;
     line-height: 26px;
-    /*color: #fff;*/
-    
     transform: rotate(90deg);
     cursor: pointer;
 }
@@ -132,12 +119,11 @@
     border-radius: 5px;
     white-space: nowrap;
     padding: 0 14px 0 6px;
-    /*background: #97a3b4;*/
-
 }
 
 .selectGeneral label img {
     margin-right: 2px;
+    margin-bottom: 2px;
 }
 
 .selectGeneral input,
@@ -148,7 +134,6 @@
 .selectGeneral div {
     min-width: 100%;
     max-height: 500px;
-    /*background: #97a3b4;*/
     border-radius: 5px;
     overflow-x: hidden;
 }
@@ -173,32 +158,27 @@
     text-align: center;
     background: none;
     min-height: 30px;
-    min-width: 180px;
-    /*border: 1.4px solid #304269;*/
-    /*border: 1.4px solid;*/
+    min-width: 100px;
     border-width: 1.4px;
     border-radius: 5px;
     text-align: center;
     cursor: pointer;
 }
+
 .header_registration p {
     width: 100%;
     margin: 0;
     text-align: center;
-    font-size: 0.8rem;
-    /*color: #304269;*/
-    /*color:#fff;*/
+    font-size: 9pt;
     font-family: "Roboto";
     font-weight: 300;
 }
 
-
-@media (max-width: 1060px) {
+@media (max-width: 1200px) {
     .header {
         flex-direction: row;
         justify-content: space-between;
         flex-wrap: wrap;
-        margin: 0 2%;
     }
     .headerSelect {
         order: 1;
@@ -212,8 +192,15 @@
     }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1040px) {
+    .headerLogo {
+        margin-right: 70px;
+
+    }
+}
+
+/* @media (max-width: 800px) {
     .headerLogo {
         width: 45%;
     }
-}
+} */

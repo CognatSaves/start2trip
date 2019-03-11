@@ -37,15 +37,3 @@ const SortMenu = connect(
   )(SortMenuClass);
   
   export default SortMenu;
-
-
-/*
-
-<div className="sortMenu_element">
-                        <div className="sortMenu_element_text">A</div>
-                    </div>
-                    <div className="sortMenu_element">B</div>
-                    <div className="sortMenu_element">C</div>
-
-
-                    */

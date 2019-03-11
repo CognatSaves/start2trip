@@ -47,11 +47,6 @@ const ValueMenu = connect(
     (state) => ({
         storeState: state.AppReduser,
     }),
-    /*
-    (dispatch) => ({
-      setPricePart: (pricePart) => dispatch({type: "SET_PRICE_PART", pricePart: pricePart}),
-      setTempPricePart: (tempPricePart)=>dispatch({type: "SET_TEMP_PRICE_PART", tempPricePart: tempPricePart})
-    })*/
 )(ValueMenuClass);
 
 export default ValueMenu;

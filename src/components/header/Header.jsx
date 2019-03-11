@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import './header_css.css'
-import earth from './pictures/earth.png'
+import earth from './pictures/earth.svg'
 import whiteEarth from './pictures/globe.svg';
-
 import geoIcon from './pictures/geo_icon.png'
 import logoBlue from './pictures/logo_blue.svg'
 import logoWhite from './pictures/logo_white_svg.svg'
@@ -24,13 +23,13 @@ export default class Header extends React.Component {
       <React.Fragment>
         <div className='header'>
           <div className="headerLogo">
-            <img src={logo[this.props.type]} height="40%" width="60%" alt="logo" />
+            <img src={logo[this.props.type]} height="40px" width="240px" alt="logo" />
             <div className="header_geo_block">
-              <img src={earthPic[this.props.type]} width="40%" height="auto" alt="" />
+              <img src={earthPic[this.props.type]} width="40px" height="30px" alt="earthPic" />
               <Link to="/" className={"header_geo_button "+this.props.colorClass}>
                 <div className={"geo_button_value "+this.props.backgroundColorClass}>
                   <div>
-                    <img src={geoIcon} alt="" />
+                    <img src={geoIcon} alt="geoIcon" />
                     <span>GEO</span>
                   </div>
                 </div>
