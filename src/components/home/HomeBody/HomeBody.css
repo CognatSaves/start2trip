@@ -3,12 +3,9 @@
   flex-direction: column;
   justify-content: stretch;
   align-items: center;
-  width: 25%;
-  min-height: 500px;
-  max-width: 500px;
-  max-height: 800px;
+  width: 350px;
+  height: 640px;
   border-radius: 5px 0 0 5px;
-  /* padding: 10px 0 0 0; */
   background-color: #304269;
 }
 
