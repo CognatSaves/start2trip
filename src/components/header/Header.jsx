@@ -22,7 +22,7 @@ export default class Header extends React.Component {
     return (
       <React.Fragment>
         <div className='header'>
-          <div className="headerLogo">
+          <div className="headerLogo d-flex flex-row col-5">
             <img src={logo[this.props.type]} height="40px" width="240px" alt="logo" />
             <div className="header_geo_block">
               <img src={earthPic[this.props.type]} width="40px" height="30px" alt="earthPic" />
@@ -36,13 +36,13 @@ export default class Header extends React.Component {
               </Link>
             </div>
           </div>
-          <div className={"header_buttonMass " + this.props.colorClass2}>
+          <div className={"header_buttonMass d-flex flex-row col-4 " + this.props.colorClass2}>
             <Link to="/places" className={"buttonMass_button " + this.props.colorClass2}>МЕСТА</Link>
             <Link to="/" className={"buttonMass_button " + this.props.colorClass2}>ТУРЫ</Link>
             <Link to="/" className={"buttonMass_button " + this.props.colorClass2}>ОТЕЛИ</Link>
             <Link to="/" className={"buttonMass_button " + this.props.colorClass2}>АВИАБИЛЕТЫ</Link>
           </div>
-          <div className="headerSelect">
+          <div className="headerSelect d-flex flex-row col-3">
             <select className={"selectСgvicurrency  " + this.props.backgroundColorClass + " " + this.props.colorClass}>
               <option value="RUB">₽ RUB</option>
               <option value="USD">$ USD</option>
