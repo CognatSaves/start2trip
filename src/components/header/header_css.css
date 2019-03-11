@@ -52,10 +52,8 @@
     color: #304269;
 }
 
-/* .selectGeneral {
-    display: block;
+.selectGeneral {
     position: relative;
-    min-width: 70px;
     height: 30px;
     font-family: "Roboto";
     font-weight: 500;
@@ -63,77 +61,16 @@
     margin: 0;
     margin-right: 14px;
     border-radius: 5px;
+    background-color: rgba(48, 66, 105, 0.5) !important;
 }
 
-.selectGeneral::after {
-    content: ">";
-    position: absolute;
-    right: -10px;
-    border-radius: 5px;
-    top: 1px;
-    z-index: 2;
-    width: 40px;
-    height: 26px;
-    text-align: center;
-    line-height: 26px;
-    transform: rotate(90deg);
-    cursor: pointer;
+.dropdownLanguageMenu{
+    background: rgba(48, 66, 105, 0.5) !important;
+    color: #fff !important;
+    padding: 0px !important;
+    margin: 0px !important;
+    min-width: 60px !important;
 }
-
-.selectGeneral label {
-    display: inline-block;
-    min-width: 70px;
-    height: 30px;
-    margin: 0;
-    line-height: 28px;
-    border-radius: 5px;
-    white-space: nowrap;
-    padding: 0 14px 0 6px;
-}
-
-.selectGeneral label img {
-    margin-right: 2px;
-    margin-bottom: 2px;
-}
-
-.selectGeneral input,
-.selectGeneral label {
-    display: none;
-}
-
-.selectGeneral div {
-    min-width: 100%;
-    max-height: 500px;
-    border-radius: 5px;
-    overflow-x: hidden;
-}
-
-.selectGeneral input[type="radio"]:checked~div {
-    position: absolute;
-    top: 28px;
-    z-index: 999;
-    overflow-y: auto;
-}
-
-.selectGeneral input[type="radio"]:checked~div>label,
-.selectGeneral input[type="radio"]:checked+label {
-    display: block;
-}
-
-.header_registration {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: center;
-    text-align: center;
-    background: none;
-    min-height: 30px;
-    min-width: 100px;
-    border-width: 1.4px;
-    border-radius: 5px;
-    text-align: center;
-    cursor: pointer;
-} */
 
 .header_registration p {
     width: 100%;

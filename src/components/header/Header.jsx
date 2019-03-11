@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './header_css.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import earth from './pictures/earth.svg'
 import whiteEarth from './pictures/globe.svg';
 import geoIcon from './pictures/geo_icon.png'
@@ -14,7 +16,17 @@ import { Link } from 'react-router-dom';
 export default class Header extends React.Component {
   constructor(props) {
     super(props);
-
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+      dropdownOpen: false,
+      activLanguage: [{ flag: ruFlag, string: "RU" }, { flag: enFlag, string: "EN" }, { flag: geoFlag, string: "GEO" }, { flag: espFlag, string: "ESP" }],
+      activLanguageNumber: 0,
+    };
+  }
+  toggle() {
+    this.setState({
+      dropdownOpen: !this.state.dropdownOpen
+    });
   }
   render() {
     let logo = [logoBlue, logoWhite];
@@ -49,49 +61,17 @@ export default class Header extends React.Component {
               <option value="GEL">₾ GEL</option>
               <option value="EUR">€ EUR</option>
             </select>
-            <div class="btn-group">
-              <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src={ruFlag} height="15px" width="15px" alt="RU" />RU</button>
-              <div class="dropdown-menu dropdown-menu-right">
-                <button class="dropdown-item" type="button"><img src={ruFlag} height="15px" width="15px" alt="RU" />RU</button>
-                <button class="dropdown-item" type="button"><img src={enFlag} height="15px" width="15px" alt="EN" />EN</button>
-                <button class="dropdown-item" type="button"><img src={geoFlag} height="15px" width="15px" alt="GEO" />GEO</button>
-                <button class="dropdown-item" type="button"><img src={espFlag} height="15px" width="15px" alt="ESP" />ESP</button>
-              </div>
-            </div>
-            {/* <label className={"selectGeneral " + this.props.labelColorClass} placeholder="select Language">
-              <input type="radio" name="Lang" />
-              <div>
-                <input
-                  type="radio"
-                  name="Lang"
-                  value="RU"
-                  id="Lang[Ru]"
-                  defaultChecked
-                />
-                <label htmlFor="Lang[Ru]"><img src={ruFlag} height="15px" width="15px" alt="RU" />RU</label>
-                <input
-                  type="radio"
-                  name="Lang"
-                  value="EN"
-                  id="Lang[En]"
-                />
-                <label htmlFor="Lang[En]"><img src={enFlag} height="15px" width="15px" alt="EN" />EN</label>
-                <input
-                  type="radio"
-                  name="Lang"
-                  value="GEO"
-                  id="Lang[GEO]"
-                />
-                <label htmlFor="Lang[GEO]"><img src={geoFlag} height="15px" width="15px" alt="GEO" />GEO</label>
-                <input
-                  type="radio"
-                  name="Lang"
-                  value="ESP"
-                  id="Lang[ESP]"
-                />
-                <label htmlFor="Lang[ESP]"><img src={espFlag} height="15px" width="15px" alt="ESP" />ESP</label>
-              </div>
-            </label> */}
+            <Dropdown setActiveFromChild="true" isOpen={this.state.dropdownOpen} toggle={this.toggle} className="selectGeneral">
+              <DropdownToggle caret size="sm">
+                <img src={this.state.activLanguage[this.state.activLanguageNumber].flag} height="15px" width="15px" alt="flag" />{this.state.activLanguage[this.state.activLanguageNumber].string}
+              </DropdownToggle>
+              <DropdownMenu className="dropdownLanguageMenu">
+                <DropdownItem className="dropdownLanguageMenu" onClick={() => { this.setState({ activLanguageNumber: 0 }) }}><img src={ruFlag} height="15px" width="15px" alt="RU" />RU</DropdownItem>
+                <DropdownItem className="dropdownLanguageMenu" onClick={() => { this.setState({ activLanguageNumber: 1 }) }}><img src={enFlag} height="15px" width="15px" alt="EN" />EN</DropdownItem>
+                <DropdownItem className="dropdownLanguageMenu" onClick={() => { this.setState({ activLanguageNumber: 2 }) }}><img src={geoFlag} height="15px" width="15px" alt="GEO" />GEO</DropdownItem>
+                <DropdownItem className="dropdownLanguageMenu" onClick={() => { this.setState({ activLanguageNumber: 3 }) }}><img src={espFlag} height="15px" width="15px" alt="ESP" />ESP</DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
             <button className={"header_registration " + this.props.borderColorClass}>
               <p className={this.props.colorClass2}>ВОЙТИ / РЕГИСТРАЦИЯ</p>
             </button>
