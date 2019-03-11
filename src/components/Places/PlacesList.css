@@ -1,0 +1,28 @@
+.placesList_element{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.25);
+    
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+.placesList_picture{
+    display: flex;
+    width: 25%;
+    height: 100%;
+}
+.placesList_info{
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    padding: 1.5%;
+}
+.placesList_info_row{
+    display: flex;
+    flex-direction: row;
+}
+.placesList_info_name{
+
+}

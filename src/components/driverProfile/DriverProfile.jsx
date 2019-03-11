@@ -29,8 +29,9 @@ import superMachine3 from './pictures/superMachine3.webp';
 
 import { Link } from 'react-router-dom';
 import {setDriversRouteChange} from '../../redusers/ActionDrivers';
-import StartTravelForm from '../startTravelForm/StartTravelForm'
-import StartTravelSuccess from '../startTravelForm/StartTravelSuccess'
+import StartTravelForm from '../startTravelForm/StartTravelForm';
+import StartTravelSuccess from '../startTravelForm/StartTravelSuccess';
+import Stars from '../stars/Stars';
 
 const DriverAdaptedRoute = (props)=>
 {
@@ -108,32 +109,7 @@ const DriverInfo = (props) =>{
                 <div className="block_element_infoBlock">
                     <div className="block_element_infoBlock_top">
                     <div className="block_element_infoBlock_name">{element.name}</div>
-                    <div className="infoBlock_starsBlock">
-                        <div className="infoBlock_starsBlock_value">5.0</div>
-                        <div className="infoBlock_starsBlock_stars">
-                        <div className="starsBlock_stars_element">
-                            <div className="background_stars" />
-                            <img src={emptyStar} width="15px" height="18px" alt="star1"></img>
-                        </div>
-                        <div className="starsBlock_stars_element">
-                            <div className="background_stars" />
-                            <img src={emptyStar} width="15px" height="18px" alt="star2"></img>
-                        </div>
-                        <div className="starsBlock_stars_element">
-                            <div className="background_stars" />
-                            <img src={emptyStar} width="15px" height="18px" alt="star3"></img>
-                        </div>
-                        <div className="starsBlock_stars_element">
-                            <div className="background_stars" />
-                            <img src={emptyStar} width="15px" height="18px" alt="star4"></img>
-                        </div>
-                        <div className="starsBlock_stars_element">
-                            <div className="background_stars" />
-                            <img src={emptyStar} width="15px" height="18px" alt="star5"></img>
-                        </div>
-                        </div>
-                        <div className="infoBlock_starsBlock_number">10000 отзывов</div>
-                    </div>
+                    <Stars value="5.0" commentNumber="10000 отзывов" valueDisplay="none" commentNumberDisplay="none"/>
                     </div>
                     <div className="block_element_infoBlock_bot">
                     <div className="block_element_infoBlock_element">

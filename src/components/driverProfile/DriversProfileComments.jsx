@@ -3,6 +3,7 @@ import './DriversProfileComments.css';
 import tempPicture from './pictures/drivers_body_photo.png'
 import emptyStar from './pictures/star.svg';
 import { connect } from 'react-redux'
+import Stars from '../stars/Stars';
 
 class DriversProfileCommentsClass extends React.Component{
     constructor(props){
@@ -14,7 +15,7 @@ class DriversProfileCommentsClass extends React.Component{
         return(
             <React.Fragment>
                 <div className="driverProfileComments_panel">
-                    <button className="driverProfileComments_panel_selectedElement">Отзывы (очень много)</button>
+                    <button className="driverProfileComments_panel_element driverProfileComments_panel_selectedElement">Отзывы (очень много)</button>
                     <button className="driverProfileComments_panel_element">Блог</button>
                 </div>
                 <div className="driverProfileComments_commentBlock">
@@ -24,29 +25,7 @@ class DriversProfileCommentsClass extends React.Component{
                                 <img src={tempPicture} width="auto" height="100%" alt=""></img>
                             </div>
                             <div className="createComment_textBlock">Человек1, как ты оцениваешь Человека2</div>
-                            <div className="createComment_starsBlock">
-                                <div className="createComment_starsBlock_element">
-                                    <img src={emptyStar} width="100%" height="100%" alt="" style={{zIndex: 2}}></img>
-                                    <div className="createComment_starsBlock_starColor"></div>
-                                   
-                                </div>
-                                <div className="createComment_starsBlock_element">
-                                    <img src={emptyStar} width="100%" height="100%" alt="" style={{zIndex: 2}}></img>
-                                    <div className="createComment_starsBlock_starColor"></div>
-                                </div>
-                                <div className="createComment_starsBlock_element">
-                                    <img src={emptyStar} width="100%" height="100%" alt="" style={{zIndex: 2}}></img>
-                                    <div className="createComment_starsBlock_starColor"></div>
-                                </div>
-                                <div className="createComment_starsBlock_element">
-                                    <img src={emptyStar} width="100%" height="100%" alt="" style={{zIndex: 2}}></img>
-                                    <div className="createComment_starsBlock_starColor"></div>
-                                </div>
-                                <div className="createComment_starsBlock_element">
-                                    <img src={emptyStar} width="100%" height="100%" alt="" style={{zIndex: 2}}></img>
-                                    <div className="createComment_starsBlock_starColor"></div> 
-                                </div>
-                            </div>
+                            <Stars valueDisplay="none" commentNumberDisplay="none"/>
                         </div>
                         
                         <textarea className="createComment_textareaStyle" placeholder="Ваш отзыв"></textarea>
@@ -65,31 +44,7 @@ class DriversProfileCommentsClass extends React.Component{
                                     <div className="valueBlock_firstElement_name">{element.name}</div>
                                     <div className="valueBlock_firstElement_date">{element.date}</div>
                                 </div>
-                                <div className="valueBlock_starsBlock">
-                                    <div className="valueBlock_starsBlock_value">5.0</div>
-                                        <div className="valueBlock_starsBlock_stars">
-                                            <div className="createComment_starsBlock_element">
-                                                <img src={emptyStar} width="100%" height="100%" alt="" style={{zIndex: 2}}></img>
-                                                <div className="createComment_starsBlock_starColor"></div> 
-                                            </div>
-                                            <div className="createComment_starsBlock_element">
-                                                <img src={emptyStar} width="100%" height="100%" alt="" style={{zIndex: 2}}></img>
-                                                <div className="createComment_starsBlock_starColor"></div> 
-                                            </div>
-                                            <div className="createComment_starsBlock_element">
-                                                <img src={emptyStar} width="100%" height="100%" alt="" style={{zIndex: 2}}></img>
-                                                <div className="createComment_starsBlock_starColor"></div> 
-                                            </div>
-                                            <div className="createComment_starsBlock_element">
-                                                <img src={emptyStar} width="100%" height="100%" alt="" style={{zIndex: 2}}></img>
-                                                <div className="createComment_starsBlock_starColor"></div> 
-                                            </div>
-                                            <div className="createComment_starsBlock_element">
-                                                <img src={emptyStar} width="100%" height="100%" alt="" style={{zIndex: 2}}></img>
-                                                <div className="createComment_starsBlock_starColor"></div> 
-                                            </div>
-                                    </div>
-                                </div>
+                                <Stars valueDisplay="none" commentNumberDisplay="none"/>
                                 <input className="put" id={"put"+element+index} type="checkbox"></input>
                                 <div class="news">
                                     <label for={"put"+element+index}>{element.value}</label>

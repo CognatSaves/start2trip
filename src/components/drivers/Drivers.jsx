@@ -62,21 +62,27 @@ class DriversClass extends React.Component {
         return (
           <React.Fragment>
               <div className = "drivers_top_background">
-                <div className="travelFormBlock">
-                  <StartTravelForm changeTravelVisibility={this.changeTravelVisibility} changeSuccessVisibility={this.changeSuccessVisibility}
-                  travelVisibility={this.state.travelVisibility} successVisibility={this.changeSuccessVisibility}/>
-                  <StartTravelSuccess successVisibility={this.state.successVisibility} changeSuccessVisibility={this.changeSuccessVisibility}/>               
+                <div className="wrapper">
+                  <div className = "drivers_top_block">
+                    <div className="travelFormBlock">
+                      <StartTravelForm changeTravelVisibility={this.changeTravelVisibility} changeSuccessVisibility={this.changeSuccessVisibility}
+                      travelVisibility={this.state.travelVisibility} successVisibility={this.changeSuccessVisibility}/>
+                      <StartTravelSuccess successVisibility={this.state.successVisibility} changeSuccessVisibility={this.changeSuccessVisibility}/>               
+                    </div>
+                    <Header colorClass="colorClass" colorClass2="colorClass2" backgroundColorClass="backgroundColorClass"
+                    borderColorClass="borderColorClass" labelColorClass="labelColorClass" type={1}/>
+                    <DriversRoute />             
+                  </div>
                 </div>
-                <Header colorClass="colorClass" colorClass2="colorClass2" backgroundColorClass="backgroundColorClass"
-                 borderColorClass="borderColorClass" labelColorClass="labelColorClass" type={1}/>
-                <DriversRoute />
               </div>
-              <div className = "drivers_bottom_background" >
-                <DriversBody changeTravelVisibility={this.changeTravelVisibility} maxPrice={this.state.maxPrice} 
-                price={this.state.price} changePrice={this.changePrice}/>
-                
+              <div className="wrapper">
+                <div className = "drivers_bottom_background" >
+                  <DriversBody changeTravelVisibility={this.changeTravelVisibility} maxPrice={this.state.maxPrice} 
+                  price={this.state.price} changePrice={this.changePrice}/>                 
+                </div>                 
               </div>
-              <Footer/>           
+                           
+              <Footer/>             
           </React.Fragment>
         );
     }
