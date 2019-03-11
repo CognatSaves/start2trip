@@ -1,25 +1,5 @@
 .header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
     margin-top: 30px;
-}
-
-.headerLogo {
-    /* position: relative;
-    z-index: 1;
-    display: flex;
-    flex-direction: row;
-    align-items: center; */
-    /* order: 0; */
-}
-
-.headerSelect {
-    /* position: relative;
-    z-index: 1;
-    display: flex;
-    flex-direction: row; */
-    /* order: 2; */
 }
 
 .header_geo_block {
@@ -51,15 +31,6 @@
     padding: 0;
 }
 
-.header_buttonMass {
-    /* position: relative;
-    z-index: 1;
-    height: 20px;
-    padding-left: 130px;
-    padding-right: 60px; */
-    /* order: 1; */
-}
-
 .buttonMass_button {
     text-decoration: none;
     background-color: transparent;
@@ -81,7 +52,7 @@
     color: #304269;
 }
 
-.selectGeneral {
+/* .selectGeneral {
     display: block;
     position: relative;
     min-width: 70px;
@@ -162,7 +133,7 @@
     border-radius: 5px;
     text-align: center;
     cursor: pointer;
-}
+} */
 
 .header_registration p {
     width: 100%;
@@ -173,7 +144,7 @@
     font-weight: 300;
 }
 
-@media (max-width: 1200px) {
+/* @media (max-width: 1200px) {
     .header {
         flex-direction: row;
         justify-content: space-between;
@@ -196,4 +167,4 @@
         margin-right: 70px;
 
     }
-}
+} */

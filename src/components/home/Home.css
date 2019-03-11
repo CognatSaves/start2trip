@@ -67,7 +67,7 @@
     background-color: #ffffff;
 }
 
-@media (max-width: 1200px) {
+/* @media (max-width: 1200px) {
     .home_block {
         width: 1024px;
         margin: 0 auto;
@@ -79,4 +79,4 @@
         width: 760px;
         margin: 0 auto;
     }
-}
+} */

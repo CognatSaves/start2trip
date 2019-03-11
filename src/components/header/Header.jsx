@@ -21,9 +21,9 @@ export default class Header extends React.Component {
     let earthPic = [earth, whiteEarth];
     return (
       <React.Fragment>
-        <div className='header'>
+        <div className='header d-flex flex-row align-items-center col-12'>
           <div className="headerLogo d-flex flex-row col-5">
-            <img src={logo[this.props.type]} height="40px" width="240px" alt="logo" />
+            <img src={logo[this.props.type]} height="20%" width="41%" alt="logo" />
             <div className="header_geo_block">
               <img src={earthPic[this.props.type]} width="40px" height="30px" alt="earthPic" />
               <Link to="/" className={"header_geo_button " + this.props.colorClass}>
@@ -36,20 +36,29 @@ export default class Header extends React.Component {
               </Link>
             </div>
           </div>
-          <div className={"header_buttonMass d-flex flex-row col-4 " + this.props.colorClass2}>
+          <div className={"header_buttonMass d-flex flex-row justify-content-start col-4 " + this.props.colorClass2}>
             <Link to="/places" className={"buttonMass_button " + this.props.colorClass2}>МЕСТА</Link>
             <Link to="/" className={"buttonMass_button " + this.props.colorClass2}>ТУРЫ</Link>
             <Link to="/" className={"buttonMass_button " + this.props.colorClass2}>ОТЕЛИ</Link>
             <Link to="/" className={"buttonMass_button " + this.props.colorClass2}>АВИАБИЛЕТЫ</Link>
           </div>
-          <div className="headerSelect d-flex flex-row col-3">
+          <div className="headerSelect d-flex flex-row align-items-center col-3">
             <select className={"selectСgvicurrency  " + this.props.backgroundColorClass + " " + this.props.colorClass}>
               <option value="RUB">₽ RUB</option>
               <option value="USD">$ USD</option>
               <option value="GEL">₾ GEL</option>
               <option value="EUR">€ EUR</option>
             </select>
-            <label className={"selectGeneral " + this.props.labelColorClass} placeholder="select Language">
+            <div class="btn-group">
+              <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src={ruFlag} height="15px" width="15px" alt="RU" />RU</button>
+              <div class="dropdown-menu dropdown-menu-right">
+                <button class="dropdown-item" type="button"><img src={ruFlag} height="15px" width="15px" alt="RU" />RU</button>
+                <button class="dropdown-item" type="button"><img src={enFlag} height="15px" width="15px" alt="EN" />EN</button>
+                <button class="dropdown-item" type="button"><img src={geoFlag} height="15px" width="15px" alt="GEO" />GEO</button>
+                <button class="dropdown-item" type="button"><img src={espFlag} height="15px" width="15px" alt="ESP" />ESP</button>
+              </div>
+            </div>
+            {/* <label className={"selectGeneral " + this.props.labelColorClass} placeholder="select Language">
               <input type="radio" name="Lang" />
               <div>
                 <input
@@ -82,7 +91,7 @@ export default class Header extends React.Component {
                 />
                 <label htmlFor="Lang[ESP]"><img src={espFlag} height="15px" width="15px" alt="ESP" />ESP</label>
               </div>
-            </label>
+            </label> */}
             <button className={"header_registration " + this.props.borderColorClass}>
               <p className={this.props.colorClass2}>ВОЙТИ / РЕГИСТРАЦИЯ</p>
             </button>
