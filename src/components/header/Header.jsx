@@ -17,8 +17,8 @@ export default class Header extends React.Component {
 
   }
   render() {
-    let logo = [logoBlue,logoWhite];
-    let earthPic= [earth, whiteEarth];
+    let logo = [logoBlue, logoWhite];
+    let earthPic = [earth, whiteEarth];
     return (
       <React.Fragment>
         <div className='header'>
@@ -26,8 +26,8 @@ export default class Header extends React.Component {
             <img src={logo[this.props.type]} height="40px" width="240px" alt="logo" />
             <div className="header_geo_block">
               <img src={earthPic[this.props.type]} width="40px" height="30px" alt="earthPic" />
-              <Link to="/" className={"header_geo_button "+this.props.colorClass}>
-                <div className={"geo_button_value "+this.props.backgroundColorClass}>
+              <Link to="/" className={"header_geo_button " + this.props.colorClass}>
+                <div className={"geo_button_value " + this.props.backgroundColorClass}>
                   <div>
                     <img src={geoIcon} alt="geoIcon" />
                     <span>GEO</span>
@@ -36,20 +36,20 @@ export default class Header extends React.Component {
               </Link>
             </div>
           </div>
-          <div className={"header_buttonMass "+this.props.colorClass2}>
-            <Link to="/places" className={"buttonMass_button "+this.props.colorClass2}>МЕСТА</Link>
-            <Link to="/" className={"buttonMass_button "+this.props.colorClass2}>ТУРЫ</Link>
-            <Link to="/" className={"buttonMass_button "+this.props.colorClass2}>ОТЕЛИ</Link>
-            <Link to="/" className={"buttonMass_button "+this.props.colorClass2}>АВИАБИЛЕТЫ</Link>
+          <div className={"header_buttonMass " + this.props.colorClass2}>
+            <Link to="/places" className={"buttonMass_button " + this.props.colorClass2}>МЕСТА</Link>
+            <Link to="/" className={"buttonMass_button " + this.props.colorClass2}>ТУРЫ</Link>
+            <Link to="/" className={"buttonMass_button " + this.props.colorClass2}>ОТЕЛИ</Link>
+            <Link to="/" className={"buttonMass_button " + this.props.colorClass2}>АВИАБИЛЕТЫ</Link>
           </div>
           <div className="headerSelect">
-            <select className={"selectСgvicurrency "+this.props.backgroundColorClass+" "+this.props.colorClass}>
+            <select className={"selectСgvicurrency  " + this.props.backgroundColorClass + " " + this.props.colorClass}>
               <option value="RUB">₽ RUB</option>
               <option value="USD">$ USD</option>
               <option value="GEL">₾ GEL</option>
               <option value="EUR">€ EUR</option>
             </select>
-            <label className={"selectGeneral "+this.props.labelColorClass} placeholder="select Language">
+            <label className={"selectGeneral " + this.props.labelColorClass} placeholder="select Language">
               <input type="radio" name="Lang" />
               <div>
                 <input
@@ -83,7 +83,7 @@ export default class Header extends React.Component {
                 <label htmlFor="Lang[ESP]"><img src={espFlag} height="15px" width="15px" alt="ESP" />ESP</label>
               </div>
             </label>
-            <button className={"header_registration "+this.props.borderColorClass}>
+            <button className={"header_registration " + this.props.borderColorClass}>
               <p className={this.props.colorClass2}>ВОЙТИ / РЕГИСТРАЦИЯ</p>
             </button>
           </div>

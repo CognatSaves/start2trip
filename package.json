@@ -36,6 +36,8 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.3.3"
-  }
+    "@babel/plugin-proposal-class-properties": "^7.3.3",
+    "scss-powertools": "^1.1.0"
+  },
+  "build": "scss-powertools scss/bootstrap.scss output/compiled.css"
 }
