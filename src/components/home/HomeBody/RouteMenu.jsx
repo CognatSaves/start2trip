@@ -21,124 +21,50 @@ import {
   changePersonsNumberDispatch, changePersonsNumberDispatchOld, peopleMenuCall, autoMenuCall
 } from "../../../redusers/Action"
 
-const AddCities = (props) => {
-  const { cities, changeCity, removeCity } = props;
 
-  const cityElement = (props) => {
+ const CityRouteTable = (props) => {
+    const { cities, changeCity, removeCity } = props;
+    let workCities = [...cities];
+    let tempStart = workCities.shift();
+    let tempEnd = workCities.pop();
 
-    let { city, changeCity, index, removeCity } = props;
-    return (
-      <div className="startCity">
-        <div className="iconMass col-2">
-          <img src={ellipseIcon} alt="ellipseIcon" width="10px" height="12px" />
-          <img src={shapeIcon} alt="shapeIcon" width="7px" height="25px" />
+   return (
+    
+      <div className="addCities">
+        <div className="startCity">
+            <div className="iconMass col-2">
+              <img src={ellipseIcon} alt="ellipseIcon" width="10px" height="12px" />
+              <img src={shapeIcon} alt="shapeIcon" width="7px" height="25px" />
+            </div>
+            <LocationSearchInput address={tempStart} changeCity={changeCity} index={0} class={"city_input"} />
+            <img src={crossIcon} className="crossIcon col-3" alt="crossIcon" width="12px" height="12px"/>
         </div>
-        {/* <input type="text" className="city_input" placeholder="Укажите точку отправки" value={city} onChange={changeCity.bind(this, 0)} /> */}
-        <LocationSearchInput address={city} changeCity={changeCity} index={index} class={"city_input"} />
-        <img src={crossIcon} className="crossIcon col-3" alt="crossIcon" width="12px" height="12px" onClick={() => removeCity(index)} />
-      </div>
-    )
-  }
 
-  const newCity = () => {
-    if (cities.length > 2) {
-      let thisCities = cities;
-      thisCities.shift()
-      thisCities.pop()
-      return (
-        /* thisCities.map((element, index) =>
-           <div key={index} className="newCity">
-             <div className="iconMass">
-               <img src={ellipseIcon} alt="ellipseIcon" width="10px" height="12px" />
-               <img src={shapeIcon} alt="shapeIcon" width="7px" height="25px" />
-             </div>
-             <input type="text" className="city_input" value={element} placeholder="Укажите пункт назначения" value={cities[index]} onChange={changeCity.bind(this, index)} />
-             <img src={crossIcon} className="crossIcon" alt="crossIcon" width="12px" height="12px" onClick={() => removeCity(index)} />
-           </div>*/
-        thisCities.map((element, index) => {
-          cityElement(element, changeCity, index, removeCity);
-        }
-        )
-
-      )
-    }
-
-  }
-
-  return (
-    <div className="addCities">
-      {/* <div className="startCity">
-        <div className="iconMass">
-          <img src={ellipseIcon} alt="ellipseIcon" width="10px" height="12px" />
-          <img src={shapeIcon} alt="shapeIcon" width="7px" height="25px" />
+        {workCities.map((element, index) =>
+          <div className="startCity">
+            <div className="iconMass col-2">
+              <img src={ellipseIcon} alt="ellipseIcon" width="10px" height="12px" />
+              <img src={shapeIcon} alt="shapeIcon" width="7px" height="25px" />
+            </div>
+            <LocationSearchInput address={element} changeCity={changeCity} index={index+1} class={"city_input"} />
+            <img src={crossIcon} className="crossIcon col-3" alt="crossIcon" width="12px" height="12px" onClick={() => removeCity(index+1)} />
+          </div>
+        )}
+        
+        <div className="endCity">
+          <img src={geoIcon} alt="geoIcon" className="geoIcon col-2" width="10px" height="12px" />
+          <LocationSearchInput address={tempEnd} changeCity={changeCity} index={cities.length-1} class={"city_input"} />
+          <img src={crossIcon} className="crossIcon col-3" alt="crossIcon" width="13px" height="12px" />
         </div>
-        <input type="text" className="city_input" placeholder="Укажите точку отправки" value={cities[0]} onChange={changeCity.bind(this, 0)} />
-        <img src={crossIcon} className="crossIcon" alt="crossIcon" width="12px" height="12px" />
-      </div> */}
-      {cityElement(cities[0], changeCity, 0)}
-      {newCity()}
 
-      <div className="endCity">
-        <img src={geoIcon} alt="geoIcon" className="geoIcon col-2" width="10px" height="12px" />
-        {/* <input type="text" className="city_input" placeholder="Укажите пункт назначения" value={cities[cities.length]} /> */}
-        <LocationSearchInput address={cities[cities.length]} changeCity={changeCity} index={cities.length} class={"city_input"} />
-        <img src={crossIcon} className="crossIcon col-3" alt="crossIcon" width="13px" height="12px" />
-      </div>
-    </div>
-    // <tbody align="center">
-    // {cities.map((element,index)=>
-    //   <tr key={element}>
-    //     <td key={element+"el0"}>
-    //       <div className={dotClasses[index]}/>
-    //     </td>
-    //     <td key={element+"el1"}>
-    //       <LocationSearchInput address={element} changeCity={changeCity} index={index} class={"city_input"}/>
-    //     </td>
-    //     <td  key={element+"el2"} style={{visibility: isVisibleArray[index]}} onClick={()=>removeCity(index)}>
-    //       <div className="crossBox">
-    //       </div>
-    //     </td>
-    //   </tr>
-    // )}
-    // </tbody>
-  )
-}
+      </div> 
+   )
+ }
 
-// const CityRouteTable = (props) => {
-//   const { cities, changeCity, removeCity } = props;
-//   let isVisibleArray = Array(cities.length).fill("visible");
-//   let dotClasses = Array(cities.length).fill("dotBox");
-//   dotClasses[0] = "firstDotBox";
-//   dotClasses[dotClasses.length - 1] = "lastDotBox";
-//   //non-visible x near first and last element-city - can not delete first & last;
-//   isVisibleArray[0] = "hidden";
-//   isVisibleArray[isVisibleArray.length - 1] = "hidden";
-//   console.log("CityRouteTable arrays:");
-//   console.log(dotClasses);
-//   //TODO css make 
-//   return (
-//     <tbody align="center">
-//       {cities.map((element, index) =>
-//         <tr key={index}>
-//           <td key={index + "el0"}>
-//             <div className={dotClasses[index]} />
-//           </td>
-//           <td key={index + "el1"}>
-//             <input value={element} className="city_input" onChange={changeCity.bind(this, index)} />
-//           </td>
-//           <td key={index + "el2"} style={{ visibility: isVisibleArray[index] }} onClick={() => removeCity(index)}>
-//             <img src={crossIcon} className="crossBox" alt="crossIcon" />
-//           </td>
-//         </tr>
-//       )}
-//     </tbody>
-//   )
-// }
 
  class RouteMenuClass extends React.Component {
   constructor(props) {
     super(props);
-
   }
 
   render() {
@@ -159,15 +85,12 @@ const AddCities = (props) => {
     }
 
     let personsNumberString = personsCalculation(this.props.storeState.persons);
-    console.log("RouteMenu render call");
     let parameters_text = "Дополнительные параметры    ";
     return (
       <React.Fragment>
         <div className="routemenu_container d-flex flex-column col-12">
-          <AddCities cities={this.props.cities} changeCity={this.props.changeCity} removeCity={this.props.removeCity}></AddCities>
-          {/* <table className="routemenu_table">
-            <CityRouteTable cities={this.props.cities} changeCity={this.props.changeCity} removeCity={this.props.removeCity} />
-          </table> */}
+          <CityRouteTable cities={this.props.cities} changeCity={this.props.changeCity} removeCity={this.props.removeCity} />
+           
           <div className="routemenu_addCity d-flex flex-row col-12">
             <img className="col-2" src={addIcon} alt="add" width="15px" height="15px" onClick={() => this.props.addCity()} />
             <div className="routemenu_city_add_text " onClick={() => this.props.addCity()}>Добавить пункт назначения</div>

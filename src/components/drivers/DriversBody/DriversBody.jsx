@@ -11,12 +11,12 @@ export default class DriversBody extends React.Component {
     }
     render() {
         return (
-          <div className = "drivers_body">
-            <div className="left_body_part">
+          <div className = "d-flex flex-row">
+            <div className="left_body_part col-9 d-flex flex-column">
               <DriversProperties maxPrice={this.props.maxPrice} price={this.props.price} changePrice={this.props.changePrice}/>
               <DriversBlock changeTravelVisibility={this.props.changeTravelVisibility} />
             </div>
-            <div className="right_body_part">
+            <div className="right_body_part col-3 d-flex flex-column">
               <DriversCommercial/>
             </div>
             

@@ -38,11 +38,11 @@ export class CurrentLocation extends React.Component {
       this.recenterMap();
     }
     if(!(this.props.cities.some(city => city==="")) && this.props.mapUpdate){
-      console.log("mapUpdate standart way");
+      /*console.log("mapUpdate standart way");
       console.log(this.props);
       console.log(prevProps.cities);
       console.log(this.props.cities);
-      console.log(!(this.props.cities.some(city => city==="")));
+      console.log(!(this.props.cities.some(city => city==="")));*/
       this.loadMap();
     }
     
@@ -80,7 +80,7 @@ export class CurrentLocation extends React.Component {
     this.loadMap();
   }
   loadMap() {
-    console.log("loadMap");
+    //console.log("loadMap");
     function createRequestElement(cities, google){
       let waypoints = [];
       for (let i=1; i<cities.length-1;i++){
@@ -125,8 +125,8 @@ export class CurrentLocation extends React.Component {
 
       var theMap = this.map;
 
-      console.log("CurrentLocation props");
-      console.log(this.props);
+      /*console.log("CurrentLocation props");
+      console.log(this.props);*/
       
       //
       let tempTravelTime=0;
@@ -152,14 +152,14 @@ export class CurrentLocation extends React.Component {
             tempTravelTime+=TempLeg.duration.value;
             tempTravelLength+=TempLeg.distance.value;
 
-            console.log("Time");
+            /*console.log("Time");
             console.log(TempLeg.duration);
             console.log("Time Total");
             console.log(tempTravelTime);
             console.log("Length");
             console.log(TempLeg.distance);
             console.log("Length Total");
-            console.log(tempTravelLength);
+            console.log(tempTravelLength);*/
 
 
             var contentString2 = 

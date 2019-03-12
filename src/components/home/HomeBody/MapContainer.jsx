@@ -11,8 +11,8 @@ export default class MapContainer extends Component {
     }
   }
   render() {
-    console.log("MapContainer render");
-    console.log(this.props.mapUpdate);
+    /*console.log("MapContainer render");
+    console.log(this.props.mapUpdate);*/
     return (
       <CurrentLocation
         centerAroundCurrentLocation

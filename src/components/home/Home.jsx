@@ -26,10 +26,8 @@ class Home extends React.Component {
         <div className="d-flex flex-column">
           <div className="home_window">
             <div className="home_block">
-              <div className="home_header col-12">
-                <Header colorClass="homeColorClass" colorClass2="homeColorClass2" backgroundColorClass="homeBackgroundColorClass"
-                  borderColorClass="homeBorderColorClass" labelColorClass="homeLabelColorClass" type={0} />
-              </div>
+              <Header colorClass="homeColorClass" colorClass2="homeColorClass2" backgroundColorClass="homeBackgroundColorClass"
+                borderColorClass="homeBorderColorClass" labelColorClass="homeLabelColorClass" type={0} />
               <div className="home_text col-12">
                 <div className="text_firstLine">Cпланируйте свою экскурсию</div>
                 <div className="text_secondLine">Предложения от местных гидов-водителей по вашему индивидуальному маршруту</div>

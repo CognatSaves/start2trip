@@ -1,8 +1,4 @@
 .drivers_block {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    /*height: 80%;*/
     margin-top: 15px;
 }
 
@@ -25,10 +21,8 @@
 
 .drivers_block_element {
     position: relative;
-    display: flex;
-    flex-direction: row;
     align-items: center;
-    width: 100%;
+    /*width: 100%;*/
     box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.25);
     padding: 30px 20px;
     margin-bottom: 10px;
@@ -40,19 +34,13 @@
 }
 
 .block_element_left {
-    display: flex;
-    flex-direction: row;
     align-items: center;
-    height: 100%;
-    width: 510px;
+    width: 470px;
     border-right: 1px solid black;
 }
 
-.block_element_right {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 380px;
+.block_element_right{
+    width: 355px;
     padding-left: 25px;
 }
 .block_element_right_div{
@@ -62,8 +50,7 @@
 .block_element_photo {
     display: flex;
     width: 156px;
-    height: 156px;
-    
+    height: 156px;   
 }
 
 .myHeart {

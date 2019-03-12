@@ -38,15 +38,14 @@ class HomeBodyClass extends React.Component {
   }
   addCity() {
     let cities = this.state.cities;
-    cities[cities.length] = "";
+    cities[cities.length] = cities[cities.length-1];
+    cities[cities.length-2]="";
     this.setState({
       cities: cities,
       mapUpdate: true
     })
   }
   removeCity(index) {
-    console.log("removeCity");
-    console.log("index:" + index);
     let cities = this.state.cities;
     cities.splice(index, 1);
     this.setState({
@@ -61,8 +60,7 @@ class HomeBodyClass extends React.Component {
     })
     this.setState({
       calendaryVisibility: 'visible'
-    })
-    //this.props.calendaryVisibility('visible');  
+    }) 
   }
   closeChooseDate() {
     this.setState({
@@ -71,8 +69,6 @@ class HomeBodyClass extends React.Component {
     this.setState({
       calendaryVisibility: 'hidden'
     })
-    //this.props.calendaryVisibility('hidden');
-
   }
   chooseDate(value) {
     let dayMass = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
@@ -121,7 +117,7 @@ class HomeBodyClass extends React.Component {
     return (
       <React.Fragment>
         <div className="body_menu col-3">
-          <RouteMenu cities={this.state.cities} changeCity={this.changeCity} addCity={this.addCity}
+          <RouteMenu cities={[...this.state.cities]} changeCity={this.changeCity} addCity={this.addCity}
             removeCity={this.removeCity} goToDrivers={this.goToDrivers} chooseDate={this.openChooseDate} date={this.state.date} />
           <div style={{ visibility: this.state.calendaryVisibility }}>
             <Calendar className="calendary_position"

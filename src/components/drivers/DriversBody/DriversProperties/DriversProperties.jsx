@@ -60,24 +60,24 @@ class DriversPropertiesClass extends React.Component {
     let valueText = valueTextGenerator(this.props.storeState.pricePart, this.props.storeState.maxPrice);
 
     return (
-      <div className="drivers_properties" >
-        <div className="properties_leftBlock">
+      <div className="drivers_properties d-flex flex-row" >
+        <div className="properties_leftBlock d-flex flex-row">
           <div className="drivers_properties_text">Подобрать:</div>
-          <div className="properties_buttonStyle properties_leftButton" onClick={() => this.props.dispatch(languageMenuIsVisibal(!this.props.storeState.languageMenu))}>
-            <div className="properties_value"><img src={this.props.storeState.languageIcon} width="15px" height="15px" />{this.props.storeState.languageValue}</div>
+          <div className="properties_buttonStyle properties_leftButton d-flex flex-row" onClick={() => this.props.dispatch(languageMenuIsVisibal(!this.props.storeState.languageMenu))}>
+            <div className="properties_value d-flex flex-row"><img src={this.props.storeState.languageIcon} width="15px" height="15px" />{this.props.storeState.languageValue}</div>
             <div className="properties_arrow"></div>
             <LanguageMenu isVisible={this.props.storeState.languageMenu} />
           </div>
-          <div className="properties_buttonStyle properties_leftButton" onClick={() => this.props.dispatch(autoMenuCall(!this.props.storeState.autoMenu))}>
+          <div className="properties_buttonStyle properties_leftButton d-flex flex-row" onClick={() => this.props.dispatch(autoMenuCall(!this.props.storeState.autoMenu))}>
             <div className="properties_carPicture">
               <img src={this.props.storeState.autoIcon} width="100%" height="100%" alt="carImage" />
             </div>
-            <div className="properties_value">{this.props.storeState.autoValue}</div>
+            <div className="properties_value d-flex flex-row">{this.props.storeState.autoValue}</div>
             <div className="properties_arrow"></div>
             <AutoMenu isVisible={this.props.storeState.autoMenu} />
           </div>
           <div style={{ position: "relative" }}>
-            <div className="properties_buttonStyle properties_leftButton" onClick={() => {
+            <div className="properties_buttonStyle properties_leftButton d-flex flex-row" onClick={() => {
               if (!this.props.storeState.peopleMenu) {
                 this.props.dispatch(changePersonsNumberDispatchOld(this.props.storeState.persons))
               } else {
@@ -85,27 +85,27 @@ class DriversPropertiesClass extends React.Component {
               };
               this.props.dispatch(peopleMenuCall(!this.props.storeState.peopleMenu))
             }}>
-              <div className="properties_value"><img src={userBlueIcon} width="12px" height="12px" />{personsNumberString}</div>
+              <div className="properties_value d-flex flex-row"><img src={userBlueIcon} width="12px" height="12px" />{personsNumberString}</div>
               <div className="properties_arrow"></div>
             </div>
             <PeopleMenu isVisible={this.props.storeState.peopleMenu} />
           </div>
           <div style={{ position: "relative" }} >
-            <div className="properties_buttonStyle properties_leftButton" onClick={() => { this.valueMenuCall(true) }}>
-              <div className="properties_value">{valueText}</div>
+            <div className="properties_buttonStyle properties_leftButton d-flex flex-row" onClick={() => { this.valueMenuCall(true) }}>
+              <div className="properties_value d-flex flex-row">{valueText}</div>
               <div className="properties_arrow"></div>
             </div>
             <ValueMenu isVisible={this.props.storeState.valueMenu} maxPrice={this.props.maxPrice} price={this.props.price} changePrice={this.props.changePrice} />
           </div>
         </div>
-        <div className="properties_rightBlock">
-          <div className="properties_buttonStyle properties_rightButton" onClick={() => this.props.dispatch(setSortMenuVisible(!this.props.storeState.sortMenu))}>
+        <div className="properties_rightBlock d-flex flex-row">
+          <div className="properties_buttonStyle properties_rightButton d-flex flex-row" onClick={() => this.props.dispatch(setSortMenuVisible(!this.props.storeState.sortMenu))}>
             <div className="properties_rightButton_characteristic">Сортировать:</div>
             <div className="properties_rightButton_value">{this.props.storeState.sortMenuValue}</div>
             <div className="properties_arrow"></div>
             <SortMenu isVisible={this.props.storeState.sortMenu} />
           </div>
-          <div className="properties_buttonStyle properties_rightButton" onClick={() => this.props.dispatch(setPagesVisible(!this.props.storeState.pagesMenu))}>
+          <div className="properties_buttonStyle properties_rightButton d-flex flex-row" onClick={() => this.props.dispatch(setPagesVisible(!this.props.storeState.pagesMenu))}>
             <div className="properties_rightButton_characteristic">{this.props.storeState.pagesMenuValue} / страниц</div>
             <div className="properties_arrow"></div>
             <PagesMenu pagesMenuVariants={this.props.storeState.pagesMenuVariants} isVisible={this.props.storeState.pagesMenu} setPages={setPages}/>

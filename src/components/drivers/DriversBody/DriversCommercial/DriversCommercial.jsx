@@ -15,7 +15,7 @@ export default class DriversCommercial extends React.Component {
   render() {
     
     return (
-      <div className = "drivers_commercial">
+      <div className = "drivers_commercial d-flex flex-column">
         <div className="commercial_picture picture1">
           <img src={picture1} width="100%" height="100%" alt="pic1"></img>
         </div>

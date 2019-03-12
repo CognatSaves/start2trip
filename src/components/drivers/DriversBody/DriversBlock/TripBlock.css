@@ -1,8 +1,4 @@
-.element_right_line {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-}
+
 .element_right_line:nth-child(1) {
     margin-bottom: 20px;
 }
@@ -13,8 +9,6 @@
 }
 
 .tripBlock_carData {
-    display: flex;
-    flex-direction: column;
     width: 256px;
     margin-left: 30px;
     height: 100%;
@@ -22,8 +16,6 @@
 }
 
 .tripBlock_priceBlock {
-    display: flex;
-    flex-direction: row;
     align-items: center;
     width: 100%;
     font-family: "Roboto";
@@ -32,25 +24,7 @@
     color: #ff6600;
 }
 
-.tripBlock_priceBlock_price {
-    display: flex;
-    font-family: "Roboto";
-    font-weight: bold;
-    font-size: 18pt;
-    color: #ff6600;
-}
-
-.tripBlock_buttonBlock {
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    height: 20%;
-    margin-left: auto;
-    padding: 2% 0;
-}
-
 .tripBlock_buttonBlock_button {
-    display: flex;
     justify-content: center;
     font-family: "Roboto";
     font-weight: 500;
@@ -72,18 +46,6 @@
     border-color: #ff6600;
 }
 
-.buttonBlock_button_value {
-    display: flex;
-    font-family: "Roboto";
-    max-height: 40px;
-    line-height: 40px;
-    font-weight: 500;
-    font-size: 12pt;
-    color: #ffffff;
-    border-radius: 5px;
-    margin: 0 auto;
-}
-
 .tripBlock_buttonBlock_commentary {
     font-size: 9pt;
     color: #304269;
@@ -93,13 +55,13 @@
 }
 
 .tripBlock_detailed {
-    display: flex;
     justify-content: flex-end;
     font-size: 9pt;
     color: #304269;
     font-family: "Roboto";
     font-weight: 400;
     margin-top: 10px;
+    text-align: right;
 }
 
 .tripBlock_detailed:hover  {
@@ -108,13 +70,10 @@
 }
 
 .carInfo_line {
-    display: flex;
-    flex-direction: row;
     align-items: center;
 }
 
 .carBrand_style {
-    display: flex;
     font-family: "Roboto";
     font-weight: 500;
     font-size: 12pt;
