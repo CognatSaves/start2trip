@@ -53,7 +53,7 @@ h2.homeBottomTitle {
 .homeBottomText {
     color: #304269;
     font-family: "Roboto";
-    font-weight: 300;
+    font-weight: 400;
     font-size: 9pt;
 }
 
@@ -68,10 +68,9 @@ h2.homeBottomTitle {
 }
 .homeBottomLink:hover{
     text-decoration: none;
-    background: #304269;
+    background: #f26101;
     color: #fff;
-    border-color: #304269;
-    transition: all 1s;
+    transition: all 0.3s;
 }
 
 

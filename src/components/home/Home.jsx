@@ -6,6 +6,8 @@ import routeIcon from './HomeBody/pictures/route.svg'
 import calendarHomeIcon from './HomeBody/pictures/calendarHome.svg'
 import offerIcon from './HomeBody/pictures/offer.svg'
 import enjoy_tripIcon from './HomeBody/pictures/enjoy_trip.svg'
+import RenderFourEl from './HomeBody/RenderFourEl.jsx'
+import georgiaImg from './HomeBody/pictures/georgia.png'
 
 //import HomeHeader from './HomeHeader/HomeHeader.jsx'
 import Header from '../header/Header';
@@ -16,6 +18,14 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
     this.redirectFunc = this.redirectFunc.bind(this);
+    this.state = {
+      popularPlaces:[
+        {img:georgiaImg,title:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere",text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere",link:"/driver",reviews:"32 отзыва"},
+        {img:georgiaImg,title:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere",text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere",link:"/driver",reviews:"12 отзывов"},
+        {img:georgiaImg,title:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere",text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere",link:"/driver",reviews:"55 отзыва"},
+        {img:georgiaImg,title:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere",text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere",link:"/driver",reviews:"22 отзыва"},
+    ] 
+    };
   }
   redirectFunc(where) {
     this.props.history.push(where);
@@ -71,10 +81,10 @@ class Home extends React.Component {
               </div>
             </div>
             <div className="d-flex flex-row align-items-center justify-content-start col-12"><h2 className="homeBottomTitle">ПОПУЛЯРНЫЕ МЕСТА</h2></div>
-
+            <RenderFourEl tours={this.state.popularPlaces} />
             <div className="d-flex flex-row align-items-center justify-content-center col-12"><Link to="" className="homeBottomLink">ПЕРЕЙТИ К МЕСТАМ</Link></div>
             <div className="d-flex flex-row align-items-center justify-content-start col-12"><h2 className="homeBottomTitle">ОРГАНИЗОВАННЫЕ ТУРЫ</h2></div>
-
+            <RenderFourEl tours={this.state.popularPlaces} />
             <div className="d-flex flex-row align-items-center justify-content-center col-12"><Link to="" className="homeBottomLink">ПЕРЕЙТИ К ТУРАМ</Link></div>
           </div>
           <Footer />
