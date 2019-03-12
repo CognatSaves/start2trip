@@ -36,7 +36,7 @@ class Home extends React.Component {
               <div className="text_changeBodyBlock_element changeBodyBlock_element_right">КАРТА</div>
             </div>
           </div>
-          <div className="home_body">
+          <div className="home_body d-flex flex-row col-12">
             <HomeBody redirectToDrivers={()=>this.redirectFunc('/drivers')}/>
           </div>
           

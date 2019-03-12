@@ -1,19 +1,22 @@
 .text_firstLine {
     text-align: center;
-    font-size: 3rem;
+    font-size: 34.5pt;
     color: #304269;
-    font-weight: 500;
     font-family: "Roboto";
     font-weight: 700;
     text-transform: uppercase;
+    height: 40px;
+    margin-top: 81px;
+    margin-bottom: 20px;
 }
 
 .text_secondLine {
-    font-size: 10.5pt;
+    font-size: 13.5pt;
     text-align: center;
     font-family: "Roboto";
     font-weight: 400;
     color: #304269;
+    margin-bottom: 46px;
 }
 
 /* @media (max-width: 360px) {

@@ -1,32 +1,21 @@
 .header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
     margin-top: 30px;
 }
 
 .headerLogo {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-right: 160px;
-    order: 0;
+    padding-left: 0px !important;
+    max-width: 480px !important;
 }
 
-.headerSelect {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    flex-direction: row;
-    order: 2;
+.headerLogo img {
+    padding-left: 0px;
 }
 
 .header_geo_block {
     display: flex;
     flex-direction: row;
     align-items: center;
+    padding: 0px !important;
 }
 
 .header_geo_button {
@@ -53,12 +42,7 @@
 }
 
 .header_buttonMass {
-    position: relative;
-    z-index: 1;
-    width: 290px;
-    height: 20px;
-    margin-right: 105px;
-    order: 1;
+    padding-left: 0px !important;
 }
 
 .buttonMass_button {
@@ -83,98 +67,72 @@
 }
 
 .selectGeneral {
-    display: block;
     position: relative;
-    min-width: 70px;
     height: 30px;
-    font-family: "Roboto";
-    font-weight: 500;
-    font-size: 10.5pt;
+    font-family: "Roboto" !important;
+    font-weight: 500 !important;
+    font-size: 10.5pt !important;
     margin: 0;
     margin-right: 14px;
     border-radius: 5px;
+    background-color: rgba(48, 66, 105, 0.5) !important;
+    background: rgba(48, 66, 105, 0.5) !important;
 }
 
-.selectGeneral::after {
-    content: ">";
-    position: absolute;
-    right: -10px;
-    border-radius: 5px;
-    top: 1px;
-    z-index: 2;
-    width: 40px;
-    height: 26px;
-    text-align: center;
-    line-height: 26px;
-    transform: rotate(90deg);
-    cursor: pointer;
+.selectGeneralBt {
+    border: none !important;
+    box-shadow: none !important;
+    background-color: rgba(48, 66, 105, 0.5) !important;
+    background: rgba(48, 66, 105, 0.5) !important;
 }
 
-.selectGeneral label {
-    display: inline-block;
-    min-width: 70px;
-    height: 30px;
-    margin: 0;
-    line-height: 28px;
-    border-radius: 5px;
-    white-space: nowrap;
-    padding: 0 14px 0 6px;
-}
-
-.selectGeneral label img {
+.selectGeneral img {
     margin-right: 2px;
     margin-bottom: 2px;
 }
 
-.selectGeneral input,
-.selectGeneral label {
-    display: none;
+.dropdownMenu {
+    font-family: "Roboto" !important;
+    font-weight: 500 !important;
+    font-size: 10.5pt !important;
+    background: rgba(48, 66, 105, 0.5) !important;
+    color: #fff !important;
+    padding: 0px !important;
+    margin: 0px !important;
+    min-width: 60px !important;
+    max-width: 80px !important;
 }
 
-.selectGeneral div {
-    min-width: 100%;
-    max-height: 500px;
-    border-radius: 5px;
-    overflow-x: hidden;
+.currenty {
+    text-align: center !important;
 }
 
-.selectGeneral input[type="radio"]:checked~div {
-    position: absolute;
-    top: 28px;
-    z-index: 999;
-    overflow-y: auto;
+.dropdownMenu img {
+    padding-left: 4px;
 }
 
-.selectGeneral input[type="radio"]:checked~div>label,
-.selectGeneral input[type="radio"]:checked+label {
-    display: block;
+.headerSelect {
+    padding-right: 0px !important;
+    max-width: 360px !important;
 }
 
 .header_registration {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: center;
-    text-align: center;
-    background: none;
-    min-height: 30px;
-    min-width: 100px;
-    border-width: 1.4px;
+    border: 1px solid #304269;
     border-radius: 5px;
-    text-align: center;
-    cursor: pointer;
+    background: none;
+    line-height: 28px;
 }
 
 .header_registration p {
-    width: 100%;
-    margin: 0;
-    text-align: center;
-    font-size: 9pt;
-    font-family: "Roboto";
-    font-weight: 300;
+    width: 100% !important;
+    margin: 0 !important;
+    text-align: center !important;
+    font-size: 9pt !important;
+    font-family: "Roboto" !important;
+    font-weight: 300 !important;
 }
 
-@media (max-width: 1200px) {
+/* @media (max-width: 1200px) {
     .header {
         flex-direction: row;
         justify-content: space-between;
@@ -196,11 +154,5 @@
     .headerLogo {
         margin-right: 70px;
 
-    }
-}
-
-/* @media (max-width: 800px) {
-    .headerLogo {
-        width: 45%;
     }
 } */

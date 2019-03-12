@@ -120,7 +120,7 @@ class HomeBodyClass extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <div className="body_menu">
+        <div className="body_menu col-3">
           <RouteMenu cities={this.state.cities} changeCity={this.changeCity} addCity={this.addCity}
             removeCity={this.removeCity} goToDrivers={this.goToDrivers} chooseDate={this.openChooseDate} date={this.state.date} />
           <div style={{ visibility: this.state.calendaryVisibility }}>
@@ -129,7 +129,7 @@ class HomeBodyClass extends React.Component {
               onClickDay={(value) => { this.chooseDate(value); this.closeChooseDate() }} />
           </div>
         </div>
-        <div className="body_map">
+        <div className="body_map col-9">
           <MapContainer cities={this.state.cities} setLengthTime={this.setLengthTime} mapUpdate={/*this.state.mapUpdate*/true} />
         </div>
 

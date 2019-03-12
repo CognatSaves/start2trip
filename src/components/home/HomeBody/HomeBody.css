@@ -1,20 +1,12 @@
 .body_menu{
-  display: flex;
-  flex-direction: column;
-  justify-content: stretch;
-  align-items: center;
-  width: 25%;
-  min-height: 500px;
-  max-width: 500px;
-  max-height: 800px;
+  padding: 0px;
   border-radius: 5px 0 0 5px;
-  /* padding: 10px 0 0 0; */
   background-color: #304269;
+  min-height: 540px;
 }
 
 .body_map{
-  display: inline-block;
-  width: 60%; 
+  padding: 0px;
   border-radius: 0 5px 5px 0;
   background-color: white;
 }
