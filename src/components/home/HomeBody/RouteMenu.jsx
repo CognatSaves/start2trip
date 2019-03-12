@@ -47,7 +47,7 @@ import {
               <img src={shapeIcon} alt="shapeIcon" width="7px" height="25px" />
             </div>
             <LocationSearchInput address={element} changeCity={changeCity} index={index+1} class={"city_input"} />
-            <img src={crossIcon} className="crossIcon col-3" alt="crossIcon" width="12px" height="12px" onClick={() => removeCity(index+1)} />
+            <img src={crossIcon} className="crossIcon col-3" alt="crossIcon" width="12px" height="12px" onClick={() => removeCity(index+1)} style={{visibility: 'visible'}}/>
           </div>
         )}
         

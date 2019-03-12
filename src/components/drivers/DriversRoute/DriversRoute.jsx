@@ -12,7 +12,8 @@ import loupe from './pictures/da_loupe.png';
 import cityMarker from './pictures/location_white.svg';
 import {set_state} from '../../../redusers/Action'
 import {setDriversRouteChange} from '../../../redusers/ActionDrivers'
-
+import Calendar from 'react-calendar'
+import '../../home/HomeBody/calendary.css';
 
 class DriversRouteClass extends React.Component {
     render() {
@@ -98,6 +99,11 @@ class DriversRouteClass extends React.Component {
               <div className="route_secondBottomBlock">
                 <div className="route_secondBottomBlock_date route_secondBottomBlock_elementStyle">
                   <div className="secondBottomBlock_calendarBlock">
+                    <div style={{ visibility: /*this.state.calendaryVisibility*/ 'visible'}}>
+                      <Calendar className="calendary_drivers_position"
+                        tileClassName={""}
+                        onClickDay={(value) => { this.chooseDate(value); this.closeChooseDate() }} />
+                    </div>
                     <div className="secondBottomBlock_calendar">
                       <img src={calendarIcon} width="100%" height="100%" alt="calendar"></img>
                     </div>
