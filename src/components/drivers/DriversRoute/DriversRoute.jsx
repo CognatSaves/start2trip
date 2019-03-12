@@ -21,8 +21,6 @@ class DriversRouteClass extends React.Component {
       let cities = this.props.storeState.cities;
       let routeElementWidth=100/(isVisibleArray.length+1);
       routeElementWidth=routeElementWidth+"%";
-      console.log("DriversRoute Render");
-      console.log(this.props);
       if(!this.props.driversState.driversRouteChange){
         return (
           <div className = "drivers_route">
@@ -37,7 +35,7 @@ class DriversRouteClass extends React.Component {
             </div>
             <div className="route_show">
               {cities.map((element, index) =>
-              <div className="route_show_element" style={{width: routeElementWidth}}>
+              <div className="route_show_element" style={{/*width: routeElementWidth*/}}>
                 <img src={pointIcon} style={{marginTop: "10px"}} height="75%" width="auto" alt={"icon"+index}/>
                 <div className="route_show_text" >{cities[index]}</div>
                 <div className="route_show_line" style={{visibility: isVisibleArray[index]}}></div>

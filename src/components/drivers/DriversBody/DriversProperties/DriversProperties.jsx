@@ -12,7 +12,7 @@ import {
   setPagesVisible, setTempPricePart, languageMenuIsVisibal, setSortMenuVisible,
   changePersonsNumberDispatch, changePersonsNumberDispatchOld, peopleMenuCall, autoMenuCall
 } from "../../../../redusers/Action"
-
+import {setPages} from '../../../../redusers/Action'
 
 
 
@@ -79,10 +79,8 @@ class DriversPropertiesClass extends React.Component {
           <div style={{ position: "relative" }}>
             <div className="properties_buttonStyle properties_leftButton" onClick={() => {
               if (!this.props.storeState.peopleMenu) {
-                debugger
                 this.props.dispatch(changePersonsNumberDispatchOld(this.props.storeState.persons))
               } else {
-                debugger
                 this.props.dispatch(changePersonsNumberDispatch(this.props.storeState.personsOld))
               };
               this.props.dispatch(peopleMenuCall(!this.props.storeState.peopleMenu))
@@ -110,7 +108,7 @@ class DriversPropertiesClass extends React.Component {
           <div className="properties_buttonStyle properties_rightButton" onClick={() => this.props.dispatch(setPagesVisible(!this.props.storeState.pagesMenu))}>
             <div className="properties_rightButton_characteristic">{this.props.storeState.pagesMenuValue} / страниц</div>
             <div className="properties_arrow"></div>
-            <PagesMenu isVisible={this.props.storeState.pagesMenu} />
+            <PagesMenu pagesMenuVariants={this.props.storeState.pagesMenuVariants} isVisible={this.props.storeState.pagesMenu} setPages={setPages}/>
           </div>
         </div>
       </div>

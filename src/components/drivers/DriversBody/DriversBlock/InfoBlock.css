@@ -3,7 +3,8 @@
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
-    width: 65%;
+    width: 320px;
+    padding: 0 33px;
     color: #304269;
 }
 .block_element_infoBlock_top{

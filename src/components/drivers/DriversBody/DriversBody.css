@@ -7,17 +7,17 @@
 .left_body_part{
   display: flex;
   flex-direction: column;
-  width: 73%;
+  width: 890px;
   height: 100%;
-  margin-right: 2%;
+  margin-right: auto;
   min-width: 590px;
 }
 .right_body_part{
   display: flex;
   flex-direction: column;
-  width: 24%;
+  width: 290px;
   height: 100%;
-  margin: 5% 0 0 auto;
+  margin-bottom: auto;
   min-width: 150px;
 }
 @media (max-width: 1150px){

@@ -1,16 +1,31 @@
 const SET_DRIVERS_ROUTE_CHANGE = 'SET_DRIVERS_ROUTE_CHANGE';
 
+const SET_PAGE = 'SET_PAGE';
+
+const SET_MORE_PAGES_SHOW = 'SET_MORE_PAGES_SHOW';
 
 const setDriversRouteChange = function (driversRouteChange){
-    console.log("setDriversRouteChange");
-    console.log("params:");
-    console.log(driversRouteChange)
     return {
         type: 'SET_DRIVERS_ROUTE_CHANGE',
         driversRouteChange: driversRouteChange
     }
 }
 
+const setPage = function (page){
+    return{
+        type: 'SET_PAGE',
+        page: page
+    }
+}
+
+const setMorePagesShow = function (){
+    console.log("setMorePagesShow call");
+    return{
+        type: SET_MORE_PAGES_SHOW
+    }
+}
 export {
-    setDriversRouteChange, SET_DRIVERS_ROUTE_CHANGE
+    setDriversRouteChange, SET_DRIVERS_ROUTE_CHANGE,
+    setPage, SET_PAGE,
+    setMorePagesShow, SET_MORE_PAGES_SHOW
 }

@@ -41,7 +41,7 @@ const initialState = {
   sortMenuVariants: ["Популярность", "Рейтинг", "Цена"],
   sortMenu: false,
   persons: [1, 0],
-  personsOld: "",
+  personsOld: [1,0],
   peopleMenu: false,
   pricePart: 100,
   tempPricePart: 100,

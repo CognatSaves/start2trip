@@ -18,20 +18,15 @@ class DriversClass extends React.Component {
               maxValue=array[i].price;
             }
           }
-          console.log("maxValueCalc");
-          console.log(maxValue);
           return maxValue;
         }
         super(props);
         let maxPrice=maxPriceCalc(this.props.driversState.drivers);
-        console.log("Drivers constructor");
-        console.log(maxPrice);
         this.state={
           travelVisibility: 'none',
           successVisibility: 'none',
           maxPrice: maxPrice
         }
-        //this.props.setMaxPrice(maxPrice);
         this.changeTravelVisibility=this.changeTravelVisibility.bind(this);
         this.changeSuccessVisibility=this.changeSuccessVisibility.bind(this);
         this.changePrice = this.changePrice.bind(this);
@@ -55,13 +50,10 @@ class DriversClass extends React.Component {
       })
     }
     render() {
-      console.log("Drivers render");
-      console.log(this.props);
-      console.log(this.state);
-      
         return (
           <React.Fragment>
               <div className = "drivers_top_background">
+                
                 <div className="wrapper">
                   <div className = "drivers_top_block">
                     <div className="travelFormBlock">

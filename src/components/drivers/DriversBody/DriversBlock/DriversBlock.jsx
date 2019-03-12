@@ -14,47 +14,69 @@ import jeep from './pictures/jeep.svg';
 import { Link } from 'react-router-dom';
 
 import Stars from '../../../stars/Stars';
+import {setPage, setMorePagesShow} from '../../../../redusers/ActionDrivers'
+
 
 class DriversBlockClass extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      page: 1,
-      //elementNumber: 10,
-      showPages: 1
-    };
     this.setPage = this.setPage.bind(this);
     this.showMorePages = this.showMorePages.bind(this);
+    this.driversSort=this.driversSort.bind(this);
   }
   setPage(page) {
-    /*
-    console.log("setPage called");
-    console.log(page);
-    console.log("elements now");
-    console.log(this.props.driversState.drivers.length);
-    */
     if (page !== "...") {
-      this.setState(
-        {
-          page: page,
-          showPages: 1
-        }
-      )
+      this.props.dispatch(setPage(page));
     }
+    //console.log("SetPage has been called");
   }
   showMorePages(){
-    console.log("DriversBlock showMorePages call");
-    this.setState({
-      showPages: this.state.showPages+1,
-      page: this.state.page+1
-    })
+    this.props.dispatch(setMorePagesShow());
   }
-  
+  driversSort(array,type){
+    function sortPrice(a,b){
+      if(a.price>b.price) return 1;
+      if (a.price<b.price) return -1;
+    }
+    function sortRating(a,b){
+      if(a.rating>b.rating) return -1;
+      if(a.rating<b.rating) return 1;
+    }
+    function sortComments(a,b){
+      if(a.comments>b.comments) return -1;
+      if(a.comments<b.comments) return 1;
+    }
+    let tempArray =[];
+    let tempPrice = this.props.storeState.pricePart*this.props.storeState.maxPrice/100; 
+    console.log("language");
+    console.log(this.props.storeState.languageValue);
+    array.forEach((element,index)=>{
+        if(element.price<tempPrice && element.carCapacity>=this.props.storeState.persons[1]+this.props.storeState.persons[0] &&
+            (element.carType===this.props.storeState.autoValue || this.props.storeState.autoValue==="Тип авто") && 
+            (element.language.indexOf(this.props.storeState.languageValue)!==-1 || this.props.storeState.languageValue==="Язык")
+          ){
+          tempArray.push(element);
+        }
+    });
+    switch (type){
+      case "Популярность":
+        return tempArray.sort(sortComments);
+      case "Рейтинг":
+        return tempArray.sort(sortRating);
+      case "Цена":
+        return tempArray.sort(sortPrice);
+      default: return array;
+    }
+  }
   render() {
 
-    let selectedElements = this.props.driversState.drivers.slice((this.state.page - this.state.showPages) * this.props.storeState.pagesMenuValue, (this.state.page) * this.props.storeState.pagesMenuValue);
+    let driversArray = this.driversSort([...this.props.driversState.drivers], this.props.storeState.sortMenuValue);
+    let selectedElements = driversArray.slice((this.props.driversState.page - this.props.driversState.showPages) * this.props.storeState.pagesMenuValue,
+     (this.props.driversState.page) * this.props.storeState.pagesMenuValue);
 
-    let srcArray = Array(this.props.storeState.pagesMenuValue*this.state.showPages).fill(emptyLike);
+
+    let srcArray = Array(this.props.storeState.pagesMenuValue*this.props.driversState.showPages).fill(emptyLike);
+
     srcArray[0]=selectedFilledLike;
     srcArray[1]=filledLike;
     return (
@@ -67,8 +89,8 @@ class DriversBlockClass extends React.Component {
               </div>
               <div className="block_element_infoBlock">
                 <div className="block_element_infoBlock_top">
-                  <Link to={`/driverProfile/${index},${index},${index}`} className="block_element_infoBlock_name">{element.name}</Link>
-                  <Stars value="5.0" commentNumber="10000 отзывов" valueDisplay="none" commentNumberDisplay="none"/>
+                  <Link to={`/driverProfile/${element.id},${element.id},${element.id}`} className="block_element_infoBlock_name">{element.name}</Link>
+                  <Stars value={element.rating} commentNumber={element.comments+" отзывов"} valueDisplay="block" commentNumberDisplay="block"/>
                 </div>
                 <div className="block_element_infoBlock_bot">
                   <div className="block_element_infoBlock_element">
@@ -87,7 +109,6 @@ class DriversBlockClass extends React.Component {
               </div>
             </div>
             <div className="block_element_right">
-              <div className="block_element_right_div">
                 <div className="element_right_line">
                   <div className="tripBlock_carImage">
                     <img src={sedan} width="100%" height="100%" alt={"car" + element}></img>
@@ -102,22 +123,19 @@ class DriversBlockClass extends React.Component {
                     </div>
                   </div>
                 </div>
-                <div className="element_right_line">
-                  <div className="tripBlock_priceBlock">
-                    {"$"+element.price}
-                    <button className="tripBlock_buttonBlock_button" onClick={() => this.props.changeTravelVisibility('block')}>ЗАБРОНИРОВАТЬ ПОЕЗДКУ</button>
-                  </div>
+                <div className="element_right_line tripBlock_priceBlock">
+                  <div className="tripBlock_carImage">{"$"+element.price}</div>
+                  <button className="tripBlock_buttonBlock_button" onClick={() => this.props.changeTravelVisibility('block')}>ЗАБРОНИРОВАТЬ ПОЕЗДКУ</button>
                 </div>
                 <div className="tripBlock_buttonBlock_commentary">Стоимость окончательная. Топливо включено</div>
                 <Link to={ `/driverProfile/${index},${index},${index}`} className="tripBlock_detailed">Подробнее</Link>
-              </div>
             </div>
             <div className="myHeart">
               <img src={srcArray[index]} width="auto" height="100%" alt="emptyLike"></img>
             </div>
           </div>
         )}
-        <Manipulator number = {this.props.driversState.drivers.length} page = {this.state.page} setPage = {this.setPage} 
+        <Manipulator number = {driversArray.length} page = {this.props.driversState.page} setPage = {this.setPage} 
         elementsNumber={this.props.storeState.pagesMenuValue} showMorePages={this.showMorePages}/>
       </div>
 
@@ -131,9 +149,6 @@ const DriversBlock = connect(
     storeState: state.AppReduser,
     driversState: state.DriversReduser
   }),
-  (dispatch) => ({
-    // setCities:(cities) => dispatch({type:"SET_CITIES",cities:cities})
-  })
 )(DriversBlockClass);
 
 export default DriversBlock;

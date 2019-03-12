@@ -10,8 +10,6 @@ export default class DriversBody extends React.Component {
         super(props);
     }
     render() {
-        console.log("DriversBody render");
-        console.log(this.props);
         return (
           <div className = "drivers_body">
             <div className="left_body_part">
