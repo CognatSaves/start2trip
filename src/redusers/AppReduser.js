@@ -90,6 +90,11 @@ export const AppReduser = (state = initialState, action) => {
     case AUTO_MENU_CALL: {
       let newState = { ...state };
       newState.autoMenu = action.autoMenu;
+      newState.pagesMenu = false;
+      newState.sortMenu = false;
+      newState.peopleMenu = false;
+      newState.valueMenu = false;
+      newState.languageMenu = false;
       return newState;
     }
 
@@ -102,6 +107,11 @@ export const AppReduser = (state = initialState, action) => {
     case SET_PAGES_VISIBLE: {
       let newState = { ...state };
       newState.pagesMenu = action.pagesMenu;
+      newState.autoMenu = false;
+      newState.sortMenu = false;
+      newState.peopleMenu = false;
+      newState.valueMenu = false;
+      newState.languageMenu = false;
       return newState;
     }
 
@@ -114,6 +124,11 @@ export const AppReduser = (state = initialState, action) => {
     case SET_SORT_MENU_VISIBLE: {
       let newState = { ...state };
       newState.sortMenu = action.sortMenu;
+      newState.autoMenu = false;
+      newState.pagesMenu = false;
+      newState.peopleMenu = false;
+      newState.valueMenu = false;
+      newState.languageMenu = false;
       return newState;
     }
     
@@ -126,17 +141,27 @@ export const AppReduser = (state = initialState, action) => {
     }
 
     case SET_TEMP_PRICE_PART:{
-      let newStateSTPP = { ...state };
-      newStateSTPP.tempPricePart = action.tempPricePart;
-      newStateSTPP.valueMenu = action.valueMenu;
-      return newStateSTPP;
+      let newState = { ...state };
+      newState.tempPricePart = action.tempPricePart;
+      newState.valueMenu = action.valueMenu;
+      newState.autoMenu = false;
+      newState.pagesMenu = false;
+      newState.sortMenu = false;
+      newState.peopleMenu = false;
+      newState.languageMenu = false;
+      return newState;
     }
 
     case SET_PRICE_PART:{
-      let newStateSPP = { ...state };
-      newStateSPP.pricePart = action.pricePart;
-      newStateSPP.valueMenu = action.valueMenu;
-      return newStateSPP;
+      let newState = { ...state };
+      newState.pricePart = action.pricePart;
+      newState.valueMenu = action.valueMenu;
+      newState.autoMenu = false;
+      newState.pagesMenu = false;
+      newState.sortMenu = false;
+      newState.peopleMenu = false;
+      newState.languageMenu = false;
+      return newState;
     }
 
 
@@ -155,7 +180,11 @@ export const AppReduser = (state = initialState, action) => {
     case PEOPLE_MENU_CALL: {
       let newState = { ...state };
       newState.peopleMenu = action.peopleMenu;
-
+      newState.autoMenu = false;
+      newState.pagesMenu = false;
+      newState.sortMenu = false;
+      newState.valueMenu = false;
+      newState.languageMenu = false;
       return newState;
     }
     case LANGUAGE_VALUE_CHOOSE: {
@@ -169,7 +198,11 @@ export const AppReduser = (state = initialState, action) => {
     case LANGUAGE_MENU_IS_VISIBAL: {
       let newState = { ...state };
       newState.languageMenu = action.languageMenu;
-
+      newState.autoMenu = false;
+      newState.pagesMenu = false;
+      newState.sortMenu = false;
+      newState.valueMenu = false;
+      newState.peopleMenu = false;
       return newState;
     }
 

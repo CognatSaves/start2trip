@@ -21,10 +21,12 @@
 }
 
 .autoMenu_element_textBlock {
+    cursor: pointer;
     position: absolute;
     top: 0px;
     width: 100%;
     height: 100%;
+    line-height: 30px;
 }
 
 .autoMenu_element_picture {

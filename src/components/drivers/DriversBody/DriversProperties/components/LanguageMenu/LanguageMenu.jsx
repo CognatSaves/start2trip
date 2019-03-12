@@ -8,7 +8,6 @@ import './LanguageMenu.css'
         super(props);
     }
     languageValueChoose(value, icon) {
-        debugger
         this.props.dispatch(languageValueChooseDispatch(value,icon));
         this.props.dispatch(languageMenuIsVisibal(false));
       }

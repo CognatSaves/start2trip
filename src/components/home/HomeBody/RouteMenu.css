@@ -111,7 +111,17 @@
 }
 .menuHome .drivers_properties_peopleMenu{
     top: 48px;
-    left: 35px;
+    left: 38px;
+}
+
+.menuHome .drivers_properties_autoMenu{
+    top: 105px;
+    left: 125px;
+}
+
+.menuHome .drivers_properties_languageMenu{
+    top: 164px;
+    right: 40px;
 }
 
 .routemenu_search {

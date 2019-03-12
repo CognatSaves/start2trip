@@ -187,7 +187,7 @@ const AddCities = (props) => {
             <div className="peopleMenuHome" onClick={() => {
               if (!this.props.storeState.peopleMenu) {
                 this.props.dispatch(changePersonsNumberDispatchOld(this.props.storeState.persons))
-              } else {
+              } else { 
                 this.props.dispatch(changePersonsNumberDispatch(this.props.storeState.personsOld))
               };
               this.props.dispatch(peopleMenuCall(!this.props.storeState.peopleMenu))

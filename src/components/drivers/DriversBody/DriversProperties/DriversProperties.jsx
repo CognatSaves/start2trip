@@ -79,10 +79,8 @@ class DriversPropertiesClass extends React.Component {
           <div style={{ position: "relative" }}>
             <div className="properties_buttonStyle properties_leftButton" onClick={() => {
               if (!this.props.storeState.peopleMenu) {
-                debugger
                 this.props.dispatch(changePersonsNumberDispatchOld(this.props.storeState.persons))
               } else {
-                debugger
                 this.props.dispatch(changePersonsNumberDispatch(this.props.storeState.personsOld))
               };
               this.props.dispatch(peopleMenuCall(!this.props.storeState.peopleMenu))
