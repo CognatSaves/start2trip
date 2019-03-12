@@ -52,10 +52,10 @@ class DriversClass extends React.Component {
     render() {
         return (
           <React.Fragment>
-              <div className = "drivers_top_background">
+              <div className = "drivers_top_background col-12">
                 
-                <div className="wrapper">
-                  <div className = "drivers_top_block">
+                <div className="wrapper d-flex flex-column">
+                  <div className = "drivers_top_block d-flex flex-column">
                     <div className="travelFormBlock">
                       <StartTravelForm changeTravelVisibility={this.changeTravelVisibility} changeSuccessVisibility={this.changeSuccessVisibility}
                       travelVisibility={this.state.travelVisibility} successVisibility={this.changeSuccessVisibility}/>
@@ -67,8 +67,8 @@ class DriversClass extends React.Component {
                   </div>
                 </div>
               </div>
-              <div className="wrapper">
-                <div className = "drivers_bottom_background" >
+              <div className="wrapper d-flex flex-column">
+                <div className = "drivers_bottom_background d-flex flex-column" >
                   <DriversBody changeTravelVisibility={this.changeTravelVisibility} maxPrice={this.state.maxPrice} 
                   price={this.state.price} changePrice={this.changePrice}/>                 
                 </div>                 

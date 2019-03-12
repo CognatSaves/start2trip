@@ -1,20 +1,14 @@
 .drivers_route {
-    display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: flex-start;
     background-color: rgba(48, 66, 105, 0.60);
-    margin: 35px 0 0 0;
+    margin-top: 35px;
     padding: 20px 20px 0 20px;
     border-radius: 5px;
-    height: 240px;
-    width: 100%;
-    /* filter: blur(1px); */
+    /*height: 240px;*/
 }
 
 .route_date {
-    display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: space-between;
     order: 0;
@@ -34,10 +28,7 @@
     display: flex;
 }
 
-.route_change {
-    display: flex;
-    flex-direction: row;
-}
+
 
 .route_change_emblem {
     display: flex;
@@ -58,13 +49,13 @@
 }
 
 .route_show {
-    display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
-    padding-bottom: 63px;
+    padding-bottom: 45px;
     width: 100%;
 }
-
+.route_show_bottom{
+    padding-bottom: 19px;
+}
 .route_show_element {
     display: flex;
     position: relative;
@@ -92,8 +83,6 @@
 }
 
 .route_bottomBlock {
-    display: flex;
-    flex-direction: column;
     padding-bottom: 19px;
     width: 50%;
 }

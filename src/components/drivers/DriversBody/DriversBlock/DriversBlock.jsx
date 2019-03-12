@@ -48,8 +48,6 @@ class DriversBlockClass extends React.Component {
     }
     let tempArray =[];
     let tempPrice = this.props.storeState.pricePart*this.props.storeState.maxPrice/100; 
-    console.log("language");
-    console.log(this.props.storeState.languageValue);
     array.forEach((element,index)=>{
         if(element.price<tempPrice && element.carCapacity>=this.props.storeState.persons[1]+this.props.storeState.persons[0] &&
             (element.carType===this.props.storeState.autoValue || this.props.storeState.autoValue==="Тип авто") && 
@@ -80,52 +78,52 @@ class DriversBlockClass extends React.Component {
     srcArray[0]=selectedFilledLike;
     srcArray[1]=filledLike;
     return (
-      <div className="drivers_block">
+      <div className="drivers_block d-flex flex-column">
         {selectedElements.map((element, index) =>
-          <div className="drivers_block_element">
-            <div className="block_element_left">
+          <div className="drivers_block_element d-flex flex-row">
+            <div className="block_element_left d-flex flex-row">
               <div className="block_element_photo">
                 <img src={driverPhoto} width="100%" height="100%" alt={"photo" + element} />
               </div>
-              <div className="block_element_infoBlock">
+              <div className="block_element_infoBlock d-flex flex-column">
                 <div className="block_element_infoBlock_top">
-                  <Link to={`/driverProfile/${element.id},${element.id},${element.id}`} className="block_element_infoBlock_name">{element.name}</Link>
+                  <Link to={`/driverProfile/${element.id},${element.id},${element.id}`} className="block_element_infoBlock_name d-flex">{element.name}</Link>
                   <Stars value={element.rating} commentNumber={element.comments+" отзывов"} valueDisplay="block" commentNumberDisplay="block"/>
                 </div>
-                <div className="block_element_infoBlock_bot">
-                  <div className="block_element_infoBlock_element">
+                <div className="d-flex flex-column">
+                  <div className="block_element_infoBlock_element d-flex flex-row">
                     <div className="infoString">Возраст:</div>
                     <div className="visibleString">{element.age}</div>
                   </div>
-                  <div className="block_element_infoBlock_element">
+                  <div className="block_element_infoBlock_element d-flex flex-row">
                     <div className="infoString">Языки:</div>
                     <div className="visibleString">{element.language}</div>
                   </div>
-                  <div className="block_element_infoBlock_element">
+                  <div className="block_element_infoBlock_element d-flex flex-row">
                     <div className="infoString">За рулём:</div>
                     <div className="visibleString">{element.drivingAge+" лет"}</div>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="block_element_right">
-                <div className="element_right_line">
+            <div className="block_element_right d-flex flex-column">
+                <div className="d-flex flex-row">
                   <div className="tripBlock_carImage">
                     <img src={sedan} width="100%" height="100%" alt={"car" + element}></img>
                   </div>
-                  <div className="tripBlock_carData">
-                    <div className="carInfo_line">
+                  <div className="tripBlock_carData d-flex flex-column">
+                    <div className="carInfo_line d-flex flex-row">
                       <div className="carBrand_style">{element.carBrand},</div>
                       <div className="fuelType_style">{element.fuelType}</div>
                     </div>
-                    <div className="carInfo_line">
+                    <div className="carInfo_line d-flex flex-row">
                       <div className="carProps_style">{element.carType+", "+element.carCapacity+" места"}</div>
                     </div>
                   </div>
                 </div>
-                <div className="element_right_line tripBlock_priceBlock">
+                <div className="d-flex flex-row tripBlock_priceBlock">
                   <div className="tripBlock_carImage">{"$"+element.price}</div>
-                  <button className="tripBlock_buttonBlock_button" onClick={() => this.props.changeTravelVisibility('block')}>ЗАБРОНИРОВАТЬ ПОЕЗДКУ</button>
+                  <button className="tripBlock_buttonBlock_button d-flex" onClick={() => this.props.changeTravelVisibility('block')}>ЗАБРОНИРОВАТЬ ПОЕЗДКУ</button>
                 </div>
                 <div className="tripBlock_buttonBlock_commentary">Стоимость окончательная. Топливо включено</div>
                 <Link to={ `/driverProfile/${index},${index},${index}`} className="tripBlock_detailed">Подробнее</Link>

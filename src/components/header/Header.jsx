@@ -44,6 +44,7 @@ export default class Header extends React.Component {
     let earthPic = [earth, whiteEarth];
     return (
       <React.Fragment>
+      <div className="home_header col-12">
         <div className='header d-flex flex-row align-items-center'>
           <div className="headerLogo d-flex flex-row col-5">
             <img  className="col-6" src={logo[this.props.type]} height="40px" width="205px" alt="logo" />
@@ -93,6 +94,7 @@ export default class Header extends React.Component {
             </button>
           </div>
         </div>
+      </div>
       </React.Fragment>
     );
   }

@@ -1,21 +1,15 @@
 .drivers_properties {
-    display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
     width: 100%;
 }
 
 .properties_leftBlock {
-    display: flex;
-    flex-direction: row;
     height: 100%;
     margin-right: auto;
 }
 
 .properties_rightBlock {
-    display: flex;
-    flex-direction: row;
     height: 100%;
     margin-left: auto;
 }
@@ -43,9 +37,7 @@
 }
 
 .properties_buttonStyle {
-    display: flex;
     position: relative;
-    flex-direction: row;
     font-family: "Roboto";
     font-weight: 500;
     font-size: 9pt;
@@ -61,8 +53,6 @@
 /*line-height в предыдущем стиле какое-то странное*/
 
 .properties_value {
-    display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: center;
     margin: auto 5px;
@@ -72,7 +62,6 @@
 }
 
 .properties_arrow {
-    display: flex;
     margin: auto 2px;
     width: 8px;
     height: 8px;
@@ -80,18 +69,15 @@
 }
 
 .properties_carPicture {
-    display: flex;
     margin: auto 2px;
     width: 20px;
 }
 
 .properties_rightButton_characteristic {
-    display: flex;
     margin: auto 2px;
 }
 
 .properties_rightButton_value {
-    display: flex;
     margin: auto 2px;
     font-family: "Roboto";
     font-weight: 500;

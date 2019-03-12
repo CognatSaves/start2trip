@@ -23,17 +23,17 @@ class DriversRouteClass extends React.Component {
       routeElementWidth=routeElementWidth+"%";
       if(!this.props.driversState.driversRouteChange){
         return (
-          <div className = "drivers_route">
-            <div className="route_date">
+          <div className = "drivers_route col-12 d-flex flex-column">
+            <div className="route_date d-flex flex-row">
               <div className="route_date_text">Ваш индивидуальный маршрут на: {this.props.storeState.date}</div>
-              <div className="route_change" onClick={()=>this.props.dispatch(setDriversRouteChange(!this.props.driversState.driversRouteChange))}>               
+              <div className="d-flex flex-row" onClick={()=>this.props.dispatch(setDriversRouteChange(!this.props.driversState.driversRouteChange))}>               
                 <div className="route_change_text">Изменить маршрут</div>
                 <div className="route_change_emblem">
                   <img src={changeElement} width="100%" height="100%" alt="change"></img>
                 </div>
               </div>
             </div>
-            <div className="route_show">
+            <div className="route_show d-flex flex-row">
               {cities.map((element, index) =>
               <div className="route_show_element" style={{/*width: routeElementWidth*/}}>
                 <img src={pointIcon} style={{marginTop: "10px"}} height="75%" width="auto" alt={"icon"+index}/>
@@ -42,7 +42,7 @@ class DriversRouteClass extends React.Component {
               </div>
               )}
             </div>
-            <div className="route_bottomBlock">
+            <div className="route_bottomBlock d-flex flex-column">
               <div className="route_time_text">Время в пути без остановок:
                 <p1>{this.props.driversState.travelTime}</p1><p2>{this.props.driversState.travelLength}</p2>
               </div>
@@ -53,17 +53,17 @@ class DriversRouteClass extends React.Component {
       }
       else{
         return (
-          <div className = "drivers_route">
-            <div className="route_date">
+          <div className = "drivers_route col-12 d-flex flex-column">
+            <div className="route_date d-flex flex-row">
               <div className="route_date_text">Ваш индивидуальный маршрут на: {this.props.storeState.date}</div>
-              <div className="route_change" onClick={()=>this.props.dispatch(setDriversRouteChange(!this.props.driversState.driversRouteChange))}>               
+              <div className="d-flex flex-row" onClick={()=>this.props.dispatch(setDriversRouteChange(!this.props.driversState.driversRouteChange))}>               
                 <div className="route_change_text">Изменить маршрут</div>
                 <div className="route_change_emblem">
                   <img src={changeElement} width="100%" height="100%" alt="change"></img>
                 </div>
               </div>
             </div>
-            <div className="route_show">
+            <div className="route_show d-flex flex-row">
               {cities.map((element, index) =>
               <React.Fragment>
                 <div className="route_show_element">
@@ -71,18 +71,7 @@ class DriversRouteClass extends React.Component {
                     <div className="search_input_icon">
                       <img src={cityMarker} width="100%" height="100%" alt=""></img>
                     </div>
-                    <SearchInput address={"element"} changeCity={()=>{}} index={index} class={"search_input_style"}/>
-                  </div>                  
-                  <div className="route_show_cross">
-                    <img src={closeIcon} width="100%" height="100%" alt="close"></img>
-                  </div>                 
-                </div>
-                <div className="route_show_element">
-                  <div className="search_input_block">
-                    <div className="search_input_icon">
-                      <img src={cityMarker} width="100%" height="100%" alt=""></img>
-                    </div>
-                    <SearchInput address={"element"} changeCity={()=>{}} index={index} class={"search_input_style"}/>
+                    <SearchInput address={element} changeCity={()=>{}} index={index} class={"search_input_style"}/>
                   </div>                  
                   <div className="route_show_cross">
                     <img src={closeIcon} width="100%" height="100%" alt="close"></img>
@@ -91,8 +80,8 @@ class DriversRouteClass extends React.Component {
               </React.Fragment>
               )}
             </div>
-            <div className="route_show" style={{width: "100%"}}>
-              <div className="route_bottomBlock">
+            <div className="route_show route_show_bottom d-flex flex-row" style={{width: "100%"}}>
+              <div className="route_bottomBlock d-flex flex-column">
                 <div className="route_add_city">
                   <div className="route_add_city_imageBlock">
                     <img src={addIcon} width="100%" height="100%" alt="addIcon"></img>
