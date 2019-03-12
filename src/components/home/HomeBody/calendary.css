@@ -7,7 +7,15 @@
     color: #ffffff;
     font-size: 16px;
 }
-
+.calendary_drivers_position{
+    position: absolute;
+    top: 0px;
+    width: 350px;
+    height: 315px;
+    background-color: #304269;
+    color: #ffffff;
+    font-size: 16px;
+}
 .temp_element {
     background-color: red;
 }
