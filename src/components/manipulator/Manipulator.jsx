@@ -25,12 +25,7 @@ export default class Manipulator extends React.Component{
             }
             return result;
         }
-        console.log("render DriversBlockManupulator");
-        console.log("props");
-        console.log(this.props);
         let maxPage = Math.ceil(this.props.number/this.props.elementsNumber);
-        console.log("page number");
-        console.log(this.props.number+" "+maxPage);
         let numberArray = numbersCalculation(maxPage, this.props.page);
         let spaceWidthSize = ["","","","","0 4%","0 2%","0 1%","0 1%"];
         let pageIndex = numberArray.indexOf(this.props.page);
