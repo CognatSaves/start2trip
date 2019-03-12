@@ -1,21 +1,19 @@
 .routemenu_container {
-    display: flex;
-    flex-direction: column;
-    padding: 41px 15px 0 15px;
-    min-height: 317px;
-    width: 100%;
+    padding: 0px !important;
 }
 
 .routemenu_addCity {
-    display: flex;
-    flex-direction: row;
+    padding: 0px !important;
     cursor: pointer;
     margin-top: 20px;
 }
 
+.routemenu_addCity img{
+    padding-left: 8px !important;
+}
+
 .routemenu_city_add_text {
     height: 20px;
-    margin-left: 10px;
     font-size: 9pt;
     color: #fff;
     font-family: "Roboto";
@@ -23,26 +21,30 @@
 }
 
 .routemenu_setDate {
-    display: flex;
-    flex-direction: row;
+    padding: 0px !important;
     cursor: pointer;
     margin-top: 20px;
 }
 
+.routemenu_setDate img{
+    padding-left: 8px !important;
+}
+
 .routemenu_date {
-    /* height: 20px; */
+
     text-align: left;
     border-width: 0 0 1px;
     border-color: white;
     background-color: transparent;
-    width: 50%;
-    min-width: 13.5vw;
+    min-width: 14vw;
     font-size: 9pt;
-    margin-left: 10px;
-    margin-bottom: 30px;
-    color: #ffffff;
+    margin-bottom: 40px;
+    color: #fff;
     font-family: "Roboto";
     font-weight: 400;
+}
+.routemenu_date:focus {
+    outline: none;
 }
 
 ::-webkit-input-placeholder {
@@ -50,16 +52,13 @@
 }
 
 .routemenu_parameters {
-    display: flex;
-    flex-direction: column;
-    /* justify-content: center; */
-    align-content: center;
-    width: 100%;
-    height: 100%;
     text-align: center;
     background-color: rgba(196, 205, 224, 0.11);
     border: none;
+    box-shadow: none;
+    border-radius: none !important;
     margin-bottom: 19px;
+
 }
 
 .routemenu_parametersAdd {
@@ -69,15 +68,22 @@
     align-content: center;
     width: 100%;
     text-align: center;
-    background-color: rgba(196, 205, 224, 0.11);
+    background-color:none;
     border: none;
     margin-bottom: 19px;
+    border-radius: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    height: 43px;
+}
+
+.routemenu_parametersAdd:hover {
+    background-color: rgba(196, 205, 224, 0.801);
 }
 
 .routemenu_parametersAdd p {
     margin: 0;
     padding-left: 15px;
-    line-height: 42px;
     font-size: 10pt;
     color: #fff;
     font-family: "Roboto";
@@ -86,6 +92,26 @@
 
 .routemenu_parametersAdd img {
     margin: auto 10px;
+}
+.peopleMenuHome{
+    border: 1px solid #fff;
+    border-radius: 5px;
+    width: 215px;
+    height: 48px;
+    text-align: start;
+    line-height: 48px;
+    color: #fff;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+.propertiesPeopleHome img{
+    margin-left: 10px;
+    margin-right: 10px;
+    
+}
+.menuHome .drivers_properties_peopleMenu{
+    top: 48px;
+    left: 35px;
 }
 
 .routemenu_search {
@@ -138,6 +164,10 @@
     flex-direction: column;
     position: relative;
     top: 20px;
+}
+
+.geoIcon{
+    padding-left: 6px !important;
 }
 
 .icon {
@@ -200,88 +230,6 @@ p.routemenu_search_text {
     margin: 5px;
 }
 
-/* .selectСar {
-    min-width: 154px;
-    border-radius: 5px;
-    
-    margin-right: 5px;
-    background-color: #97a3b4;
-    text-decoration: none;
-    outline: none;
-    color: #fff;
-}
-
-label.selectСar {
-    display: block;
-    position: relative;
-    min-width: 70px;
-    height: 30px;
-    font-size: 1rem;
-    margin: 0;
-    margin-right: 10px;
-    border-radius: 5px;
-    background: #97a3b4;
-    color: #fff;
-}
-
-label.selectСar::after {
-    content: ">";
-    position: absolute;
-    right: -10px;
-    border-radius: 5px;
-    top: 1px;
-    z-index: 2;
-    width: 40px;
-    height: 26px;
-    text-align: center;
-    line-height: 26px;
-    color: #fff;
-    transform: rotate(90deg);
-    cursor: pointer;
-}
-
-label.selectСar label {
-    display: inline-block;
-    min-width: 70px;
-    height: 30px;
-    margin: 0;
-    line-height: 28px;
-    border-radius: 5px;
-    white-space: nowrap;
-    padding: 0 14px 0 6px;
-    background: #0e62d6;
-}
-
-label.selectСar label img {
-    margin-right: 2px;
-}
-
-label.selectСar input,
-label.selectСar label {
-    display: none;
-}
-
-label.selectСar div {
-    display: flex;
-    flex-direction: column;
-    min-width: 100%;
-    max-height: 500px;
-    background: #97a3b4;
-    border-radius: 5px;
-    overflow-x: hidden;
-}
-
-label.selectСar input[type="radio"]:checked~div {
-    position: absolute;
-    top: 28px;
-    z-index: 999;
-    overflow-y: auto;
-}
-
-label.selectСar input[type="radio"]:checked~div>label,
-label.selectСar input[type="radio"]:checked+label {
-    display: block;
-} */
 
 @media (max-width: 1077px) {
     .routemenu_parameters p {

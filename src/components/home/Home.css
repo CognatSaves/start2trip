@@ -26,7 +26,11 @@
     /* margin: 4% 0 3% 0; */
 }
 
-.home_body {
+.home_body{
+    padding: 0px !important;
+}
+
+/* .home_body {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -36,7 +40,7 @@
     color: white;
     background: none;
     margin: auto;
-}
+} */
 
 .text_changeBodyBlock {
     display: none;
