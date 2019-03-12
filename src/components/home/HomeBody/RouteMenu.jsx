@@ -31,7 +31,7 @@ import {
    return (
     
       <div className="addCities">
-        <div className="startCity">
+        <div className="startCity col-12 p-0">
             <div className="iconMass col-2">
               <img src={ellipseIcon} alt="ellipseIcon" width="10px" height="12px" />
               <img src={shapeIcon} alt="shapeIcon" width="7px" height="25px" />
@@ -41,7 +41,7 @@ import {
         </div>
 
         {workCities.map((element, index) =>
-          <div className="startCity">
+          <div className="startCity col-12 p-0">
             <div className="iconMass col-2">
               <img src={ellipseIcon} alt="ellipseIcon" width="10px" height="12px" />
               <img src={shapeIcon} alt="shapeIcon" width="7px" height="25px" />
@@ -51,7 +51,7 @@ import {
           </div>
         )}
         
-        <div className="endCity">
+        <div className="endCity col-12 p-0">
           <img src={geoIcon} alt="geoIcon" className="geoIcon col-2" width="10px" height="12px" />
           <LocationSearchInput address={tempEnd} changeCity={changeCity} index={cities.length-1} class={"city_input"} />
           <img src={crossIcon} className="crossIcon col-3" alt="crossIcon" width="13px" height="12px" />
