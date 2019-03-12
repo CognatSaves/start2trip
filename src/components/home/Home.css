@@ -103,16 +103,53 @@ h2.homeBottomTitle {
     background-color: #ffffff;
 }
 
-/* @media (max-width: 1200px) {
-    .home_block {
-        width: 1024px;
-        margin: 0 auto;
-    }
+.homeSubscribe{
+    min-height: 700px;
+    background: url(BackgroundPeople.jpg) 100% 100% no-repeat;
+    background-size: cover;
 }
 
-@media (max-width: 1040px) {
-    .home_block {
-        width: 760px;
-        margin: 0 auto;
-    }
-} */
+.homeSubscribeButton{
+    background: #304269 !important;
+    color: #fff;
+    border-color: #304269 !important;
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 15px;
+}   
+
+.homeSubscribeInput{
+    border: 1px solid #304269 !important;
+    color: #999 !important;
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.homeSubscribe h2{
+    color: #333;
+    font-family: "Roboto";
+    font-weight: 500;
+    font-size: 34px;
+}
+
+.homeSubscribe span{
+    color: #333;
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.homeSubscribe p{
+    color: #999;
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 10px;
+}
+
+.homeSubscribe p span{
+    color: #304269;
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 10px;
+}

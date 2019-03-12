@@ -45,9 +45,15 @@
     outline: none;
 }
 
-.tourStars{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
+.tourPrise{
+    font-family: "Roboto";
+    font-weight: 500;
+    font-size: 14px;
+    color: #304269;
+}
+.tourPrise span{
+    font-family: "Roboto";
+    font-weight: 500;
+    font-size: 24px;
+    color: #304269;
 }

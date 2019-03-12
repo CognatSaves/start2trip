@@ -28,13 +28,16 @@ class RenderFourElClass extends React.Component {
                             </Link>
                             <CardBody>
                                 <Link className="tourTitle" to={element.link}>
-                                    <CardTitle className="tourTitle"  >{element.title}</CardTitle>
-                                    <div className="tourStars">
+                                    <CardTitle className="tourTitle mb-0"  >{element.title}</CardTitle>
+                                    <div className="mb-2">
                                         <Stars commentNumberDisplay={"block"} valueDisplay={"none"} commentNumber={element.reviews} />
                                     </div>
                                 </Link>
                                 <CardText className="tourText">{element.text}</CardText>
+                                <div className="d-flex flex-row justify-content-end col-12">
+                                <p className="tourPrise col-9" style={{display: this.props.priseDisplay}}>от <span>{element.prise}</span></p>
                                 <Link to={element.link} className="tourLink">Подробнее</Link>
+                                </div>
                             </CardBody>
                         </Card>
                     </div>
