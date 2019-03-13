@@ -36,3 +36,18 @@
     width: 100%;
 
 }
+
+.driverAdaptedRoute_show_element{
+    width: 225px;
+    
+}
+
+.driverAdaptedRoute_show_text{
+
+}
+.driverAdaptedRoute_show_line{
+    border-bottom: 3px solid;
+    width: 183px;
+    margin-left: 9px;
+    height: 24px;
+}
