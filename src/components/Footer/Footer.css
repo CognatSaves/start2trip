@@ -1,21 +1,13 @@
 
 .footer {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
     position: relative;
-    width: 100%;
     height: 50px;
     bottom: 0px;
     background-color: #304269;
 }
 
 .footer_block {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 80%;
+    max-width: 1200px;
 }
 
 .footerButtons {
@@ -51,10 +43,15 @@
     align-items: center;
     width: 40px;
     height: 40px;
-    position: absolute;
-    bottom: 113px;
-    right: 10%;
+    position: fixed;
+    bottom: 53px;
+    right: 2%;
     cursor: pointer;
     border-radius: 50%;
-    box-shadow: 0 0 15px 0px rgba(0, 0, 0, 0.20)
+    background: #fff;
+    box-shadow: 0 0 15px 0px rgba(0, 0, 0, 0.20);
+}
+
+.footerButtonUp:hover {
+    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.4);
 }

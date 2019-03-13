@@ -53,6 +53,9 @@
     font-size: 12pt;
     margin: 0px 15px;
 }
+.buttonMass_button:hover {
+    color: #333;
+}
 
 .buttonMass_button:hover {
     text-decoration: none;
@@ -92,6 +95,8 @@
 }
 
 .dropdownMenu {
+    top: 0.5px !important;
+    left: 2px !important;
     font-family: "Roboto" !important;
     font-weight: 500 !important;
     font-size: 10.5pt !important;
