@@ -1,8 +1,8 @@
 .homeColorClass{
-    color: #fff;
+    color: #fff !important;
 }
 .homeColorClass2{
-    color: #304269;
+    color: #304269 !important;
 }
 .homeBackgroundColorClass{
     background-color: rgba(48, 66, 105, 0.5);

@@ -55,8 +55,12 @@
     padding: 0;
     border-radius: 5px;
     border: none;
+    background-color: transparent;
+    
 }
-
+.pageNumbers_arrow:focus{
+    outline: none;
+}
 .pageNumbers_arrow:hover {
     transition: all 0.3s;
     border-radius: 10px;
@@ -113,7 +117,9 @@
     border: none;
     background-color: transparent;
 }
-
+.numberPosition_numberBlock_value:focus{
+    outline: none;
+}
 .numberPosition_numberBlock_value:hover {
     cursor: pointer;
 }
