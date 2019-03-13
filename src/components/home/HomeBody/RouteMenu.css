@@ -243,6 +243,7 @@ p.routemenu_search_text {
     font-family: "Roboto";
     font-weight: 400;
     font-size: 12px;
+    line-height: 15px;
 }
 
 .suggestion-item--active:hover{
