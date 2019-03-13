@@ -10,14 +10,9 @@
     max-width: 1200px;
 }
 
-.footerButtons {
-    width: 65%;
-    max-width: 800px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-}
+/* .footerButtons {
+
+} */
 
 .footerButtons_button {
     border: none;

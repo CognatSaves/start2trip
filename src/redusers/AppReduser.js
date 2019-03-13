@@ -21,15 +21,15 @@ const initialState = {
       icon: ruFlag,
     },
     {
-      languageName: "English",
+      languageName: "Английский",
       icon: enFlag,
     },
     {
-      languageName: "Georgian",
+      languageName: "Грузинский",
       icon: geoFlag,
     },
     {
-      languageName: "Spanish",
+      languageName: "Испанский",
       icon: espFlag,
     },
 

@@ -21,6 +21,7 @@
 }
 
 .languageMenu_element:hover {
+    transition: all 0.3s;
     background-color: #91bed4;
 }
 

@@ -19,10 +19,11 @@
 .driversBlockManipulator_button:hover {
     cursor: pointer;
     background: #ff6600;
-
+    transition: all 0.3s;
     box-shadow: 0 0 15px 0px rgba(0, 0, 0, 0.25);
 }
 .driversBlockManipulator_button:hover .driversBlockManipulator_button_value {
+    transition: all 0.3s;
     color: #fff;
 }
 .driversBlockManipulator_button:focus{
@@ -57,6 +58,7 @@
 }
 
 .pageNumbers_arrow:hover {
+    transition: all 0.3s;
     border-radius: 10px;
     box-shadow: 0 0 4px 4px rgba(221, 221, 221, 1);
     cursor: pointer;

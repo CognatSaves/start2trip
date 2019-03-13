@@ -42,6 +42,7 @@
 }
 
 .tripBlock_buttonBlock_button:hover  {
+    transition: all 0.3s;
     background-color: #ff6600;
     border-color: #ff6600;
 }
@@ -65,6 +66,7 @@
 }
 
 .tripBlock_detailed:hover  {
+    transition: all 0.3s;
     color: #ff6600;
     cursor: pointer;
 }

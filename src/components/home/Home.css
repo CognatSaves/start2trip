@@ -150,12 +150,13 @@ h2.homeBottomTitle {
 }
 
 .homeSubscribe p a{
-    color: #304269;
+    color: #279fcd;
     font-family: "Roboto";
     font-weight: 400;
     font-size: 12px;
 }
 .homeSubscribe p a:hover{
+    transition: all 0.3s;
     text-decoration: none;
     color: #f26101;
 }

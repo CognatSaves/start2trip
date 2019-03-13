@@ -16,6 +16,7 @@
     overflow: hidden;
 }
 .tourTitle:hover {
+    transition: all 0.3s;
     color: #f26101;
 }
 
@@ -46,6 +47,7 @@
 }
 
 .tourLink:hover {
+    transition: all 0.3s;
     color: #f26101;
     cursor: pointer;
     text-decoration: none;
