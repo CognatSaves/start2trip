@@ -31,17 +31,16 @@
 }
 
 .routemenu_date {
-
     text-align: left;
     border-width: 0 0 1px;
     border-color: white;
     background-color: transparent;
-    min-width: 14vw;
     font-size: 9pt;
     margin-bottom: 40px;
     color: #fff;
     font-family: "Roboto";
     font-weight: 400;
+    min-width: 190px;
 }
 .routemenu_date:focus {
     outline: none;
@@ -174,10 +173,13 @@
     flex-direction: column;
     position: relative;
     top: 20px;
+    padding-right: 0px !important;
+    max-width: 35px;
 }
 
 .geoIcon{
-    padding-left: 6px !important;
+    padding-right: 9px !important;
+    max-width: 35px;
 }
 
 .icon {
@@ -225,8 +227,8 @@ p.routemenu_search_text {
     color: white;
     font-size: 9pt;
     height: 50%;
-    width: 60%;
-    min-width: 14vw;
+    width: 100%;
+    min-width: 205px;
 }
 
 .peopleSelect {

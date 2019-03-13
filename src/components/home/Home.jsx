@@ -8,6 +8,7 @@ import offerIcon from './HomeBody/pictures/offer.svg'
 import enjoy_tripIcon from './HomeBody/pictures/enjoy_trip.svg'
 import RenderFourEl from './HomeBody/RenderFourEl.jsx'
 import georgiaImg from './HomeBody/pictures/georgia.png'
+import {InputGroup, InputGroupAddon, Input, Button} from 'reactstrap';
 
 //import HomeHeader from './HomeHeader/HomeHeader.jsx'
 import Header from '../header/Header';
@@ -19,12 +20,12 @@ class Home extends React.Component {
     super(props);
     this.redirectFunc = this.redirectFunc.bind(this);
     this.state = {
-      popularPlaces:[
-        {img:georgiaImg,title:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere",text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere",link:"/driver",reviews:"32 отзыва"},
-        {img:georgiaImg,title:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere",text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere",link:"/driver",reviews:"12 отзывов"},
-        {img:georgiaImg,title:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere",text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere",link:"/driver",reviews:"55 отзыва"},
-        {img:georgiaImg,title:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere",text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere",link:"/driver",reviews:"22 отзыва"},
-    ] 
+      popularPlaces: [
+        { img: georgiaImg, title: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", link: "/driver", reviews: "32 отзыва", prise: "120$" },
+        { img: georgiaImg, title: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", link: "/driver", reviews: "12 отзывов", prise: "80$" },
+        { img: georgiaImg, title: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", link: "/driver", reviews: "55 отзыва", prise: "150$" },
+        { img: georgiaImg, title: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", link: "/driver", reviews: "22 отзыва", prise: "170$" },
+      ]
     };
   }
   redirectFunc(where) {
@@ -50,9 +51,6 @@ class Home extends React.Component {
                 <HomeBody redirectToDrivers={() => this.redirectFunc('/drivers')} />
               </div>
             </div>
-
-
-
           </div>
           <div className="d-flex flex-column homeBottom">
             <div className="d-flex flex-row align-items-center justify-content-start col-12"><h2 className="homeBottomTitle">ПУТЕШЕСТВИЯ СО START2TRIP</h2></div>
@@ -79,11 +77,22 @@ class Home extends React.Component {
               </div>
             </div>
             <div className="d-flex flex-row align-items-center justify-content-start col-12"><h2 className="homeBottomTitle">ПОПУЛЯРНЫЕ МЕСТА</h2></div>
-            <RenderFourEl tours={this.state.popularPlaces} />
+            <RenderFourEl tours={this.state.popularPlaces} priseDisplay={"none"} />
             <div className="d-flex flex-row align-items-center justify-content-center col-12"><Link to="" className="homeBottomLink">ПЕРЕЙТИ К МЕСТАМ</Link></div>
             <div className="d-flex flex-row align-items-center justify-content-start col-12"><h2 className="homeBottomTitle">ОРГАНИЗОВАННЫЕ ТУРЫ</h2></div>
-            <RenderFourEl tours={this.state.popularPlaces} />
+            <RenderFourEl tours={this.state.popularPlaces} priseDisplay={"block"} />
             <div className="d-flex flex-row align-items-center justify-content-center col-12"><Link to="" className="homeBottomLink">ПЕРЕЙТИ К ТУРАМ</Link></div>
+          </div>
+          <div className="homeSubscribe d-flex flex-column align-items-center justify-content-center col-12">
+            <h2 className="mb-3">Новостная рассылка</h2>
+            <span className="mb-4">Новости, скидки, распродажи, конкурсы и немного искусства:</span>
+            <div className="d-flex flex-row align-content-center col-6 mb-4">
+              <InputGroup>
+                <Input className="homeSubscribeInput" placeholder="Aдрес электронной почты" />
+                <InputGroupAddon addonType="append"><Button className="homeSubscribeButton">ПОДПИСАТЬСЯ</Button></InputGroupAddon>
+              </InputGroup>
+            </div>
+            <p>Нажимая "Подписаться", Вы соглашаетесь с правилами<span> использования сервиса </span> и <span> обработки персональных данных.</span></p>
           </div>
           <Footer />
         </div>
@@ -95,9 +104,3 @@ class Home extends React.Component {
 
 
 export default Home;
-
-/*
-
-
-
-      */

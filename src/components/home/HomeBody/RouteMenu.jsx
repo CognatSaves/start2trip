@@ -32,7 +32,7 @@ import {
    return (
    
       <div className="addCities">
-        <div className="startCity" key={"0"+tempStart}>
+        <div className="startCity col-12 p-0" key={"0"+tempStart}>
             <div className="iconMass col-2">
               <img src={ellipseIcon} alt="ellipseIcon" width="10px" height="12px" />
               <img src={shapeIcon} alt="shapeIcon" width="7px" height="25px" />
@@ -42,7 +42,7 @@ import {
         </div>
 
         {workCities.map((element, index) =>
-          <div className="startCity" key={(index+1)+element}>
+          <div className="startCity col-12 p-0" key={(index+1)+element}>
             <div className="iconMass col-2">
               <img src={ellipseIcon} alt="ellipseIcon" width="10px" height="12px" />
               <img src={shapeIcon} alt="shapeIcon" width="7px" height="25px" />
@@ -52,7 +52,7 @@ import {
           </div>
         )}
         
-        <div className="endCity" key={(cities.length-1)+tempEnd}>
+        <div className="endCity col-12 p-0"  key={(cities.length-1)+tempEnd}>
           <img src={geoIcon} alt="geoIcon" className="geoIcon col-2" width="10px" height="12px" />
           <LocationSearchInput address={cities[cities.length-1]} changeCity={changeCity} index={cities.length-1} class={"city_input"} />
           <img src={crossIcon} className="crossIcon col-3" alt="crossIcon" width="13px" height="12px" />
