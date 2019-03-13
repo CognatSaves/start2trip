@@ -241,18 +241,15 @@ p.routemenu_search_text {
     background-position: left 5px top 0px;
     color: #304269;
     font-family: "Roboto";
-    font-weight: 500;
-    font-size: 14px;
+    font-weight: 400;
+    font-size: 12px;
 }
 
 .suggestion-item--active:hover{
-    background-color: #f26101 !important;
+    background-color: #eee !important;
+    transition: all 0.3s;
 }
 
-.suggestion-item--active:hover span{
-    background-color: #f26101 !important;
-    color: #fff;
-}
 
 .peopleSelect {
     display: flex;
