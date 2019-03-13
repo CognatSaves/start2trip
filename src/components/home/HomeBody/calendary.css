@@ -1,11 +1,12 @@
 .calendary_position {
     position: absolute;
-    top: 149px;
+    top: 160px;
     width: 350px;
-    height: 315px;
+    height: 330px;
     background-color: #304269;
     color: #ffffff;
-    font-size: 16px;
+    border: none;
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.705);
 }
 .calendary_drivers_position{
     position: absolute;
@@ -16,8 +17,57 @@
     color: #ffffff;
     font-size: 16px;
 }
+.react-calendar__navigation{
+    padding-top: 20px;
+}
+
 .temp_element {
     background-color: red;
+}
+
+.react-calendar__month-view__weekdays__weekday{
+    font-family: "Roboto";
+    font-weight: 500;
+}
+
+.react-calendar__navigation__label{
+    padding: 0px;
+    color: #fff;
+    font-family: "Roboto";
+    font-weight: 500;
+}
+
+.react-calendar__navigation__arrow, .react-calendar__navigation__next-button{
+    padding: 0px;
+    min-width: 30px !important;
+}
+
+.react-calendar__navigation__arrow{
+    color: #fff;
+}
+.react-calendar__navigation button:enabled:hover, .react-calendar__navigation button:enabled:focus{
+    background: #304269;
+    cursor: pointer;
+}
+
+.abbr[data-original-title], abbr[title]{
+    cursor: pointer;
+}
+
+.react-calendar__tile, .react-calendar__month-view__days__day{
+    font-family: "Roboto";
+    font-weight: 500;
+    font-size: 14px !important;
+    color: #f26101;
+}
+
+.react-calendar__tile{
+    border-radius: 5px;
+}
+
+.react-calendar__tile:enabled:hover, .react-calendar__tile:enabled:focus{
+    background: #f26101;
+    border-radius: 5px;
 }
 
 .react-calendar__month-view__weekdays__weekday abbr {

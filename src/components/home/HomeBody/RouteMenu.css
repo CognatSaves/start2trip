@@ -220,6 +220,8 @@ p.routemenu_search_text {
 }
 
 .city_input {
+    position: relative;
+    z-index: 3;
     outline: 0;
     border-width: 0 0 1px;
     border-color: white;
@@ -230,6 +232,25 @@ p.routemenu_search_text {
     width: 100%;
     min-width: 205px;
 }
+
+.autocomplete-dropdown-container span{
+    margin: 5px 5px 5px 0px;
+    padding-left: 25px;
+    background: url(../HomeBody/pictures/geo_icon.svg) no-repeat;
+    background-size: contain;
+    background-position: left 5px top 0px;
+    color: #304269;
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+}
+
+.suggestion-item--active:hover{
+    background-color: #eee !important;
+    transition: all 0.3s;
+}
+
 
 .peopleSelect {
     display: flex;
