@@ -107,9 +107,11 @@
 }
 
 .valueMenu_stateBlock_applyButton:hover{
+    transition: all 0.3s;
     color: #f60;
 }
 .valueMenu_stateBlock_cancelButton:hover{
+    transition: all 0.3s;
     color: #f60;
 }
 

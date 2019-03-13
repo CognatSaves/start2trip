@@ -62,6 +62,7 @@
     box-shadow: unset;*/
   }
   .rc-slider-handle:hover {
+    transition: all 0.3s;
     border-color: #304269;
   }
   .rc-slider-handle:active {

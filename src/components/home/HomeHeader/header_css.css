@@ -38,6 +38,7 @@
 }
 
 .header_geo_button:hover {
+    transition: all 0.3s;
     color: #fff;
     text-decoration: none;
     outline: none;

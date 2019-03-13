@@ -34,8 +34,8 @@ class RenderFourElClass extends React.Component {
                                     </div>
                                 </Link>
                                 <CardText className="tourText">{element.text}</CardText>
-                                <div className="d-flex flex-row justify-content-end col-12">
-                                <p className="tourPrise col-9" style={{display: this.props.priseDisplay}}>от <span>{element.prise}</span></p>
+                                <div className="d-flex flex-row justify-content-end align-items-end col-12">
+                                <p className="tourPrise col-9 mb-0" style={{display: this.props.priseDisplay}}>от <span>{element.prise}</span></p>
                                 <Link to={element.link} className="tourLink">Подробнее</Link>
                                 </div>
                             </CardBody>

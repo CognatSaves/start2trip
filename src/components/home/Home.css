@@ -31,7 +31,7 @@
     color: #304269;
     font-family: "Roboto";
     font-weight: 500;
-    font-size: 15.29pt;
+    font-size: 14.29pt;
 }
 
 h2.homeBottomTitle {
@@ -47,7 +47,7 @@ h2.homeBottomTitle {
     color: #304269;
     font-family: "Roboto";
     font-weight: 100;
-    font-size: 15.29pt;
+    font-size: 14.29pt;
 }
 
 .homeBottomText {
@@ -104,9 +104,11 @@ h2.homeBottomTitle {
 }
 
 .homeSubscribe{
-    min-height: 700px;
+    min-height: 600px;
+    max-width: 1200px !important;
     background: url(BackgroundPeople.jpg) 100% 100% no-repeat;
-    background-size: cover;
+    background-size: contain;
+    background-position: left 50px top 110px;
 }
 
 .homeSubscribeButton{
@@ -144,12 +146,17 @@ h2.homeBottomTitle {
     color: #999;
     font-family: "Roboto";
     font-weight: 400;
-    font-size: 10px;
+    font-size: 12px;
 }
 
-.homeSubscribe p span{
-    color: #304269;
+.homeSubscribe p a{
+    color: #279fcd;
     font-family: "Roboto";
     font-weight: 400;
-    font-size: 10px;
+    font-size: 12px;
+}
+.homeSubscribe p a:hover{
+    transition: all 0.3s;
+    text-decoration: none;
+    color: #f26101;
 }
