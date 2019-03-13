@@ -1,31 +1,32 @@
 .driverInfo_background{
     background-color: #ffffff;  
-    padding-bottom: 1.5%; 
+    padding: 0; 
     margin-top: 35px;
 }
 
 .driverInfo_element_left {
-    width: 58.5%;
     flex-direction: column;
-    margin-top: 1.5%;
+    margin-top: 30px;
     margin-bottom: auto;
 }
-
+.driverInfo_element_right {
+    flex-direction: column;
+    margin-top: 15px;
+    margin-bottom: auto;
+}
 .driverInfo_left_line {
     display: flex;
     flex-direction: row;
     width: 100%;
+    margin-bottom: 30px;
 }
 
-.driverInfo_element_right {
-    width: 41.5%;
-}
 
 .driverInfo_carData {
     flex-direction: row;
     font-size: 14px;
     color: #304269;
-    margin: auto 0 auto 15px;
+    margin: 20px 0 0 15px;
 }
 
 .driverInfo_carBrand {
@@ -46,7 +47,7 @@
 
 .driverInfo_carImage {
     width: 60px;
-    height: 60px;
+    height: 50px;
 }
 
 /* .element_right_line:nth-child(1){
@@ -69,8 +70,8 @@
 .driverInfo_carPhotoBlock {
     display: flex;
     position: relative;
-    width: 70%;
-    height: 30%;
+    width: 300px;
+    height: 250px;
     margin: 0 auto;
     min-width: 150px;
     min-height: 100px;
@@ -81,8 +82,8 @@
     position: absolute;
     top: 50%;
     transform: translate(0, -50%);
-    width: 13%;
-    height: 18%;
+    width: 40px;
+    height: 40px;
     border-radius: 100%;
     text-align: center;
     border: 1px solid transparent;
@@ -105,9 +106,7 @@
     outline: none;
 }
 
-.driverInfo_myHeart {
-    height: 8%;
-}
+
 
 .album_photo {
     position: relative;

@@ -58,7 +58,7 @@
 
 .pageNumbers_arrow:hover {
     border-radius: 10px;
-    box-shadow: 0 0 4px 4px rgba(221, 221, 221, 1);
+    /*box-shadow: 0 0 4px 4px rgba(221, 221, 221, 1);*/
     cursor: pointer;
 }
 

@@ -69,7 +69,6 @@ import {
   }
 
   render() {
-
     function personsCalculation(people) {
       let result = 0;
       people.forEach(function (item, i, people) {

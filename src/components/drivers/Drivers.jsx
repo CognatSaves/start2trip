@@ -55,12 +55,8 @@ class DriversClass extends React.Component {
               <div className = "drivers_top_background col-12">
                 
                 <div className="wrapper d-flex flex-column">
-                  <div className = "drivers_top_block d-flex flex-column">
-                    <div className="travelFormBlock">
-                      <StartTravelForm changeTravelVisibility={this.changeTravelVisibility} changeSuccessVisibility={this.changeSuccessVisibility}
-                      travelVisibility={this.state.travelVisibility} successVisibility={this.changeSuccessVisibility}/>
-                      <StartTravelSuccess successVisibility={this.state.successVisibility} changeSuccessVisibility={this.changeSuccessVisibility}/>               
-                    </div>
+                  
+                  <div className = "drivers_top_block d-flex flex-column">                   
                     <Header colorClass="colorClass" colorClass2="colorClass2" backgroundColorClass="backgroundColorClass"
                     borderColorClass="borderColorClass" labelColorClass="labelColorClass" type={1}/>
                     <DriversRoute />             
@@ -73,7 +69,10 @@ class DriversClass extends React.Component {
                   price={this.state.price} changePrice={this.changePrice}/>                 
                 </div>                 
               </div>
-                           
+              <StartTravelForm changeTravelVisibility={this.changeTravelVisibility} changeSuccessVisibility={this.changeSuccessVisibility}
+              travelVisibility={this.state.travelVisibility} successVisibility={this.changeSuccessVisibility}/>               
+              
+              <StartTravelSuccess successVisibility={this.state.successVisibility} changeSuccessVisibility={this.changeSuccessVisibility}/>          
               <Footer/>             
           </React.Fragment>
         );

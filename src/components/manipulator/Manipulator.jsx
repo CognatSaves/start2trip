@@ -60,7 +60,7 @@ export default class Manipulator extends React.Component{
                     <div classNmae="pageNumbers_text_value">в конец</div>
                 </div>
                 <button className="pageNumbers_arrow" onClick={()=>{ if(this.props.page<maxPage){this.props.setPage(this.props.page+1)}}}>
-                    <img src={rightArrow} width="100%" height="100%" alt="rightA" style={{borderRadius: "5px"}}></img>
+                    <img src={rightArrow} width="100%" height="auto" alt="rightA" style={{borderRadius: "5px"}}></img>
                 </button>
 
             </div>

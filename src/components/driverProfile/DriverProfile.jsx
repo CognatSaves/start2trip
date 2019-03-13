@@ -96,15 +96,15 @@ const DriverInfo = (props) =>{
     let carComfortImages = [snowflake, seat, wifi, noSmoking];
     return(
         <div className="drivers_block_element driverInfo_background d-flex flex-row">
-            <div className="block_element_left driverInfo_element_left">
-                <div className="driverInfo_left_line" style={{marginBottom: "5%"}}>
+            <div className="block_element_left driverInfo_element_left col-7">
+                <div className="driverInfo_left_line">
                 <div className="block_element_photo">
-                    <img src={driverPhoto} width="auto" height="100%" alt={"photo" + element} />
+                    <img src={driverPhoto} width="auto" height="auto" alt={"photo" + element} />
                 </div>
                 <div className="block_element_infoBlock">
                     <div className="block_element_infoBlock_top">
                     <div className="block_element_infoBlock_name">{element.name}</div>
-                    <Stars value="5.0" commentNumber="10000 отзывов" valueDisplay="none" commentNumberDisplay="none"/>
+                    <Stars value="5.0" commentNumber="10000 отзывов" valueDisplay="block" commentNumberDisplay="block"/>
                     </div>
                     <div className="block_element_infoBlock_bot">
                     <div className="block_element_infoBlock_element d-flex flex-row">
@@ -129,10 +129,10 @@ const DriverInfo = (props) =>{
                     </div>
                 </div>
             </div>
-            <div className="block_element_right driversInfo_element_right">
+            <div className="block_element_right driverInfo_element_right col-5">
               <div className="d-flex flex-row">
                 <div className="driverInfo_carImage">
-                  <img src={sedan} height="100%" width="100%"  alt={"car" + element}></img>
+                  <img src={sedan} height="auto" width="100%"  alt={"car" + element}></img>
                 </div>
                 <div className="tripBlock_carData driverInfo_carData d-flex flex-row">
                     <div className="driverInfo_carBrand">{element.carBrand+","}</div>
@@ -155,16 +155,16 @@ const DriverInfo = (props) =>{
                         <img class="carImageStyles" src={carImages[carImageNumber]} alt="car" style={{margin: "auto", borderRadius: "5px"}}></img>
                     </div>
                     
-                    <button className="driverInfo_carPhotoBlock_switchCarPicture " style={{left: "-7%"}} onClick={()=>changeCar(-1)}>                   
+                    <button className="driverInfo_carPhotoBlock_switchCarPicture " style={{left: "-20px"}} onClick={()=>changeCar(-1)}>                   
                         <div style={{margin: "auto"}}>{arrowLeft}</div>
                     </button>
-                    <button className="driverInfo_carPhotoBlock_switchCarPicture " style={{right: "-7%"}} onClick={()=>changeCar(-1)}>
+                    <button className="driverInfo_carPhotoBlock_switchCarPicture " style={{right: "-20px"}} onClick={()=>changeCar(-1)}>
                         <div style={{margin: "auto"}}>{arrowRight}</div>
                     </button>
                 </div>
               </div>
             </div>
-            <div className="myHeart driverInfo_myHeart">
+            <div className="myHeart">
               <img src={lukas} width="auto" height="100%" alt="emptyLike"></img>
             </div>
           </div>
@@ -233,12 +233,7 @@ class DriverProfileClass extends React.Component{
         <React.Fragment>
             <div className = "drivers_top_background col-12">
                 <div className="wrapper d-flex flex-column">
-                    <div className = "drivers_top_block d-flex flex-column">
-                        <div className="travelFormBlock">
-                            <StartTravelForm changeTravelVisibility={this.changeTravelVisibility} changeSuccessVisibility={this.changeSuccessVisibility}
-                            travelVisibility={this.state.travelVisibility} successVisibility={this.changeSuccessVisibility}/>
-                            <StartTravelSuccess successVisibility={this.state.successVisibility} changeSuccessVisibility={this.changeSuccessVisibility}/>               
-                        </div>
+                    <div className = "drivers_top_block d-flex flex-column">              
                         <Header colorClass="colorClass" colorClass2="colorClass2" backgroundColorClass="backgroundColorClass"
                         borderColorClass="borderColorClass" labelColorClass="labelColorClass" type={1}/>
                         <DriverInfo element={driver} changeCar={this.changeCar} carImageNumber={this.state.carImageNumber} carImages={this.state.carImages}/>
@@ -251,18 +246,21 @@ class DriverProfileClass extends React.Component{
             </div>
             <div className="wrapper d-flex flex-column">
                 <div className = "drivers_bottom_background d-flex flex-column" >
-                    <div className = "drivers_body">
-                        <div className="left_body_part">
+                    <div className = "drivers_body d-flex">
+                        <div className="left_body_part col-9">
                             <DriversProfileComments page={this.state.page} />
                             <Manipulator number = {this.props.commentState.comments.length} page={this.state.page} elementsNumber={5} setPage={this.setPage}/>
                         </div>
-                        <div className="right_body_part">
+                        <div className="right_body_part col-3">
                             <DriversCommercial/>
                         </div>
                         
                     </div>
                 </div>    
             </div>
+            <StartTravelForm changeTravelVisibility={this.changeTravelVisibility} changeSuccessVisibility={this.changeSuccessVisibility}
+                            travelVisibility={this.state.travelVisibility} successVisibility={this.changeSuccessVisibility}/>
+            <StartTravelSuccess successVisibility={this.state.successVisibility} changeSuccessVisibility={this.changeSuccessVisibility}/> 
             <Footer/>
         </React.Fragment>
             

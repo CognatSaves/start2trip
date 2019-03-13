@@ -56,10 +56,10 @@
 .myHeart {
     position: absolute;
     width: auto;
-    height: 12%;
+    height: 25px;
     top: 0;
     right: 0;
-    margin: 1.5% 3%;
+    margin: 25px;
 }
 
 @media (min-width: 1350px) {
