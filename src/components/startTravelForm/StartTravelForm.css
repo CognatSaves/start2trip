@@ -1,4 +1,6 @@
 .startTravelForm{
+    position: relative;
+    top: 110px;
     display: flex;
     flex-direction: column;
     margin: 0 auto auto auto;

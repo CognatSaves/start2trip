@@ -80,8 +80,8 @@ class DriversBlockClass extends React.Component {
     return (
       <div className="drivers_block d-flex flex-column">
         {selectedElements.map((element, index) =>
-          <div className="drivers_block_element d-flex flex-row">
-            <div className="block_element_left d-flex flex-row">
+          <div className="drivers_block_element d-flex">
+            <div className="block_element_left d-flex">
               <div className="block_element_photo">
                 <img src={driverPhoto} width="100%" height="100%" alt={"photo" + element} />
               </div>
@@ -91,15 +91,15 @@ class DriversBlockClass extends React.Component {
                   <Stars value={element.rating} commentNumber={element.comments+" отзывов"} valueDisplay="block" commentNumberDisplay="block"/>
                 </div>
                 <div className="d-flex flex-column">
-                  <div className="block_element_infoBlock_element d-flex flex-row">
+                  <div className="block_element_infoBlock_element d-flex">
                     <div className="infoString">Возраст:</div>
                     <div className="visibleString">{element.age}</div>
                   </div>
-                  <div className="block_element_infoBlock_element d-flex flex-row">
+                  <div className="block_element_infoBlock_element d-flex">
                     <div className="infoString">Языки:</div>
                     <div className="visibleString">{element.language}</div>
                   </div>
-                  <div className="block_element_infoBlock_element d-flex flex-row">
+                  <div className="block_element_infoBlock_element d-flex">
                     <div className="infoString">За рулём:</div>
                     <div className="visibleString">{element.drivingAge+" лет"}</div>
                   </div>
@@ -107,26 +107,26 @@ class DriversBlockClass extends React.Component {
               </div>
             </div>
             <div className="block_element_right d-flex flex-column">
-                <div className="d-flex flex-row">
+                <div className="d-flex">
                   <div className="tripBlock_carImage">
                     <img src={sedan} width="100%" height="100%" alt={"car" + element}></img>
                   </div>
                   <div className="tripBlock_carData d-flex flex-column">
-                    <div className="carInfo_line d-flex flex-row">
+                    <div className="carInfo_line d-flex">
                       <div className="carBrand_style">{element.carBrand},</div>
                       <div className="fuelType_style">{element.fuelType}</div>
                     </div>
-                    <div className="carInfo_line d-flex flex-row">
+                    <div className="carInfo_line d-flex">
                       <div className="carProps_style">{element.carType+", "+element.carCapacity+" места"}</div>
                     </div>
                   </div>
                 </div>
-                <div className="d-flex flex-row tripBlock_priceBlock">
+                <div className="d-flex tripBlock_priceBlock">
                   <div className="tripBlock_carImage">{"$"+element.price}</div>
                   <button className="tripBlock_buttonBlock_button d-flex" onClick={() => this.props.changeTravelVisibility('block')}>ЗАБРОНИРОВАТЬ ПОЕЗДКУ</button>
                 </div>
                 <div className="tripBlock_buttonBlock_commentary">Стоимость окончательная. Топливо включено</div>
-                <Link to={ `/driverProfile/${index},${index},${index}`} className="tripBlock_detailed">Подробнее</Link>
+                <Link to={ `/driverProfile/${element.id},${element.id},${element.id}`} className="tripBlock_detailed">Подробнее</Link>
             </div>
             <div className="myHeart">
               <img src={srcArray[index]} width="auto" height="100%" alt="emptyLike"></img>
