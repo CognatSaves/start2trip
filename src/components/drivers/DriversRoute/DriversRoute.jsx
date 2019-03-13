@@ -14,14 +14,93 @@ import {set_state} from '../../../redusers/Action'
 import {setDriversRouteChange} from '../../../redusers/ActionDrivers'
 import Calendar from 'react-calendar'
 import '../../home/HomeBody/calendary.css';
+//import {set_state} from '../../../redusers/Action'
 
 class DriversRouteClass extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      calendaryVisibility: 'hidden',
+      date: '',
+      cities: [...this.props.storeState.cities]
+    }
+    this.addCity=this.addCity.bind(this);
+    this.removeCity=this.removeCity.bind(this);
+    this.openChooseDate=this.openChooseDate.bind(this);
+    this.closeChooseDate = this.closeChooseDate.bind(this);
+    this.chooseDate = this.chooseDate.bind(this);
+    this.changeCity = this.changeCity.bind(this);
+    this.searchRoute=this.searchRoute.bind(this);
+  }
+  
+  addCity() {
+    let cities = this.state.cities;
+    cities[cities.length]="";
+    this.setState({
+      cities: cities,
+    })
+  }
+  removeCity(index) {
+    let cities = this.state.cities;
+    cities.splice(index, 1);
+    this.setState({
+      cities: cities,
+      mapUpdate: true
+    })
+  }
+  openChooseDate() {
+    //console.log("openChooseDate call");
+    this.setState({
+      calendaryVisibility: 'visible'
+    }) 
+  }
+  closeChooseDate() {
+    this.setState({
+      calendaryVisibility: 'hidden'
+    })
+  }
+  chooseDate(value) {
+    let dayMass = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
+    let monthMass = ["января", "февраля", "марта", "апреля", "мая",
+      "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
+    let resultString = dayMass[value.getDay()] + ", " + value.getDate() + " " + monthMass[value.getMonth()] + " " + value.getFullYear();
+    this.setState({
+      date: resultString,
+      calendaryVisibility: 'hidden'
+    });
+  }
+  changeCity(index, value) {
+    let cities = this.state.cities;
+    cities[index] = value;
+    this.setState({
+      cities: cities,
+    });
+  }
+  searchRoute(){
+    //на данный момент это просто применение изменений
+    //поставлено только ограничения - нельзя пустые города и пустую дату
+    function isCorrectSearchData(cities, date){
+      for(let i=0; i<cities.length; i++){
+        if(cities[i].length===""){
+          return false;
+        }
+      }
+      if(date.length===0){
+        return false;
+      }
+      return true;
+    }
+    if(isCorrectSearchData(this.state.cities, this.state.date)){
+      this.props.dispatch(set_state("DriversRoute",[...this.state.cities],this.state.date));
+      this.props.dispatch(setDriversRouteChange(!this.props.driversState.driversRouteChange))
+    }
+    else{
+      alert("Nekotorie dannie nekorektni!! Proverte vse esche!");
+    }
+  }
     render() {
       let isVisibleArray = Array(this.props.storeState.cities.length).fill("visible");
       isVisibleArray[isVisibleArray.length-1]="hidden";
-      let cities = this.props.storeState.cities;
-      let routeElementWidth=100/(isVisibleArray.length+1);
-      routeElementWidth=routeElementWidth+"%";
       if(!this.props.driversState.driversRouteChange){
         return (
           <div className = "drivers_route col-12 d-flex flex-column">
@@ -35,10 +114,10 @@ class DriversRouteClass extends React.Component {
               </div>
             </div>
             <div className="route_show d-flex flex-row">
-              {cities.map((element, index) =>
+              {this.state.cities.map((element, index) =>
               <div className="route_show_element" style={{/*width: routeElementWidth*/}}>
                 <img src={pointIcon} style={{marginTop: "10px"}} height="75%" width="auto" alt={"icon"+index}/>
-                <div className="route_show_text" >{cities[index]}</div>
+                <div className="route_show_text" >{this.state.cities[index]}</div>
                 <div className="route_show_line" style={{visibility: isVisibleArray[index]}}></div>
               </div>
               )}
@@ -53,6 +132,9 @@ class DriversRouteClass extends React.Component {
         )
       }
       else{
+        let removeArray = Array(this.state.cities.length).fill('block');
+        removeArray[0]='none';
+        removeArray[removeArray.length-1]='none';
         return (
           <div className = "drivers_route col-12 d-flex flex-column">
             <div className="route_date d-flex flex-row">
@@ -65,16 +147,16 @@ class DriversRouteClass extends React.Component {
               </div>
             </div>
             <div className="route_show d-flex flex-row">
-              {cities.map((element, index) =>
+              {this.state.cities.map((element, index) =>
               <React.Fragment>
-                <div className="route_show_element">
+                <div className="route_show_element" key={element+"/"+index}>
                   <div className="search_input_block">
                     <div className="search_input_icon">
                       <img src={cityMarker} width="100%" height="100%" alt=""></img>
                     </div>
-                    <SearchInput address={element} changeCity={()=>{}} index={index} class={"search_input_style"}/>
+                    <SearchInput address={element} changeCity={this.changeCity} index={index} class={"search_input_style"}/>
                   </div>                  
-                  <div className="route_show_cross">
+                  <div className="route_show_cross" style={{display: removeArray[index]}} onClick={()=>this.removeCity(index)}>
                     <img src={closeIcon} width="100%" height="100%" alt="close"></img>
                   </div>                 
                 </div>
@@ -83,7 +165,7 @@ class DriversRouteClass extends React.Component {
             </div>
             <div className="route_show route_show_bottom d-flex flex-row" style={{width: "100%"}}>
               <div className="route_bottomBlock d-flex flex-column">
-                <div className="route_add_city">
+                <div className="route_add_city" onClick={()=>this.addCity()}>
                   <div className="route_add_city_imageBlock">
                     <img src={addIcon} width="100%" height="100%" alt="addIcon"></img>
                   </div>
@@ -99,20 +181,20 @@ class DriversRouteClass extends React.Component {
               <div className="route_secondBottomBlock">
                 <div className="route_secondBottomBlock_date route_secondBottomBlock_elementStyle">
                   <div className="secondBottomBlock_calendarBlock">
-                    <div style={{ visibility: /*this.state.calendaryVisibility*/ 'visible'}}>
+                    <div style={{ visibility: this.state.calendaryVisibility}}>
                       <Calendar className="calendary_drivers_position"
                         tileClassName={""}
-                        onClickDay={(value) => { this.chooseDate(value); this.closeChooseDate() }} />
+                        onClickDay={(value) => { this.chooseDate(value);}} />
                     </div>
                     <div className="secondBottomBlock_calendar">
                       <img src={calendarIcon} width="100%" height="100%" alt="calendar"></img>
                     </div>
-                    <input className="secondBottomBlock_dateInput" placeholder="Date must be here"></input>
+                    <input className="secondBottomBlock_dateInput" placeholder="Date must be here" value={this.state.date} onClick={()=>this.openChooseDate()}></input>
                   </div>                 
                 </div>
-                <button className="route_secondBottomBlock_button route_secondBottomBlock_elementStyle">
+                <button className="route_secondBottomBlock_button route_secondBottomBlock_elementStyle"  onClick={()=>this.searchRoute()}>
                   <div className="secondBottomBlock_button_inner">                   
-                    <div className="route_secondBottomBlock_searchText">
+                    <div className="route_secondBottomBlock_searchText" >
                       ПОИСК
                     </div>
                   </div>

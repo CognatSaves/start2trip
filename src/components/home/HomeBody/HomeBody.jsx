@@ -38,8 +38,9 @@ class HomeBodyClass extends React.Component {
   }
   addCity() {
     let cities = this.state.cities;
-    cities[cities.length] = cities[cities.length-1];
-    cities[cities.length-2]="";
+    /*cities[cities.length] = cities[cities.length-1];
+    cities[cities.length-2]="";*/
+    cities[cities.length]="";
     this.setState({
       cities: cities,
       mapUpdate: true

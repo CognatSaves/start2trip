@@ -45,7 +45,9 @@ export default class Manipulator extends React.Component{
                 <button className="pageNumbers_arrow" onClick={()=>{ if(this.props.page>1){this.props.setPage(this.props.page-1)}}}>
                     <img src={leftArrow} width="100%" height="100%" alt="leftA" style={{borderRadius: "5px"}}></img>
                 </button>               
-                <div className="pageNumbers_text" onClick={()=>this.props.setPage(1)}>в начало</div>
+                <div className="pageNumbers_text" onClick={()=>this.props.setPage(1)}>
+                    <div className="pageNumbers_text_value">в начало</div>
+                </div>
                 <div className="pageNumbers_numberPosition">
                     {numberArray.map((element,index)=>                  
                         <div className="numberPosition_numberBlock" style={{padding: spaceWidthSize[numberArray.length]}}>
@@ -54,7 +56,9 @@ export default class Manipulator extends React.Component{
                                               
                     )}
                 </div>
-                <div className="pageNumbers_text" onClick={()=>this.props.setPage(maxPage)}>в конец</div>
+                <div className="pageNumbers_text" onClick={()=>this.props.setPage(maxPage)}>
+                    <div classNmae="pageNumbers_text_value">в конец</div>
+                </div>
                 <button className="pageNumbers_arrow" onClick={()=>{ if(this.props.page<maxPage){this.props.setPage(this.props.page+1)}}}>
                     <img src={rightArrow} width="100%" height="100%" alt="rightA" style={{borderRadius: "5px"}}></img>
                 </button>

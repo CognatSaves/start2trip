@@ -65,7 +65,7 @@
 .pageNumbers_text {
     display: flex;
     height: 20px;
-    width: 90px;
+    width: 100px;
     text-align: center;
     line-height: 20px;
     font-size: 12pt;
@@ -76,7 +76,9 @@
     background-color: transparent;
     padding: 0 5px;
 }
-
+.pageNumbers_text_value{
+    margin: 0 auto;
+}
 .pageNumbers_text:hover {
     cursor: pointer;
 }

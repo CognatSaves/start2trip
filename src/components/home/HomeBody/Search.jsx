@@ -37,6 +37,9 @@ export default class LocationSearchInput extends React.Component {
   };
 
   render() {
+    console.log("LocationSearchInput render");
+    console.log(this.state.address);
+    console.log(this.props.address);
     return (
       <PlacesAutocomplete
         value={this.state.address}

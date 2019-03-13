@@ -1,6 +1,7 @@
 .driverInfo_background{
     background-color: #ffffff;  
     padding-bottom: 1.5%; 
+    margin-top: 35px;
 }
 
 .driverInfo_element_left {
@@ -24,7 +25,7 @@
     flex-direction: row;
     font-size: 14px;
     color: #304269;
-    margin: auto 0 auto 3%;
+    margin: auto 0 auto 15px;
 }
 
 .driverInfo_carBrand {
@@ -44,7 +45,8 @@
 }
 
 .driverInfo_carImage {
-    width: 10%;
+    width: 60px;
+    height: 60px;
 }
 
 /* .element_right_line:nth-child(1){
@@ -52,7 +54,7 @@
 } */
 
 .driverInfo_iconLine {
-    margin-left: 25%;
+    margin-left: 75px;
     line-height: 0px;
     min-height: 16px;
     height: 4%;
