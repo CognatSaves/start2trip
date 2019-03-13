@@ -234,10 +234,24 @@ p.routemenu_search_text {
 }
 
 .autocomplete-dropdown-container span{
+    margin: 5px 5px 5px 0px;
     padding-left: 25px;
-    background: url(../HomeBody/pictures/geo_icon.svg) 10% 10% no-repeat;
+    background: url(../HomeBody/pictures/geo_icon.svg) no-repeat;
     background-size: contain;
-    background-position: left 0px;
+    background-position: left 5px top 0px;
+    color: #304269;
+    font-family: "Roboto";
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.suggestion-item--active:hover{
+    background-color: #f26101 !important;
+}
+
+.suggestion-item--active:hover span{
+    background-color: #f26101 !important;
+    color: #fff;
 }
 
 .peopleSelect {
