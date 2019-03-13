@@ -233,6 +233,13 @@ p.routemenu_search_text {
     min-width: 205px;
 }
 
+.autocomplete-dropdown-container span{
+    padding-left: 25px;
+    background: url(../HomeBody/pictures/geo_icon.svg) 10% 10% no-repeat;
+    background-size: contain;
+    background-position: left 0px;
+}
+
 .peopleSelect {
     display: flex;
     flex-direction: row;
