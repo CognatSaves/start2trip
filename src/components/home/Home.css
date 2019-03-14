@@ -27,11 +27,15 @@
     margin: 0 auto;
 }
 
+div.homeBottomIcomRout {
+    padding: 0 10px !important;
+}
+
 .homeBottomTitle {
     color: #304269;
     font-family: "Roboto";
     font-weight: 500;
-    font-size: 14.29pt;
+    font-size: 20px;
 }
 
 h2.homeBottomTitle {
@@ -47,20 +51,20 @@ h2.homeBottomTitle {
     color: #304269;
     font-family: "Roboto";
     font-weight: 100;
-    font-size: 14.29pt;
+    font-size: 20px;
 }
 
 .homeBottomText {
     color: #304269;
     font-family: "Roboto";
     font-weight: 400;
-    font-size: 9pt;
+    font-size: 12px;
 }
 
 .homeBottomLink {
-    border: 1px solid #f26101;
+    border: 1px solid #f60;
     border-radius: 5px;
-    color: #f26101;
+    color: #f60;
     font-family: "Roboto";
     font-weight: 500;
     font-size: 11.25pt;
@@ -69,7 +73,7 @@ h2.homeBottomTitle {
 
 .homeBottomLink:hover {
     text-decoration: none;
-    background: #f26101;
+    background: #f60;
     color: #fff;
     transition: all 0.3s;
 }
@@ -120,12 +124,25 @@ h2.homeBottomTitle {
     font-size: 15px;
 }
 
+.homeSubscribeButton:hover {
+    background: #f60 !important;
+    border-color: #f60 !important;
+}
+
+.homeSubscribeButton:focus {
+    box-shadow: none !important;
+}
+
 .homeSubscribeInput {
     border: 1px solid #304269 !important;
     color: #999 !important;
     font-family: "Roboto";
     font-weight: 400;
     font-size: 18px;
+}
+
+.homeSubscribeInput:focus {
+    box-shadow: none !important;
 }
 
 .homeSubscribe h2 {
@@ -150,7 +167,7 @@ h2.homeBottomTitle {
 }
 
 .homeSubscribe p a {
-    color: #279fcd;
+    color: #304269;
     font-family: "Roboto";
     font-weight: 400;
     font-size: 12px;
@@ -159,5 +176,5 @@ h2.homeBottomTitle {
 .homeSubscribe p a:hover {
     transition: all 0.3s;
     text-decoration: none;
-    color: #f26101;
+    color: #f60;
 }

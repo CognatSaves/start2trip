@@ -5,6 +5,9 @@
 .tourBody:hover{
     box-shadow: 0 0 25px 0px rgba(0, 0, 0, 0.3);
 }
+div.tourCard{
+    padding: 0 10px !important;
+}
 
 .tourTitle {
     font-family: "Roboto";
@@ -17,7 +20,7 @@
 }
 .tourTitle:hover {
     transition: all 0.3s;
-    color: #f26101;
+    color: #f60;
 }
 
 .tourTitle:hover {
@@ -48,7 +51,7 @@
 
 .tourLink:hover {
     transition: all 0.3s;
-    color: #f26101;
+    color: #f60;
     cursor: pointer;
     text-decoration: none;
     border: none;

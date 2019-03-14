@@ -55,22 +55,22 @@ class Home extends React.Component {
           <div className="d-flex flex-column homeBottom">
             <div className="d-flex flex-row align-items-center justify-content-start col-12"><h2 className="homeBottomTitle">ПУТЕШЕСТВИЯ СО START2TRIP</h2></div>
             <div className="d-flex flex-row align-items-start col-12 p-0">
-              <div className="d-flex flex-column align-items-start col-3">
+              <div className="homeBottomIcomRout d-flex flex-column align-items-start col-3 p-0">
                 <img className="mb-4" src={routeIcon} alt="routeIcon" width="60px" height="60px" />
                 <p className="mb-2 homeBottomTitle"><span>01</span> Маршрут</p>
                 <p className="homeBottomText">Стройте свой собственный маршрут путешествия, с возможностью включить в него известные достопримечательности.</p>
               </div>
-              <div className="d-flex flex-column align-items-start col-3">
+              <div className="homeBottomIcomRout d-flex flex-column align-items-start col-3 p-0">
                 <img className="mb-4" src={calendarHomeIcon} alt="calendarHomeIcon" width="70px" height="60px" />
                 <p className="mb-2 homeBottomTitle"><span>02</span> Дата отправления</p>
                 <p className="homeBottomText">Подбирайте удобную для Вас дату поездки.</p>
               </div>
-              <div className="d-flex flex-column align-items-start col-3">
+              <div className="homeBottomIcomRout d-flex flex-column align-items-start col-3 p-0">
                 <img className="mb-4" src={offerIcon} alt="offerIcon" width="60px" height="60px" />
                 <p className="mb-2 homeBottomTitle"><span>03</span> Предложения</p>
                 <p className="homeBottomText">Выбирайте из предложенного списка местного водителя-гида, который охотно познакомит Вас со страной изнутри.</p>
               </div>
-              <div className="d-flex flex-column align-items-start col-3">
+              <div className="homeBottomIcomRout d-flex flex-column align-items-start col-3 p-0">
                 <img className="mb-4" src={enjoy_tripIcon} alt="enjoy_tripIcon" width="70px" height="60px" />
                 <p className="mb-2 homeBottomTitle"><span>04</span> Наслаждайтесь поездкой</p>
                 <p className="homeBottomText">По Вашему запросу водитель сделает остановку в любом месте для фото или видео съемки, посещения достопримечательности.</p>

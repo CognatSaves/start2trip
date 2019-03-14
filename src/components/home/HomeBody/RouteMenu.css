@@ -155,7 +155,7 @@
     align-items: center;
     max-height: 42px;
     margin-bottom: 1%;
-    background-color: #f26101;
+    background-color: #f60;
     width: 80%;
     max-width: 260px;
     border: none;
@@ -295,7 +295,7 @@ p.routemenu_search_text {
     font-family: "Roboto";
     font-weight: 400;
     font-size: 12px;
-    line-height: 30px;
+    line-height: 15px;
     display: table;
 }
 
@@ -303,6 +303,7 @@ p.routemenu_search_text {
     background: url(../HomeBody/pictures/geo_icon.svg) no-repeat;
     background-size: 12px 12px;
     background-position: left 5px top 8px;
+    padding: 5px;
 }
 
 .suggestion-item--active:first-child {
