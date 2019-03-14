@@ -59,13 +59,11 @@
     margin-left: 75px;
     line-height: 0px;
     min-height: 16px;
-    height: 4%;
 }
 
 .driverInfo_iconLine_icon {
-    min-width: 16px;
-    margin-right: 2%;
-    width: 4%;
+    width: 16px;
+    margin-right: 10px;
 }
 
 .driverInfo_carPhotoBlock {
@@ -111,8 +109,7 @@
 
 .album_photo {
     position: relative;
-    width: 100%;
-    padding-bottom: 70%;
+    width: 300px;
     overflow: hidden;
 }
 

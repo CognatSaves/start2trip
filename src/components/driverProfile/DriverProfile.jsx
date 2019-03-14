@@ -255,7 +255,7 @@ class DriverProfileClass extends React.Component{
                 <div className = "drivers_bottom_background d-flex flex-column" >
                     <div className = "drivers_body d-flex">
                         <div className="left_body_part col-9">
-                            <DriversProfileComments page={this.state.page} showPages={this.state.showMorePages} driver={driver}/>
+                            <DriversProfileComments page={this.state.page} showPages={this.state.showPages} driver={driver}/>
                             <Manipulator number = {this.props.commentState.comments.length} page={this.state.page} elementsNumber={5} 
                             setPage={this.setPage} showMorePages={this.showMorePages}/>
                         </div>

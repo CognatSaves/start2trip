@@ -44,6 +44,8 @@ class DriversProfileCommentsClass extends React.Component{
         let comments = [...this.props.commentState.comments].reverse();
         let selectedComments = comments.slice((this.props.page-this.props.showPages) * 5, (this.props.page) * 5);
         console.log("DriversProfileComments");
+        console.log(this.props.page);
+        console.log(this.props.showPages);
         console.log(selectedComments);
         return(
             <React.Fragment>

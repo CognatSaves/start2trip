@@ -2,7 +2,7 @@ import React from 'react';
 import './PlacesList.css';
 import { connect } from 'react-redux';
 import ippodrom from './pictures/ippodrom.jpg';
-
+import Stars from '../stars/Stars';
 
 
 class PlacesPanelClass extends React.Component {
@@ -50,26 +50,26 @@ class PlacesPanelClass extends React.Component {
             <div className="drivers_block">
                 {selectedPlaces.map((element,index)=>
 
-                <div className="placesList_element" id={index}>
+                <div className={/*"placesList_element"*/ "drivers_block_element d-flex p-0"} id={index}>
                    <div className="placesList_picture">
-                        <img src={ippodrom} width="100%" height="100%" alt=""></img>
+                        <img src={ippodrom} width="100%" height="100%" style={{borderRadius: "5px"}} alt=""></img>
                    </div>
                    <div className="placesList_info">
-                       <div className="placesList_info_row" style={{marginBottom: "auto"}}>
+                       <div className="placesList_info_row">
                             <div style={{display: "flex", flexDirection: "column", marginRight: "auto"}}>
                                 <div>
                                     {element.name}
                                 </div>
                                 <div>
-                                    stars
+                                    <Stars value={element.rating} commentNumber={element.comments+" отзывов"} valueDisplay="block" commentNumberDisplay="block"/>
                                 </div>
                             </div>
                             <div style= {{display: "flex", marginLeft: "auto"}}>
                                 place check
                             </div>
                        </div>
-                       <div className="placesList_info_row" style={{margin: "auto 0"}}>
-                        TextBlock      
+                       <div className="placesList_info_row placesList_info_style" style={{margin: "20px 0 auto 0"}}>
+                        {element.info}    
                        </div>
                        <div className="placesList_info_row" style={{marginTop: "auto"}}>
                             <div style={{marginRight: "auto"}}>
