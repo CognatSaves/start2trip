@@ -1,17 +1,18 @@
-.body_menu{
-  padding: 0px;
-  border-radius: 5px 0 0 5px;
-  background-color: #304269;
-  min-height: 540px;
-  margin-bottom: 220px;
+.body_menu {
+    padding: 0px;
+    border-radius: 5px 0 0 5px;
+    background-color: #304269;
+    min-height: 540px;
+    min-width: 350px;
+    margin-bottom: 220px;
 }
 
-.body_map{
-  padding: 0px;
-  border-radius: 0 5px 5px 0;
-  background-color: white;
-  margin-bottom: 220px;
+.body_map {
+    padding: 0px;
+    border-radius: 0 5px 5px 0;
+    margin-bottom: 220px;
 }
+
 /* @media (max-width: 360px){
   .body_map {display: none}
   .body_menu {width: 100%; height: auto}
