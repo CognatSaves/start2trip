@@ -21,7 +21,7 @@
 .infoBlock_starsBlock_stars {
     align-items: center;
     height: 100%;
-    margin-left: 1%;
+    margin: auto 5px;
 }
 
 .starsBlock_stars_element {

@@ -1,8 +1,8 @@
 .colorClass{
-    color: #304269
+    color: #304269 !important
 }
 .colorClass2{
-    color: #fff;
+    color: #fff !important;
 }
 .backgroundColorClass{
     background-color: #fff;

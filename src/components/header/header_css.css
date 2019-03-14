@@ -128,7 +128,7 @@
 }
 
 .header_registration {
-    border: 1px solid #304269 !important;
+    border: 1px solid #304269;
     border-radius: 5px;
     background: none;
     line-height: 28px;

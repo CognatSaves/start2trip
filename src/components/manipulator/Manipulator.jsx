@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Manipulator.css'
-import leftArrow from './pictures/drivers_manipulator_leftArrow.png'
-import rightArrow from './pictures/drivers_manipulator_rightArrow.png'
+import leftArrow from './pictures/arrow_gray_left.svg'
+import rightArrow from './pictures/arrow_gray_right.svg'
 
 export default class Manipulator extends React.Component{
     constructor(props){

@@ -24,34 +24,8 @@ class AppClass extends Component {
       </div>
       
     )
-
-
-    /*
-    console.log("AppClass Render");
-    console.log(this.props);
-    switch (this.props.storeState.picture){
-      case "home":
-        return (
-          <div className="center">
-            <Home goToDrivers={this.goToDrivers}/>
-          </div>
-        );
-      case "drivers":
-        return (
-          <div className="center">
-            <Drivers/>
-          </div>
-        )
-      default:
-        return (
-          <div>State Error</div>
-        )
-  }*/
   }
 }
-
-//export default App;
-
 
 const App = connect(
   (state) =>({

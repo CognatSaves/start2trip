@@ -23,26 +23,29 @@ class PlacesClass extends React.Component {
     render(){
         return(
             <React.Fragment>
-              <div className = "drivers_top_background">
-                <Header colorClass="colorClass" colorClass2="colorClass2" backgroundColorClass="backgroundColorClass"
-                 borderColorClass="borderColorClass" labelColorClass="labelColorClass" type={1}/>
-                 <PlacesCountryInfo/>
+              <div className = "drivers_top_background col-12">
+                <div className="wrapper d-flex flex-column">
+                  <Header colorClass="colorClass" colorClass2="colorClass2" backgroundColorClass="backgroundColorClass"
+                  borderColorClass="borderColorClass" labelColorClass="labelColorClass" type={1}/>
+                  <PlacesCountryInfo/>
+                 </div>
               </div>
-              <div className = "drivers_bottom_background" >
-                <div className="drivers_body">
-                  <div className="left_body_part">
-                    <PlacesPanel/>
-                    <PlacesList/>
-                    <Manipulator number={this.props.placesState.places[0].places.length} page={this.props.placesState.page} setPage={this.setPageFunc}
-                      elementsNumber = {this.props.placesState.pagesMenuValue} showMorePages={function(){console.log("ShowMorePages placeholder")}}
-                    />
+              <div className="wrapper d-flex flex-column">
+                <div className = "drivers_bottom_background d-flex flex-column" >
+                  <div className="drivers_body d-flex">
+                    <div className="left_body_part col-9">
+                      <PlacesPanel/>
+                      <PlacesList/>
+                      <Manipulator number={this.props.placesState.places[0].places.length} page={this.props.placesState.page} setPage={this.setPageFunc}
+                        elementsNumber = {this.props.placesState.pagesMenuValue} showMorePages={function(){console.log("ShowMorePages placeholder")}}
+                      />
+                    </div>
+                    <div className="right_body_part col-3">
+                      <DriversCommercial/>
+                    </div>
                   </div>
-                  <div className="right_body_part">
-                    <DriversCommercial/>
-                  </div>
-                </div>
                 
-                
+                </div>  
               </div>
               <Footer/>           
           </React.Fragment>

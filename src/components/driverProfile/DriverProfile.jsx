@@ -38,8 +38,6 @@ const DriverAdaptedRoute = (props)=>
     const {element, date,cities,travelLength,travelTime,goToDrivers, changeTravelVisibility} = props;
     let isVisibleArray = Array(cities.length).fill("visible");
       isVisibleArray[isVisibleArray.length-1]="hidden";
-      /*let routeElementWidth=100/(isVisibleArray.length+1);
-      routeElementWidth=routeElementWidth+"%";*/
       
         return (
           <div className = "drivers_route col-12 d-flex flex-column">
@@ -85,7 +83,6 @@ const DriverInfo = (props) =>{
 
     let arrowLeft = "<";
     let arrowRight=">";
-    let driverInfo = "Несмотря на дым и грохот, обучиться стрельбы из гладкоствольного дульнозарядного мушкета может любой, если только он не клинический идиот. Как только человек осваивает основой прием заряжания, остается только направить на врага дуло и спустить курок, остальное в руках Божьих!";
     
     let carComfortVisibility = Array(element.carComfort.length).fill('flex');
     for(let i=0; i<carComfortVisibility.length; i++){
@@ -104,7 +101,7 @@ const DriverInfo = (props) =>{
                 <div className="block_element_infoBlock">
                     <div className="block_element_infoBlock_top">
                     <div className="block_element_infoBlock_name">{element.name}</div>
-                    <Stars value="5.0" commentNumber="10000 отзывов" valueDisplay="block" commentNumberDisplay="block"/>
+                    <Stars value={element.rating} commentNumber={element.comments+" отзывов"} valueDisplay="block" commentNumberDisplay="block"/>
                     </div>
                     <div className="block_element_infoBlock_bot">
                     <div className="block_element_infoBlock_element d-flex flex-row">
@@ -178,21 +175,31 @@ class DriverProfileClass extends React.Component{
             travelVisibility: 'none',
             successVisibility: 'none',
             page: 1,
+            showPages: 1,
             carImageNumber: 0,
             carImages: [superMachine, superMachine2, superMachine3],
-        }    
+        }
+        this.showMorePages = this.showMorePages.bind(this);    
         this.setPage=this.setPage.bind(this); 
         this.changeCar=this.changeCar.bind(this);
         this.goToDrivers=this.goToDrivers.bind(this);
 
         this.changeTravelVisibility=this.changeTravelVisibility.bind(this);
         this.changeSuccessVisibility=this.changeSuccessVisibility.bind(this);
+        
+    }
+    showMorePages(){
+        this.setState({
+            page: this.state.page+1,
+            showPages: this.state.showPages+1
+        })
     }
     setPage(page) {
         if (page !== "...") {
           this.setState(
             {
-              page: page
+              page: page,
+              showPages: 1
             }
           )
         }
@@ -248,8 +255,9 @@ class DriverProfileClass extends React.Component{
                 <div className = "drivers_bottom_background d-flex flex-column" >
                     <div className = "drivers_body d-flex">
                         <div className="left_body_part col-9">
-                            <DriversProfileComments page={this.state.page} />
-                            <Manipulator number = {this.props.commentState.comments.length} page={this.state.page} elementsNumber={5} setPage={this.setPage}/>
+                            <DriversProfileComments page={this.state.page} showPages={this.state.showPages} driver={driver}/>
+                            <Manipulator number = {this.props.commentState.comments.length} page={this.state.page} elementsNumber={5} 
+                            setPage={this.setPage} showMorePages={this.showMorePages}/>
                         </div>
                         <div className="right_body_part col-3">
                             <DriversCommercial/>
