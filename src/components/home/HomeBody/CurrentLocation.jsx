@@ -5,7 +5,7 @@ import './infowindow.css';
 const mapStyles = {
   map: {
     position: 'absolute',
-    width: '100%',
+    width: '820px',
     height: '100%',
     borderRadius: '0 5px 5px 0',
   }
@@ -28,16 +28,16 @@ export class CurrentLocation extends React.Component {
 
   componentWillUpdate(prevProps, prevState) {
     function compare(a1, a2) {
-      return a1.length === a2.length && a1.every((v,i)=>v === a2[i])
+      return a1.length === a2.length && a1.every((v, i) => v === a2[i])
     }
 
     if (prevProps.google !== window.google) {
       this.loadMap();
-    }   
+    }
     if (prevState.currentLocation !== this.state.currentLocation) {
       this.recenterMap();
     }
-    if(!(this.props.cities.some(city => city==="")) && this.props.mapUpdate){
+    if (!(this.props.cities.some(city => city === "")) && this.props.mapUpdate) {
       /*console.log("mapUpdate standart way");
       console.log(this.props);
       console.log(prevProps.cities);
@@ -45,7 +45,7 @@ export class CurrentLocation extends React.Component {
       console.log(!(this.props.cities.some(city => city==="")));*/
       this.loadMap();
     }
-    
+
     /*
     if(!(this.props.cities.some(city => city===""))){
       console.log("BBB")
@@ -81,25 +81,25 @@ export class CurrentLocation extends React.Component {
   }
   loadMap() {
     //console.log("loadMap");
-    function createRequestElement(cities, google){
+    function createRequestElement(cities, google) {
       let waypoints = [];
-      for (let i=1; i<cities.length-1;i++){
-        waypoints[i-1]={
+      for (let i = 1; i < cities.length - 1; i++) {
+        waypoints[i - 1] = {
           location: cities[i],
-          stopover:true
+          stopover: true
         }
       }
       let request =
-        {
-          origin: cities[0], //точка старта
-          destination: cities[cities.length-1], //точка финиша
-          waypoints:waypoints,
-          travelMode: google.maps.DirectionsTravelMode.DRIVING, //режим прокладки маршрута
-        };
+      {
+        origin: cities[0], //точка старта
+        destination: cities[cities.length - 1], //точка финиша
+        waypoints: waypoints,
+        travelMode: google.maps.DirectionsTravelMode.DRIVING, //режим прокладки маршрута
+      };
       return request;
     }
 
-    
+
     if (this.props && this.props.google) {
       const { google } = this.props;
       const maps = google.maps;
@@ -117,22 +117,22 @@ export class CurrentLocation extends React.Component {
       );
 
       this.map = new maps.Map(node, mapConfig);
-      let request = createRequestElement(this.props.cities,google);
+      let request = createRequestElement(this.props.cities, google);
 
       let service = new google.maps.DirectionsService();
-      let directionsDisplay=new google.maps.DirectionsRenderer({
+      let directionsDisplay = new google.maps.DirectionsRenderer({
       });
 
       var theMap = this.map;
 
       /*console.log("CurrentLocation props");
       console.log(this.props);*/
-      
+
       //
-      let tempTravelTime=0;
-      let tempTravelLength=0;
+      let tempTravelTime = 0;
+      let tempTravelLength = 0;
       let obj = this;
-      service.route(request, function(response, status) {
+      service.route(request, function (response, status) {
         if (status === google.maps.DirectionsStatus.OK) {
           directionsDisplay.setDirections(response);
           /*
@@ -142,15 +142,15 @@ export class CurrentLocation extends React.Component {
           for(var i=0;i<response.routes[0].legs.length; i++){
             console.log("Distance "+i+"="+response.routes[0].legs[i].distance.text);
           }
-          */        
-          for(var i=0; i<response.routes[0].legs.length;i++){
+          */
+          for (var i = 0; i < response.routes[0].legs.length; i++) {
             var STEPS = response.routes[0].legs[i].steps;
             var TempLeg = response.routes[0].legs[i];
             var step = TempLeg.steps.length;
-            step = Number.parseInt(step/2);
-            
-            tempTravelTime+=TempLeg.duration.value;
-            tempTravelLength+=TempLeg.distance.value;
+            step = Number.parseInt(step / 2);
+
+            tempTravelTime += TempLeg.duration.value;
+            tempTravelLength += TempLeg.distance.value;
 
             /*console.log("Time");
             console.log(TempLeg.duration);
@@ -162,37 +162,37 @@ export class CurrentLocation extends React.Component {
             console.log(tempTravelLength);*/
 
 
-            var contentString2 = 
-            '<div class="infowindowClass">'+
-              '<div class="infowindowClass_firstLine">'+
-                '<div class="infowindowClass_carEmblem"></div>'+
-                '<div class="infowindowClass_duration">'+TempLeg.duration.text +'</div>'+
-              '</div>'+             
-              '<div class="infowindowClass_distance">'+ TempLeg.distance.text+'</div>'+
-            '</div>';
-           
-            var infowindow2 = new google.maps.InfoWindow({                
+            var contentString2 =
+              '<div class="infowindowClass">' +
+              '<div class="infowindowClass_firstLine">' +
+              '<div class="infowindowClass_carEmblem"></div>' +
+              '<div class="infowindowClass_duration">' + TempLeg.duration.text + '</div>' +
+              '</div>' +
+              '<div class="infowindowClass_distance">' + TempLeg.distance.text + '</div>' +
+              '</div>';
+
+            var infowindow2 = new google.maps.InfoWindow({
               map: theMap,
-              position: STEPS[step].start_location,                                
+              position: STEPS[step].start_location,
               content: contentString2,
             })
 
             infowindow2.open(theMap);
           }
 
-          obj.props.setLengthTime(tempTravelLength,tempTravelTime);
-                   
+          obj.props.setLengthTime(tempTravelLength, tempTravelTime);
+
         }
-        else{
+        else {
           alert("Туда не ведёт ни одна дорога! Будет отображена пустая карта, можете даже не искать)))");
         }
       });
-      
+
 
       directionsDisplay.setMap(this.map);
-      
+
     }
-    
+
   }
   renderChildren() {
 

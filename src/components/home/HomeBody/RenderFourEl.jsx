@@ -21,7 +21,7 @@ class RenderFourElClass extends React.Component {
         return (
             <div className="d-flex flex-row align-items-center mb-4 p-0 col-12">
                 {this.props.tours.map((element, index) =>
-                    <div className="col-3">
+                    <div className="tourCard col-3 p-0">
                         <Card className="tourBody">
                             <Link to={element.link}>
                                 <CardImg top width="100%" src={element.img} alt="Card image cap" />
@@ -35,8 +35,8 @@ class RenderFourElClass extends React.Component {
                                 </Link>
                                 <CardText className="tourText">{element.text}</CardText>
                                 <div className="d-flex flex-row justify-content-end align-items-end col-12">
-                                <p className="tourPrise col-9 mb-0" style={{display: this.props.priseDisplay}}>от <span>{element.prise}</span></p>
-                                <Link to={element.link} className="tourLink">Подробнее</Link>
+                                    <p className="tourPrise col-9 mb-0" style={{ display: this.props.priseDisplay }}>от <span>{element.prise}</span></p>
+                                    <Link to={element.link} className="tourLink">Подробнее</Link>
                                 </div>
                             </CardBody>
                         </Card>
