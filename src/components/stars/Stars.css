@@ -3,6 +3,7 @@
     position: relative;
     align-items: center;
     font-size: 9pt;
+    height: 15px;
 }
 
 .infoBlock_starsBlock_value {
@@ -10,11 +11,11 @@
     font-weight: 500;
     height: 100%;
     max-width: 20px;
-    margin: 1.5% 0 1% 0;
     font-size: 14px;
     font-family: "Roboto";
     font-weight: 600;
     color: #ff6600;
+    line-height: 17px;
 }
 
 

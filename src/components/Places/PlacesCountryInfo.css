@@ -16,7 +16,7 @@
 .placesCountryInfo_countryName::after{
     content: "";
     display: block;
-    width: 50%;
+    width: 10%;
     margin: 1% auto;
     /*vertical-align: middle;*/
     border-bottom: 3px solid #ff6600;

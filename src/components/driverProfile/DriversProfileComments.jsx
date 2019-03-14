@@ -68,8 +68,8 @@ class DriversProfileCommentsClass extends React.Component{
                         
                         <textarea id="createComment_textareaStyle" className="createComment_textareaStyle" placeholder="Ваш отзыв"></textarea>
                                                 
-                        <button className="createComment_sendButton" onClick={()=>this.sendComment()}>
-                            <text>Отправить</text>
+                        <button className="driversAdaptedRoute_sendRequest createComment_sendButton" onClick={()=>this.sendComment()}>
+                            <text>ОТПРАВИТЬ</text>
                         </button>
                         
                     </div> 
@@ -84,7 +84,10 @@ class DriversProfileCommentsClass extends React.Component{
                                     <div className="valueBlock_firstElement_name">{element.name}</div>
                                     <div className="valueBlock_firstElement_date">{element.date.getDate()+" "+getMonthName(element.date.getMonth())+" "+element.date.getFullYear()}</div>
                                 </div>
-                                <Stars key={element.rating+"/"+element.index} value={element.rating} valueDisplay="block" commentNumberDisplay="none"/>
+                                <div style={{marginBottom: "20px"}}>
+                                    <Stars key={element.rating+"/"+element.index} value={element.rating} valueDisplay="block" commentNumberDisplay="none"/>
+                                </div>
+                                
                                 <input className="put" id={"put"+element+index} type="checkbox"></input>
                                 <div class="news">
                                     <label for={"put"+element+index}>{element.value}</label>

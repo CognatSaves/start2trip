@@ -3,9 +3,12 @@ import './PlacesList.css';
 import { connect } from 'react-redux';
 import ippodrom from './pictures/ippodrom.jpg';
 import Stars from '../stars/Stars';
+import geoIcon from '../home/HomeBody/pictures/geo_icon.svg';
+import bookmarkEmpty from './pictures/bookmark_contour.svg';
+import bookmarkFilled from './pictures/bookmark_blue.svg';
+import bookmarkSelected from './pictures/bookmark_orange.svg';
 
-
-class PlacesPanelClass extends React.Component {
+class PlacesListClass extends React.Component {
     constructor(props){
         super(props);
         this.placesSort=this.placesSort.bind(this);
@@ -36,14 +39,14 @@ class PlacesPanelClass extends React.Component {
         }
     }
     render(){
-        console.log("PlacesList render");
         let sortedArray = this.placesSort([...this.props.placesState.places[0].places], this.props.placesState.sortMenuValue);
-        console.log("sortedArray");
-        console.log(sortedArray);
-        let selectedPlaces = sortedArray.slice((this.props.placesState.page-1)*this.props.placesState.pagesMenuValue,
+        let selectedPlaces = sortedArray.slice((this.props.placesState.page-this.props.placesState.showPages)*this.props.placesState.pagesMenuValue,
         this.props.placesState.page*this.props.placesState.pagesMenuValue);
-        console.log("selectedPlaces");
-        console.log(selectedPlaces);
+
+        let srcArray = Array(selectedPlaces.length).fill(bookmarkEmpty);
+
+        srcArray[0]=bookmarkSelected;
+        srcArray[1]=bookmarkFilled;
 
         return(
             <React.Fragment>
@@ -56,26 +59,27 @@ class PlacesPanelClass extends React.Component {
                    </div>
                    <div className="placesList_info">
                        <div className="placesList_info_row">
-                            <div style={{display: "flex", flexDirection: "column", marginRight: "auto"}}>
-                                <div>
+                            <div className="d-flex flex-column" style={{marginRight: "auto"}}>
+                                <div className="placesList_placeName">
                                     {element.name}
                                 </div>
                                 <div>
-                                    <Stars value={element.rating} commentNumber={element.comments+" отзывов"} valueDisplay="block" commentNumberDisplay="block"/>
+                                    <Stars key={index+"/"+element.rating} value={element.rating} commentNumber={element.comments+" отзывов"} valueDisplay="block" commentNumberDisplay="block"/>
                                 </div>
                             </div>
-                            <div style= {{display: "flex", marginLeft: "auto"}}>
-                                place check
+                            <div className="d-flex placesList_placeCard" >
+                                <img src={srcArray[index]} width="100%" height="100%" alt="bookmark"/>
                             </div>
                        </div>
                        <div className="placesList_info_row placesList_info_style" style={{margin: "20px 0 auto 0"}}>
                         {element.info}    
                        </div>
                        <div className="placesList_info_row" style={{marginTop: "auto"}}>
-                            <div style={{marginRight: "auto"}}>
-                                Position
+                            <div className="d-flex placesList_info_position" style={{marginRight: "auto"}}>
+                                <img src={geoIcon} height="17px" width="17px" alt="geoIcon"/>
+                                <text className="placesList_info_position_textStyle">{element.position}</text>
                             </div>
-                            <div style={{marginLeft: "auto"}}>
+                            <div className="placesList_readMoreButton">
                                 Подробнее
                             </div>
                        </div>
@@ -88,11 +92,11 @@ class PlacesPanelClass extends React.Component {
         )
     }
 }
-const PlacesPanel = connect(
+const PlacesList = connect(
     (state) => ({
         storeState: state.AppReduser, 
         placesState: state.PlacesReduser,
     }),
-  )(PlacesPanelClass);
+  )(PlacesListClass);
   
-export default PlacesPanel;
+export default PlacesList;
