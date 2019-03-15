@@ -7,17 +7,24 @@ import whiteEarth from './pictures/globe.svg';
 import geoIcon from './pictures/geo_icon.png'
 import logoBlue from './pictures/logo_blue.svg'
 import logoWhite from './pictures/logo_white_svg.svg'
+import RenderModalCountry from './RenderModalCountry'
+import mapWorldIcon from './pictures/mapWorld.svg'
+import { connect } from 'react-redux';
+import crossIconModal from './pictures/close.svg'
 import geoFlag from './pictures/georgia.svg'
 import ruFlag from './pictures/russia.svg'
 import enFlag from './pictures/united-kingdom.svg'
 import espFlag from './pictures/spain.svg'
 //import styled from 'styled-components'
 import { Link } from 'react-router-dom';
-export default class Header extends React.Component {
+import { Modal, ModalBody } from 'reactstrap';
+import LanguageMenu from '../drivers/DriversBody/DriversProperties/components/LanguageMenu/LanguageMenu';
+
+
+class HeaderClass extends React.Component {
   constructor(props) {
     super(props);
-    this.toggleLanguage = this.toggleLanguage.bind(this);
-    this.toggle = this.toggle.bind(this);
+
     this.state = {
       dropdownLanguageOpen: false,
       dropdownOpen: false,
@@ -25,7 +32,18 @@ export default class Header extends React.Component {
       activLanguageNumber: 0,
       activeCurrency: ["₽ RUB", "$ USD", "₾ GEL", "€ EUR"],
       activeCurrencyNumber: 0,
+      modal: false,
+
     };
+    this.toggleLanguage = this.toggleLanguage.bind(this);
+    this.toggle = this.toggle.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
+  }
+
+  toggleModal() {
+    this.setState(prevState => ({
+      modal: !prevState.modal
+    }));
   }
 
   toggleLanguage() {
@@ -44,22 +62,36 @@ export default class Header extends React.Component {
     let earthPic = [earth, whiteEarth];
     return (
       <React.Fragment>
+        <Modal isOpen={this.state.modal} toggle={this.toggleModal} className={this.props.className}>
+          <ModalBody>
+            <div className="d-flex flex-column col-12">
+              <div className="d-flex flex-row justify-content-center col-12">
+                <img src={mapWorldIcon} height="150px" alt="mapWorldIcon" />
+                <button className="modalCountryButtton" onClick={() => { this.toggleModal() }}><img src={crossIconModal} width="20px" height="20px" alt="crossIconModal"/></button>
+              </div>
+              <div className="modalCountry d-flex flex-column align-items-center ">
+                <h4 className="mb-4">ВЫБЕРИТЕ ВАШУ СТРАНУ</h4>
+                <RenderModalCountry close={this.toggleModal} />
+              </div>
+            </div>
+          </ModalBody>
+        </Modal>
         <div className="home_header col-12">
           <div className='header d-flex flex-row align-items-center'>
             <div className="headerLogo d-flex flex-row col-5">
               <Link className="col-6" to="">
-                <img src={logo[this.props.type]} height="40px" width="205px" alt="logo" />
+                <img src={logo[this.props.type]} height="38px" width="205px" alt="logo" />
               </Link>
-              <div className="header_geo_block col-2">
+              <div className="header_geo_block col-5">
                 <img src={earthPic[this.props.type]} width="40px" height="30px" alt="earthPic" />
-                <Link to="/" className={"header_geo_button " + this.props.colorClass}>
+                <div onClick={this.toggleModal} className={"header_geo_button " + this.props.colorClass}>
                   <div className={"geo_button_value " + this.props.backgroundColorClass}>
                     <div>
-                      <img src={geoIcon} width="8px" height="12px" alt="geoIcon" />
-                      <span>GEO</span>
+                      <img src={geoIcon} width="8px" height="10px" alt="geoIcon" />
+                      <span>{this.props.storeState.country}</span>
                     </div>
                   </div>
-                </Link>
+                </div>
               </div>
             </div>
             <div className={"header_buttonMass d-flex flex-row justify-content-start col-4 " + this.props.colorClass2}>
@@ -101,3 +133,12 @@ export default class Header extends React.Component {
     );
   }
 }
+
+
+const Header = connect(
+  (state) => ({
+      storeState: state.AppReduser,
+  }),
+)(HeaderClass);
+
+export default Header;

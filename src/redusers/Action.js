@@ -30,6 +30,8 @@ const LANGUAGE_MENU_IS_VISIBAL = 'LANGUAGE_MENU_IS_VISIBAL';
 
 const AUTO_MENU_CALL = 'AUTO_MENU_CALL';
 
+const MODAL_COUNTRY = 'MODAL_COUNTRY';
+
 
 
 const set_state = function (sourse, cities, date, calendaryVisibility, picture) {
@@ -151,6 +153,13 @@ const languageMenuIsVisibal = function (languageMenu) {
   };
 }
 
+const modalCountryDispacth = function (country) {
+  return {
+    type: 'MODAL_COUNTRY',
+    country:country,
+  };
+}
+
 
 export {
   set_state, SET_STATE, 
@@ -169,4 +178,5 @@ export {
   languageValueChooseDispatch, LANGUAGE_VALUE_CHOOSE,
   languageMenuIsVisibal, LANGUAGE_MENU_IS_VISIBAL,
   autoMenuCall, AUTO_MENU_CALL,
+  modalCountryDispacth, MODAL_COUNTRY,
 }

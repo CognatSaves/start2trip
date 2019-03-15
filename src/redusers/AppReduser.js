@@ -4,8 +4,10 @@ import enFlag from '../components/drivers/DriversBody/DriversProperties/componen
 import espFlag from '../components/drivers/DriversBody/DriversProperties/components/LanguageMenu/pictures/spain.svg'
 import languageBlueIcon from '../components/drivers/DriversBody/DriversBlock/pictures/language_blue.svg'
 import sedan from '../components/drivers/DriversBody/DriversProperties/components/AutoMenu/pictures/sedan.svg';
-import { SET_STATE, SET_CITIES, SET_AUTO, SET_PAGES, SET_PAGES_VISIBLE, SET_SORT_MENU, SET_SORT_MENU_VISIBLE, SET_MAX_PRICE,LANGUAGE_VALUE_CHOOSE,LANGUAGE_MENU_IS_VISIBAL,
-  SET_TEMP_PRICE_PART, SET_PRICE_PART, CHANGE_PERSONS_NUMBER, PEOPLE_MENU_CALL, CHANGE_PERSONS_NUMBER_OLD, AUTO_MENU_CALL } from './Action';
+import {
+  SET_STATE, SET_CITIES, SET_AUTO, SET_PAGES, SET_PAGES_VISIBLE, SET_SORT_MENU, SET_SORT_MENU_VISIBLE, SET_MAX_PRICE, LANGUAGE_VALUE_CHOOSE, LANGUAGE_MENU_IS_VISIBAL,
+  SET_TEMP_PRICE_PART, SET_PRICE_PART, CHANGE_PERSONS_NUMBER, PEOPLE_MENU_CALL, CHANGE_PERSONS_NUMBER_OLD, AUTO_MENU_CALL, MODAL_COUNTRY,
+} from './Action';
 
 
 const initialState = {
@@ -41,21 +43,22 @@ const initialState = {
   sortMenuVariants: ["Популярность", "Рейтинг", "Цена"],
   sortMenu: false,
   persons: [1, 0],
-  personsOld: [1,0],
+  personsOld: [1, 0],
   peopleMenu: false,
   pricePart: 100,
   tempPricePart: 100,
   maxPrice: 0,
   valueMenu: false,
-  languageValue:"Язык",
-  languageIcon:languageBlueIcon,
-  languageMenu:false,
+  languageValue: "Язык",
+  languageIcon: languageBlueIcon,
+  languageMenu: false,
+  country:"Грузия",
 };
 
 export const AppReduser = (state = initialState, action) => {
   switch (action.type) {
 
-    case SET_STATE:{
+    case SET_STATE: {
       let newStateSS = { ...state };
       switch (action.sourse) {
         case "HomeBody":
@@ -131,8 +134,8 @@ export const AppReduser = (state = initialState, action) => {
       newState.languageMenu = false;
       return newState;
     }
-    
-    case SET_MAX_PRICE:{
+
+    case SET_MAX_PRICE: {
       let newStateSMP = { ...state };
       newStateSMP.pricePart = action.pricePart;
       newStateSMP.tempPricePart = action.pricePart;
@@ -140,7 +143,7 @@ export const AppReduser = (state = initialState, action) => {
       return newStateSMP;
     }
 
-    case SET_TEMP_PRICE_PART:{
+    case SET_TEMP_PRICE_PART: {
       let newState = { ...state };
       newState.tempPricePart = action.tempPricePart;
       newState.valueMenu = action.valueMenu;
@@ -152,7 +155,7 @@ export const AppReduser = (state = initialState, action) => {
       return newState;
     }
 
-    case SET_PRICE_PART:{
+    case SET_PRICE_PART: {
       let newState = { ...state };
       newState.pricePart = action.pricePart;
       newState.valueMenu = action.valueMenu;
@@ -187,6 +190,7 @@ export const AppReduser = (state = initialState, action) => {
       newState.languageMenu = false;
       return newState;
     }
+
     case LANGUAGE_VALUE_CHOOSE: {
       let newState = { ...state };
       newState.languageValue = action.languageValue;
@@ -195,6 +199,7 @@ export const AppReduser = (state = initialState, action) => {
 
       return newState;
     }
+    
     case LANGUAGE_MENU_IS_VISIBAL: {
       let newState = { ...state };
       newState.languageMenu = action.languageMenu;
@@ -203,6 +208,12 @@ export const AppReduser = (state = initialState, action) => {
       newState.sortMenu = false;
       newState.valueMenu = false;
       newState.peopleMenu = false;
+      return newState;
+    }
+
+    case MODAL_COUNTRY: {
+      let newState = { ...state };
+      newState.country = action.country;
       return newState;
     }
 
