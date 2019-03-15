@@ -70,10 +70,11 @@
 
 .geo_button_value>div {
     height: 22px;
-    width: 100%;
+    max-width: 40px;
     line-height: 28px;
-    padding-left: 4px;
-   
+    margin-left: 4px;
+    margin-right: 4px;
+    border-bottom: 1px dashed #ccc;
 }
 
 .geo_button_value span {
@@ -81,8 +82,10 @@
     font-weight: 400;
     font-size: 14px;
     padding-left: 2px;
-    margin-right: 4px;
-    border-bottom: 1px dashed #ccc;
+   
+}
+.geo_button_value img {
+    margin-bottom: 2px;
 }
 
 .header_buttonMass {
