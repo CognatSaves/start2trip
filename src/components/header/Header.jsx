@@ -79,8 +79,9 @@ class HeaderClass extends React.Component {
         <div className="home_header col-12">
           <div className='header d-flex flex-row align-items-center'>
             <div className="headerLogo d-flex flex-row col-5">
-              <Link className="col-6" to="">
-                <img src={logo[this.props.type]} height="38px" width="205px" alt="logo" />
+              <Link className="" to="">
+              <div className="logo"></div>
+                {/* <img src={logo[this.props.type]} height="38px" width="205px" alt="logo" /> */}
               </Link>
               <div className="header_geo_block col-5">
                 <img src={earthPic[this.props.type]} width="40px" height="30px" alt="earthPic" />
