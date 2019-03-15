@@ -87,7 +87,7 @@ class HeaderClass extends React.Component {
                 <div onClick={this.toggleModal} className={"header_geo_button " + this.props.colorClass}>
                   <div className={"geo_button_value " + this.props.backgroundColorClass}>
                     <div>
-                      <img src={geoIcon} width="8px" height="10px" alt="geoIcon" />
+                      <img src={geoIcon} width="10px" height="13px" alt="geoIcon" />
                       <span>{this.props.storeState.country}</span>
                     </div>
                   </div>

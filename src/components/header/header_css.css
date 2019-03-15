@@ -73,8 +73,7 @@
     width: 100%;
     line-height: 28px;
     padding-left: 4px;
-    text-decoration: underline dashed;
-    /* border-bottom: 1px dashed #ccc; */
+   
 }
 
 .geo_button_value span {
@@ -82,8 +81,8 @@
     font-weight: 400;
     font-size: 14px;
     padding-left: 2px;
-    padding-right: 4px;
-    
+    margin-right: 4px;
+    border-bottom: 1px dashed #ccc;
 }
 
 .header_buttonMass {
@@ -101,7 +100,7 @@
 
 .buttonMass_button:hover {
     transition: all 0.3s;
-    color: #f60;
+    color: #f60 !important;
 }
 
 .buttonMass_button:hover {
@@ -186,7 +185,7 @@
 
 .header_registration:hover p {
     transition: all 0.3s;
-    color: #f60;
+    color: #f60 !important;
 }
 
 .header_registration:focus {
