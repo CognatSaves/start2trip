@@ -50,6 +50,7 @@ class DriversClass extends React.Component {
       })
     }
     render() {
+        console.log("Drivers render");
         return (
           <React.Fragment>
               <div className = "drivers_top_background col-12">

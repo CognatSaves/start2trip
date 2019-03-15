@@ -3,7 +3,7 @@ const SET_PAGES_MENU_VALUE = 'SET_PAGES_MENU_VALUE';
 
 const SET_SORT_MENU_VALUE = 'SET_SORT_MENU_VALUE';
 
-const SET_PAGE = 'SET_PAGES';
+const SET_PAGE = 'SET_PAGE_PLACES';
 
 const SET_MORE_PAGES_SHOW = 'SET_MORE_PAGES_SHOW';
 
@@ -22,7 +22,7 @@ const setSortMenuValue = function (sortMenuValueText){
 }
 const  setPage= function(page){
   return{
-    type: 'SET_PAGES',
+    type: SET_PAGE,
     page: page
   }
 }

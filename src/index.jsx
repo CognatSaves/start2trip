@@ -37,7 +37,7 @@ ReactDOM.render(
             <Route path="/drivers" component={Drivers}/>
             <Route path="/driverProfile/:id,:temp1,:temp2" component={DriverProfile}/>
             <Route path="/places" component={Places}/>
-            <Route path="/place/:id" component = {PlaceDescription}/>
+            <Route path="/place/:country,:id" component = {PlaceDescription}/>
             <Redirect from="/" to="/home"/>
         </Switch>       
     </React.Fragment>

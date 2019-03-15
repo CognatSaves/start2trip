@@ -16,13 +16,14 @@
     font-weight: 600;
     color: #ff6600;
     line-height: 17px;
+    margin: auto 5px auto 0;
 }
 
 
 .infoBlock_starsBlock_stars {
     align-items: center;
     height: 100%;
-    margin: auto 5px;
+    margin: auto 0;
 }
 
 .starsBlock_stars_element {
@@ -51,4 +52,5 @@
     margin: auto 0;
     text-align: center;
     color: #666;
+    margin: auto 0 auto 5px;
 }
