@@ -1,0 +1,18 @@
+.countryBody{
+    min-width: 500px;
+    max-width: 500px;
+    min-height: 400px;
+    max-height: 400px;
+}
+
+.countryBody p{
+    font-family: "Roboto";
+    font-weight: 300;
+    font-size: 14px;
+    color: #666;
+}
+.countryBody p:hover{
+    cursor: pointer;
+    font-weight: 400;
+    color: #333;
+}

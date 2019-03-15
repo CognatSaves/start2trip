@@ -2,6 +2,37 @@
     margin-top: 30px;
 }
 
+.modal-dialog {
+    width: 720px !important;
+    height: 640px;
+    max-width: none !important;
+}
+
+.modal-content {
+    width: 720px !important;
+    height: 640px;
+}
+
+.modalCountry h4 {
+    font-family: "Roboto";
+    font-weight: 500;
+    font-size: 24px;
+    color: #333;
+}
+
+.modalCountryButtton {
+    position: absolute;
+    top: 0px;
+    right: -10px;
+    background: none;
+    outline: none;
+    border: none;
+}
+
+.modalCountryButtton:focus {
+    outline: none;
+}
+
 .headerLogo {
     padding-left: 0px !important;
     max-width: 480px !important;
@@ -15,6 +46,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    width: 100%;
     padding: 0px !important;
 }
 
@@ -30,27 +62,28 @@
 }
 
 .geo_button_value {
-    width: 50px;
+    min-width: 50px;
+    width: 100%;
     height: 28px;
     border-radius: 5px;
-    padding: 2px 4px 4px;
 }
 
 .geo_button_value>div {
     height: 22px;
-    padding: 0;
-    border-bottom: 1px dashed #ccc;
+    width: 100%;
+    line-height: 28px;
+    padding-left: 4px;
+    text-decoration: underline dashed;
+    /* border-bottom: 1px dashed #ccc; */
 }
 
-.geo_button_value span{
+.geo_button_value span {
     font-family: "Roboto";
     font-weight: 400;
     font-size: 14px;
     padding-left: 2px;
-}
-
-.geo_button_value img{
-
+    padding-right: 4px;
+    
 }
 
 .header_buttonMass {
