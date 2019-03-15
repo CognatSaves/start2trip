@@ -5,7 +5,10 @@
     color: #304269 !important;
 }
 .homeBackgroundColorClass{
-    background-color: rgba(48, 66, 105, 0.5);
+    background: rgba(48, 66, 105, 0.637);
+}
+.homeBackgroundColorClass:hover{
+    background: #304269;
 }
 .homeBorderColorClass{
     border-color: #304269;

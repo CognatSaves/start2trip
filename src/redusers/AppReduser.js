@@ -52,7 +52,7 @@ const initialState = {
   languageValue: "Язык",
   languageIcon: languageBlueIcon,
   languageMenu: false,
-  country:"Грузия",
+  country:"GEO",
 };
 
 export const AppReduser = (state = initialState, action) => {

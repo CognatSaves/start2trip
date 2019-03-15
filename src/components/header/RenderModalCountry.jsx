@@ -48,39 +48,39 @@ class RenderModalCountryClass extends React.Component {
         this.state = {
             country: {
                 title: "ВЫБЕРИТЕ ВАШУ СТРАНУ", arrayCountry: [
-                  { img: australiaIcon, country: "Австралия" },
-                  { img: austriaIcon, country: "Австрия" },
-                  { img: azerbaijanIcon, country: "Азербайджан" },
-                  { img: armeniaIcon, country: "Армения" },
-                  { img: belarusIcon, country: "Беларусь" },
-                  { img: enFlag, country: "Великобритания" },
-                  { img: hungaryIcon, country: "Венгрия" },
-                  { img: germanyIcon, country: "Германия" },
-                  { img: greeceIcon, country: "Греция" },
-                  { img: geoFlag, country: "Грузия" },
-                  { img: israelIcon, country: "Израиль" },
-                  { img: irelandIcon, country: "Ирландия" },
-                  { img: icelandIcon, country: "Исландия" },
-                  { img: espFlag, country: "Испания" },
-                  { img: italyIcon, country: "Италия" },
-                  { img: kazakhstanIcon, country: "Казахстан" },
-                  { img: canadaIcon, country: "Канада" },
-                  { img: chinaIcon, country: "Китай" },
-                  { img: latviaIcon, country: "Латвия" },
-                  { img: lebanonIcon, country: "Ливан" },
-                  { img: lithuaniaIcon, country: "Литва" },
-                  { img: norwayIcon, country: "Норвегия" },
-                  { img: polandIcon, country: "Польша" },
-                  { img: ruFlag, country: "Россия" },
-                  { img: uSAIcon, country: "США" },
-                  { img: turkeyIcon, country: "Турция" },
-                  { img: ukraineIcon, country: "Украина" },
-                  { img: franceIcon, country: "Франция" },
-                  { img: czechIcon, country: "Чехия" },
-                  { img: switzerlandIcon, country: "Швейцария" },
-                  { img: swedenIcon, country: "Швеция" },
-                  { img: estoniaIcon, country: "Эстония" },
-                  { img: japanIcon, country: "Япония" }]
+                  { img: australiaIcon, ISO:"AUS", country: "Австралия" },
+                  { img: austriaIcon, ISO:"AUT", country: "Австрия" },
+                  { img: azerbaijanIcon, ISO:"AZE", country: "Азербайджан" },
+                  { img: armeniaIcon, ISO:"ARM", country: "Армения" },
+                  { img: belarusIcon, ISO:"BLR", country: "Беларусь" },
+                  { img: enFlag, ISO:"GBR", country: "Великобритания" },
+                  { img: hungaryIcon, ISO:"HUN", country: "Венгрия" },
+                  { img: germanyIcon, ISO:"DEU", country: "Германия" },
+                  { img: greeceIcon, ISO:"GRC", country: "Греция" },
+                  { img: geoFlag, ISO:"GEO", country: "Грузия" },
+                  { img: israelIcon, ISO:"ISR", country: "Израиль" },
+                  { img: irelandIcon, ISO:"IRL", country: "Ирландия" },
+                  { img: icelandIcon, ISO:"ISL", country: "Исландия" },
+                  { img: espFlag, ISO:"ESP", country: "Испания" },
+                  { img: italyIcon, ISO:"ITA", country: "Италия" },
+                  { img: kazakhstanIcon, ISO:"KAZ", country: "Казахстан" },
+                  { img: canadaIcon, ISO:"CAN", country: "Канада" },
+                  { img: chinaIcon, ISO:"CHN", country: "Китай" },
+                  { img: latviaIcon, ISO:"LVA", country: "Латвия" },
+                  { img: lebanonIcon, ISO:"LBN", country: "Ливан" },
+                  { img: lithuaniaIcon, ISO:"LTU", country: "Литва" },
+                  { img: norwayIcon, ISO:"NOR", country: "Норвегия" },
+                  { img: polandIcon, ISO:"POL", country: "Польша" },
+                  { img: ruFlag, ISO:"RUS", country: "Россия" },
+                  { img: uSAIcon, ISO:"USA", country: "США" },
+                  { img: turkeyIcon, ISO:"TUR", country: "Турция" },
+                  { img: ukraineIcon, ISO:"UKR", country: "Украина" },
+                  { img: franceIcon, ISO:"FRA", country: "Франция" },
+                  { img: czechIcon, ISO:"CZE", country: "Чехия" },
+                  { img: switzerlandIcon, ISO:"CHE", country: "Швейцария" },
+                  { img: swedenIcon, ISO:"SWE", country: "Швеция" },
+                  { img: estoniaIcon, ISO:"EST", country: "Эстония" },
+                  { img: japanIcon, ISO:"JPN", country: "Япония" }]
               },
         };
     }
@@ -90,7 +90,7 @@ class RenderModalCountryClass extends React.Component {
                 {this.state.country.arrayCountry.map((element, index) =>
                     <div className="d-flex flex-row align-items-center justify-content-start col-5 p-0">
                         <img src={element.img} alt={element.country} width="15px" height="15px"/>
-                        <p className="m-0 p-1" onClick={()=>{this.props.dispatch(modalCountryDispacth(element.country)); this.props.close()}}>{element.country}</p>
+                        <p className="m-0 p-1" onClick={()=>{this.props.dispatch(modalCountryDispacth(element.ISO)); this.props.close()}}>{element.country}</p>
                     </div>
                 )}
             </div>
