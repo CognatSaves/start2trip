@@ -31,8 +31,6 @@ class StarsClass extends React.Component{
         
         if(x && width){
           let isMoreThanHalf = Math.floor(x/width+0.5);
-          console.log("setTempValue: tempValue:");
-          console.log(index+isMoreThanHalf);
           this.setState({
             tempValue: index+isMoreThanHalf,
           })
@@ -42,25 +40,15 @@ class StarsClass extends React.Component{
     resetTempValue(){
       
       if(this.state.changable){
-        console.log("resetTempValue: commentValue=");
-        console.log(this.props.commentState.commentValue);
         this.setState({
           tempValue: this.props.commentState.commentValue
         })
-        //this.props.dispatch(setCommentValue(this.state.tempValue));
-      }
-      
+      }      
     }
     setValue(){
-      /*this.setState({
-        value: this.state.tempValue
-      })*/
       if(this.state.changable){
-        console.log("Set Value: tempValue");
-        console.log(this.state.tempValue);
         this.props.dispatch(setCommentValue(this.state.tempValue));
-      }
-      
+      }     
     }
     render(){
         function starsColorCalculation(rating){
@@ -85,8 +73,6 @@ class StarsClass extends React.Component{
           }
           return resultArray;
         }
-        console.log("Stars render");
-        console.log(this.state);
         let starsColors = starsColorCalculation(this.state.tempValue);
         return(
           <div className="infoBlock_starsBlock d-flex flex-row justify-content-start" onMouseLeave={()=>{this.resetTempValue()}}>

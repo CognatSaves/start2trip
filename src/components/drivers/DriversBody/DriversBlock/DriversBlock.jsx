@@ -67,14 +67,11 @@ class DriversBlockClass extends React.Component {
     }
   }
   render() {
-
     let driversArray = this.driversSort([...this.props.driversState.drivers], this.props.storeState.sortMenuValue);
     let selectedElements = driversArray.slice((this.props.driversState.page - this.props.driversState.showPages) * this.props.storeState.pagesMenuValue,
      (this.props.driversState.page) * this.props.storeState.pagesMenuValue);
 
-
     let srcArray = Array(this.props.storeState.pagesMenuValue*this.props.driversState.showPages).fill(emptyLike);
-
     srcArray[0]=selectedFilledLike;
     srcArray[1]=filledLike;
     return (

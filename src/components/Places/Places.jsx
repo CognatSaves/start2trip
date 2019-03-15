@@ -25,35 +25,37 @@ class PlacesClass extends React.Component {
       this.props.dispatch(setMorePagesShow());
     }
     render(){
-        return(
-            <React.Fragment>
-              <div className = "drivers_top_background col-12">
-                <div className="wrapper d-flex flex-column">
-                  <Header colorClass="colorClass" colorClass2="colorClass2" backgroundColorClass="backgroundColorClass"
-                  borderColorClass="borderColorClass" labelColorClass="labelColorClass" type={1}/>
-                  <PlacesCountryInfo/>
-                 </div>
+      console.log("Places render");
+      console.log(this.props.placesState);
+      return(
+        <React.Fragment>
+          <div className = "drivers_top_background col-12">
+            <div className="wrapper d-flex flex-column">
+              <Header colorClass="colorClass" colorClass2="colorClass2" backgroundColorClass="backgroundColorClass"
+              borderColorClass="borderColorClass" labelColorClass="labelColorClass" type={1}/>
+              <PlacesCountryInfo/>
               </div>
-              <div className="wrapper d-flex flex-column">
-                <div className = "drivers_bottom_background d-flex flex-column" >
-                  <div className="drivers_body d-flex">
-                    <div className="left_body_part col-9">
-                      <PlacesPanel/>
-                      <PlacesList/>
-                      <Manipulator number={this.props.placesState.places[0].places.length} page={this.props.placesState.page} setPage={this.setPageFunc}
-                        elementsNumber = {this.props.placesState.pagesMenuValue} showMorePages={this.showMorePages}
-                      />
-                    </div>
-                    <div className="right_body_part col-3">
-                      <DriversCommercial/>
-                    </div>
-                  </div>
-                
-                </div>  
+          </div>
+          <div className="wrapper d-flex flex-column">
+            <div className = "drivers_bottom_background d-flex flex-column" >
+              <div className="drivers_body d-flex">
+                <div className="left_body_part col-9">
+                  <PlacesPanel/>
+                  <PlacesList/>
+                  <Manipulator number={this.props.placesState.places[0].places.length} page={this.props.placesState.page} setPage={this.setPageFunc}
+                    elementsNumber = {this.props.placesState.pagesMenuValue} showMorePages={this.showMorePages}
+                  />
+                </div>
+                <div className="right_body_part col-3">
+                  <DriversCommercial/>
+                </div>
               </div>
-              <Footer/>           
-          </React.Fragment>
-        )
+            
+            </div>  
+          </div>
+          <Footer/>           
+        </React.Fragment>
+      )
     }
 }
 

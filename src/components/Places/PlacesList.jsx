@@ -7,6 +7,7 @@ import geoIcon from '../home/HomeBody/pictures/geo_icon.svg';
 import bookmarkEmpty from './pictures/bookmark_contour.svg';
 import bookmarkFilled from './pictures/bookmark_blue.svg';
 import bookmarkSelected from './pictures/bookmark_orange.svg';
+import { Link } from 'react-router-dom';
 
 class PlacesListClass extends React.Component {
     constructor(props){
@@ -60,9 +61,9 @@ class PlacesListClass extends React.Component {
                    <div className="placesList_info">
                        <div className="placesList_info_row">
                             <div className="d-flex flex-column" style={{marginRight: "auto"}}>
-                                <div className="placesList_placeName">
+                                <Link to={`/place/${0},${element.id}`} className="placesList_placeName">
                                     {element.name}
-                                </div>
+                                </Link>
                                 <div>
                                     <Stars key={index+"/"+element.rating} value={element.rating} commentNumber={element.comments+" отзывов"} valueDisplay="block" commentNumberDisplay="block"/>
                                 </div>
@@ -79,9 +80,9 @@ class PlacesListClass extends React.Component {
                                 <img src={geoIcon} height="17px" width="17px" alt="geoIcon"/>
                                 <text className="placesList_info_position_textStyle">{element.position}</text>
                             </div>
-                            <div className="placesList_readMoreButton">
+                            <Link to={`/place/${0},${element.id}`} className="placesList_readMoreButton">
                                 Подробнее
-                            </div>
+                            </Link>
                        </div>
                    </div>
                 </div>

@@ -1,6 +1,6 @@
 const SET_DRIVERS_ROUTE_CHANGE = 'SET_DRIVERS_ROUTE_CHANGE';
 
-const SET_PAGE = 'SET_PAGE';
+const SET_PAGE = 'SET_PAGE_DRIVERS';
 
 const SET_MORE_PAGES_SHOW = 'SET_MORE_PAGES_SHOW';
 
@@ -12,8 +12,10 @@ const setDriversRouteChange = function (driversRouteChange){
 }
 
 const setPage = function (page){
+    console.log("setPage(ActionDrivers) call");
+    console.log(setPage);
     return{
-        type: 'SET_PAGE',
+        type: SET_PAGE,
         page: page
     }
 }

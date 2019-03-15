@@ -19,7 +19,7 @@ class RenderFourElClass extends React.Component {
     }
     render() {
         return (
-            <div className="d-flex flex-row align-items-center mb-4 p-0 col-12">
+            <div className="d-flex flex-row align-items-center justify-content-center mb-4 p-0 col-12">
                 {this.props.tours.map((element, index) =>
                     <div className="tourCard col-3 p-0">
                         <Card className="tourBody">

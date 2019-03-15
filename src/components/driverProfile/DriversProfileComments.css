@@ -10,6 +10,8 @@
     background: transparent;
     border:none;
     line-height: 35px;
+    padding: 0;
+    margin-right: 30px;
 }
 .driverProfileComments_panel_selectedElement{
     color: #ff6600;
@@ -20,7 +22,7 @@
     content: "";
     display: block;
     position: absolute;
-    width: 90%;
+    width: 100%;
     border-bottom: 3px solid #ff6600;
 }
 .driverProfileComments_commentBlock{ 

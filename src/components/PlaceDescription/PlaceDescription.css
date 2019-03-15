@@ -5,3 +5,130 @@
     padding-right: 0;
     padding-top: 0;
 }
+.placeDescription_fragmentName{
+    width: 100%;
+    border-bottom: 1px solid #999999;
+    font-size: 24px;
+    font-family: "Roboto";
+    font-weight: 500;
+}
+
+
+.placeDescription_block{
+    padding-top: 30px;
+}
+.placeDescription_description_name{
+    font-size: 34px;
+    font-family: "Roboto";
+    font-weight: 600;
+    color: #304269;
+    margin-right: auto;
+}
+.placeDescription_description_date{
+    font-size: 12px;
+    font-family: "Roboto";
+    font-weight: 400;
+    color: #999999;
+    margin: auto 10px auto 0;
+}
+.placeDescription_description_placeCard{
+    height: 32px;
+    width: 24px;
+    margin: auto 0;
+}
+.placeDescription_description_tagCard{
+    height: 14px;
+    width: 14px;
+    margin: auto 5px auto 0;
+}
+.placeDescription_description_tagElement{
+    font-size: 12px;
+    font-family: "Roboto";
+    font-weight: 400;
+    color: #999999;
+    margin: auto 5px auto 0;
+}
+.placeDescription_description_info{
+    font-family: "Roboto";
+    font-size: 14px;
+    font-weight: 400;
+    color: #304269;
+}
+
+.placesDescription_photos_firstPhotoBox{
+    width: 870px;
+    height: 500px;
+    margin-top: 15px;
+}
+.placesDescription_photos_secondaryPhotoBox{
+    position: relative;
+    /*width: 200px;
+    height: 120px;*/
+    border: 1px solid black;
+    color: rgb(153, 153, 153);
+    
+}
+.placesDescription_photos_showCollectionBox{
+    position: absolute;
+    top: 0px;
+    width: 200px;
+    height: 120px;
+    background-color: rgba(0,0,0,0.5);
+    text-align: center;
+    line-height: 120px;
+
+    font-family: "Roboto";
+    font-size: 24px;
+    color: #fff;
+    font-weight: 500;
+}
+
+
+.placesDescription_travelBlock_element{
+    width: 433px;
+    height: 70px;
+    box-shadow: 0 0 1px 1px rgba(221, 221, 221, 1);
+    margin-bottom: 4px;
+    line-height: 40px;
+    padding: 15px 20px; 
+    border-radius: 5px;
+}
+.placesDescription_travelBlock_applyButton{
+    background-color: #f26101;
+    font-family: "Roboto";
+    font-weight: 500;
+    font-size: 24px;
+    text-align: center;
+    color: #fff;
+}
+
+.placeDescription_fragmentName_mapBlock{
+    width: 870px;
+    height: 400px;
+    background-color: red;
+}
+
+.render_otherPlaces{
+    width: 100%;
+}
+.render_otherPlaces div.tourCard{
+    width: 285px;
+    max-width: 285px;
+    flex: 0 0 285px;
+    margin: 0 auto;
+}
+.render_otherPlaces div.tourCard:first-child{
+    padding-left: 0 !important;
+    margin-left: 0;
+}
+
+.render_otherPlaces div.tourCard:last-child{
+    padding-right: 0 !important;
+    margin-right: 0;
+}
+.render_otherPlaces div.tourCard p.tourText {
+    max-height: 80px;
+}
+.render_otherPlaces div.tourCard div.card-body{
+    padding: 14px 20px;
+}
