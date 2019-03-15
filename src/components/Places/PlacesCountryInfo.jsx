@@ -5,7 +5,7 @@ import territoryIcon from './pictures/georgia_Монтажная область 
 import peopleIcon from './pictures/people_Монтажная область 1.svg';
 import capitalIcon from './pictures/building_Монтажная область 1.svg';
 
-export default class Places extends React.Component {
+export default class PlacesCountryInfo extends React.Component {
     render(){
         return(
             <React.Fragment>
@@ -49,7 +49,7 @@ export default class Places extends React.Component {
                       <text style={{textAlign: "center", width: "100%", fontFamily: "Roboto", }}>
                         <text style={{fontWeight: "300", fontSize: "12px"}}>{"население"} </text>                     
                         <br/>
-                        <text style={{fontWeight: "400", fontSize: "14px"}}>{"3 729 млн"}</text>
+                        <text style={{fontWeight: "400", fontSize: "14px"}}>{"3.729 млн"}</text>
                       </text> 
                     </div>
                   </div>

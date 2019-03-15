@@ -6,6 +6,7 @@ import Home from './components/home/Home.jsx';
 import Drivers from './components/drivers/Drivers.jsx';
 import DriverProfile from './components/driverProfile/DriverProfile.jsx';
 import Places from './components/Places/Places.jsx';
+import PlaceDescription from './components/PlaceDescription/PlaceDescription.jsx'; 
 
 import './components/header/StandartHeaderStyles.css';
 import './components/header/HomeHeaderStyles.css';
@@ -36,6 +37,7 @@ ReactDOM.render(
             <Route path="/drivers" component={Drivers}/>
             <Route path="/driverProfile/:id,:temp1,:temp2" component={DriverProfile}/>
             <Route path="/places" component={Places}/>
+            <Route path="/place/:id" component = {PlaceDescription}/>
             <Redirect from="/" to="/home"/>
         </Switch>       
     </React.Fragment>

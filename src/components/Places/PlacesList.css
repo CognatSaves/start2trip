@@ -8,6 +8,13 @@
     margin-bottom: 10px;
     border-radius: 5px;
 }
+.placesList_placeName{
+    font-family: "Roboto";
+    font-size: 16px;
+    line-height: 16px;
+    font-weight: 500;
+    color: #304269;
+}
 .placesList_picture{
     display: flex;
     width: 190px;
@@ -18,7 +25,7 @@
     flex-direction: column;
     width: 680px;
     height: 215px;
-    padding: 1.5%;
+    padding: 20px;
 }
 .placesList_info_row{
     display: flex;
@@ -26,12 +33,41 @@
 }
 .placesList_info_style{
     font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
     font-family: "Roboto";
-    height: 85px;
+    height: 80px;
     overflow: hidden;
     text-overflow: ellipsis;
+    color: #304269;
 }
 
-.placesList_info_name{
+.placesList_info_position{
+    font-size: 12px;
+    font-style: "Roboto";
+    font-weight: 400;
+    color: #999999;
+}
 
+.placesList_info_position_textStyle{
+    margin-left: 5px;
+    line-height: 20px;
+}
+
+.placesList_readMoreButton{
+    font-family: "Roboto";
+    font-weight: 500;
+    color: #304269;
+    font-size: 14px;
+    margin-left: auto;
+}
+
+.placesList_readMoreButton:hover{
+    cursor: pointer;
+    color: #ff6600;
+}
+.placesList_placeCard{
+    margin-left: auto;
+    height: 25px;
+    width: 20px;
 }

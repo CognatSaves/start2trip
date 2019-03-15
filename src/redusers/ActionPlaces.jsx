@@ -5,8 +5,9 @@ const SET_SORT_MENU_VALUE = 'SET_SORT_MENU_VALUE';
 
 const SET_PAGE = 'SET_PAGES';
 
+const SET_MORE_PAGES_SHOW = 'SET_MORE_PAGES_SHOW';
+
 const setPagesMenuValue = function (pagesMenuValue){
-    alert("SET_PAGES_MENU_VALUE ACTIVATED");
     return {
       type: 'SET_PAGES_MENU_VALUE',
       pagesMenuValue: pagesMenuValue
@@ -20,10 +21,15 @@ const setSortMenuValue = function (sortMenuValueText){
 
 }
 const  setPage= function(page){
-  alert("SET_PAGE ACTIVATED");
   return{
     type: 'SET_PAGES',
     page: page
+  }
+}
+const setMorePagesShow = function (){
+  console.log("setMorePagesShow call");
+  return{
+      type: SET_MORE_PAGES_SHOW
   }
 }
   export {
@@ -31,5 +37,6 @@ const  setPage= function(page){
     setPagesMenuValue, SET_PAGES_MENU_VALUE,
     setSortMenuValue, SET_SORT_MENU_VALUE,
     setPage, SET_PAGE,
+    setMorePagesShow, SET_MORE_PAGES_SHOW
 
   }

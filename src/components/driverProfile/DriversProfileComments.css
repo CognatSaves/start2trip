@@ -15,14 +15,14 @@
     color: #ff6600;
     position: relative;
 }
-/*
+
 .driverProfileComments_panel_selectedElement::after{
     content: "";
     display: block;
     position: absolute;
     width: 90%;
     border-bottom: 3px solid #ff6600;
-}*/
+}
 .driverProfileComments_commentBlock{ 
     width:100%;
     margin-top: 40px;
@@ -33,13 +33,19 @@
     box-shadow: 0 0 1px 1px rgba(221, 221, 221, 1);
     padding: 12px 23px;
     margin-bottom: 12px;
+    border-radius: 5px;
+}
+.commentBlock_createComment:hover{
+    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s;
 }
 .commentBlock_comments{
     position: relative;
     width:100%;
     box-shadow: 0 0 1px 1px rgba(221, 221, 221, 1);
-    padding: 12px 23px;
+    padding: 12px 23px 0 23px;
     margin-bottom: 12px;
+    border-radius: 5px;
 }
 .createComment_element{
     /*height: 33%;*/
@@ -73,7 +79,7 @@
 }
 .createComment_sendButton{
     width: 205px;
-    height: 40px;
+    /*height: 40px;
     background-color: #ff6600;
     border-radius: 5px;
     border-color: #ff6600;
@@ -81,7 +87,7 @@
 
     font-size: 16px;
     font-family: "Roboto";
-    font-weight: 600;
+    font-weight: 400;*/
     margin: 10px 0 0 auto;
 }
 /*
@@ -96,7 +102,9 @@
     padding: 25px 0;
     border-bottom: 1px solid #cccccc;
 }
-
+.commentBlock_element:last-child{
+    border: none;
+}
 .valueBlock_firstElement_name{
     margin-right: auto;
     font-size: 14px;
@@ -139,7 +147,8 @@
 
 .news
 {
- height: 67px;
+ height: 60px;
+ line-height: 20px;
  overflow: hidden; /* Обрезаем все, что не помещается в область */
  background: transparent; /* Цвет фона */
  position: relative;
