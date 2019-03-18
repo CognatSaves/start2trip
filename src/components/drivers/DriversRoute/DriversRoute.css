@@ -28,12 +28,12 @@
     display: flex;
 }
 
-
-
 .route_change_emblem {
     display: flex;
     width: 21px;
     height: 21px;
+    background: url(pictures/drivers_edit_route.png) no-repeat;
+    background-size: 21px 21px;
 }
 
 .route_change_text {
@@ -50,11 +50,11 @@
 
 .route_show {
     flex-wrap: wrap;
-    padding-bottom: 45px;
+    padding-bottom: 25px;
     width: 100%;
 }
 .route_show_bottom{
-    padding-bottom: 19px;
+    padding-bottom: 0;
 }
 .route_show_element {
     display: flex;
@@ -62,7 +62,13 @@
     height: 40px;
     width: 280px;
 }
-
+.route_show_icon{
+    margin-top: 10px;
+    height: 30px;
+    width: 30px;
+    background: url(pictures/location.svg);
+    background-size: 30px 30px;
+}
 .route_show_text {
     position: absolute;
     height: 40px;

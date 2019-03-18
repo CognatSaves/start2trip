@@ -105,9 +105,7 @@ class DriversBlockClass extends React.Component {
             </div>
             <div className="block_element_right d-flex flex-column">
                 <div className="d-flex">
-                  <div className="tripBlock_carImage">
-                    <img src={sedan} width="100%" height="100%" alt={"car" + element}></img>
-                  </div>
+                  <div className="tripBlock_carImage" style={{background: "url("+sedan+") no-repeat", backgroundSize: "55px 50px"}}></div>
                   <div className="tripBlock_carData d-flex flex-column">
                     <div className="carInfo_line d-flex">
                       <div className="carBrand_style">{element.carBrand},</div>

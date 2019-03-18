@@ -6,11 +6,12 @@
 .tripBlock_carImage {
     width: 55px;
     /*height: 10%;*/
+    background-size: 55px 40px;
 }
 
 .tripBlock_carData {
     width: 256px;
-    margin-left: 30px;
+    margin-left: auto;
     height: 100%;
     text-align: top;
 }
@@ -22,6 +23,7 @@
     font-weight: bold;
     font-size: 18pt;
     color: #ff6600;
+    margin-top: 25px;
 }
 
 .tripBlock_buttonBlock_button {
@@ -34,7 +36,7 @@
     min-height: 42px;
     width:256px;
     max-width: 300px;
-    margin-left: 30px;
+    margin-left: auto;
     background-color: #304269;
     border: none;
     cursor: pointer;

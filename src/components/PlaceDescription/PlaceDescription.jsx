@@ -9,16 +9,16 @@ import RenderFourEl from '../home/HomeBody/RenderFourEl.jsx';
 import CreateComment from '../driverProfile/CreateComment';
 import ShowComments from '../driverProfile/ShowComments';
 import Manipulator from '../manipulator/Manipulator';
+import Carousel from './Carousel';
 
 import { connect } from 'react-redux';
+
 import ippodrom from './pictures/ippodrom.jpg';
-import tag from './pictures/tag_gray.svg';
+import ippodrom2 from './pictures/ippodrom2.jpg';
+import ippodrom3 from './pictures/ippodrom3.jpg';
+import ippodrom4 from './pictures/ippodrom4.jpg';
+
 import Stars from '../stars/Stars';
-import bookmarkEmpty from '../Places/pictures/bookmark_contour.svg';
-import bookmarkFilled from '../Places/pictures/bookmark_blue.svg';
-import bookmarkSelected from '../Places/pictures/bookmark_orange.svg';
-import geoIcon from './pictures/geo_icon.svg';
-import calendar from './pictures/calendar.svg';
 import georgiaImg from '../home/HomeBody/pictures/georgia.png';
 
 const Description = (props) => {
@@ -33,18 +33,14 @@ const Description = (props) => {
                     <div className="placeDescription_description_date">
                         da best day'n life
                     </div>
-                    <div className="d-flex placeDescription_description_placeCard" >
-                        <img src={bookmarkEmpty} width="100%" height="100%" alt="bookmark"/>
-                    </div>
+                    <div className="d-flex placeDescription_description_placeCard"/>
                 </div>
             </div>
             <div className="d-flex">
-            <Stars value={place.rating} commentNumber={place.comments+" отзывов"} valueDisplay="block" commentNumberDisplay="block"/>         
+                <Stars value={place.rating} commentNumber={place.comments+" отзывов"} valueDisplay="block" commentNumberDisplay="block"/>         
             </div>
             <div className="d-flex" style={{ margin: "10px 5px 20px 0px"}}>
-                <div className="placeDescription_description_tagCard">
-                    <img src={tag} className="placeDescription_description_tagCard" style={{position: "absolute"}} alt="tag"/>
-                </div>
+                <div className="placeDescription_description_tagCard"/>                               
                 <div className="placeDescription_description_tagElement">иномирье</div>
                 <div className="placeDescription_description_tagElement">история</div>
                 <div className="placeDescription_description_tagElement">развлечения</div>
@@ -56,33 +52,40 @@ const Description = (props) => {
     )
 }
 const PhotoSelect = (props) => {
-    let {width, height} = props;
+    let {width, height, src, selectPhoto, selectedPhotoIndex} = props;
     return (
-        <div className="placesDescription_photos_secondaryPhotoBox" style={{margin: "0 auto", width: width, height: height}}>
-            <img src={ippodrom} width={width} height={height} alt="/"/>
+        <div className="placesDescription_photos_secondaryPhotoBox" style={{margin: "0 auto", width: width, height: height}} onClick={()=>selectPhoto(selectedPhotoIndex)}>
+            <img src={src} width={width} height={height} alt="/"/>
         </div>
     )
 }
 const Photos = (props) => {
-    let widthAll = 870;
-    let heightAll = 500;
-    let n = 7;
-    let array = Array(n).fill("");
-    let width = widthAll/n+"px";
-    let height = heightAll/n+"px";     
+    let {placesArray, selectPhoto,selectedPhotoIndex, width, height, transformValue} = props; 
+    
+    let carouselWidth = placesArray.length*width+"px";
+    console.log("Photos render");
+    console.log(carouselWidth);
     return (
-        <div className="placeDescription_block d-flex flex-column">
+        <div className="placeDescription_block d-flex flex-column">          
             <div className="placeDescription_fragmentName">Фотографии</div>
             <div className="placesDescription_photos_firstPhotoBox">
-                <img src={ippodrom} width="870px" height="500px" alt="/"/>
+                <img src={placesArray[selectedPhotoIndex]} width="870px" height="500px" alt="/"/>
             </div>
-            <div className="d-flex">
-            {
+            <div className="" style={{overflow: "hidden"}} >
+            {/*
                 array.map((element,index)=>
-                    <PhotoSelect width={width} height={height} />
+                    <PhotoSelect src={element} width={width} height={height} selectPhoto={selectPhoto} selectedPhoto={indexArray[index]} selectedPhotoIndex={index}/>
                 )
+                */
             }
-            </div>
+                <div className="d-flex photoCarouselClass" style={{width: carouselWidth, transform: "translate3d("+transformValue+", 0px, 0px)"}}>
+                {
+                    placesArray.map((element,index) =>
+                        <PhotoSelect src={element} width={width+"px"} height={height+"px"} selectPhoto={selectPhoto} selectedPhotoIndex={selectedPhotoIndex}/>
+                    )
+                }
+                </div>
+            </div>           
         </div>
     )
 }
@@ -94,17 +97,17 @@ const TravelBlock = (props) => {
             <div className="d-flex flex-column" style={{marginTop: "15px"}}>
                 <div className="d-flex">
                     <div className="placesDescription_travelBlock_element d-flex" style={{marginRight: "auto"}}>
-                        <div style={{width:"25px", height: "30px", backgroundColor: "red", margin: "auto 10px auto 0"}}/>
+                        <div className="placesDescription_travelBlock_icon placesDescription_position"/>
                         <div>Ваше местоположение</div>
                     </div>
                     <div className="placesDescription_travelBlock_element d-flex" style={{marginLeft: "auto"}}>
-                        <img src={geoIcon} width="25px" height="30px" alt="/" style={{margin: "auto 10px auto 0"}}/>
+                        <div className="placesDescription_travelBlock_icon placesDescription_geoIcon"/>
                         {place.name}
                     </div>
                 </div>
                 <div className="d-flex">
                     <div className="placesDescription_travelBlock_element d-flex" style={{marginRight: "auto"}}>
-                        <img src={calendar} width="25px" height="30px" alt="/" style={{margin: "auto 10px auto 0"}}/>
+                        <div className="placesDescription_travelBlock_icon placesDescription_calendary"/>
                         Дата отправления
                     </div>
                     <div className="placesDescription_travelBlock_element placesDescription_travelBlock_applyButton d-flex" style={{marginLeft: "auto"}}>
@@ -138,7 +141,6 @@ const CanBeIntrestingBlock = (props) =>{
         </div>
     )
 }
-
 const CommentBlock = (props) => {
     let {selectedComments, userName} = props;
     return(
@@ -162,19 +164,44 @@ class PlaceDescriptionClass extends React.Component {
               { img: georgiaImg, title: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", link: "/driver", reviews: "32 отзыва", prise: "120$" },
               { img: georgiaImg, title: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", link: "/driver", reviews: "12 отзывов", prise: "80$" },
               { img: georgiaImg, title: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", link: "/driver", reviews: "55 отзыва", prise: "150$" },
-             ]
+             ],
+             //selectedPhoto: 3,
+             selecedPhotoIndex: 3,
+             photoSlice: 1,
+             photoArray: [ippodrom,ippodrom4,ippodrom2,ippodrom3,ippodrom4,ippodrom2,ippodrom3,ippodrom,ippodrom4,ippodrom2,ippodrom3,ippodrom4,ippodrom2,ippodrom3],
           };
+          this.selectPhoto=this.selectPhoto.bind(this);
+    }
+    selectPhoto(photo, photoIndex){
+        console.log("SelectPhoto call");
+        console.log(photo);
+        console.log(photoIndex);
+        this.setState({
+            //selectedPhoto: photo,
+            selecedPhotoIndex: photoIndex
+        })
     }
     render(){
+
         let countryId = this.props.match.params.country;
         let placeId=this.props.match.params.id;
-        //console.log(this.props.placesState.places[countryId]);
         let country = this.props.placesState.places[countryId].country;
 
         let comments = [...this.props.commentState.comments].reverse();
         let selectedComments = comments.slice((/*this.props.page-this.props.showPages*/0) * 5, (/*this.props.page*/1) * 5);
         
         let place = this.props.placesState.places[countryId].places[placeId];
+
+        let widthAll = 870;
+        let heightAll = 500;
+        let n = 7;
+
+        let placesArray = [ippodrom,ippodrom4,ippodrom2,ippodrom3,ippodrom,ippodrom4,ippodrom2,ippodrom3,ippodrom,ippodrom4,ippodrom2,ippodrom3,ippodrom,ippodrom4,ippodrom2,ippodrom3,ippodrom,ippodrom4,ippodrom2,ippodrom3];
+
+        let width = widthAll/n;
+        let height = heightAll/n; 
+
+        let transformValue=-1*this.state.photoSlice*width+"px";   
         return(
             <React.Fragment>
                 <div className = "drivers_top_background placeDescription_background col-12">
@@ -192,7 +219,7 @@ class PlaceDescriptionClass extends React.Component {
                         <div className="left_body_part col-9">
                             <PlacePanel/>
                             <Description place={place}/>
-                            <Photos/>
+                            <Photos transformValue={transformValue} placesArray={placesArray} selectPhoto={this.selectPhoto} selectedPhotoIndex={this.state.selecedPhotoIndex} width={width} height={height}/>
                             <TravelBlock place={place}/>
                             <MapBlock/>
                             <CanBeIntrestingBlock tours={this.state.popularPlaces}/>

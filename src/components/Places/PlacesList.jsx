@@ -54,7 +54,7 @@ class PlacesListClass extends React.Component {
             <div className="drivers_block">
                 {selectedPlaces.map((element,index)=>
 
-                <div className={/*"placesList_element"*/ "drivers_block_element d-flex p-0"} id={index}>
+                <div className={"drivers_block_element d-flex p-0"} id={index}>
                    <div className="placesList_picture">
                         <img src={ippodrom} width="100%" height="100%" style={{borderRadius: "5px"}} alt=""></img>
                    </div>

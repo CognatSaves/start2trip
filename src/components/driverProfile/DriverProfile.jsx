@@ -45,9 +45,7 @@ const DriverAdaptedRoute = (props)=>
               <div className="route_date_text">Ваш индивидуальный маршрут на: {date}</div>
               <div className="d-flex flex-row" to="/drivers" onClick={()=>goToDrivers()}>                              
                 <div className="route_change_text">Изменить маршрут</div>
-                <div className="route_change_emblem">
-                  <img src={changeElement} width="100%" height="100%" alt="change"></img>
-                </div>
+                <div className="route_change_emblem"/>
               </div>
             </div>
             <div className="driversAdaptedRoute_routeBlock" >
@@ -55,7 +53,7 @@ const DriverAdaptedRoute = (props)=>
                     <div className="route_show d-flex flex-row" >
                     {cities.map((element, index) =>
                     <div className="route_show_element driverAdaptedRoute_show_element" style={{/*width: routeElementWidth*/}}>
-                        <img src={pointIcon} style={{marginTop: "4px"}} height="36px" width="auto" alt={"icon"+index}/>
+                        <div className="route_show_icon" style={{marginTop: "4px", height: "36px", width: "36px", backgroundSize: "36px 36px"}}/>
                         <div className="route_show_text driverAdaptedRoute_show_text" >{cities[index]}</div>
                         <div className="route_show_line driverAdaptedRoute_show_line" style={{visibility: isVisibleArray[index]}}></div>
                     </div>
@@ -128,9 +126,7 @@ const DriverInfo = (props) =>{
             </div>
             <div className="block_element_right driverInfo_element_right col-5">
               <div className="d-flex flex-row">
-                <div className="driverInfo_carImage">
-                  <img src={sedan} height="auto" width="100%"  alt={"car" + element}></img>
-                </div>
+                <div className="driverInfo_carImage" style={{background: "url("+sedan+") no-repeat", backgroundSize: "60px 55px"}}/>
                 <div className="tripBlock_carData driverInfo_carData d-flex flex-row">
                     <div className="driverInfo_carBrand">{element.carBrand+","}</div>
                     <div className="driverInfo_fuelType">{element.fuelType}</div>
@@ -139,11 +135,11 @@ const DriverInfo = (props) =>{
               </div>
               <div className="element_right_line driverInfo_iconLine d-flex flex-row">
               {
-                  carComfortVisibility.map((elem,index)=>
-                      <div className="driverInfo_iconLine_icon" style={{display:carComfortVisibility[index]}}>
-                        <img src={carComfortImages[index]}  height="100%" width="100%" alt=""></img>
-                      </div>                 
-                  )
+                carComfortVisibility.map((elem,index)=>
+                    <div className="driverInfo_iconLine_icon" style={{display:carComfortVisibility[index]}}>
+                    <img src={carComfortImages[index]}  height="100%" width="100%" alt=""></img>
+                    </div>                 
+                )
               }
               </div>
               <div className="element_right_line">
