@@ -41,11 +41,9 @@
 .logo{
     width: 240px;
     height: 30px;
+    margin-right: 20px;
     background: url(./pictures/logo_blue.svg);
     background-size: 240px 30px;
-    /* background-clip: border-box; */
-    /* background-position: left 0px bottom 0px; */
-  
 }
 
 .headerLogo img {
@@ -89,10 +87,16 @@
 
 .geo_button_value span {
     font-family: "Roboto";
-    font-weight: 400;
+    font-weight: 300;
     font-size: 14px;
-    padding-left: 2px;
+    padding-left: 10px;
    
+}
+
+.hederGeoIcon{
+    background: url(./pictures/location_white.svg) no-repeat;
+    background-size: contain;
+    background-position: top 0px right 25px;
 }
 .geo_button_value img {
     margin-bottom: 2px;

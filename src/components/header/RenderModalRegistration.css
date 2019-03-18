@@ -1,0 +1,25 @@
+.registrationBody{
+    /* min-width: 500px;
+    max-width: 500px;
+    min-height: 400px;
+    max-height: 400px; */
+}
+
+.registrationBody p{
+    font-family: "Roboto";
+    font-weight: 300;
+    font-size: 14px;
+    color: #666;
+}
+.registrationBody p:hover{
+    cursor: pointer;
+    font-weight: 400;
+    color: #333;
+}
+
+.sitingInDark{
+    background: #304269;
+}
+.sitingInLight{
+    background: #d9e8f5;
+}

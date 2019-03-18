@@ -8,6 +8,7 @@ import geoIcon from './pictures/geo_icon.png'
 import logoBlue from './pictures/logo_blue.svg'
 import logoWhite from './pictures/logo_white_svg.svg'
 import RenderModalCountry from './RenderModalCountry'
+import RenderModalRegistration from './RenderModalRegistration'
 import mapWorldIcon from './pictures/mapWorld.svg'
 import { connect } from 'react-redux';
 import crossIconModal from './pictures/close.svg'
@@ -32,17 +33,26 @@ class HeaderClass extends React.Component {
       activLanguageNumber: 0,
       activeCurrency: ["₽ RUB", "$ USD", "₾ GEL", "€ EUR"],
       activeCurrencyNumber: 0,
-      modal: false,
+      modalCountry: false,
+      modalRegistration: false,
+
 
     };
     this.toggleLanguage = this.toggleLanguage.bind(this);
-    this.toggle = this.toggle.bind(this);
-    this.toggleModal = this.toggleModal.bind(this);
+    this.toggleDropdownOpen = this.toggleDropdownOpen.bind(this);
+    this.toggleModalCountry = this.toggleModalCountry.bind(this);
+    this.toggleModalRegistration = this.toggleModalRegistration.bind(this);
   }
 
-  toggleModal() {
+  toggleModalCountry() {
     this.setState(prevState => ({
-      modal: !prevState.modal
+      modalCountry: !prevState.modalCountry
+    }));
+  }
+
+  toggleModalRegistration() {
+    this.setState(prevState => ({
+      modalRegistration: !prevState.modalRegistration
     }));
   }
 
@@ -51,7 +61,7 @@ class HeaderClass extends React.Component {
       dropdownLanguageOpen: !this.state.dropdownLanguageOpen
     });
   }
-  toggle() {
+  toggleDropdownOpen() {
     this.setState({
       dropdownOpen: !this.state.dropdownOpen
     });
@@ -62,16 +72,24 @@ class HeaderClass extends React.Component {
     let earthPic = [earth, whiteEarth];
     return (
       <React.Fragment>
-        <Modal isOpen={this.state.modal} toggle={this.toggleModal} className={this.props.className}>
+        <Modal isOpen={this.state.modalRegistration} toggle={this.toggleModalRegistration} className={this.props.className}>
+          <ModalBody>
+            
+                <RenderModalRegistration close={this.toggleModalRegistration} />
+
+          </ModalBody>
+        </Modal>
+
+        <Modal isOpen={this.state.modalCountry} toggle={this.toggleModalCountry} className={this.props.className}>
           <ModalBody>
             <div className="d-flex flex-column col-12">
               <div className="d-flex flex-row justify-content-center col-12">
                 <img src={mapWorldIcon} height="150px" alt="mapWorldIcon" />
-                <button className="modalCountryButtton" onClick={() => { this.toggleModal() }}><img src={crossIconModal} width="20px" height="20px" alt="crossIconModal"/></button>
+                <button className="modalCountryButtton" onClick={() => { this.toggleModalCountry() }}><img src={crossIconModal} width="20px" height="20px" alt="crossIconModal" /></button>
               </div>
               <div className="modalCountry d-flex flex-column align-items-center ">
                 <h4 className="mb-4">ВЫБЕРИТЕ ВАШУ СТРАНУ</h4>
-                <RenderModalCountry close={this.toggleModal} />
+                <RenderModalCountry close={this.toggleModalCountry} />
               </div>
             </div>
           </ModalBody>
@@ -80,16 +98,15 @@ class HeaderClass extends React.Component {
           <div className='header d-flex flex-row align-items-center'>
             <div className="headerLogo d-flex flex-row col-5">
               <Link className="" to="">
-              <div className="logo"></div>
-                {/* <img src={logo[this.props.type]} height="38px" width="205px" alt="logo" /> */}
+                <div className="logo"></div>
               </Link>
               <div className="header_geo_block col-5">
                 <img src={earthPic[this.props.type]} width="40px" height="30px" alt="earthPic" />
-                <div onClick={this.toggleModal} className={"header_geo_button " + this.props.colorClass}>
+                <div onClick={this.toggleModalCountry} className={"header_geo_button " + this.props.colorClass}>
                   <div className={"geo_button_value " + this.props.backgroundColorClass}>
                     <div>
-                      <img src={geoIcon} width="9px" height="12px" alt="geoIcon" />
-                      <span>{this.props.storeState.country}</span>
+                      {/* <img src={geoIcon} width="9px" height="12px" alt="geoIcon" /> */}
+                      <span className="hederGeoIcon" >{this.props.storeState.country}</span>
                     </div>
                   </div>
                 </div>
@@ -102,7 +119,7 @@ class HeaderClass extends React.Component {
               <Link to="/" className={"buttonMass_button " + this.props.colorClass2}>АВИАБИЛЕТЫ</Link>
             </div>
             <div className="headerSelect d-flex flex-row align-items-center col-4">
-              <Dropdown setActiveFromChild="true" isOpen={this.state.dropdownOpen} toggle={this.toggle} className="selectGeneral">
+              <Dropdown setActiveFromChild="true" isOpen={this.state.dropdownOpen} toggle={this.toggleDropdownOpen} className="selectGeneral">
                 <DropdownToggle className="selectGeneralBt" caret size="sm">
                   {this.state.activeCurrency[this.state.activeCurrencyNumber]}
                 </DropdownToggle>
@@ -124,7 +141,7 @@ class HeaderClass extends React.Component {
                   <DropdownItem className="dropdownMenu" onClick={() => { this.setState({ activLanguageNumber: 3 }) }}><img src={espFlag} height="15px" width="15px" alt="ESP" />ESP</DropdownItem>
                 </DropdownMenu>
               </Dropdown>
-              <button className={"header_registration " + this.props.borderColorClass}>
+              <button onClick={this.toggleModalRegistration} className={"header_registration " + this.props.borderColorClass}>
                 <p className={this.props.colorClass2}>ВОЙТИ / РЕГИСТРАЦИЯ</p>
               </button>
             </div>
@@ -138,7 +155,7 @@ class HeaderClass extends React.Component {
 
 const Header = connect(
   (state) => ({
-      storeState: state.AppReduser,
+    storeState: state.AppReduser,
   }),
 )(HeaderClass);
 
