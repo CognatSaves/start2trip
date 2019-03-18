@@ -35,11 +35,15 @@
     height: 32px;
     width: 24px;
     margin: auto 0;
+    background: url(../Places/pictures/bookmark_contour.svg);
+    background-size: 24px 32px;
 }
 .placeDescription_description_tagCard{
     height: 14px;
     width: 14px;
     margin: auto 5px auto 0;
+    background: url(pictures/tag_gray.svg);
+    background-size: 14px 14px;
 }
 .placeDescription_description_tagElement{
     font-size: 12px;
@@ -92,6 +96,22 @@
     line-height: 40px;
     padding: 15px 20px; 
     border-radius: 5px;
+}
+.placesDescription_travelBlock_icon{
+    width: 25px;
+    height: 25px;
+    margin: auto 10px auto 0;
+    background-size: 25px 25px;
+}
+.placesDescription_calendary{
+    background-image: url(pictures/calendar.svg);
+    
+}
+.placesDescription_geoIcon{
+    background-image: url(pictures/geo_icon.svg);
+}
+.placesDescription_position{
+    background-image: url(pictures/my_location.svg);
 }
 .placesDescription_travelBlock_applyButton{
     background-color: #f26101;

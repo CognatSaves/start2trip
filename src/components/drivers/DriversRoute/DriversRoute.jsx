@@ -108,15 +108,13 @@ class DriversRouteClass extends React.Component {
               <div className="route_date_text">Ваш индивидуальный маршрут на: {this.props.storeState.date}</div>
               <div className="d-flex flex-row" onClick={()=>this.props.dispatch(setDriversRouteChange(!this.props.driversState.driversRouteChange))}>               
                 <div className="route_change_text">Изменить маршрут</div>
-                <div className="route_change_emblem">
-                  <img src={changeElement} width="100%" height="100%" alt="change"></img>
-                </div>
+                <div className="route_change_emblem"/>
               </div>
             </div>
             <div className="route_show d-flex flex-row">
               {this.state.cities.map((element, index) =>
               <div className="route_show_element" style={{/*width: routeElementWidth*/}}>
-                <img src={pointIcon} style={{marginTop: "10px"}} height="75%" width="auto" alt={"icon"+index}/>
+                <div className="route_show_icon"/>
                 <div className="route_show_text" >{this.state.cities[index]}</div>
                 <div className="route_show_line" style={{visibility: isVisibleArray[index]}}></div>
               </div>
@@ -141,9 +139,7 @@ class DriversRouteClass extends React.Component {
               <div className="route_date_text">Ваш индивидуальный маршрут на: {this.props.storeState.date}</div>
               <div className="d-flex flex-row" onClick={()=>this.props.dispatch(setDriversRouteChange(!this.props.driversState.driversRouteChange))}>               
                 <div className="route_change_text">Изменить маршрут</div>
-                <div className="route_change_emblem">
-                  <img src={changeElement} width="100%" height="100%" alt="change"></img>
-                </div>
+                <div className="route_change_emblem"/>
               </div>
             </div>
             <div className="route_show d-flex flex-row">
@@ -151,14 +147,10 @@ class DriversRouteClass extends React.Component {
               <React.Fragment>
                 <div className="route_show_element" key={element+"/"+index}>
                   <div className="search_input_block">
-                    <div className="search_input_icon">
-                      <img src={cityMarker} width="100%" height="100%" alt=""></img>
-                    </div>
+                    <div className="search_input_icon"/>
                     <SearchInput address={element} changeCity={this.changeCity} index={index} class={"search_input_style"}/>
                   </div>                  
-                  <div className="route_show_cross" style={{display: removeArray[index]}} onClick={()=>this.removeCity(index)}>
-                    <img src={closeIcon} width="100%" height="100%" alt="close"></img>
-                  </div>                 
+                  <div className="route_show_cross" style={{display: removeArray[index]}} onClick={()=>this.removeCity(index)}/>                                 
                 </div>
               </React.Fragment>
               )}
@@ -166,9 +158,7 @@ class DriversRouteClass extends React.Component {
             <div className="route_show route_show_bottom d-flex flex-row" style={{width: "100%"}}>
               <div className="route_bottomBlock d-flex flex-column">
                 <div className="route_add_city" onClick={()=>this.addCity()}>
-                  <div className="route_add_city_imageBlock">
-                    <img src={addIcon} width="100%" height="100%" alt="addIcon"></img>
-                  </div>
+                  <div className="route_add_city_imageBlock"/>
                   <div className="route_add_city_text">
                     Добавить пункт назначения
                   </div>
@@ -186,9 +176,7 @@ class DriversRouteClass extends React.Component {
                         tileClassName={""}
                         onClickDay={(value) => { this.chooseDate(value);}} />
                     </div>
-                    <div className="secondBottomBlock_calendar">
-                      <img src={calendarIcon} width="100%" height="100%" alt="calendar"></img>
-                    </div>
+                    <div className="secondBottomBlock_calendar"/>
                     <input className="secondBottomBlock_dateInput" placeholder="Date must be here" value={this.state.date} onClick={()=>this.openChooseDate()}></input>
                   </div>                 
                 </div>

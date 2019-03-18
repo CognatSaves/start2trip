@@ -66,6 +66,7 @@
     width: 8px;
     height: 8px;
     background: url(pictures/da_tru_big_arrow.png) no-repeat;
+    background-size: contain;
 }
 
 .properties_carPicture {
