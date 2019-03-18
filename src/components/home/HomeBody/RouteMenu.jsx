@@ -11,7 +11,7 @@ import PeopleMenu from '../../drivers/DriversBody/DriversProperties/components/P
 import userWhiteIcon from '../HomeBody/pictures/white/user_white.svg'
 import shapeIcon from './pictures/Shape.svg'
 import ellipseIcon from './pictures/Ellipse.svg'
-import geoIcon from '../HomeHeader/pictures/geo_icon.svg'
+import geoIcon from '../HomeBody/pictures/geo_icon.svg'
 import { Redirect } from 'react-router-dom';
 import LocationSearchInput from './Search'
 import { UncontrolledCollapse, Button } from 'reactstrap';

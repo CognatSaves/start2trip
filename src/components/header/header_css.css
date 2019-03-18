@@ -38,6 +38,16 @@
     max-width: 480px !important;
 }
 
+.logo{
+    width: 240px;
+    height: 30px;
+    background: url(./pictures/logo_blue.svg);
+    background-size: 240px 30px;
+    /* background-clip: border-box; */
+    /* background-position: left 0px bottom 0px; */
+  
+}
+
 .headerLogo img {
     padding-left: 0px;
 }
@@ -70,10 +80,11 @@
 
 .geo_button_value>div {
     height: 22px;
-    width: 100%;
+    max-width: 40px;
     line-height: 28px;
-    padding-left: 4px;
-   
+    margin-left: 4px;
+    margin-right: 4px;
+    border-bottom: 1px dashed #ccc;
 }
 
 .geo_button_value span {
@@ -81,8 +92,10 @@
     font-weight: 400;
     font-size: 14px;
     padding-left: 2px;
-    margin-right: 4px;
-    border-bottom: 1px dashed #ccc;
+   
+}
+.geo_button_value img {
+    margin-bottom: 2px;
 }
 
 .header_buttonMass {
@@ -169,13 +182,14 @@
 .headerSelect {
     padding: 0px !important;
     max-width: 305px !important;
+    max-height: 30px;
 }
 
 .header_registration {
     border: 1px solid #304269;
     border-radius: 5px;
     background: none;
-    line-height: 28px;
+    line-height: 26px;
 }
 
 .header_registration:hover {
@@ -196,7 +210,7 @@
     width: 100% !important;
     margin: 0 !important;
     text-align: center !important;
-    font-size: 9pt !important;
+    font-size: 12px !important;
     font-family: "Roboto" !important;
     font-weight: 500 !important;
     color: #304269;
