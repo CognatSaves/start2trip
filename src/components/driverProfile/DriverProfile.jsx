@@ -3,7 +3,6 @@ import './DriverProfile.css';
 import './DriverInfo.css';
 import './DriverAdaptedRoute.css';
 import { connect } from 'react-redux'
-import Footer from '../Footer/Footer.jsx'
 import DriversCommercial from '../drivers/DriversBody/DriversCommercial/DriversCommercial';
 import DriversProfileComments from './DriversProfileComments';
 import Manipulator from '../manipulator/Manipulator';
@@ -265,7 +264,6 @@ class DriverProfileClass extends React.Component{
             <StartTravelForm changeTravelVisibility={this.changeTravelVisibility} changeSuccessVisibility={this.changeSuccessVisibility}
                             travelVisibility={this.state.travelVisibility} successVisibility={this.changeSuccessVisibility}/>
             <StartTravelSuccess successVisibility={this.state.successVisibility} changeSuccessVisibility={this.changeSuccessVisibility}/> 
-            <Footer/>
         </React.Fragment>
             
         )

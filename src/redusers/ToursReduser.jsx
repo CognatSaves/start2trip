@@ -1,6 +1,8 @@
-
+import { SET_TOURS_MORE_PAGES_SHOW, SET_TOURS_PAGE} from './ActionTours';
 
 const initialState = {
+    toursPage: 1,
+    toursShowPages: 1,
     tours: [
         {
             country: "Imperii Romani Orientalis",
@@ -12,7 +14,8 @@ const initialState = {
                     departureDate: new Date(Date.now()),
                     info: "Новый тур по самым крупным центрам империи, олицетворяющим её богатство и мощь. Перемещение организовано на комфортабельном дромоне. По пути возможен заход в любой порт Средиземноморья. Каждый посещённый город оставит о себе незабываемые впечатления. В каждом из них для вас будет предоставлены верховые животные или паланкин для удобства перемещения по городу. Опытные гиды и тренированная охрана будут в вашем распоряжении в любое время дня и ночи.",
                     places: ["Konstantinopolis", "Antioch", "Alexandria Egyptian", "Carthage", "Roma"],
-                    passengersAvailable: 10,
+                    placesInfo: ["Konstantinopolis info", "Antioch info", "Alexandria Egyptian info", "Carthage info", "Roma info"],
+                    passengersAvailable: 1,
                     price: 350, 
                 },
                 {
@@ -22,7 +25,15 @@ const initialState = {
                     departureDate: new Date(Date.now()),
                     info: "Новый тур по самым крупным центрам империи, олицетворяющим её богатство и мощь. Перемещение организовано на комфортабельном дромоне. По пути возможен заход в любой порт Средиземноморья. Каждый посещённый город оставит о себе незабываемые впечатления. В каждом из них для вас будет предоставлены верховые животные или паланкин для удобства перемещения по городу. Опытные гиды и тренированная охрана будут в вашем распоряжении в любое время дня и ночи.",
                     places: ["Konstantinopolis", "Antioch", "Alexandria Egyptian", "Carthage", "Roma"],
-                    passengersAvailable: 10,
+                    placesInfo: ["Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info Konstantinopolis info ",
+                     "Antioch info Antioch info Antioch info Antioch info Antioch info Antioch info Antioch info Antioch info Antioch info Antioch info Antioch info Antioch info Antioch info ",
+                     "Alexandria Egyptian info Alexandria Egyptian info Alexandria Egyptian info Alexandria Egyptian info Alexandria Egyptian info Alexandria Egyptian info Alexandria Egyptian info Alexandria Egyptian info Alexandria Egyptian info Alexandria Egyptian info Alexandria Egyptian info Alexandria Egyptian info Alexandria Egyptian info Alexandria Egyptian info Alexandria Egyptian info Alexandria Egyptian info ",
+                     "Carthage info Carthage info Carthage info Carthage info Carthage info Carthage info Carthage info Carthage info Carthage info Carthage info Carthage info Carthage info Carthage info ",
+                     "Roma info ",
+                    ["AAA","BBB","CCC"],
+                    ["AA","BB"]
+                    ],
+                    passengersAvailable: 2,
                     price: 323, 
                 },
                 {
@@ -32,7 +43,8 @@ const initialState = {
                     departureDate: new Date(Date.now()),
                     info: "Новый тур по самым крупным центрам империи, олицетворяющим её богатство и мощь. Перемещение организовано на комфортабельном дромоне. По пути возможен заход в любой порт Средиземноморья. Каждый посещённый город оставит о себе незабываемые впечатления. В каждом из них для вас будет предоставлены верховые животные или паланкин для удобства перемещения по городу. Опытные гиды и тренированная охрана будут в вашем распоряжении в любое время дня и ночи.",
                     places: ["Konstantinopolis", "Antioch", "Alexandria Egyptian", "Carthage", "Roma"],
-                    passengersAvailable: 10,
+                    placesInfo: ["Konstantinopolis info", "Antioch info", "Alexandria Egyptian info", "Carthage info", "Roma info"],
+                    passengersAvailable: 3,
                     price: 256, 
                 },
                 {
@@ -42,7 +54,8 @@ const initialState = {
                     departureDate: new Date(Date.now()),
                     info: "Новый тур по самым крупным центрам империи, олицетворяющим её богатство и мощь. Перемещение организовано на комфортабельном дромоне. По пути возможен заход в любой порт Средиземноморья. Каждый посещённый город оставит о себе незабываемые впечатления. В каждом из них для вас будет предоставлены верховые животные или паланкин для удобства перемещения по городу. Опытные гиды и тренированная охрана будут в вашем распоряжении в любое время дня и ночи.",
                     places: ["Konstantinopolis", "Antioch", "Alexandria Egyptian", "Carthage", "Roma"],
-                    passengersAvailable: 10,
+                    placesInfo: ["Konstantinopolis info", "Antioch info", "Alexandria Egyptian info", "Carthage info", "Roma info"],
+                    passengersAvailable: 4,
                     price: 567, 
                 },
                 {
@@ -52,7 +65,8 @@ const initialState = {
                     departureDate: new Date(Date.now()),
                     info: "Новый тур по самым крупным центрам империи, олицетворяющим её богатство и мощь. Перемещение организовано на комфортабельном дромоне. По пути возможен заход в любой порт Средиземноморья. Каждый посещённый город оставит о себе незабываемые впечатления. В каждом из них для вас будет предоставлены верховые животные или паланкин для удобства перемещения по городу. Опытные гиды и тренированная охрана будут в вашем распоряжении в любое время дня и ночи.",
                     places: ["Konstantinopolis", "Antioch", "Alexandria Egyptian", "Carthage", "Roma"],
-                    passengersAvailable: 10,
+                    placesInfo: ["Konstantinopolis info", "Antioch info", "Alexandria Egyptian info", "Carthage info", "Roma info"],
+                    passengersAvailable: 5,
                     price: 342, 
                 },
                 {
@@ -62,7 +76,8 @@ const initialState = {
                     departureDate: new Date(Date.now()),
                     info: "Новый тур по самым крупным центрам империи, олицетворяющим её богатство и мощь. Перемещение организовано на комфортабельном дромоне. По пути возможен заход в любой порт Средиземноморья. Каждый посещённый город оставит о себе незабываемые впечатления. В каждом из них для вас будет предоставлены верховые животные или паланкин для удобства перемещения по городу. Опытные гиды и тренированная охрана будут в вашем распоряжении в любое время дня и ночи.",
                     places: ["Konstantinopolis", "Antioch", "Alexandria Egyptian", "Carthage", "Roma"],
-                    passengersAvailable: 10,
+                    placesInfo: ["Konstantinopolis info", "Antioch info", "Alexandria Egyptian info", "Carthage info", "Roma info"],
+                    passengersAvailable: 6,
                     price: 155, 
                 },
                 {
@@ -72,7 +87,8 @@ const initialState = {
                     departureDate: new Date(Date.now()),
                     info: "Новый тур по самым крупным центрам империи, олицетворяющим её богатство и мощь. Перемещение организовано на комфортабельном дромоне. По пути возможен заход в любой порт Средиземноморья. Каждый посещённый город оставит о себе незабываемые впечатления. В каждом из них для вас будет предоставлены верховые животные или паланкин для удобства перемещения по городу. Опытные гиды и тренированная охрана будут в вашем распоряжении в любое время дня и ночи.",
                     places: ["Konstantinopolis", "Antioch", "Alexandria Egyptian", "Carthage", "Roma"],
-                    passengersAvailable: 10,
+                    placesInfo: ["Konstantinopolis info", "Antioch info", "Alexandria Egyptian info", "Carthage info", "Roma info"],
+                    passengersAvailable: 7,
                     price: 62, 
                 },
                 {
@@ -82,7 +98,8 @@ const initialState = {
                     departureDate: new Date(Date.now()),
                     info: "Новый тур по самым крупным центрам империи, олицетворяющим её богатство и мощь. Перемещение организовано на комфортабельном дромоне. По пути возможен заход в любой порт Средиземноморья. Каждый посещённый город оставит о себе незабываемые впечатления. В каждом из них для вас будет предоставлены верховые животные или паланкин для удобства перемещения по городу. Опытные гиды и тренированная охрана будут в вашем распоряжении в любое время дня и ночи.",
                     places: ["Konstantinopolis", "Antioch", "Alexandria Egyptian", "Carthage", "Roma"],
-                    passengersAvailable: 10,
+                    placesInfo: ["Konstantinopolis info", "Antioch info", "Alexandria Egyptian info", "Carthage info", "Roma info"],
+                    passengersAvailable: 8,
                     price: 432, 
                 },
                 {
@@ -92,7 +109,8 @@ const initialState = {
                     departureDate: new Date(Date.now()),
                     info: "Новый тур по самым крупным центрам империи, олицетворяющим её богатство и мощь. Перемещение организовано на комфортабельном дромоне. По пути возможен заход в любой порт Средиземноморья. Каждый посещённый город оставит о себе незабываемые впечатления. В каждом из них для вас будет предоставлены верховые животные или паланкин для удобства перемещения по городу. Опытные гиды и тренированная охрана будут в вашем распоряжении в любое время дня и ночи.",
                     places: ["Konstantinopolis", "Antioch", "Alexandria Egyptian", "Carthage", "Roma"],
-                    passengersAvailable: 10,
+                    placesInfo: ["Konstantinopolis info", "Antioch info", "Alexandria Egyptian info", "Carthage info", "Roma info"],
+                    passengersAvailable: 9,
                     price: 254, 
                 },
                 {
@@ -102,6 +120,7 @@ const initialState = {
                     departureDate: new Date(Date.now()),
                     info: "Новый тур по самым крупным центрам империи, олицетворяющим её богатство и мощь. Перемещение организовано на комфортабельном дромоне. По пути возможен заход в любой порт Средиземноморья. Каждый посещённый город оставит о себе незабываемые впечатления. В каждом из них для вас будет предоставлены верховые животные или паланкин для удобства перемещения по городу. Опытные гиды и тренированная охрана будут в вашем распоряжении в любое время дня и ночи.",
                     places: ["Konstantinopolis", "Antioch", "Alexandria Egyptian", "Carthage", "Roma"],
+                    placesInfo: ["Konstantinopolis info", "Antioch info", "Alexandria Egyptian info", "Carthage info", "Roma info"],
                     passengersAvailable: 10,
                     price: 841, 
                 },
@@ -112,7 +131,8 @@ const initialState = {
                     departureDate: new Date(Date.now()),
                     info: "Новый тур по самым крупным центрам империи, олицетворяющим её богатство и мощь. Перемещение организовано на комфортабельном дромоне. По пути возможен заход в любой порт Средиземноморья. Каждый посещённый город оставит о себе незабываемые впечатления. В каждом из них для вас будет предоставлены верховые животные или паланкин для удобства перемещения по городу. Опытные гиды и тренированная охрана будут в вашем распоряжении в любое время дня и ночи.",
                     places: ["Konstantinopolis", "Antioch", "Alexandria Egyptian", "Carthage", "Roma"],
-                    passengersAvailable: 10,
+                    placesInfo: ["Konstantinopolis info", "Antioch info", "Alexandria Egyptian info", "Carthage info", "Roma info"],
+                    passengersAvailable: 1,
                     price: 300, 
                 },
                 {
@@ -122,7 +142,8 @@ const initialState = {
                     departureDate: new Date(Date.now()),
                     info: "Новый тур по самым крупным центрам империи, олицетворяющим её богатство и мощь. Перемещение организовано на комфортабельном дромоне. По пути возможен заход в любой порт Средиземноморья. Каждый посещённый город оставит о себе незабываемые впечатления. В каждом из них для вас будет предоставлены верховые животные или паланкин для удобства перемещения по городу. Опытные гиды и тренированная охрана будут в вашем распоряжении в любое время дня и ночи.",
                     places: ["Konstantinopolis", "Antioch", "Alexandria Egyptian", "Carthage", "Roma"],
-                    passengersAvailable: 10,
+                    placesInfo: ["Konstantinopolis info", "Antioch info", "Alexandria Egyptian info", "Carthage info", "Roma info"],
+                    passengersAvailable: 2,
                     price: 300, 
                 },
                 {
@@ -132,7 +153,8 @@ const initialState = {
                     departureDate: new Date(Date.now()),
                     info: "Новый тур по самым крупным центрам империи, олицетворяющим её богатство и мощь. Перемещение организовано на комфортабельном дромоне. По пути возможен заход в любой порт Средиземноморья. Каждый посещённый город оставит о себе незабываемые впечатления. В каждом из них для вас будет предоставлены верховые животные или паланкин для удобства перемещения по городу. Опытные гиды и тренированная охрана будут в вашем распоряжении в любое время дня и ночи.",
                     places: ["Konstantinopolis", "Antioch", "Alexandria Egyptian", "Carthage", "Roma"],
-                    passengersAvailable: 10,
+                    placesInfo: ["Konstantinopolis info", "Antioch info", "Alexandria Egyptian info", "Carthage info", "Roma info"],
+                    passengersAvailable: 3,
                     price: 300, 
                 },
                 {
@@ -142,7 +164,8 @@ const initialState = {
                     departureDate: new Date(Date.now()),
                     info: "Новый тур по самым крупным центрам империи, олицетворяющим её богатство и мощь. Перемещение организовано на комфортабельном дромоне. По пути возможен заход в любой порт Средиземноморья. Каждый посещённый город оставит о себе незабываемые впечатления. В каждом из них для вас будет предоставлены верховые животные или паланкин для удобства перемещения по городу. Опытные гиды и тренированная охрана будут в вашем распоряжении в любое время дня и ночи.",
                     places: ["Konstantinopolis", "Antioch", "Alexandria Egyptian", "Carthage", "Roma"],
-                    passengersAvailable: 10,
+                    placesInfo: ["Konstantinopolis info", "Antioch info", "Alexandria Egyptian info", "Carthage info", "Roma info"],
+                    passengersAvailable: 4,
                     price: 300, 
                 },
                 {
@@ -152,7 +175,8 @@ const initialState = {
                     departureDate: new Date(Date.now()),
                     info: "Новый тур по самым крупным центрам империи, олицетворяющим её богатство и мощь. Перемещение организовано на комфортабельном дромоне. По пути возможен заход в любой порт Средиземноморья. Каждый посещённый город оставит о себе незабываемые впечатления. В каждом из них для вас будет предоставлены верховые животные или паланкин для удобства перемещения по городу. Опытные гиды и тренированная охрана будут в вашем распоряжении в любое время дня и ночи.",
                     places: ["Konstantinopolis", "Antioch", "Alexandria Egyptian", "Carthage", "Roma"],
-                    passengersAvailable: 10,
+                    placesInfo: ["Konstantinopolis info", "Antioch info", "Alexandria Egyptian info", "Carthage info", "Roma info"],
+                    passengersAvailable:5,
                     price: 300, 
                 },
                 {
@@ -162,7 +186,8 @@ const initialState = {
                     departureDate: new Date(Date.now()),
                     info: "Новый тур по самым крупным центрам империи, олицетворяющим её богатство и мощь. Перемещение организовано на комфортабельном дромоне. По пути возможен заход в любой порт Средиземноморья. Каждый посещённый город оставит о себе незабываемые впечатления. В каждом из них для вас будет предоставлены верховые животные или паланкин для удобства перемещения по городу. Опытные гиды и тренированная охрана будут в вашем распоряжении в любое время дня и ночи.",
                     places: ["Konstantinopolis", "Antioch", "Alexandria Egyptian", "Carthage", "Roma"],
-                    passengersAvailable: 10,
+                    placesInfo: ["Konstantinopolis info", "Antioch info", "Alexandria Egyptian info", "Carthage info", "Roma info"],
+                    passengersAvailable: 6,
                     price: 300, 
                 },
                 {
@@ -172,7 +197,8 @@ const initialState = {
                     departureDate: new Date(Date.now()),
                     info: "Новый тур по самым крупным центрам империи, олицетворяющим её богатство и мощь. Перемещение организовано на комфортабельном дромоне. По пути возможен заход в любой порт Средиземноморья. Каждый посещённый город оставит о себе незабываемые впечатления. В каждом из них для вас будет предоставлены верховые животные или паланкин для удобства перемещения по городу. Опытные гиды и тренированная охрана будут в вашем распоряжении в любое время дня и ночи.",
                     places: ["Konstantinopolis", "Antioch", "Alexandria Egyptian", "Carthage", "Roma"],
-                    passengersAvailable: 10,
+                    placesInfo: ["Konstantinopolis info", "Antioch info", "Alexandria Egyptian info", "Carthage info", "Roma info"],
+                    passengersAvailable: 7,
                     price: 300, 
                 },
                 {
@@ -182,7 +208,8 @@ const initialState = {
                     departureDate: new Date(Date.now()),
                     info: "Новый тур по самым крупным центрам империи, олицетворяющим её богатство и мощь. Перемещение организовано на комфортабельном дромоне. По пути возможен заход в любой порт Средиземноморья. Каждый посещённый город оставит о себе незабываемые впечатления. В каждом из них для вас будет предоставлены верховые животные или паланкин для удобства перемещения по городу. Опытные гиды и тренированная охрана будут в вашем распоряжении в любое время дня и ночи.",
                     places: ["Konstantinopolis", "Antioch", "Alexandria Egyptian", "Carthage", "Roma"],
-                    passengersAvailable: 10,
+                    placesInfo: ["Konstantinopolis info", "Antioch info", "Alexandria Egyptian info", "Carthage info", "Roma info"],
+                    passengersAvailable: 8,
                     price: 300, 
                 },
                 {
@@ -192,7 +219,8 @@ const initialState = {
                     departureDate: new Date(Date.now()),
                     info: "Новый тур по самым крупным центрам империи, олицетворяющим её богатство и мощь. Перемещение организовано на комфортабельном дромоне. По пути возможен заход в любой порт Средиземноморья. Каждый посещённый город оставит о себе незабываемые впечатления. В каждом из них для вас будет предоставлены верховые животные или паланкин для удобства перемещения по городу. Опытные гиды и тренированная охрана будут в вашем распоряжении в любое время дня и ночи.",
                     places: ["Konstantinopolis", "Antioch", "Alexandria Egyptian", "Carthage", "Roma"],
-                    passengersAvailable: 10,
+                    placesInfo: ["Konstantinopolis info", "Antioch info", "Alexandria Egyptian info", "Carthage info", "Roma info"],
+                    passengersAvailable: 9,
                     price: 300, 
                 },
                 {
@@ -202,7 +230,8 @@ const initialState = {
                     departureDate: new Date(Date.now()),
                     info: "Новый тур по самым крупным центрам империи, олицетворяющим её богатство и мощь. Перемещение организовано на комфортабельном дромоне. По пути возможен заход в любой порт Средиземноморья. Каждый посещённый город оставит о себе незабываемые впечатления. В каждом из них для вас будет предоставлены верховые животные или паланкин для удобства перемещения по городу. Опытные гиды и тренированная охрана будут в вашем распоряжении в любое время дня и ночи.",
                     places: ["Konstantinopolis", "Antioch", "Alexandria Egyptian", "Carthage", "Roma"],
-                    passengersAvailable: 10,
+                    placesInfo: ["Konstantinopolis info", "Antioch info", "Alexandria Egyptian info", "Carthage info", "Roma info"],
+                    passengersAvailable: 11,
                     price: 300, 
                 },
                 {
@@ -212,7 +241,8 @@ const initialState = {
                     departureDate: new Date(Date.now()),
                     info: "Новый тур по самым крупным центрам империи, олицетворяющим её богатство и мощь. Перемещение организовано на комфортабельном дромоне. По пути возможен заход в любой порт Средиземноморья. Каждый посещённый город оставит о себе незабываемые впечатления. В каждом из них для вас будет предоставлены верховые животные или паланкин для удобства перемещения по городу. Опытные гиды и тренированная охрана будут в вашем распоряжении в любое время дня и ночи.",
                     places: ["Konstantinopolis", "Antioch", "Alexandria Egyptian", "Carthage", "Roma"],
-                    passengersAvailable: 10,
+                    placesInfo: ["Konstantinopolis info", "Antioch info", "Alexandria Egyptian info", "Carthage info", "Roma info"],
+                    passengersAvailable: 12,
                     price: 300, 
                 },
                 {
@@ -222,7 +252,8 @@ const initialState = {
                     departureDate: new Date(Date.now()),
                     info: "Новый тур по самым крупным центрам империи, олицетворяющим её богатство и мощь. Перемещение организовано на комфортабельном дромоне. По пути возможен заход в любой порт Средиземноморья. Каждый посещённый город оставит о себе незабываемые впечатления. В каждом из них для вас будет предоставлены верховые животные или паланкин для удобства перемещения по городу. Опытные гиды и тренированная охрана будут в вашем распоряжении в любое время дня и ночи.",
                     places: ["Konstantinopolis", "Antioch", "Alexandria Egyptian", "Carthage", "Roma"],
-                    passengersAvailable: 10,
+                    placesInfo: ["Konstantinopolis info", "Antioch info", "Alexandria Egyptian info", "Carthage info", "Roma info"],
+                    passengersAvailable: 13,
                     price: 300, 
                 },
                 {
@@ -232,7 +263,8 @@ const initialState = {
                     departureDate: new Date(Date.now()),
                     info: "Новый тур по самым крупным центрам империи, олицетворяющим её богатство и мощь. Перемещение организовано на комфортабельном дромоне. По пути возможен заход в любой порт Средиземноморья. Каждый посещённый город оставит о себе незабываемые впечатления. В каждом из них для вас будет предоставлены верховые животные или паланкин для удобства перемещения по городу. Опытные гиды и тренированная охрана будут в вашем распоряжении в любое время дня и ночи.",
                     places: ["Konstantinopolis", "Antioch", "Alexandria Egyptian", "Carthage", "Roma"],
-                    passengersAvailable: 10,
+                    placesInfo: ["Konstantinopolis info", "Antioch info", "Alexandria Egyptian info", "Carthage info", "Roma info"],
+                    passengersAvailable: 14,
                     price: 300, 
                 },
                 {
@@ -242,7 +274,8 @@ const initialState = {
                     departureDate: new Date(Date.now()),
                     info: "Новый тур по самым крупным центрам империи, олицетворяющим её богатство и мощь. Перемещение организовано на комфортабельном дромоне. По пути возможен заход в любой порт Средиземноморья. Каждый посещённый город оставит о себе незабываемые впечатления. В каждом из них для вас будет предоставлены верховые животные или паланкин для удобства перемещения по городу. Опытные гиды и тренированная охрана будут в вашем распоряжении в любое время дня и ночи.",
                     places: ["Konstantinopolis", "Antioch", "Alexandria Egyptian", "Carthage", "Roma"],
-                    passengersAvailable: 10,
+                    placesInfo: ["Konstantinopolis info", "Antioch info", "Alexandria Egyptian info", "Carthage info", "Roma info"],
+                    passengersAvailable: 15,
                     price: 300, 
                 },
                 {
@@ -252,7 +285,8 @@ const initialState = {
                     departureDate: new Date(Date.now()),
                     info: "Новый тур по самым крупным центрам империи, олицетворяющим её богатство и мощь. Перемещение организовано на комфортабельном дромоне. По пути возможен заход в любой порт Средиземноморья. Каждый посещённый город оставит о себе незабываемые впечатления. В каждом из них для вас будет предоставлены верховые животные или паланкин для удобства перемещения по городу. Опытные гиды и тренированная охрана будут в вашем распоряжении в любое время дня и ночи.",
                     places: ["Konstantinopolis", "Antioch", "Alexandria Egyptian", "Carthage", "Roma"],
-                    passengersAvailable: 10,
+                    placesInfo: ["Konstantinopolis info", "Antioch info", "Alexandria Egyptian info", "Carthage info", "Roma info"],
+                    passengersAvailable: 16,
                     price: 300, 
                 },
                 {
@@ -262,7 +296,8 @@ const initialState = {
                     departureDate: new Date(Date.now()),
                     info: "Новый тур по самым крупным центрам империи, олицетворяющим её богатство и мощь. Перемещение организовано на комфортабельном дромоне. По пути возможен заход в любой порт Средиземноморья. Каждый посещённый город оставит о себе незабываемые впечатления. В каждом из них для вас будет предоставлены верховые животные или паланкин для удобства перемещения по городу. Опытные гиды и тренированная охрана будут в вашем распоряжении в любое время дня и ночи.",
                     places: ["Konstantinopolis", "Antioch", "Alexandria Egyptian", "Carthage", "Roma"],
-                    passengersAvailable: 10,
+                    placesInfo: ["Konstantinopolis info", "Antioch info", "Alexandria Egyptian info", "Carthage info", "Roma info"],
+                    passengersAvailable: 17,
                     price: 300, 
                 },
                 {
@@ -272,7 +307,8 @@ const initialState = {
                     departureDate: new Date(Date.now()),
                     info: "Новый тур по самым крупным центрам империи, олицетворяющим её богатство и мощь. Перемещение организовано на комфортабельном дромоне. По пути возможен заход в любой порт Средиземноморья. Каждый посещённый город оставит о себе незабываемые впечатления. В каждом из них для вас будет предоставлены верховые животные или паланкин для удобства перемещения по городу. Опытные гиды и тренированная охрана будут в вашем распоряжении в любое время дня и ночи.",
                     places: ["Konstantinopolis", "Antioch", "Alexandria Egyptian", "Carthage", "Roma"],
-                    passengersAvailable: 10,
+                    placesInfo: ["Konstantinopolis info", "Antioch info", "Alexandria Egyptian info", "Carthage info", "Roma info"],
+                    passengersAvailable: 18,
                     price: 300, 
                 },
                 
@@ -284,9 +320,19 @@ const initialState = {
 }
 
 export const ToursReduser = (state = initialState, action)=>{
-    console.log("ToursReduser");
     switch (action.type){
-
+        case SET_TOURS_MORE_PAGES_SHOW:{
+            let newState={...state};
+            newState.toursShowPages=newState.toursShowPages+1;
+            newState.toursPage=newState.toursPage+1;
+            return newState;
+        }
+        case SET_TOURS_PAGE: {
+            let newState = {...state};
+            newState.toursPage=action.toursPage;
+            newState.toursShowPages=1;
+            return newState;
+        }
         default: return state;
     }
     

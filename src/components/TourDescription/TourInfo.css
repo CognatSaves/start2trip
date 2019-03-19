@@ -1,0 +1,44 @@
+.tourInfo_tourShow{
+    font-family: "Roboto Slab";
+    font-size: 48px;
+    line-height: 38px;
+    font-weight: 600;
+    padding-bottom: 20px;
+}
+.tourInfo_dateBlock {
+    font-family: "Roboto";
+    font-size: 16px;
+    line-height: 24px;
+    padding-bottom: 30px;
+    margin: 0 auto;
+}
+.tourInfo_dateBlock_dateValue{
+    margin-left: 5px;
+    line-height: 24px;
+    border-bottom: 1px dashed #fff;
+}
+.tourInfo_price{
+    font-family: "Roboto";
+    font-size: 24px;
+    line-height: 24px;
+    font-weight: 600;
+    padding-bottom: 5px;
+}
+.tourInfo_buttonStyle{
+    color: #fff;
+    font-size: 16px;
+    font-family: "Roboto";
+    font-weight: 600;
+    margin: 0 auto;
+    border: none;
+    border-radius: 5px;
+    width: 256px;
+    height:40px;
+    background-color: #f26101;
+}
+.tourInfo_priceInfo{
+    color: #fff;
+    font-size: 12px;
+    font-family: "Roboto";
+    font-weight: 400;
+}

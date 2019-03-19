@@ -9,16 +9,72 @@ import bookmarkFilled from '../Places/pictures/bookmark_blue.svg';
 import bookmarkSelected from '../Places/pictures/bookmark_orange.svg';
 import { Link } from 'react-router-dom';
 
-
+import Manipulator from '../manipulator/Manipulator';
 import userBlueIcon from '../drivers/DriversBody/DriversBlock/pictures/user_blue.svg';
 import dromon from './pictures/dromon.jpg';
 
+import {setToursPage,setToursMorePagesShow} from '../../redusers/ActionTours';
 class ToursListClass extends React.Component {
     constructor(props){
         super(props);
-
+        this.toursSort=this.toursSort.bind(this);
+        this.setPage = this.setPage.bind(this);
+        this.showMorePages = this.showMorePages.bind(this);
+    }
+    setPage(page) {
+        if (page !== "...") {
+            this.props.dispatch(setToursPage(page));
+        }
+    }
+    showMorePages(){
+        this.props.dispatch(setToursMorePagesShow());
+    }
+    toursSort(array,type){
+        function sortPrice(a,b){
+          if(a.price>b.price) return 1;
+          if (a.price<b.price) return -1;
+        }
+        function sortRating(a,b){
+          if(a.rating>b.rating) return -1;
+          if(a.rating<b.rating) return 1;
+        }
+        function sortComments(a,b){
+          if(a.comments>b.comments) return -1;
+          if(a.comments<b.comments) return 1;
+        }
+        let tempArray =[];
+        let tempPrice = this.props.storeState.pricePart*this.props.storeState.maxPrice/100; 
+        array.forEach((element,index)=>{
+            if(element.price<tempPrice && element.passengersAvailable>=this.props.storeState.persons[1]+this.props.storeState.persons[0] &&
+                (/*element.carType===this.props.storeState.autoValue || this.props.storeState.autoValue==="Тип авто"*/true) && 
+                (/*element.language.indexOf(this.props.storeState.languageValue)!==-1 || this.props.storeState.languageValue==="Язык"*/ true)
+              ){
+              tempArray.push(element);
+            }
+        });
+        switch (type){
+          case "Популярность":
+            return tempArray.sort(sortComments);
+          case "Рейтинг":
+            return tempArray.sort(sortRating);
+          case "Цена":
+            return tempArray.sort(sortPrice);
+          default: return array;
+        }
     }
     render(){
+        function createDateString(date){
+            function getMonthName(number){
+                let monthArray = ["января","февраля","марта","апреля","мая","июня","июля","августа","сентября","октября","ноября","декабря"];
+                return monthArray[number];
+            }
+            function getDateName(number){
+                let dayArray = ["Вс","Пн","Вт","Ср","Чт","Пт","Сб"];
+                return dayArray[number];
+            }       
+            return getDateName(date.getDay())+", "+date.getDate()+" "+getMonthName(date.getMonth())+" "+date.getFullYear();
+        }
+        
         function createNames(tourArray){
             let res=[];
             for(let i=0;i<tourArray.length; i++){
@@ -29,9 +85,11 @@ class ToursListClass extends React.Component {
             }
             return res;
         }
-        let sortedArray = [...this.props.toursState.tours[0].tours];/*this.placesSort([...this.props.placesState.places[0].places], this.props.placesState.sortMenuValue);*/
-        let selectedTours= sortedArray.slice(/*(this.props.placesState.page-this.props.placesState.showPages)*this.props.placesState.pagesMenuValue*/0,
-        /*this.props.placesState.page*this.props.placesState.pagesMenuValue*/10);
+
+         
+        let sortedArray = this.toursSort([...this.props.toursState.tours[0].tours], this.props.storeState.sortMenuValue);
+        let selectedTours= sortedArray.slice((this.props.toursState.toursPage-this.props.toursState.toursShowPages)*this.props.storeState.pagesMenuValue,
+        this.props.toursState.toursPage*this.props.storeState.pagesMenuValue);
 
         let srcArray = Array(selectedTours.length).fill(bookmarkEmpty);
 
@@ -40,8 +98,6 @@ class ToursListClass extends React.Component {
 
 
         let namesArray = createNames(selectedTours);
-        console.log('NamesArray');
-        console.log(namesArray);
         return(
             <React.Fragment>
             <div className="drivers_block">
@@ -62,7 +118,7 @@ class ToursListClass extends React.Component {
                                         <Stars key={index+"/"+element.rating} value={element.rating} commentNumber={element.comments+" отзывов"} valueDisplay="block" commentNumberDisplay="block"/>
                                     </div>
                                     <div className="toursList_leftBlock_startDate">
-                                        Дата отправления: <text style={{fontWeight: "600"}}>{element.departureDate.toDateString()}</text>
+                                        Дата отправления: <text style={{fontWeight: "600"}}>{createDateString(element.departureDate)}</text>
                                     </div>
                                 </div>
                         </div>
@@ -91,8 +147,11 @@ class ToursListClass extends React.Component {
                         </div>
                    </div>
                 </div>
-
+                
                 )}
+                <Manipulator number={this.props.toursState.tours[0].tours.length} elementsNumber={this.props.storeState.pagesMenuValue} page = {this.props.toursState.toursPage}
+                    setPage={this.setPage} showMorePages = {this.showMorePages}
+                />
             </div>  
             </React.Fragment>
         ) 

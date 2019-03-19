@@ -1,7 +1,6 @@
 import React from 'react';
 import '../Places/Places.css';
 import Header from '../header/Header';
-import Footer from '../Footer/Footer';
 import ToursCountryInfo from './ToursCountryInfo';
 import DriversProperties from '../drivers/DriversBody/DriversProperties/DriversProperties';
 import DriversCommercial from '../drivers/DriversBody/DriversCommercial/DriversCommercial';
@@ -59,7 +58,7 @@ class ToursClass extends React.Component {
                 <div className="left_body_part col-9">
                   <DriversProperties/>
                   <ToursList/>
-                  <Manipulator/>
+                  
                 </div>
                 <div className="right_body_part col-3">
                   <DriversCommercial/>
@@ -68,7 +67,6 @@ class ToursClass extends React.Component {
             
             </div>  
           </div>
-          <Footer/>  
         </React.Fragment>
       )
     }
