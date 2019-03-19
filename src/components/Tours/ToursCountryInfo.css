@@ -1,0 +1,31 @@
+.toursCountryInfo_inputBlock{
+    width: 282px;
+    height: 36px;
+    background-color: rgba(255,255,255,0.2);
+    border-radius: 5px;
+}
+.toursCountryInfo_inputBlock_icon{
+    width: 16px;
+    height: 17px;
+    
+    margin: auto 6px auto 6px;
+}
+.toursCountryInfo_inputBlock_input{
+    width: 254px;
+    padding: 0 4px;
+    height: 100%;
+    border: none;
+    background-color: transparent;
+}
+.toursCountryInfo_tourSearchButton{
+    width: 256px;
+    height: 40px;
+    background-color: #f26101;
+    font-family: "Roboto";
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    margin: 0 auto;
+}

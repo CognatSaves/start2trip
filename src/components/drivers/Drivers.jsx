@@ -11,6 +11,7 @@ import Header from '../header/Header'
 
 class DriversClass extends React.Component {
     constructor(props) {
+        
         function maxPriceCalc(array){
           let maxValue = 0;
           for(let i=0; i<array.length; i++){
@@ -29,7 +30,6 @@ class DriversClass extends React.Component {
         }
         this.changeTravelVisibility=this.changeTravelVisibility.bind(this);
         this.changeSuccessVisibility=this.changeSuccessVisibility.bind(this);
-        this.changePrice = this.changePrice.bind(this);
     }
     componentWillMount(){
       this.props.setMaxPrice(this.state.maxPrice);
@@ -44,13 +44,7 @@ class DriversClass extends React.Component {
         successVisibility: value
       })
     }
-    changePrice(price){
-      this.setState({
-        price: price
-      })
-    }
     render() {
-        console.log("Drivers render");
         return (
           <React.Fragment>
               <div className = "drivers_top_background col-12">
@@ -66,13 +60,11 @@ class DriversClass extends React.Component {
               </div>
               <div className="wrapper d-flex flex-column">
                 <div className = "drivers_bottom_background d-flex flex-column" >
-                  <DriversBody changeTravelVisibility={this.changeTravelVisibility} maxPrice={this.state.maxPrice} 
-                  price={this.state.price} changePrice={this.changePrice}/>                 
+                  <DriversBody changeTravelVisibility={this.changeTravelVisibility}/>                 
                 </div>                 
               </div>
               <StartTravelForm changeTravelVisibility={this.changeTravelVisibility} changeSuccessVisibility={this.changeSuccessVisibility}
-              travelVisibility={this.state.travelVisibility} successVisibility={this.changeSuccessVisibility}/>               
-              
+              travelVisibility={this.state.travelVisibility} successVisibility={this.changeSuccessVisibility}/>                            
               <StartTravelSuccess successVisibility={this.state.successVisibility} changeSuccessVisibility={this.changeSuccessVisibility}/>          
               <Footer/>             
           </React.Fragment>
