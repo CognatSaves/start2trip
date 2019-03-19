@@ -16,3 +16,12 @@
     font-weight: 400;
     color: #333;
 }
+
+.modal-dialog {
+    width: 722px !important;
+    max-width: none !important;
+}
+
+.modal-content {
+    width: 722px !important;
+}

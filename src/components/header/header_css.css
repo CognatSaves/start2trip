@@ -2,16 +2,6 @@
     margin-top: 30px;
 }
 
-.modal-dialog {
-    width: 720px !important;
-    height: 640px;
-    max-width: none !important;
-}
-
-.modal-content {
-    width: 720px !important;
-    height: 640px;
-}
 
 .modalCountry h4 {
     font-family: "Roboto";
@@ -22,8 +12,8 @@
 
 .modalCountryButtton {
     position: absolute;
-    top: 0px;
-    right: -10px;
+    top: 20px;
+    right: 5px;
     background: none;
     outline: none;
     border: none;
