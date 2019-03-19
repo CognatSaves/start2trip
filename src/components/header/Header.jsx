@@ -72,7 +72,7 @@ class HeaderClass extends React.Component {
     let earthPic = [earth, whiteEarth];
     return (
       <React.Fragment>
-        <Modal isOpen={this.state.modalRegistration} toggle={this.toggleModalRegistration} className={this.props.className}>
+        <Modal isOpen={this.state.modalRegistration} toggle={this.toggleModalRegistration} className={this.props.className + " p-0"}>
           <ModalBody>
             
                 <RenderModalRegistration close={this.toggleModalRegistration} />
@@ -83,11 +83,11 @@ class HeaderClass extends React.Component {
         <Modal isOpen={this.state.modalCountry} toggle={this.toggleModalCountry} className={this.props.className}>
           <ModalBody>
             <div className="d-flex flex-column col-12">
-              <div className="d-flex flex-row justify-content-center col-12">
+              <div className="d-flex flex-row justify-content-center col-12 p-4">
                 <img src={mapWorldIcon} height="150px" alt="mapWorldIcon" />
                 <button className="modalCountryButtton" onClick={() => { this.toggleModalCountry() }}><img src={crossIconModal} width="20px" height="20px" alt="crossIconModal" /></button>
               </div>
-              <div className="modalCountry d-flex flex-column align-items-center ">
+              <div className="modalCountry d-flex flex-column align-items-center mb-5">
                 <h4 className="mb-4">ВЫБЕРИТЕ ВАШУ СТРАНУ</h4>
                 <RenderModalCountry close={this.toggleModalCountry} />
               </div>
