@@ -3,7 +3,6 @@ import './Drivers.css';
 
 import DriversBody from './DriversBody/DriversBody.jsx';
 import DriversRoute from './DriversRoute/DriversRoute.jsx';
-import Footer from '../Footer/Footer.jsx'
 import { connect } from 'react-redux'
 import StartTravelForm from '../startTravelForm/StartTravelForm'
 import StartTravelSuccess from '../startTravelForm/StartTravelSuccess'
@@ -65,8 +64,7 @@ class DriversClass extends React.Component {
               </div>
               <StartTravelForm changeTravelVisibility={this.changeTravelVisibility} changeSuccessVisibility={this.changeSuccessVisibility}
               travelVisibility={this.state.travelVisibility} successVisibility={this.changeSuccessVisibility}/>                            
-              <StartTravelSuccess successVisibility={this.state.successVisibility} changeSuccessVisibility={this.changeSuccessVisibility}/>          
-              <Footer/>             
+              <StartTravelSuccess successVisibility={this.state.successVisibility} changeSuccessVisibility={this.changeSuccessVisibility}/>                     
           </React.Fragment>
         );
     }

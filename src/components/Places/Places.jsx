@@ -1,7 +1,6 @@
 import React from 'react';
 import './Places.css';
 import Header from '../header/Header';
-import Footer from '../Footer/Footer';
 import PlacesCountryInfo from './PlacesCountryInfo'
 import PlacesPanel from './PlacesPanel';
 import DriversCommercial from '../drivers/DriversBody/DriversCommercial/DriversCommercial';
@@ -52,8 +51,7 @@ class PlacesClass extends React.Component {
               </div>
             
             </div>  
-          </div>
-          <Footer/>           
+          </div>         
         </React.Fragment>
       )
     }

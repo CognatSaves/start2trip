@@ -1,6 +1,5 @@
 import React from 'react';
 import Header from '../header/Header';
-import Footer from '../Footer/Footer';
 import TourInfo from './TourInfo.jsx';
 import TourPanel from './TourPanel.jsx';
 import DriversCommercial from '../drivers/DriversBody/DriversCommercial/DriversCommercial';
@@ -99,7 +98,6 @@ class TourDescriptionClass extends React.Component {
                     
                     </div>
                 </div>
-                <Footer/> 
             </React.Fragment>
         )
     }

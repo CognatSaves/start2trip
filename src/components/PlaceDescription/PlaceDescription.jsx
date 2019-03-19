@@ -1,7 +1,6 @@
 import React from 'react';
 import './PlaceDescription.css';
 import Header from '../header/Header';
-import Footer from '../Footer/Footer';
 import PlaceInfo from './PlaceInfo.jsx';
 import PlacePanel from './PlacePanel.jsx';
 import DriversCommercial from '../drivers/DriversBody/DriversCommercial/DriversCommercial';
@@ -266,7 +265,6 @@ class PlaceDescriptionClass extends React.Component {
                     
                     </div>
                 </div>
-                <Footer/> 
             </React.Fragment>
         )
     }
