@@ -13,7 +13,7 @@ import { InputGroup, InputGroupAddon, Input, Button } from 'reactstrap';
 //import HomeHeader from './HomeHeader/HomeHeader.jsx'
 import Header from '../header/Header';
 import HomeBody from './HomeBody/HomeBody.jsx'
-import Footer from '../Footer/Footer.jsx'
+
 
 class Home extends React.Component {
   constructor(props) {
@@ -96,7 +96,7 @@ class Home extends React.Component {
             </div>
           </div>
 
-          <Footer />
+          
         </div>
 
       </React.Fragment>
