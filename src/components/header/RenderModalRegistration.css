@@ -3,6 +3,13 @@
     z-index: 0;
 }
 
+.registrationBodyLogoIcon{
+    position: absolute;
+    z-index: 4;
+    top: 15px;
+    left: 15px;
+}
+
 .modal-body {
     padding: 0 !important;
 }
@@ -71,7 +78,7 @@
 .googleIcon {
     width: 35px;
     height: 35px;
-    background: url(./pictures/search.svg);
+    background: url(./pictures/search.svg) no-repeat;
     background-size: 35px 35px;
     margin: 5px;
 }
@@ -79,12 +86,13 @@
 .twitterIcon {
     width: 35px;
     height: 35px;
-    background: url(./pictures/twitter.svg);
+    background: url(./pictures/twitter.svg) no-repeat;
     background-size: 35px 35px;
     margin: 5px;
 }
 
 .sitingInLightInput {
+    position: relative;
     border-radius: 5px;
     border: none;
     margin-bottom: 5px;
@@ -96,6 +104,38 @@
     font-size: 12px;
     color: #666;
     padding-left: 35px;
+}
+
+.inputIcon{
+    position: relative;
+}
+
+.peopleIcon{
+    position: absolute;
+    z-index: 3;
+    top: 12px;
+    left: 15px;
+}
+
+.emailIcon{
+    position: absolute;
+    z-index: 3;
+    top: 13px;
+    left: 15px;
+}
+
+.lockIcon{
+    position: absolute;
+    z-index: 3;
+    top: 12px;
+    left: 15px;
+}
+.eyeIcon{
+    position: absolute; 
+    cursor: pointer;
+    z-index: 3;
+    top: 13px;
+    right: 15px;
 }
 
 .sitingInLightInput:focus {

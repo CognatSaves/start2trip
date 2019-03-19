@@ -4,6 +4,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 import './RenderModalRegistration.css'
 import { modalCountryDispacth } from '../../redusers/Action'
+import peopleIcon from './pictures/profile.svg'
+import emailIcon from './pictures/email.svg'
+import lockIcon from './pictures/lock.svg'
+import eyeIcon from './pictures/eye.svg'
+import logoBlue from './pictures/logo_blue.svg'
+import logoWhite from './pictures/logo_white.svg'
 
 
 
@@ -21,6 +27,8 @@ class RenderModalRegistrationClass extends React.Component {
             sitingIn: true,
             sitingInLightAnimation: "",
             registrationDarkAnimation: "",
+            passwordType:true,
+            logoIconActive:true,
         };
     }
 
@@ -30,24 +38,39 @@ class RenderModalRegistrationClass extends React.Component {
                 sitingInLightAnimation: "sitingInLightAnimationLeft",
                 registrationDarkAnimation: "registrationDarkAnimationLeft",
             });
-            setTimeout(()=>{this.setState({
-                sitingIn: !this.state.sitingIn,
-            })}, 400)
-        }else{
+            setTimeout(() => {
+                this.setState({
+                    sitingIn: !this.state.sitingIn,
+                })
+            }, 400)
+            setTimeout(() => {
+                this.setState({
+                    logoIconActive: !this.state.logoIconActive,
+                })
+            }, 700)
+
+        } else {
             this.setState({
                 sitingInLightAnimation: "sitingInLightAnimationRight",
                 registrationDarkAnimation: "registrationDarkAnimationRight",
             });
-            setTimeout(()=>{this.setState({
-                sitingIn: !this.state.sitingIn,
-            })}, 300)
+            setTimeout(() => {
+                this.setState({
+                    sitingIn: !this.state.sitingIn,
+                })
+            }, 300)
+            setTimeout(() => {
+                this.setState({
+                    logoIconActive: !this.state.logoIconActive,
+                })
+            }, 100)
         }
-
     }
 
     render() {
         return (
             <div className="registrationBody d-flex flex-row">
+            <img className="registrationBodyLogoIcon" src={this.state.logoIconActive ? logoBlue : logoWhite} alt="logo" width="80px" height="12px"/>
                 <div className={"sitingInLight d-flex flex-column justify-content-center align-items-center " + this.state.sitingInLightAnimation}>
                     <h3>{this.state.sitingIn ? this.state.sitingInLightBacgraundText.titleSitingIn : this.state.registrationLightBacgraundText.registrationTitle}</h3>
                     <p className="mb-0">{this.state.sitingInLightBacgraundText.sitingInFirstText}</p>
@@ -57,9 +80,19 @@ class RenderModalRegistrationClass extends React.Component {
                         <div className="twitterIcon"></div>
                     </div>
                     <p className="mb-1">{this.state.sitingIn ? this.state.sitingInLightBacgraundText.sitingInSecondText : this.state.registrationLightBacgraundText.registrationSecondText}</p>
-                    <input className="sitingInLightInput" type="text" placeholder={this.state.sitingInLightBacgraundText.firstInputPlaceholderText} id="" required/>
-                    <input className="sitingInLightInput" type="email" placeholder={this.state.sitingInLightBacgraundText.secondInputPlaceholderText} id="" required/>
-                    <input className="sitingInLightInput" style={{ display: !this.state.sitingIn ? "block" : "none" }} type="password" placeholder={this.state.registrationLightBacgraundText.thirdInputPlaceholderText} id="" required/>
+                    <div className="inputIcon">
+                        <img style={{ display: !this.state.sitingIn ? "block" : "none" }} className="peopleIcon" src={peopleIcon} alt="peopleIcon" width='12px' height='12px' />
+                        <input style={{ display: !this.state.sitingIn ? "block" : "none" }} className="sitingInLightInput" type="text" placeholder={this.state.sitingInLightBacgraundText.firstInputPlaceholderText} id="" required />
+                    </div>
+                    <div className="inputIcon">
+                        <img className="emailIcon" src={emailIcon} alt="emailIcon" width='13px' height='12px' />
+                        <input className="sitingInLightInput" type="email" placeholder={this.state.sitingInLightBacgraundText.secondInputPlaceholderText} id="" required />
+                    </div>
+                    <div className="inputIcon">
+                        <img className="lockIcon" src={lockIcon} alt="lockIcon" width='12px' height='12px' />
+                        <input className="sitingInLightInput"  type={this.state.passwordType ? "password":"text"} placeholder={this.state.registrationLightBacgraundText.thirdInputPlaceholderText} id="" required />
+                        <img onClick={()=>{this.setState({passwordType: !this.state.passwordType })}} className="eyeIcon" src={eyeIcon} alt="eyeIcon" width='15px' height='15px' />
+                    </div>
                     <Link style={{ display: this.state.sitingIn ? "block" : "none" }} to="">{this.state.sitingInLightBacgraundText.linkText}</Link>
                     <button>{this.state.sitingIn ? this.state.sitingInLightBacgraundText.buttonText : this.state.registrationDarkBacgraundText.buttonText}</button>
                 </div>
