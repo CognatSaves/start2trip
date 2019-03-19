@@ -8,6 +8,7 @@ import DriverProfile from './components/driverProfile/DriverProfile.jsx';
 import Places from './components/Places/Places.jsx';
 import PlaceDescription from './components/PlaceDescription/PlaceDescription.jsx'; 
 import Tours from './components/Tours/Tours.jsx';
+import TourDescription from './components/TourDescription/TourDescription.jsx';
 
 import './components/header/StandartHeaderStyles.css';
 import './components/header/HomeHeaderStyles.css';
@@ -41,6 +42,7 @@ ReactDOM.render(
             <Route path="/places" component={Places}/>
             <Route path="/place/:country,:id" component = {PlaceDescription}/>
             <Route path="/tours" component={Tours}/>
+            <Route path="/tour/:country,:id" component={TourDescription}/>
             <Redirect from="/" to="/home"/>
         </Switch>       
     </React.Fragment>

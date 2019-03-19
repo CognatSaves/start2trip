@@ -59,7 +59,7 @@ class ToursClass extends React.Component {
                 <div className="left_body_part col-9">
                   <DriversProperties/>
                   <ToursList/>
-                  <Manipulator/>
+                  
                 </div>
                 <div className="right_body_part col-3">
                   <DriversCommercial/>
