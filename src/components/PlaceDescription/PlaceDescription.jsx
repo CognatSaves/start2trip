@@ -52,38 +52,34 @@ const Description = (props) => {
     )
 }
 const PhotoSelect = (props) => {
-    let {width, height, src, selectPhoto, selectedPhotoIndex} = props;
+    let {width, height, src, selectPhoto, photoIndex} = props;
     return (
-        <div className="placesDescription_photos_secondaryPhotoBox" style={{margin: "0 auto", width: width, height: height}} onClick={()=>selectPhoto(selectedPhotoIndex)}>
+        <div className={"placesDescription_photos_secondaryPhotoBox"} style={{margin: "0 auto", width: width, height: height}} onClick={()=>{selectPhoto(photoIndex)}}>
             <img src={src} width={width} height={height} alt="/"/>
         </div>
     )
 }
 const Photos = (props) => {
-    let {placesArray, selectPhoto,selectedPhotoIndex, width, height, transformValue} = props; 
+    let {photoArray, selectPhoto,selectedPhotoIndex, width, height, photoSlice} = props; 
     
-    let carouselWidth = placesArray.length*width+"px";
-    console.log("Photos render");
-    console.log(carouselWidth);
+    let transformValue=-1*photoSlice*width;
+    let boxTransformValue = selectedPhotoIndex*width;   
+    let carouselWidth = photoArray.length*width+"px";
+
     return (
         <div className="placeDescription_block d-flex flex-column">          
             <div className="placeDescription_fragmentName">Фотографии</div>
-            <div className="placesDescription_photos_firstPhotoBox">
-                <img src={placesArray[selectedPhotoIndex]} width="870px" height="500px" alt="/"/>
+            <div  className="placesDescription_photos_firstPhotoBox">
+                <img key={selectedPhotoIndex+"/change"} src={photoArray[selectedPhotoIndex]} width="870px" height="500px" alt="/"/>
             </div>
             <div className="" style={{overflow: "hidden"}} >
-            {/*
-                array.map((element,index)=>
-                    <PhotoSelect src={element} width={width} height={height} selectPhoto={selectPhoto} selectedPhoto={indexArray[index]} selectedPhotoIndex={index}/>
-                )
-                */
-            }
-                <div className="d-flex photoCarouselClass" style={{width: carouselWidth, transform: "translate3d("+transformValue+", 0px, 0px)"}}>
+                <div className="d-flex photoCarouselClass" style={{width: carouselWidth, transform: "translate3d("+transformValue+"px, 0px, 0px)"}}>
                 {
-                    placesArray.map((element,index) =>
-                        <PhotoSelect src={element} width={width+"px"} height={height+"px"} selectPhoto={selectPhoto} selectedPhotoIndex={selectedPhotoIndex}/>
+                    photoArray.map((element,index) =>
+                        <PhotoSelect src={element} width={width+"px"} height={height+"px"} selectPhoto={selectPhoto} photoIndex={index} selectedPhotoIndex={selectedPhotoIndex}/>
                     )
                 }
+                <div class="carouselPhotoBox" style={{width: width+"px", height: height+"px", transform: "translate3d("+boxTransformValue+"px, 0px, 0px)"}}/>
                 </div>
             </div>           
         </div>
@@ -165,23 +161,46 @@ class PlaceDescriptionClass extends React.Component {
               { img: georgiaImg, title: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", link: "/driver", reviews: "12 отзывов", prise: "80$" },
               { img: georgiaImg, title: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", link: "/driver", reviews: "55 отзыва", prise: "150$" },
              ],
-             //selectedPhoto: 3,
-             selecedPhotoIndex: 3,
-             photoSlice: 1,
-             photoArray: [ippodrom,ippodrom4,ippodrom2,ippodrom3,ippodrom4,ippodrom2,ippodrom3,ippodrom,ippodrom4,ippodrom2,ippodrom3,ippodrom4,ippodrom2,ippodrom3],
-          };
+             selectedPhotoIndex: 0,
+             photoSlice: 0,
+             photoArray: [ippodrom,ippodrom4,ippodrom2,ippodrom3,ippodrom,ippodrom4,ippodrom2,ippodrom3,ippodrom,ippodrom4,ippodrom2,ippodrom3,ippodrom,ippodrom4,ippodrom2,ippodrom3,ippodrom,ippodrom4,ippodrom2,ippodrom3],
+            };
           this.selectPhoto=this.selectPhoto.bind(this);
     }
-    selectPhoto(photo, photoIndex){
-        console.log("SelectPhoto call");
-        console.log(photo);
-        console.log(photoIndex);
+    selectPhoto(photoIndex){
+        function calculatePhotoSlice(photoIndex, length,OldPhotoIndex, OldPhotoSlice){
+            let photoSlice=0;
+            if(OldPhotoIndex<photoIndex){
+                photoSlice = OldPhotoSlice+1;
+            }
+            else{
+                photoSlice = OldPhotoSlice-1;
+            }
+            if(length<=7){
+                return 0;
+            }
+            else{
+                while(photoSlice<0){
+                    photoSlice++;
+                }
+                while(length-photoSlice<7){
+                    photoSlice--;
+                }
+                return photoSlice;
+            }
+        }
+        let photoSlice = calculatePhotoSlice(photoIndex, this.state.photoArray.length,this.state.selectedPhotoIndex,this.state.photoSlice);
         this.setState({
-            //selectedPhoto: photo,
-            selecedPhotoIndex: photoIndex
+            selectedPhotoIndex: photoIndex,
+            photoSlice: photoSlice
         })
+        
     }
     render(){
+        console.log("PlaceDescription render: s");
+        console.log(this.state.selectedPhotoIndex);
+        console.log(this.state.photoSlice);
+        console.log(this.state.photoArray.length);
 
         let countryId = this.props.match.params.country;
         let placeId=this.props.match.params.id;
@@ -196,12 +215,10 @@ class PlaceDescriptionClass extends React.Component {
         let heightAll = 500;
         let n = 7;
 
-        let placesArray = [ippodrom,ippodrom4,ippodrom2,ippodrom3,ippodrom,ippodrom4,ippodrom2,ippodrom3,ippodrom,ippodrom4,ippodrom2,ippodrom3,ippodrom,ippodrom4,ippodrom2,ippodrom3,ippodrom,ippodrom4,ippodrom2,ippodrom3];
-
         let width = widthAll/n;
         let height = heightAll/n; 
 
-        let transformValue=-1*this.state.photoSlice*width+"px";   
+        
         return(
             <React.Fragment>
                 <div className = "drivers_top_background placeDescription_background col-12">
@@ -219,7 +236,7 @@ class PlaceDescriptionClass extends React.Component {
                         <div className="left_body_part col-9">
                             <PlacePanel/>
                             <Description place={place}/>
-                            <Photos transformValue={transformValue} placesArray={placesArray} selectPhoto={this.selectPhoto} selectedPhotoIndex={this.state.selecedPhotoIndex} width={width} height={height}/>
+                            <Photos photoSlice={this.state.photoSlice} photoArray={this.state.photoArray} selectPhoto={this.selectPhoto} selectedPhotoIndex={this.state.selectedPhotoIndex} width={width} height={height}/>
                             <TravelBlock place={place}/>
                             <MapBlock/>
                             <CanBeIntrestingBlock tours={this.state.popularPlaces}/>
