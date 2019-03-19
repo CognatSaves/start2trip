@@ -26,9 +26,3 @@ export default class DriversBody extends React.Component {
     }
 
 }
-/*
- 
- 
- 
-
-*/

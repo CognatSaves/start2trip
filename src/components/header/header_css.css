@@ -2,7 +2,6 @@
     margin-top: 30px;
 }
 
-
 .modalCountry h4 {
     font-family: "Roboto";
     font-weight: 500;
@@ -28,11 +27,19 @@
     max-width: 480px !important;
 }
 
-.logo{
+.logoBlue{
     width: 240px;
     height: 30px;
     margin-right: 20px;
     background: url(./pictures/logo_blue.svg);
+    background-size: 240px 30px;
+}
+
+.logoWhite{
+    width: 240px;
+    height: 30px;
+    margin-right: 20px;
+    background: url(./pictures/logo_white.svg);
     background-size: 240px 30px;
 }
 
@@ -48,10 +55,18 @@
     padding: 0px !important;
 }
 
-.header_geo_button {
+.header_geo_button_Blue {
     text-decoration: none;
     outline: none;
     cursor: pointer;
+    color: #304269 ;
+}
+
+.header_geo_button_White {
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+    color: #fff;
 }
 
 .header_geo_button:hover {
@@ -59,14 +74,35 @@
     outline: none;
 }
 
-.geo_button_value {
+.geo_button_value_Blue {
     min-width: 50px;
     width: 100%;
     height: 28px;
     border-radius: 5px;
+    background: rgba(48, 66, 105, 0.7);
+    transition: all 0.3s;
 }
 
-.geo_button_value>div {
+.geo_button_value_Blue:hover {
+    background: #304269;
+}
+
+.geo_button_value_White {
+    min-width: 50px;
+    width: 100%;
+    height: 28px;
+    border-radius: 5px;
+    background: #fff;
+    transition: all 0.3s;
+}
+
+.geo_button_value_White:hover {
+    background: #f60;
+    color: #fff;
+}
+
+.geo_button_value_White>div,
+.geo_button_value_Blue>div {
     height: 22px;
     max-width: 40px;
     line-height: 28px;
@@ -75,43 +111,61 @@
     border-bottom: 1px dashed #ccc;
 }
 
-.geo_button_value span {
+.geo_button_value_White span,
+.geo_button_value_Blue span {
     font-family: "Roboto";
     font-weight: 300;
     font-size: 14px;
     padding-left: 10px;
-   
 }
 
-.hederGeoIcon{
+.hederGeoIconBlue {
+    background: url(./pictures/location_Blue.svg) no-repeat;
+    background-size: contain;
+    background-position: top 0px right 25px;
+}
+
+.hederGeoIconWhite {
     background: url(./pictures/location_white.svg) no-repeat;
     background-size: contain;
     background-position: top 0px right 25px;
 }
-.geo_button_value img {
+
+.geo_button_value_White img,
+.geo_button_value_Blue img {
     margin-bottom: 2px;
 }
 
 .header_buttonMass {
     padding-left: 0px !important;
+
 }
 
-.buttonMass_button {
+.buttonMass_button_Blue {
     text-decoration: none;
     background-color: transparent;
     font-family: "Roboto";
     font-weight: 500;
     font-size: 12pt;
     margin: 0px 15px;
+    color: #304269;
 }
 
-.buttonMass_button:hover {
+.buttonMass_button_White:hover,
+.buttonMass_button_Blue:hover {
     transition: all 0.3s;
-    color: #f60 !important;
+    color: #f60;
+    text-decoration: none;
 }
 
-.buttonMass_button:hover {
+.buttonMass_button_White {
     text-decoration: none;
+    background-color: transparent;
+    font-family: "Roboto";
+    font-weight: 500;
+    font-size: 12pt;
+    margin: 0px 15px;
+    color: #fff;
 }
 
 .selectСgvicurrency {
@@ -142,7 +196,7 @@
 .selectGeneralBt {
     border: none !important;
     box-shadow: none !important;
-    background-color: hsla(221, 37%, 30%, 0.5) !important;
+    background-color: rgba(48, 66, 104, 0.5) !important;
     background: rgba(48, 66, 105, 0.5) !important;
 }
 
@@ -179,28 +233,33 @@
     max-height: 30px;
 }
 
-.header_registration {
+.header_registration_Blue {
     border: 1px solid #304269;
     border-radius: 5px;
     background: none;
     line-height: 26px;
 }
 
-.header_registration:hover {
+.header_registration_White {
+    border: 1px solid #fff;
+    border-radius: 5px;
+    background: none;
+    line-height: 26px;
+}
+
+.header_registration_White:hover,
+.header_registration_Blue:hover {
     transition: all 0.3s;
     border: 1px solid #f60 !important;
 }
 
-.header_registration:hover p {
-    transition: all 0.3s;
-    color: #f60 !important;
-}
 
-.header_registration:focus {
+.header_registration_White:focus
+.header_registration_Blue:focus {
     outline: none;
 }
 
-.header_registration p {
+.header_registration_Blue  p {
     width: 100% !important;
     margin: 0 !important;
     text-align: center !important;
@@ -208,6 +267,22 @@
     font-family: "Roboto" !important;
     font-weight: 500 !important;
     color: #304269;
+}
+
+.header_registration_White  p {
+    width: 100% !important;
+    margin: 0 !important;
+    text-align: center !important;
+    font-size: 12px !important;
+    font-family: "Roboto" !important;
+    font-weight: 500 !important;
+    color: #fff;
+}
+
+.header_registration_White:hover p,
+.header_registration_Blue:hover p {
+    transition: all 0.3s;
+    color: #f60 !important;
 }
 
 /* @media (max-width: 1200px) {
