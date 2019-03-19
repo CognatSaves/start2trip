@@ -491,7 +491,7 @@ export const PlacesReduser = (state=initialState, action)=>{
         case SET_MORE_PAGES_SHOW:{
             let newState={...state};
             newState.showPages=newState.showPages+1;
-            /*newState.page=newState.page+1;*/
+            newState.page=newState.page+1;
             return newState;
         }
         default: return state;

@@ -9,7 +9,6 @@ import RenderFourEl from '../home/HomeBody/RenderFourEl.jsx';
 import CreateComment from '../driverProfile/CreateComment';
 import ShowComments from '../driverProfile/ShowComments';
 import Manipulator from '../manipulator/Manipulator';
-import Carousel from './Carousel';
 
 import { connect } from 'react-redux';
 
@@ -138,7 +137,8 @@ const CanBeIntrestingBlock = (props) =>{
     )
 }
 const CommentBlock = (props) => {
-    let {selectedComments, userName} = props;
+    let {comments, userName, page, setPage, showMorePages, showPages} = props;
+    let selectedComments = comments.slice((page-showPages) * 5, (page) * 5);
     return(
         <div className="placeDescription_block d-flex flex-column">
             <div className="placeDescription_fragmentName">Отзывы</div>
@@ -146,7 +146,8 @@ const CommentBlock = (props) => {
                 <CreateComment userName={userName} createCommentString={"Оцените данное место"}/>
                 <ShowComments selectedComments={selectedComments}/>
             </div>
-            <Manipulator/>
+            <Manipulator number ={comments.length} page={page} elementsNumber={5} 
+                            setPage={setPage} showMorePages={showMorePages}/>
         </div>
     )
 }
@@ -156,6 +157,8 @@ class PlaceDescriptionClass extends React.Component {
         
         this.state = {
             userName: "Заинтересованный посетитель",
+            page: 1,
+            showPages:1,
             popularPlaces: [
               { img: georgiaImg, title: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", link: "/driver", reviews: "32 отзыва", prise: "120$" },
               { img: georgiaImg, title: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", link: "/driver", reviews: "12 отзывов", prise: "80$" },
@@ -166,6 +169,8 @@ class PlaceDescriptionClass extends React.Component {
              photoArray: [ippodrom,ippodrom4,ippodrom2,ippodrom3,ippodrom,ippodrom4,ippodrom2,ippodrom3,ippodrom,ippodrom4,ippodrom2,ippodrom3,ippodrom,ippodrom4,ippodrom2,ippodrom3,ippodrom,ippodrom4,ippodrom2,ippodrom3],
             };
           this.selectPhoto=this.selectPhoto.bind(this);
+          this.showMorePages = this.showMorePages.bind(this);    
+          this.setPage=this.setPage.bind(this);
     }
     selectPhoto(photoIndex){
         function calculatePhotoSlice(photoIndex, length,OldPhotoIndex, OldPhotoSlice){
@@ -196,18 +201,28 @@ class PlaceDescriptionClass extends React.Component {
         })
         
     }
+    showMorePages(){
+        this.setState({
+            page: this.state.page+1,
+            showPages: this.state.showPages+1
+        })
+    }
+    setPage(page) {
+        if (page !== "...") {
+          this.setState(
+            {
+              page: page,
+              showPages: 1
+            }
+          )
+        }
+    }
     render(){
-        console.log("PlaceDescription render: s");
-        console.log(this.state.selectedPhotoIndex);
-        console.log(this.state.photoSlice);
-        console.log(this.state.photoArray.length);
 
         let countryId = this.props.match.params.country;
         let placeId=this.props.match.params.id;
-        let country = this.props.placesState.places[countryId].country;
 
         let comments = [...this.props.commentState.comments].reverse();
-        let selectedComments = comments.slice((/*this.props.page-this.props.showPages*/0) * 5, (/*this.props.page*/1) * 5);
         
         let place = this.props.placesState.places[countryId].places[placeId];
 
@@ -217,8 +232,7 @@ class PlaceDescriptionClass extends React.Component {
 
         let width = widthAll/n;
         let height = heightAll/n; 
-
-        
+       
         return(
             <React.Fragment>
                 <div className = "drivers_top_background placeDescription_background col-12">
@@ -236,11 +250,14 @@ class PlaceDescriptionClass extends React.Component {
                         <div className="left_body_part col-9">
                             <PlacePanel/>
                             <Description place={place}/>
-                            <Photos photoSlice={this.state.photoSlice} photoArray={this.state.photoArray} selectPhoto={this.selectPhoto} selectedPhotoIndex={this.state.selectedPhotoIndex} width={width} height={height}/>
+                            <Photos photoSlice={this.state.photoSlice} photoArray={this.state.photoArray} 
+                            selectPhoto={this.selectPhoto} selectedPhotoIndex={this.state.selectedPhotoIndex} 
+                            width={width} height={height}/>
                             <TravelBlock place={place}/>
                             <MapBlock/>
                             <CanBeIntrestingBlock tours={this.state.popularPlaces}/>
-                            <CommentBlock selectedComments={selectedComments} userName={this.state.userName}/>
+                            <CommentBlock comments={comments} userName={this.state.userName} page={this.state.page} setPage={this.setPage} 
+                            showMorePages={this.showMorePages} showPages={this.state.showPages}/>
                         </div>
                         <div className="right_body_part col-3">
                         <DriversCommercial/>

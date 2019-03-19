@@ -58,8 +58,11 @@ class DriversPropertiesClass extends React.Component {
     let personsNumberString = personsCalculation(this.props.storeState.persons);
 
     let valueText = valueTextGenerator(this.props.storeState.pricePart, this.props.storeState.maxPrice);
-
+    
+    console.log("driversProperties render");
+    console.log(this.props.storeState.maxPrice);
     return (
+      
       <div className="drivers_properties d-flex" >
         <div className="properties_leftBlock d-flex">
           <div className="drivers_properties_text">Подобрать:</div>
@@ -95,7 +98,7 @@ class DriversPropertiesClass extends React.Component {
               <div className="properties_value d-flex">{valueText}</div>
               <div className="properties_arrow"></div>
             </div>
-            <ValueMenu isVisible={this.props.storeState.valueMenu} maxPrice={this.props.maxPrice} price={this.props.price} changePrice={this.props.changePrice} />
+            <ValueMenu isVisible={this.props.storeState.valueMenu}/>
           </div>
         </div>
         <div className="properties_rightBlock d-flex">

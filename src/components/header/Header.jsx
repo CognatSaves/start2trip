@@ -114,7 +114,7 @@ class HeaderClass extends React.Component {
             </div>
             <div className={"header_buttonMass d-flex flex-row justify-content-start col-4 " + this.props.colorClass2}>
               <Link to="/places" className={"buttonMass_button " + this.props.colorClass2}>МЕСТА</Link>
-              <Link to="/" className={"buttonMass_button " + this.props.colorClass2}>ТУРЫ</Link>
+              <Link to="/tours" className={"buttonMass_button " + this.props.colorClass2}>ТУРЫ</Link>
               <Link to="/" className={"buttonMass_button " + this.props.colorClass2}>ОТЕЛИ</Link>
               <Link to="/" className={"buttonMass_button " + this.props.colorClass2}>АВИАБИЛЕТЫ</Link>
             </div>

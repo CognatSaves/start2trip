@@ -13,7 +13,7 @@ class PagesMenuClass extends React.Component{
         if(this.props.isVisible){
             return(
                 <div className="drivers_properties_pagesMenu">
-                    {this.props.pagesMenuVariants.map((element,index) => 
+                    {this.props.storeState.pagesMenuVariants.map((element,index) => 
                         <div className="pagesMenu_element" key={element}>
                             <div className="pagesMenu_element_text" onClick={()=>this.props.dispatch(this.props.setPages(element))}>
                                 <div className="pagesMenu_element_text_value">{element}</div>

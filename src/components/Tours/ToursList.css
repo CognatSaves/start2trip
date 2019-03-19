@@ -1,0 +1,72 @@
+.toursList_leftBlock{
+    width: 340px;
+    height: 100%;
+    margin-right: auto
+}
+.toursList_leftBlock_startDate{
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 12px;
+    color: #304269;
+}
+.toursList_rightBlock{
+    width: 260px;
+    height: 100%;
+    margin-left: auto;
+}
+.toursList_rightBlock_firstLine{
+    position: relative;
+    width: 100%;
+    height: 38px;
+    padding-bottom: 13px;
+}
+.toursList_rightBlock_userIcon{
+    width: 10px;
+    height: 10px;
+    margin: auto 0px;
+}
+.toursList_rightBlock_available{
+    margin-left: 3px;
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 12px;
+    color: #304269;
+    line-height: 25px;
+}
+.toursList_rigntBlock_bookmark{
+    position: absolute;
+    right: 0;
+    width: 20px;
+    height: 25px;
+    margin-bottom: auto;
+}
+.toursList_rightBlock_price{
+    text-align: center;
+    font-family: "Roboto";
+    font-size: 24px;
+    font-weight: 600;
+    color: #ff6600;
+    line-height:24px;
+    padding-bottom: 3px;
+}
+.toursList_rightBlock_bookTourButton{
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+    background-color: #f26101;
+    width: 100%;
+    height: 40px;
+    font-family: "Roboto";
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+}
+.toursList_rightBlock_priceInfo{
+    padding-top: 3px;
+    line-height: 12px;
+    text-align: center;
+    font-family: "Roboto";
+    font-weight: 500;
+    font-size: 12px;
+    color: #304269;
+}
