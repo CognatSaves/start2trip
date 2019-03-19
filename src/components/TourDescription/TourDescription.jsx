@@ -55,7 +55,7 @@ const Description = (props) => {
                     <div className = "d-flex flex-column">   
                         <div>В стоимость включено</div>             
                         {
-                            tour
+                            
                         }
                     </div>
                     <div></div>
