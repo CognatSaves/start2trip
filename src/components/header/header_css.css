@@ -27,7 +27,7 @@
     max-width: 480px !important;
 }
 
-.logoBlue{
+.logoBlue {
     width: 240px;
     height: 30px;
     margin-right: 20px;
@@ -35,11 +35,11 @@
     background-size: 240px 30px;
 }
 
-.logoWhite{
+.logoWhite {
     width: 240px;
     height: 30px;
     margin-right: 20px;
-    background: url(./pictures/logo_white.svg);
+    background: url(./pictures/logo_white.svg) no-repeat;
     background-size: 240px 30px;
 }
 
@@ -59,7 +59,7 @@
     text-decoration: none;
     outline: none;
     cursor: pointer;
-    color: #304269 ;
+    color: #304269;
 }
 
 .header_geo_button_White {
@@ -79,7 +79,7 @@
     width: 100%;
     height: 28px;
     border-radius: 5px;
-    background: rgba(48, 66, 105, 0.7);
+    background: rgba(48, 66, 104, 0.5);
     transition: all 0.3s;
 }
 
@@ -103,12 +103,20 @@
 
 .geo_button_value_White>div,
 .geo_button_value_Blue>div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     height: 22px;
-    max-width: 40px;
-    line-height: 28px;
+    max-width: 50px;
+    line-height: 26px;
     margin-left: 4px;
     margin-right: 4px;
     border-bottom: 1px dashed #ccc;
+}
+
+.geo_button_value_White>div{
+    border: none !important;
 }
 
 .geo_button_value_White span,
@@ -117,18 +125,20 @@
     font-weight: 300;
     font-size: 14px;
     padding-left: 10px;
+    max-height: 20px;
+    min-width: 30px;
 }
 
 .hederGeoIconBlue {
     background: url(./pictures/location_Blue.svg) no-repeat;
-    background-size: contain;
-    background-position: top 0px right 25px;
+    background-size: 18px 18px;
+    background-position: top 6px right 27px;
 }
 
 .hederGeoIconWhite {
     background: url(./pictures/location_white.svg) no-repeat;
-    background-size: contain;
-    background-position: top 0px right 25px;
+    background-size: 18px 18px;
+    background-position: top 5px right 27px;
 }
 
 .geo_button_value_White img,
@@ -138,7 +148,6 @@
 
 .header_buttonMass {
     padding-left: 0px !important;
-
 }
 
 .buttonMass_button_Blue {
@@ -184,20 +193,31 @@
     margin: 0;
     margin-right: 5px;
     border-radius: 5px;
-    background-color: rgba(48, 66, 105, 0.5) !important;
-    background: rgba(48, 66, 105, 0.5) !important;
 }
 
-.selectGeneral:hover {
-    background-color: rgba(48, 66, 105, 0.9) !important;
-    background: rgba(48, 66, 105, 0.9) !important;
-}
-
-.selectGeneralBt {
+.selectGeneralBtBlue {
     border: none !important;
     box-shadow: none !important;
     background-color: rgba(48, 66, 104, 0.5) !important;
     background: rgba(48, 66, 105, 0.5) !important;
+}
+
+.selectGeneralBtBlue:hover {
+    background-color: rgba(48, 66, 105, 0.9) !important;
+    background: rgba(48, 66, 105, 0.9) !important;
+}
+
+.selectGeneralBtWhite {
+    border: none !important;
+    box-shadow: none !important;
+    background-color: #fff !important;
+    background: #fff !important;
+    color: #304269 !important;
+}
+
+.selectGeneralBtWhite:hover {
+    background-color: #f60 !important;
+    background: #f60 !important;
 }
 
 .selectGeneral img {
@@ -205,9 +225,7 @@
     margin-bottom: 2px;
 }
 
-.dropdownMenu {
-    top: 0px !important;
-    left: 0px !important;
+.dropdownMenuBlue {
     font-family: "Roboto" !important;
     font-weight: 500 !important;
     font-size: 10.5pt !important;
@@ -215,7 +233,19 @@
     color: #fff !important;
     padding: 0px !important;
     margin: 0px !important;
-    min-width: 60px !important;
+    min-width: 65px !important;
+    max-width: 80px !important;
+}
+
+.dropdownMenuWhite {
+    font-family: "Roboto" !important;
+    font-weight: 500 !important;
+    font-size: 10.5pt !important;
+    background: #fff !important;
+    color: #304269 !important;
+    padding: 0px !important;
+    margin: 0px !important;
+    min-width: 65px !important;
     max-width: 80px !important;
 }
 
@@ -253,13 +283,11 @@
     border: 1px solid #f60 !important;
 }
 
-
-.header_registration_White:focus
-.header_registration_Blue:focus {
+.header_registration_White:focus .header_registration_Blue:focus {
     outline: none;
 }
 
-.header_registration_Blue  p {
+.header_registration_Blue p {
     width: 100% !important;
     margin: 0 !important;
     text-align: center !important;
@@ -269,7 +297,7 @@
     color: #304269;
 }
 
-.header_registration_White  p {
+.header_registration_White p {
     width: 100% !important;
     margin: 0 !important;
     text-align: center !important;

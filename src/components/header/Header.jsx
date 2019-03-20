@@ -91,49 +91,49 @@ class HeaderClass extends React.Component {
           <div className='header d-flex flex-row align-items-center'>
             <div className="headerLogo d-flex flex-row col-5">
               <Link className="" to="">
-                <div className={this.props.colorWhite ? "logoWhite":"logoBlue"}></div>
+                <div className={this.props.colorWhite ? "logoWhite" : "logoBlue"}></div>
               </Link>
               <div className="header_geo_block col-5">
                 <img src={this.props.colorWhite ? whiteEarth : earth} width="40px" height="30px" alt="earthPic" />
-                <div onClick={this.toggleModalCountry} className={this.props.colorWhite ? "header_geo_button_Blue":"header_geo_button_White"}>
-                  <div className={this.props.colorWhite ? "geo_button_value_White":"geo_button_value_Blue"}>
-                    <div>
-                      <span className={this.props.colorWhite ? "hederGeoIconBlue":"hederGeoIconWhite"} >{this.props.storeState.country}</span>
+                <div onClick={this.toggleModalCountry} className={this.props.colorWhite ? "header_geo_button_Blue" : "header_geo_button_White"}>
+                  <div className={this.props.colorWhite ? "geo_button_value_White" : "geo_button_value_Blue"}>
+                    <div className={this.props.colorWhite ? "hederGeoIconBlue" : "hederGeoIconWhite"} >
+                      <span>{this.props.storeState.country}</span>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
             <div className="header_buttonMass d-flex flex-row justify-content-start col-4 ">
-              <Link to="/places" className={this.props.colorWhite ? "buttonMass_button_White":"buttonMass_button_Blue"}>МЕСТА</Link>
-              <Link to="/tours" className={this.props.colorWhite ? "buttonMass_button_White":"buttonMass_button_Blue"}>ТУРЫ</Link>
-              <Link to="/" className={this.props.colorWhite ? "buttonMass_button_White":"buttonMass_button_Blue"}>ОТЕЛИ</Link>
-              <Link to="/" className={this.props.colorWhite ? "buttonMass_button_White":"buttonMass_button_Blue"}>АВИАБИЛЕТЫ</Link>
+              <Link to="/places" className={this.props.colorWhite ? "buttonMass_button_White" : "buttonMass_button_Blue"}>МЕСТА</Link>
+              <Link to="/tours" className={this.props.colorWhite ? "buttonMass_button_White" : "buttonMass_button_Blue"}>ТУРЫ</Link>
+              <Link to="/" className={this.props.colorWhite ? "buttonMass_button_White" : "buttonMass_button_Blue"}>ОТЕЛИ</Link>
+              <Link to="/" className={this.props.colorWhite ? "buttonMass_button_White" : "buttonMass_button_Blue"}>АВИАБИЛЕТЫ</Link>
             </div>
             <div className="headerSelect d-flex flex-row align-items-center col-4">
               <Dropdown setActiveFromChild="true" isOpen={this.state.dropdownOpen} toggle={this.toggleDropdownOpen} className="selectGeneral">
-                <DropdownToggle className="selectGeneralBt" caret size="sm">
+                <DropdownToggle className={this.props.colorWhite ? "selectGeneralBtWhite" : "selectGeneralBtBlue"} caret size="sm">
                   {this.state.activeCurrency[this.state.activeCurrencyNumber]}
                 </DropdownToggle>
-                <DropdownMenu className="dropdownMenu currenty">
-                  <DropdownItem className="dropdownMenu" onClick={() => { this.setState({ activeCurrencyNumber: 0 }) }}>₽ RUB</DropdownItem>
-                  <DropdownItem className="dropdownMenu" onClick={() => { this.setState({ activeCurrencyNumber: 1 }) }}>$ USD</DropdownItem>
-                  <DropdownItem className="dropdownMenu" onClick={() => { this.setState({ activeCurrencyNumber: 2 }) }}>₾ GEL</DropdownItem>
-                  <DropdownItem className="dropdownMenu" onClick={() => { this.setState({ activeCurrencyNumber: 3 }) }}>€ EUR</DropdownItem>
+                <DropdownMenu className={this.props.colorWhite ? "dropdownMenuWhite" : "dropdownMenuBlue" + " currenty"}>
+                  <DropdownItem className={this.props.colorWhite ? "dropdownMenuWhite" : "dropdownMenuBlue"} onClick={() => { this.setState({ activeCurrencyNumber: 0 }) }}>₽ RUB</DropdownItem>
+                  <DropdownItem className={this.props.colorWhite ? "dropdownMenuWhite" : "dropdownMenuBlue"} onClick={() => { this.setState({ activeCurrencyNumber: 1 }) }}>$ USD</DropdownItem>
+                  <DropdownItem className={this.props.colorWhite ? "dropdownMenuWhite" : "dropdownMenuBlue"} onClick={() => { this.setState({ activeCurrencyNumber: 2 }) }}>₾ GEL</DropdownItem>
+                  <DropdownItem className={this.props.colorWhite ? "dropdownMenuWhite" : "dropdownMenuBlue"} onClick={() => { this.setState({ activeCurrencyNumber: 3 }) }}>€ EUR</DropdownItem>
                 </DropdownMenu>
               </Dropdown>
               <Dropdown setActiveFromChild="true" isOpen={this.state.dropdownLanguageOpen} toggle={this.toggleLanguage} className="selectGeneral">
-                <DropdownToggle className="selectGeneralBt" caret size="sm">
+                <DropdownToggle className={this.props.colorWhite ? "selectGeneralBtWhite" : "selectGeneralBtBlue"} caret size="sm">
                   <img src={this.state.activLanguage[this.state.activLanguageNumber].flag} height="15px" width="15px" alt="flag" />{this.state.activLanguage[this.state.activLanguageNumber].string}
                 </DropdownToggle>
-                <DropdownMenu className="dropdownMenu">
-                  <DropdownItem className="dropdownMenu" onClick={() => { this.setState({ activLanguageNumber: 0 }) }}><img src={ruFlag} height="15px" width="15px" alt="RU" />RU</DropdownItem>
-                  <DropdownItem className="dropdownMenu" onClick={() => { this.setState({ activLanguageNumber: 1 }) }}><img src={enFlag} height="15px" width="15px" alt="EN" />EN</DropdownItem>
-                  <DropdownItem className="dropdownMenu" onClick={() => { this.setState({ activLanguageNumber: 2 }) }}><img src={geoFlag} height="15px" width="15px" alt="GEO" />GEO</DropdownItem>
-                  <DropdownItem className="dropdownMenu" onClick={() => { this.setState({ activLanguageNumber: 3 }) }}><img src={espFlag} height="15px" width="15px" alt="ESP" />ESP</DropdownItem>
+                <DropdownMenu className={this.props.colorWhite ? "dropdownMenuWhite" : "dropdownMenuBlue"}>
+                  <DropdownItem className={this.props.colorWhite ? "dropdownMenuWhite" : "dropdownMenuBlue"} onClick={() => { this.setState({ activLanguageNumber: 0 }) }}><img src={ruFlag} height="15px" width="15px" alt="RU" />RU</DropdownItem>
+                  <DropdownItem className={this.props.colorWhite ? "dropdownMenuWhite" : "dropdownMenuBlue"} onClick={() => { this.setState({ activLanguageNumber: 1 }) }}><img src={enFlag} height="15px" width="15px" alt="EN" />EN</DropdownItem>
+                  <DropdownItem className={this.props.colorWhite ? "dropdownMenuWhite" : "dropdownMenuBlue"} onClick={() => { this.setState({ activLanguageNumber: 2 }) }}><img src={geoFlag} height="15px" width="15px" alt="GEO" />GEO</DropdownItem>
+                  <DropdownItem className={this.props.colorWhite ? "dropdownMenuWhite" : "dropdownMenuBlue"} onClick={() => { this.setState({ activLanguageNumber: 3 }) }}><img src={espFlag} height="15px" width="15px" alt="ESP" />ESP</DropdownItem>
                 </DropdownMenu>
               </Dropdown>
-              <button onClick={this.toggleModalRegistration} className={this.props.colorWhite ? "header_registration_White":"header_registration_Blue"}>
+              <button onClick={this.toggleModalRegistration} className={this.props.colorWhite ? "header_registration_White" : "header_registration_Blue"}>
                 <p>ВОЙТИ / РЕГИСТРАЦИЯ</p>
               </button>
             </div>
