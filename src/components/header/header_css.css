@@ -115,7 +115,7 @@
     border-bottom: 1px dashed #ccc;
 }
 
-.geo_button_value_White>div{
+.geo_button_value_White>div {
     border: none !important;
 }
 
@@ -132,7 +132,7 @@
 .hederGeoIconBlue {
     background: url(./pictures/location_Blue.svg) no-repeat;
     background-size: 18px 18px;
-    background-position: top 6px right 27px;
+    background-position: top 5px right 27px;
 }
 
 .hederGeoIconWhite {

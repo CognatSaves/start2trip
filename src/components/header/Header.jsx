@@ -115,7 +115,7 @@ class HeaderClass extends React.Component {
                 <DropdownToggle className={this.props.colorWhite ? "selectGeneralBtWhite" : "selectGeneralBtBlue"} caret size="sm">
                   {this.state.activeCurrency[this.state.activeCurrencyNumber]}
                 </DropdownToggle>
-                <DropdownMenu className={this.props.colorWhite ? "dropdownMenuWhite" : "dropdownMenuBlue" + " currenty"}>
+                <DropdownMenu className={this.props.colorWhite ? "dropdownMenuWhite currenty" : "dropdownMenuBlue currenty"}>
                   <DropdownItem className={this.props.colorWhite ? "dropdownMenuWhite" : "dropdownMenuBlue"} onClick={() => { this.setState({ activeCurrencyNumber: 0 }) }}>₽ RUB</DropdownItem>
                   <DropdownItem className={this.props.colorWhite ? "dropdownMenuWhite" : "dropdownMenuBlue"} onClick={() => { this.setState({ activeCurrencyNumber: 1 }) }}>$ USD</DropdownItem>
                   <DropdownItem className={this.props.colorWhite ? "dropdownMenuWhite" : "dropdownMenuBlue"} onClick={() => { this.setState({ activeCurrencyNumber: 2 }) }}>₾ GEL</DropdownItem>
