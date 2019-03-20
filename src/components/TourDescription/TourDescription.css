@@ -1,0 +1,96 @@
+.tourDescription_markerLine{
+    position: relative;
+    width: 17px;
+    margin-right: 3px;
+}
+.tourDescription_markerLine_markerBlock{
+    position: absolute;
+    width: 17px;
+    height: 24px;
+    background-color: #fff;
+}
+.tourDescription_markerLine_line{
+    height: 100%;
+    border-right: 1px solid #304269;
+    width: 9px;
+}
+.tourDescription_placeDescription{
+    width: 820px;
+    padding-bottom: 20px;
+    color: #304269;
+}
+.tourDescription_additionalInfoBlock{
+    width: 50%;
+}
+.tourDescription_additionalInfoBlock_element{
+    font-size: 14px;
+    font-family: "Roboto";
+    color: #304269;
+    font-weight: 400;
+}
+.tourDescription_pointStyle{
+    width: 7px;
+    height: 4px;
+    line-height:12px;
+}
+
+
+
+.mapBlock_tourData{
+    background: transparent;
+    box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.25);
+    height: 215px;
+    margin-top: 30px;
+    padding: 10px 10px 20px 10px;
+}
+.mapBlock_dateBlock_dateValue{
+    margin-left: 5px;
+    line-height: 24px;
+    border-bottom: 1px dashed #304269;
+}
+.mapBlock_location{
+    position: relative;
+    margin-top: 25px;
+    height: 35px;
+    width: 35px;
+    background: url(../drivers/DriversRoute/pictures/location.svg);
+    background-size: 35px 35px;
+    box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 18px;
+}
+.mapBlock_dateBlock{
+    width: 500px;
+    margin-right: auto;
+}
+.mapBlock_bookmarkBlock{
+    width: 256px;
+    margin-left: auto;
+}
+.mapBlock_locationBlock{
+    width: 500px;
+    margin-right: auto;
+    flex-wrap: wrap;
+}
+.mapBlock_locationBlock_element{
+    width: 145px;
+}
+.mapBlock_locationLine{
+    width: 102px;
+    height: 43px;
+    border-bottom: 1px solid #304269;
+    margin-left: 4px;
+}
+.mapBlick_locationPointName{
+    position: absolute;
+}
+.mapBlock_tourPrice{
+    margin: 0 auto;
+    font-size: 24px;
+    font-family: "Roboto";
+    color: "#ff6600";
+    font-weight: 600;
+}
+.mapBlock_priceInfo{
+    color: #304269;
+    text-align: center;
+}
