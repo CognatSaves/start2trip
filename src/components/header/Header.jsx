@@ -4,9 +4,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import earth from './pictures/earth.svg'
 import whiteEarth from './pictures/globe.svg';
-import geoIcon from './pictures/geo_icon.png'
-import logoBlue from './pictures/logo_blue.svg'
-import logoWhite from './pictures/logo_white_svg.svg'
 import RenderModalCountry from './RenderModalCountry'
 import RenderModalRegistration from './RenderModalRegistration'
 import mapWorldIcon from './pictures/mapWorld.svg'
@@ -68,15 +65,11 @@ class HeaderClass extends React.Component {
   }
 
   render() {
-    let logo = [logoBlue, logoWhite];
-    let earthPic = [earth, whiteEarth];
     return (
       <React.Fragment>
         <Modal isOpen={this.state.modalRegistration} toggle={this.toggleModalRegistration} className={this.props.className + " p-0"}>
           <ModalBody>
-            
-                <RenderModalRegistration close={this.toggleModalRegistration} />
-
+            <RenderModalRegistration close={this.toggleModalRegistration} />
           </ModalBody>
         </Modal>
 
@@ -98,25 +91,24 @@ class HeaderClass extends React.Component {
           <div className='header d-flex flex-row align-items-center'>
             <div className="headerLogo d-flex flex-row col-5">
               <Link className="" to="">
-                <div className="logo"></div>
+                <div className={this.props.colorWhite ? "logoWhite":"logoBlue"}></div>
               </Link>
               <div className="header_geo_block col-5">
-                <img src={earthPic[this.props.type]} width="40px" height="30px" alt="earthPic" />
-                <div onClick={this.toggleModalCountry} className={"header_geo_button " + this.props.colorClass}>
-                  <div className={"geo_button_value " + this.props.backgroundColorClass}>
+                <img src={this.props.colorWhite ? whiteEarth : earth} width="40px" height="30px" alt="earthPic" />
+                <div onClick={this.toggleModalCountry} className={this.props.colorWhite ? "header_geo_button_Blue":"header_geo_button_White"}>
+                  <div className={this.props.colorWhite ? "geo_button_value_White":"geo_button_value_Blue"}>
                     <div>
-                      {/* <img src={geoIcon} width="9px" height="12px" alt="geoIcon" /> */}
-                      <span className="hederGeoIcon" >{this.props.storeState.country}</span>
+                      <span className={this.props.colorWhite ? "hederGeoIconBlue":"hederGeoIconWhite"} >{this.props.storeState.country}</span>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div className={"header_buttonMass d-flex flex-row justify-content-start col-4 " + this.props.colorClass2}>
-              <Link to="/places" className={"buttonMass_button " + this.props.colorClass2}>МЕСТА</Link>
-              <Link to="/tours" className={"buttonMass_button " + this.props.colorClass2}>ТУРЫ</Link>
-              <Link to="/" className={"buttonMass_button " + this.props.colorClass2}>ОТЕЛИ</Link>
-              <Link to="/" className={"buttonMass_button " + this.props.colorClass2}>АВИАБИЛЕТЫ</Link>
+            <div className="header_buttonMass d-flex flex-row justify-content-start col-4 ">
+              <Link to="/places" className={this.props.colorWhite ? "buttonMass_button_White":"buttonMass_button_Blue"}>МЕСТА</Link>
+              <Link to="/tours" className={this.props.colorWhite ? "buttonMass_button_White":"buttonMass_button_Blue"}>ТУРЫ</Link>
+              <Link to="/" className={this.props.colorWhite ? "buttonMass_button_White":"buttonMass_button_Blue"}>ОТЕЛИ</Link>
+              <Link to="/" className={this.props.colorWhite ? "buttonMass_button_White":"buttonMass_button_Blue"}>АВИАБИЛЕТЫ</Link>
             </div>
             <div className="headerSelect d-flex flex-row align-items-center col-4">
               <Dropdown setActiveFromChild="true" isOpen={this.state.dropdownOpen} toggle={this.toggleDropdownOpen} className="selectGeneral">
@@ -141,8 +133,8 @@ class HeaderClass extends React.Component {
                   <DropdownItem className="dropdownMenu" onClick={() => { this.setState({ activLanguageNumber: 3 }) }}><img src={espFlag} height="15px" width="15px" alt="ESP" />ESP</DropdownItem>
                 </DropdownMenu>
               </Dropdown>
-              <button onClick={this.toggleModalRegistration} className={"header_registration " + this.props.borderColorClass}>
-                <p className={this.props.colorClass2}>ВОЙТИ / РЕГИСТРАЦИЯ</p>
+              <button onClick={this.toggleModalRegistration} className={this.props.colorWhite ? "header_registration_White":"header_registration_Blue"}>
+                <p>ВОЙТИ / РЕГИСТРАЦИЯ</p>
               </button>
             </div>
           </div>

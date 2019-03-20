@@ -236,8 +236,7 @@ class DriverProfileClass extends React.Component{
             <div className = "drivers_top_background col-12">
                 <div className="wrapper d-flex flex-column">
                     <div className = "drivers_top_block d-flex flex-column">              
-                        <Header colorClass="colorClass" colorClass2="colorClass2" backgroundColorClass="backgroundColorClass"
-                        borderColorClass="borderColorClass" labelColorClass="labelColorClass" type={1}/>
+                    <Header colorWhite={true}/>
                         <DriverInfo element={driver} changeCar={this.changeCar} carImageNumber={this.state.carImageNumber} carImages={this.state.carImages}/>
                         <DriverAdaptedRoute element={driver} date={this.props.storeState.date} cities={this.props.storeState.cities}
                             travelTime={this.props.driversState.travelTime} travelLength={this.props.driversState.travelLength} goToDrivers={this.goToDrivers}

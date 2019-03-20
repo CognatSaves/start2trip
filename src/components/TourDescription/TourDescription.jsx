@@ -11,8 +11,9 @@ import roma from './pictures/roma.jpg';
 import alexandria from './pictures/alexandria.jpg';
 import konstantinople from './pictures/konstantinople.jpg';
 import geoIcon from './pictures/geo_icon.svg';
+import bookmarkEmpty from '../Places/pictures/bookmark_contour.svg';
+import userBlueIcon from '../drivers/DriversBody/DriversBlock/pictures/user_blue.svg';
 import { connect } from 'react-redux';
-
 const Description = (props) => {
     let {tour}=props;
     let lineDisplayArray = Array(tour.places.length).fill("block");
@@ -28,10 +29,10 @@ const Description = (props) => {
                 </div>
             </div>
             <div className="d-flex">
-                <Stars value={tour.rating} commentNumber={tour.comments+" отзывов"} valueDisplay="block" commentNumberDisplay="block"/>         
+                <Stars value={tour.rating} commentNumber={tour.comments + " отзывов"} valueDisplay="block" commentNumberDisplay="block" />
             </div>
-            <div className="d-flex" style={{ margin: "10px 5px 20px 0px"}}>
-                <div className="placeDescription_description_tagCard"/>                               
+            <div className="d-flex" style={{ margin: "10px 5px 20px 0px" }}>
+                <div className="placeDescription_description_tagCard" />
                 <div className="placeDescription_description_tagElement">иномирье</div>
                 <div className="placeDescription_description_tagElement">история</div>
                 <div className="placeDescription_description_tagElement">развлечения</div>
@@ -51,9 +52,8 @@ const Description = (props) => {
                                 <text>{" - " +tour.placesInfo[index]}</text>
                             </div>
                         </div>
-                        
+
                     )
-                                      
                 }
                 <div className="d-flex" style={{paddingTop: "10px"}}>
                     <div className = "d-flex flex-column tourDescription_additionalInfoBlock">   
@@ -127,17 +127,43 @@ const MapBlock = (props) => {
                 Здесь может быть ваша карта
             </div>
         </div>
-        <div className = "d-flex flex-column mapBlock_tourData col-12">
+        <div className = "d-flex flex-column mapBlock_tourData col-12" style={{fontFamily: "Roboto", color: "#304269"}}>
             <div className="d-flex">
-                <div style={{marginRight: "auto"}}>A1</div>
-                <div style={{marginLeft: "auto"}}>A2</div>
+                <div className="d-flex mapBlock_dateBlock" >
+                    <div style={{height: "100%"}}>{"Дата:"}</div>
+                    <div className="mapBlock_dateBlock_dateValue">как только даш деняк</div>
+                </div>
+                <div className="mapBlock_bookmarkBlock">
+                    <div className="d-flex toursList_rightBlock_firstLine">
+                        <div className="d-flex" style={{margin: "0 auto" }}>
+                            <div className="toursList_rightBlock_userIcon" style={{ background: "url(" + userBlueIcon + ")", backgroundSize: "10px 10px" }} />
+                            <div className="toursList_rightBlock_available">{"Свободных мест: " + "для Вас найдётся"}</div>
+                        </div>
+                        <div className="toursList_rigntBlock_bookmark" style={{ background: "url(" + bookmarkEmpty + ")", backgroundSize: "20px 25px" }} />
+                    </div>
+                </div>
             </div>
             <div className="d-flex">
-                <div style={{marginRight: "auto"}}>B1</div>
-                <div style={{marginLeft: "auto"}}>B2</div>
+                <div className="d-flex mapBlock_locationBlock">
+                    <div className="d-flex mapBlock_locationBlock_element">
+                        <div className="mapBlock_location"></div>
+                        <div className="mapBlock_locationLine"></div>
+                        <div className="mapBlick_locationPointName">AAAAA</div>
+                    </div>
+                    <div className="d-flex mapBlock_locationBlock_element">
+                        <div className="mapBlock_location"></div>
+                        <div className="mapBlock_locationLine"></div>
+                        <div className="mapBlick_locationPointName">BBBBB</div>
+                    </div>
+                </div>
+                <div className="mapBlock_bookmarkBlock d-flex flex-column">
+                    <div className="mapBlock_tourPrice">$99999</div>
+                    <button className="tourInfo_buttonStyle">ЗАКАЗАТЬ ТУР</button>
+                    <div className="tourInfo_priceInfo mapBlock_priceInfo">Стоимость за человека</div>
+                </div>
             </div>
             <div className="d-flex">
-                <div style={{marginRight: "auto"}}>C1</div>
+                <div className="mapBlock_locationBlock">C1</div>
                
             </div>
         </div>
@@ -145,7 +171,7 @@ const MapBlock = (props) => {
     )
 }
 class TourDescriptionClass extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             photoSlice: 0,
@@ -185,9 +211,9 @@ class TourDescriptionClass extends React.Component {
             photoSlice: photoSlice
         })       
     }
-    render(){
+    render() {
         let countryId = this.props.match.params.country;
-        let tourId=this.props.match.params.id;
+        let tourId = this.props.match.params.id;
         let tour = this.props.toursState.tours[countryId].tours[tourId];
         
         let widthAll = 870;
@@ -199,13 +225,12 @@ class TourDescriptionClass extends React.Component {
                
         return(
             <React.Fragment>
-                <div className = "drivers_top_background placeDescription_background col-12">
-                    <img src={carthage} width="100%" height="100%" style={{position: "absolute"}} alt="noImage"/>
-                    <div style={{position: "absolute", width:"100%", height:"100%", backgroundColor: "rgba(0,0,0,0.5)"}}/>
+                <div className="drivers_top_background placeDescription_background col-12">
+                    <img src={carthage} width="100%" height="100%" style={{ position: "absolute" }} alt="noImage" />
+                    <div style={{ position: "absolute", width: "100%", height: "100%", backgroundColor: "rgba(0,0,0,0.5)" }} />
                     <div className="wrapper d-flex flex-column">
-                        <Header colorClass="colorClass" colorClass2="colorClass2" backgroundColorClass="backgroundColorClass"
-                        borderColorClass="borderColorClass" labelColorClass="labelColorClass" type={1}/>
-                        <TourInfo/>
+                        <Header colorWhite={true} />
+                        <TourInfo />
                     </div>
                 </div>
                 <div className="wrapper d-flex flex-column">
@@ -220,10 +245,9 @@ class TourDescriptionClass extends React.Component {
                             <MapBlock/>
                         </div>
                         <div className="right_body_part col-3">
-                        <DriversCommercial/>
+                            <DriversCommercial/>
                         </div>
                     </div>
-                    
                     </div>
                 </div>
             </React.Fragment>
@@ -236,6 +260,6 @@ const TourDescription = connect(
         commentState: state.CommentReduser
     }),
 
-    )(TourDescriptionClass);
+)(TourDescriptionClass);
 
 export default TourDescription;

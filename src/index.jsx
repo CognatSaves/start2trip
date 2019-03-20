@@ -12,7 +12,6 @@ import Footer from './components/Footer/Footer'
 import TourDescription from './components/TourDescription/TourDescription.jsx';
 
 import './components/header/StandartHeaderStyles.css';
-import './components/header/HomeHeaderStyles.css';
 
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
@@ -33,24 +32,24 @@ const reducers = redux.combineReducers({ AppReduser, DriversReduser, StateReduse
 const store = redux.createStore(reducers);
 
 ReactDOM.render(
-<Provider store = {store}>
-    <BrowserRouter>
-    <React.Fragment>
-        <Switch>                
-            <Route path="/home" component={Home}/>
-            <Route path="/drivers" component={Drivers}/>
-            <Route path="/driverProfile/:id,:temp1,:temp2" component={DriverProfile}/>
-            <Route path="/places" component={Places}/>
-            <Route path="/place/:country,:id" component = {PlaceDescription}/>
-            <Route path="/tours" component={Tours}/>
-            <Route path="/tour/:country,:id" component={TourDescription}/>
-            <Redirect from="/" to="/home"/>
-        </Switch>    
-        <Footer />   
-    </React.Fragment>
-    </BrowserRouter>
-</Provider>
-, document.getElementById('root'));
+    <Provider store={store}>
+        <BrowserRouter>
+            <React.Fragment>
+                <Switch>
+                    <Route path="/home" component={Home} />
+                    <Route path="/drivers" component={Drivers} />
+                    <Route path="/driverProfile/:id,:temp1,:temp2" component={DriverProfile} />
+                    <Route path="/places" component={Places} />
+                    <Route path="/place/:country,:id" component={PlaceDescription} />
+                    <Route path="/tours" component={Tours} />
+                    <Route path="/tour/:country,:id" component={TourDescription} />
+                    <Redirect from="/" to="/home" />
+                </Switch>
+                <Footer />
+            </React.Fragment>
+        </BrowserRouter>
+    </Provider>
+    , document.getElementById('root'));
 
 
 /*  <Route path="/" component={App}/>
