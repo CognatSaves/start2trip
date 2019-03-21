@@ -19,137 +19,13 @@ import ippodrom4 from './pictures/ippodrom4.jpg';
 import Stars from '../stars/Stars';
 import georgiaImg from '../home/HomeBody/pictures/georgia.png';
 
-const Description = (props) => {
-    let { place } = props;
-    return (
-        <div className="placeDescription_block d-flex flex-column">
-            <div className="d-flex">
-                <div className="placeDescription_description_name" >
-                    {place.name}
-                </div>
-                <div className="d-flex" style={{ marginLeft: "auto" }}>
-                    <div className="placeDescription_description_date">
-                        da best day'n life
-                    </div>
-                    <div className="d-flex placeDescription_description_placeCard" />
-                </div>
-            </div>
-            <div className="d-flex">
-                <Stars value={place.rating} commentNumber={place.comments + " отзывов"} valueDisplay="block" commentNumberDisplay="block" />
-            </div>
-            <div className="d-flex" style={{ margin: "10px 5px 20px 0px" }}>
-                <div className="placeDescription_description_tagCard" />
-                <div className="placeDescription_description_tagElement">иномирье</div>
-                <div className="placeDescription_description_tagElement">история</div>
-                <div className="placeDescription_description_tagElement">развлечения</div>
-            </div>
-            <div className="d-flex placeDescription_description_info">
-                {place.info}
-            </div>
-        </div>
-    )
-}
-const PhotoSelect = (props) => {
-    let { width, height, src, selectPhoto, photoIndex } = props;
-    return (
-        <div className={"placesDescription_photos_secondaryPhotoBox"} style={{ margin: "0 auto", width: width, height: height }} onClick={() => { selectPhoto(photoIndex) }}>
-            <img src={src} width={width} height={height} alt="/" />
-        </div>
-    )
-}
-const Photos = (props) => {
-    let { photoArray, selectPhoto, selectedPhotoIndex, width, height, photoSlice } = props;
+import PlaceProgramm from './PlaceProgramm.jsx';
+import PlacePhotos from './PlacePhotos.jsx';
+import PlaceTravelBlock from './PlaceTravelBlock.jsx';
+import PlaceMapBlock from './PlaceMapBlock.jsx';
+import PlaceIntrestingBlock from './PlaceIntrestingBlock.jsx';
+import CommentBlock from '../TourDescription/CommentBlock.jsx';
 
-    let transformValue = -1 * photoSlice * width;
-    let boxTransformValue = selectedPhotoIndex * width;
-    let carouselWidth = photoArray.length * width + "px";
-
-    return (
-        <div className="placeDescription_block d-flex flex-column">
-            <div className="placeDescription_fragmentName">Фотографии</div>
-            <div className="placesDescription_photos_firstPhotoBox">
-                <img key={selectedPhotoIndex + "/change"} src={photoArray[selectedPhotoIndex]} width="870px" height="500px" alt="/" />
-            </div>
-            <div className="" style={{ overflow: "hidden" }} >
-                <div className="d-flex photoCarouselClass" style={{ width: carouselWidth, transform: "translate3d(" + transformValue + "px, 0px, 0px)" }}>
-                    {
-                        photoArray.map((element, index) =>
-                            <PhotoSelect src={element} width={width + "px"} height={height + "px"} selectPhoto={selectPhoto} photoIndex={index} selectedPhotoIndex={selectedPhotoIndex} />
-                        )
-                    }
-                    <div class="carouselPhotoBox" style={{ width: width + "px", height: height + "px", transform: "translate3d(" + boxTransformValue + "px, 0px, 0px)" }} />
-                </div>
-            </div>
-        </div>
-    )
-}
-const TravelBlock = (props) => {
-    let { place } = props;
-    return (
-        <div className="placeDescription_block d-flex flex-column">
-            <div className="placeDescription_fragmentName">Как добраться</div>
-            <div className="d-flex flex-column" style={{ marginTop: "15px" }}>
-                <div className="d-flex">
-                    <div className="placesDescription_travelBlock_element d-flex" style={{ marginRight: "auto" }}>
-                        <div className="placesDescription_travelBlock_icon placesDescription_position" />
-                        <div>Ваше местоположение</div>
-                    </div>
-                    <div className="placesDescription_travelBlock_element d-flex" style={{ marginLeft: "auto" }}>
-                        <div className="placesDescription_travelBlock_icon placesDescription_geoIcon" />
-                        {place.name}
-                    </div>
-                </div>
-                <div className="d-flex">
-                    <div className="placesDescription_travelBlock_element d-flex" style={{ marginRight: "auto" }}>
-                        <div className="placesDescription_travelBlock_icon placesDescription_calendary" />
-                        Дата отправления
-                    </div>
-                    <div className="placesDescription_travelBlock_element placesDescription_travelBlock_applyButton d-flex" style={{ marginLeft: "auto" }}>
-                        <text style={{ margin: "auto" }}>СМОТРЕТЬ ПРЕДЛОЖЕНИЯ</text>
-                    </div>
-                </div>
-            </div>
-        </div>
-    )
-}
-const MapBlock = (props) => {
-    return (
-        <div className="placeDescription_block d-flex flex-column">
-            <div className="placeDescription_fragmentName">Карта</div>
-            <div className="placeDescription_fragmentName_mapBlock" style={{ marginTop: "15px" }}>
-                <div className="placeDescription_fragmentName_mapBlock">
-                    Здесь может быть ваша карта
-            </div>
-            </div>
-        </div>
-    )
-}
-const CanBeIntrestingBlock = (props) => {
-    let { tours } = props;
-    return (
-        <div className="placeDescription_block d-flex flex-column">
-            <div className="placeDescription_fragmentName">Вас может заинтересовать</div>
-            <div className="render_otherPlaces" style={{ marginTop: "15px" }}>
-                <RenderFourEl tours={tours} priseDisplay={"none"} />
-            </div>
-        </div>
-    )
-}
-const CommentBlock = (props) => {
-    let { comments, userName, page, setPage, showMorePages, showPages } = props;
-    let selectedComments = comments.slice((page - showPages) * 5, (page) * 5);
-    return (
-        <div className="placeDescription_block d-flex flex-column">
-            <div className="placeDescription_fragmentName">Отзывы</div>
-            <div className="render_otherPlaces" style={{ marginTop: "15px" }}>
-                <CreateComment userName={userName} createCommentString={"Оцените данное место"} />
-                <ShowComments selectedComments={selectedComments} />
-            </div>
-            <Manipulator number={comments.length} page={page} elementsNumber={5}
-                setPage={setPage} showMorePages={showMorePages} />
-        </div>
-    )
-}
 class PlaceDescriptionClass extends React.Component {
     constructor(props) {
         super(props);
@@ -217,46 +93,47 @@ class PlaceDescriptionClass extends React.Component {
         }
     }
     render() {
-
+        console.log("PlaceDescription");
         let countryId = this.props.match.params.country;
+        console.log("1");
         let placeId = this.props.match.params.id;
-
+        console.log("2");
         let comments = [...this.props.commentState.comments].reverse();
-
+        console.log("3");
         let place = this.props.placesState.places[countryId].places[placeId];
-
+        console.log("4");
         let widthAll = 870;
         let heightAll = 500;
         let n = 7;
 
         let width = widthAll / n;
         let height = heightAll / n;
-
         return (
             <React.Fragment>
-                <div className="drivers_top_background placeDescription_background col-12">
+                <div className="drivers_top_background placeDescription_background col-12" id="placeDescriptionId">
                     <img src={ippodrom} width="100%" height="100%" style={{ position: "absolute" }} alt="noImage" />
                     <div style={{ position: "absolute", width: "100%", height: "100%", backgroundColor: "rgba(0,0,0,0.5)" }} />
                     <div className="wrapper d-flex flex-column">
                         <Header colorWhite={true} />
-                        <PlaceInfo />
+                        <PlaceInfo place={place}/>
                     </div>
                 </div>
                 <div className="wrapper d-flex flex-column">
                     <div className="drivers_bottom_background d-flex flex-column" >
                         <div className="drivers_body d-flex">
                             <div className="left_body_part col-9">
-                                <PlacePanel />
-                                <Description place={place} />
-                                <Photos photoSlice={this.state.photoSlice} photoArray={this.state.photoArray}
+                                <PlacePanel/>
+                                <PlaceProgramm place={place}/>                             
+                                <PlacePhotos photoSlice={this.state.photoSlice} photoArray={this.state.photoArray}
                                     selectPhoto={this.selectPhoto} selectedPhotoIndex={this.state.selectedPhotoIndex}
                                     width={width} height={height} />
-                                <TravelBlock place={place} />
-                                <MapBlock />
-                                <CanBeIntrestingBlock tours={this.state.popularPlaces} />
+                                <PlaceTravelBlock place={place} />
+                                <PlaceMapBlock/>
+                                <PlaceIntrestingBlock tours={this.state.popularPlaces} />
                                 <CommentBlock comments={comments} userName={this.state.userName} page={this.state.page} setPage={this.setPage}
-                                    showMorePages={this.showMorePages} showPages={this.state.showPages} />
-                            </div>
+                                    showMorePages={this.showMorePages} showPages={this.state.showPages} id={"placeDescriptionId6"}/>
+                            
+                                </div>
                             <div className="right_body_part col-3">
                                 <DriversCommercial />
                             </div>

@@ -2,15 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './infowindow.css';
 
-const mapStyles = {
-  map: {
-    position: 'absolute',
-    width: '820px',
-    height: '100%',
-    borderRadius: '0 5px 5px 0',
-  }
-};
-
 export class CurrentLocation extends React.Component {
 
   constructor(props) {
@@ -210,7 +201,7 @@ export class CurrentLocation extends React.Component {
     });
   }
   render() {
-    const style = Object.assign({}, mapStyles.map);
+    const style = Object.assign({}, this.props.mapStyles.map);
     return (
       <React.Fragment>
         <div style={style} ref="map">

@@ -39,9 +39,10 @@
 .mapBlock_tourData{
     background: transparent;
     box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.25);
-    height: 215px;
+    /*height: 215px;*/
     margin-top: 30px;
     padding: 10px 10px 20px 10px;
+    
 }
 .mapBlock_dateBlock_dateValue{
     margin-left: 5px;
@@ -61,6 +62,7 @@
 .mapBlock_dateBlock{
     width: 500px;
     margin-right: auto;
+    padding-bottom: 30px;
 }
 .mapBlock_bookmarkBlock{
     width: 256px;
@@ -70,6 +72,7 @@
     width: 500px;
     margin-right: auto;
     flex-wrap: wrap;
+    padding-bottom: 50px;
 }
 .mapBlock_locationBlock_element{
     width: 145px;
@@ -93,4 +96,30 @@
 .mapBlock_priceInfo{
     color: #304269;
     text-align: center;
+}
+.mapBlock_selfTourBlock{
+    margin-top: auto;
+    width: 500px;
+    font-size: 14px;
+    font-family: "Roboto";
+    color: #304269;
+    font-weight: 500;
+}
+.mapBlock_selfTourBlock_selfTour{
+    padding-left: 4px;
+    text-decoration: underline;
+    font-weight: 600;
+    color: #304269;
+}
+.mapBlock_selfTourBlock_selfTour:hover{
+    color: #ff6600;
+    text-decoration: underline #ff6600;
+}
+
+.tourPanelFixed{
+    top: 0px;
+    position: fixed;
+    background: #fff;
+    width: 870px;
+    z-index: 100;
 }

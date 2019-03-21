@@ -105,10 +105,18 @@ class HeaderClass extends React.Component {
               </div>
             </div>
             <div className="header_buttonMass d-flex flex-row justify-content-start col-4 ">
+              <Link to="/" className={this.props.colorWhite ? "buttonMass_button_White" : "buttonMass_button_Blue"}>МАРШРУТЫ</Link>
               <Link to="/places" className={this.props.colorWhite ? "buttonMass_button_White" : "buttonMass_button_Blue"}>МЕСТА</Link>
               <Link to="/tours" className={this.props.colorWhite ? "buttonMass_button_White" : "buttonMass_button_Blue"}>ТУРЫ</Link>
-              <Link to="/" className={this.props.colorWhite ? "buttonMass_button_White" : "buttonMass_button_Blue"}>ОТЕЛИ</Link>
-              <Link to="/" className={this.props.colorWhite ? "buttonMass_button_White" : "buttonMass_button_Blue"}>АВИАБИЛЕТЫ</Link>
+              {
+
+                  /*
+                  <Link to="/" className={this.props.colorWhite ? "buttonMass_button_White" : "buttonMass_button_Blue"}>ОТЕЛИ</Link>
+                  <Link to="/" className={this.props.colorWhite ? "buttonMass_button_White" : "buttonMass_button_Blue"}>АВИАБИЛЕТЫ</Link>
+
+                  */
+              }
+              
             </div>
             <div className="headerSelect d-flex flex-row align-items-center col-4">
               <Dropdown setActiveFromChild="true" isOpen={this.state.dropdownOpen} toggle={this.toggleDropdownOpen} className="selectGeneral">
