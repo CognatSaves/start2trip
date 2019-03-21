@@ -111,7 +111,7 @@ class ToursListClass extends React.Component {
                                 <div className="d-flex flex-column toursList_leftBlock">
                                     <div className="placesList_info_row">
                                         <div className="d-flex flex-column" style={{ marginRight: "auto" }}>
-                                            <Link to={`/`} className="placesList_placeName">
+                                            <Link to={`/tour/${0},${element.id}`} className="placesList_placeName">
                                                 {namesArray[index]}
                                             </Link>
                                             <div>
@@ -140,9 +140,9 @@ class ToursListClass extends React.Component {
                                     <button className="toursList_rightBlock_bookTourButton">Заказать тур</button>
                                     <div className="toursList_rightBlock_priceInfo">Стоимость на человека</div>
                                     <div className="d-flex" style={{ marginTop: "auto" }}>
-                                        <Link to={`/place/${0},${element.id}`} className="placesList_readMoreButton">
+                                        <Link to={`/tour/${0},${element.id}`} className="placesList_readMoreButton">
                                             Подробнее
-                                </Link>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>

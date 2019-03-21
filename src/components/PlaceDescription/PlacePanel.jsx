@@ -1,30 +1,60 @@
 import React from 'react';
 import '../Places/PlacesPanel.css';
+import '../TourDescription/TourDescription.jsx';
 import { connect } from 'react-redux';
-import {  setPagesVisible  } from '../../redusers/Action';
-import PagesMenu from '../drivers/DriversBody/DriversProperties/components/PagesMenu/PagesMenu';
-import {setPagesMenuValue, setSortMenuValue} from '../../redusers/ActionPlaces'; 
 
+import {changePlacesFixedClass} from '../../redusers/ActionPlaces';
 class PlacePanelClass extends React.Component {
+    constructor(props){
+      super(props);
+      this.setPanelFixed=this.setPanelFixed.bind(this);
+      this.removePanelFixed=this.removePanelFixed.bind(this);
+      
+      window.onscroll = (e)=>this.setPanelFixed(e);
+    }
+    /*componentWillUnmount(){
+        window.onscroll=null;
+    }*/
+    removePanelFixed(){
+      var scrolled = window.pageYOffset || document.documentElement.scrollTop;
+      let headerHeight = document.getElementById("placeDescriptionId").scrollHeight;
+      if(headerHeight>scrolled){
+          this.props.dispatch(changePlacesFixedClass(""));
+          window.onscroll = null;
+          window.onscroll = (e)=>this.setPanelFixed(e);
+        }
+    }
+    setPanelFixed(){
+        var scrolled = window.pageYOffset || document.documentElement.scrollTop;
+        let headerHeight = document.getElementById("placeDescriptionId").scrollHeight;
+        if(headerHeight<scrolled){
+            this.props.dispatch(changePlacesFixedClass("tourPanelFixed"));
+            window.onscroll = null;
+            window.onscroll = (e)=>this.removePanelFixed(e);
+        }
+    }
+    shouldComponentUpdate(nextProps){ 
+        return !(JSON.stringify(this.props)===JSON.stringify(nextProps));
+    }
     render(){
 
-        let buttonStyles = Array(this.props.placesState.sortMenuVariants.length).fill("");
-        buttonStyles[this.props.placesState.sortMenuValue]="driverProfileComments_panel_selectedElement";
-        
+        let variantsArray = ["Описание","Фотографии","Как добраться","Карта","Вас может заинтересовать","Отзывы"];
+       
         return(
-            <React.Fragment>
-            <div className="driverProfileComments_panel d-flex">
-                {this.props.placesState.sortMenuVariants.map((element, index)=>
-                    <button className={"driverProfileComments_panel_element "+buttonStyles[index]} onClick={()=>this.props.dispatch(setSortMenuValue(element))}>{element}</button>
-                )}               
-            </div>         
+          <React.Fragment>
+          <div className={"driverProfileComments_panel d-flex "+this.props.placesState.placePanelFixedClass}>
+              {
+                  variantsArray.map((element,index) => 
+                      <a className={"driverProfileComments_panel_element tourPanel_element"} href={"#placeDescriptionId"+(index+1)}>{element}</a>
+                  )
+              }
+          </div>
           </React.Fragment>
         )
     }
 }
 const PlacePanel = connect(
     (state) => ({
-      storeState: state.AppReduser,
       placesState: state.PlacesReduser
     }),
   )(PlacePanelClass);

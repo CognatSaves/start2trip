@@ -1,4 +1,4 @@
-import {SET_PAGES_MENU_VALUE,SET_SORT_MENU_VALUE, SET_PAGE, SET_MORE_PAGES_SHOW} from './ActionPlaces'
+import {CHANGE_PLACES_FIXED_CLASS, SET_PAGES_MENU_VALUE,SET_SORT_MENU_VALUE, SET_PAGE, SET_MORE_PAGES_SHOW} from './ActionPlaces'
 
 const initialState = {
     page: 1,
@@ -7,6 +7,7 @@ const initialState = {
     pagesMenuValue: 10,
     sortMenuVariants: ["Популярности", "Отзывам", "Названию"],
     sortMenuValue: 1,
+    placePanelFixedClass: "",
     places: [
         {
             country: "Imperii Romani Orientalis",
@@ -492,6 +493,11 @@ export const PlacesReduser = (state=initialState, action)=>{
             let newState={...state};
             newState.showPages=newState.showPages+1;
             newState.page=newState.page+1;
+            return newState;
+        }
+        case CHANGE_PLACES_FIXED_CLASS: {
+            let newState = {...state};
+            newState.placePanelFixedClass=action.placePanelFixedClass;
             return newState;
         }
         default: return state;

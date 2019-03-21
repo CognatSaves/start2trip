@@ -2,7 +2,14 @@ import React, { Component } from 'react';
 import {InfoWindow } from 'google-maps-react';
 
 import CurrentLocation from './CurrentLocation';
-
+const mapStyles = {
+  map: {
+    position: 'absolute',
+    width: '820px',
+    height: '100%',
+    borderRadius: '0 5px 5px 0',
+  }
+};
 export default class MapContainer extends Component {
   constructor(props){
     super(props);
@@ -20,6 +27,7 @@ export default class MapContainer extends Component {
         cities={this.props.cities}
         setLengthTime={this.props.setLengthTime}
         mapUpdate={this.props.mapUpdate}
+        mapStyles={mapStyles}
       >                
       </CurrentLocation>
     );

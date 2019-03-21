@@ -3,185 +3,82 @@ import Header from '../header/Header';
 import TourInfo from './TourInfo.jsx';
 import TourPanel from './TourPanel.jsx';
 import DriversCommercial from '../drivers/DriversBody/DriversCommercial/DriversCommercial';
-import Stars from '../stars/Stars';
+
 import './TourDescription.css';
 import carthage from '../Tours/pictures/Carthage.webp';
 import antioch from './pictures/antioch.jpg';
 import roma from './pictures/roma.jpg';
 import alexandria from './pictures/alexandria.jpg';
 import konstantinople from './pictures/konstantinople.jpg';
-import geoIcon from './pictures/geo_icon.svg';
-import bookmarkEmpty from '../Places/pictures/bookmark_contour.svg';
-import userBlueIcon from '../drivers/DriversBody/DriversBlock/pictures/user_blue.svg';
+
 import { connect } from 'react-redux';
-const Description = (props) => {
-    let {tour}=props;
-    let lineDisplayArray = Array(tour.places.length).fill("block");
-    lineDisplayArray[lineDisplayArray.length-1]="none";
-    return(
-        <div className="placeDescription_block d-flex flex-column">
-            <div className="d-flex">
-                <div className="placeDescription_description_name" >
-                    {"tour.name"}
-                </div>
-                <div className="d-flex" style={{marginLeft: "auto"}}>
-                    <div className="d-flex placeDescription_description_placeCard"/>
-                </div>
-            </div>
-            <div className="d-flex">
-                <Stars value={tour.rating} commentNumber={tour.comments + " отзывов"} valueDisplay="block" commentNumberDisplay="block" />
-            </div>
-            <div className="d-flex" style={{ margin: "10px 5px 20px 0px" }}>
-                <div className="placeDescription_description_tagCard" />
-                <div className="placeDescription_description_tagElement">иномирье</div>
-                <div className="placeDescription_description_tagElement">история</div>
-                <div className="placeDescription_description_tagElement">развлечения</div>
-            </div>
-            <div className="d-flex flex-column placeDescription_description_info">
-                {  
-                    tour.places.map((element,index)=>
-                        <div className="d-flex">
-                            <div className="d-flex flex-column tourDescription_markerLine">
-                                <div className="tourDescription_markerLine_markerBlock">
-                                    <div style={{background: "url("+geoIcon+")", backgroundSize: "17px 24px", width: "17px", height: "24px"}}/>
-                                </div>
-                                <div className="tourDescription_markerLine_line" style={{ display: lineDisplayArray[index]}}></div>
-                            </div> 
-                            <div className="tourDescription_placeDescription">
-                                <text style={{fontWeight: "600"}}>{element}</text>
-                                <text>{" - " +tour.placesInfo[index]}</text>
-                            </div>
-                        </div>
+import georgiaImg from '../home/HomeBody/pictures/georgia.png';
 
-                    )
-                }
-                <div className="d-flex" style={{paddingTop: "10px"}}>
-                    <div className = "d-flex flex-column tourDescription_additionalInfoBlock">   
-                        <div>В стоимость включено:</div>             
-                        {
-                            tour.placesInfo[tour.placesInfo.length-2].map((element,index)=>
-                                <div className="d-flex tourDescription_additionalInfoBlock_element">
-                                    <div className="tourDescription_pointStyle">.</div>
-                                    <div>{element}</div>
-                                </div>
-                            )
-                        }
-                    </div>
-                    <div className = "d-flex flex-column tourDescription_additionalInfoBlock">
-                        <div>Дополнительные услуги:</div>             
-                            {
-                                tour.placesInfo[tour.placesInfo.length-1].map((element,index)=>
-                                    <div className="d-flex tourDescription_additionalInfoBlock_element">
-                                        <div className="tourDescription_pointStyle">.</div>
-                                        <div>{element}</div>
-                                    </div>
-                                )
-                            }
+import TourProgram from './TourProgram.jsx';
+import TourPhotos from './TourPhotos.jsx';
+import TourMapBlock from './TourMapBlock.jsx';
+import SimularToursBlock from './SimularToursBlock.jsx';
+import CommentBlock from './CommentBlock.jsx';
 
-                    </div>
-                </div>
-            </div>
-        </div>
-    )
-}
-const PhotoSelect = (props) => {
-    let {width, height, src, selectPhoto, photoIndex} = props;
-    return (
-        <div className={"placesDescription_photos_secondaryPhotoBox"} style={{margin: "0 auto", width: width, height: height}} onClick={()=>{selectPhoto(photoIndex)}}>
-            <img src={src} width={width} height={height} alt="/"/>
-        </div>
-    )
-}
-const Photos = (props) => {
-    let {photoArray, selectPhoto,selectedPhotoIndex, width, height, photoSlice} = props; 
-    
-    let transformValue=-1*photoSlice*width;
-    let boxTransformValue = selectedPhotoIndex*width;   
-    let carouselWidth = photoArray.length*width+"px";
-
-    return (
-        <div className="placeDescription_block d-flex flex-column">          
-            <div className="placeDescription_fragmentName">Фотографии</div>
-            <div  className="placesDescription_photos_firstPhotoBox">
-                <img key={selectedPhotoIndex+"/change"} src={photoArray[selectedPhotoIndex]} width="870px" height="500px" alt="/"/>
-            </div>
-            <div className="" style={{overflow: "hidden"}} >
-                <div className="d-flex photoCarouselClass" style={{width: carouselWidth, transform: "translate3d("+transformValue+"px, 0px, 0px)"}}>
-                {
-                    photoArray.map((element,index) =>
-                        <PhotoSelect src={element} width={width+"px"} height={height+"px"} selectPhoto={selectPhoto} photoIndex={index} selectedPhotoIndex={selectedPhotoIndex}/>
-                    )
-                }
-                <div class="carouselPhotoBox" style={{width: width+"px", height: height+"px", transform: "translate3d("+boxTransformValue+"px, 0px, 0px)"}}/>
-                </div>
-            </div>           
-        </div>
-    )
-}
-const MapBlock = (props) => {
-    return (
-    <div className="placeDescription_block d-flex flex-column">
-        <div className="placeDescription_fragmentName">Карта тура</div>
-        <div className="placeDescription_fragmentName_mapBlock" style={{marginTop: "15px"}}>
-            <div className="placeDescription_fragmentName_mapBlock">
-                Здесь может быть ваша карта
-            </div>
-        </div>
-        <div className = "d-flex flex-column mapBlock_tourData col-12" style={{fontFamily: "Roboto", color: "#304269"}}>
-            <div className="d-flex">
-                <div className="d-flex mapBlock_dateBlock" >
-                    <div style={{height: "100%"}}>{"Дата:"}</div>
-                    <div className="mapBlock_dateBlock_dateValue">как только даш деняк</div>
-                </div>
-                <div className="mapBlock_bookmarkBlock">
-                    <div className="d-flex toursList_rightBlock_firstLine">
-                        <div className="d-flex" style={{margin: "0 auto" }}>
-                            <div className="toursList_rightBlock_userIcon" style={{ background: "url(" + userBlueIcon + ")", backgroundSize: "10px 10px" }} />
-                            <div className="toursList_rightBlock_available">{"Свободных мест: " + "для Вас найдётся"}</div>
-                        </div>
-                        <div className="toursList_rigntBlock_bookmark" style={{ background: "url(" + bookmarkEmpty + ")", backgroundSize: "20px 25px" }} />
-                    </div>
-                </div>
-            </div>
-            <div className="d-flex">
-                <div className="d-flex mapBlock_locationBlock">
-                    <div className="d-flex mapBlock_locationBlock_element">
-                        <div className="mapBlock_location"></div>
-                        <div className="mapBlock_locationLine"></div>
-                        <div className="mapBlick_locationPointName">AAAAA</div>
-                    </div>
-                    <div className="d-flex mapBlock_locationBlock_element">
-                        <div className="mapBlock_location"></div>
-                        <div className="mapBlock_locationLine"></div>
-                        <div className="mapBlick_locationPointName">BBBBB</div>
-                    </div>
-                </div>
-                <div className="mapBlock_bookmarkBlock d-flex flex-column">
-                    <div className="mapBlock_tourPrice">$99999</div>
-                    <button className="tourInfo_buttonStyle">ЗАКАЗАТЬ ТУР</button>
-                    <div className="tourInfo_priceInfo mapBlock_priceInfo">Стоимость за человека</div>
-                </div>
-            </div>
-            <div className="d-flex">
-                <div className="mapBlock_locationBlock">C1</div>
-               
-            </div>
-        </div>
-    </div>
-    )
-}
+import {changePanelFixedClass} from '../../redusers/ActionTours';
 class TourDescriptionClass extends React.Component {
     constructor(props) {
         super(props);
+        //window.scroll.addEventListener('change', (e)=>{console.log(e)});
+        
+        let countryId = this.props.match.params.country;
+        let tourId = this.props.match.params.id;
+        let tour = this.props.toursState.tours[countryId].tours[tourId];
+
+        let widthAll = 870;
+        let heightAll = 500;
+        let n = 7;
+
+        let width = widthAll/n;
+        let height = heightAll/n;
+
         this.state = {
+            userName: "Заинтересованный посетитель",
+            page: 1,
+            showPages: 1,
             photoSlice: 0,
             selectedPhotoIndex: 0,
+            tour: tour,
+            width: width,
+            height: height,
             photoArray: [carthage, antioch, roma,alexandria, konstantinople,carthage,
             antioch, roma,alexandria, konstantinople,carthage, antioch, roma,
             alexandria, konstantinople,carthage, antioch, roma,alexandria,
             konstantinople],
+            popularPlaces: [
+                { img: georgiaImg, title: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", link: "/driver", reviews: "32 отзыва", prise: "120$" },
+                { img: georgiaImg, title: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", link: "/driver", reviews: "12 отзывов", prise: "80$" },
+                { img: georgiaImg, title: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", link: "/driver", reviews: "55 отзыва", prise: "150$" },
+            ],
         }
+        
+        
+        
         this.selectPhoto=this.selectPhoto.bind(this);
+        this.showMorePages=this.showMorePages.bind(this);
+        this.setPage=this.setPage.bind(this);
+        
+    }
+    showMorePages() {
+        this.setState({
+            page: this.state.page + 1,
+            showPages: this.state.showPages + 1
+        })
+    }
+    setPage(page) {
+        if (page !== "...") {
+            this.setState(
+                {
+                    page: page,
+                    showPages: 1
+                }
+            )
+        }
     }
     selectPhoto(photoIndex){
         function calculatePhotoSlice(photoIndex, length,OldPhotoIndex, OldPhotoSlice){
@@ -212,37 +109,38 @@ class TourDescriptionClass extends React.Component {
         })       
     }
     render() {
-        let countryId = this.props.match.params.country;
-        let tourId = this.props.match.params.id;
-        let tour = this.props.toursState.tours[countryId].tours[tourId];
-        
-        let widthAll = 870;
-        let heightAll = 500;
-        let n = 7;
+        console.log("TourDescription render");
+        //console.log(window.onscroll);
 
-        let width = widthAll/n;
-        let height = heightAll/n;
+        
+        let comments = [...this.props.commentState.comments].reverse();
+
+        let topBlockId = "tourDescriptionId";
                
         return(
             <React.Fragment>
-                <div className="drivers_top_background placeDescription_background col-12">
+                <div className="drivers_top_background placeDescription_background col-12" id={topBlockId}>
                     <img src={carthage} width="100%" height="100%" style={{ position: "absolute" }} alt="noImage" />
                     <div style={{ position: "absolute", width: "100%", height: "100%", backgroundColor: "rgba(0,0,0,0.5)" }} />
                     <div className="wrapper d-flex flex-column">
-                        <Header colorWhite={true} />
-                        <TourInfo />
+                        <Header colorWhite={true}/>
+                        <TourInfo tour={this.state.tour}/>
                     </div>
                 </div>
-                <div className="wrapper d-flex flex-column">
+                <div className="wrapper d-flex flex-column" key="aaa">
                     <div className = "drivers_bottom_background d-flex flex-column" >
                     <div className="drivers_body d-flex">
                         <div className="left_body_part col-9">
-                            <TourPanel/>
-                            <Description tour={tour}/>
-                            <Photos photoSlice={this.state.photoSlice} photoArray={this.state.photoArray} 
+                            <TourPanel topBlockId={topBlockId} descriptionId={"tourDescriptionId"} variantsArray={["Программа тура","Фотографии","Карта тура","Похожие туры","Отзывы"]}
+                            setPanelStateFunc={changePanelFixedClass} panelFixedClass={this.props.toursState.tourPanelFixedClass}/>
+                            <TourProgram tour={this.state.tour}/>
+                            <TourPhotos photoSlice={this.state.photoSlice} photoArray={this.state.photoArray} 
                             selectPhoto={this.selectPhoto} selectedPhotoIndex={this.state.selectedPhotoIndex} 
-                            width={width} height={height}/>
-                            <MapBlock/>
+                            width={this.state.width} height={this.state.height}/>
+                            <TourMapBlock tour={this.state.tour} cities={["Стамбул", "Антакья", "Александрия", "Картадж", "Рим"]}/>
+                            <SimularToursBlock tours={this.state.popularPlaces}/>
+                            <CommentBlock comments={comments} userName={this.state.userName} page={this.state.page}
+                            setPage={this.setPage} showMorePages={this.showMorePages} showPages={this.state.showPages} id={"tourDescriptionId5"}/>
                         </div>
                         <div className="right_body_part col-3">
                             <DriversCommercial/>
