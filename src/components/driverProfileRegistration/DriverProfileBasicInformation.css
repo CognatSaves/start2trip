@@ -1,0 +1,107 @@
+/* .driverProfileBasicInformationBody{
+
+}    */
+
+/* .driverProfileBasicInformationBodyTop{
+
+} */
+
+.driverProfileBasicInformationBodyBottom {
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+
+.driverProfileBasicInformationBodyBottomHeader {
+    height: 55px;
+    border-bottom: 1px solid #ccc;
+    line-height: 55px;
+    padding-left: 15px;
+}
+
+.driverProfileBasicInformationBodyBottomHeader p{
+    color: #304269;
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 16px;
+    background: url(./img/edit.svg) no-repeat;
+    background-size: 20px 20px;
+    background-position: top 15px left 190px;
+    cursor: pointer;
+}
+
+.driverProfileBasicInformationBodyBottomContent p {
+    color: #999;
+    font-family: "Roboto";
+    font-weight: 500;
+    font-size: 14px;
+    margin: 0;
+}
+
+.driverProfileBasicInformationBodyBottomContent input {
+    color: #333;
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding-left: 10px;
+    min-width: 400px;
+    min-height: 40px;
+}
+
+.driverProfileBasicInformationBodyBottomContent :nth-child(6) input {
+    min-width: 195px;
+}
+
+.driverProfileBasicInformationBodyBottomContent input::placeholder {
+    color: #333;
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.driverProfileBasicInformationBodyBottomContent textarea:hover,
+.driverProfileBasicInformationBodyBottomContent textarea:focus,
+.driverProfileBasicInformationBodyBottomContent select:hover,
+.driverProfileBasicInformationBodyBottomContent select:focus,
+.driverProfileBasicInformationBodyBottomContent input:hover,
+.driverProfileBasicInformationBodyBottomContent input:focus {
+    border-color: #304269;
+    text-decoration: none;
+    outline: #304269;
+}
+
+.driverProfileBasicInformationBodyBottomContent select {
+    min-width: 130px;
+    min-height: 40px;
+    background: none;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #333;
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 14px;
+    margin-right: 5px;
+    padding-left: 10px;
+    cursor: pointer;
+    appearance: none;
+    background: url(./img/arrow-point-to-down.svg) no-repeat;
+    background-size: 8px 8px;
+    background-position: top 15px right 10px;
+}
+
+.driverProfileBasicInformationBodyBottomContent :nth-child(6) select {
+    min-width: 195px;
+    margin-right: 10px;
+}
+
+.driverProfileBasicInformationBodyBottomContent :nth-child(7) select {
+    min-width: 400px;
+}
+
+.driverProfileBasicInformationBodyBottomContent textarea {
+    min-width: 400px;
+    min-height: 150px;
+    border-radius: 5px;
+    padding-left: 10px;
+}

@@ -10,6 +10,7 @@ import PlaceDescription from './components/PlaceDescription/PlaceDescription.jsx
 import Tours from './components/Tours/Tours.jsx';
 import Footer from './components/Footer/Footer'
 import TourDescription from './components/TourDescription/TourDescription.jsx';
+import DriverProfileRegistration from './components/driverProfileRegistration/DriverProfileRegistration'
 
 import './components/header/StandartHeaderStyles.css';
 
@@ -43,6 +44,7 @@ ReactDOM.render(
                     <Route path="/place/:country,:id" component={PlaceDescription} />
                     <Route path="/tours" component={Tours} />
                     <Route path="/tour/:country,:id" component={TourDescription} />
+                    <Route path="/driverProfileRegistration" component={DriverProfileRegistration} />
                     <Redirect from="/" to="/home" />
                 </Switch>
                 <Footer />

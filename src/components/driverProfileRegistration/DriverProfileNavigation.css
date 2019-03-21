@@ -1,0 +1,22 @@
+.driverProfileNavigationBody{
+    line-height: 40px;
+    margin-top: 40px;
+    margin-bottom: 10px; /* нужно будет удалить */
+    border-bottom: 1px solid #ccc;
+}
+
+.driverProfileNavigationBody p{
+    cursor: pointer;
+    height: 40px;
+    margin-right: 30px;
+    transition: all 0.3s;
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 16px;
+    color: #304269;
+}
+
+.driverProfileNavigationBody p:hover{
+    color: #f60;
+    border-bottom: 3px solid #f60;
+}
