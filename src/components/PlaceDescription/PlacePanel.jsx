@@ -12,6 +12,9 @@ class PlacePanelClass extends React.Component {
       
       window.onscroll = (e)=>this.setPanelFixed(e);
     }
+    componentWillUnmount(){
+        window.onscroll=null;
+    }
     removePanelFixed(){
       var scrolled = window.pageYOffset || document.documentElement.scrollTop;
       let headerHeight = document.getElementById("placeDescriptionId").scrollHeight;
@@ -42,7 +45,7 @@ class PlacePanelClass extends React.Component {
           <div className={"driverProfileComments_panel d-flex "+this.props.placesState.placePanelFixedClass}>
               {
                   variantsArray.map((element,index) => 
-                      <button className={"driverProfileComments_panel_element"}><a href={"#placeDescriptionId"+(index+1)}>{element}</a></button>
+                      <a className={"driverProfileComments_panel_element tourPanel_element"} href={"#placeDescriptionId"+(index+1)}>{element}</a>
                   )
               }
           </div>

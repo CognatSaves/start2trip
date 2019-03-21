@@ -123,3 +123,14 @@
     width: 870px;
     z-index: 100;
 }
+
+
+.tourPanel_element{
+    font-family: "Roboto";
+    font-weight: 500;
+    font-size: 16px;
+    color: #304269;
+}
+.tourPanel_element:hover{
+    color: #ff6600;
+}

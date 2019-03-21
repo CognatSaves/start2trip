@@ -11,11 +11,15 @@ class TourPanelClass extends React.Component{
 
         this.setPanelFixed=this.setPanelFixed.bind(this);
         this.removePanelFixed=this.removePanelFixed.bind(this);
-        
-        window.onscroll = (e)=>this.setPanelFixed(e);
+        this.checkPanelFixed=this.checkPanelFixed.bind(this);
+        //window.onscroll = (e)=>this.setPanelFixed(e);
+        window.onscroll = (e)=>this.checkPanelFixed(e);
     }
     shouldComponentUpdate(nextProps){ 
         return !(JSON.stringify(this.props)===JSON.stringify(nextProps));
+    }
+    componentWillUnmount(){
+        window.onscroll=null;
     }
     removePanelFixed(){
         var scrolled = window.pageYOffset || document.documentElement.scrollTop;
@@ -35,18 +39,36 @@ class TourPanelClass extends React.Component{
             window.onscroll = (e)=>this.removePanelFixed(e);
         }
     }
+    checkPanelFixed(){
+        console.log("CheckPanelFixed")
+        var scrolled = window.pageYOffset || document.documentElement.scrollTop;
+        let headerHeight = document.getElementById("tourDescriptionId").scrollHeight;
+        if(headerHeight>scrolled)
+        {
+            if(this.props.toursState.tourPanelFixedClass!==""){
+                this.props.dispatch(changePanelFixedClass(""));
+            }           
+        }
+        else{
+            if(this.props.toursState.tourPanelFixedClass!=="tourPanelFixed"){
+                this.props.dispatch(changePanelFixedClass("tourPanelFixed"));
+            }
+        }
+    }
     render(){
         let variantsArray = ["Программа тура","Фотографии","Карта тура","Похожие туры","Отзывы"];
         return(
             <React.Fragment>
             <div className={"driverProfileComments_panel d-flex "+this.props.toursState.tourPanelFixedClass}>
                 {
-                    variantsArray.map((element,index) => 
-                        <button className={"driverProfileComments_panel_element"}><a href={"#tourDescriptionId"+(index+1)}>{element}</a></button>
+                    variantsArray.map((element,index) =>                    
+                        <a className={"driverProfileComments_panel_element tourPanel_element"} href={"#tourDescriptionId"+(index+1)}>{element}</a>
                     )
                 }
             </div>
+
             </React.Fragment>
+            
         )
     }
 }
