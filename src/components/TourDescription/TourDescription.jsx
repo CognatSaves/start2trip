@@ -20,6 +20,7 @@ import TourMapBlock from './TourMapBlock.jsx';
 import SimularToursBlock from './SimularToursBlock.jsx';
 import CommentBlock from './CommentBlock.jsx';
 
+import {changePanelFixedClass} from '../../redusers/ActionTours';
 class TourDescriptionClass extends React.Component {
     constructor(props) {
         super(props);
@@ -107,9 +108,6 @@ class TourDescriptionClass extends React.Component {
             photoSlice: photoSlice
         })       
     }
-    componentWillUnmount(){
-        window.onscroll=null;
-    }
     render() {
         console.log("TourDescription render");
         //console.log(window.onscroll);
@@ -117,11 +115,11 @@ class TourDescriptionClass extends React.Component {
         
         let comments = [...this.props.commentState.comments].reverse();
 
-
+        let topBlockId = "tourDescriptionId";
                
         return(
             <React.Fragment>
-                <div className="drivers_top_background placeDescription_background col-12" id="tourDescriptionId">
+                <div className="drivers_top_background placeDescription_background col-12" id={topBlockId}>
                     <img src={carthage} width="100%" height="100%" style={{ position: "absolute" }} alt="noImage" />
                     <div style={{ position: "absolute", width: "100%", height: "100%", backgroundColor: "rgba(0,0,0,0.5)" }} />
                     <div className="wrapper d-flex flex-column">
@@ -133,7 +131,8 @@ class TourDescriptionClass extends React.Component {
                     <div className = "drivers_bottom_background d-flex flex-column" >
                     <div className="drivers_body d-flex">
                         <div className="left_body_part col-9">
-                            <TourPanel/>
+                            <TourPanel topBlockId={topBlockId} descriptionId={"tourDescriptionId"} variantsArray={["Программа тура","Фотографии","Карта тура","Похожие туры","Отзывы"]}
+                            setPanelStateFunc={changePanelFixedClass} panelFixedClass={this.props.toursState.tourPanelFixedClass}/>
                             <TourProgram tour={this.state.tour}/>
                             <TourPhotos photoSlice={this.state.photoSlice} photoArray={this.state.photoArray} 
                             selectPhoto={this.selectPhoto} selectedPhotoIndex={this.state.selectedPhotoIndex} 

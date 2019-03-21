@@ -43,6 +43,8 @@ class ToursClass extends React.Component {
     this.props.dispatch(setMorePagesShow());
   }
   render() {
+    console.log("Tours render");
+    console.log(window);
     return (
       <React.Fragment>
         <div className="drivers_top_background col-12">

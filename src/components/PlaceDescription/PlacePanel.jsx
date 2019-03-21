@@ -12,9 +12,9 @@ class PlacePanelClass extends React.Component {
       
       window.onscroll = (e)=>this.setPanelFixed(e);
     }
-    componentWillUnmount(){
+    /*componentWillUnmount(){
         window.onscroll=null;
-    }
+    }*/
     removePanelFixed(){
       var scrolled = window.pageYOffset || document.documentElement.scrollTop;
       let headerHeight = document.getElementById("placeDescriptionId").scrollHeight;

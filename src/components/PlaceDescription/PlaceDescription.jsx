@@ -26,6 +26,9 @@ import PlaceMapBlock from './PlaceMapBlock.jsx';
 import PlaceIntrestingBlock from './PlaceIntrestingBlock.jsx';
 import CommentBlock from '../TourDescription/CommentBlock.jsx';
 
+import TourPanel from '../TourDescription/TourPanel.jsx';
+import {changePlacesFixedClass} from '../../redusers/ActionPlaces';
+
 class PlaceDescriptionClass extends React.Component {
     constructor(props) {
         super(props);
@@ -95,22 +98,20 @@ class PlaceDescriptionClass extends React.Component {
     render() {
         console.log("PlaceDescription");
         let countryId = this.props.match.params.country;
-        console.log("1");
         let placeId = this.props.match.params.id;
-        console.log("2");
         let comments = [...this.props.commentState.comments].reverse();
-        console.log("3");
         let place = this.props.placesState.places[countryId].places[placeId];
-        console.log("4");
         let widthAll = 870;
         let heightAll = 500;
         let n = 7;
 
         let width = widthAll / n;
         let height = heightAll / n;
+
+        let topBlockId = "placeDescriptionId";
         return (
             <React.Fragment>
-                <div className="drivers_top_background placeDescription_background col-12" id="placeDescriptionId">
+                <div className="drivers_top_background placeDescription_background col-12" id={topBlockId}>
                     <img src={ippodrom} width="100%" height="100%" style={{ position: "absolute" }} alt="noImage" />
                     <div style={{ position: "absolute", width: "100%", height: "100%", backgroundColor: "rgba(0,0,0,0.5)" }} />
                     <div className="wrapper d-flex flex-column">
@@ -122,13 +123,14 @@ class PlaceDescriptionClass extends React.Component {
                     <div className="drivers_bottom_background d-flex flex-column" >
                         <div className="drivers_body d-flex">
                             <div className="left_body_part col-9">
-                                <PlacePanel/>
+                                <TourPanel topBlockId={topBlockId} descriptionId={"placeDescriptionId"} variantsArray={["Описание","Фотографии","Как добраться","Карта","Вас может заинтересовать","Отзывы"]}
+                                setPanelStateFunc={changePlacesFixedClass} panelFixedClass={this.props.placesState.placePanelFixedClass}/>
                                 <PlaceProgramm place={place}/>                             
                                 <PlacePhotos photoSlice={this.state.photoSlice} photoArray={this.state.photoArray}
                                     selectPhoto={this.selectPhoto} selectedPhotoIndex={this.state.selectedPhotoIndex}
                                     width={width} height={height} />
                                 <PlaceTravelBlock place={place} />
-                                <PlaceMapBlock/>
+                                <PlaceMapBlock />
                                 <PlaceIntrestingBlock tours={this.state.popularPlaces} />
                                 <CommentBlock comments={comments} userName={this.state.userName} page={this.state.page} setPage={this.setPage}
                                     showMorePages={this.showMorePages} showPages={this.state.showPages} id={"placeDescriptionId6"}/>

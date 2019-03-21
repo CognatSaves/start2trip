@@ -24,8 +24,8 @@ export default class TourMapBlock extends React.Component{
       };
     //let {tour} = props;
     return (
-    <div className="placeDescription_block d-flex flex-column" id="tourDescriptionId3">
-        <div className="placeDescription_fragmentName">Карта тура</div>
+    <div className="placeDescription_block d-flex flex-column" id="placeDescriptionId4">
+        <div className="placeDescription_fragmentName">Карта</div>
         <div className="placeDescription_fragmentName_mapBlock" style={{marginTop: "15px"}}>
             <div className="placeDescription_fragmentName_mapBlock" style={{position: "relative"}}>
 
