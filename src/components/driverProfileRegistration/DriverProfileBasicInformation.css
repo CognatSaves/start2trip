@@ -1,7 +1,43 @@
-/* .driverProfileBasicInformationBody{
+.driverProfileBasicInformationBody {
+    margin-bottom: 150px;
+    position: relative;
+}
 
-}    */
+/* 
+.edditIcon{
+    position: absolute;
+    z-index: 3;
+    top: 60px;
+    left: 30px;
+    width: 30px;
+    height: 30px;
+    background: url(./img/pencilWhite.svg) no-repeat;
+    background-size: 30px 30px;
+} */
 
+.driverProfileBasicInformationBodyTopImg {
+    position: absolute;
+    z-index: 2;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(48, 66, 105, 0.836);
+    width: 156px;
+    height: 156px;
+    color: #fff;
+    font-family: "Roboto";
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.driverProfileBasicInformationBodyTopImgHover{
+    cursor: pointer;
+}
+
+.driverProfileBasicInformationBodyTopImgHover:hover .driverProfileBasicInformationBodyTopImg{
+    display: flex;
+}
 /* .driverProfileBasicInformationBodyTop{
 
 } */
@@ -18,7 +54,7 @@
     padding-left: 15px;
 }
 
-.driverProfileBasicInformationBodyBottomHeader p{
+.driverProfileBasicInformationBodyBottomHeader p {
     color: #304269;
     font-family: "Roboto";
     font-weight: 400;
@@ -104,4 +140,25 @@
     min-height: 150px;
     border-radius: 5px;
     padding-left: 10px;
+}
+
+.driverProfileBasicInformationBodyBottomContent button {
+    max-width: 250px;
+    min-height: 40px;
+    text-align: center;
+    line-height: 40px;
+    color: #fff;
+    background: #304269;
+    border-radius: 5px;
+    border: none;
+    transition: all 0.3s;
+    margin-left: 218px;
+}
+
+.driverProfileBasicInformationBodyBottomContent button:hover {
+    background: #f60;
+}
+
+.driverProfileBasicInformationBodyBottomContent button:focus {
+    outline: none;
 }
