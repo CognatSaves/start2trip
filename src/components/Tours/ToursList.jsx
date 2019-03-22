@@ -3,14 +3,9 @@ import './ToursList.css';
 import '../Places/PlacesList.css';
 import { connect } from 'react-redux';
 
-import geoIcon from '../home/HomeBody/pictures/geo_icon.svg';
 import bookmarkEmpty from '../Places/pictures/bookmark_contour.svg';
 import bookmarkFilled from '../Places/pictures/bookmark_blue.svg';
 import bookmarkSelected from '../Places/pictures/bookmark_orange.svg';
-import { Link } from 'react-router-dom';
-
-import Manipulator from '../manipulator/Manipulator';
-
 import { setToursPage, setToursMorePagesShow } from '../../redusers/ActionTours';
 import ToursListBlock from './ToursListBlock';
 
