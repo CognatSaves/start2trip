@@ -27,7 +27,7 @@ import PlaceIntrestingBlock from './PlaceIntrestingBlock.jsx';
 import CommentBlock from '../TourDescription/CommentBlock.jsx';
 
 import TourPanel from '../TourDescription/TourPanel.jsx';
-import {changePlacesFixedClass} from '../../redusers/ActionPlaces';
+import {changePlacesFixedClass, setPlacesPanelSelectedElement} from '../../redusers/ActionPlaces';
 
 class PlaceDescriptionClass extends React.Component {
     constructor(props) {
@@ -124,7 +124,8 @@ class PlaceDescriptionClass extends React.Component {
                         <div className="drivers_body d-flex">
                             <div className="left_body_part col-9">
                                 <TourPanel topBlockId={topBlockId} descriptionId={"placeDescriptionId"} variantsArray={["Описание","Фотографии","Как добраться","Карта","Вас может заинтересовать","Отзывы"]}
-                                setPanelStateFunc={changePlacesFixedClass} panelFixedClass={this.props.placesState.placePanelFixedClass}/>
+                                setPanelStateFunc={changePlacesFixedClass} panelFixedClass={this.props.placesState.placePanelFixedClass}
+                                panelSelectedElement={this.props.placesState.placePanelSelectedElement} setPanelSelectedElement={setPlacesPanelSelectedElement}/>
                                 <PlaceProgramm place={place}/>                             
                                 <PlacePhotos photoSlice={this.state.photoSlice} photoArray={this.state.photoArray}
                                     selectPhoto={this.selectPhoto} selectedPhotoIndex={this.state.selectedPhotoIndex}

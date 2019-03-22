@@ -22,6 +22,13 @@ export default class TourMapBlock extends React.Component{
           borderRadius: '0 5px 5px 0',
         }
       };
+    function departureDateString(value){
+        let dayMass = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
+        let monthMass = ["января", "февраля", "марта", "апреля", "мая",
+          "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
+        let resultString = dayMass[value.getDay()] + ", " + value.getDate() + " " + monthMass[value.getMonth()] + " " + value.getFullYear();
+        return resultString;
+    }
     //let {tour} = props;
     return (
     <div className="placeDescription_block d-flex flex-column" id="tourDescriptionId3">
@@ -47,7 +54,7 @@ export default class TourMapBlock extends React.Component{
             <div className="d-flex">
                 <div className="d-flex mapBlock_dateBlock" >
                     <div style={{height: "100%"}}>{"Дата:"}</div>
-                    <div className="mapBlock_dateBlock_dateValue">{this.props.tour.departureDate.toDateString()}</div>
+                    <div className="mapBlock_dateBlock_dateValue">{departureDateString(this.props.tour.departureDate)}</div>
                 </div>
                 <div className="mapBlock_bookmarkBlock">
                     <div className="d-flex toursList_rightBlock_firstLine">

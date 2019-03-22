@@ -9,6 +9,7 @@ const SET_MORE_PAGES_SHOW = 'SET_MORE_PAGES_SHOW';
 
 const CHANGE_PLACES_FIXED_CLASS = 'CHANGE_PLACES_FIXED_CLASS';
 
+const SET_PLACES_PANEL_SELECTED_ELEMENT = 'SET_PLACES_PANEL_SELECTED_ELEMENT';
 const setPagesMenuValue = function (pagesMenuValue){
     return {
       type: 'SET_PAGES_MENU_VALUE',
@@ -40,12 +41,19 @@ const changePlacesFixedClass = function(value){
     placePanelFixedClass: value
   }
 }
+const setPlacesPanelSelectedElement = function(value){
+  return{
+    type: SET_PLACES_PANEL_SELECTED_ELEMENT,
+    placePanelSelectedElement: value
+  }
+}
   export {
 
     setPagesMenuValue, SET_PAGES_MENU_VALUE,
     setSortMenuValue, SET_SORT_MENU_VALUE,
     setPage, SET_PAGE,
     setMorePagesShow, SET_MORE_PAGES_SHOW,
-    changePlacesFixedClass, CHANGE_PLACES_FIXED_CLASS
+    changePlacesFixedClass, CHANGE_PLACES_FIXED_CLASS,
+    setPlacesPanelSelectedElement, SET_PLACES_PANEL_SELECTED_ELEMENT
 
   }
