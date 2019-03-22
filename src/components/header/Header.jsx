@@ -118,7 +118,7 @@ class HeaderClass extends React.Component {
               }
               
             </div>
-            <div className="headerSelect d-flex flex-row align-items-center col-4">
+            <div className="headerSelect d-flex flex-row align-items-center justify-content-end col-4">
               <Dropdown setActiveFromChild="true" isOpen={this.state.dropdownOpen} toggle={this.toggleDropdownOpen} className="selectGeneral">
                 <DropdownToggle className={this.props.colorWhite ? "selectGeneralBtWhite" : "selectGeneralBtBlue"} caret size="sm">
                   {this.state.activeCurrency[this.state.activeCurrencyNumber]}

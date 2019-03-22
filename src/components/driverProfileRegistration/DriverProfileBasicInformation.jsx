@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './DriverProfileBasicInformation.css'
 import { connect } from 'react-redux';
+import imgPerson from './img/drivers_body_photo.png'
 
 
 
@@ -56,8 +57,10 @@ class DriverProfileBasicInformationClass extends React.Component {
             <div className="driverProfileBasicInformationBody d-flex flex-column">
                 <div className="driverProfileBasicInformationBodyTop d-flex ">
                     <div>
-                        <img src="" alt="" />
-                        <input type="file" />
+                    <label className="driverProfileBasicInformationBodyTopImg" htmlFor="addFile">Обновить фотографию</label>
+                        <img className="driverProfileBasicInformationBodyTopImgHover" src={imgPerson} alt="imgPerson" />
+                        {/* <label className="edditIcon" htmlFor="addFile"></label> */}
+                        <input type="file" id="addFile" style={{display:"none"}}/>
                     </div>
                     <div>
                         <div>
@@ -168,8 +171,9 @@ class DriverProfileBasicInformationClass extends React.Component {
                             <p className="col-3">О себе:</p>
                             <textarea name="" id="" cols="25" rows="5"></textarea>
                         </div>
+                        <button className="mb-5">Сохранить Изменения</button>
                     </div>
-                    <button>Сохранить Изменения</button>
+                    
                 </div>
             </div>
         );
