@@ -10,6 +10,7 @@ import no_smokingIcon from './img/no-smoking.svg'
 import seatIcon from './img/seat.svg'
 import snowflakeIcon from './img/snowflake.svg'
 import wifiIcon from './img/wifi.svg'
+import editBlueIcon from './img/editBlue.svg'
 
 
 
@@ -23,12 +24,24 @@ class DriverProfileCarClass extends React.Component {
             dataNumber: [],
             dataYear: [],
             language: ["Грузинский", "Русский", "Корейский", "Хинди"],
-            comfort:[no_smokingIcon,seatIcon,snowflakeIcon,wifiIcon],
-
+            seat: { icon: seatIcon, title: "Машина оборудованна кожанными седеньями" },
+            snowflake: { icon: snowflakeIcon, title: "В машине есть кондиционер" },
+            wifi: { icon: wifiIcon, title: "Машина оборудована WiFi" },
+            no_smoking: { icon: no_smokingIcon, title: "Не курящий водитель" },
+            comfort: [
+                { icon: seatIcon, title: "Машина оборудованна кожанными седеньями" },
+                { icon: snowflakeIcon, title: "В машине есть кондиционер" },
+                { icon: wifiIcon, title: "Машина оборудована WiFi" },
+                { icon: no_smokingIcon, title: "Не курящий водитель" },
+            ],
+            file: '',
+            imagePreviewUrl: '',
         }
         this.getMassNumbers.bind(this);
         this.getMassYear.bind(this);
         this.addNum.bind(this);
+        this._handleImageChange = this._handleImageChange.bind(this);
+        this._handleSubmit = this._handleSubmit.bind(this);
     }
 
     getMassNumbers(num) {
@@ -59,7 +72,34 @@ class DriverProfileCarClass extends React.Component {
         this.addNum();
     }
 
+    _handleSubmit(e) {
+        e.preventDefault();
+        // TODO: do something with -> this.state.file
+    }
+
+    _handleImageChange(e) {
+        e.preventDefault();
+
+        let reader = new FileReader();
+        let file = e.target.files[0];
+
+        reader.onloadend = () => {
+            this.setState({
+                file: file,
+                imagePreviewUrl: reader.result
+            });
+        }
+
+        reader.readAsDataURL(file)
+    }
+
     render() {
+        debugger;
+        let { imagePreviewUrl } = this.state;
+        let $imagePreview = null;
+        if (imagePreviewUrl) {
+            $imagePreview = (<img src={imagePreviewUrl} className="driverProfileCarAddNewCarPhotoCarImg" />);
+        }
 
         return (
             <div>
@@ -74,7 +114,7 @@ class DriverProfileCarClass extends React.Component {
                                 <p>Toyota Prius, 2008</p>
                                 <p>WWW-888-WWW</p>
                             </div>
-                            <div>
+                            <div className="driverProfileCarFilledCardInformationNameCarEdit">
                                 <p>Редактировать</p>
                             </div>
                         </div>
@@ -82,29 +122,31 @@ class DriverProfileCarClass extends React.Component {
                             <div className="d-flex justify-content-between align-content-center">
                                 <p>Тип автомобиля:</p>
                                 <div className="d-flex">
-                                    <div style={{backgroundImage:"url("+ sedanIcon +")"}} className="driverProfileCarFilledCardInformationCommonImg"></div>
+                                    <div style={{ backgroundImage: "url(" + sedanIcon + ")" }} className="driverProfileCarFilledCardInformationCommonImg"></div>
                                     <p>Седан</p>
                                 </div>
                             </div>
                             <div className="d-flex justify-content-between">
                                 <p>Тип топлива:</p>
-                                <p>Бинзин</p>                        
+                                <p>Бинзин</p>
                             </div>
-                            <div className="driverProfileCarFilledCardInformationComfort d-flex justify-content-between">
+                            <div className="driverProfileCarFilledCardInformationComfort d-flex align-items-center justify-content-between">
                                 <p>Удобства:</p>
-                                <div>
-                                    {this.state.comfort.map((elment,index)=>
-                                        <img src="" alt=""/>
-                                        )}
+                                <div className="driverProfileCarFilledCardInformationComfortImg d-flex align-items-center">
+                                    {this.state.comfort.map((element, index) =>
+                                        <img src={element.icon} width="18px" height="18px" title={element.title} alt="icon" />
+                                    )}
                                 </div>
                             </div>
                         </div>
                         <p className="driverProfileCarFilledCardInformationDeleteCar">Удалить автомобиль</p>
                     </div>
                 </div>
-                <div className="driverProfileCarAddNewCar d-flex">
-                    <div>
-                        <input type="file" />
+                <div className="driverProfileCarAddNewCar d-flex align-items-start col-12">
+                    <div className="driverProfileCarAddNewCarPhotoCar" >
+                        {$imagePreview}
+                        <label htmlFor="addCarFile" >+Добавить фото автомобиля</label>
+                        <input type="file" id="addCarFile" style={{ display: "none" }} onChange={this._handleImageChange}/>
                     </div>
                     <div className="d-flex flex-column">
                         <div className="d-flex">

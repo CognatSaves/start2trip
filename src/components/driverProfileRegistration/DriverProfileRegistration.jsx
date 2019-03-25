@@ -6,6 +6,7 @@ import DriverProfileNavigation from './DriverProfileNavigation'
 
 import DriverProfileCar from './DriverProfileCar'
 import DriverProfileBasicInformation from './DriverProfileBasicInformation'
+import DriverProfileFeedback from './DriverProfileFeedback'
 
 class DriverProfileRegistrationClass extends React.Component {
   constructor(props) {
@@ -24,8 +25,8 @@ class DriverProfileRegistrationClass extends React.Component {
           <div className="d-flex col-12 p-0">
             <div className="d-flex flex-column justify-content-start col-9">
               <DriverProfileNavigation />
-              <DriverProfileBasicInformation />
-              {/* <DriverProfileCar /> */}
+              {/* <DriverProfileBasicInformation /> */}
+              <DriverProfileCar />
               {/* <Route path="" component={} /> */}
             </div>
             <div className="col-3"></div>
