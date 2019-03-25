@@ -6,6 +6,12 @@ import jeepIcon from './img/jeep.svg'
 import microbusIcon from './img/microbus.svg'
 import minivanIcon from './img/minivan.svg'
 import sedanIcon from './img/sedan.svg'
+import no_smokingIcon from './img/no-smoking.svg'
+import seatIcon from './img/seat.svg'
+import snowflakeIcon from './img/snowflake.svg'
+import wifiIcon from './img/wifi.svg'
+
+
 
 class DriverProfileCarClass extends React.Component {
     constructor(props) {
@@ -17,6 +23,7 @@ class DriverProfileCarClass extends React.Component {
             dataNumber: [],
             dataYear: [],
             language: ["Грузинский", "Русский", "Корейский", "Хинди"],
+            comfort:[no_smokingIcon,seatIcon,snowflakeIcon,wifiIcon],
 
         }
         this.getMassNumbers.bind(this);
@@ -81,11 +88,15 @@ class DriverProfileCarClass extends React.Component {
                             </div>
                             <div className="d-flex justify-content-between">
                                 <p>Тип топлива:</p>
-                                <p>Бинзин</p>
+                                <p>Бинзин</p>                        
                             </div>
                             <div className="driverProfileCarFilledCardInformationComfort d-flex justify-content-between">
                                 <p>Удобства:</p>
-                                <div></div>
+                                <div>
+                                    {this.state.comfort.map((elment,index)=>
+                                        <img src="" alt=""/>
+                                        )}
+                                </div>
                             </div>
                         </div>
                         <p className="driverProfileCarFilledCardInformationDeleteCar">Удалить автомобиль</p>
