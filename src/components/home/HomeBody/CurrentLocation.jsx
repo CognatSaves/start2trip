@@ -13,8 +13,12 @@ export class CurrentLocation extends React.Component {
         lat: lat,
         lng: lng
       },
-      time: 0
+      time: 0,
+      travelMode: this.props.travelMode || this.props.google.maps.DirectionsTravelMode.DRIVING
     };
+    console.log("current location constructor");
+    console.log(this.props.travelMode);
+    console.log(this.state.travelMode);
   }
 
   componentWillUpdate(prevProps, prevState) {
@@ -72,7 +76,7 @@ export class CurrentLocation extends React.Component {
   }
   loadMap() {
     //console.log("loadMap");
-    function createRequestElement(cities, google) {
+    function createRequestElement(cities, google, travelMode) {
       let waypoints = [];
       for (let i = 1; i < cities.length - 1; i++) {
         waypoints[i - 1] = {
@@ -85,7 +89,7 @@ export class CurrentLocation extends React.Component {
         origin: cities[0], //точка старта
         destination: cities[cities.length - 1], //точка финиша
         waypoints: waypoints,
-        travelMode: google.maps.DirectionsTravelMode.DRIVING, //режим прокладки маршрута
+        travelMode: "WALKING" //travelMode, //режим прокладки маршрута
       };
       return request;
     }
@@ -97,6 +101,8 @@ export class CurrentLocation extends React.Component {
       const mapRef = this.refs.map;
       const node = ReactDOM.findDOMNode(mapRef);
       let { zoom } = this.props;
+      console.log("Load Map: zoom");
+      console.log(zoom);
       const { lat, lng } = this.state.currentLocation;
       const center = new maps.LatLng(lat, lng);
       const mapConfig = Object.assign(
@@ -108,7 +114,9 @@ export class CurrentLocation extends React.Component {
       );
 
       this.map = new maps.Map(node, mapConfig);
-      let request = createRequestElement(this.props.cities, google);
+      console.log("Load Map: map");
+      console.log(this.map.getZoom());
+      let request = createRequestElement(this.props.cities, google, this.state.travelMode);
 
       let service = new google.maps.DirectionsService();
       let directionsDisplay = new google.maps.DirectionsRenderer({
@@ -116,24 +124,13 @@ export class CurrentLocation extends React.Component {
 
       var theMap = this.map;
 
-      /*console.log("CurrentLocation props");
-      console.log(this.props);*/
-
-      //
       let tempTravelTime = 0;
       let tempTravelLength = 0;
       let obj = this;
       service.route(request, function (response, status) {
         if (status === google.maps.DirectionsStatus.OK) {
           directionsDisplay.setDirections(response);
-          /*
-          //this write some info on console about distance
 
-          console.log("Distance");
-          for(var i=0;i<response.routes[0].legs.length; i++){
-            console.log("Distance "+i+"="+response.routes[0].legs[i].distance.text);
-          }
-          */
           for (var i = 0; i < response.routes[0].legs.length; i++) {
             var STEPS = response.routes[0].legs[i].steps;
             var TempLeg = response.routes[0].legs[i];
@@ -142,17 +139,6 @@ export class CurrentLocation extends React.Component {
 
             tempTravelTime += TempLeg.duration.value;
             tempTravelLength += TempLeg.distance.value;
-
-            /*console.log("Time");
-            console.log(TempLeg.duration);
-            console.log("Time Total");
-            console.log(tempTravelTime);
-            console.log("Length");
-            console.log(TempLeg.distance);
-            console.log("Length Total");
-            console.log(tempTravelLength);*/
-
-
             var contentString2 =
               '<div class="infowindowClass">' +
               '<div class="infowindowClass_firstLine">' +
@@ -179,9 +165,8 @@ export class CurrentLocation extends React.Component {
         }
       });
 
-
       directionsDisplay.setMap(this.map);
-
+      
     }
 
   }

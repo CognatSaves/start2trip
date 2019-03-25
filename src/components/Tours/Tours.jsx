@@ -43,8 +43,6 @@ class ToursClass extends React.Component {
     this.props.dispatch(setMorePagesShow());
   }
   render() {
-    console.log("Tours render");
-    console.log(window);
     return (
       <React.Fragment>
         <div className="drivers_top_background col-12">
@@ -59,7 +57,6 @@ class ToursClass extends React.Component {
               <div className="left_body_part col-9">
                 <DriversProperties />
                 <ToursList />
-
               </div>
               <div className="right_body_part col-3">
                 <DriversCommercial />

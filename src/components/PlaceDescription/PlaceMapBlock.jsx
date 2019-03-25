@@ -32,10 +32,12 @@ export default class TourMapBlock extends React.Component{
             <CurrentLocation
                 centerAroundCurrentLocation
                 google={window.google}
-                cities={["Массилия"]}
+                cities={["Софийский собор"]}
                 setLengthTime={()=>{}}
                 mapUpdate={true}
                 mapStyles={mapStyles}
+                travelMode={"WALKING"}
+                //zoom = {20}
             >                
             </CurrentLocation>
                 

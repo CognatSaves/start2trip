@@ -1,9 +1,10 @@
-import { SET_TOURS_MORE_PAGES_SHOW, SET_TOURS_PAGE, CHANGE_PANEL_FIXED_CLASS} from './ActionTours';
+import { SET_TOUR_PANEL_SELECTED_ELEMENT, SET_TOURS_MORE_PAGES_SHOW, SET_TOURS_PAGE, CHANGE_PANEL_FIXED_CLASS} from './ActionTours';
 
 const initialState = {
     toursPage: 1,
     toursShowPages: 1,
     tourPanelFixedClass: "",
+    tourPanelSelectedElement: -1,
     tours: [
         {
             country: "Imperii Romani Orientalis",
@@ -465,6 +466,11 @@ export const ToursReduser = (state = initialState, action)=>{
         case CHANGE_PANEL_FIXED_CLASS: {
             let newState = {...state};
             newState.tourPanelFixedClass=action.tourPanelFixedClass;
+            return newState;
+        }
+        case SET_TOUR_PANEL_SELECTED_ELEMENT: {
+            let newState = {...state};
+            newState.tourPanelSelectedElement=action.tourPanelSelectedElement;
             return newState;
         }
         default: return state;

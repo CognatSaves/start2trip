@@ -13,6 +13,13 @@ export default class TourInfo extends React.Component {
             }
             return res;
         }
+        function departureDateString(value){
+            let dayMass = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
+            let monthMass = ["января", "февраля", "марта", "апреля", "мая",
+              "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
+            let resultString = dayMass[value.getDay()] + ", " + value.getDate() + " " + monthMass[value.getMonth()] + " " + value.getFullYear();
+            return resultString;
+        }
         console.log("TourInfo");
         let placesString = createLocationString(this.props.tour.places);
         return(
@@ -20,7 +27,7 @@ export default class TourInfo extends React.Component {
                 <div className="tourInfo_tourShow">{placesString}</div>
                 <div className="tourInfo_dateBlock d-flex flex-row">
                     <div style={{height: "100%"}}>{"Дата:"}</div>
-                    <div className="tourInfo_dateBlock_dateValue">{this.props.tour.departureDate.toDateString()}</div>
+                    <div className="tourInfo_dateBlock_dateValue">{departureDateString(this.props.tour.departureDate)}</div>
                 </div>
                 <div className="tourInfo_price">{"$"+this.props.tour.price}</div>
                 <button className="tourInfo_buttonStyle">ЗАКАЗАТЬ ТУР</button>

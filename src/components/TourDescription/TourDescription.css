@@ -134,3 +134,6 @@
 .tourPanel_element:hover{
     color: #ff6600;
 }
+.tourPanelSelected{
+    color: #ff6600;
+}

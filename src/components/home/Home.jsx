@@ -77,10 +77,10 @@ class Home extends React.Component {
             </div>
             <div className="d-flex flex-row align-items-center justify-content-start col-12"><h2 className="homeBottomTitle">ПОПУЛЯРНЫЕ МЕСТА</h2></div>
             <RenderFourEl tours={this.state.popularPlaces} priseDisplay={"none"} />
-            <div className="d-flex flex-row align-items-center justify-content-center col-12"><Link to="" className="homeBottomLink">ПЕРЕЙТИ К МЕСТАМ</Link></div>
+            <div className="d-flex flex-row align-items-center justify-content-center col-12"><Link to="/places" className="homeBottomLink">ПЕРЕЙТИ К МЕСТАМ</Link></div>
             <div className="d-flex flex-row align-items-center justify-content-start col-12"><h2 className="homeBottomTitle">ОРГАНИЗОВАННЫЕ ТУРЫ</h2></div>
             <RenderFourEl tours={this.state.popularPlaces} priseDisplay={"block"} />
-            <div className="d-flex flex-row align-items-center justify-content-center col-12"><Link to="" className="homeBottomLink">ПЕРЕЙТИ К ТУРАМ</Link></div>
+            <div className="d-flex flex-row align-items-center justify-content-center col-12"><Link to="/tours" className="homeBottomLink">ПЕРЕЙТИ К ТУРАМ</Link></div>
 
             <div className="homeSubscribe d-flex flex-column align-items-center justify-content-center col-12">
               <h2 className="mb-3">Новостная рассылка</h2>
