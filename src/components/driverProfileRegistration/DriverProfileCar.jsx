@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import './DriverProfileCar.css'
 import { connect } from 'react-redux';
-
-
-
+import imgCar from './img/images.jpeg'
+import jeepIcon from './img/jeep.svg'
+import microbusIcon from './img/microbus.svg'
+import minivanIcon from './img/minivan.svg'
+import sedanIcon from './img/sedan.svg'
 
 class DriverProfileCarClass extends React.Component {
     constructor(props) {
@@ -54,45 +56,52 @@ class DriverProfileCarClass extends React.Component {
 
         return (
             <div>
-                <div className="d-flex">
+                <div className="driverProfileCarFilledCard d-flex align-items-center col-12">
                     {/* TODO отрисовка автомобилей */}
-                    <div>
-                        <img src="" alt="" />
+                    <div className="driverProfileCarFilledCardImg">
+                        <img src={imgCar} alt="imgCar" />
                     </div>
-                    <div className="d-flex flex-column">
-                        <div className="d-flex">
-                            <div className="d-flex flex-column">
-                                <p>Toyota Prius,2008</p>
+                    <div className="driverProfileCarFilledCardInformation d-flex flex-column">
+                        <div className="d-flex justify-content-between">
+                            <div className="driverProfileCarFilledCardInformationNameCar d-flex flex-column ">
+                                <p>Toyota Prius, 2008</p>
                                 <p>WWW-888-WWW</p>
                             </div>
                             <div>
                                 <p>Редактировать</p>
                             </div>
                         </div>
-                        <div>
-                            <div className="d-flex">
+                        <div className="driverProfileCarFilledCardInformationCommon">
+                            <div className="d-flex justify-content-between align-content-center">
                                 <p>Тип автомобиля:</p>
-                                <p>Седан</p>
+                                <div className="d-flex">
+                                    <div style={{backgroundImage:"url("+ sedanIcon +")"}} className="driverProfileCarFilledCardInformationCommonImg"></div>
+                                    <p>Седан</p>
+                                </div>
                             </div>
-                            <div className="d-flex">
+                            <div className="d-flex justify-content-between">
                                 <p>Тип топлива:</p>
                                 <p>Бинзин</p>
                             </div>
-                            <div className="d-flex">
+                            <div className="driverProfileCarFilledCardInformationComfort d-flex justify-content-between">
                                 <p>Удобства:</p>
                                 <div></div>
                             </div>
                         </div>
-                        <p>Удалить автомобиль</p>
+                        <p className="driverProfileCarFilledCardInformationDeleteCar">Удалить автомобиль</p>
                     </div>
                 </div>
-                <div className="d-flex">
+                <div className="driverProfileCarAddNewCar d-flex">
                     <div>
                         <input type="file" />
                     </div>
                     <div className="d-flex flex-column">
                         <div className="d-flex">
                             <p>Марка автомобиля:</p>
+                            <input type="text" />
+                        </div>
+                        <div className="d-flex">
+                            <p>Год автомобиля:</p>
                             <input type="text" />
                         </div>
                         <div className="d-flex">

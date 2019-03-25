@@ -29,18 +29,45 @@
     font-family: "Roboto";
     font-weight: 500;
     font-size: 12px;
+    transition: all 0.3s;
 }
 
 .driverProfileBasicInformationBodyTopImgHover{
     cursor: pointer;
 }
 
-.driverProfileBasicInformationBodyTopImgHover:hover .driverProfileBasicInformationBodyTopImg{
-    display: flex;
+.driverProfileBasicInformationBodyTopImgHover:hover .driverProfileBasicInformationBodyTopImg {
+    display: flex ;
 }
-/* .driverProfileBasicInformationBodyTop{
 
-} */
+
+.driverProfileBasicInformationBodyTop{
+    min-height: 200px;
+}   
+
+.bodyTopDriverInfo{
+    border-bottom: 1px solid #ccc;
+    padding-left: 0px !important;
+    margin-left: 15px;
+}
+
+.bodyTopDriverInfoRide div{
+    min-width: 200px;
+}
+
+.bodyTopDriverInfoRide div p{
+    color: #304269;
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 14px; 
+    margin: 0;
+}
+
+.bodyTopDriverInfoRide div p:nth-child(3){
+    font-family: "Roboto";
+    font-weight: 500;
+    font-size: 31px;
+}
 
 .driverProfileBasicInformationBodyBottom {
     box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
