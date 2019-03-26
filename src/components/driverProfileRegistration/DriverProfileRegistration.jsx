@@ -7,6 +7,9 @@ import DriverProfileNavigation from './DriverProfileNavigation'
 import DriverProfileCar from './DriverProfileCar'
 import DriverProfileBasicInformation from './DriverProfileBasicInformation'
 import DriverProfileFeedback from './DriverProfileFeedback'
+import DriverProfileTripSettings from './DriverProfileTripSettings'
+
+
 
 class DriverProfileRegistrationClass extends React.Component {
   constructor(props) {
@@ -27,6 +30,7 @@ class DriverProfileRegistrationClass extends React.Component {
               <DriverProfileNavigation />
               {/* <DriverProfileBasicInformation /> */}
               <DriverProfileCar />
+              {/* <DriverProfileTripSettings /> */}
               {/* <Route path="" component={} /> */}
             </div>
             <div className="col-3"></div>

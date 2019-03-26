@@ -1,7 +1,7 @@
-/* Car Open*/
+/* Car Bigin*/
 
 .driverProfileCarFilledCard {
-    min-height: 250px;
+    min-height: 260px;
     box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     margin-bottom: 10px;
@@ -21,7 +21,7 @@
 
 .driverProfileCarFilledCardInformation p {
     font-family: "Roboto";
-    font-weight: 400;
+    font-weight: 500;
     font-size: 14px;
     color: #304269;
     margin-bottom: 10px;
@@ -83,18 +83,21 @@
     cursor: pointer;
 }
 
-/* Car Close*/
 
-/* Add new Car Open*/
+/* Car End*/
 
-.driverProfileCarAddNewCar{
+
+/* Add new Car Bigin*/
+
+.driverProfileCarAddNewCar {
     box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     min-height: 480px;
     margin-bottom: 150px;
+    padding-top: 30px;
 }
 
-.driverProfileCarAddNewCarPhotoCar{
+.driverProfileCarAddNewCarPhotoCar {
     position: relative;
     max-width: 305px;
     max-height: 200px;
@@ -106,13 +109,13 @@
     text-align: center;
 }
 
-.driverProfileCarAddNewCarPhotoCarImg{
+.driverProfileCarAddNewCarPhotoCarImg {
     max-width: 305px;
     max-height: 200px;
     background-size: contain;
 }
 
-.driverProfileCarAddNewCarPhotoCar label{
+.driverProfileCarAddNewCarPhotoCar label {
     position: absolute;
     z-index: 5;
     left: 50px;
@@ -124,5 +127,139 @@
     cursor: pointer;
 }
 
+.driverProfileCarAddNewCarInformation p {
+    font-family: "Roboto";
+    font-weight: 500;
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 0px;
+}
 
-/* Add new Car Close*/
+.driverProfileCarAddNewCarInformation input {
+    color: #333;
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding-left: 10px;
+    min-width: 350px;
+    min-height: 40px;
+}
+
+.driverProfileCarAddNewCarInformation select {
+    min-width: 350px;
+    min-height: 40px;
+    background: none;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #333;
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 14px;
+    margin-right: 5px;
+    padding-left: 10px;
+    cursor: pointer;
+    appearance: none;
+    background: url(./img/arrow-point-to-down.svg) no-repeat;
+    background-size: 8px 8px;
+    background-position: top 15px right 10px;
+}
+
+.driverProfileCarAddNewCarInformation select:hover,
+.driverProfileCarAddNewCarInformation select:focus,
+.driverProfileCarAddNewCarInformation input:hover,
+.driverProfileCarAddNewCarInformation input:focus {
+    border-color: #304269;
+    text-decoration: none;
+    outline: #304269;
+}
+
+.driverProfileCarAddNewCarInformation button {
+    max-width: 250px;
+    min-height: 40px;
+    text-align: center;
+    line-height: 40px;
+    color: #fff;
+    background: #304269;
+    border-radius: 5px;
+    border: none;
+    transition: all 0.3s;
+    margin-left: 165px;
+}
+
+.driverProfileCarAddNewCarInformation button:hover {
+    background: #f60;
+}
+
+.driverProfileCarAddNewCarInformation button:focus {
+    outline: none;
+}
+
+.driverProfileCarAddNewCarComfortCheckBox label {
+    /* background: #25ae88; */
+    position: relative;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: "Roboto";
+    color: #333;
+    padding-left: 28px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.driverProfileCarAddNewCarComfortCheckBox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.driverProfileCarAddNewCarComfortCheckBox span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    transition: all 0.3s;
+}
+
+.driverProfileCarAddNewCarComfortCheckBox label:hover span {
+    border-color: #25ae88;
+}
+
+.driverProfileCarAddNewCarComfortCheckBox input:checked~span {
+    background-color: #25ae88;
+}
+
+.driverProfileCarAddNewCarComfortCheckBox span:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.driverProfileCarAddNewCarComfortCheckBox label input:checked~span:after {
+    display: block;
+}
+
+.driverProfileCarAddNewCarComfortCheckBox label span:after {
+    left: 6px;
+    top: 3px;
+    width: 5px;
+    height: 8px;
+    border: solid #fff;
+    border-width: 0 1px 1px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+
+/* Add new Car End*/

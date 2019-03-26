@@ -33,7 +33,7 @@
     transition: 0.5s ease;
 }
 
-.driverProfileBasicInformationBodyTopImgHover{
+.driverProfileBasicInformationBodyTopImgHover {
     cursor: pointer;
 }
 
@@ -41,30 +41,29 @@
     opacity: 1;
 }
 
-
-.driverProfileBasicInformationBodyTop{
+.driverProfileBasicInformationBodyTop {
     min-height: 200px;
-}   
+}
 
-.bodyTopDriverInfo{
+.bodyTopDriverInfo {
     border-bottom: 1px solid #ccc;
     padding-left: 0px !important;
     margin-left: 15px;
 }
 
-.bodyTopDriverInfoRide div{
+.bodyTopDriverInfoRide div {
     min-width: 200px;
 }
 
-.bodyTopDriverInfoRide div p{
+.bodyTopDriverInfoRide div p {
     color: #304269;
     font-family: "Roboto";
     font-weight: 400;
-    font-size: 14px; 
+    font-size: 14px;
     margin: 0;
 }
 
-.bodyTopDriverInfoRide div p:nth-child(3){
+.bodyTopDriverInfoRide div p:nth-child(3) {
     font-family: "Roboto";
     font-weight: 500;
     font-size: 31px;

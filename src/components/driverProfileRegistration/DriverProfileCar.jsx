@@ -24,22 +24,24 @@ class DriverProfileCarClass extends React.Component {
             dataNumber: [],
             dataYear: [],
             language: ["Грузинский", "Русский", "Корейский", "Хинди"],
-            seat: { icon: seatIcon, title: "Машина оборудованна кожанными седеньями" },
-            snowflake: { icon: snowflakeIcon, title: "В машине есть кондиционер" },
-            wifi: { icon: wifiIcon, title: "Машина оборудована WiFi" },
-            no_smoking: { icon: no_smokingIcon, title: "Не курящий водитель" },
+            seat: { icon: seatIcon, title: "Кожаный салон" },
+            snowflake: { icon: snowflakeIcon, title: "Климот контроль" },
+            wifi: { icon: wifiIcon, title: "Бесплатный Wi-Fi" },
+            no_smoking: { icon: no_smokingIcon, title: "Курение в салоне запрещено" },
+            smoking: { icon: no_smokingIcon, title: "Курение в салоне разрешино" },
             comfort: [
-                { icon: seatIcon, title: "Машина оборудованна кожанными седеньями" },
-                { icon: snowflakeIcon, title: "В машине есть кондиционер" },
-                { icon: wifiIcon, title: "Машина оборудована WiFi" },
-                { icon: no_smokingIcon, title: "Не курящий водитель" },
+                { icon: seatIcon, title: "Кожаный салон" },
+                { icon: snowflakeIcon, title: "Климот контроль" },
+                { icon: wifiIcon, title: "Бесплатный Wi-Fi" },
+                { icon: no_smokingIcon, title: "Курение в салоне запрещено" },
+                { icon: no_smokingIcon, title: "Курение в салоне разрешино" },
             ],
             file: '',
             imagePreviewUrl: '',
         }
         this.getMassNumbers.bind(this);
         this.getMassYear.bind(this);
-        this.addNum.bind(this);
+        this.addNum = this.addNum.bind(this);
         this._handleImageChange = this._handleImageChange.bind(this);
         this._handleSubmit = this._handleSubmit.bind(this);
     }
@@ -94,7 +96,6 @@ class DriverProfileCarClass extends React.Component {
     }
 
     render() {
-        debugger;
         let { imagePreviewUrl } = this.state;
         let $imagePreview = null;
         if (imagePreviewUrl) {
@@ -146,45 +147,65 @@ class DriverProfileCarClass extends React.Component {
                     <div className="driverProfileCarAddNewCarPhotoCar" >
                         {$imagePreview}
                         <label htmlFor="addCarFile" >+Добавить фото автомобиля</label>
-                        <input type="file" id="addCarFile" style={{ display: "none" }} onChange={this._handleImageChange}/>
+                        <input type="file" id="addCarFile" style={{ display: "none" }} onChange={this._handleImageChange} />
                     </div>
-                    <div className="d-flex flex-column">
-                        <div className="d-flex">
-                            <p>Марка автомобиля:</p>
+                    <div className="driverProfileCarAddNewCarInformation d-flex flex-column col-7 p-0">
+                        <div className="d-flex align-items-center mb-3">
+                            <p className="col-4 p-0">Марка автомобиля:</p>
                             <input type="text" />
                         </div>
-                        <div className="d-flex">
-                            <p>Год автомобиля:</p>
+                        <div className="d-flex align-items-center mb-3">
+                            <p className="col-4 p-0">Год автомобиля:</p>
                             <input type="text" />
                         </div>
-                        <div className="d-flex">
-                            <p>Номер автомобиля:</p>
+                        <div className="d-flex align-items-center mb-3">
+                            <p className="col-4 p-0">Номер автомобиля:</p>
                             <input type="text" />
                         </div>
-                        <div className="d-flex">
-                            <p>Тип автомобиля:</p>
-                            <input type="text" />
+                        <div className="d-flex align-items-center mb-3">
+                            <p className="col-4 p-0">Тип автомобиля:</p>
+                            <select name="typeCar">
+                                <option value="sedan">Седан</option>
+                                <option value="microbus">Микроавтобус</option>
+                                <option value="minivan">Минивэн</option>
+                                <option value="jeep">Внедорожник</option>
+                            </select>
                         </div>
-                        <div className="d-flex">
-                            <p>Тип топлива:</p>
-                            <input type="text" />
+                        <div className="d-flex align-items-center mb-3">
+                            <p className="col-4 p-0">Тип топлива:</p>
+                            <select name="typeFuel">
+                                <option value="petrol">Бинзин</option>
+                                <option value="diesel">Дизель</option>
+                                <option value="gas">Газ</option>
+                                <option value="hybrid">Гибрид</option>
+                            </select>
                         </div>
-                        <div className="d-flex">
-                            <p>Удобства:</p>
-                            <div className="d-flex flex-column">
-                                <input type="radio" name="comfort" id="comfort1" />
-                                <label htmlFor="comfort1"></label>
-                                <input type="radio" name="comfort" id="comfort2" />
-                                <label htmlFor="comfort2"></label>
-                                <input type="radio" name="comfort" id="comfort3" />
-                                <label htmlFor="comfort3"></label>
-                                <input type="radio" name="comfort" id="comfort4" />
-                                <label htmlFor="comfort4"></label>
-                                <input type="radio" name="comfort" id="comfort5" />
-                                <label htmlFor="comfort5"></label>
+                        <div className="d-flex align-items-start mb-3">
+                            <p className="col-4 p-0">Удобства:</p>
+                            <div className="driverProfileCarAddNewCarComfortCheckBox d-flex flex-column pt-1">
+                                <label htmlFor="comfort1">Климат контроль
+                                <input type="checkbox" id="comfort1" />
+                                    <span />
+                                </label>
+                                <label htmlFor="comfort2">Кожаный салон
+                                <input type="checkbox" id="comfort2" />
+                                    <span />
+                                </label>
+                                <label htmlFor="comfort3">Бесплатный Wi-Fi
+                                <input type="checkbox" id="comfort3" />
+                                    <span />
+                                </label>
+                                <label htmlFor="comfort4">Курение в салоне запрещено
+                                <input type="checkbox" id="comfort4" />
+                                    <span />
+                                </label>
+                                <label htmlFor="comfort5">Курение в салоне разрешено
+                                <input type="checkbox" id="comfort5" />
+                                    <span />
+                                </label>
                             </div>
                         </div>
-                        <button>Добавить Автомобиль</button>
+                        <button className="mb-5">Добавить Автомобиль</button>
                     </div>
                 </div>
             </div>
