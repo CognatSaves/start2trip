@@ -1,0 +1,99 @@
+/* Content Bigin */
+
+.driverProfileTripSettingsContent {
+    padding: 30px 25px 20px 25px;
+    font-family: "Roboto";
+}
+
+.driverProfileTripSettingsContent div {
+    margin-bottom: 15px;
+}
+
+.driverProfileTripSettingsContent p {
+    font-weight: 500;
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 0px;
+}
+
+.driverProfileTripSettingsContent select {
+    font-weight: 400;
+    font-size: 14px;
+    color: #333;
+}
+
+div.driverProfileTripSettingsContentTitle {
+    margin-bottom: 30px;
+}
+
+.driverProfileTripSettingsContentTitle p {
+    font-weight: 400;
+    font-size: 14px;
+    color: #304269;
+}
+
+.driverProfileTripSettingsContent input {
+    color: #333;
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding-left: 10px;
+    min-width: 400px;
+    min-height: 40px;
+}
+
+.driverProfileTripSettingsContent select {
+    min-width: 130px;
+    min-height: 40px;
+    background: none;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #333;
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 14px;
+    margin-right: 5px;
+    padding-left: 10px;
+    cursor: pointer;
+    appearance: none;
+    background: url(./img/arrow-point-to-down.svg) no-repeat;
+    background-size: 8px 8px;
+    background-position: top 15px right 10px;
+}
+
+.driverProfileTripSettingsContent select:hover,
+.driverProfileTripSettingsContent select:focus,
+.driverProfileTripSettingsContent input:hover,
+.driverProfileTripSettingsContent input:focus {
+    border-color: #304269;
+    text-decoration: none;
+    outline: #304269;
+}
+
+.driverProfileTripSettingsContent button {
+    min-width: 250px;
+    min-height: 40px;
+    text-align: center;
+    line-height: 40px;
+    color: #fff;
+    font-weight: 500;
+    font-size: 16px;
+    background: #304269;
+    border-radius: 5px;
+    border: none;
+    transition: all 0.3s;
+    margin-left: 165px;
+}
+
+.driverProfileTripSettingsContent button:hover {
+    background: #f60;
+}
+
+.driverProfileTripSettingsContent button:focus {
+    outline: none;
+}
+
+
+/* Content End */

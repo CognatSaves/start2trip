@@ -22,7 +22,7 @@ class RenderModalRegistrationClass extends React.Component {
         this.state = {
             sitingInDarkBacgraundText: { titleSitingIn: "Войти в аккаунт", sitingInFirstText: "С возвращением!", sitingInSecondText: "Пожалуйста, введите свои данные.", buttonText: "ВОЙТИ" },
             sitingInLightBacgraundText: { titleSitingIn: "Войти в аккаунт", sitingInFirstText: "Через социальные сети", sitingInSecondText: "или используйте Ваш email для входа", firstInputPlaceholderText: "Имя", secondInputPlaceholderText: "Email", linkText: "Забыли пароль?", buttonText: "ВОЙТИ" },
-            registrationDarkBacgraundText: { registrationTitle: "Добро пожаловать!", registrationFirstText: "Введите свои персональные данные,", registrationSecondText: "и начинайте путешествие вместе с нами!", buttonText: "РЕГИСТРАЦИЯ" },
+            registrationDarkBacgraundText: { registrationTitle: "Добро пожаловать!", registrationFirstText: "Введите свои персональные данные", registrationSecondText: "и начинайте путешествие вместе с нами!", buttonText: "РЕГИСТРАЦИЯ" },
             registrationLightBacgraundText: { registrationTitle: "Создать аккаунт", registrationFirstText: "Через социальные сети", registrationSecondText: "или используйте Ваш email для регистрации", firstInputPlaceholderText: "Имя", secondInputPlaceholderText: "Email", thirdInputPlaceholderText: "Пароль", buttonText: "РЕГИСТРАЦИЯ" },
             sitingIn: true,
             sitingInLightAnimation: "",

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './DriverProfileBasicInformation.css'
 import { connect } from 'react-redux';
 import imgPerson from './img/drivers_body_photo.png'
+import Stars from '../stars/Stars'
 
 
 
@@ -55,28 +56,30 @@ class DriverProfileBasicInformationClass extends React.Component {
 
         return (
             <div className="driverProfileBasicInformationBody d-flex flex-column">
-                <div className="driverProfileBasicInformationBodyTop d-flex ">
-                    <div>
+                <div className="driverProfileBasicInformationBodyTop d-flex align-items-center">
+                    <div className="driverProfileBasicInformationBodyTopImgHover">
                     <label className="driverProfileBasicInformationBodyTopImg" htmlFor="addFile">Обновить фотографию</label>
-                        <img className="driverProfileBasicInformationBodyTopImgHover" src={imgPerson} alt="imgPerson" />
+                        <img  src={imgPerson} alt="imgPerson" />
                         {/* <label className="edditIcon" htmlFor="addFile"></label> */}
                         <input type="file" id="addFile" style={{display:"none"}}/>
                     </div>
-                    <div>
-                        <div>
-                            <p>Валерий</p>
-                            {/* TODO stars */}
+                    <div className="bodyTopDriverInfo col-7">
+                        <div className="d-flex align-items-center">
+                            <p className="mb-0">Валерий</p>
+                            <Stars value={"4.5"} commentNumber={"35 отзывов"} valueDisplay="block" commentNumberDisplay="block"/>
                         </div>
                         <div>
                             {/* TODO Location */}
                         </div>
-                        <div className="d-flex ">
+                        <div className="bodyTopDriverInfoRide d-flex">
                             <div className="d-flex flex-column">
-                                <p>Всего поездок</p>
+                                <p>Всего</p>
+                                <p>поездок</p>
                                 <p>18</p>
                             </div>
                             <div className="d-flex flex-column">
-                                <p>Предстоящие поездки</p>
+                                <p>Предстоящие</p>
+                                <p>поездки</p>
                                 <p>8</p>
                             </div>
                         </div>
