@@ -70,3 +70,116 @@
         font-size: 11pt
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.driversBlock_driverCard{
+    width: 280px;
+    margin: 0 auto 20px auto;
+    box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+}
+.driversBlock_driverCard:hover{
+    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.25);
+}
+.driversBlock_carImage{
+    width: 280px;
+    height: 210px;
+    background-color: red;
+    border-radius: 5px 5px 0 0;
+}
+.driverBlock_driverInfoBlock{
+    padding: 0 10px;
+ }
+.driversBlock_driverInfoBlock_element{
+    padding-top: 15px;
+    width: 100%;
+    font-size: 12px;
+    font-family: "Roboto";
+    color: #304269;
+}
+.driversBlock_carName{
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 16px;
+}
+.driverBlock_carInfoLine{
+    padding-top: 10px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #999999;
+}
+.driversBlock_commentary{
+    text-align: center;
+}
+.driversBlock_buttonStyle{
+    padding: 0;
+    height: 40px;
+    background: #304269;
+    color:#fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+}
+.driversBlock_buttonStyle:hover{
+    background-color: #ff6600;
+}
+.driversBlock_driverCard_carIcon{
+    width: 26px;
+    height: 18px;
+    margin-right: 5px;
+}
+.driversBlock_carInfoLine_value{
+    font-size: 14px;
+    line-height: 14px;
+    font-weight: 400;
+    padding-top: 4px;
+    color: #304269;
+}
+.driversBlock_driverCard_photo{
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+}
+.driversBlock_driverCard_driverInfo{
+    padding-left: 8px;
+    padding-top: 13px;
+}
+.driversBlock_driversInfo_name{
+    font-size: 16px;
+    line-height: 16px;
+    color: #304269;
+    font-weight: 500;
+}
+.driversBlock_driversInfo_name:hover{
+    color: #ff6600
+}
+.driversBlock_languages_text{
+    color: #304269;
+    margin-right: 5px;
+}
+.driversBlock_languages_flag{
+    margin-right: 5px;
+    width: 15px;
+    height: 15px;
+    border-radius: 7px;
+}
+.driversBlock_bookmark{
+    height: 32px;
+    width: 24px;
+    margin-left: auto;
+    margin-top: 15px;
+    margin-right: 15px;
+}

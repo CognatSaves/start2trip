@@ -15,7 +15,9 @@ import { Link } from 'react-router-dom';
 
 import Stars from '../../../stars/Stars';
 import {setPage, setMorePagesShow} from '../../../../redusers/ActionDrivers'
-
+import ToyotaPrado from './pictures/ToyotaPrado.jpg';
+import ruflag from '../DriversProperties/components/LanguageMenu/pictures/russia.svg'
+import bookmarkWhite from './pictures/bookmark_white.svg';
 
 class DriversBlockClass extends React.Component {
   constructor(props) {
@@ -75,8 +77,10 @@ class DriversBlockClass extends React.Component {
     srcArray[0]=selectedFilledLike;
     srcArray[1]=filledLike;
     return (
-      <div className="drivers_block d-flex flex-column">
-        {selectedElements.map((element, index) =>
+      <div className="drivers_block d-flex" style={{flexWrap: "wrap"}}>
+        {
+          /*
+          selectedElements.map((element, index) =>
           <div className="drivers_block_element d-flex">
             <div className="block_element_left d-flex">
               <div className="block_element_photo">
@@ -127,7 +131,42 @@ class DriversBlockClass extends React.Component {
               <img src={srcArray[index]} width="auto" height="100%" alt="emptyLike"></img>
             </div>
           </div>
-        )}
+        )
+        */
+        }
+        {
+          selectedElements.map((element,index)=>         
+          <div className="driversBlock_driverCard d-flex flex-column">
+            <div className="driversBlock_carImage" style={{background: "url("+ToyotaPrado+") no-repeat", backgroundSize: "cover"}}>
+              <div className="driversBlock_bookmark" style={{background: "url("+bookmarkWhite+") no-repeat", backgroundSize: "24px 32px"}}/>
+            </div>
+            <div className="driverBlock_driverInfoBlock d-flex flex-column">
+
+              <div className="driversBlock_driverInfoBlock_element driversBlock_carName">{element.carBrand}</div>
+              <div className="driverBlock_carInfoLine d-flex">
+                <div className="driversBlock_driverCard_carIcon" style={{background: "url("+jeep+") no-repeat", backgroundSize: "35px 24px", backgroundPosition: "-5px 0px"}}/>
+                <div className="driversBlock_carInfoLine_value">{element.carType+", "+element.carCapacity+" места"}</div>
+              </div>
+              <div className="driversBlock_driverInfoBlock_element d-flex">
+                <div className="driversBlock_driverCard_photo" style={{background: "url("+driverPhoto+") no-repeat", backgroundSize: "40px 40px"}}/>
+                <div className="d-flex flex-column driversBlock_driverCard_driverInfo">
+                  <div className="driversBlock_driversInfo_name">{element.name}</div>
+                  <Stars value={element.rating} commentNumber={element.comments+" отзывов"} valueDisplay="none" commentNumberDisplay="block"/>
+                </div>
+              </div>
+              <div className="driversBlock_driverInfoBlock_element d-flex">
+                <div className="driversBlock_languages_text">Языки:</div>
+                <div className="driversBlock_languages_flag" style={{background: "url("+ruflag+")", backgroundSize: "15px 15px"}}/>
+                <div className="driversBlock_languages_flag" style={{background: "url("+ruflag+")", backgroundSize: "15px 15px"}}/>
+                <div className="driversBlock_languages_flag" style={{background: "url("+ruflag+")", backgroundSize: "15px 15px"}}/>
+              </div>
+              
+            </div>
+            <div className="driversBlock_driverInfoBlock_element driversBlock_commentary">Стоимость окончательная. Топливо включено</div>
+            <button className="driversBlock_driverInfoBlock_element driversBlock_buttonStyle">ЗАБРОНИРОВАТЬ $188</button>
+          </div>               
+          )
+        }
         <Manipulator number = {driversArray.length} page = {this.props.driversState.page} setPage = {this.setPage} 
         elementsNumber={this.props.storeState.pagesMenuValue} showMorePages={this.showMorePages}/>
       </div>
