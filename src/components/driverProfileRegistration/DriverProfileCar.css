@@ -175,6 +175,11 @@
     outline: #304269;
 }
 
+.driverProfileCarAddNewCarShowButton {
+    margin-bottom: 30px;
+}
+
+.driverProfileCarAddNewCarShowButton,
 .driverProfileCarAddNewCarInformation button {
     max-width: 250px;
     min-height: 40px;
@@ -185,13 +190,14 @@
     border-radius: 5px;
     border: none;
     transition: all 0.3s;
-    margin-left: 165px;
 }
 
+.driverProfileCarAddNewCarShowButton:hover,
 .driverProfileCarAddNewCarInformation button:hover {
     background: #f60;
 }
 
+.driverProfileCarAddNewCarShowButton:focus,
 .driverProfileCarAddNewCarInformation button:focus {
     outline: none;
 }

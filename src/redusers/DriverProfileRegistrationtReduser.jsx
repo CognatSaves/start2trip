@@ -2,6 +2,7 @@ import {WHICH_PAGE_RENDER,} from './ActionDriverProfileRegistration';
 
 const initialState = {
     pageRender: "0",
+    carCards:[],
        
 };
 

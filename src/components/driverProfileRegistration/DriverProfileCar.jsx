@@ -30,16 +30,13 @@ class DriverProfileCarClass extends React.Component {
             wifi: { icon: wifiIcon, title: "Бесплатный Wi-Fi" },
             no_smoking: { icon: no_smokingIcon, title: "Курение в салоне запрещено" },
             smoking: { icon: no_smokingIcon, title: "Курение в салоне разрешино" },
-            comfort: [
-                { icon: seatIcon, title: "Кожаный салон" },
-                { icon: snowflakeIcon, title: "Климот контроль" },
-                { icon: wifiIcon, title: "Бесплатный Wi-Fi" },
-                { icon: no_smokingIcon, title: "Курение в салоне запрещено" },
-                { icon: no_smokingIcon, title: "Курение в салоне разрешино" },
-            ],
+            comfort: [],
+            carImg: [],
             file: '',
             imagePreviewUrl: '',
             collapse: false,
+            newCarCard: {nameCar: "", yearCar: "", plateNumberCar: "", typeCar: "", flueType: "" },
+
         }
         this.toggle = this.toggle.bind(this);
         this.getMassNumbers.bind(this);
@@ -50,7 +47,7 @@ class DriverProfileCarClass extends React.Component {
     }
 
     toggle() {
-        this.setState(state => ({ collapse: !state.collapse }));
+        this.setState(state => ({ collapse: !state.collapse , imagePreviewUrl: '', newCarCard:{nameCar: "", yearCar: "", plateNumberCar: "", typeCar: "", flueType: "" }, comfort: [], carImg: [], }));
     }
 
     getMassNumbers(num) {
@@ -95,8 +92,9 @@ class DriverProfileCarClass extends React.Component {
         reader.onloadend = () => {
             this.setState({
                 file: file,
-                imagePreviewUrl: reader.result
+                imagePreviewUrl: reader.result,
             });
+            this.setState(state => { const carImg = state.carImg.push(reader.result); return carImg });
         }
 
         reader.readAsDataURL(file)
@@ -111,7 +109,9 @@ class DriverProfileCarClass extends React.Component {
 
         return (
             <div>
-                <button onClick={this.toggle}>Open</button>
+                <div style={{ opacity: this.state.collapse ? "0" : "1" }} className="col-12 d-flex justify-content-center">
+                    <button className="driverProfileCarAddNewCarShowButton" onClick={this.toggle}>Добавить Автомобиль</button>
+                </div>
                 <Collapse isOpen={this.state.collapse}>
                     <div className="driverProfileCarAddNewCar d-flex align-items-start col-12">
                         <div className="driverProfileCarAddNewCarPhotoCar" >
@@ -122,19 +122,35 @@ class DriverProfileCarClass extends React.Component {
                         <div className="driverProfileCarAddNewCarInformation d-flex flex-column col-7 p-0">
                             <div className="d-flex align-items-center mb-3">
                                 <p className="col-4 p-0">Марка автомобиля:</p>
-                                <input type="text" />
+                                <input value={this.state.newCarCard.nameCar} onChange={(e) => {
+                                    this.setState({
+                                        newCarCard: { ...this.state.newCarCard, nameCar: e.currentTarget.value }
+                                    })
+                                }} type="text" />
                             </div>
                             <div className="d-flex align-items-center mb-3">
                                 <p className="col-4 p-0">Год автомобиля:</p>
-                                <input type="text" />
+                                <input value={this.state.newCarCard.yearCar} onChange={(e) => {
+                                    this.setState({
+                                        newCarCard: { ...this.state.newCarCard, yearCar: e.currentTarget.value }
+                                    })
+                                }} type="text" />
                             </div>
                             <div className="d-flex align-items-center mb-3">
                                 <p className="col-4 p-0">Номер автомобиля:</p>
-                                <input type="text" />
+                                <input value={this.state.newCarCard.plateNumberCar} onChange={(e) => {
+                                    this.setState({
+                                        newCarCard: { ...this.state.newCarCard, plateNumberCar: e.currentTarget.value }
+                                    })
+                                }} type="text" />
                             </div>
                             <div className="d-flex align-items-center mb-3">
                                 <p className="col-4 p-0">Тип автомобиля:</p>
-                                <select name="typeCar">
+                                <select  value={this.state.newCarCard.typeCar} onChange={(e) => {
+                                    this.setState({
+                                        newCarCard: { ...this.state.newCarCard, typeCar: e.currentTarget.value }
+                                    })
+                                }} name="typeCar">
                                     <option value="sedan">Седан</option>
                                     <option value="microbus">Микроавтобус</option>
                                     <option value="minivan">Минивэн</option>
@@ -143,8 +159,12 @@ class DriverProfileCarClass extends React.Component {
                             </div>
                             <div className="d-flex align-items-center mb-3">
                                 <p className="col-4 p-0">Тип топлива:</p>
-                                <select name="typeFuel">
-                                    <option value="petrol">Бинзин</option>
+                                <select value={this.state.newCarCard.flueType} onChange={(e) => {
+                                    this.setState({
+                                        newCarCard: { ...this.state.newCarCard, flueType: e.currentTarget.value }
+                                    }); console.log(this.state.carImg)
+                                }} name="typeFuel">
+                                    <option value="petrol">Бензин</option>
                                     <option value="diesel">Дизель</option>
                                     <option value="gas">Газ</option>
                                     <option value="hybrid">Гибрид</option>
@@ -154,31 +174,56 @@ class DriverProfileCarClass extends React.Component {
                                 <p className="col-4 p-0">Удобства:</p>
                                 <div className="driverProfileCarAddNewCarComfortCheckBox d-flex flex-column pt-1">
                                     <label htmlFor="comfort1">Климат контроль
-                                <input type="checkbox" id="comfort1" />
+                                <input onClick={(e) => {
+                                            e.currentTarget.checked
+                                                ? this.setState(state => { const comfort = state.comfort.push(this.state.snowflake); return comfort })
+                                                : this.setState(state => { const comfort = state.comfort.splice(state.comfort.indexOf(this.state.snowflake), 1); return comfort })
+                                        }} type="checkbox" id="comfort1" />
                                         <span />
                                     </label>
                                     <label htmlFor="comfort2">Кожаный салон
-                                <input type="checkbox" id="comfort2" />
+                                <input onClick={(e) => {
+                                            e.currentTarget.checked
+                                                ? this.setState(state => { const comfort = state.comfort.push(this.state.seat); return comfort })
+                                                : this.setState(state => { const comfort = state.comfort.splice(state.comfort.indexOf(this.state.seat), 1); return comfort })
+                                        }} type="checkbox" id="comfort2" />
                                         <span />
                                     </label>
                                     <label htmlFor="comfort3">Бесплатный Wi-Fi
-                                <input type="checkbox" id="comfort3" />
+                                <input onClick={(e) => {
+                                            e.currentTarget.checked
+                                                ? this.setState(state => { const comfort = state.comfort.push(this.state.wifi); return comfort })
+                                                : this.setState(state => { const comfort = state.comfort.splice(state.comfort.indexOf(this.state.wifi), 1); return comfort })
+                                        }} type="checkbox" id="comfort3" />
                                         <span />
                                     </label>
                                     <label htmlFor="comfort4">Курение в салоне запрещено
-                                <input type="checkbox" id="comfort4" />
+                                <input onClick={(e) => {
+                                            e.currentTarget.checked
+                                                ? this.setState(state => { const comfort = state.comfort.push(this.state.no_smoking); return comfort })
+                                                : this.setState(state => { const comfort = state.comfort.splice(state.comfort.indexOf(this.state.no_smoking), 1); return comfort })
+                                        }} type="checkbox" id="comfort4" />
                                         <span />
                                     </label>
                                     <label htmlFor="comfort5">Курение в салоне разрешено
-                                <input type="checkbox" id="comfort5" />
+                                <input onClick={(e) => {
+                                            e.currentTarget.checked
+                                                ? this.setState(state => { const comfort = state.comfort.push(this.state.smoking); return comfort })
+                                                : this.setState(state => { const comfort = state.comfort.splice(state.comfort.indexOf(this.state.smoking), 1); return comfort })
+                                        }} type="checkbox" id="comfort5" />
                                         <span />
                                     </label>
                                 </div>
                             </div>
-                            <button className="mb-5">Добавить Автомобиль</button>
+                            <div className="d-flex align-items-center justify-content-end mb-5">
+                                <button className="mr-5" >Добавить Автомобиль</button>
+                                <button className="ml-4 mr-1" onClick={this.toggle}>Отмена</button>
+                            </div>
                         </div>
                     </div>
                 </Collapse>
+
+                {}
                 <div className="driverProfileCarFilledCard d-flex align-items-center col-12">
                     {/* TODO отрисовка автомобилей */}
                     <div className="driverProfileCarFilledCardImg">
@@ -204,7 +249,7 @@ class DriverProfileCarClass extends React.Component {
                             </div>
                             <div className="d-flex justify-content-between">
                                 <p>Тип топлива:</p>
-                                <p>Бинзин</p>
+                                <p>Бензин</p>
                             </div>
                             <div className="driverProfileCarFilledCardInformationComfort d-flex align-items-center justify-content-between">
                                 <p>Удобства:</p>
