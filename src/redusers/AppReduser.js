@@ -36,8 +36,8 @@ const initialState = {
     },
 
   ],
-  pagesMenuVariants: [10, 20, 40],
-  pagesMenuValue: 10,
+  pagesMenuVariants: [12, 24, 48],
+  pagesMenuValue: 12,
   pagesMenu: false,
   sortMenuValue: "Популярность",
   sortMenuVariants: ["Популярность", "Рейтинг", "Цена"],

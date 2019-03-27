@@ -22,7 +22,6 @@ export default class TourMapBlock extends React.Component{
           borderRadius: '0 5px 5px 0',
         }
       };
-    //let {tour} = props;
     return (
     <div className="placeDescription_block d-flex flex-column" id="placeDescriptionId4">
         <div className="placeDescription_fragmentName">Карта</div>
@@ -36,8 +35,7 @@ export default class TourMapBlock extends React.Component{
                 setLengthTime={()=>{}}
                 mapUpdate={true}
                 mapStyles={mapStyles}
-                travelMode={"WALKING"}
-                //zoom = {20}
+                travelMode={"WALKING"}/*оно меня не воспринимает :*( */
             >                
             </CurrentLocation>
                 

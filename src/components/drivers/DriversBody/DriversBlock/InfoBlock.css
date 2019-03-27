@@ -24,3 +24,6 @@
 .block_element_infoBlock_element div:last-child {
     width: 60%;
 }
+.infoString_driverInfoSize {
+    width: 80px;
+}

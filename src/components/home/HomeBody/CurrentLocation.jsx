@@ -89,7 +89,7 @@ export class CurrentLocation extends React.Component {
         origin: cities[0], //точка старта
         destination: cities[cities.length - 1], //точка финиша
         waypoints: waypoints,
-        travelMode: "WALKING" //travelMode, //режим прокладки маршрута
+        travelMode: travelMode, //режим прокладки маршрута
       };
       return request;
     }

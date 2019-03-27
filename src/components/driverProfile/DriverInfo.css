@@ -3,22 +3,26 @@
     padding: 0; 
     margin-top: 35px;
 }
-
+/*
 .driverInfo_element_left {
     flex-direction: column;
-    margin-top: 30px;
-    margin-bottom: auto;
+    
 }
 .driverInfo_element_right {
     flex-direction: column;
     margin-top: 15px;
     margin-bottom: auto;
+}*/
+.driverInfo_element{
+    margin-top: 25px;   
+    margin-bottom: 15px;
+    height: 325px;
 }
 .driverInfo_left_line {
     display: flex;
     flex-direction: row;
     width: 100%;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 
@@ -54,7 +58,9 @@
 /* .element_right_line:nth-child(1){
     margin: 0;
 } */
-
+.driverInfo_data  div:last-child {
+    width: 65%;
+}
 .driverInfo_iconLine {
     margin-left: 75px;
     line-height: 0px;
@@ -120,4 +126,13 @@
     left: 0;
     right: 0;
     width: 100%;
+}
+
+
+.driverInfo_bookmarkElement{
+    margin-left: auto;
+    background-size: 20px 25px;
+    background: url('../drivers//DriversBody/DriversBlock/pictures/bookmark_contour.svg');
+    width: 20px;
+    height: 25px;
 }
