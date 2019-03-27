@@ -8,13 +8,25 @@ import sedan from './pictures/sedan.svg';
 import lukas from './pictures/like_blue.svg';
 import Stars from '../stars/Stars';
 import { connect } from 'react-redux';
+import ToyotaPrado from '../drivers/DriversBody/DriversBlock/pictures/ToyotaPrado.jpg';
+import ToyotaPrado2 from '../drivers/DriversBody/DriversBlock/pictures/ToyotaPrado2.jpg';
+import ToyotaPrado3 from '../drivers/DriversBody/DriversBlock/pictures/ToyotaPrado3.jpg';
+import ToyotaPrado4 from '../drivers/DriversBody/DriversBlock/pictures/ToyotaPrado4.jpg';
+import ToyotaPrado5 from '../drivers/DriversBody/DriversBlock/pictures/ToyotaPrado5.jpg';
+import ToyotaPrado6 from '../drivers/DriversBody/DriversBlock/pictures/ToyotaPrado6.jpg';
 
+import Carousel from './Carousel';
 
 class DriverInfoClass extends React.Component{
-    shouldComponentUpdate(nextProps){ 
-        return !(JSON.stringify(this.props)===JSON.stringify(nextProps));
-    }
+    constructor(props){
+        super(props);
+        this.state = {
+            photoArray: [ToyotaPrado, ToyotaPrado6, ToyotaPrado2, ToyotaPrado, ToyotaPrado6, ToyotaPrado2, ToyotaPrado3, ToyotaPrado4, ToyotaPrado5, ToyotaPrado6, ToyotaPrado],
+            
+        }     
+    }   
     render(){
+        console.log("DriverInfo render");
         const { element, changeCar, carImageNumber, carImages } = this.props;
 
         let arrowLeft = "<";
@@ -35,8 +47,8 @@ class DriverInfoClass extends React.Component{
                         <img src={driverPhoto} width="auto" height="auto" alt={"photo" + element} />
                     </div>
                     <div className="block_element_infoBlock">
-                        <div className="block_element_infoBlock_top">
-                            <div className="block_element_infoBlock_name">{element.name}</div>
+                        <div style={{paddingBottom: "15px"}}>
+                            <div className="block_element_infoBlock_name" style={{lineHeight: "18px", paddingBottom: "10px"}}>{element.name}</div>
                             <Stars value={element.rating} commentNumber={element.comments + " отзывов"} valueDisplay="block" commentNumberDisplay="block" />
                         </div>
                         <div className="block_element_infoBlock_bot">
@@ -65,7 +77,7 @@ class DriverInfoClass extends React.Component{
                     </div>
                 </div>
             </div>
-            <div className="block_element_right driverInfo_element d-flex flex-column col-6">
+            <div className="driverInfo_element d-flex flex-column col-6" style={{paddingLeft: "20px"}}>
             {
                 /*
                 <div className="d-flex flex-row">
@@ -108,11 +120,13 @@ class DriverInfoClass extends React.Component{
 
                 */
             }
-                <div className="d-flex">
-                    <div style={{marginRight: "auto"}}>Toyota land Cruiser Prado</div>
-                    <div style={{marginLeft: "auto"}}>Внедорожник, 4 места</div>
+                <div className="d-flex" style={{paddingBottom: "10px"}}>
+                    <div className="block_element_infoBlock_name" style={{marginRight: "auto", lineHeight: "18px", height: "18px"}}>Toyota Land Cruiser Prado</div>
+                    <div style={{marginLeft: "auto", lineHeight: "18px", height: "18px"}}>Внедорожник, 4 места</div>
                 </div>
-                <div style={{width: "480px", height: "300px", backgroundColor: "red"}}/>
+                <Carousel photoArray={this.state.photoArray} width={460} height={294}
+                            widthCarouselEl={102} heightCarouselEl={64} type={"vertical"}
+                            />
                 
                 
             </div>
