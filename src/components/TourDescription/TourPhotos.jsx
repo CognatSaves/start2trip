@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Carousel from '../driverProfile/Carousel';
 
 
 const PhotoSelect = (props) => {
@@ -18,7 +18,7 @@ export default class TourPhotos extends React.Component{
         return !(JSON.stringify(this.props)===JSON.stringify(nextProps));
     }
     render(){
-        console.log("Photos render");
+        /*console.log("Photos render");
         //let {photoArray, selectPhoto,selectedPhotoIndex, width, height, photoSlice} = props; 
         
         let transformValue=-1*this.props.photoSlice*this.props.width;
@@ -42,8 +42,9 @@ export default class TourPhotos extends React.Component{
                     </div>
                 </div>           
             </div>
+        )*/
+        return(
+
         )
-
-
     }
 }

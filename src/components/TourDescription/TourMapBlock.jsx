@@ -8,12 +8,9 @@ export default class TourMapBlock extends React.Component{
         super(props);
     }
     shouldComponentUpdate(nextProps){
-        console.log("TMB");
-
         return !(JSON.stringify(this.props)===JSON.stringify(nextProps));
     }
     render(){
-        console.log("MapBlock render");
     const mapStyles = {
         map: {
           position: 'absolute',
@@ -29,7 +26,6 @@ export default class TourMapBlock extends React.Component{
         let resultString = dayMass[value.getDay()] + ", " + value.getDate() + " " + monthMass[value.getMonth()] + " " + value.getFullYear();
         return resultString;
     }
-    //let {tour} = props;
     return (
     <div className="placeDescription_block d-flex flex-column" id="tourDescriptionId3">
         <div className="placeDescription_fragmentName">Карта тура</div>

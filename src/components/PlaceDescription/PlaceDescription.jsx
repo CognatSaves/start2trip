@@ -105,8 +105,8 @@ class PlaceDescriptionClass extends React.Component {
         let heightAll = 500;
         let n = 7;
 
-        let width = widthAll / n;
-        let height = heightAll / n;
+        /*let width = widthAll / n;
+        let height = heightAll / n;*/
 
         let topBlockId = "placeDescriptionId";
         return (
@@ -127,9 +127,8 @@ class PlaceDescriptionClass extends React.Component {
                                 setPanelStateFunc={changePlacesFixedClass} panelFixedClass={this.props.placesState.placePanelFixedClass}
                                 panelSelectedElement={this.props.placesState.placePanelSelectedElement} setPanelSelectedElement={setPlacesPanelSelectedElement}/>
                                 <PlaceProgramm place={place}/>                             
-                                <PlacePhotos photoSlice={this.state.photoSlice} photoArray={this.state.photoArray}
-                                    selectPhoto={this.selectPhoto} selectedPhotoIndex={this.state.selectedPhotoIndex}
-                                    width={width} height={height} />
+                                <PlacePhotos photoArray={this.state.photoArray}
+                                    width={widthAll} height={heightAll} number={n}/>
                                 <PlaceTravelBlock place={place} />
                                 <PlaceMapBlock />
                                 <PlaceIntrestingBlock tours={this.state.popularPlaces} />

@@ -15,7 +15,9 @@ import { connect } from 'react-redux';
 import georgiaImg from '../home/HomeBody/pictures/georgia.png';
 
 import TourProgram from './TourProgram.jsx';
-import TourPhotos from './TourPhotos.jsx';
+//import TourPhotos from './TourPhotos.jsx';
+import PlacePhotos from '../PlaceDescription/PlacePhotos';
+
 import TourMapBlock from './TourMapBlock.jsx';
 import SimularToursBlock from './SimularToursBlock.jsx';
 import CommentBlock from './CommentBlock.jsx';
@@ -30,13 +32,6 @@ class TourDescriptionClass extends React.Component {
         let tourId = this.props.match.params.id;
         let tour = this.props.toursState.tours[countryId].tours[tourId];
 
-        let widthAll = 870;
-        let heightAll = 500;
-        let n = 7;
-
-        let width = widthAll/n;
-        let height = heightAll/n;
-
         this.state = {
             userName: "Заинтересованный посетитель",
             page: 1,
@@ -44,8 +39,9 @@ class TourDescriptionClass extends React.Component {
             photoSlice: 0,
             selectedPhotoIndex: 0,
             tour: tour,
-            width: width,
-            height: height,
+            width: 870,
+            height: 500,
+            n: 7,
             photoArray: [carthage, antioch, roma,alexandria, konstantinople,carthage,
             antioch, roma,alexandria, konstantinople,carthage, antioch, roma,
             alexandria, konstantinople,carthage, antioch, roma,alexandria,
@@ -109,8 +105,7 @@ class TourDescriptionClass extends React.Component {
         })       
     }
     render() {
-        console.log("TourDescription render");
-        //console.log(window.onscroll);
+
 
         
         let comments = [...this.props.commentState.comments].reverse();
@@ -135,9 +130,8 @@ class TourDescriptionClass extends React.Component {
                             setPanelStateFunc={changePanelFixedClass} panelFixedClass={this.props.toursState.tourPanelFixedClass}
                             panelSelectedElement={this.props.toursState.tourPanelSelectedElement} setPanelSelectedElement={setTourPanelSelectedElement}/>
                             <TourProgram tour={this.state.tour}/>
-                            <TourPhotos photoSlice={this.state.photoSlice} photoArray={this.state.photoArray} 
-                            selectPhoto={this.selectPhoto} selectedPhotoIndex={this.state.selectedPhotoIndex} 
-                            width={this.state.width} height={this.state.height}/>
+                            <PlacePhotos photoArray={this.state.photoArray} width={this.state.width}
+                             height={this.state.height} number={this.state.n}/>
                             <TourMapBlock tour={this.state.tour} cities={["Стамбул", "Антакья", "Александрия", "Картадж", "Рим"]}/>
                             <SimularToursBlock tours={this.state.popularPlaces}/>
                             <CommentBlock comments={comments} userName={this.state.userName} page={this.state.page}
