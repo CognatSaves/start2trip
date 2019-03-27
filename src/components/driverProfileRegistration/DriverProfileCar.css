@@ -179,6 +179,14 @@
     margin-bottom: 30px;
 }
 
+.driverProfileCarAddNewCarButton p {
+    cursor: pointer;
+}
+
+.driverProfileCarAddNewCarButton p:hover {
+    color: #f60;
+}
+
 .driverProfileCarAddNewCarShowButton,
 .driverProfileCarAddNewCarInformation button {
     max-width: 250px;
@@ -190,6 +198,7 @@
     border-radius: 5px;
     border: none;
     transition: all 0.3s;
+    margin-left: 90px;
 }
 
 .driverProfileCarAddNewCarShowButton:hover,

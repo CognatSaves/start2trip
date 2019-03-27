@@ -29,7 +29,7 @@ class DriverProfileCarClass extends React.Component {
             snowflake: { icon: snowflakeIcon, title: "Климот контроль" },
             wifi: { icon: wifiIcon, title: "Бесплатный Wi-Fi" },
             no_smoking: { icon: no_smokingIcon, title: "Курение в салоне запрещено" },
-            smoking: { icon: no_smokingIcon, title: "Курение в салоне разрешино" },
+            smoking: { icon: no_smokingIcon, title: "Курение в салоне разрешено" },
             comfort: [],
             carImg: [],
             file: '',
@@ -215,9 +215,9 @@ class DriverProfileCarClass extends React.Component {
                                     </label>
                                 </div>
                             </div>
-                            <div className="d-flex align-items-center justify-content-end mb-5">
-                                <button className="mr-5" >Добавить Автомобиль</button>
-                                <button className="ml-4 mr-1" onClick={this.toggle}>Отмена</button>
+                            <div className="driverProfileCarAddNewCarButton d-flex align-items-end justify-content-center mb-5">
+                                <button>Добавить Автомобиль</button>
+                                <p className="ml-3" onClick={this.toggle}>Отмена</p>
                             </div>
                         </div>
                     </div>

@@ -65,7 +65,7 @@ class DriverProfileBasicInformationClass extends React.Component {
                     </div>
                     <div className="bodyTopDriverInfo col-7">
                         <div className="d-flex align-items-center">
-                            <p className="mb-0">Валерий</p>
+                            <p className="mb-0 mr-2">Валерий</p>
                             <Stars value={"4.5"} commentNumber={"35 отзывов"} valueDisplay="block" commentNumberDisplay="block"/>
                         </div>
                         <div>
