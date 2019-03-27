@@ -7,7 +7,10 @@ import driverPhoto from './pictures/drivers_body_photo.png';
 import sedan from './pictures/sedan.svg';
 import lukas from './pictures/like_blue.svg';
 import Stars from '../stars/Stars';
-export default class DriverInfo extends React.Component{
+import { connect } from 'react-redux';
+
+
+class DriverInfoClass extends React.Component{
     shouldComponentUpdate(nextProps){ 
         return !(JSON.stringify(this.props)===JSON.stringify(nextProps));
     }
@@ -26,7 +29,7 @@ export default class DriverInfo extends React.Component{
         let carComfortImages = [snowflake, seat, wifi, noSmoking];
         return(
         <div className="drivers_block_element driverInfo_background d-flex flex-row">
-            <div className="block_element_left driverInfo_element_left col-7">
+            <div className="block_element_left driverInfo_element d-flex flex-column col-6">
                 <div className="driverInfo_left_line">
                     <div className="block_element_photo">
                         <img src={driverPhoto} width="auto" height="auto" alt={"photo" + element} />
@@ -37,21 +40,24 @@ export default class DriverInfo extends React.Component{
                             <Stars value={element.rating} commentNumber={element.comments + " отзывов"} valueDisplay="block" commentNumberDisplay="block" />
                         </div>
                         <div className="block_element_infoBlock_bot">
-                            <div className="block_element_infoBlock_element d-flex flex-row">
-                                <div className="infoString">Возраст:</div>
-                                <div className="visibleString">{element.age}</div>
+                            <div className="d-flex flex-row">
+                                <div className="infoString infoString_driverInfoSize">Языки:</div>
+                                <div className="d-flex">
+                                {
+                                    element.language.map((langElement,index)=>
+                                    <div className="driversBlock_languages_flag" style={{background: "url("+this.props.storeState.languages[langElement].icon+") no-repeat", backgroundSize: "15px 15px", margin: "auto 5px auto 0"}}/>              
+                                    )
+                                }
+                                </div>
                             </div>
-                            <div className="block_element_infoBlock_element  d-flex flex-row">
-                                <div className="infoString">Языки:</div>
-                                <div className="visibleString">{element.language}</div>
-                            </div>
-                            <div className="block_element_infoBlock_element  d-flex flex-row">
-                                <div className="infoString">За рулём:</div>
+                            <div className="d-flex flex-row">
+                                <div className="infoString infoString_driverInfoSize">За рулём:</div>
                                 <div className="visibleString">{element.drivingAge + " лет"}</div>
                             </div>
                         </div>
 
                     </div>
+                    <div className="driverInfo_bookmarkElement"></div>
                 </div>
                 <div className="driverInfo_left_line">
                     <div className="valueBlock_commentary">
@@ -59,7 +65,9 @@ export default class DriverInfo extends React.Component{
                     </div>
                 </div>
             </div>
-            <div className="block_element_right driverInfo_element_right col-5">
+            <div className="block_element_right driverInfo_element d-flex flex-column col-6">
+            {
+                /*
                 <div className="d-flex flex-row">
                     <div className="driverInfo_carImage" style={{ background: "url(" + sedan + ") no-repeat", backgroundSize: "60px 55px" }} />
                     <div className="tripBlock_carData driverInfo_carData d-flex flex-row">
@@ -91,12 +99,34 @@ export default class DriverInfo extends React.Component{
                         </button>
                     </div>
                 </div>
+                */
+
+                /*
+                <div className="myHeart">
+                    <img src={lukas} width="auto" height="100%" alt="emptyLike"></img>
+                </div>
+
+                */
+            }
+                <div className="d-flex">
+                    <div style={{marginRight: "auto"}}>Toyota land Cruiser Prado</div>
+                    <div style={{marginLeft: "auto"}}>Внедорожник, 4 места</div>
+                </div>
+                <div style={{width: "480px", height: "300px", backgroundColor: "red"}}/>
+                
+                
             </div>
-            <div className="myHeart">
-                <img src={lukas} width="auto" height="100%" alt="emptyLike"></img>
-            </div>
+            
         </div>
 
         )
     }
 }
+const DriverInfo = connect(
+    (state) => ({
+      storeState: state.AppReduser,
+      driversState: state.DriversReduser
+    }),
+  )(DriverInfoClass);
+  
+  export default DriverInfo;

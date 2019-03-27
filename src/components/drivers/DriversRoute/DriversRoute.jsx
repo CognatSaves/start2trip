@@ -4,7 +4,9 @@ import './DriversChangeRoute.css'
 import { connect } from 'react-redux'
 import pointIcon from './pictures/location.svg';
 import changeElement from './pictures/drivers_edit_route.png';
-import SearchInput from './SearchInput.jsx';
+
+import SearchInput from '../../home/HomeBody/Search';
+//import SearchInput from './SearchInput.jsx';
 import closeIcon from './pictures/close.svg';
 import addIcon from './pictures/add.svg';
 import calendarIcon from './pictures/calendar.svg';
