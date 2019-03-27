@@ -11,6 +11,7 @@ import seatIcon from './img/seat.svg'
 import snowflakeIcon from './img/snowflake.svg'
 import wifiIcon from './img/wifi.svg'
 import editBlueIcon from './img/editBlue.svg'
+import { Collapse } from 'reactstrap';
 
 
 
@@ -38,12 +39,18 @@ class DriverProfileCarClass extends React.Component {
             ],
             file: '',
             imagePreviewUrl: '',
+            collapse: false,
         }
+        this.toggle = this.toggle.bind(this);
         this.getMassNumbers.bind(this);
         this.getMassYear.bind(this);
         this.addNum = this.addNum.bind(this);
         this._handleImageChange = this._handleImageChange.bind(this);
         this._handleSubmit = this._handleSubmit.bind(this);
+    }
+
+    toggle() {
+        this.setState(state => ({ collapse: !state.collapse }));
     }
 
     getMassNumbers(num) {
@@ -104,71 +111,74 @@ class DriverProfileCarClass extends React.Component {
 
         return (
             <div>
-                <div className="driverProfileCarAddNewCar d-flex align-items-start col-12">
-                    <div className="driverProfileCarAddNewCarPhotoCar" >
-                        {$imagePreview}
-                        <label htmlFor="addCarFile" >+Добавить фото автомобиля</label>
-                        <input type="file" id="addCarFile" style={{ display: "none" }} onChange={this._handleImageChange} />
-                    </div>
-                    <div className="driverProfileCarAddNewCarInformation d-flex flex-column col-7 p-0">
-                        <div className="d-flex align-items-center mb-3">
-                            <p className="col-4 p-0">Марка автомобиля:</p>
-                            <input type="text" />
+                <button onClick={this.toggle}>Open</button>
+                <Collapse isOpen={this.state.collapse}>
+                    <div className="driverProfileCarAddNewCar d-flex align-items-start col-12">
+                        <div className="driverProfileCarAddNewCarPhotoCar" >
+                            {$imagePreview}
+                            <label htmlFor="addCarFile" >+Добавить фото автомобиля</label>
+                            <input type="file" id="addCarFile" style={{ display: "none" }} onChange={this._handleImageChange} />
                         </div>
-                        <div className="d-flex align-items-center mb-3">
-                            <p className="col-4 p-0">Год автомобиля:</p>
-                            <input type="text" />
-                        </div>
-                        <div className="d-flex align-items-center mb-3">
-                            <p className="col-4 p-0">Номер автомобиля:</p>
-                            <input type="text" />
-                        </div>
-                        <div className="d-flex align-items-center mb-3">
-                            <p className="col-4 p-0">Тип автомобиля:</p>
-                            <select name="typeCar">
-                                <option value="sedan">Седан</option>
-                                <option value="microbus">Микроавтобус</option>
-                                <option value="minivan">Минивэн</option>
-                                <option value="jeep">Внедорожник</option>
-                            </select>
-                        </div>
-                        <div className="d-flex align-items-center mb-3">
-                            <p className="col-4 p-0">Тип топлива:</p>
-                            <select name="typeFuel">
-                                <option value="petrol">Бинзин</option>
-                                <option value="diesel">Дизель</option>
-                                <option value="gas">Газ</option>
-                                <option value="hybrid">Гибрид</option>
-                            </select>
-                        </div>
-                        <div className="d-flex align-items-start mb-3">
-                            <p className="col-4 p-0">Удобства:</p>
-                            <div className="driverProfileCarAddNewCarComfortCheckBox d-flex flex-column pt-1">
-                                <label htmlFor="comfort1">Климат контроль
-                                <input type="checkbox" id="comfort1" />
-                                    <span />
-                                </label>
-                                <label htmlFor="comfort2">Кожаный салон
-                                <input type="checkbox" id="comfort2" />
-                                    <span />
-                                </label>
-                                <label htmlFor="comfort3">Бесплатный Wi-Fi
-                                <input type="checkbox" id="comfort3" />
-                                    <span />
-                                </label>
-                                <label htmlFor="comfort4">Курение в салоне запрещено
-                                <input type="checkbox" id="comfort4" />
-                                    <span />
-                                </label>
-                                <label htmlFor="comfort5">Курение в салоне разрешено
-                                <input type="checkbox" id="comfort5" />
-                                    <span />
-                                </label>
+                        <div className="driverProfileCarAddNewCarInformation d-flex flex-column col-7 p-0">
+                            <div className="d-flex align-items-center mb-3">
+                                <p className="col-4 p-0">Марка автомобиля:</p>
+                                <input type="text" />
                             </div>
+                            <div className="d-flex align-items-center mb-3">
+                                <p className="col-4 p-0">Год автомобиля:</p>
+                                <input type="text" />
+                            </div>
+                            <div className="d-flex align-items-center mb-3">
+                                <p className="col-4 p-0">Номер автомобиля:</p>
+                                <input type="text" />
+                            </div>
+                            <div className="d-flex align-items-center mb-3">
+                                <p className="col-4 p-0">Тип автомобиля:</p>
+                                <select name="typeCar">
+                                    <option value="sedan">Седан</option>
+                                    <option value="microbus">Микроавтобус</option>
+                                    <option value="minivan">Минивэн</option>
+                                    <option value="jeep">Внедорожник</option>
+                                </select>
+                            </div>
+                            <div className="d-flex align-items-center mb-3">
+                                <p className="col-4 p-0">Тип топлива:</p>
+                                <select name="typeFuel">
+                                    <option value="petrol">Бинзин</option>
+                                    <option value="diesel">Дизель</option>
+                                    <option value="gas">Газ</option>
+                                    <option value="hybrid">Гибрид</option>
+                                </select>
+                            </div>
+                            <div className="d-flex align-items-start mb-3">
+                                <p className="col-4 p-0">Удобства:</p>
+                                <div className="driverProfileCarAddNewCarComfortCheckBox d-flex flex-column pt-1">
+                                    <label htmlFor="comfort1">Климат контроль
+                                <input type="checkbox" id="comfort1" />
+                                        <span />
+                                    </label>
+                                    <label htmlFor="comfort2">Кожаный салон
+                                <input type="checkbox" id="comfort2" />
+                                        <span />
+                                    </label>
+                                    <label htmlFor="comfort3">Бесплатный Wi-Fi
+                                <input type="checkbox" id="comfort3" />
+                                        <span />
+                                    </label>
+                                    <label htmlFor="comfort4">Курение в салоне запрещено
+                                <input type="checkbox" id="comfort4" />
+                                        <span />
+                                    </label>
+                                    <label htmlFor="comfort5">Курение в салоне разрешено
+                                <input type="checkbox" id="comfort5" />
+                                        <span />
+                                    </label>
+                                </div>
+                            </div>
+                            <button className="mb-5">Добавить Автомобиль</button>
                         </div>
-                        <button className="mb-5">Добавить Автомобиль</button>
                     </div>
-                </div>
+                </Collapse>
                 <div className="driverProfileCarFilledCard d-flex align-items-center col-12">
                     {/* TODO отрисовка автомобилей */}
                     <div className="driverProfileCarFilledCardImg">
