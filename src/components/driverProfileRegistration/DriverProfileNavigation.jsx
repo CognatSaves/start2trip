@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './DriverProfileNavigation.css'
 import { connect } from 'react-redux';
+import { whichPageRender } from "../../redusers/ActionDriverProfileRegistration"
 
 
 
@@ -8,7 +9,7 @@ class DriverProfileNavigationClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            navigationText: ["Основная информация", "Автомобиль", "Настройки поездок", "Календарь", "Настройки", "Отзывы"],
+            navigationText: ["Профиль", "Автомобиль", "Поездки", "Туры", "Календарь", "Настройки", "Отзывы"],
         }
     }
 
@@ -18,7 +19,7 @@ class DriverProfileNavigationClass extends React.Component {
                 <div className="driverProfileNavigationBody d-flex align-items-center">
                     {this.state.navigationText.map((element, index) =>
                         <div>
-                            <p className="mb-0">{element}</p>
+                            <p className={{ [index]: "driverProfileNavigationBodyActive", }[this.props.storeState.pageRender] + " mb-0"} onClick={() => { this.props.dispatch(whichPageRender(index)) }}>{element}</p>
                         </div>
                     )}
                 </div>
@@ -29,7 +30,7 @@ class DriverProfileNavigationClass extends React.Component {
 
 const DriverProfileNavigation = connect(
     (state) => ({
-        storeState: state.AppReduser,
+        storeState: state.DriverProfileRegistrationtReduser,
     }),
 )(DriverProfileNavigationClass);
 

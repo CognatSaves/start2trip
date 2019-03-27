@@ -104,45 +104,6 @@ class DriverProfileCarClass extends React.Component {
 
         return (
             <div>
-                <div className="driverProfileCarFilledCard d-flex align-items-center col-12">
-                    {/* TODO отрисовка автомобилей */}
-                    <div className="driverProfileCarFilledCardImg">
-                        <img src={imgCar} alt="imgCar" />
-                    </div>
-                    <div className="driverProfileCarFilledCardInformation d-flex flex-column">
-                        <div className="d-flex justify-content-between">
-                            <div className="driverProfileCarFilledCardInformationNameCar d-flex flex-column ">
-                                <p>Toyota Prius, 2008</p>
-                                <p>WWW-888-WWW</p>
-                            </div>
-                            <div className="driverProfileCarFilledCardInformationNameCarEdit">
-                                <p>Редактировать</p>
-                            </div>
-                        </div>
-                        <div className="driverProfileCarFilledCardInformationCommon">
-                            <div className="d-flex justify-content-between align-content-center">
-                                <p>Тип автомобиля:</p>
-                                <div className="d-flex">
-                                    <div style={{ backgroundImage: "url(" + sedanIcon + ")" }} className="driverProfileCarFilledCardInformationCommonImg"></div>
-                                    <p>Седан</p>
-                                </div>
-                            </div>
-                            <div className="d-flex justify-content-between">
-                                <p>Тип топлива:</p>
-                                <p>Бинзин</p>
-                            </div>
-                            <div className="driverProfileCarFilledCardInformationComfort d-flex align-items-center justify-content-between">
-                                <p>Удобства:</p>
-                                <div className="driverProfileCarFilledCardInformationComfortImg d-flex align-items-center">
-                                    {this.state.comfort.map((element, index) =>
-                                        <img src={element.icon} width="18px" height="18px" title={element.title} alt="icon" />
-                                    )}
-                                </div>
-                            </div>
-                        </div>
-                        <p className="driverProfileCarFilledCardInformationDeleteCar">Удалить автомобиль</p>
-                    </div>
-                </div>
                 <div className="driverProfileCarAddNewCar d-flex align-items-start col-12">
                     <div className="driverProfileCarAddNewCarPhotoCar" >
                         {$imagePreview}
@@ -206,6 +167,45 @@ class DriverProfileCarClass extends React.Component {
                             </div>
                         </div>
                         <button className="mb-5">Добавить Автомобиль</button>
+                    </div>
+                </div>
+                <div className="driverProfileCarFilledCard d-flex align-items-center col-12">
+                    {/* TODO отрисовка автомобилей */}
+                    <div className="driverProfileCarFilledCardImg">
+                        <img src={imgCar} alt="imgCar" />
+                    </div>
+                    <div className="driverProfileCarFilledCardInformation d-flex flex-column">
+                        <div className="d-flex justify-content-between">
+                            <div className="driverProfileCarFilledCardInformationNameCar d-flex flex-column ">
+                                <p>Toyota Prius, 2008</p>
+                                <p>WWW-888-WWW</p>
+                            </div>
+                            <div className="driverProfileCarFilledCardInformationNameCarEdit">
+                                <p>Редактировать</p>
+                            </div>
+                        </div>
+                        <div className="driverProfileCarFilledCardInformationCommon">
+                            <div className="d-flex justify-content-between align-content-center">
+                                <p>Тип автомобиля:</p>
+                                <div className="d-flex">
+                                    <div style={{ backgroundImage: "url(" + sedanIcon + ")" }} className="driverProfileCarFilledCardInformationCommonImg"></div>
+                                    <p>Седан</p>
+                                </div>
+                            </div>
+                            <div className="d-flex justify-content-between">
+                                <p>Тип топлива:</p>
+                                <p>Бинзин</p>
+                            </div>
+                            <div className="driverProfileCarFilledCardInformationComfort d-flex align-items-center justify-content-between">
+                                <p>Удобства:</p>
+                                <div className="driverProfileCarFilledCardInformationComfortImg d-flex align-items-center">
+                                    {this.state.comfort.map((element, index) =>
+                                        <img src={element.icon} width="18px" height="18px" title={element.title} alt="icon" />
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                        <p className="driverProfileCarFilledCardInformationDeleteCar">Удалить автомобиль</p>
                     </div>
                 </div>
             </div>

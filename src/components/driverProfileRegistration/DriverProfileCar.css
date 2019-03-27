@@ -4,7 +4,7 @@
     min-height: 260px;
     box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
-    margin-bottom: 10px;
+    margin-bottom: 50px;
 }
 
 .driverProfileCarFilledCardImg img {
@@ -93,7 +93,7 @@
     box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     min-height: 480px;
-    margin-bottom: 150px;
+    margin-bottom: 30px;
     padding-top: 30px;
 }
 

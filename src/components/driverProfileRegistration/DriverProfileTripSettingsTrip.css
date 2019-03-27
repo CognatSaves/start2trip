@@ -1,8 +1,19 @@
+.driverProfileTripSettingsBody {
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    min-height: 500px;
+    transition: all 0.3s;
+}
+
+
 /* Content Bigin */
 
 .driverProfileTripSettingsContent {
     padding: 30px 25px 20px 25px;
     font-family: "Roboto";
+    transition: all 0.3s;
 }
 
 .driverProfileTripSettingsContent div {
@@ -40,12 +51,12 @@ div.driverProfileTripSettingsContentTitle {
     border-radius: 5px;
     border: 1px solid #ccc;
     padding-left: 10px;
-    min-width: 400px;
+    min-width: 130px;
     min-height: 40px;
 }
 
 .driverProfileTripSettingsContent select {
-    min-width: 130px;
+    min-width: 400px;
     min-height: 40px;
     background: none;
     border: 1px solid #ccc;
@@ -72,6 +83,27 @@ div.driverProfileTripSettingsContentTitle {
     outline: #304269;
 }
 
+div.driverProfileTripSettingsContentAddCity:nth-last-child(2) {
+    margin-bottom: 30px;
+}
+
+div.driverProfileTripSettingsContentAddCity p {
+    cursor: pointer;
+}
+
+.driverProfileTripSettingsContentDeletButton {
+    font-weight: 400;
+    font-size: 14px;
+    color: #999;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+div.driverProfileTripSettingsContentAddCity p:hover,
+.driverProfileTripSettingsContentDeletButton:hover {
+    color: #f60;
+}
+
 .driverProfileTripSettingsContent button {
     min-width: 250px;
     min-height: 40px;
@@ -84,7 +116,6 @@ div.driverProfileTripSettingsContentTitle {
     border-radius: 5px;
     border: none;
     transition: all 0.3s;
-    margin-left: 165px;
 }
 
 .driverProfileTripSettingsContent button:hover {

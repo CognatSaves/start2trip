@@ -22,13 +22,14 @@ import { StateReduser } from './redusers/StateReduser';
 import { CommentReduser } from './redusers/CommentReduser';
 import { PlacesReduser } from './redusers/PlacesReduser';
 import { ToursReduser } from './redusers/ToursReduser';
+import { DriverProfileRegistrationtReduser } from './redusers/DriverProfileRegistrationtReduser';
 import { Link, Route, BrowserRouter, Redirect, Switch } from 'react-router-dom';
 require('require-context/register');
 
 
 const redux = require('redux');
 
-const reducers = redux.combineReducers({ AppReduser, DriversReduser, StateReduser, CommentReduser, PlacesReduser, ToursReduser });
+const reducers = redux.combineReducers({ AppReduser, DriversReduser, StateReduser, CommentReduser, PlacesReduser, ToursReduser, DriverProfileRegistrationtReduser });
 
 const store = redux.createStore(reducers);
 

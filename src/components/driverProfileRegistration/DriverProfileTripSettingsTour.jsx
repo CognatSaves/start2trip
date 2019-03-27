@@ -17,7 +17,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
 
     render() {
         return (
-            <React.Fragment>
+            <div className="driverProfileTripSettingsBody">
                 <div className="driverProfileTripSettingsContent">
                     <div className="d-flex align-items-center"></div>
                     <div className="d-flex align-items-center"></div>
@@ -30,7 +30,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                     <div className="d-flex align-items-center"></div>
                     <div className="d-flex align-items-center"></div>
                 </div>
-            </React.Fragment>
+            </div>
         );
     }
 }
