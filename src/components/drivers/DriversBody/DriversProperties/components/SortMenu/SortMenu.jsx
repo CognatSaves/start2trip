@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './SortMenu.css'
 import { connect } from 'react-redux';
 import {setSortMenu} from '../../../../../../redusers/Action'
 
 
 class SortMenuClass extends React.Component{
-    constructor(props){
+    /*constructor(props){
         super(props);
-    }
+    }*/
     render(){
         if(this.props.isVisible){
             return(

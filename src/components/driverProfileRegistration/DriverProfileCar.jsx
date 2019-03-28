@@ -1,16 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './DriverProfileCar.css'
 import { connect } from 'react-redux';
 import imgCar from './img/images.jpeg'
-import jeepIcon from './img/jeep.svg'
-import microbusIcon from './img/microbus.svg'
-import minivanIcon from './img/minivan.svg'
 import sedanIcon from './img/sedan.svg'
 import no_smokingIcon from './img/no-smoking.svg'
 import seatIcon from './img/seat.svg'
 import snowflakeIcon from './img/snowflake.svg'
 import wifiIcon from './img/wifi.svg'
-import editBlueIcon from './img/editBlue.svg'
 import { Collapse } from 'reactstrap';
 
 
@@ -106,7 +102,7 @@ class DriverProfileCarClass extends React.Component {
         let { imagePreviewUrl } = this.state;
         let $imagePreview = null;
         if (imagePreviewUrl) {
-            $imagePreview = (<img src={imagePreviewUrl} className="driverProfileCarAddNewCarPhotoCarImg" />);
+            $imagePreview = (<img src={imagePreviewUrl} className="driverProfileCarAddNewCarPhotoCarImg" alt="add_car"/>);
         }
 
         return (

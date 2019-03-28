@@ -1,15 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './DriversBlock.css'
 import './InfoBlock.css'
 import './TripBlock.css'
 import Manipulator from '../../../manipulator/Manipulator';
 import { connect } from 'react-redux';
 import driverPhoto from './pictures/driver1/drivers_body_photo.png';
-import emptyStar from './pictures/star.svg';
 import emptyLike from './pictures/like_contour.svg';
 import filledLike from './pictures/like_blue.svg';
 import selectedFilledLike from './pictures/like_orange.svg';
-import sedan from './pictures/sedan.svg';
 import jeep from './pictures/jeep.svg';
 import { Link } from 'react-router-dom';
 
@@ -139,7 +137,7 @@ class DriversBlockClass extends React.Component {
           <div className="driversBlock_driverCard d-flex flex-column">
             <div className="driversBlock_carImage" style={{background: "url("+ToyotaPrado+") no-repeat", backgroundSize: "cover"}}>
               <Link to={ `/driverProfile/${element.id},${element.id},${element.id}`} className="driversBlock_carBlackout">
-                <div className="driversBlock_carBlackout_detailed">Подробнее?</div>
+                <div className="driversBlock_carBlackout_detailed">Подробнее</div>
               </Link>
               <div className="driversBlock_bookmark" >
                 <div className="driversBlock_bookmark_tooltip">Добавить в закладки</div>
@@ -157,7 +155,7 @@ class DriversBlockClass extends React.Component {
                 <div className="driversBlock_driverCard_photo" style={{background: "url("+driverPhoto+") no-repeat", backgroundSize: "40px 40px"}}/>
                 <div className="d-flex flex-column driversBlock_driverCard_driverInfo">
                   <Link to={ `/driverProfile/${element.id},${element.id},${element.id}`} className="driversBlock_driversInfo_name">{element.name}</Link>
-                  <Stars value={element.rating} commentNumber={element.comments+" отзывов"} valueDisplay="none" commentNumberDisplay="block"/>
+                  <Stars key={element.rating} value={element.rating} commentNumber={element.comments+" отзывов"} valueDisplay="none" commentNumberDisplay="block"/>
                 </div>
               </div>
               <div className="driversBlock_driverInfoBlock_element d-flex">

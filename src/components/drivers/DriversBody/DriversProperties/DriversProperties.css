@@ -48,6 +48,7 @@
     line-height: 250%;
     padding: 0 2px;
     cursor: pointer;
+    z-index: 100;
 }
 
 /*line-height в предыдущем стиле какое-то странное*/

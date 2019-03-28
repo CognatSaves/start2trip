@@ -4,9 +4,9 @@ import bookmarkEmpty from '../Places/pictures/bookmark_contour.svg';
 import userBlueIcon from '../drivers/DriversBody/DriversBlock/pictures/user_blue.svg';
 import { Link } from 'react-router-dom';
 export default class TourMapBlock extends React.Component{
-    constructor(props){
+    /*constructor(props){
         super(props);
-    }
+    }*/
     shouldComponentUpdate(nextProps){
         return !(JSON.stringify(this.props)===JSON.stringify(nextProps));
     }

@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 import './RenderModalRegistration.css'
-import { modalCountryDispacth } from '../../redusers/Action'
 import peopleIcon from './pictures/profile.svg'
 import emailIcon from './pictures/email.svg'
 import lockIcon from './pictures/lock.svg'

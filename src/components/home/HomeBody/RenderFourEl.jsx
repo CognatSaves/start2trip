@@ -1,10 +1,7 @@
 import { Link } from 'react-router-dom';
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import {
-    Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button
-} from 'reactstrap';
+import { Card, CardImg, CardText, CardBody, CardTitle} from 'reactstrap';
 import Stars from '../../stars/Stars'
 
 import './RenderFourEl.css'

@@ -2,9 +2,9 @@ import React from 'react';
 
 
 export default class PlaceTravelBlock extends React.Component{
-    constructor(props){
+    /*constructor(props){
         super(props);
-    }
+    }*/
     shouldComponentUpdate(nextProps){
         return !(JSON.stringify(this.props)===JSON.stringify(nextProps));
     }

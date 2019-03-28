@@ -1,16 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Footer.css'
 import "./Footer(mobile).css"
 import facebookIcon from "./pictures/facebook-letter-logo.svg"
 import instagramIcon from "./pictures/instagram.svg"
 import logoWhiteIcon from "./pictures/logo_white.svg"
 import upArrowIcon from "./pictures/up-arrow.svg"
-import HomeBody from '../home/HomeBody/HomeBody';
 
 export default class Footer extends React.Component {
-  constructor(props) {
+  /*constructor(props) {
     super(props);
-  }
+  }*/
   render() {
     return (
       <React.Fragment>

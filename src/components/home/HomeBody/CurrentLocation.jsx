@@ -22,10 +22,6 @@ export class CurrentLocation extends React.Component {
   }
 
   componentWillUpdate(prevProps, prevState) {
-    function compare(a1, a2) {
-      return a1.length === a2.length && a1.every((v, i) => v === a2[i])
-    }
-
     if (prevProps.google !== window.google) {
       this.loadMap();
     }
@@ -33,20 +29,8 @@ export class CurrentLocation extends React.Component {
       this.recenterMap();
     }
     if (!(this.props.cities.some(city => city === "")) && this.props.mapUpdate) {
-      /*console.log("mapUpdate standart way");
-      console.log(this.props);
-      console.log(prevProps.cities);
-      console.log(this.props.cities);
-      console.log(!(this.props.cities.some(city => city==="")));*/
       this.loadMap();
     }
-
-    /*
-    if(!(this.props.cities.some(city => city===""))){
-      console.log("BBB")
-      this.loadMap();
-    }   
-    */
   }
   recenterMap() {
     const map = this.map;
@@ -75,7 +59,6 @@ export class CurrentLocation extends React.Component {
     this.loadMap();
   }
   loadMap() {
-    //console.log("loadMap");
     function createRequestElement(cities, google, travelMode) {
       let waypoints = [];
       for (let i = 1; i < cities.length - 1; i++) {
@@ -101,8 +84,6 @@ export class CurrentLocation extends React.Component {
       const mapRef = this.refs.map;
       const node = ReactDOM.findDOMNode(mapRef);
       let { zoom } = this.props;
-      console.log("Load Map: zoom");
-      console.log(zoom);
       const { lat, lng } = this.state.currentLocation;
       const center = new maps.LatLng(lat, lng);
       const mapConfig = Object.assign(
@@ -114,8 +95,6 @@ export class CurrentLocation extends React.Component {
       );
 
       this.map = new maps.Map(node, mapConfig);
-      console.log("Load Map: map");
-      console.log(this.map.getZoom());
       let request = createRequestElement(this.props.cities, google, this.state.travelMode);
 
       let service = new google.maps.DirectionsService();
@@ -196,17 +175,7 @@ export class CurrentLocation extends React.Component {
     );
   }
 }
-/*
-  Предыдущий вариант render return. Наличие последней ф-ции ничего не давало,
-  по крайней мере для используемого на данный момент функционала
 
-
-  <div style={style} ref="map">
-          Loading...
-  </div>
-  {this.renderChildren()}
-
- */
 export default CurrentLocation;
 
 CurrentLocation.defaultProps = {

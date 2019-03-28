@@ -7,7 +7,7 @@
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 0 1px 1px rgb(236, 236, 236);
-    z-index: 4;
+    z-index: 100;
 }
 
 .peopleMenu_element {

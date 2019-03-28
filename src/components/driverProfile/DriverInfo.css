@@ -132,7 +132,58 @@
 .driverInfo_bookmarkElement{
     margin-left: auto;
     background-size: 20px 25px;
-    background: url('../drivers//DriversBody/DriversBlock/pictures/bookmark_contour.svg');
+    background: url('../drivers/DriversBody/DriversBlock/pictures/bookmark_contour.svg');
     width: 20px;
     height: 25px;
+}
+.driverInfo_bookmarkElement:hover{
+    background: url('../drivers/DriversBody/DriversBlock/pictures/bookmark_orange.svg');
+}
+.driversInfo_driverName{
+    line-height: 18px;
+    padding-bottom: 10px;
+}
+.driverInfo_informationIcon{
+    position:inherit;
+    top: -9px;
+    width: 18px;
+    height: 18px;
+}
+.driverInfo_informationIcon:hover .driverInfo_informationBlock{
+    /*display: block;*/
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.15);
+    color: rgba(0,0,0,1);
+}
+.driverInfo_informationIcon:hover .driverInfo_comfortIconStyle{
+    visibility: visible;
+}
+.driverInfo_informationBlock{
+    position: absolute;
+    /*display: none;*/
+    top: 30px;
+    left: -101px;
+    width: 220px;
+    background-color: rgba(255, 255, 255, 0);
+    padding: 5px;
+    border-radius: 5px;
+    color: rgba(0,0,0,0);
+    transition: 0.3s all;
+}
+.driverInfo_comfortIconStyle{
+    visibility: hidden;
+    width: 15px;
+    height: 15px;
+}
+.driverInfo_comfortTextStyle{
+    margin: auto 0 auto 8px;
+    width: 185px;
+    font-size: 12px;   
+}
+.driverInfo_carTypeValue{
+    margin: auto 0 auto auto;
+    line-height: 18px;
+    font-family: "Roboto";
+    color: #999999;
+    padding-bottom: 10px;
 }

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './DriverProfileBasicInformation.css'
 import { connect } from 'react-redux';
 import imgPerson from './img/drivers_body_photo.png'

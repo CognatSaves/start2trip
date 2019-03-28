@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './ValueMenu.css'
 import Slider from './Slider';
 import { connect } from 'react-redux';

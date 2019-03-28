@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './DriversProperties.css'
 import LanguageMenu from './components/LanguageMenu/LanguageMenu.jsx'
 import PeopleMenu from './components/PeopleMenu/PeopleMenu.jsx'
@@ -67,7 +67,7 @@ class DriversPropertiesClass extends React.Component {
         <div className="properties_leftBlock d-flex">
           <div className="drivers_properties_text">Подобрать:</div>
           <div className="properties_buttonStyle properties_leftButton d-flex" onClick={() => this.props.dispatch(languageMenuIsVisibal(!this.props.storeState.languageMenu))}>
-            <div className="properties_value d-flex"><img src={this.props.storeState.languageIcon} width="15px" height="15px" />{this.props.storeState.languageValue}</div>
+            <div className="properties_value d-flex"><img src={this.props.storeState.languageIcon} width="15px" height="15px" alt="L"/>{this.props.storeState.languageValue}</div>
             <div className="properties_arrow"></div>
             <LanguageMenu isVisible={this.props.storeState.languageMenu} />
           </div>
@@ -88,7 +88,7 @@ class DriversPropertiesClass extends React.Component {
               };
               this.props.dispatch(peopleMenuCall(!this.props.storeState.peopleMenu))
             }}>
-              <div className="properties_value d-flex"><img src={userBlueIcon} width="12px" height="12px" />{personsNumberString}</div>
+              <div className="properties_value d-flex"><img src={userBlueIcon} width="12px" height="12px" alt="P"/>{personsNumberString}</div>
               <div className="properties_arrow"></div>
             </div>
             <PeopleMenu isVisible={this.props.storeState.peopleMenu} />

@@ -2,9 +2,9 @@ import React from 'react';
 import RenderFourEl from '../home/HomeBody/RenderFourEl.jsx';
 
 export default class SimularToursBlock extends React.Component{
-    constructor(props){
+    /*constructor(props){
         super(props);
-    }
+    }*/
     shouldComponentUpdate(nextProps){ 
         return !(JSON.stringify(this.props)===JSON.stringify(nextProps));
     }

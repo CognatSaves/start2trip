@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+//import App from './App';
 import Home from './components/home/Home.jsx';
 import Drivers from './components/drivers/Drivers.jsx';
 import DriverProfile from './components/driverProfile/DriverProfile.jsx';
@@ -23,7 +23,7 @@ import { CommentReduser } from './redusers/CommentReduser';
 import { PlacesReduser } from './redusers/PlacesReduser';
 import { ToursReduser } from './redusers/ToursReduser';
 import { DriverProfileRegistrationtReduser } from './redusers/DriverProfileRegistrationtReduser';
-import { Link, Route, BrowserRouter, Redirect, Switch } from 'react-router-dom';
+import { /*Link,*/ Route, BrowserRouter, Redirect, Switch } from 'react-router-dom';
 require('require-context/register');
 
 

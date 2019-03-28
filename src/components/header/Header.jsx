@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './header_css.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
@@ -13,10 +13,8 @@ import geoFlag from './pictures/georgia.svg'
 import ruFlag from './pictures/russia.svg'
 import enFlag from './pictures/united-kingdom.svg'
 import espFlag from './pictures/spain.svg'
-//import styled from 'styled-components'
 import { Link } from 'react-router-dom';
 import { Modal, ModalBody } from 'reactstrap';
-import LanguageMenu from '../drivers/DriversBody/DriversProperties/components/LanguageMenu/LanguageMenu';
 
 
 class HeaderClass extends React.Component {

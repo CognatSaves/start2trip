@@ -3,9 +3,9 @@ import CreateComment from '../driverProfile/CreateComment';
 import ShowComments from '../driverProfile/ShowComments';
 import Manipulator from '../manipulator/Manipulator';
 export default class CommentBlock extends React.Component{
-    constructor(props){
+    /*constructor(props){
         super(props);
-    }
+    }*/
     shouldComponentUpdate(nextProps){ 
         return !(JSON.stringify(this.props)===JSON.stringify(nextProps));
     }

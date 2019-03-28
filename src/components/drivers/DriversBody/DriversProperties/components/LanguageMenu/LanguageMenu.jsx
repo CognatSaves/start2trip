@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import {languageValueChooseDispatch,languageMenuIsVisibal} from "../../../../../../redusers/Action"
 import './LanguageMenu.css'
 
  class LanguageMenuClass extends React.Component {
-    constructor(props) {
+    /*constructor(props) {
         super(props);
-    }
+    }*/
     languageValueChoose(value, icon) {
         this.props.dispatch(languageValueChooseDispatch(value,icon));
         this.props.dispatch(languageMenuIsVisibal(false));

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {InfoWindow } from 'google-maps-react';
 
 import CurrentLocation from './CurrentLocation';
 const mapStyles = {
@@ -18,8 +17,6 @@ export default class MapContainer extends Component {
     }
   }
   render() {
-    /*console.log("MapContainer render");
-    console.log(this.props.mapUpdate);*/
     return (
       <CurrentLocation
         centerAroundCurrentLocation

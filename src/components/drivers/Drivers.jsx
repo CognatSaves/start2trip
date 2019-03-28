@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Drivers.css';
 
 import DriversBody from './DriversBody/DriversBody.jsx';

@@ -123,7 +123,7 @@
 }
 .driversBlock_carBlackout_detailed{
   width: 50%;
-  height: 30%;
+  height: 100px;
   overflow: auto;
   margin: auto;
   position: absolute;
@@ -131,6 +131,9 @@
   text-align: center;
   color: transparent;
   font-size: 18px;
+  font-family: "Roboto";
+  line-height: 100px;
+  text-decoration: underline;
 }
 .driversBlock_carImage::after{
     position: absolute;

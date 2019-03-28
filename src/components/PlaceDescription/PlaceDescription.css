@@ -71,7 +71,7 @@
     height: 120px;*/
     border: 1px solid black;
     color: rgb(153, 153, 153);
-    
+    cursor: pointer;
 }
 .photoCarouselClass{
     position: relative;
@@ -87,6 +87,7 @@
     transition-duration: 360ms;
     transition-property: transform, width;
     transition-timing-function: cubic-bezier(0.4,0,1,1);
+    cursor: pointer;
 }
 .placesDescription_photos_showCollectionBox{
     position: absolute;

@@ -7,9 +7,6 @@ import DriversCommercial from '../drivers/DriversBody/DriversCommercial/DriversC
 import DriversProfileComments from './DriversProfileComments';
 import Manipulator from '../manipulator/Manipulator';
 import Header from '../header/Header';
-import superMachine from './pictures/the_car.jpg';
-import superMachine2 from './pictures/superMachine2.png';
-import superMachine3 from './pictures/superMachine3.webp';
 import { setDriversRouteChange } from '../../redusers/ActionDrivers';
 import StartTravelForm from '../startTravelForm/StartTravelForm';
 import StartTravelSuccess from '../startTravelForm/StartTravelSuccess';
@@ -26,12 +23,9 @@ class DriverProfileClass extends React.Component {
             page: 1,
             showPages: 1,
             showPanelVariant: 0,
-            carImageNumber: 0,
-            carImages: [superMachine, superMachine2, superMachine3],
         }
         this.showMorePages = this.showMorePages.bind(this);
         this.setPage = this.setPage.bind(this);
-        this.changeCar = this.changeCar.bind(this);
         this.goToDrivers = this.goToDrivers.bind(this);
 
         this.changeTravelVisibility = this.changeTravelVisibility.bind(this);
@@ -58,19 +52,6 @@ class DriverProfileClass extends React.Component {
         this.props.dispatch(setDriversRouteChange(true));
         this.props.history.push('/drivers');
     }
-    changeCar(to) {
-        console.log("changeCar call!!!!!!!!!!!!!!!");
-        let carImageNumber = this.state.carImageNumber + to;
-        if (carImageNumber < 0) {
-            carImageNumber = this.state.carImages.length - 1;
-        }
-        if (carImageNumber > this.state.carImages.length - 1) {
-            carImageNumber = 0;
-        }
-        this.setState({
-            carImageNumber: carImageNumber
-        })
-    }
     changeTravelVisibility(value) {
         this.setState({
             travelVisibility: value
@@ -96,7 +77,7 @@ class DriverProfileClass extends React.Component {
                     <div className="wrapper d-flex flex-column">
                         <div className="drivers_top_block d-flex flex-column">
                             <Header colorWhite={true} />
-                            <DriverInfo element={driver} changeCar={this.changeCar} carImageNumber={this.state.carImageNumber} carImages={this.state.carImages} />
+                            <DriverInfo element={driver} />
                             <DriverAdaptedRoute element={driver} date={this.props.storeState.date} cities={this.props.storeState.cities}
                                 travelTime={this.props.driversState.travelTime} travelLength={this.props.driversState.travelLength} goToDrivers={this.goToDrivers}
                                 changeTravelVisibility={this.changeTravelVisibility}

@@ -7,7 +7,7 @@
     width: 200px;
     height: 92px;
     background-color: #ffffff;
-    z-index: 4;
+    z-index: 100;
 }
 
 .valueMenu_valueBlock {

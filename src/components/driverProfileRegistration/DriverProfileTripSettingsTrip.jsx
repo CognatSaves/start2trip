@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './DriverProfileTripSettingsTrip.css'
 import { connect } from 'react-redux';
 import LocationSearchInput from '../home/HomeBody/Search'

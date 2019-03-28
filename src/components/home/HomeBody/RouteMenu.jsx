@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './RouteMenu.css'
 import addIcon from './pictures/add.svg'
 import calendarIcon from './pictures/calendar.svg'
 import crossIcon from './pictures/close.svg'
 import arrowIcon from './pictures/da_tru_big_arrow.png'
-import sedanIcon from './pictures/sedan.svg'
 import AutoMenu from '../../drivers/DriversBody/DriversProperties/components/AutoMenu/AutoMenu.jsx'
 import LanguageMenu from '../../drivers/DriversBody/DriversProperties/components/LanguageMenu/LanguageMenu.jsx'
 import PeopleMenu from '../../drivers/DriversBody/DriversProperties/components/PeopleMenu/PeopleMenu'
@@ -16,21 +15,16 @@ import { Redirect } from 'react-router-dom';
 import LocationSearchInput from './Search'
 import { UncontrolledCollapse, Button } from 'reactstrap';
 import { connect } from 'react-redux';
-import {
-  setPagesVisible, setTempPricePart, languageMenuIsVisibal, setSortMenuVisible,
-  changePersonsNumberDispatch, changePersonsNumberDispatchOld, peopleMenuCall, autoMenuCall
-} from "../../../redusers/Action"
+import {languageMenuIsVisibal, changePersonsNumberDispatch,
+  changePersonsNumberDispatchOld, peopleMenuCall, autoMenuCall} from "../../../redusers/Action"
 
 
 const CityRouteTable = (props) => {
   const { cities, changeCity, removeCity } = props;
-
   let workCities = [...cities];
   let tempStart = workCities.shift();
   let tempEnd = workCities.pop();
-  console.log("tempEnd=" + tempEnd);
   return (
-
     <div className="addCities">
       <div className="startCity col-12 p-0" key={"0" + tempStart}>
         <div className="iconMass col-2">
@@ -67,10 +61,10 @@ const CityRouteTable = (props) => {
 
 
 class RouteMenuClass extends React.Component {
-  constructor(props) {
+  /*constructor(props) {
     super(props);
   }
-
+*/
 
 
   render() {
@@ -120,7 +114,7 @@ class RouteMenuClass extends React.Component {
                   };
                   this.props.dispatch(peopleMenuCall(!this.props.storeState.peopleMenu))
                 }}>
-                  <div className="propertiesPeopleHome"><img src={userWhiteIcon} width="20px" height="25px" />{personsNumberString}</div>
+                  <div className="propertiesPeopleHome"><img src={userWhiteIcon} width="20px" height="25px" alt="P"/>{personsNumberString}</div>
                 </div>
                 <PeopleMenu isVisible={this.props.storeState.peopleMenu} />
               </div>
@@ -131,7 +125,7 @@ class RouteMenuClass extends React.Component {
                 <AutoMenu isVisible={this.props.storeState.autoMenu} />
               </div>
               <div className="d-flex  flex-row justify-content-center" onClick={() => this.props.dispatch(languageMenuIsVisibal(!this.props.storeState.languageMenu))}>
-                <div className="peopleMenuHome propertiesPeopleHome"><img src={this.props.storeState.languageIcon} width="20px" height="25px" />{this.props.storeState.languageValue}</div>
+                <div className="peopleMenuHome propertiesPeopleHome"><img src={this.props.storeState.languageIcon} width="20px" height="25px" alt="L"/>{this.props.storeState.languageValue}</div>
                 <LanguageMenu isVisible={this.props.storeState.languageMenu} />
               </div>
 

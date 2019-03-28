@@ -2,12 +2,7 @@ import React from 'react';
 import './PlaceDescription.css';
 import Header from '../header/Header';
 import PlaceInfo from './PlaceInfo.jsx';
-import PlacePanel from './PlacePanel.jsx';
 import DriversCommercial from '../drivers/DriversBody/DriversCommercial/DriversCommercial';
-import RenderFourEl from '../home/HomeBody/RenderFourEl.jsx';
-import CreateComment from '../driverProfile/CreateComment';
-import ShowComments from '../driverProfile/ShowComments';
-import Manipulator from '../manipulator/Manipulator';
 
 import { connect } from 'react-redux';
 
@@ -15,8 +10,6 @@ import ippodrom from './pictures/ippodrom.jpg';
 import ippodrom2 from './pictures/ippodrom2.jpg';
 import ippodrom3 from './pictures/ippodrom3.jpg';
 import ippodrom4 from './pictures/ippodrom4.jpg';
-
-import Stars from '../stars/Stars';
 import georgiaImg from '../home/HomeBody/pictures/georgia.png';
 
 import PlaceProgramm from './PlaceProgramm.jsx';
@@ -44,6 +37,9 @@ class PlaceDescriptionClass extends React.Component {
             ],
             selectedPhotoIndex: 0,
             photoSlice: 0,
+            width: 870,
+            height: 500,
+            n: 7,
             photoArray: [ippodrom, ippodrom4, ippodrom2, ippodrom3, ippodrom, ippodrom4, ippodrom2, ippodrom3, ippodrom, ippodrom4, ippodrom2, ippodrom3, ippodrom, ippodrom4, ippodrom2, ippodrom3, ippodrom, ippodrom4, ippodrom2, ippodrom3],
         };
         this.selectPhoto = this.selectPhoto.bind(this);
@@ -96,17 +92,10 @@ class PlaceDescriptionClass extends React.Component {
         }
     }
     render() {
-        console.log("PlaceDescription");
         let countryId = this.props.match.params.country;
         let placeId = this.props.match.params.id;
         let comments = [...this.props.commentState.comments].reverse();
         let place = this.props.placesState.places[countryId].places[placeId];
-        let widthAll = 870;
-        let heightAll = 500;
-        let n = 7;
-
-        /*let width = widthAll / n;
-        let height = heightAll / n;*/
 
         let topBlockId = "placeDescriptionId";
         return (
@@ -126,9 +115,12 @@ class PlaceDescriptionClass extends React.Component {
                                 <TourPanel topBlockId={topBlockId} descriptionId={"placeDescriptionId"} variantsArray={["Описание","Фотографии","Как добраться","Карта","Вас может заинтересовать","Отзывы"]}
                                 setPanelStateFunc={changePlacesFixedClass} panelFixedClass={this.props.placesState.placePanelFixedClass}
                                 panelSelectedElement={this.props.placesState.placePanelSelectedElement} setPanelSelectedElement={setPlacesPanelSelectedElement}/>
-                                <PlaceProgramm place={place}/>                             
-                                <PlacePhotos photoArray={this.state.photoArray}
-                                    width={widthAll} height={heightAll} number={n}/>
+                                <PlaceProgramm place={place}/> 
+                                <div className="placeDescription_block d-flex flex-column" id="placeDescriptionId2"> 
+                                    <div className="placeDescription_fragmentName" style={{marginBottom: "15px"}}>Фотографии</div>                           
+                                    <PlacePhotos photoArray={this.state.photoArray}
+                                        width={this.state.width} height={this.state.height} number={this.state.n}/>
+                                </div>
                                 <PlaceTravelBlock place={place} />
                                 <PlaceMapBlock />
                                 <PlaceIntrestingBlock tours={this.state.popularPlaces} />

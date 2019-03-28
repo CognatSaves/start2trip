@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import './StartTravelForm.css';
 import './StartTravelBlockStyles.css';
 import { Link } from 'react-router-dom';
