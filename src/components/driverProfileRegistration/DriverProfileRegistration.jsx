@@ -9,6 +9,7 @@ import DriverProfileBasicInformation from './DriverProfileBasicInformation'
 import DriverProfileFeedback from './DriverProfileFeedback'
 import DriverProfileTripSettingsTrip from './DriverProfileTripSettingsTrip'
 import DriverProfileTripSettingsTour from './DriverProfileTripSettingsTour'
+import DriversCommercial from '../drivers/DriversBody/DriversCommercial/DriversCommercial'
 
 
 
@@ -35,7 +36,9 @@ class DriverProfileRegistrationClass extends React.Component {
                 3:<DriverProfileTripSettingsTour />,
               }[this.props.storeState.pageRender]}
             </div>
-            <div className="col-3"></div>
+            <div className="driverProfileRegistrationCommercial col-3 p-0">
+            <DriversCommercial />
+            </div>
           </div>
         </div>
       </React.Fragment>

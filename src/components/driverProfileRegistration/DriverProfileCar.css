@@ -175,6 +175,19 @@
     outline: #304269;
 }
 
+.driverProfileCarAddNewCarShowButton {
+    margin-bottom: 30px;
+}
+
+.driverProfileCarAddNewCarButton p {
+    cursor: pointer;
+}
+
+.driverProfileCarAddNewCarButton p:hover {
+    color: #f60;
+}
+
+.driverProfileCarAddNewCarShowButton,
 .driverProfileCarAddNewCarInformation button {
     max-width: 250px;
     min-height: 40px;
@@ -185,13 +198,15 @@
     border-radius: 5px;
     border: none;
     transition: all 0.3s;
-    margin-left: 165px;
+    margin-left: 90px;
 }
 
+.driverProfileCarAddNewCarShowButton:hover,
 .driverProfileCarAddNewCarInformation button:hover {
     background: #f60;
 }
 
+.driverProfileCarAddNewCarShowButton:focus,
 .driverProfileCarAddNewCarInformation button:focus {
     outline: none;
 }
