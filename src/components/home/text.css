@@ -2,7 +2,7 @@
     text-align: center;
     font-size: 34.5pt;
     color: #304269;
-    font-family: "Roboto";
+
     font-weight: 700;
     text-transform: uppercase;
     height: 40px;
@@ -13,7 +13,7 @@
 .text_secondLine {
     font-size: 13.5pt;
     text-align: center;
-    font-family: "Roboto";
+
     font-weight: 400;
     color: #304269;
     margin-bottom: 46px;

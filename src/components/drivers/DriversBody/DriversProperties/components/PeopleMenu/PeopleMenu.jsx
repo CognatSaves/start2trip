@@ -1,13 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './PeopleMenu.css'
 import { connect } from 'react-redux';
 import {changePersonsNumberDispatch,peopleMenuCall} from "../../../../../../redusers/Action"
 
 class PeopleMenuClass extends React.Component {
-    constructor(props) {
+    /*constructor(props) {
         super(props);
-
-    }
+    }*/
     changePersonsNumber(index, value){
         let persons = this.props.storeState.persons.slice();
         persons[index]+=value;
@@ -28,14 +27,13 @@ class PeopleMenuClass extends React.Component {
         let childrenDisabledMinus = true ;
         let childrenDisabledPlus = false ;
         if (this.props.isVisible) {
-            //возможно, следующие 2 if можно заменить на что-нибудь более удобоваримое
-            if (this.props.storeState.persons[0] == 1) {
+            if (this.props.storeState.persons[0] === 1) {//заменил 2е на 3е равенства
                 peopleDisabledMinus = true;
             }
             if (this.props.storeState.persons[0] >= 2) {
                 peopleDisabledMinus = false;
             }
-            if (this.props.storeState.persons[1] == 0) {
+            if (this.props.storeState.persons[1] === 0) {
                 childrenDisabledMinus = true;
             }
             if (this.props.storeState.persons[1] >= 1) {

@@ -10,7 +10,7 @@ div.tourCard{
 }
 
 .tourTitle {
-    font-family: "Roboto";
+
     font-weight: 500;
     font-size: 12pt;
     color: #304269;
@@ -31,7 +31,7 @@ div.tourCard{
 }
 
 .tourText {
-    font-family: "Roboto";
+
     font-weight: 400;
     font-size: 10.5pt;
     color: #304269;
@@ -41,7 +41,7 @@ div.tourCard{
 
 .tourLink {
     right: 0px;
-    font-family: "Roboto";
+
     font-weight: 500;
     font-size: 10.5pt;
     text-decoration: none;
@@ -59,13 +59,13 @@ div.tourCard{
 }
 
 .tourPrise{
-    font-family: "Roboto";
+
     font-weight: 500;
     font-size: 14px;
     color: #304269;
 }
 .tourPrise span{
-    font-family: "Roboto";
+
     font-weight: 500;
     font-size: 24px;
     color: #304269;

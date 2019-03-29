@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './AutoMenu.css'
 import { connect } from 'react-redux';
 import {setAuto} from "../../../../../../redusers/Action"
@@ -8,9 +8,9 @@ import microbus from './pictures/microbus.svg';
 import minivan from './pictures/minivan.svg';
 
 class AutoMenuClass extends React.Component{
-    constructor(props) {
+    /*constructor(props) {
         super(props);      
-      }
+      }*/
     render(){        
         if(this.props.isVisible){
             let pictureArray = [sedan, jeep, minivan,microbus];

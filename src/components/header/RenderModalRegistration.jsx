@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 import './RenderModalRegistration.css'
-import { modalCountryDispacth } from '../../redusers/Action'
 import peopleIcon from './pictures/profile.svg'
 import emailIcon from './pictures/email.svg'
 import lockIcon from './pictures/lock.svg'
@@ -69,7 +68,7 @@ class RenderModalRegistrationClass extends React.Component {
 
     render() {
         return (
-            <div className="registrationBody d-flex flex-row">
+            <div className="registrationBody d-flex ">
             <img className="registrationBodyLogoIcon" src={this.state.logoIconActive ? logoBlue : logoWhite} alt="logo" width="80px" height="12px"/>
                 <div className={"sitingInLight d-flex flex-column justify-content-center align-items-center " + this.state.sitingInLightAnimation}>
                     <h3>{this.state.sitingIn ? this.state.sitingInLightBacgraundText.titleSitingIn : this.state.registrationLightBacgraundText.registrationTitle}</h3>

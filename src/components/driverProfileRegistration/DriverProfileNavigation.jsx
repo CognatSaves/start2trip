@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './DriverProfileNavigation.css'
 import { connect } from 'react-redux';
 import { whichPageRender } from "../../redusers/ActionDriverProfileRegistration"

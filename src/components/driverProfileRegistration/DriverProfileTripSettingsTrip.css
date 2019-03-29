@@ -12,7 +12,7 @@
 
 .driverProfileTripSettingsContent {
     padding: 30px 25px 20px 25px;
-    font-family: "Roboto";
+    
     transition: all 0.3s;
 }
 
@@ -45,7 +45,7 @@ div.driverProfileTripSettingsContentTitle {
 
 .driverProfileTripSettingsContent input {
     color: #333;
-    font-family: "Roboto";
+    
     font-weight: 400;
     font-size: 14px;
     border-radius: 5px;
@@ -62,7 +62,7 @@ div.driverProfileTripSettingsContentTitle {
     border: 1px solid #ccc;
     border-radius: 5px;
     color: #333;
-    font-family: "Roboto";
+    
     font-weight: 400;
     font-size: 14px;
     margin-right: 5px;

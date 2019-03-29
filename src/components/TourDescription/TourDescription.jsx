@@ -15,7 +15,6 @@ import { connect } from 'react-redux';
 import georgiaImg from '../home/HomeBody/pictures/georgia.png';
 
 import TourProgram from './TourProgram.jsx';
-//import TourPhotos from './TourPhotos.jsx';
 import PlacePhotos from '../PlaceDescription/PlacePhotos';
 
 import TourMapBlock from './TourMapBlock.jsx';
@@ -25,9 +24,7 @@ import CommentBlock from './CommentBlock.jsx';
 import {changePanelFixedClass, setTourPanelSelectedElement} from '../../redusers/ActionTours';
 class TourDescriptionClass extends React.Component {
     constructor(props) {
-        super(props);
-        //window.scroll.addEventListener('change', (e)=>{console.log(e)});
-        
+        super(props);  
         let countryId = this.props.match.params.country;
         let tourId = this.props.match.params.id;
         let tour = this.props.toursState.tours[countryId].tours[tourId];
@@ -130,10 +127,15 @@ class TourDescriptionClass extends React.Component {
                             setPanelStateFunc={changePanelFixedClass} panelFixedClass={this.props.toursState.tourPanelFixedClass}
                             panelSelectedElement={this.props.toursState.tourPanelSelectedElement} setPanelSelectedElement={setTourPanelSelectedElement}/>
                             <TourProgram tour={this.state.tour}/>
-                            <PlacePhotos photoArray={this.state.photoArray} width={this.state.width}
-                             height={this.state.height} number={this.state.n}/>
+                            <div className="placeDescription_block d-flex flex-column" id="tourDescriptionId2">
+                                <div className="placeDescription_fragmentName" style={{marginBottom: "15px"}}>Фотографии</div>
+                                <PlacePhotos photoArray={this.state.photoArray} width={this.state.width}
+                                height={this.state.height} number={this.state.n}/>
+                            </div>                          
                             <TourMapBlock tour={this.state.tour} cities={["Стамбул", "Антакья", "Александрия", "Картадж", "Рим"]}/>
-                            <SimularToursBlock tours={this.state.popularPlaces}/>
+                            <div className="placeDescription_block d-flex flex-column" id="tourDescriptionId4">
+                                <SimularToursBlock tours={this.state.popularPlaces} fragmentName={"Похожие туры"} priseDisplay={"block"}/>
+                            </div>
                             <CommentBlock comments={comments} userName={this.state.userName} page={this.state.page}
                             setPage={this.setPage} showMorePages={this.showMorePages} showPages={this.state.showPages} id={"tourDescriptionId5"}/>
                         </div>

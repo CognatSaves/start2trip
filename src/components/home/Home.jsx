@@ -46,14 +46,14 @@ class Home extends React.Component {
                   <div className="text_changeBodyBlock_element changeBodyBlock_element_right">КАРТА</div>
                 </div>
               </div>
-              <div className="home_body d-flex flex-row col-12">
+              <div className="home_body d-flex  col-12">
                 <HomeBody redirectToDrivers={() => this.redirectFunc('/drivers')} />
               </div>
             </div>
           </div>
           <div className="d-flex flex-column homeBottom">
-            <div className="d-flex flex-row align-items-center justify-content-start col-12"><h2 className="homeBottomTitle">ПУТЕШЕСТВИЯ СО START2TRIP</h2></div>
-            <div className="d-flex flex-row align-items-start col-12 p-0">
+            <div className="d-flex  align-items-center justify-content-start col-12"><h2 className="homeBottomTitle">ПУТЕШЕСТВИЯ СО START2TRIP</h2></div>
+            <div className="d-flex  align-items-start col-12 p-0">
               <div className="homeBottomIcomRout d-flex flex-column align-items-start col-3 p-0">
                 <img className="mb-4" src={routeIcon} alt="routeIcon" width="60px" height="60px" />
                 <p className="mb-2 homeBottomTitle"><span>01</span> Маршрут</p>
@@ -75,17 +75,17 @@ class Home extends React.Component {
                 <p className="homeBottomText">По Вашему запросу водитель сделает остановку в любом месте для фото или видео съемки, посещения достопримечательности.</p>
               </div>
             </div>
-            <div className="d-flex flex-row align-items-center justify-content-start col-12"><h2 className="homeBottomTitle">ПОПУЛЯРНЫЕ МЕСТА</h2></div>
+            <div className="d-flex  align-items-center justify-content-start col-12"><h2 className="homeBottomTitle">ПОПУЛЯРНЫЕ МЕСТА</h2></div>
             <RenderFourEl tours={this.state.popularPlaces} priseDisplay={"none"} />
-            <div className="d-flex flex-row align-items-center justify-content-center col-12"><Link to="/places" className="homeBottomLink">ПЕРЕЙТИ К МЕСТАМ</Link></div>
-            <div className="d-flex flex-row align-items-center justify-content-start col-12"><h2 className="homeBottomTitle">ОРГАНИЗОВАННЫЕ ТУРЫ</h2></div>
+            <div className="d-flex  align-items-center justify-content-center col-12"><Link to="/places" className="homeBottomLink">ПЕРЕЙТИ К МЕСТАМ</Link></div>
+            <div className="d-flex  align-items-center justify-content-start col-12"><h2 className="homeBottomTitle">ОРГАНИЗОВАННЫЕ ТУРЫ</h2></div>
             <RenderFourEl tours={this.state.popularPlaces} priseDisplay={"block"} />
-            <div className="d-flex flex-row align-items-center justify-content-center col-12"><Link to="/tours" className="homeBottomLink">ПЕРЕЙТИ К ТУРАМ</Link></div>
+            <div className="d-flex  align-items-center justify-content-center col-12"><Link to="/tours" className="homeBottomLink">ПЕРЕЙТИ К ТУРАМ</Link></div>
 
             <div className="homeSubscribe d-flex flex-column align-items-center justify-content-center col-12">
               <h2 className="mb-3">Новостная рассылка</h2>
               <span className="mb-4">Новости, скидки, распродажи, конкурсы и немного искусства:</span>
-              <div className="d-flex flex-row align-content-center col-6 mb-4">
+              <div className="d-flex  align-content-center col-6 mb-4">
                 <InputGroup>
                   <Input className="homeSubscribeInput" placeholder="Aдрес электронной почты" />
                   <InputGroupAddon addonType="append"><Button className="homeSubscribeButton">ПОДПИСАТЬСЯ</Button></InputGroupAddon>

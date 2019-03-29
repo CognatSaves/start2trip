@@ -4,9 +4,9 @@ import tempPicture from './pictures/drivers_body_photo.png'
 import Stars from '../stars/Stars';
 
 export default class ShowComments extends React.Component{
-    constructor(props){
+    /*constructor(props){
         super(props);
-    }
+    }*/
     render(){
         function getMonthName(number){
             let monthArray = ["января","февраля","марта","апреля","мая","июня","июля","августа","сентября","октября","ноября","декабря"];

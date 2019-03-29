@@ -4,6 +4,13 @@ import enFlag from '../components/drivers/DriversBody/DriversProperties/componen
 import espFlag from '../components/drivers/DriversBody/DriversProperties/components/LanguageMenu/pictures/spain.svg'
 import languageBlueIcon from '../components/drivers/DriversBody/DriversBlock/pictures/language_blue.svg'
 import sedan from '../components/drivers/DriversBody/DriversProperties/components/AutoMenu/pictures/sedan.svg';
+import seatIcon from '../components/driverProfileRegistration/img/seat.svg';
+import no_smokingIcon from '../components/driverProfileRegistration/img/no-smoking.svg'
+import snowflakeIcon from '../components/driverProfileRegistration/img/snowflake.svg'
+import wifiIcon from '../components/driverProfileRegistration/img/wifi.svg'
+
+
+
 import {
   SET_STATE, SET_CITIES, SET_AUTO, SET_PAGES, SET_PAGES_VISIBLE, SET_SORT_MENU, SET_SORT_MENU_VISIBLE, SET_MAX_PRICE, LANGUAGE_VALUE_CHOOSE, LANGUAGE_MENU_IS_VISIBAL,
   SET_TEMP_PRICE_PART, SET_PRICE_PART, CHANGE_PERSONS_NUMBER, PEOPLE_MENU_CALL, CHANGE_PERSONS_NUMBER_OLD, AUTO_MENU_CALL, MODAL_COUNTRY,
@@ -34,7 +41,13 @@ const initialState = {
       languageName: "Испанский",
       icon: espFlag,
     },
-
+  ],
+  comfort: [
+    { icon: seatIcon, title: "Кожаный салон" },
+    { icon: snowflakeIcon, title: "Климат контроль" },
+    { icon: wifiIcon, title: "Бесплатный Wi-Fi" },
+    { icon: no_smokingIcon, title: "Курение в салоне запрещено" },
+    { icon: no_smokingIcon, title: "Курение в салоне разрешено" },
   ],
   pagesMenuVariants: [12, 24, 48],
   pagesMenuValue: 12,

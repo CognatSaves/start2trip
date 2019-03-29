@@ -5,9 +5,7 @@ import ToursCountryInfo from './ToursCountryInfo';
 import DriversProperties from '../drivers/DriversBody/DriversProperties/DriversProperties';
 import DriversCommercial from '../drivers/DriversBody/DriversCommercial/DriversCommercial';
 import ToursList from './ToursList';
-
 import { connect } from 'react-redux';
-import Manipulator from '../manipulator/Manipulator';
 import { setPage, setMorePagesShow } from '../../redusers/ActionPlaces';
 
 

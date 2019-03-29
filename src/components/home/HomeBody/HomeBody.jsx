@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './HomeBody.css'
 import RouteMenu from './RouteMenu.jsx'
 import MapContainer from './MapContainer.jsx'

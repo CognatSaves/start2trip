@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 import './StartTravelForm.css';
 import './StartTravelSuccess.css';
 import './StartTravelBlockStyles.css';

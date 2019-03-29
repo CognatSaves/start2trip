@@ -75,9 +75,9 @@ class StarsClass extends React.Component {
     }
     let starsColors = starsColorCalculation(this.state.tempValue);
     return (
-      <div className="infoBlock_starsBlock d-flex flex-row justify-content-start" onMouseLeave={() => { this.resetTempValue() }}>
+      <div className="infoBlock_starsBlock d-flex  justify-content-start" onMouseLeave={() => { this.resetTempValue() }}>
         <div className="infoBlock_starsBlock_value " style={{ display: this.props.valueDisplay }}>{this.state.tempValue}</div>
-        <div className="infoBlock_starsBlock_stars d-flex flex-row">
+        <div className="infoBlock_starsBlock_stars d-flex ">
           {
             starsColors.map((element, index) =>
               <Star index={index} color1={element[2]} colorValue1={element[0]} color2={element[3]} colorValue2={element[1]} setTempValue={this.setTempValue} setValue={this.setValue} />

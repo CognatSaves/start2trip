@@ -25,7 +25,7 @@ export default class TourInfo extends React.Component {
         return(
             <div className="placesCountryInfo d-flex flex-column">
                 <div className="tourInfo_tourShow">{placesString}</div>
-                <div className="tourInfo_dateBlock d-flex flex-row">
+                <div className="tourInfo_dateBlock d-flex ">
                     <div style={{height: "100%"}}>{"Дата:"}</div>
                     <div className="tourInfo_dateBlock_dateValue">{departureDateString(this.props.tour.departureDate)}</div>
                 </div>

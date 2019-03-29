@@ -1,24 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Footer.css'
 import "./Footer(mobile).css"
 import facebookIcon from "./pictures/facebook-letter-logo.svg"
 import instagramIcon from "./pictures/instagram.svg"
 import logoWhiteIcon from "./pictures/logo_white.svg"
 import upArrowIcon from "./pictures/up-arrow.svg"
-import HomeBody from '../home/HomeBody/HomeBody';
 
 export default class Footer extends React.Component {
-  constructor(props) {
+  /*constructor(props) {
     super(props);
-  }
+  }*/
   render() {
     return (
       <React.Fragment>
         <div className="footer d-flex justify-content-center align-items-center col-12">
         <div className="footerButtonUp" onClick={()=>{window.scroll(0,0)}}><img src={upArrowIcon} width="20px" height="20px"  alt="upArrowIcon" /></div>
-          <div className="footer_block d-flex flex-row justify-content-between align-items-center col-12">
+          <div className="footer_block d-flex  justify-content-between align-items-center col-12">
             <img className="col-1 p-0" src={logoWhiteIcon} width="110px" height="18px" alt="logoWhiteIcon" />
-            <div className="footerButtons d-flex flex-row justify-content-around col-8">
+            <div className="footerButtons d-flex  justify-content-around col-8">
               <button className="footerButtons_button">О сервисе</button>
               <button className="footerButtons_button">Партнёрам</button>
               <button className="footerButtons_button">Лицензионное соглашение</button>

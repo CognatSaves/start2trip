@@ -13,18 +13,16 @@ class CreateCommentClass extends React.Component{
     }
     sendComment(){
         function isCorrectComment(comment){
-            if(comment.length==0){
+            if(comment.length===0){// == -> ===
                 return false;
             }
             return true;
         }
         let newComment = document.getElementById("createComment_textareaStyle").value;
-        let temp = new Date(Date.now);
         if(isCorrectComment){
             console.log("Add comment");
             console.log(this.props.commentState.commentValue);
             this.props.dispatch(addComment({name: this.props.userName, date: new Date(Date.now()), value:newComment, rating: this.props.commentState.commentValue}));
-            //this.props.dispatch(setCommentValue(3));
         }
         document.getElementById("createComment_textareaStyle").value="";
     }

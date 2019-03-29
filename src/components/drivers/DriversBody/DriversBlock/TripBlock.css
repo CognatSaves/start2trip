@@ -19,7 +19,6 @@
 .tripBlock_priceBlock {
     align-items: center;
     width: 100%;
-    font-family: "Roboto";
     font-weight: bold;
     font-size: 18pt;
     color: #ff6600;
@@ -28,7 +27,6 @@
 
 .tripBlock_buttonBlock_button {
     justify-content: center;
-    font-family: "Roboto";
     font-weight: 500;
     font-size: 12pt;
     color: #fff;
@@ -52,7 +50,6 @@
 .tripBlock_buttonBlock_commentary {
     font-size: 9pt;
     color: #304269;
-    font-family: "Roboto";
     font-weight: 400;
     text-align: right;
 }
@@ -61,7 +58,6 @@
     justify-content: flex-end;
     font-size: 9pt;
     color: #304269;
-    font-family: "Roboto";
     font-weight: 400;
     margin-top: 10px;
     text-align: right;
@@ -78,14 +74,12 @@
 }
 
 .carBrand_style {
-    font-family: "Roboto";
     font-weight: 500;
     font-size: 12pt;
     text-align: top;
 }
 
 .fuelType_style {
-  font-family: "Roboto";
   font-weight: 400;
     font-size: 12pt;
     text-align: top;
@@ -93,7 +87,6 @@
 }
 
 .carProps_style {
-  font-family: "Roboto";
   font-weight: 400;
     font-size: 10.5pt;
 }

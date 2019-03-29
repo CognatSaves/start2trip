@@ -1,13 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Manipulator.css'
 import leftArrow from './pictures/arrow_gray_left.svg'
 import rightArrow from './pictures/arrow_gray_right.svg'
 
 export default class Manipulator extends React.Component{
-    constructor(props){
+    /*constructor(props){
         super(props);        
-    }
-    
+    }*/   
     render(){
         function numbersCalculation(maxNumber, page){
             let numberArray = [page-2, page-1, page, page+1, page+2];
@@ -69,29 +68,3 @@ export default class Manipulator extends React.Component{
 
     }
 }
-/*
-
-<React.Fragment>
-             <button className="driversBlockManipulator_button">Показать ещё</button>
-             <div className="driversBlockManipulator_pageNumbers">
-                <div className="pageNumbers_leftArrow" onClick={()=>{ if(this.props.page>1){this.props.setPage(this.props.page-1)}}}></div>               
-                <div className="pageNumbers_leftText" onClick={()=>this.props.setPage(1)}>в начало</div>
-                <div className="pageNumbers_space"></div>
-                <div className="pageNumbers_numberPosition">
-                    <div className="numberPosition_numberBlock_space" style={{width: spaceWidthSize[numberArray.length]}}></div>
-                    {numberArray.map((element,index)=>
-                   
-                        <div className="numberPosition_numberBlock">
-                            <button className={numberStyle[index]} onClick={()=>this.props.setPage(element)}>{element}</button>
-                            <div className="numberPosition_numberBlock_space" style={{width: spaceWidthSize[numberArray.length]}}></div>
-                        </div>
-                                              
-                    )}
-                    <div className="numberPosition_numberBlock_space" style={{width: spaceWidthSize[numberArray.length]}}></div>
-                </div>
-                <div className="pageNumbers_rightText" onClick={()=>this.props.setPage(maxPage)}>в конец</div>
-                <div className="pageNumbers_rightArrow" onClick={()=>{ if(this.props.page<maxPage){this.props.setPage(this.props.page+1)}}}></div>
-             </div>
-         </React.Fragment>
-
-         */

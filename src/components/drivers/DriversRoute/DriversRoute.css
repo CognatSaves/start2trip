@@ -15,7 +15,7 @@
     width: 100%;
     font-size: 24px;
     color: #ffffff;
-    font-family: "Roboto";
+
     font-weight: 400;
     margin-bottom: 35px;
 }
@@ -41,7 +41,7 @@
     height: 100%;
     text-align: right;
     text-decoration: underline;
-    font-family: "Roboto";
+
     font-weight: 400;
     font-size: 12px;
     color: #ffffff;
@@ -60,19 +60,19 @@
     display: flex;
     position: relative;
     height: 40px;
-    width: 280px;
+    /*width: 280px;*/
 }
 .route_show_icon{
     margin-top: 10px;
     height: 30px;
-    width: 30px;
+    /*width: 30px;*/
     background: url(pictures/location.svg);
     background-size: 30px 30px;
 }
 .route_show_text {
     position: absolute;
     height: 40px;
-    font-family: "Roboto";
+
     font-weight: 400;
     left: 35px;
     font-size: 15px;
@@ -83,7 +83,7 @@
     position: absolute;
     height: 25px;
     left: 30px;
-    width: 250px;
+    /*width: 250px;*/
     color: #ffffff;
     border-bottom: 1px solid;
 }
@@ -95,7 +95,7 @@
 
 .route_time_text {
     display: flex;
-    font-family: "Roboto";
+
     font-weight: 400;
     font-size: 18px;
     color: #ffffff;
@@ -104,7 +104,7 @@
 .route_comment {
     display: flex;
     color: #ffffff;
-    font-family: "Roboto";
+
     font-weight: 400;
     font-size: 12px;
 }

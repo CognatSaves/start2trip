@@ -27,7 +27,7 @@
     width: 156px;
     height: 156px;
     color: #fff;
-    font-family: "Roboto";
+    
     font-weight: 500;
     font-size: 12px;
     transition: 0.5s ease;
@@ -57,14 +57,14 @@
 
 .bodyTopDriverInfoRide div p {
     color: #304269;
-    font-family: "Roboto";
+    
     font-weight: 400;
     font-size: 14px;
     margin: 0;
 }
 
 .bodyTopDriverInfoRide div p:nth-child(3) {
-    font-family: "Roboto";
+    
     font-weight: 500;
     font-size: 31px;
 }
@@ -83,7 +83,7 @@
 
 .driverProfileBasicInformationBodyBottomHeader p {
     color: #304269;
-    font-family: "Roboto";
+    
     font-weight: 400;
     font-size: 16px;
     background: url(./img/editBlue.svg) no-repeat;
@@ -94,7 +94,7 @@
 
 .driverProfileBasicInformationBodyBottomContent p {
     color: #999;
-    font-family: "Roboto";
+    
     font-weight: 500;
     font-size: 14px;
     margin: 0;
@@ -102,7 +102,7 @@
 
 .driverProfileBasicInformationBodyBottomContent input {
     color: #333;
-    font-family: "Roboto";
+    
     font-weight: 400;
     font-size: 14px;
     border-radius: 5px;
@@ -118,7 +118,7 @@
 
 .driverProfileBasicInformationBodyBottomContent input::placeholder {
     color: #333;
-    font-family: "Roboto";
+    
     font-weight: 400;
     font-size: 14px;
 }
@@ -141,7 +141,7 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     color: #333;
-    font-family: "Roboto";
+    
     font-weight: 400;
     font-size: 14px;
     margin-right: 5px;

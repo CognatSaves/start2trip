@@ -28,7 +28,7 @@ export default class ToursListBlock extends React.Component{
                             <div className="placesList_picture">
                                 <img src={dromon} width="100%" height="100%" style={{ borderRadius: "5px" }} alt=""></img>
                             </div>
-                            <div className="placesList_info d-flex flex-row">
+                            <div className="placesList_info d-flex ">
                                 <div className="d-flex flex-column toursList_leftBlock">
                                     <div className="placesList_info_row">
                                         <div className="d-flex flex-column" style={{ marginRight: "auto" }}>

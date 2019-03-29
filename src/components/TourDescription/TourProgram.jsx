@@ -2,9 +2,9 @@ import React from 'react';
 import Stars from '../stars/Stars';
 import geoIcon from './pictures/geo_icon.svg';
 export default class TourProgram extends React.Component{
-    constructor(props){
+    /*constructor(props){
         super(props);
-    }
+    }*/
     shouldComponentUpdate(nextProps){
         return !(JSON.stringify(this.props)===JSON.stringify(nextProps));
     }
@@ -16,7 +16,6 @@ export default class TourProgram extends React.Component{
             }
             return res;
         }
-        console.log("TourProgramm");
         let tour = this.props.tour;
         let lineDisplayArray = Array(tour.places.length).fill("block");
         lineDisplayArray[lineDisplayArray.length-1]="none";

@@ -1,5 +1,5 @@
 import {ADD_COMMENT, SET_COMMENT_VALUE} from './ActionComments';
-import { EditorBorderAll } from 'material-ui/svg-icons';
+/*import { EditorBorderAll } from 'material-ui/svg-icons';*/
 
 const initialState = {
     commentValue: 3,

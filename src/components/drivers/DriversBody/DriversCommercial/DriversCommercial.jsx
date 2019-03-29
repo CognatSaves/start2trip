@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './DriversCommercial.css'
 import picture1 from './pictures/commercial_picture1.png';
 import picture2 from './pictures/commercial_picture2.png';
@@ -7,13 +7,12 @@ import picture2 from './pictures/commercial_picture2.png';
 export default class DriversCommercial extends React.Component {
   constructor(props) {
     super(props);
-    this.state={//на данный момент не испоьзуется, картинка задана напрямую в css
+    this.state={//написано фиктивно - будет использоваться при подключ. бд
       picture1: "pictures/commercial_picture1.png",
       picture2: "pictures/commercial_picture2.png"
     }
   }
-  render() {
-    
+  render() {   
     return (
       <div className = "drivers_commercial d-flex flex-column">
         <div className="commercial_picture picture1">

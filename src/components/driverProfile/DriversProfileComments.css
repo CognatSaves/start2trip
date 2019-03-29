@@ -2,7 +2,7 @@
     width:100%;
     border-bottom: 1px solid #cccccc;
     font-size: 16px;
-    font-family: "Roboto";
+    
     font-weight: 600;
 }
 .driverProfileComments_panel_element{
@@ -63,7 +63,7 @@
     height:60px;
     line-height: 60px;
     font-size: 14px;
-    font-family: "Roboto";
+    
     font-weight: 500;
     color: #304269;
 }
@@ -88,7 +88,7 @@
     color: #ffffff;
 
     font-size: 16px;
-    font-family: "Roboto";
+    
     font-weight: 400;*/
     margin: 10px 0 0 auto;
 }
@@ -110,13 +110,13 @@
 .valueBlock_firstElement_name{
     margin-right: auto;
     font-size: 14px;
-    font-family: "Roboto";
+    
     font-weight: 600;
     color: #304269;
 }
 .valueBlock_firstElement_date{
     margin-left: auto;
-    font-family: "Roboto";
+    
     font-size: 12px;
     font-weight: 300;
     color: #999999;
@@ -128,7 +128,7 @@
     overflow: hidden; 
     text-overflow: ellipsis;
 
-    font-family: "Roboto";
+    
     font-weight: 400;
     font-size: 14px;
     color: #304269;
@@ -156,7 +156,7 @@
  position: relative;
  text-overflow: ellipsis;
  width: 100%;
- font-family: "Roboto";
+ 
  font-weight: 400;
  font-size: 14px;
  color: #304269;

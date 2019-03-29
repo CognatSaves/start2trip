@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './PagesMenu.css'
 import { connect } from 'react-redux';
 
 
 
 class PagesMenuClass extends React.Component{
-    constructor(props){
+    /*constructor(props){
         super(props);
-    }
+    }*/
     
     render(){
         if(this.props.isVisible){

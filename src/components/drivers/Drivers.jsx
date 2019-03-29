@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Drivers.css';
 
 import DriversBody from './DriversBody/DriversBody.jsx';
@@ -44,24 +44,46 @@ class DriversClass extends React.Component {
     })
   }
   render() {
+    let array =["","","","","","","","","",""];
     return (
-      <React.Fragment>
-        <div className="drivers_top_background col-12">
-          <div className="wrapper d-flex flex-column">
-            <div className="drivers_top_block d-flex flex-column">
-              <Header colorWhite={true}/>
-              <DriversRoute />
-            </div>
+      <React.Fragment>  
+    
+        
+      <div className="drivers_top_background">
+        <div className="container d-flex flex-column">
+          <div className="row">
+            <Header colorWhite={true}/>
+            <DriversRoute />
           </div>
         </div>
-        <div className="wrapper d-flex flex-column">
-          <div className="drivers_bottom_background d-flex flex-column" >
-            <DriversBody changeTravelVisibility={this.changeTravelVisibility} />
-          </div>
+      </div>
+      <div className="wrapper d-flex flex-column">
+        <div className="drivers_bottom_background d-flex flex-column" >
+          <DriversBody changeTravelVisibility={this.changeTravelVisibility} />
         </div>
-        <StartTravelForm changeTravelVisibility={this.changeTravelVisibility} changeSuccessVisibility={this.changeSuccessVisibility}
-          travelVisibility={this.state.travelVisibility} successVisibility={this.changeSuccessVisibility} />
-        <StartTravelSuccess successVisibility={this.state.successVisibility} changeSuccessVisibility={this.changeSuccessVisibility} />
+      </div>
+      <StartTravelForm changeTravelVisibility={this.changeTravelVisibility} changeSuccessVisibility={this.changeSuccessVisibility}
+        travelVisibility={this.state.travelVisibility} successVisibility={this.changeSuccessVisibility} />
+      <StartTravelSuccess successVisibility={this.state.successVisibility} changeSuccessVisibility={this.changeSuccessVisibility} /> 
+
+        
+          
+           
+      {
+       /* 
+        <div className="col-12 d-flex flex-wrap">
+        {
+          array.map((element,index)=>
+          <div className="col-xl-3 col-md-4 col-sm-6" style={{border: "1px solid"}}>
+            <div className="col-12" style={{height: "200px",  backgroundColor: "red"}}/>
+            <div className="col-12">AAA</div>
+          </div>
+          )
+        }
+        </div>
+        */
+        }
+  
       </React.Fragment>
     );
   }

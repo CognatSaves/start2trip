@@ -5,7 +5,7 @@ const PhotoSelect = (props) => {
   
     let {width, height, src, selectPhoto, photoIndex,carouselSize} = props;
     return (
-        <div className={"placesDescription_photos_secondaryPhotoBox"} style={{/*margin: "0 auto",*/ width: width, height: height}} onClick={()=>{selectPhoto(photoIndex,carouselSize)}}>
+        <div className={"placesDescription_photos_secondaryPhotoBox"} style={{width: width, height: height}} onClick={()=>{selectPhoto(photoIndex,carouselSize)}}>
             <img src={src} width={width} height={height} alt={"/picture "+photoIndex}/>
         </div>
     )
@@ -96,7 +96,6 @@ export default class Carousel extends React.Component{
             )
           }
           default:{
-            //debugger;
             XTransformValue=-1*this.state.photoSlice*this.props.widthCarouselEl;
             boxXTransformValue = this.state.selectedPhotoIndex*this.props.widthCarouselEl;
             carouselWidth = this.props.widthCarouselEl*this.props.photoArray.length;

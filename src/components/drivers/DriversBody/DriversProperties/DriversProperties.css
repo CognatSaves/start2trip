@@ -18,7 +18,6 @@
     height: 100%;
     font-size: 9pt;
     color: #666666;
-    font-family: "Roboto";
     font-weight: 400;
     line-height: 30px;
     text-align: left;
@@ -38,7 +37,6 @@
 
 .properties_buttonStyle {
     position: relative;
-    font-family: "Roboto";
     font-weight: 500;
     font-size: 9pt;
     color: #304269;
@@ -48,6 +46,7 @@
     line-height: 250%;
     padding: 0 2px;
     cursor: pointer;
+    z-index: 100;
 }
 
 /*line-height в предыдущем стиле какое-то странное*/
@@ -80,7 +79,6 @@
 
 .properties_rightButton_value {
     margin: auto 2px;
-    font-family: "Roboto";
     font-weight: 500;
     font-size: 9pt;
 }
