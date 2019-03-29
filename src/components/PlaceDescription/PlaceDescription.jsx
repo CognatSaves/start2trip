@@ -100,8 +100,8 @@ class PlaceDescriptionClass extends React.Component {
         return (
             <React.Fragment>
                 <div className="drivers_top_background placeDescription_background" id={topBlockId}>
-                    <img src={ippodrom} width="100%" height="100%" style={{ position: "absolute" }} alt="noImage" />
-                    <div style={{ position: "absolute", width: "100%", height: "100%", backgroundColor: "rgba(0,0,0,0.5)" }} />
+                    <img src={ippodrom} width="100%" height="460px" style={{ position: "absolute" }} alt="noImage" />
+                    <div style={{ position: "absolute", width: "100%", height: "460px", backgroundColor: "rgba(0,0,0,0.5)" }} />
                     <div className="d-flex flex-column container">
                         <Header colorWhite={true} />                  
                         <PlaceInfo place={place}/>                     
