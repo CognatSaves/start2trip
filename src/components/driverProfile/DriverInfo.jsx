@@ -23,7 +23,7 @@ class DriverInfoClass extends React.Component{
         console.log("DriverInfo render");
         const { element} = this.props;
         return(
-        <div className="drivers_block_element driverInfo_background d-flex flex-row" style={{marginBottom: 0}}>
+        <div className="drivers_block_element driverInfo_background d-flex " style={{marginBottom: 0}}>
             <div className="block_element_left driverInfo_element d-flex flex-column col-6">
                 <div className="driverInfo_left_line">
                     <div className="block_element_photo">
@@ -35,7 +35,7 @@ class DriverInfoClass extends React.Component{
                             <Stars value={element.rating} commentNumber={element.comments + " отзывов"} valueDisplay="block" commentNumberDisplay="block" />
                         </div>
                         <div className="block_element_infoBlock_bot">
-                            <div className="d-flex flex-row">
+                            <div className="d-flex ">
                                 <div className="infoString infoString_driverInfoSize">Языки:</div>
                                 <div className="d-flex">
                                 {
@@ -45,7 +45,7 @@ class DriverInfoClass extends React.Component{
                                 }
                                 </div>
                             </div>
-                            <div className="d-flex flex-row">
+                            <div className="d-flex ">
                                 <div className="infoString infoString_driverInfoSize">За рулём:</div>
                                 <div className="visibleString">{element.drivingAge + " лет"}</div>
                             </div>

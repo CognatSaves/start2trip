@@ -16,9 +16,8 @@ import PlaceProgramm from './PlaceProgramm.jsx';
 import PlacePhotos from './PlacePhotos.jsx';
 import PlaceTravelBlock from './PlaceTravelBlock.jsx';
 import PlaceMapBlock from './PlaceMapBlock.jsx';
-import PlaceIntrestingBlock from './PlaceIntrestingBlock.jsx';
 import CommentBlock from '../TourDescription/CommentBlock.jsx';
-
+import SimularToursBlock from '../TourDescription/SimularToursBlock.jsx';
 import TourPanel from '../TourDescription/TourPanel.jsx';
 import {changePlacesFixedClass, setPlacesPanelSelectedElement} from '../../redusers/ActionPlaces';
 
@@ -100,11 +99,12 @@ class PlaceDescriptionClass extends React.Component {
         let topBlockId = "placeDescriptionId";
         return (
             <React.Fragment>
-                <div className="drivers_top_background placeDescription_background col-12" id={topBlockId}>
+                <div className="drivers_top_background placeDescription_background container" id={topBlockId}>
                     <img src={ippodrom} width="100%" height="100%" style={{ position: "absolute" }} alt="noImage" />
                     <div style={{ position: "absolute", width: "100%", height: "100%", backgroundColor: "rgba(0,0,0,0.5)" }} />
+                    <Header colorWhite={true} />
                     <div className="wrapper d-flex flex-column">
-                        <Header colorWhite={true} />
+                        
                         <PlaceInfo place={place}/>
                     </div>
                 </div>
@@ -117,13 +117,15 @@ class PlaceDescriptionClass extends React.Component {
                                 panelSelectedElement={this.props.placesState.placePanelSelectedElement} setPanelSelectedElement={setPlacesPanelSelectedElement}/>
                                 <PlaceProgramm place={place}/> 
                                 <div className="placeDescription_block d-flex flex-column" id="placeDescriptionId2"> 
-                                    <div className="placeDescription_fragmentName" style={{marginBottom: "15px"}}>Фотографии</div>                           
+                                    <div className="placeDescription_fragmentName" style={{marginBottom: "15px"}} >Фотографии</div>                           
                                     <PlacePhotos photoArray={this.state.photoArray}
                                         width={this.state.width} height={this.state.height} number={this.state.n}/>
                                 </div>
                                 <PlaceTravelBlock place={place} />
                                 <PlaceMapBlock />
-                                <PlaceIntrestingBlock tours={this.state.popularPlaces} />
+                                <div className="placeDescription_block d-flex flex-column" id="placeDescriptionId5">
+                                    <SimularToursBlock tours={this.state.popularPlaces} fragmentName={"Вас может заинтересовать"} priseDisplay={"none"}/>
+                                </div>
                                 <CommentBlock comments={comments} userName={this.state.userName} page={this.state.page} setPage={this.setPage}
                                     showMorePages={this.showMorePages} showPages={this.state.showPages} id={"placeDescriptionId6"}/>
                             

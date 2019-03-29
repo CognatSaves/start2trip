@@ -11,7 +11,7 @@
 .successThanks_value{
     margin: 0 auto;
     font-size: 24px;
-    font-family: "Roboto";
+
     font-weight: 700;
     color: #304269;
 }
@@ -30,7 +30,7 @@
     margin: 0 auto;
     font-size: 16px;
     font-weight: 400;
-    font-family: "Roboto";
+
 }
 .success_continueButton{
     display: flex;
@@ -48,5 +48,5 @@
     margin: 0 auto;
     font-size: 16px;
     font-weight: 600;
-    font-family: "Roboto";
+
 }

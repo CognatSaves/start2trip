@@ -45,13 +45,11 @@ class TourPanelClass extends React.Component{
                 let pageElement = document.getElementById(this.props.descriptionId+(i+1));
                 let elementHeight = pageElement.offsetHeight;
                 
-                if(distanceTop-scrolled<50 ){
-                    
+                if(distanceTop-scrolled<50 ){            
                     selected=i;
                 }  
                 distanceTop=distanceTop+elementHeight; 
             }
-
             if(this.state.selectedElement!==selected){
                 this.props.dispatch(this.props.setPanelSelectedElement(selected));
             }

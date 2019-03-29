@@ -133,7 +133,9 @@ class TourDescriptionClass extends React.Component {
                                 height={this.state.height} number={this.state.n}/>
                             </div>                          
                             <TourMapBlock tour={this.state.tour} cities={["Стамбул", "Антакья", "Александрия", "Картадж", "Рим"]}/>
-                            <SimularToursBlock tours={this.state.popularPlaces}/>
+                            <div className="placeDescription_block d-flex flex-column" id="tourDescriptionId4">
+                                <SimularToursBlock tours={this.state.popularPlaces} fragmentName={"Похожие туры"} priseDisplay={"block"}/>
+                            </div>
                             <CommentBlock comments={comments} userName={this.state.userName} page={this.state.page}
                             setPage={this.setPage} showMorePages={this.showMorePages} showPages={this.state.showPages} id={"tourDescriptionId5"}/>
                         </div>

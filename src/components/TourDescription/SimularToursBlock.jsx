@@ -9,15 +9,14 @@ export default class SimularToursBlock extends React.Component{
         return !(JSON.stringify(this.props)===JSON.stringify(nextProps));
     }
     render(){
-        console.log("SimularTours render");
         let  tours  = this.props.tours;
-        return (
-        <div className="placeDescription_block d-flex flex-column" id="tourDescriptionId4">
-            <div className="placeDescription_fragmentName">Похожие туры</div>
+        return ( 
+        <React.Fragment>
+            <div className="placeDescription_fragmentName">{this.props.fragmentName}</div>
             <div className="render_otherPlaces" style={{ marginTop: "15px" }}>
-                <RenderFourEl tours={tours}/>
+                <RenderFourEl tours={tours} priseDisplay={this.props.priseDisplay}/>
             </div>
-        </div>
+        </React.Fragment>             
         )
     }
 }

@@ -88,7 +88,7 @@ class RenderModalCountryClass extends React.Component {
         return (
             <div className="countryBody d-flex flex-column flex-wrap">
                 {this.state.country.arrayCountry.map((element, index) =>
-                    <div className="d-flex flex-row align-items-center justify-content-start col-5 p-0">
+                    <div className="d-flex  align-items-center justify-content-start col-5 p-0">
                         <img src={element.img} alt={element.country} width="15px" height="15px"/>
                         <p className="m-0 p-1" onClick={()=>{this.props.dispatch(modalCountryDispacth(element.ISO)); this.props.close()}}>{element.country}</p>
                     </div>

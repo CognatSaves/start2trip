@@ -94,14 +94,14 @@ class DriversRouteClass extends React.Component {
       if(!this.props.driversState.driversRouteChange){
         return (
           <div className = "drivers_route col-12 d-flex flex-column">
-            <div className="route_date d-flex flex-row">
+            <div className="route_date d-flex ">
               <div className="route_date_text">Ваш индивидуальный маршрут на: {this.props.storeState.date}</div>
-              <div className="d-flex flex-row" onClick={()=>this.props.dispatch(setDriversRouteChange(!this.props.driversState.driversRouteChange))}>               
+              <div className="d-flex " onClick={()=>this.props.dispatch(setDriversRouteChange(!this.props.driversState.driversRouteChange))}>               
                 <div className="route_change_text">Изменить маршрут</div>
                 <div className="route_change_emblem"/>
               </div>
             </div>
-            <div className="route_show d-flex flex-row">
+            <div className="route_show d-flex ">
               {this.state.cities.map((element, index) =>
               <div className="route_show_element">
                 <div className="route_show_icon"/>
@@ -125,14 +125,14 @@ class DriversRouteClass extends React.Component {
         removeArray[removeArray.length-1]='none';
         return (
           <div className = "drivers_route col-12 d-flex flex-column">
-            <div className="route_date d-flex flex-row">
+            <div className="route_date d-flex ">
               <div className="route_date_text">Ваш индивидуальный маршрут на: {this.props.storeState.date}</div>
-              <div className="d-flex flex-row" onClick={()=>this.props.dispatch(setDriversRouteChange(!this.props.driversState.driversRouteChange))}>               
+              <div className="d-flex " onClick={()=>this.props.dispatch(setDriversRouteChange(!this.props.driversState.driversRouteChange))}>               
                 <div className="route_change_text">Изменить маршрут</div>
                 <div className="route_change_emblem"/>
               </div>
             </div>
-            <div className="route_show d-flex flex-row">
+            <div className="route_show d-flex ">
               {this.state.cities.map((element, index) =>
               <React.Fragment>
                 <div className="route_show_element" key={element+"/"+index}>
@@ -145,7 +145,7 @@ class DriversRouteClass extends React.Component {
               </React.Fragment>
               )}
             </div>
-            <div className="route_show route_show_bottom d-flex flex-row" style={{width: "100%"}}>
+            <div className="route_show route_show_bottom d-flex " style={{width: "100%"}}>
               <div className="route_bottomBlock d-flex flex-column">
                 <div className="route_add_city" onClick={()=>this.addCity()}>
                   <div className="route_add_city_imageBlock"/>

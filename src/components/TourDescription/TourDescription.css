@@ -24,7 +24,7 @@
 }
 .tourDescription_additionalInfoBlock_element{
     font-size: 14px;
-    font-family: "Roboto";
+
     color: #304269;
     font-weight: 400;
 }
@@ -89,7 +89,7 @@
 .mapBlock_tourPrice{
     margin: 0 auto;
     font-size: 24px;
-    font-family: "Roboto";
+
     color: "#ff6600";
     font-weight: 600;
 }
@@ -101,7 +101,7 @@
     margin-top: auto;
     width: 500px;
     font-size: 14px;
-    font-family: "Roboto";
+
     color: #304269;
     font-weight: 500;
 }
@@ -126,7 +126,7 @@
 
 
 .tourPanel_element{
-    font-family: "Roboto";
+
     font-weight: 500;
     font-size: 16px;
     color: #304269;

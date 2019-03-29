@@ -9,7 +9,7 @@
     border-radius: 5px;
 }
 .placesList_placeName{
-    font-family: "Roboto";
+
     font-size: 16px;
     line-height: 16px;
     font-weight: 500;
@@ -35,7 +35,7 @@
     font-size: 14px;
     line-height: 20px;
     font-weight: 400;
-    font-family: "Roboto";
+
     height: 80px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -44,7 +44,7 @@
 
 .placesList_info_position{
     font-size: 12px;
-    font-family: "Roboto";
+
     font-weight: 400;
     color: #999999;
 }
@@ -55,7 +55,7 @@
 }
 
 .placesList_readMoreButton{
-    font-family: "Roboto";
+
     font-weight: 500;
     color: #304269;
     font-size: 14px;

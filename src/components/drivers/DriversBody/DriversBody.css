@@ -2,13 +2,12 @@
 .left_body_part{
   height: 100%;
   margin-right: auto;
-  min-width: 590px;
 }
 .right_body_part{
   height: 100%;
   margin-bottom: auto;
-  min-width: 150px;
 }
+/*
 @media (max-width: 1150px){
   .left_body_part{margin-right: 10px}
-}
+}*/

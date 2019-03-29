@@ -29,7 +29,7 @@
 } */
 .placesCountryInfo_countryinfo{
     font-size: 14px;
-    font-family: "Roboto";
+
     font-weight: 400; 
 }
 .placesCountryInfo_countryData{
@@ -53,7 +53,7 @@
 .countryData_element_text{
     text-align: center;
     display: flex;
-    font-family: "Roboto";
+
     font-size: 12px;
     font-weight: 300;
     margin-top: 5%;

@@ -5,7 +5,7 @@
 .visibleString {
     float: right;
     font-size: 10.5pt;
-    font-family: "Roboto";
+
     font-weight: 400;
     white-space: nowrap;
     overflow: hidden;
@@ -14,7 +14,7 @@
 
 .infoString {
     font-size: 10.5pt;
-    font-family: "Roboto";
+
     font-weight: 500;
     margin-right: 1%;
 }
@@ -131,7 +131,7 @@
   text-align: center;
   color: transparent;
   font-size: 18px;
-  font-family: "Roboto";
+
   line-height: 100px;
   text-decoration: underline;
 }
@@ -151,7 +151,7 @@
     padding-top: 15px;
     width: 100%;
     font-size: 12px;
-    font-family: "Roboto";
+
     color: #304269;
 }
 .driversBlock_carName{

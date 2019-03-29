@@ -11,16 +11,16 @@ export default class DriverAdaptedRoute extends React.Component{
 
         return(
             <div className="drivers_route col-12 d-flex flex-column" style={{marginTop: 0}}>
-                <div className="route_date d-flex flex-row" style={{ margin: 0 }}>
+                <div className="route_date d-flex " style={{ margin: 0 }}>
                     <div className="route_date_text">Ваш индивидуальный маршрут на: {date}</div>
-                    <div className="d-flex flex-row" to="/drivers" onClick={() => goToDrivers()}>
+                    <div className="d-flex " to="/drivers" onClick={() => goToDrivers()}>
                         <div className="route_change_text">Изменить маршрут</div>
                         <div className="route_change_emblem" />
                     </div>
                 </div>
                 <div className="driversAdaptedRoute_routeBlock" >
                     <div class="col-8" style={{ display: "flex", flexDirection: "column", marginRight: "auto", padding: 0, marginTop: "2%" }}>
-                        <div className="route_show d-flex flex-row" >
+                        <div className="route_show d-flex " >
                             {cities.map((element, index) =>
                                 <div className="route_show_element driverAdaptedRoute_show_element" style={{/*width: routeElementWidth*/ }}>
                                     <div className="route_show_icon" style={{ marginTop: "4px", height: "36px", width: "36px", backgroundSize: "36px 36px" }} />
