@@ -3,6 +3,7 @@
     position: relative;
 }
 
+
 /* 
 .edditIcon{
     position: absolute;
@@ -27,7 +28,6 @@
     width: 156px;
     height: 156px;
     color: #fff;
-    
     font-weight: 500;
     font-size: 12px;
     transition: 0.5s ease;
@@ -41,30 +41,20 @@
     opacity: 1;
 }
 
-.driverProfileBasicInformationBodyTop {
-    min-height: 200px;
-}
-
 .bodyTopDriverInfo {
     border-bottom: 1px solid #ccc;
     padding-left: 0px !important;
     margin-left: 15px;
 }
 
-.bodyTopDriverInfoRide div {
-    min-width: 200px;
-}
-
 .bodyTopDriverInfoRide div p {
     color: #304269;
-    
     font-weight: 400;
     font-size: 14px;
     margin: 0;
 }
 
 .bodyTopDriverInfoRide div p:nth-child(3) {
-    
     font-weight: 500;
     font-size: 31px;
 }
@@ -83,7 +73,6 @@
 
 .driverProfileBasicInformationBodyBottomHeader p {
     color: #304269;
-    
     font-weight: 400;
     font-size: 16px;
     background: url(./img/editBlue.svg) no-repeat;
@@ -94,7 +83,6 @@
 
 .driverProfileBasicInformationBodyBottomContent p {
     color: #999;
-    
     font-weight: 500;
     font-size: 14px;
     margin: 0;
@@ -102,23 +90,21 @@
 
 .driverProfileBasicInformationBodyBottomContent input {
     color: #333;
-    
     font-weight: 400;
     font-size: 14px;
     border-radius: 5px;
     border: 1px solid #ccc;
     padding-left: 10px;
-    min-width: 400px;
+    max-width: 400px;
     min-height: 40px;
 }
 
 .driverProfileBasicInformationBodyBottomContent :nth-child(6) input {
-    min-width: 195px;
+    max-width: 195px;
 }
 
 .driverProfileBasicInformationBodyBottomContent input::placeholder {
     color: #333;
-    
     font-weight: 400;
     font-size: 14px;
 }
@@ -135,13 +121,12 @@
 }
 
 .driverProfileBasicInformationBodyBottomContent select {
-    min-width: 130px;
+    max-width: 130px;
     min-height: 40px;
     background: none;
     border: 1px solid #ccc;
     border-radius: 5px;
     color: #333;
-    
     font-weight: 400;
     font-size: 14px;
     margin-right: 5px;
@@ -154,16 +139,16 @@
 }
 
 .driverProfileBasicInformationBodyBottomContent :nth-child(6) select {
-    min-width: 195px;
+    max-width: 195px;
     margin-right: 10px;
 }
 
 .driverProfileBasicInformationBodyBottomContent :nth-child(7) select {
-    min-width: 400px;
+    max-width: 400px;
 }
 
 .driverProfileBasicInformationBodyBottomContent textarea {
-    min-width: 400px;
+    max-width: 400px;
     min-height: 150px;
     border-radius: 5px;
     padding-left: 10px;
@@ -171,7 +156,7 @@
 
 .driverProfileBasicInformationBodyBottomContent button {
     max-width: 250px;
-    min-height: 40px;
+    max-height: 40px;
     text-align: center;
     line-height: 40px;
     color: #fff;
@@ -179,7 +164,6 @@
     border-radius: 5px;
     border: none;
     transition: all 0.3s;
-    margin-left: 218px;
 }
 
 .driverProfileBasicInformationBodyBottomContent button:hover {
