@@ -128,12 +128,12 @@ class HeaderClass extends React.Component {
         <ModalRegistration modalRegistration={this.state.modalRegistration} toggle={this.toggleModalRegistration} className={this.props.className}/>
         <CountrySelect modalCountry={this.state.modalCountry} toggleModalCountry={this.toggleModalCountry} className={this.props.className}/>
 
-        <div className="home_header col-12">
+        <div className="home_header col-lg-12">
           <div className='header d-flex align-items-center'>
-            <Link className="" to="">
+            <Link className="col-xl-3 col-lg-4" to="">
               <div className={this.props.colorWhite ? "logoWhite" : "logoBlue"}></div>
             </Link>
-            <div className="header_geo_block col-4">
+            <div className="header_geo_block col-lg-1">
                 <img src={this.props.colorWhite ? whiteEarth : earth} width="40px" height="30px" alt="earthPic" />
                 <div onClick={this.toggleModalCountry} className={this.props.colorWhite ? "header_geo_button_Blue" : "header_geo_button_White"}>
                   <div className={this.props.colorWhite ? "geo_button_value_White" : "geo_button_value_Blue"}>
@@ -143,14 +143,14 @@ class HeaderClass extends React.Component {
                   </div>
                 </div>
               </div>
-            <div className="header_buttonMass d-flex justify-content-start col-4 ">
+            <div className="header_buttonMass d-flex justify-content-end col-xl-5 col-lg-4">
             {
               this.state.buttonMassElements.map((element,index)=>
                 <Link to={element.to} className={this.props.colorWhite ? "buttonMass_button_White" : "buttonMass_button_Blue"}>{element.value}</Link>
               )
             }            
             </div>
-            <div className="headerSelect d-flex align-items-center justify-content-end col-4">
+            <div className="headerSelect d-flex align-items-center justify-content-end col-lg-3">
               <Dropdown setActiveFromChild="true" isOpen={this.state.dropdownOpen} toggle={this.toggleDropdownOpen} className="selectGeneral">
                 <DropdownToggle className={this.props.colorWhite ? "selectGeneralBtWhite" : "selectGeneralBtBlue"} caret size="sm">
                   {this.state.activeCurrency[this.state.activeCurrencyNumber]}

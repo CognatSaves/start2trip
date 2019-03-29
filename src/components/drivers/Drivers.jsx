@@ -57,7 +57,9 @@ class DriversClass extends React.Component {
           </div>
         </div>
       </div>
-      <div className="wrapper d-flex flex-column">
+      {
+/*
+<div className="wrapper d-flex flex-column">
         <div className="drivers_bottom_background d-flex flex-column" >
           <DriversBody changeTravelVisibility={this.changeTravelVisibility} />
         </div>
@@ -65,6 +67,11 @@ class DriversClass extends React.Component {
       <StartTravelForm changeTravelVisibility={this.changeTravelVisibility} changeSuccessVisibility={this.changeSuccessVisibility}
         travelVisibility={this.state.travelVisibility} successVisibility={this.changeSuccessVisibility} />
       <StartTravelSuccess successVisibility={this.state.successVisibility} changeSuccessVisibility={this.changeSuccessVisibility} /> 
+
+*/
+
+      }
+      
 
         
           
