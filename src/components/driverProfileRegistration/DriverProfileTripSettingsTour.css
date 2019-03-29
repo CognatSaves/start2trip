@@ -1,4 +1,120 @@
+.addTourShow {
+    min-width: 250px;
+    min-height: 40px;
+    text-align: center;
+    line-height: 40px;
+    color: #fff;
+    background: #304269;
+    border-radius: 5px;
+    border: none;
+    transition: all 0.3s;
+}
+
+
 /* Content Bigin */
+
+.driverProfileTripSettingsTourContent div {
+    min-height: 40px;
+    margin-bottom: 15px;
+}
+
+.driverProfileTripSettingsTourContent p {
+    font-family: "Roboto";
+    font-weight: 500;
+    font-size: 14px;
+    color: #999;
+    margin: 0;
+}
+
+.driverProfileTripSettingsTourContent span {
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 14px;
+    color: #333;
+    margin: 0;
+}
+
+.tourContentTitle p {
+    font-weight: 400;
+    color: #304269;
+}
+
+.driverProfileTripSettingsTourContent input {
+    color: #333;
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding-left: 10px;
+    min-width: 130px;
+    min-height: 40px;
+}
+
+.driverProfileTripSettingsTourContent select {
+    min-width: 400px;
+    min-height: 40px;
+    background: none;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #333;
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 14px;
+    margin-right: 5px;
+    padding-left: 10px;
+    cursor: pointer;
+    appearance: none;
+    background: url(./img/arrow-point-to-down.svg) no-repeat;
+    background-size: 8px 8px;
+    background-position: top 15px right 10px;
+}
+
+.driverProfileTripSettingsTourContent textarea:hover,
+.driverProfileTripSettingsTourContent textarea:focus,
+.driverProfileTripSettingsTourContent select:hover,
+.driverProfileTripSettingsTourContent select:focus,
+.driverProfileTripSettingsTourContent input:hover,
+.driverProfileTripSettingsTourContent input:focus {
+    border-color: #304269;
+    text-decoration: none;
+    outline: #304269;
+}
+
+.driverProfileTripSettingsTourContent textarea {
+    min-width: 400px;
+    min-height: 150px;
+    border-radius: 5px;
+    padding-left: 10px;
+    border: 1px solid #ccc;
+}
+
+.tourContentAdd p {
+    cursor: pointer;
+}
+
+.tourContentAdd p:hover {
+    color: #f60;
+}
+
+.driverProfileTripSettingsTourContent button {
+    min-width: 250px;
+    min-height: 40px;
+    text-align: center;
+    line-height: 40px;
+    color: #fff;
+    background: #304269;
+    border-radius: 5px;
+    border: none;
+    transition: all 0.3s;
+    margin-left: 218px;
+}
+
+.driverProfileTripSettingsTourContent button:focus,
+.driverProfileTripSettingsTourContent button:hover {
+    background: #f60;
+    outline: none;
+}
 
 
 /* Content End */
