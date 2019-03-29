@@ -103,10 +103,10 @@ class DriversRouteClass extends React.Component {
             </div>
             <div className="route_show d-flex ">
               {this.state.cities.map((element, index) =>
-              <div className="route_show_element">
-                <div className="route_show_icon"/>
+              <div className="route_show_element ">
+                <div className="route_show_icon" />
                 <div className="route_show_text" >{this.state.cities[index]}</div>
-                <div className="route_show_line" style={{visibility: isVisibleArray[index]}}></div>
+                <div className="route_show_line " style={{visibility: isVisibleArray[index]}}></div>
               </div>
               )}
             </div>

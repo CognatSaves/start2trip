@@ -60,14 +60,15 @@
     display: flex;
     position: relative;
     height: 40px;
-    /*width: 280px;*/
+    width: 280px;
 }
 .route_show_icon{
     margin-top: 10px;
     height: 30px;
-    /*width: 30px;*/
-    background: url(pictures/location.svg);
-    background-size: 30px 30px;
+    width: 30px;
+    background: url(pictures/location.svg) no-repeat;
+    background-size: 100% 100%;
+    z-index: 10;
 }
 .route_show_text {
     position: absolute;
@@ -81,11 +82,13 @@
 
 .route_show_line {
     position: absolute;
-    height: 25px;
-    left: 30px;
-    /*width: 250px;*/
+    height: 15px;
+    bottom: 0;
+    right: 0;
+    width: 250px;
     color: #ffffff;
-    border-bottom: 1px solid;
+    border-top: 1px solid;
+    z-index: 4;
 }
 
 .route_bottomBlock {
