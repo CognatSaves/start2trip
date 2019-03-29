@@ -27,6 +27,3 @@ export default class DriversCommercial extends React.Component {
   }
 
 }
-/*
-
-*/
