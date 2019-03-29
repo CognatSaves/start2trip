@@ -58,26 +58,26 @@ class DriverProfileBasicInformationClass extends React.Component {
             <div className="driverProfileBasicInformationBody d-flex flex-column">
                 <div className="driverProfileBasicInformationBodyTop d-flex align-items-center">
                     <div className="driverProfileBasicInformationBodyTopImgHover">
-                    <label className="driverProfileBasicInformationBodyTopImg" htmlFor="addFile">Обновить фотографию</label>
-                        <img  src={imgPerson} alt="imgPerson" />
+                        <label className="driverProfileBasicInformationBodyTopImg" htmlFor="addFile">Обновить фотографию</label>
+                        <img src={imgPerson} alt="imgPerson" />
                         {/* <label className="edditIcon" htmlFor="addFile"></label> */}
-                        <input type="file" id="addFile" style={{display:"none"}}/>
+                        <input type="file" id="addFile" style={{ display: "none" }} />
                     </div>
                     <div className="bodyTopDriverInfo col-7">
                         <div className="d-flex align-items-center">
                             <p className="mb-0 mr-2">Валерий</p>
-                            <Stars value={"4.5"} commentNumber={"35 отзывов"} valueDisplay="block" commentNumberDisplay="block"/>
+                            <Stars value={"4.5"} commentNumber={"35 отзывов"} valueDisplay="block" commentNumberDisplay="block" />
                         </div>
                         <div>
                             {/* TODO Location */}
                         </div>
-                        <div className="bodyTopDriverInfoRide d-flex">
-                            <div className="d-flex flex-column">
+                        <div className="bodyTopDriverInfoRide container p-0 d-flex">
+                            <div className="d-flex flex-column col-5 p-0">
                                 <p>Всего</p>
                                 <p>поездок</p>
                                 <p>18</p>
                             </div>
-                            <div className="d-flex flex-column">
+                            <div className="d-flex flex-column col-5 p-0">
                                 <p>Предстоящие</p>
                                 <p>поездки</p>
                                 <p>8</p>
@@ -92,91 +92,81 @@ class DriverProfileBasicInformationClass extends React.Component {
                     <div className="driverProfileBasicInformationBodyBottomContent d-flex flex-column">
                         <div className="d-flex align-items-center mb-3 mt-4">
                             <p className="col-3">Имя:</p>
-                            <input type="text" />
+                            <input className="col-7" type="text" />
                         </div>
                         <div className="d-flex align-items-center mb-3">
                             <p className="col-3">Фамилия:</p>
-                            <input type="text" />
+                            <input className="col-7" type="text" />
                         </div>
                         <div className="d-flex align-items-center mb-4">
                             <p className="col-3">Дата рождения:</p>
-                            <p>
-                                <select name="number">
-                                    {this.state.dataNumber.map((element, index) =>
-                                        <option value={element}>{element}</option>
-                                    )}
-                                </select>
-                            </p>
-                            <p>
-                                <select name="month">
-                                    {this.state.date.month.map((element, index) =>
-                                        <option value={element}>{element}</option>
-                                    )}
-                                </select>
-                            </p>
-                            <p>
-                                <select name="year">
-                                    {this.state.dataYear.map((element, index) =>
-                                        <option value={element}>{element}</option>
-                                    )}
-                                </select>
-                            </p>
+                            <select className="col-2" name="number">
+                                {this.state.dataNumber.map((element, index) =>
+                                    <option value={element}>{element}</option>
+                                )}
+                            </select>
+                            <select className="col-2" name="month">
+                                {this.state.date.month.map((element, index) =>
+                                    <option value={element}>{element}</option>
+                                )}
+                            </select>
+                            <select className="col-2" name="year">
+                                {this.state.dataYear.map((element, index) =>
+                                    <option value={element}>{element}</option>
+                                )}
+                            </select>
                         </div>
                         <div className="d-flex align-items-center mb-3">
                             <p className="col-3">Номер паспорта</p>
-                            <input type="text" placeholder="12121215" />
+                            <input className="col-7" type="text" placeholder="12121215" />
                         </div>
                         <div className="d-flex align-items-center mb-4">
                             <p className="col-3">Дата выдачи:</p>
-                            <p>
-                                <select name="number">
-                                    {this.state.dataNumber.map((element, index) =>
-                                        <option value={element}>{element}</option>
-                                    )}
-                                </select>
-                            </p>
-                            <p>
-                                <select name="month">
-                                    {this.state.date.month.map((element, index) =>
-                                        <option value={element}>{element}</option>
-                                    )}
-                                </select>
-                            </p>
-                            <p>
-                                <select name="year">
-                                    {this.state.dataYear.map((element, index) =>
-                                        <option value={element}>{element}</option>
-                                    )}
-                                </select>
-                            </p>
+                            <select className="col-2" name="number">
+                                {this.state.dataNumber.map((element, index) =>
+                                    <option value={element}>{element}</option>
+                                )}
+                            </select>
+
+                            <select className="col-2" name="month">
+                                {this.state.date.month.map((element, index) =>
+                                    <option value={element}>{element}</option>
+                                )}
+                            </select>
+
+                            <select className="col-2" name="year">
+                                {this.state.dataYear.map((element, index) =>
+                                    <option value={element}>{element}</option>
+                                )}
+                            </select>
                         </div>
                         <div className="d-flex align-items-center mb-3">
                             <p className="col-3">Родной город:</p>
-                            <p>
-                                <select name="country">
-                                    <option value="Грузия">Грузия</option>
-                                </select>
-                            </p>
-                            <input type="text" />
+
+                            <select className="col-3" name="country">
+                                <option value="Грузия">Грузия</option>
+                            </select>
+
+                            <input className="col-3" type="text" />
                         </div>
                         <div className="d-flex align-items-center mb-3">
                             <p className="col-3">Языки:</p>
-                            <p>
-                                <select name="language">
-                                    {this.state.language.map((element, index) =>
-                                        <option value={element}>{element}</option>
-                                    )}
-                                </select>
-                            </p>
 
+                            <select className="col-7" name="language">
+                                {this.state.language.map((element, index) =>
+                                    <option value={element}>{element}</option>
+                                )}
+                            </select>
                         </div>
                         <div className="d-flex align-items-start mb-4">
                             <p className="col-3">О себе:</p>
-                            <textarea name="" id="" cols="25" rows="5"></textarea>
+                            <textarea className="col-7" name="" id="" cols="25" rows="5"></textarea>
                         </div>
-                        <button className="mb-5">Сохранить Изменения</button>
+                        <div className="d-flex">
+                        <p className="col-3"></p>
+                            <button className="col-8 mb-5">Сохранить Изменения</button>
+                        </div>
                     </div>
-                    
                 </div>
             </div>
         );
