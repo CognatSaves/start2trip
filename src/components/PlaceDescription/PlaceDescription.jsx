@@ -99,14 +99,13 @@ class PlaceDescriptionClass extends React.Component {
         let topBlockId = "placeDescriptionId";
         return (
             <React.Fragment>
-                <div className="drivers_top_background placeDescription_background container" id={topBlockId}>
+                <div className="drivers_top_background placeDescription_background" id={topBlockId}>
                     <img src={ippodrom} width="100%" height="100%" style={{ position: "absolute" }} alt="noImage" />
                     <div style={{ position: "absolute", width: "100%", height: "100%", backgroundColor: "rgba(0,0,0,0.5)" }} />
-                    <Header colorWhite={true} />
-                    <div className="wrapper d-flex flex-column">
-                        
-                        <PlaceInfo place={place}/>
-                    </div>
+                    <div className="d-flex flex-column container">
+                        <Header colorWhite={true} />                  
+                        <PlaceInfo place={place}/>                     
+                    </div>                 
                 </div>
                 <div className="wrapper d-flex flex-column">
                     <div className="drivers_bottom_background d-flex flex-column" >
