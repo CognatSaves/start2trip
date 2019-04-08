@@ -1,52 +1,54 @@
-.successImageBlock{
+.successImageBlock {
     display: flex;
     width: 110px;
     height: 110px;
     margin: 0 auto 40px auto;
-    
 }
-.successThanks{
-    display: flex;    
+
+.successThanks {
+    display: flex;
 }
-.successThanks_value{
+
+.successThanks_value {
     margin: 0 auto;
     font-size: 24px;
-
     font-weight: 700;
     color: #304269;
 }
-.success_blueLine{
+
+.success_blueLine {
     margin: 20px auto;
     width: 60px;
     border-bottom: 3px solid #304269;
 }
-.success_driverInfo{
+
+.success_driverInfo {
     display: flex;
     flex-direction: column;
     margin: 0 auto;
 }
-.success_driverInfo_textLine{
+
+.success_driverInfo_textLine {
     display: flex;
     margin: 0 auto;
     font-size: 16px;
     font-weight: 400;
-
 }
-.success_continueButton{
+
+.success_continueButton {
     display: flex;
     margin: 60px auto 0 auto;
     width: 180px;
     height: 50px;
-
     border-radius: 5px;
     background-color: #ff6600;
     border-color: #ff6600;
     color: #ffffff;
 }
-.success_continueButton_value{
+
+.success_continueButton_value {
     display: flex;
     margin: 0 auto;
     font-size: 16px;
     font-weight: 600;
-
 }

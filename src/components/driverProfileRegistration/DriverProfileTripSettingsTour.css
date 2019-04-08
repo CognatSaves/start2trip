@@ -10,6 +10,19 @@
     transition: all 0.3s;
 }
 
+.TourBodyElementTitle {
+    min-height: 40px;
+}
+
+.TourBodyElementTitle p {
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 16px;
+    color: #304269;
+    margin-bottom: 0px;
+    padding-left: 10px;
+}
+
 
 /* Content Bigin */
 
@@ -52,7 +65,7 @@
 }
 
 .driverProfileTripSettingsTourContent select {
-    min-width: 400px;
+    max-width: 400px;
     min-height: 40px;
     background: none;
     border: 1px solid #ccc;
@@ -83,7 +96,7 @@
 
 .driverProfileTripSettingsTourContent textarea {
     min-width: 400px;
-    min-height: 150px;
+    max-height: 150px;
     border-radius: 5px;
     padding-left: 10px;
     border: 1px solid #ccc;
@@ -97,8 +110,8 @@
     color: #f60;
 }
 
-.driverProfileTripSettingsTourContent button {
-    min-width: 250px;
+.tourContentAddButton button {
+    max-width: 250px;
     min-height: 40px;
     text-align: center;
     line-height: 40px;
@@ -107,14 +120,29 @@
     border-radius: 5px;
     border: none;
     transition: all 0.3s;
-    margin-left: 218px;
 }
 
-.driverProfileTripSettingsTourContent button:focus,
-.driverProfileTripSettingsTourContent button:hover {
+.tourContentAddButton p {
+    align-self: center;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.tourContentAddButton p:hover {
+    color: #f60;
+}
+
+.tourContentAddButton button:focus,
+.tourContentAddButton button:hover {
     background: #f60;
     outline: none;
 }
 
 
 /* Content End */
+
+
+/* ItemElement Bigin */
+
+
+/* ItemElement End */

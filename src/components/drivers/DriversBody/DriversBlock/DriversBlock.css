@@ -5,7 +5,6 @@
 .visibleString {
     float: right;
     font-size: 10.5pt;
-
     font-weight: 400;
     white-space: nowrap;
     overflow: hidden;
@@ -14,7 +13,6 @@
 
 .infoString {
     font-size: 10.5pt;
-
     font-weight: 500;
     margin-right: 1%;
 }
@@ -39,18 +37,19 @@
     border-right: 1px solid black;
 }
 
-.block_element_right{
+.block_element_right {
     width: 355px;
     padding-left: 25px;
 }
-.block_element_right_div{
+
+.block_element_right_div {
     width: 90%;
 }
 
 .block_element_photo {
     display: flex;
     width: 156px;
-    height: 156px;   
+    height: 156px;
 }
 
 .myHeart {
@@ -71,31 +70,18 @@
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.driversBlock_driverCard{
+.driversBlock_driverCard {
     width: 280px;
     margin: 0 auto 20px auto;
     box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.25);
     border-radius: 5px;
 }
 
-.driversBlock_driverCard:hover{
+.driversBlock_driverCard:hover {
     box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.25);
 }
-.driversBlock_carImage{
+
+.driversBlock_carImage {
     position: relative;
     width: 280px;
     height: 210px;
@@ -103,14 +89,16 @@
     border-radius: 5px 5px 0 0;
 }
 
-.driversBlock_carImage:hover .driversBlock_carBlackout{
+.driversBlock_carImage:hover .driversBlock_carBlackout {
     cursor: pointer;
     background-color: rgba(0, 0, 0, 0.5);
 }
-.driversBlock_carImage:hover .driversBlock_carBlackout_detailed{
+
+.driversBlock_carImage:hover .driversBlock_carBlackout_detailed {
     color: #fff;
 }
-.driversBlock_carBlackout{
+
+.driversBlock_carBlackout {
     position: absolute;
     top: 0px;
     left: 0px;
@@ -121,111 +109,132 @@
     z-index: 20;
     transition: 0.3s all;
 }
-.driversBlock_carBlackout_detailed{
-  width: 50%;
-  height: 100px;
-  overflow: auto;
-  margin: auto;
-  position: absolute;
-  top: 0; left: 0; bottom: 0; right: 0;
-  text-align: center;
-  color: transparent;
-  font-size: 18px;
 
-  line-height: 100px;
-  text-decoration: underline;
+.driversBlock_carBlackout_detailed {
+    width: 50%;
+    height: 100px;
+    overflow: auto;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    text-align: center;
+    color: transparent;
+    font-size: 18px;
+    line-height: 100px;
+    text-decoration: underline;
 }
-.driversBlock_carImage::after{
+
+.driversBlock_carImage::after {
     position: absolute;
     width: 280px;
     height: 210px;
     background-color: rgba(0, 0, 0, 0.5);
 }
-.driversBlock_carImage::after:hover{
+
+.driversBlock_carImage::after:hover {
     display: block;
 }
-.driverBlock_driverInfoBlock{
+
+.driverBlock_driverInfoBlock {
     padding: 0 10px;
- }
-.driversBlock_driverInfoBlock_element{
+}
+
+.driversBlock_driverInfoBlock_element {
     padding-top: 15px;
     width: 100%;
     font-size: 12px;
-
     color: #304269;
 }
-.driversBlock_carName{
+
+.driversBlock_carName {
     font-size: 16px;
     font-weight: 500;
     line-height: 16px;
 }
-.driversBlock_carName:hover{
+
+.driversBlock_carName:hover {
     color: #ff6600;
 }
-.driverBlock_carInfoLine{
+
+.driverBlock_carInfoLine {
     padding-top: 10px;
     padding-bottom: 15px;
     border-bottom: 1px solid #999999;
 }
-.driversBlock_commentary{
+
+.driversBlock_commentary {
     text-align: center;
 }
-.driversBlock_buttonStyle{
+
+.driversBlock_buttonStyle {
     padding: 0;
     height: 50px;
     background: #304269;
-    color:#fff;
+    color: #fff;
     border: none;
     border-radius: 0 0 5px 5px;
     font-size: 16px;
     font-weight: 500;
     cursor: pointer;
 }
-.driversBlock_buttonStyle:hover{
+
+.driversBlock_buttonStyle:hover {
     background-color: #ff6600;
 }
-.driversBlock_driverCard_carIcon{
+
+.driversBlock_driverCard_carIcon {
     width: 33px;
     height: 28px;
     margin-right: 5px;
 }
-.driversBlock_carInfoLine_value{
+
+.driversBlock_carInfoLine_value {
     font-size: 14px;
     line-height: 22px;
     font-weight: 400;
     padding-top: 4px;
     color: #304269;
 }
-.driversBlock_driverCard_photo{
+
+.driversBlock_driverCard_photo {
     width: 40px;
     height: 40px;
     border-radius: 20px;
 }
-.driversBlock_driverCard_driverInfo{
+
+.driversBlock_driverCard_driverInfo {
     padding-left: 8px;
     padding-top: 8px;
 }
-.driversBlock_driversInfo_name{
+
+.driversBlock_driversInfo_name {
     font-size: 16px;
     line-height: 16px;
     color: #304269;
     font-weight: 500;
     cursor: pointer;
 }
-.driversBlock_driversInfo_name:hover{
+
+.driversBlock_driversInfo_name:hover {
     color: #ff6600
 }
-.driversBlock_languages_text{
+
+.driversBlock_languages_text {
     color: #304269;
     margin-right: 5px;
 }
-.driversBlock_languages_flag{
+
+.driversBlock_languages_flag {
     margin-right: 5px;
     width: 15px;
     height: 15px;
     border-radius: 7px;
 }
-.driversBlock_bookmark{
+
+.driversBlock_bookmark {
     position: relative;
     height: 32px;
     width: 24px;
@@ -233,25 +242,28 @@
     margin-top: 15px;
     margin-right: 15px;
     z-index: 50;
-
     background: url('./pictures/bookmark_white.svg') no-repeat;
     background-size: "24px 32px";
     cursor: pointer;
 }
-.driversBlock_bookmark:hover{
+
+.driversBlock_bookmark:hover {
     background: url('./pictures/bookmark_orange.svg') no-repeat;
     background-size: "24px 32px"
 }
-.driversBlock_bookmark:hover .driversBlock_bookmark_tooltip{
+
+.driversBlock_bookmark:hover .driversBlock_bookmark_tooltip {
     display: block;
 }
-.driversBlock_bookmark_tooltip{
+
+.driversBlock_bookmark_tooltip {
     position: absolute;
     display: none;
     top: -40px;
     height: 30px;
     width: 150px;
-    left: -63px;/*=*/
+    left: -63px;
+    /*=*/
     box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.25);
     border-radius: 5px;
     background-color: #fff;

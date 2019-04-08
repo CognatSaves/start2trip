@@ -1,14 +1,15 @@
 @import '../driverProfile/DriversProfileComments.css';
-
-.placesPanel_sortText{
+.placesPanel_sortText {
     color: #304269;
     margin-right: 30px;
     line-height: 35px;
 }
-.placesPanel_buttonStyle{
+
+.placesPanel_buttonStyle {
     height: 24px;
     line-height: 100%;
 }
-.placesPanel_rightButtonBlock{
+
+.placesPanel_rightButtonBlock {
     margin-left: auto;
 }

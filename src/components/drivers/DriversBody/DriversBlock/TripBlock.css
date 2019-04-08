@@ -1,4 +1,3 @@
-
 .element_right_line:nth-child(1) {
     margin-bottom: 20px;
 }
@@ -32,7 +31,7 @@
     color: #fff;
     height: 100%;
     min-height: 42px;
-    width:256px;
+    width: 256px;
     max-width: 300px;
     margin-left: auto;
     background-color: #304269;
@@ -41,7 +40,7 @@
     border-radius: 5px;
 }
 
-.tripBlock_buttonBlock_button:hover  {
+.tripBlock_buttonBlock_button:hover {
     transition: all 0.3s;
     background-color: #ff6600;
     border-color: #ff6600;
@@ -63,7 +62,7 @@
     text-align: right;
 }
 
-.tripBlock_detailed:hover  {
+.tripBlock_detailed:hover {
     transition: all 0.3s;
     color: #ff6600;
     cursor: pointer;
@@ -80,14 +79,14 @@
 }
 
 .fuelType_style {
-  font-weight: 400;
+    font-weight: 400;
     font-size: 12pt;
     text-align: top;
     margin-left: 2%;
 }
 
 .carProps_style {
-  font-weight: 400;
+    font-weight: 400;
     font-size: 10.5pt;
 }
 
@@ -95,6 +94,7 @@
     visibility: hidden;
     float: left;
 }
+
 
 /* @media (min-width: 1350px) {
     .tripBlock_priceBlock_price {

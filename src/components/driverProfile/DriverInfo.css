@@ -1,8 +1,10 @@
-.driverInfo_background{
-    background-color: #ffffff;  
-    padding: 0; 
+.driverInfo_background {
+    background-color: #ffffff;
+    padding: 0;
     margin-top: 35px;
 }
+
+
 /*
 .driverInfo_element_left {
     flex-direction: column;
@@ -13,18 +15,19 @@
     margin-top: 15px;
     margin-bottom: auto;
 }*/
-.driverInfo_element{
-    margin-top: 25px;   
+
+.driverInfo_element {
+    margin-top: 25px;
     margin-bottom: 15px;
     height: 325px;
 }
+
 .driverInfo_left_line {
     display: flex;
     flex-direction: row;
     width: 100%;
     margin-bottom: 20px;
 }
-
 
 .driverInfo_carData {
     flex-direction: row;
@@ -55,12 +58,15 @@
     height: 50px;
 }
 
+
 /* .element_right_line:nth-child(1){
     margin: 0;
 } */
-.driverInfo_data  div:last-child {
+
+.driverInfo_data div:last-child {
     width: 65%;
 }
+
 .driverInfo_iconLine {
     margin-left: 75px;
     line-height: 0px;
@@ -95,7 +101,6 @@
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.15);
     background-color: #fff;
     margin: auto;
-    
     font-size: 16px;
     color: #999999;
     border-radius: 100%;
@@ -106,12 +111,11 @@
     background-color: #304269;
     color: #999999;
 }
+
 .driverInfo_carPhotoBlock_switchCarPicture:focus {
     border: none;
     outline: none;
 }
-
-
 
 .album_photo {
     position: relative;
@@ -128,37 +132,42 @@
     width: 100%;
 }
 
-
-.driverInfo_bookmarkElement{
+.driverInfo_bookmarkElement {
     margin-left: auto;
     background-size: 20px 25px;
     background: url('../drivers/DriversBody/DriversBlock/pictures/bookmark_contour.svg');
     width: 20px;
     height: 25px;
 }
-.driverInfo_bookmarkElement:hover{
+
+.driverInfo_bookmarkElement:hover {
     background: url('../drivers/DriversBody/DriversBlock/pictures/bookmark_orange.svg');
 }
-.driversInfo_driverName{
+
+.driversInfo_driverName {
     line-height: 18px;
     padding-bottom: 10px;
 }
-.driverInfo_informationIcon{
-    position:inherit;
+
+.driverInfo_informationIcon {
+    position: inherit;
     top: -9px;
     width: 18px;
     height: 18px;
 }
-.driverInfo_informationIcon:hover .driverInfo_informationBlock{
+
+.driverInfo_informationIcon:hover .driverInfo_informationBlock {
     /*display: block;*/
     background-color: rgba(255, 255, 255, 1);
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.15);
-    color: rgba(0,0,0,1);
+    color: rgba(0, 0, 0, 1);
 }
-.driverInfo_informationIcon:hover .driverInfo_comfortIconStyle{
+
+.driverInfo_informationIcon:hover .driverInfo_comfortIconStyle {
     visibility: visible;
 }
-.driverInfo_informationBlock{
+
+.driverInfo_informationBlock {
     position: absolute;
     /*display: none;*/
     top: 30px;
@@ -167,23 +176,25 @@
     background-color: rgba(255, 255, 255, 0);
     padding: 5px;
     border-radius: 5px;
-    color: rgba(0,0,0,0);
+    color: rgba(0, 0, 0, 0);
     transition: 0.3s all;
 }
-.driverInfo_comfortIconStyle{
+
+.driverInfo_comfortIconStyle {
     visibility: hidden;
     width: 15px;
     height: 15px;
 }
-.driverInfo_comfortTextStyle{
+
+.driverInfo_comfortTextStyle {
     margin: auto 0 auto 8px;
     width: 185px;
-    font-size: 12px;   
+    font-size: 12px;
 }
-.driverInfo_carTypeValue{
+
+.driverInfo_carTypeValue {
     margin: auto 0 auto auto;
     line-height: 18px;
-    
     color: #999999;
     padding-bottom: 10px;
 }

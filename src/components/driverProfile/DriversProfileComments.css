@@ -1,85 +1,92 @@
-.driverProfileComments_panel{
-    width:100%;
+.driverProfileComments_panel {
+    width: 100%;
     border-bottom: 1px solid #cccccc;
     font-size: 16px;
-    
     font-weight: 600;
 }
-.driverProfileComments_panel_element{
+
+.driverProfileComments_panel_element {
     height: 100%;
     background: transparent;
-    border:none;
+    border: none;
     line-height: 35px;
     padding: 0;
     margin-right: 30px;
 }
-.driverProfileComments_panel_selectedElement{
+
+.driverProfileComments_panel_selectedElement {
     color: #ff6600;
     position: relative;
 }
 
-.driverProfileComments_panel_selectedElement::after{
+.driverProfileComments_panel_selectedElement::after {
     content: "";
     display: block;
     position: absolute;
     width: 100%;
     border-bottom: 3px solid #ff6600;
 }
-.driverProfileComments_commentBlock{ 
-    width:100%;
+
+.driverProfileComments_commentBlock {
+    width: 100%;
     margin-top: 40px;
 }
-.commentBlock_createComment{
+
+.commentBlock_createComment {
     position: relative;
-    width:100%;
+    width: 100%;
     box-shadow: 0 0 1px 1px rgba(221, 221, 221, 1);
     padding: 12px 23px;
     margin-bottom: 12px;
     border-radius: 5px;
 }
-.commentBlock_createComment:hover{
+
+.commentBlock_createComment:hover {
     box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.3);
     transition: all 0.3s;
 }
-.commentBlock_comments{
+
+.commentBlock_comments {
     position: relative;
-    width:100%;
+    width: 100%;
     box-shadow: 0 0 1px 1px rgba(221, 221, 221, 1);
     padding: 12px 23px 0 23px;
     margin-bottom: 12px;
     border-radius: 5px;
 }
-.createComment_element{
+
+.createComment_element {
     /*height: 33%;*/
 }
-.createComment_picture{
+
+.createComment_picture {
     height: 60px;
     width: 60px;
     border-radius: 30px;
 }
 
-.createComment_textBlock{
+.createComment_textBlock {
     margin: 0 10px 0 20px;
-    height:60px;
+    height: 60px;
     line-height: 60px;
     font-size: 14px;
-    
     font-weight: 500;
     color: #304269;
 }
 
-
-.createComment_textareaStyle{
+.createComment_textareaStyle {
     width: 100%;
     height: 85px;
     border-radius: 5px;
     margin: 15px 0;
     padding: 5px;
 }
-.createComment_textareaStyle::placeholder{
+
+.createComment_textareaStyle::placeholder {
     color: #cccccc;
 }
-.createComment_sendButton{
+
+.createComment_sendButton {
     width: 205px;
     /*height: 40px;
     background-color: #ff6600;
@@ -92,43 +99,45 @@
     font-weight: 400;*/
     margin: 10px 0 0 auto;
 }
+
+
 /*
 .createComment_sendButton_value{
     display: flex;
     margin: auto;
 }*/
-.commentBlock_element{
+
+.commentBlock_element {
     position: relative;
-    height:15%;
-    width:100%;
+    height: 15%;
+    width: 100%;
     padding: 25px 0;
     border-bottom: 1px solid #cccccc;
 }
-.commentBlock_element:last-child{
+
+.commentBlock_element:last-child {
     border: none;
 }
-.valueBlock_firstElement_name{
+
+.valueBlock_firstElement_name {
     margin-right: auto;
     font-size: 14px;
-    
     font-weight: 600;
     color: #304269;
 }
-.valueBlock_firstElement_date{
+
+.valueBlock_firstElement_date {
     margin-left: auto;
-    
     font-size: 12px;
     font-weight: 300;
     color: #999999;
 }
 
-.valueBlock_commentary{
+.valueBlock_commentary {
     width: 100%;
     max-height: 80px;
-    overflow: hidden; 
+    overflow: hidden;
     text-overflow: ellipsis;
-
-    
     font-weight: 400;
     font-size: 14px;
     color: #304269;
@@ -136,66 +145,63 @@
     line-height: 20px;
 }
 
-.commentBlock_picture{
+.commentBlock_picture {
     height: 60px;
     width: 60px;
 }
 
-.commentBlock_valueBlock{
+.commentBlock_valueBlock {
     height: 100%;
     width: 100%;
-    margin-left: 2%;  
+    margin-left: 2%;
 }
 
-.news
-{
- height: 60px;
- line-height: 20px;
- overflow: hidden; /* Обрезаем все, что не помещается в область */
- background: transparent; /* Цвет фона */
- position: relative;
- text-overflow: ellipsis;
- width: 100%;
- 
- font-weight: 400;
- font-size: 14px;
- color: #304269;
+.news {
+    height: 60px;
+    line-height: 20px;
+    overflow: hidden;
+    /* Обрезаем все, что не помещается в область */
+    background: transparent;
+    /* Цвет фона */
+    position: relative;
+    text-overflow: ellipsis;
+    width: 100%;
+    font-weight: 400;
+    font-size: 14px;
+    color: #304269;
 }
-.news::after
- {
-  content:'...';
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  word-spacing: 99in;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  display: block;
-  width: 45px;
-  padding-left: 5px;
-  overflow: hidden;
-  pointer-events: none;
-  background:#fff; /* Цвет фона */
-  /*background: #fc0;*/
 
-
-
- }
-label 
- {
-   cursor: pointer;
- }
-
-input:checked + .news 
- {
-   height: auto;
- }
-input:checked + .news::after
- {
-   content: none;
- }
-.put
- {
+.news::after {
+    content: '...';
     position: absolute;
-    clip: rect(1px, 1px, 1px, 1px);      
- }
+    bottom: 0;
+    right: 0;
+    word-spacing: 99in;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+    width: 45px;
+    padding-left: 5px;
+    overflow: hidden;
+    pointer-events: none;
+    background: #fff;
+    /* Цвет фона */
+    /*background: #fc0;*/
+}
+
+label {
+    cursor: pointer;
+}
+
+input:checked+.news {
+    height: auto;
+}
+
+input:checked+.news::after {
+    content: none;
+}
+
+.put {
+    position: absolute;
+    clip: rect(1px, 1px, 1px, 1px);
+}

@@ -1,55 +1,59 @@
-.tourDescription_markerLine{
+.tourDescription_markerLine {
     position: relative;
     width: 17px;
     margin-right: 3px;
 }
-.tourDescription_markerLine_markerBlock{
+
+.tourDescription_markerLine_markerBlock {
     position: absolute;
     width: 17px;
     height: 24px;
     background-color: #fff;
 }
-.tourDescription_markerLine_line{
+
+.tourDescription_markerLine_line {
     height: 100%;
     border-right: 1px solid #304269;
     width: 9px;
 }
-.tourDescription_placeDescription{
+
+.tourDescription_placeDescription {
     width: 820px;
     padding-bottom: 20px;
     color: #304269;
 }
-.tourDescription_additionalInfoBlock{
+
+.tourDescription_additionalInfoBlock {
     width: 50%;
 }
-.tourDescription_additionalInfoBlock_element{
-    font-size: 14px;
 
+.tourDescription_additionalInfoBlock_element {
+    font-size: 14px;
     color: #304269;
     font-weight: 400;
 }
-.tourDescription_pointStyle{
+
+.tourDescription_pointStyle {
     width: 7px;
     height: 4px;
-    line-height:12px;
+    line-height: 12px;
 }
 
-
-
-.mapBlock_tourData{
+.mapBlock_tourData {
     background: transparent;
     box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.25);
     /*height: 215px;*/
     margin-top: 30px;
     padding: 10px 10px 20px 10px;
-    
 }
-.mapBlock_dateBlock_dateValue{
+
+.mapBlock_dateBlock_dateValue {
     margin-left: 5px;
     line-height: 24px;
     border-bottom: 1px dashed #304269;
 }
-.mapBlock_location{
+
+.mapBlock_location {
     position: relative;
     margin-top: 25px;
     height: 35px;
@@ -59,64 +63,73 @@
     box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.25);
     border-radius: 18px;
 }
-.mapBlock_dateBlock{
+
+.mapBlock_dateBlock {
     width: 500px;
     margin-right: auto;
     padding-bottom: 30px;
 }
-.mapBlock_bookmarkBlock{
+
+.mapBlock_bookmarkBlock {
     width: 256px;
     margin-left: auto;
 }
-.mapBlock_locationBlock{
+
+.mapBlock_locationBlock {
     width: 500px;
     margin-right: auto;
     flex-wrap: wrap;
     padding-bottom: 50px;
 }
-.mapBlock_locationBlock_element{
+
+.mapBlock_locationBlock_element {
     width: 145px;
 }
-.mapBlock_locationLine{
+
+.mapBlock_locationLine {
     width: 102px;
     height: 43px;
     border-bottom: 1px solid #304269;
     margin-left: 4px;
 }
-.mapBlick_locationPointName{
+
+.mapBlick_locationPointName {
     position: absolute;
 }
-.mapBlock_tourPrice{
+
+.mapBlock_tourPrice {
     margin: 0 auto;
     font-size: 24px;
-
     color: "#ff6600";
     font-weight: 600;
 }
-.mapBlock_priceInfo{
+
+.mapBlock_priceInfo {
     color: #304269;
     text-align: center;
 }
-.mapBlock_selfTourBlock{
+
+.mapBlock_selfTourBlock {
     margin-top: auto;
     width: 500px;
     font-size: 14px;
-
     color: #304269;
     font-weight: 500;
 }
-.mapBlock_selfTourBlock_selfTour{
+
+.mapBlock_selfTourBlock_selfTour {
     padding-left: 4px;
     text-decoration: underline;
     font-weight: 600;
     color: #304269;
 }
-.mapBlock_selfTourBlock_selfTour:hover{
+
+.mapBlock_selfTourBlock_selfTour:hover {
     color: #ff6600;
     text-decoration: underline #ff6600;
 }
 
-.tourPanelFixed{
+.tourPanelFixed {
     top: 0px;
     position: fixed;
     background: #fff;
@@ -124,16 +137,16 @@
     z-index: 100;
 }
 
-
-.tourPanel_element{
-
+.tourPanel_element {
     font-weight: 500;
     font-size: 16px;
     color: #304269;
 }
-.tourPanel_element:hover{
+
+.tourPanel_element:hover {
     color: #ff6600;
 }
-.tourPanelSelected{
+
+.tourPanelSelected {
     color: #ff6600;
 }

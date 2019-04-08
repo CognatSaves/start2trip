@@ -22,7 +22,6 @@
     line-height: 30px;
     text-align: left;
     margin-right: 4px;
-
 }
 
 .properties_leftButton {
@@ -49,6 +48,7 @@
     z-index: 100;
 }
 
+
 /*line-height в предыдущем стиле какое-то странное*/
 
 .properties_value {
@@ -56,7 +56,8 @@
     justify-content: center;
     margin: auto 5px;
 }
-.properties_value img{
+
+.properties_value img {
     margin-right: 2px;
 }
 

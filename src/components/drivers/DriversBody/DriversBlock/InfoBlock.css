@@ -5,7 +5,8 @@
     padding: 0 33px;
     color: #304269;
 }
-.block_element_infoBlock_top{
+
+.block_element_infoBlock_top {
     margin-bottom: 9%;
 }
 
@@ -15,14 +16,17 @@
     text-align: left;
     color: #304269;
 }
+
 .block_element_infoBlock_element {
     justify-content: space-between;
     text-align: left;
     /* width: 50%; */
 }
+
 .block_element_infoBlock_element div:last-child {
     width: 60%;
 }
+
 .infoString_driverInfoSize {
     width: 80px;
 }

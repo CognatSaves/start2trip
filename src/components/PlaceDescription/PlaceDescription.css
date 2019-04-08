@@ -1,72 +1,74 @@
-.placeDescription_background{
+.placeDescription_background {
     background: transparent;
     height: 460px;
     padding-left: 0;
     padding-right: 0;
     padding-top: 0;
 }
-.placeDescription_fragmentName{
+
+.placeDescription_fragmentName {
     width: 100%;
     border-bottom: 1px solid #999999;
     font-size: 24px;
-
     font-weight: 500;
 }
 
-
-.placeDescription_block{
+.placeDescription_block {
     padding-top: 30px;
     border-top: 1px solid transparent;
 }
-.placeDescription_description_name{
-    font-size: 34px;
 
+.placeDescription_description_name {
+    font-size: 34px;
     font-weight: 600;
     color: #304269;
     margin-right: auto;
     line-height: 34px;
 }
-.placeDescription_description_date{
-    font-size: 12px;
 
+.placeDescription_description_date {
+    font-size: 12px;
     font-weight: 400;
     color: #999999;
     margin: auto 10px auto 0;
 }
-.placeDescription_description_placeCard{
+
+.placeDescription_description_placeCard {
     height: 32px;
     width: 24px;
     margin: auto 0;
     background: url(../Places/pictures/bookmark_contour.svg);
     background-size: 24px 32px;
 }
-.placeDescription_description_tagCard{
+
+.placeDescription_description_tagCard {
     height: 14px;
     width: 14px;
     margin: auto 5px auto 0;
     background: url(pictures/tag_gray.svg);
     background-size: 14px 14px;
 }
-.placeDescription_description_tagElement{
-    font-size: 12px;
 
+.placeDescription_description_tagElement {
+    font-size: 12px;
     font-weight: 400;
     color: #999999;
     margin: auto 5px auto 0;
 }
-.placeDescription_description_info{
 
+.placeDescription_description_info {
     font-size: 14px;
     font-weight: 400;
     color: #304269;
 }
 
-.placesDescription_photos_firstPhotoBox{
+.placesDescription_photos_firstPhotoBox {
     width: 870px;
     height: 500px;
     margin-top: 15px;
 }
-.placesDescription_photos_secondaryPhotoBox{
+
+.placesDescription_photos_secondaryPhotoBox {
     position: relative;
     /*width: 200px;
     height: 120px;*/
@@ -74,99 +76,106 @@
     color: rgb(153, 153, 153);
     cursor: pointer;
 }
-.photoCarouselClass{
+
+.photoCarouselClass {
     position: relative;
     transition-duration: 330ms;
     transition-property: transform, width;
-    transition-timing-function: cubic-bezier(0.4,0,1,1);
+    transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
 }
-.carouselPhotoBox{
+
+.carouselPhotoBox {
     position: absolute;
     border: 3px solid blue;
     top: 0;
     background: transparent;
     transition-duration: 360ms;
     transition-property: transform, width;
-    transition-timing-function: cubic-bezier(0.4,0,1,1);
+    transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
     cursor: pointer;
 }
-.placesDescription_photos_showCollectionBox{
+
+.placesDescription_photos_showCollectionBox {
     position: absolute;
     top: 0px;
     width: 200px;
     height: 120px;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     text-align: center;
     line-height: 120px;
-
-
     font-size: 24px;
     color: #fff;
     font-weight: 500;
 }
 
-
-.placesDescription_travelBlock_element{
+.placesDescription_travelBlock_element {
     width: 433px;
     height: 70px;
     box-shadow: 0 0 1px 1px rgba(221, 221, 221, 1);
     margin-bottom: 4px;
     line-height: 40px;
-    padding: 15px 20px; 
+    padding: 15px 20px;
     border-radius: 5px;
 }
-.placesDescription_travelBlock_icon{
+
+.placesDescription_travelBlock_icon {
     width: 25px;
     height: 25px;
     margin: auto 10px auto 0;
     background-size: 25px 25px;
 }
-.placesDescription_calendary{
+
+.placesDescription_calendary {
     background-image: url(pictures/calendar.svg);
-    
 }
-.placesDescription_geoIcon{
+
+.placesDescription_geoIcon {
     background-image: url(pictures/geo_icon.svg);
 }
-.placesDescription_position{
+
+.placesDescription_position {
     background-image: url(pictures/my_location.svg);
 }
-.placesDescription_travelBlock_applyButton{
-    background-color: #f26101;
 
+.placesDescription_travelBlock_applyButton {
+    background-color: #f26101;
     font-weight: 500;
     font-size: 24px;
     text-align: center;
     color: #fff;
 }
 
-.placeDescription_fragmentName_mapBlock{
+.placeDescription_fragmentName_mapBlock {
     width: 870px;
     height: 400px;
     background-color: red;
 }
 
-.render_otherPlaces{
+.render_otherPlaces {
     width: 100%;
 }
-.render_otherPlaces div.tourCard{
+
+.render_otherPlaces div.tourCard {
     width: 285px;
     max-width: 285px;
     flex: 0 0 285px;
     margin: 0 auto;
 }
-.render_otherPlaces div.tourCard:first-child{
+
+.render_otherPlaces div.tourCard:first-child {
     padding-left: 0 !important;
     margin-left: 0;
 }
 
-.render_otherPlaces div.tourCard:last-child{
+.render_otherPlaces div.tourCard:last-child {
     padding-right: 0 !important;
     margin-right: 0;
 }
+
 .render_otherPlaces div.tourCard p.tourText {
     max-height: 80px;
 }
-.render_otherPlaces div.tourCard div.card-body{
+
+.render_otherPlaces div.tourCard div.card-body {
     padding: 14px 20px;
 }

@@ -3,7 +3,7 @@
     z-index: 0;
 }
 
-.registrationBodyLogoIcon{
+.registrationBodyLogoIcon {
     position: absolute;
     z-index: 4;
     top: 15px;
@@ -56,7 +56,6 @@
 }
 
 .sitingInLight h3 {
-
     font-weight: 700;
     font-size: 33.16px;
     color: #304269;
@@ -99,39 +98,39 @@
     width: 280px;
     height: 40px;
     background: #ecf4fa;
-
     font-weight: 300;
     font-size: 12px;
     color: #666;
     padding-left: 35px;
 }
 
-.inputIcon{
+.inputIcon {
     position: relative;
 }
 
-.peopleIcon{
+.peopleIcon {
     position: absolute;
     z-index: 3;
     top: 12px;
     left: 15px;
 }
 
-.emailIcon{
+.emailIcon {
     position: absolute;
     z-index: 3;
     top: 13px;
     left: 15px;
 }
 
-.lockIcon{
+.lockIcon {
     position: absolute;
     z-index: 3;
     top: 12px;
     left: 15px;
 }
-.eyeIcon{
-    position: absolute; 
+
+.eyeIcon {
+    position: absolute;
     cursor: pointer;
     z-index: 3;
     top: 13px;
@@ -143,21 +142,18 @@
 }
 
 .sitingInLightInput::placeholder {
-
     font-weight: 300;
     font-size: 12px;
     color: #666;
 }
 
 .sitingInLight p {
-
     font-weight: 300;
     font-size: 12px;
     color: #666;
 }
 
 .sitingInLight a {
-
     font-weight: 300;
     font-size: 12px;
     color: #666;
@@ -171,7 +167,6 @@
 }
 
 .sitingInLight button {
-
     font-weight: 400;
     font-size: 15px;
     color: #fff;
@@ -247,14 +242,12 @@
 }
 
 .registrationDark h3 {
-
     font-weight: 700;
     font-size: 24px;
     color: #fff;
 }
 
 .registrationDark p {
-
     font-weight: 300;
     font-size: 12px;
     color: #fff;
@@ -262,7 +255,6 @@
 }
 
 .registrationDark button {
-
     font-weight: 400;
     font-size: 15px;
     color: #fff;

@@ -2,16 +2,20 @@
 
 .driverProfileCarFilledCard {
     min-height: 260px;
+    max-width: 280px;
     box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
-    margin-bottom: 50px;
+    margin: 0 auto 20px auto;
+    transition: all 0.3s;
 }
 
-.driverProfileCarFilledCardImg img {
-    width: 305px;
+.driverProfileCarFilledCard:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.driverProfileCarFilledCardImg {
+    width: 280px;
     height: 200px;
-    margin-right: 15px;
-    border-radius: 5px;
 }
 
 .driverProfileCarFilledCardInformation {
@@ -20,51 +24,106 @@
 }
 
 .driverProfileCarFilledCardInformation p {
-    
     font-weight: 500;
     font-size: 14px;
     color: #304269;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
 }
 
-.driverProfileCarFilledCardInformationNameCar p:first-child {
-    
+.driverProfileCarFilledCardInformationNameCar {
+    min-height: 45px;
+    padding: 0 15px;
+    padding-right: 0px;
+}
+
+.driverProfileCarFilledCardInformationNameCar p {
+    font-family: "Roboto";
     font-weight: 500;
     font-size: 16px;
     color: #304269;
     margin-bottom: 0px;
 }
 
-.driverProfileCarFilledCardInformationNameCar p:last-child {
-    margin-bottom: 20px;
+.cardInformationNameCarIcon {
+    width: 40px;
+    height: 45px;
+    background: url(./img/moreGray.svg) no-repeat;
+    background-size: 17px 16px;
+    background-position: top 15px right 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-bottom: 0;
 }
 
-.driverProfileCarFilledCardInformationNameCarEdit {
-    background: url(./img/editBlue.svg) no-repeat;
-    background-size: 30px 20px;
-    background-position: top 0px right 0px;
+.cardInformationNameCarIcon:hover {
+    background: url(./img/moreOrange.svg) no-repeat;
+    background-size: 17px 16px;
+    background-position: top 15px right 10px;
 }
 
-.driverProfileCarFilledCardInformationNameCarEdit p {
-    padding-right: 30px;
+.cardInformationNameCarIcon:hover~.driverProfileCarFilledCardInformationMenu {
+    display: block;
+}
+
+.driverProfileCarFilledCardInformationMenu:hover {
+    display: block;
+}
+
+.driverProfileCarFilledCardInformationMenu {
+    display: none;
+    position: absolute;
+    top: 35px;
+    right: 0px;
+    z-index: 3;
+    height: 70px;
+    width: 128px;
     padding-top: 5px;
-    text-decoration: underline;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.38);
+    transition: ease 0.3s;
+}
+
+.cardInformationType {
+    padding: 15px;
+    padding-bottom: 0px;
+}
+
+.cardInformationType p {
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 14px;
+    color: #666;
+    padding-right: 5px;
+}
+
+p.driverProfileCarFilledCardInformationDeleteCar,
+p.driverProfileCarFilledCardInformationNameCarEdit {
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 14px;
+    color: #666;
+    height: 30px;
+    line-height: 30px;
+    text-align: right;
+    padding-right: 10px;
     cursor: pointer;
+    transition: all 0.3s;
 }
 
-.driverProfileCarFilledCardInformationComfort {
-    margin-bottom: 20px;
+p.driverProfileCarFilledCardInformationDeleteCar:hover,
+p.driverProfileCarFilledCardInformationNameCarEdit:hover {
+    background: #f4f5f6;
 }
 
-.driverProfileCarFilledCardInformationComfort p {
-    margin: 0;
+.driverProfileCarFilledCardInformationNameCar input {
+    display: none;
 }
 
-.driverProfileCarFilledCardInformationDeleteCar {
-    text-decoration: underline #304269;
-    cursor: pointer;
-    margin-bottom: 0px;
-}
+
+/* .driverProfileCarFilledCardInformationNameCar input[type="checkbox"]:checked~.driverProfileCarFilledCardInformationMenu {
+    display: block;
+} */
 
 .driverProfileCarFilledCardInformationCommon {
     max-width: 250px;
@@ -119,7 +178,6 @@
     position: absolute;
     z-index: 5;
     left: 50px;
-    
     font-weight: 400;
     font-size: 16px;
     color: #fff;
@@ -128,7 +186,6 @@
 }
 
 .driverProfileCarAddNewCarInformation p {
-    
     font-weight: 500;
     font-size: 14px;
     color: #999;
@@ -136,34 +193,34 @@
 }
 
 .driverProfileCarAddNewCarInformation input {
+    width: 100%;
+    min-height: 40px;
+    padding-left: 10px;
     color: #333;
-    
     font-weight: 400;
     font-size: 14px;
     border-radius: 5px;
     border: 1px solid #ccc;
-    padding-left: 10px;
-    min-width: 350px;
-    min-height: 40px;
+    transition: all 0.3s;
 }
 
 .driverProfileCarAddNewCarInformation select {
-    min-width: 350px;
+    width: 100%;
     min-height: 40px;
+    margin-right: 5px;
+    padding-left: 10px;
     background: none;
     border: 1px solid #ccc;
     border-radius: 5px;
     color: #333;
-    
     font-weight: 400;
     font-size: 14px;
-    margin-right: 5px;
-    padding-left: 10px;
     cursor: pointer;
     appearance: none;
     background: url(./img/arrow-point-to-down.svg) no-repeat;
     background-size: 8px 8px;
     background-position: top 15px right 10px;
+    transition: all 0.3s;
 }
 
 .driverProfileCarAddNewCarInformation select:hover,
@@ -177,6 +234,7 @@
 
 .driverProfileCarAddNewCarShowButton {
     margin-bottom: 30px;
+    min-width: 250px;
 }
 
 .driverProfileCarAddNewCarButton p {
@@ -189,8 +247,8 @@
 
 .driverProfileCarAddNewCarShowButton,
 .driverProfileCarAddNewCarInformation button {
-    max-width: 250px;
     min-height: 40px;
+    max-height: 40px;
     text-align: center;
     line-height: 40px;
     color: #fff;
@@ -198,7 +256,6 @@
     border-radius: 5px;
     border: none;
     transition: all 0.3s;
-    margin-left: 90px;
 }
 
 .driverProfileCarAddNewCarShowButton:hover,
@@ -217,7 +274,6 @@
     cursor: pointer;
     font-size: 14px;
     font-weight: 500;
-    
     color: #333;
     padding-left: 28px;
     -webkit-user-select: none;
@@ -278,3 +334,26 @@
 
 
 /* Add new Car End*/
+
+@media (max-width: 768px) {
+    .driverProfileCarAddNewCar {
+        box-shadow: none;
+    }
+    .driverProfileCarAddNewCarInformation input,
+    .driverProfileCarAddNewCarInformation select {
+        border: none;
+        border-bottom: 1px solid #ccc;
+    }
+    .driverProfileCarAddNewCarInformation select:hover,
+    .driverProfileCarAddNewCarInformation select:focus,
+    .driverProfileCarAddNewCarInformation input:hover,
+    .driverProfileCarAddNewCarInformation input:focus {
+        border-color: #304269;
+        border-width: 2px;
+        text-decoration: none;
+        outline: #304269;
+        border-radius: 0px;
+    }
+}
+
+@media (max-width: 576px) {}

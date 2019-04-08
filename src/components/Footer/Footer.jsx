@@ -13,9 +13,9 @@ export default class Footer extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <div className="footer d-flex justify-content-center align-items-center col-12">
+        {/* <div className="footer d-flex justify-content-center align-items-center col-lg-12  col-lx-12 d-xl-block d-lg-block d-md-block d-sm-none d-none ">
         <div className="footerButtonUp" onClick={()=>{window.scroll(0,0)}}><img src={upArrowIcon} width="20px" height="20px"  alt="upArrowIcon" /></div>
-          <div className="footer_block d-flex  justify-content-between align-items-center col-12">
+          <div className="footer_block d-flex  justify-content-between align-items-center col-lg-12  col-lx-12 d-xl-block d-lg-block d-md-block d-sm-none d-none ">
             <img className="col-1 p-0" src={logoWhiteIcon} width="110px" height="18px" alt="logoWhiteIcon" />
             <div className="footerButtons d-flex  justify-content-around col-8">
               <button className="footerButtons_button">О сервисе</button>
@@ -29,8 +29,8 @@ export default class Footer extends React.Component {
               </div>
             </div>
           </div>
-        </div>
-        <div className="footer_mobile">
+        </div> */}
+        {/* <div className="footer_mobile">
           <div className="footer_mobile_element" >
             <div className="footer_mobile_icon" id="footer_mobile_routes" />
             <div className="footer_mobile_text">Маршруты</div>
@@ -51,7 +51,7 @@ export default class Footer extends React.Component {
             <div className="footer_mobile_icon" id="footer_mobile_profile" />
             <div className="footer_mobile_text">Профиль</div>
           </div>
-        </div>
+        </div> */}
       </React.Fragment>
     );
   }

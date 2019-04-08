@@ -25,12 +25,11 @@ class DriverProfileTripSettingsTripClass extends React.Component {
         this.setState({
             cityRadius: newArrayCity,
         })
-        console.log(this.state.cityRadius)
     }
 
     deleteCityRadius(index) {
         let newArrayCity = this.state.cityRadius;
-        delete newArrayCity[index];
+        newArrayCity.splice(index, 1);
         this.setState({
             cityRadius: newArrayCity,
         })
@@ -47,17 +46,44 @@ class DriverProfileTripSettingsTripClass extends React.Component {
 
     deleteReadyLeavePleaseel(index) {
         let newReadyLeavePlease = this.state.readyLeavePlease;
-        delete newReadyLeavePlease[index]
+        newReadyLeavePlease.splice(index, 1);
         this.setState({
             readyLeavePlease: newReadyLeavePlease,
         })
+    }
+
+    changeAllValue(index, e) {
+        let newArrayCity = this.state.cityRadius.slice();
+        let newReadyLeavePlease = this.state.readyLeavePlease.slice();
+        switch (e.currentTarget.id) {
+            case "city": {
+                newArrayCity[index].city = e.currentTarget.value;
+                this.setState({ cityRadius: newArrayCity });
+                break;
+            }
+            case "itemRadiu": {
+                newArrayCity[index].itemRadius = e.currentTarget.value;
+                this.setState({ cityRadius: newArrayCity });
+                break;
+            }
+            case "cityLeave": {
+                newReadyLeavePlease[index].cityLeave = e.currentTarget.value;
+                this.setState({ readyLeavePlease: newReadyLeavePlease });
+                break;
+            }
+            case "itemRadiusLeave": {
+                newReadyLeavePlease[index].itemRadiusLeave = e.currentTarget.value;
+                this.setState({ readyLeavePlease: newReadyLeavePlease });
+                break;
+            }
+        }
     }
 
     // TODO Добавить инпут с подсказчиком гугл
     render() {
         return (
             <div className="driverProfileTripSettingsBody">
-                <div className="driverProfileTripSettingsContent col-12">
+                <div className="driverProfileTripSettingsContent col-12 pt-4">
                     <div className="driverProfileTripSettingsContentTitle d-flex align-items-center">
                         <p>Добавьте город и радиусы, где Вы готовы принимать заказы</p>
                     </div>
@@ -65,12 +91,12 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                         <React.Fragment>
                             <div className="d-flex align-items-center">
                                 <p className="col-3 p-0">Базовый город:</p>
-                                <input type="text" defaultValue={element.city} onChange={(e) => { element.city = e.currentTarget.value }} />
+                                <input type="text" id="city" value={this.state.cityRadius[index].city} onChange={this.changeAllValue.bind(this, index)} />
                                 <div style={{ display: index ? "block" : "none" }} className="driverProfileTripSettingsContentDeletButton col-3 mb-0 " onClick={() => { this.deleteCityRadius(index) }}>Удалить город</div>
                             </div>
                             <div className="d-flex align-items-center">
                                 <p className="col-3 p-0">Радиус в км:</p>
-                                <input type="text" defaultValue={element.itemRadius} onChange={(e) => { element.itemRadius = e.currentTarget.value }} />
+                                <input type="text" id="itemRadiu" value={this.state.cityRadius[index].itemRadius} onChange={this.changeAllValue.bind(this, index)} />
                             </div>
                         </React.Fragment>
                     )}
@@ -87,12 +113,12 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                         <React.Fragment>
                             <div className="d-flex align-items-center">
                                 <p className="col-3 p-0">Базовый город:</p>
-                                <input type="text" defaultValue={element.cityLeave} onChange={(e) => { element.cahngeCityLeave = e.currentTarget.value }} />
+                                <input type="text" id="cityLeave" value={this.state.readyLeavePlease[index].cityLeave} onChange={this.changeAllValue.bind(this, index)} />
                                 <div style={{ display: index ? "block" : "none" }} className="driverProfileTripSettingsContentDeletButton col-3 mb-0" onClick={() => { this.deleteReadyLeavePleaseel(index) }}>Удалить город</div>
                             </div>
                             <div className="d-flex align-items-center">
                                 <p className="col-3 p-0">Радиус в км:</p>
-                                <input type="text" defaultValue={element.itemRadiusLeave} onChange={(e) => { element.cahngeRadiusLeave = e.currentTarget.value }} />
+                                <input type="text" id="itemRadiusLeave" value={this.state.readyLeavePlease[index].itemRadiusLeave} onChange={this.changeAllValue.bind(this, index)} />
                             </div>
                         </React.Fragment>
                     )}

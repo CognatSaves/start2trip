@@ -1,72 +1,73 @@
-.placesList_element{
+.placesList_element {
     position: relative;
     display: flex;
     flex-direction: row;
     width: 100%;
     box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.25);
-    
     margin-bottom: 10px;
     border-radius: 5px;
 }
-.placesList_placeName{
 
+.placesList_placeName {
     font-size: 16px;
     line-height: 16px;
     font-weight: 500;
     color: #304269;
 }
-.placesList_picture{
+
+.placesList_picture {
     display: flex;
     width: 190px;
     height: 215px;
 }
-.placesList_info{
+
+.placesList_info {
     display: flex;
     flex-direction: column;
     width: 680px;
     height: 215px;
     padding: 20px;
 }
-.placesList_info_row{
+
+.placesList_info_row {
     display: flex;
     flex-direction: row;
 }
-.placesList_info_style{
+
+.placesList_info_style {
     font-size: 14px;
     line-height: 20px;
     font-weight: 400;
-
     height: 80px;
     overflow: hidden;
     text-overflow: ellipsis;
     color: #304269;
 }
 
-.placesList_info_position{
+.placesList_info_position {
     font-size: 12px;
-
     font-weight: 400;
     color: #999999;
 }
 
-.placesList_info_position_textStyle{
+.placesList_info_position_textStyle {
     margin-left: 5px;
     line-height: 20px;
 }
 
-.placesList_readMoreButton{
-
+.placesList_readMoreButton {
     font-weight: 500;
     color: #304269;
     font-size: 14px;
     margin-left: auto;
 }
 
-.placesList_readMoreButton:hover{
+.placesList_readMoreButton:hover {
     cursor: pointer;
     color: #ff6600;
 }
-.placesList_placeCard{
+
+.placesList_placeCard {
     margin-left: auto;
     height: 25px;
     width: 20px;

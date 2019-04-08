@@ -2,15 +2,16 @@
     box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.2);
     min-height: 360px;
 }
-.tourBody:hover{
+
+.tourBody:hover {
     box-shadow: 0 0 25px 0px rgba(0, 0, 0, 0.3);
 }
-div.tourCard{
+
+div.tourCard {
     padding: 0 10px !important;
 }
 
 .tourTitle {
-
     font-weight: 500;
     font-size: 12pt;
     color: #304269;
@@ -18,6 +19,7 @@ div.tourCard{
     text-decoration: none;
     overflow: hidden;
 }
+
 .tourTitle:hover {
     transition: all 0.3s;
     color: #f60;
@@ -31,7 +33,6 @@ div.tourCard{
 }
 
 .tourText {
-
     font-weight: 400;
     font-size: 10.5pt;
     color: #304269;
@@ -41,7 +42,6 @@ div.tourCard{
 
 .tourLink {
     right: 0px;
-
     font-weight: 500;
     font-size: 10.5pt;
     text-decoration: none;
@@ -58,14 +58,13 @@ div.tourCard{
     outline: none;
 }
 
-.tourPrise{
-
+.tourPrise {
     font-weight: 500;
     font-size: 14px;
     color: #304269;
 }
-.tourPrise span{
 
+.tourPrise span {
     font-weight: 500;
     font-size: 24px;
     color: #304269;

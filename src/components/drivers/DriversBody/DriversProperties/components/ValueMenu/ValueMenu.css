@@ -30,7 +30,8 @@
     font-weight: 400;
     color: #304269;
 }
-.valueMenu_borderElement p:nth-child(2){
+
+.valueMenu_borderElement p:nth-child(2) {
     width: 100%;
     min-width: 60px;
 }
@@ -105,18 +106,20 @@
     background: none;
 }
 
-.valueMenu_stateBlock_applyButton:hover{
-    transition: all 0.3s;
-    color: #f60;
-}
-.valueMenu_stateBlock_cancelButton:hover{
+.valueMenu_stateBlock_applyButton:hover {
     transition: all 0.3s;
     color: #f60;
 }
 
-.valueMenu_stateBlock_applyButton:focus{
+.valueMenu_stateBlock_cancelButton:hover {
+    transition: all 0.3s;
+    color: #f60;
+}
+
+.valueMenu_stateBlock_applyButton:focus {
     outline: none;
 }
-.valueMenu_stateBlock_cancelButton:focus{
+
+.valueMenu_stateBlock_cancelButton:focus {
     outline: none;
 }

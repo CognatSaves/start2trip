@@ -41,7 +41,7 @@ class DriverProfileBasicInformationClass extends React.Component {
     }
 
     addNum() {
-        let newDataNumber = this.getMassNumbers(31);
+        let newDataNumber = this.getMassNumbers(32);
         let newdataYear = this.getMassYear(2019);
         this.setState({
             dataNumber: newDataNumber,
@@ -56,7 +56,7 @@ class DriverProfileBasicInformationClass extends React.Component {
 
         return (
             <div className="driverProfileBasicInformationBody d-flex flex-column">
-                <div className="driverProfileBasicInformationBodyTop d-flex align-items-center">
+                <div className="driverProfileBasicInformationBodyTop d-xl-flex d-lg-flex d-md-flex align-items-center mb-4 d-sm-none d-none">
                     <div className="driverProfileBasicInformationBodyTopImgHover">
                         <label className="driverProfileBasicInformationBodyTopImg" htmlFor="addFile">Обновить фотографию</label>
                         <img src={imgPerson} alt="imgPerson" />
@@ -69,6 +69,7 @@ class DriverProfileBasicInformationClass extends React.Component {
                             <Stars value={"4.5"} commentNumber={"35 отзывов"} valueDisplay="block" commentNumberDisplay="block" />
                         </div>
                         <div>
+                            <p className="mb-2">Грузия,Тбилиси</p>
                             {/* TODO Location */}
                         </div>
                         <div className="bodyTopDriverInfoRide container p-0 d-flex">
@@ -85,86 +86,84 @@ class DriverProfileBasicInformationClass extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className="driverProfileBasicInformationBodyBottom d-flex flex-column mb-5">
-                    <div className="driverProfileBasicInformationBodyBottomHeader">
+                <div className="driverProfileBasicInformationBodyBottom d-flex flex-column mb-5 p-0">
+                    <div className="driverProfileBasicInformationBodyBottomHeader d-xl-block d-lg-block d-md-block d-sm-none d-none">
                         <p>Редактировать профиль</p>
                     </div>
-                    <div className="driverProfileBasicInformationBodyBottomContent d-flex flex-column">
-                        <div className="d-flex align-items-center mb-3 mt-4">
-                            <p className="col-3">Имя:</p>
-                            <input className="col-7" type="text" />
+                    <div className="driverProfileBasicInformationBodyBottomContent d-flex mt-2">
+                        <div className="d-xl-flex d-lg-flex d-md-flex d-sm-none d-none flex-column col-3">
+                            <p>Имя:</p>
+                            <p>Фамилия:</p>
+                            <p>Дата рождения:</p>
+                            <p>Номер паспорта:</p>
+                            <p>Дата выдачи:</p>
+                            <p>Родной город:</p>
+                            <p>Языки:</p>
+                            <p>О себе:</p>
                         </div>
-                        <div className="d-flex align-items-center mb-3">
-                            <p className="col-3">Фамилия:</p>
-                            <input className="col-7" type="text" />
-                        </div>
-                        <div className="d-flex align-items-center mb-4">
-                            <p className="col-3">Дата рождения:</p>
-                            <select className="col-2" name="number">
-                                {this.state.dataNumber.map((element, index) =>
-                                    <option value={element}>{element}</option>
-                                )}
-                            </select>
-                            <select className="col-2" name="month">
-                                {this.state.date.month.map((element, index) =>
-                                    <option value={element}>{element}</option>
-                                )}
-                            </select>
-                            <select className="col-2" name="year">
-                                {this.state.dataYear.map((element, index) =>
-                                    <option value={element}>{element}</option>
-                                )}
-                            </select>
-                        </div>
-                        <div className="d-flex align-items-center mb-3">
-                            <p className="col-3">Номер паспорта</p>
-                            <input className="col-7" type="text" placeholder="12121215" />
-                        </div>
-                        <div className="d-flex align-items-center mb-4">
-                            <p className="col-3">Дата выдачи:</p>
-                            <select className="col-2" name="number">
-                                {this.state.dataNumber.map((element, index) =>
-                                    <option value={element}>{element}</option>
-                                )}
-                            </select>
-
-                            <select className="col-2" name="month">
-                                {this.state.date.month.map((element, index) =>
-                                    <option value={element}>{element}</option>
-                                )}
-                            </select>
-
-                            <select className="col-2" name="year">
-                                {this.state.dataYear.map((element, index) =>
-                                    <option value={element}>{element}</option>
-                                )}
-                            </select>
-                        </div>
-                        <div className="d-flex align-items-center mb-3">
-                            <p className="col-3">Родной город:</p>
-
-                            <select className="col-3" name="country">
-                                <option value="Грузия">Грузия</option>
-                            </select>
-
-                            <input className="col-3" type="text" />
-                        </div>
-                        <div className="d-flex align-items-center mb-3">
-                            <p className="col-3">Языки:</p>
-
-                            <select className="col-7" name="language">
+                        <div className="d-flex flex-column col-lx-6 col-lg-6 col-md-7 col-sm-12 col-12">
+                            <p className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0">Имя:</p>
+                            <input type="text" />
+                            <p className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0">Фамилия:</p>
+                            <input type="text" />
+                            <p className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0">Дата рождения:</p>
+                            <div className="d-flex justify-content-between">
+                                <select className=" mr-1" name="number">
+                                    {this.state.dataNumber.map((element, index) =>
+                                        <option value={element}>{element}</option>
+                                    )}
+                                </select>
+                                <select className=" mr-1" name="month">
+                                    {this.state.date.month.map((element, index) =>
+                                        <option value={element}>{element}</option>
+                                    )}
+                                </select>
+                                <select className="" name="year">
+                                    {this.state.dataYear.map((element, index) =>
+                                        <option value={element}>{element}</option>
+                                    )}
+                                </select>
+                            </div>
+                            <p className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0">Номер паспорта:</p>
+                            <input type="text" placeholder="12121215" />
+                            <p className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0">Дата выдачи:</p>
+                            <div className="d-flex justify-content-between">
+                                <select className="mr-1" name="number">
+                                    {this.state.dataNumber.map((element, index) =>
+                                        <option value={element}>{element}</option>
+                                    )}
+                                </select>
+                                <select className="mr-1" name="month">
+                                    {this.state.date.month.map((element, index) =>
+                                        <option value={element}>{element}</option>
+                                    )}
+                                </select>
+                                <select className="" name="year">
+                                    {this.state.dataYear.map((element, index) =>
+                                        <option value={element}>{element}</option>
+                                    )}
+                                </select>
+                            </div>
+                            <p className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0">Страна проживания:</p>
+                            <input className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0" type="text" />
+                            <p className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0">Родной город:</p>
+                            <div className="d-flex">
+                                <select className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-6 mr-1" name="country">
+                                    <option value="Грузия">Грузия</option>
+                                </select>
+                                <input className="w-100" type="text" />
+                            </div>
+                            <p className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0">Языки:</p>
+                            <select className="w-100" name="language">
                                 {this.state.language.map((element, index) =>
                                     <option value={element}>{element}</option>
                                 )}
                             </select>
-                        </div>
-                        <div className="d-flex align-items-start mb-4">
-                            <p className="col-3">О себе:</p>
-                            <textarea className="col-7" name="" id="" cols="25" rows="5"></textarea>
-                        </div>
-                        <div className="d-flex">
-                        <p className="col-3"></p>
-                            <button className="col-8 mb-5">Сохранить Изменения</button>
+                            <p className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0">О себе:</p>
+                            <textarea name="" id="" cols="66" rows="5"></textarea>
+                            <div className="d-flex justify-content-xl-start justify-content-lg-start justify-content-md-start justify-content-sm-center justify-content-center ">
+                                <button className="col-8 mb-5">Сохранить Изменения</button>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -1,0 +1,117 @@
+.driverProfileSettingsBody {
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    min-height: 500px;
+    transition: all 0.3s;
+}
+
+.driverProfileSettingsBodyTitle {
+    min-height: 40px;
+    border-bottom: 1px solid #ccc;
+    line-height: 40px;
+}
+
+.driverProfileSettingsBodyTitle p {
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 16px;
+    color: #304269;
+    margin-bottom: 0px;
+    padding-left: 10px;
+}
+
+.driverProfileSettingsContent p {
+    font-family: "Roboto";
+    font-weight: 500;
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 0px;
+}
+
+.driverProfileSettingsContentPasswordText {
+    line-height: 70px;
+}
+
+.driverProfileSettingsContent input {
+    color: #333;
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding-left: 10px;
+    max-width: 400px;
+    min-height: 40px;
+    max-height: 40px;
+    transition: all 0.3s;
+}
+
+.driverProfileSettingsContent input:focus,
+.driverProfileSettingsContent input:hover {
+    outline: none;
+    border-color: #304269;
+}
+
+.driverProfileSettingsContent .driverProfileSettingsContentPassword p {
+    font-size: 12px;
+}
+
+.driverProfileSettingsContent button {
+    min-width: 250px;
+    min-height: 40px;
+    text-align: center;
+    line-height: 40px;
+    color: #fff;
+    background: #304269;
+    border-radius: 5px;
+    border: none;
+    transition: all 0.3s;
+}
+
+.driverProfileSettingsContent button:hover,
+.driverProfileSettingsContent button:focus {
+    outline: none;
+    background: #f60;
+}
+
+.driverProfileSettingsContentUnsubscribe p {
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 12px;
+    color: #999;
+    transition: all 0.3s;
+}
+
+.driverProfileSettingsContentUnsubscribe .driverProfileSettingsContentUnsubscribeButton {
+    font-size: 14px;
+    color: #304269;
+    cursor: pointer;
+}
+
+.driverProfileSettingsContentUnsubscribeButton:hover {
+    color: #f60;
+}
+
+.driverProfileSettingsContentPasswordDivIcon {
+    position: relative;
+}
+
+.driverProfileSettingsContentPasswordEyeIcon {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    z-index: 2;
+    top: 10px;
+    right: 15px;
+    background: url(./img/eyeBlue.svg) no-repeat;
+    background-size: 20px 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.driverProfileSettingsContentPasswordEyeIcon:hover {
+    background: url(./img/eyeOrange.svg) no-repeat;
+    background-size: 20px 20px;
+}

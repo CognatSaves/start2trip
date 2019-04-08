@@ -128,7 +128,7 @@ class HeaderClass extends React.Component {
         <ModalRegistration modalRegistration={this.state.modalRegistration} toggle={this.toggleModalRegistration} className={this.props.className}/>
         <CountrySelect modalCountry={this.state.modalCountry} toggleModalCountry={this.toggleModalCountry} className={this.props.className}/>
 
-        <div className="home_header col-lg-12">
+        <div className="home_header col-lg-12  d-xl-block d-lg-block d-md-block d-sm-none d-none">
           <div className='header d-flex align-items-center'>
             <Link className="col-xl-3 col-lg-4" to="">
               <div className={this.props.colorWhite ? "logoWhite" : "logoBlue"}></div>
