@@ -101,7 +101,7 @@ class DriverProfileBasicInformationClass extends React.Component {
                             <p>Языки:</p>
                             <p>О себе:</p>
                         </div>
-                        <div className="d-flex flex-column col-lx-6 col-lg-6 col-md-7 col-sm-12 col-12">
+                        <div className="d-flex flex-column col-lx-6 col-lg-6 col-md-6 col-sm-12 col-12">
                             <p className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0">Имя:</p>
                             <input type="text" />
                             <p className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0">Фамилия:</p>
@@ -164,6 +164,15 @@ class DriverProfileBasicInformationClass extends React.Component {
                             <div className="d-flex justify-content-xl-start justify-content-lg-start justify-content-md-start justify-content-sm-center justify-content-center ">
                                 <button className="col-8 mb-5">Сохранить Изменения</button>
                             </div>
+                        </div>
+                        <div className="bottomContentNote d-xl-flex d-lg-flex d-md-flex d-sm-none d-none flex-column col-xl-4 col-lg-4 col-md-4 col-sm-5 col-5">
+                            <p className="my-xl-4 my-lg-4 my-md-2">В вашем публичном профиле отображается только ваше имя. Когда вы запросите бронирование, хозяин увидит ваши имя и фамилию.</p>
+                            <p>Волшебный день, когда вас нашли в капусте. Мы используем эти данные только для анализа и никогда ни с кем ими не делимся.</p>
+                            {/* <p>Номер паспорта:</p>
+                            <p>Дата выдачи:</p>
+                            <p>Родной город:</p>
+                            <p>Языки:</p>
+                            <p>О себе:</p> */}
                         </div>
                     </div>
                 </div>

@@ -166,7 +166,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                     </React.Fragment>
                                 )}
                                 <div className="tourContentAdd d-flex align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start justify-content-center mb-0">
-                                    <p className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 pl-xl-5 pl-lg-5 pl-md-5 p-sm-0 p-0" onClick={this.addCity}>+ Добавить населённый пункт</p>
+                                    <p className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0" onClick={this.addCity}>+ Добавить населённый пункт</p>
                                 </div>
                             </div>
                             <div className="tourContentTitle d-flex align-items-center mb-0">
@@ -211,7 +211,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                     </React.Fragment>
                                 )}
                                 <div className="tourContentAdd d-flex align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start justify-content-center mb-0">
-                                    <p className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 pl-xl-5 pl-lg-5 pl-md-5 p-sm-0 pl-2" onClick={this.addDepartureDate}>+ Добавить даты</p>
+                                    <p className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 pl-2" onClick={this.addDepartureDate}>+ Добавить даты</p>
                                 </div>
                             </div>
                             <div className="tourContentTitle d-flex align-items-center mb-0">
