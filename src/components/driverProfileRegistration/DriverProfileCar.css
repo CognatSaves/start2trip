@@ -1,42 +1,32 @@
 /* Car Bigin*/
 
-.driverProfileCarFilledCard {
-    /* min-height: 260px;
-    max-width: 280px; */
+.filledCard {
     width: 100%;
     box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
-    /* margin: 0 10px 10px auto; */
     transition: all 0.3s;
 }
 
-.driverProfileCarFilledCard:hover {
+.filledCard:hover {
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
-
-/* .driverProfileCarFilledCardImg {
-    width: 280px;
-    height: 200px;
-} */
-
-.driverProfileCarFilledCardInformation {
-    /* min-width: 250px; */
+.filledCardInformation {
     width: 100%;
 }
 
-.driverProfileCarFilledCardImg {
+.filledCardImg {
     width: 100%;
 }
 
-.driverProfileCarFilledCardInformation p {
+.filledCardInformation p {
     font-weight: 500;
     font-size: 14px;
     color: #304269;
     margin-bottom: 0px;
 }
 
-.driverProfileCarFilledCardInformationNameCar {
+.filledCardInformationNameCar {
     position: absolute;
     z-index: 3;
     min-height: 45px;
@@ -62,15 +52,15 @@
     background-position: top 15px right 10px;
 }
 
-.cardInformationNameCarIcon:hover~.driverProfileCarFilledCardInformationMenu {
+.cardInformationNameCarIcon:hover~.filledCardInformationMenu {
     display: block;
 }
 
-.driverProfileCarFilledCardInformationMenu:hover {
+.filledCardInformationMenu:hover {
     display: block;
 }
 
-.driverProfileCarFilledCardInformationMenu {
+.filledCardInformationMenu {
     display: none;
     position: absolute;
     top: 40px;
@@ -113,8 +103,8 @@
     background-position: left 2px bottom -2px;
 }
 
-p.driverProfileCarFilledCardInformationDeleteCar,
-p.driverProfileCarFilledCardInformationNameCarEdit {
+p.filledCardInformationDeleteCar,
+p.filledCardInformationNameCarEdit {
     font-family: "Roboto";
     font-weight: 400;
     font-size: 14px;
@@ -127,25 +117,20 @@ p.driverProfileCarFilledCardInformationNameCarEdit {
     transition: all 0.3s;
 }
 
-p.driverProfileCarFilledCardInformationDeleteCar:hover,
-p.driverProfileCarFilledCardInformationNameCarEdit:hover {
+p.filledCardInformationDeleteCar:hover,
+p.filledCardInformationNameCarEdit:hover {
     background: #f4f5f6;
 }
 
-.driverProfileCarFilledCardInformationNameCar input {
+.filledCardInformationNameCar input {
     display: none;
 }
 
-
-/* .driverProfileCarFilledCardInformationNameCar input[type="checkbox"]:checked~.driverProfileCarFilledCardInformationMenu {
-    display: block;
-} */
-
-.driverProfileCarFilledCardInformationCommon {
+.filledCardInformationCommon {
     max-width: 250px;
 }
 
-.driverProfileCarFilledCardInformationCommonImg {
+.filledCardInformationCommonImg {
     width: 35px;
     height: 30px;
     background-size: 30px 30px;
@@ -153,7 +138,7 @@ p.driverProfileCarFilledCardInformationNameCarEdit:hover {
     background-position: right 5px bottom 5px;
 }
 
-.driverProfileCarFilledCardInformationComfortImg img {
+.filledCardInformationComfortImg img {
     margin: 0 5px;
     cursor: pointer;
 }
@@ -164,7 +149,7 @@ p.driverProfileCarFilledCardInformationNameCarEdit:hover {
 
 /* Add new Car Bigin*/
 
-.driverProfileCarAddNewCar {
+.carAddNewCar {
     box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     min-height: 480px;
@@ -172,7 +157,7 @@ p.driverProfileCarFilledCardInformationNameCarEdit:hover {
     padding-top: 30px;
 }
 
-.driverProfileCarAddNewCarPhotoCar {
+.carAddNewCarPhotoCar {
     position: relative;
     max-width: 305px;
     max-height: 200px;
@@ -184,13 +169,13 @@ p.driverProfileCarFilledCardInformationNameCarEdit:hover {
     text-align: center;
 }
 
-.driverProfileCarAddNewCarPhotoCarImg {
+.carAddNewCarPhotoCarImg {
     max-width: 305px;
     max-height: 200px;
     background-size: contain;
 }
 
-.driverProfileCarAddNewCarPhotoCar label {
+.carAddNewCarPhotoCar label {
     position: absolute;
     z-index: 5;
     left: 50px;
@@ -201,14 +186,14 @@ p.driverProfileCarFilledCardInformationNameCarEdit:hover {
     cursor: pointer;
 }
 
-.driverProfileCarAddNewCarInformation p {
+.carAddNewCarInformation p {
     font-weight: 500;
     font-size: 14px;
     color: #999;
     margin-bottom: 0px;
 }
 
-.driverProfileCarAddNewCarInformation input {
+.carAddNewCarInformation input {
     width: 100%;
     min-height: 40px;
     padding-left: 10px;
@@ -220,7 +205,7 @@ p.driverProfileCarFilledCardInformationNameCarEdit:hover {
     transition: all 0.3s;
 }
 
-.driverProfileCarAddNewCarInformation select {
+.carAddNewCarInformation select {
     width: 100%;
     min-height: 40px;
     margin-right: 5px;
@@ -239,30 +224,30 @@ p.driverProfileCarFilledCardInformationNameCarEdit:hover {
     transition: all 0.3s;
 }
 
-.driverProfileCarAddNewCarInformation select:hover,
-.driverProfileCarAddNewCarInformation select:focus,
-.driverProfileCarAddNewCarInformation input:hover,
-.driverProfileCarAddNewCarInformation input:focus {
+.carAddNewCarInformation select:hover,
+.carAddNewCarInformation select:focus,
+.carAddNewCarInformation input:hover,
+.carAddNewCarInformation input:focus {
     border-color: #304269;
     text-decoration: none;
     outline: #304269;
 }
 
-.driverProfileCarAddNewCarShowButton {
+.carShowButton {
     margin-bottom: 20px;
     min-width: 250px;
 }
 
-.driverProfileCarAddNewCarButton p {
+.carAddNewCarButton p {
     cursor: pointer;
 }
 
-.driverProfileCarAddNewCarButton p:hover {
+.carAddNewCarButton p:hover {
     color: #f60;
 }
 
-.driverProfileCarAddNewCarShowButton,
-.driverProfileCarAddNewCarInformation button {
+.carShowButton,
+.carAddNewCarInformation button {
     min-height: 40px;
     max-height: 40px;
     text-align: center;
@@ -274,17 +259,17 @@ p.driverProfileCarFilledCardInformationNameCarEdit:hover {
     transition: all 0.3s;
 }
 
-.driverProfileCarAddNewCarShowButton:hover,
-.driverProfileCarAddNewCarInformation button:hover {
+.carShowButton:hover,
+.carAddNewCarInformation button:hover {
     background: #f60;
 }
 
-.driverProfileCarAddNewCarShowButton:focus,
-.driverProfileCarAddNewCarInformation button:focus {
+.carShowButton:focus,
+.carAddNewCarInformation button:focus {
     outline: none;
 }
 
-.driverProfileCarAddNewCarComfortCheckBox label {
+.carAddNewCarComfortCheckBox label {
     /* background: #25ae88; */
     position: relative;
     cursor: pointer;
@@ -298,7 +283,7 @@ p.driverProfileCarFilledCardInformationNameCarEdit:hover {
     user-select: none;
 }
 
-.driverProfileCarAddNewCarComfortCheckBox input {
+.carAddNewCarComfortCheckBox input {
     position: absolute;
     opacity: 0;
     cursor: pointer;
@@ -306,7 +291,7 @@ p.driverProfileCarFilledCardInformationNameCarEdit:hover {
     width: 0;
 }
 
-.driverProfileCarAddNewCarComfortCheckBox span {
+.carAddNewCarComfortCheckBox span {
     position: absolute;
     top: 0;
     left: 0;
@@ -318,25 +303,25 @@ p.driverProfileCarFilledCardInformationNameCarEdit:hover {
     transition: all 0.3s;
 }
 
-.driverProfileCarAddNewCarComfortCheckBox label:hover span {
+.carAddNewCarComfortCheckBox label:hover span {
     border-color: #25ae88;
 }
 
-.driverProfileCarAddNewCarComfortCheckBox input:checked~span {
+.carAddNewCarComfortCheckBox input:checked~span {
     background-color: #25ae88;
 }
 
-.driverProfileCarAddNewCarComfortCheckBox span:after {
+.carAddNewCarComfortCheckBox span:after {
     content: "";
     position: absolute;
     display: none;
 }
 
-.driverProfileCarAddNewCarComfortCheckBox label input:checked~span:after {
+.carAddNewCarComfortCheckBox label input:checked~span:after {
     display: block;
 }
 
-.driverProfileCarAddNewCarComfortCheckBox label span:after {
+.carAddNewCarComfortCheckBox label span:after {
     left: 6px;
     top: 3px;
     width: 5px;
@@ -352,46 +337,46 @@ p.driverProfileCarFilledCardInformationNameCarEdit:hover {
 /* Add new Car End*/
 
 @media (max-width: 768px) {
-    .driverProfileCarAddNewCar {
+    .carAddNewCar {
         box-shadow: none;
     }
-    .driverProfileCarAddNewCarInformation input,
-    .driverProfileCarAddNewCarInformation select {
+    .carAddNewCarInformation input,
+    .carAddNewCarInformation select {
         border: none;
         border-bottom: 1px solid #ccc;
     }
-    .driverProfileCarAddNewCarInformation select:hover,
-    .driverProfileCarAddNewCarInformation select:focus,
-    .driverProfileCarAddNewCarInformation input:hover,
-    .driverProfileCarAddNewCarInformation input:focus {
+    .carAddNewCarInformation select:hover,
+    .carAddNewCarInformation select:focus,
+    .carAddNewCarInformation input:hover,
+    .carAddNewCarInformation input:focus {
         border-color: #304269;
         border-width: 2px;
         text-decoration: none;
         outline: #304269;
         border-radius: 0px;
     }
-    .driverProfileCarAddNewCarPhotoCar {
+    .carAddNewCarPhotoCar {
         /* max-width: 400px;
         max-height: 100%;
         min-width: 305px;
         min-height: 200px;
         margin-right: 0px; */
     }
-    .driverProfileCarAddNewCarPhotoCarImg {
+    .carAddNewCarPhotoCarImg {
         /* max-width: 400px;
         max-height: 100%; */
     }
 }
 
 @media (max-width: 576px) {
-    .driverProfileCarAddNewCarPhotoCar {
+    .carAddNewCarPhotoCar {
         /* max-width: 100%;
         max-height: 100%;
         min-width: 305px;
         min-height: 200px;
         margin-right: 0px; */
     }
-    .driverProfileCarAddNewCarPhotoCarImg {
+    .carAddNewCarPhotoCarImg {
         /* max-width: 100%;
         max-height: 100%; */
     }

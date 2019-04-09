@@ -101,22 +101,22 @@ class DriverProfileCarClass extends React.Component {
         let { imagePreviewUrl } = this.state;
         let $imagePreview = null;
         if (imagePreviewUrl) {
-            $imagePreview = (<img src={imagePreviewUrl} className="driverProfileCarAddNewCarPhotoCarImg" alt="add_car" />);
+            $imagePreview = (<img src={imagePreviewUrl} className="carAddNewCarPhotoCarImg" alt="add_car" />);
         }
 
         return (
             <div >
                 <div style={{ opacity: this.state.collapse ? "0" : "1" }} className="col-12 d-flex justify-content-center">
-                    <button className="driverProfileCarAddNewCarShowButton" onClick={this.toggle}>Добавить Автомобиль</button>
+                    <button className="carShowButton" onClick={this.toggle}>Добавить Автомобиль</button>
                 </div>
                 <Collapse isOpen={this.state.collapse}>
-                    <div className="driverProfileCarAddNewCar d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-start align-items-lg-start align-items-md-start align-items-sm-center align-items-center pt-1">
-                        <div className="driverProfileCarAddNewCarPhotoCar col-5" >
+                    <div className="carAddNewCar d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-start align-items-lg-start align-items-md-start align-items-sm-center align-items-center pt-1">
+                        <div className="carAddNewCarPhotoCar col-5" >
                             {$imagePreview}
                             <label htmlFor="addCarFile" >+Добавить фото автомобиля</label>
                             <input type="file" id="addCarFile" style={{ display: "none" }} onChange={this._handleImageChange} />
                         </div>
-                        <div className="driverProfileCarAddNewCarInformation d-flex flex-column col-xl-7 col-lg-6 col-md-6 col-sm-11 col-11 p-0">
+                        <div className="carAddNewCarInformation d-flex flex-column col-xl-7 col-lg-6 col-md-6 col-sm-11 col-11 p-0">
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mb-3 mt-2">
                                 <p className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">Марка автомобиля:</p>
                                 <input value={this.state.newCarCard.nameCar} onChange={(e) => {
@@ -169,7 +169,7 @@ class DriverProfileCarClass extends React.Component {
                             </div>
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-start mb-3">
                                 <p className="col-4 p-0">Удобства:</p>
-                                <div className="driverProfileCarAddNewCarComfortCheckBox d-flex flex-column pt-1">
+                                <div className="carAddNewCarComfortCheckBox d-flex flex-column pt-1">
                                     <label htmlFor="comfort1">Климат контроль
                                 <input onClick={(e) => {
                                             e.currentTarget.checked
@@ -212,7 +212,7 @@ class DriverProfileCarClass extends React.Component {
                                     </label>
                                 </div>
                             </div>
-                            <div className="driverProfileCarAddNewCarButton d-flex align-items-end mb-5">
+                            <div className="carAddNewCarButton d-flex align-items-end mb-5">
                                 <p className="col-4 p-0"></p>
                                 <button>Добавить Автомобиль</button>
                                 <p className="ml-3" onClick={this.toggle}>Отмена</p>
@@ -223,28 +223,28 @@ class DriverProfileCarClass extends React.Component {
 
                 <div className="p-0 d-flex flex-wrap col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     {this.state.car.map((element, index) =>
-                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 p-2">
-                        <div className="driverProfileCarFilledCard d-flex flex-column p-0">
-                            <div className="driverProfileCarFilledCardInformation d-flex flex-column">
-                                <div className="driverProfileCarFilledCardInformationNameCar d-flex justify-content-end w-100 align-items-center">
-                                    <label className="cardInformationNameCarIcon"></label>
-                                    <div className="driverProfileCarFilledCardInformationMenu">
-                                        <p className="driverProfileCarFilledCardInformationDeleteCar">Удалить</p>
-                                        <p className="driverProfileCarFilledCardInformationNameCarEdit">Редактировать</p>
+                        <div className="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12 p-2">
+                            <div className="filledCard d-flex flex-column p-0">
+                                <div className="filledCardInformation d-flex flex-column">
+                                    <div className="filledCardInformationNameCar d-flex justify-content-end w-100 align-items-center">
+                                        <label className="cardInformationNameCarIcon"></label>
+                                        <div className="filledCardInformationMenu">
+                                            <p className="filledCardInformationDeleteCar">Удалить</p>
+                                            <p className="filledCardInformationNameCarEdit">Редактировать</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="filledCardImg">
+                                    <img src={imgCar} alt="imgCar" width="100%" height="100%" />
+                                </div>
+                                <div className="cardInformationType d-flex flex-column">
+                                    <p>Toyota Land Cruiser Prado 3.0d</p>
+                                    <div className="cardInformation d-flex">
+                                        <p style={{ backgroundImage: `url(${sedanIcon})` }} >Внедорожник</p>
+                                        <span>, 4 места</span>
                                     </div>
                                 </div>
                             </div>
-                            <div className="driverProfileCarFilledCardImg">
-                                <img src={imgCar} alt="imgCar" width="100%" height="100%" />
-                            </div>
-                            <div className="cardInformationType d-flex flex-column">
-                                <p>Toyota Land Cruiser Prado 3.0d</p>
-                                <div className="cardInformation d-flex">
-                                    <p style={{backgroundImage:`url(${sedanIcon})`}} >Внедорожник</p>
-                                    <span>, 4 места</span>
-                                </div>
-                            </div>
-                        </div>
                         </div>
                     )}
                 </div>
@@ -264,7 +264,7 @@ export default DriverProfileCar;
 
 
 
-{/* <div className="driverProfileCarFilledCardInformationComfortImg d-flex align-items-center">
+{/* <div className="filledCardInformationComfortImg d-flex align-items-center">
                                     {this.state.comfort.map((element, index) =>
                                         <img src={element.icon} width="18px" height="18px" title={element.title} alt="icon" />
                                     )}

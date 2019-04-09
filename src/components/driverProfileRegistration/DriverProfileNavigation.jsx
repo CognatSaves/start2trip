@@ -16,10 +16,10 @@ class DriverProfileNavigationClass extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <div className="driverProfileNavigationBody d-flex align-items-center">
+                <div className="navigationBody d-flex align-items-center">
                     {this.state.navigationText.map((element, index) =>
                         <div>
-                            <p className={{ [index]: "driverProfileNavigationBodyActive", }[this.props.storeState.pageRender] + " mb-0"} onClick={() => { this.props.dispatch(whichPageRender(index)) }}>{element}</p>
+                            <p className={{ [index]: "navigationBodyActive", }[this.props.storeState.pageRender] + " mb-0"} onClick={() => { this.props.dispatch(whichPageRender(index)) }}>{element}</p>
                         </div>
                     )}
                 </div>

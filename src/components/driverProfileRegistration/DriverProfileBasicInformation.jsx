@@ -55,25 +55,25 @@ class DriverProfileBasicInformationClass extends React.Component {
     render() {
 
         return (
-            <div className="driverProfileBasicInformationBody d-flex flex-column">
-                <div className="driverProfileBasicInformationBodyTop d-xl-flex d-lg-flex d-md-flex align-items-center mb-4 d-sm-none d-none">
-                    <div className="driverProfileBasicInformationBodyTopImgHover">
-                        <label className="driverProfileBasicInformationBodyTopImg" htmlFor="addFile">Обновить фотографию</label>
+            <div className="basicInformationBody d-flex flex-column">
+                <div className="basicInformationBodyTop d-xl-flex d-lg-flex d-md-flex align-items-center mb-4 d-sm-none d-none">
+                    <div className="basicInformationBodyTopImgHover">
+                        <label className="basicInformationBodyTopImg" htmlFor="addFile">Обновить фотографию</label>
                         <img src={imgPerson} alt="imgPerson" />
                         {/* <label className="edditIcon" htmlFor="addFile"></label> */}
                         <input type="file" id="addFile" style={{ display: "none" }} />
                     </div>
-                    <div className="bodyTopDriverInfo col-7">
+                    <div className="bodyTopDriverInfo w-100">
                         <div className="d-flex align-items-center">
                             <p className="mb-0 mr-2">Валерий</p>
                             <Stars value={"4.5"} commentNumber={"35 отзывов"} valueDisplay="block" commentNumberDisplay="block" />
                         </div>
-                        <div>
+                        <div className="bodyTopDriverInfoPlace">
                             <p className="mb-2">Грузия,Тбилиси</p>
                             {/* TODO Location */}
                         </div>
                         <div className="bodyTopDriverInfoRide container p-0 d-flex">
-                            <div className="d-flex flex-column col-5 p-0">
+                            <div className="d-flex flex-column col-2 p-0">
                                 <p>Всего</p>
                                 <p>поездок</p>
                                 <p>18</p>
@@ -86,11 +86,11 @@ class DriverProfileBasicInformationClass extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className="driverProfileBasicInformationBodyBottom d-flex flex-column mb-5 p-0">
-                    <div className="driverProfileBasicInformationBodyBottomHeader d-xl-block d-lg-block d-md-block d-sm-none d-none">
+                <div className="basicInformationBodyBottom d-flex flex-column mb-5 p-0">
+                    <div className="basicInformationBodyBottomHeader d-xl-block d-lg-block d-md-block d-sm-none d-none">
                         <p>Редактировать профиль</p>
                     </div>
-                    <div className="driverProfileBasicInformationBodyBottomContent d-flex mt-2">
+                    <div className="basicInformationBodyBottomContent d-flex justify-content-center mt-2">
                         <div className="d-xl-flex d-lg-flex d-md-flex d-sm-none d-none flex-column col-3">
                             <p>Имя:</p>
                             <p>Фамилия:</p>

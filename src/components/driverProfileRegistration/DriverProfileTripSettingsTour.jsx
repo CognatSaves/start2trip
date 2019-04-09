@@ -137,8 +137,8 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                     <button className="addTourShow" onClick={this.toggle}>Добавить Тур</button>
                 </div>
                 <Collapse isOpen={this.state.collapse}>
-                    <div className="driverProfileTripSettingsBody">
-                        <div className="driverProfileTripSettingsTourContent col-lx-9 col-lg-9 col-md-9 col-sm-12 col-12 pt-2">
+                    <div className="settingsBody">
+                        <div className="tourContent col-lx-9 col-lg-9 col-md-9 col-sm-12 col-12 pt-2">
                             <div className="tourContentTitle d-flex align-items-center mb-0">
                                 <p>Добавление тура</p>
                             </div>
@@ -156,7 +156,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
                                                 <p className="col-xl-4 col-lg-4 col-md-4 col-sm-11 col-11 pl-0">Населённый пункт:</p>
                                                 <input className="pl-0" type="text" id="city" value={this.state.cities[index].city} onChange={this.changeAllValue.bind(this, index)} />
-                                                <div style={{ display: index ? "block" : "none" }} className={index ? "driverProfileTripSettingsContentDeletButton col-xl-3 col-lg-3 col-md-3 col-sm-11 col-11 mb-0 mt-4 " : "driverProfileTripSettingsContentDeletButton col-xl-3 col-lg-3 col-md-3 col-sm-11 col-11 mb-0 "} onClick={() => { this.deleteCity(index) }}>Удалить город</div>
+                                                <div style={{ display: index ? "block" : "none" }} className={index ? "tripSettingsContentDeletButton col-xl-3 col-lg-3 col-md-3 col-sm-11 col-11 mb-0 mt-4 " : "tripSettingsContentDeletButton col-xl-3 col-lg-3 col-md-3 col-sm-11 col-11 mb-0 "} onClick={() => { this.deleteCity(index) }}>Удалить город</div>
                                             </div>
                                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mb-0">
                                                 <p className="col-xl-4 col-lg-4 col-md-4 col-sm-11 col-11 pl-0">Описание:</p>
@@ -173,9 +173,9 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                 <p>Расписание</p>
                             </div>
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-row-reverse flex-row-reverse align-items-center">
-                                <div className="driverProfileTripSettingsTourContentCheckbox">
-                                    <label htmlFor="TourContentCheckbox">
-                                        <input  id="TourContentCheckbox" type="checkbox" />
+                                <div className="tourContentCheckbox">
+                                    <label htmlFor="tourContentCheckbox">
+                                        <input  id="tourContentCheckbox" type="checkbox" />
                                         <span />
                                     </label>
                                 </div>
@@ -206,7 +206,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                                     )}
                                                 </select>
                                             </div>
-                                            <div style={{ display: index ? "block" : "none" }} className={index ? "driverProfileTripSettingsContentDeletButton col-xl-3 col-lg-3 col-md-3 col-sm-11 col-11 mb-0 mt-2" : "driverProfileTripSettingsContentDeletButton col-xl-3 col-lg-3 col-md-3 col-sm-11 col-11 mb-0 "} onClick={() => { this.deleteDepartureDate(index) }}>Удалить Дату</div>
+                                            <div style={{ display: index ? "block" : "none" }} className={index ? "tripSettingsContentDeletButton col-xl-3 col-lg-3 col-md-3 col-sm-11 col-11 mb-0 mt-2" : "tripSettingsContentDeletButton col-xl-3 col-lg-3 col-md-3 col-sm-11 col-11 mb-0 "} onClick={() => { this.deleteDepartureDate(index) }}>Удалить Дату</div>
                                         </div>
                                     </React.Fragment>
                                 )}
@@ -251,26 +251,26 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                         </div>
                     </div>
                 </Collapse>
-                <div className="driverProfileTripSettingsTourBodyElement">
-                    <div className="TourBodyElementTitle d-flex align-items-center">
+                <div className="tourBodyElement">
+                    <div className="tourBodyElementTitle d-flex align-items-center">
                         <p>Ваши туры</p>
                     </div>
 
                     <div className="p-0 d-flex flex-wrap col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         {this.state.tour.map((element, index) =>
-                        <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 p-2">
-                            <div className="driverProfileCarFilledCard d-flex flex-column p-0">
-                                <div className="driverProfileCarFilledCardInformation d-flex flex-column">
-                                    <div className="driverProfileCarFilledCardInformationNameCar d-flex d-flex justify-content-end w-100 align-items-center">
+                        <div className="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12 p-2">
+                            <div className="filledCard d-flex flex-column p-0">
+                                <div className="filledCardInformation d-flex flex-column">
+                                    <div className="filledCardInformationNameCar d-flex d-flex justify-content-end w-100 align-items-center">
                                         
                                         <label className="cardInformationNameCarIcon"></label>
-                                        <div className="driverProfileCarFilledCardInformationMenu">
-                                            <p className="driverProfileCarFilledCardInformationDeleteCar">Удалить</p>
-                                            <p className="driverProfileCarFilledCardInformationNameCarEdit">Редактировать</p>
+                                        <div className="filledCardInformationMenu">
+                                            <p className="filledCardInformationDeleteCar">Удалить</p>
+                                            <p className="filledCardInformationNameCarEdit">Редактировать</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="driverProfileCarFilledCardImg">
+                                <div className="filledCardImg">
                                     <img src={georgiaImg} alt="imgCar" width="100%" height="100%" />
                                 </div>
                                 

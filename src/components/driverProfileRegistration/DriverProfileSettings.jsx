@@ -23,9 +23,9 @@ class DriverProfileSettingsClass extends React.Component {
 
     render() {
         return (
-            <div className="driverProfileSettingsBody">
+            <div className="driverProfilesettingsBody">
                 <div>
-                    <div className="driverProfileSettingsBodyTitle d-xl-block d-lg-block d-md-block d-sm-none d-xl-block">
+                    <div className="driverProfilesettingsBodyTitle d-xl-block d-lg-block d-md-block d-sm-none d-xl-block">
                         <p>Настройки профиля</p>
                     </div>
                     <div className="driverProfileSettingsContent d-flex flex-column col-xl-9 col-lg-9 col-md-9 col-sm-11 col-11 pt-4">

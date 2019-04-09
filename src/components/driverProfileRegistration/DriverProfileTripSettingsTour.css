@@ -10,11 +10,11 @@
     transition: all 0.3s;
 }
 
-.TourBodyElementTitle {
+.tourBodyElementTitle {
     min-height: 40px;
 }
 
-.TourBodyElementTitle p {
+.tourBodyElementTitle p {
     font-family: "Roboto";
     font-weight: 400;
     font-size: 16px;
@@ -26,19 +26,19 @@
 
 /* Content Bigin */
 
-.driverProfileTripSettingsTourContent div {
+.tourContent div {
     position: relative;
     min-height: 40px;
     margin-bottom: 15px;
     width: 100%;
 }
 
-.driverProfileTripSettingsTourContent .driverProfileTripSettingsContentDeletButton {
+.tourContent .tripSettingsContentDeletButton {
     position: absolute;
     left: 100%;
 }
 
-.driverProfileTripSettingsTourContent p {
+.tourContent p {
     font-family: "Roboto";
     font-weight: 500;
     font-size: 14px;
@@ -46,7 +46,7 @@
     margin: 0;
 }
 
-.driverProfileTripSettingsTourContent span {
+.tourContent span {
     font-family: "Roboto";
     font-weight: 400;
     font-size: 14px;
@@ -59,7 +59,7 @@
     color: #304269;
 }
 
-.driverProfileTripSettingsTourContent input {
+.tourContent input {
     width: 100%;
     color: #333;
     font-family: "Roboto";
@@ -75,12 +75,12 @@
 
 /* TourContentCheckbox Bigin */
 
-div.driverProfileTripSettingsTourContentCheckbox {
+div.tourContentCheckbox {
     position: relative;
     width: 20px;
 }
 
-.driverProfileTripSettingsTourContentCheckbox label {
+.tourContentCheckbox label {
     /* background: #25ae88; */
     position: relative;
     cursor: pointer;
@@ -94,7 +94,7 @@ div.driverProfileTripSettingsTourContentCheckbox {
     user-select: none;
 }
 
-.driverProfileTripSettingsTourContentCheckbox input {
+.tourContentCheckbox input {
     position: absolute;
     opacity: 0;
     cursor: pointer;
@@ -102,7 +102,7 @@ div.driverProfileTripSettingsTourContentCheckbox {
     width: 0;
 }
 
-.driverProfileTripSettingsTourContentCheckbox span {
+.tourContentCheckbox span {
     position: absolute;
     z-index: 3;
     top: 7px;
@@ -115,25 +115,25 @@ div.driverProfileTripSettingsTourContentCheckbox {
     transition: all 0.3s;
 }
 
-.driverProfileTripSettingsTourContentCheckbox label:hover span {
+.tourContentCheckbox label:hover span {
     border-color: #25ae88;
 }
 
-.driverProfileTripSettingsTourContentCheckbox input:checked~span {
+.tourContentCheckbox input:checked~span {
     background-color: #25ae88;
 }
 
-.driverProfileTripSettingsTourContentCheckbox span:after {
+.tourContentCheckbox span:after {
     content: "";
     position: absolute;
     display: none;
 }
 
-.driverProfileTripSettingsTourContentCheckbox label input:checked~span:after {
+.tourContentCheckbox label input:checked~span:after {
     display: block;
 }
 
-.driverProfileTripSettingsTourContentCheckbox label span:after {
+.tourContentCheckbox label span:after {
     left: 6px;
     top: 3px;
     width: 5px;
@@ -148,7 +148,7 @@ div.driverProfileTripSettingsTourContentCheckbox {
 
 /* TourContentCheckbox End */
 
-.driverProfileTripSettingsTourContent select {
+.tourContent select {
     width: 33.3%;
     min-height: 40px;
     margin-right: 5px;
@@ -168,18 +168,18 @@ div.driverProfileTripSettingsTourContentCheckbox {
     transition: all 0.3s;
 }
 
-.driverProfileTripSettingsTourContent textarea:hover,
-.driverProfileTripSettingsTourContent textarea:focus,
-.driverProfileTripSettingsTourContent select:hover,
-.driverProfileTripSettingsTourContent select:focus,
-.driverProfileTripSettingsTourContent input:hover,
-.driverProfileTripSettingsTourContent input:focus {
+.tourContent textarea:hover,
+.tourContent textarea:focus,
+.tourContent select:hover,
+.tourContent select:focus,
+.tourContent input:hover,
+.tourContent input:focus {
     border-color: #304269;
     text-decoration: none;
     outline: #304269;
 }
 
-.driverProfileTripSettingsTourContent textarea {
+.tourContent textarea {
     width: 100%;
     max-height: 75px;
     border-radius: 5px;
@@ -241,28 +241,28 @@ div.driverProfileTripSettingsTourContentCheckbox {
 /* ItemElement End */
 
 @media (max-width: 768px) {
-    .driverProfileTripSettingsTourContent textarea,
-    .driverProfileTripSettingsTourContent input,
-    .driverProfileTripSettingsTourContent select {
+    .tourContent textarea,
+    .tourContent input,
+    .tourContent select {
         border: none;
         border-bottom: 1px solid #ccc;
     }
-    .driverProfileTripSettingsTourContent textarea:hover,
-    .driverProfileTripSettingsTourContent textarea:focus,
-    .driverProfileTripSettingsTourContent select:hover,
-    .driverProfileTripSettingsTourContent select:focus,
-    .driverProfileTripSettingsTourContent input:hover,
-    .driverProfileTripSettingsTourContent input:focus {
+    .tourContent textarea:hover,
+    .tourContent textarea:focus,
+    .tourContent select:hover,
+    .tourContent select:focus,
+    .tourContent input:hover,
+    .tourContent input:focus {
         border-color: #304269;
         border-width: 2px;
         text-decoration: none;
         outline: #304269;
         border-radius: 0px;
     }
-    .driverProfileTripSettingsContentDeletButton {
+    .tripSettingsContentDeletButton {
         text-align: right;
     }
-    .driverProfileTripSettingsTourContent .driverProfileTripSettingsContentDeletButton {
+    .tourContent .tripSettingsContentDeletButton {
         position: relative;
         left: 0;
     }

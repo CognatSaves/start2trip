@@ -26,20 +26,20 @@ class DriverProfileRegistrationClass extends React.Component {
     return (
       <React.Fragment>
 
-        <div className="driverProfileRegistrationWrapper d-flex flex-column col-12 p-0">
+        <div className="registrationWrapper d-flex flex-column col-12 p-0">
           <Header />
           <div className="d-flex col-12 p-0">
-            <div className="d-flex flex-column justify-content-start col-lx-9 col-lg-9 col-md-12 col-sm-12 col-12">
+            <div className="d-flex flex-column justify-content-start col-lx-12 col-lg-12 col-md-12 col-sm-12 col-12">
               <DriverProfileNavigation />
               {{
-                0:<DriverProfileBasicInformation />,
-                1:<DriverProfileCar />,
-                2:<DriverProfileTripSettingsTrip />,
-                3:<DriverProfileTripSettingsTour />,
-                4:<DriverProfileCalendar />,
-                5:<DriverProfileSettings />,
-                6:<DriverProfileFeedback />,
-                
+                0: <DriverProfileBasicInformation />,
+                1: <DriverProfileCar />,
+                2: <DriverProfileTripSettingsTrip />,
+                3: <DriverProfileTripSettingsTour />,
+                4: <DriverProfileCalendar />,
+                5: <DriverProfileSettings />,
+                6: <DriverProfileFeedback />,
+
               }[this.props.storeState.pageRender]}
             </div>
             {/* <div className="driverProfileRegistrationCommercial d-xl-block d-lg-block d-md-none d-none col-3 p-0">
