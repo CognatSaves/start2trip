@@ -1,11 +1,12 @@
 /* Car Bigin*/
 
 .driverProfileCarFilledCard {
-    min-height: 260px;
-    max-width: 280px;
+    /* min-height: 260px;
+    max-width: 280px; */
+    width: 100%;
     box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
-    margin: 0 auto 20px auto;
+    /* margin: 0 10px 10px auto; */
     transition: all 0.3s;
 }
 
@@ -13,13 +14,18 @@
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
-.driverProfileCarFilledCardImg {
+
+/* .driverProfileCarFilledCardImg {
     width: 280px;
     height: 200px;
-}
+} */
 
 .driverProfileCarFilledCardInformation {
-    min-width: 250px;
+    /* min-width: 250px; */
+    width: 100%;
+}
+
+.driverProfileCarFilledCardImg {
     width: 100%;
 }
 
@@ -34,12 +40,12 @@
     position: absolute;
     z-index: 3;
     min-height: 45px;
-    padding: 0 15px;
     padding-right: 0px;
     background: none;
 }
 
 .cardInformationNameCarIcon {
+    margin-right: 20px;
     width: 40px;
     height: 45px;
     background: url(./img/moreWhite.svg) no-repeat;
@@ -68,7 +74,7 @@
     display: none;
     position: absolute;
     top: 40px;
-    right: 0px;
+    right: 15px;
     z-index: 3;
     height: 70px;
     width: 128px;
@@ -80,6 +86,7 @@
 }
 
 .cardInformationType {
+    width: 100%;
     padding: 15px 10px;
 }
 
@@ -364,28 +371,28 @@ p.driverProfileCarFilledCardInformationNameCarEdit:hover {
         border-radius: 0px;
     }
     .driverProfileCarAddNewCarPhotoCar {
-        max-width: 400px;
+        /* max-width: 400px;
         max-height: 100%;
         min-width: 305px;
         min-height: 200px;
-        margin-right: 0px;
+        margin-right: 0px; */
     }
     .driverProfileCarAddNewCarPhotoCarImg {
-        max-width: 400px;
-        max-height: 100%;
+        /* max-width: 400px;
+        max-height: 100%; */
     }
 }
 
 @media (max-width: 576px) {
     .driverProfileCarAddNewCarPhotoCar {
-        max-width: 100%;
+        /* max-width: 100%;
         max-height: 100%;
         min-width: 305px;
         min-height: 200px;
-        margin-right: 0px;
+        margin-right: 0px; */
     }
     .driverProfileCarAddNewCarPhotoCarImg {
-        max-width: 100%;
-        max-height: 100%;
+        /* max-width: 100%;
+        max-height: 100%; */
     }
 }

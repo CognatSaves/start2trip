@@ -42,9 +42,9 @@ class DriverProfileRegistrationClass extends React.Component {
                 
               }[this.props.storeState.pageRender]}
             </div>
-            <div className="driverProfileRegistrationCommercial d-xl-block d-lg-block d-md-none d-none col-3 p-0">
+            {/* <div className="driverProfileRegistrationCommercial d-xl-block d-lg-block d-md-none d-none col-3 p-0">
             <DriversCommercial />
-            </div>
+            </div> */}
           </div>
         </div>
       </React.Fragment>

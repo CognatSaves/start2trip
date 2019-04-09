@@ -256,9 +256,10 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                         <p>Ваши туры</p>
                     </div>
 
-                    <div className="p-0 d-flex flex-wrap">
+                    <div className="p-0 d-flex flex-wrap col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         {this.state.tour.map((element, index) =>
-                            <div className="driverProfileCarFilledCard d-flex flex-column col-3 p-0">
+                        <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 p-2">
+                            <div className="driverProfileCarFilledCard d-flex flex-column p-0">
                                 <div className="driverProfileCarFilledCardInformation d-flex flex-column">
                                     <div className="driverProfileCarFilledCardInformationNameCar d-flex d-flex justify-content-end w-100 align-items-center">
                                         
@@ -286,6 +287,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                     </div>
                                 </div>
                             </div>
+                        </div>
                         )}
                     </div>
                     {// TODO доделать render Element 
