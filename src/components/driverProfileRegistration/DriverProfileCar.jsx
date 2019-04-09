@@ -223,7 +223,7 @@ class DriverProfileCarClass extends React.Component {
 
                 <div className="p-0 d-flex flex-wrap col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     {this.state.car.map((element, index) =>
-                        <div className="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12 p-2">
+                        <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 p-2">
                             <div className="filledCard d-flex flex-column p-0">
                                 <div className="filledCardInformation d-flex flex-column">
                                     <div className="filledCardInformationNameCar d-flex justify-content-end w-100 align-items-center">

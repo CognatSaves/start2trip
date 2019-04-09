@@ -84,48 +84,48 @@ class DriverProfileTripSettingsTripClass extends React.Component {
         return (
             <div className="tripSettingsBody">
                 <div className="tripSettingsContent">
-                    <div className="tripSettingsContentTitle d-flex align-items-center justify-content-center col-11 ml-2">
+                    <div className="tripSettingsContentTitle d-flex align-items-center">
                         <p>Добавьте город и радиусы, где Вы готовы принимать заказы</p>
                     </div>
                     {this.state.cityRadius.map((element, index) =>
                         <React.Fragment>
-                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column justify-content-xl-center  justify-content-lg-center  justify-content-md-center  justify-content-sm-start justify-content-start align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                <p className="col-xl-2 col-lg-2 col-md-2 col-sm-11 col-11 p-0">Базовый город:</p>
+                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
+                                <p className="col-xl-3 col-lg-3 col-md-3 col-sm-11 col-11 p-0">Базовый город:</p>
                                 <input className="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12" type="text" id="city" value={this.state.cityRadius[index].city} onChange={this.changeAllValue.bind(this, index)} />
                                 <div style={{ display: index ? "block" : "none" }} className="tripSettingsContentDeletButton col-xl-3 col-lg-3 col-md-3 col-sm-11 col-11 mb-0" onClick={() => { this.deleteCityRadius(index) }}>Удалить город</div>
                             </div>
-                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column justify-content-xl-center  justify-content-lg-center  justify-content-md-center  justify-content-sm-start justify-content-start align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                <p className="col-xl-2 col-lg-2 col-md-2 col-sm-11 col-11 p-0">Радиус в км:</p>
+                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
+                                <p className="col-xl-3 col-lg-3 col-md-3 col-sm-11 col-11 p-0">Радиус в км:</p>
                                 <input className="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12" type="text" id="itemRadiu" value={this.state.cityRadius[index].itemRadius} onChange={this.changeAllValue.bind(this, index)} />
                             </div>
                         </React.Fragment>
                     )}
-                    <div className="tripSettingsContentAddCity d-flex text-xl-right text-lg-right text-md-right align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start justify-content-center">
-                        <p className="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 pl-0" onClick={this.addCityRadius}>+ Добавить город</p>
+                    <div className="tripSettingsContentAddCity d-flex align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start justify-content-center">
+                        <p className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 pl-0" onClick={this.addCityRadius}>+ Добавить город</p>
                     </div>
                 </div>
 
-                <div className="tripSettingsContent ">
-                    <div className="tripSettingsContentTitle d-flex align-items-center justify-content-center col-11 ml-3">
+                <div className="tripSettingsContent">
+                    <div className="tripSettingsContentTitle d-flex align-items-center">
                         <p>Как далеко Вы готовы совершать поездки от базовых городов?</p>
                     </div>
                     {this.state.readyLeavePlease.map((element, index) =>
                         <React.Fragment>
-                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column justify-content-xl-center  justify-content-lg-center  justify-content-md-center  justify-content-sm-start justify-content-start align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                <p className="col-xl-2 col-lg-2 col-md-2 col-sm-11 col-11 p-0">Базовый город:</p>
+                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
+                                <p className="col-xl-3 col-lg-3 col-md-3 col-sm-11 col-11 p-0">Базовый город:</p>
                                 <input className="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12" type="text" id="cityLeave" value={this.state.readyLeavePlease[index].cityLeave} onChange={this.changeAllValue.bind(this, index)} />
                                 <div style={{ display: index ? "block" : "none" }} className="tripSettingsContentDeletButton col-xl-3 col-lg-3 col-md-3 col-sm-11 col-11 mb-0" onClick={() => { this.deleteReadyLeavePleaseel(index) }}>Удалить город</div>
                             </div>
-                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column justify-content-xl-center  justify-content-lg-center  justify-content-md-center  justify-content-sm-start justify-content-start align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                <p className="col-xl-2 col-lg-2 col-md-2 col-sm-11 col-11 p-0">Радиус в км:</p>
+                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
+                                <p className="col-xl-3 col-lg-3 col-md-3 col-sm-11 col-11 p-0">Радиус в км:</p>
                                 <input className="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12" type="text" id="itemRadiusLeave" value={this.state.readyLeavePlease[index].itemRadiusLeave} onChange={this.changeAllValue.bind(this, index)} />
                             </div>
                         </React.Fragment>
                     )}
-                    <div className="tripSettingsContentAddCity d-flex text-xl-right text-lg-right text-md-right align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start justify-content-center">
-                        <p className="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 pl-0" onClick={this.addReadyLeavePleaseel}>+ Добавить город</p>
+                    <div className="tripSettingsContentAddCity d-flex align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start justify-content-center">
+                        <p className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 pl-0" onClick={this.addReadyLeavePleaseel}>+ Добавить город</p>
                     </div>
-                    <div className="d-flex justify-content-end col-8 ml-4">
+                    <div className="d-flex justify-content-center col-9 ml-4 ">
                         <button>СОХРАНИТЬ ИЗМЕНЕНИЯ</button>
                     </div>
                 </div>

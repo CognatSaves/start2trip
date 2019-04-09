@@ -63,7 +63,7 @@ class DriverProfileBasicInformationClass extends React.Component {
                         {/* <label className="edditIcon" htmlFor="addFile"></label> */}
                         <input type="file" id="addFile" style={{ display: "none" }} />
                     </div>
-                    <div className="bodyTopDriverInfo w-100">
+                    <div className="bodyTopDriverInfo col-7">
                         <div className="d-flex align-items-center">
                             <p className="mb-0 mr-2">Валерий</p>
                             <Stars value={"4.5"} commentNumber={"35 отзывов"} valueDisplay="block" commentNumberDisplay="block" />
@@ -73,7 +73,7 @@ class DriverProfileBasicInformationClass extends React.Component {
                             {/* TODO Location */}
                         </div>
                         <div className="bodyTopDriverInfoRide container p-0 d-flex">
-                            <div className="d-flex flex-column col-2 p-0">
+                            <div className="d-flex flex-column col-5 p-0">
                                 <p>Всего</p>
                                 <p>поездок</p>
                                 <p>18</p>
@@ -90,7 +90,7 @@ class DriverProfileBasicInformationClass extends React.Component {
                     <div className="basicInformationBodyBottomHeader d-xl-block d-lg-block d-md-block d-sm-none d-none">
                         <p>Редактировать профиль</p>
                     </div>
-                    <div className="basicInformationBodyBottomContent d-flex justify-content-center mt-2">
+                    <div className="basicInformationBodyBottomContent d-flex mt-2">
                         <div className="d-xl-flex d-lg-flex d-md-flex d-sm-none d-none flex-column col-3">
                             <p>Имя:</p>
                             <p>Фамилия:</p>
