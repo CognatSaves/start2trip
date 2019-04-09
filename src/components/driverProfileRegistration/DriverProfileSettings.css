@@ -42,7 +42,7 @@
     border-radius: 5px;
     border: 1px solid #ccc;
     padding-left: 10px;
-    max-width: 400px;
+    width: 100%;
     min-height: 40px;
     max-height: 40px;
     transition: all 0.3s;
@@ -115,3 +115,26 @@
     background: url(./img/eyeOrange.svg) no-repeat;
     background-size: 20px 20px;
 }
+
+@media (max-width: 768px) {
+    .driverProfileSettingsBody {
+        box-shadow: none;
+    }
+    .driverProfileSettingsContent input,
+    .driverProfileSettingsContent select {
+        border: none;
+        border-bottom: 1px solid #ccc;
+    }
+    .driverProfileSettingsContent select:hover,
+    .driverProfileSettingsContent select:focus,
+    .driverProfileSettingsContent input:hover,
+    .driverProfileSettingsContent input:focus {
+        border-color: #304269;
+        border-width: 2px;
+        text-decoration: none;
+        outline: #304269;
+        border-radius: 0px;
+    }
+}
+
+@media (max-width: 576px) {}

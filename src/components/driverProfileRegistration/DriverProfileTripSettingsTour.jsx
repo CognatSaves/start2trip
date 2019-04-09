@@ -19,7 +19,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
             },
             dataNumber: [],
             dataYear: [],
-            tour:["","","","","","",],
+            tour: ["", "", "", "", "", "",],
         }
         this.toggle = this.toggle.bind(this);
         this.addCity = this.addCity.bind(this);
@@ -138,13 +138,13 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                 </div>
                 <Collapse isOpen={this.state.collapse}>
                     <div className="driverProfileTripSettingsBody">
-                        <div className="driverProfileTripSettingsTourContent col-12 pt-2">
+                        <div className="driverProfileTripSettingsTourContent col-lx-9 col-lg-9 col-md-9 col-sm-12 col-12 pt-2">
                             <div className="tourContentTitle d-flex align-items-center mb-0">
                                 <p>Добавление тура</p>
                             </div>
-                            <div className="d-flex align-items-center mb-0">
-                                <p className="col-3 pl-0">Название тура:</p>
-                                <input className="col-6 pl-0" type="text" />
+                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mb-0">
+                                <p className="col-xl-4 col-lg-4 col-md-4 col-sm-11 col-11 pl-0">Название тура:</p>
+                                <input className="pl-0" type="text" />
                             </div>
                             <div className="tourContentTitle d-flex align-items-center mb-0">
                                 <p>Маршрут</p>
@@ -153,86 +153,98 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                 {this.state.cities.map((element, index) =>
                                     <React.Fragment>
                                         <div className="mb-0">
-                                            <div className="d-flex align-items-center">
-                                                <p className="col-3 pl-0">Населённый пункт:</p>
-                                                <input className="col-6 pl-0" type="text" id="city" value={this.state.cities[index].city} onChange={this.changeAllValue.bind(this, index)} />
-                                                <div style={{ display: index ? "block" : "none" }} className={index ? "driverProfileTripSettingsContentDeletButton col-3 mb-0 mt-4 " : "driverProfileTripSettingsContentDeletButton col-3 mb-0 "} onClick={() => { this.deleteCity(index) }}>Удалить город</div>
+                                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
+                                                <p className="col-xl-4 col-lg-4 col-md-4 col-sm-11 col-11 pl-0">Населённый пункт:</p>
+                                                <input className="pl-0" type="text" id="city" value={this.state.cities[index].city} onChange={this.changeAllValue.bind(this, index)} />
+                                                <div style={{ display: index ? "block" : "none" }} className={index ? "driverProfileTripSettingsContentDeletButton col-xl-3 col-lg-3 col-md-3 col-sm-11 col-11 mb-0 mt-4 " : "driverProfileTripSettingsContentDeletButton col-xl-3 col-lg-3 col-md-3 col-sm-11 col-11 mb-0 "} onClick={() => { this.deleteCity(index) }}>Удалить город</div>
                                             </div>
-                                            <div className="d-flex align-items-start mb-0">
-                                                <p className="col-3 pl-0">Описание:</p>
-                                                <textarea className="col-6 pl-0" name="" id="description" cols="30" rows="10" value={this.state.cities[index].description} onChange={this.changeAllValue.bind(this, index)}></textarea>
+                                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mb-0">
+                                                <p className="col-xl-4 col-lg-4 col-md-4 col-sm-11 col-11 pl-0">Описание:</p>
+                                                <textarea className=" pl-0" name="" id="description" cols="30" rows="10" value={this.state.cities[index].description} onChange={this.changeAllValue.bind(this, index)}></textarea>
                                             </div>
                                         </div>
                                     </React.Fragment>
                                 )}
-                                <div className="tourContentAdd d-flex justify-content-center col-9 pl-0 mb-0">
-                                    <p className="pl-1" onClick={this.addCity}>+ Добавить населённый пункт</p>
+                                <div className="tourContentAdd d-flex align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start justify-content-center mb-0">
+                                    <p className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 pl-xl-5 pl-lg-5 pl-md-5 p-sm-0 p-0" onClick={this.addCity}>+ Добавить населённый пункт</p>
                                 </div>
                             </div>
                             <div className="tourContentTitle d-flex align-items-center mb-0">
                                 <p>Расписание</p>
                             </div>
-                            <div className="d-flex align-items-center">
-                                <input type="checkbox" />
-                                <span className="p-1">Нет конкретных дат</span><p>(индивидуальные даты или даты по запросу)</p>
+                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-row-reverse flex-row-reverse align-items-center">
+                                <div className="driverProfileTripSettingsTourContentCheckbox">
+                                    <label htmlFor="TourContentCheckbox">
+                                        <input  id="TourContentCheckbox" type="checkbox" />
+                                        <span />
+                                    </label>
+                                </div>
+                                <div className="d-xl-flex d-lg-flex d-md-flex d-sm-block d-block align-items-center ml-2 mb-0">
+                                    <span className="p-1">Нет конкретных дат</span>
+                                    <p>(индивидуальные даты или даты по запросу)</p>
+                                </div>
                             </div>
-                            <div className="d-flex flex-column justify-content-center mb-0">
+                            <div className="d-flex flex-column mb-0">
                                 {this.state.departureDate.map((el, index) =>
                                     <React.Fragment>
-                                        <div className="d-flex align-items-center col-12 mb-0 mt-2">
-                                            <p className="col-3 pl-0">Дата отправления:</p>
-                                            <select className="col-2 mr-1" id="day" value={this.state.departureDate[index].day} onChange={this.changeAllValue.bind(this, index)} name="day">
-                                                {this.state.dataNumber.map((element, indexes) =>
-                                                    <option value={element}>{element}</option>
-                                                )}
-                                            </select>
-                                            <select className="col-2 mr-1" id="month" value={this.state.departureDate[index].month} onChange={this.changeAllValue.bind(this, index)} name="month">
-                                                {this.state.date.month.map((element, index) =>
-                                                    <option value={element}>{element}</option>
-                                                )}
-                                            </select>
-                                            <select className="col-2 mr-1" id="year" value={this.state.departureDate[index].year} onChange={this.changeAllValue.bind(this, index)} name="year">
-                                                {this.state.dataYear.map((element, index) =>
-                                                    <option value={element}>{element}</option>
-                                                )}
-                                            </select>
-                                            <div style={{ display: index ? "block" : "none" }} className={index ? "driverProfileTripSettingsContentDeletButton col-3 mb-0 mt-2" : "driverProfileTripSettingsContentDeletButton col-3 mb-0 "} onClick={() => { this.deleteDepartureDate(index) }}>Удалить Дату</div>
+                                        <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mb-0 mt-2">
+                                            <p className="col-4 pl-0">Дата отправления:</p>
+                                            <div className="d-flex ">
+                                                <select className="mr-1" id="day" value={this.state.departureDate[index].day} onChange={this.changeAllValue.bind(this, index)} name="day">
+                                                    {this.state.dataNumber.map((element, indexes) =>
+                                                        <option value={element}>{element}</option>
+                                                    )}
+                                                </select>
+                                                <select className="mr-1" id="month" value={this.state.departureDate[index].month} onChange={this.changeAllValue.bind(this, index)} name="month">
+                                                    {this.state.date.month.map((element, index) =>
+                                                        <option value={element}>{element}</option>
+                                                    )}
+                                                </select>
+                                                <select className="" id="year" value={this.state.departureDate[index].year} onChange={this.changeAllValue.bind(this, index)} name="year">
+                                                    {this.state.dataYear.map((element, index) =>
+                                                        <option value={element}>{element}</option>
+                                                    )}
+                                                </select>
+                                            </div>
+                                            <div style={{ display: index ? "block" : "none" }} className={index ? "driverProfileTripSettingsContentDeletButton col-xl-3 col-lg-3 col-md-3 col-sm-11 col-11 mb-0 mt-2" : "driverProfileTripSettingsContentDeletButton col-xl-3 col-lg-3 col-md-3 col-sm-11 col-11 mb-0 "} onClick={() => { this.deleteDepartureDate(index) }}>Удалить Дату</div>
                                         </div>
                                     </React.Fragment>
                                 )}
-                                <div className="tourContentAdd d-flex justify-content-center col-7 pl-5 mb-0">
-                                    <p className="pl-2" onClick={this.addDepartureDate}>+ Добавить даты</p>
+                                <div className="tourContentAdd d-flex align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start justify-content-center mb-0">
+                                    <p className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 pl-xl-5 pl-lg-5 pl-md-5 p-sm-0 pl-2" onClick={this.addDepartureDate}>+ Добавить даты</p>
                                 </div>
                             </div>
                             <div className="tourContentTitle d-flex align-items-center mb-0">
                                 <p>Дополнительная информация</p>
                             </div>
-                            <div className="d-flex align-items-center">
-                                <p className="col-3 pl-0">Стоимость тура:</p>
-                                <input className="col-3 mr-1" type="text" />
-                                <input className="col-3" type="text" />
+                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
+                                <p className="col-xl-4 col-lg-4 col-md-4 col-sm-11 col-11 pl-0">Стоимость тура:</p>
+                                <div className="d-flex">
+                                    <input className=" mr-xl-1 mr-lg-1 mr-md-1 mr-sm-5 mr-5" type="text" />
+                                    <input className="" type="text" />
+                                </div>
                             </div>
-                            <div className="d-flex align-items-center">
-                                <p className="col-3 pl-0">Тип транспорта:</p>
-                                <input className="col-6 pl-0" type="text" />
+                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
+                                <p className="col-xl-4 col-lg-4 col-md-4 col-sm-11 col-11 pl-0">Тип транспорта:</p>
+                                <input className="pl-0" type="text" />
                             </div>
-                            <div className="d-flex align-items-center">
-                                <p className="col-3 pl-0">Количество мест:</p>
-                                <input className="col-6 pl-0" type="text" />
+                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
+                                <p className="col-xl-4 col-lg-4 col-md-4 col-sm-11 col-11 pl-0">Количество мест:</p>
+                                <input className="pl-0" type="text" />
                             </div>
-                            <div className="d-flex align-items-start">
-                                <p className="col-3 pl-0">Дополнительное описание:</p>
-                                <textarea className="col-6 pl-0" name="" id="" cols="30" rows="10"></textarea>
+                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
+                                <p className="col-xl-4 col-lg-4 col-md-4 col-sm-11 col-11 pl-0">Дополнительное описание:</p>
+                                <textarea className="pl-0" name="" id="" cols="30" rows="10"></textarea>
                             </div>
-                            <div className="d-flex align-items-center">
-                                <p className="col-3 pl-0">Загрузить фото:</p>
+                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
+                                <p className="col-xl-4 col-lg-4 col-md-4 col-sm-11 col-11 pl-0">Загрузить фото:</p>
                                 <img src="" alt="" />
                                 <img src="" alt="" />
                                 <img src="" alt="" />
                                 <img src="" alt="" />
                             </div>
-                            <div className="tourContentAddButton d-flex">
-                                <p className="col-3"></p>
+                            <div className="tourContentAddButton d-flex justify-content-xl-start justify-content-lg-start justify-content-md-start justify-content-sm-center justify-content-center">
+                                <p className="col-4 d-xl-block d-lg-block d-md-block d-sm-none d-none"></p>
                                 <button className="col-8 mb-4">ДОБАВИТЬ ТУР</button>
                                 <p className="ml-3" onClick={this.toggle}>Отмена</p>
                             </div>
@@ -244,42 +256,42 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                         <p>Ваши туры</p>
                     </div>
 
-                    <div className="container p-0 d-flex flex-wrap">
-                {this.state.tour.map((element, index) =>
-                    <div className="driverProfileCarFilledCard d-flex flex-column col-3 p-0">
-                        <div className="driverProfileCarFilledCardInformation d-flex flex-column">
-                            <div className="driverProfileCarFilledCardInformationNameCar d-flex justify-content-between align-items-center">
+                    <div className="p-0 d-flex flex-wrap">
+                        {this.state.tour.map((element, index) =>
+                            <div className="driverProfileCarFilledCard d-flex flex-column col-3 p-0">
+                                <div className="driverProfileCarFilledCardInformation d-flex flex-column">
+                                    <div className="driverProfileCarFilledCardInformationNameCar d-flex d-flex justify-content-end w-100 align-items-center">
+                                        
+                                        <label className="cardInformationNameCarIcon"></label>
+                                        <div className="driverProfileCarFilledCardInformationMenu">
+                                            <p className="driverProfileCarFilledCardInformationDeleteCar">Удалить</p>
+                                            <p className="driverProfileCarFilledCardInformationNameCarEdit">Редактировать</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="driverProfileCarFilledCardImg">
+                                    <img src={georgiaImg} alt="imgCar" width="100%" height="100%" />
+                                </div>
+                                
+                               
+                                <div className="cardInformationType d-flex flex-column">
                                 <p>Кутаиси-Боржоми-Тбилиси</p>
-                                <label className="cardInformationNameCarIcon"></label>
-                                <div className="driverProfileCarFilledCardInformationMenu">
-                                    <p className="driverProfileCarFilledCardInformationDeleteCar">Удалить</p>
-                                    <p className="driverProfileCarFilledCardInformationNameCarEdit">Редактировать</p>
+                                <Stars value={5.0 - index} commentNumber={22 + " отзывов"} valueDisplay="block" commentNumberDisplay="block" />
+                                    <div className="SettingsTourHeader d-flex mt-2 pr-1">
+                                        <p>Свободных мест:</p>
+                                        <p>15</p>
+                                    </div>
+                                    <div className="SettingsTour d-flex">
+                                        
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="driverProfileCarFilledCardImg">
-                            <img src={georgiaImg} alt="imgCar" width="100%" height="100%" />
-                        </div>
-                        <Stars value={5.0 - index} commentNumber={22 + " отзывов"} valueDisplay="block" commentNumberDisplay="block" />
-                        <div className="cardInformationType d-flex">
-                            <div className=" d-flex flex-column align-content-center pr-1">
-                                <p>Дата отправления:</p>
-                                <p>Свободных мест:</p>
-                                <p>Стоимость тура:</p>
-                            </div>
-                            <div className="driverProfileCarFilledCardInformationComfort d-flex flex-column align-items-start ">
-                                <p>Ср, 21 Февраля</p>
-                                <p>15</p>
-                                <p>$188</p>
-                            </div>
-                        </div>
+                        )}
                     </div>
-                )}
-                </div>
                     {// TODO доделать render Element 
                     }
-                    
-                   
+
+
                 </div>
             </div>
         );

@@ -51,6 +51,7 @@ div.driverProfileTripSettingsContentTitle {
     padding-left: 10px;
     min-width: 130px;
     min-height: 40px;
+    transition: all 0.3s;
 }
 
 .driverProfileTripSettingsContent select {
@@ -69,6 +70,7 @@ div.driverProfileTripSettingsContentTitle {
     background: url(./img/arrow-point-to-down.svg) no-repeat;
     background-size: 8px 8px;
     background-position: top 15px right 10px;
+    transition: all 0.3s;
 }
 
 .driverProfileTripSettingsContent select:hover,
@@ -125,3 +127,29 @@ div.driverProfileTripSettingsContentAddCity p:hover,
 
 
 /* Content End */
+
+@media (max-width: 768px) {
+    .driverProfileTripSettingsBody {
+        box-shadow: none;
+    }
+    .driverProfileTripSettingsContent input,
+    .driverProfileTripSettingsContent select {
+        border: none;
+        border-bottom: 1px solid #ccc;
+    }
+    .driverProfileTripSettingsContent select:hover,
+    .driverProfileTripSettingsContent select:focus,
+    .driverProfileTripSettingsContent input:hover,
+    .driverProfileTripSettingsContent input:focus {
+        border-color: #304269;
+        border-width: 2px;
+        text-decoration: none;
+        outline: #304269;
+        border-radius: 0px;
+    }
+    .driverProfileTripSettingsContentDeletButton {
+        text-align: right;
+    }
+}
+
+@media (max-width: 576px) {}
