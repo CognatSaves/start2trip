@@ -73,12 +73,12 @@ class DriverProfileBasicInformationClass extends React.Component {
                             {/* TODO Location */}
                         </div>
                         <div className="bodyTopDriverInfoRide container p-0 d-flex">
-                            <div className="d-flex flex-column col-5 p-0">
+                            <div className="d-flex flex-column col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 p-0">
                                 <p>Всего</p>
                                 <p>поездок</p>
                                 <p>18</p>
                             </div>
-                            <div className="d-flex flex-column col-5 p-0">
+                            <div className="d-flex flex-column col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 p-0">
                                 <p>Предстоящие</p>
                                 <p>поездки</p>
                                 <p>8</p>
@@ -91,7 +91,7 @@ class DriverProfileBasicInformationClass extends React.Component {
                         <p>Редактировать профиль</p>
                     </div>
                     <div className="basicInformationBodyBottomContent d-flex mt-2">
-                        <div className="d-xl-flex d-lg-flex d-md-flex d-sm-none d-none flex-column col-3">
+                        <div className="d-xl-flex d-lg-flex d-md-flex d-sm-none d-none flex-column col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
                             <p>Имя:</p>
                             <p>Фамилия:</p>
                             <p>Дата рождения:</p>

@@ -110,8 +110,8 @@ class DriverProfileCarClass extends React.Component {
                     <button className="carShowButton" onClick={this.toggle}>Добавить Автомобиль</button>
                 </div>
                 <Collapse isOpen={this.state.collapse}>
-                    <div className="carAddNewCar d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-start align-items-lg-start align-items-md-start align-items-sm-center align-items-center pt-1">
-                        <div className="carAddNewCarPhotoCar col-5" >
+                    <div className="carAddNewCar d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-start align-items-lg-start align-items-md-start align-items-sm-center align-items-center">
+                        <div className="carAddNewCarPhotoCar col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 ml-3" >
                             {$imagePreview}
                             <label htmlFor="addCarFile" >+Добавить фото автомобиля</label>
                             <input type="file" id="addCarFile" style={{ display: "none" }} onChange={this._handleImageChange} />
@@ -126,7 +126,7 @@ class DriverProfileCarClass extends React.Component {
                                 }} type="text" />
                             </div>
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mb-3">
-                                <p className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12p-0">Год автомобиля:</p>
+                                <p className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">Год автомобиля:</p>
                                 <input value={this.state.newCarCard.yearCar} onChange={(e) => {
                                     this.setState({
                                         newCarCard: { ...this.state.newCarCard, yearCar: e.currentTarget.value }

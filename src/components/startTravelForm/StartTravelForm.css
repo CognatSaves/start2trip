@@ -54,7 +54,7 @@
     background-color: transparent;
     width: 100%;
     border: none;
-    border-bottom: 1px solid #999999;
+    border-bottom: 1px solid #686868;
 }
 
 .startTravelForm_commentary {
@@ -68,17 +68,17 @@
     width: 100%;
     border: none;
     padding: 5px;
-    border: 1px solid #999999;
+    border: 1px solid #686868;
     border-radius: 5px;
     font-weight: 400;
 }
 
 .startTravelForm_inputStyle::placeholder {
-    color: #999999;
+    color: #686868;
 }
 
 .startTravelForm_commentary::placeholder {
-    color: #999999;
+    color: #686868;
 }
 
 .startTravelForm_checkbox {

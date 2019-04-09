@@ -8,7 +8,7 @@
 
 .placeDescription_fragmentName {
     width: 100%;
-    border-bottom: 1px solid #999999;
+    border-bottom: 1px solid #686868;
     font-size: 24px;
     font-weight: 500;
 }
@@ -29,7 +29,7 @@
 .placeDescription_description_date {
     font-size: 12px;
     font-weight: 400;
-    color: #999999;
+    color: #686868;
     margin: auto 10px auto 0;
 }
 
@@ -52,7 +52,7 @@
 .placeDescription_description_tagElement {
     font-size: 12px;
     font-weight: 400;
-    color: #999999;
+    color: #686868;
     margin: auto 5px auto 0;
 }
 

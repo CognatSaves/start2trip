@@ -125,7 +125,7 @@ h2.homeBottomTitle {
 
 .homeSubscribeInput {
     border: 1px solid #304269 !important;
-    color: #999 !important;
+    color: #686868 !important;
     font-weight: 400;
     font-size: 18px;
 }
@@ -147,7 +147,7 @@ h2.homeBottomTitle {
 }
 
 .homeSubscribe p {
-    color: #999;
+    color: #686868;
     font-weight: 400;
     font-size: 12px;
 }

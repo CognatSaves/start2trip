@@ -96,10 +96,10 @@
     vertical-align: middle;
     text-align: center;
     cursor: pointer;
-    color: #999;
+    color: #686868;
   }
   .rc-slider-mark-text-active {
-    color: #666;
+    color: #686868;
   }
   .rc-slider-step {
     position: absolute;
@@ -261,8 +261,8 @@
 .rc-slider-tooltip {
     position: absolute;
     display: none;
-    left: -9999px;
-    top: -9999px;
+    left: -6868689px;
+    top: -6868689px;
     visibility: visible;
     box-sizing: border-box;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);

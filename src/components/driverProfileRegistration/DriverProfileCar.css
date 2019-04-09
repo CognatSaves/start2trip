@@ -108,7 +108,7 @@ p.filledCardInformationNameCarEdit {
     font-family: "Roboto";
     font-weight: 400;
     font-size: 14px;
-    color: #666;
+    color: #686868;
     height: 30px;
     line-height: 30px;
     text-align: right;
@@ -154,7 +154,7 @@ p.filledCardInformationNameCarEdit:hover {
     border-radius: 5px;
     min-height: 480px;
     margin-bottom: 30px;
-    padding-top: 30px;
+    margin-top: 30px;
 }
 
 .carAddNewCarPhotoCar {
@@ -163,7 +163,8 @@ p.filledCardInformationNameCarEdit:hover {
     max-height: 200px;
     min-width: 305px;
     min-height: 200px;
-    margin-right: 15px;
+    margin-right: 20px;
+    margin-top: 30px;
     border-radius: 5px;
     background: #ccc;
     text-align: center;
@@ -186,10 +187,14 @@ p.filledCardInformationNameCarEdit:hover {
     cursor: pointer;
 }
 
+.carAddNewCarInformation {
+    margin-top: 30px;
+}
+
 .carAddNewCarInformation p {
     font-weight: 500;
     font-size: 14px;
-    color: #999;
+    color: #686868;
     margin-bottom: 0px;
 }
 
@@ -355,29 +360,13 @@ p.filledCardInformationNameCarEdit:hover {
         outline: #304269;
         border-radius: 0px;
     }
-    .carAddNewCarPhotoCar {
-        /* max-width: 400px;
-        max-height: 100%;
-        min-width: 305px;
-        min-height: 200px;
-        margin-right: 0px; */
+    .carAddNewCar {
+        margin-top: 0px;
     }
-    .carAddNewCarPhotoCarImg {
-        /* max-width: 400px;
-        max-height: 100%; */
+    .carAddNewCarPhotoCar {
+        margin-top: 0px;
+        margin-right: 0px;
     }
 }
 
-@media (max-width: 576px) {
-    .carAddNewCarPhotoCar {
-        /* max-width: 100%;
-        max-height: 100%;
-        min-width: 305px;
-        min-height: 200px;
-        margin-right: 0px; */
-    }
-    .carAddNewCarPhotoCarImg {
-        /* max-width: 100%;
-        max-height: 100%; */
-    }
-}
+@media (max-width: 576px) {}

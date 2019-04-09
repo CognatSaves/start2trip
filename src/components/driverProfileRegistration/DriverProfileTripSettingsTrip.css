@@ -22,7 +22,7 @@
 .tripSettingsContent p {
     font-weight: 500;
     font-size: 14px;
-    color: #999;
+    color: #686868;
     margin-bottom: 0px;
 }
 
@@ -93,7 +93,7 @@ div.tripSettingsContentAddCity p {
 .tripSettingsContentDeletButton {
     font-weight: 400;
     font-size: 14px;
-    color: #999;
+    color: #686868;
     cursor: pointer;
     transition: all 0.3s;
 }

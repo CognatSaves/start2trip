@@ -30,11 +30,11 @@ class DriverProfileSettingsClass extends React.Component {
                     </div>
                     <div className="driverProfileSettingsContent d-flex flex-column col-xl-9 col-lg-9 col-md-9 col-sm-11 col-11 pt-4">
                         <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mb-3">
-                            <p className="col-xl-3 col-lg-3 col-md-3 col-sm-11 col-11 pr-0">Email:</p>
+                            <p className="col-xl-2 col-lg-2 col-md-2 col-sm-11 col-11 pr-0">Email:</p>
                             <input className="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12  " type="text" />
                         </div>
                         <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                            <p className="driverProfileSettingsContentPasswordText col-xl-3 col-lg-3 col-md-3 col-sm-11 col-11 pr-0">Пароль:</p>
+                            <p className="driverProfileSettingsContentPasswordText col-xl-2 col-lg-2 col-md-2 col-sm-11 col-11 pr-0">Пароль:</p>
                             <div className="driverProfileSettingsContentPassword d-flex flex-column justify-content-end col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12  p-0">
                                 <p>Текущий пароль</p>
                                 <div className="driverProfileSettingsContentPasswordDivIcon">
@@ -55,11 +55,11 @@ class DriverProfileSettingsClass extends React.Component {
                         </div>
                         <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mb-4">
                         {/* TODO функционал выбора префикса по стране */}
-                            <p className="col-xl-3 col-lg-3 col-md-3 col-sm-11 col-11 pr-0">Телефон:</p>
+                            <p className="col-xl-2 col-lg-2 col-md-2 col-sm-11 col-11 pr-0">Телефон:</p>
                             <input className="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12 " type="text" />
                         </div>
                         <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-center mb-4">
-                            <p className="col-3 pr-0"></p>
+                            <p className="col-2 pr-0"></p>
                             <button>СОХРАНИТЬ ИЗМЕНЕНИЯ</button>
                         </div>
                         <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">

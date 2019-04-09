@@ -42,7 +42,7 @@
     font-family: "Roboto";
     font-weight: 500;
     font-size: 14px;
-    color: #999;
+    color: #686868;
     margin: 0;
 }
 
@@ -230,11 +230,29 @@ div.tourContentCheckbox {
 
 /* ItemElement Bigin */
 
-.SettingsTourHeader p {
+.settingsTourHeader {
+    margin: 15px 0;
+}
+
+.settingsTourPlace p {
+    text-indent: 15px;
+    background: url(./img/locationGray.svg)no-repeat;
+    background-size: 14px 14px;
+    background-position: top 2px left 0;
+}
+
+.settingsTourPlace p {
     font-family: "Roboto";
     font-weight: 400;
     font-size: 14px;
-    color: #666;
+    color: #686868;
+}
+
+.settingsTourHeader p {
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 13px;
+    color: #304269;
 }
 
 

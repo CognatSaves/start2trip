@@ -1,23 +1,23 @@
-.infowindowClass{
+.infowindowClass {
     color: black;
-    z-index: 999;
+    z-index: 686868;
 }
-.infowindowClass_firstLine{
+
+.infowindowClass_firstLine {
     display: block;
     height: 22px;
 }
-.infowindowClass_carEmblem{
+
+.infowindowClass_carEmblem {
     display: block;
     float: left;
     width: 20px;
     height: 22px;
     background: url(./pictures/car-solid.svg) no-repeat;
     margin-right: 10px;
-
-    
 }
-.infowindowClass_duration{
-    
+
+.infowindowClass_duration {
     display: block;
     float: left;
     height: 22px;
@@ -25,7 +25,8 @@
     font-size: 14px;
     line-height: 22px;
 }
-.infowindowClass_distance{
+
+.infowindowClass_distance {
     display: block;
     height: 22px;
     font-size: 12px;
