@@ -10,6 +10,19 @@
     transition: all 0.3s;
 }
 
+.tourSettingsBody {
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    margin-bottom: 50px;
+    min-height: 500px;
+    transition: all 0.3s;
+}
+
+.tourContent {
+    margin-left: 10px;
+    padding-top: 20px !important;
+}
+
 .tourBodyElementTitle {
     min-height: 40px;
 }
@@ -259,6 +272,9 @@ div.tourContentCheckbox {
 /* ItemElement End */
 
 @media (max-width: 768px) {
+    .tourSettingsBody {
+        box-shadow: none;
+    }
     .tourContent textarea,
     .tourContent input,
     .tourContent select {

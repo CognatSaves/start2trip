@@ -137,8 +137,8 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                     <button className="addTourShow" onClick={this.toggle}>Добавить Тур</button>
                 </div>
                 <Collapse isOpen={this.state.collapse}>
-                    <div className="settingsBody">
-                        <div className="tourContent col-lx-9 col-lg-9 col-md-9 col-sm-12 col-12 pt-2">
+                    <div className="tourSettingsBody">
+                        <div className="tourContent col-lx-9 col-lg-9 col-md-9 col-sm-12 col-12">
                             <div className="tourContentTitle d-flex align-items-center mb-0">
                                 <p>Добавление тура</p>
                             </div>

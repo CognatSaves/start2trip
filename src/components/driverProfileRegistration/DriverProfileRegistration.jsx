@@ -25,9 +25,8 @@ class DriverProfileRegistrationClass extends React.Component {
 
     return (
       <React.Fragment>
-
+        <Header />
         <div className="registrationWrapper d-flex flex-column col-12 p-0">
-          <Header />
           <div className="d-flex col-12 p-0">
             <div className="d-flex flex-column justify-content-start col-lx-12 col-lg-12 col-md-12 col-sm-12 col-12">
               <DriverProfileNavigation />
@@ -39,7 +38,6 @@ class DriverProfileRegistrationClass extends React.Component {
                 4: <DriverProfileCalendar />,
                 5: <DriverProfileSettings />,
                 6: <DriverProfileFeedback />,
-
               }[this.props.storeState.pageRender]}
             </div>
             {/* <div className="driverProfileRegistrationCommercial d-xl-block d-lg-block d-md-none d-none col-3 p-0">

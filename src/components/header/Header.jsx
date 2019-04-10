@@ -16,33 +16,33 @@ import espFlag from './pictures/spain.svg'
 import { Link } from 'react-router-dom';
 import { Modal, ModalBody } from 'reactstrap';
 
-const ModalRegistration = (props) =>{
-  let {modalRegistration, toggle, className} = props;
-  return(
-        <Modal isOpen={modalRegistration} toggle={toggle} className={className + " p-0"}>
-          <ModalBody>
-            <RenderModalRegistration close={toggle} />
-          </ModalBody>
-        </Modal>
+const ModalRegistration = (props) => {
+  let { modalRegistration, toggle, className } = props;
+  return (
+    <Modal isOpen={modalRegistration} toggle={toggle} className={className + " p-0"}>
+      <ModalBody>
+        <RenderModalRegistration close={toggle} />
+      </ModalBody>
+    </Modal>
   )
 }
 const CountrySelect = (props) => {
-  let {modalCountry, toggleModalCountry, className} = props;
-  return(
-        <Modal isOpen={modalCountry} toggle={toggleModalCountry} className={className}>
-          <ModalBody>
-            <div className="d-flex flex-column col-12">
-              <div className="d-flex  justify-content-center col-12 p-4">
-                <img src={mapWorldIcon} height="150px" alt="mapWorldIcon" />
-                <button className="modalCountryButtton" onClick={() => { this.toggleModalCountry() }}><img src={crossIconModal} width="20px" height="20px" alt="crossIconModal" /></button>
-              </div>
-              <div className="modalCountry d-flex flex-column align-items-center mb-5">
-                <h4 className="mb-4">ВЫБЕРИТЕ ВАШУ СТРАНУ</h4>
-                <RenderModalCountry close={toggleModalCountry} />
-              </div>
-            </div>
-          </ModalBody>
-        </Modal>
+  let { modalCountry, toggleModalCountry, className } = props;
+  return (
+    <Modal isOpen={modalCountry} toggle={toggleModalCountry} className={className}>
+      <ModalBody>
+        <div className="d-flex flex-column col-12">
+          <div className="d-flex  justify-content-center col-12 p-4">
+            <img src={mapWorldIcon} height="150px" alt="mapWorldIcon" />
+            <button className="modalCountryButtton" onClick={() => { this.toggleModalCountry() }}><img src={crossIconModal} width="20px" height="20px" alt="crossIconModal" /></button>
+          </div>
+          <div className="modalCountry d-flex flex-column align-items-center mb-5">
+            <h4 className="mb-4">ВЫБЕРИТЕ ВАШУ СТРАНУ</h4>
+            <RenderModalCountry close={toggleModalCountry} />
+          </div>
+        </div>
+      </ModalBody>
+    </Modal>
   )
 }
 
@@ -61,20 +61,20 @@ class HeaderClass extends React.Component {
       modalRegistration: false,
       buttonMassElements: [
         {
-          to:"/",
-          value: "МАРШРУТЫ" 
+          to: "/",
+          value: "Маршруты"
         },
         {
-          to:"/places",
-          value: "МЕСТА" 
+          to: "/places",
+          value: "Места"
         },
         {
-          to:"/tours",
-          value: "ТУРЫ" 
+          to: "/tours",
+          value: "Туры"
         }
       ],
       currencyValues: [
-        "₽ RUB","$ USD","₾ GEL","€ EUR"
+        "₽ RUB", "$ USD", "₾ GEL", "€ EUR"
       ],
       languageValues: [
         {
@@ -125,59 +125,56 @@ class HeaderClass extends React.Component {
     return (
       <React.Fragment>
 
-        <ModalRegistration modalRegistration={this.state.modalRegistration} toggle={this.toggleModalRegistration} className={this.props.className}/>
-        <CountrySelect modalCountry={this.state.modalCountry} toggleModalCountry={this.toggleModalCountry} className={this.props.className}/>
+        <ModalRegistration modalRegistration={this.state.modalRegistration} toggle={this.toggleModalRegistration} className={this.props.className} />
+        <CountrySelect modalCountry={this.state.modalCountry} toggleModalCountry={this.toggleModalCountry} className={this.props.className} />
 
-        <div className="home_header col-lg-12  d-xl-block d-lg-block d-md-block d-sm-none d-none">
-          <div className='header d-flex align-items-center'>
-            <Link className="col-xl-3 col-lg-4" to="">
-              <div className={this.props.colorWhite ? "logoWhite" : "logoBlue"}></div>
-            </Link>
-            <div className="header_geo_block col-lg-1">
-                <img src={this.props.colorWhite ? whiteEarth : earth} width="40px" height="30px" alt="earthPic" />
-                <div onClick={this.toggleModalCountry} className={this.props.colorWhite ? "header_geo_button_Blue" : "header_geo_button_White"}>
-                  <div className={this.props.colorWhite ? "geo_button_value_White" : "geo_button_value_Blue"}>
-                    <div className={this.props.colorWhite ? "hederGeoIconBlue" : "hederGeoIconWhite"} >
-                      <span>{this.props.storeState.country}</span>
-                    </div>
-                  </div>
-                </div>
+        <div className="homeHeader">
+          <div className='header d-xl-flex d-lg-flex d-md-flex d-sm-none d-none align-items-stretch justify-content-between'>
+            <div className="d-flex align-items-center col-xl-2 col-lg-2 col-md-3 col-sm-2 col-2">
+              <Link className="col-xl-7 col-lg-8 col-md-6 col-sm-9 col-7" to="">
+                <h3>LOGOTYPE</h3>
+              </Link>
+              <div onClick={this.toggleModalCountry} className="headerGeoButton col-xl-5 col-lg-5 col-md-4 col-sm-5 col-5">
+                <span>{this.props.storeState.country}</span>
               </div>
-            <div className="header_buttonMass d-flex justify-content-end col-xl-5 col-lg-4">
-            {
-              this.state.buttonMassElements.map((element,index)=>
-                <Link to={element.to} className={this.props.colorWhite ? "buttonMass_button_White" : "buttonMass_button_Blue"}>{element.value}</Link>
-              )
-            }            
             </div>
-            <div className="headerSelect d-flex align-items-center justify-content-end col-lg-3">
-              <Dropdown setActiveFromChild="true" isOpen={this.state.dropdownOpen} toggle={this.toggleDropdownOpen} className="selectGeneral">
-                <DropdownToggle className={this.props.colorWhite ? "selectGeneralBtWhite" : "selectGeneralBtBlue"} caret size="sm">
-                  {this.state.activeCurrency[this.state.activeCurrencyNumber]}
-                </DropdownToggle>
-                <DropdownMenu className={this.props.colorWhite ? "dropdownMenuWhite currenty" : "dropdownMenuBlue currenty"}>
+            <div className="d-flex align-items-center justify-content-end col-xl-6 col-lg-7 col-md-8 col-sm-6 col-6">
+              <div className="headerButtonMass d-flex align-self-stretch justify-content-end col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 ">
                 {
-                  this.state.currencyValues.map((element,index)=>
-                    <DropdownItem className={this.props.colorWhite ? "dropdownMenuWhite" : "dropdownMenuBlue"} onClick={() => {this.setState({ activeCurrencyNumber: index })}}>{element}</DropdownItem>
+                  this.state.buttonMassElements.map((element, index) =>
+                    <Link to={element.to} className="buttonMassLink align-self-stretch">{element.value}</Link>
                   )
                 }
-                </DropdownMenu>
-              </Dropdown>
-              <Dropdown setActiveFromChild="true" isOpen={this.state.dropdownLanguageOpen} toggle={this.toggleLanguage} className="selectGeneral">
-                <DropdownToggle className={this.props.colorWhite ? "selectGeneralBtWhite" : "selectGeneralBtBlue"} caret size="sm">
-                  <img src={this.state.activLanguage[this.state.activLanguageNumber].flag} height="15px" width="15px" alt="flag" />{this.state.activLanguage[this.state.activLanguageNumber].string}
-                </DropdownToggle>
-                <DropdownMenu className={this.props.colorWhite ? "dropdownMenuWhite" : "dropdownMenuBlue"}>
-                {
-                  this.state.languageValues.map((element,index)=>
-                    <DropdownItem className={this.props.colorWhite ? "dropdownMenuWhite" : "dropdownMenuBlue"} onClick={() => { this.setState({ activLanguageNumber: 0 }) }}><img src={element.src} height="15px" width="15px" alt="RU" />{element.value}</DropdownItem>
-                  )
-                }
-                </DropdownMenu>
-              </Dropdown>
-              <button onClick={this.toggleModalRegistration} className={this.props.colorWhite ? "header_registration_White" : "header_registration_Blue"}>
-                <p>ВОЙТИ / РЕГИСТРАЦИЯ</p>
-              </button>
+              </div>
+              <div className="headerSelect d-flex align-items-center justify-content-end col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                <Dropdown setActiveFromChild="true" isOpen={this.state.dropdownOpen} toggle={this.toggleDropdownOpen} className="selectGeneral">
+                  <DropdownToggle className="selectGeneralButton" caret size="sm">
+                    {this.state.activeCurrency[this.state.activeCurrencyNumber]}
+                  </DropdownToggle>
+                  <DropdownMenu className="dropdownMenu currenty" >
+                    {
+                      this.state.currencyValues.map((element, index) =>
+                        <DropdownItem className="dropdownMenu" onClick={() => { this.setState({ activeCurrencyNumber: index }) }}>{element}</DropdownItem>
+                      )
+                    }
+                  </DropdownMenu>
+                </Dropdown>
+                <Dropdown setActiveFromChild="true" isOpen={this.state.dropdownLanguageOpen} toggle={this.toggleLanguage} className="selectGeneral">
+                  <DropdownToggle className="selectGeneralButton" caret size="sm">
+                    <img src={this.state.activLanguage[this.state.activLanguageNumber].flag} height="15px" width="15px" alt="flag" />{this.state.activLanguage[this.state.activLanguageNumber].string}
+                  </DropdownToggle>
+                  <DropdownMenu className="dropdownMenu">
+                    {
+                      this.state.languageValues.map((element, index) =>
+                        <DropdownItem className="dropdownMenu" onClick={() => { this.setState({ activLanguageNumber: index }) }}><img src={element.src} height="15px" width="15px" alt="RU" />{element.value}</DropdownItem>
+                      )
+                    }
+                  </DropdownMenu>
+                </Dropdown>
+              </div>
+              <div className="headerRegistration d-flex justify-content-start col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">
+                <span onClick={this.toggleModalRegistration} >Войти</span>
+              </div>
             </div>
           </div>
         </div>

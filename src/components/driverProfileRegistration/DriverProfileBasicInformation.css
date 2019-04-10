@@ -59,11 +59,16 @@
     border-radius: 5px;
 }
 
+.basicInformationBodyBottomContent {
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
 .basicInformationBodyBottomHeader {
     height: 55px;
     border-bottom: 1px solid #ccc;
     line-height: 55px;
-    padding-left: 10px;
+    padding-left: 20px;
 }
 
 .basicInformationBodyBottomHeader p {

@@ -22,7 +22,14 @@ class DriverProfileBasicInformationClass extends React.Component {
         this.getMassNumbers.bind(this);
         this.getMassYear.bind(this);
         this.addNum.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
+
+    handleSubmit(event) {
+        debugger
+        alert('Your favorite flavor is: ' + this.state.value);
+        event.preventDefault();
+      }
 
     getMassNumbers(num) {
         let number = [];
@@ -90,7 +97,7 @@ class DriverProfileBasicInformationClass extends React.Component {
                     <div className="basicInformationBodyBottomHeader d-xl-block d-lg-block d-md-block d-sm-none d-none">
                         <p>Редактировать профиль</p>
                     </div>
-                    <div className="basicInformationBodyBottomContent d-flex mt-2">
+                    <div className="basicInformationBodyBottomContent d-flex">
                         <div className="d-xl-flex d-lg-flex d-md-flex d-sm-none d-none flex-column col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
                             <p>Имя:</p>
                             <p>Фамилия:</p>
@@ -101,26 +108,26 @@ class DriverProfileBasicInformationClass extends React.Component {
                             <p>Языки:</p>
                             <p>О себе:</p>
                         </div>
-                        <div className="d-flex flex-column col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+                        <form onSubmit={this.handleSubmit} id="basicInformation" className="d-flex flex-column col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12" >
                             <p className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0">Lorem ipsum dolor sit 1.</p>
                             <p className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0">Имя:</p>
-                            <input type="text" />
+                            <input type="text" required />
                             <p className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0">Фамилия:</p>
-                            <input type="text" />
+                            <input type="text" required />
                             <p className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0">Lorem ipsum dolor sit 2.</p>
                             <p className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0">Дата рождения:</p>
                             <div className="d-flex justify-content-between">
-                                <select className=" mr-1" name="number">
+                                <select className=" mr-1" name="number" >
                                     {this.state.dataNumber.map((element, index) =>
                                         <option value={element}>{element}</option>
                                     )}
                                 </select>
-                                <select className=" mr-1" name="month">
+                                <select className=" mr-1" name="month" >
                                     {this.state.date.month.map((element, index) =>
                                         <option value={element}>{element}</option>
                                     )}
                                 </select>
-                                <select className="" name="year">
+                                <select className="" name="year" >
                                     {this.state.dataYear.map((element, index) =>
                                         <option value={element}>{element}</option>
                                     )}
@@ -128,21 +135,21 @@ class DriverProfileBasicInformationClass extends React.Component {
                             </div>
                             <p className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0">Lorem ipsum dolor sit 3.</p>
                             <p className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0">Номер паспорта:</p>
-                            <input type="text" placeholder="12121215" />
+                            <input type="text" placeholder="12121215" required />
                             <p className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0">Lorem ipsum dolor sit 4.</p>
                             <p className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0">Дата выдачи:</p>
                             <div className="d-flex justify-content-between">
-                                <select className="mr-1" name="number">
+                                <select className="mr-1" name="number" >
                                     {this.state.dataNumber.map((element, index) =>
                                         <option value={element}>{element}</option>
                                     )}
                                 </select>
-                                <select className="mr-1" name="month">
+                                <select className="mr-1" name="month" >
                                     {this.state.date.month.map((element, index) =>
                                         <option value={element}>{element}</option>
                                     )}
                                 </select>
-                                <select className="" name="year">
+                                <select className="" name="year" >
                                     {this.state.dataYear.map((element, index) =>
                                         <option value={element}>{element}</option>
                                     )}
@@ -150,29 +157,29 @@ class DriverProfileBasicInformationClass extends React.Component {
                             </div>
                             <p className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0">Lorem ipsum dolor sit amet 5.</p>
                             <p className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0">Страна проживания:</p>
-                            <input className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0" type="text" />
+                            <input className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0" type="text" required />
                             <p className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0">Lorem ipsum dolor sit amet 6.</p>
                             <p className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0">Родной город:</p>
                             <div className="d-flex">
-                                <select className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-6 mr-1" name="country">
+                                <select className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-6 mr-1" name="country" >
                                     <option value="Грузия">Грузия</option>
                                 </select>
-                                <input className="w-100" type="text" />
+                                <input className="w-100" type="text" required />
                             </div>
                             <p className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0">Lorem ipsum dolor sit amet 7.</p>
                             <p className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0">Языки:</p>
-                            <select className="w-100" name="language">
+                            <select className="w-100" name="language" required>
                                 {this.state.language.map((element, index) =>
                                     <option value={element}>{element}</option>
                                 )}
                             </select>
                             <p className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0">Lorem ipsum dolor sit amet 8.</p>
                             <p className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0">О себе:</p>
-                            <textarea name="" id="" cols="30" rows="3"></textarea>
+                            <textarea name="" id="" cols="30" rows="3" required></textarea>
                             <div className="d-flex justify-content-xl-start justify-content-lg-start justify-content-md-start justify-content-sm-center justify-content-center ">
-                                <button className="col-8 mb-5">Сохранить Изменения</button>
+                                <button className="col-8 mb-5" htmlFor="basicInformation" type="submit">Сохранить Изменения</button>
                             </div>
-                        </div>
+                        </form>
                         <div className="bottomContentNote d-xl-flex d-lg-flex d-md-flex d-sm-none d-none flex-column col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">
                             <p className="mb-xl-5 mb-lg-5 mb-md-5">В вашем публичном профиле отображается только ваше имя. Когда вы запросите бронирование, водитель увидит ваши имя и фамилию.</p>
                             <p className="mt-xl-4 mt-lg-4 mb-mt-4">Мы используем эти данные только для анализа и никогда ни с кем ими не делимся.</p>

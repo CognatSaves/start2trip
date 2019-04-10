@@ -111,7 +111,7 @@ class DriverProfileCarClass extends React.Component {
                 </div>
                 <Collapse isOpen={this.state.collapse}>
                     <div className="carAddNewCar d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-start align-items-lg-start align-items-md-start align-items-sm-center align-items-center">
-                        <div className="carAddNewCarPhotoCar col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 ml-3" >
+                        <div className="carAddNewCarPhotoCar col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " >
                             {$imagePreview}
                             <label htmlFor="addCarFile" >+Добавить фото автомобиля</label>
                             <input type="file" id="addCarFile" style={{ display: "none" }} onChange={this._handleImageChange} />

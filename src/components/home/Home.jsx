@@ -36,8 +36,8 @@ class Home extends React.Component {
       <React.Fragment>
         <div className="d-flex flex-column">
           <div className="home_window">
+          <Header colorWhite={true}/>
             <div className="home_block">
-              <Header/>
               <div className="home_text col-12">
                 <div className="text_firstLine">Cпланируйте свою экскурсию</div>
                 <div className="text_secondLine">Предложения от местных гидов-водителей по вашему индивидуальному маршруту</div>

@@ -12,8 +12,6 @@ import Footer from './components/Footer/Footer'
 import TourDescription from './components/TourDescription/TourDescription.jsx';
 import DriverProfileRegistration from './components/driverProfileRegistration/DriverProfileRegistration'
 
-import './components/header/StandartHeaderStyles.css';
-
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import { AppReduser } from './redusers/AppReduser';
