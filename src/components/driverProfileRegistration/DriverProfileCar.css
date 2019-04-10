@@ -155,6 +155,7 @@ p.filledCardInformationNameCarEdit:hover {
     min-height: 480px;
     margin-bottom: 30px;
     margin-top: 30px;
+    margin-left: 20px;
 }
 
 .carAddNewCarPhotoCar {
@@ -349,6 +350,7 @@ p.filledCardInformationNameCarEdit:hover {
     .carAddNewCarInformation select {
         border: none;
         border-bottom: 1px solid #ccc;
+        border-radius: 0px;
     }
     .carAddNewCarInformation select:hover,
     .carAddNewCarInformation select:focus,

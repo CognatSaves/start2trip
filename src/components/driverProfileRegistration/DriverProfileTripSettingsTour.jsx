@@ -160,7 +160,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                             </div>
                                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mb-0">
                                                 <p className="col-xl-4 col-lg-4 col-md-4 col-sm-11 col-11 pl-0">Описание:</p>
-                                                <textarea className=" pl-0" name="" id="description" cols="30" rows="10" value={this.state.cities[index].description} onChange={this.changeAllValue.bind(this, index)}></textarea>
+                                                <textarea className=" pl-0" name="" id="description" cols="30" rows="3" value={this.state.cities[index].description} onChange={this.changeAllValue.bind(this, index)}></textarea>
                                             </div>
                                         </div>
                                     </React.Fragment>
@@ -234,7 +234,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                             </div>
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
                                 <p className="col-xl-4 col-lg-4 col-md-4 col-sm-11 col-11 pl-0">Дополнительное описание:</p>
-                                <textarea className="pl-0" name="" id="" cols="30" rows="10"></textarea>
+                                <textarea className="pl-0" name="" id="" cols="30" rows="3"></textarea>
                             </div>
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
                                 <p className="col-xl-4 col-lg-4 col-md-4 col-sm-11 col-11 pl-0">Загрузить фото:</p>

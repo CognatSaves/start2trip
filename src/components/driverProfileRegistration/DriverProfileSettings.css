@@ -123,6 +123,7 @@
     .driverProfileSettingsContent input,
     .driverProfileSettingsContent select {
         border: none;
+        border-radius: 0px;
         border-bottom: 1px solid #ccc;
     }
     .driverProfileSettingsContent select:hover,

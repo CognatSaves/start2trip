@@ -135,7 +135,7 @@
 
 .basicInformationBodyBottomContent textarea {
     margin: 5px 0;
-    min-height: 150px;
+    min-height: 45px;
     border-radius: 5px;
     padding-left: 10px;
     border: 1px solid #ccc;
@@ -166,7 +166,7 @@
 .bottomContentNote p {
     font-weight: 400;
     font-size: 13px;
-    line-height: 15px;
+    line-height: 17px;
 }
 
 @media (max-width: 768px) {
@@ -177,6 +177,7 @@
     .basicInformationBodyBottomContent select,
     .basicInformationBodyBottomContent textarea {
         border: none;
+        border-radius: 0px;
         border-bottom: 1px solid #ccc;
     }
     .basicInformationBodyBottomContent textarea:hover,
