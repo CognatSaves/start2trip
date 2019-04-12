@@ -1,3 +1,15 @@
+.homeHeader {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.driverHeader {
+    width: 100%;
+    background: #304269;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
 .header {
     min-height: 65px;
     max-width: 1200px;
@@ -33,11 +45,12 @@
 /* Header Bigin */
 
 .header h3 {
-    color: #fff;
-    font-family: "Roboto";
-    font-weight: 500;
-    font-size: 16px;
+    width: 100px;
+    height: 28px;
     margin: 0;
+    background: url(./pictures/logo_tripfer_white.svg) no-repeat;
+    background-size: 100% 100%;
+    /* background-position: top 0px left 0px; */
 }
 
 .header a:hover {

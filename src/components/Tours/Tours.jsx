@@ -45,7 +45,7 @@ class ToursClass extends React.Component {
       <React.Fragment>
         <div className="drivers_top_background col-12">
           <div className="wrapper d-flex flex-column">
-            <Header colorWhite={true} />
+            <Header />
             <ToursCountryInfo />
           </div>
         </div>

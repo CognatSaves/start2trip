@@ -1,9 +1,6 @@
 import React from 'react';
 import './DriverProfileBasicInformation.css'
-import { connect } from 'react-redux';
-import imgPerson from './img/drivers_body_photo.png'
-import Stars from '../stars/Stars'
-
+import { connect } from 'react-redux'
 
 
 
@@ -22,14 +19,14 @@ class DriverProfileBasicInformationClass extends React.Component {
         this.getMassNumbers.bind(this);
         this.getMassYear.bind(this);
         this.addNum.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.formSubmit = this.formSubmit.bind(this);
     }
 
-    handleSubmit(event) {
+    formSubmit(event) {
         debugger
         alert('Your favorite flavor is: ' + this.state.value);
         event.preventDefault();
-      }
+    }
 
     getMassNumbers(num) {
         let number = [];
@@ -63,36 +60,6 @@ class DriverProfileBasicInformationClass extends React.Component {
 
         return (
             <div className="basicInformationBody d-flex flex-column">
-                <div className="basicInformationBodyTop d-xl-flex d-lg-flex d-md-flex align-items-center mb-4 d-sm-none d-none">
-                    <div className="basicInformationBodyTopImgHover">
-                        <label className="basicInformationBodyTopImg" htmlFor="addFile">Обновить фотографию</label>
-                        <img src={imgPerson} alt="imgPerson" />
-                        {/* <label className="edditIcon" htmlFor="addFile"></label> */}
-                        <input type="file" id="addFile" style={{ display: "none" }} />
-                    </div>
-                    <div className="bodyTopDriverInfo col-7">
-                        <div className="d-flex align-items-center">
-                            <p className="mb-0 mr-2">Валерий</p>
-                            <Stars value={"4.5"} commentNumber={"35 отзывов"} valueDisplay="block" commentNumberDisplay="block" />
-                        </div>
-                        <div className="bodyTopDriverInfoPlace">
-                            <p className="mb-2">Грузия,Тбилиси</p>
-                            {/* TODO Location */}
-                        </div>
-                        <div className="bodyTopDriverInfoRide container p-0 d-flex">
-                            <div className="d-flex flex-column col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 p-0">
-                                <p>Всего</p>
-                                <p>поездок</p>
-                                <p>18</p>
-                            </div>
-                            <div className="d-flex flex-column col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 p-0">
-                                <p>Предстоящие</p>
-                                <p>поездки</p>
-                                <p>8</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div className="basicInformationBodyBottom d-flex flex-column mb-5 p-0">
                     <div className="basicInformationBodyBottomHeader d-xl-block d-lg-block d-md-block d-sm-none d-none">
                         <p>Редактировать профиль</p>
@@ -108,7 +75,7 @@ class DriverProfileBasicInformationClass extends React.Component {
                             <p>Языки:</p>
                             <p>О себе:</p>
                         </div>
-                        <form onSubmit={this.handleSubmit} id="basicInformation" className="d-flex flex-column col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12" >
+                        <form onSubmit={this.formSubmit} id="basicInformation" className="d-flex flex-column col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12" >
                             <p className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0">Lorem ipsum dolor sit 1.</p>
                             <p className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0">Имя:</p>
                             <input type="text" required />

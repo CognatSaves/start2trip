@@ -4,7 +4,7 @@ import CurrentLocation from './CurrentLocation';
 const mapStyles = {
   map: {
     position: 'absolute',
-    width: '820px',
+    width: '100%',
     height: '100%',
     borderRadius: '0 5px 5px 0',
   }

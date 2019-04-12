@@ -1,9 +1,10 @@
 .navigationBody {
     line-height: 40px;
-    margin-top: 40px;
     margin-bottom: 30px;
     overflow: hidden;
     border-bottom: 1px solid #ccc;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 .navigationBody p {
@@ -11,6 +12,7 @@
     height: 40px;
     margin-right: 30px;
     transition: all 0.3s;
+    font-family: "Roboto";
     font-weight: 400;
     font-size: 16px;
     color: #304269;
@@ -24,4 +26,134 @@
 .navigationBodyActive {
     color: #f60 !important;
     border-bottom: 3px solid #f60 !important;
+}
+
+.driverBG {
+    background: url(img/diverBG.png) 100% 100% no-repeat;
+    background-size: cover;
+}
+
+.basicInformationBodyTop {
+    min-height: 170px;
+    padding: 40px 15px;
+}
+
+.basicInformationBodyTopImg {
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    opacity: 0;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(48, 66, 105, 0.836);
+    width: 156px;
+    height: 156px;
+    color: #fff;
+    font-family: "Roboto";
+    font-weight: 500;
+    font-size: 12px;
+    transition: 0.5s ease;
+}
+
+.basicInformationBodyTopImgHover {
+    cursor: pointer;
+}
+
+.basicInformationBodyTopImgHover img {
+    border-radius: 50%;
+}
+
+.basicInformationBodyTopImgHover:hover .basicInformationBodyTopImg {
+    opacity: 1;
+}
+
+.bodyTopDriverInfo {
+    padding-left: 0px !important;
+    margin-left: 15px;
+}
+
+.bodyTopDriverInfo p {
+    color: #304269;
+    font-family: "Roboto";
+    font-weight: 500;
+    font-size: 24px;
+    margin: 0;
+}
+
+.bodyTopDriverInfoPlace p {
+    color: #304269;
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 14px;
+    margin: 0;
+}
+
+.bodyTopDriverInfoRide span {
+    color: #304269;
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 35px;
+    margin: 0;
+    padding-right: 10px;
+}
+
+.bodyTopDriverInfoRide p {
+    color: #304269;
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    margin: 0;
+}
+
+.bodyTopDriverInfoRideMobail {
+    max-width: 172px;
+}
+
+.bodyTopDriverInfoRideMobail span {
+    color: #304269;
+    font-family: "Roboto";
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.bodyTopDriverInfoRideMobail p {
+    color: #304269;
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 10px;
+}
+
+@media (max-width: 1110px) {
+    .driverBG {
+        background-position: right -250px bottom 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .driverBG {
+        background: none;
+    }
+    .basicInformationBodyTopImgHover img {
+        width: 90px;
+        height: 90px;
+    }
+    .basicInformationBodyTopImg {
+        width: 90px;
+        height: 90px;
+        text-align: center;
+    }
+    .bodyTopImg {
+        background: url(img/diverBG.png) 100% 100% no-repeat;
+        background-size: cover;
+        background-position: right -180px bottom 0;
+        background-origin: padding-box;
+    }
+}
+
+@media (max-width: 576px) {
+    .bodyTopImg {
+        background: none;
+    }
 }

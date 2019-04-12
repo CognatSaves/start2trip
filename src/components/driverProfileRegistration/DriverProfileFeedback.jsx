@@ -23,6 +23,8 @@ class DriverProfileFeedbackClass extends React.Component{
             return monthArray[number];
             
         }
+
+        // TODO добавить кнопку показать ещё и пагинацию
         return(
             <div className="commentBlock_comments d-flex flex-column">
             {selectedComments.map((element,index)=>                       
@@ -38,13 +40,10 @@ class DriverProfileFeedbackClass extends React.Component{
                         <div style={{marginBottom: "20px"}}>
                             <Stars key={element.rating+"/"+element.index} value={element.rating} valueDisplay="block" commentNumberDisplay="none"/>
                         </div>
-                        
                         <input className="put" id={"put"+element+index} type="checkbox"></input>
                         <div class="news">
                             <label htmlFor={"put"+element+index}>{element.value}</label>
                         </div>
-                        
-                        
                     </div>
                 </div> 
             )}

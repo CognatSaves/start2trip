@@ -36,8 +36,8 @@ class Home extends React.Component {
       <React.Fragment>
         <div className="d-flex flex-column">
           <div className="home_window">
-          <Header colorWhite={true}/>
-            <div className="home_block">
+          <Header />
+            <div className="home_block col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
               <div className="home_text col-12">
                 <div className="text_firstLine">Cпланируйте свою экскурсию</div>
                 <div className="text_secondLine">Предложения от местных гидов-водителей по вашему индивидуальному маршруту</div>
@@ -46,7 +46,7 @@ class Home extends React.Component {
                   <div className="text_changeBodyBlock_element changeBodyBlock_element_right">КАРТА</div>
                 </div>
               </div>
-              <div className="home_body d-flex  col-12">
+              <div className="home_body d-flex justify-content-center col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                 <HomeBody redirectToDrivers={() => this.redirectFunc('/drivers')} />
               </div>
             </div>

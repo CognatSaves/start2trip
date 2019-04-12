@@ -25,11 +25,12 @@ class DriverProfileRegistrationClass extends React.Component {
 
     return (
       <React.Fragment>
-        <Header />
+        <Header driver={true} />
+        <DriverProfileNavigation />
         <div className="registrationWrapper d-flex flex-column col-12 p-0">
           <div className="d-flex col-12 p-0">
             <div className="d-flex flex-column justify-content-start col-lx-12 col-lg-12 col-md-12 col-sm-12 col-12">
-              <DriverProfileNavigation />
+              
               {{
                 0: <DriverProfileBasicInformation />,
                 1: <DriverProfileCar />,

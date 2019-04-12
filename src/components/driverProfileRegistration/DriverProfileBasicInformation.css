@@ -3,57 +3,6 @@
     position: relative;
 }
 
-.basicInformationBodyTopImg {
-    position: absolute;
-    z-index: 2;
-    display: flex;
-    opacity: 0;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    background: rgba(48, 66, 105, 0.836);
-    width: 156px;
-    height: 156px;
-    color: #fff;
-    font-weight: 500;
-    font-size: 12px;
-    transition: 0.5s ease;
-}
-
-.basicInformationBodyTopImgHover {
-    cursor: pointer;
-}
-
-.basicInformationBodyTopImgHover:hover .basicInformationBodyTopImg {
-    opacity: 1;
-}
-
-.bodyTopDriverInfo {
-    border-bottom: 1px solid #ccc;
-    padding-left: 0px !important;
-    margin-left: 15px;
-}
-
-.bodyTopDriverInfo p {
-    color: #304269;
-    font-weight: 500;
-    font-size: 24px;
-    margin: 0;
-}
-
-.bodyTopDriverInfoPlace p,
-.bodyTopDriverInfoRide p {
-    color: #304269;
-    font-weight: 400;
-    font-size: 14px;
-    margin: 0;
-}
-
-.bodyTopDriverInfoRide div p:nth-child(3) {
-    font-weight: 500;
-    font-size: 31px;
-}
-
 .basicInformationBodyBottom {
     box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
     border-radius: 5px;

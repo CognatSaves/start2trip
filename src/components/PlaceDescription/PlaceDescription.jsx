@@ -103,7 +103,7 @@ class PlaceDescriptionClass extends React.Component {
                     <img src={ippodrom} width="100%" height="460px" style={{ position: "absolute" }} alt="noImage" />
                     <div style={{ position: "absolute", width: "100%", height: "460px", backgroundColor: "rgba(0,0,0,0.5)" }} />
                     <div className="d-flex flex-column container">
-                        <Header colorWhite={true} />                  
+                        <Header />                
                         <PlaceInfo place={place}/>                     
                     </div>                 
                 </div>

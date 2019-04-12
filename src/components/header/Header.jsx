@@ -127,12 +127,46 @@ class HeaderClass extends React.Component {
 
         <ModalRegistration modalRegistration={this.state.modalRegistration} toggle={this.toggleModalRegistration} className={this.props.className} />
         <CountrySelect modalCountry={this.state.modalCountry} toggleModalCountry={this.toggleModalCountry} className={this.props.className} />
+        <div className="d-xl-none d-lg-none d-md-none d-sm-flex d-flex">
+          <div onClick={this.toggleModalCountry} className="headerGeoButton">
+            <span>{this.props.storeState.country}</span>
+          </div>
+          <Link className="" to="">
+            <h3></h3>
+          </Link>
+          <div className="headerSelect d-flex align-items-center justify-content-end ">
+            <Dropdown setActiveFromChild="true" isOpen={this.state.dropdownOpen} toggle={this.toggleDropdownOpen} className="selectGeneral">
+              <DropdownToggle className="selectGeneralButton" caret size="sm">
+                {this.state.activeCurrency[this.state.activeCurrencyNumber]}
+              </DropdownToggle>
+              <DropdownMenu className="dropdownMenu currenty" >
+                {
+                  this.state.currencyValues.map((element, index) =>
+                    <DropdownItem className="dropdownMenu" onClick={() => { this.setState({ activeCurrencyNumber: index }) }}>{element}</DropdownItem>
+                  )
+                }
+              </DropdownMenu>
+            </Dropdown>
+            <Dropdown setActiveFromChild="true" isOpen={this.state.dropdownLanguageOpen} toggle={this.toggleLanguage} className="selectGeneral">
+              <DropdownToggle className="selectGeneralButton" caret size="sm">
+                <img src={this.state.activLanguage[this.state.activLanguageNumber].flag} height="15px" width="15px" alt="flag" />{this.state.activLanguage[this.state.activLanguageNumber].string}
+              </DropdownToggle>
+              <DropdownMenu className="dropdownMenu">
+                {
+                  this.state.languageValues.map((element, index) =>
+                    <DropdownItem className="dropdownMenu" onClick={() => { this.setState({ activLanguageNumber: index }) }}><img src={element.src} height="15px" width="15px" alt="RU" />{element.value}</DropdownItem>
+                  )
+                }
+              </DropdownMenu>
+            </Dropdown>
+          </div>
+        </div>
 
-        <div className="homeHeader">
+        <div className={this.props.driver ? "driverHeader" : "homeHeader"}>
           <div className='header d-xl-flex d-lg-flex d-md-flex d-sm-none d-none align-items-stretch justify-content-between'>
             <div className="d-flex align-items-center col-xl-2 col-lg-2 col-md-3 col-sm-2 col-2">
-              <Link className="col-xl-7 col-lg-8 col-md-6 col-sm-9 col-7" to="">
-                <h3>LOGOTYPE</h3>
+              <Link className="col-xl-7 col-lg-9 col-md-8 col-sm-8 col-7" to="">
+                <h3></h3>
               </Link>
               <div onClick={this.toggleModalCountry} className="headerGeoButton col-xl-5 col-lg-5 col-md-4 col-sm-5 col-5">
                 <span>{this.props.storeState.country}</span>
@@ -172,7 +206,7 @@ class HeaderClass extends React.Component {
                   </DropdownMenu>
                 </Dropdown>
               </div>
-              <div className="headerRegistration d-flex justify-content-start col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">
+              <div className="headerRegistration d-flex justify-content-start col-xl-1 col-lg-1 col-md-2 col-sm-1 col-1">
                 <span onClick={this.toggleModalRegistration} >Войти</span>
               </div>
             </div>
