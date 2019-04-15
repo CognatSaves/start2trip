@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Collapse } from 'reactstrap';
 import georgiaImg from './img/bg.jpg'
 import Stars from '../stars/Stars'
+import LocationSearchInput from '../home/HomeBody/Search'
 
 
 
@@ -162,7 +163,8 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                         <div className="mb-0">
                                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
                                                 <p className="col-xl-4 col-lg-4 col-md-4 col-sm-11 col-11 pt-2 pl-0">Населённый пункт:</p>
-                                                <input className="pl-0 mt-3" type="text" id="city" value={this.state.cities[index].city} onChange={this.changeAllValue.bind(this, index)} required/>
+                                                <LocationSearchInput address={this.state.cities[index].city} changeCity={this.changeAllValue.bind(this, index)} />
+                                                {/* <input className="pl-0 mt-3" type="text" id="city" value={this.state.cities[index].city} onChange={this.changeAllValue.bind(this, index)} required/> */}
                                                 <div style={{ display: index ? "block" : "none" }} className={index ? "tripSettingsContentDeletButton col-xl-3 col-lg-3 col-md-3 col-sm-11 col-11 mb-0 mt-xl-4 mt-lg-4 mt-md-4 mt-sm-2 mt-2" : "tripSettingsContentDeletButton col-xl-3 col-lg-3 col-md-3 col-sm-11 col-11 mb-0 "} onClick={() => { this.deleteCity(index) }}>Удалить город</div>
                                             </div>
                                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mb-0">
@@ -233,7 +235,12 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                             </div>
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
                                 <p className="col-xl-4 col-lg-4 col-md-4 col-sm-11 col-11 pl-0">Тип транспорта:</p>
-                                <input className="pl-0" type="text" required/>
+                                <select className="w-100 m-0 " name="typeCar">
+                                    <option value="sedan">Седан</option>
+                                    <option value="microbus">Микроавтобус</option>
+                                    <option value="minivan">Минивэн</option>
+                                    <option value="jeep">Внедорожник</option>
+                                </select>
                             </div>
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
                                 <p className="col-xl-4 col-lg-4 col-md-4 col-sm-11 col-11 pl-0">Количество мест:</p>

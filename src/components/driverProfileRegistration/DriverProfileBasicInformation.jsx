@@ -1,6 +1,7 @@
 import React from 'react';
 import './DriverProfileBasicInformation.css'
 import { connect } from 'react-redux'
+import LocationSearchInput from '../home/HomeBody/Search'
 
 
 
@@ -131,7 +132,8 @@ class DriverProfileBasicInformationClass extends React.Component {
                                 <select className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-6 mr-1" name="country" >
                                     <option value="Грузия">Грузия</option>
                                 </select>
-                                <input className="w-100" type="text" required />
+                                <LocationSearchInput />
+                                {/* <input className="w-100" type="text" required /> */}
                             </div>
                             <p className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0">Lorem ipsum dolor sit amet 7.</p>
                             <p className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0">Языки:</p>

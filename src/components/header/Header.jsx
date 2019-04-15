@@ -34,7 +34,7 @@ const CountrySelect = (props) => {
         <div className="d-flex flex-column col-12">
           <div className="d-flex  justify-content-center col-12 p-4">
             <img src={mapWorldIcon} height="150px" alt="mapWorldIcon" />
-            <button className="modalCountryButtton" onClick={() => { this.toggleModalCountry() }}><img src={crossIconModal} width="20px" height="20px" alt="crossIconModal" /></button>
+            <button className="modalCountryButtton" onClick={() => { toggleModalCountry() }}><img src={crossIconModal} width="20px" height="20px" alt="crossIconModal" /></button>
           </div>
           <div className="modalCountry d-flex flex-column align-items-center mb-5">
             <h4 className="mb-4">ВЫБЕРИТЕ ВАШУ СТРАНУ</h4>
@@ -127,10 +127,10 @@ class HeaderClass extends React.Component {
 
         <ModalRegistration modalRegistration={this.state.modalRegistration} toggle={this.toggleModalRegistration} className={this.props.className} />
         <CountrySelect modalCountry={this.state.modalCountry} toggleModalCountry={this.toggleModalCountry} className={this.props.className} />
-        <div className="d-xl-none d-lg-none d-md-none d-sm-flex d-flex">
-          <div onClick={this.toggleModalCountry} className="headerGeoButton">
+        <div className="headerMobail d-xl-none d-lg-none d-md-none d-sm-flex d-flex align-items-center justify-content-between">
+          {/* <div onClick={this.toggleModalCountry} className="headerGeoButton">
             <span>{this.props.storeState.country}</span>
-          </div>
+          </div> */}
           <Link className="" to="">
             <h3></h3>
           </Link>
@@ -159,6 +159,7 @@ class HeaderClass extends React.Component {
                 }
               </DropdownMenu>
             </Dropdown>
+            <button className="headerMobailButton"></button>
           </div>
         </div>
 

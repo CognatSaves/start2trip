@@ -1,4 +1,5 @@
 .navigationBody {
+    position: relative;
     line-height: 40px;
     margin-bottom: 30px;
     overflow: hidden;
@@ -29,12 +30,15 @@
 }
 
 .driverBG {
-    background: url(img/diverBG.png) 100% 100% no-repeat;
+    /* background: url(img/diverBG.png) 100% 100% no-repeat; */
+    background-size: 100% no-repeat;
     background-size: cover;
+    transition: ease 0.3s;
 }
 
 .basicInformationBodyTop {
-    min-height: 170px;
+    position: relative;
+    min-height: 236px;
     padding: 40px 15px;
 }
 
@@ -139,21 +143,106 @@
         width: 90px;
         height: 90px;
     }
+    .navigationButton {
+        position: relative;
+        transition: ease 0.3s;
+    }
+    .navigation0 {
+        left: 0;
+    }
+    .navigation1 {
+        left: 0;
+    }
+    .navigation2 {
+        left: 0;
+    }
+    .navigation3 {
+        left: 0;
+    }
+    .navigation4 {
+        left: -100px;
+    }
+    .navigation5 {
+        left: -100px;
+    }
+    .navigation6 {
+        left: -100px;
+    }
     .basicInformationBodyTopImg {
         width: 90px;
         height: 90px;
         text-align: center;
+    }
+    .basicInformationBG {
+        background: url(img/diverBG.png) 100% 100% no-repeat;
+        background-size: cover;
+        background-position: right -180px bottom 0;
+        background-origin: padding-box;
+        transition: ease 0.3s;
+    }
+    .calendarBG {
+        background: url(img/calendar.png) 100% 100% no-repeat;
+        background-size: cover;
+        background-position: right -180px bottom 0;
+        background-origin: padding-box;
+        transition: ease 0.3s;
+    }
+    .settingsBG {
+        background: url(img/settings.png) 100% 100% no-repeat;
+        background-size: cover;
+        background-position: right -180px bottom 0;
+        background-origin: padding-box;
+        transition: ease 0.3s;
+    }
+    /* .bodyTopImg {
+        background: url(img/diverBG.png) 100% 100% no-repeat;
+        background-size: cover;
+        background-position: right -180px bottom 0;
+        background-origin: padding-box;
+         transition: ease 0.3s;
     }
     .bodyTopImg {
         background: url(img/diverBG.png) 100% 100% no-repeat;
         background-size: cover;
         background-position: right -180px bottom 0;
         background-origin: padding-box;
-    }
+         transition: ease 0.3s;
+    } */
 }
 
 @media (max-width: 576px) {
-    .bodyTopImg {
+    .navigationButton {
+        position: relative;
+        transition: ease 0.3s;
+    }
+    .navigation0 {
+        left: 0;
+    }
+    .navigation1 {
+        left: 0;
+    }
+    .navigation2 {
+        left: -100px;
+    }
+    .navigation3 {
+        left: -190px;
+    }
+    .navigation4 {
+        left: -280px;
+    }
+    .navigation5 {
+        left: -390px;
+    }
+    .navigation6 {
+        left: -390px;
+    }
+    .basicInformationBG {
+        background: none;
+    }
+    .calendarBG {
+        background: none;
+    }
+    .settingsBG {
         background: none;
     }
 }

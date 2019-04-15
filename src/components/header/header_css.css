@@ -11,10 +11,58 @@
 }
 
 .header {
-    min-height: 65px;
+    min-height: 56px;
     max-width: 1200px;
     margin: 0 auto;
 }
+
+
+/* Mobail header Bigin */
+
+.headerMobail {
+    min-height: 60px;
+    padding-left: 10px;
+    background: #304269;
+}
+
+.headerMobail h3 {
+    width: 80px;
+    height: 20px;
+    margin: 0;
+    background: url(./pictures/logo_tripfer_white.svg) no-repeat;
+    background-size: 100% 100%;
+    /* background-position: top 0px left 0px; */
+}
+
+.headerMobail .headerSelect {
+    padding: 0px !important;
+    max-height: 30px;
+    margin-left: 0;
+}
+
+.headerMobailButton {
+    width: 24px;
+    height: 18px;
+    margin-right: 10px;
+    outline: none;
+    border: none;
+    background: url(pictures/menu-button-White.svg) no-repeat;
+    background-size: 100% 100%;
+    cursor: pointer;
+}
+
+.headerMobailButton:focus {
+    outline: none;
+}
+
+.headerMobailButton:hover {
+    background: url(pictures/menu-button-Orange.svg) no-repeat;
+    background-size: 100% 100%;
+    outline: none;
+}
+
+
+/* Mobail header End */
 
 
 /* Modal Country Bigin */
