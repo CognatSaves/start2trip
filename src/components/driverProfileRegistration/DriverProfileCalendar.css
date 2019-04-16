@@ -1,0 +1,11 @@
+.calendarModal div {
+    width: 100% !important;
+}
+
+.calendarModal input {
+    font-family: "Roboto"!important;
+    font-weight: 400 !important;
+    font-size: 14px !important;
+    color: #333 !important;
+    padding-left: 10px !important;
+}

@@ -3,6 +3,9 @@ import './DriverProfileSettings.css'
 import { connect } from 'react-redux';
 import eyeBlueIcon from './img/eyeBlue.svg'
 import eyeOrangeIcon from './img/eyeOrange.svg'
+import TextField from 'material-ui/TextField';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 
 
@@ -18,24 +21,40 @@ class DriverProfileSettingsClass extends React.Component {
         }
 
     }
+    
 
 
 
     render() {
+        const muiTheme = getMuiTheme({
+            palette: {
+              textColor: "#304269",
+            }
+          });
         return (
+            <MuiThemeProvider muiTheme={getMuiTheme(muiTheme)}>
             <div className="driverProfilesettingsBody">
                 <div>
-                    <div className="driverProfilesettingsBodyTitle d-xl-block d-lg-block d-md-block d-sm-none d-xl-block">
+                    <div className="driverProfilesettingsBodyTitle d-xl-block d-lg-block d-md-block d-sm-none d-none">
                         <p>Настройки профиля</p>
                     </div>
                     <div className="driverProfileSettingsContent d-flex flex-column col-xl-9 col-lg-9 col-md-9 col-sm-11 col-11">
                         <form onSabmit="" id="profileSettings" >
-                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mb-3">
-                                <p className="col-xl-2 col-lg-2 col-md-2 col-sm-11 col-11 pr-0">Email:</p>
+                            <div className="d-xl-flex d-lg-flex d-md-flex d-sm-none d-none flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mb-3">
+                                <p className="col-xl-2 col-lg-2 col-md-2 col-sm-11 col-11 pl-0">Email:</p>
                                 <input className="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12  " type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required />
                             </div>
-                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                <p className="driverProfileSettingsContentPasswordText col-xl-2 col-lg-2 col-md-2 col-sm-11 col-11 pr-0">Пароль:</p>
+                            <TextField
+                        hintText="Please press your Email"
+                        floatingLabelText="Email"
+                        className="d-xl-none d-lg-none d-md-none d-sm-block d-block"
+                        fullWidth="100%"
+                        floatingLabelFocusStyle={{color:"#304269"}}
+                        underlineFocusStyle={{borderColor:"#304269"}}
+                        // errorText="This field is required"
+                    />
+                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-start">
+                                <p className="driverProfileSettingsContentPasswordText col-xl-2 col-lg-2 col-md-2 col-sm-11 col-11 pl-0">Пароль:</p>
                                 <div className="driverProfileSettingsContentPassword d-flex flex-column justify-content-end col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12  p-0">
                                     <p>Текущий пароль</p>
                                     <div className="driverProfileSettingsContentPasswordDivIcon">
@@ -56,7 +75,8 @@ class DriverProfileSettingsClass extends React.Component {
                             </div>
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mb-4">
                                 {/* TODO функционал выбора префикса по стране */}
-                                <p className="col-xl-2 col-lg-2 col-md-2 col-sm-11 col-11 pr-0">Телефон:</p>
+                                <p className="col-xl-2 col-lg-2 col-md-2 col-sm-11 col-11 pl-0">Телефон:</p>
+
                                 <input className="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12 " type="tel" required />
                             </div>
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-center mb-4">
@@ -64,24 +84,25 @@ class DriverProfileSettingsClass extends React.Component {
                                 <button htmlFor="profileSettings" type="submit">СОХРАНИТЬ ИЗМЕНЕНИЯ</button>
                             </div>
                         </form>
-                        <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                            <p className="col-2 pr-0"></p>
-                            <div className="driverProfileSettingsContentUnsubscribe d-flex flex-column mb-3">
-                                <p className="driverProfileSettingsContentUnsubscribeButton">Отписаться от рассылки</p>
-                                <p>В результате отписки Вы больше не будете получать сообщения от Start2Trip</p>
+                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
+                                <p className="col-2 pr-0"></p>
+                                <div className="driverProfileSettingsContentUnsubscribe d-flex flex-column mb-3">
+                                    <p className="driverProfileSettingsContentUnsubscribeButton">Отписаться от рассылки</p>
+                                    <p>В результате отписки Вы больше не будете получать сообщения от Start2Trip</p>
+                                </div>
                             </div>
-                        </div>
+                    </div>
                     </div>
                 </div>
-            </div>
-        );
-    }
-}
-
-const DriverProfileSettings = connect(
+                </MuiThemeProvider>
+                );
+            }
+        }
+        
+        const DriverProfileSettings = connect(
     (state) => ({
-        storeState: state.AppReduser,
-    }),
-)(DriverProfileSettingsClass);
-
+                    storeState: state.AppReduser,
+            }),
+        )(DriverProfileSettingsClass);
+        
 export default DriverProfileSettings;
