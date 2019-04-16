@@ -2,7 +2,7 @@
     position: relative;
     line-height: 40px;
     margin-bottom: 30px;
-    overflow: hidden;
+    overflow-y: auto;
     border-bottom: 1px solid #ccc;
     padding-left: 15px;
     padding-right: 15px;
@@ -133,6 +133,9 @@
     .driverBG {
         background-position: right -250px bottom 0;
     }
+    .navigationBody {
+        margin-bottom: 0px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -143,7 +146,7 @@
         width: 90px;
         height: 90px;
     }
-    .navigationButton {
+    /* .navigationButton {
         position: relative;
     }
     .navigation0 {
@@ -166,6 +169,9 @@
     }
     .navigation6 {
         left: -100px;
+    } */
+    .navigationBody {
+        margin-bottom: 0px;
     }
     .basicInformationBodyTopImg {
         width: 90px;
@@ -210,7 +216,7 @@
 }
 
 @media (max-width: 576px) {
-    .navigationButton {
+    /* .navigationButton {
         position: relative;
     }
     .navigation0 {
@@ -233,7 +239,7 @@
     }
     .navigation6 {
         left: -390px;
-    }
+    } */
     .basicInformationBG {
         background: none;
     }

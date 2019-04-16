@@ -54,6 +54,11 @@ html {
 /* Footer Mobaile Bigin */
 
 .footerMobile {
+    position: fixed;
+    z-index: 3;
+    width: 100%;
+    background: #fff;
+    bottom: 0px;
     min-height: 56px;
     box-shadow: 0 -5px 5px -5px rgba(0, 0, 0, 0.2);
 }

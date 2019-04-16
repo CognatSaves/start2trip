@@ -23,6 +23,10 @@
     padding-top: 20px !important;
 }
 
+.tourBodyElement {
+    margin-bottom: 80px;
+}
+
 .tourBodyElementTitle {
     min-height: 40px;
 }

@@ -1,5 +1,9 @@
 /* Car Bigin*/
 
+.filledCardBody {
+    margin-bottom: 80px;
+}
+
 .filledCard {
     width: 100%;
     box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);

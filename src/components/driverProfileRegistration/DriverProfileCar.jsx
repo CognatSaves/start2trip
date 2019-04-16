@@ -113,7 +113,7 @@ class DriverProfileCarClass extends React.Component {
 
         return (
             <div >
-                <div style={{ opacity: this.state.collapse ? "0" : "1" }} className="col-12 d-flex justify-content-center">
+                <div style={{ opacity: this.state.collapse ? "0" : "1" }} className="col-12 d-flex justify-content-center mt-md-0 mt-sm-4 mt-4">
                     <button className="carShowButton" onClick={this.toggle}>Добавить Автомобиль</button>
                 </div>
                 <Collapse isOpen={this.state.collapse}>
@@ -228,7 +228,7 @@ class DriverProfileCarClass extends React.Component {
                     </div>
                 </Collapse>
 
-                <div className="p-0 d-flex flex-wrap col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div className="filledCardBody p-0 d-flex flex-wrap col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
                     {this.state.car.map((element, index) =>
                         <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 p-2">
                             <div className="filledCard d-flex flex-column p-0">

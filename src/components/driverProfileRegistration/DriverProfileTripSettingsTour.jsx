@@ -141,7 +141,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
     render() {
         return (
             <div>
-                <div style={{ opacity: this.state.collapse ? "0" : "1" }} className="col-12 d-flex justify-content-center p-0">
+                <div style={{ opacity: this.state.collapse ? "0" : "1" }} className="col-12 d-flex justify-content-center p-0 mt-md-0 mt-sm-4 mt-4">
                     <button className="addTourShow" onClick={this.toggle}>Добавить Тур</button>
                 </div>
                 <Collapse isOpen={this.state.collapse}>
