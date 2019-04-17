@@ -8,7 +8,6 @@
 }
 
 .basicInformationBodyBottomContent {
-    margin-left: 10px;
     margin-top: 20px;
 }
 
@@ -29,11 +28,10 @@
     cursor: pointer;
 }
 
-.basicInformationBodyBottomContent p {
+.basicInformationBodyBottomContent label {
     color: #686868;
     font-weight: 500;
     font-size: 14px;
-    margin: 5px 0;
     min-height: 40px;
     line-height: 40px;
 }
@@ -68,7 +66,7 @@
 }
 
 .basicInformationBodyBottomContent select {
-    width: 33.3%;
+    width: 100%;
     min-height: 40px;
     background: none;
     border: 1px solid #ccc;

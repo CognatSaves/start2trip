@@ -84,7 +84,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                 newArrayCity[index].city = e.currentTarget.value;
                 this.setState({ cities: newArrayCity });
                 break;
-            } 
+            }
             case "description": {
                 newArrayCity[index].description = e.currentTarget.value;
                 this.setState({ cities: newArrayCity });
@@ -140,7 +140,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
 
     render() {
         return (
-            <div>
+            <React.Fragment>
                 <div style={{ opacity: this.state.collapse ? "0" : "1" }} className="col-12 d-flex justify-content-center p-0 mt-md-0 mt-sm-4 mt-4">
                     <button className="addTourShow" onClick={this.toggle}>Добавить Тур</button>
                 </div>
@@ -152,7 +152,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                             </div>
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mb-0">
                                 <p className="col-xl-4 col-lg-4 col-md-4 col-sm-11 col-11 pl-0">Название тура:</p>
-                                <input className="pl-0" type="text" required/>
+                                <input className="pl-0" type="text" required />
                             </div>
                             <div className="tourContentTitle d-flex align-items-center mb-0">
                                 <p>Маршрут</p>
@@ -169,7 +169,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                             </div>
                                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mb-0">
                                                 <p className="col-xl-4 col-lg-4 col-md-4 col-sm-11 col-11 pl-0">Описание:</p>
-                                                <textarea className=" pl-0" name="" id="description" cols="30" rows="3" value={this.state.cities[index].description} onChange={this.changeAllValue.bind(this, index)}required />
+                                                <textarea className=" pl-0" name="" id="description" cols="30" rows="3" value={this.state.cities[index].description} onChange={this.changeAllValue.bind(this, index)} required />
                                             </div>
                                         </div>
                                     </React.Fragment>
@@ -229,8 +229,8 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
                                 <p className="col-xl-4 col-lg-4 col-md-4 col-sm-11 col-11 pl-0">Стоимость тура:</p>
                                 <div className="d-flex">
-                                    <input className=" mr-xl-1 mr-lg-1 mr-md-1 mr-sm-5 mr-5" type="text" required/>
-                                    <input className="" type="text" required/>
+                                    <input className=" mr-xl-1 mr-lg-1 mr-md-1 mr-sm-5 mr-5" type="text" required />
+                                    <input className="" type="text" required />
                                 </div>
                             </div>
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
@@ -244,7 +244,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                             </div>
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
                                 <p className="col-xl-4 col-lg-4 col-md-4 col-sm-11 col-11 pl-0">Количество мест:</p>
-                                <input className="pl-0" type="text" required/>
+                                <input className="pl-0" type="text" required />
                             </div>
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
                                 <p className="col-xl-4 col-lg-4 col-md-4 col-sm-11 col-11 pl-0">Дополнительное описание:</p>
@@ -309,7 +309,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
 
 
                 </div>
-            </div>
+            </React.Fragment>
         );
     }
 }

@@ -55,7 +55,7 @@ class DriverProfileNavigationClass extends React.Component {
                                 <Stars value={"4.5"} valueDisplay="block" commentNumberDisplay="block" commentNumber="30 отзывов" />
                             </div>
                             <div className="bodyTopDriverInfoPlace">
-                                <p className="mt-1 mb-xl-4 mb-lg-4 mb-md-4 mb-sm-2 mb-2">Грузия,Тбилиси</p>
+                                <p>Тбилиси</p>
                                 {/* TODO Location */}
                             </div>
                             <div className="bodyTopDriverInfoRide p-0 d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column">

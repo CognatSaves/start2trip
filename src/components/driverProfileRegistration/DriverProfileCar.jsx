@@ -112,7 +112,7 @@ class DriverProfileCarClass extends React.Component {
         }
 
         return (
-            <div >
+            <React.Fragment>
                 {/* <div style={{ opacity: this.state.collapse ? "0" : "1" }} className="col-12 d-flex justify-content-center mt-md-0 mt-sm-4 mt-4">
                     <button className="carShowButton" onClick={this.toggle}>Добавить Автомобиль</button>
                 </div> */}
@@ -273,7 +273,8 @@ class DriverProfileCarClass extends React.Component {
                     )}
                 </div>
 
-            </div>
+            </React.Fragment >
+
         );
     }
 }

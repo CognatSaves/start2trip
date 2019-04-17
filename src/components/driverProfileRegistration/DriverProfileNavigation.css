@@ -93,14 +93,15 @@
     font-family: "Roboto";
     font-weight: 400;
     font-size: 16px;
-    margin: 0;
+    margin-top: 10px;
+    margin-bottom: 15px;
 }
 
 .bodyTopDriverInfoPlace p {
-    padding-left: 15px;
+    padding-left: 14px;
     background: url(img/location_Blue.svg) no-repeat;
     background-size: 18px 18px;
-    background-position: center left;
+    background-position: center left -4px;
 }
 
 .bodyTopDriverInfoRide span {
@@ -164,7 +165,6 @@
         color: #666;
         font-weight: 400;
         font-size: 12px;
-        margin: 0;
     }
     .navigationBody {
         margin-bottom: 0px;
