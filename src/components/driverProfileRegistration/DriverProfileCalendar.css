@@ -58,12 +58,9 @@
     padding: 0 !important;
 }
 
-.inputClass {
-    height: 65px !important;
-}
+.inputClass {}
 
 .inputClass input {
-    height: 65px !important;
     font-weight: 400 !important;
     font-size: 16px !important;
     color: #333 !important;
