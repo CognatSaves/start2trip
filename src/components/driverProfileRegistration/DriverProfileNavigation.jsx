@@ -50,7 +50,7 @@ class DriverProfileNavigationClass extends React.Component {
                             <input type="file" id="addFile" style={{ display: "none" }} />
                         </div>
                         <div className="bodyTopDriverInfo col-7">
-                            <div className="d-flex flex-column align-items-start">
+                            <div className="bodyTopDriverInfoName d-flex flex-column align-items-start">
                                 <p className="mb-0 mr-2">Валерий</p>
                                 <Stars value={"4.5"} valueDisplay="block" commentNumberDisplay="block" commentNumber="30 отзывов" />
                             </div>

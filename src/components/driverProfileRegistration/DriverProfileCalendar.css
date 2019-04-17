@@ -1,3 +1,5 @@
+/* CalendarModal Bigin */
+
 .calendarModal div {
     width: 100% !important;
     max-height: 50px !important;
@@ -24,17 +26,24 @@
 .calendarModal input {
     font-weight: 400 !important;
     font-size: 16px !important;
-    color: #304269 !important;
+    /* color: #333 !important; */
     padding-left: 10px !important;
     margin: 5px 0 !important;
     max-height: 40px !important;
     margin: 0 !important;
 }
 
+
+/* CalendarModal end */
+
+
+/* Dropdown Bigin */
+
 .dropdownClass {
     border: 1px solid #ccc !important;
     border-radius: 5px !important;
     max-height: 40px !important;
+    /* color: #333 !important; */
 }
 
 .dropdownClass div {
@@ -49,21 +58,40 @@
     padding: 0 !important;
 }
 
+.inputClass {
+    height: 55px !important;
+}
+
+.inputClass input {
+    height: 65px !important;
+    font-weight: 400 !important;
+    font-size: 16px !important;
+    color: #333 !important;
+}
+
+.inputClass label {
+    font-weight: 400 !important;
+    font-size: 18px !important;
+}
+
+
+/* Dropdown End */
+
 .chipClass {
     background-color: #304269 !important;
 }
 
 @media (max-width: 768px) {
     .calendarModal {
-        max-height: none;
-        border: none!important;
+        height: 65px !important;
+        border: none !important;
     }
     .calendarModal input {
         padding-left: 0px !important;
         border: none!important;
         margin-bottom: 0px !important;
-        max-height: none !important;
-        margin-top: 14px !important;
+        height: 65px !important;
+        margin-top: px !important;
     }
     .dropdownClass hr,
     .calendarModal hr {
@@ -73,7 +101,7 @@
         display: block;
     }
     .calendarModal div {
-        max-height: none !important;
+        max-height: 65px !important;
     }
     .dropdownClass {
         border: none !important;

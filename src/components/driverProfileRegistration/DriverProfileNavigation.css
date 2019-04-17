@@ -34,10 +34,9 @@
 }
 
 .driverBG {
-    /* background: url(img/diverBG.png) 100% 100% no-repeat; */
-    background-size: 100% no-repeat;
-    background-size: contain;
-    background-position: bottom right;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom -10px right 0;
     transition: ease 0.3s;
 }
 
@@ -94,8 +93,15 @@
     color: #304269;
     font-family: "Roboto";
     font-weight: 400;
-    font-size: 14px;
+    font-size: 16px;
     margin: 0;
+}
+
+.bodyTopDriverInfoPlace p {
+    padding-left: 15px;
+    background: url(img/location_Blue.svg) no-repeat;
+    background-size: 18px 18px;
+    background-position: center left;
 }
 
 .bodyTopDriverInfoRide span {
@@ -134,13 +140,6 @@
     font-size: 10px;
 }
 
-.bodyTopDriverInfoPlace p {
-    padding-left: 15px;
-    background: url(img/locationGray.svg) no-repeat;
-    background-size: 13px 13px;
-    background-position: center left;
-}
-
 @media (max-width: 1110px) {
     .driverBG {
         background-position: right -250px bottom 0;
@@ -158,30 +157,16 @@
         width: 90px;
         height: 90px;
     }
-    /* .navigationButton {
-        position: relative;
+    .bodyTopDriverInfoName p {
+        font-weight: 400;
+        font-size: 16px;
     }
-    .navigation0 {
-        left: 0;
+    .bodyTopDriverInfoPlace p {
+        color: #666;
+        font-weight: 400;
+        font-size: 12px;
+        margin: 0;
     }
-    .navigation1 {
-        left: 0;
-    }
-    .navigation2 {
-        left: 0;
-    }
-    .navigation3 {
-        left: 0;
-    }
-    .navigation4 {
-        left: -100px;
-    }
-    .navigation5 {
-        left: -100px;
-    }
-    .navigation6 {
-        left: -100px;
-    } */
     .navigationBody {
         margin-bottom: 0px;
     }
@@ -228,30 +213,6 @@
 }
 
 @media (max-width: 576px) {
-    /* .navigationButton {
-        position: relative;
-    }
-    .navigation0 {
-        left: 0;
-    }
-    .navigation1 {
-        left: 0;
-    }
-    .navigation2 {
-        left: -100px;
-    }
-    .navigation3 {
-        left: -190px;
-    }
-    .navigation4 {
-        left: -280px;
-    }
-    .navigation5 {
-        left: -390px;
-    }
-    .navigation6 {
-        left: -390px;
-    } */
     .basicInformationBG {
         background: none;
     }

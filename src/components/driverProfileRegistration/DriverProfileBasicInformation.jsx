@@ -77,7 +77,7 @@ class DriverProfileBasicInformationClass extends React.Component {
                 // accent1Color: "#f60", // Null
                 // accent2Color: "#f60", // Null
                 // accent3Color: "#f60", // Null
-                textColor: "#304269",
+                textColor: "#333",
                 // alternateTextColor: white, // Color text
                 // canvasColor: "#f60", // bacgraund color 
                 // borderColor: "#f60", // border-bottom color
@@ -111,7 +111,7 @@ class DriverProfileBasicInformationClass extends React.Component {
                                 <TextField
                                     hintText="Пожалуйста введите ваше Имя"
                                     floatingLabelText="Имя"
-                                    className="d-xl-none d-lg-none d-md-none d-sm-block d-block"
+                                    className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
                                     fullWidth="100%"
                                     floatingLabelFocusStyle={{ color: "#304269" }}
                                     underlineFocusStyle={{ borderColor: "#304269" }}
@@ -122,7 +122,7 @@ class DriverProfileBasicInformationClass extends React.Component {
                                 <TextField
                                     hintText="Пожалуйста введите Фамилию"
                                     floatingLabelText="Фамилия"
-                                    className="d-xl-none d-lg-none d-md-none d-sm-block d-block"
+                                    className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
                                     fullWidth="100%"
                                     floatingLabelFocusStyle={{ color: "#304269" }}
                                     underlineFocusStyle={{ borderColor: "#304269" }}
@@ -136,7 +136,7 @@ class DriverProfileBasicInformationClass extends React.Component {
                                 <TextField
                                     hintText="Пожалуйста введите номер"
                                     floatingLabelText="Номер паспорта"
-                                    className="d-xl-none d-lg-none d-md-none d-sm-block d-block"
+                                    className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
                                     fullWidth="100%"
                                     floatingLabelFocusStyle={{ color: "#304269" }}
                                     underlineFocusStyle={{ borderColor: "#304269" }}
@@ -150,7 +150,7 @@ class DriverProfileBasicInformationClass extends React.Component {
                                 <TextField
                                     hintText="Укажите страну проживания"
                                     floatingLabelText="Страна проживания"
-                                    className="d-xl-none d-lg-none d-md-none d-sm-block d-block"
+                                    className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
                                     fullWidth="100%"
                                     floatingLabelFocusStyle={{ color: "#304269" }}
                                     underlineFocusStyle={{ borderColor: "#304269" }}
