@@ -2,8 +2,8 @@ import React from 'react';
 import './header_css.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
-import earth from './pictures/earth.svg'
-import whiteEarth from './pictures/globe.svg';
+// import earth from './pictures/earth.svg'
+// import whiteEarth from './pictures/globe.svg';
 import RenderModalCountry from './RenderModalCountry'
 import RenderModalRegistration from './RenderModalRegistration'
 import mapWorldIcon from './pictures/mapWorld.svg'
@@ -132,7 +132,7 @@ class HeaderClass extends React.Component {
             <span>{this.props.storeState.country}</span>
           </div> */}
           <Link className="" to="">
-            <h3></h3>
+            <h3 />
           </Link>
           <div className="headerSelect d-flex align-items-center justify-content-end ">
             <Dropdown setActiveFromChild="true" isOpen={this.state.dropdownOpen} toggle={this.toggleDropdownOpen} className="selectGeneral">
@@ -167,7 +167,7 @@ class HeaderClass extends React.Component {
           <div className='header d-xl-flex d-lg-flex d-md-flex d-sm-none d-none align-items-stretch justify-content-between'>
             <div className="d-flex align-items-center col-xl-2 col-lg-2 col-md-3 col-sm-2 col-2">
               <Link className="col-xl-7 col-lg-9 col-md-8 col-sm-8 col-7" to="">
-                <h3></h3>
+                <h3 />
               </Link>
               <div onClick={this.toggleModalCountry} className="headerGeoButton col-xl-5 col-lg-5 col-md-4 col-sm-5 col-5">
                 <span>{this.props.storeState.country}</span>

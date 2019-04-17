@@ -8,6 +8,10 @@
     padding-right: 15px;
 }
 
+.navigationBody::-webkit-scrollbar {
+    width: 0;
+}
+
 .navigationBody p {
     cursor: pointer;
     height: 40px;

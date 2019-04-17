@@ -6,6 +6,8 @@ import TextField from 'material-ui/TextField';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import DatePicker from 'material-ui/DatePicker';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import DropDownMenu from 'material-ui/DropDownMenu';
+import MenuItem from 'material-ui/MenuItem';
 
 
 
@@ -14,6 +16,7 @@ class DriverProfileBasicInformationClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            value:0,
             // date: {
             //     month: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Декабрь"],
             // },
@@ -33,6 +36,8 @@ class DriverProfileBasicInformationClass extends React.Component {
         alert('Your favorite flavor is: ' + this.state.value);
         event.preventDefault();
     }
+
+    handleChange = (event, index, value) => this.setState({value});
 
     // getMassNumbers(num) {
     //     let number = [];
@@ -66,8 +71,8 @@ class DriverProfileBasicInformationClass extends React.Component {
 
         const muiTheme = getMuiTheme({
             palette: {
-                 primary1Color: "#304269", //Button cansel / ok
-                 primary2Color: "#f60", //Focus date
+                primary1Color: "#304269", //Button cansel / ok
+                primary2Color: "#f60", //Focus date
                 // primary3Color: "#f60", // Null
                 // accent1Color: "#f60", // Null
                 // accent2Color: "#f60", // Null
@@ -77,7 +82,7 @@ class DriverProfileBasicInformationClass extends React.Component {
                 // canvasColor: "#f60", // bacgraund color 
                 // borderColor: "#f60", // border-bottom color
                 // disabledColor: "#f60", // PleseHolder
-                 pickerHeaderColor: "#304269", // Calendar header collor
+                pickerHeaderColor: "#304269", // Calendar header collor
                 // clockCircleColor: "#f60", // Null
                 // shadowColor: "#f60", // BoxShadow
             },
@@ -104,7 +109,7 @@ class DriverProfileBasicInformationClass extends React.Component {
                         <MuiThemeProvider muiTheme={muiTheme}>
                             <form onSubmit={this.formSubmit} id="basicInformation" className="d-flex flex-column col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12" >
                                 <TextField
-                                    hintText="Пожалуйста введите ваше имя"
+                                    hintText="Пожалуйста введите ваше Имя"
                                     floatingLabelText="Имя"
                                     className="d-xl-none d-lg-none d-md-none d-sm-block d-block"
                                     fullWidth="100%"
@@ -112,10 +117,10 @@ class DriverProfileBasicInformationClass extends React.Component {
                                     underlineFocusStyle={{ borderColor: "#304269" }}
                                 // errorText="This field is required"
                                 />
-                                <input className="d-xl-block d-lg-block d-md-block d-sm-none d-none " type="text" required />
+                                <input className="d-xl-block d-lg-block d-md-block d-sm-none d-none " type="text" />
 
                                 <TextField
-                                    hintText="Пожалуйста введите вашу Фамилию"
+                                    hintText="Пожалуйста введите Фамилию"
                                     floatingLabelText="Фамилия"
                                     className="d-xl-none d-lg-none d-md-none d-sm-block d-block"
                                     fullWidth="100%"
@@ -123,53 +128,35 @@ class DriverProfileBasicInformationClass extends React.Component {
                                     underlineFocusStyle={{ borderColor: "#304269" }}
                                 // errorText="This field is required"
                                 />
-                                <input className="d-xl-block d-lg-block d-md-block d-sm-none d-none " type="text" required />
-                                <p className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0">Дата рождения:</p>
-                                <DatePicker hintText="Дата рождения" className="calendarModal" />
-                                {/* <div className="d-flex justify-content-between">
-                                    <select className=" mr-1" name="number" >
-                                        {this.state.dataNumber.map((element, index) =>
-                                            <option value={element}>{element}</option>
-                                        )}
-                                    </select>
-                                    <select className=" mr-1" name="month" >
-                                        {this.state.date.month.map((element, index) =>
-                                            <option value={element}>{element}</option>
-                                        )}
-                                    </select>
-                                    <select className="" name="year" >
-                                        {this.state.dataYear.map((element, index) =>
-                                            <option value={element}>{element}</option>
-                                        )}
-                                    </select>
-                                </div> */}
-                                <p className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0">Lorem ipsum dolor sit 3.</p>
-                                <p className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0">Номер паспорта:</p>
-                                <input type="text" placeholder="12121215" required />
-                                <p className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0">Lorem ipsum dolor sit 4.</p>
-                                <p className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0">Дата выдачи:</p>
-                                <DatePicker hintText="Дата выдачи паспорта"  className="calendarModal" />
-                                {/* <div className="d-flex justify-content-between">
-                                    <select className="mr-1" name="number" >
-                                        {this.state.dataNumber.map((element, index) =>
-                                            <option value={element}>{element}</option>
-                                        )}
-                                    </select>
-                                    <select className="mr-1" name="month" >
-                                        {this.state.date.month.map((element, index) =>
-                                            <option value={element}>{element}</option>
-                                        )}
-                                    </select>
-                                    <select className="" name="year" >
-                                        {this.state.dataYear.map((element, index) =>
-                                            <option value={element}>{element}</option>
-                                        )}
-                                    </select>
-                                </div> */}
-                                <p className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0">Lorem ipsum dolor sit amet 5.</p>
-                                <p className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0">Страна проживания:</p>
-                                <input className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0" type="text" required />
-                                <p className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0">Lorem ipsum dolor sit amet 6.</p>
+                                <input className="d-xl-block d-lg-block d-md-block d-sm-none d-none " type="text" />
+
+                                <DatePicker floatingLabelText="Дата рождения" className="calendarModal" />
+
+
+                                <TextField
+                                    hintText="Пожалуйста введите номер"
+                                    floatingLabelText="Номер паспорта"
+                                    className="d-xl-none d-lg-none d-md-none d-sm-block d-block"
+                                    fullWidth="100%"
+                                    floatingLabelFocusStyle={{ color: "#304269" }}
+                                    underlineFocusStyle={{ borderColor: "#304269" }}
+                                // errorText="This field is required"
+                                />
+                                <input className="d-xl-block d-lg-block d-md-block d-sm-none d-none " type="text" />
+
+                                <DatePicker floatingLabelText="Дата выдачи паспорта" className="calendarModal" />
+
+
+                                <TextField
+                                    hintText="Укажите страну проживания"
+                                    floatingLabelText="Страна проживания"
+                                    className="d-xl-none d-lg-none d-md-none d-sm-block d-block"
+                                    fullWidth="100%"
+                                    floatingLabelFocusStyle={{ color: "#304269" }}
+                                    underlineFocusStyle={{ borderColor: "#304269" }}
+                                // errorText="This field is required"
+                                />
+
                                 <p className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0">Родной город:</p>
                                 <div className="d-flex">
                                     <select className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-6 mr-1" name="country" >
@@ -178,16 +165,32 @@ class DriverProfileBasicInformationClass extends React.Component {
                                     <LocationSearchInput />
                                     {/* <input className="w-100" type="text" required /> */}
                                 </div>
-                                <p className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0">Lorem ipsum dolor sit amet 7.</p>
                                 <p className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0">Языки:</p>
-                                <select className="w-100" name="language" required>
-                                    {this.state.language.map((element, index) =>
-                                        <option value={element}>{element}</option>
+                                <DropDownMenu
+                                    value={this.state.value}
+                                    hintText="Язык"
+                                    onChange={this.handleChange}
+                                    style={{width:"100%"}}
+                                    className="dropdownClass"
+                                    autoWidth={false}
+                                    selectedMenuItemStyle={{ color: "#f60" }}
+                                >
+                                {this.state.language.map((element, index) =>
+                                        <MenuItem value={index}  primaryText={element} />
                                     )}
-                                </select>
-                                <p className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0">Lorem ipsum dolor sit amet 8.</p>
-                                <p className="d-xl-none d-lg-none d-md-none d-sm-block d-block mb-0">О себе:</p>
-                                <textarea name="" id="" cols="30" rows="3" required></textarea>
+                                </DropDownMenu>
+
+                                <TextField
+                                    hintText="Расскажите о себе"
+                                    floatingLabelText="О себе"
+                                    className="d-xl-none d-lg-none d-md-none d-sm-block d-block"
+                                    fullWidth="100%"
+                                    floatingLabelFocusStyle={{ color: "#304269" }}
+                                    underlineFocusStyle={{ borderColor: "#304269" }}
+                                    multiLine={true}
+                                    rows={2}
+                                />
+                                <textarea className="d-xl-block d-lg-block d-md-block d-sm-none d-none " name="" id="" cols="30" rows="3"></textarea>
                                 <div className="d-flex justify-content-xl-start justify-content-lg-start justify-content-md-start justify-content-sm-center justify-content-center ">
                                     <button className="col-8 mb-5" htmlFor="basicInformation" type="submit">Сохранить Изменения</button>
                                 </div>

@@ -84,7 +84,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                 newArrayCity[index].city = e.currentTarget.value;
                 this.setState({ cities: newArrayCity });
                 break;
-            }
+            } 
             case "description": {
                 newArrayCity[index].description = e.currentTarget.value;
                 this.setState({ cities: newArrayCity });

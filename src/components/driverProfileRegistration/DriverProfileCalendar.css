@@ -1,11 +1,103 @@
 .calendarModal div {
     width: 100% !important;
+    cursor: pointer !important;
+}
+
+.calendarModal {
+    max-height: 40px;
+    border: 1px solid #ccc !important;
+    border-radius: 5px !important;
+}
+
+.dropdownClass hr,
+.calendarModal hr {
+    display: none;
+}
+
+.calendarModal label {
+    display: none;
 }
 
 .calendarModal input {
     font-family: "Roboto"!important;
     font-weight: 400 !important;
     font-size: 14px !important;
-    color: #333 !important;
+    color: #304269 !important;
     padding-left: 10px !important;
+    max-height: 40px !important;
+    margin: 0 !important;
+}
+
+.dropdownClass {
+    border: 1px solid #ccc !important;
+    border-radius: 5px !important;
+    max-height: 40px !important;
+    line-height: 40px !important;
+}
+
+.dropdownClass div {
+    max-height: 40px !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
+.dropdownClass button {
+    top: 0 !important;
+    padding: 0 !important;
+}
+
+.chipClass {
+    background-color: #304269 !important;
+}
+
+@media (max-width: 768px) {
+    .calendarModal {
+        max-height: none;
+        border: none!important;
+    }
+    .calendarModal input {
+        padding-left: 0px !important;
+        border: none!important;
+        margin-bottom: 0px !important;
+        max-height: none !important;
+        margin-top: 14px !important;
+    }
+    .dropdownClass hr,
+    .calendarModal hr {
+        display: block;
+    }
+    .calendarModal label {
+        display: block;
+    }
+    .dropdownClass {
+        border: none !important;
+        border-bottom: 1px solid #e0e0e0 !important;
+        border-radius: 0px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .calendarModal {
+        max-height: none;
+        border: none!important;
+    }
+    .calendarModal input {
+        padding-left: 0px !important;
+        border: none!important;
+        margin-bottom: 0px !important;
+        max-height: none !important;
+        margin-top: 14px !important;
+    }
+    .dropdownClass hr,
+    .calendarModal hr {
+        display: block;
+    }
+    .calendarModal label {
+        display: block;
+    }
+    .dropdownClass {
+        border: none !important;
+        border-bottom: 1px solid #e0e0e0 !important;
+        border-radius: 0px !important;
+    }
 }
