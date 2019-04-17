@@ -37,6 +37,7 @@
     /* background: url(img/diverBG.png) 100% 100% no-repeat; */
     background-size: 100% no-repeat;
     background-size: cover;
+    background-position: bottom right;
     transition: ease 0.3s;
 }
 
