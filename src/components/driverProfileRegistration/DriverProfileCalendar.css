@@ -83,14 +83,14 @@
 
 @media (max-width: 768px) {
     .calendarModal {
-        height: 65px !important;
+        max-height: none !important;
         border: none !important;
     }
     .calendarModal input {
+        max-height: none !important;
         padding-left: 0px !important;
         border: none!important;
         margin-bottom: 0px !important;
-        height: 65px !important;
         margin-top: 14px !important;
     }
     .dropdownClass hr,
@@ -101,7 +101,7 @@
         display: block;
     }
     .calendarModal div {
-        max-height: 65px !important;
+        max-height: none !important;
     }
     .dropdownClass {
         border: none !important;
@@ -109,6 +109,7 @@
         border-radius: 0px !important;
     }
     .dropdownClass div {
+        max-height: none !important;
         padding: 0 !important;
     }
 }
