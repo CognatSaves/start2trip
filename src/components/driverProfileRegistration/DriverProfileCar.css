@@ -25,12 +25,30 @@
 }
 
 .filledCardImgAdd {
+    position: relative;
     width: 100%;
-    min-height: 208px;
     background: #686868;
 }
 
+.filledCardImgAddBg {
+    position: absolute;
+    z-index: 3;
+    width: 100%;
+    height: 100%;
+    background: #686868;
+}
+
+.filledCardImgAdd img {
+    position: relative;
+    z-index: 2;
+}
+
 .filledCardImgAdd p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 4;
     width: 60px;
     height: 60px;
     background: url(./img/addCarWhite.svg) no-repeat;
@@ -122,12 +140,13 @@
     color: #304269;
 }
 
-.cardInformation p {
+
+/* .cardInformation p {
     padding-left: 35px;
     background: no-repeat;
     background-size: 30px 30px;
     background-position: left 2px bottom -2px;
-}
+} */
 
 p.filledCardInformationDeleteCar,
 p.filledCardInformationNameCarEdit {

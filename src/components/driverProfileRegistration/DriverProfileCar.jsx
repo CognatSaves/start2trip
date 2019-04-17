@@ -228,23 +228,26 @@ class DriverProfileCarClass extends React.Component {
                     </div>
                 </Collapse>
 
-                <div className="filledCardBody p-0 d-flex flex-wrap col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 " >
-                    <div style={{ display: this.state.collapse ? "none" : "block" }} onClick={this.toggle} className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 p-2" >
+                <div className="filledCardBody p-0 d-flex justify-content-xl-start justify-content-lg-start justify-content-md-start justify-content-sm-center justify-content-center flex-wrap col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 " >
+                    <div style={{ display: this.state.collapse ? "none" : "block" }} onClick={this.toggle} className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-11 p-2" >
                         <div className="filledCard d-flex flex-column p-0">
                             <div className="filledCardImgAdd d-flex justify-content-center align-items-center">
-                                <p />
+                                <div className="filledCardImgAddBg">
+                                    <p />
+                                </div>
+                                <img src={imgCar} className="img-fluid" alt="imgCar" width="100%" height="100%" />
                             </div>
                             <div className="cardInformationType d-flex flex-column justify-content-center">
                                 <p>Название автомобиля </p>
                                 <div className="cardInformation d-flex">
-                                    <p style={{ backgroundImage: `url(${sedanIcon})` }} >Тип </p>
+                                    <p>Тип </p>
                                     <span>, колличество мест</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                     {this.state.car.map((element, index) =>
-                        <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 p-2">
+                        <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-11 p-2">
                             <div className="filledCard d-flex flex-column p-0">
                                 <div className="filledCardInformation d-flex flex-column">
                                     <div className="filledCardInformationNameCar d-flex justify-content-end w-100 align-items-center">
@@ -261,7 +264,7 @@ class DriverProfileCarClass extends React.Component {
                                 <div className="cardInformationType d-flex flex-column">
                                     <p>Toyota Land Cruiser Prado 3.0d</p>
                                     <div className="cardInformation d-flex">
-                                        <p style={{ backgroundImage: `url(${sedanIcon})` }} >Внедорожник</p>
+                                        <p>Внедорожник</p>
                                         <span>, 4 места</span>
                                     </div>
                                 </div>

@@ -36,7 +36,7 @@
 .driverBG {
     /* background: url(img/diverBG.png) 100% 100% no-repeat; */
     background-size: 100% no-repeat;
-    background-size: cover;
+    background-size: contain;
     background-position: bottom right;
     transition: ease 0.3s;
 }
@@ -132,6 +132,13 @@
     font-family: "Roboto";
     font-weight: 400;
     font-size: 10px;
+}
+
+.bodyTopDriverInfoPlace p {
+    padding-left: 15px;
+    background: url(img/locationGray.svg) no-repeat;
+    background-size: 13px 13px;
+    background-position: center left;
 }
 
 @media (max-width: 1110px) {

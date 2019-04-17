@@ -52,10 +52,10 @@ class DriverProfileNavigationClass extends React.Component {
                         <div className="bodyTopDriverInfo col-7">
                             <div className="d-flex flex-column align-items-start">
                                 <p className="mb-0 mr-2">Валерий</p>
-                                <Stars value={"4.5"} valueDisplay="block" commentNumberDisplay="block" />
+                                <Stars value={"4.5"} valueDisplay="block" commentNumberDisplay="block" commentNumber="30 отзывов" />
                             </div>
                             <div className="bodyTopDriverInfoPlace">
-                                <p className="mt-1 mb-xl-4 mb-lg-4 mb-md-4 mb-sm-2 mb-2 ">Грузия,Тбилиси</p>
+                                <p className="mt-1 mb-xl-4 mb-lg-4 mb-md-4 mb-sm-2 mb-2">Грузия,Тбилиси</p>
                                 {/* TODO Location */}
                             </div>
                             <div className="bodyTopDriverInfoRide p-0 d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column">
@@ -66,9 +66,9 @@ class DriverProfileNavigationClass extends React.Component {
                                         <p>ПОЕЗДОК</p>
                                     </div>
                                 </div>
-                                <div className="bodyTopDriverInfoRideMobail d-xl-none d-lg-none d-md-none d-sm-flex d-flex align-items-center justify-content-between col-xl-3 col-lg-3 col-md-3 col-sm-5 col-9 p-0">
-                                    <p>ВСЕГО ПОЕЗДОК</p>
-                                    <span>18</span>
+                                <div className="bodyTopDriverInfoRideMobail d-xl-none d-lg-none d-md-none d-sm-flex d-flex align-items-center col-xl-3 col-lg-3 col-md-3 col-sm-5 col-9 p-0">
+                                    <p>ВСЕГО ПОЕЗДОК:</p>
+                                    <span className="pl-1">18</span>
                                 </div>
                                 <div className="d-xl-flex d-lg-flex d-md-flex d-sm-none d-none align-items-center col-xl-2 col-lg-2 col-md-2 col-sm-6 col-6 p-0">
                                     <span>8</span>
@@ -77,9 +77,9 @@ class DriverProfileNavigationClass extends React.Component {
                                         <p>ПОЕЗДКИ</p>
                                     </div>
                                 </div>
-                                <div className="bodyTopDriverInfoRideMobail d-xl-none d-lg-none d-md-none d-sm-flex d-flex align-items-center justify-content-between col-xl-3 col-lg-3 col-md-3 col-sm-5 col-12 p-0">
-                                    <p>ПРЕДСТОЯЩИЕ ПОЕЗДКИ</p>
-                                    <span>8</span>
+                                <div className="bodyTopDriverInfoRideMobail d-xl-none d-lg-none d-md-none d-sm-flex d-flex align-items-center col-xl-3 col-lg-3 col-md-3 col-sm-5 col-12 p-0">
+                                    <p>ПРЕДСТОЯЩИЕ ПОЕЗДКИ:</p>
+                                    <span className="pl-1">8</span>
                                 </div>
                             </div>
                         </div>

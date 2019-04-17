@@ -1,5 +1,6 @@
 .calendarModal div {
     width: 100% !important;
+    max-height: 50px !important;
     cursor: pointer !important;
 }
 
@@ -16,14 +17,16 @@
 
 .calendarModal label {
     display: none;
+    font-weight: 400 !important;
+    font-size: 18px !important;
 }
 
 .calendarModal input {
-    font-family: "Roboto"!important;
     font-weight: 400 !important;
-    font-size: 14px !important;
+    font-size: 16px !important;
     color: #304269 !important;
     padding-left: 10px !important;
+    margin: 5px 0 !important;
     max-height: 40px !important;
     margin: 0 !important;
 }
@@ -32,13 +35,13 @@
     border: 1px solid #ccc !important;
     border-radius: 5px !important;
     max-height: 40px !important;
-    line-height: 40px !important;
 }
 
 .dropdownClass div {
     max-height: 40px !important;
+    line-height: 40px !important;
     border: none !important;
-    padding: 0 !important;
+    padding-left: 5px !important;
 }
 
 .dropdownClass button {
@@ -69,10 +72,16 @@
     .calendarModal label {
         display: block;
     }
+    .calendarModal div {
+        max-height: none !important;
+    }
     .dropdownClass {
         border: none !important;
         border-bottom: 1px solid #e0e0e0 !important;
         border-radius: 0px !important;
+    }
+    .dropdownClass div {
+        padding: 0 !important;
     }
 }
 
@@ -99,5 +108,8 @@
         border: none !important;
         border-bottom: 1px solid #e0e0e0 !important;
         border-radius: 0px !important;
+    }
+    .dropdownClass div {
+        padding: 0 !important;
     }
 }

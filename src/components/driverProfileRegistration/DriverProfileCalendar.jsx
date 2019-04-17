@@ -64,6 +64,7 @@ class DriverProfileCalendarClass extends React.Component {
                 // shadowColor: "#f60", // BoxShadow
             },
             fontFamily: 'Roboto',
+            fontSize: "18px",
         });
 
 
