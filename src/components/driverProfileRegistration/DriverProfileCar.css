@@ -24,6 +24,27 @@
     width: 100%;
 }
 
+.filledCardImgAdd {
+    width: 100%;
+    min-height: 208px;
+    background: #686868;
+}
+
+.filledCardImgAdd p {
+    width: 60px;
+    height: 60px;
+    background: url(./img/addCarWhite.svg) no-repeat;
+    background-size: 60px 60px;
+    transition: all 0.3s;
+}
+
+.filledCardImgAdd p:hover {
+    width: 60px;
+    height: 60px;
+    background: url(./img/addCarOrange.svg) no-repeat;
+    background-size: 60px 60px;
+}
+
 .filledCardInformation p {
     font-weight: 500;
     font-size: 14px;

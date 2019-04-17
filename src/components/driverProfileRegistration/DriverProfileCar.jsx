@@ -121,7 +121,7 @@ class DriverProfileCarClass extends React.Component {
                         <div className="carAddNewCarPhotoCar col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " >
                             {$imagePreview}
                             <label htmlFor="addCarFile" >+Добавить фото автомобиля</label>
-                            <input type="file" id="addCarFile" style={{ display: "none" }} onChange={this._handleImageChange} required/>
+                            <input type="file" id="addCarFile" style={{ display: "none" }} onChange={this._handleImageChange} required />
                         </div>
                         <form onSubmit={this.handleSubmit} id="newCar" className="carAddNewCarInformation d-flex flex-column col-xl-6 col-lg-6 col-md-6 col-sm-11 col-11 p-0">
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mb-3 mt-2">
@@ -130,7 +130,7 @@ class DriverProfileCarClass extends React.Component {
                                     this.setState({
                                         newCarCard: { ...this.state.newCarCard, nameCar: e.currentTarget.value }
                                     })
-                                }} type="text" required/>
+                                }} type="text" required />
                             </div>
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mb-3">
                                 <p className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">Год автомобиля:</p>
@@ -138,7 +138,7 @@ class DriverProfileCarClass extends React.Component {
                                     this.setState({
                                         newCarCard: { ...this.state.newCarCard, yearCar: e.currentTarget.value }
                                     })
-                                }} type="text" required/>
+                                }} type="text" required />
                             </div>
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mb-3">
                                 <p className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">Номер автомобиля:</p>
@@ -146,7 +146,7 @@ class DriverProfileCarClass extends React.Component {
                                     this.setState({
                                         newCarCard: { ...this.state.newCarCard, plateNumberCar: e.currentTarget.value }
                                     })
-                                }} type="text" required/>
+                                }} type="text" required />
                             </div>
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mb-3">
                                 <p className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">Тип автомобиля:</p>
@@ -229,6 +229,20 @@ class DriverProfileCarClass extends React.Component {
                 </Collapse>
 
                 <div className="filledCardBody p-0 d-flex flex-wrap col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                    <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 p-2">
+                        <div className="filledCard d-flex flex-column p-0">
+                            <div className="filledCardImgAdd d-flex justify-content-center align-items-center">
+                                <p />
+                            </div>
+                            <div className="cardInformationType d-flex flex-column justify-content-center">
+                                <p>Название автомобиля </p>
+                                <div className="cardInformation d-flex">
+                                    <p style={{ backgroundImage: `url(${sedanIcon})` }} >Тип </p>
+                                    <span>, колличество мест</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     {this.state.car.map((element, index) =>
                         <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 p-2">
                             <div className="filledCard d-flex flex-column p-0">
