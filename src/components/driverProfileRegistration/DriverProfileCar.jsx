@@ -113,9 +113,9 @@ class DriverProfileCarClass extends React.Component {
 
         return (
             <div >
-                <div style={{ opacity: this.state.collapse ? "0" : "1" }} className="col-12 d-flex justify-content-center mt-md-0 mt-sm-4 mt-4">
+                {/* <div style={{ opacity: this.state.collapse ? "0" : "1" }} className="col-12 d-flex justify-content-center mt-md-0 mt-sm-4 mt-4">
                     <button className="carShowButton" onClick={this.toggle}>Добавить Автомобиль</button>
-                </div>
+                </div> */}
                 <Collapse isOpen={this.state.collapse}>
                     <div className="carAddNewCar d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-start align-items-lg-start align-items-md-start align-items-sm-center align-items-center">
                         <div className="carAddNewCarPhotoCar col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " >
@@ -228,8 +228,8 @@ class DriverProfileCarClass extends React.Component {
                     </div>
                 </Collapse>
 
-                <div className="filledCardBody p-0 d-flex flex-wrap col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
-                    <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 p-2">
+                <div className="filledCardBody p-0 d-flex flex-wrap col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 " >
+                    <div style={{ display: this.state.collapse ? "none" : "block" }} onClick={this.toggle} className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 p-2" >
                         <div className="filledCard d-flex flex-column p-0">
                             <div className="filledCardImgAdd d-flex justify-content-center align-items-center">
                                 <p />
