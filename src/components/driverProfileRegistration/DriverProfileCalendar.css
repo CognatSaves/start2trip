@@ -59,7 +59,7 @@
 }
 
 .inputClass {
-    height: 55px !important;
+    height: 65px !important;
 }
 
 .inputClass input {
@@ -91,7 +91,7 @@
         border: none!important;
         margin-bottom: 0px !important;
         height: 65px !important;
-        margin-top: px !important;
+        margin-top: 14px !important;
     }
     .dropdownClass hr,
     .calendarModal hr {
