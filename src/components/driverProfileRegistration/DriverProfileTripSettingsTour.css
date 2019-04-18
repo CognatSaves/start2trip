@@ -15,7 +15,7 @@
     border-radius: 5px;
     margin-bottom: 50px;
     min-height: 500px;
-    transition: all 0.3s;
+    /* transition: all 0.3s; */
 }
 
 .tourContent {
@@ -43,24 +43,16 @@
 
 /* Content Bigin */
 
-.tourContent div {
-    position: relative;
-    min-height: 40px;
-    margin-bottom: 15px;
-    width: 100%;
-}
-
 .tourContent .tripSettingsContentDeletButton {
     position: absolute;
     left: 100%;
 }
 
-.tourContent p {
+.tourContent label {
     font-family: "Roboto";
     font-weight: 500;
     font-size: 14px;
     color: #686868;
-    margin: 0;
 }
 
 .tourContent span {
@@ -122,8 +114,8 @@ div.tourContentCheckbox {
 .tourContentCheckbox span {
     position: absolute;
     z-index: 3;
-    top: 7px;
-    left: 2px;
+    top: -7px;
+    left: 0px;
     height: 18px;
     width: 18px;
     background-color: #fff;
@@ -225,13 +217,13 @@ div.tourContentCheckbox {
     transition: all 0.3s;
 }
 
-.tourContentAddButton p {
+.tourContentAddButton span {
     align-self: center;
     transition: all 0.3s;
     cursor: pointer;
 }
 
-.tourContentAddButton p:hover {
+.tourContentAddButton span:hover {
     color: #f60;
 }
 

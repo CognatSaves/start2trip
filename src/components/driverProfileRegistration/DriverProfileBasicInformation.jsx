@@ -6,6 +6,7 @@ import TextField from 'material-ui/TextField';
 import DatePicker from 'material-ui/DatePicker';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
+import Chip from 'material-ui/Chip';
 
 
 
@@ -15,6 +16,7 @@ class DriverProfileBasicInformationClass extends React.Component {
         super(props);
         this.state = {
             value: 0,
+            chipData: [],
             language: ["Грузинский", "Русский", "Корейский", "Хинди"],
 
         }
@@ -27,8 +29,23 @@ class DriverProfileBasicInformationClass extends React.Component {
         event.preventDefault();
     }
 
-    handleChange = (event, index, value) => this.setState({ value });
+    handleChange = (event, index, value) =>{ 
+        this.setState({ value })
+        this.chipData = this.state.chipData;
+        this.chipData.push({key:this.state.chipData.length, label:value});
 
+        const languageToDelete = this.language.map((language) => language).indexOf(value);
+        this.language.splice(languageToDelete, 1);
+        this.setState({ language: this.language });
+    };
+
+    handleRequestDelete = (key) => {
+
+        this.chipData = this.state.chipData;
+        const chipToDelete = this.chipData.map((chip) => chip.key).indexOf(key);
+        this.chipData.splice(chipToDelete, 1);
+        this.setState({ chipData: this.chipData });
+    };
 
     render() {
 
@@ -112,11 +129,31 @@ class DriverProfileBasicInformationClass extends React.Component {
                                     id="basicInfoLanguage"
                                 >
                                     {this.state.language.map((element, index) =>
-                                        <MenuItem value={index} primaryText={element} />
+                                        <MenuItem value={element} primaryText={element} />
                                     )}
                                 </DropDownMenu>
                                 <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
                             </div>
+                            <div className="d-flex align-items-center">
+                                <label style={{display : this.state.chipData.length ? "block":"none"}} htmlFor="basicInfoLanguage" className="col-xl-2 col-lg-2 col-md-2 col-sm-0 col-0"></label>
+                                <div className="d-flex flex-wrap align-items-сenter col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0 mt-1 mb-2">
+
+                                        {this.state.chipData.map((element, index) =>
+                                            <Chip
+                                                key={element.key}
+                                                onRequestDelete={() => this.handleRequestDelete(element.key)}
+                                                labelStyle={{ color: "#686868" }}
+                                                labelColor="#f60"
+                                                textColor="#304269"
+                                                className="chipClass"
+                                            >
+                                                {element.label}
+                                            </Chip>
+                                        )}
+
+                                </div>
+                            </div>
+
                             <div className="bottomContentNote d-flex align-items-start">
                                 <label htmlFor="basicInfoMultiLine" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">О себе:</label>
                                 <TextField
@@ -127,7 +164,7 @@ class DriverProfileBasicInformationClass extends React.Component {
                                     floatingLabelFocusStyle={{ color: "#304269" }}
                                     underlineFocusStyle={{ borderColor: "#304269" }}
                                     multiLine={true}
-                                    rows={2}
+                                    rows={1}
                                 />
                                 <textarea className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " id="basicInfoMultiLine" name="" cols="30" rows="3"></textarea>
                                 <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>

@@ -77,7 +77,19 @@
 }
 
 .chipClass {
-    background-color: #304269 !important;
+    margin: 2px 5px 5px 0px !important;
+    background-color: #e0e0e0 !important;
+    border-radius: 5px !important;
+    border: 1px solid #e0e0e0 !important;
+}
+
+.chipClass svg {
+    fill: #aeaeae !important;
+    transition: all 2s;
+}
+
+.chipClass svg:hover {
+    fill: #304269 !important;
 }
 
 @media (max-width: 768px) {

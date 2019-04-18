@@ -18,6 +18,14 @@
     width: 100%;
 }
 
+.searchDropdownDriverTour {
+    position: absolute;
+    z-index: 4;
+    top: 45px;
+    left: 0px;
+    color: black;
+}
+
 @media (max-width: 768px) {
     .searchInputDriverInformation {
         padding-left: 0px !important;

@@ -329,6 +329,7 @@ p.filledCardInformationNameCarEdit:hover {
     font-weight: 500;
     color: #333;
     padding-left: 28px;
+    padding-bottom: 5px;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;

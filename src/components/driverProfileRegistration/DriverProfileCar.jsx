@@ -8,7 +8,10 @@ import seatIcon from './img/seat.svg'
 import snowflakeIcon from './img/snowflake.svg'
 import wifiIcon from './img/wifi.svg'
 import { Collapse } from 'reactstrap';
-import {isMobile} from 'react-device-detect';
+import { isMobile } from 'react-device-detect';
+import DropDownMenu from 'material-ui/DropDownMenu';
+import MenuItem from 'material-ui/MenuItem';
+import TextField from 'material-ui/TextField';
 
 
 
@@ -44,12 +47,12 @@ class DriverProfileCarClass extends React.Component {
 
     toggle() {
         this.setState(state => ({ collapse: !state.collapse, imagePreviewUrl: '', newCarCard: { nameCar: "", yearCar: "", plateNumberCar: "", typeCar: "", flueType: "" }, comfort: [], carImg: [], }));
-        if(isMobile){
-            window.scroll(0,300);
-        }else{
-            window.scroll(0,322);
+        if (isMobile) {
+            window.scroll(0, 300);
+        } else {
+            window.scroll(0, 322);
         }
-           
+
     }
 
     _handleSubmit(e) {
@@ -74,6 +77,19 @@ class DriverProfileCarClass extends React.Component {
         reader.readAsDataURL(file)
     }
 
+    handleChange = (event, index, value) => {
+        if (value == "petrol" || value == "diesel" || value == "gas") {
+            this.setState({
+                newCarCard: { ...this.state.newCarCard, flueType: value }
+            })
+        } else {
+            this.setState({
+                newCarCard: { ...this.state.newCarCard, typeCar: value }
+            })
+        }
+
+    };
+
 
     render() {
         let { imagePreviewUrl } = this.state;
@@ -97,53 +113,112 @@ class DriverProfileCarClass extends React.Component {
                         <form onSubmit={this.handleSubmit} id="newCar" className="carAddNewCarInformation d-flex flex-column col-xl-6 col-lg-6 col-md-6 col-sm-11 col-11 p-0">
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mb-3 mt-2">
                                 <label htmlFor="profileCarBrend" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">Марка автомобиля:</label>
-                                <input id="profileCarBrend" value={this.state.newCarCard.nameCar} onChange={(e) => {
+                                <input id="profileCarBrend" className="d-xl-block d-lg-block d-md-block d-sm-none d-none " value={this.state.newCarCard.nameCar} onChange={(e) => {
                                     this.setState({
                                         newCarCard: { ...this.state.newCarCard, nameCar: e.currentTarget.value }
                                     })
-                                }} type="text" required />
+                                }} type="text" />
+                                <TextField
+                                    value={this.state.newCarCard.nameCar}
+                                    onChange={(e) => {
+                                        this.setState({
+                                            newCarCard: { ...this.state.newCarCard, nameCar: e.currentTarget.value }
+                                        })
+                                    }}
+                                    hintText="Напишите марку автомобиля"
+                                    floatingLabelText="Марка автомобиля"
+                                    className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
+                                    fullWidth="100%"
+                                    floatingLabelFocusStyle={{ color: "#304269" }}
+                                    underlineFocusStyle={{ borderColor: "#304269" }}
+
+                                />
                             </div>
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mb-3">
                                 <label htmlFor="profileCarYaer" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">Год автомобиля:</label>
-                                <input id="profileCarYaer" value={this.state.newCarCard.yearCar} onChange={(e) => {
+                                <input id="profileCarYaer" className="d-xl-block d-lg-block d-md-block d-sm-none d-none " value={this.state.newCarCard.yearCar} onChange={(e) => {
                                     this.setState({
                                         newCarCard: { ...this.state.newCarCard, yearCar: e.currentTarget.value }
                                     })
-                                }} type="text" required />
+                                }} type="text" />
+                                <TextField
+                                    value={this.state.newCarCard.yearCar}
+                                    onChange={(e) => {
+                                        this.setState({
+                                            newCarCard: { ...this.state.newCarCard, yearCar: e.currentTarget.value }
+                                        })
+                                    }}
+                                    hintText="Напишите год автомобиля"
+                                    floatingLabelText="Год автомобиля"
+                                    className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
+                                    fullWidth="100%"
+                                    floatingLabelFocusStyle={{ color: "#304269" }}
+                                    underlineFocusStyle={{ borderColor: "#304269" }}
+
+                                />
                             </div>
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mb-3">
                                 <label htmlFor="profileCarNumber" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">Номер автомобиля:</label>
-                                <input id="profileCarNumber" value={this.state.newCarCard.plateNumberCar} onChange={(e) => {
+                                <input id="profileCarNumber" className="d-xl-block d-lg-block d-md-block d-sm-none d-none " value={this.state.newCarCard.plateNumberCar} onChange={(e) => {
                                     this.setState({
                                         newCarCard: { ...this.state.newCarCard, plateNumberCar: e.currentTarget.value }
                                     })
                                 }} type="text" required />
+                                <TextField
+                                    value={this.state.newCarCard.plateNumberCar}
+                                    onChange={(e) => {
+                                        this.setState({
+                                            newCarCard: { ...this.state.newCarCard, plateNumberCar: e.currentTarget.value }
+                                        })
+                                    }}
+                                    hintText="Напишите номер автомобиля"
+                                    floatingLabelText="Номер автомобиля"
+                                    className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
+                                    fullWidth="100%"
+                                    floatingLabelFocusStyle={{ color: "#304269" }}
+                                    underlineFocusStyle={{ borderColor: "#304269" }}
+
+                                />
                             </div>
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mb-3">
                                 <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">Тип автомобиля:</label>
-                                <select value={this.state.newCarCard.typeCar} onChange={(e) => {
-                                    this.setState({
-                                        newCarCard: { ...this.state.newCarCard, typeCar: e.currentTarget.value }
-                                    })
-                                }} name="typeCar">
-                                    <option value="sedan">Седан</option>
-                                    <option value="microbus">Микроавтобус</option>
-                                    <option value="minivan">Минивэн</option>
-                                    <option value="jeep">Внедорожник</option>
-                                </select>
+                                <DropDownMenu
+                                    value={this.state.newCarCard.typeCar}
+                                    textColor= "#fff"
+                                    hintText="Тип автомобиля"
+                                    className=""
+                                    onChange={this.handleChange}
+                                    style={{ width: "100%" }}
+                                    className="dropdownClass"
+                                    autoWidth={false}
+                                    selectedMenuItemStyle={{ color: "#f60" }}
+                                    name="typeCar"
+                                >
+                                    <MenuItem value={"sedan"} primaryText={"Седан"} />
+                                    <MenuItem value={"microbus"} primaryText={"Микроавтобус"} />
+                                    <MenuItem value={"minivan"} primaryText={"Минивэн"} />
+                                    <MenuItem value={"jeep"} primaryText={"Внедорожник"} />
+
+                                </DropDownMenu>
                             </div>
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mb-3">
                                 <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">Тип топлива:</label>
-                                <select value={this.state.newCarCard.flueType} onChange={(e) => {
-                                    this.setState({
-                                        newCarCard: { ...this.state.newCarCard, flueType: e.currentTarget.value }
-                                    }); console.log(this.state.carImg)
-                                }} name="typeFuel">
-                                    <option value="petrol">Бензин</option>
-                                    <option value="diesel">Дизель</option>
-                                    <option value="gas">Газ</option>
-                                    <option value="hybrid">Гибрид</option>
-                                </select>
+                                <DropDownMenu
+                                    value={this.state.newCarCard.flueType}
+                                    hintText="Тип автомобиля"
+                                    className=""
+                                    onChange={this.handleChange}
+                                    style={{ width: "100%" }}
+                                    className="dropdownClass"
+                                    autoWidth={false}
+                                    selectedMenuItemStyle={{ color: "#f60" }}
+                                    name="typeFuel"
+                                >
+                                    <MenuItem value={"petrol"} primaryText={"Бензин"} />
+                                    <MenuItem value={"diesel"} primaryText={"Дизель"} />
+                                    <MenuItem value={"gas"} primaryText={"Газ"} />
+
+                                </DropDownMenu>
                             </div>
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-start mb-3">
                                 <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-4 p-0">Удобства:</label>
@@ -191,7 +266,7 @@ class DriverProfileCarClass extends React.Component {
                                 </div>
                             </div>
                             <div className="carAddNewCarButton d-flex align-items-end mb-5">
-                                <span className="col-4 p-0"></span>
+                                <span className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-4 p-0" />
                                 <button htmlFor="newCar" type="submit">Добавить Автомобиль</button>
                                 <span className="ml-3" onClick={this.toggle}>Отмена</span>
                             </div>
