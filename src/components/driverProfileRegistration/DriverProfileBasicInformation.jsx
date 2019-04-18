@@ -114,61 +114,50 @@ class DriverProfileBasicInformationClass extends React.Component {
                                     <DatePicker floatingLabelText="Дата выдачи паспорта" className="calendarModal col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0" />
                                     <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
                                 </div>
-                                <div className="bottomContentNote d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column align-items-center">
-                                    <TextField
-                                        hintText="Укажите страну проживания"
-                                        floatingLabelText="Страна проживания"
-                                        className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
-                                        fullWidth="100%"
-                                        floatingLabelFocusStyle={{ color: "#304269" }}
-                                        underlineFocusStyle={{ borderColor: "#304269" }}
-                                    />
-                                    <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Родной город:</label>
-                                    <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">
-                                        <select className="d-xl-block d-lg-block d-md-block d-sm-none d-none  mr-1" name="country" >
-                                            <option value="Грузия">Грузия</option>
-                                        </select>
-                                        <LocationSearchInput />
+                                <div className="bottomContentNote d-flex align-items-center">
+                                    <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Город:</label>
+                                    <div className="d-flex col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">
+                                        <LocationSearchInput classInput="searchInputDriverInformation" classDropdown="searchDropdownDriverInformation" />
                                     </div>
                                     <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
                                 </div>
                                 <div className="bottomContentNote d-flex align-items-center">
                                     <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Языки:</label>
                                     <DropDownMenu
-                                    value={this.state.value}
-                                    hintText="Язык"
-                                    className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
-                                    onChange={this.handleChange}
-                                    style={{width:"100%"}}
-                                    className="dropdownClass"
-                                    autoWidth={false}
-                                    selectedMenuItemStyle={{ color: "#f60" }}
-                                >
-                                {this.state.language.map((element, index) =>
-                                        <MenuItem value={index}  primaryText={element} />
-                                    )}
-                                </DropDownMenu>
+                                        value={this.state.value}
+                                        hintText="Язык"
+                                        className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
+                                        onChange={this.handleChange}
+                                        style={{ width: "100%" }}
+                                        className="dropdownClass"
+                                        autoWidth={false}
+                                        selectedMenuItemStyle={{ color: "#f60" }}
+                                    >
+                                        {this.state.language.map((element, index) =>
+                                            <MenuItem value={index} primaryText={element} />
+                                        )}
+                                    </DropDownMenu>
                                     <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
                                 </div>
                                 <div className="bottomContentNote d-flex align-items-start">
                                     <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">О себе:</label>
                                     <TextField
-                                    hintText="Расскажите о себе"
-                                    floatingLabelText="О себе"
-                                    className="d-xl-none d-lg-none d-md-none d-sm-block d-block"
-                                    fullWidth="100%"
-                                    floatingLabelFocusStyle={{ color: "#304269" }}
-                                    underlineFocusStyle={{ borderColor: "#304269" }}
-                                    multiLine={true}
-                                    rows={2}
-                                />
-                                <textarea className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " name="" id="" cols="30" rows="3"></textarea>
+                                        hintText="Расскажите о себе"
+                                        floatingLabelText="О себе"
+                                        className="d-xl-none d-lg-none d-md-none d-sm-block d-block multiLineInputClass"
+                                        fullWidth="100%"
+                                        floatingLabelFocusStyle={{ color: "#304269" }}
+                                        underlineFocusStyle={{ borderColor: "#304269" }}
+                                        multiLine={true}
+                                        rows={2}
+                                    />
+                                    <textarea className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " name="" id="" cols="30" rows="3"></textarea>
                                     <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
                                 </div>
                                 <div className="d-flex justify-content-xl-start justify-content-lg-start justify-content-md-start justify-content-sm-center justify-content-center ">
                                     <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2"></label>
                                     <button className="col-8 mb-5" htmlFor="basicInformation" type="submit">Сохранить Изменения</button>
-                                </div> 
+                                </div>
                             </form>
                         </MuiThemeProvider>
                     </div>

@@ -141,9 +141,6 @@ class DriverProfileTripSettingsTourClass extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <div style={{ opacity: this.state.collapse ? "0" : "1" }} className="col-12 d-flex justify-content-center p-0 mt-md-0 mt-sm-4 mt-4">
-                    <button className="addTourShow" onClick={this.toggle}>Добавить Тур</button>
-                </div>
                 <Collapse isOpen={this.state.collapse}>
                     <div className="tourSettingsBody">
                         <form onSubmit={this.formSubmit} id="newTourForm" className="tourContent col-lx-6 col-lg-6 col-md-6 col-sm-12 col-12">
@@ -163,7 +160,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                         <div className="mb-0">
                                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
                                                 <p className="col-xl-4 col-lg-4 col-md-4 col-sm-11 col-11 pt-2 pl-0">Населённый пункт:</p>
-                                                <LocationSearchInput address={this.state.cities[index].city} changeCity={this.changeAllValue.bind(this, index)} />
+                                                <LocationSearchInput address={this.state.cities[index].city} changeCity={this.changeAllValue.bind(this, index)} classDropdown="searchDropdownDriverInformation" />
                                                 {/* <input className="pl-0 mt-3" type="text" id="city" value={this.state.cities[index].city} onChange={this.changeAllValue.bind(this, index)} required/> */}
                                                 <div style={{ display: index ? "block" : "none" }} className={index ? "tripSettingsContentDeletButton col-xl-3 col-lg-3 col-md-3 col-sm-11 col-11 mb-0 mt-xl-4 mt-lg-4 mt-md-4 mt-sm-2 mt-2" : "tripSettingsContentDeletButton col-xl-3 col-lg-3 col-md-3 col-sm-11 col-11 mb-0 "} onClick={() => { this.deleteCity(index) }}>Удалить город</div>
                                             </div>
@@ -266,13 +263,33 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                     </div>
                 </Collapse>
                 <div className="tourBodyElement">
-                    <div className="tourBodyElementTitle d-flex align-items-center">
+                    {/* <div className="tourBodyElementTitle d-flex align-items-center">
                         <p>Ваши туры</p>
-                    </div>
+                    </div> */}
 
-                    <div className="p-0 d-flex flex-wrap col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div className="p-0 d-flex  justify-content-xl-start justify-content-lg-start justify-content-md-start justify-content-sm-center justify-content-center flex-wrap col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div style={{ display: this.state.collapse ? "none" : "block" }} onClick={this.toggle} className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-11 p-2" >
+                            <div className="filledCard d-flex flex-column p-0">
+                                <div className="filledCardImgAdd d-flex justify-content-center align-items-center">
+                                    <div className="filledCardImgAddBg">
+                                        <span />
+                                    </div>
+                                    <img src={georgiaImg} className="img-fluid" alt="imgCar" width="100%" height="100%" />
+                                </div>
+                                <div className="cardInformationType d-flex flex-column">
+                                    <p>Название Тура</p>
+                                    <Stars value={5.0} commentNumber={22 + " отзывов"} valueDisplay="block" commentNumberDisplay="block" />
+                                    <div className="settingsTourHeader d-flex pr-1">
+                                        <p>Колличество свободных мест</p>         
+                                    </div>
+                                    <div className="settingsTourPlace d-flex mb-3">
+                                        <p>Города которые будет посещать тур</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         {this.state.tour.map((element, index) =>
-                            <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 p-2">
+                            <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-11 p-2">
                                 <div className="filledCard d-flex flex-column p-0">
                                     <div className="filledCardInformation d-flex flex-column">
                                         <div className="filledCardInformationNameCar d-flex d-flex justify-content-end w-100 align-items-center">

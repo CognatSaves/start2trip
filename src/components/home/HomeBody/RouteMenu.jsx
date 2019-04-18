@@ -31,7 +31,7 @@ const CityRouteTable = (props) => {
           <img src={ellipseIcon} alt="ellipseIcon" width="10px" height="12px" />
           <img src={shapeIcon} alt="shapeIcon" width="7px" height="25px" />
         </div>
-        <LocationSearchInput address={cities[0]} changeCity={changeCity} index={0} class={"city_input"} />
+        <LocationSearchInput address={cities[0]} changeCity={changeCity} index={0} classDropdown="searchElement_style" classInput="city_input" />
         <img src={crossIcon} className="crossIcon col-3" alt="crossIcon" width="12px" height="12px" />
       </div>
 
@@ -41,7 +41,7 @@ const CityRouteTable = (props) => {
             <img src={ellipseIcon} alt="ellipseIcon" width="10px" height="12px" />
             <img src={shapeIcon} alt="shapeIcon" width="7px" height="25px" />
           </div>
-          <LocationSearchInput address={element} changeCity={changeCity} index={index + 1} class={"city_input"} />
+          <LocationSearchInput address={element} changeCity={changeCity} index={index + 1} classDropdown="searchElement_style" classInput="city_input" />
           <div className="crossToolTip col-2">
             <img src={crossIcon} className="crossIcon " alt="crossIcon" id="crossIcon" width="12px" height="12px" onClick={() => removeCity(index + 1)} style={{ visibility: 'visible' }} />
             <span className="crossToolTipText">Удалить этот пункт назначения</span>
@@ -51,7 +51,7 @@ const CityRouteTable = (props) => {
 
       <div className="endCity col-12 p-0" key={(cities.length - 1) + tempEnd}>
         <img src={geoIcon} alt="geoIcon" className="geoIcon col-2 p-0" width="15px" height="12px" />
-        <LocationSearchInput address={cities[cities.length - 1]} changeCity={changeCity} index={cities.length - 1} class={"city_input"} />
+        <LocationSearchInput address={cities[cities.length - 1]} changeCity={changeCity} index={cities.length - 1} classDropdown="searchElement_style" classInput="city_input" />
         <img src={crossIcon} className="crossIcon col-3" alt="crossIcon" width="13px" height="12px" />
       </div>
 

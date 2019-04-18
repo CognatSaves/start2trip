@@ -15,11 +15,11 @@ class DriverProfileCarClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            date: {
-                month: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Декабрь"],
-            },
-            dataNumber: [],
-            dataYear: [],
+            // date: {
+            //     month: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Декабрь"],
+            // },
+            // dataNumber: [],
+            // dataYear: [],
             language: ["Грузинский", "Русский", "Корейский", "Хинди"],
             seat: { icon: seatIcon, title: "Кожаный салон" },
             snowflake: { icon: snowflakeIcon, title: "Климот контроль" },
@@ -35,9 +35,9 @@ class DriverProfileCarClass extends React.Component {
             car: ["", "", "", "", "",]
         }
         this.toggle = this.toggle.bind(this);
-        this.getMassNumbers.bind(this);
-        this.getMassYear.bind(this);
-        this.addNum = this.addNum.bind(this);
+        // this.getMassNumbers.bind(this);
+        // this.getMassYear.bind(this);
+        // this.addNum = this.addNum.bind(this);
         this._handleImageChange = this._handleImageChange.bind(this);
         this._handleSubmit = this._handleSubmit.bind(this);
         this.formSubmit = this.formSubmit.bind(this);
@@ -53,33 +53,33 @@ class DriverProfileCarClass extends React.Component {
         this.setState(state => ({ collapse: !state.collapse, imagePreviewUrl: '', newCarCard: { nameCar: "", yearCar: "", plateNumberCar: "", typeCar: "", flueType: "" }, comfort: [], carImg: [], }));
     }
 
-    getMassNumbers(num) {
-        let number = [];
-        for (let i = 1; i < num; i++) {
-            number.push(i)
-        }
-        return number;
-    }
+    // getMassNumbers(num) {
+    //     let number = [];
+    //     for (let i = 1; i < num; i++) {
+    //         number.push(i)
+    //     }
+    //     return number;
+    // }
 
-    getMassYear(num) {
-        let number = [];
-        for (let i = num; i < 2019; i++) {
-            number.push(i)
-        }
-        return number;
-    }
+    // getMassYear(num) {
+    //     let number = [];
+    //     for (let i = num; i < 2019; i++) {
+    //         number.push(i)
+    //     }
+    //     return number;
+    // }
 
-    addNum() {
-        let newDataNumber = this.getMassNumbers(31);
-        let newdataYear = this.getMassYear(1919);
-        this.setState({
-            dataNumber: newDataNumber,
-            dataYear: newdataYear,
-        })
-    }
-    componentDidMount() {
-        this.addNum();
-    }
+    // addNum() {
+    //     let newDataNumber = this.getMassNumbers(31);
+    //     let newdataYear = this.getMassYear(1919);
+    //     this.setState({
+    //         dataNumber: newDataNumber,
+    //         dataYear: newdataYear,
+    //     })
+    // }
+    // componentDidMount() {
+    //     this.addNum();
+    // }
 
     _handleSubmit(e) {
         e.preventDefault();
@@ -113,9 +113,6 @@ class DriverProfileCarClass extends React.Component {
 
         return (
             <React.Fragment>
-                {/* <div style={{ opacity: this.state.collapse ? "0" : "1" }} className="col-12 d-flex justify-content-center mt-md-0 mt-sm-4 mt-4">
-                    <button className="carShowButton" onClick={this.toggle}>Добавить Автомобиль</button>
-                </div> */}
                 <Collapse isOpen={this.state.collapse}>
                     <div className="carAddNewCar d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-start align-items-lg-start align-items-md-start align-items-sm-center align-items-center">
                         <div className="carAddNewCarPhotoCar col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " >
@@ -233,7 +230,7 @@ class DriverProfileCarClass extends React.Component {
                         <div className="filledCard d-flex flex-column p-0">
                             <div className="filledCardImgAdd d-flex justify-content-center align-items-center">
                                 <div className="filledCardImgAddBg">
-                                    <p />
+                                    <span />
                                 </div>
                                 <img src={imgCar} className="img-fluid" alt="imgCar" width="100%" height="100%" />
                             </div>

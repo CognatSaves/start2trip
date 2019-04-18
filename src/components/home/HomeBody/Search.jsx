@@ -49,14 +49,14 @@ export default class LocationSearchInput extends React.Component {
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => 
         (
-          <div>
+          <React.Fragment>
             <input
               {...getInputProps({
                 placeholder: 'Search Places ...',
-                className: 'location-search-input '+this.props.class,
+                className: ''+this.props.classInput,
               })}
             />
-            <div className="autocomplete-dropdown-container searchElement_style">
+            <div className={"autocomplete-dropdown-container " +this.props.classDropdown }>
               {loading && <div>Loading...</div>}
               {suggestions.map(suggestion => {
                 const className = suggestion.active
@@ -78,7 +78,7 @@ export default class LocationSearchInput extends React.Component {
                 );
               })}
             </div>
-          </div>
+            </React.Fragment>
         )}
     
       </PlacesAutocomplete>
