@@ -15,11 +15,6 @@ class DriverProfileCarClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            // date: {
-            //     month: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Декабрь"],
-            // },
-            // dataNumber: [],
-            // dataYear: [],
             language: ["Грузинский", "Русский", "Корейский", "Хинди"],
             seat: { icon: seatIcon, title: "Кожаный салон" },
             snowflake: { icon: snowflakeIcon, title: "Климот контроль" },
@@ -35,9 +30,6 @@ class DriverProfileCarClass extends React.Component {
             car: ["", "", "", "", "",]
         }
         this.toggle = this.toggle.bind(this);
-        // this.getMassNumbers.bind(this);
-        // this.getMassYear.bind(this);
-        // this.addNum = this.addNum.bind(this);
         this._handleImageChange = this._handleImageChange.bind(this);
         this._handleSubmit = this._handleSubmit.bind(this);
         this.formSubmit = this.formSubmit.bind(this);
@@ -51,35 +43,8 @@ class DriverProfileCarClass extends React.Component {
 
     toggle() {
         this.setState(state => ({ collapse: !state.collapse, imagePreviewUrl: '', newCarCard: { nameCar: "", yearCar: "", plateNumberCar: "", typeCar: "", flueType: "" }, comfort: [], carImg: [], }));
+        window.scroll(0,322);
     }
-
-    // getMassNumbers(num) {
-    //     let number = [];
-    //     for (let i = 1; i < num; i++) {
-    //         number.push(i)
-    //     }
-    //     return number;
-    // }
-
-    // getMassYear(num) {
-    //     let number = [];
-    //     for (let i = num; i < 2019; i++) {
-    //         number.push(i)
-    //     }
-    //     return number;
-    // }
-
-    // addNum() {
-    //     let newDataNumber = this.getMassNumbers(31);
-    //     let newdataYear = this.getMassYear(1919);
-    //     this.setState({
-    //         dataNumber: newDataNumber,
-    //         dataYear: newdataYear,
-    //     })
-    // }
-    // componentDidMount() {
-    //     this.addNum();
-    // }
 
     _handleSubmit(e) {
         e.preventDefault();
@@ -112,8 +77,11 @@ class DriverProfileCarClass extends React.Component {
         }
 
         return (
-            <React.Fragment>
+            <div className="_ThisTagIsNeeded">
                 <Collapse isOpen={this.state.collapse}>
+                    <div className="tourBodyElementTitle d-flex justify-content-center align-items-center">
+                        <p>Добавление автомобиля</p>
+                    </div>
                     <div className="carAddNewCar d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-start align-items-lg-start align-items-md-start align-items-sm-center align-items-center">
                         <div className="carAddNewCarPhotoCar col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " >
                             {$imagePreview}
@@ -122,31 +90,31 @@ class DriverProfileCarClass extends React.Component {
                         </div>
                         <form onSubmit={this.handleSubmit} id="newCar" className="carAddNewCarInformation d-flex flex-column col-xl-6 col-lg-6 col-md-6 col-sm-11 col-11 p-0">
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mb-3 mt-2">
-                                <p className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">Марка автомобиля:</p>
-                                <input value={this.state.newCarCard.nameCar} onChange={(e) => {
+                                <label htmlFor="profileCarBrend" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">Марка автомобиля:</label>
+                                <input id="profileCarBrend" value={this.state.newCarCard.nameCar} onChange={(e) => {
                                     this.setState({
                                         newCarCard: { ...this.state.newCarCard, nameCar: e.currentTarget.value }
                                     })
                                 }} type="text" required />
                             </div>
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mb-3">
-                                <p className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">Год автомобиля:</p>
-                                <input value={this.state.newCarCard.yearCar} onChange={(e) => {
+                                <label htmlFor="profileCarYaer" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">Год автомобиля:</label>
+                                <input id="profileCarYaer" value={this.state.newCarCard.yearCar} onChange={(e) => {
                                     this.setState({
                                         newCarCard: { ...this.state.newCarCard, yearCar: e.currentTarget.value }
                                     })
                                 }} type="text" required />
                             </div>
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mb-3">
-                                <p className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">Номер автомобиля:</p>
-                                <input value={this.state.newCarCard.plateNumberCar} onChange={(e) => {
+                                <label htmlFor="profileCarNumber" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">Номер автомобиля:</label>
+                                <input id="profileCarNumber" value={this.state.newCarCard.plateNumberCar} onChange={(e) => {
                                     this.setState({
                                         newCarCard: { ...this.state.newCarCard, plateNumberCar: e.currentTarget.value }
                                     })
                                 }} type="text" required />
                             </div>
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mb-3">
-                                <p className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">Тип автомобиля:</p>
+                                <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">Тип автомобиля:</label>
                                 <select value={this.state.newCarCard.typeCar} onChange={(e) => {
                                     this.setState({
                                         newCarCard: { ...this.state.newCarCard, typeCar: e.currentTarget.value }
@@ -159,7 +127,7 @@ class DriverProfileCarClass extends React.Component {
                                 </select>
                             </div>
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mb-3">
-                                <p className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">Тип топлива:</p>
+                                <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">Тип топлива:</label>
                                 <select value={this.state.newCarCard.flueType} onChange={(e) => {
                                     this.setState({
                                         newCarCard: { ...this.state.newCarCard, flueType: e.currentTarget.value }
@@ -172,7 +140,7 @@ class DriverProfileCarClass extends React.Component {
                                 </select>
                             </div>
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-start mb-3">
-                                <p className="col-4 p-0">Удобства:</p>
+                                <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-4 p-0">Удобства:</label>
                                 <div className="carAddNewCarComfortCheckBox d-flex flex-column pt-1">
                                     <label htmlFor="comfort1">Климат контроль
                                 <input onClick={(e) => {
@@ -217,9 +185,9 @@ class DriverProfileCarClass extends React.Component {
                                 </div>
                             </div>
                             <div className="carAddNewCarButton d-flex align-items-end mb-5">
-                                <p className="col-4 p-0"></p>
+                                <span className="col-4 p-0"></span>
                                 <button htmlFor="newCar" type="submit">Добавить Автомобиль</button>
-                                <p className="ml-3" onClick={this.toggle}>Отмена</p>
+                                <span className="ml-3" onClick={this.toggle}>Отмена</span>
                             </div>
                         </form>
                     </div>
@@ -269,8 +237,7 @@ class DriverProfileCarClass extends React.Component {
                         </div>
                     )}
                 </div>
-
-            </React.Fragment >
+            </div>
 
         );
     }

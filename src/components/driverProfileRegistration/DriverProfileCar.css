@@ -1,7 +1,7 @@
 /* Car Bigin*/
 
 .filledCardBody {
-    margin-bottom: 80px;
+    margin-bottom: 50px;
 }
 
 .filledCard {
@@ -238,7 +238,7 @@ p.filledCardInformationNameCarEdit:hover {
     margin-top: 30px;
 }
 
-.carAddNewCarInformation p {
+.carAddNewCarInformation label {
     font-weight: 500;
     font-size: 14px;
     color: #686868;
@@ -290,11 +290,11 @@ p.filledCardInformationNameCarEdit:hover {
     min-width: 250px;
 }
 
-.carAddNewCarButton p {
+.carAddNewCarButton span {
     cursor: pointer;
 }
 
-.carAddNewCarButton p:hover {
+.carAddNewCarButton span:hover {
     color: #f60;
 }
 

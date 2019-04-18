@@ -22,6 +22,8 @@ import { PlacesReduser } from './redusers/PlacesReduser';
 import { ToursReduser } from './redusers/ToursReduser';
 import { DriverProfileRegistrationtReduser } from './redusers/DriverProfileRegistrationtReduser';
 import { /*Link,*/ Route, BrowserRouter, Redirect, Switch } from 'react-router-dom';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 require('require-context/register');
 
 
@@ -31,22 +33,44 @@ const reducers = redux.combineReducers({ AppReduser, DriversReduser, StateReduse
 
 const store = redux.createStore(reducers);
 
+const muiTheme = getMuiTheme({
+    palette: {
+        primary1Color: "#304269", //Button cansel / ok
+        primary2Color: "#f60", //Focus date
+        // primary3Color: "#f60", // Null
+        // accent1Color: "#f60", // Null
+        // accent2Color: "#f60", // Null
+        // accent3Color: "#f60", // Null
+        textColor: "#333",
+        // alternateTextColor: white, // Color text
+        // canvasColor: "#f60", // bacgraund color 
+        // borderColor: "#f60", // border-bottom color
+        // disabledColor: "#f60", // PleseHolder
+        pickerHeaderColor: "#304269", // Calendar header collor
+        // clockCircleColor: "#f60", // Null
+        // shadowColor: "#f60", // BoxShadow
+    },
+    fontFamily: 'Roboto',
+});
+
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
             <React.Fragment>
-                <Switch>
-                    <Route path="/home" component={Home} />
-                    <Route path="/drivers" component={Drivers} />
-                    <Route path="/driverProfile/:id,:temp1,:temp2" component={DriverProfile} />
-                    <Route path="/places" component={Places} />
-                    <Route path="/place/:country,:id" component={PlaceDescription} />
-                    <Route path="/tours" component={Tours} />
-                    <Route path="/tour/:country,:id" component={TourDescription} />
-                    <Route path="/driverProfileRegistration" component={DriverProfileRegistration} />
-                    <Redirect from="/" to="/home" />
-                </Switch>
-                <Footer />
+                <MuiThemeProvider muiTheme={muiTheme}>
+                    <Switch>
+                        <Route path="/home" component={Home} />
+                        <Route path="/drivers" component={Drivers} />
+                        <Route path="/driverProfile/:id,:temp1,:temp2" component={DriverProfile} />
+                        <Route path="/places" component={Places} />
+                        <Route path="/place/:country,:id" component={PlaceDescription} />
+                        <Route path="/tours" component={Tours} />
+                        <Route path="/tour/:country,:id" component={TourDescription} />
+                        <Route path="/driverProfileRegistration" component={DriverProfileRegistration} />
+                        <Redirect from="/" to="/home" />
+                    </Switch>
+                    <Footer />
+                </MuiThemeProvider>
             </React.Fragment>
         </BrowserRouter>
     </Provider>
