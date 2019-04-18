@@ -8,6 +8,7 @@ import seatIcon from './img/seat.svg'
 import snowflakeIcon from './img/snowflake.svg'
 import wifiIcon from './img/wifi.svg'
 import { Collapse } from 'reactstrap';
+import {isMobile} from 'react-device-detect';
 
 
 
@@ -43,7 +44,12 @@ class DriverProfileCarClass extends React.Component {
 
     toggle() {
         this.setState(state => ({ collapse: !state.collapse, imagePreviewUrl: '', newCarCard: { nameCar: "", yearCar: "", plateNumberCar: "", typeCar: "", flueType: "" }, comfort: [], carImg: [], }));
-        window.scroll(0,322);
+        if(isMobile){
+            window.scroll(0,300);
+        }else{
+            window.scroll(0,322);
+        }
+           
     }
 
     _handleSubmit(e) {

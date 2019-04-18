@@ -5,6 +5,7 @@ import { Collapse } from 'reactstrap';
 import georgiaImg from './img/bg.jpg'
 import Stars from '../stars/Stars'
 import LocationSearchInput from '../home/HomeBody/Search'
+import {isMobile} from 'react-device-detect';
 
 
 
@@ -41,6 +42,11 @@ class DriverProfileTripSettingsTourClass extends React.Component {
 
     toggle() {
         this.setState(state => ({ collapse: !state.collapse }));
+        if(isMobile){
+            window.scroll(0,300);
+        }else{
+            window.scroll(0,322);
+        }
     }
 
     addCity() {
