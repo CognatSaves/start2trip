@@ -231,7 +231,6 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                 </div>
                                 <div className="d-flex col-8">
                                     <div className="openMultipleDatepicker ">
-
                                         <MultipleDatePicker
                                             onSubmit={dates => this.addDate(dates)}
                                         ><span>По определённым датам</span></MultipleDatePicker>

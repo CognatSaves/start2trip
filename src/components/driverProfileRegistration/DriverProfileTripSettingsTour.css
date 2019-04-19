@@ -114,7 +114,7 @@ div.tourContentCheckbox {
 .tourContentCheckbox span {
     position: absolute;
     z-index: 3;
-    top: -7px;
+    top: 0px;
     left: 0px;
     height: 18px;
     width: 18px;
@@ -242,10 +242,16 @@ div.tourContentCheckbox {
 
 .openMultipleDatepicker {
     font-family: "Roboto" !important;
+    text-align: center !important;
 }
 
 .openMultipleDatepicker .heJwJj {
     background-color: #304269;
+    height: 350px;
+}
+
+.openMultipleDatepicker .fJLAcL button {
+    color: #304269;
 }
 
 .openMultipleDatepicker span {
