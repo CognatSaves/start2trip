@@ -1,48 +1,49 @@
 {
-  "name": "gm_app",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@material/floating-label": "^1.1.0",
-    "@material/textfield": "^1.1.1",
-    "bootstrap": "^4.3.1",
-    "google-maps-react": "^2.0.2",
-    "material-ui": "^0.20.2",
-    "material-ui-search-bar": "^0.4.2",
-    "rc-slider": "^8.6.6",
-    "react": "^16.8.4",
-    "react-calendar": "^2.18.1",
-    "react-device-detect": "^1.6.2",
-    "react-dom": "^16.8.4",
-    "react-google-maps": "^9.4.5",
-    "react-load-script": "0.0.6",
-    "react-places-autocomplete": "^7.2.1",
-    "react-redux": "^6.0.0",
-    "react-router": "^4.3.1",
-    "react-router-dom": "^4.3.1",
-    "react-scripts": "^2.1.5",
-    "reactstrap": "^7.1.0",
-    "redux": "^4.0.1",
-    "require-context": "^1.1.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
-  "devDependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.3.3",
-    "scss-powertools": "^1.1.0"
-  },
-  "build": "scss-powertools scss/bootstrap.scss output/compiled.css"
+    "name": "gm_app",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "@material/floating-label": "^1.1.0",
+        "@material/textfield": "^1.1.1",
+        "bootstrap": "^4.3.1",
+        "google-maps-react": "^2.0.2",
+        "material-ui": "^0.20.2",
+        "material-ui-search-bar": "^0.4.2",
+        "rc-slider": "^8.6.6",
+        "react": "^16.8.4",
+        "react-calendar": "^2.18.1",
+        "react-device-detect": "^1.6.2",
+        "react-dom": "^16.8.4",
+        "react-google-maps": "^9.4.5",
+        "react-load-script": "0.0.6",
+        "react-multiple-datepicker": "^0.1.0",
+        "react-places-autocomplete": "^7.2.1",
+        "react-redux": "^6.0.0",
+        "react-router": "^4.3.1",
+        "react-router-dom": "^4.3.1",
+        "react-scripts": "^2.1.8",
+        "reactstrap": "^7.1.0",
+        "redux": "^4.0.1",
+        "require-context": "^1.1.0"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject"
+    },
+    "eslintConfig": {
+        "extends": "react-app"
+    },
+    "browserslist": [
+        ">0.2%",
+        "not dead",
+        "not ie <= 11",
+        "not op_mini all"
+    ],
+    "devDependencies": {
+        "@babel/plugin-proposal-class-properties": "^7.3.3",
+        "scss-powertools": "^1.1.0"
+    },
+    "build": "scss-powertools scss/bootstrap.scss output/compiled.css"
 }

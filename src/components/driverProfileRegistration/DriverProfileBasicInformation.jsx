@@ -34,17 +34,20 @@ class DriverProfileBasicInformationClass extends React.Component {
         this.chipData = this.state.chipData;
         this.chipData.push({key:this.state.chipData.length, label:value});
 
+        this.language = this.state.language;
         const languageToDelete = this.language.map((language) => language).indexOf(value);
         this.language.splice(languageToDelete, 1);
         this.setState({ language: this.language });
     };
 
-    handleRequestDelete = (key) => {
-
+    handleRequestDelete = (element) => {
         this.chipData = this.state.chipData;
-        const chipToDelete = this.chipData.map((chip) => chip.key).indexOf(key);
+        const chipToDelete = this.chipData.map((chip) => chip.key).indexOf(element.key);
         this.chipData.splice(chipToDelete, 1);
         this.setState({ chipData: this.chipData });
+
+        this.language = this.state.language;
+        this.language.push(element.label);
     };
 
     render() {
@@ -141,7 +144,7 @@ class DriverProfileBasicInformationClass extends React.Component {
                                         {this.state.chipData.map((element, index) =>
                                             <Chip
                                                 key={element.key}
-                                                onRequestDelete={() => this.handleRequestDelete(element.key)}
+                                                onRequestDelete={() => this.handleRequestDelete(element)}
                                                 labelStyle={{ color: "#686868" }}
                                                 labelColor="#f60"
                                                 textColor="#304269"

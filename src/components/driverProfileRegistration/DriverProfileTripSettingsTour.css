@@ -177,7 +177,8 @@ div.tourContentCheckbox {
     transition: all 0.3s;
 }
 
-.tourContent textarea:hover,
+
+/* .tourContent textarea:hover,
 .tourContent textarea:focus,
 .tourContent select:hover,
 .tourContent select:focus,
@@ -186,7 +187,7 @@ div.tourContentCheckbox {
     border-color: #304269;
     text-decoration: none;
     outline: #304269;
-}
+} */
 
 .tourContent textarea {
     width: 100%;
@@ -235,6 +236,29 @@ div.tourContentCheckbox {
 
 
 /* Content End */
+
+
+/* openMultipleDatepicker Bigin */
+
+.openMultipleDatepicker {
+    font-family: "Roboto" !important;
+}
+
+.openMultipleDatepicker .heJwJj {
+    background-color: #304269;
+}
+
+.openMultipleDatepicker span {
+    color: #304269;
+    cursor: pointer;
+}
+
+.openMultipleDatepicker span:hover {
+    color: #f60;
+}
+
+
+/* openMultipleDatepicker End */
 
 
 /* ItemElement Bigin */
