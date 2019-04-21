@@ -11,6 +11,16 @@ import MenuItem from 'material-ui/MenuItem';
 import Chip from 'material-ui/Chip';
 import TextField from 'material-ui/TextField';
 import MultipleDatePicker from 'react-multiple-datepicker'
+import FlatButton from 'material-ui/FlatButton';
+import Dialog from 'material-ui/Dialog';
+import InfiniteCalendar, {
+    Calendar,
+    defaultMultipleDateInterpolation,
+    withMultipleDates,
+} from 'react-infinite-calendar';
+import 'react-infinite-calendar/styles.css'; // only needs to be imported once
+
+
 
 
 
@@ -19,7 +29,9 @@ class DriverProfileTripSettingsTourClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            time:"00:00",
             collapse: false,
+            calendarModal: false,
             typeCar: "sedan",
             cities: [{ city: "", description: "" },],
             departureDate: [{ day: "1", month: "Январь", year: "2019" },],
@@ -32,16 +44,18 @@ class DriverProfileTripSettingsTourClass extends React.Component {
             ],
             dateTour: [],
         }
+
+        this.handleTimeChange = this.handleTimeChange.bind(this);
         this.toggle = this.toggle.bind(this);
         this.addCity = this.addCity.bind(this);
         this.deleteCity = this.deleteCity.bind(this);
         this.addDepartureDate = this.addDepartureDate.bind(this);
         this.deleteDepartureDate = this.deleteDepartureDate.bind(this);
         this.formSubmit = this.formSubmit.bind(this);
+        this.addDate = this.addDate.bind(this);
     }
 
     formSubmit(event) {
-        debugger
         alert('Your favorite flavor is: ' + this.state.value);
         event.preventDefault();
     }
@@ -80,7 +94,6 @@ class DriverProfileTripSettingsTourClass extends React.Component {
     }
 
     deleteDepartureDate(index) {
-        debugger
         let newArrayDepartureDate = this.state.departureDate;
         newArrayDepartureDate.splice(index, 1);
         this.setState({
@@ -120,6 +133,10 @@ class DriverProfileTripSettingsTourClass extends React.Component {
         }
     }
 
+    calendarModalShow = () => {
+        this.setState({ calendarModal: !this.state.calendarModal });
+    };
+
     handleChange = (event, index, value) => { this.setState({ typeCar: value }); console.log(this.state.typeCar) };
 
     handleRequestDelete = (key) => {
@@ -131,7 +148,22 @@ class DriverProfileTripSettingsTourClass extends React.Component {
     };
 
     addDate = (dates) => {
-        this.setState({ dateTour: dates });
+        let newDate = this.state.dateTour;
+        let needAddDate = true;
+        if (newDate.length) {
+            for (let i = 0; i < newDate.length; i++) {
+                if (dates.getDate() == newDate[i].getDate() && dates.getMonth() == newDate[i].getMonth() && dates.getFullYear() == newDate[i].getFullYear()) {
+                    newDate.splice(i, 1);
+                    needAddDate = false;
+                    break;
+                }
+            };
+            if (needAddDate) {
+                newDate.push(dates);
+            }
+        } else {
+            newDate.push(dates);
+        }
     }
 
     handleRequestDeleteDate = (key) => {
@@ -146,14 +178,38 @@ class DriverProfileTripSettingsTourClass extends React.Component {
 
 
 
-    render() {
 
+    render() {
+        const MultipleDatesCalendar = withMultipleDates(Calendar);
+        var today = new Date();
+        const actions = [
+            <FlatButton
+                label="Ok"
+                primary={true}
+                keyboardFocused={true}
+                onClick={this.calendarModalShow}
+            />,
+        ];
         return (
             <React.Fragment>
+
+                <Dialog
+                    title="Dialog With Actions"
+                    actions={actions}
+                    modal={false}
+                    open={this.state.calendarModal}
+                    onRequestClose={this.calendarModalShow}
+                >
+                    <InfiniteCalendar
+                        Component={MultipleDatesCalendar}
+                        width={100 + "%"}
+                        minDate={today}
+                        interpolateSelection={defaultMultipleDateInterpolation}
+                        selected={this.state.dateTour}
+                        onSelect={this.addDate}
+                    />
+                </Dialog>
                 <Collapse isOpen={this.state.collapse}>
-                    <div className="tourBodyElementTitle d-flex justify-content-center align-items-center">
-                        <p>Добавление тура</p>
-                    </div>
                     <div className="tourSettingsBody">
                         <form onSubmit={this.formSubmit} id="newTourForm" className="tourContent col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div className="tourContentTitle d-flex align-items-center mb-0">
@@ -198,7 +254,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
 
                                 </div>
                             </div>
-                            <div className="d-flex align-items-start mb-0">
+                            <div className="d-flex align-items-start mb-2">
                                 <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Описание:</label>
                                 <textarea className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " name="" id="description" cols="30" rows="3" />
                                 <TextField
@@ -213,49 +269,62 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                 />
                                 <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
                             </div>
-                            <div className="tourContentTitle d-flex align-items-center mb-0">
-                                <p>Расписание</p>
-                            </div>
-                            <div className="d-flex flex-column align-items-end col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 p-0">
-                                <div className="d-flex col-8">
-                                    <div className="tourContentCheckbox">
-                                        <label htmlFor="tourContentCheckbox">
-                                            <input id="tourContentCheckbox" type="checkbox" />
-                                            <span />
-                                        </label>
-                                    </div>
-                                    <div className="d-xl-flex d-lg-flex d-md-flex d-sm-block d-block align-items-center ml-1 mb-0">
-                                        <span className="">Ежедневно</span>
-                                        <input className="d-xl-block d-lg-block d-md-block d-sm-none d-none ml-2" type="time" />
-                                    </div>
+                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start p-0">
+                                <div className="tourContentTitle d-flex col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 p-0">
+                                    <p>Расписание</p>
                                 </div>
-                                <div className="d-flex col-8">
-                                    <div className="openMultipleDatepicker ">
-                                        <MultipleDatePicker
+                                <div className="d-flex flex-column col-8 p-0">
+                                    <div className="d-flex col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">
+                                        <div className="tourContentCheckbox">
+                                            <label htmlFor="tourContentCheckbox">
+                                                <input id="tourContentCheckbox" type="checkbox" />
+                                                <span />
+                                            </label>
+                                        </div>
+                                        <div className="d-xl-flex d-lg-flex d-md-flex d-sm-block d-block align-items-center ml-1 mb-0">
+                                            <span className="">Ежедневно</span>
+                                            {/* <input className="addTourInputTime ml-2" type="time" /> */}
+                                        </div>
+                                    </div>
+                                    <div className="d-flex col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">
+                                        <div className="openMultipleDatepicker ">
+                                            <p onClick={this.calendarModalShow}>showModal</p>
+                                            {/* <InfiniteCalendar
+                                            Component={MultipleDatesCalendar}
+                                            width={800}
+                                            height={500}
+                                            minDate={today}
+                                            interpolateSelection={defaultMultipleDateInterpolation}
+                                            selected={[]}
+                                            onSelect={this.addDate}
+                                        /> */}
+                                            {/* <MultipleDatePicker
                                             onSubmit={dates => this.addDate(dates)}
-                                        ><span>По определённым датам</span></MultipleDatePicker>
+                                        ><span>По определённым датам</span></MultipleDatePicker> */}
+                                        </div>
                                     </div>
                                 </div>
+
                             </div>
                             <div className="d-flex justify-content-end col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                                 <div className="d-flex flex-wrap flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 p-0 mb-2">
 
-                                    {this.state.dateTour.map((element, index) =>{
+                                    {this.state.dateTour.map((element, index) => {
                                         let day = element.getDate();
                                         let month = element.getMonth();
                                         let year = element.getFullYear();
                                         let newDate = day + "." + month + "." + year;
-                                        return(
-                                        <Chip
-                                            key={element.key}
-                                            onRequestDelete={() => this.handleRequestDeleteDate(element.key)}
-                                            labelStyle={{ color: "#686868" }}
-                                            labelColor="#f60"
-                                            textColor="#304269"
-                                            className="chipClass"
-                                        >
-                                            {newDate}
-                                        </Chip>)
+                                        return (
+                                            <Chip
+                                                key={element.key}
+                                                onRequestDelete={() => this.handleRequestDeleteDate(element.key)}
+                                                labelStyle={{ color: "#686868" }}
+                                                labelColor="#f60"
+                                                textColor="#304269"
+                                                className="chipClass"
+                                            >
+                                                {newDate}
+                                            </Chip>)
                                     })}
 
                                 </div>
@@ -299,9 +368,9 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                 <img src="" alt="" />
                                 <img src="" alt="" />
                             </div>
-                            <div className="tourContentAddButton d-flex justify-content-xl-start justify-content-lg-start justify-content-md-start justify-content-sm-center justify-content-center">
+                            <div className="tourContentAddButton pb-4 d-flex justify-content-xl-start justify-content-lg-start justify-content-md-start justify-content-sm-center justify-content-center">
                                 <span className="col-4 d-xl-block d-lg-block d-md-block d-sm-none d-none" />
-                                <button htmlFor="newTourForm" type="submit" className="col-8 mb-4">ДОБАВИТЬ ТУР</button>
+                                <button htmlFor="newTourForm" type="submit" className="col-8">ДОБАВИТЬ ТУР</button>
                                 <span className="ml-3" onClick={this.toggle}>Отмена</span>
                             </div>
                         </form>
