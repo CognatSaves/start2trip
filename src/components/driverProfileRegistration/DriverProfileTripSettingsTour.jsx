@@ -31,10 +31,10 @@ class DriverProfileTripSettingsTourClass extends React.Component {
         this.state = {
             collapse: false,
             calendarModal: false,
-            tourContentEveryday:false,
-            tourContentOther:false,
-            currency:["USD","EUR","GEL","RUB",],
-            activeCurrency:"USD",
+            tourContentEveryday: false,
+            tourContentOther: false,
+            currency: ["USD", "EUR", "GEL", "RUB",],
+            activeCurrency: "USD",
             typeCar: "sedan",
             cities: [{ city: "", description: "" },],
             departureDate: [{ day: "1", month: "Январь", year: "2019" },],
@@ -141,7 +141,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
 
     handleChange = (event, index, value) => { this.setState({ typeCar: value }) };
 
-    handleChangeCurrency = (event, index, value) => { this.setState({ activeCurrency: value })};
+    handleChangeCurrency = (event, index, value) => { this.setState({ activeCurrency: value }) };
 
     handleRequestDelete = (key) => {
 
@@ -194,13 +194,44 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                 onClick={this.calendarModalShow}
             />,
         ];
+        const themeCalendar = {
+            accentColor: '#f60',
+            floatingNav: {
+                background: 'rgba(56, 87, 138, 0.94)',
+                chevron: '#304269',
+                color: '#FFF',
+            },
+            headerColor: '#304269',
+            selectionColor: '#304269',
+            textColor: {
+                active: '#FFF',
+                default: '#333',
+            },
+            todayColor: '#f60',
+            weekdayColor: '#304269',
+        }
+        const customContentStyle = {
+            width: '100%',
+            maxWidth: 'none',
+          };
+          const locale =  {
+            blank: 'Select a date...',
+            headerFormat: 'ddd, MMM Do',
+            todayLabel: {
+              long: 'Today',
+            },
+            weekdays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+            weekStartsOn: 0,
+          };
+
         return (
             <React.Fragment>
 
                 <Dialog
-                    title="Dialog With Actions"
                     actions={actions}
                     modal={false}
+                    bodyStyle={{padding:0}}
+                    contentStyle={ isMobile? customContentStyle : ""}
                     open={this.state.calendarModal}
                     onRequestClose={this.calendarModalShow}
                 >
@@ -208,6 +239,9 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                         Component={MultipleDatesCalendar}
                         width={100 + "%"}
                         minDate={today}
+                        theme={themeCalendar}
+                        locale={locale}
+                        className="newTourCalendarStyle"
                         interpolateSelection={defaultMultipleDateInterpolation}
                         selected={this.state.dateTour}
                         onSelect={this.addDate}
@@ -281,34 +315,34 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                     <div className="d-flex col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">
                                         <div className="tourContentCheckbox">
                                             <label htmlFor="tourContentEveryday">
-                                                <input id="tourContentEveryday" checked={this.state.tourContentEveryday} onChange={()=>{this.setState({tourContentEveryday : !this.state.tourContentEveryday, tourContentOther : false})}} type="checkbox" />
+                                                <input id="tourContentEveryday" checked={this.state.tourContentEveryday} onChange={() => { this.setState({ tourContentEveryday: !this.state.tourContentEveryday, tourContentOther: false }) }} type="checkbox" />
                                                 <span />
                                             </label>
                                         </div>
                                         <div className="tourContentEveryday d-flex align-items-center ml-1 mb-0">
-                                            <label htmlFor="newTourEveryday" className="">Ежедневно</label>
-                                            <input id="newTourEveryday" style={{display: this.state.tourContentEveryday ? "block":"none"}} className="addTourInputTime ml-2" type="time" />
+                                            <label htmlFor="newTourEveryday" onClick={()=>{this.setState({ tourContentEveryday: !this.state.tourContentEveryday, tourContentOther: false })}} className="">Ежедневно</label>
+                                            <input id="newTourEveryday" style={{ display: this.state.tourContentEveryday ? "block" : "none" }} className="addTourInputTime ml-2" type="time" />
                                         </div>
                                     </div>
                                     <div className="d-flex col-xl-8 col-lg-8 col-md-8 col-sm-10 col-10 p-0">
-                                    <div className="tourContentCheckbox">
+                                        <div className="tourContentCheckbox">
                                             <label htmlFor="tourContentOther">
-                                                <input id="tourContentOther" checked={this.state.tourContentOther} onChange={()=>{this.setState({tourContentOther : !this.state.tourContentOther ,tourContentEveryday : false})}}  type="checkbox" />
+                                                <input id="tourContentOther" checked={this.state.tourContentOther} onChange={() => { this.setState({ tourContentOther: !this.state.tourContentOther, tourContentEveryday: false }) }} type="checkbox" />
                                                 <span className="tourContentOtherSpan" />
                                             </label>
                                         </div>
                                         <div className="openMultipleDatepicker d-xl-flex d-lg-flex d-md-flex d-sm-block d-block flex-column justify-content-center ml-1 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 mb-0 p-0">
-                                            <label htmlFor="newTourDatepicker" className="mb-0 mr-2">По определённым дням</label>
+                                            <label htmlFor="newTourDatepicker" onClick={()=>{this.setState({ tourContentOther: !this.state.tourContentOther, tourContentEveryday: false })}} className="mb-0 mr-2">По определённым дням</label>
                                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column  align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                            <span style={{display: this.state.tourContentOther ? "block":"none"}} className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 pl-0" onClick={this.calendarModalShow}>Выбрать даты</span>
-                                            <input id="newTourDatepicker" style={{display: this.state.tourContentOther ? "block":"none"}} className="addTourInputTime col-xl-6 col-lg-6 col-md-6 col-sm-9 col-9 pl-0 ml-2" type="time" />
+                                                <span style={{ display: this.state.tourContentOther ? "block" : "none" }} className="col-xl-6 col-lg-7 col-md-9 col-sm-12 col-12 p-0" onClick={this.calendarModalShow}>Выбрать даты</span>
+                                                <input id="newTourDatepicker" style={{ display: this.state.tourContentOther ? "block" : "none" }} className="addTourInputTime col-xl-6 col-lg-6 col-md-5 col-sm-9 col-9 pl-0 ml-2" type="time" />
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
                             </div>
-                            <div className={this.state.tourContentOther ? " d-flex justify-content-center col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12":" d-none" }>
+                            <div className={this.state.tourContentOther ? " d-flex justify-content-center col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" : " d-none"}>
                                 <div className="d-flex flex-wrap flex-row align-items-start col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 p-0 mb-2">
 
                                     {this.state.dateTour.map((element, index) => {
@@ -337,36 +371,36 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
                                 <label htmlFor="newTourPrice" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Стоимость тура:</label>
                                 <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">
-                                <TextField
-                                    hintText="Пожалуйста введите номер"
-                                    floatingLabelText="Номер паспорта"
-                                    className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
-                                    fullWidth="100%"
-                                    floatingLabelFocusStyle={{ color: "#304269" }}
-                                    underlineFocusStyle={{ borderColor: "#304269" }}
+                                    <TextField
+                                        hintText="Пожалуйста введите номер"
+                                        floatingLabelText="Номер паспорта"
+                                        className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
+                                        fullWidth="100%"
+                                        floatingLabelFocusStyle={{ color: "#304269" }}
+                                        underlineFocusStyle={{ borderColor: "#304269" }}
 
-                                />
-                                    <input id="newTourPrice" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 mr-1" type="text"  />
+                                    />
+                                    <input id="newTourPrice" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 mr-1" type="text" />
                                     <DropDownMenu
-                                    value={this.state.activeCurrency}
-                                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left',}}
-                                    onChange={this.handleChangeCurrency}
-                                    style={{ width: "100%" }}
-                                    className="dropdownClass"
-                                    autoWidth={false}
-                                    selectedMenuItemStyle={{ color: "#f60" }}
-                                >
-                                    {this.state.currency.map((element,index)=>
-                                        <MenuItem value={element} primaryText={element} />
-                                    )}
-                                </DropDownMenu>
+                                        value={this.state.activeCurrency}
+                                        anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
+                                        onChange={this.handleChangeCurrency}
+                                        style={{ width: "100%" }}
+                                        className="dropdownClass"
+                                        autoWidth={false}
+                                        selectedMenuItemStyle={{ color: "#f60" }}
+                                    >
+                                        {this.state.currency.map((element, index) =>
+                                            <MenuItem value={element} primaryText={element} />
+                                        )}
+                                    </DropDownMenu>
                                 </div>
                             </div>
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
                                 <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 ">Тип транспорта:</label>
                                 <DropDownMenu
                                     value={this.state.typeCar}
-                                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left',}}
+                                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
                                     hintText="Тип автомобиля"
                                     onChange={this.handleChange}
                                     style={{ width: "100%" }}

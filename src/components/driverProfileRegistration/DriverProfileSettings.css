@@ -25,16 +25,27 @@
     margin-top: 20px;
 }
 
+.driverProfileSettingsContentRow {
+    position: relative;
+    margin: 5px 0;
+}
+
 .driverProfileSettingsContent label {
     font-family: "Roboto";
     font-weight: 500;
     font-size: 14px;
     color: #686868;
-    margin-top: 10px;
     margin-bottom: 0px;
 }
 
-.driverProfileSettingsContentPasswordText {
+.driverProfileSettingsContent p {
+    font-weight: 400;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 0px;
+}
+
+p.driverProfileSettingsContentPasswordText {
     line-height: 70px;
     font-weight: 500;
     font-size: 14px;
@@ -100,10 +111,6 @@
 
 .driverProfileSettingsContentUnsubscribeButton:hover {
     color: #f60;
-}
-
-.driverProfileSettingsContentPasswordDivIcon {
-    position: relative;
 }
 
 .driverProfileSettingsContentPasswordEyeIcon {

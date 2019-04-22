@@ -19,7 +19,7 @@ export default class DriverAdaptedRoute extends React.Component{
                     </div>
                 </div>
                 <div className="driversAdaptedRoute_routeBlock" >
-                    <div class="col-8" style={{ display: "flex", flexDirection: "column", marginRight: "auto", padding: 0, marginTop: "2%" }}>
+                    <div className="col-8" style={{ display: "flex", flexDirection: "column", marginRight: "auto", padding: 0, marginTop: "2%" }}>
                         <div className="route_show d-flex " >
                             {cities.map((element, index) =>
                                 <div className="route_show_element driverAdaptedRoute_show_element" style={{/*width: routeElementWidth*/ }}>
@@ -36,7 +36,7 @@ export default class DriverAdaptedRoute extends React.Component{
                             <div className="route_comment">*Возврат в точку отправления в этот же день бесплатно</div>
                         </div>
                     </div>
-                    <div class="col-4" style={{ display: "flex", flexDirection: "column", marginLeft: "auto" }}>
+                    <div className="col-4" style={{ display: "flex", flexDirection: "column", marginLeft: "auto" }}>
                         <div className="driversAdaptedRoute_price">{"$" + element.price}</div>
                         <button className="driversAdaptedRoute_sendRequest" onClick={() => changeTravelVisibility('block')}>ЗАБРОНИРОВАТЬ ПОЕЗДКУ</button>
                         <div className="driversAdaptedRoute_requestCommentary">Стоимость окончательная. Топливо включено</div>

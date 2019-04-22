@@ -29,7 +29,7 @@ export default class ShowComments extends React.Component{
                         </div>
                         
                         <input className="put" id={"put"+element+index} type="checkbox"></input>
-                        <div class="news">
+                        <div className="news">
                             <label htmlFor={"put"+element+index}>{element.value}</label>
                         </div>
                         

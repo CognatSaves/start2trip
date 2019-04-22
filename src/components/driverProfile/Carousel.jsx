@@ -89,7 +89,7 @@ export default class Carousel extends React.Component{
                                selectedPhotoIndex={this.state.selectedPhotoIndex} carouselSize = {carouselSize}/>
                           )
                       }
-                      <div class="carouselPhotoBox" style={{width: this.props.widthCarouselEl+"px", height: this.props.heightCarouselEl+"px", transform: "translate3d("+boxXTransformValue+"px,"+boxYTransformValue+"px, 0px)"}}/>
+                      <div className="carouselPhotoBox" style={{width: this.props.widthCarouselEl+"px", height: this.props.heightCarouselEl+"px", transform: "translate3d("+boxXTransformValue+"px,"+boxYTransformValue+"px, 0px)"}}/>
                       </div>
                   </div>           
               </div>
@@ -118,7 +118,7 @@ export default class Carousel extends React.Component{
                                 selectedPhotoIndex={this.state.selectedPhotoIndex} carouselSize = {carouselSize}/>
                           )
                       }
-                      <div class="carouselPhotoBox" style={{width: this.props.widthCarouselEl+"px", height: this.props.heightCarouselEl+"px", transform: "translate3d("+boxXTransformValue+"px,"+boxYTransformValue+"px, 0px)"}}/>
+                      <div className="carouselPhotoBox" style={{width: this.props.widthCarouselEl+"px", height: this.props.heightCarouselEl+"px", transform: "translate3d("+boxXTransformValue+"px,"+boxYTransformValue+"px, 0px)"}}/>
                       </div>
                   </div>           
               </div>              

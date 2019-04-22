@@ -98,7 +98,7 @@
 
 div.tourContentCheckbox {
     position: relative;
-    min-height: 40px;
+    min-height: 50px;
 }
 
 .tourContentCheckbox label {
@@ -126,7 +126,7 @@ div.tourContentCheckbox {
 .tourContentCheckbox span {
     position: absolute;
     z-index: 3;
-    top: 2px;
+    top: 7px;
     left: 0px;
     height: 18px;
     width: 18px;
@@ -172,6 +172,7 @@ div.tourContentCheckbox {
 .tourContentEveryday label {
     font-weight: 400;
     font-size: 14px;
+    margin-bottom: 0px;
 }
 
 .tourContent select {
@@ -356,4 +357,13 @@ div.tourContentCheckbox {
     }
 }
 
-@media (max-width: 576px) {}
+@media (max-width: 576px) {
+    .newTourCalendarStyle .Cal__Day__selection {
+        height: 43px !important;
+        width: 43px !important;
+        margin-left: -20px !important;
+    }
+    .newTourCalendarStyle .Cal__Day__selection span {
+        font-size: 14px !important;
+    }
+}
