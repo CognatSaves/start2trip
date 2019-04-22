@@ -29,9 +29,12 @@ class DriverProfileTripSettingsTourClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            time:"00:00",
             collapse: false,
             calendarModal: false,
+            tourContentEveryday:false,
+            tourContentOther:false,
+            currency:["USD","EUR","GEL","RUB",],
+            activeCurrency:"USD",
             typeCar: "sedan",
             cities: [{ city: "", description: "" },],
             departureDate: [{ day: "1", month: "Январь", year: "2019" },],
@@ -45,7 +48,6 @@ class DriverProfileTripSettingsTourClass extends React.Component {
             dateTour: [],
         }
 
-        this.handleTimeChange = this.handleTimeChange.bind(this);
         this.toggle = this.toggle.bind(this);
         this.addCity = this.addCity.bind(this);
         this.deleteCity = this.deleteCity.bind(this);
@@ -137,7 +139,9 @@ class DriverProfileTripSettingsTourClass extends React.Component {
         this.setState({ calendarModal: !this.state.calendarModal });
     };
 
-    handleChange = (event, index, value) => { this.setState({ typeCar: value }); console.log(this.state.typeCar) };
+    handleChange = (event, index, value) => { this.setState({ typeCar: value }) };
+
+    handleChangeCurrency = (event, index, value) => { this.setState({ activeCurrency: value })};
 
     handleRequestDelete = (key) => {
 
@@ -212,11 +216,11 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                 <Collapse isOpen={this.state.collapse}>
                     <div className="tourSettingsBody">
                         <form onSubmit={this.formSubmit} id="newTourForm" className="tourContent col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                            <div className="tourContentTitle d-flex align-items-center mb-0">
+                            <div className=" tourContentTitle d-flex align-items-center mb-0">
                                 <p>Добавление тура</p>
                             </div>
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mb-0">
-                                <label htmlFor="basicInfoNumber" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Название тура:</label>
+                                <label htmlFor="nameNewTour" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Название тура:</label>
                                 <TextField
                                     hintText="Пожалуйста введите номер"
                                     floatingLabelText="Номер паспорта"
@@ -226,24 +230,24 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                     underlineFocusStyle={{ borderColor: "#304269" }}
 
                                 />
-                                <input className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " id="basicInfoNumber" type="text" />
+                                <input className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " id="nameNewTour" type="text" />
                                 <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
                             </div>
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Достопримичательности по маршруту:</label>
+                                <label htmlFor="newTourAttractions" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Достопримичательности по маршруту:</label>
                                 <div className="d-flex col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">
-                                    <LocationSearchInput classDropdown="searchDropdownDriverTour" id="ww" />
+                                    <LocationSearchInput classDropdown="searchDropdownDriverTour" id="newTourAttractions" />
                                 </div>
                                 <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
                             </div>
                             <div className="d-flex justify-content-end col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <div className="d-flex flex-wrap flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 p-0 mb-2">
+                                <div className="d-flex flex-wrap col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 p-0 mb-2">
 
                                     {this.state.chipData.map((element, index) =>
                                         <Chip
                                             key={element.key}
                                             onRequestDelete={() => this.handleRequestDelete(element.key)}
-                                            labelStyle={{ color: "#686868" }}
+                                            labelStyle={{ color: "#000" }}
                                             labelColor="#f60"
                                             textColor="#304269"
                                             className="chipClass"
@@ -255,8 +259,8 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                 </div>
                             </div>
                             <div className="d-flex align-items-start mb-2">
-                                <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Описание:</label>
-                                <textarea className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " name="" id="description" cols="30" rows="3" />
+                                <label htmlFor="newTourDescription" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Описание:</label>
+                                <textarea id="newTourDescription" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " name="" id="description" cols="30" rows="3" />
                                 <TextField
                                     hintText="Расскажите о туре"
                                     floatingLabelText="Описание"
@@ -269,45 +273,43 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                 />
                                 <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
                             </div>
-                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start p-0">
-                                <div className="tourContentTitle d-flex col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 p-0">
-                                    <p>Расписание</p>
+                            <div className="d-flex border-top flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-start mt-3 p-0">
+                                <div className="tourContentTitle d-flex align-items-center col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 p-0">
+                                    <p className="mb-0">Расписание</p>
                                 </div>
-                                <div className="d-flex flex-column col-8 p-0">
+                                <div className="d-flex flex-column col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 p-0">
                                     <div className="d-flex col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">
                                         <div className="tourContentCheckbox">
-                                            <label htmlFor="tourContentCheckbox">
-                                                <input id="tourContentCheckbox" type="checkbox" />
+                                            <label htmlFor="tourContentEveryday">
+                                                <input id="tourContentEveryday" checked={this.state.tourContentEveryday} onChange={()=>{this.setState({tourContentEveryday : !this.state.tourContentEveryday, tourContentOther : false})}} type="checkbox" />
                                                 <span />
                                             </label>
                                         </div>
-                                        <div className="d-xl-flex d-lg-flex d-md-flex d-sm-block d-block align-items-center ml-1 mb-0">
-                                            <span className="">Ежедневно</span>
-                                            {/* <input className="addTourInputTime ml-2" type="time" /> */}
+                                        <div className="tourContentEveryday d-flex align-items-center ml-1 mb-0">
+                                            <label htmlFor="newTourEveryday" className="">Ежедневно</label>
+                                            <input id="newTourEveryday" style={{display: this.state.tourContentEveryday ? "block":"none"}} className="addTourInputTime ml-2" type="time" />
                                         </div>
                                     </div>
-                                    <div className="d-flex col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">
-                                        <div className="openMultipleDatepicker ">
-                                            <p onClick={this.calendarModalShow}>showModal</p>
-                                            {/* <InfiniteCalendar
-                                            Component={MultipleDatesCalendar}
-                                            width={800}
-                                            height={500}
-                                            minDate={today}
-                                            interpolateSelection={defaultMultipleDateInterpolation}
-                                            selected={[]}
-                                            onSelect={this.addDate}
-                                        /> */}
-                                            {/* <MultipleDatePicker
-                                            onSubmit={dates => this.addDate(dates)}
-                                        ><span>По определённым датам</span></MultipleDatePicker> */}
+                                    <div className="d-flex col-xl-8 col-lg-8 col-md-8 col-sm-10 col-10 p-0">
+                                    <div className="tourContentCheckbox">
+                                            <label htmlFor="tourContentOther">
+                                                <input id="tourContentOther" checked={this.state.tourContentOther} onChange={()=>{this.setState({tourContentOther : !this.state.tourContentOther ,tourContentEveryday : false})}}  type="checkbox" />
+                                                <span className="tourContentOtherSpan" />
+                                            </label>
+                                        </div>
+                                        <div className="openMultipleDatepicker d-xl-flex d-lg-flex d-md-flex d-sm-block d-block flex-column justify-content-center ml-1 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 mb-0 p-0">
+                                            <label htmlFor="newTourDatepicker" className="mb-0 mr-2">По определённым дням</label>
+                                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column  align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
+                                            <span style={{display: this.state.tourContentOther ? "block":"none"}} className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 pl-0" onClick={this.calendarModalShow}>Выбрать даты</span>
+                                            <input id="newTourDatepicker" style={{display: this.state.tourContentOther ? "block":"none"}} className="addTourInputTime col-xl-6 col-lg-6 col-md-6 col-sm-9 col-9 pl-0 ml-2" type="time" />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
 
                             </div>
-                            <div className="d-flex justify-content-end col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <div className="d-flex flex-wrap flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 p-0 mb-2">
+                            <div className={this.state.tourContentOther ? " d-flex justify-content-center col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12":" d-none" }>
+                                <div className="d-flex flex-wrap flex-row align-items-start col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 p-0 mb-2">
 
                                     {this.state.dateTour.map((element, index) => {
                                         let day = element.getDate();
@@ -318,7 +320,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                             <Chip
                                                 key={element.key}
                                                 onRequestDelete={() => this.handleRequestDeleteDate(element.key)}
-                                                labelStyle={{ color: "#686868" }}
+                                                labelStyle={{ color: "#000" }}
                                                 labelColor="#f60"
                                                 textColor="#304269"
                                                 className="chipClass"
@@ -329,24 +331,46 @@ class DriverProfileTripSettingsTourClass extends React.Component {
 
                                 </div>
                             </div>
-                            <div className="tourContentTitle d-flex align-items-center mb-0">
+                            <div className="tourContentTitle border-top d-flex align-items-center mt-3 mb-0">
                                 <p>Дополнительная информация</p>
                             </div>
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                <label className="col-xl-4 col-lg-4 col-md-4 col-sm-11 col-11 pl-0">Стоимость тура:</label>
-                                <div className="d-flex">
-                                    <input className=" mr-xl-1 mr-lg-1 mr-md-1 mr-sm-5 mr-5" type="text" required />
-                                    <input className="" type="text" required />
+                                <label htmlFor="newTourPrice" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Стоимость тура:</label>
+                                <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">
+                                <TextField
+                                    hintText="Пожалуйста введите номер"
+                                    floatingLabelText="Номер паспорта"
+                                    className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
+                                    fullWidth="100%"
+                                    floatingLabelFocusStyle={{ color: "#304269" }}
+                                    underlineFocusStyle={{ borderColor: "#304269" }}
+
+                                />
+                                    <input id="newTourPrice" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 mr-1" type="text"  />
+                                    <DropDownMenu
+                                    value={this.state.activeCurrency}
+                                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left',}}
+                                    onChange={this.handleChangeCurrency}
+                                    style={{ width: "100%" }}
+                                    className="dropdownClass"
+                                    autoWidth={false}
+                                    selectedMenuItemStyle={{ color: "#f60" }}
+                                >
+                                    {this.state.currency.map((element,index)=>
+                                        <MenuItem value={element} primaryText={element} />
+                                    )}
+                                </DropDownMenu>
                                 </div>
                             </div>
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                <label className="col-xl-4 col-lg-4 col-md-4 col-sm-11 col-11 pl-0">Тип транспорта:</label>
+                                <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 ">Тип транспорта:</label>
                                 <DropDownMenu
                                     value={this.state.typeCar}
+                                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left',}}
                                     hintText="Тип автомобиля"
                                     onChange={this.handleChange}
                                     style={{ width: "100%" }}
-                                    className="dropdownClass"
+                                    className="dropdownClass col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0"
                                     autoWidth={false}
                                     selectedMenuItemStyle={{ color: "#f60" }}
                                 >
@@ -356,20 +380,21 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                     <MenuItem value={"jeep"} primaryText={"Внедорожник"} />
 
                                 </DropDownMenu>
+                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
                             </div>
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                <label className="col-xl-4 col-lg-4 col-md-4 col-sm-11 col-11 pl-0">Количество мест:</label>
-                                <input className="pl-0" type="text" />
+                                <label htmlFor="newTourPeople" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Количество мест:</label>
+                                <input id="newTourPeople" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12" type="text" />
                             </div>
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                <label className="col-xl-4 col-lg-4 col-md-4 col-sm-11 col-11 pl-0">Загрузить фото:</label>
+                                <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Загрузить фото:</label>
                                 <img src="" alt="" />
                                 <img src="" alt="" />
                                 <img src="" alt="" />
                                 <img src="" alt="" />
                             </div>
-                            <div className="tourContentAddButton pb-4 d-flex justify-content-xl-start justify-content-lg-start justify-content-md-start justify-content-sm-center justify-content-center">
-                                <span className="col-4 d-xl-block d-lg-block d-md-block d-sm-none d-none" />
+                            <div className="tourContentAddButton pb-4 d-flex justify-content-xl-start justify-content-lg-start justify-content-md-start justify-content-sm-center justify-content-center mt-3">
+                                <span className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 d-xl-block d-lg-block d-md-block d-sm-none d-none" />
                                 <button htmlFor="newTourForm" type="submit" className="col-8">ДОБАВИТЬ ТУР</button>
                                 <span className="ml-3" onClick={this.toggle}>Отмена</span>
                             </div>

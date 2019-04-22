@@ -15,7 +15,7 @@ class DriverProfileBasicInformationClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: 0,
+            value: "Выберите языки",
             chipData: [],
             language: ["Грузинский", "Русский", "Корейский", "Хинди"],
 
@@ -30,7 +30,7 @@ class DriverProfileBasicInformationClass extends React.Component {
     }
 
     handleChange = (event, index, value) =>{ 
-        this.setState({ value })
+        // this.setState({ value })
         this.chipData = this.state.chipData;
         this.chipData.push({key:this.state.chipData.length, label:value});
 
@@ -122,7 +122,7 @@ class DriverProfileBasicInformationClass extends React.Component {
                                 <label htmlFor="basicInfoLanguage" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Языки:</label>
                                 <DropDownMenu
                                     value={this.state.value}
-                                    hintText="Язык"
+                                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left',}}
                                     className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
                                     onChange={this.handleChange}
                                     style={{ width: "100%" }}
@@ -131,6 +131,7 @@ class DriverProfileBasicInformationClass extends React.Component {
                                     selectedMenuItemStyle={{ color: "#f60" }}
                                     id="basicInfoLanguage"
                                 >
+                                    <MenuItem value="Выберите языки" disabled={true} primaryText="Выберите языки" />
                                     {this.state.language.map((element, index) =>
                                         <MenuItem value={element} primaryText={element} />
                                     )}
@@ -139,13 +140,13 @@ class DriverProfileBasicInformationClass extends React.Component {
                             </div>
                             <div className="d-flex align-items-center">
                                 <label style={{display : this.state.chipData.length ? "block":"none"}} htmlFor="basicInfoLanguage" className="col-xl-2 col-lg-2 col-md-2 col-sm-0 col-0"></label>
-                                <div className="d-flex flex-wrap align-items-сenter col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0 mt-1 mb-2">
+                                <div className="d-flex flex-wrap align-items-сenter col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 p-0 mt-1 mb-2">
 
                                         {this.state.chipData.map((element, index) =>
                                             <Chip
                                                 key={element.key}
                                                 onRequestDelete={() => this.handleRequestDelete(element)}
-                                                labelStyle={{ color: "#686868" }}
+                                                labelStyle={{ color: "#000" }}
                                                 labelColor="#f60"
                                                 textColor="#304269"
                                                 className="chipClass"
@@ -156,7 +157,6 @@ class DriverProfileBasicInformationClass extends React.Component {
 
                                 </div>
                             </div>
-
                             <div className="bottomContentNote d-flex align-items-start">
                                 <label htmlFor="basicInfoMultiLine" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">О себе:</label>
                                 <TextField

@@ -253,6 +253,7 @@ p.filledCardInformationNameCarEdit:hover {
     font-weight: 400;
     font-size: 14px;
     border-radius: 5px;
+    margin: 5px 0;
     border: 1px solid #ccc;
     transition: all 0.3s;
 }
@@ -292,6 +293,11 @@ p.filledCardInformationNameCarEdit:hover {
 
 .carAddNewCarButton span {
     cursor: pointer;
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 14px;
+    color: #333;
+    margin: 0;
 }
 
 .carAddNewCarButton span:hover {

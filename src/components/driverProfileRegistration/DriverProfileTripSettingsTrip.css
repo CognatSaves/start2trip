@@ -2,7 +2,7 @@
     box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     margin-bottom: 50px;
-    min-height: 500px;
+    min-height: 532px;
     transition: all 0.3s;
 }
 
@@ -14,14 +14,17 @@
     transition: all 0.3s;
 }
 
-.tripSettingsContent div {
-    margin-bottom: 15px;
-}
-
-.tripSettingsContent p {
+.tripSettingsContent label {
     font-weight: 500;
     font-size: 14px;
     color: #686868;
+    margin-bottom: 0px;
+}
+
+.tripSettingsContent p {
+    font-weight: 400;
+    font-size: 13px;
+    color: #666;
     margin-bottom: 0px;
 }
 
@@ -39,6 +42,7 @@ div.tripSettingsContentTitle {
     font-weight: 400;
     font-size: 14px;
     color: #304269;
+    margin-bottom: 0px;
 }
 
 .tripSettingsContent input {
@@ -48,6 +52,7 @@ div.tripSettingsContentTitle {
     border-radius: 5px;
     border: 1px solid #ccc;
     padding-left: 10px;
+    margin: 5px 0;
     min-width: 130px;
     min-height: 40px;
     transition: all 0.3s;
@@ -90,15 +95,23 @@ div.tripSettingsContentAddCity p {
 }
 
 .tripSettingsContentDeletButton {
-    font-weight: 400;
-    font-size: 14px;
-    color: #686868;
+    position: relative;
+    width: 50px;
+    height: 18px;
+    background: url(./img/garbageBlue.svg) no-repeat;
+    background-size: 18px 18px;
+    background-position: top 0px left 10px;
     cursor: pointer;
     transition: all 0.3s;
 }
 
-div.tripSettingsContentAddCity p:hover,
 .tripSettingsContentDeletButton:hover {
+    background: url(./img/garbageOrange.svg) no-repeat;
+    background-size: 18px 18px;
+    background-position: top 0px left 10px;
+}
+
+div.tripSettingsContentAddCity p:hover {
     color: #f60;
 }
 
@@ -110,6 +123,7 @@ div.tripSettingsContentAddCity p:hover,
     color: #fff;
     font-weight: 500;
     font-size: 16px;
+    margin-left: 10px;
     background: #304269;
     border-radius: 5px;
     border: none;
@@ -148,7 +162,11 @@ div.tripSettingsContentAddCity p:hover,
         border-radius: 0px;
     }
     .tripSettingsContentDeletButton {
-        text-align: right;
+        width: 100%;
+        background-position: top 0px right 10px;
+    }
+    .tripSettingsContentDeletButton:hover {
+        background-position: top 0px right 10px;
     }
 }
 

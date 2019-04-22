@@ -50,7 +50,7 @@ export default class LocationSearchInput extends React.Component {
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => 
         (
           <React.Fragment>
-            <input id="basicInfoLocation"
+            <input id={this.props.id}
               {...getInputProps({
                 placeholder: 'Search Places ...',
                 className: ''+this.props.classInput,

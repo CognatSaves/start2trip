@@ -2,6 +2,7 @@ import React from 'react';
 import './DriverProfileTripSettingsTrip.css'
 import { connect } from 'react-redux';
 import LocationSearchInput from '../home/HomeBody/Search'
+import TextField from 'material-ui/TextField';
 
 
 
@@ -97,28 +98,49 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                     {this.state.cityRadius.map((element, index) =>
                         <React.Fragment>
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                <p className="col-xl-2 col-lg-2 col-md-2 col-sm-11 col-11 p-0">Базовый город:</p>
-                                {/* <LocationSearchInput /> */}
-                                <input className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12" type="text" id="city" value={this.state.cityRadius[index].city} onChange={this.changeAllValue.bind(this, index)} required/>
-                                <div style={{ display: index ? "block" : "none" }} className="tripSettingsContentDeletButton col-xl-3 col-lg-3 col-md-3 col-sm-11 col-11 mb-0" onClick={() => { this.deleteCityRadius(index) }}>Удалить город</div>
+                                <label htmlFor={"tripLocation"+ index} className="col-xl-2 col-lg-2 col-md-2 col-sm-11 col-11 p-0">Базовый город/радиус:</label>
+                                <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">
+                                    <LocationSearchInput classInput="searchInputDriverInformation" id={"tripLocation"+ index} classDropdown="searchDropdownDriverInformation" />
+                                    <input className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 ml-1 d-xl-block d-lg-block d-md-block d-sm-none d-none" type="text" id="itemRadiu" value={this.state.cityRadius[index].itemRadius} onChange={this.changeAllValue.bind(this, index)} required />
+                                    <TextField
+                                        hintText="Пожалуйста введите радиус"
+                                        floatingLabelText="Радиус в км"
+                                        className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
+                                        fullWidth="100%"
+                                        floatingLabelFocusStyle={{ color: "#304269" }}
+                                        underlineFocusStyle={{ borderColor: "#304269" }}
+
+                                    />
+                                </div>
+                                {/* <LocationSearchInput address={this.state.cityRadius[index].city} changeCity={this.changeAllValue.bind(this, index)} classInput="searchInputDriverInformation" id="city" classDropdown="searchDropdownDriverInformation" /> */}
+                                {/* <input className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12" type="text" id="city" value={this.state.cityRadius[index].city} onChange={this.changeAllValue.bind(this, index)} required/> */}
+                                <span style={{ display: index ? "block" : "none" }} className="tripSettingsContentDeletButton " title="Удалить город" onClick={() => { this.deleteCityRadius(index) }} />
+                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none pl-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
                             </div>
-                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                <p className="col-xl-2 col-lg-2 col-md-2 col-sm-11 col-11 p-0">Радиус в км:</p>
-                                <input className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12" type="text" id="itemRadiu" value={this.state.cityRadius[index].itemRadius} onChange={this.changeAllValue.bind(this, index)} required/>
-                            </div>
+
                         </React.Fragment>
                     )}
                     <div className="tripSettingsContentAddCity d-flex align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start justify-content-center">
                         <p className="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 pl-0" onClick={this.addCityRadius}>+ Добавить город</p>
                     </div>
+                    <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
+                        <label htmlFor="maxDailyMileage" className="col-xl-2 col-lg-2 col-md-2 col-sm-11 col-11 p-0">Максимальный дневной пробег:</label>
+                        <input id="maxDailyMileage" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12" type="text" />
+                        <TextField
+                            hintText="Пожалуйста дневной пробег"
+                            floatingLabelText="Максимальный дневной пробег"
+                            className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
+                            fullWidth="100%"
+                            floatingLabelFocusStyle={{ color: "#304269" }}
+                            underlineFocusStyle={{ borderColor: "#304269" }}
+
+                        />
+                        <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none pl-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
+                    </div>
                 </div>
 
-                <div className="tripSettingsContent">
-                    <div className="tripSettingsContentTitle d-flex align-items-center">
-                        <p>Максимальный дневной пробег?</p>
-                    </div>
-                    <div className="d-flex justify-content-end col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"><input className="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12" type="text" required/></div>
-                    {/* {this.state.readyLeavePlease.map((element, index) =>
+                {/* <div className="tripSettingsContent">
+                    {this.state.readyLeavePlease.map((element, index) =>
                         <React.Fragment>
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
                                 <p className="col-xl-2 col-lg-2 col-md-2 col-sm-11 col-11 p-0">Базовый город:</p>
@@ -130,15 +152,15 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                                 <input className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12" type="text" id="itemRadiusLeave" value={this.state.readyLeavePlease[index].itemRadiusLeave} onChange={this.changeAllValue.bind(this, index)} required/>
                             </div>
                         </React.Fragment>
-                    )} */}
-                    {/* <div className="tripSettingsContentAddCity d-flex align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start justify-content-center">
+                    )}
+                    <div className="tripSettingsContentAddCity d-flex align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start justify-content-center">
                         <p className="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 pl-0" onClick={this.addReadyLeavePleaseel}>+ Добавить город</p>
                     </div> */}
-                    <div className="d-flex justify-content-md-start justify-content-sm-center justify-content-center">
-                    <p className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 d-xl-block  d-lg-block  d-md-block d-sm-none d-none p-0"></p>
-                        <button htmlFor="tripForm" type="submit">СОХРАНИТЬ ИЗМЕНЕНИЯ</button>
-                    </div>
+                <div className="tripSettingsContent d-flex justify-content-md-start justify-content-sm-center justify-content-center p-0">
+                    <p className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 d-xl-block  d-lg-block  d-md-block d-sm-none d-none"></p>
+                    <button htmlFor="tripForm" type="submit">СОХРАНИТЬ ИЗМЕНЕНИЯ</button>
                 </div>
+                {/* </div> */}
             </form>
         );
     }

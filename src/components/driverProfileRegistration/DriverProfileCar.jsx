@@ -101,9 +101,6 @@ class DriverProfileCarClass extends React.Component {
         return (
             <div className="_ThisTagIsNeeded">
                 <Collapse isOpen={this.state.collapse}>
-                    <div className="tourBodyElementTitle d-flex justify-content-center align-items-center">
-                        <p>Добавление автомобиля</p>
-                    </div>
                     <div className="carAddNewCar d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-start align-items-lg-start align-items-md-start align-items-sm-center align-items-center">
                         <div className="carAddNewCarPhotoCar col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " >
                             {$imagePreview}
@@ -111,7 +108,7 @@ class DriverProfileCarClass extends React.Component {
                             <input type="file" id="addCarFile" style={{ display: "none" }} onChange={this._handleImageChange} required />
                         </div>
                         <form onSubmit={this.handleSubmit} id="newCar" className="carAddNewCarInformation d-flex flex-column col-xl-6 col-lg-6 col-md-6 col-sm-11 col-11 p-0">
-                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mb-3 mt-2">
+                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mt-2">
                                 <label htmlFor="profileCarBrend" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">Марка автомобиля:</label>
                                 <input id="profileCarBrend" className="d-xl-block d-lg-block d-md-block d-sm-none d-none " value={this.state.newCarCard.nameCar} onChange={(e) => {
                                     this.setState({
@@ -134,7 +131,7 @@ class DriverProfileCarClass extends React.Component {
 
                                 />
                             </div>
-                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mb-3">
+                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
                                 <label htmlFor="profileCarYaer" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">Год автомобиля:</label>
                                 <input id="profileCarYaer" className="d-xl-block d-lg-block d-md-block d-sm-none d-none " value={this.state.newCarCard.yearCar} onChange={(e) => {
                                     this.setState({
@@ -157,7 +154,7 @@ class DriverProfileCarClass extends React.Component {
 
                                 />
                             </div>
-                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mb-3">
+                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
                                 <label htmlFor="profileCarNumber" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">Номер автомобиля:</label>
                                 <input id="profileCarNumber" className="d-xl-block d-lg-block d-md-block d-sm-none d-none " value={this.state.newCarCard.plateNumberCar} onChange={(e) => {
                                     this.setState({
@@ -180,12 +177,12 @@ class DriverProfileCarClass extends React.Component {
 
                                 />
                             </div>
-                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mb-3">
+                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flsex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
                                 <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">Тип автомобиля:</label>
                                 <DropDownMenu
                                     value={this.state.newCarCard.typeCar}
                                     textColor= "#fff"
-                                    hintText="Тип автомобиля"
+                                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left',}}
                                     className=""
                                     onChange={this.handleChange}
                                     style={{ width: "100%" }}
@@ -201,11 +198,11 @@ class DriverProfileCarClass extends React.Component {
 
                                 </DropDownMenu>
                             </div>
-                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mb-3">
+                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
                                 <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">Тип топлива:</label>
                                 <DropDownMenu
                                     value={this.state.newCarCard.flueType}
-                                    hintText="Тип автомобиля"
+                                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left',}}
                                     className=""
                                     onChange={this.handleChange}
                                     style={{ width: "100%" }}
@@ -220,7 +217,7 @@ class DriverProfileCarClass extends React.Component {
 
                                 </DropDownMenu>
                             </div>
-                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-start mb-3">
+                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-start mt-2 mb-3">
                                 <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-4 p-0">Удобства:</label>
                                 <div className="carAddNewCarComfortCheckBox d-flex flex-column pt-1">
                                     <label htmlFor="comfort1">Климат контроль
@@ -265,7 +262,7 @@ class DriverProfileCarClass extends React.Component {
                                     </label>
                                 </div>
                             </div>
-                            <div className="carAddNewCarButton d-flex align-items-end mb-5">
+                            <div className="carAddNewCarButton d-flex align-items-center mb-5">
                                 <span className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-4 p-0" />
                                 <button htmlFor="newCar" type="submit">Добавить Автомобиль</button>
                                 <span className="ml-3" onClick={this.toggle}>Отмена</span>

@@ -24,6 +24,10 @@
 }
 
 .calendarModal input {
+    text-indent: 20px;
+    background: url(./img/calendarGray.svg)no-repeat;
+    background-size: 14px 14px;
+    background-position: top 12px left 6px;
     font-weight: 400 !important;
     font-size: 14px !important;
     padding-left: 10px !important;
@@ -41,6 +45,7 @@
     border: 1px solid #ccc !important;
     border-radius: 5px !important;
     max-height: 40px !important;
+    margin: 5px 0;
 }
 
 .dropdownClass div {
@@ -52,7 +57,9 @@
 
 .dropdownClass button {
     top: 0 !important;
+    right: 0 !important;
     padding: 0 !important;
+    height: auto !important;
 }
 
 
@@ -98,6 +105,7 @@
         border: none !important;
     }
     .calendarModal input {
+        background-position: top 42px left 0px;
         max-height: none !important;
         padding-left: 0px !important;
         padding-top: 26px !important;
@@ -114,6 +122,7 @@
     .calendarModal label {
         display: block;
         font-size: 16px !important;
+        padding-left: 18px;
     }
     .calendarModal div {
         max-height: none !important;

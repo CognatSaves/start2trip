@@ -117,6 +117,7 @@
 .bottomContentNote p {
     font-weight: 400;
     font-size: 13px;
+    color: #666;
 }
 
 @media (max-width: 768px) {
