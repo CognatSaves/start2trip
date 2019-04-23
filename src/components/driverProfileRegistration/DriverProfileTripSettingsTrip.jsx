@@ -115,7 +115,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                                 {/* <LocationSearchInput address={this.state.cityRadius[index].city} changeCity={this.changeAllValue.bind(this, index)} classInput="searchInputDriverInformation" id="city" classDropdown="searchDropdownDriverInformation" /> */}
                                 {/* <input className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12" type="text" id="city" value={this.state.cityRadius[index].city} onChange={this.changeAllValue.bind(this, index)} required/> */}
                                 <span style={{ display: index ? "block" : "none" }} className="tripSettingsContentDeletButton " title="Удалить город" onClick={() => { this.deleteCityRadius(index) }} />
-                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none pl-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
+                                <p className= { index ? "d-none" : "d-xl-block d-lg-block d-md-block d-sm-none d-none pl-2"}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
                             </div>
 
                         </React.Fragment>

@@ -33,6 +33,11 @@
     border-bottom: 3px solid #f60 !important;
 }
 
+.navigation3 {
+    left: 50%;
+    right: 50%;
+}
+
 .driverBG {
     background-size: cover;
     background-repeat: no-repeat;

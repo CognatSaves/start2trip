@@ -169,6 +169,10 @@ div.tourContentCheckbox {
 
 /* TourContentCheckbox End */
 
+.tourContentEveryday {
+    position: relative;
+}
+
 .tourContentEveryday label {
     font-weight: 400;
     font-size: 14px;
@@ -296,6 +300,38 @@ div.tourContentCheckbox {
 
 .settingsTourHeader {
     margin: 15px 0;
+}
+
+.filledTourImgAddBg {
+    position: absolute;
+    z-index: 3;
+    width: 100%;
+    height: 100%;
+    background: #eaeaea;
+    border-radius: 5px 5px 0 0;
+}
+
+.filledTourImgAddBg span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 4;
+    width: 160px;
+    height: 90px;
+    background: url(./img/frontBusBlue.svg) no-repeat;
+    background-size: 160px 90px;
+    transition: all 0.3s;
+}
+
+.filledTourImgAddBg span:hover {
+    background: url(./img/frontBusOrange.svg) no-repeat;
+    background-size: 160px 90px;
+}
+
+.settingsTourPlace {
+    max-height: 42px;
+    overflow: hidden;
 }
 
 .settingsTourPlace p {

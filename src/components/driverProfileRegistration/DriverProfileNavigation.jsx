@@ -87,17 +87,15 @@ class DriverProfileNavigationClass extends React.Component {
 
                     <div className="navigationBody d-flex align-items-center">
                         {this.state.navigationText.map((element, index) =>
-                            <div>
-                                <p className={{ [index]: "navigationBodyActive", }[this.props.storeState.pageRender] + " navigationButton mb-0 " + {
-                                    0: "navigation0",
-                                    1: "navigation1",
-                                    2: "navigation2",
-                                    3: "navigation3",
-                                    4: "navigation4",
-                                    5: "navigation5",
-                                    6: "navigation6",
-                                }[this.props.storeState.pageRender]}  onClick={() => { this.props.dispatch(whichPageRender(index)) }}>{element}</p>
-                            </div>
+                            <p className={{ [index]: "navigationBodyActive", }[this.props.storeState.pageRender] + " navigationButton mb-0 " + {
+                                0: "navigation0",
+                                1: "navigation1",
+                                2: "navigation2",
+                                3: "navigation3",
+                                4: "navigation4",
+                                5: "navigation5",
+                                6: "navigation6",
+                            }[this.props.storeState.pageRender]} onClick={(event) => { this.props.dispatch(whichPageRender(index)); let position = event.currentTarget.offsetLeft; position= 250; }}>{element}</p>
                         )}
                     </div>
                 </div>

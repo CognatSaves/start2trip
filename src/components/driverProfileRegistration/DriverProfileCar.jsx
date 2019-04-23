@@ -2,6 +2,11 @@ import React from 'react';
 import './DriverProfileCar.css'
 import { connect } from 'react-redux';
 import imgCar from './img/images.jpeg'
+import q from './img/q.jpg'
+import w from './img/w.jpg'
+import e from './img/e.jpg'
+import r from './img/r.jpg'
+import t from './img/t.jpg'
 import sedanIcon from './img/sedan.svg'
 import no_smokingIcon from './img/no-smoking.svg'
 import seatIcon from './img/seat.svg'
@@ -31,7 +36,7 @@ class DriverProfileCarClass extends React.Component {
             imagePreviewUrl: '',
             collapse: false,
             newCarCard: { nameCar: "", yearCar: "", plateNumberCar: "", typeCar: "", flueType: "" },
-            car: ["", "", "", "", "",]
+            car: [q, imgCar, e, r, t,]
         }
         this.toggle = this.toggle.bind(this);
         this._handleImageChange = this._handleImageChange.bind(this);
@@ -278,14 +283,9 @@ class DriverProfileCarClass extends React.Component {
                                 <div className="filledCardImgAddBg">
                                     <span />
                                 </div>
-                                <img src={imgCar} className="img-fluid" alt="imgCar" width="100%" height="100%" />
                             </div>
-                            <div className="cardInformationType d-flex flex-column justify-content-center">
-                                <p>Название автомобиля </p>
-                                <div className="cardInformation d-flex">
-                                    <p>Тип </p>
-                                    <span>, колличество мест</span>
-                                </div>
+                            <div className="cardInformationType d-flex flex-column align-items-center justify-content-center">
+                                <p>Добавить автомобиль</p>
                             </div>
                         </div>
                     </div>
@@ -302,7 +302,7 @@ class DriverProfileCarClass extends React.Component {
                                     </div>
                                 </div>
                                 <div className="filledCardImg">
-                                    <img src={imgCar} className="img-fluid" alt="imgCar" width="100%" height="100%" />
+                                    <img src={element} className="img-fluid" alt="imgCar" width="100%" height="100%" />
                                 </div>
                                 <div className="cardInformationType d-flex flex-column">
                                     <p>Toyota Land Cruiser Prado 3.0d</p>
