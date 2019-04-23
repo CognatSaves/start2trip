@@ -18,11 +18,11 @@
     cursor: pointer;
     height: 40px;
     margin-right: 30px;
-    transition: all 0.3s;
     font-family: "Roboto";
     font-weight: 400;
     font-size: 16px;
     color: #304269;
+    transition: ease 0.2s;
 }
 
 .navigationBody p:hover {
@@ -202,14 +202,12 @@
         background-size: cover;
         background-position: right -180px bottom 0;
         background-origin: padding-box;
-         transition: ease 0.3s;
     }
     .bodyTopImg {
         background: url(img/diverBG.png) 100% 100% no-repeat;
         background-size: cover;
         background-position: right -180px bottom 0;
         background-origin: padding-box;
-         transition: ease 0.3s;
     } */
 }
 
