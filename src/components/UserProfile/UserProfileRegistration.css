@@ -3,6 +3,10 @@
     margin: 0 auto;
 }
 
+.contentHeight {
+    min-height: calc(100vh - 364px);
+}
+
 .driverProfileRegistrationCommercial {
     margin-top: 80px;
     margin-bottom: 30px;

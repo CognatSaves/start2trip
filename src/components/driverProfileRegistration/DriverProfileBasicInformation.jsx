@@ -123,10 +123,9 @@ class DriverProfileBasicInformationClass extends React.Component {
                                 <DropDownMenu
                                     value={this.state.value}
                                     anchorOrigin={{ vertical: 'bottom', horizontal: 'left',}}
-                                    className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
+                                    className="dropdownClass col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
                                     onChange={this.handleChange}
                                     style={{ width: "100%" }}
-                                    className="dropdownClass"
                                     autoWidth={false}
                                     selectedMenuItemStyle={{ color: "#f60" }}
                                     id="basicInfoLanguage"

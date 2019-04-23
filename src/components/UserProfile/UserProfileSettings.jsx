@@ -1,10 +1,8 @@
 import React from 'react';
 import './UserProfileSettings.css'
 import { connect } from 'react-redux';
-import eyeBlueIcon from './img/eyeBlue.svg'
-import eyeOrangeIcon from './img/eyeOrange.svg'
 import TextField from 'material-ui/TextField';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
+
 
 
 
