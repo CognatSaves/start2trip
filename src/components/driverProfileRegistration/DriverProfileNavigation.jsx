@@ -19,7 +19,12 @@ class DriverProfileNavigationClass extends React.Component {
         super(props);
         this.state = {
             navigationText: ["Профиль", "Автомобиль", "Поездки", "Туры", "Календарь", "Настройки", "Отзывы"],
+            shiftLeft:[0,6,129,219,311,430,430],
         }
+    }
+    shiftLeft =(event)=>{
+        
+         event.currentTarget.parentElement.scrollLeft = event.currentTarget.offsetLeft-120;
     }
 
     render() {
@@ -87,15 +92,7 @@ class DriverProfileNavigationClass extends React.Component {
 
                     <div className="navigationBody d-flex align-items-center">
                         {this.state.navigationText.map((element, index) =>
-                            <p className={{ [index]: "navigationBodyActive", }[this.props.storeState.pageRender] + " navigationButton mb-0 " + {
-                                0: "navigation0",
-                                1: "navigation1",
-                                2: "navigation2",
-                                3: "navigation3",
-                                4: "navigation4",
-                                5: "navigation5",
-                                6: "navigation6",
-                            }[this.props.storeState.pageRender]} onClick={(event) => { this.props.dispatch(whichPageRender(index)); debugger; event.currentTarget.scrollLeft = 20; }}>{element}</p>
+                            <p className={{ [index]: "navigationBodyActive", }[this.props.storeState.pageRender] + " navigationButton mb-0 " }  onClick={(event) => { this.props.dispatch(whichPageRender(index)); this.shiftLeft(event) }}>{element}</p>
                         )}
                     </div>
                 </div>
