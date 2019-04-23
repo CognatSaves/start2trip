@@ -44,7 +44,6 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: bottom -10px right 0;
-    transition: ease 0.3s;
 }
 
 .basicInformationBodyTop {
@@ -185,21 +184,18 @@
         background-size: cover;
         background-position: right -180px bottom 0;
         background-origin: padding-box;
-        transition: ease 0.3s;
     }
     .calendarBG {
         background: url(img/calendar.png) 100% 100% no-repeat;
         background-size: cover;
         background-position: right -180px bottom 0;
         background-origin: padding-box;
-        transition: ease 0.3s;
     }
     .settingsBG {
         background: url(img/settings.png) 100% 100% no-repeat;
         background-size: cover;
         background-position: right -180px bottom 0;
         background-origin: padding-box;
-        transition: ease 0.3s;
     }
     /* .bodyTopImg {
         background: url(img/diverBG.png) 100% 100% no-repeat;
