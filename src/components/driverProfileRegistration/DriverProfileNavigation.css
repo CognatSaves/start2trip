@@ -1,17 +1,8 @@
-body::after {
-    position: absolute;
-    width: 0;
-    height: 0;
-    overflow: hidden;
-    z-index: -1;
-    content: url(img/diverBG.png) url(img/calendar.png) url(img/settings.png);
-}
-
 .navigationBody {
     position: relative;
-    line-height: 40px;
+    width: 100%;
+    max-height: 40px;
     margin-bottom: 30px;
-    margin-right: 15px;
     overflow-x: auto;
     scroll-behavior: smooth;
     border-bottom: 1px solid #ccc;
@@ -21,17 +12,17 @@ body::after {
 
 .navigationBody::-webkit-scrollbar {
     width: 0;
+    height: 0;
 }
 
 .navigationBody p {
     cursor: pointer;
-    height: 40px;
+    height: 32px;
     margin-right: 30px;
-    font-family: "Roboto";
     font-weight: 400;
     font-size: 16px;
     color: #304269;
-    transition: ease 0.2s;
+    padding-bottom: 2px;
 }
 
 .navigationBody p:hover {
@@ -159,7 +150,8 @@ body::after {
         background-position: right -250px bottom 0;
     }
     .navigationBody {
-        margin-bottom: 0px;
+        margin-bottom: 10px;
+        box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.15);
     }
 }
 
@@ -179,9 +171,6 @@ body::after {
         color: #666;
         font-weight: 400;
         font-size: 12px;
-    }
-    .navigationBody {
-        margin-bottom: 0px;
     }
     .basicInformationBodyTopImg {
         width: 90px;

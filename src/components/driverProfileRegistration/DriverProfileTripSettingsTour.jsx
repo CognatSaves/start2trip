@@ -541,7 +541,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
 
 
                 </div>
-            </React.Fragment>
+            </React.Fragment >
         );
     }
 }
@@ -553,3 +553,5 @@ const DriverProfileTripSettingsTour = connect(
 )(DriverProfileTripSettingsTourClass);
 
 export default DriverProfileTripSettingsTour;
+
+

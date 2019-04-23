@@ -1,0 +1,163 @@
+.driverProfilesettingsBody {
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    margin-bottom: 50px;
+    min-height: 500px;
+    transition: all 0.3s;
+}
+
+.driverProfilesettingsBodyTitle {
+    min-height: 40px;
+    border-bottom: 1px solid #ccc;
+    line-height: 40px;
+}
+
+.driverProfilesettingsBodyTitle p {
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 16px;
+    color: #304269;
+    margin-bottom: 0px;
+    padding-left: 20px;
+}
+
+.driverProfileSettingsContent {
+    margin-top: 20px;
+}
+
+.driverProfileSettingsContentRow {
+    position: relative;
+    margin: 5px 0;
+}
+
+.driverProfileSettingsContent label {
+    font-family: "Roboto";
+    font-weight: 500;
+    font-size: 14px;
+    color: #686868;
+    margin-bottom: 0px;
+}
+
+.driverProfileSettingsContent p {
+    font-weight: 400;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 0px;
+}
+
+p.driverProfileSettingsContentPasswordText {
+    line-height: 70px;
+    font-weight: 500;
+    font-size: 14px;
+    color: #686868;
+}
+
+.driverProfileSettingsContent input {
+    color: #333;
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding-left: 10px;
+    width: 100%;
+    min-height: 40px;
+    max-height: 40px;
+    transition: all 0.3s;
+}
+
+.driverProfileSettingsContent input:focus,
+.driverProfileSettingsContent input:hover {
+    outline: none;
+    border-color: #304269;
+}
+
+.driverProfileSettingsContent .driverProfileSettingsContentPassword p {
+    font-size: 12px;
+}
+
+.driverProfileSettingsContent button {
+    min-width: 250px;
+    min-height: 40px;
+    text-align: center;
+    line-height: 40px;
+    color: #fff;
+    background: #304269;
+    border-radius: 5px;
+    border: none;
+    transition: all 0.3s;
+}
+
+.driverProfileSettingsContent button:hover,
+.driverProfileSettingsContent button:focus {
+    outline: none;
+    background: #f60;
+}
+
+.driverProfileSettingsContentUnsubscribe p {
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 12px;
+    color: #686868;
+    transition: all 0.3s;
+}
+
+.driverProfileSettingsContentUnsubscribe .driverProfileSettingsContentUnsubscribeButton {
+    font-size: 14px;
+    color: #304269;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+.driverProfileSettingsContentUnsubscribeButton:hover {
+    color: #f60;
+}
+
+.driverProfileSettingsContentPasswordEyeIcon {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    z-index: 2;
+    top: 10px;
+    right: 15px;
+    background: url(./img/eyeBlue.svg) no-repeat;
+    background-size: 20px 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.driverProfileSettingsContentPasswordEyeIcon:hover {
+    background: url(./img/eyeOrange.svg) no-repeat;
+    background-size: 20px 20px;
+}
+
+@media (max-width: 768px) {
+    .driverProfilesettingsBody {
+        box-shadow: none;
+    }
+    .driverProfileSettingsContent input,
+    .driverProfileSettingsContent select {
+        border: none;
+        border-radius: 0px;
+        border-bottom: 1px solid #ccc;
+    }
+    .driverProfileSettingsContent select:hover,
+    .driverProfileSettingsContent select:focus,
+    .driverProfileSettingsContent input:hover,
+    .driverProfileSettingsContent input:focus {
+        border-color: #304269;
+        border-width: 2px;
+        text-decoration: none;
+        outline: #304269;
+        border-radius: 0px;
+    }
+    .driverProfileSettingsContentPasswordEyeIcon {
+        top: 35px;
+        right: 15px;
+    }
+    .sittingsTextField input {
+        margin-top: 13px !important;
+    }
+}
+
+@media (max-width: 576px) {}

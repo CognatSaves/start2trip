@@ -3,7 +3,6 @@ import './DriverProfileCar.css'
 import { connect } from 'react-redux';
 import imgCar from './img/images.jpeg'
 import q from './img/q.jpg'
-import w from './img/w.jpg'
 import e from './img/e.jpg'
 import r from './img/r.jpg'
 import t from './img/t.jpg'
@@ -277,14 +276,10 @@ class DriverProfileCarClass extends React.Component {
                 </Collapse>
 
                 <div className="filledCardBody p-0 d-flex justify-content-xl-start justify-content-lg-start justify-content-md-start justify-content-sm-center justify-content-center flex-wrap col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 " >
-                    <div style={{ display: this.state.collapse ? "none" : "block" }} onClick={this.toggle} className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-11 p-2" >
-                        <div className="filledCard d-flex flex-column p-0">
-                            <div className="filledCardImgAdd d-flex justify-content-center align-items-center">
-                                <div className="filledCardImgAddBg">
-                                    <span />
-                                </div>
-                            </div>
-                            <div className="cardInformationType d-flex flex-column align-items-center justify-content-center">
+                <div style={{ display: this.state.collapse ? "none" : "block" }} onClick={this.toggle} className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-11 p-2" >
+                        <div className="filledCardImgAdd">
+                            <div className="d-flex flex-column justify-content-center align-items-center">
+                                <span />
                                 <p>Добавить автомобиль</p>
                             </div>
                         </div>
@@ -330,9 +325,3 @@ const DriverProfileCar = connect(
 export default DriverProfileCar;
 
 
-
-{/* <div className="filledCardInformationComfortImg d-flex align-items-center">
-                                    {this.state.comfort.map((element, index) =>
-                                        <img src={element.icon} width="18px" height="18px" title={element.title} alt="icon" />
-                                    )}
-                                </div> */}
