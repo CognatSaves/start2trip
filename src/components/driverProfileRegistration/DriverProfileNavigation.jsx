@@ -95,7 +95,7 @@ class DriverProfileNavigationClass extends React.Component {
                                 4: "navigation4",
                                 5: "navigation5",
                                 6: "navigation6",
-                            }[this.props.storeState.pageRender]} onClick={(event) => { this.props.dispatch(whichPageRender(index)); let position = event.currentTarget.offsetLeft; position= 250; }}>{element}</p>
+                            }[this.props.storeState.pageRender]} onClick={(event) => { this.props.dispatch(whichPageRender(index)); debugger; event.currentTarget.scrollLeft = 20; }}>{element}</p>
                         )}
                     </div>
                 </div>
