@@ -30,7 +30,7 @@ export default class TourProgram extends React.Component{
                 </div>
             </div>
             <div className="d-flex">
-                <Stars value={tour.rating} commentNumber={tour.comments + " отзывов"} valueDisplay="block" commentNumberDisplay="block" />
+                <Stars value={tour.rating} commentNumber={tour.comments + " отзывов"} valueDisplay={true} commentNumberDisplay={true} />
             </div>
             <div className="d-flex" style={{ margin: "10px 5px 20px 0px" }}>
                 <div className="placeDescription_description_tagCard" />

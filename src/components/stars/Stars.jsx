@@ -24,11 +24,11 @@ class StarsClass extends React.Component {
 
     return (
       <div className="infoBlock_starsBlock d-flex  justify-content-start">
-        <div className="infoBlock_starsBlock_value " style={{ display: this.props.valueDisplay }}>{this.state.tempValue}</div>
+        <div className={this.props.valueDisplay ? "infoBlock_starsBlock_value" : "infoBlock_starsBlock_value d-none" }>{this.state.tempValue}</div>
         <div className="infoBlock_starsBlock_stars d-flex ">
           <Rater total={5} onRate={this.onRate} interactive={this.state.changable} rating={this.state.tempValue} />
         </div>
-        <div className="infoBlock_starsBlock_number d-flex" style={{ display: this.props.commentNumberDisplay }}>{this.props.commentNumber}</div>
+        <div className={this.props.commentNumberDisplay ? "infoBlock_starsBlock_number d-flex" : "infoBlock_starsBlock_number d-none" }>{this.props.commentNumber}</div>
       </div>
     )
   }

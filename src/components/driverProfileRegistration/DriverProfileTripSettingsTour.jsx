@@ -523,7 +523,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                     </div>
                                     <div className="cardInformationType d-flex flex-column">
                                         <p>Кутаиси-Боржоми-Тбилиси</p>
-                                        <Stars value={5.0 - index} commentNumber={22 + " отзывов"} valueDisplay="block" commentNumberDisplay="block" />
+                                        <Stars value={5.0 - index} commentNumber={22 + " отзывов"} valueDisplay={true} commentNumberDisplay={true} />
                                         <div className="settingsTourHeader d-flex pr-1">
                                             <p>Свободных мест:</p>
                                             <p>15</p>

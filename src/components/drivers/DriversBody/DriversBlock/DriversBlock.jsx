@@ -155,7 +155,7 @@ class DriversBlockClass extends React.Component {
                 <div className="driversBlock_driverCard_photo" style={{background: "url("+driverPhoto+") no-repeat", backgroundSize: "40px 40px"}}/>
                 <div className="d-flex flex-column driversBlock_driverCard_driverInfo">
                   <Link to={ `/driverProfile/${element.id},${element.id},${element.id}`} className="driversBlock_driversInfo_name">{element.name}</Link>
-                  <Stars key={element.rating} value={element.rating} commentNumber={element.comments+" отзывов"} valueDisplay="none" commentNumberDisplay="block"/>
+                  <Stars key={element.rating} value={element.rating} commentNumber={element.comments+" отзывов"} valueDisplay={false} commentNumberDisplay={true}/>
                 </div>
               </div>
               <div className="driversBlock_driverInfoBlock_element d-flex">

@@ -159,7 +159,6 @@ class RenderModalRegistrationClass extends React.Component {
             },500);
             
         }
-        super(props);
         this.state = {
             sitingInDarkBackgroundText: { 
                 titleSitingIn: ["Войти в аккаунт","Log in"],
