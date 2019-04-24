@@ -56,9 +56,19 @@
     outline: none;
 }
 
-.headerMobailButton:hover {
-    background: url(pictures/menu-button-Orange.svg) no-repeat;
+.headerMobailButton-active {
+    width: 24px;
+    height: 18px;
+    margin-right: 10px;
+    outline: none;
+    border: none;
+    background: url(pictures/arrowWhite.svg) no-repeat;
     background-size: 100% 100%;
+    cursor: pointer;
+    outline: none;
+}
+
+.headerMobailButton-active:focus {
     outline: none;
 }
 
@@ -201,9 +211,93 @@
 }
 
 .headerSelect {
+    position: relative;
     padding: 0px !important;
     max-height: 30px;
     margin-left: 18px;
+}
+
+.burgerMenu {
+    display: flex;
+    justify-content: flex-end;
+    position: fixed;
+    z-index: 999;
+    width: 100%;
+    height: 90%;
+    top: 60px;
+    right: -100%;
+    transition: ease 0.5s;
+}
+
+.burgerMenu-active {
+    /* background: rgba(0, 0, 0, 0.4); */
+    right: 0 !important;
+}
+
+.burgerMenuBg {
+    width: 90%;
+    height: 100%;
+}
+
+.burgerMenuTop {
+    width: 100%;
+    height: 40%;
+    background: rgb(212, 211, 211);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.burgerMenuTop img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.burgerMenuTop .burgerName {
+    font-weight: 500;
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 0px;
+}
+
+.burgerMenuTop .burgerGeo {
+    font-weight: 400;
+    font-size: 14px;
+    color: #686868;
+    padding-left: 20px;
+    background: url(./pictures/location_Blue.svg) no-repeat;
+    background-size: 20px 25px;
+    background-position: bottom 0px left 0px;
+}
+
+.burgerMenuBottom {
+    width: 100%;
+    height: 60%;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.burgerMenuBottom span {
+    width: 100%;
+    min-height: 40px;
+    line-height: 40px;
+    padding-right: 10px;
+    font-weight: 500;
+    font-size: 16px;
+    color: #686868;
+    text-align: right;
+    transition: ease 0.3s;
+}
+
+.burgerMenuBottom span:hover {
+    color: #f60;
+    background: rgba(204, 204, 204, 0.5);
 }
 
 .headerRegistration span {

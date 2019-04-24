@@ -2,13 +2,12 @@ import React from 'react';
 import './header_css.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
-// import earth from './pictures/earth.svg'
-// import whiteEarth from './pictures/globe.svg';
 import RenderModalCountry from './RenderModalCountry'
 import RenderModalRegistration from './RenderModalRegistration'
 import mapWorldIcon from './pictures/mapWorld.svg'
 import { connect } from 'react-redux';
 import crossIconModal from './pictures/close.svg'
+import people from './pictures/person.jpg'
 import geoFlag from './pictures/georgia.svg'
 import ruFlag from './pictures/russia.svg'
 import enFlag from './pictures/united-kingdom.svg'
@@ -54,6 +53,7 @@ class HeaderClass extends React.Component {
     super(props);
     this.state = {
       dropdownLanguageOpen: false,
+      burgerMenu:false,
       dropdownOpen: false,
       activLanguage: [{ flag: ruFlag, string: "RU" }, { flag: enFlag, string: "EN" }, { flag: geoFlag, string: "GEO" }, { flag: espFlag, string: "ESP" }],
       activLanguageNumber: 0,
@@ -140,7 +140,23 @@ class HeaderClass extends React.Component {
             <h3 />
           </Link>
           <div className="headerSelect d-flex align-items-center justify-content-end ">
-            <button className="headerMobailButton"></button>
+            <button className={this.state.burgerMenu ? "headerMobailButton-active" : "headerMobailButton"} onClick={()=>{this.setState({burgerMenu: !this.state.burgerMenu})}}></button>
+            <nav className={this.state.burgerMenu ? "burgerMenu burgerMenu-active" : "burgerMenu"}>
+                <div className="burgerMenuBg">
+                  <div className="burgerMenuTop"> 
+                    <img src={people} alt={people}/>
+                    <span className="burgerName">Full Name</span>
+                    <span className="burgerGeo">San Francisco, CA</span>
+                  </div>
+                  <div className="burgerMenuBottom">
+                      <span>Профиль</span>
+                      <span>Выберите валюту</span>
+                      <span>Выберите язык</span>
+                      <span>Выберите страну</span>
+                      <span>Выйти</span>
+                  </div>
+                </div>
+            </nav>
           </div>
         </div>
 

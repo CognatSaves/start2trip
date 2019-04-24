@@ -6,7 +6,7 @@ import imgPerson from './img/drivers_body_photo.png'
 import Stars from '../stars/Stars'
 // import basicInformationBG from './img/diverBG.png'
 import calendarBG from './img/calendar.png'
-import settingsBG from './img/settings.png'
+import carBg from './img/carBg.png'
 import toursBG from './img/poezdki_tours.png'
 // import driverBG from './img/diverBG.png'
 // import driverBG from './img/diverBG.png'
@@ -18,35 +18,39 @@ class DriverProfileNavigationClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            navigationText: ["Профиль", "Автомобиль", "Поездки", "Туры", "Календарь", "Настройки", "Отзывы"],
-            shiftLeft:[0,6,129,219,311,430,430],
+            navigationText: ["Профиль", "Автомобиль", "Настройки поездок", "Туры", "Календарь", "История поездок", "Предстоящие поездки", "Отзывы", "Настройки",],
+            shiftLeft: [0, 6, 129, 219, 311, 430, 430],
         }
     }
-    shiftLeft =(event)=>{
-        
-         event.currentTarget.parentElement.scrollLeft = event.currentTarget.offsetLeft-120;
+    shiftLeft = (event) => {
+
+        event.currentTarget.parentElement.scrollLeft = event.currentTarget.offsetLeft - 120;
     }
 
     render() {
         return (
-            <div className="driverBG" style={{
-                // 0: { backgroundImage: "url(" + basicInformationBG + ")" },
-                // 1: { backgroundImage: "url(" + basicInformationBG + ")" },
-                2: { backgroundImage: "url(" + toursBG + ")" },
-                3: { backgroundImage: "url(" + toursBG + ")" },
-                4: { backgroundImage: "url(" + calendarBG + ")" },
-                5: { backgroundImage: "url(" + settingsBG + ")" },
-                // 6: { backgroundImage: "url(" + basicInformationBG + ")" },
-            }[this.props.storeState.pageRender]}>
-                <div className="registrationWrapper col-12 p-0">
+            <React.Fragment>
+                <div className="registrationWrapper driverBG col-12 p-0" style={{
+                    // 0: { backgroundImage: "url(" + basicInformationBG + ")" },
+                    1: { backgroundImage: "url(" + carBg + ")" },
+                    2: { backgroundImage: "url(" + toursBG + ")" },
+                    3: { backgroundImage: "url(" + toursBG + ")" },
+                    4: { backgroundImage: "url(" + calendarBG + ")" },
+                    5: { backgroundImage: "url(" + carBg + ")" },
+                    // 6: { backgroundImage: "url(" + basicInformationBG + ")" },
+                    // 7: { backgroundImage: "url(" + basicInformationBG + ")" },
+                    // 8: { backgroundImage: "url(" + basicInformationBG + ")" },
+                }[this.props.storeState.pageRender]}>
                     <div className={"basicInformationBodyTop d-flex align-items-center " + {
                         0: "basicInformationBG",
-                        1: "bodyTopImg",
+                        1: "carBg",
                         2: "toursBG",
                         3: "bodyTopImg",
                         4: "calendarBG",
                         5: "settingsBG",
                         6: "bodyTopImg",
+                        7: "settingsBG",
+                        8: "bodyTopImg",
                     }[this.props.storeState.pageRender]}>
                         <div className="basicInformationBodyTopImgHover">
                             <label className="basicInformationBodyTopImg" htmlFor="addFile">Обновить фотографию</label>
@@ -92,11 +96,11 @@ class DriverProfileNavigationClass extends React.Component {
 
                     <div className="navigationBody d-flex align-items-center">
                         {this.state.navigationText.map((element, index) =>
-                            <p className={{ [index]: "navigationBodyActive", }[this.props.storeState.pageRender] + " navigationButton mb-0 " }  onClick={(event) => { this.props.dispatch(whichPageRender(index)); this.shiftLeft(event) }}>{element}</p>
+                            <p className={{ [index]: "navigationBodyActive", }[this.props.storeState.pageRender] + " navigationButton mb-0 "} onClick={(event) => { this.props.dispatch(whichPageRender(index)); this.shiftLeft(event) }}>{element}</p>
                         )}
                     </div>
                 </div>
-            </div>
+            </React.Fragment>
         );
     }
 }

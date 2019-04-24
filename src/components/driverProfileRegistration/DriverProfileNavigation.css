@@ -43,7 +43,7 @@
 .driverBG {
     background-size: contain;
     background-repeat: no-repeat;
-    background-position: bottom 0 right 150px;
+    background-position: bottom 30px right 150px;
 }
 
 .basicInformationBodyTop {
@@ -148,9 +148,9 @@
 }
 
 @media (max-width: 1110px) {
-    /* .driverBG {
-        background-position: right -250px bottom 0;
-    } */
+    .driverBG {
+        background-position: bottom 30px right 0px;
+    }
     .navigationBody {
         margin-bottom: 10px;
         box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.15);
@@ -192,7 +192,7 @@
         background-origin: padding-box; */
     }
     .settingsBG {
-        background: url(img/settings.png) 100% 100% no-repeat;
+        background: url(img/carBg.png) 100% 100% no-repeat;
         background-size: contain;
         /* background-position: right -180px bottom 0;
         background-origin: padding-box; */
