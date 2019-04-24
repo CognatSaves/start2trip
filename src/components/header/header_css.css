@@ -26,9 +26,10 @@
 }
 
 .headerMobail h3 {
-    width: 80px;
-    height: 20px;
+    width: 100px;
+    height: 40px;
     margin: 0;
+    margin-left: 5px;
     background: url(./pictures/logo_tripfer_white.svg) no-repeat;
     background-size: 100% 100%;
     /* background-position: top 0px left 0px; */
@@ -93,8 +94,8 @@
 /* Header Bigin */
 
 .header h3 {
-    width: 90px;
-    height: 24px;
+    width: 100px;
+    height: 30px;
     margin: 0;
     background: url(./pictures/logo_tripfer_white.svg) no-repeat;
     background-size: 100% 100%;

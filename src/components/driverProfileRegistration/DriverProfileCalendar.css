@@ -92,7 +92,7 @@
 
 .chipClass svg {
     fill: #aeaeae !important;
-    transition: all 2s;
+    transition: all 0.3s;
 }
 
 .chipClass svg:hover {

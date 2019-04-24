@@ -2,6 +2,10 @@ import React from 'react';
 import './DriverProfileCar.css'
 import { connect } from 'react-redux';
 import imgCar from './img/images.jpeg'
+import q from './img/q.jpg'
+import e from './img/e.jpg'
+import r from './img/r.jpg'
+import t from './img/t.jpg'
 import sedanIcon from './img/sedan.svg'
 import no_smokingIcon from './img/no-smoking.svg'
 import seatIcon from './img/seat.svg'
@@ -31,7 +35,7 @@ class DriverProfileCarClass extends React.Component {
             imagePreviewUrl: '',
             collapse: false,
             newCarCard: { nameCar: "", yearCar: "", plateNumberCar: "", typeCar: "", flueType: "" },
-            car: ["", "", "", "", "",]
+            car: [q, imgCar, e, r, t,]
         }
         this.toggle = this.toggle.bind(this);
         this._handleImageChange = this._handleImageChange.bind(this);
@@ -272,20 +276,11 @@ class DriverProfileCarClass extends React.Component {
                 </Collapse>
 
                 <div className="filledCardBody p-0 d-flex justify-content-xl-start justify-content-lg-start justify-content-md-start justify-content-sm-center justify-content-center flex-wrap col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 " >
-                    <div style={{ display: this.state.collapse ? "none" : "block" }} onClick={this.toggle} className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-11 p-2" >
-                        <div className="filledCard d-flex flex-column p-0">
-                            <div className="filledCardImgAdd d-flex justify-content-center align-items-center">
-                                <div className="filledCardImgAddBg">
-                                    <span />
-                                </div>
-                                <img src={imgCar} className="img-fluid" alt="imgCar" width="100%" height="100%" />
-                            </div>
-                            <div className="cardInformationType d-flex flex-column justify-content-center">
-                                <p>Название автомобиля </p>
-                                <div className="cardInformation d-flex">
-                                    <p>Тип </p>
-                                    <span>, колличество мест</span>
-                                </div>
+                <div style={{ display: this.state.collapse ? "none" : "block" }} onClick={this.toggle} className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-11 p-2" >
+                        <div className="filledCardImgAdd">
+                            <div className="d-flex flex-column justify-content-center align-items-center">
+                                <span />
+                                <p>Добавить автомобиль</p>
                             </div>
                         </div>
                     </div>
@@ -302,7 +297,7 @@ class DriverProfileCarClass extends React.Component {
                                     </div>
                                 </div>
                                 <div className="filledCardImg">
-                                    <img src={imgCar} className="img-fluid" alt="imgCar" width="100%" height="100%" />
+                                    <img src={element} className="img-fluid" alt="imgCar" width="100%" height="100%" />
                                 </div>
                                 <div className="cardInformationType d-flex flex-column">
                                     <p>Toyota Land Cruiser Prado 3.0d</p>
@@ -330,9 +325,3 @@ const DriverProfileCar = connect(
 export default DriverProfileCar;
 
 
-
-{/* <div className="filledCardInformationComfortImg d-flex align-items-center">
-                                    {this.state.comfort.map((element, index) =>
-                                        <img src={element.icon} width="18px" height="18px" title={element.title} alt="icon" />
-                                    )}
-                                </div> */}

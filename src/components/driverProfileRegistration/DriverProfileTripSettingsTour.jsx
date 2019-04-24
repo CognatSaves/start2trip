@@ -46,6 +46,34 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                 { key: 3, label: 'molodechno samegrelo samcxe' },
             ],
             dateTour: [],
+            newTourEverydayTime: "Выберите время",
+            newTourDatepickerTime: "Выберите время",
+            time: [
+                "00:00", "00:15", "00:30", "00:45",
+                "01:00", "01:15", "01:30", "01:45",
+                "02:00", "02:15", "02:30", "02:45",
+                "03:00", "03:15", "03:30", "03:45",
+                "04:00", "04:15", "04:30", "04:45",
+                "05:00", "05:15", "05:30", "05:45",
+                "06:00", "06:15", "06:30", "06:45",
+                "07:00", "07:15", "07:30", "07:45",
+                "08:00", "08:15", "08:30", "08:45",
+                "09:00", "09:15", "09:30", "09:45",
+                "10:00", "10:15", "10:30", "10:45",
+                "11:00", "11:15", "11:30", "11:45",
+                "12:00", "12:15", "12:30", "12:45",
+                "13:00", "13:15", "13:30", "13:45",
+                "14:00", "14:15", "14:30", "14:45",
+                "15:00", "15:15", "15:30", "15:45",
+                "16:00", "16:15", "16:30", "16:45",
+                "17:00", "17:15", "17:30", "17:45",
+                "18:00", "18:15", "18:30", "18:45",
+                "19:00", "19:15", "19:30", "19:45",
+                "20:00", "20:15", "20:30", "20:45",
+                "21:00", "21:15", "21:30", "21:45",
+                "22:00", "22:15", "22:30", "22:45",
+                "23:00", "23:15", "23:30", "23:45",
+            ],
         }
 
         this.toggle = this.toggle.bind(this);
@@ -141,6 +169,10 @@ class DriverProfileTripSettingsTourClass extends React.Component {
 
     handleChange = (event, index, value) => { this.setState({ typeCar: value }) };
 
+    handleChangenEverydayTime = (event, index, value) => { this.setState({ newTourEverydayTime: value }) };
+
+    handleChangeDatepickerTime = (event, index, value) => { this.setState({ newTourDatepickerTime: value }) };
+
     handleChangeCurrency = (event, index, value) => { this.setState({ activeCurrency: value }) };
 
     handleRequestDelete = (key) => {
@@ -213,16 +245,16 @@ class DriverProfileTripSettingsTourClass extends React.Component {
         const customContentStyle = {
             width: '100%',
             maxWidth: 'none',
-          };
-          const locale =  {
+        };
+        const locale = {
             blank: 'Select a date...',
             headerFormat: 'ddd, MMM Do',
             todayLabel: {
-              long: 'Today',
+                long: 'Today',
             },
             weekdays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
             weekStartsOn: 0,
-          };
+        };
 
         return (
             <React.Fragment>
@@ -230,8 +262,8 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                 <Dialog
                     actions={actions}
                     modal={false}
-                    bodyStyle={{padding:0}}
-                    contentStyle={ isMobile? customContentStyle : ""}
+                    bodyStyle={{ padding: 0 }}
+                    contentStyle={isMobile ? customContentStyle : ""}
                     open={this.state.calendarModal}
                     onRequestClose={this.calendarModalShow}
                 >
@@ -256,8 +288,8 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mb-0">
                                 <label htmlFor="nameNewTour" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Название тура:</label>
                                 <TextField
-                                    hintText="Пожалуйста введите номер"
-                                    floatingLabelText="Номер паспорта"
+                                    hintText="Пожалуйста название тура"
+                                    floatingLabelText="Название тура"
                                     className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
                                     fullWidth="100%"
                                     floatingLabelFocusStyle={{ color: "#304269" }}
@@ -320,8 +352,22 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                             </label>
                                         </div>
                                         <div className="tourContentEveryday d-flex align-items-center ml-1 mb-0">
-                                            <label htmlFor="newTourEveryday" onClick={()=>{this.setState({ tourContentEveryday: !this.state.tourContentEveryday, tourContentOther: false })}} className="">Ежедневно</label>
-                                            <input id="newTourEveryday" style={{ display: this.state.tourContentEveryday ? "block" : "none" }} className="addTourInputTime ml-2" type="time" />
+                                            <label htmlFor="newTourEveryday" onClick={() => { this.setState({ tourContentEveryday: !this.state.tourContentEveryday, tourContentOther: false }) }} className="">Ежедневно</label>
+                                            <DropDownMenu
+                                                value={this.state.newTourEverydayTime}
+                                                anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
+                                                onChange={this.handleChangenEverydayTime}
+                                                style={{ width: "100%", display: this.state.tourContentEveryday ? "" : "none" }}
+                                                menuStyle={{ maxHeight: "150px" }}
+                                                className="dropdownClass"
+                                                autoWidth={false}
+                                                selectedMenuItemStyle={{ color: "#f60" }}
+                                            >
+                                                <MenuItem value="Выберите время" disabled={true} primaryText="Выберите время" />
+                                                {this.state.time.map((element, index) =>
+                                                    <MenuItem value={element} primaryText={element} />
+                                                )}
+                                            </DropDownMenu>
                                         </div>
                                     </div>
                                     <div className="d-flex col-xl-8 col-lg-8 col-md-8 col-sm-10 col-10 p-0">
@@ -332,10 +378,24 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                             </label>
                                         </div>
                                         <div className="openMultipleDatepicker d-xl-flex d-lg-flex d-md-flex d-sm-block d-block flex-column justify-content-center ml-1 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 mb-0 p-0">
-                                            <label htmlFor="newTourDatepicker" onClick={()=>{this.setState({ tourContentOther: !this.state.tourContentOther, tourContentEveryday: false })}} className="mb-0 mr-2">По определённым дням</label>
+                                            <label htmlFor="newTourDatepicker" onClick={() => { this.setState({ tourContentOther: !this.state.tourContentOther, tourContentEveryday: false }) }} className="mb-0 mr-2">По определённым дням</label>
                                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column  align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
                                                 <span style={{ display: this.state.tourContentOther ? "block" : "none" }} className="col-xl-6 col-lg-7 col-md-9 col-sm-12 col-12 p-0" onClick={this.calendarModalShow}>Выбрать даты</span>
-                                                <input id="newTourDatepicker" style={{ display: this.state.tourContentOther ? "block" : "none" }} className="addTourInputTime col-xl-6 col-lg-6 col-md-5 col-sm-9 col-9 pl-0 ml-2" type="time" />
+                                                <DropDownMenu
+                                                    value={this.state.newTourDatepickerTime}
+                                                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
+                                                    onChange={this.handleChangenDatepickerTime}
+                                                    style={{ width: "100%", display: this.state.tourContentOther ? "" : "none" }}
+                                                    menuStyle={{ maxHeight: "150px" }}
+                                                    className="dropdownClass"
+                                                    autoWidth={false}
+                                                    selectedMenuItemStyle={{ color: "#f60" }}
+                                                >
+                                                    <MenuItem value="Выберите время" disabled={true} primaryText="Выберите время" />
+                                                    {this.state.time.map((element, index) =>
+                                                        <MenuItem value={element} primaryText={element} />
+                                                    )}
+                                                </DropDownMenu>
                                             </div>
                                         </div>
                                     </div>
@@ -438,22 +498,10 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                 <div className="tourBodyElement">
                     <div className="p-0 d-flex  justify-content-xl-start justify-content-lg-start justify-content-md-start justify-content-sm-center justify-content-center flex-wrap col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div style={{ display: this.state.collapse ? "none" : "block" }} onClick={this.toggle} className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-11 p-2" >
-                            <div className="filledCard d-flex flex-column p-0">
-                                <div className="filledCardImgAdd d-flex justify-content-center align-items-center">
-                                    <div className="filledCardImgAddBg">
-                                        <span />
-                                    </div>
-                                    <img src={georgiaImg} className="img-fluid" alt="imgCar" width="100%" height="100%" />
-                                </div>
-                                <div className="cardInformationType d-flex flex-column">
-                                    <p>Название Тура</p>
-                                    <Stars value={5.0} commentNumber={22 + " отзывов"} valueDisplay="block" commentNumberDisplay="block" />
-                                    <div className="settingsTourHeader d-flex pr-1">
-                                        <p>Колличество свободных мест</p>
-                                    </div>
-                                    <div className="settingsTourPlace d-flex mb-3">
-                                        <p>Города которые будет посещать тур</p>
-                                    </div>
+                            <div className="filledTourImgAddBg">
+                                <div className="d-flex flex-column justify-content-center align-items-center">
+                                    <span />
+                                    <p>Добавить тур</p>
                                 </div>
                             </div>
                         </div>
@@ -473,8 +521,6 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                     <div className="filledCardImg">
                                         <img src={georgiaImg} className="img-fluid" alt="imgCar" width="100%" height="100%" />
                                     </div>
-
-
                                     <div className="cardInformationType d-flex flex-column">
                                         <p>Кутаиси-Боржоми-Тбилиси</p>
                                         <Stars value={5.0 - index} commentNumber={22 + " отзывов"} valueDisplay="block" commentNumberDisplay="block" />
@@ -483,7 +529,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                             <p>15</p>
                                         </div>
                                         <div className="settingsTourPlace d-flex">
-                                            <p>Кутаиси, Храм Баграти, Монастырь Гелати, Цхалтубо, Пещера Прометей</p>
+                                            <p>Кутаиси, Храм Баграти, Монастырь Гелати </p>
                                         </div>
                                     </div>
                                 </div>
@@ -495,7 +541,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
 
 
                 </div>
-            </React.Fragment>
+            </React.Fragment >
         );
     }
 }
@@ -507,3 +553,5 @@ const DriverProfileTripSettingsTour = connect(
 )(DriverProfileTripSettingsTourClass);
 
 export default DriverProfileTripSettingsTour;
+
+

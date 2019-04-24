@@ -1,8 +1,10 @@
 .navigationBody {
     position: relative;
-    line-height: 40px;
+    width: 100%;
+    max-height: 40px;
     margin-bottom: 30px;
-    overflow-y: auto;
+    overflow-x: auto;
+    scroll-behavior: smooth;
     border-bottom: 1px solid #ccc;
     padding-left: 15px;
     padding-right: 15px;
@@ -10,17 +12,17 @@
 
 .navigationBody::-webkit-scrollbar {
     width: 0;
+    height: 0;
 }
 
 .navigationBody p {
     cursor: pointer;
-    height: 40px;
+    height: 32px;
     margin-right: 30px;
-    transition: all 0.3s;
-    font-family: "Roboto";
     font-weight: 400;
     font-size: 16px;
     color: #304269;
+    padding-bottom: 2px;
 }
 
 .navigationBody p:hover {
@@ -33,16 +35,20 @@
     border-bottom: 3px solid #f60 !important;
 }
 
+.navigation3 {
+    left: 50%;
+    right: 50%;
+}
+
 .driverBG {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: bottom -10px right 0;
-    transition: ease 0.3s;
 }
 
 .basicInformationBodyTop {
     position: relative;
-    padding: 30px 15px;
+    padding: 15px;
 }
 
 .basicInformationBodyTopImg {
@@ -60,7 +66,6 @@
     font-family: "Roboto";
     font-weight: 500;
     font-size: 12px;
-    transition: 0.5s ease;
 }
 
 .basicInformationBodyTopImgHover {
@@ -145,7 +150,8 @@
         background-position: right -250px bottom 0;
     }
     .navigationBody {
-        margin-bottom: 0px;
+        margin-bottom: 10px;
+        box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.15);
     }
 }
 
@@ -166,9 +172,6 @@
         font-weight: 400;
         font-size: 12px;
     }
-    .navigationBody {
-        margin-bottom: 0px;
-    }
     .basicInformationBodyTopImg {
         width: 90px;
         height: 90px;
@@ -179,35 +182,30 @@
         background-size: cover;
         background-position: right -180px bottom 0;
         background-origin: padding-box;
-        transition: ease 0.3s;
     }
     .calendarBG {
         background: url(img/calendar.png) 100% 100% no-repeat;
         background-size: cover;
         background-position: right -180px bottom 0;
         background-origin: padding-box;
-        transition: ease 0.3s;
     }
     .settingsBG {
         background: url(img/settings.png) 100% 100% no-repeat;
         background-size: cover;
         background-position: right -180px bottom 0;
         background-origin: padding-box;
-        transition: ease 0.3s;
     }
     /* .bodyTopImg {
         background: url(img/diverBG.png) 100% 100% no-repeat;
         background-size: cover;
         background-position: right -180px bottom 0;
         background-origin: padding-box;
-         transition: ease 0.3s;
     }
     .bodyTopImg {
         background: url(img/diverBG.png) 100% 100% no-repeat;
         background-size: cover;
         background-position: right -180px bottom 0;
         background-origin: padding-box;
-         transition: ease 0.3s;
     } */
 }
 
