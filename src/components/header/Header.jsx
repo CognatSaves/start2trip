@@ -15,6 +15,9 @@ import enFlag from './pictures/united-kingdom.svg'
 import espFlag from './pictures/spain.svg'
 import { Link } from 'react-router-dom';
 import { Modal, ModalBody } from 'reactstrap';
+import { browserName, isChrome, isFirefox, isOpera, BrowserView } from 'react-device-detect';
+import { EventEmitter } from 'events';
+import ReactDOM from 'react-dom';
 
 const ModalRegistration = (props) => {
   let { modalRegistration, toggle, className } = props;
@@ -49,7 +52,6 @@ const CountrySelect = (props) => {
 class HeaderClass extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       dropdownLanguageOpen: false,
       dropdownOpen: false,
@@ -121,11 +123,14 @@ class HeaderClass extends React.Component {
     });
   }
   render() {
-    console.log("render");
+    console.log("render header");
+    console.log(this.state);
+    console.log(window);
+    /*console.log("window.opener");
+    console.log(window.opener);*/
     return (
       <React.Fragment>
-
-        <ModalRegistration modalRegistration={this.state.modalRegistration} toggle={this.toggleModalRegistration} className={this.props.className} />
+        <ModalRegistration modalRegistration={this.state.modalRegistration} toggle={this.toggleModalRegistration} className={this.props.className} cookie={/*фиктивня*/document.cookie.toString()}/>
         <CountrySelect modalCountry={this.state.modalCountry} toggleModalCountry={this.toggleModalCountry} className={this.props.className} />
         <div className="headerMobail d-xl-none d-lg-none d-md-none d-sm-flex d-flex align-items-center justify-content-between">
           {/* <div onClick={this.toggleModalCountry} className="headerGeoButton">

@@ -3,6 +3,349 @@
     z-index: 0;
 }
 
+.registrationBodyLogoIcon{
+    position: absolute;
+    z-index: 4;
+    top: 15px;
+    left: 15px;
+}
+.registrationBodyLanguageBlock{
+    position: absolute;
+    z-index: 4;
+    top: 15px;
+    right: 15px;
+}
+.registrationBodyLanguageBlock_element{
+    
+}
+.registrationBodyLanguageBlock_element_light{
+    color: #fff;
+}
+.registrationBodyLanguageBlock_element_dark{
+    color: #304269;
+}
+.registrationBodyLanguageBlock_element_light,.registrationBodyLanguageBlock_element_dark{
+    margin-left: 5px;
+}
+.registrationBodyLanguageBlock_element_dark:hover,.registrationBodyLanguageBlock_element_light:hover{
+    cursor: pointer;
+    text-decoration: underline;
+    color: #f60;
+}
+.registrationBodyLanguageBlock_element_selected{
+    color: #f60;
+}
+
+.modal-body {
+    padding: 0 !important;
+}
+
+.sitingInLight {
+    position: relative;
+    left: 0px;
+    z-index: 1;
+    /* background: #d9e8f5; */
+    min-width: 410px;
+    min-height: 460px;
+}
+
+.sitingInLightAnimationLeft {
+    left: 310px;
+    animation-name: sitingInDark;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+}
+
+@keyframes sitingInDark {
+    from {
+        left: 0px;
+    }
+    to {
+        left: 310px;
+    }
+}
+
+.sitingInLightAnimationRight {
+    left: 0px;
+    animation-name: sitingInDarkRight;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+}
+
+@keyframes sitingInDarkRight {
+    from {
+        left: 310px;
+    }
+    to {
+        left: 0px;
+    }
+}
+
+.sitingInLight h3 {
+
+    font-weight: 700;
+    font-size: 33.16px;
+    color: #304269;
+    margin-top: 30px;
+}
+
+.iconBlok {
+    margin-bottom: 10px;
+}
+
+.socialIcon{
+    border: none;
+}
+.socialIcon:hover{
+    cursor:pointer;
+}
+.facebookIcon {
+    width: 35px;
+    height: 35px;
+    background: url(./pictures/facebook.svg) no-repeat;
+    background-size: 35px 35px;
+    margin: 5px;
+}
+.googleIcon {
+    width: 35px;
+    height: 35px;
+    background: url(./pictures/search.svg) no-repeat;
+    background-size: 35px 35px;
+    margin: 5px;
+}
+
+.twitterIcon {
+    width: 35px;
+    height: 35px;
+    background: url(./pictures/twitter.svg) no-repeat;
+    background-size: 35px 35px;
+    margin: 5px;
+}
+
+.sitingInLightInput {
+    position: relative;
+    border-radius: 5px;
+    border: none;
+    margin-bottom: 5px;
+    width: 280px;
+    height: 40px;
+    background: #ecf4fa;
+
+    font-weight: 300;
+    font-size: 12px;
+    color: #666;
+    padding-left: 35px;
+}
+
+.inputIcon{
+    position: relative;
+}
+
+.peopleIcon{
+    position: absolute;
+    z-index: 3;
+    top: 12px;
+    left: 15px;
+}
+
+.emailIcon{
+    position: absolute;
+    z-index: 3;
+    top: 13px;
+    left: 15px;
+}
+
+.lockIcon{
+    position: absolute;
+    z-index: 3;
+    top: 12px;
+    left: 15px;
+}
+.eyeIcon{
+    position: absolute; 
+    cursor: pointer;
+    z-index: 3;
+    top: 13px;
+    right: 15px;
+}
+
+.sitingInLightInput:focus {
+    outline: none;
+}
+
+.sitingInLightInput::placeholder {
+
+    font-weight: 300;
+    font-size: 12px;
+    color: #666;
+}
+
+.sitingInLight p {
+
+    font-weight: 300;
+    font-size: 12px;
+    color: #666;
+}
+
+.sitingInLight a {
+
+    font-weight: 300;
+    font-size: 12px;
+    color: #666;
+    text-decoration: none;
+    cursor: pointer;
+    
+}
+.forgotPasswordLink{
+    border-bottom: 1px solid #ccc;
+}
+.sitingInLight a:hover {
+    color: #f60;
+}
+
+.sitingInLight button {
+
+    font-weight: 400;
+    font-size: 15px;
+    color: #fff;
+    border: 1px solid #304269;
+    background: #304269;
+    border-radius: 5px;
+    padding: 10px 20px;
+    min-width: 150px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 25px;
+}
+
+.sitingInLight button:hover {
+    border-color: #f60;
+    background: #f60;
+}
+
+.sitingInLight button:focus {
+    outline: none;
+}
+
+.registrationDark {
+    position: relative;
+    z-index: 2;
+    background: #304269;
+    left: 0px;
+    width: 310px !important;
+    min-height: 460px;
+    overflow: hidden;
+}
+
+.registrationDarkAnimationLeft {
+    left: -410px;
+    animation-name: registrationDark;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+}
+
+@keyframes registrationDark {
+    from {
+        left: 0px;
+        min-width: 310px;
+    }
+    50% {
+        min-width: 410px;
+    }
+    to {
+        left: -410px;
+        min-width: 310px;
+    }
+}
+
+.registrationDarkAnimationRight {
+    left: 0px;
+    animation-name: registrationDarkRight;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+}
+
+@keyframes registrationDarkRight {
+    from {
+        left: -410px;
+        min-width: 310px;
+    }
+    40% {
+        min-width: 380px;
+    }
+    to {
+        left: 0px;
+        min-width: 310px;
+    }
+}
+
+.registrationDark h3 {
+
+    font-weight: 700;
+    font-size: 24px;
+    color: #fff;
+}
+
+.registrationDark p {
+
+    font-weight: 300;
+    font-size: 12px;
+    color: #fff;
+    line-height: 12px;
+}
+
+.registrationDark button {
+
+    font-weight: 400;
+    font-size: 15px;
+    color: #fff;
+    background: none;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    padding: 10px 20px;
+    min-width: 150px;
+    transition: all 0.3s;
+    margin-top: 10px;
+}
+
+.registrationDark button:hover {
+    border-color: #f60;
+    background: #f60;
+}
+
+.registrationDark button:focus {
+    outline: none;
+}
+.returnButtonBlock{
+    position: relative;
+    text-align: center;
+    margin-top: 25px;
+}
+.returnButtonBlock div{
+    position: absolute;
+    bottom: 0;
+    border: none;
+    color: #304269;
+    font-size: 14px;
+    cursor: pointer;
+}
+.selectTypeBlock{
+    margin-bottom: 5px;
+}
+.typeCheckLabel{
+    
+    margin-right: auto;
+    margin-bottom: 0;
+}
+.typeCheckButton{
+    margin: auto 0;
+}
+/*
+.registrationBody {
+    position: relative;
+    z-index: 0;
+}
+
 .registrationBodyLogoIcon {
     position: absolute;
     z-index: 4;
@@ -18,7 +361,6 @@
     position: relative;
     left: 0px;
     z-index: 1;
-    /* background: #d9e8f5; */
     min-width: 410px;
     min-height: 460px;
 }
@@ -275,3 +617,4 @@
 .registrationDark button:focus {
     outline: none;
 }
+*/
