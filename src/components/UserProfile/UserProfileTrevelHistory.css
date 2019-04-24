@@ -29,9 +29,9 @@
     transform: scale(5);
 } */
 
-.trevelHistoryBody p {
+.trevelHistoryBody span {
     font-size: 14px;
-    font-weight: 400;
+    font-weight: 500;
     color: #304269;
     padding-right: 5px;
     margin: 0;

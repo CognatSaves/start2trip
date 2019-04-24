@@ -7,7 +7,7 @@ import Stars from '../stars/Stars';
 
 
 
-class UserProfileTrevelHistoryClass extends React.Component {
+class DriverProfileTrevelHistoryClass extends React.Component {
     constructor(props) {
         super(props);
 
@@ -49,10 +49,10 @@ class UserProfileTrevelHistoryClass extends React.Component {
     }
 }
 
-const UserProfileTrevelHistory = connect(
+const DriverProfileTrevelHistory = connect(
     (state) => ({
         storeState: state.AppReduser,
     }),
-)(UserProfileTrevelHistoryClass);
+)(DriverProfileTrevelHistoryClass);
 
-export default UserProfileTrevelHistory;
+export default DriverProfileTrevelHistory;

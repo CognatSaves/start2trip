@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import { whichPageRender } from "../../redusers/ActionDriverProfileRegistration"
 import imgPerson from './img/drivers_body_photo.png'
 import Stars from '../stars/Stars'
-import basicInformationBG from './img/diverBG.png'
+// import basicInformationBG from './img/diverBG.png'
 import calendarBG from './img/calendar.png'
 import settingsBG from './img/settings.png'
-// import driverBG from './img/diverBG.png'
+import toursBG from './img/poezdki_tours.png'
 // import driverBG from './img/diverBG.png'
 // import driverBG from './img/diverBG.png'
 // import driverBG from './img/diverBG.png'
@@ -30,19 +30,19 @@ class DriverProfileNavigationClass extends React.Component {
     render() {
         return (
             <div className="driverBG" style={{
-                0: { backgroundImage: "url(" + basicInformationBG + ")" },
-                1: { backgroundImage: "url(" + basicInformationBG + ")" },
-                2: { backgroundImage: "url(" + basicInformationBG + ")" },
-                3: { backgroundImage: "url(" + basicInformationBG + ")" },
+                // 0: { backgroundImage: "url(" + basicInformationBG + ")" },
+                // 1: { backgroundImage: "url(" + basicInformationBG + ")" },
+                2: { backgroundImage: "url(" + toursBG + ")" },
+                3: { backgroundImage: "url(" + toursBG + ")" },
                 4: { backgroundImage: "url(" + calendarBG + ")" },
                 5: { backgroundImage: "url(" + settingsBG + ")" },
-                6: { backgroundImage: "url(" + basicInformationBG + ")" },
+                // 6: { backgroundImage: "url(" + basicInformationBG + ")" },
             }[this.props.storeState.pageRender]}>
                 <div className="registrationWrapper col-12 p-0">
                     <div className={"basicInformationBodyTop d-flex align-items-center " + {
                         0: "basicInformationBG",
                         1: "bodyTopImg",
-                        2: "bodyTopImg",
+                        2: "toursBG",
                         3: "bodyTopImg",
                         4: "calendarBG",
                         5: "settingsBG",
