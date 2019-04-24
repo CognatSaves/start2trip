@@ -1,7 +1,6 @@
 .infoBlock_starsBlock {
     position: relative;
     align-items: center;
-    font-size: 12px;
     height: 15px;
 }
 
@@ -20,6 +19,7 @@
     align-items: center;
     height: 100%;
     margin: auto 0;
+    font-size: 16px;
 }
 
 .starsBlock_stars_element {
@@ -45,7 +45,24 @@
 .infoBlock_starsBlock_number {
     height: 100%;
     margin: auto 0;
+    font-size: 12px;
     text-align: center;
     color: #686868;
     margin: auto 0 auto 5px;
+}
+
+.react-rater-star {
+    color: #ccc;
+}
+
+.react-rater-star.is-active-half::before {
+    color: #f60 !important;
+}
+
+.react-rater-star.will-be-active {
+    color: #f60 !important;
+}
+
+.react-rater-star.is-active {
+    color: #f60 !important;
 }

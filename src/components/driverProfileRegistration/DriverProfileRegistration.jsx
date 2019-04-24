@@ -10,13 +10,27 @@ import DriverProfileFeedback from './DriverProfileFeedback'
 import DriverProfileTripSettingsTrip from './DriverProfileTripSettingsTrip'
 import DriverProfileTripSettingsTour from './DriverProfileTripSettingsTour'
 import DriverProfileSettings from './DriverProfileSettings'
+import DriverProfileTrevelHistory from './DriverProfileTrevelHistory'
 
+import people1 from './img/001372a9a88e12c88b532a.jpg'
+import people2 from './img/person.jpg'
+import people3 from './img/mina.jpg'
+import people4 from './img/gruzinskaja-kuhnja.jpg'
 
 
 
 class DriverProfileRegistrationClass extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      trevelHistory: [
+          { name: "Валера", img: people1, route: "Тбилиси-Мцхета-Гори", date: "02.21.2019", price: "$180" },
+          { name: "Анжела", img: people2, route: "Минск-Мцхета-Кутаиси", date: "02.16.2019", price: "$280" },
+          { name: "Гоги", img: people3, route: "Тбилиси-Мцхета-Гори", date: "02.1.2019", price: "$110" },
+          { name: "Маратик", img: people4, route: "Тбилиси-Мцхета-Гори", date: "02.2.2019", price: "$80" },
+      ],
+
+  }
   }
 
 
@@ -36,8 +50,10 @@ class DriverProfileRegistrationClass extends React.Component {
                 2: <DriverProfileTripSettingsTrip />,
                 3: <DriverProfileTripSettingsTour />,
                 4: <DriverProfileCalendar />,
-                5: <DriverProfileSettings />,
-                6: <DriverProfileFeedback />,
+                5: <DriverProfileTrevelHistory trevelHistory={this.state.trevelHistory}/>,
+                6: <DriverProfileTrevelHistory trevelHistory={this.state.trevelHistory}/>,
+                7: <DriverProfileFeedback />,
+                8: <DriverProfileSettings />,
               }[this.props.storeState.pageRender]}
             </div>
             

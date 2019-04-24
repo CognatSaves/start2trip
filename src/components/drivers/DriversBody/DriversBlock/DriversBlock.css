@@ -87,6 +87,8 @@
     height: 210px;
     background-color: red;
     border-radius: 5px 5px 0 0;
+    -o-object-fit: cover;
+    object-fit: cover;
 }
 
 .driversBlock_carImage:hover .driversBlock_carBlackout {

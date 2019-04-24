@@ -27,7 +27,7 @@ class RenderFourElClass extends React.Component {
                                 <Link className="tourTitle" to={element.link}>
                                     <CardTitle className="tourTitle mb-0"  >{element.title}</CardTitle>
                                     <div className="mb-2">
-                                        <Stars commentNumberDisplay={"block"} valueDisplay={"none"} commentNumber={element.reviews} />
+                                        <Stars commentNumberDisplay={true} valueDisplay={false} commentNumber={element.reviews} />
                                     </div>
                                 </Link>
                                 <CardText className="tourText">{element.text}</CardText>

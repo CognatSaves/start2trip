@@ -36,7 +36,7 @@ class CreateCommentClass extends React.Component{
                     </div>
                     <div className="createComment_textBlock">{this.props.createCommentString}</div>
                     <div style={{margin: "auto 0"}}>
-                        <Stars key="SelectStars" valueDisplay="none" commentNumberDisplay="none" changable={true}/>
+                        <Stars key="SelectStars" valueDisplay={false} commentNumberDisplay={false} changable={true}/>
                     </div>
                     
                 </div>

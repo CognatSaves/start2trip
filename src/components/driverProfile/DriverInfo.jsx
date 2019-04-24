@@ -32,7 +32,7 @@ class DriverInfoClass extends React.Component{
                     <div className="block_element_infoBlock">
                         <div style={{paddingBottom: "15px"}}>
                             <div className="block_element_infoBlock_name driversInfo_driverName">{element.name}</div>
-                            <Stars value={element.rating} commentNumber={element.comments + " отзывов"} valueDisplay="block" commentNumberDisplay="block" />
+                            <Stars value={element.rating} commentNumber={element.comments + " отзывов"} valueDisplay={true} commentNumberDisplay={true} />
                         </div>
                         <div className="block_element_infoBlock_bot">
                             <div className="d-flex ">

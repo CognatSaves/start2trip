@@ -25,7 +25,7 @@ export default class ShowComments extends React.Component{
                             <div className="valueBlock_firstElement_date">{element.date.getDate()+" "+getMonthName(element.date.getMonth())+" "+element.date.getFullYear()}</div>
                         </div>
                         <div style={{marginBottom: "20px"}}>
-                            <Stars key={element.rating+"/"+element.index} value={element.rating} valueDisplay="block" commentNumberDisplay="none"/>
+                            <Stars key={element.rating+"/"+element.index} value={element.rating} valueDisplay={true} commentNumberDisplay={false}/>
                         </div>
                         
                         <input className="put" id={"put"+element+index} type="checkbox"></input>

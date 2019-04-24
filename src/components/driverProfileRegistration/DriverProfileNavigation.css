@@ -41,9 +41,9 @@
 }
 
 .driverBG {
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
-    background-position: bottom -10px right 0;
+    background-position: bottom 40px right 5%;
 }
 
 .basicInformationBodyTop {
@@ -73,6 +73,8 @@
 }
 
 .basicInformationBodyTopImgHover img {
+    width: 156px;
+    height: 156px;
     border-radius: 50%;
 }
 
@@ -147,7 +149,7 @@
 
 @media (max-width: 1110px) {
     .driverBG {
-        background-position: right -250px bottom 0;
+        background-position: bottom 40px right 0px;
     }
     .navigationBody {
         margin-bottom: 10px;
@@ -177,31 +179,31 @@
         height: 90px;
         text-align: center;
     }
-    .basicInformationBG {
+    /* .basicInformationBG {
         background: url(img/diverBG.png) 100% 100% no-repeat;
         background-size: cover;
         background-position: right -180px bottom 0;
         background-origin: padding-box;
-    }
+    } */
     .calendarBG {
         background: url(img/calendar.png) 100% 100% no-repeat;
-        background-size: cover;
-        background-position: right -180px bottom 0;
-        background-origin: padding-box;
+        background-size: contain;
+        /* background-position: right -180px bottom 0;
+        background-origin: padding-box; */
     }
     .settingsBG {
-        background: url(img/settings.png) 100% 100% no-repeat;
-        background-size: cover;
-        background-position: right -180px bottom 0;
-        background-origin: padding-box;
+        background: url(img/carBg.png) 100% 100% no-repeat;
+        background-size: contain;
+        /* background-position: right -180px bottom 0;
+        background-origin: padding-box; */
+    }
+    .toursBG {
+        background: url(img/poezdki_tours.png) 100% 100% no-repeat;
+        background-size: contain;
+        /* background-position: right -180px bottom 0;
+        background-origin: padding-box; */
     }
     /* .bodyTopImg {
-        background: url(img/diverBG.png) 100% 100% no-repeat;
-        background-size: cover;
-        background-position: right -180px bottom 0;
-        background-origin: padding-box;
-    }
-    .bodyTopImg {
         background: url(img/diverBG.png) 100% 100% no-repeat;
         background-size: cover;
         background-position: right -180px bottom 0;

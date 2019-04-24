@@ -1,5 +1,4 @@
 import React from 'react';
-import './UserProfileTrevelHistory.css'
 import { connect } from 'react-redux'
 import Stars from '../stars/Stars';
 
@@ -7,7 +6,7 @@ import Stars from '../stars/Stars';
 
 
 
-class UserProfileTrevelHistoryClass extends React.Component {
+class DriverProfileTrevelHistoryClass extends React.Component {
     constructor(props) {
         super(props);
 
@@ -22,7 +21,7 @@ class UserProfileTrevelHistoryClass extends React.Component {
                     <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-11 p-2">
                         <div className="trevelHistoryBody  d-flex flex-column">
                             <div className="d-flex flex-column historyBodyElement ">
-                                <h5>Перевозчик</h5>
+                                <h5>Клиент</h5>
                                 <div className="d-flex align-items-center">
                                     <img src={element.img} alt={element.img}/>
                                     <span>{element.name}</span>
@@ -49,10 +48,10 @@ class UserProfileTrevelHistoryClass extends React.Component {
     }
 }
 
-const UserProfileTrevelHistory = connect(
+const DriverProfileTrevelHistory = connect(
     (state) => ({
         storeState: state.AppReduser,
     }),
-)(UserProfileTrevelHistoryClass);
+)(DriverProfileTrevelHistoryClass);
 
-export default UserProfileTrevelHistory;
+export default DriverProfileTrevelHistory;

@@ -2,7 +2,7 @@ import React from 'react';
 import './UserProfileNavigation.css'
 import { connect } from 'react-redux';
 import { whichPageRender } from "../../redusers/ActionDriverProfileRegistration"
-import imgPerson from './img/drivers_body_photo.png'
+import imgPerson from './img/person.jpg'
 import Stars from '../stars/Stars'
 import basicInformationBG from './img/diverBG.png'
 import calendarBG from './img/calendar.png'
@@ -55,8 +55,8 @@ class UserProfileNavigationClass extends React.Component {
                         </div>
                         <div className="bodyTopDriverInfo col-7">
                             <div className="bodyTopDriverInfoName d-flex flex-column align-items-start">
-                                <p className="mb-0 mr-2">Валерий</p>
-                                <Stars value={"4.5"} valueDisplay="block" commentNumberDisplay="block" commentNumber="30 отзывов" />
+                                <p className="mb-0 mr-2">Валерия</p>
+                                <Stars value={"4.5"} valueDisplay={true} commentNumberDisplay={true} commentNumber="30 отзывов" />
                             </div>
                             <div className="bodyTopDriverInfoPlace">
                                 <p>Тбилиси</p>

@@ -36,7 +36,7 @@ export default class ToursListBlock extends React.Component{
                                                 {this.props.namesArray[index]}
                                             </Link>
                                             <div>
-                                                <Stars key={index + "/" + element.rating} value={element.rating} commentNumber={element.comments + " отзывов"} valueDisplay="block" commentNumberDisplay="block" />
+                                                <Stars key={index + "/" + element.rating} value={element.rating} commentNumber={element.comments + " отзывов"} valueDisplay={true} commentNumberDisplay={true} />
                                             </div>
                                             <div className="toursList_leftBlock_startDate">
                                                 Дата отправления: <text style={{ fontWeight: "600" }}>{createDateString(element.departureDate)}</text>

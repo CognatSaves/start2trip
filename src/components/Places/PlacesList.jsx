@@ -65,7 +65,7 @@ class PlacesListClass extends React.Component {
                                     {element.name}
                                 </Link>
                                 <div>
-                                    <Stars key={index+"/"+element.rating} value={element.rating} commentNumber={element.comments+" отзывов"} valueDisplay="block" commentNumberDisplay="block"/>
+                                    <Stars key={index+"/"+element.rating} value={element.rating} commentNumber={element.comments+" отзывов"} valueDisplay={true} commentNumberDisplay={true}/>
                                 </div>
                             </div>
                             <div className="d-flex placesList_placeCard" >

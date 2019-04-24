@@ -23,7 +23,7 @@ export default class PlaceProgramm extends React.Component{
                     </div>
                 </div>
                 <div className="d-flex">
-                    <Stars value={this.props.place.rating} commentNumber={this.props.place.comments + " отзывов"} valueDisplay="block" commentNumberDisplay="block" />
+                    <Stars value={this.props.place.rating} commentNumber={this.props.place.comments + " отзывов"} valueDisplay={true} commentNumberDisplay={true} />
                 </div>
                 <div className="d-flex" style={{ margin: "10px 5px 20px 0px" }}>
                     <div className="placeDescription_description_tagCard" />
