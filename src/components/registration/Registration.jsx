@@ -7,6 +7,7 @@ class Registration extends React.Component{
         super(props);
         let that = this;
         function sendResult(type,data){
+            alert('send result');
             console.log('sendResult');
             console.log("window");
             console.log(window); 
@@ -72,6 +73,7 @@ class Registration extends React.Component{
                 });
         }
         function socialWebAuthorizationRequest(body){
+            alert('web registration');
             fetch(requests.serverAuthorizationRequest, {method: 'POST',body:body,
             headers:{'content-type': 'application/json'}})
             .then(response => {
@@ -108,10 +110,12 @@ class Registration extends React.Component{
         }
         let urlParams = new URLSearchParams(window.location.search);
         let token = urlParams.get('access_token');
+        alert("Registration component");
         console.log("Registration component");
         console.log(window.location.pathname);
         let type=window.opener.localStorage.getItem('type');
         if(window.location.pathname==="/registration/facebook"){
+            alert('token');
             console.log('token');
             console.log(token);
             if(token){

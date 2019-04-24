@@ -159,7 +159,6 @@ class RenderModalRegistrationClass extends React.Component {
             },500);
             
         }
-        super(props);
         this.state = {
             sitingInDarkBackgroundText: { 
                 titleSitingIn: ["Войти в аккаунт","Log in"],
@@ -381,6 +380,7 @@ class RenderModalRegistrationClass extends React.Component {
                                 <div className="iconBlok d-flex align-content-center">                       
                                     <div target="windowName" className="socialIcon facebookIcon" style={{marginLeft: "auto"}}
                                     onClick={()=>{
+                                            alert('open window');
                                             let jwtstring = "jwt=-; expires=Thu, 01 Jan 1970 00:00:01 GMT";
                                             let jwtstatus = "jwtstatus=correct; expires=Thu, 01 Jan 1970 00:00:01 GMT";
                                             document.cookie=jwtstring;
