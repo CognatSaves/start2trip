@@ -230,6 +230,7 @@
 }
 
 .burgerMenu-active {
+    overflow-y: hidden;
     /* background: rgba(0, 0, 0, 0.4); */
     right: 0 !important;
 }

@@ -43,7 +43,7 @@
 .driverBG {
     background-size: contain;
     background-repeat: no-repeat;
-    background-position: bottom 30px right 150px;
+    background-position: bottom 40px right 5%;
 }
 
 .basicInformationBodyTop {
@@ -149,7 +149,7 @@
 
 @media (max-width: 1110px) {
     .driverBG {
-        background-position: bottom 30px right 0px;
+        background-position: bottom 40px right 0px;
     }
     .navigationBody {
         margin-bottom: 10px;
