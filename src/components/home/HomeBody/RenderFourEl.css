@@ -1,9 +1,11 @@
 .tourBody {
+    -webkit-box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.2);
     box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.2);
     min-height: 360px;
 }
 
 .tourBody:hover {
+    -webkit-box-shadow: 0 0 25px 0px rgba(0, 0, 0, 0.3);
     box-shadow: 0 0 25px 0px rgba(0, 0, 0, 0.3);
 }
 
@@ -21,6 +23,8 @@ div.tourCard {
 }
 
 .tourTitle:hover {
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
     transition: all 0.3s;
     color: #f60;
 }
@@ -50,6 +54,8 @@ div.tourCard {
 }
 
 .tourLink:hover {
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
     transition: all 0.3s;
     color: #f60;
     cursor: pointer;

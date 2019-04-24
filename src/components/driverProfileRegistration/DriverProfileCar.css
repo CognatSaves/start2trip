@@ -6,13 +6,17 @@
 
 .filledCard {
     width: 100%;
+    -webkit-box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
     box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
     transition: all 0.3s;
     cursor: pointer;
 }
 
 .filledCard:hover {
+    -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
@@ -28,10 +32,12 @@
     border-radius: 5px 5px 0 0;
     width: 100%;
     height: 210px;
+    -o-object-fit: cover;
     object-fit: cover;
 }
 
 .filledCardImgAdd {
+    -webkit-box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
     box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
     width: 100%;
     height: 100%;
@@ -39,6 +45,8 @@
     background: #fff;
     border-radius: 5px;
     cursor: pointer;
+    -webkit-transition: ease 0.3s;
+    -o-transition: ease 0.3s;
     transition: ease 0.3s;
 }
 
@@ -46,11 +54,14 @@
     position: absolute;
     top: 50%;
     left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     z-index: 2;
 }
 
 .filledCardImgAdd:hover {
+    -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
@@ -59,6 +70,8 @@
     height: 100px;
     background: url(./img/addCarBlue.svg) no-repeat;
     background-size: 230px 130px;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
     transition: all 0.3s;
 }
 
@@ -73,6 +86,8 @@
     font-size: 16px;
     color: #304269;
     margin-bottom: 0px;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
     transition: all 0.3s;
 }
 
@@ -103,6 +118,8 @@
     background-size: 20px 20px;
     background-position: top 15px right 10px;
     cursor: pointer;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
     transition: all 0.3s;
     margin-bottom: 0;
 }
@@ -132,7 +149,10 @@
     padding-top: 5px;
     background: #fff;
     border-radius: 5px;
+    -webkit-box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.38);
     box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.38);
+    -webkit-transition: ease 0.3s;
+    -o-transition: ease 0.3s;
     transition: ease 0.3s;
 }
 
@@ -177,6 +197,8 @@ p.filledCardInformationNameCarEdit {
     text-align: right;
     padding-right: 10px;
     cursor: pointer;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
     transition: all 0.3s;
 }
 
@@ -213,6 +235,7 @@ p.filledCardInformationNameCarEdit:hover {
 /* Add new Car Bigin*/
 
 .carAddNewCar {
+    -webkit-box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
     box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     min-height: 480px;
@@ -273,6 +296,8 @@ p.filledCardInformationNameCarEdit:hover {
     border-radius: 5px;
     margin: 5px 0;
     border: 1px solid #ccc;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
     transition: all 0.3s;
 }
 
@@ -288,10 +313,14 @@ p.filledCardInformationNameCarEdit:hover {
     font-weight: 400;
     font-size: 14px;
     cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
     appearance: none;
     background: url(./img/arrow-point-to-down.svg) no-repeat;
     background-size: 8px 8px;
     background-position: top 15px right 10px;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
     transition: all 0.3s;
 }
 
@@ -332,6 +361,8 @@ p.filledCardInformationNameCarEdit:hover {
     background: #304269;
     border-radius: 5px;
     border: none;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
     transition: all 0.3s;
 }
 
@@ -377,6 +408,8 @@ p.filledCardInformationNameCarEdit:hover {
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 50%;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
     transition: all 0.3s;
 }
 
@@ -415,6 +448,7 @@ p.filledCardInformationNameCarEdit:hover {
 
 @media (max-width: 768px) {
     .carAddNewCar {
+        -webkit-box-shadow: none;
         box-shadow: none;
         margin-left: 0px;
     }

@@ -4,19 +4,26 @@
 }
 
 .home_block {
-    max-width: 1200px;
+    max-width: 1200px !important;
     width: 100%;
     margin: 0 auto;
 }
 
 .home_text {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
 }
 
 .homeBottom {
-    max-width: 1200px;
+    max-width: 1200px !important;
     width: 100%;
     margin: 0 auto;
 }
@@ -64,6 +71,8 @@ h2.homeBottomTitle {
     text-decoration: none;
     background: #f60;
     color: #fff;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
     transition: all 0.3s;
 }
 
@@ -73,6 +82,8 @@ h2.homeBottomTitle {
 
 .text_changeBodyBlock_element {
     display: inline-block;
+    -webkit-box-flex: left;
+    -ms-flex: left;
     flex: left;
     width: 50%;
     height: 100%;
@@ -118,6 +129,7 @@ h2.homeBottomTitle {
 }
 
 .homeSubscribeButton:focus {
+    -webkit-box-shadow: none !important;
     box-shadow: none !important;
 }
 
@@ -129,6 +141,7 @@ h2.homeBottomTitle {
 }
 
 .homeSubscribeInput:focus {
+    -webkit-box-shadow: none !important;
     box-shadow: none !important;
 }
 
@@ -157,6 +170,8 @@ h2.homeBottomTitle {
 }
 
 .homeSubscribe p a:hover {
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
     transition: all 0.3s;
     text-decoration: none;
     color: #f60;
