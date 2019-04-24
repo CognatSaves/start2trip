@@ -1,7 +1,7 @@
 import React from 'react';
 import './UserProfileTrevelHistory.css'
 import { connect } from 'react-redux'
-// import StarRatings from './react-star-ratings';
+import StarRating from 'react-star-rating'
 
 
 
@@ -11,16 +11,12 @@ class UserProfileTrevelHistoryClass extends React.Component {
         super(props);
         this.state = {
             trevelHistory: ["", "", "", "", "",],
-            rating:0,
+            
         }
 
     }
 
-    // changeRating( newRating, name ) {
-    //     this.setState({
-    //       rating: newRating
-    //     })
-    // }
+
 
 
     render() {
@@ -33,23 +29,13 @@ class UserProfileTrevelHistoryClass extends React.Component {
                             <div className="d-flex flex-column">
                                 <p>Перевозчик</p>
                                 <p>Валера</p>
-                                {/* <StarRatings
-                                    rating={2.403}
-                                    starDimension="40px"
-                                    starSpacing="15px"
-                                /> */}
+                                <StarRating name="small-rating" caption="Small!" size={30} totalStars={5} rating={3} />
 
                             </div>
                             <div className="d-flex flex-column">
                                 <p>Маршрут</p>
                                 <p>Тбилиси-Мцхета-Гори</p>
-                                {/* <StarRatings
-                                    rating={this.state.rating}
-                                    starRatedColor="#304269"
-                                    changeRating={this.changeRating}
-                                    numberOfStars={6}
-                                    name='rating'
-                                /> */}
+  
                             </div>
                             <div className="d-flex flex-column">
                                 <p>Дата</p>
