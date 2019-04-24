@@ -33,7 +33,7 @@ class UserProfileTrevelHistoryClass extends React.Component {
                 {this.state.trevelHistory.map((element, index) =>
                     <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-11 p-2">
                         <div className="trevelHistoryBody  d-flex flex-column">
-                            <div className="d-flex flex-column mb-2">
+                            <div className="d-flex flex-column historyBodyElement ">
                                 <h5>Перевозчик</h5>
                                 <div className="d-flex align-items-center">
                                     <img src={element.img} alt={element.img}/>
@@ -41,15 +41,15 @@ class UserProfileTrevelHistoryClass extends React.Component {
                                     <Stars value={5 - index} commentNumber="30" valueDisplay={true} commentNumberDisplay={false} />
                                 </div>
                             </div>
-                            <div className="d-flex flex-column  mb-2">
+                            <div className="d-flex flex-column historyBodyElement">
                                 <h5>Маршрут</h5>
                                 <p>{element.route}</p>
                             </div>
-                            <div className="d-flex flex-column  mb-2">
+                            <div className="d-flex flex-column historyBodyElement">
                                 <h5>Дата</h5>
                                 <p>{element.date}</p>
                             </div>
-                            <div className="d-flex flex-column  mb-2">
+                            <div className="d-flex flex-column historyBodyElement">
                                 <h5>Стоимость поезди</h5>
                                 <p>{element.price}</p>
                             </div>
