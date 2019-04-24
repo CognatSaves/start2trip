@@ -32,8 +32,15 @@ const AUTO_MENU_CALL = 'AUTO_MENU_CALL';
 
 const MODAL_COUNTRY = 'MODAL_COUNTRY';
 
+const SET_USER = 'SET_USER';
 
-
+const setUser = function(userName, avatarUrl){
+  return{
+    type: 'SET_USER',
+    userName: userName,
+    avatarUrl: avatarUrl
+  }
+}
 const set_state = function (sourse, cities, date, calendaryVisibility, picture) {
   return {
     type: 'SET_STATE',
@@ -179,4 +186,5 @@ export {
   languageMenuIsVisibal, LANGUAGE_MENU_IS_VISIBAL,
   autoMenuCall, AUTO_MENU_CALL,
   modalCountryDispacth, MODAL_COUNTRY,
+  setUser,SET_USER
 }

@@ -34,7 +34,7 @@ class Home extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <div className="d-flex flex-column">
+        <main className="d-flex flex-column container-fluid p-0">
           <div className="home_window">
           <Header />
             <div className="home_block col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
@@ -51,7 +51,7 @@ class Home extends React.Component {
               </div>
             </div>
           </div>
-          <div className="d-flex flex-column homeBottom">
+          <div className="homeBottom container-fluid p-0">
             <div className="d-flex  align-items-center justify-content-start col-12"><h2 className="homeBottomTitle">ПУТЕШЕСТВИЯ СО START2TRIP</h2></div>
             <div className="d-flex  align-items-start col-12 p-0">
               <div className="homeBottomIcomRout d-flex flex-column align-items-start col-3 p-0">
@@ -94,9 +94,8 @@ class Home extends React.Component {
               <p>Нажимая "Подписаться", Вы соглашаетесь с правилами<Link to=""> использования сервиса </Link> и <Link to=""> обработки персональных данных.</Link></p>
             </div>
           </div>
-
           
-        </div>
+        </main>
 
       </React.Fragment>
     )

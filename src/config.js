@@ -1,7 +1,9 @@
-const serverRegistrationRequest = 'http://localhost:1337/auth/local/register';
-const serverAuthorizationRequest = 'http://localhost:1337/auth/local';
-const facebookRequest = 'http://localhost:1337/connect/facebook';
-const googleRequest = 'http://localhost:1337/connect/google';
+const serverAddress = 'http://localhost:1337';
+const serverRegistrationRequest = serverAddress+'/auth/local/register';
+const serverAuthorizationRequest = serverAddress+'/auth/local';
+const facebookRequest = serverAddress+'/connect/facebook';
+const googleRequest = serverAddress+'/connect/google';
+const meRequest = serverAddress+'/users/me';
 
-export default {serverRegistrationRequest: serverRegistrationRequest, facebookRequest: facebookRequest,
-     googleRequest: googleRequest, serverAuthorizationRequest: serverAuthorizationRequest};
+export default {serverAddress: serverAddress, serverRegistrationRequest: serverRegistrationRequest, facebookRequest: facebookRequest,
+     googleRequest: googleRequest, serverAuthorizationRequest: serverAuthorizationRequest, meRequest: meRequest};

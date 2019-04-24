@@ -11,6 +11,7 @@ import Tours from './components/Tours/Tours.jsx';
 import Footer from './components/Footer/Footer'
 import TourDescription from './components/TourDescription/TourDescription.jsx';
 import DriverProfileRegistration from './components/driverProfileRegistration/DriverProfileRegistration'
+import Registration from './components/registration/Registration';
 import UserProfileRegistration from './components/UserProfile/UserProfileRegistration'
 
 import * as serviceWorker from './serviceWorker';
@@ -68,6 +69,7 @@ ReactDOM.render(
                         <Route path="/tours" component={Tours} />
                         <Route path="/tour/:country,:id" component={TourDescription} />
                         <Route path="/driverProfileRegistration" component={DriverProfileRegistration} />
+                        <Route path="/registration" component={Registration} />
                         <Route path="/userProfile" component={UserProfileRegistration} />
                         <Redirect from="/" to="/home" />
                     </Switch>

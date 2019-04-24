@@ -13,7 +13,7 @@ import wifiIcon from '../components/driverProfileRegistration/img/wifi.svg'
 
 import {
   SET_STATE, SET_CITIES, SET_AUTO, SET_PAGES, SET_PAGES_VISIBLE, SET_SORT_MENU, SET_SORT_MENU_VISIBLE, SET_MAX_PRICE, LANGUAGE_VALUE_CHOOSE, LANGUAGE_MENU_IS_VISIBAL,
-  SET_TEMP_PRICE_PART, SET_PRICE_PART, CHANGE_PERSONS_NUMBER, PEOPLE_MENU_CALL, CHANGE_PERSONS_NUMBER_OLD, AUTO_MENU_CALL, MODAL_COUNTRY,
+  SET_TEMP_PRICE_PART, SET_PRICE_PART, CHANGE_PERSONS_NUMBER, PEOPLE_MENU_CALL, CHANGE_PERSONS_NUMBER_OLD, AUTO_MENU_CALL, MODAL_COUNTRY,SET_USER
 } from './Action';
 
 
@@ -66,11 +66,25 @@ const initialState = {
   languageIcon: languageBlueIcon,
   languageMenu: false,
   country:"GEO",
+  avatarUrl: "",
+  userName: "",
+  isAuthorized: false
 };
 
 export const AppReduser = (state = initialState, action) => {
   switch (action.type) {
-
+    case SET_USER: {
+      let newStateSU = {...state};
+      newStateSU.avatarUrl = action.avatarUrl;
+      newStateSU.userName = action.userName;
+      if(action.avatarUrl.length===0 && action.userName.length===0){
+        newStateSU.isAuthorized=false;
+      }
+      else{
+        newStateSU.isAuthorized=true;
+      }
+      return newStateSU;
+    }
     case SET_STATE: {
       let newStateSS = { ...state };
       switch (action.sourse) {

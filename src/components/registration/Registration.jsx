@@ -7,7 +7,7 @@ class Registration extends React.Component{
         super(props);
         let that = this;
         function sendResult(type,data){
-            alert('send result');
+            //alert('send result');
             console.log('sendResult');
             console.log("window");
             console.log(window); 
@@ -18,8 +18,13 @@ class Registration extends React.Component{
                 console.log(data.jwt);                
                 let jwtstring = "jwt="+data.jwt+"; expires="+date.toString();
                 let jwtstatus = "jwtstatus="+'correct'+"; expires="+date.toString();
+                window.opener.localStorage.setItem('errorId', 0);
                 window.opener.document.cookie=jwtstring;
-                window.opener.document.cookie=jwtstatus;                            
+                window.opener.document.cookie=jwtstatus;
+                let avatarString="avatarUrl="+requests.serverAddress+data.user.avatarUrl+"; expires="+date.toString();
+                let usernameString = "userName="+data.user.userName+"; expires="+date.toString();
+                window.opener.document.cookie=avatarString;
+                window.opener.document.cookie=usernameString;                            
             }
             else{
                 console.log("Failed");
@@ -30,6 +35,11 @@ class Registration extends React.Component{
                 let jwtstatus = "jwtstatus="+data.error.message+"; expires="+date.toString();
                 console.log('jwtstatus');
                 console.log(jwtstatus);
+                if(data.error){
+                    if(data.error.errorId){
+                        window.opener.localStorage.setItem('errorId', data.error.errorId);
+                    }
+                }             
                 window.opener.document.cookie=jwtstring;
                 window.opener.document.cookie=jwtstatus;
             }           
@@ -47,16 +57,16 @@ class Registration extends React.Component{
                 .then(function (data) {                
                     if(data.error){
                         console.log("You not registered");
-                        throw data;
+                        throw data.error;
                     }
                     else{
                         console.log("You registered");  
-                        that.state.sendResult(true,{jwt:data.jwt});       
+                        that.state.sendResult(true,{jwt:data.jwt, user: data.user});       
                     }
-                    that.setState({
+                    /*that.setState({
                         regAnswerStatus:true,
                         selectedRegistrationAnswer:0
-                    })
+                    })*/
                 })
                 .catch(function(error) {
                     console.log("bad");
@@ -73,7 +83,7 @@ class Registration extends React.Component{
                 });
         }
         function socialWebAuthorizationRequest(body){
-            alert('web registration');
+            //alert('web registration');
             fetch(requests.serverAuthorizationRequest, {method: 'POST',body:body,
             headers:{'content-type': 'application/json'}})
             .then(response => {
@@ -86,10 +96,11 @@ class Registration extends React.Component{
                 }
                 console.log("You authorized"); 
                 console.log(data);              
-                that.state.sendResult(true,{jwt:data.jwt});
+                that.state.sendResult(true,{jwt:data.jwt, user: data.user});
             })
             .catch(function(error) {
-                console.log('An error occurred:', error);
+                console.log('An error occurred:');
+                console.log(error);
                 that.state.sendResult(false,{error: error});
             });
             console.log(body);
@@ -110,12 +121,12 @@ class Registration extends React.Component{
         }
         let urlParams = new URLSearchParams(window.location.search);
         let token = urlParams.get('access_token');
-        alert("Registration component");
+        //alert("Registration component");
         console.log("Registration component");
         console.log(window.location.pathname);
         let type=window.opener.localStorage.getItem('type');
         if(window.location.pathname==="/registration/facebook"){
-            alert('token');
+           // alert('token');
             console.log('token');
             console.log(token);
             if(token){

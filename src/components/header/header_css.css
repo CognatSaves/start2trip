@@ -222,6 +222,11 @@
 .headerRegistration span:focus {
     outline: none;
 }
-
+.avatar{
+    width: 30px;
+    height: 30px;
+    background-size: contain!important;
+    border-radius: 50%;
+}
 
 /* Header End */

@@ -18,13 +18,17 @@ import { Modal, ModalBody } from 'reactstrap';
 import { browserName, isChrome, isFirefox, isOpera, BrowserView } from 'react-device-detect';
 import { EventEmitter } from 'events';
 import ReactDOM from 'react-dom';
+import requests from '../../config';
+import axios from 'axios';
+import {setUser} from '../../redusers/Action';
+
 
 const ModalRegistration = (props) => {
-  let { modalRegistration, toggle, className } = props;
+  let { modalRegistration, toggle, className, authorization } = props;
   return (
     <Modal isOpen={modalRegistration} toggle={toggle} className={className + " p-0"}>
       <ModalBody>
-        <RenderModalRegistration close={toggle} />
+        <RenderModalRegistration close={toggle} authorization={authorization}/>
       </ModalBody>
     </Modal>
   )
@@ -51,7 +55,35 @@ const CountrySelect = (props) => {
 
 class HeaderClass extends React.Component {
   constructor(props) {
+    function readCookie(name) {
+      var name_cook = name+"=";
+      var spl = document.cookie.split(";");           
+      for(var i=0; i<spl.length; i++) {           
+          var c = spl[i];               
+          while(c.charAt(0) == " ") {               
+              c = c.substring(1, c.length);                   
+          }               
+          if(c.indexOf(name_cook) == 0) {                   
+              return c.substring(name_cook.length, c.length);                    
+          }               
+      }           
+      return null;           
+    } 
     super(props);
+    console.log('storeState');
+    console.log(this.props.storeState);
+    this.authorization();
+    let avatarUrl = readCookie('avatarUrl');
+    let userName = readCookie('userName');
+    let jwt = readCookie('jwt');
+    console.log('Header constructor');
+    console.log("get data from cookie");
+    console.log(avatarUrl);
+    console.log(userName);
+    if(jwt && jwt!=="-" && (this.props.storeState.avatarUrl!==avatarUrl || this.props.storeState.userName!==userName)){
+      alert('send request');
+      this.props.dispatch(setUser(userName,avatarUrl));
+    }
     this.state = {
       dropdownLanguageOpen: false,
       dropdownOpen: false,
@@ -95,12 +127,16 @@ class HeaderClass extends React.Component {
           src: espFlag,
           value: "ESP"
         },
-      ]
+      ],
+      avatarUrl: "",
+      userName: ""
     };
     this.toggleLanguage = this.toggleLanguage.bind(this);
     this.toggleDropdownOpen = this.toggleDropdownOpen.bind(this);
     this.toggleModalCountry = this.toggleModalCountry.bind(this);
     this.toggleModalRegistration = this.toggleModalRegistration.bind(this);
+    this.authorization = this.authorization.bind(this);
+    this.logOffFunc=this.logOffFunc.bind(this);
   }
   toggleModalCountry() {
     this.setState(prevState => ({
@@ -122,15 +158,79 @@ class HeaderClass extends React.Component {
       dropdownOpen: !this.state.dropdownOpen
     });
   }
+  authorization(){
+    function readCookie(name) {
+      var name_cook = name+"=";
+      var spl = document.cookie.split(";");           
+      for(var i=0; i<spl.length; i++) {           
+          var c = spl[i];               
+          while(c.charAt(0) == " ") {               
+              c = c.substring(1, c.length);                   
+          }               
+          if(c.indexOf(name_cook) == 0) {                   
+              return c.substring(name_cook.length, c.length);                    
+          }               
+      }           
+      return null;           
+    }  
+    let jwt = readCookie('jwt');
+    console.log('jwt');
+    console.log(jwt);
+    if(jwt && jwt!=="-"){
+      axios.get(requests.meRequest, {
+            headers: {
+              //Authorization: `${jwt}`
+              Authorization: `Bearer ${jwt}`
+            }
+          })
+          .then(response => {
+            // Handle success.
+            console.log('Data: ');
+            console.log(response.data);
+            let avatarUrl = requests.serverAddress+response.data.url;
+            let userName = response.data.firstName ;
+            if(avatarUrl!==this.props.storeState.avatarUrl || userName!==this.props.storeState.userName){
+              this.props.dispatch(setUser(userName,avatarUrl));
+            }
+            
+          })
+          .catch(error => {
+            this.props.dispatch(setUser("",""));
+            console.log('log off');
+            //console.log('An error occurred:', error);
+          });     
+    }
+    /*
+    else{
+      this.props.dispatch(setUser("",""));
+      console.log('log off');
+    }  */
+  }
+  logOffFunc(){
+    console.log("logOffFunc");
+    let date = new Date(Date.now()-100000000);               
+    let jwtstring = "jwt=-; expires="+date.toString();
+    let jwtstatus = "jwtstatus=-; expires="+date.toString();
+    document.cookie=jwtstring;
+    document.cookie=jwtstatus;
+    let avatarString="avatarUrl=-; expires="+date.toString();
+    let usernameString = "userName=-; expires="+date.toString();
+    document.cookie=avatarString;
+    document.cookie=usernameString;
+    this.props.dispatch(setUser("",""));
+  }
   render() {
+
     console.log("render header");
     console.log(this.state);
+    console.log('storestate');
+    console.log(this.props.storeState);
     console.log(window);
     /*console.log("window.opener");
     console.log(window.opener);*/
     return (
       <React.Fragment>
-        <ModalRegistration modalRegistration={this.state.modalRegistration} toggle={this.toggleModalRegistration} className={this.props.className} cookie={/*фиктивня*/document.cookie.toString()}/>
+        <ModalRegistration modalRegistration={this.state.modalRegistration} toggle={this.toggleModalRegistration} className={this.props.className} authorization={this.authorization}/>
         <CountrySelect modalCountry={this.state.modalCountry} toggleModalCountry={this.toggleModalCountry} className={this.props.className} />
         <div className="headerMobail d-xl-none d-lg-none d-md-none d-sm-flex d-flex align-items-center justify-content-between">
           {/* <div onClick={this.toggleModalCountry} className="headerGeoButton">
@@ -189,7 +289,14 @@ class HeaderClass extends React.Component {
                 </Dropdown>
               </div>
               <div className="headerRegistration d-flex justify-content-start col-xl-1 col-lg-1 col-md-2 col-sm-1 col-1">
-                <span onClick={this.toggleModalRegistration} >Войти</span>
+                <span style={{display: this.props.storeState.isAuthorized ? 'none' : 'block'}} onClick={this.toggleModalRegistration} >Войти</span>
+                <div style={{display: this.props.storeState.isAuthorized ? 'flex' : 'none'}}>
+                    <div className="avatar" style={{background: 'url('+this.props.storeState.avatarUrl+') no-repeat'}}></div>
+                    {
+                      /*<div>{this.props.storeState.userName}</div>*/
+                    }
+                    <button onClick={this.logOffFunc}>X</button>
+                </div>
               </div>
             </div>
           </div>
