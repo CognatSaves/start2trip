@@ -11,11 +11,8 @@ import Tours from './components/Tours/Tours.jsx';
 import Footer from './components/Footer/Footer'
 import TourDescription from './components/TourDescription/TourDescription.jsx';
 import DriverProfileRegistration from './components/driverProfileRegistration/DriverProfileRegistration'
-<<<<<<< HEAD
 import Registration from './components/registration/Registration';
-=======
 import UserProfileRegistration from './components/UserProfile/UserProfileRegistration'
->>>>>>> 8a3600c49fba55e1076f0a7f109cfce8e2f5f6d8
 
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
@@ -72,11 +69,8 @@ ReactDOM.render(
                         <Route path="/tours" component={Tours} />
                         <Route path="/tour/:country,:id" component={TourDescription} />
                         <Route path="/driverProfileRegistration" component={DriverProfileRegistration} />
-<<<<<<< HEAD
                         <Route path="/registration" component={Registration} />
-=======
                         <Route path="/userProfile" component={UserProfileRegistration} />
->>>>>>> 8a3600c49fba55e1076f0a7f109cfce8e2f5f6d8
                         <Redirect from="/" to="/home" />
                     </Switch>
                     <Footer />
