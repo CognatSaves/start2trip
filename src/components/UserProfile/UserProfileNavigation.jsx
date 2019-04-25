@@ -86,7 +86,7 @@ class UserProfileNavigationClass extends React.Component {
 
 const UserProfileNavigation = connect(
     (state) => ({
-        storeState: state.DriverProfileRegistrationtReduser,
+        storeState: state.UserProfileRegistrationtReduser,
     }),
 )(UserProfileNavigationClass);
 
