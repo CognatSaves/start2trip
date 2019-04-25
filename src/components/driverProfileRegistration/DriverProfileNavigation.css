@@ -45,7 +45,7 @@
     background-size: contain;
     background-size: 100% 80%;
     background-repeat: no-repeat;
-    background-position: bottom 30px right -250px;
+    background-position: bottom 40px right -250px;
 }
 
 .basicInformationBodyTop {
@@ -154,7 +154,7 @@
         background-size: contain;
         background-size: 100% 80%;
         background-repeat: no-repeat;
-        background-position: bottom 30px right -200px;
+        background-position: bottom 40px right -200px;
     }
     .navigationBody {
         margin-bottom: 10px;
@@ -167,7 +167,7 @@
         background-size: contain;
         background-size: 100% 80%;
         background-repeat: no-repeat;
-        background-position: bottom 30px right -100px;
+        background-position: bottom 40px right -100px;
     }
     .basicInformationBodyTopImgHover img {
         width: 90px;
