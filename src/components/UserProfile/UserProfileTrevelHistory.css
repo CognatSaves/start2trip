@@ -18,8 +18,9 @@
 
 .trevelHistoryBody img {
     cursor: pointer;
-    width: 20px;
-    height: 20px;
+    z-index: 55;
+    width: 40px;
+    height: 40px;
     margin-right: 5px;
     border-radius: 50%;
     object-fit: cover;
@@ -27,7 +28,7 @@
 }
 
 .trevelHistoryBody img:hover {
-    transform: scale(5);
+    transform: scale(2);
 }
 
 .historyBodyHeader hr {
@@ -76,12 +77,12 @@
 }
 
 .historyBodyElementDriver {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .historyBodyElementDriver span {
     font-size: 14px;
     font-weight: 400;
     color: #304269;
-    margin: 0 2px;
+    margin: 0;
 }

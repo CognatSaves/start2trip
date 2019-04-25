@@ -41,7 +41,7 @@ class UserProfileNavigationClass extends React.Component {
                     <div className="bodyTopDriverInfo col-7">
                         <div className="bodyTopDriverInfoName d-flex flex-column align-items-start">
                             <p className="mb-0 mr-2">Анджелина</p>
-                            <Stars value={"4.5"} valueDisplay={true} commentNumberDisplay={true} commentNumber="30 отзывов" />
+                            {/* <Stars value={"4.5"} valueDisplay={true} commentNumberDisplay={true} commentNumber="30 отзывов" /> */}
                         </div>
                         <div className="bodyTopDriverInfoPlace">
                             <p>Losangeles</p>

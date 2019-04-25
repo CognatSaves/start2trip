@@ -33,8 +33,11 @@ class UserProfileTrevelHistoryClass extends React.Component {
                             <h5>Водитель</h5>
                                 <div className="historyBodyElementDriver d-flex align-items-center">
                                     <img src={element.img} alt={element.name} />
+                                    <div className="d-flex flex-column ml-1">
                                     <span>{element.name}</span>
-                                    <Stars value={element.rating} valueDisplay={true} commentNumberDisplay={false} />
+                                    <Stars value={element.rating} commentNumber={32 +" отзыва"} valueDisplay={true} commentNumberDisplay={true} />
+                                    </div>
+                                    
                                 </div>
                                 <span>{element.tel}</span>
                                 <span>{element.email}</span>
