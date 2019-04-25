@@ -39,9 +39,9 @@ class UserProfileRegistrationClass extends React.Component {
             <div className="d-flex flex-column justify-content-start col-lx-12 col-lg-12 col-md-12 col-sm-12 col-12">
               
               {{
-                0: <UserProfileBasicInformation />,
+                0: <UserProfileTrevelHistory trevelHistory={this.state.trevelHistory} />,
                 1: <UserProfileTrevelHistory trevelHistory={this.state.trevelHistory} />,
-                2: <UserProfileTrevelHistory trevelHistory={this.state.trevelHistory} />,
+                2: <UserProfileBasicInformation />,
                 3: <UserProfileSettings />,
               }[this.props.storeState.pageRender]}
             </div>
@@ -55,7 +55,7 @@ class UserProfileRegistrationClass extends React.Component {
 
 const UserProfileRegistration = connect(
   (state) => ({
-    storeState: state.DriverProfileRegistrationtReduser,
+    storeState: state.UserProfileRegistrationtReduser,
   }),
 )(UserProfileRegistrationClass);
 

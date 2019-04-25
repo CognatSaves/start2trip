@@ -43,8 +43,9 @@
 
 .driverBG {
     background-size: contain;
+    background-size: 100% 80%;
     background-repeat: no-repeat;
-    background-position: bottom 40px right 5%;
+    background-position: bottom 30px right -250px;
 }
 
 .basicInformationBodyTop {
@@ -150,7 +151,10 @@
 
 @media (max-width: 1110px) {
     .driverBG {
-        background-position: bottom 40px right 0px;
+        background-size: contain;
+        background-size: 100% 80%;
+        background-repeat: no-repeat;
+        background-position: bottom 30px right -200px;
     }
     .navigationBody {
         margin-bottom: 10px;
@@ -160,7 +164,10 @@
 
 @media (max-width: 768px) {
     .driverBG {
-        background: none;
+        background-size: contain;
+        background-size: 100% 80%;
+        background-repeat: no-repeat;
+        background-position: bottom 30px right -100px;
     }
     .basicInformationBodyTopImgHover img {
         width: 90px;
@@ -180,46 +187,10 @@
         height: 90px;
         text-align: center;
     }
-    /* .basicInformationBG {
-        background: url(img/diverBG.png) 100% 100% no-repeat;
-        background-size: cover;
-        background-position: right -180px bottom 0;
-        background-origin: padding-box;
-    } */
-    .calendarBG {
-        background: url(img/calendar.png) 100% 100% no-repeat;
-        background-size: contain;
-        /* background-position: right -180px bottom 0;
-        background-origin: padding-box; */
-    }
-    .settingsBG {
-        background: url(img/carBg.png) 100% 100% no-repeat;
-        background-size: contain;
-        /* background-position: right -180px bottom 0;
-        background-origin: padding-box; */
-    }
-    .toursBG {
-        background: url(img/poezdki_tours.png) 100% 100% no-repeat;
-        background-size: contain;
-        /* background-position: right -180px bottom 0;
-        background-origin: padding-box; */
-    }
-    /* .bodyTopImg {
-        background: url(img/diverBG.png) 100% 100% no-repeat;
-        background-size: cover;
-        background-position: right -180px bottom 0;
-        background-origin: padding-box;
-    } */
 }
 
 @media (max-width: 576px) {
-    .basicInformationBG {
-        background: none;
-    }
-    .calendarBG {
-        background: none;
-    }
-    .settingsBG {
-        background: none;
+    .driverBG {
+        background: none !important;
     }
 }

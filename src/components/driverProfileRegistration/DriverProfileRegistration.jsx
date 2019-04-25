@@ -3,7 +3,6 @@ import './DriverProfileRegistration.css'
 import { connect } from 'react-redux';
 import Header from '../header/Header'
 import DriverProfileNavigation from './DriverProfileNavigation'
-import DriverProfileCalendar from './DriverProfileCalendar'
 import DriverProfileCar from './DriverProfileCar'
 import DriverProfileBasicInformation from './DriverProfileBasicInformation'
 import DriverProfileFeedback from './DriverProfileFeedback'
@@ -45,15 +44,14 @@ class DriverProfileRegistrationClass extends React.Component {
             <div className="d-flex flex-column justify-content-start col-lx-12 col-lg-12 col-md-12 col-sm-12 col-12">
               
               {{
-                0: <DriverProfileBasicInformation />,
-                1: <DriverProfileCar />,
-                2: <DriverProfileTripSettingsTrip />,
-                3: <DriverProfileTripSettingsTour />,
-                4: <DriverProfileCalendar />,
-                5: <DriverProfileTrevelHistory trevelHistory={this.state.trevelHistory}/>,
-                6: <DriverProfileTrevelHistory trevelHistory={this.state.trevelHistory}/>,
-                7: <DriverProfileFeedback />,
-                8: <DriverProfileSettings />,
+                0: <DriverProfileTrevelHistory trevelHistory={this.state.trevelHistory}/>,
+                1: <DriverProfileTrevelHistory trevelHistory={this.state.trevelHistory}/>,
+                2: <DriverProfileBasicInformation />,
+                3: <DriverProfileCar />,
+                4: <DriverProfileTripSettingsTrip />,
+                5: <DriverProfileTripSettingsTour />,
+                6: <DriverProfileFeedback />,
+                7: <DriverProfileSettings />,
               }[this.props.storeState.pageRender]}
             </div>
             

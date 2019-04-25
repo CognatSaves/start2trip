@@ -284,14 +284,15 @@
     justify-content: flex-start;
 }
 
-.burgerMenuBottomText {
-    /* width: 100%;
+.burgerMenuBottom span {
+    width: 100%;
     min-height: 40px;
-    line-height: 40px; */
-    padding-left: 5px;
+    line-height: 40px;
+    padding-right: 10px;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 16px;
     color: #686868;
+    text-align: right;
     transition: ease 0.3s;
 }
 

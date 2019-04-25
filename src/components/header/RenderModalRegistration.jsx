@@ -6,8 +6,8 @@ import './RenderModalRegistration.css'
 import emailIcon from './pictures/email.svg'
 import lockIcon from './pictures/lock.svg'
 import eyeIcon from './pictures/eye.svg'
-import logoBlue from './pictures/logo_blue.svg'
-import logoWhite from './pictures/logo_white.svg'
+import logoBlue from './pictures/logo_tripfer_blue.svg'
+import logoWhite from './pictures/logo_tripfer_white.svg'
 import axios from 'axios';
 import requests from '../../config.js';
 import ReactDOM from 'react-dom';
@@ -336,7 +336,7 @@ class RenderModalRegistrationClass extends React.Component {
         return (
             <React.Fragment>
             <div className="registrationBody d-flex ">
-            <img className="registrationBodyLogoIcon" src={this.state.logoIconActive ? logoBlue : logoWhite} alt="logo" width="80px" height="12px"/>
+            <img className="registrationBodyLogoIcon" src={this.state.logoIconActive ? logoBlue : logoWhite} alt="logo" width="100px" height="20px"/>
             <div className="registrationBodyLanguageBlock d-flex" >
                 {
                     this.state.languageVariants.map((element,index) => 
@@ -381,11 +381,9 @@ class RenderModalRegistrationClass extends React.Component {
                                 </div>
                                 <div className="registrationAnswerText" style={{visibility:this.state.regAnswerStatus ? 'visible' : 'hidden', color: selectedRegistrationAnswer!=0 ? 'red' : 'green'}}>{pageTextInfo.registrationAnswer[selectedRegistrationAnswer][lang]}</div>
                                 <Link className="forgotPasswordLink" style={{ display: this.state.sitingIn ? "block" : "none" }} to="">{pageTextInfo.sitingInLightBackgroundText.linkText[lang]}</Link>
-                                <div className="d-flex flex-row">
-                                    <div className="returnButtonBlock" style={{display: !this.state.sitingIn ? 'block' : 'none'}}>
-                                        <div onClick={()=>this.setState({regWindowType: 0})}>{pageTextInfo.registrationUserType.buttonReturn[lang]}</div>
-                                    </div>
-                                    <button style={{marginLeft: 'auto'}} type="submit" htmlFor="regForm">{this.state.sitingIn ? pageTextInfo.sitingInLightBackgroundText.buttonText[lang] : pageTextInfo.registrationDarkBackgroundText.buttonText[lang]}</button>
+                                <div className="d-flex justify-content-center align-items-end">
+                                    <div className="returnButton pr-5" style={{display: !this.state.sitingIn ? 'block' : 'none'}} onClick={()=>this.setState({regWindowType: 0})}>{pageTextInfo.registrationUserType.buttonReturn[lang]}</div>
+                                    <button type="submit" htmlFor="regForm">{this.state.sitingIn ? pageTextInfo.sitingInLightBackgroundText.buttonText[lang] : pageTextInfo.registrationDarkBackgroundText.buttonText[lang]}</button>
                                 </div>
                             </form>
                         </div>

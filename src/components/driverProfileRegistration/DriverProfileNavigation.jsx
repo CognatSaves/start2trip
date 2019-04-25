@@ -4,13 +4,14 @@ import { connect } from 'react-redux';
 import { whichPageRender } from "../../redusers/ActionDriverProfileRegistration"
 import imgPerson from './img/drivers_body_photo.png'
 import Stars from '../stars/Stars'
-// import basicInformationBG from './img/diverBG.png'
-import calendarBG from './img/calendar.png'
-import carBg from './img/carBg.png'
-import toursBG from './img/poezdki_tours.png'
-// import driverBG from './img/diverBG.png'
-// import driverBG from './img/diverBG.png'
-// import driverBG from './img/diverBG.png'
+
+import calendarBG from './img/illustrations_calendar.svg'
+import carBg from './img/illustrations_nastroiki-01.svg'
+import toursBG from './img/illustrations_poezdki_tours.svg'
+import historyBG from './img/illustrations_history.svg'
+import sittingsBG from './img/illustrations_nastroiki-04.svg'
+import feedbackBG from './img/illustrations_otzivi.svg'
+import preHistoryBG from './img/illustrations_predstoishie.svg'
 
 
 
@@ -18,7 +19,7 @@ class DriverProfileNavigationClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            navigationText: ["Профиль", "Автомобиль", "Настройки поездок", "Туры", "Календарь", "История поездок", "Предстоящие поездки", "Отзывы", "Настройки",],
+            navigationText: ["Предстоящие поездки","История поездок", "Профиль", "Автомобиль", "Настройки поездок", "Туры", "Отзывы", "Настройки",],
             shiftLeft: [0, 6, 129, 219, 311, 430, 430],
         }
     }
@@ -31,27 +32,16 @@ class DriverProfileNavigationClass extends React.Component {
         return (
             <React.Fragment>
                 <div className="registrationWrapper driverBG col-12 p-0" style={{
-                    // 0: { backgroundImage: "url(" + basicInformationBG + ")" },
-                    1: { backgroundImage: "url(" + carBg + ")" },
-                    2: { backgroundImage: "url(" + toursBG + ")" },
-                    3: { backgroundImage: "url(" + toursBG + ")" },
+                    0: { backgroundImage: "url(" + preHistoryBG + ")" },
+                    1: { backgroundImage: "url(" + historyBG + ")" },
+                    2: { backgroundImage: "url(" + sittingsBG + ")" },
+                    3: { backgroundImage: "url(" + carBg + ")" },
                     4: { backgroundImage: "url(" + calendarBG + ")" },
-                    5: { backgroundImage: "url(" + carBg + ")" },
-                    // 6: { backgroundImage: "url(" + basicInformationBG + ")" },
-                    // 7: { backgroundImage: "url(" + basicInformationBG + ")" },
-                    // 8: { backgroundImage: "url(" + basicInformationBG + ")" },
+                    5: { backgroundImage: "url(" + toursBG + ")" },
+                    6: { backgroundImage: "url(" + feedbackBG + ")" },
+                    7: { backgroundImage: "url(" + sittingsBG + ")" },
                 }[this.props.storeState.pageRender]}>
-                    <div className={"basicInformationBodyTop d-flex align-items-center " + {
-                        0: "basicInformationBG",
-                        1: "carBg",
-                        2: "toursBG",
-                        3: "bodyTopImg",
-                        4: "calendarBG",
-                        5: "settingsBG",
-                        6: "bodyTopImg",
-                        7: "settingsBG",
-                        8: "bodyTopImg",
-                    }[this.props.storeState.pageRender]}>
+                    <div className="basicInformationBodyTop d-flex align-items-center ">
                         <div className="basicInformationBodyTopImgHover">
                             <label className="basicInformationBodyTopImg" htmlFor="addFile">Обновить фотографию</label>
                             <img src={imgPerson} alt="imgPerson" />

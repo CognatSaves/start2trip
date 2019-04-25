@@ -171,7 +171,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
 
     handleChangenEverydayTime = (event, index, value) => { this.setState({ newTourEverydayTime: value }) };
 
-    handleChangeDatepickerTime = (event, index, value) => { this.setState({ newTourDatepickerTime: value }) };
+    handleChangeDatepickerTime = (event, index, value) => {this.setState({ newTourDatepickerTime: value }) };
 
     handleChangeCurrency = (event, index, value) => { this.setState({ activeCurrency: value }) };
 
@@ -384,7 +384,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                                 <DropDownMenu
                                                     value={this.state.newTourDatepickerTime}
                                                     anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
-                                                    onChange={this.handleChangenDatepickerTime}
+                                                    onChange={this.handleChangeDatepickerTime}
                                                     style={{ width: "100%", display: this.state.tourContentOther ? "" : "none" }}
                                                     menuStyle={{ maxHeight: "150px" }}
                                                     className="dropdownClass"
