@@ -191,8 +191,8 @@ class RenderModalRegistrationClass extends React.Component {
         }
         this.state = {
             sitingIn: true,
-            sitingInLightAnimation: "sitingInLightAnimationRight",
-            registrationDarkAnimation: "registrationDarkAnimationRight",
+            sitingInLightAnimation: "",
+            registrationDarkAnimation: "",
             passwordType:true,
             logoIconActive:true,
             languageTextActive: true,

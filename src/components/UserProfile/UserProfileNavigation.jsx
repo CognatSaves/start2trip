@@ -55,11 +55,11 @@ class UserProfileNavigationClass extends React.Component {
                         </div>
                         <div className="bodyTopDriverInfo col-7">
                             <div className="bodyTopDriverInfoName d-flex flex-column align-items-start">
-                                <p className="mb-0 mr-2">Валерия</p>
+                                <p className="mb-0 mr-2">Анджелина</p>
                                 <Stars value={"4.5"} valueDisplay={true} commentNumberDisplay={true} commentNumber="30 отзывов" />
                             </div>
                             <div className="bodyTopDriverInfoPlace">
-                                <p>Тбилиси</p>
+                                <p>Losangeles</p>
                                 {/* TODO Location */}
                             </div>
                             <div className="bodyTopDriverInfoRide p-0 d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column">
@@ -91,7 +91,7 @@ class UserProfileNavigationClass extends React.Component {
 
                     <div className="navigationBody d-flex align-items-center">
                         {this.state.navigationText.map((element, index) =>
-                            <p className={{ [index]: "navigationBodyActive", }[this.props.storeState.pageRender] + " navigationButton mb-0 " }  onClick={(event) => { this.props.dispatch(whichPageRender(index)); this.shiftLeft(event) }}>{element}</p>
+                            <span className={{ [index]: "navigationBodyActive", }[this.props.storeState.pageRender] + " navigationButton mb-0 " }  onClick={(event) => { this.props.dispatch(whichPageRender(index)); this.shiftLeft(event) }}>{element}</span>
                         )}
                     </div>
                 </div>
