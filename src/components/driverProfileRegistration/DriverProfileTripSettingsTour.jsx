@@ -40,9 +40,9 @@ class DriverProfileTripSettingsTourClass extends React.Component {
             activeCurrency: "USD",
             typeCar: "sedan",
             tour: ["", "", "", "", "", "",],
-            departurePoint:"",
+            departurePoint: "",
             attractionsAlongTheRoute: [],
-            getAddress:"",
+            getAddress: "",
             dateTour: [],
             directions: ["Батуми", "Тбилиси", "Кутаиси", "Сванеция"],
             directionsChip: [],
@@ -218,9 +218,9 @@ class DriverProfileTripSettingsTourClass extends React.Component {
         }
     };
 
-    changeCity=(index, value)=> {
-        this.setState({departurePoint:value})
-      }
+    changeCity = (index, value) => {
+        this.setState({ departurePoint: value })
+    }
 
     render() {
         const MultipleDatesCalendar = withMultipleDates(Calendar);
@@ -318,14 +318,14 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                     <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
                                         <label htmlFor="newTourAttractions" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Место отправления:</label>
                                         <div className="d-flex col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">
-                                            <LocationSearchInput  changeCity={this.changeCity} classDropdown="searchDropdownDriverTour" id="newTourAttractions" />
+                                            <LocationSearchInput changeCity={this.changeCity} classDropdown="searchDropdownDriverTour" id="newTourAttractions" />
                                         </div>
                                         <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
                                     </div>
                                     <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
                                         <label htmlFor="newTourAttractions" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Достопримечательности по маршруту:</label>
                                         <div className="d-flex col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">
-                                            <LocationSearchInput  changeCity={(index,value)=>{ this.handleChange(value,"attractionsAlongTheRoute")}} classDropdown="searchDropdownDriverTour" id="newTourAttractions" />
+                                            <LocationSearchInput changeCity={(index, value) => { this.handleChange(value, "attractionsAlongTheRoute") }} classDropdown="searchDropdownDriverTour" id="newTourAttractions" />
                                         </div>
                                         <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
                                     </div>
@@ -334,7 +334,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                             {this.state.attractionsAlongTheRoute.map((element, index) =>
                                                 <Chip
                                                     key={element.key}
-                                                    onRequestDelete={() => this.handleRequestDelete(element.key,"attractionsAlongTheRoute")}
+                                                    onRequestDelete={() => this.handleRequestDelete(element.key, "attractionsAlongTheRoute")}
                                                     labelStyle={{ color: "#000" }}
                                                     labelColor="#f60"
                                                     textColor="#304269"
@@ -380,7 +380,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                             <DropDownMenu
                                                 value={this.state.newTourEverydayTime}
                                                 anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
-                                                onChange={(event, index, value) => { this.setState({ newTourEverydayTime: value })}}
+                                                onChange={(event, index, value) => { this.setState({ newTourEverydayTime: value }) }}
                                                 style={{ width: "100%", display: this.state.tourContentEveryday ? "" : "none" }}
                                                 menuStyle={{ maxHeight: "150px" }}
                                                 className="dropdownClass"
@@ -408,7 +408,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                                 <DropDownMenu
                                                     value={this.state.newTourDatepickerTime}
                                                     anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
-                                                    onChange={(event, index, value) => { this.setState({ newTourDatepickerTime: value })}}
+                                                    onChange={(event, index, value) => { this.setState({ newTourDatepickerTime: value }) }}
                                                     style={{ width: "100%", display: this.state.tourContentOther ? "" : "none" }}
                                                     menuStyle={{ maxHeight: "150px" }}
                                                     className="dropdownClass"
@@ -436,7 +436,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                         return (
                                             <Chip
                                                 key={element.key}
-                                                onRequestDelete={() => this.handleRequestDeleteDate(element,"dateTour")}
+                                                onRequestDelete={() => this.handleRequestDeleteDate(element, "dateTour")}
                                                 labelStyle={{ color: "#000" }}
                                                 labelColor="#f60"
                                                 textColor="#304269"
@@ -466,7 +466,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                     <DropDownMenu
                                         value={this.state.activeCurrency}
                                         anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
-                                        onChange={(event, index, value) => { this.setState({ activeCurrency: value })}}
+                                        onChange={(event, index, value) => { this.setState({ activeCurrency: value }) }}
                                         style={{ width: "100%" }}
                                         className="dropdownClass"
                                         autoWidth={false}
@@ -484,7 +484,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                     value={this.state.typeCar}
                                     anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
                                     hintText="Тип автомобиля"
-                                    onChange={(event, index, value) => { this.setState({ typeCar: value })}}
+                                    onChange={(event, index, value) => { this.setState({ typeCar: value }) }}
                                     style={{ width: "100%" }}
                                     className="dropdownClass col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0"
                                     autoWidth={false}
@@ -523,7 +523,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                     {this.state.directionsChip.map((element, index) =>
                                         <Chip
                                             key={element.key}
-                                            onRequestDelete={() => this.handleRequestDelete(element,"directions")}
+                                            onRequestDelete={() => this.handleRequestDelete(element, "directions")}
                                             labelStyle={{ color: "#000" }}
                                             labelColor="#f60"
                                             textColor="#304269"
@@ -559,7 +559,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                     {this.state.categoriesChip.map((element, index) =>
                                         <Chip
                                             key={element.key}
-                                            onRequestDelete={() => this.handleRequestDelete(element,"categories")}
+                                            onRequestDelete={() => this.handleRequestDelete(element, "categories")}
                                             labelStyle={{ color: "#000" }}
                                             labelColor="#f60"
                                             textColor="#304269"
@@ -595,7 +595,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                     {this.state.tagsChip.map((element, index) =>
                                         <Chip
                                             key={element.key}
-                                            onRequestDelete={() => this.handleRequestDelete(element,"tags")}
+                                            onRequestDelete={() => this.handleRequestDelete(element, "tags")}
                                             labelStyle={{ color: "#000" }}
                                             labelColor="#f60"
                                             textColor="#304269"
