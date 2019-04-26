@@ -52,7 +52,7 @@ class Home extends React.Component {
             </div>
           </div>
           <div className="homeBottom container-fluid p-0">
-            <div className="d-flex  align-items-center justify-content-start col-12"><h2 className="homeBottomTitle">ПУТЕШЕСТВИЯ СО START2TRIP</h2></div>
+            <div className="d-flex  align-items-center justify-content-start col-12"><h2 className="homeBottomTitle">ПУТЕШЕСТВИЯ С TRIPFER</h2></div>
             <div className="d-flex  align-items-start col-12 p-0">
               <div className="homeBottomIcomRout d-flex flex-column align-items-start col-3 p-0">
                 <img className="mb-4" src={routeIcon} alt="routeIcon" width="60px" height="60px" />

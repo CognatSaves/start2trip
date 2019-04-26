@@ -6,7 +6,7 @@ import PlacesAutocomplete, {
 import './Search.css';
 
 const searchOptions = {
-  types: ['(cities)']
+  types: []
 }
 
 export default class LocationSearchInput extends React.Component {

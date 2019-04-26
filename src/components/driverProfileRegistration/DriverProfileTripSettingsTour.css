@@ -10,6 +10,10 @@
     transition: all 0.3s;
 }
 
+.paddingL10 {
+    padding-left: 10px !important;
+}
+
 .tourSettingsBody {
     box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
@@ -18,9 +22,10 @@
     /* transition: all 0.3s; */
 }
 
-.tourContent {
-    padding-top: 20px !important;
-}
+
+/* .tourContent {
+    padding-left: 10px !important;
+} */
 
 .tourContent p {
     font-weight: 400;
@@ -70,6 +75,7 @@
 
 .tourContentTitle {
     min-height: 40px;
+    padding-top: 10px;
 }
 
 .tourContentTitle p {
@@ -259,6 +265,58 @@ div.tourContentCheckbox {
 /* Content End */
 
 
+/* languageTour Bigin */
+
+.languageTourTop {
+    background: #ccc;
+    border-radius: 5px 5px 0 0;
+}
+
+.languageTourTitle {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 60px;
+    min-height: 30px;
+    cursor: pointer;
+    transition: ease 0.3s;
+}
+
+.languageTourTitle span {
+    font-size: 16px;
+    font-weight: 400;
+    color: #304269;
+    padding-left: 15px;
+    background-repeat: no-repeat;
+    background-size: 13px 13px;
+    background-position: top 5px left;
+}
+
+.languageTourTitle:nth-child(1) {
+    border-radius: 5px 0 0 0;
+}
+
+.languageTourTitleActive {
+    background: #fff;
+}
+
+.languageTourTitleActive span {
+    color: #f60;
+}
+
+.languageTourItem {
+    display: none;
+    padding-left: 10px;
+}
+
+.languageTourItemActive {
+    display: block;
+}
+
+
+/* languageTour End */
+
+
 /* openMultipleDatepicker Bigin */
 
 
@@ -282,14 +340,17 @@ div.tourContentCheckbox {
     font-weight: 400;
     font-size: 14px;
     cursor: pointer;
-    text-indent: 20px;
-    background: url(./img/calendarGray.svg)no-repeat;
-    background-size: 14px 14px;
-    background-position: top 2px left 0;
 }
 
 .openMultipleDatepicker span:hover {
     color: #f60;
+}
+
+span.newTourDatepickerSpan {
+    text-indent: 20px;
+    background: url(./img/calendarGray.svg)no-repeat;
+    background-size: 14px 14px;
+    background-position: top 2px left 0;
 }
 
 
