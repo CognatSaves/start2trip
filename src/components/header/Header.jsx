@@ -80,7 +80,6 @@ class HeaderClass extends React.Component {
     console.log(avatarUrl);
     console.log(userName);
     if(jwt && jwt!=="-" && (this.props.storeState.avatarUrl!==avatarUrl || this.props.storeState.userName!==userName)){
-      alert('send request');
       this.props.dispatch(setUser(userName,avatarUrl));
     }
     this.state = {

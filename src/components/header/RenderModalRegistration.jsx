@@ -357,10 +357,18 @@ class RenderModalRegistrationClass extends React.Component {
                             <p className="mb-0" style={{textAlign: "center"}}>{pageTextInfo.sitingInLightBackgroundText.sitingInFirstText[lang]}</p>
                                 <div className="iconBlok d-flex align-content-center">                       
                                     <div target="windowName" className="socialIcon facebookIcon" style={{marginLeft: "auto"}}
-                                    onClick={()=>{sendRequestFunc(this,requests.facebookRequest);}}
+                                    onClick={()=>{
+                                        console.log("REQUEST ADDRESS");
+                                        console.log(requests.facebookRequest);
+                                        sendRequestFunc(this,requests.facebookRequest);
+                                        }}
                                     />
                                     <div target="windowName" className="socialIcon googleIcon" style={{marginRight: "auto"}}
-                                    onClick={()=>{sendRequestFunc(this,requests.googleRequest);}}
+                                    onClick={()=>{
+                                        console.log("REQUEST ADDRESS");
+                                        console.log(requests.googleRequest);
+                                        sendRequestFunc(this,requests.googleRequest);
+                                        }}
                                     />
                                     {
                                     /*
