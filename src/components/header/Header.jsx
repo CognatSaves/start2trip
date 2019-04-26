@@ -248,10 +248,9 @@ class HeaderClass extends React.Component {
                     <span className="burgerGeo">San Francisco, CA</span>
                   </div>
                   <div className="burgerMenuBottom">
-                      <span>Профиль</span>
-                      <span>Выберите валюту</span>
-                      <span>Выберите язык</span>
-                      <span>Выберите страну</span>
+                      <span>Валюта</span>
+                      <span>Язык</span>
+                      <span>Страна</span>
                       <span>Выйти</span>
                   </div>
                 </div>

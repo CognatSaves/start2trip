@@ -222,7 +222,7 @@
     justify-content: flex-end;
     position: fixed;
     z-index: 999;
-    width: 100%;
+    width: 50%;
     height: 90%;
     top: 60px;
     right: -100%;
@@ -317,11 +317,13 @@
 .headerRegistration span:focus {
     outline: none;
 }
-.avatar{
+
+.avatar {
     width: 30px;
     height: 30px;
     background-size: contain!important;
     border-radius: 50%;
 }
+
 
 /* Header End */

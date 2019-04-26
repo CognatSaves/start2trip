@@ -2,7 +2,9 @@
     box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     margin-bottom: 10px;
-    padding: 15px;
+    height: 100%;
+    padding: 20px;
+    padding-bottom: 0px;
     transition: all 0.3s;
 }
 
@@ -11,29 +13,58 @@
 }
 
 .historyBodyElement {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .trevelHistoryBody img {
     cursor: pointer;
-    width: 20px;
-    height: 20px;
+    z-index: 55;
+    width: 40px;
+    height: 40px;
     margin-right: 5px;
     border-radius: 50%;
     object-fit: cover;
-    /* transition: all 0.3s; */
+    transition: all 0.3s;
 }
 
+.trevelHistoryBody img:hover {
+    transform: scale(2);
+}
 
-/* .trevelHistoryBody img:hover {
-    transform: scale(5);
-} */
+.historyBodyHeader hr {
+    background: #999;
+    size: 5px;
+    width: 100%;
+    margin: 10px 0px;
+}
+
+.historyBodyHeader div span {
+    font-size: 16px;
+    font-weight: 400;
+    color: #304269;
+    margin-bottom: 10px;
+    padding: 0;
+}
+
+.historyBodyHeader .historyBodyHeaderRoute,
+.historyBodyHeader .historyBodyHeaderType {
+    font-size: 14px;
+    font-weight: 400;
+    color: #999;
+    padding: 0;
+}
+
+.historyBodyHeader .historyBodyHeaderRoute {
+    max-height: 42px;
+    min-height: 42px;
+    overflow: hidden;
+}
 
 .trevelHistoryBody span {
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 400;
+    padding-left: 0px;
     color: #304269;
-    padding-right: 5px;
     margin: 0;
 }
 
@@ -43,4 +74,15 @@
     color: #2ca5e0;
     margin: 0;
     margin-bottom: 10px;
+}
+
+.historyBodyElementDriver {
+    margin-bottom: 10px;
+}
+
+.historyBodyElementDriver span {
+    font-size: 14px;
+    font-weight: 400;
+    color: #304269;
+    margin: 0;
 }
