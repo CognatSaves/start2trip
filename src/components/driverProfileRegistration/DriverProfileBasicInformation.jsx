@@ -8,7 +8,8 @@ import DatePicker from 'material-ui/DatePicker';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 import Chip from 'material-ui/Chip';
-
+import flags from './img/flags.png'
+import ReactTelInput from 'react-telephone-input'
 
 
 
@@ -17,6 +18,7 @@ class DriverProfileBasicInformationClass extends React.Component {
         super(props);
         this.state = {
             value: "Выберите языки",
+            city: "",
             chipData: [],
             language: ["Грузинский", "Русский", "Корейский", "Хинди"],
 
@@ -30,10 +32,10 @@ class DriverProfileBasicInformationClass extends React.Component {
         event.preventDefault();
     }
 
-    handleChange = (event, index, value) =>{ 
+    handleChange = (event, index, value) => {
         // this.setState({ value })
         this.chipData = this.state.chipData;
-        this.chipData.push({key:this.state.chipData.length, label:value});
+        this.chipData.push({ key: this.state.chipData.length, label: value });
 
         this.language = this.state.language;
         const languageToDelete = this.language.map((language) => language).indexOf(value);
@@ -51,6 +53,11 @@ class DriverProfileBasicInformationClass extends React.Component {
         this.language.push(element.label);
     };
 
+    changeCity = (index, value) => {
+        this.setState({ city: value })
+    }
+
+
     render() {
 
         return (
@@ -64,7 +71,6 @@ class DriverProfileBasicInformationClass extends React.Component {
                             <div className="bottomContentNote d-flex align-items-center">
                                 <label htmlFor="basicInfoName" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Имя:</label>
                                 <TextField
-                                    hintText="Пожалуйста введите ваше Имя"
                                     floatingLabelText="Имя"
                                     className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
                                     fullWidth="100%"
@@ -115,15 +121,26 @@ class DriverProfileBasicInformationClass extends React.Component {
                             <div className="bottomContentNote d-flex align-items-center">
                                 <label htmlFor="basicInfoLocation" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Город:</label>
                                 <div className="d-flex col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">
-                                    <LocationSearchInput classInput="searchInputDriverInformation" id="basicInfoLocation" classDropdown="searchDropdownDriverInformation" />
+                                    <LocationSearchInput changeCity={this.changeCity} classInput="searchInputDriverInformation" id="basicInfoLocation" classDropdown="searchDropdownDriverInformation" />
                                 </div>
+                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
+                            </div>
+                            <div className="bottomContentNote d-flex align-items-center">
+                                <label htmlFor="basicInfoNumber" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Рабочий телефон:</label>
+                                <ReactTelInput
+                                    defaultCountry="ge"
+                                    classNames="myPhoneInput"
+                                    flagsImagePath={flags}
+                                    onChange={(telNumber, selectedCountry) => { console.log('input changed. number: ', telNumber, 'selected country: ', selectedCountry); }}
+                                    onBlur={(value) => { console.log(value) }}
+                                />
                                 <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
                             </div>
                             <div className="bottomContentNote d-flex align-items-center">
                                 <label htmlFor="basicInfoLanguage" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Языки:</label>
                                 <DropDownMenu
                                     value={this.state.value}
-                                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left',}}
+                                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
                                     className="dropdownClass col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
                                     onChange={this.handleChange}
                                     style={{ width: "100%" }}
@@ -139,21 +156,21 @@ class DriverProfileBasicInformationClass extends React.Component {
                                 <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
                             </div>
                             <div className="d-flex align-items-center">
-                                <label style={{display : this.state.chipData.length ? "block":"none"}} htmlFor="basicInfoLanguage" className="col-xl-2 col-lg-2 col-md-2 col-sm-0 col-0"></label>
+                                <label style={{ display: this.state.chipData.length ? "block" : "none" }} htmlFor="basicInfoLanguage" className="col-xl-2 col-lg-2 col-md-2 col-sm-0 col-0"></label>
                                 <div className="d-flex flex-wrap align-items-сenter col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 p-0 mt-1 mb-2">
 
-                                        {this.state.chipData.map((element, index) =>
-                                            <Chip
-                                                key={element.key}
-                                                onRequestDelete={() => this.handleRequestDelete(element)}
-                                                labelStyle={{ color: "#000" }}
-                                                labelColor="#f60"
-                                                textColor="#304269"
-                                                className="chipClass"
-                                            >
-                                                {element.label}
-                                            </Chip>
-                                        )}
+                                    {this.state.chipData.map((element, index) =>
+                                        <Chip
+                                            key={element.key}
+                                            onRequestDelete={() => this.handleRequestDelete(element)}
+                                            labelStyle={{ color: "#000" }}
+                                            labelColor="#f60"
+                                            textColor="#304269"
+                                            className="chipClass"
+                                        >
+                                            {element.label}
+                                        </Chip>
+                                    )}
 
                                 </div>
                             </div>
