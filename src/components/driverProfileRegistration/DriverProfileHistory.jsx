@@ -25,6 +25,13 @@ class DriverProfileHistoryClass extends React.Component {
         { name: "Маратик", tel: "+375335552211", email: "Valera@gmail.com", place: "Тбилиси. ул.Главная 32", feedback: "Два ящика вина и доп.кресло на крыше", img: people4, route: "Тбилиси-Мцхета-Гори", date: "02.21.2019", time: "12:00", type: "поездка", price: "$180" },
 
       ],
+      trevelHistory1: [
+        { name: "Альгерд", tel: "+375337752211", email: "Algerd@gmail.com", place: "Тбилиси. ул.Чкалова 12", feedback: "Детское кресло.багаж 10кг собака и кошка,может ещё хомяк", img: people1, route: "Тбилиси-Мцхета-Гори-Тбилиси-Мцхета-Гори", date: "02.21.2019", time: "12:00", type: "тур", price: "$180" },
+        { name: "Анжела", tel: "+375335552211", email: "Valera@gmail.com", place: "Тбилиси. ул.Красная 52", feedback: "", img: people2, route: "Тбилиси-Мцхета-Гори", date: "02.21.2019", time: "12:00", type: "поездка", price: "$180" },
+        { name: "Гоги", tel: "+375335552211", email: "Valera@gmail.com", place: "Тбилиси. ул.Чкалова 22", feedback: "Дополнительный багажник на крыше", img: people3, route: "Тбилиси-Мцхета-Гори-Тбилиси-Мцхета-Гори", date: "02.21.2019", time: "12:00", type: "тур", price: "$180" },
+        { name: "Анжела", tel: "+375335552211", email: "Valera@gmail.com", place: "Тбилиси. ул.Красная 52", feedback: "", img: people2, route: "Тбилиси-Мцхета-Гори", date: "02.21.2019", time: "12:00", type: "поездка", price: "$180" },
+      ],
+      isPreHistory:true,
     }
 
   }
@@ -35,11 +42,18 @@ class DriverProfileHistoryClass extends React.Component {
     return (
       <React.Fragment>
         <div className="driverProfileHistory">
-      
+          <div className="driverProfileHistoryTop d-flex">
+              <div className={this.state.isPreHistory ? "d-flex align-items-center driverProfileHistoryTop-active":" d-flex align-items-center"} onClick={()=>{this.setState({isPreHistory:!this.state.isPreHistory})}}>
+                <span>Предстоящие поездки</span>
+              </div>
+              <div className={this.state.isPreHistory ? "d-flex align-items-center":"driverProfileHistoryTop-active d-flex align-items-center"} onClick={()=>{this.setState({isPreHistory:!this.state.isPreHistory})}}>
+                <span>История поездок</span>
+              </div>
+          </div>
           {{
-            0: <DriverProfileTrevelHistory trevelHistory={this.state.trevelHistory} />,
-            // 1: <DriverProfileTrevelHistory trevelHistory={this.state.trevelHistory} />,
-          }[this.props.storeState.pageRender]}
+            true: <DriverProfileTrevelHistory trevelHistory={this.state.trevelHistory} />,
+            false: <DriverProfileTrevelHistory trevelHistory={this.state.trevelHistory1} />,
+          }[this.state.isPreHistory]}
         </div>
       </React.Fragment>
     );
