@@ -221,10 +221,10 @@ class HeaderClass extends React.Component {
   render() {
 
     console.log("render header");
-    console.log(this.state);
+   /* console.log(this.state);
     console.log('storestate');
     console.log(this.props.storeState);
-    console.log(window);
+    console.log(window);*/
     /*console.log("window.opener");
     console.log(window.opener);*/
     return (

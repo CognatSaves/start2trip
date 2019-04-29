@@ -1,4 +1,4 @@
-const serverAddress = 'http://tripfer.com:1337';
+const serverAddress = 'http://localhost:1337';
 const serverRegistrationRequest = serverAddress+'/auth/local/register';
 const serverAuthorizationRequest = serverAddress+'/auth/local';
 const facebookRequest = serverAddress+'/connect/facebook';

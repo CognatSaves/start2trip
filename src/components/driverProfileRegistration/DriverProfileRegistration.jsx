@@ -18,10 +18,12 @@ import people4 from './img/gruzinskaja-kuhnja.jpg'
 import requests from '../../config';
 import axios from 'axios';
 
+import { setProfileData } from "../../redusers/ActionDriverProfileRegistration"
 
 class DriverProfileRegistrationClass extends React.Component {
   constructor(props) {
     super(props);
+    const that = this;
     function getUserData(){
       function readCookie(name) {
         var name_cook = name+"=";
@@ -49,9 +51,10 @@ class DriverProfileRegistrationClass extends React.Component {
           }
         })
         .then(response =>{
+          //debugger;
           console.log('Data profile: ');
           console.log(response.data);
-
+          that.props.dispatch(setProfileData(response.data));
         })
         .catch(error => {
           console.log('error, here must be return to authorization window! or smth else');
@@ -71,36 +74,51 @@ class DriverProfileRegistrationClass extends React.Component {
           { name: "Маратик",tel: "+375335552211",email: "Valera@gmail.com",place: "Тбилиси. ул.Главная 32",feedback: "Два ящика вина и доп.кресло на крыше", img: people4, route: "Тбилиси-Мцхета-Гори", date: "02.21.2019", time:"12:00", type:"поездка", price: "$180" },
           
       ],
-      userData:[]
+      userData:{}
   }
 
   }
-
-
   render() {
-
+    /*console.log("this.state.userData:");
+    console.log(this.state.userData);*/
+    console.log("DriverProfileRender");
+    
+    let profile =this.props.storeState.profile;
+    console.log(profile);
     return (
       <React.Fragment>
-        <Header driver={true} />
-        <DriverProfileNavigation />
-        <div className="registrationWrapper d-flex flex-column col-12 p-0">
-          <div className="d-flex contentHeight col-12 p-0">
-            <div className="d-flex flex-column justify-content-start col-lx-12 col-lg-12 col-md-12 col-sm-12 col-12">
-              
-              {{
-                0: <DriverProfileTrevelHistory trevelHistory={this.state.trevelHistory}/>,
-                1: <DriverProfileTrevelHistory trevelHistory={this.state.trevelHistory}/>,
-                2: <DriverProfileBasicInformation />,
-                3: <DriverProfileCar />,
-                4: <DriverProfileTripSettingsTrip />,
-                5: <DriverProfileTripSettingsTour />,
-                6: <DriverProfileFeedback />,
-                7: <DriverProfileSettings />,
-              }[this.props.storeState.pageRender]}
+        { profile.isDriver ?
+            <React.Fragment>
+            <Header driver={true} />
+            <DriverProfileNavigation />
+            <div className="registrationWrapper d-flex flex-column col-12 p-0">
+              <div className="d-flex contentHeight col-12 p-0">
+                <div className="d-flex flex-column justify-content-start col-lx-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                  
+                  {{
+                    0: <DriverProfileTrevelHistory trevelHistory={this.state.trevelHistory}/>,
+                    1: <DriverProfileTrevelHistory trevelHistory={this.state.trevelHistory}/>,
+                    2: <DriverProfileBasicInformation />,
+                    3: <DriverProfileCar />,
+                    4: <DriverProfileTripSettingsTrip />,
+                    5: <DriverProfileTripSettingsTour />,
+                    6: <DriverProfileFeedback />,
+                    7: <DriverProfileSettings />,
+                  }[this.props.storeState.pageRender]}
+                </div>
+                
+              </div>
             </div>
-            
-          </div>
-        </div>
+          </React.Fragment> :
+          <React.Fragment/>
+        }
+        {
+          (!profile.isCustomer && !profile.isDriver && !profile.isAgency) ?
+          <div>
+            {"Additional confirmation page - if there is no user type"}
+          </div> :
+          <React.Fragment/>
+        }
       </React.Fragment>
     );
   }

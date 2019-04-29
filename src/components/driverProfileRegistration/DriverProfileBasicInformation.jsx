@@ -15,11 +15,48 @@ import Chip from 'material-ui/Chip';
 class DriverProfileBasicInformationClass extends React.Component {
     constructor(props) {
         super(props);
+        function languageArraysConstr(language, allLanguages){
+            let langList=[];
+            let chipData=[];
+            for(let i=0;i<allLanguages.length; i++){
+                //debugger;
+                let j=0;let max=language.length;
+                for(; j<max;j++){
+                    if(language[j]===allLanguages[i].ISO){
+                        chipData.push(allLanguages[i].languageName);
+                        j=max+5;
+                    }
+                }
+                if(j===max){
+                    langList.push(allLanguages[i].languageName);
+                }
+            }
+            return {langList: langList, chipData: chipData};
+        }
+        function adaptDate(rawdate){
+            let date = new Date(profile.birthday);
+            return new Date(date.getMonth()+'.'+date.getDate()+'.'+date.getFullYear())
+        }
+        let profile = this.props.profileReduser.profile;
+        console.log('profile in DriverProfileBasicInformation') ;
+        console.log(profile);
+        let birthday = adaptDate(profile.birthday);
+        let passportDate = adaptDate(profile.passportDate);
+        let languageArrays = languageArraysConstr(profile.language, profile.allLanguages);
+        //debugger;
         this.state = {
             value: "Выберите языки",
-            chipData: [],
-            language: ["Грузинский", "Русский", "Корейский", "Хинди"],
-
+            chipData: languageArrays.chipData,
+            language: languageArrays.langList,
+            profileData: {
+                firstName: profile.firstName,
+                lastName: profile.lastName,
+                birthday: birthday,
+                passportNumber: profile.passportNumber,
+                passportDate:passportDate,
+                city: profile.hometown+', '+profile.homecountry,
+                dataAbout: profile.dataAbout
+            }
         }
         this.formSubmit = this.formSubmit.bind(this);
     }
@@ -33,7 +70,7 @@ class DriverProfileBasicInformationClass extends React.Component {
     handleChange = (event, index, value) =>{ 
         // this.setState({ value })
         this.chipData = this.state.chipData;
-        this.chipData.push({key:this.state.chipData.length, label:value});
+        this.chipData.push(value);
 
         this.language = this.state.language;
         const languageToDelete = this.language.map((language) => language).indexOf(value);
@@ -43,16 +80,19 @@ class DriverProfileBasicInformationClass extends React.Component {
 
     handleRequestDelete = (element) => {
         this.chipData = this.state.chipData;
-        const chipToDelete = this.chipData.map((chip) => chip.key).indexOf(element.key);
+        const chipToDelete = this.chipData.map((chip) => chip).indexOf(element);
         this.chipData.splice(chipToDelete, 1);
         this.setState({ chipData: this.chipData });
 
         this.language = this.state.language;
-        this.language.push(element.label);
+        this.language.push(element);
     };
 
     render() {
-
+        let text = "text";
+        console.log('chipData');
+        console.log(this.state.chipData);
+        //console.log
         return (
             <div className="basicInformationBody d-flex flex-column">
                 <div className="basicInformationBodyBottom d-flex flex-column mb-5 p-0">
@@ -70,9 +110,10 @@ class DriverProfileBasicInformationClass extends React.Component {
                                     fullWidth="100%"
                                     floatingLabelFocusStyle={{ color: "#304269" }}
                                     underlineFocusStyle={{ borderColor: "#304269" }}
+                                    value={this.state.profileData.firstName}
 
                                 />
-                                <input className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " id="basicInfoName" type="text" />
+                                <input className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " id="basicInfoName" type="text" value={this.state.profileData.firstName}/>
                                 <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
                             </div>
                             <div className="bottomContentNote d-flex align-items-center">
@@ -84,13 +125,13 @@ class DriverProfileBasicInformationClass extends React.Component {
                                     fullWidth="100%"
                                     floatingLabelFocusStyle={{ color: "#304269" }}
                                     underlineFocusStyle={{ borderColor: "#304269" }}
-
+                                    value={this.state.profileData.lastName}
                                 />
-                                <input className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " id="basicInfoLastName" type="text" />
+                                <input className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " id="basicInfoLastName" type="text" value={this.state.profileData.lastName}/>
                             </div>
                             <div className="bottomContentNote d-flex align-items-center">
                                 <label htmlFor="basicInfoBirthday" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Дата рождения:</label>
-                                <DatePicker floatingLabelText="Дата рождения" id="basicInfoBirthday" className="calendarModal col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0" />
+                                <DatePicker floatingLabelText="Дата рождения" id="basicInfoBirthday" className="calendarModal col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0" value={this.state.profileData.birthday} />
                                 <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
                             </div>
                             <div className="bottomContentNote d-flex align-items-center">
@@ -102,20 +143,20 @@ class DriverProfileBasicInformationClass extends React.Component {
                                     fullWidth="100%"
                                     floatingLabelFocusStyle={{ color: "#304269" }}
                                     underlineFocusStyle={{ borderColor: "#304269" }}
-
+                                    value={this.state.profileData.passportNumber}
                                 />
-                                <input className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " id="basicInfoNumber" type="text" />
+                                <input className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " id="basicInfoNumber" type="text" value={this.state.profileData.passportNumber}/>
                                 <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
                             </div>
                             <div className="bottomContentNote d-flex align-items-center">
                                 <label htmlFor="basicInfoDay" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Дата выдачи:</label>
-                                <DatePicker floatingLabelText="Дата выдачи паспорта" id="basicInfoDay" className="calendarModal col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0" />
+                                <DatePicker floatingLabelText="Дата выдачи паспорта" id="basicInfoDay" className="calendarModal col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0" value={this.state.profileData.passportDate}/>
                                 <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
                             </div>
                             <div className="bottomContentNote d-flex align-items-center">
                                 <label htmlFor="basicInfoLocation" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Город:</label>
                                 <div className="d-flex col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">
-                                    <LocationSearchInput classInput="searchInputDriverInformation" id="basicInfoLocation" classDropdown="searchDropdownDriverInformation" />
+                                    <LocationSearchInput address={this.state.profileData.city} classInput="searchInputDriverInformation" id="basicInfoLocation" classDropdown="searchDropdownDriverInformation" />
                                 </div>
                                 <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
                             </div>
@@ -144,14 +185,14 @@ class DriverProfileBasicInformationClass extends React.Component {
 
                                         {this.state.chipData.map((element, index) =>
                                             <Chip
-                                                key={element.key}
+                                                key={element}
                                                 onRequestDelete={() => this.handleRequestDelete(element)}
                                                 labelStyle={{ color: "#000" }}
                                                 labelColor="#f60"
                                                 textColor="#304269"
                                                 className="chipClass"
                                             >
-                                                {element.label}
+                                                {element}
                                             </Chip>
                                         )}
 
@@ -168,8 +209,9 @@ class DriverProfileBasicInformationClass extends React.Component {
                                     underlineFocusStyle={{ borderColor: "#304269" }}
                                     multiLine={true}
                                     rows={1}
+                                    value={this.state.profileData.dataAbout}
                                 />
-                                <textarea className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " id="basicInfoMultiLine" name="" cols="30" rows="3"></textarea>
+                                <textarea className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " id="basicInfoMultiLine" name="" cols="30" rows="3" value={this.state.profileData.dataAbout}></textarea>
                                 <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
                             </div>
                             <div className="d-flex justify-content-xl-start justify-content-lg-start justify-content-md-start justify-content-sm-center justify-content-center ">
@@ -187,6 +229,7 @@ class DriverProfileBasicInformationClass extends React.Component {
 const DriverProfileBasicInformation = connect(
     (state) => ({
         storeState: state.AppReduser,
+        profileReduser: state.DriverProfileRegistrationtReduser,
     }),
 )(DriverProfileBasicInformationClass);
 

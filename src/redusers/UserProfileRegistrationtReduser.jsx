@@ -1,8 +1,8 @@
-import {WHICH_PAGE_RENDER_USER,} from './ActionUserProfileRegistration';
+import {WHICH_PAGE_RENDER_USER,SET_PROFILE_DATA} from './ActionUserProfileRegistration';
 
 const initialState = {
     pageRender: "0",
-       
+      
 };
 
 
@@ -13,7 +13,8 @@ export const UserProfileRegistrationtReduser = (state = initialState, action) =>
             newState.pageRender = action.pageRender;
             return newState;
         }
-           
+        
+        
     default: return state;
     }
 }
