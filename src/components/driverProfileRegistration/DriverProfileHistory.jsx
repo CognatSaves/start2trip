@@ -43,10 +43,10 @@ class DriverProfileHistoryClass extends React.Component {
       <React.Fragment>
         <div className="driverProfileHistory">
           <div className="driverProfileHistoryTop d-flex">
-              <div className={this.state.isPreHistory ? "d-flex align-items-center driverProfileHistoryTop-active":" d-flex align-items-center"} onClick={()=>{this.setState({isPreHistory:!this.state.isPreHistory})}}>
+              <div className={this.state.isPreHistory ? "d-flex align-items-center driverProfileHistoryTop-active":" d-flex align-items-center"} onClick={()=>{this.setState({isPreHistory:true})}}>
                 <span>Предстоящие поездки</span>
               </div>
-              <div className={this.state.isPreHistory ? "d-flex align-items-center":"driverProfileHistoryTop-active d-flex align-items-center"} onClick={()=>{this.setState({isPreHistory:!this.state.isPreHistory})}}>
+              <div className={this.state.isPreHistory ? "d-flex align-items-center":"driverProfileHistoryTop-active d-flex align-items-center"} onClick={()=>{this.setState({isPreHistory:false})}}>
                 <span>История поездок</span>
               </div>
           </div>

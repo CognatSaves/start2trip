@@ -36,7 +36,6 @@ class DriverProfileSettingsClass extends React.Component {
                         <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none pl-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
                     </div>
                     <TextField
-                        hintText="Please press your Email"
                         floatingLabelText="Email"
                         className="inputClass sittingsTextField d-xl-none d-lg-none d-md-none d-sm-block d-block"
                         fullWidth="100%"
@@ -52,7 +51,6 @@ class DriverProfileSettingsClass extends React.Component {
                             <div className="driverProfileSettingsContentRow">
                                 <input id="sittingsCurrentPassword" className="d-xl-block d-lg-block d-md-block d-sm-none d-none" type={this.state.thisPasswordType ? "password" : "text"} pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required />
                                 <TextField
-                                    hintText="Пожалуйста введите текущий пароль"
                                     type={this.state.thisPasswordType ? "password" : "text"}
                                     floatingLabelText="Текущий пароль"
                                     className="inputClass sittingsTextField d-xl-none d-lg-none d-md-none d-sm-block d-block"
@@ -68,7 +66,6 @@ class DriverProfileSettingsClass extends React.Component {
                             <div className="driverProfileSettingsContentRow">
                                 <input id="sittingsNewPassword" className="d-xl-block d-lg-block d-md-block d-sm-none d-none" type={this.state.newPasswordType ? "password" : "text"} pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required />
                                 <TextField
-                                    hintText="Пожалуйста введите новый пароль"
                                     type={this.state.newPasswordType ? "password" : "text"}
                                     floatingLabelText="Новый пароль"
                                     className="inputClass sittingsTextField d-xl-none d-lg-none d-md-none d-sm-block d-block"
@@ -83,7 +80,6 @@ class DriverProfileSettingsClass extends React.Component {
                             <div className="driverProfileSettingsContentRow">
                                 <input id="sittingsConfirmPassword" className="d-xl-block d-lg-block d-md-block d-sm-none d-none mb-4" type={this.state.confirmPasswordType ? "password" : "text"} title="Must match the previous field" required />
                                 <TextField
-                                    hintText="Пожалуйста подтвердите пароль"
                                     type={this.state.confirmPasswordType ? "password" : "text"}
                                     floatingLabelText="Подтвердите пароль"
                                     className="inputClass sittingsTextField d-xl-none d-lg-none d-md-none d-sm-block d-block"

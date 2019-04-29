@@ -33,3 +33,7 @@
 .driverProfileHistoryTop-active {
     background: #fff;
 }
+
+.driverProfileHistoryTop-active span {
+    color: #f60 !important;
+}
