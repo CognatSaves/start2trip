@@ -99,6 +99,39 @@
     fill: #304269 !important;
 }
 
+
+/* myPhoneInput Bigin */
+
+.myPhoneInput {
+    width: 100%;
+}
+
+.myPhoneInput input:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.myPhoneInput .form-control:focus {
+    border-color: #304269 !important;
+}
+
+.myPhoneInput button {
+    max-width: auto !important;
+    background: none !important;
+    height: 100% !important;
+    margin: auto 0;
+}
+
+.driverProfileSettingsContent .myPhoneInput button {
+    max-width: auto !important;
+    background: none !important;
+    height: 100% !important;
+    margin: auto 0;
+}
+
+
+/* myPhoneInput end */
+
 @media (max-width: 768px) {
     .calendarModal {
         max-height: none !important;
@@ -142,6 +175,22 @@
     .dropdownClass button {
         padding: 0 !important;
         top: 18px !important;
+    }
+    .myPhoneInput {
+        margin-top: 30px;
+    }
+    .myPhoneInput input {
+        border: none !important;
+        border-bottom: 1px solid !important;
+        border-color: #aeaeae !important;
+        border-radius: 0px !important;
+        box-shadow: none !important;
+    }
+    .myPhoneInput input:focus {
+        border: none !important;
+        border-bottom: 1px solid !important;
+        border-radius: 0px !important;
+        border-color: #304269 !important;
     }
 }
 

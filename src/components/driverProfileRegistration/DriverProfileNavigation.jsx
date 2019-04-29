@@ -19,7 +19,7 @@ class DriverProfileNavigationClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            navigationText: ["Предстоящие поездки","История поездок", "Профиль", "Автомобиль", "Настройки поездок", "Туры", "Отзывы", "Настройки",],
+            navigationText: ["Мои поездки", "Профиль", "Автомобиль", "Настройки поездок", "Туры", "Отзывы", "Настройки",],
             shiftLeft: [0, 6, 129, 219, 311, 430, 430],
         }
     }
@@ -33,13 +33,13 @@ class DriverProfileNavigationClass extends React.Component {
             <React.Fragment>
                 <div className="registrationWrapper driverBG col-12 p-0" style={{
                     0: { backgroundImage: "url(" + preHistoryBG + ")" },
-                    1: { backgroundImage: "url(" + historyBG + ")" },
-                    2: { backgroundImage: "url(" + sittingsBG + ")" },
-                    3: { backgroundImage: "url(" + carBg + ")" },
-                    4: { backgroundImage: "url(" + calendarBG + ")" },
-                    5: { backgroundImage: "url(" + toursBG + ")" },
-                    6: { backgroundImage: "url(" + feedbackBG + ")" },
-                    7: { backgroundImage: "url(" + sittingsBG + ")" },
+                    // 1: { backgroundImage: "url(" + historyBG + ")" },
+                    1: { backgroundImage: "url(" + sittingsBG + ")" },
+                    2: { backgroundImage: "url(" + carBg + ")" },
+                    3: { backgroundImage: "url(" + calendarBG + ")" },
+                    4: { backgroundImage: "url(" + toursBG + ")" },
+                    5: { backgroundImage: "url(" + feedbackBG + ")" },
+                    6: { backgroundImage: "url(" + sittingsBG + ")" },
                 }[this.props.storeState.pageRender]}>
                     <div className="basicInformationBodyTop d-flex align-items-center ">
                         <div className="basicInformationBodyTopImgHover">

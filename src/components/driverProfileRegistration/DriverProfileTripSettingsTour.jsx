@@ -13,12 +13,15 @@ import TextField from 'material-ui/TextField';
 import MultipleDatePicker from 'react-multiple-datepicker'
 import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
+import ruIcon from './img/russia.svg'
+import enIcon from './img/united-kingdom.svg'
 import InfiniteCalendar, {
     Calendar,
     defaultMultipleDateInterpolation,
     withMultipleDates,
 } from 'react-infinite-calendar';
 import 'react-infinite-calendar/styles.css'; // only needs to be imported once
+import LanguageMenu from '../drivers/DriversBody/DriversProperties/components/LanguageMenu/LanguageMenu';
 
 
 
@@ -36,16 +39,22 @@ class DriverProfileTripSettingsTourClass extends React.Component {
             currency: ["USD", "EUR", "GEL", "RUB",],
             activeCurrency: "USD",
             typeCar: "sedan",
-            cities: [{ city: "", description: "" },],
-            departureDate: [{ day: "1", month: "Январь", year: "2019" },],
             tour: ["", "", "", "", "", "",],
-            chipData: [
-                { key: 0, label: 'samcxe jaxaheti' },
-                { key: 1, label: 'kvemo samegrelo' },
-                { key: 2, label: 'minsk' },
-                { key: 3, label: 'molodechno samegrelo samcxe' },
-            ],
+            departurePoint: "",
+            attractionsAlongTheRoute: [],
+            getAddress: "",
             dateTour: [],
+            directions: ["Батуми", "Тбилиси", "Кутаиси", "Сванеция"],
+            directionsChip: [],
+            directionsValue: "Все направление", // not change
+            categories: ["Активный", "Пляжный", "Экстримальный", "Шоп"],
+            categoriesChip: [],
+            categoriesValue: "Все категори", // not change
+            tags: ["Замки", "Церкви", "Бастилии", "Парки"],
+            tagsChip: [],
+            tagsValue: "Все тег", // not change
+            languageTour: [{ title: "RU", img: ruIcon }, { title: "EN", img: enIcon }],
+            languageTourOpen: 0,
             newTourEverydayTime: "Выберите время",
             newTourDatepickerTime: "Выберите время",
             time: [
@@ -77,10 +86,6 @@ class DriverProfileTripSettingsTourClass extends React.Component {
         }
 
         this.toggle = this.toggle.bind(this);
-        this.addCity = this.addCity.bind(this);
-        this.deleteCity = this.deleteCity.bind(this);
-        this.addDepartureDate = this.addDepartureDate.bind(this);
-        this.deleteDepartureDate = this.deleteDepartureDate.bind(this);
         this.formSubmit = this.formSubmit.bind(this);
         this.addDate = this.addDate.bind(this);
     }
@@ -99,88 +104,8 @@ class DriverProfileTripSettingsTourClass extends React.Component {
         }
     }
 
-    addCity() {
-        let newArrayCity = this.state.cities;
-        newArrayCity.push({ city: "", itemRadius: "" })
-        this.setState({
-            cities: newArrayCity,
-        })
-    }
-
-    deleteCity(index) {
-        let newArrayCity = this.state.cities;
-        newArrayCity.splice(index, 1);
-        this.setState({
-            cities: newArrayCity,
-        })
-    }
-
-    addDepartureDate() {
-        let newArrayDepartureDate = this.state.departureDate;
-        newArrayDepartureDate.push({ day: "1", month: "Январь", year: "2019" })
-        this.setState({
-            departureDate: newArrayDepartureDate,
-        })
-    }
-
-    deleteDepartureDate(index) {
-        let newArrayDepartureDate = this.state.departureDate;
-        newArrayDepartureDate.splice(index, 1);
-        this.setState({
-            departureDate: newArrayDepartureDate,
-        })
-    }
-
-    changeAllValue(index, e) {
-        let newArrayCity = this.state.cities.slice();
-        let newArraydepartureDate = this.state.departureDate.slice();
-        switch (e.currentTarget.id) {
-            case "city": {
-                newArrayCity[index].city = e.currentTarget.value;
-                this.setState({ cities: newArrayCity });
-                break;
-            }
-            case "description": {
-                newArrayCity[index].description = e.currentTarget.value;
-                this.setState({ cities: newArrayCity });
-                break;
-            }
-            case "day": {
-                newArraydepartureDate[index].day = e.currentTarget.value;
-                this.setState({ departureDate: newArraydepartureDate });
-                break;
-            }
-            case "month": {
-                newArraydepartureDate[index].month = e.currentTarget.value;
-                this.setState({ departureDate: newArraydepartureDate });
-                break;
-            }
-            case "year": {
-                newArraydepartureDate[index].year = e.currentTarget.value;
-                this.setState({ departureDate: newArraydepartureDate });
-                break;
-            }
-        }
-    }
-
     calendarModalShow = () => {
         this.setState({ calendarModal: !this.state.calendarModal });
-    };
-
-    handleChange = (event, index, value) => { this.setState({ typeCar: value }) };
-
-    handleChangenEverydayTime = (event, index, value) => { this.setState({ newTourEverydayTime: value }) };
-
-    handleChangeDatepickerTime = (event, index, value) => {this.setState({ newTourDatepickerTime: value }) };
-
-    handleChangeCurrency = (event, index, value) => { this.setState({ activeCurrency: value }) };
-
-    handleRequestDelete = (key) => {
-
-        this.chipData = this.state.chipData;
-        const chipToDelete = this.chipData.map((chip) => chip.key).indexOf(key);
-        this.chipData.splice(chipToDelete, 1);
-        this.setState({ chipData: this.chipData });
     };
 
     addDate = (dates) => {
@@ -202,18 +127,100 @@ class DriverProfileTripSettingsTourClass extends React.Component {
         }
     }
 
-    handleRequestDeleteDate = (key) => {
-
-        this.dateTour = this.state.dateTour;
-        const dateTourToDelete = this.dateTour.map((chip) => chip.key).indexOf(key);
-        this.dateTour.splice(dateTourToDelete, 1);
-        this.setState({ dateTour: this.dateTour });
+    handleChange = (value, name) => {
+        switch (name) {
+            case "directions": {
+                this.directionsChip = this.state.directionsChip;
+                this.directionsChip.push({ key: this.state.directionsChip.length, label: value });
+                this.directions = this.state.directions;
+                const directionToDelete = this.directions.map((direction) => direction).indexOf(value);
+                this.directions.splice(directionToDelete, 1);
+                this.setState({ directions: this.directions });
+                break;
+            }
+            case "categories": {
+                this.categoriesChip = this.state.categoriesChip;
+                this.categoriesChip.push({ key: this.state.categoriesChip.length, label: value });
+                this.categories = this.state.categories;
+                const categorieToDelete = this.categories.map((categorie) => categorie).indexOf(value);
+                this.categories.splice(categorieToDelete, 1);
+                this.setState({ categories: this.categories });
+                break;
+            }
+            case "tags": {
+                this.tagsChip = this.state.tagsChip;
+                this.tagsChip.push({ key: this.state.tagsChip.length, label: value });
+                this.tags = this.state.tags;
+                const tagToDelete = this.tags.map((tag) => tag).indexOf(value);
+                this.tags.splice(tagToDelete, 1);
+                this.setState({ tags: this.tags });
+                break;
+            }
+            case "typeCar": {
+                this.setState({ typeCar: value })
+                break;
+            }
+            case "attractionsAlongTheRoute": {
+                this.attractionsAlongTheRoute = this.state.attractionsAlongTheRoute;
+                this.attractionsAlongTheRoute.push({ key: this.state.attractionsAlongTheRoute.length, label: value });
+                this.setState({ attractionsAlongTheRoute: this.attractionsAlongTheRoute });
+                break;
+            }
+        }
     };
 
+    handleRequestDelete = (element, name) => {
+        switch (name) {
+            case "directions": {
+                this.directionsChip = this.state.directionsChip;
+                const directionToDelete = this.directionsChip.map((direction) => direction.key).indexOf(element.key);
+                this.directionsChip.splice(directionToDelete, 1);
+                this.setState({ directionsChip: this.directionsChip });
 
+                this.directions = this.state.directions;
+                this.directions.push(element.label);
+                break;
+            }
+            case "categories": {
+                this.categoriesChip = this.state.categoriesChip;
+                const categorieToDelete = this.categoriesChip.map((categorie) => categorie.key).indexOf(element.key);
+                this.categoriesChip.splice(categorieToDelete, 1);
+                this.setState({ categoriesChip: this.categoriesChip });
 
+                this.categories = this.state.categories;
+                this.categories.push(element.label);
+                break;
+            }
+            case "tags": {
+                this.tagsChip = this.state.tagsChip;
+                const tagToDelete = this.tagsChip.map((tag) => tag.key).indexOf(element.key);
+                this.tagsChip.splice(tagToDelete, 1);
+                this.setState({ tagsChip: this.tagsChip });
 
+                this.tags = this.state.tags;
+                this.tags.push(element.label);
+                break;
+            }
+            case "dateTour": {
+                this.dateTour = this.state.dateTour;
+                const dateTourToDelete = this.dateTour.map((chip) => chip.key).indexOf(element.key);
+                this.dateTour.splice(dateTourToDelete, 1);
+                this.setState({ dateTour: this.dateTour });
+                break;
+            }
+            case "attractionsAlongTheRoute": {
+                this.attractionsAlongTheRoute = this.state.attractionsAlongTheRoute;
+                const attractionToDelete = this.attractionsAlongTheRoute.map((attraction) => attraction.key).indexOf(element.key);
+                this.attractionsAlongTheRoute.splice(attractionToDelete, 1);
+                this.setState({ attractionsAlongTheRoute: this.attractionsAlongTheRoute });
+                break;
+            }
+        }
+    };
 
+    changeCity = (index, value) => {
+        this.setState({ departurePoint: value })
+    }
 
     render() {
         const MultipleDatesCalendar = withMultipleDates(Calendar);
@@ -281,82 +288,99 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                 </Dialog>
                 <Collapse isOpen={this.state.collapse}>
                     <div className="tourSettingsBody">
-                        <form onSubmit={this.formSubmit} id="newTourForm" className="tourContent col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                            <div className=" tourContentTitle d-flex align-items-center mb-0">
-                                <p>Добавление тура</p>
+                        <form onSubmit={this.formSubmit} id="newTourForm" className="tourContent col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
+                            <div className="languageTourTop d-flex flex-wrap col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
+                                {this.state.languageTour.map((element, index) =>
+                                    <div className={{ [index]: "languageTourTitleActive", }[this.state.languageTourOpen] + " languageTourTitle"} onClick={() => { this.setState({ languageTourOpen: index }) }}>
+                                        <span style={{ backgroundImage: "url(" + element.img + ")" }}>{element.title}</span>
+                                    </div>
+                                )}
                             </div>
-                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mb-0">
-                                <label htmlFor="nameNewTour" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Название тура:</label>
-                                <TextField
-                                    hintText="Пожалуйста название тура"
-                                    floatingLabelText="Название тура"
-                                    className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
-                                    fullWidth="100%"
-                                    floatingLabelFocusStyle={{ color: "#304269" }}
-                                    underlineFocusStyle={{ borderColor: "#304269" }}
+                            {this.state.languageTour.map((element, index) =>
 
-                                />
-                                <input className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " id="nameNewTour" type="text" />
-                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
-                            </div>
-                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                <label htmlFor="newTourAttractions" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Достопримичательности по маршруту:</label>
-                                <div className="d-flex col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">
-                                    <LocationSearchInput classDropdown="searchDropdownDriverTour" id="newTourAttractions" />
+                                <div className={{ [index]: "languageTourItemActive", }[this.state.languageTourOpen] + " languageTourItem"}>
+                                    <div className=" tourContentTitle d-flex align-items-center mb-0">
+                                        <p>Добавление тура</p>
+                                    </div>
+                                    <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mb-0">
+                                        <label htmlFor="nameNewTour" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Название тура:</label>
+                                        <TextField
+                                            hintText="Пожалуйста название тура"
+                                            floatingLabelText="Название тура"
+                                            className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
+                                            fullWidth="100%"
+                                            floatingLabelFocusStyle={{ color: "#304269" }}
+                                            underlineFocusStyle={{ borderColor: "#304269" }}
+                                        />
+                                        <input className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " id="nameNewTour" type="text" />
+                                        <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
+                                    </div>
+                                    <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
+                                        <label htmlFor="newTourAttractions" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Место отправления:</label>
+                                        <div className="d-flex col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">
+                                            <LocationSearchInput changeCity={this.changeCity} classDropdown="searchDropdownDriverTour" id="newTourAttractions" />
+                                        </div>
+                                        <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
+                                    </div>
+                                    <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
+                                        <label htmlFor="newTourAttractions" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Достопримечательности по маршруту:</label>
+                                        <div className="d-flex col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">
+                                            <LocationSearchInput changeCity={(index, value) => { this.handleChange(value, "attractionsAlongTheRoute") }} classDropdown="searchDropdownDriverTour" id="newTourAttractions" />
+                                        </div>
+                                        <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
+                                    </div>
+                                    <div className="d-flex justify-content-end col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
+                                        <div className="d-flex flex-wrap col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 p-0 mb-2">
+                                            {this.state.attractionsAlongTheRoute.map((element, index) =>
+                                                <Chip
+                                                    key={element.key}
+                                                    onRequestDelete={() => this.handleRequestDelete(element.key, "attractionsAlongTheRoute")}
+                                                    labelStyle={{ color: "#000" }}
+                                                    labelColor="#f60"
+                                                    textColor="#304269"
+                                                    className="chipClass"
+                                                >
+                                                    {element.label}
+                                                </Chip>
+                                            )}
+                                        </div>
+                                    </div>
+                                    <div className="d-flex align-items-start mb-2">
+                                        <label htmlFor="newTourDescription" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Описание:</label>
+                                        <textarea id="newTourDescription" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " name="" id="description" cols="30" rows="3" />
+                                        <TextField
+                                            hintText="Расскажите о туре"
+                                            floatingLabelText="Описание"
+                                            className="d-xl-none d-lg-none d-md-none d-sm-block d-block multiLineInputClass"
+                                            fullWidth="100%"
+                                            floatingLabelFocusStyle={{ color: "#304269" }}
+                                            underlineFocusStyle={{ borderColor: "#304269" }}
+                                            multiLine={true}
+                                            rows={1}
+                                        />
+                                        <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
+                                    </div>
                                 </div>
-                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
-                            </div>
-                            <div className="d-flex justify-content-end col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <div className="d-flex flex-wrap col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 p-0 mb-2">
+                            )}
 
-                                    {this.state.chipData.map((element, index) =>
-                                        <Chip
-                                            key={element.key}
-                                            onRequestDelete={() => this.handleRequestDelete(element.key)}
-                                            labelStyle={{ color: "#000" }}
-                                            labelColor="#f60"
-                                            textColor="#304269"
-                                            className="chipClass"
-                                        >
-                                            {element.label}
-                                        </Chip>
-                                    )}
-
-                                </div>
-                            </div>
-                            <div className="d-flex align-items-start mb-2">
-                                <label htmlFor="newTourDescription" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Описание:</label>
-                                <textarea id="newTourDescription" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " name="" id="description" cols="30" rows="3" />
-                                <TextField
-                                    hintText="Расскажите о туре"
-                                    floatingLabelText="Описание"
-                                    className="d-xl-none d-lg-none d-md-none d-sm-block d-block multiLineInputClass"
-                                    fullWidth="100%"
-                                    floatingLabelFocusStyle={{ color: "#304269" }}
-                                    underlineFocusStyle={{ borderColor: "#304269" }}
-                                    multiLine={true}
-                                    rows={1}
-                                />
-                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
-                            </div>
-                            <div className="d-flex border-top flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-start mt-3 p-0">
+                            <div className="paddingL10 d-flex border-top flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-start mt-3">
                                 <div className="tourContentTitle d-flex align-items-center col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 p-0">
                                     <p className="mb-0">Расписание</p>
                                 </div>
                                 <div className="d-flex flex-column col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 p-0">
-                                    <div className="d-flex col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">
+                                    <div className="d-flex p-0">
                                         <div className="tourContentCheckbox">
                                             <label htmlFor="tourContentEveryday">
                                                 <input id="tourContentEveryday" checked={this.state.tourContentEveryday} onChange={() => { this.setState({ tourContentEveryday: !this.state.tourContentEveryday, tourContentOther: false }) }} type="checkbox" />
                                                 <span />
                                             </label>
                                         </div>
-                                        <div className="tourContentEveryday d-flex align-items-center ml-1 mb-0">
-                                            <label htmlFor="newTourEveryday" onClick={() => { this.setState({ tourContentEveryday: !this.state.tourContentEveryday, tourContentOther: false }) }} className="">Ежедневно</label>
+                                        <div className="tourContentEveryday d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column  align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start col-xl-4 col-lg-4 col-md-4 col-sm-10 col-10 p-0 mb-0">
+                                            <label htmlFor="newTourEveryday" onClick={() => { this.setState({ tourContentEveryday: !this.state.tourContentEveryday, tourContentOther: false }) }} className="mt-xl-0 mt-lg-0 mt-md-0 mt-3 pr-2">Ежедневно</label>
                                             <DropDownMenu
                                                 value={this.state.newTourEverydayTime}
                                                 anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
-                                                onChange={this.handleChangenEverydayTime}
+                                                onChange={(event, index, value) => { this.setState({ newTourEverydayTime: value }) }}
                                                 style={{ width: "100%", display: this.state.tourContentEveryday ? "" : "none" }}
                                                 menuStyle={{ maxHeight: "150px" }}
                                                 className="dropdownClass"
@@ -377,14 +401,14 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                                 <span className="tourContentOtherSpan" />
                                             </label>
                                         </div>
-                                        <div className="openMultipleDatepicker d-xl-flex d-lg-flex d-md-flex d-sm-block d-block flex-column justify-content-center ml-1 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 mb-0 p-0">
+                                        <div className="openMultipleDatepicker d-xl-flex d-lg-flex d-md-flex d-sm-block d-block flex-column justify-content-center ml-1 col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 mb-0 p-0">
                                             <label htmlFor="newTourDatepicker" onClick={() => { this.setState({ tourContentOther: !this.state.tourContentOther, tourContentEveryday: false }) }} className="mb-0 mr-2">По определённым дням</label>
                                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column  align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                                <span style={{ display: this.state.tourContentOther ? "block" : "none" }} className="col-xl-6 col-lg-7 col-md-9 col-sm-12 col-12 p-0" onClick={this.calendarModalShow}>Выбрать даты</span>
+                                                <span style={{ display: this.state.tourContentOther ? "block" : "none" }} className="newTourDatepickerSpan col-xl-6 col-lg-7 col-md-9 col-sm-12 col-12 p-0" onClick={this.calendarModalShow}>Выбрать даты</span>
                                                 <DropDownMenu
                                                     value={this.state.newTourDatepickerTime}
                                                     anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
-                                                    onChange={this.handleChangeDatepickerTime}
+                                                    onChange={(event, index, value) => { this.setState({ newTourDatepickerTime: value }) }}
                                                     style={{ width: "100%", display: this.state.tourContentOther ? "" : "none" }}
                                                     menuStyle={{ maxHeight: "150px" }}
                                                     className="dropdownClass"
@@ -400,9 +424,8 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
-                            <div className={this.state.tourContentOther ? " d-flex justify-content-center col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" : " d-none"}>
+                            <div className={this.state.tourContentOther ? "paddingL10 d-flex justify-content-center col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" : " d-none"}>
                                 <div className="d-flex flex-wrap flex-row align-items-start col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 p-0 mb-2">
 
                                     {this.state.dateTour.map((element, index) => {
@@ -413,7 +436,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                         return (
                                             <Chip
                                                 key={element.key}
-                                                onRequestDelete={() => this.handleRequestDeleteDate(element.key)}
+                                                onRequestDelete={() => this.handleRequestDeleteDate(element, "dateTour")}
                                                 labelStyle={{ color: "#000" }}
                                                 labelColor="#f60"
                                                 textColor="#304269"
@@ -425,15 +448,14 @@ class DriverProfileTripSettingsTourClass extends React.Component {
 
                                 </div>
                             </div>
-                            <div className="tourContentTitle border-top d-flex align-items-center mt-3 mb-0">
+                            <div className="paddingL10 tourContentTitle border-top d-flex align-items-center mt-3 mb-0">
                                 <p>Дополнительная информация</p>
                             </div>
-                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
+                            <div className="paddingL10 d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
                                 <label htmlFor="newTourPrice" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Стоимость тура:</label>
                                 <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">
                                     <TextField
-                                        hintText="Пожалуйста введите номер"
-                                        floatingLabelText="Номер паспорта"
+                                        floatingLabelText="Стоимость тура"
                                         className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
                                         fullWidth="100%"
                                         floatingLabelFocusStyle={{ color: "#304269" }}
@@ -444,7 +466,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                     <DropDownMenu
                                         value={this.state.activeCurrency}
                                         anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
-                                        onChange={this.handleChangeCurrency}
+                                        onChange={(event, index, value) => { this.setState({ activeCurrency: value }) }}
                                         style={{ width: "100%" }}
                                         className="dropdownClass"
                                         autoWidth={false}
@@ -456,13 +478,13 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                     </DropDownMenu>
                                 </div>
                             </div>
-                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
+                            <div className="paddingL10 d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
                                 <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 ">Тип транспорта:</label>
                                 <DropDownMenu
                                     value={this.state.typeCar}
                                     anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
                                     hintText="Тип автомобиля"
-                                    onChange={this.handleChange}
+                                    onChange={(event, index, value) => { this.setState({ typeCar: value }) }}
                                     style={{ width: "100%" }}
                                     className="dropdownClass col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0"
                                     autoWidth={false}
@@ -476,18 +498,128 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                 </DropDownMenu>
                                 <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
                             </div>
-                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
+
+                            <div className="paddingL10 d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
+                                <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 ">Направления:</label>
+                                <DropDownMenu
+                                    value={this.state.directionsValue}
+                                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
+                                    onChange={(event, index, value) => { this.handleChange(value, "directions") }}
+                                    style={{ width: "100%" }}
+                                    className="dropdownClass col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0"
+                                    autoWidth={false}
+                                    selectedMenuItemStyle={{ color: "#f60" }}
+                                >
+                                    <MenuItem value={"Все направление"} disabled primaryText={"Все направление"} />
+                                    {this.state.directions.map((element, index) =>
+                                        <MenuItem value={element} primaryText={element} />
+                                    )}
+
+                                </DropDownMenu>
+                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
+                            </div>
+                            <div className="paddingL10 d-flex justify-content-end col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
+                                <div className="d-flex flex-wrap col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 p-0 mb-2">
+                                    {this.state.directionsChip.map((element, index) =>
+                                        <Chip
+                                            key={element.key}
+                                            onRequestDelete={() => this.handleRequestDelete(element, "directions")}
+                                            labelStyle={{ color: "#000" }}
+                                            labelColor="#f60"
+                                            textColor="#304269"
+                                            className="chipClass"
+                                        >
+                                            {element.label}
+                                        </Chip>
+                                    )}
+                                </div>
+                            </div>
+
+                            <div className="paddingL10 d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
+                                <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 ">Категории:</label>
+                                <DropDownMenu
+                                    value={this.state.categoriesValue}
+                                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
+                                    onChange={(event, index, value) => { this.handleChange(value, "categories") }}
+                                    style={{ width: "100%" }}
+                                    className="dropdownClass col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0"
+                                    autoWidth={false}
+                                    selectedMenuItemStyle={{ color: "#f60" }}
+                                >
+                                    <MenuItem value={"Все категори"} disabled primaryText={"Все категори"} />
+                                    {this.state.categories.map((element, index) =>
+                                        <MenuItem value={element} primaryText={element} />
+                                    )}
+
+                                </DropDownMenu>
+                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
+                            </div>
+                            <div className="paddingL10 d-flex justify-content-end col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
+                                <div className="d-flex flex-wrap col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 p-0 mb-2">
+                                    {this.state.categoriesChip.map((element, index) =>
+                                        <Chip
+                                            key={element.key}
+                                            onRequestDelete={() => this.handleRequestDelete(element, "categories")}
+                                            labelStyle={{ color: "#000" }}
+                                            labelColor="#f60"
+                                            textColor="#304269"
+                                            className="chipClass"
+                                        >
+                                            {element.label}
+                                        </Chip>
+                                    )}
+                                </div>
+                            </div>
+
+                            <div className="paddingL10 d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
+                                <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 ">Теги:</label>
+                                <DropDownMenu
+                                    value={this.state.tagsValue}
+                                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
+                                    onChange={(event, index, value) => { this.handleChange(value, "tags") }}
+                                    style={{ width: "100%" }}
+                                    className="dropdownClass col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0"
+                                    autoWidth={false}
+                                    selectedMenuItemStyle={{ color: "#f60" }}
+                                >
+                                    <MenuItem value={"Все тег"} disabled primaryText={"Все тег"} />
+                                    {this.state.tags.map((element, index) =>
+                                        <MenuItem value={element} primaryText={element} />
+                                    )}
+
+                                </DropDownMenu>
+                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
+                            </div>
+                            <div className="paddingL10 d-flex justify-content-end col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
+                                <div className="d-flex flex-wrap col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 p-0 mb-2">
+                                    {this.state.tagsChip.map((element, index) =>
+                                        <Chip
+                                            key={element.key}
+                                            onRequestDelete={() => this.handleRequestDelete(element, "tags")}
+                                            labelStyle={{ color: "#000" }}
+                                            labelColor="#f60"
+                                            textColor="#304269"
+                                            className="chipClass"
+                                        >
+                                            {element.label}
+                                        </Chip>
+                                    )}
+                                </div>
+                            </div>
+
+
+                            <div className="paddingL10 d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
                                 <label htmlFor="newTourPeople" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Количество мест:</label>
                                 <input id="newTourPeople" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12" type="text" />
                             </div>
-                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
+                            <div className="paddingL10 d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
                                 <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Загрузить фото:</label>
                                 <img src="" alt="" />
                                 <img src="" alt="" />
                                 <img src="" alt="" />
                                 <img src="" alt="" />
                             </div>
-                            <div className="tourContentAddButton pb-4 d-flex justify-content-xl-start justify-content-lg-start justify-content-md-start justify-content-sm-center justify-content-center mt-3">
+                            <div className="paddingL10 tourContentAddButton pb-4 d-flex justify-content-xl-start justify-content-lg-start justify-content-md-start justify-content-sm-center justify-content-center mt-3">
                                 <span className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 d-xl-block d-lg-block d-md-block d-sm-none d-none" />
                                 <button htmlFor="newTourForm" type="submit" className="col-8">ДОБАВИТЬ ТУР</button>
                                 <span className="ml-3" onClick={this.toggle}>Отмена</span>

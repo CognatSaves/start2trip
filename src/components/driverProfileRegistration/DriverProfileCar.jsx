@@ -1,21 +1,22 @@
-import React from 'react';
+import React from 'react'
 import './DriverProfileCar.css'
-import { connect } from 'react-redux';
+import 'react-telephone-input/lib/withStyles'
+import { connect } from 'react-redux'
 import imgCar from './img/images.jpeg'
 import q from './img/q.jpg'
 import e from './img/e.jpg'
 import r from './img/r.jpg'
 import t from './img/t.jpg'
-import sedanIcon from './img/sedan.svg'
 import no_smokingIcon from './img/no-smoking.svg'
 import seatIcon from './img/seat.svg'
 import snowflakeIcon from './img/snowflake.svg'
 import wifiIcon from './img/wifi.svg'
-import { Collapse } from 'reactstrap';
-import { isMobile } from 'react-device-detect';
-import DropDownMenu from 'material-ui/DropDownMenu';
-import MenuItem from 'material-ui/MenuItem';
-import TextField from 'material-ui/TextField';
+import { Collapse } from 'reactstrap'
+import { isMobile } from 'react-device-detect'
+import DropDownMenu from 'material-ui/DropDownMenu'
+import MenuItem from 'material-ui/MenuItem'
+import TextField from 'material-ui/TextField'
+
 
 
 
@@ -50,7 +51,7 @@ class DriverProfileCarClass extends React.Component {
     }
 
     toggle() {
-        this.setState(state => ({ collapse: !state.collapse, imagePreviewUrl: '', newCarCard: { nameCar: "", yearCar: "", plateNumberCar: "", typeCar: "", flueType: "" }, comfort: [], carImg: [], }));
+        this.setState(state => ({ collapse: !state.collapse, imagePreviewUrl: '', newCarCard: { nameCar: "", yearCar: "", plateNumberCar: "", typeCar: "", flueType: "", numberOfSeats: "" }, comfort: [], carImg: [], }));
         if (isMobile) {
             window.scroll(0, 300);
         } else {
@@ -172,7 +173,6 @@ class DriverProfileCarClass extends React.Component {
                                             newCarCard: { ...this.state.newCarCard, plateNumberCar: e.currentTarget.value }
                                         })
                                     }}
-                                    hintText="Напишите номер автомобиля"
                                     floatingLabelText="Номер автомобиля"
                                     className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
                                     fullWidth="100%"
@@ -185,8 +185,8 @@ class DriverProfileCarClass extends React.Component {
                                 <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">Тип автомобиля:</label>
                                 <DropDownMenu
                                     value={this.state.newCarCard.typeCar}
-                                    textColor= "#fff"
-                                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left',}}
+                                    textColor="#fff"
+                                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
                                     className=""
                                     onChange={this.handleChange}
                                     style={{ width: "100%" }}
@@ -206,7 +206,7 @@ class DriverProfileCarClass extends React.Component {
                                 <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">Тип топлива:</label>
                                 <DropDownMenu
                                     value={this.state.newCarCard.flueType}
-                                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left',}}
+                                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
                                     className=""
                                     onChange={this.handleChange}
                                     style={{ width: "100%" }}
@@ -221,6 +221,29 @@ class DriverProfileCarClass extends React.Component {
 
                                 </DropDownMenu>
                             </div>
+                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
+                                <label htmlFor="profileCarNumber" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">Количество мест:</label>
+                                <input id="profileCarNumber" className="d-xl-block d-lg-block d-md-block d-sm-none d-none " value={this.state.newCarCard.numberOfSeats} onChange={(e) => {
+                                    this.setState({
+                                        newCarCard: { ...this.state.newCarCard, numberOfSeats: e.currentTarget.value }
+                                    })
+                                }} type="text" required />
+                                <TextField
+                                    value={this.state.newCarCard.numberOfSeats}
+                                    onChange={(e) => {
+                                        this.setState({
+                                            newCarCard: { ...this.state.newCarCard, numberOfSeats: e.currentTarget.value }
+                                        })
+                                    }}
+                                    floatingLabelText="Количество мест"
+                                    className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
+                                    fullWidth="100%"
+                                    floatingLabelFocusStyle={{ color: "#304269" }}
+                                    underlineFocusStyle={{ borderColor: "#304269" }}
+
+                                />
+                            </div>
+                           
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-start mt-2 mb-3">
                                 <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-4 p-0">Удобства:</label>
                                 <div className="carAddNewCarComfortCheckBox d-flex flex-column pt-1">
@@ -276,7 +299,7 @@ class DriverProfileCarClass extends React.Component {
                 </Collapse>
 
                 <div className="filledCardBody p-0 d-flex justify-content-xl-start justify-content-lg-start justify-content-md-start justify-content-sm-center justify-content-center flex-wrap col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 " >
-                <div style={{ display: this.state.collapse ? "none" : "block" }} onClick={this.toggle} className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-11 p-2" >
+                    <div style={{ display: this.state.collapse ? "none" : "block" }} onClick={this.toggle} className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-11 p-2" >
                         <div className="filledCardImgAdd">
                             <div className="d-flex flex-column justify-content-center align-items-center">
                                 <span />

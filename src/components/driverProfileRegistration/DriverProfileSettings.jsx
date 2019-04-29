@@ -2,6 +2,8 @@ import React from 'react';
 import './DriverProfileSettings.css'
 import { connect } from 'react-redux';
 import TextField from 'material-ui/TextField';
+import flags from './img/flags.png'
+import ReactTelInput from 'react-telephone-input'
 
 
 
@@ -97,16 +99,13 @@ class DriverProfileSettingsClass extends React.Component {
                     <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start ">
                         {/* TODO функционал выбора префикса по стране */}
                         <label htmlFor="sittingsPhoneNumber" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-11 col-11">Телефон:</label>
-                        <TextField
-                            hintText="Пожалуйста введите свой номер"
-                            floatingLabelText="Телефон"
-                            className="inputClass sittingsTextField d-xl-none d-lg-none d-md-none d-sm-block d-block"
-                            fullWidth="100%"
-                            floatingLabelFocusStyle={{ color: "#304269" }}
-                            underlineFocusStyle={{ borderColor: "#304269" }}
-                        // errorText="This field is required"
+                        <ReactTelInput
+                            defaultCountry="ge"
+                            classNames="myPhoneInput col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0"
+                            flagsImagePath={flags}
+                            onChange={(telNumber, selectedCountry) => { console.log('input changed. number: ', telNumber, 'selected country: ', selectedCountry); }}
+                            onBlur={(value) => { console.log(value) }}
                         />
-                        <input id="sittingsPhoneNumber" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " type="tel" />
                         <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none pl-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
                     </div>
                     <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-center py-3">
