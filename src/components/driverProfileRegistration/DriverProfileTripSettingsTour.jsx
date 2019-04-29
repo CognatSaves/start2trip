@@ -305,7 +305,6 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                     <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mb-0">
                                         <label htmlFor="nameNewTour" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Название тура:</label>
                                         <TextField
-                                            hintText="Пожалуйста название тура"
                                             floatingLabelText="Название тура"
                                             className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
                                             fullWidth="100%"
@@ -349,7 +348,6 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                         <label htmlFor="newTourDescription" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Описание:</label>
                                         <textarea id="newTourDescription" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " name="" id="description" cols="30" rows="3" />
                                         <TextField
-                                            hintText="Расскажите о туре"
                                             floatingLabelText="Описание"
                                             className="d-xl-none d-lg-none d-md-none d-sm-block d-block multiLineInputClass"
                                             fullWidth="100%"
@@ -436,7 +434,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                         return (
                                             <Chip
                                                 key={element.key}
-                                                onRequestDelete={() => this.handleRequestDeleteDate(element, "dateTour")}
+                                                onRequestDelete={() => this.handleRequestDelete(element, "dateTour")}
                                                 labelStyle={{ color: "#000" }}
                                                 labelColor="#f60"
                                                 textColor="#304269"
@@ -483,7 +481,6 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                 <DropDownMenu
                                     value={this.state.typeCar}
                                     anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
-                                    hintText="Тип автомобиля"
                                     onChange={(event, index, value) => { this.setState({ typeCar: value }) }}
                                     style={{ width: "100%" }}
                                     className="dropdownClass col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0"
@@ -647,6 +644,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                             <div className="filledCardInformationMenu">
                                                 <p className="filledCardInformationDeleteCar">Удалить</p>
                                                 <p className="filledCardInformationNameCarEdit">Редактировать</p>
+                                                <p className="filledCardInformationNameCarEdit">Деактивировать</p>
                                             </div>
                                         </div>
                                     </div>

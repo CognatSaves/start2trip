@@ -127,7 +127,6 @@ class DriverProfileCarClass extends React.Component {
                                             newCarCard: { ...this.state.newCarCard, nameCar: e.currentTarget.value }
                                         })
                                     }}
-                                    hintText="Напишите марку автомобиля"
                                     floatingLabelText="Марка автомобиля"
                                     className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
                                     fullWidth="100%"
@@ -150,7 +149,6 @@ class DriverProfileCarClass extends React.Component {
                                             newCarCard: { ...this.state.newCarCard, yearCar: e.currentTarget.value }
                                         })
                                     }}
-                                    hintText="Напишите год автомобиля"
                                     floatingLabelText="Год автомобиля"
                                     className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
                                     fullWidth="100%"
@@ -316,6 +314,7 @@ class DriverProfileCarClass extends React.Component {
                                         <div className="filledCardInformationMenu">
                                             <p className="filledCardInformationDeleteCar">Удалить</p>
                                             <p className="filledCardInformationNameCarEdit">Редактировать</p>
+                                            <p className="filledCardInformationNameCarEdit">{element ? "Деактивировать" : "Активировать" }</p>
                                         </div>
                                     </div>
                                 </div>

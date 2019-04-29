@@ -124,7 +124,6 @@ class DriverProfileBasicInformationClass extends React.Component {
                             <div className="bottomContentNote d-flex align-items-center">
                                 <label htmlFor="basicInfoLastName" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Фамилия:</label>
                                 <TextField
-                                    hintText="Пожалуйста введите Фамилию"
                                     floatingLabelText="Фамилия"
                                     className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
                                     fullWidth="100%"
@@ -142,7 +141,6 @@ class DriverProfileBasicInformationClass extends React.Component {
                             <div className="bottomContentNote d-flex align-items-center">
                                 <label htmlFor="basicInfoNumber" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Номер паспорта:</label>
                                 <TextField
-                                    hintText="Пожалуйста введите номер"
                                     floatingLabelText="Номер паспорта"
                                     className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
                                     fullWidth="100%"
@@ -217,7 +215,6 @@ class DriverProfileBasicInformationClass extends React.Component {
                             <div className="bottomContentNote d-flex align-items-start">
                                 <label htmlFor="basicInfoMultiLine" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">О себе:</label>
                                 <TextField
-                                    hintText="Расскажите о себе"
                                     floatingLabelText="О себе"
                                     className="d-xl-none d-lg-none d-md-none d-sm-block d-block multiLineInputClass"
                                     fullWidth="100%"

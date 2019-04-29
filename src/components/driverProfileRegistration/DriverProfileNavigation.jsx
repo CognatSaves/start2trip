@@ -19,7 +19,7 @@ class DriverProfileNavigationClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            navigationText: ["Мои поездки", "Профиль", "Автомобиль", "Настройки поездок", "Туры", "Отзывы", "Настройки",],
+            navigationText: ["Мои поездки", "Профиль", "Автомобиль", "Настройки поездок", "Туры", "Отзывы", "Настройки","Биллинг","Партнёрская программа",],
             shiftLeft: [0, 6, 129, 219, 311, 430, 430],
         }
     }
