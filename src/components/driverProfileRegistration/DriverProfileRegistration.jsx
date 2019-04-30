@@ -10,10 +10,16 @@ import DriverProfileTripSettingsTrip from './DriverProfileTripSettingsTrip'
 import DriverProfileTripSettingsTour from './DriverProfileTripSettingsTour'
 import DriverProfileSettings from './DriverProfileSettings'
 import DriverProfileHistory from './DriverProfileHistory'
+import ProfileCarousel from './ProfileCarousel'
 
 import requests from '../../config';
 import axios from 'axios';
 
+
+import people1 from './img/001372a9a88e12c88b532a.jpg'
+import people2 from './img/person.jpg'
+import people3 from './img/mina.jpg'
+import people4 from './img/gruzinskaja-kuhnja.jpg'
 
 class DriverProfileRegistrationClass extends React.Component {
   constructor(props) {
@@ -56,7 +62,8 @@ class DriverProfileRegistrationClass extends React.Component {
     }
     getUserData();
     this.state = {
-      userData:[]
+      userData:[],
+      photo:[people1,people2,people3,people4,people2]
   }
 
   }
@@ -80,6 +87,10 @@ class DriverProfileRegistrationClass extends React.Component {
                 4: <DriverProfileTripSettingsTour />,
                 5: <DriverProfileFeedback />,
                 6: <DriverProfileSettings />,
+                7: <ProfileCarousel photoArray={this.state.photo} width={600} height={300}
+                widthCarouselEl={600/5}
+                heightCarouselEl={300/5} type={"horisontal"}/>,
+                // 6: <DriverProfileSettings />,
               }[this.props.storeState.pageRender]}
             </div>
             

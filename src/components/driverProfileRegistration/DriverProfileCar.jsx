@@ -7,7 +7,7 @@ import q from './img/q.jpg'
 import e from './img/e.jpg'
 import r from './img/r.jpg'
 import t from './img/t.jpg'
-import no_smokingIcon from './img/no-smoking.svg'
+import no_smokingIcon, { ReactComponent } from './img/no-smoking.svg'
 import seatIcon from './img/seat.svg'
 import snowflakeIcon from './img/snowflake.svg'
 import wifiIcon from './img/wifi.svg'
@@ -62,6 +62,7 @@ class DriverProfileCarClass extends React.Component {
 
     _handleSubmit(e) {
         e.preventDefault();
+        debugger
         // TODO: do something with -> this.state.file
     }
 
@@ -72,13 +73,16 @@ class DriverProfileCarClass extends React.Component {
         let file = e.target.files[0];
 
         reader.onloadend = () => {
+            var img = reader.result;
             this.setState({
                 file: file,
-                imagePreviewUrl: reader.result,
+                imagePreviewUrl: img,
             });
-            this.setState(state => { const carImg = state.carImg.push(reader.result); return carImg });
+            this.setState(state => { const carImg = this.state.carImg.push(img); return carImg });
         }
-
+        console.log(this.state.imagePreviewUrl)
+        console.log(this.state.file)
+        console.log(this.state.car)
         reader.readAsDataURL(file)
     }
 
@@ -96,21 +100,30 @@ class DriverProfileCarClass extends React.Component {
     };
 
 
+
     render() {
         let { imagePreviewUrl } = this.state;
         let $imagePreview = null;
         if (imagePreviewUrl) {
             $imagePreview = (<img src={imagePreviewUrl} className="carAddNewCarPhotoCarImg" alt="add_car" />);
         }
-
         return (
             <div className="_ThisTagIsNeeded">
                 <Collapse isOpen={this.state.collapse}>
                     <div className="carAddNewCar d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-start align-items-lg-start align-items-md-start align-items-sm-center align-items-center">
-                        <div className="carAddNewCarPhotoCar col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " >
+                        <div className="carAddNewCarPhotoCar col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 pt-5" >
                             {$imagePreview}
-                            <label htmlFor="addCarFile" >+Добавить фото автомобиля</label>
+                            <label htmlFor="addCarFile" ></label>
                             <input type="file" id="addCarFile" style={{ display: "none" }} onChange={this._handleImageChange} required />
+                            <div className="carPhotoMiniContainer d-flex overflow-auto">
+                                {this.state.carImg.map((element, index) =>
+                                    <div className="position-relative">
+                                        <span onClick={() => { this.state.carImg.splice(index, 1); this.setState({ carImg: this.state.carImg, imagePreviewUrl: this.state.carImg[0] }) }}></span>
+                                        <img src={element} className="carPhotoMini" alt="add_car" onClick={()=>{this.setState({imagePreviewUrl: this.state.carImg[index]})}} />
+                                    </div>
+                                )}
+                            </div>
+
                         </div>
                         <form onSubmit={this.handleSubmit} id="newCar" className="carAddNewCarInformation d-flex flex-column col-xl-6 col-lg-6 col-md-6 col-sm-11 col-11 p-0">
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mt-2">
@@ -241,7 +254,7 @@ class DriverProfileCarClass extends React.Component {
 
                                 />
                             </div>
-                           
+
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-start mt-2 mb-3">
                                 <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-4 p-0">Удобства:</label>
                                 <div className="carAddNewCarComfortCheckBox d-flex flex-column pt-1">
@@ -314,7 +327,7 @@ class DriverProfileCarClass extends React.Component {
                                         <div className="filledCardInformationMenu">
                                             <p className="filledCardInformationDeleteCar">Удалить</p>
                                             <p className="filledCardInformationNameCarEdit">Редактировать</p>
-                                            <p className="filledCardInformationNameCarEdit">{element ? "Деактивировать" : "Активировать" }</p>
+                                            <p className="filledCardInformationNameCarEdit">{element ? "Деактивировать" : "Активировать"}</p>
                                         </div>
                                     </div>
                                 </div>

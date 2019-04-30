@@ -245,34 +245,89 @@ p.filledCardInformationNameCarEdit:hover {
 }
 
 .carAddNewCarPhotoCar {
-    position: relative;
-    max-width: 305px;
-    max-height: 200px;
-    min-width: 305px;
-    min-height: 200px;
-    margin-right: 20px;
-    margin-left: 20px;
-    margin-top: 30px;
-    border-radius: 5px;
-    background: #ccc;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 300px;
+    width: 100%;
 }
 
 .carAddNewCarPhotoCarImg {
-    max-width: 305px;
-    max-height: 200px;
+    object-fit: cover;
+    height: 300px;
+    filter: brightness(70%);
     background-size: contain;
+    border-radius: 5px 5px 0 0;
+}
+
+.carPhotoMiniContainer {
+    border-radius: 0 0 5px 5px;
+}
+
+.carPhotoMiniContainer span {
+    cursor: pointer;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: 0px;
+    top: 0px;
+    background: url(./img/error.svg) no-repeat;
+    background-size: 20px 20px;
+}
+
+
+/* .carPhotoMiniContainer span:hover {
+    background: url(./img/cancel-Orange.svg) no-repeat;
+    background-size: 20px 20px;
+} */
+
+
+/* ScrollBar Bigin */
+
+.carPhotoMiniContainer::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    background-color: #F5F5F5;
+}
+
+.carPhotoMiniContainer::-webkit-scrollbar {
+    height: 6px;
+    background-color: #F5F5F5;
+}
+
+.carPhotoMiniContainer::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    background-color: #f60;
+}
+
+
+/* ScrollBar end */
+
+img.carPhotoMini {
+    object-fit: cover;
+    flex-basis: 100px;
+    height: 100%;
+    max-height: 70px;
+    max-width: 100px;
+    min-width: 80px;
 }
 
 .carAddNewCarPhotoCar label {
     position: absolute;
     z-index: 5;
-    left: 50px;
+    width: 95%;
+    height: 300px;
+    left: 10px;
     font-weight: 400;
     font-size: 16px;
-    color: #fff;
-    line-height: 200px;
+    background: url(./img/plus.svg) no-repeat;
+    background-size: 50px 50px;
+    background-position: center center;
     cursor: pointer;
+    line-height: 300px;
+    text-align: center;
+    margin: 0px;
 }
 
 .carAddNewCarInformation {

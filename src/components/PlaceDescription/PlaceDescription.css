@@ -77,6 +77,14 @@
     cursor: pointer;
 }
 
+.activePhotoCarousel img {
+    object-fit: cover;
+}
+
+.placesDescription_photos_secondaryPhotoBox img {
+    object-fit: cover;
+}
+
 .photoCarouselClass {
     position: relative;
     transition-duration: 330ms;
@@ -86,7 +94,7 @@
 
 .carouselPhotoBox {
     position: absolute;
-    border: 3px solid blue;
+    border: 3px solid #f60;
     top: 0;
     background: transparent;
     transition-duration: 360ms;
