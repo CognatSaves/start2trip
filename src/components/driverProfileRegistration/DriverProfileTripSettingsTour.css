@@ -347,10 +347,18 @@ div.tourContentCheckbox {
 }
 
 span.newTourDatepickerSpan {
+    cursor: pointer;
+    font-weight: 400;
+    font-size: 14px;
+    color: #304269;
     text-indent: 20px;
     background: url(./img/calendarGray.svg)no-repeat;
     background-size: 14px 14px;
     background-position: top 2px left 0;
+}
+
+span.newTourDatepickerSpan:hover {
+    color: #f60;
 }
 
 

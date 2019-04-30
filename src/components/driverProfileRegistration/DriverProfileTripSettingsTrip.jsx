@@ -90,8 +90,8 @@ class DriverProfileTripSettingsTripClass extends React.Component {
     calendarModalShow = () => {
         this.setState({ calendarModal: !this.state.calendarModal, newDate: false });
     };
+
     addDate = (dates) => {
-        debugger
         let newDate = this.state.dateTour;
         if (this.state.newDate) {
             var needAddDate = true;
@@ -187,12 +187,13 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                 <form onSubmit={this.formSubmit} id="tripForm" className="tripSettingsBody">
                     <div className="tripSettingsContent">
                         <div className="tripSettingsContentTitle d-flex align-items-center">
-                            <p>Выберите выходные дни</p>
+                            <p className="col-xl-2 col-lg-2 col-md-2 col-sm-11 col-11 p-0">Выберите выходные дни</p>
+                            <span className="newTourDatepickerSpan col-xl-6 col-lg-7 col-md-9 col-sm-12 col-12 p-0" onClick={this.calendarModalShow}>Выбрать даты</span>
                         </div>
                         <div className="tripSettingsContentDate d-flex align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start justify-content-center">
 
                             <div className="d-flex flex-wrap flex-row align-items-start col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 p-0 mb-2">
-                                <span className="newTourDatepickerSpan col-xl-6 col-lg-7 col-md-9 col-sm-12 col-12 p-0" onClick={this.calendarModalShow}>Выбрать даты</span>
+                               
                                 {this.state.dateTour.map((element, index) => {
                                     let day = element.getDate();
                                     let month = element.getMonth();
