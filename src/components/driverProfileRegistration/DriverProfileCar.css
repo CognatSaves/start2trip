@@ -272,15 +272,48 @@ p.filledCardInformationNameCarEdit:hover {
     height: 20px;
     right: 0px;
     top: 0px;
+}
+
+.carPhotoMiniContainer span:hover {
     background: url(./img/error.svg) no-repeat;
     background-size: 20px 20px;
 }
 
+img.carPhotoMini {
+    cursor: pointer;
+    object-fit: cover;
+    flex-basis: 100px;
+    height: 100%;
+    max-height: 70px;
+    max-width: 100px;
+    min-width: 80px;
+}
 
-/* .carPhotoMiniContainer span:hover {
-    background: url(./img/cancel-Orange.svg) no-repeat;
+.carPhotoMini:hover~span {
+    background: url(./img/error.svg) no-repeat;
     background-size: 20px 20px;
-} */
+}
+
+.carAddNewCarPhotoCar label {
+    position: absolute;
+    z-index: 5;
+    width: 95%;
+    height: 300px;
+    left: 10px;
+    font-weight: 400;
+    font-size: 16px;
+    background: url(./img/plus.svg) no-repeat;
+    background-size: 50px 50px;
+    background-position: center center;
+    cursor: pointer;
+    line-height: 300px;
+    text-align: center;
+    margin: 0px;
+}
+
+.carAddNewCarInformation {
+    margin-top: 30px;
+}
 
 
 /* ScrollBar Bigin */
@@ -304,36 +337,6 @@ p.filledCardInformationNameCarEdit:hover {
 
 
 /* ScrollBar end */
-
-img.carPhotoMini {
-    object-fit: cover;
-    flex-basis: 100px;
-    height: 100%;
-    max-height: 70px;
-    max-width: 100px;
-    min-width: 80px;
-}
-
-.carAddNewCarPhotoCar label {
-    position: absolute;
-    z-index: 5;
-    width: 95%;
-    height: 300px;
-    left: 10px;
-    font-weight: 400;
-    font-size: 16px;
-    background: url(./img/plus.svg) no-repeat;
-    background-size: 50px 50px;
-    background-position: center center;
-    cursor: pointer;
-    line-height: 300px;
-    text-align: center;
-    margin: 0px;
-}
-
-.carAddNewCarInformation {
-    margin-top: 30px;
-}
 
 .carAddNewCarInformation label {
     font-weight: 500;

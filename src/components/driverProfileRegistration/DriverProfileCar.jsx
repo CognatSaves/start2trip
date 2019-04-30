@@ -126,8 +126,8 @@ class DriverProfileCarClass extends React.Component {
                             <div className="carPhotoMiniContainer d-flex overflow-auto">
                                 {this.state.carImg.map((element, index) =>
                                     <div className="position-relative">
+                                     <img src={element} className="carPhotoMini" alt="add_car" onClick={() => { this.setState({ imagePreviewUrl: this.state.carImg[index] }) }} />
                                         <span onClick={() => { this.state.carImg.splice(index, 1); this.setState({ carImg: this.state.carImg, imagePreviewUrl: this.state.carImg[0] }) }}></span>
-                                        <img src={element} className="carPhotoMini" alt="add_car" onClick={() => { this.setState({ imagePreviewUrl: this.state.carImg[index] }) }} />
                                     </div>
                                 )}
                             </div>
