@@ -69,21 +69,27 @@ class DriverProfileCarClass extends React.Component {
     _handleImageChange(e) {
         e.preventDefault();
 
-        let reader = new FileReader();
-        let file = e.target.files[0];
+        let fullfile = e.target.files;
 
-        reader.onloadend = () => {
-            var img = reader.result;
-            this.setState({
-                file: file,
-                imagePreviewUrl: img,
-            });
-            this.setState(state => { const carImg = this.state.carImg.push(img); return carImg });
+        for (let i = 0; i < fullfile.length; i++) {
+            let file = fullfile[i]
+
+            if (!file.type.match('image')) continue;
+
+            let reader = new FileReader();
+            reader.onloadend = () => {
+                var img = reader.result;
+                this.setState({
+                    file: file,
+                    imagePreviewUrl: img,
+                });
+                this.setState(state => { const carImg = this.state.carImg.push(img); return carImg });
+            }
+            reader.readAsDataURL(file)
+
         }
-        console.log(this.state.imagePreviewUrl)
-        console.log(this.state.file)
-        console.log(this.state.car)
-        reader.readAsDataURL(file)
+
+
     }
 
     handleChange = (event, index, value) => {
@@ -112,14 +118,16 @@ class DriverProfileCarClass extends React.Component {
                 <Collapse isOpen={this.state.collapse}>
                     <div className="carAddNewCar d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-start align-items-lg-start align-items-md-start align-items-sm-center align-items-center">
                         <div className="carAddNewCarPhotoCar col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 pt-5" >
-                            {$imagePreview}
+                            <div style={ this.state.imagePreviewUrl ? {}:{background:"#686868",  height:"300px" ,borderRadius:"5px"}}>
+                                {$imagePreview}
+                            </div>    
                             <label htmlFor="addCarFile" ></label>
-                            <input type="file" id="addCarFile" style={{ display: "none" }} onChange={this._handleImageChange} required />
+                            <input type="file" id="addCarFile" style={{ display: "none" }} multiple onChange={this._handleImageChange} required />
                             <div className="carPhotoMiniContainer d-flex overflow-auto">
                                 {this.state.carImg.map((element, index) =>
                                     <div className="position-relative">
                                         <span onClick={() => { this.state.carImg.splice(index, 1); this.setState({ carImg: this.state.carImg, imagePreviewUrl: this.state.carImg[0] }) }}></span>
-                                        <img src={element} className="carPhotoMini" alt="add_car" onClick={()=>{this.setState({imagePreviewUrl: this.state.carImg[index]})}} />
+                                        <img src={element} className="carPhotoMini" alt="add_car" onClick={() => { this.setState({ imagePreviewUrl: this.state.carImg[index] }) }} />
                                     </div>
                                 )}
                             </div>
