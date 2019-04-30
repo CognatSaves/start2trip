@@ -225,7 +225,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
         this.setState({ departurePoint: value })
     }
 
-    _handleImageChange=(e)=> {
+    _handleImageChange = (e) => {
         e.preventDefault();
 
         let fullfile = e.target.files;
@@ -645,19 +645,19 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                             </div>
                             <div className="paddingL10 addPhotoTour d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-start mt-3">
                                 <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Загрузить фото:</label>
-                            <div className="addPhotoTourLabel">
-                            <label htmlFor="addCarFile" ></label>
-                            <input type="file" id="addCarFile" style={{ display: "none" }} multiple onChange={this._handleImageChange} required />
-                            </div>
-                           
+
                                 <div className="tourPhotoMiniContainer d-flex flex-wrap">
-                                {this.state.carImg.map((element, index) =>
-                                    <div className="position-relative">
-                                     <img src={element} className="tourPhotoMini" alt="add_car" onClick={() => { this.setState({ imagePreviewUrl: this.state.carImg[index] }) }} />
-                                        <span onClick={() => { this.state.carImg.splice(index, 1); this.setState({ carImg: this.state.carImg, imagePreviewUrl: this.state.carImg[0] }) }}></span>
+                                    <div className="addPhotoTourLabel">
+                                        <label htmlFor="addCarFile" ></label>
+                                        <input type="file" id="addCarFile" style={{ display: "none" }} multiple onChange={this._handleImageChange} required />
                                     </div>
-                                )}
-                            </div>
+                                    {this.state.carImg.map((element, index) =>
+                                        <div className="position-relative">
+                                            <img src={element} className="tourPhotoMini" alt="add_car" onClick={() => { this.setState({ imagePreviewUrl: this.state.carImg[index] }) }} />
+                                            <span onClick={() => { this.state.carImg.splice(index, 1); this.setState({ carImg: this.state.carImg, imagePreviewUrl: this.state.carImg[0] }) }}></span>
+                                        </div>
+                                    )}
+                                </div>
                             </div>
                             <div className="paddingL10 tourContentAddButton pb-4 d-flex justify-content-xl-start justify-content-lg-start justify-content-md-start justify-content-sm-center justify-content-center mt-3">
                                 <span className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 d-xl-block d-lg-block d-md-block d-sm-none d-none" />
