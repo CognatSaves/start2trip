@@ -303,6 +303,8 @@
     color: #686868;
     border-bottom: 1px solid #eaeaea;
     transition: ease 0.3s;
+    background-size: 15px 15px !important;
+    background-position: center right 20px !important;
 }
 
 .burgerMenuBottom span:hover {

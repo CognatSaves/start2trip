@@ -24,6 +24,7 @@ import { setUser } from '../../redusers/Action';
 import { disablePageScroll, clearQueueScrollLocks, enablePageScroll } from 'scroll-lock';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
+import arrowDownIcon from './pictures/down-arrow.svg'
 
 
 const ModalRegistration = (props) => {
@@ -95,7 +96,7 @@ class HeaderClass extends React.Component {
       activeCurrency: ["₽ RUB", "$ USD", "₾ GEL", "€ EUR"],
       activeCurrencyNumber: 0,
       modalCountry: false,
-      collapse:false,
+      collapse: false,
       modalRegistration: false,
       buttonMassElements: [
         {
@@ -134,7 +135,7 @@ class HeaderClass extends React.Component {
       ],
       avatarUrl: "",
       userName: "",
-      menuItems: [ "Профиль", "Автомобиль", "Настройки поездок", "Туры", "Отзывы", "Настройки", "Биллинг", "Партнёрская программа", "Выход"]
+      menuItems: ["Профиль", "Автомобиль", "Настройки поездок", "Туры", "Отзывы", "Настройки", "Биллинг", "Партнёрская программа", "Выход"]
     };
     this.toggleLanguage = this.toggleLanguage.bind(this);
     this.toggleDropdownOpen = this.toggleDropdownOpen.bind(this);
@@ -273,17 +274,16 @@ class HeaderClass extends React.Component {
                   </DropDownMenu>
                 </div>
                 <div className="burgerMenuBottom">
-                    <span onClick={()=>{this.setState({collapse: !this.state.collapse})}}>Мои поездки</span>
-                    <Collapse  isOpen={this.state.collapse}>
+                  <span onClick={() => { this.setState({ collapse: !this.state.collapse }) }} style={{background:"url("+arrowDownIcon+") no-repeat"}}>Мои поездки</span>
+                  <Collapse isOpen={this.state.collapse}>
                     <div className="d-flex flex-column">
-                    <span>Предстоящие поездки</span>
-                    <span>История поездок</span>        
+                      <span style={{paddingLeft:"20px"}}>Предстоящие поездки</span>
+                      <span style={{paddingLeft:"20px"}}>История поездок</span>
                     </div>
-                    </Collapse>               
+                  </Collapse>
                   {this.state.menuItems.map((element, index) =>
                     <span>{element}</span>
                   )}
-
                 </div>
               </div>
             </nav>

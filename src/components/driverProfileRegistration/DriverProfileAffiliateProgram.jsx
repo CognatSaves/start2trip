@@ -29,7 +29,7 @@ class DriverProfileAffiliateProgramClass extends React.Component {
 
         return (
             <React.Fragment>
-                <div className="d-flex flex-column col-12">
+                <div className="d-flex flex-column ">
                     <div className="d-flex flex-column align-items-center">
                         <h3>Партнёрская программа</h3>
                         <p className="col-8">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae impedit odio aspernatur veniam obcaecati veritatis fugit id voluptate excepturi nam aliquam architecto quam laboriosam suscipit deserunt neque, ab dolorem alias?</p>
@@ -46,19 +46,21 @@ class DriverProfileAffiliateProgramClass extends React.Component {
                 </div>
                 <div>
                     <div>
-                        <div></div>
-                        <div>
-                            <div>
+                        <div className="d-flex justify-content-center">
+                            <span>Начисления никогда не заканчиваются. Чем больше у вас рефералов, и чем лучше они работают - тем больше вы получаете каждый день</span>
+                        </div>
+                        <div className="d-flex justify-content-around">
+                            <div className="d-flex flex-column align-items-center">
                                 <div>Icon</div>
-                                <div></div>
+                                <div>0</div>
                                 <div>Всего рефеналов</div>
                             </div>
-                            <div>
+                            <div className="d-flex flex-column align-items-center">
                                 <div>Icon</div>
                                 <div>14%</div>
                                 <div>С каждой оплаты</div>
                             </div>
-                            <div>
+                            <div className="d-flex flex-column align-items-center">
                                 <div>Icon</div>
                                 <div>0.00р</div>
                                 <div>Заработанно Всего</div>
