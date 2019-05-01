@@ -23,7 +23,8 @@
         "react-telephone-input": "^4.73.4",
         "reactstrap": "^8.0.0",
         "redux": "^4.0.1",
-        "require-context": "^1.1.0"
+        "require-context": "^1.1.0",
+        "scroll-lock": "^2.1.0"
     },
     "scripts": {
         "start": "react-scripts start",

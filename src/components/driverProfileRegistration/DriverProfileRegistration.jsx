@@ -10,7 +10,8 @@ import DriverProfileTripSettingsTrip from './DriverProfileTripSettingsTrip'
 import DriverProfileTripSettingsTour from './DriverProfileTripSettingsTour'
 import DriverProfileSettings from './DriverProfileSettings'
 import DriverProfileHistory from './DriverProfileHistory'
-import ProfileCarousel from './ProfileCarousel'
+import DriverProfileBilling from './DriverProfileBilling'
+import DriverProfileAffiliateProgram from './DriverProfileAffiliateProgram'
 
 import requests from '../../config';
 import axios from 'axios';
@@ -87,10 +88,8 @@ class DriverProfileRegistrationClass extends React.Component {
                 4: <DriverProfileTripSettingsTour />,
                 5: <DriverProfileFeedback />,
                 6: <DriverProfileSettings />,
-                7: <ProfileCarousel photoArray={this.state.photo} width={600} height={300}
-                widthCarouselEl={600/5}
-                heightCarouselEl={300/5} type={"horisontal"}/>,
-                // 6: <DriverProfileSettings />,
+                7: <DriverProfileBilling />,
+                8: <DriverProfileAffiliateProgram />,
               }[this.props.storeState.pageRender]}
             </div>
             
