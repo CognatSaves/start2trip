@@ -16,7 +16,7 @@ import { isMobile } from 'react-device-detect'
 import DropDownMenu from 'material-ui/DropDownMenu'
 import MenuItem from 'material-ui/MenuItem'
 import TextField from 'material-ui/TextField'
-
+import config from '../../config';
 
 
 
@@ -42,6 +42,7 @@ class DriverProfileCarClass extends React.Component {
         this._handleImageChange = this._handleImageChange.bind(this);
         this._handleSubmit = this._handleSubmit.bind(this);
         this.formSubmit = this.formSubmit.bind(this);
+               
     }
 
     formSubmit(event) {
@@ -97,12 +98,28 @@ class DriverProfileCarClass extends React.Component {
 
 
     render() {
+        function findCarTypeNames(cars, carTypes){
+            let res = [];
+            for(let i=0; i<cars.length; i++){
+                for(let j=0;j<carTypes.length; j++){
+                    if(cars[i].cartype===carTypes[j].id){
+                        res[i]=carTypes[j].name_ru;
+                    }
+                }
+            }
+            return res;
+        }
         let { imagePreviewUrl } = this.state;
         let $imagePreview = null;
         if (imagePreviewUrl) {
             $imagePreview = (<img src={imagePreviewUrl} className="carAddNewCarPhotoCarImg" alt="add_car" />);
         }
-
+        let cars = this.props.profileReduser.profile.cars;
+        console.log("DriverProfileCar render");
+        console.log(cars);
+        //выдаёт значения строго на русском - впоследствие будет переделана
+        let carTypes = findCarTypeNames(cars, this.props.profileReduser.profile.carTypes);
+        /*console.log(config.serverAddress+cars[0].url);*/
         return (
             <div className="_ThisTagIsNeeded">
                 <Collapse isOpen={this.state.collapse}>
@@ -305,7 +322,7 @@ class DriverProfileCarClass extends React.Component {
                             </div>
                         </div>
                     </div>
-                    {this.state.car.map((element, index) =>
+                    {cars.map((element, index) =>
                         <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-11 p-2">
                             <div className="filledCard d-flex flex-column p-0">
                                 <div className="filledCardInformation d-flex flex-column">
@@ -319,13 +336,13 @@ class DriverProfileCarClass extends React.Component {
                                     </div>
                                 </div>
                                 <div className="filledCardImg">
-                                    <img src={element} className="img-fluid" alt="imgCar" width="100%" height="100%" />
+                                    <img src={config.serverAddress+element.image[0].url} className="img-fluid" alt="imgCar" width="100%" height="100%" />
                                 </div>
                                 <div className="cardInformationType d-flex flex-column">
-                                    <p>Toyota Land Cruiser Prado 3.0d</p>
+                                    <p>{element.carBrand}</p>
                                     <div className="cardInformation d-flex">
-                                        <p>Внедорожник</p>
-                                        <span>, 4 места</span>
+                                        <p>{carTypes[index]}</p>
+                                        <span>, {element.seats} мест(а)</span>
                                     </div>
                                 </div>
                             </div>
@@ -341,6 +358,7 @@ class DriverProfileCarClass extends React.Component {
 const DriverProfileCar = connect(
     (state) => ({
         storeState: state.AppReduser,
+        profileReduser: state.DriverProfileRegistrationtReduser,
     }),
 )(DriverProfileCarClass);
 

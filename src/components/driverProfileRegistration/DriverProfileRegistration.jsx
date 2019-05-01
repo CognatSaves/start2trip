@@ -60,9 +60,10 @@ class DriverProfileRegistrationClass extends React.Component {
     getUserData();
     this.state = {
       userData:{}
-  }
+    }
 
   }
+
   render() {
     /*console.log("this.state.userData:");
     console.log(this.state.userData);*/
@@ -82,13 +83,12 @@ class DriverProfileRegistrationClass extends React.Component {
                   
                   {{
                     0: <DriverProfileHistory/>,
-                    1: <DriverProfileHistory/>,
-                    2: <DriverProfileBasicInformation />,
-                    3: <DriverProfileCar />,
-                    4: <DriverProfileTripSettingsTrip />,
-                    5: <DriverProfileTripSettingsTour />,
-                    6: <DriverProfileFeedback />,
-                    7: <DriverProfileSettings />,
+                    1: <DriverProfileBasicInformation />,
+                    2: <DriverProfileCar />,
+                    3: <DriverProfileTripSettingsTrip />,
+                    4: <DriverProfileTripSettingsTour />,
+                    5: <DriverProfileFeedback />,
+                    6: <DriverProfileSettings />,
                   }[this.props.storeState.pageRender]}
                 </div>
                 

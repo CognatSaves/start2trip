@@ -13,7 +13,7 @@ import sittingsBG from './img/illustrations_nastroiki-04.svg'
 import feedbackBG from './img/illustrations_otzivi.svg'
 import preHistoryBG from './img/illustrations_predstoishie.svg'
 
-
+import requests from '../../config';
 
 class DriverProfileNavigationClass extends React.Component {
     constructor(props) {
@@ -29,6 +29,7 @@ class DriverProfileNavigationClass extends React.Component {
     }
 
     render() {
+        let profile = this.props.storeState.profile;
         return (
             <React.Fragment>
                 <div className="registrationWrapper driverBG col-12 p-0" style={{
@@ -44,22 +45,21 @@ class DriverProfileNavigationClass extends React.Component {
                     <div className="basicInformationBodyTop d-flex align-items-center ">
                         <div className="basicInformationBodyTopImgHover">
                             <label className="basicInformationBodyTopImg" htmlFor="addFile">Обновить фотографию</label>
-                            <img src={imgPerson} alt="imgPerson" />
+                            <img src={requests.serverAddress+profile.avatar.url} alt="imgPerson" />
                             {/* <label className="edditIcon" htmlFor="addFile"></label> */}
                             <input type="file" id="addFile" style={{ display: "none" }} />
                         </div>
                         <div className="bodyTopDriverInfo col-7">
                             <div className="bodyTopDriverInfoName d-flex flex-column align-items-start">
-                                <p className="mb-0 mr-2">Валерий</p>
-                                <Stars value={"4.5"} valueDisplay={true} commentNumberDisplay={true} commentNumber="30 отзывов" />
+                                <p className="mb-0 mr-2">{profile.firstName}</p>
+                                <Stars value={profile.rating} valueDisplay={true} commentNumberDisplay={true} commentNumber={profile.comments.length+" отзывов"} />
                             </div>
                             <div className="bodyTopDriverInfoPlace">
-                                <p>Тбилиси</p>
-                                {/* TODO Location */}
+                                <p>{profile.hometown+", "+profile.homecountry}</p>
                             </div>
                             <div className="bodyTopDriverInfoRide p-0 d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column">
                                 <div className="d-xl-flex d-lg-flex d-md-flex d-sm-none d-none align-items-center col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 p-0">
-                                    <span>18</span>
+                                    <span>{profile.futureTrips.length+profile.historyTrips.length}</span>
                                     <div className="d-flex flex-column">
                                         <p>ВСЕГО </p>
                                         <p>ПОЕЗДОК</p>
@@ -70,7 +70,7 @@ class DriverProfileNavigationClass extends React.Component {
                                     <span className="pl-1">18</span>
                                 </div>
                                 <div className="d-xl-flex d-lg-flex d-md-flex d-sm-none d-none align-items-center col-xl-2 col-lg-2 col-md-2 col-sm-6 col-6 p-0">
-                                    <span>8</span>
+                                    <span>{profile.futureTrips.length}</span>
                                     <div className="d-flex flex-column ">
                                         <p>ПРЕДСТОЯЩИЕ </p>
                                         <p>ПОЕЗДКИ</p>

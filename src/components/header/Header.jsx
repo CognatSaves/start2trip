@@ -173,8 +173,8 @@ class HeaderClass extends React.Component {
       return null;           
     }  
     let jwt = readCookie('jwt');
-    console.log('jwt');
-    console.log(jwt);
+    //console.log('jwt');
+   // console.log(jwt);
     if(jwt && jwt!=="-"){
       axios.get(requests.meRequest, {
             headers: {
@@ -184,8 +184,8 @@ class HeaderClass extends React.Component {
           })
           .then(response => {
             // Handle success.
-            console.log('Data: ');
-            console.log(response.data);
+            //console.log('Data: ');
+           // console.log(response.data);
             let avatarUrl = requests.serverAddress+response.data.url;
             let userName = response.data.firstName ;
             if(avatarUrl!==this.props.storeState.avatarUrl || userName!==this.props.storeState.userName){
@@ -195,7 +195,7 @@ class HeaderClass extends React.Component {
           })
           .catch(error => {
             this.props.dispatch(setUser("",""));
-            console.log('log off');
+            //console.log('log off');
             //console.log('An error occurred:', error);
           });     
     }
@@ -206,7 +206,7 @@ class HeaderClass extends React.Component {
     }  */
   }
   logOffFunc(){
-    console.log("logOffFunc");
+    //console.log("logOffFunc");
     let date = new Date(Date.now()-100000000);               
     let jwtstring = "jwt=-; expires="+date.toString();
     let jwtstatus = "jwtstatus=-; expires="+date.toString();
@@ -220,7 +220,7 @@ class HeaderClass extends React.Component {
   }
   render() {
 
-    console.log("render header");
+   /// console.log("render header");
    /* console.log(this.state);
     console.log('storestate');
     console.log(this.props.storeState);

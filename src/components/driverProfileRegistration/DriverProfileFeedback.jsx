@@ -3,21 +3,23 @@ import './DriverProfileFeedback.css';
 import { connect } from 'react-redux'
 import tempPicture from './img/drivers_body_photo.png'
 import Stars from '../stars/Stars';
+import requests from '../../config';
 
 class DriverProfileFeedbackClass extends React.Component{
     constructor(props){
         super(props);
+        let profile = this.props.profileReduser.profile;
         this.state={
-
+            comments: profile.comments
         }
 
         
     }
 
     render(){
-        let comments = [...this.props.commentState.comments].reverse();
+        /*let comments = [...this.props.commentState.comments].reverse();
         let selectedComments = comments.slice((1-4) * 5, (1) * 5);
-        
+        */
         function getMonthName(number){
             let monthArray = ["января","февраля","марта","апреля","мая","июня","июля","августа","сентября","октября","ноября","декабря"];
             return monthArray[number];
@@ -27,22 +29,22 @@ class DriverProfileFeedbackClass extends React.Component{
         // TODO добавить кнопку показать ещё и пагинацию
         return(
             <div className="commentBlock_comments d-flex flex-column">
-            {selectedComments.map((element,index)=>                       
+            {this.state.comments.map((element,index)=>                       
                 <div className="commentBlock_element d-flex" key={element+"/"+index}>
                     <div className="commentBlock_picture">
-                        <img src={tempPicture} width="auto" height="100%" alt=""></img>
+                        <img src={requests.serverAddress+element.clearedAuthor.url} width="auto" height="100%" alt=""></img>
                     </div>
                     <div className="commentBlock_valueBlock d-flex flex-column">
                         <div className="d-flex">
-                            <div className="valueBlock_firstElement_name">{element.name}</div>
-                            <div className="valueBlock_firstElement_date">{element.date.getDate()+" "+getMonthName(element.date.getMonth())+" "+element.date.getFullYear()}</div>
+                            <div className="valueBlock_firstElement_name">{element.clearedAuthor.firstName}</div>
+                            <div className="valueBlock_firstElement_date">{element.updatedAt/*element.date.getDate()+" "+getMonthName(element.date.getMonth())+" "+element.date.getFullYear()*/}</div>
                         </div>
                         <div style={{marginBottom: "20px"}}>
-                            <Stars key={element.rating+"/"+element.index} value={element.rating} valueDisplay={true} commentNumberDisplay={false}/>
+                            <Stars key={element.mark+"/"+element.index} value={element.mark} valueDisplay={true} commentNumberDisplay={false}/>
                         </div>
                         <input className="put" id={"put"+element+index} type="checkbox"></input>
                         <div className="news">
-                            <label htmlFor={"put"+element+index}>{element.value}</label>
+                            <label htmlFor={"put"+element+index}>{element.text}</label>
                         </div>
                     </div>
                 </div> 
@@ -54,7 +56,8 @@ class DriverProfileFeedbackClass extends React.Component{
 
 const DriverProfileFeedback = connect(
     (state) =>({
-      commentState: state.CommentReduser
+      commentState: state.CommentReduser,
+      profileReduser: state.DriverProfileRegistrationtReduser,
     }),
 
   )(DriverProfileFeedbackClass);
