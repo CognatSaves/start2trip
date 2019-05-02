@@ -125,10 +125,24 @@
     color: #f60;
 }
 
-.affiliateProgramTable {
+.affiliateProgramTable tr td {
     font-size: 14px !important;
     font-weight: 400 !important;
     color: #304269 !important;
+}
+
+.affiliateProgramTableHeader tr th {
+    font-size: 13px !important;
+    font-weight: 400 !important;
+    color: #666 !important;
+}
+
+.affiliateProgramTable tr:nth-child(1n) td {
+    background-color: #fff !important;
+}
+
+.billingTaaffiliateProgramTableble tr:nth-child(2n+2) td {
+    background-color: rgba(204, 204, 204, 0.2) !important;
 }
 
 .affiliateProgramTableBody {

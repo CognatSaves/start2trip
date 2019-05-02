@@ -68,6 +68,7 @@
 }
 
 .blillingHeader {
+    background-color: rgba(204, 204, 204, 0.2);
     margin-right: 35px;
     padding-bottom: 20px !important;
 }
@@ -78,6 +79,26 @@
     color: #304269;
 }
 
+.billingTable tr td {
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    color: #304269 !important;
+}
+
+.billingTableHeader tr th {
+    font-size: 13px !important;
+    font-weight: 400 !important;
+    color: #666 !important;
+}
+
+.billingTable tr:nth-child(1n) td {
+    background-color: #fff !important;
+}
+
+.billingTable tr:nth-child(2n+2) td {
+    background-color: rgba(204, 204, 204, 0.2) !important;
+}
+
 .billingTable {
     width: 1140px !important;
 }
@@ -85,22 +106,28 @@
 .billingCalendar {
     border: 1px solid #ccc !important;
     border-radius: 5px;
-    padding-left: 10px;
     max-width: 120px;
     margin: 0 5px;
     max-height: 30px;
+    cursor: pointer;
 }
 
 .billingCalendar :nth-child(1) {
     height: 30px !important;
     max-width: 120px;
+    cursor: pointer;
 }
 
 .billingCalendar input {
+    text-indent: 25px;
+    background: url(./img/calendarGray.svg)no-repeat;
+    background-size: 12px 12px;
+    background-position: top 8px left 5px;
     font-size: 14px !important;
     font-weight: 400;
     color: #304269;
     max-width: 120px;
+    cursor: pointer !important;
 }
 
 .billingCalendar hr {

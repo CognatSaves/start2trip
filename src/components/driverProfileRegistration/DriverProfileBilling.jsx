@@ -60,7 +60,7 @@ class DriverProfileBillingClass extends React.Component {
                                     <span>Вывод средств</span>
                                 </div>
                             </div>
-                            <div className="mt-5">
+                            <div className="col-8 mt-5 p-0">
                                 <div className="billingText border-bottom d-flex align-items-center justify-content-between">
                                     <span className="">Заработано за все время:</span>
                                     <span>$1480</span>
@@ -92,7 +92,7 @@ class DriverProfileBillingClass extends React.Component {
 
                             </div>
                             <div className="billingText col-12 p-0 mt-5">
-                                <p>Для поддержания работоспособности сервса с каждой поездки взимается комиссия. Для продолжения пользования системой, Вам необходимо оплатить счет до 5 числа каждого месяца.</p>
+                                <p>Для поддержания работоспособности сервиса с каждой поездки взимается комиссия. Для продолжения пользования системой, Вам необходимо оплатить счет до 5 числа каждого месяца.</p>
                             </div>
                         </div>
                     </div>
@@ -134,10 +134,10 @@ class DriverProfileBillingClass extends React.Component {
 
                     <div className="billingTableBody">
                         <Table className="billingTable">
-                            <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
+                            <TableHeader className="billingTableHeader" displaySelectAll={false} adjustForCheckbox={false}>
                                 <TableRow>
                                     {this.state.hederTitle.map((element, index) =>
-                                        <TableRowColumn>{element}</TableRowColumn>
+                                        <TableHeaderColumn>{element}</TableHeaderColumn>
                                     )}
                                 </TableRow>
                             </TableHeader>
