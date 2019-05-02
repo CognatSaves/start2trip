@@ -1,0 +1,88 @@
+.billingBody {
+    border-radius: 5px;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+}
+
+.billingContentRight,
+.billingContentLeft {
+    margin-bottom: 30px;
+    width: 50%;
+    padding: 20px;
+    border-bottom: 1px solid #ccc;
+}
+
+.billingContentLeft {
+    border-right: 1px solid #ccc;
+}
+
+.billingButton span {
+    background: #304269;
+    border-radius: 5px;
+    padding: 10px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: ease 0.3s;
+}
+
+.billingButton span:hover {
+    background: #f60;
+}
+
+.specialBorder {
+    border-bottom: 2px solid #ccc;
+}
+
+.specialText {
+    font-weight: 500 !important;
+}
+
+.billingText span,
+.billingText label {
+    color: #304269;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.billingText p {
+    color: #666;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.billingTextTitle {
+    margin-bottom: 20px;
+}
+
+.billingTextTitle span {
+    color: #304269;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.blillingHeader {
+    padding: 20px !important;
+}
+
+.blillingHeaderTitle {
+    font-size: 16px;
+    font-weight: 500;
+    color: #304269;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .billingContentLeft {
+        border: none;
+    }
+    .billingContentRight,
+    .billingContentLeft {
+        width: 100%;
+        border-bottom: 1px solid #ccc;
+    }
+}
+
+@media (max-width: 576px) {}

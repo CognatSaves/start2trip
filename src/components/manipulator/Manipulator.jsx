@@ -38,7 +38,7 @@ export default class Manipulator extends React.Component{
         return(
          <div className="drivers_block_manipulator">
             <button className="driversBlockManipulator_button" onClick={()=>this.props.showMorePages()} disabled={showMoreButtonState}>
-                <div className="driversBlockManipulator_button_value">Показать ещё</div>
+                <div className="driversBlockManipulator_button_value">Показать еще</div>
             </button>
             <div className="driversBlockManipulator_pageNumbers">
                 <button className="pageNumbers_arrow" onClick={()=>{ if(this.props.page>1){this.props.setPage(this.props.page-1)}}}>

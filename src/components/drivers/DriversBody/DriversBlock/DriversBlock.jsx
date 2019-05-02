@@ -99,7 +99,7 @@ class DriversBlockClass extends React.Component {
                     <div className="visibleString">{element.language}</div>
                   </div>
                   <div className="block_element_infoBlock_element d-flex">
-                    <div className="infoString">За рулём:</div>
+                    <div className="infoString">За рулем:</div>
                     <div className="visibleString">{element.drivingAge+" лет"}</div>
                   </div>
                 </div>

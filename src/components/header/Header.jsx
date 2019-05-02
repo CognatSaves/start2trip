@@ -13,6 +13,7 @@ import ruFlag from './pictures/russia.svg'
 import enFlag from './pictures/united-kingdom.svg'
 import espFlag from './pictures/spain.svg'
 import { Link } from 'react-router-dom';
+import { Collapse } from 'reactstrap';
 import { Modal, ModalBody } from 'reactstrap';
 import { browserName, isChrome, isFirefox, isOpera, BrowserView } from 'react-device-detect';
 import { EventEmitter } from 'events';
@@ -23,6 +24,7 @@ import { setUser } from '../../redusers/Action';
 import { disablePageScroll, clearQueueScrollLocks, enablePageScroll } from 'scroll-lock';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
+import arrowDownIcon from './pictures/down-arrow.svg'
 
 
 const ModalRegistration = (props) => {
@@ -94,6 +96,7 @@ class HeaderClass extends React.Component {
       activeCurrency: ["₽ RUB", "$ USD", "₾ GEL", "€ EUR"],
       activeCurrencyNumber: 0,
       modalCountry: false,
+      collapse: false,
       modalRegistration: false,
       buttonMassElements: [
         {
@@ -132,7 +135,7 @@ class HeaderClass extends React.Component {
       ],
       avatarUrl: "",
       userName: "",
-      menuItems: ["Предстоящие поездки", "История поездок", "Профиль", "Автомобиль", "Настройки поездок", "Туры", "Отзывы", "Настройки", "Биллинг", "Партнёрская программа", "Выход"]
+      menuItems: ["Профиль", "Автомобиль", "Настройки поездок", "Туры", "Отзывы", "Настройки", "Биллинг", "Партнерская программа", "Выход"]
     };
     this.toggleLanguage = this.toggleLanguage.bind(this);
     this.toggleDropdownOpen = this.toggleDropdownOpen.bind(this);
@@ -254,27 +257,33 @@ class HeaderClass extends React.Component {
             <nav className={this.state.burgerMenu ? "burgerMenu burgerMenu-active" : "burgerMenu"}>
               <div className="burgerMenuBg">
                 <div className="burgerMenuTop">
-                  <DropDownMenu anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }} className="burgerMenuTopDropDown" menuStyle={{width:"30px"}} value={this.state.activLanguageNumber} onChange={(event, index, value) => {this.setState({ activLanguageNumber: value });console.log(this.state.activLanguageNumber) }}>
-                  {this.state.activLanguage.map((element,index)=>
-                    <MenuItem value={index} primaryText={ <React.Fragment><img className="mb-1" src={element.flag} width="15px" height="15px" alt={element.string}/><span className="burgerMenuTopDropDownSpan">{element.string}</span></React.Fragment>} ></MenuItem>
-                  )}
+                  <DropDownMenu anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }} className="burgerMenuTopDropDown" menuStyle={{ width: "30px" }} value={this.state.activLanguageNumber} onChange={(event, index, value) => { this.setState({ activLanguageNumber: value }); console.log(this.state.activLanguageNumber) }}>
+                    {this.state.activLanguage.map((element, index) =>
+                      <MenuItem value={index} primaryText={<React.Fragment><img className="mb-1" src={element.flag} width="15px" height="15px" alt={element.string} /><span className="burgerMenuTopDropDownSpan">{element.string}</span></React.Fragment>} ></MenuItem>
+                    )}
                   </DropDownMenu>
-                  <DropDownMenu menuItemStyle={{color:"#304269",fontSize:"14px",fontWeight:"400"}} selectedMenuItemStyle={{color:"#f60"}} anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }} className="burgerMenuTopDropDown" menuStyle={{width:"30px"}} value={this.state.activeCurrencyNumber} onChange={(event, index, value) => {this.setState({ activeCurrencyNumber: value }) }}>
-                  {this.state.activeCurrency.map((element,index)=>
-                    <MenuItem value={index} primaryText={element} />
-                  )}
+                  <DropDownMenu menuItemStyle={{ color: "#304269", fontSize: "14px", fontWeight: "400" }} selectedMenuItemStyle={{ color: "#f60" }} anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }} className="burgerMenuTopDropDown" menuStyle={{ width: "30px" }} value={this.state.activeCurrencyNumber} onChange={(event, index, value) => { this.setState({ activeCurrencyNumber: value }) }}>
+                    {this.state.activeCurrency.map((element, index) =>
+                      <MenuItem value={index} primaryText={element} />
+                    )}
                   </DropDownMenu>
-                  <DropDownMenu anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }} className="burgerMenuTopDropDown" menuStyle={{width:"30px"}} value={this.state.activLanguageNumber} onChange={(event, index, value) => {this.setState({ activLanguageNumber: value });console.log(this.state.activLanguageNumber) }}>
-                  {this.state.activLanguage.map((element,index)=>
-                    <MenuItem value={index} primaryText={ <React.Fragment><img className="mb-1" src={element.flag} width="15px" height="15px" alt={element.string}/><span className="burgerMenuTopDropDownSpan">{element.string}</span></React.Fragment>} ></MenuItem>
-                  )}
+                  <DropDownMenu anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }} className="burgerMenuTopDropDown" menuStyle={{ width: "30px" }} value={this.state.activLanguageNumber} onChange={(event, index, value) => { this.setState({ activLanguageNumber: value }); console.log(this.state.activLanguageNumber) }}>
+                    {this.state.activLanguage.map((element, index) =>
+                      <MenuItem value={index} primaryText={<React.Fragment><img className="mb-1" src={element.flag} width="15px" height="15px" alt={element.string} /><span className="burgerMenuTopDropDownSpan">{element.string}</span></React.Fragment>} ></MenuItem>
+                    )}
                   </DropDownMenu>
                 </div>
                 <div className="burgerMenuBottom">
+                  <span onClick={() => { this.setState({ collapse: !this.state.collapse }) }} style={{background:"url("+arrowDownIcon+") no-repeat"}}>Мои поездки</span>
+                  <Collapse isOpen={this.state.collapse}>
+                    <div className="d-flex flex-column">
+                      <span style={{paddingLeft:"20px"}}>Предстоящие поездки</span>
+                      <span style={{paddingLeft:"20px"}}>История поездок</span>
+                    </div>
+                  </Collapse>
                   {this.state.menuItems.map((element, index) =>
                     <span>{element}</span>
                   )}
-
                 </div>
               </div>
             </nav>
@@ -300,7 +309,7 @@ class HeaderClass extends React.Component {
                 }
               </div>
               <div className="headerSelect d-flex align-items-center justify-content-end col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
-                {/* <Dropdown setActiveFromChild="true" isOpen={this.state.dropdownOpen} toggle={this.toggleDropdownOpen} className="selectGeneral">
+                <Dropdown setActiveFromChild="true" isOpen={this.state.dropdownOpen} toggle={this.toggleDropdownOpen} className="selectGeneral">
                   <DropdownToggle className="selectGeneralButton" caret size="sm">
                     {this.state.activeCurrency[this.state.activeCurrencyNumber]}
                   </DropdownToggle>
@@ -323,7 +332,7 @@ class HeaderClass extends React.Component {
                       )
                     }
                   </DropdownMenu>
-                </Dropdown> */}
+                </Dropdown>
               </div>
               <div className="headerRegistration d-flex justify-content-start col-xl-1 col-lg-1 col-md-2 col-sm-1 col-1">
                 <span style={{ display: this.props.storeState.isAuthorized ? 'none' : 'block' }} onClick={this.toggleModalRegistration} >Войти</span>

@@ -15,7 +15,7 @@ class DriverProfileHistoryClass extends React.Component {
     super(props);
     this.state = {
       trevelHistory: [
-        { name: "Валера", tel: "+375335552211", email: "Valera@gmail.com", place: "Тбилиси. ул.Чкалова 12", feedback: "Детское кресло.багаж 10кг собака и кошка,может ещё хомяк", img: people1, route: "Тбилиси-Мцхета-Гори-Тбилиси-Мцхета-Гори", date: "02.21.2019", time: "12:00", type: "тур", price: "$180" },
+        { name: "Валера", tel: "+375335552211", email: "Valera@gmail.com", place: "Тбилиси. ул.Чкалова 12", feedback: "Детское кресло.багаж 10кг собака и кошка,может еще хомяк", img: people1, route: "Тбилиси-Мцхета-Гори-Тбилиси-Мцхета-Гори", date: "02.21.2019", time: "12:00", type: "тур", price: "$180" },
         { name: "Анжела", tel: "+375335552211", email: "Valera@gmail.com", place: "Тбилиси. ул.Красная 52", feedback: "", img: people2, route: "Тбилиси-Мцхета-Гори", date: "02.21.2019", time: "12:00", type: "поездка", price: "$180" },
         { name: "Гоги", tel: "+375335552211", email: "Valera@gmail.com", place: "Тбилиси. ул.Чкалова 22", feedback: "Дополнительный багажник на крыше", img: people3, route: "Тбилиси-Мцхета-Гори-Тбилиси-Мцхета-Гори", date: "02.21.2019", time: "12:00", type: "тур", price: "$180" },
         { name: "Маратик", tel: "+375335552211", email: "Valera@gmail.com", place: "Тбилиси. ул.Главная 32", feedback: "Два ящика вина и доп.кресло на крыше", img: people4, route: "Тбилиси-Мцхета-Гори", date: "02.21.2019", time: "12:00", type: "поездка", price: "$180" },
@@ -26,7 +26,7 @@ class DriverProfileHistoryClass extends React.Component {
 
       ],
       trevelHistory1: [
-        { name: "Альгерд", tel: "+375337752211", email: "Algerd@gmail.com", place: "Тбилиси. ул.Чкалова 12", feedback: "Детское кресло.багаж 10кг собака и кошка,может ещё хомяк", img: people1, route: "Тбилиси-Мцхета-Гори-Тбилиси-Мцхета-Гори", date: "02.21.2019", time: "12:00", type: "тур", price: "$180" },
+        { name: "Альгерд", tel: "+375337752211", email: "Algerd@gmail.com", place: "Тбилиси. ул.Чкалова 12", feedback: "Детское кресло.багаж 10кг собака и кошка,может еще хомяк", img: people1, route: "Тбилиси-Мцхета-Гори-Тбилиси-Мцхета-Гори", date: "02.21.2019", time: "12:00", type: "тур", price: "$180" },
         { name: "Анжела", tel: "+375335552211", email: "Valera@gmail.com", place: "Тбилиси. ул.Красная 52", feedback: "", img: people2, route: "Тбилиси-Мцхета-Гори", date: "02.21.2019", time: "12:00", type: "поездка", price: "$180" },
         { name: "Гоги", tel: "+375335552211", email: "Valera@gmail.com", place: "Тбилиси. ул.Чкалова 22", feedback: "Дополнительный багажник на крыше", img: people3, route: "Тбилиси-Мцхета-Гори-Тбилиси-Мцхета-Гори", date: "02.21.2019", time: "12:00", type: "тур", price: "$180" },
         { name: "Анжела", tel: "+375335552211", email: "Valera@gmail.com", place: "Тбилиси. ул.Красная 52", feedback: "", img: people2, route: "Тбилиси-Мцхета-Гори", date: "02.21.2019", time: "12:00", type: "поездка", price: "$180" },

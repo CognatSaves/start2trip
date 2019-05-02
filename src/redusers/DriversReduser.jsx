@@ -6,7 +6,7 @@ const initialState = {
     driversRouteChange: false,
     page: 1,
     showPages: 1,
-    drivers: [//на данный момент адреса картинок не используются, всё прописано статически в css. Названия хранятся как декорации))))
+    drivers: [//на данный момент адреса картинок не используются, все прописано статически в css. Названия хранятся как декорации))))
     {
     name: "Валерий1",
     picture: "pictures/driver1/drivers_body_photo.png",

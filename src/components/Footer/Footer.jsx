@@ -18,7 +18,7 @@ export default class Footer extends React.Component {
             <img className="col-1 p-0" src={logoTripfer} width="110px" height="18px" alt="logoWhiteIcon" />
             <div className="footerButtons d-flex  justify-content-around col-xl-8 col-lg-9 col-md-11 col-sm-12 col-12">
               <button className="footerButtons_button">О сервисе</button>
-              <button className="footerButtons_button">Партнёрам</button>
+              <button className="footerButtons_button">Партнерам</button>
               <button className="footerButtons_button">Лицензионное соглашение</button>
               <button className="footerButtons_button">Помощь</button>
               <button className="footerButtons_button">Контакты</button>

@@ -98,7 +98,7 @@
     border-radius: 100%;
     text-align: center;
     border: 1px solid transparent;
-    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
     background-color: #fff;
     margin: auto;
     font-size: 16px;
@@ -159,7 +159,7 @@
 .driverInfo_informationIcon:hover .driverInfo_informationBlock {
     /*display: block;*/
     background-color: rgba(255, 255, 255, 1);
-    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
     color: rgba(0, 0, 0, 1);
 }
 
