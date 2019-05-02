@@ -53,7 +53,7 @@ class DriverProfileAffiliateProgramClass extends React.Component {
                                 <div className="affilitaProgramEl d-flex flex-column align-items-center justify-content-center">
                                     <i className="peopleicon"></i>
                                     <span>0</span>
-                                    <span>Всего рефеналов</span>
+                                    <span>Всего рефералов</span>
                                 </div>
                             </div>
                             <div className="col-sm-4 col-12">
