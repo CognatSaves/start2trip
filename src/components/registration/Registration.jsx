@@ -63,23 +63,11 @@ class Registration extends React.Component{
                         console.log("You registered");  
                         that.state.sendResult(true,{jwt:data.jwt, user: data.user});       
                     }
-                    /*that.setState({
-                        regAnswerStatus:true,
-                        selectedRegistrationAnswer:0
-                    })*/
                 })
                 .catch(function(error) {
                     console.log("bad");
                     console.log('An error occurred:', error);
                     that.state.sendResult(false,{error: error});
-                    /*let textType = 1;
-                    if(error.message==="Email is already taken."){
-                        textType=2;
-                    }
-                    that.setState({
-                        regAnswerStatus:true,
-                        selectedRegistrationAnswer: textType
-                    })*/
                 });
         }
         function socialWebAuthorizationRequest(body){
@@ -125,26 +113,27 @@ class Registration extends React.Component{
         console.log("Registration component");
         console.log(window.location.pathname);
         let type=window.opener.localStorage.getItem('type');
+        let userType = Number.parseInt(window.opener.localStorage.getItem('userType'));
         if(window.location.pathname==="/registration/facebook"){
            // alert('token');
-            console.log('token');
-            console.log(token);
+            //console.log('token');
+           // console.log(token);
             if(token){
-                console.log('window.name');
-                console.log(window.name);
+               // console.log('window.name');
+               // console.log(window.name);
                 if(type==="Registration"){ 
                     axios.get('https://graph.facebook.com/me?fields=id,name,first_name,last_name,email&access_token='+token)
                     .then(response => {
-                    console.log("get answer from facebook");
+                  //  console.log("get answer from facebook");
                                                                         
                             let password = generatePassword(10);
                             let body = JSON.stringify({
                                 username: response.data.email,
                                 email: response.data.email,
                                 password: password,
-                                isCustomer: this.state.userType===1 ? true : false,
-                                isDriver: this.state.userType===2 ? true : false,                         
-                                isAgency: this.state.userType===3 ? true : false,
+                                isCustomer: userType===1 ? true : false,
+                                isDriver: userType===2 ? true : false,                         
+                                isAgency: userType===3 ? true : false,
                                 provider: 'facebook'
                                 });
                             console.log()
@@ -182,9 +171,9 @@ class Registration extends React.Component{
                             username: response.data.email,
                             email: response.data.email,
                             password: password,
-                            isCustomer: this.state.userType===1 ? true : false,
-                            isDriver: this.state.userType===2 ? true : false,                         
-                            isAgency: this.state.userType===3 ? true : false,
+                            isCustomer: userType===1 ? true : false,
+                            isDriver: userType===2 ? true : false,                         
+                            isAgency: userType===3 ? true : false,
                             provider: 'google'
                         });
                         this.state.socialWebRegistrationRequest(body);

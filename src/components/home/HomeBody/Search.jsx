@@ -22,24 +22,27 @@ export default class LocationSearchInput extends React.Component {
         address: address
     })
   };
-  applySelectedValue(index, address){
-    this.props.changeCity(index, address);
+  applySelectedValue(index, address, extraData){
+    this.props.changeCity(index, address, extraData);
     this.setState({
         address:address
     })
   }
   handleSelect = address => {
-    
+    let location = {
+      lat: "",
+      long: ""
+    }
     geocodeByAddress(address)
-      .then(results => {console.log(results);getLatLng(results[0])})
-      .then(latLng => {/*console.log('Success', latLng); console.log(address); */this.applySelectedValue(this.props.index,address)})
+      .then(results => {/*console.log('Process results from geocode');console.log(results); */location.lat=results[0].geometry.location.lat();location.long=results[0].geometry.location.lng(); getLatLng(results[0]); })
+      .then(latLng => {/*console.log('Success', latLng); console.log(address);*/ this.applySelectedValue(this.props.index,address, {location: location})})
       .catch(error => console.error('Error', error));
   };
 
   render() {
-    console.log("LocationSearchInput render");
+    /*console.log("LocationSearchInput render");
     console.log(this.state.address);
-    console.log(this.props.address);
+    console.log(this.props.address);*/
     return (
       <PlacesAutocomplete
         value={this.state.address}

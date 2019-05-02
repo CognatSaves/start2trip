@@ -29,6 +29,7 @@ class RenderModalRegistrationClass extends React.Component {
                 console.log('setRegWindow func');
                 that.setState({
                     regAnswerStatus: true,
+                    regProcessStatus: false,
                     selectedRegistrationAnswer: errorId
                 });
             }
@@ -121,10 +122,6 @@ class RenderModalRegistrationClass extends React.Component {
                         console.log(data);
                         that.state.sendResultLocal(true, {jwt:data.jwt, user: data.user});
                     }
-                    /*that.setState({
-                        regAnswerStatus:true,
-                        selectedRegistrationAnswer:0
-                    })*/
                 })
                 .catch(function(error) {
                     console.log("bad");
@@ -205,6 +202,7 @@ class RenderModalRegistrationClass extends React.Component {
             socialWebAuthorizationRequest: socialWebAuthorizationRequest,
             sendResultLocal:sendResultLocal,
             regAnswerStatus: false,
+            regProcessStatus: false,
             selectedRegistrationAnswer: 3,
             regWindowType: 0,
             userType: 0,
@@ -283,8 +281,8 @@ class RenderModalRegistrationClass extends React.Component {
     sendRegistrationRequest(type){
         if(!type){//в случае регистрации
             this.setState({
-                regAnswerStatus:true,
-                selectedRegistrationAnswer:3
+                regAnswerStatus: false,
+                regProcessStatus:true
             });
             console.log("Send Request");
             let email = document.getElementById("email").value;
@@ -324,6 +322,7 @@ class RenderModalRegistrationClass extends React.Component {
                 cookie: document.cookie
             });
             window.localStorage.setItem('type',that.state.sitingIn ? "Authorization":"Registration");
+            window.localStorage.setItem('userType', that.state.sitingIn ? 0 : that.state.userType);
             let newWin=window.open(address,that.state.sitingIn ? "Authorization":"Registration",windowProps);
             that.state.checkCookie(newWin);            
         }
@@ -333,6 +332,9 @@ class RenderModalRegistrationClass extends React.Component {
         console.log('this.state.selectedRegistrationAnswer');
         console.log(this.state.selectedRegistrationAnswer);
         let selectedRegistrationAnswer=this.state.selectedRegistrationAnswer;
+        let regAnswerVisibility= ( this.state.regAnswerStatus || this.state.regProcessStatus );
+        let regAnswerColor= ( this.state.regAnswerStatus && selectedRegistrationAnswer!=0 );
+        let regAnswerValue = (this.state.regAnswerStatus ? pageTextInfo.registrationAnswer[selectedRegistrationAnswer][lang] : pageTextInfo.registrationProcess[0][lang]);
         return (
             <React.Fragment>
             <div className="registrationBody d-flex ">
@@ -351,8 +353,7 @@ class RenderModalRegistrationClass extends React.Component {
                 }
             </div>
                 <div className={"sitingInLight d-flex flex-column justify-content-center align-items-center " + this.state.sitingInLightAnimation}>
-                    <h3>{this.state.sitingIn ? pageTextInfo.sitingInLightBackgroundText.titleSitingIn[lang] : pageTextInfo.registrationLightBackgroundText.registrationTitle[lang]}</h3>
-                        
+                    <h3>{this.state.sitingIn ? pageTextInfo.sitingInLightBackgroundText.titleSitingIn[lang] : pageTextInfo.registrationLightBackgroundText.registrationTitle[lang]}</h3>                
                         <div style={{display: this.state.sitingIn || this.state.regWindowType===1 ? 'block' : 'none'}}>
                             <p className="mb-0" style={{textAlign: "center"}}>{pageTextInfo.sitingInLightBackgroundText.sitingInFirstText[lang]}</p>
                                 <div className="iconBlok d-flex align-content-center">                       
@@ -377,21 +378,21 @@ class RenderModalRegistrationClass extends React.Component {
                                     }                                
                                 </div>                       
                             <p className="mb-1" >{this.state.sitingIn ? pageTextInfo.sitingInLightBackgroundText.sitingInSecondText[lang] : pageTextInfo.registrationLightBackgroundText.registrationSecondText[lang]}</p>
-                            <form id="regForm" onSubmit={(e)=>{e.preventDefault(); console.log(this); this.sendRegistrationRequest(this.state.sitingIn)}}>
+                            <form id="regForm" onSubmit={(e)=>{e.preventDefault(); this.sendRegistrationRequest(this.state.sitingIn)}}>
                                 <div className="inputIcon">
                                     <img className="emailIcon" src={emailIcon} alt="emailIcon" width='13px' height='12px' />
-                                    <input className="sitingInLightInput" type="email" id="email" pattern="^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$" placeholder={pageTextInfo.sitingInLightBackgroundText.secondInputPlaceholderText[lang]} required />
+                                    <input onFocus={()=>{debugger; this.setState({regAnswerStatus: false,regProcessStatus: false})}} className="sitingInLightInput" type="email" id="email" pattern="^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$" placeholder={pageTextInfo.sitingInLightBackgroundText.secondInputPlaceholderText[lang]} required />
                                 </div>
                                 <div className="inputIcon">
                                     <img className="lockIcon" src={lockIcon} alt="lockIcon" width='12px' height='12px' />
-                                    <input className="sitingInLightInput"  id="password" type={this.state.passwordType ? "password":"text"} placeholder={pageTextInfo.registrationLightBackgroundText.thirdInputPlaceholderText[lang]} required />
-                                    <img onClick={()=>{this.setState({passwordType: !this.state.passwordType })}} className="eyeIcon" src={eyeIcon} alt="eyeIcon" width='15px' height='15px' />
+                                    <input onFocus={()=>{this.setState({passwordType: !this.state.passwordType })}} className="sitingInLightInput"  id="password" type={this.state.passwordType ? "password":"text"} placeholder={pageTextInfo.registrationLightBackgroundText.thirdInputPlaceholderText[lang]} required />
+                                    <img className="eyeIcon" src={eyeIcon} alt="eyeIcon" width='15px' height='15px' />
                                 </div>
-                                <div className="registrationAnswerText" style={{visibility:this.state.regAnswerStatus ? 'visible' : 'hidden', color: selectedRegistrationAnswer!=0 ? 'red' : 'green'}}>{pageTextInfo.registrationAnswer[selectedRegistrationAnswer][lang]}</div>
+                                <div className="registrationAnswerText" style={{visibility: regAnswerVisibility ? 'visible' : 'hidden', color: regAnswerColor ? 'red' : 'green'}}>{regAnswerValue}</div>
                                 <Link className="forgotPasswordLink" style={{ display: this.state.sitingIn ? "block" : "none" }} to="">{pageTextInfo.sitingInLightBackgroundText.linkText[lang]}</Link>
                                 <div className="d-flex justify-content-center align-items-end">
                                     <div className="returnButton pr-5" style={{display: !this.state.sitingIn ? 'block' : 'none'}} onClick={()=>this.setState({regWindowType: 0})}>{pageTextInfo.registrationUserType.buttonReturn[lang]}</div>
-                                    <button type="submit" htmlFor="regForm">{this.state.sitingIn ? pageTextInfo.sitingInLightBackgroundText.buttonText[lang] : pageTextInfo.registrationDarkBackgroundText.buttonText[lang]}</button>
+                                    <button disabled={this.state.regProcessStatus || this.state.regAnswerStatus} type="submit" htmlFor="regForm">{this.state.sitingIn ? pageTextInfo.sitingInLightBackgroundText.buttonText[lang] : pageTextInfo.registrationDarkBackgroundText.buttonText[lang]}</button>
                                 </div>
                             </form>
                         </div>
@@ -405,7 +406,7 @@ class RenderModalRegistrationClass extends React.Component {
                                     </div>
                                 )
                             }
-                            <button onClick={()=>this.state.userType===0 ? {} : this.setState({regWindowType: 1})}>{pageTextInfo.registrationUserType.buttonNext[lang]}</button>
+                            <button  onClick={()=>this.state.userType===0 ? {} : this.setState({regWindowType: 1})}>{pageTextInfo.registrationUserType.buttonNext[lang]}</button>
                         </div>
                 </div>
                 <div className={"registrationDark d-flex flex-column justify-content-center align-items-center " + this.state.registrationDarkAnimation}>

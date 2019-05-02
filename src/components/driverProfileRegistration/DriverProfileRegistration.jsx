@@ -16,6 +16,7 @@ import DriverProfileAffiliateProgram from './DriverProfileAffiliateProgram'
 import requests from '../../config';
 import axios from 'axios';
 
+import { setProfileData } from "../../redusers/ActionDriverProfileRegistration"
 
 import people1 from './img/001372a9a88e12c88b532a.jpg'
 import people2 from './img/person.jpg'
@@ -25,6 +26,7 @@ import people4 from './img/gruzinskaja-kuhnja.jpg'
 class DriverProfileRegistrationClass extends React.Component {
   constructor(props) {
     super(props);
+    const that = this;
     function getUserData(){
       function readCookie(name) {
         var name_cook = name+"=";
@@ -52,9 +54,10 @@ class DriverProfileRegistrationClass extends React.Component {
           }
         })
         .then(response =>{
+          //debugger;
           console.log('Data profile: ');
           console.log(response.data);
-
+          that.props.dispatch(setProfileData(response.data));
         })
         .catch(error => {
           console.log('error, here must be return to authorization window! or smth else');
@@ -69,11 +72,13 @@ class DriverProfileRegistrationClass extends React.Component {
 
   }
 
-
   render() {
-
+    let profile = this.props.storeState.profile;
     return (
       <React.Fragment>
+      {
+        profile.isDriver ? 
+        <React.Fragment>
         <Header driver={true} />
         <DriverProfileNavigation />
         <div className="registrationWrapper d-flex flex-column col-12 p-0">
@@ -95,6 +100,8 @@ class DriverProfileRegistrationClass extends React.Component {
             
           </div>
         </div>
+        </React.Fragment> : <div/>
+      }
       </React.Fragment>
     );
   }

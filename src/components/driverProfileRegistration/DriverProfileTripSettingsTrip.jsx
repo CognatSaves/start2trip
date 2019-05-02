@@ -13,34 +13,94 @@ import InfiniteCalendar, {
     withMultipleDates,
 } from 'react-infinite-calendar';
 
-
+import requests from '../../config';
 
 class DriverProfileTripSettingsTripClass extends React.Component {
     constructor(props) {
         super(props);
+        let travelsetting = this.props.profileReduser.profile.travelsetting;
+        let dateTour=[];
+        for(let i=0; i<travelsetting.calendary.length;i++){
+            dateTour[i]=new Date(travelsetting.calendary[i]);
+        }
         this.state = {
-            cityRadius: [{ city: "", itemRadius: "" },],
-            city: "",
+            cityRadius: travelsetting.settings.points,
+            distance: travelsetting.settings.distance,
             newDate: false,
-            dateTour: [],
+            dateTour: dateTour,
             calendarModal: false,
-            readyLeavePlease: [{ cityLeave: "", itemRadiusLeave: "" },],
         }
 
         this.addCityRadius = this.addCityRadius.bind(this);
         this.deleteCityRadius = this.deleteCityRadius.bind(this);
         this.formSubmit = this.formSubmit.bind(this);
+        this.inputChange=this.inputChange.bind(this);
+        this.applyChanges = this.applyChanges.bind(this); 
     }
-
+    applyChanges(){
+        function readCookie(name) {
+            var name_cook = name+"=";
+            var spl = document.cookie.split(";");           
+            for(var i=0; i<spl.length; i++) {           
+                var c = spl[i];               
+                while(c.charAt(0) == " ") {               
+                    c = c.substring(1, c.length);                   
+                }               
+                if(c.indexOf(name_cook) == 0) {                   
+                    return c.substring(name_cook.length, c.length);                    
+                }               
+            }           
+            return null;           
+        }
+        let jwt = readCookie('jwt');
+        
+        if(jwt && jwt!=="-"){
+            let value = {
+                travelsetting: {
+                    settings:{
+                        points:this.state.cityRadius,
+                        distance:this.state.distance
+                    },
+                    calendary: this.state.dateTour
+                }
+            }
+            console.log('body before json');
+            console.log(value);
+            let body = JSON.stringify(value);
+            fetch(requests.travelsettingsUpdateRequest, {method: 'PUT',body:body,
+                headers:{'content-type': 'application/json', Authorization: `Bearer ${jwt}`}})
+                .then(response => {
+                    return response.json();
+                })
+                .then(function (data) {                   
+                    if(data.error){
+                        console.log("bad");
+                        throw data.error;
+                    }
+                    else{
+                        console.log("good");         
+                        console.log(data);
+                        //that.state.sendResultLocal(true, {jwt:data.jwt, user: data.user});
+                    }
+                })
+                .catch(function(error) {
+                    console.log("bad");
+                    console.log('An error occurred:', error);
+                    //that.state.sendResultLocal(false,{error: error});
+                });
+        }  
+        
+    }   
     formSubmit(event) {
-        debugger
-        alert('Your favorite flavor is: ' + this.state.value);
+        //debugger
+        //alert('Your favorite flavor is: ' + this.state.value);
+        this.applyChanges();
         event.preventDefault();
     }
 
     addCityRadius() {
         let newArrayCity = this.state.cityRadius;
-        newArrayCity.push({ city: "", itemRadius: "" })
+        newArrayCity.push({ point: "", radius: "", lat: '', long: '' });
         this.setState({
             cityRadius: newArrayCity,
         })
@@ -54,37 +114,36 @@ class DriverProfileTripSettingsTripClass extends React.Component {
         })
         console.log(this.state.cityRadius)
     }
-
-
-    changeAllValue(index, e) {
-        let newArrayCity = this.state.cityRadius.slice();
-        let newReadyLeavePlease = this.state.readyLeavePlease.slice();
-        switch (e.currentTarget.id) {
-            case "city": {
-                newArrayCity[index].city = e.currentTarget.value;
-                this.setState({ cityRadius: newArrayCity });
+    inputChange(value,variable, index=0){
+        switch(variable){
+            case 'radius':{
+                let cityRadius = this.state.cityRadius;
+                cityRadius[index].radius=value;
+                this.setState({
+                    cityRadius: cityRadius
+                });
                 break;
             }
-            case "itemRadiu": {
-                newArrayCity[index].itemRadius = e.currentTarget.value;
-                this.setState({ cityRadius: newArrayCity });
-                break;
+            case 'distance':{
+                this.setState({
+                    distance: value
+                })
             }
-            case "cityLeave": {
-                newReadyLeavePlease[index].cityLeave = e.currentTarget.value;
-                this.setState({ readyLeavePlease: newReadyLeavePlease });
-                break;
-            }
-            case "itemRadiusLeave": {
-                newReadyLeavePlease[index].itemRadiusLeave = e.currentTarget.value;
-                this.setState({ readyLeavePlease: newReadyLeavePlease });
-                break;
-            }
+            default:
         }
     }
-
-    changeCity = (index, value) => {
-        this.setState({ city: value })
+    changeCity = (index, value, extraData) => {
+        console.log('changeCity call');
+        console.log(index);
+        console.log(value);
+        console.log(extraData);
+        let cityRadius = this.state.cityRadius;
+        cityRadius[index].point=value;
+        cityRadius[index].lat=extraData.location.lat;
+        cityRadius[index].long=extraData.location.long;
+        this.setState({
+            cityRadius: cityRadius
+        })
     }
 
     calendarModalShow = () => {
@@ -121,6 +180,8 @@ class DriverProfileTripSettingsTripClass extends React.Component {
     }
 
     render() {
+        console.log("Double RIP render");
+        console.log(this.state);
         const MultipleDatesCalendar = withMultipleDates(Calendar);
         var today = new Date();
         const actions = [
@@ -221,17 +282,20 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                         {this.state.cityRadius.map((element, index) =>
                             <React.Fragment>
                                 <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                    <label htmlFor={"tripLocation" + index} className="col-xl-2 col-lg-2 col-md-2 col-sm-11 col-11 p-0">Базовый город/радиус:</label>
+                                    <label htmlFor={"tripLocation" + index} className="col-xl-2 col-lg-2 col-md-2 col-sm-11 col-11 p-0">Базовый город/радиус, км:</label>
                                     <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">
-                                        <LocationSearchInput changeCity={this.changeCity} classInput="searchInputDriverInformation" id={"tripLocation" + index} classDropdown="searchDropdownDriverInformation" />
-                                        <input className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 ml-1 d-xl-block d-lg-block d-md-block d-sm-none d-none" type="text" id="itemRadiu" value={this.state.cityRadius[index].itemRadius} onChange={this.changeAllValue.bind(this, index)} required />
+                                        <LocationSearchInput address={element.point} changeCity={this.changeCity} classInput="searchInputDriverInformation" index={index} classDropdown="searchDropdownDriverInformation" />
+                                        <input className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 ml-1 d-xl-block d-lg-block d-md-block d-sm-none d-none" type="text" id="itemRadiu" value={element.radius} 
+                                        onChange={(e)=>this.inputChange(e.target.value,'radius',index)}
+                                        />
                                         <TextField
                                             floatingLabelText="Радиус в км"
                                             className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
                                             fullWidth="100%"
                                             floatingLabelFocusStyle={{ color: "#304269" }}
                                             underlineFocusStyle={{ borderColor: "#304269" }}
-
+                                            value={element.radius}
+                                            onChange={(e)=>this.inputChange(e.target.value,'radius',index)}
                                         />
                                     </div>
                                     <span style={{ display: index ? "block" : "none" }} className="tripSettingsContentDeletButton " title="Удалить город" onClick={() => { this.deleteCityRadius(index) }} />
@@ -243,15 +307,18 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                             <p className="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 pl-0" onClick={this.addCityRadius}>+ Добавить город</p>
                         </div>
                         <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                            <label htmlFor="maxDailyMileage" className="col-xl-2 col-lg-2 col-md-2 col-sm-11 col-11 p-0">Максимальный дневной пробег:</label>
-                            <input id="maxDailyMileage" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12" type="text" />
+                            <label htmlFor="maxDailyMileage" className="col-xl-2 col-lg-2 col-md-2 col-sm-11 col-11 p-0">Максимальный дневной пробег, км:</label>
+                            <input id="maxDailyMileage" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12" type="text" value={this.state.distance}
+                                onChange={(e)=>this.inputChange(e.target.value,'distance')}
+                            />
                             <TextField
                                 floatingLabelText="Максимальный дневной пробег"
                                 className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
                                 fullWidth="100%"
                                 floatingLabelFocusStyle={{ color: "#304269" }}
                                 underlineFocusStyle={{ borderColor: "#304269" }}
-
+                                value={this.state.distance}
+                                onChange={(e)=>this.inputChange(e.target.value,'distance')}
                             />
                             <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none pl-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
                         </div>
@@ -271,6 +338,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
 const DriverProfileTripSettingsTrip = connect(
     (state) => ({
         storeState: state.AppReduser,
+        profileReduser: state.DriverProfileRegistrationtReduser,
     }),
 )(DriverProfileTripSettingsTripClass);
 

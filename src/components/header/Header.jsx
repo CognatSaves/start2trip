@@ -180,31 +180,31 @@ class HeaderClass extends React.Component {
       return null;
     }
     let jwt = readCookie('jwt');
-    console.log('jwt');
-    console.log(jwt);
-    if (jwt && jwt !== "-") {
+    //console.log('jwt');
+   // console.log(jwt);
+    if(jwt && jwt!=="-"){
       axios.get(requests.meRequest, {
-        headers: {
-          //Authorization: `${jwt}`
-          Authorization: `Bearer ${jwt}`
-        }
-      })
-        .then(response => {
-          // Handle success.
-          console.log('Data: ');
-          console.log(response.data);
-          let avatarUrl = requests.serverAddress + response.data.url;
-          let userName = response.data.firstName;
-          if (avatarUrl !== this.props.storeState.avatarUrl || userName !== this.props.storeState.userName) {
-            this.props.dispatch(setUser(userName, avatarUrl));
-          }
-
-        })
-        .catch(error => {
-          this.props.dispatch(setUser("", ""));
-          console.log('log off');
-          //console.log('An error occurred:', error);
-        });
+            headers: {
+              //Authorization: `${jwt}`
+              Authorization: `Bearer ${jwt}`
+            }
+          })
+          .then(response => {
+            // Handle success.
+            //console.log('Data: ');
+           // console.log(response.data);
+            let avatarUrl = requests.serverAddress+response.data.url;
+            let userName = response.data.firstName ;
+            if(avatarUrl!==this.props.storeState.avatarUrl || userName!==this.props.storeState.userName){
+              this.props.dispatch(setUser(userName,avatarUrl));
+            }
+            
+          })
+          .catch(error => {
+            this.props.dispatch(setUser("",""));
+            //console.log('log off');
+            //console.log('An error occurred:', error);
+          });     
     }
     /*
     else{
@@ -212,26 +212,26 @@ class HeaderClass extends React.Component {
       console.log('log off');
     }  */
   }
-  logOffFunc() {
-    console.log("logOffFunc");
-    let date = new Date(Date.now() - 100000000);
-    let jwtstring = "jwt=-; expires=" + date.toString();
-    let jwtstatus = "jwtstatus=-; expires=" + date.toString();
-    document.cookie = jwtstring;
-    document.cookie = jwtstatus;
-    let avatarString = "avatarUrl=-; expires=" + date.toString();
-    let usernameString = "userName=-; expires=" + date.toString();
-    document.cookie = avatarString;
-    document.cookie = usernameString;
-    this.props.dispatch(setUser("", ""));
+  logOffFunc(){
+    //console.log("logOffFunc");
+    let date = new Date(Date.now()-100000000);               
+    let jwtstring = "jwt=-; expires="+date.toString();
+    let jwtstatus = "jwtstatus=-; expires="+date.toString();
+    document.cookie=jwtstring;
+    document.cookie=jwtstatus;
+    let avatarString="avatarUrl=-; expires="+date.toString();
+    let usernameString = "userName=-; expires="+date.toString();
+    document.cookie=avatarString;
+    document.cookie=usernameString;
+    this.props.dispatch(setUser("",""));
   }
   render() {
 
-    console.log("render header");
-    console.log(this.state);
+   /// console.log("render header");
+   /* console.log(this.state);
     console.log('storestate');
     console.log(this.props.storeState);
-    console.log(window);
+    console.log(window);*/
     /*console.log("window.opener");
     console.log(window.opener);*/
     return (

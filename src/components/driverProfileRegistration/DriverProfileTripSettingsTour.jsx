@@ -22,7 +22,7 @@ import InfiniteCalendar, {
 } from 'react-infinite-calendar';
 import 'react-infinite-calendar/styles.css'; // only needs to be imported once
 import LanguageMenu from '../drivers/DriversBody/DriversProperties/components/LanguageMenu/LanguageMenu';
-
+import requests from '../../config';
 
 
 
@@ -31,6 +31,7 @@ import LanguageMenu from '../drivers/DriversBody/DriversProperties/components/La
 class DriverProfileTripSettingsTourClass extends React.Component {
     constructor(props) {
         super(props);
+        let profile = this.props.profileReduser.profile;
         this.state = {
             collapse: false,
             calendarModal: false,
@@ -39,20 +40,20 @@ class DriverProfileTripSettingsTourClass extends React.Component {
             currency: ["USD", "EUR", "GEL", "RUB",],
             activeCurrency: "USD",
             typeCar: "sedan",
-            tour: ["", "", "", "", "", "",],
+            savedTours:profile.tours,
             departurePoint: "",
             attractionsAlongTheRoute: [],
             getAddress: "",
             dateTour: [],
             directions: ["Батуми", "Тбилиси", "Кутаиси", "Сванеция"],
             directionsChip: [],
-            directionsValue: "Все направление", // not change
+            directionsValue: "Все направления", // not change
             categories: ["Активный", "Пляжный", "Экстримальный", "Шоп"],
             categoriesChip: [],
-            categoriesValue: "Все категори", // not change
+            categoriesValue: "Все категории", // not change
             tags: ["Замки", "Церкви", "Бастилии", "Парки"],
             tagsChip: [],
-            tagsValue: "Все тег", // not change
+            tagsValue: "Все теги", // not change
             languageTour: [{ title: "RU", img: ruIcon }, { title: "EN", img: enIcon }],
             languageTourOpen: 0,
             newTourEverydayTime: "Выберите время",
@@ -169,6 +170,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                 this.setState({ attractionsAlongTheRoute: this.attractionsAlongTheRoute });
                 break;
             }
+            default:
         }
     };
 
@@ -218,6 +220,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                 this.setState({ attractionsAlongTheRoute: this.attractionsAlongTheRoute });
                 break;
             }
+            default:
         }
     };
 
@@ -677,7 +680,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                 </div>
                             </div>
                         </div>
-                        {this.state.tour.map((element, index) =>
+                        {this.state.savedTours.map((element, index) =>
                             <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-11 p-2">
                                 <div className="filledCard d-flex flex-column p-0">
                                     <div className="filledCardInformation d-flex flex-column">
@@ -692,17 +695,17 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                         </div>
                                     </div>
                                     <div className="filledCardImg">
-                                        <img src={georgiaImg} className="img-fluid" alt="imgCar" width="100%" height="100%" />
+                                        <img src={/*georgiaImg*/requests.serverAddress+element.image[0].url} className="img-fluid" alt="imgCar" width="100%" height="100%" />
                                     </div>
                                     <div className="cardInformationType d-flex flex-column">
-                                        <p>Кутаиси-Боржоми-Тбилиси</p>
-                                        <Stars value={5.0 - index} commentNumber={22 + " отзывов"} valueDisplay={true} commentNumberDisplay={true} />
+                                        <p>{element.local[0].title}{/*Кутаиси-Боржоми-Тбилиси*/}</p>
+                                        <Stars value={/*5.0 - index*/Math.ceil(element.rating*10)/10} commentNumber={/*22 + " отзывов"*/element.commentNumber+" отзывов"} valueDisplay={true} commentNumberDisplay={true} />
                                         <div className="settingsTourHeader d-flex pr-1">
                                             <p>Свободных мест:</p>
-                                            <p>15</p>
+                                            <p>{/*15*/element.seats}</p>
                                         </div>
                                         <div className="settingsTourPlace d-flex">
-                                            <p>Кутаиси, Храм Баграти, Монастырь Гелати </p>
+                                            <p>{/*Кутаиси, Храм Баграти, Монастырь Гелати*/element.local[0].points.points }</p>
                                         </div>
                                     </div>
                                 </div>
@@ -722,6 +725,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
 const DriverProfileTripSettingsTour = connect(
     (state) => ({
         storeState: state.AppReduser,
+        profileReduser: state.DriverProfileRegistrationtReduser,
     }),
 )(DriverProfileTripSettingsTourClass);
 
