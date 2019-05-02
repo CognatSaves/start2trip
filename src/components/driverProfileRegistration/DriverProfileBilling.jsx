@@ -66,7 +66,7 @@ class DriverProfileBillingClass extends React.Component {
                                 <span>$480</span>
                             </div>
                             <div className="billingText border-bottom d-flex align-items-center justify-content-between">
-                                <label className="" htmlFor="">Заработанно за всё время:</label>
+                                <label className="" htmlFor="">Заработано за всё время:</label>
                                 <span>$1480</span>
                             </div>
                         </div>
@@ -99,12 +99,13 @@ class DriverProfileBillingClass extends React.Component {
                         
                     </div>
                 </div>
-                <div className="col-12 p-0 blillingHeader billingText d-flex align-items-center justify-content-between">
-                    <span>Операции по счету №20456787</span>
-                    <div className="d-flex align-items-center">
-                        <span className="pr-2">За периуд</span>
-                        <div className="d-flex">
-                            <DatePicker floatingLabelText="Дата начала" className="calendarModal mr-2" />
+                <div className="col-12 p-0 blillingHeader d-flex align-items-center justify-content-between">
+                    <span className="blillingHeaderTitle">Операции по счету №20456787</span>
+                    <div className=" billingText d-flex align-items-center">
+                        <span className="pr-2">За период</span>
+                        <div className="d-flex align-items-center">
+                            <DatePicker floatingLabelText="Дата начала" className="calendarModal" />
+                            <span className="align-self-end mx-2">&#175;</span>
                             <DatePicker floatingLabelText="Дата конца" className="calendarModal" />
 
                         </div>

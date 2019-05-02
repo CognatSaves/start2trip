@@ -61,6 +61,12 @@
     padding: 20px !important;
 }
 
+.blillingHeaderTitle {
+    font-size: 16px;
+    font-weight: 500;
+    color: #304269;
+}
+
 @media (max-width: 768px) {
     .billingContentLeft {
         border: none;
