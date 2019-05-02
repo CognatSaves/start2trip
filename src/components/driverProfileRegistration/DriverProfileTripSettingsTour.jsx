@@ -84,6 +84,9 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                 "22:00", "22:15", "22:30", "22:45",
                 "23:00", "23:15", "23:30", "23:45",
             ],
+            file: '',
+            imagePreviewUrl: '',
+            carImg: [],
         }
 
         this.toggle = this.toggle.bind(this);
@@ -225,7 +228,38 @@ class DriverProfileTripSettingsTourClass extends React.Component {
         this.setState({ departurePoint: value })
     }
 
+    _handleImageChange = (e) => {
+        e.preventDefault();
+
+        let fullfile = e.target.files;
+
+        for (let i = 0; i < fullfile.length; i++) {
+            let file = fullfile[i]
+
+            if (!file.type.match('image')) continue;
+
+            let reader = new FileReader();
+            reader.onloadend = () => {
+                var img = reader.result;
+                this.setState({
+                    file: file,
+                    imagePreviewUrl: img,
+                });
+                this.setState(state => { const carImg = this.state.carImg.push(img); return carImg });
+            }
+            reader.readAsDataURL(file)
+        }
+
+    }
+
     render() {
+
+        let { imagePreviewUrl } = this.state;
+        let $imagePreview = null;
+        if (imagePreviewUrl) {
+            $imagePreview = (<img src={imagePreviewUrl} className="carAddNewCarPhotoCarImg" alt="add_car" />);
+        }
+
         const MultipleDatesCalendar = withMultipleDates(Calendar);
         var today = new Date();
         const actions = [
@@ -612,12 +646,21 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                 <label htmlFor="newTourPeople" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Количество мест:</label>
                                 <input id="newTourPeople" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12" type="text" />
                             </div>
-                            <div className="paddingL10 d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Загрузить фото:</label>
-                                <img src="" alt="" />
-                                <img src="" alt="" />
-                                <img src="" alt="" />
-                                <img src="" alt="" />
+                            <div className="paddingL10 addPhotoTour d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-start mt-3">
+                                <label className=" col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12">Загрузить фото:</label>
+
+                                <div className="tourPhotoMiniContainer d-flex flex-wrap">
+                                    <div className="addPhotoTourLabel">
+                                        <label htmlFor="addCarFile" ></label>
+                                        <input type="file" id="addCarFile" style={{ display: "none" }} multiple onChange={this._handleImageChange} required />
+                                    </div>
+                                    {this.state.carImg.map((element, index) =>
+                                        <div className="position-relative">
+                                            <img src={element} className="tourPhotoMini" alt="add_car" onClick={() => { this.setState({ imagePreviewUrl: this.state.carImg[index] }) }} />
+                                            <span onClick={() => { this.state.carImg.splice(index, 1); this.setState({ carImg: this.state.carImg, imagePreviewUrl: this.state.carImg[0] }) }}></span>
+                                        </div>
+                                    )}
+                                </div>
                             </div>
                             <div className="paddingL10 tourContentAddButton pb-4 d-flex justify-content-xl-start justify-content-lg-start justify-content-md-start justify-content-sm-center justify-content-center mt-3">
                                 <span className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 d-xl-block d-lg-block d-md-block d-sm-none d-none" />

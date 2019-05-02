@@ -30,6 +30,8 @@ class DriverProfileNavigationClass extends React.Component {
 
     render() {
         let profile = this.props.storeState.profile;
+        console.log('profile');
+        console.log(profile);
         return (
             <React.Fragment>
                 <div className="registrationWrapper driverBG col-12 p-0" style={{

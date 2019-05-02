@@ -10,11 +10,18 @@ import DriverProfileTripSettingsTrip from './DriverProfileTripSettingsTrip'
 import DriverProfileTripSettingsTour from './DriverProfileTripSettingsTour'
 import DriverProfileSettings from './DriverProfileSettings'
 import DriverProfileHistory from './DriverProfileHistory'
+import DriverProfileBilling from './DriverProfileBilling'
+import DriverProfileAffiliateProgram from './DriverProfileAffiliateProgram'
 
 import requests from '../../config';
 import axios from 'axios';
 
 import { setProfileData } from "../../redusers/ActionDriverProfileRegistration"
+
+import people1 from './img/001372a9a88e12c88b532a.jpg'
+import people2 from './img/person.jpg'
+import people3 from './img/mina.jpg'
+import people4 from './img/gruzinskaja-kuhnja.jpg'
 
 class DriverProfileRegistrationClass extends React.Component {
   constructor(props) {
@@ -59,51 +66,42 @@ class DriverProfileRegistrationClass extends React.Component {
     }
     getUserData();
     this.state = {
-      userData:{}
-    }
+      userData:[],
+      photo:[people1,people2,people3,people4,people2]
+  }
 
   }
 
   render() {
-    /*console.log("this.state.userData:");
-    console.log(this.state.userData);*/
-    console.log("DriverProfileRender");
-    
-    let profile =this.props.storeState.profile;
-    console.log(profile);
+    let profile = this.props.storeState.profile;
     return (
       <React.Fragment>
-        { profile.isDriver ?
-            <React.Fragment>
-            <Header driver={true} />
-            <DriverProfileNavigation />
-            <div className="registrationWrapper d-flex flex-column col-12 p-0">
-              <div className="d-flex contentHeight col-12 p-0">
-                <div className="d-flex flex-column justify-content-start col-lx-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                  
-                  {{
-                    0: <DriverProfileHistory/>,
-                    1: <DriverProfileBasicInformation />,
-                    2: <DriverProfileCar />,
-                    3: <DriverProfileTripSettingsTrip />,
-                    4: <DriverProfileTripSettingsTour />,
-                    5: <DriverProfileFeedback />,
-                    6: <DriverProfileSettings />,
-                  }[this.props.storeState.pageRender]}
-                </div>
-                
-              </div>
+      {
+        profile.isDriver ? 
+        <React.Fragment>
+        <Header driver={true} />
+        <DriverProfileNavigation />
+        <div className="registrationWrapper d-flex flex-column col-12 p-0">
+          <div className="d-flex contentHeight col-12 p-0">
+            <div className="d-flex flex-column justify-content-start col-lx-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+              
+              {{
+                0: <DriverProfileHistory />,
+                1: <DriverProfileBasicInformation />,
+                2: <DriverProfileCar />,
+                3: <DriverProfileTripSettingsTrip />,
+                4: <DriverProfileTripSettingsTour />,
+                5: <DriverProfileFeedback />,
+                6: <DriverProfileSettings />,
+                7: <DriverProfileBilling />,
+                8: <DriverProfileAffiliateProgram />,
+              }[this.props.storeState.pageRender]}
             </div>
-          </React.Fragment> :
-          <React.Fragment/>
-        }
-        {
-          (!profile.isCustomer && !profile.isDriver && !profile.isAgency) ?
-          <div>
-            {"Additional confirmation page - if there is no user type"}
-          </div> :
-          <React.Fragment/>
-        }
+            
+          </div>
+        </div>
+        </React.Fragment> : <div/>
+      }
       </React.Fragment>
     );
   }

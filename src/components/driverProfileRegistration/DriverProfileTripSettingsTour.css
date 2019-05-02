@@ -347,10 +347,18 @@ div.tourContentCheckbox {
 }
 
 span.newTourDatepickerSpan {
+    cursor: pointer;
+    font-weight: 400;
+    font-size: 14px;
+    color: #304269;
     text-indent: 20px;
     background: url(./img/calendarGray.svg)no-repeat;
     background-size: 14px 14px;
     background-position: top 2px left 0;
+}
+
+span.newTourDatepickerSpan:hover {
+    color: #f60;
 }
 
 
@@ -443,6 +451,65 @@ span.newTourDatepickerSpan {
 
 
 /* ItemElement End */
+
+
+/* addPhotoTour Bigin */
+
+.addPhotoTour {
+    position: relative;
+}
+
+.addPhotoTourLabel {
+    background: #686868;
+    width: 120px;
+    height: 80px;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+.addPhotoTourLabel label {
+    width: 120px;
+    height: 80px;
+    background: url(./img/plus.svg)no-repeat;
+    background-size: 50px 50px;
+    background-position: center center;
+}
+
+.tourPhotoMiniContainer span {
+    cursor: pointer;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: 8px;
+    top: 8px;
+}
+
+.tourPhotoMiniContainer span:hover {
+    background: url(./img/error.svg) no-repeat;
+    background-size: 20px 20px;
+}
+
+img.tourPhotoMini {
+    position: relative;
+    cursor: pointer;
+    object-fit: cover;
+    flex-basis: 120px;
+    height: 100%;
+    max-height: 80px;
+    max-width: 120px;
+    min-width: 80px;
+    margin: 5px;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+.tourPhotoMini:hover~span {
+    background: url(./img/error.svg) no-repeat;
+    background-size: 20px 20px;
+}
+
+
+/* addPhotoTour End */
 
 @media (max-width: 768px) {
     .tourSettingsBody {
