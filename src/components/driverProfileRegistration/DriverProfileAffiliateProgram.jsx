@@ -31,13 +31,13 @@ class DriverProfileAffiliateProgramClass extends React.Component {
             <div className="affiliateProgramBody">
                 <div className="d-flex flex-column ">
                     <div className="d-flex flex-column align-items-center">
-                        <h3>Партнёрская программа</h3>
+                        <h3>Партнерская программа</h3>
                         <p className="col-xl-8 col-lg-8 col-md-9 col-sm-10 col-10">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae impedit odio aspernatur veniam obcaecati veritatis fugit id voluptate excepturi nam aliquam architecto quam laboriosam suscipit deserunt neque, ab dolorem alias?</p>
                     </div>
                     <div className="affiliateProgramButton d-flex flex-sm-row flex-column justify-content-between align-items-center">
                         <span>Промо материалы</span>
                         <div className="d-flex flex-sm-row flex-column">
-                            <span>Партнёрские ссылки</span>
+                            <span>Партнерские ссылки</span>
                             <span>Пригласить друга</span>
                         </div>
                     </div>

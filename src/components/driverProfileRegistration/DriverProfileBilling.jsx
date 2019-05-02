@@ -47,7 +47,7 @@ class DriverProfileBillingClass extends React.Component {
                                     <span>$360</span>
                                 </div>
                                 <div className="specialBorder mb-2">
-                                    <label className="col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0" htmlFor="">Партнёрские начисления:</label>
+                                    <label className="col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0" htmlFor="">Партнерские начисления:</label>
                                     <span>$120</span>
                                 </div>
                                 <div>
@@ -61,12 +61,8 @@ class DriverProfileBillingClass extends React.Component {
                         </div>
 
                         <div className="mt-5">
-                            <div className="billingText border-bottom d-flex align-items-center justify-content-between mb-2">
-                                <label className="" htmlFor="">Полученно наличными за предыдущий меcяц:</label>
-                                <span>$480</span>
-                            </div>
                             <div className="billingText border-bottom d-flex align-items-center justify-content-between">
-                                <label className="" htmlFor="">Заработано за всё время:</label>
+                                <label className="" htmlFor="">Заработано за все время:</label>
                                 <span>$1480</span>
                             </div>
                         </div>
@@ -77,30 +73,53 @@ class DriverProfileBillingClass extends React.Component {
                             <span>Оплата за пользование системой (прошлый месяц)</span>
                         </div>
                         <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-row flex-column justify-content-between ">
-                        <div className="billingText col-xl-7 col-lg-7 col-md-7 col-sm-8 col-8 p-0">
-                            <div className="border-bottom mb-2">
-                                <label className="col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0" htmlFor="">Коммисия с карт:</label>
-                                <span>$126</span>
+                            <div className="billingText col-xl-7 col-lg-7 col-md-7 col-sm-8 col-8 p-0">
+                                <div className="border-bottom mb-2">
+                                    <label className="col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0" htmlFor="">Коммисия с карт:</label>
+                                    <span>$126</span>
+                                </div>
+                                <div className="specialBorder mb-2">
+                                    <label className="col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0" htmlFor="">Коммисия с наличных:</label>
+                                    <span>$196</span>
+                                </div>
+                                <div>
+                                    <label className="specialText col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0" htmlFor="">Итого:</label>
+                                    <span className="specialText">$322</span>
+                                </div>
                             </div>
-                            <div className="specialBorder mb-2">
-                                <label className="col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0" htmlFor="">Коммисия с наличных:</label>
-                                <span>$196</span>
+                            <div className="billingButton d-flex justify-content-end align-items-end">
+                                <span>Оплатить</span>
                             </div>
-                            <div>
-                                <label className="specialText col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0" htmlFor="">Итого:</label>
-                                <span className="specialText">$322</span>
-                            </div>
-                        </div>
-                        <div className="billingButton d-flex justify-content-end align-items-end">
-                            <span>Оплатить</span>
-                        </div>
 
                         </div>
-                        
+                        <div className="billingText col-12 p-0 mt-5">
+                            <p>Для поддержания работоспособности сервера с каждой поездки взимается комиссия. Для продолжения пользования системой, Вам необходимо оплатить счет до 5 числа каждого месяца.</p>
+                        </div>
                     </div>
                 </div>
-                <div className="col-12 p-0 blillingHeader d-flex align-items-center justify-content-between">
+                <div className="d-flex justify-content-center">
                     <span className="blillingHeaderTitle">Операции по счету №20456787</span>
+                </div>
+                <div className="col-12 p-0 blillingHeader d-flex align-items-end justify-content-between">
+                    <div className="col-3">
+                        <div className="billingText border-bottom d-flex align-items-center justify-content-between">
+                            <label className="" htmlFor="">Оплата по картам:</label>
+                            <span>$148</span>
+                        </div>
+                        <div className="billingText border-bottom d-flex align-items-center justify-content-between">
+                            <label className="" htmlFor="">Оплата наличными:</label>
+                            <span>$480</span>
+                        </div>
+                        <div className="billingText specialBorder d-flex align-items-center justify-content-between">
+                            <label className="" htmlFor="">Партнёрские начисления:</label>
+                            <span>$80</span>
+                        </div>
+                        <div className="billingText d-flex align-items-center justify-content-between">
+                            <label className="" htmlFor="">Всего за период:</label>
+                            <span>$708</span>
+                        </div>
+                    </div>
+
                     <div className=" billingText d-flex align-items-center">
                         <span className="pr-2">За период</span>
                         <div className="d-flex align-items-center">

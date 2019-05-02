@@ -85,7 +85,7 @@ class DriversRouteClass extends React.Component {
       this.props.dispatch(setDriversRouteChange(!this.props.driversState.driversRouteChange))
     }
     else{
-      alert("Некоторые данные некорректны! Проверьте всё ещё раз!");
+      alert("Некоторые данные некорректны! Проверьте все еще раз!");
     }
   }
     render() {

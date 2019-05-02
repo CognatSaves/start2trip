@@ -46,7 +46,7 @@ class DriverInfoClass extends React.Component{
                                 </div>
                             </div>
                             <div className="d-flex ">
-                                <div className="infoString infoString_driverInfoSize">За рулём:</div>
+                                <div className="infoString infoString_driverInfoSize">За рулем:</div>
                                 <div className="visibleString">{element.drivingAge + " лет"}</div>
                             </div>
                         </div>
