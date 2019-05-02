@@ -1,0 +1,127 @@
+.affiliateProgramBody {
+    border-radius: 5px;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+}
+
+.affiliateProgramBody h3 {
+    font-size: 24px;
+    font-weight: 400;
+    color: #304269;
+    padding-bottom: 10px;
+    padding-top: 50px;
+}
+
+.affiliateProgramBody p {
+    font-size: 14px;
+    font-weight: 400;
+    color: #666;
+}
+
+.affiliateProgramButton {
+    margin: 10px;
+    margin-top: 20px;
+}
+
+.affiliateProgramButton span {
+    border: 1px solid #f60;
+    border-radius: 5px;
+    padding: 10px;
+    color: #f60;
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: ease 0.3s;
+    margin: 5px;
+}
+
+.affiliateProgramButton :nth-child(2) :nth-child(2) {
+    background: #304269;
+    color: #fff;
+    border-color: #304269;
+}
+
+.affiliateProgramButton :nth-child(2) :nth-child(2):hover,
+.affiliateProgramButton span:hover {
+    background: #f60;
+    color: #fff;
+    border-color: #f60;
+}
+
+.affiliateProgramContent {
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.affiliateProgramTitle {
+    margin-bottom: 15px;
+}
+
+.peopleicon {
+    width: 40px;
+    height: 40px;
+    background: url(./img/referal.svg) no-repeat;
+    background-size: 40px 40px;
+}
+
+.percenticon {
+    width: 40px;
+    height: 40px;
+    background: url(./img/percent.svg) no-repeat;
+    background-size: 40px 40px;
+}
+
+.currencyicon {
+    width: 40px;
+    height: 40px;
+    background: url(./img/money.svg) no-repeat;
+    background-size: 40px 40px;
+}
+
+.affiliateProgramTitle {
+    padding-left: 25px;
+}
+
+.affiliateProgramTitle span {
+    font-size: 14px;
+    font-weight: 400;
+    color: #666;
+}
+
+.questionicon {
+    width: 20px;
+    height: 20px;
+    background: url(./img/question-mark.svg) no-repeat;
+    background-size: 20px 20px;
+    padding-right: 30px;
+}
+
+.affilitaProgramEl {
+    border: 1px solid #304269;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 15px 0;
+}
+
+.affilitaProgramEl span {
+    font-weight: 400;
+    font-size: 14px;
+    color: #666;
+}
+
+.affilitaProgramEl :nth-last-child(2) {
+    font-weight: 100;
+    font-size: 55px;
+    color: #304269;
+}
+
+.affiliateProgramAllEl :nth-child(2) :nth-last-child(2) {
+    font-weight: 100;
+    font-size: 55px;
+    color: #f60;
+}
+
+@media (max-width: 768px) {}
+
+@media (max-width: 576px) {}

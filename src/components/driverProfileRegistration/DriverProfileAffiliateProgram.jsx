@@ -28,42 +28,47 @@ class DriverProfileAffiliateProgramClass extends React.Component {
     render() {
 
         return (
-            <React.Fragment>
+            <div className="affiliateProgramBody">
                 <div className="d-flex flex-column ">
                     <div className="d-flex flex-column align-items-center">
                         <h3>Партнёрская программа</h3>
-                        <p className="col-8">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae impedit odio aspernatur veniam obcaecati veritatis fugit id voluptate excepturi nam aliquam architecto quam laboriosam suscipit deserunt neque, ab dolorem alias?</p>
+                        <p className="col-xl-8 col-lg-8 col-md-9 col-sm-10 col-10">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae impedit odio aspernatur veniam obcaecati veritatis fugit id voluptate excepturi nam aliquam architecto quam laboriosam suscipit deserunt neque, ab dolorem alias?</p>
                     </div>
-                    <div className="d-flex justify-content-between">
-                        <div>
-                            <button>Промо материалы</button>
-                        </div>
-                        <div>
-                            <button>Партнёрские ссылки</button>
-                            <button>Пригласить друга</button>
+                    <div className="affiliateProgramButton d-flex flex-sm-row flex-column justify-content-between align-items-center">
+                        <span>Промо материалы</span>
+                        <div className="d-flex flex-sm-row flex-column">
+                            <span>Партнёрские ссылки</span>
+                            <span>Пригласить друга</span>
                         </div>
                     </div>
                 </div>
                 <div>
-                    <div>
-                        <div className="d-flex justify-content-center">
+                    <div className="affiliateProgramContent col-12">
+                        <div className="affiliateProgramTitle d-flex">
+                            <i className="questionicon"></i>
                             <span>Начисления никогда не заканчиваются. Чем больше у вас рефералов, и чем лучше они работают - тем больше вы получаете каждый день</span>
                         </div>
-                        <div className="d-flex justify-content-around">
-                            <div className="d-flex flex-column align-items-center">
-                                <div>Icon</div>
-                                <div>0</div>
-                                <div>Всего рефеналов</div>
+                        <div className="affiliateProgramAllEl d-flex flex-sm-row flex-column justify-content-around">
+                            <div className="col-sm-4 col-12 ">
+                                <div className="affilitaProgramEl d-flex flex-column align-items-center justify-content-center">
+                                    <i className="peopleicon"></i>
+                                    <span>0</span>
+                                    <span>Всего рефеналов</span>
+                                </div>
                             </div>
-                            <div className="d-flex flex-column align-items-center">
-                                <div>Icon</div>
-                                <div>14%</div>
-                                <div>С каждой оплаты</div>
+                            <div className="col-sm-4 col-12">
+                                <div className="affilitaProgramEl d-flex flex-column align-items-center justify-content-center">
+                                    <i className="percenticon"></i>
+                                    <span>14%</span>
+                                    <span>С каждой оплаты</span>
+                                </div>
                             </div>
-                            <div className="d-flex flex-column align-items-center">
-                                <div>Icon</div>
-                                <div>0.00р</div>
-                                <div>Заработанно Всего</div>
+                            <div className="col-sm-4 col-12 ">
+                                <div className="affilitaProgramEl d-flex flex-column align-items-center justify-content-center">
+                                    <i className="currencyicon"></i>
+                                    <span>0.00$</span>
+                                    <span>Заработанно Всего</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -87,7 +92,7 @@ class DriverProfileAffiliateProgramClass extends React.Component {
                     </Table>
 
                 </div>
-            </React.Fragment>
+            </div>
         );
     }
 }
