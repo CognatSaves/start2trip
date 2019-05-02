@@ -72,7 +72,7 @@ class DriverProfileAffiliateProgramClass extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <Table>
+                    <Table className="affiliateProgramTable col-11">
                         <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
                             <TableRow >
                                 <TableHeaderColumn>EMAIL</TableHeaderColumn>

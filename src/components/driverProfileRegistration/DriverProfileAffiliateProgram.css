@@ -34,6 +34,7 @@
     cursor: pointer;
     transition: ease 0.3s;
     margin: 5px;
+    min-width: 160px;
 }
 
 .affiliateProgramButton :nth-child(2) :nth-child(2) {
@@ -120,6 +121,12 @@
     font-weight: 100;
     font-size: 55px;
     color: #f60;
+}
+
+.affiliateProgramTable {
+    margin: 0 auto;
+    font-size: 13px;
+    font-weight: 400;
 }
 
 @media (max-width: 768px) {}

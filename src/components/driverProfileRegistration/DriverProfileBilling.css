@@ -32,11 +32,29 @@
     background: #f60;
 }
 
+.specialBorder {
+    border-bottom: 2px solid #ccc;
+}
+
+.specialText {
+    font-weight: 500 !important;
+}
+
 .billingText span,
 .billingText label {
     color: #304269;
     font-size: 14px;
     font-weight: 400;
+}
+
+.billingTextTitle {
+    margin-bottom: 20px;
+}
+
+.billingTextTitle span {
+    color: #304269;
+    font-size: 16px;
+    font-weight: 500;
 }
 
 @media (max-width: 768px) {
