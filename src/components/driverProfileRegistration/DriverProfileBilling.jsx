@@ -1,6 +1,7 @@
 import React from 'react';
 import './DriverProfileBilling.css'
 import { connect } from 'react-redux';
+import DatePicker from 'material-ui/DatePicker';
 import {
     Table,
     TableBody,
@@ -42,7 +43,7 @@ class DriverProfileBillingClass extends React.Component {
                                     <span>Текущий баланс (Лицевой счет № 20456787)</span>
                                 </div>
                                 <div className="border-bottom mb-2">
-                                    <label className="col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0" htmlFor="">Оплата Картами:</label>
+                                    <label className="col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0" htmlFor="">Оплачено картами:</label>
                                     <span>$360</span>
                                 </div>
                                 <div className="specialBorder mb-2">
@@ -60,22 +61,23 @@ class DriverProfileBillingClass extends React.Component {
                         </div>
 
                         <div className="mt-5">
-                            <div className="billingText border-top d-flex justify-content-between mb-2">
-                                <label className="" htmlFor="">Полученно наличными за текущий меcяц:</label>
+                            <div className="billingText border-bottom d-flex align-items-center justify-content-between mb-2">
+                                <label className="" htmlFor="">Полученно наличными за предыдущий меcяц:</label>
                                 <span>$480</span>
                             </div>
-                            <div className="billingText border-top d-flex justify-content-between">
+                            <div className="billingText border-bottom d-flex align-items-center justify-content-between">
                                 <label className="" htmlFor="">Заработанно за всё время:</label>
                                 <span>$1480</span>
                             </div>
                         </div>
 
                     </div>
-                    <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-row flex-column justify-content-between billingContentRight">
+                    <div className="billingContentRight">
+                        <div className="billingTextTitle col-12 p-0">
+                            <span>Оплата за пользование системой (прошлый месяц)</span>
+                        </div>
+                        <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-row flex-column justify-content-between ">
                         <div className="billingText col-xl-7 col-lg-7 col-md-7 col-sm-8 col-8 p-0">
-                            <div className="billingTextTitle col-12 p-0">
-                                <span>Оплата за пользование системой</span>
-                            </div>
                             <div className="border-bottom mb-2">
                                 <label className="col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0" htmlFor="">Коммисия с карт:</label>
                                 <span>$126</span>
@@ -92,6 +94,21 @@ class DriverProfileBillingClass extends React.Component {
                         <div className="billingButton d-flex justify-content-end align-items-end">
                             <span>Оплатить</span>
                         </div>
+
+                        </div>
+                        
+                    </div>
+                </div>
+                <div className="col-12 p-0 blillingHeader billingText d-flex align-items-center justify-content-between">
+                    <span>Операции по счету №20456787</span>
+                    <div className="d-flex align-items-center">
+                        <span className="pr-2">За периуд</span>
+                        <div className="d-flex">
+                            <DatePicker floatingLabelText="Дата начала" className="calendarModal mr-2" />
+                            <DatePicker floatingLabelText="Дата конца" className="calendarModal" />
+
+                        </div>
+
                     </div>
                 </div>
                 <div className="overflow-hidden">
