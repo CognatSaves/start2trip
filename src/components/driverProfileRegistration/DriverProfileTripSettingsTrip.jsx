@@ -20,12 +20,20 @@ class DriverProfileTripSettingsTripClass extends React.Component {
         super(props);
         let travelsetting = this.props.profileReduser.profile.travelsetting;
         let dateTour=[];
-        for(let i=0; i<travelsetting.calendary.length;i++){
-            dateTour[i]=new Date(travelsetting.calendary[i]);
+        if(travelsetting.calendary){
+            for(let i=0; i<travelsetting.calendary.length;i++){
+                dateTour[i]=new Date(travelsetting.calendary[i]);
+            }
+        }
+        let cityRadius = [];
+        let distance = [];
+        if(travelsetting.settings){
+            cityRadius=[...travelsetting.settings.points];
+            distance=[...travelsetting.settings.distance];
         }
         this.state = {
-            cityRadius: travelsetting.settings.points,
-            distance: travelsetting.settings.distance,
+            cityRadius:cityRadius,
+            distance: distance,
             newDate: false,
             dateTour: dateTour,
             calendarModal: false,

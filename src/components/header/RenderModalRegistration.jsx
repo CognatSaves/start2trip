@@ -381,7 +381,7 @@ class RenderModalRegistrationClass extends React.Component {
                             <form id="regForm" onSubmit={(e)=>{e.preventDefault(); this.sendRegistrationRequest(this.state.sitingIn)}}>
                                 <div className="inputIcon">
                                     <img className="emailIcon" src={emailIcon} alt="emailIcon" width='13px' height='12px' />
-                                    <input onFocus={()=>{debugger; this.setState({regAnswerStatus: false,regProcessStatus: false})}} className="sitingInLightInput" type="email" id="email" pattern="^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$" placeholder={pageTextInfo.sitingInLightBackgroundText.secondInputPlaceholderText[lang]} required />
+                                    <input onFocus={()=>{this.setState({regAnswerStatus: false,regProcessStatus: false})}} className="sitingInLightInput" type="email" id="email" pattern="^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$" placeholder={pageTextInfo.sitingInLightBackgroundText.secondInputPlaceholderText[lang]} required />
                                 </div>
                                 <div className="inputIcon">
                                     <img className="lockIcon" src={lockIcon} alt="lockIcon" width='12px' height='12px' />

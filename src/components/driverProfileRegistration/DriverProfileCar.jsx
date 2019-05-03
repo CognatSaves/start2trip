@@ -40,7 +40,7 @@ class DriverProfileCarClass extends React.Component {
             imagePreviewUrl: '',
             collapse: false,
             newCarCard: { nameCar: "", yearCar: "", plateNumberCar: "", typeCar: "", fuelType: "", carClass: "" },
-            //car: [q, imgCar, e, r, t,]
+            car:{}
         }
         this.toggle = this.toggle.bind(this);
         this._handleImageChange = this._handleImageChange.bind(this);
@@ -48,7 +48,7 @@ class DriverProfileCarClass extends React.Component {
         this.applyChanges=this.applyChanges.bind(this);
         this.destroy = this.destroy.bind(this);
     }
-    applyChanges(){
+    applyChanges(type){
         function readCookie(name) {
             var name_cook = name+"=";
             var spl = document.cookie.split(";");           
@@ -66,17 +66,7 @@ class DriverProfileCarClass extends React.Component {
         let jwt = readCookie('jwt');
         
         if(jwt && jwt!=="-"){
-            console.log('img files');
-            
-            console.log(this.state.imgFiles);
             var carForm = new FormData();
-            let carData = {...this.state.newCarCard, comfort: this.state.comfort};
-            debugger
-            for(let i=0; i<this.state.imgFiles.length;i++){
-                carForm.append('image',this.state.imgFiles[i]);
-            }
-
-            //carForm.append('car',JSON.stringify(carData));
             carForm.append('carBrand',this.state.newCarCard.nameCar);
             carForm.append('manufactureYear', this.state.newCarCard.yearCar);
             carForm.append('carNumber',this.state.newCarCard.plateNumberCar);
@@ -91,17 +81,42 @@ class DriverProfileCarClass extends React.Component {
             carForm.append('leatherInterior',comfort[1]);
             carForm.append('freeWiFi',comfort[2]);
             carForm.append('smokingPermit',comfort[3]);
-            const request = new XMLHttpRequest();
-            
-            request.onreadystatechange = function(){
-                //debugger;
-                console.log(request.status);
-                console.log(request.statusText);
-                console.log(request.responseText);
+
+            console.log('img files');         
+            console.log(this.state.imgFiles);
+            for(let i=0; i<this.state.imgFiles.length;i++){
+                carForm.append('image',this.state.imgFiles[i]);
             }
-            request.open('PUT', requests.userCarsUpdateRequest);
-            request.setRequestHeader('Authorization',`Bearer ${jwt}`);
-            request.send(carForm);
+            const request = new XMLHttpRequest();
+            if(type){      
+                request.onreadystatechange = function(){
+                    //debugger;
+                    console.log(request.status);
+                    console.log(request.statusText);
+                    console.log(request.responseText);
+                }
+                request.open('PUT', requests.userCarsCreateRequest);
+                request.setRequestHeader('Authorization',`Bearer ${jwt}`);
+                request.send(carForm);
+            }
+            else{
+                let fileTypeArray = [];
+                for(let i=0; i<this.state.imgFiles.length;i++){
+                    if(this.state.imgFiles[i].name==="filename"){
+                        fileTypeArray[i]="old";
+                        carForm.append('fileType', 'old');
+                        carForm.append('address', this.state.carImg[i]);
+                    }
+                    else{
+                        fileTypeArray[i]="new";
+                        carForm.append('fileType', 'new');
+                        carForm.append('address', 'check new file');
+                    }
+                }
+                request.open('PUT',requests.userCarUpdateRequest+'/'+this.state.car.id);
+                request.setRequestHeader('Authorization',`Bearer ${jwt}`);
+                request.send(carForm);
+            }
         }  
         
     } 
@@ -111,7 +126,14 @@ class DriverProfileCarClass extends React.Component {
         //alert('Your favorite flavor is: ' + this.state.value);
         console.log('formSubmit');
         console.log(this.state);
-        this.applyChanges();
+        console.log('selected car');
+        console.log(this.state.car);
+        if(!this.state.car.id){
+            this.applyChanges(true);//если новый, то true
+        }
+        else{
+            this.applyChanges(false);
+        }      
         event.preventDefault();
     }
 
@@ -119,14 +141,20 @@ class DriverProfileCarClass extends React.Component {
         if(!element){
             this.setState(state => ({ collapse: !state.collapse, imagePreviewUrl: '',
             newCarCard: { nameCar: "", yearCar: "", plateNumberCar: "", typeCar: "", fuelType: "", numberOfSeats: "" , carClass: ""},
-            comfort: [false,false,false,false], carImg: [], imgFiles:[] }));       
+            comfort: [false,false,false,false], carImg: [], imgFiles:[], car:{} }));       
         }
         else{
             console.log('try to change a car');
             console.log(element);
-            this.setState(state => ({ collapse: true, imagePreviewUrl: '',
-            newCarCard: { nameCar: "", yearCar: "", plateNumberCar: "", typeCar: "", fuelType: "", numberOfSeats: "" , carClass: ""},
-            comfort: [false,false,false,false], carImg: [], imgFiles:[] }));
+            let carImg = [];let imgFiles=[];
+            for(let i=0; i<element.image.length; i++){
+                carImg[i]=requests.serverAddress+element.image[i].url;
+                imgFiles[i]=new File([""], "filename");
+            }
+            this.setState(state => ({ collapse: true, imagePreviewUrl: carImg[0] ? carImg[0] : '',
+            newCarCard: { nameCar: element.carBrand, yearCar: element.manufactureYear, plateNumberCar: element.carNumber,
+            typeCar: element.cartype, fuelType: element.fueltype, numberOfSeats: element.seats , carClass: element.carclass},
+            comfort: [...element.conveniences], carImg: carImg, imgFiles:imgFiles, car:element }));
         }
         if (isMobile) {
             window.scroll(0, 300);
@@ -169,7 +197,6 @@ class DriverProfileCarClass extends React.Component {
 
     _handleImageChange(e) {
         e.preventDefault();
-
         let fullfile = e.target.files;
 
         for (let i = 0; i < fullfile.length; i++) {
@@ -254,7 +281,7 @@ class DriverProfileCarClass extends React.Component {
                                 {this.state.carImg.map((element, index) =>
                                     <div className="position-relative">
                                      <img src={element} className="carPhotoMini" alt="add_car" onClick={() => { this.setState({ imagePreviewUrl: this.state.carImg[index] }) }} />
-                                        <span onClick={() => { this.state.carImg.splice(index, 1); this.setState({ carImg: this.state.carImg, imagePreviewUrl: this.state.carImg[0] }) }}></span>
+                                        <span onClick={() => { this.state.carImg.splice(index, 1); this.state.imgFiles.splice(index,1); this.setState({ imgFiles: this.state.imgFiles, carImg: this.state.carImg, imagePreviewUrl: this.state.carImg[0] }) }}></span>
                                     </div>
                                 )}
                             </div>
