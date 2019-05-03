@@ -19,19 +19,45 @@ class DriverProfileNavigationClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            navigationText: ["Мои поездки", "Профиль", "Автомобиль", "Настройки поездок", "Туры", "Отзывы", "Настройки","Биллинг","Партнерская программа",],
+            navigationText: ["Мои поездки", "Профиль", "Автомобиль", "Настройки поездок", "Туры", "Отзывы", "Настройки", "Биллинг", "Партнерская программа",],
             shiftLeft: [0, 6, 129, 219, 311, 430, 430],
+            avatar: "",
+            profile: this.props.storeState.profile,
         }
     }
     shiftLeft = (event) => {
 
         event.currentTarget.parentElement.scrollLeft = event.currentTarget.offsetLeft - 120;
     }
+    _handleImageChange=(e)=> {
+        e.preventDefault();
+        debugger
+
+        let file = e.target.files[0];
+
+        if (file.type.match('image')) {
+            debugger
+            let reader = new FileReader();
+            reader.onloadend = () => {
+                debugger
+                var img = reader.result;
+                this.setState({ avatar: img });
+            }
+            reader.readAsDataURL(file)
+        }
+    }
 
     render() {
-        let profile = this.props.storeState.profile;
-        console.log('profile');
-        console.log(profile);
+
+        if(!this.state.avatar){
+            let img = requests.serverAddress + this.state.profile.avatar.url
+            this.setState({ avatar: img })
+        }
+       
+
+
+        // console.log('profile');
+        // console.log(profile);
         return (
             <React.Fragment>
                 <div className="registrationWrapper driverBG col-12 p-0" style={{
@@ -47,21 +73,21 @@ class DriverProfileNavigationClass extends React.Component {
                     <div className="basicInformationBodyTop d-flex align-items-center ">
                         <div className="basicInformationBodyTopImgHover">
                             <label className="basicInformationBodyTopImg" htmlFor="addFile">Обновить фотографию</label>
-                            <img src={requests.serverAddress+profile.avatar.url} alt="imgPerson" />
+                            <img src={this.state.avatar} alt="imgPerson" />
                             {/* <label className="edditIcon" htmlFor="addFile"></label> */}
-                            <input type="file" id="addFile" style={{ display: "none" }} />
+                            <input type="file" id="addFile" style={{ display: "none" }} onChange={this._handleImageChange} />
                         </div>
                         <div className="bodyTopDriverInfo col-7">
                             <div className="bodyTopDriverInfoName d-flex flex-column align-items-start">
-                                <p className="mb-0 mr-2">{profile.firstName}</p>
-                                <Stars value={profile.rating} valueDisplay={true} commentNumberDisplay={true} commentNumber={profile.comments.length+" отзывов"} />
+                                <p className="mb-0 mr-2">{this.state.profile.firstName}</p>
+                                <Stars value={this.state.profile.rating} valueDisplay={true} commentNumberDisplay={true} commentNumber={this.state.profile.comments.length + " отзывов"} />
                             </div>
                             <div className="bodyTopDriverInfoPlace">
-                                <p>{profile.hometown+", "+profile.homecountry}</p>
+                                <p>{this.state.profile.hometown + ", " + this.state.profile.homecountry}</p>
                             </div>
                             <div className="bodyTopDriverInfoRide p-0 d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column">
                                 <div className="d-xl-flex d-lg-flex d-md-flex d-sm-none d-none align-items-center col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 p-0">
-                                    <span>{profile.futureTrips.length+profile.historyTrips.length}</span>
+                                    <span>{this.state.profile.futureTrips.length + this.state.profile.historyTrips.length}</span>
                                     <div className="d-flex flex-column">
                                         <p>ВСЕГО </p>
                                         <p>ПОЕЗДОК</p>
@@ -72,7 +98,7 @@ class DriverProfileNavigationClass extends React.Component {
                                     <span className="pl-1">18</span>
                                 </div>
                                 <div className="d-xl-flex d-lg-flex d-md-flex d-sm-none d-none align-items-center col-xl-2 col-lg-2 col-md-2 col-sm-6 col-6 p-0">
-                                    <span>{profile.futureTrips.length}</span>
+                                    <span>{this.state.profile.futureTrips.length}</span>
                                     <div className="d-flex flex-column ">
                                         <p>ПРЕДСТОЯЩИЕ </p>
                                         <p>ПОЕЗДКИ</p>

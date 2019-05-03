@@ -213,7 +213,7 @@ class DriverProfileCarClass extends React.Component {
             })
         }
 
-    };
+    }
 
 
 

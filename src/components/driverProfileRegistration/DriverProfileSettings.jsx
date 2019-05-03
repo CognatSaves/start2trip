@@ -20,7 +20,7 @@ class DriverProfileSettingsClass extends React.Component {
                 password: "",
                 newPassword: "",
                 newPassword2: "",
-                privatePhone: profile.privatePhone
+                privatePhone: profile.privatePhone,
             }
             
         }
