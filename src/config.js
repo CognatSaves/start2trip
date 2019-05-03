@@ -10,8 +10,9 @@ const travelsettingsUpdateRequest = serverAddress + '/users/me/travelsetings';//
 const userCarsCreateRequest = serverAddress + '/users/me/car';//запрос для админки 
 const userCarDestroyRequest = serverAddress + '/cars/me';//запрос для админки
 const userCarUpdateRequest = serverAddress + '/cars/me';//запрос для админки
+const userCarActivateRequest = serverAddress + '/cars/me/activate';//запрос для админки
 export default {serverAddress: serverAddress, serverRegistrationRequest: serverRegistrationRequest, facebookRequest: facebookRequest,
      googleRequest: googleRequest, serverAuthorizationRequest: serverAuthorizationRequest, meRequest: meRequest, 
      profileRequest:profileRequest, profileUpdateRequest: profileUpdateRequest, travelsettingsUpdateRequest: travelsettingsUpdateRequest,
      userCarsCreateRequest: userCarsCreateRequest,userCarDestroyRequest:userCarDestroyRequest,
-     userCarUpdateRequest: userCarUpdateRequest};
+     userCarUpdateRequest: userCarUpdateRequest, userCarActivateRequest:userCarActivateRequest};

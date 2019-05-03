@@ -39,7 +39,7 @@ class DriverProfileCarClass extends React.Component {
             file: '',
             imagePreviewUrl: '',
             collapse: false,
-            newCarCard: { nameCar: "", yearCar: "", plateNumberCar: "", typeCar: "", fuelType: "", carClass: "" },
+            newCarCard: { nameCar: "", yearCar: "", plateNumberCar: "", typeCar: "", fuelType: "", carClass: "", onWork: true },
             car:{}
         }
         this.toggle = this.toggle.bind(this);
@@ -47,6 +47,7 @@ class DriverProfileCarClass extends React.Component {
         this.formSubmit = this.formSubmit.bind(this);
         this.applyChanges=this.applyChanges.bind(this);
         this.destroy = this.destroy.bind(this);
+        this.changeActive = this.changeActive.bind(this);
     }
     applyChanges(type){
         function readCookie(name) {
@@ -162,7 +163,7 @@ class DriverProfileCarClass extends React.Component {
             window.scroll(0, 322);
         }
     }
-    destroy(element){
+    changeActive(element){
         function readCookie(name) {
             var name_cook = name+"=";
             var spl = document.cookie.split(";");           
@@ -178,7 +179,31 @@ class DriverProfileCarClass extends React.Component {
             return null;           
         }
         let jwt = readCookie('jwt');
-        
+        if(jwt && jwt!=="-"){
+            var carForm = new FormData();
+            carForm.append('onWork',!element.onWork);
+            const request = new XMLHttpRequest();
+            request.open('PUT',requests.userCarActivateRequest+'/'+element.id);
+            request.setRequestHeader('Authorization',`Bearer ${jwt}`);
+            request.send(carForm);
+        }
+    }
+    destroy(element){
+        function readCookie(name) {
+            var name_cook = name+"=";
+            var spl = document.cookie.split(";");           
+            for(var i=0; i<spl.length; i++) {           
+                var c = spl[i];               
+                while(c.charAt(0) == " ") {               
+                    c = c.substring(1, c.length);                   
+                }               
+                if(c.indexOf(name_cook) == 0) {                   
+                    return c.substring(name_cook.length, c.length);                    
+                }               
+            }           
+            return null;           
+        }
+        let jwt = readCookie('jwt');      
         if(jwt && jwt!=="-"){
             console.log('try to destroy a car');
             console.log(element);
@@ -491,7 +516,7 @@ class DriverProfileCarClass extends React.Component {
                                         <div className="filledCardInformationMenu">
                                             <p className="filledCardInformationDeleteCar" onClick={()=>this.destroy(element)}>Удалить</p>
                                             <p className="filledCardInformationNameCarEdit" onClick={()=>this.toggle(element)}>Редактировать</p>
-                                            <p className="filledCardInformationNameCarEdit">{element ? "Деактивировать" : "Активировать"}</p>
+                                            <p className="filledCardInformationNameCarEdit" onClick={()=>this.changeActive(element)}>{element.onWork ? "Деактивировать" : "Активировать"}</p>
                                         </div>
                                     </div>
                                 </div>
