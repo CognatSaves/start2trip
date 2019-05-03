@@ -1,19 +1,22 @@
 .billingBody {
     border-radius: 5px;
     box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
-    padding-bottom: 30px;
     margin-bottom: 30px;
-}
-
-.billingContentRight,
-.billingContentLeft {
-    margin-bottom: 30px;
-    width: 50%;
     padding: 20px;
-    border-bottom: 1px solid #ccc;
+}
+
+ :nth-child(2).billingBody {
+    margin-bottom: 80px;
+}
+
+.billingContentRight {
+    width: 50%;
+    padding-left: 20px;
 }
 
 .billingContentLeft {
+    width: 50%;
+    padding-right: 20px;
     border-right: 1px solid #ccc;
 }
 
@@ -55,6 +58,7 @@
 
 .billingTextTitle {
     margin-bottom: 20px;
+    text-align: left;
 }
 
 .billingTextTitle span {
@@ -64,14 +68,76 @@
 }
 
 .blillingHeader {
-    padding: 20px !important;
+    background-color: rgba(204, 204, 204, 0.2);
+    margin-right: 35px;
+    padding-bottom: 20px !important;
 }
 
 .blillingHeaderTitle {
     font-size: 16px;
     font-weight: 500;
     color: #304269;
-    margin: 0 auto;
+}
+
+.billingTable tr td {
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    color: #304269 !important;
+}
+
+.billingTableHeader tr th {
+    font-size: 13px !important;
+    font-weight: 400 !important;
+    color: #666 !important;
+}
+
+.billingTable tr:nth-child(1n) td {
+    background-color: #fff !important;
+}
+
+.billingTable tr:nth-child(2n+2) td {
+    background-color: rgba(204, 204, 204, 0.2) !important;
+}
+
+.billingTable {
+    width: 1140px !important;
+}
+
+.billingCalendar {
+    border: 1px solid #ccc !important;
+    border-radius: 5px;
+    max-width: 120px;
+    margin: 0 5px;
+    max-height: 30px;
+    cursor: pointer;
+}
+
+.billingCalendar :nth-child(1) {
+    height: 30px !important;
+    max-width: 120px;
+    cursor: pointer;
+}
+
+.billingCalendar input {
+    text-indent: 25px;
+    background: url(./img/calendarGray.svg)no-repeat;
+    background-size: 12px 12px;
+    background-position: top 8px left 5px;
+    font-size: 14px !important;
+    font-weight: 400;
+    color: #304269;
+    max-width: 120px;
+    cursor: pointer !important;
+}
+
+.billingCalendar hr {
+    display: none;
+}
+
+@media (max-width: 1140px) {
+    .billingTableBody div :nth-child(2) {
+        overflow: initial !important;
+    }
 }
 
 @media (max-width: 768px) {
@@ -82,6 +148,15 @@
     .billingContentLeft {
         width: 100%;
         border-bottom: 1px solid #ccc;
+    }
+    .billingTextTitle {
+        text-align: center;
+    }
+    .billingContentRight {
+        margin-top: 20px;
+    }
+    .billingCalendar {
+        margin: 5px 5px !important;
     }
 }
 

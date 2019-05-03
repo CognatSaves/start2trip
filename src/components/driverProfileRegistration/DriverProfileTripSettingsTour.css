@@ -60,7 +60,7 @@
 
 .tourContent label {
     font-family: "Roboto";
-    font-weight: 500;
+    font-weight: 400;
     font-size: 14px;
     color: #686868;
 }
@@ -112,7 +112,7 @@ div.tourContentCheckbox {
     position: relative;
     cursor: pointer;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 400;
     color: #333;
     padding-left: 28px;
     -webkit-user-select: none;

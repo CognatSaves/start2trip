@@ -53,7 +53,7 @@ class DriverProfileAffiliateProgramClass extends React.Component {
                                 <div className="affilitaProgramEl d-flex flex-column align-items-center justify-content-center">
                                     <i className="peopleicon"></i>
                                     <span>0</span>
-                                    <span>Всего рефеналов</span>
+                                    <span>Всего рефералов</span>
                                 </div>
                             </div>
                             <div className="col-sm-4 col-12">
@@ -72,25 +72,32 @@ class DriverProfileAffiliateProgramClass extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <Table className="affiliateProgramTable col-11">
-                        <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
-                            <TableRow >
-                                <TableHeaderColumn>EMAIL</TableHeaderColumn>
-                                <TableHeaderColumn>Дата регистрации</TableHeaderColumn>
-                                <TableHeaderColumn>Источник регистрации</TableHeaderColumn>
-                                <TableHeaderColumn>Начисления</TableHeaderColumn>
-                            </TableRow>
-                        </TableHeader>
-                        <TableBody displayRowCheckbox={false}>
-                            <TableRow>
-                                <TableRowColumn>dssf@ff.f</TableRowColumn>
-                                <TableRowColumn>03.05.2018</TableRowColumn>
-                                <TableRowColumn>Employed</TableRowColumn>
-                                <TableRowColumn>$150</TableRowColumn>
-                            </TableRow>
-                        </TableBody>
-                    </Table>
-
+                    <div className="affiliateProgramTableBody">
+                        <Table className="affiliateProgramTable">
+                            <TableHeader 
+                            className="affiliateProgramTableHeader"
+                            displaySelectAll={false} 
+                            adjustForCheckbox={false}>
+                                <TableRow >
+                                    <TableHeaderColumn>EMAIL</TableHeaderColumn>
+                                    <TableHeaderColumn>Дата регистрации</TableHeaderColumn>
+                                    <TableHeaderColumn>Источник регистрации</TableHeaderColumn>
+                                    <TableHeaderColumn>Начисления</TableHeaderColumn>
+                                </TableRow>
+                            </TableHeader>
+                            <TableBody
+                                className="affiliateProgramTable"
+                                stripedRows={true} 
+                                displayRowCheckbox={false}>
+                                <TableRow>
+                                    <TableRowColumn>dssf@ff.f</TableRowColumn>
+                                    <TableRowColumn>03.05.2018</TableRowColumn>
+                                    <TableRowColumn>Employed</TableRowColumn>
+                                    <TableRowColumn>$150</TableRowColumn>
+                                </TableRow>
+                            </TableBody>
+                        </Table>
+                    </div>
                 </div>
             </div>
         );
