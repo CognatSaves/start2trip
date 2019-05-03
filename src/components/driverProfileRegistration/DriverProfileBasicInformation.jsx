@@ -203,12 +203,6 @@ class DriverProfileBasicInformationClass extends React.Component {
 
     render() {
         const style = {
-            container: {
-                position: 'absolute',
-                top:'20%',
-                left:'48%',
-                background:'none',
-            },
             refresh: {
                 display: 'inline-block',
                 position: 'relative',
@@ -224,16 +218,19 @@ class DriverProfileBasicInformationClass extends React.Component {
                     <div className="basicInformationBodyBottomHeader d-xl-block d-lg-block d-md-block d-sm-none d-none">
                         <p>Редактировать профиль</p>
                     </div>
-                    <div style={style.container}>
+                    {/* <div className="refreshIndicatorModal">
                         <RefreshIndicator
                             size={70}
                             left={0}
                             top={0}
                             loadingColor="#f60"
-                            status="ready"
+                            color="#25ae88"
+                            status="loading"
                             style={style.refresh}
                         />
-                    </div>
+                        <i className="refreshIndicatorSuccess"></i>
+                     <i className={this.state.flag ?"":"refreshIndicatorSuccess"}></i> 
+                    </div> */}
                     <div className="basicInformationBodyBottomContent d-flex flex-column">
                         <form onSubmit={this.formSubmit} id="basicInformation" className="d-flex flex-column col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" >
                             <div className="bottomContentNote d-flex align-items-center">
