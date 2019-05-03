@@ -22,6 +22,7 @@ import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 import arrowDownIcon from './pictures/down-arrow.svg'
 import { whichPageRender } from "../../redusers/ActionDriverProfileRegistration"
+import { whichPageRenderHistory } from "../../redusers/ActionGlobal"
 
 
 const ModalRegistration = (props) => {
@@ -71,6 +72,9 @@ class HeaderClass extends React.Component {
       return null;
     }
     super(props);
+    if(this.props.history){
+      this.props.dispatch(whichPageRenderHistory(this.props.history));
+    }
     console.log('storeState');
     console.log(this.props.storeState);
     this.authorization();
@@ -133,6 +137,7 @@ class HeaderClass extends React.Component {
       avatarUrl: "",
       userName: "",
       menuItems: ["Профиль", "Автомобиль", "Настройки поездок", "Туры", "Отзывы", "Настройки", "Биллинг", "Партнерская программа", "Выход"],
+      history: props.history,
     };
     this.toggleLanguage = this.toggleLanguage.bind(this);
     this.toggleDropdownOpen = this.toggleDropdownOpen.bind(this);
@@ -337,10 +342,10 @@ class HeaderClass extends React.Component {
                   <div className="avatar" style={{ background: 'url(' + this.props.storeState.avatarUrl + ') no-repeat' }}></div>
                   <i className="openDropDownMenuBt"></i>
                   <div className= "hederMenu">
-                    <span onClick={()=>{this.props.dispatch(whichPageRender(1))}}>Профиль</span>
-                    <span onClick={()=>{this.props.dispatch(whichPageRender(0))}}>Мои поездки</span>
-                    <span onClick={()=>{this.props.dispatch(whichPageRender(6))}}>Настройки</span>
-                    <span onClick={()=>{this.props.dispatch(whichPageRender(8))}}>Партнерская программа</span>
+                    <span onClick={()=>{this.props.dispatch(whichPageRender(1)); this.props.globalhistory.history.push("/account/driver/profile")}}>Профиль</span>
+                    <span onClick={()=>{this.props.dispatch(whichPageRender(0)); this.props.globalhistory.history.push("/account/driver/trips")}}>Мои поездки</span>
+                    <span onClick={()=>{this.props.dispatch(whichPageRender(6));debugger; this.props.globalhistory.history.push("/account/driver/settings")}}>Настройки</span>
+                    <span onClick={()=>{this.props.dispatch(whichPageRender(8)); this.props.globalhistory.history.push("/account/driver/referrals")}}>Партнерская программа</span>
                     <span onClick={this.logOffFunc}>Выйти</span>
                   </div>
                 </div>
@@ -357,6 +362,7 @@ class HeaderClass extends React.Component {
 const Header = connect(
   (state) => ({
     storeState: state.AppReduser,
+    globalhistory: state.GlobalReduser,
   }),
 )(HeaderClass);
 

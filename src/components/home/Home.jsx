@@ -10,12 +10,14 @@ import RenderFourEl from './HomeBody/RenderFourEl.jsx'
 import georgiaImg from './HomeBody/pictures/georgia.png'
 import { InputGroup, InputGroupAddon, Input, Button } from 'reactstrap';
 
+import { connect } from 'react-redux';
+
 //import HomeHeader from './HomeHeader/HomeHeader.jsx'
 import Header from '../header/Header';
 import HomeBody from './HomeBody/HomeBody.jsx'
 
 
-class Home extends React.Component {
+class HomeClass extends React.Component {
   constructor(props) {
     super(props);
     this.redirectFunc = this.redirectFunc.bind(this);
@@ -30,13 +32,15 @@ class Home extends React.Component {
   }
   redirectFunc(where) {
     this.props.history.push(where);
+    
   }
   render() {
+    
     return (
       <React.Fragment>
         <main className="d-flex flex-column container-fluid p-0">
           <div className="home_window">
-          <Header />
+          <Header history={this.props.history} />
             <div className="home_block col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
               <div className="home_text col-12">
                 <div className="text_firstLine">Cпланируйте свою экскурсию</div>
@@ -102,5 +106,11 @@ class Home extends React.Component {
   }
 }
 
+const Home = connect(
+  (state) => ({
+    storeState: state.AppReduser,
+    globalhistory: state.GlobalReduser,
+  }),
+)(HomeClass);
 
 export default Home;

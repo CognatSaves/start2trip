@@ -23,13 +23,24 @@ class DriverProfileNavigationClass extends React.Component {
             shiftLeft: [0, 6, 129, 219, 311, 430, 430],
             avatar: "",
             profile: this.props.storeState.profile,
+            route: [
+                "/account/driver/trips",
+                "/account/driver/profile",
+                "/account/driver/cars",
+                "/account/driver/tripsSettings",
+                "/account/driver/tours",
+                "/account/driver/reviews",
+                "/account/driver/settings",
+                "/account/driver/billing",
+                "/account/driver/referrals",
+            ],
         }
     }
     shiftLeft = (event) => {
 
         event.currentTarget.parentElement.scrollLeft = event.currentTarget.offsetLeft - 120;
     }
-    _handleImageChange=(e)=> {
+    _handleImageChange = (e) => {
         e.preventDefault();
         debugger
 
@@ -49,11 +60,11 @@ class DriverProfileNavigationClass extends React.Component {
 
     render() {
 
-        if(!this.state.avatar){
+        if (!this.state.avatar) {
             let img = requests.serverAddress + this.state.profile.avatar.url
             this.setState({ avatar: img })
         }
-       
+
 
 
         // console.log('profile');
@@ -61,15 +72,15 @@ class DriverProfileNavigationClass extends React.Component {
         return (
             <React.Fragment>
                 <div className="registrationWrapper driverBG col-12 p-0" style={{
-                    0: { backgroundImage: "url(" + preHistoryBG + ")" },
+                    "/account/driver/trips": { backgroundImage: "url(" + preHistoryBG + ")" },
                     // 1: { backgroundImage: "url(" + historyBG + ")" },
-                    1: { backgroundImage: "url(" + sittingsBG + ")" },
-                    2: { backgroundImage: "url(" + carBg + ")" },
-                    3: { backgroundImage: "url(" + calendarBG + ")" },
-                    4: { backgroundImage: "url(" + toursBG + ")" },
-                    5: { backgroundImage: "url(" + feedbackBG + ")" },
-                    6: { backgroundImage: "url(" + sittingsBG + ")" },
-                }[this.props.storeState.pageRender]}>
+                    "/account/driver/profile": { backgroundImage: "url(" + sittingsBG + ")" },
+                    "/account/driver/cars": { backgroundImage: "url(" + carBg + ")" },
+                    "/account/driver/tripsSettings": { backgroundImage: "url(" + calendarBG + ")" },
+                    "/account/driver/tours": { backgroundImage: "url(" + toursBG + ")" },
+                    "/account/driver/reviews": { backgroundImage: "url(" + feedbackBG + ")" },
+                    "/account/driver/settings": { backgroundImage: "url(" + sittingsBG + ")" },
+                }[this.props.globalhistory.history.location.pathname]}>
                     <div className="basicInformationBodyTop d-flex align-items-center ">
                         <div className="basicInformationBodyTopImgHover">
                             <label className="basicInformationBodyTopImg" htmlFor="addFile">Обновить фотографию</label>
@@ -114,7 +125,9 @@ class DriverProfileNavigationClass extends React.Component {
 
                     <div className="navigationBody d-flex align-items-center">
                         {this.state.navigationText.map((element, index) =>
-                            <span className={{ [index]: "navigationBodyActive", }[this.props.storeState.pageRender] + " navigationButton mb-0 "} onClick={(event) => { this.props.dispatch(whichPageRender(index)); this.shiftLeft(event) }}>{element}</span>
+
+                            <span className={{ [this.state.route[index]]: "navigationBodyActive", }[this.props.globalhistory.history.location.pathname] + " navigationButton mb-0 "} onClick={(event) => { this.props.dispatch(whichPageRender(index)); this.shiftLeft(event); this.props.globalhistory.history.push(this.state.route[index]) }}>{element}</span>
+
                         )}
                     </div>
                 </div>
@@ -126,6 +139,7 @@ class DriverProfileNavigationClass extends React.Component {
 const DriverProfileNavigation = connect(
     (state) => ({
         storeState: state.DriverProfileRegistrationtReduser,
+        globalhistory: state.GlobalReduser,
     }),
 )(DriverProfileNavigationClass);
 

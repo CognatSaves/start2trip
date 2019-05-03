@@ -337,8 +337,12 @@
     object-fit: cover;
 }
 
+.openMenu {
+    cursor: pointer;
+}
+
 .openMenu:hover .hederMenu {
-    height: 155px;
+    height: 205px;
 }
 
 .openDropDownMenuBt {
@@ -365,12 +369,13 @@
     background: #fff;
     text-align: left;
     transition: all 0.3s;
+    border-radius: 5px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 }
 
 .hederMenu span {
     width: 100%;
-    padding: 5px;
+    padding: 10px 5px;
     padding-left: 15px;
     font-weight: 400;
     font-size: 14px;

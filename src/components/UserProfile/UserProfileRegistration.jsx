@@ -36,7 +36,7 @@ class UserProfileRegistrationClass extends React.Component {
 
     return (
       <React.Fragment>
-        <Header driver={true} />
+        <Header driver={true} history={this.props.history}/>
         <UserProfileNavigation />
         <div className="registrationWrapper d-flex flex-column col-12 p-0">
           <div className="contentHeight d-flex col-12 p-0">

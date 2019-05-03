@@ -4,11 +4,13 @@ import facebookIcon from "./pictures/facebook-letter-logo.svg"
 import instagramIcon from "./pictures/instagram.svg"
 import logoTripfer from "./pictures/logo_tripfer_white.svg"
 import upArrowIcon from "./pictures/up-arrow.svg"
+import { whichPageRenderHistory } from "../../redusers/ActionGlobal"
+import { connect } from 'react-redux';
 
-export default class Footer extends React.Component {
-  /*constructor(props) {
+ class FooterClass extends React.Component {
+  constructor(props) {
     super(props);
-  }*/
+  }
   render() {
     return (
       <React.Fragment>
@@ -52,3 +54,12 @@ export default class Footer extends React.Component {
   }
 
 }
+
+const Footer = connect(
+  (state) => ({
+    storeState: state.AppReduser,
+    globalhistory: state.GlobalReduser,
+  }),
+)(FooterClass);
+
+export default Footer;
