@@ -25,7 +25,6 @@ import { ToursReduser } from './redusers/ToursReduser';
 import { DriverProfileRegistrationtReduser } from './redusers/DriverProfileRegistrationtReduser';
 import { UserProfileRegistrationtReduser } from './redusers/UserProfileRegistrationtReduser';
 import { /*Link,*/ Route, BrowserRouter, Redirect, Switch } from 'react-router-dom';
-import { createBrowserHistory } from "history";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 require('require-context/register');
@@ -36,8 +35,6 @@ const redux = require('redux');
 const reducers = redux.combineReducers({ AppReduser, DriversReduser, StateReduser, CommentReduser, PlacesReduser, ToursReduser, DriverProfileRegistrationtReduser,UserProfileRegistrationtReduser });
 
 const store = redux.createStore(reducers);
-
-const history = createBrowserHistory();
 
 const muiTheme = getMuiTheme({
     palette: {
@@ -65,7 +62,7 @@ ReactDOM.render(
             <React.Fragment>
                 <MuiThemeProvider muiTheme={muiTheme}>
                     <Switch>
-                        <Route path="/home" render={(props) => <Home history={history} />} />
+                        <Route path="/home" component={Home} />
                         <Route path="/drivers" component={Drivers} />
                         <Route path="/driverProfile/:id,:temp1,:temp2" component={DriverProfile} />
                         <Route path="/places" component={Places} />
