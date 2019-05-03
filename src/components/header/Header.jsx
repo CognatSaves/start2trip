@@ -7,7 +7,6 @@ import RenderModalRegistration from './RenderModalRegistration'
 import mapWorldIcon from './pictures/mapWorld.svg'
 import { connect } from 'react-redux';
 import crossIconModal from './pictures/close.svg'
-import people from './pictures/person.jpg'
 import geoFlag from './pictures/georgia.svg'
 import ruFlag from './pictures/russia.svg'
 import enFlag from './pictures/united-kingdom.svg'
@@ -15,9 +14,6 @@ import espFlag from './pictures/spain.svg'
 import { Link } from 'react-router-dom';
 import { Collapse } from 'reactstrap';
 import { Modal, ModalBody } from 'reactstrap';
-import { browserName, isChrome, isFirefox, isOpera, BrowserView } from 'react-device-detect';
-import { EventEmitter } from 'events';
-import ReactDOM from 'react-dom';
 import requests from '../../config';
 import axios from 'axios';
 import { setUser } from '../../redusers/Action';
@@ -25,6 +21,7 @@ import { disablePageScroll, clearQueueScrollLocks, enablePageScroll } from 'scro
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 import arrowDownIcon from './pictures/down-arrow.svg'
+import { whichPageRender } from "../../redusers/ActionDriverProfileRegistration"
 
 
 const ModalRegistration = (props) => {
@@ -135,7 +132,7 @@ class HeaderClass extends React.Component {
       ],
       avatarUrl: "",
       userName: "",
-      menuItems: ["Профиль", "Автомобиль", "Настройки поездок", "Туры", "Отзывы", "Настройки", "Биллинг", "Партнерская программа", "Выход"]
+      menuItems: ["Профиль", "Автомобиль", "Настройки поездок", "Туры", "Отзывы", "Настройки", "Биллинг", "Партнерская программа", "Выход"],
     };
     this.toggleLanguage = this.toggleLanguage.bind(this);
     this.toggleDropdownOpen = this.toggleDropdownOpen.bind(this);
@@ -335,13 +332,15 @@ class HeaderClass extends React.Component {
                 </Dropdown>
               </div>
               <div className="headerRegistration d-flex justify-content-start col-xl-1 col-lg-1 col-md-2 col-sm-1 col-1">
-                <span style={{ display: this.props.storeState.isAuthorized ? 'none' : 'block' }} onClick={this.toggleModalRegistration} >Войти</span>
-                <div style={{ display: this.props.storeState.isAuthorized ? 'flex' : 'none' }}>
+                <span style={{ display: this.props.storeState.isAuthorized ? 'none' : 'block' }} onClick={this.toggleModalRegistration}>Войти</span>
+                <div style={{ display: this.props.storeState.isAuthorized ? 'flex' : 'none' }} className="openMenu position-relative align-items-center">
                   <div className="avatar" style={{ background: 'url(' + this.props.storeState.avatarUrl + ') no-repeat' }}></div>
-                  {
-                    /*<div>{this.props.storeState.userName}</div>*/
-                  }
-                  <button onClick={this.logOffFunc}>X</button>
+                  <div className= "hederMenu">
+                    <span onClick={()=>{this.props.dispatch(whichPageRender(1))}}>Профиль</span>
+                    <span onClick={()=>{this.props.dispatch(whichPageRender(0))}}>Мои поездки</span>
+                    <span onClick={()=>{this.props.dispatch(whichPageRender(6))}}>Настройки</span>
+                    <span onClick={this.logOffFunc}>Выйти</span>
+                  </div>
                 </div>
               </div>
             </div>
