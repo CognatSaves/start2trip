@@ -18,7 +18,6 @@ class UserProfileBasicInformationClass extends React.Component {
     }
 
     formSubmit(event) {
-        debugger
         alert('Your favorite flavor is: ' + this.state.value);
         event.preventDefault();
     }

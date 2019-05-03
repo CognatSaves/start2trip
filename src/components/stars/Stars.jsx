@@ -16,7 +16,7 @@ class StarsClass extends React.Component {
   }
 
   onRate = (element) => {
-    debugger
+
     this.props.dispatch(setCommentValue(element.rating));
     this.setState({ tempValue: element.rating });
   }

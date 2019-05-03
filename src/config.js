@@ -7,9 +7,11 @@ const meRequest = serverAddress+'/users/me/auth';
 const profileRequest = serverAddress+'/users/me/profile';
 const profileUpdateRequest = serverAddress+"/users/me/update";
 const travelsettingsUpdateRequest = serverAddress + '/users/me/travelsetings';//запрос для админки 
-const userCarsUpdateRequest = serverAddress + '/users/me/car';//запрос для админки 
+const userCarsCreateRequest = serverAddress + '/users/me/car';//запрос для админки 
 const userCarDestroyRequest = serverAddress + '/cars/me';//запрос для админки
+const userCarUpdateRequest = serverAddress + '/cars/me';//запрос для админки
 export default {serverAddress: serverAddress, serverRegistrationRequest: serverRegistrationRequest, facebookRequest: facebookRequest,
      googleRequest: googleRequest, serverAuthorizationRequest: serverAuthorizationRequest, meRequest: meRequest, 
      profileRequest:profileRequest, profileUpdateRequest: profileUpdateRequest, travelsettingsUpdateRequest: travelsettingsUpdateRequest,
-     userCarsUpdateRequest: userCarsUpdateRequest,userCarDestroyRequest:userCarDestroyRequest};
+     userCarsCreateRequest: userCarsCreateRequest,userCarDestroyRequest:userCarDestroyRequest,
+     userCarUpdateRequest: userCarUpdateRequest};
