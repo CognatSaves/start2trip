@@ -335,6 +335,7 @@ class HeaderClass extends React.Component {
                 <span style={{ display: this.props.storeState.isAuthorized ? 'none' : 'block' }} onClick={this.toggleModalRegistration}>Войти</span>
                 <div style={{ display: this.props.storeState.isAuthorized ? 'flex' : 'none' }} className="openMenu position-relative align-items-center">
                   <div className="avatar" style={{ background: 'url(' + this.props.storeState.avatarUrl + ') no-repeat' }}></div>
+                  <i className="openDropDownMenuBt"></i>
                   <div className= "hederMenu">
                     <span onClick={()=>{this.props.dispatch(whichPageRender(1))}}>Профиль</span>
                     <span onClick={()=>{this.props.dispatch(whichPageRender(0))}}>Мои поездки</span>
