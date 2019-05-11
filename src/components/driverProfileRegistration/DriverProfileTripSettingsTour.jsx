@@ -2,7 +2,6 @@ import React from 'react';
 import './DriverProfileTripSettingsTour.css'
 import { connect } from 'react-redux';
 import { Collapse } from 'reactstrap';
-import georgiaImg from './img/bg.jpg'
 import Stars from '../stars/Stars'
 import LocationSearchInput from '../home/HomeBody/Search'
 import { isMobile } from 'react-device-detect';
@@ -10,18 +9,14 @@ import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 import Chip from 'material-ui/Chip';
 import TextField from 'material-ui/TextField';
-import MultipleDatePicker from 'react-multiple-datepicker'
 import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
-import ruIcon from './img/russia.svg'
-import enIcon from './img/united-kingdom.svg'
 import InfiniteCalendar, {
     Calendar,
     defaultMultipleDateInterpolation,
     withMultipleDates,
 } from 'react-infinite-calendar';
 import 'react-infinite-calendar/styles.css'; // only needs to be imported once
-import LanguageMenu from '../drivers/DriversBody/DriversProperties/components/LanguageMenu/LanguageMenu';
 import requests from '../../config';
 
 
@@ -32,29 +27,59 @@ class DriverProfileTripSettingsTourClass extends React.Component {
     constructor(props) {
         super(props);
         let profile = this.props.profileReduser.profile;
+        let local = [];
+        for(let i=0;i<profile.allLanguages.length;i++){
+            local[i] = {
+                name: "name",
+                departurePoint:"departurePoint",
+                points: ["A","B"],
+                info: "lol",
+                language: profile.allLanguages[i].ISO
+            }
+        }
+        let categoriesUnselected = [];
+        for(let i=0; i<profile.categories.length; i++){
+            categoriesUnselected[i]={
+                key: profile.categories[i].id,
+                value: profile.categories[i].local.name
+            }
+        }
+        let tagsUnselected = [];
+        for(let i=0; i<profile.tags.length; i++){
+            tagsUnselected[i]={
+                key: profile.tags[i].id,
+                value: profile.tags[i].local.name
+            }
+        }
         this.state = {
+            tourSave:{
+                local: local,
+                calendary: [],
+                categoriesSelected: [],
+                categoriesUnselected: categoriesUnselected,
+                currency: "",
+                daily: true,
+                directionId: "",
+                image:[],
+                imageFiles:[],
+                price: "",
+                seats: "",
+                time:"",
+                tagsSelected: [],
+                tagsUnselected:tagsUnselected,
+            },
             collapse: false,
             calendarModal: false,
-            tourContentEveryday: false,
-            tourContentOther: false,
-            currency: ["USD", "EUR", "GEL", "RUB",],
-            activeCurrency: "USD",
-            typeCar: "sedan",
+            currencies: [...profile.currencies],
             savedTours:profile.tours,
-            departurePoint: "",
-            attractionsAlongTheRoute: [],
-            getAddress: "",
-            dateTour: [],
-            directions: ["Батуми", "Тбилиси", "Кутаиси", "Сванеция"],
-            directionsChip: [],
-            directionsValue: "Все направления", // not change
-            categories: ["Активный", "Пляжный", "Экстримальный", "Шоп"],
-            categoriesChip: [],
+
+            directions: [...profile.directions],
+            directionsValue: "Все направления", 
+            categories: [...profile.categories],
             categoriesValue: "Все категории", // not change
-            tags: ["Замки", "Церкви", "Бастилии", "Парки"],
-            tagsChip: [],
+            tags: [...profile.tags],
             tagsValue: "Все теги", // not change
-            languageTour: [{ title: "RU", img: ruIcon }, { title: "EN", img: enIcon }],
+            languageTour: [...profile.allLanguages],
             languageTourOpen: 0,
             newTourEverydayTime: "Выберите время",
             newTourDatepickerTime: "Выберите время",
@@ -86,21 +111,283 @@ class DriverProfileTripSettingsTourClass extends React.Component {
             ],
             file: '',
             imagePreviewUrl: '',
-            carImg: [],
+            tempValue: 100,
+            tour:{},
+            tourId: "" 
         }
 
         this.toggle = this.toggle.bind(this);
         this.formSubmit = this.formSubmit.bind(this);
         this.addDate = this.addDate.bind(this);
+        this.calendarModalShow = this.calendarModalShow.bind(this);
+        this.fillForm=this.fillForm.bind(this);
+        this.applyChanges=this.applyChanges.bind(this);
+        this.destroy = this.destroy.bind(this);
+        this.changeActive = this.changeActive.bind(this);
+        this.selectTourName = this.selectTourName.bind(this);
     }
-
+    fillForm(element){
+        let profile = this.props.profileReduser.profile;
+        if(!element){           
+            let local = [];
+            for(let i=0;i<profile.allLanguages.length;i++){
+                local[i] = {
+                    name: "",
+                    departurePoint:"",
+                    points: [],
+                    info: "",
+                    language: profile.allLanguages[i].ISO
+                }
+            }
+            let categoriesUnselected = [];
+            for(let i=0; i<profile.categories.length; i++){
+                categoriesUnselected[i]={
+                    key: profile.categories[i].id,
+                    value: profile.categories[i].local.name
+                }
+            }
+            let tagsUnselected = [];
+            for(let i=0; i<profile.tags.length; i++){
+                tagsUnselected[i]={
+                    key: profile.tags[i].id,
+                    value: profile.tags[i].local.name
+                }
+            }
+            let tourSave={
+                local: [...local],
+                calendary: [],
+                categoriesSelected:[],
+                categoriesUnselected: categoriesUnselected,
+                currency:"",
+                daily: true,
+                directionId: "",
+                image:[],
+                imageFiles:[],
+                price:"",
+                seats:"",
+                time:"",
+                tagsSelected: [],
+                tagsUnselected:tagsUnselected,
+            };
+            this.setState({
+                tourSave: tourSave,
+                languageTourOpen: 0,
+                file: '',
+                imagePreviewUrl: '',
+                tourId: ""              
+            });
+        }
+        else{
+            let local = [];
+            for(let i=0; i<element.local.length; i++){
+                local[i]={...element.local[i]}
+            }
+            let categoriesUnselected=[];
+            let categoriesSelected = [];
+            for(let i=0; i<profile.categories.length; i++){
+                for(let k=0; k<element.categoryIds.length; k++){
+                    if(profile.categories[i].id===element.categoryIds[k]){
+                        categoriesSelected.push({
+                            key: profile.categories[i].id,
+                            value: profile.categories[i].local.name
+                        });
+                        k=element.categoryIds.length;
+                    }
+                    if(k===element.categoryIds.length-1){
+                        categoriesUnselected.push({
+                            key: profile.categories[i].id,
+                            value: profile.categories[i].local.name
+                        });
+                    }
+                }
+            }
+            let tagsSelected=[];
+            let tagsUnselected=[];
+            for(let i=0; i<profile.tags.length; i++){
+                for(let k=0; k<element.tags.length; k++){
+                    if(profile.tags[i].id===element.tags[k]){
+                        tagsSelected.push({
+                            key: profile.tags[i].id,
+                            value: profile.tags[i].local.name
+                        });
+                        k=element.tags.length;
+                    }
+                    if(k===element.tags.length-1){
+                        tagsUnselected.push({
+                            key: profile.tags[i].id,
+                            value: profile.tags[i].local.name
+                        });
+                    }
+                }
+            }
+            let image = [];
+            let imageFiles = [];
+            for(let i=0; i<element.image.length; i++){
+                image[i]=requests.serverAddress+element.image[i].url;
+                imageFiles[i]=new File([""],'old');
+            }
+            let calendary = [];
+            for(let i = 0; i<element.calendary.length; i++){
+                calendary[i] = new Date(element.calendary[i]);
+            }
+            let tourSave={
+                local: [...local],
+                calendary: calendary,
+                categoriesSelected: categoriesSelected,
+                categoriesUnselected: categoriesUnselected,
+                currency: element.currency,
+                daily: element.daily,
+                directionId: element.directionId,
+                image:image,
+                imageFiles:imageFiles,
+                price: element.price,
+                seats: element.seats,
+                time: element.time,
+                tagsSelected: tagsSelected,
+                tagsUnselected: tagsUnselected
+            };
+            this.setState({
+                tourSave: tourSave,
+                languageTourOpen: 0,
+                file: '',
+                imagePreviewUrl: '',
+                tourId: element.id
+            });
+        }
+    }
+    changeActive(element){
+        function readCookie(name) {
+            var name_cook = name+"=";
+            var spl = document.cookie.split(";");           
+            for(var i=0; i<spl.length; i++) {           
+                var c = spl[i];               
+                while(c.charAt(0) == " ") {               
+                    c = c.substring(1, c.length);                   
+                }               
+                if(c.indexOf(name_cook) == 0) {                   
+                    return c.substring(name_cook.length, c.length);                    
+                }               
+            }           
+            return null;           
+        }
+        let jwt = readCookie('jwt');
+        if(jwt && jwt!=="-"){
+            var tourForm = new FormData();
+            tourForm.append('onWork',!element.onWork);
+            const request = new XMLHttpRequest();
+            request.open('PUT',requests.userTourActivateRequest+'/'+element.id);
+            request.setRequestHeader('Authorization',`Bearer ${jwt}`);
+            request.send(tourForm);
+        }
+    }
+    destroy(element){
+        function readCookie(name) {
+            var name_cook = name+"=";
+            var spl = document.cookie.split(";");           
+            for(var i=0; i<spl.length; i++) {           
+                var c = spl[i];               
+                while(c.charAt(0) == " ") {               
+                    c = c.substring(1, c.length);                   
+                }               
+                if(c.indexOf(name_cook) == 0) {                   
+                    return c.substring(name_cook.length, c.length);                    
+                }               
+            }           
+            return null;           
+        }
+        let jwt = readCookie('jwt');      
+        if(jwt && jwt!=="-"){
+            const request = new XMLHttpRequest();
+            request.onreadystatechange = function(){
+                console.log(request.status);
+                console.log(request.statusText);
+                console.log(request.responseText);
+            }
+            request.open('DELETE', requests.userTourDestroyRequest+"/"+element.id);
+            request.setRequestHeader('Authorization',`Bearer ${jwt}`);
+            request.send();
+        }
+    }
+    applyChanges(type){
+        function readCookie(name) {
+            var name_cook = name+"=";
+            var spl = document.cookie.split(";");           
+            for(var i=0; i<spl.length; i++) {           
+                var c = spl[i];               
+                while(c.charAt(0) == " ") {               
+                    c = c.substring(1, c.length);                   
+                }               
+                if(c.indexOf(name_cook) == 0) {                   
+                    return c.substring(name_cook.length, c.length);                    
+                }               
+            }           
+            return null;           
+        }
+        let jwt = readCookie('jwt');
+        if(jwt && jwt!=="-"){
+            var tourForm = new FormData();
+            let tourSave = this.state.tourSave;
+            for(let i=0; i<tourSave.local.length; i++){
+                tourForm.append('local', JSON.stringify(tourSave.local[i]));
+            }
+            for(let i=0; i<tourSave.calendary.length; i++){
+                tourForm.append('calendary', tourSave.calendary[i]);
+            }
+            for(let i=0; i<tourSave.categoriesSelected.length; i++){
+                tourForm.append('categories', tourSave.categoriesSelected[i].key);
+            }
+            for(let i=0; i<tourSave.tagsSelected.length; i++){
+                tourForm.append('tags', tourSave.tagsSelected[i].key);
+            }
+            tourForm.append('currency',tourSave.currency);
+            tourForm.append('daily', tourSave.daily);
+            tourForm.append('directionId', tourSave.directionId);
+            tourForm.append('price',tourSave.price);
+            tourForm.append('seats',tourSave.seats);
+            tourForm.append('time', tourSave.time);           
+            for(let i=0; i<tourSave.imageFiles.length; i++){
+                tourForm.append('image', tourSave.imageFiles[i]);
+            }
+            const request = new XMLHttpRequest();
+            if(this.state.tourId.length===0){
+                request.open('PUT', requests.userTourCreateRequest);
+                request.setRequestHeader('Authorization',`Bearer ${jwt}`);
+                request.send(tourForm);
+            }
+            else{
+                for(let i=0; i<tourSave.imageFiles.length; i++){
+                    if(tourSave.imageFiles[i].name==='old'){
+                        tourForm.append('imageUrl', tourSave.image[i]);
+                    }
+                    else{
+                        tourForm.append('imageUrl', 'check file');
+                    }
+                    
+                }
+                request.open('PUT', requests.userTourUpdateRequest+"/"+this.state.tourId);
+                request.setRequestHeader('Authorization',`Bearer ${jwt}`);
+                request.send(tourForm);
+            }         
+        }
+    }
     formSubmit(event) {
-        alert('Your favorite flavor is: ' + this.state.value);
+        if(!this.state.tour.id){
+            this.applyChanges(true);//если новый, то true
+        }
+        else{
+            this.applyChanges(false);
+        }  
         event.preventDefault();
     }
 
-    toggle() {
-        this.setState(state => ({ collapse: !state.collapse }));
+    toggle(element) { 
+        this.setState(state => ({ collapse: !state.collapse, tour: {} }));
+        if(!element){
+            this.fillForm();
+        }
+        else{
+            this.fillForm(element);
+        }
         if (isMobile) {
             window.scroll(0, 300);
         } else {
@@ -108,12 +395,13 @@ class DriverProfileTripSettingsTourClass extends React.Component {
         }
     }
 
-    calendarModalShow = () => {
+    calendarModalShow = () => {       
         this.setState({ calendarModal: !this.state.calendarModal });
     };
 
     addDate = (dates) => {
-        let newDate = this.state.dateTour;
+        
+        let newDate = this.state.tourSave.calendary;
         let needAddDate = true;
         if (newDate.length) {
             for (let i = 0; i < newDate.length; i++) {
@@ -131,33 +419,45 @@ class DriverProfileTripSettingsTourClass extends React.Component {
         }
     }
 
-    handleChange = (value, name) => {
+    handleChange = (value, name, params) => {
+        let tourSave = this.state.tourSave;
         switch (name) {
-            case "directions": {
-                this.directionsChip = this.state.directionsChip;
-                this.directionsChip.push({ key: this.state.directionsChip.length, label: value });
-                this.directions = this.state.directions;
-                const directionToDelete = this.directions.map((direction) => direction).indexOf(value);
-                this.directions.splice(directionToDelete, 1);
-                this.setState({ directions: this.directions });
+            case "name":{
+                if(params && params.number!==undefined){
+                    tourSave.local[params.number].name=value;
+                    this.setState({
+                        tourSave: tourSave
+                    });
+                }
+                break;
+            }
+            case "info":{
+                if(params && params.number!==undefined){
+                    tourSave.local[params.number].info=value;
+                    this.setState({
+                        tourSave: tourSave
+                    })
+                }
                 break;
             }
             case "categories": {
-                this.categoriesChip = this.state.categoriesChip;
-                this.categoriesChip.push({ key: this.state.categoriesChip.length, label: value });
-                this.categories = this.state.categories;
-                const categorieToDelete = this.categories.map((categorie) => categorie).indexOf(value);
-                this.categories.splice(categorieToDelete, 1);
-                this.setState({ categories: this.categories });
+                this.categoriesSelected = tourSave.categoriesSelected;
+                this.categoriesUnselected = tourSave.categoriesUnselected;
+
+                let objId = this.categoriesUnselected.findIndex(el => el.key===value);
+                this.categoriesSelected.push(this.categoriesUnselected[objId]);
+                this.categoriesUnselected.splice(objId, 1);
+                this.setState({ tourSave: {...tourSave, categoriesUnselected: this.categoriesUnselected, categoriesSelected:this.categoriesSelected}});
                 break;
             }
             case "tags": {
-                this.tagsChip = this.state.tagsChip;
-                this.tagsChip.push({ key: this.state.tagsChip.length, label: value });
-                this.tags = this.state.tags;
-                const tagToDelete = this.tags.map((tag) => tag).indexOf(value);
-                this.tags.splice(tagToDelete, 1);
-                this.setState({ tags: this.tags });
+                this.tagsSelected = tourSave.tagsSelected;
+                this.tagsUnselected = tourSave.tagsUnselected;
+
+                let objId = this.tagsUnselected.findIndex(el => el.key===value);
+                this.tagsSelected.push(this.tagsUnselected[objId]);
+                this.tagsUnselected.splice(objId, 1);
+                this.setState({ tourSave: {...tourSave, tagsUnselected: this.tagsUnselected, tagsSelected:this.tagsSelected}});
                 break;
             }
             case "typeCar": {
@@ -165,69 +465,55 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                 break;
             }
             case "attractionsAlongTheRoute": {
-                this.attractionsAlongTheRoute = this.state.attractionsAlongTheRoute;
-                this.attractionsAlongTheRoute.push({ key: this.state.attractionsAlongTheRoute.length, label: value });
-                this.setState({ attractionsAlongTheRoute: this.attractionsAlongTheRoute });
+                tourSave.local[params.number].points.push(value);
+                this.setState({tourSave: tourSave});
                 break;
-            }
+            }        
             default:
         }
     };
 
-    handleRequestDelete = (element, name) => {
+    handleRequestDelete = (element, name, params) => {
+        
+        let tourSave = this.state.tourSave;
         switch (name) {
-            case "directions": {
-                this.directionsChip = this.state.directionsChip;
-                const directionToDelete = this.directionsChip.map((direction) => direction.key).indexOf(element.key);
-                this.directionsChip.splice(directionToDelete, 1);
-                this.setState({ directionsChip: this.directionsChip });
-
-                this.directions = this.state.directions;
-                this.directions.push(element.label);
-                break;
-            }
             case "categories": {
-                this.categoriesChip = this.state.categoriesChip;
-                const categorieToDelete = this.categoriesChip.map((categorie) => categorie.key).indexOf(element.key);
-                this.categoriesChip.splice(categorieToDelete, 1);
-                this.setState({ categoriesChip: this.categoriesChip });
+                this.categoriesSelected = tourSave.categoriesSelected;
+                this.categoriesUnselected = tourSave.categoriesUnselected;
 
-                this.categories = this.state.categories;
-                this.categories.push(element.label);
+                let objId = this.categoriesSelected.findIndex(el => el.key===element);
+                this.categoriesUnselected.push(this.categoriesSelected[objId]);
+                this.categoriesSelected.splice(objId, 1);
+                this.setState({ tourSave: {...tourSave, categoriesUnselected: this.categoriesUnselected, categoriesSelected:this.categoriesSelected}});
                 break;
             }
             case "tags": {
-                this.tagsChip = this.state.tagsChip;
-                const tagToDelete = this.tagsChip.map((tag) => tag.key).indexOf(element.key);
-                this.tagsChip.splice(tagToDelete, 1);
-                this.setState({ tagsChip: this.tagsChip });
+                this.tagsSelected = tourSave.tagsSelected;
+                this.tagsUnselected = tourSave.tagsUnselected;
 
-                this.tags = this.state.tags;
-                this.tags.push(element.label);
+                let objId = this.tagsSelected.findIndex(el => el.key===element);
+                this.tagsUnselected.push(this.tagsSelected[objId]);
+                this.tagsSelected.splice(objId, 1);
+                this.setState({ tourSave: {...tourSave, tagsUnselected: this.tagsUnselected, tagsSelected:this.tagsSelected}});
                 break;
             }
-            case "dateTour": {
-                this.dateTour = this.state.dateTour;
-                const dateTourToDelete = this.dateTour.map((chip) => chip.key).indexOf(element.key);
-                this.dateTour.splice(dateTourToDelete, 1);
-                this.setState({ dateTour: this.dateTour });
+            
+            case "calendary": {
+                this.calendary = this.state.tourSave.calendary;
+                const calendaryToDelete = this.calendary.map((chip) => chip.key).indexOf(element.key);
+                this.calendary.splice(calendaryToDelete, 1);
+                this.setState({ tourSave:{...tourSave, calendary: this.calendary}});
                 break;
             }
             case "attractionsAlongTheRoute": {
-                this.attractionsAlongTheRoute = this.state.attractionsAlongTheRoute;
-                const attractionToDelete = this.attractionsAlongTheRoute.map((attraction) => attraction.key).indexOf(element.key);
-                this.attractionsAlongTheRoute.splice(attractionToDelete, 1);
-                this.setState({ attractionsAlongTheRoute: this.attractionsAlongTheRoute });
+                let objId = tourSave.local[params.number].points.findIndex(el => el===element);
+                tourSave.local[params.number].points.splice(objId,1);
+                this.setState({ tourSave: {...tourSave} });
                 break;
             }
             default:
         }
     };
-
-    changeCity = (index, value) => {
-        this.setState({ departurePoint: value })
-    }
-
     _handleImageChange = (e) => {
         e.preventDefault();
 
@@ -241,19 +527,36 @@ class DriverProfileTripSettingsTourClass extends React.Component {
             let reader = new FileReader();
             reader.onloadend = () => {
                 var img = reader.result;
+                let tourSave = this.state.tourSave;
+                tourSave.image.push(img);
+                tourSave.imageFiles.push(file);
                 this.setState({
+                    tourSave: tourSave,
                     file: file,
                     imagePreviewUrl: img,
                 });
-                this.setState(state => { const carImg = this.state.carImg.push(img); return carImg });
             }
             reader.readAsDataURL(file)
         }
 
     }
 
-    render() {
+    selectTourName(element)
+    {
+        let name = '';
+        if(element.local && Array.isArray(element.local)){
+            for(let i=0; i<element.local.length; i++){
+                if(element.local[i].name && element.local[i].name.length>0){
+                    name=element.local[i].name;
+                    i=element.local.length;
+                }
+            }
+        }
+        return name;
+    }
 
+    render() {
+        console.log('Trip Tour render');
         let { imagePreviewUrl } = this.state;
         let $imagePreview = null;
         if (imagePreviewUrl) {
@@ -299,7 +602,6 @@ class DriverProfileTripSettingsTourClass extends React.Component {
             weekdays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
             weekStartsOn: 0,
         };
-
         return (
             <React.Fragment>
 
@@ -319,21 +621,21 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                         locale={locale}
                         className="newTourCalendarStyle"
                         interpolateSelection={defaultMultipleDateInterpolation}
-                        selected={this.state.dateTour}
+                        selected={this.state.tourSave.calendary}
                         onSelect={this.addDate}
                     />
                 </Dialog>
                 <Collapse isOpen={this.state.collapse}>
                     <div className="tourSettingsBody">
-                        <form onSubmit={this.formSubmit} id="newTourForm" className="tourContent col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
+                        <form name='myForm' onSubmit={this.formSubmit} id="newTourForm" className="tourContent col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
                             <div className="languageTourTop d-flex flex-wrap col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
                                 {this.state.languageTour.map((element, index) =>
                                     <div className={{ [index]: "languageTourTitleActive", }[this.state.languageTourOpen] + " languageTourTitle"} onClick={() => { this.setState({ languageTourOpen: index }) }}>
-                                        <span style={{ backgroundImage: "url(" + element.img + ")" }}>{element.title}</span>
+                                        <span style={{ backgroundImage: "url(" + requests.serverAddress+element.icon.url + ")" }}>{element.ISO}</span>
                                     </div>
                                 )}
                             </div>
-                            {this.state.languageTour.map((element, index) =>
+                            {this.state.tourSave.local.map((element, index) =>
 
                                 <div className={{ [index]: "languageTourItemActive", }[this.state.languageTourOpen] + " languageTourItem"}>
                                     <div className=" tourContentTitle d-flex align-items-center mb-0">
@@ -347,43 +649,47 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                             fullWidth="100%"
                                             floatingLabelFocusStyle={{ color: "#304269" }}
                                             underlineFocusStyle={{ borderColor: "#304269" }}
+                                            value={element.name}
+                                            onChange={(e) => {this.handleChange(e.currentTarget.value, 'name', {number: index})}}
                                         />
-                                        <input className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " id="nameNewTour" type="text" />
+                                        <input className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " id="nameNewTour" type="text"
+                                        value={element.name} onChange={(e) => {this.handleChange(e.currentTarget.value, 'name', {number: index})}}/>
                                         <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
                                     </div>
                                     <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
                                         <label htmlFor="newTourAttractions" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Место отправления:</label>
-                                        <div className="d-flex col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">
-                                            <LocationSearchInput changeCity={this.changeCity} classDropdown="searchDropdownDriverTour" id="newTourAttractions" />
+                                        <div className="d-flex col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0" key={element.departurePoint}>
+                                            <LocationSearchInput address={element.departurePoint} changeCity={(id, value)=>{let tourSave = this.state.tourSave; tourSave.local[index].departurePoint=value; this.setState({tourSave: tourSave})}} classDropdown="searchDropdownDriverTour" id="newTourAttractions" />
                                         </div>
                                         <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
                                     </div>
                                     <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
                                         <label htmlFor="newTourAttractions" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Достопримечательности по маршруту:</label>
-                                        <div className="d-flex col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">
-                                            <LocationSearchInput changeCity={(index, value) => { this.handleChange(value, "attractionsAlongTheRoute") }} classDropdown="searchDropdownDriverTour" id="newTourAttractions" />
+                                        <div className="d-flex col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0" key={element.points.length}>
+                                            <LocationSearchInput changeCity={(id, value) => { this.handleChange(value, "attractionsAlongTheRoute", {number: index}) }} classDropdown="searchDropdownDriverTour" id="newTourAttractions" />
                                         </div>
                                         <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
                                     </div>
                                     <div className="d-flex justify-content-end col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
                                         <div className="d-flex flex-wrap col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 p-0 mb-2">
-                                            {this.state.attractionsAlongTheRoute.map((element, index) =>
+                                            {element.points.map((element, num) =>
                                                 <Chip
-                                                    key={element.key}
-                                                    onRequestDelete={() => this.handleRequestDelete(element.key, "attractionsAlongTheRoute")}
+                                                    key={element}
+                                                    onRequestDelete={() => this.handleRequestDelete(element, "attractionsAlongTheRoute", {number: index})}
                                                     labelStyle={{ color: "#000" }}
                                                     labelColor="#f60"
                                                     textColor="#304269"
                                                     className="chipClass"
                                                 >
-                                                    {element.label}
+                                                    {element}
                                                 </Chip>
                                             )}
                                         </div>
                                     </div>
                                     <div className="d-flex align-items-start mb-2">
                                         <label htmlFor="newTourDescription" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Описание:</label>
-                                        <textarea id="newTourDescription" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " name="" id="description" cols="30" rows="3" />
+                                        <textarea id="newTourDescription" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " name="" cols="30" rows="3"
+                                        onChange={(e) => {this.handleChange(e.currentTarget.value, 'info', {number: index})}} value={element.info}/>
                                         <TextField
                                             floatingLabelText="Описание"
                                             className="d-xl-none d-lg-none d-md-none d-sm-block d-block multiLineInputClass"
@@ -392,6 +698,8 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                             underlineFocusStyle={{ borderColor: "#304269" }}
                                             multiLine={true}
                                             rows={1}
+                                            value={element.info}
+                                            onChange={(e) => {this.handleChange(e.currentTarget.value, 'info', {number: index})}}
                                         />
                                         <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
                                     </div>
@@ -406,21 +714,21 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                     <div className="d-flex p-0">
                                         <div className="tourContentCheckbox">
                                             <label htmlFor="tourContentEveryday">
-                                                <input id="tourContentEveryday" checked={this.state.tourContentEveryday} onChange={() => { this.setState({ tourContentEveryday: !this.state.tourContentEveryday, tourContentOther: false }) }} type="checkbox" />
+                                                <input id="tourContentEveryday" checked={this.state.tourSave.daily} onChange={() => { this.state.tourSave.daily=!this.state.tourSave.daily; this.setState({tourSave: this.state.tourSave});}} type="checkbox" />
                                                 <span />
                                             </label>
                                         </div>
                                         <div className="tourContentEveryday d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column  align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start col-xl-4 col-lg-4 col-md-4 col-sm-10 col-10 p-0 mb-0">
-                                            <label htmlFor="newTourEveryday" onClick={() => { this.setState({ tourContentEveryday: !this.state.tourContentEveryday, tourContentOther: false }) }} className="mt-xl-0 mt-lg-0 mt-md-0 mt-3 pr-2">Ежедневно</label>
+                                            <label htmlFor="newTourEveryday" onClick={() => { this.state.tourSave.daily=true; this.setState({tourSave: this.state.tourSave});}} className="mt-xl-0 mt-lg-0 mt-md-0 mt-3 pr-2">Ежедневно</label>
                                             <DropDownMenu
-                                                value={this.state.newTourEverydayTime}
                                                 anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
-                                                onChange={(event, index, value) => { this.setState({ newTourEverydayTime: value }) }}
-                                                style={{ width: "100%", display: this.state.tourContentEveryday ? "" : "none" }}
+                                                onChange={(event, index, value) => {this.state.tourSave.time=value;this.setState({tourSave: this.state.tourSave});}}
+                                                style={{ width: "100%", display: this.state.tourSave.daily ? "" : "none" }}
                                                 menuStyle={{ maxHeight: "150px" }}
                                                 className="dropdownClass"
                                                 autoWidth={false}
                                                 selectedMenuItemStyle={{ color: "#f60" }}
+                                                value={this.state.tourSave.time}
                                             >
                                                 <MenuItem value="Выберите время" disabled={true} primaryText="Выберите время" />
                                                 {this.state.time.map((element, index) =>
@@ -432,19 +740,19 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                     <div className="d-flex col-xl-8 col-lg-8 col-md-8 col-sm-10 col-10 p-0">
                                         <div className="tourContentCheckbox">
                                             <label htmlFor="tourContentOther">
-                                                <input id="tourContentOther" checked={this.state.tourContentOther} onChange={() => { this.setState({ tourContentOther: !this.state.tourContentOther, tourContentEveryday: false }) }} type="checkbox" />
+                                                <input id="tourContentOther" checked={!this.state.tourSave.daily} onChange={() => { this.state.tourSave.daily=!this.state.tourSave.daily; this.setState({tourSave: this.state.tourSave});}} type="checkbox" />
                                                 <span className="tourContentOtherSpan" />
                                             </label>
                                         </div>
                                         <div className="openMultipleDatepicker d-xl-flex d-lg-flex d-md-flex d-sm-block d-block flex-column justify-content-center ml-1 col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 mb-0 p-0">
-                                            <label htmlFor="newTourDatepicker" onClick={() => { this.setState({ tourContentOther: !this.state.tourContentOther, tourContentEveryday: false }) }} className="mb-0 mr-2">По определенным дням</label>
+                                            <label htmlFor="newTourDatepicker" onClick={() => { this.state.tourSave.daily=false; this.setState({tourSave: this.state.tourSave});}} className="mb-0 mr-2">По определенным дням</label>
                                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column  align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                                <span style={{ display: this.state.tourContentOther ? "block" : "none" }} className="newTourDatepickerSpan col-xl-6 col-lg-7 col-md-9 col-sm-12 col-12 p-0" onClick={this.calendarModalShow}>Выбрать даты</span>
+                                                <span style={{ display: !this.state.tourSave.daily ? "block" : "none" }} className="newTourDatepickerSpan col-xl-6 col-lg-7 col-md-9 col-sm-12 col-12 p-0" onClick={this.calendarModalShow}>Выбрать даты</span>
                                                 <DropDownMenu
-                                                    value={this.state.newTourDatepickerTime}
+                                                    value={/*this.state.newTourDatepickerTime*/this.state.tourSave.time}
                                                     anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
-                                                    onChange={(event, index, value) => { this.setState({ newTourDatepickerTime: value }) }}
-                                                    style={{ width: "100%", display: this.state.tourContentOther ? "" : "none" }}
+                                                    onChange={(event, index, value) => { this.state.tourSave.time=value;this.setState({tourSave: this.state.tourSave});}}
+                                                    style={{ width: "100%", display:!this.state.tourSave.daily ? "" : "none" }}
                                                     menuStyle={{ maxHeight: "150px" }}
                                                     className="dropdownClass"
                                                     autoWidth={false}
@@ -460,18 +768,19 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className={this.state.tourContentOther ? "paddingL10 d-flex justify-content-center col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" : " d-none"}>
+                            <div className={!this.state.tourSave.daily ? "paddingL10 d-flex justify-content-center col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" : " d-none"}>
                                 <div className="d-flex flex-wrap flex-row align-items-start col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 p-0 mb-2">
 
-                                    {this.state.dateTour.map((element, index) => {
-                                        let day = element.getDate();
-                                        let month = element.getMonth();
-                                        let year = element.getFullYear();
+                                    {this.state.tourSave.calendary.map((element, index) => {
+                                        let temp = element;
+                                        let day = temp.getDate();
+                                        let month = temp.getMonth();
+                                        let year = temp.getFullYear();
                                         let newDate = day + "." + month + "." + year;
                                         return (
                                             <Chip
-                                                key={element.key}
-                                                onRequestDelete={() => this.handleRequestDelete(element, "dateTour")}
+                                                key={index}
+                                                onRequestDelete={() => this.handleRequestDelete(element, "calendary")}
                                                 labelStyle={{ color: "#000" }}
                                                 labelColor="#f60"
                                                 textColor="#304269"
@@ -495,78 +804,42 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                         fullWidth="100%"
                                         floatingLabelFocusStyle={{ color: "#304269" }}
                                         underlineFocusStyle={{ borderColor: "#304269" }}
-
+                                        value={this.state.tourSave.price}
+                                        onChange={(e) => {this.setState({tourSave: {...this.state.tourSave, price: e.currentTarget.value}});}}
                                     />
-                                    <input id="newTourPrice" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 mr-1" type="text" />
+                                    <input id="newTourPrice" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 mr-1" type="text"
+                                    value={this.state.tourSave.price} onChange={(e) => {this.setState({tourSave: {...this.state.tourSave, price: e.currentTarget.value}});}}/>
                                     <DropDownMenu
-                                        value={this.state.activeCurrency}
+                                        value={this.state.tourSave.currency}
                                         anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
-                                        onChange={(event, index, value) => { this.setState({ activeCurrency: value }) }}
+                                        onChange={(event, index, value) => { this.setState({ tourSave: {...this.state.tourSave, currency: value} }) }}
                                         style={{ width: "100%" }}
                                         className="dropdownClass"
                                         autoWidth={false}
                                         selectedMenuItemStyle={{ color: "#f60" }}
                                     >
-                                        {this.state.currency.map((element, index) =>
-                                            <MenuItem value={element} primaryText={element} />
+                                        {this.state.currencies.map((element, index) =>
+                                            <MenuItem value={element.id} primaryText={element.ISO} />
                                         )}
                                     </DropDownMenu>
                                 </div>
-                            </div>
-                            <div className="paddingL10 d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 ">Тип транспорта:</label>
-                                <DropDownMenu
-                                    value={this.state.typeCar}
-                                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
-                                    onChange={(event, index, value) => { this.setState({ typeCar: value }) }}
-                                    style={{ width: "100%" }}
-                                    className="dropdownClass col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0"
-                                    autoWidth={false}
-                                    selectedMenuItemStyle={{ color: "#f60" }}
-                                >
-                                    <MenuItem value={"sedan"} primaryText={"Седан"} />
-                                    <MenuItem value={"microbus"} primaryText={"Микроавтобус"} />
-                                    <MenuItem value={"minivan"} primaryText={"Минивэн"} />
-                                    <MenuItem value={"jeep"} primaryText={"Внедорожник"} />
-
-                                </DropDownMenu>
-                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
-                            </div>
-
+                            </div>   
                             <div className="paddingL10 d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
                                 <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 ">Направления:</label>
                                 <DropDownMenu
-                                    value={this.state.directionsValue}
-                                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
-                                    onChange={(event, index, value) => { this.handleChange(value, "directions") }}
-                                    style={{ width: "100%" }}
-                                    className="dropdownClass col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0"
-                                    autoWidth={false}
-                                    selectedMenuItemStyle={{ color: "#f60" }}
-                                >
-                                    <MenuItem value={"Все направление"} disabled primaryText={"Все направление"} />
-                                    {this.state.directions.map((element, index) =>
-                                        <MenuItem value={element} primaryText={element} />
-                                    )}
-
+                                        value={this.state.tourSave.directionId}
+                                        anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
+                                        onChange={(event, index, value) => { this.setState({ tourSave: {...this.state.tourSave, directionId: value} }) }}
+                                        style={{ width: "100%" }}
+                                        className="dropdownClass col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0"
+                                        autoWidth={false}
+                                        selectedMenuItemStyle={{ color: "#f60" }}
+                                    >
+                                        {this.state.directions.map((element, index) =>
+                                            <MenuItem value={element.id} primaryText={element.local.name} />
+                                        )}
                                 </DropDownMenu>
                                 <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
-                            </div>
-                            <div className="paddingL10 d-flex justify-content-end col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
-                                <div className="d-flex flex-wrap col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 p-0 mb-2">
-                                    {this.state.directionsChip.map((element, index) =>
-                                        <Chip
-                                            key={element.key}
-                                            onRequestDelete={() => this.handleRequestDelete(element, "directions")}
-                                            labelStyle={{ color: "#000" }}
-                                            labelColor="#f60"
-                                            textColor="#304269"
-                                            className="chipClass"
-                                        >
-                                            {element.label}
-                                        </Chip>
-                                    )}
-                                </div>
                             </div>
 
                             <div className="paddingL10 d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
@@ -581,8 +854,8 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                     selectedMenuItemStyle={{ color: "#f60" }}
                                 >
                                     <MenuItem value={"Все категори"} disabled primaryText={"Все категори"} />
-                                    {this.state.categories.map((element, index) =>
-                                        <MenuItem value={element} primaryText={element} />
+                                    {this.state.tourSave.categoriesUnselected.map((element, index) =>
+                                        <MenuItem value={element.key} primaryText={element.value} />
                                     )}
 
                                 </DropDownMenu>
@@ -590,16 +863,16 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                             </div>
                             <div className="paddingL10 d-flex justify-content-end col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
                                 <div className="d-flex flex-wrap col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 p-0 mb-2">
-                                    {this.state.categoriesChip.map((element, index) =>
+                                    {this.state.tourSave.categoriesSelected.map((element, index) =>
                                         <Chip
                                             key={element.key}
-                                            onRequestDelete={() => this.handleRequestDelete(element, "categories")}
+                                            onRequestDelete={() => {this.handleRequestDelete(element.key, "categories")}}
                                             labelStyle={{ color: "#000" }}
                                             labelColor="#f60"
                                             textColor="#304269"
                                             className="chipClass"
                                         >
-                                            {element.label}
+                                            {element.value}
                                         </Chip>
                                     )}
                                 </div>
@@ -608,7 +881,6 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                             <div className="paddingL10 d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
                                 <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 ">Теги:</label>
                                 <DropDownMenu
-                                    value={this.state.tagsValue}
                                     anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
                                     onChange={(event, index, value) => { this.handleChange(value, "tags") }}
                                     style={{ width: "100%" }}
@@ -617,8 +889,8 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                     selectedMenuItemStyle={{ color: "#f60" }}
                                 >
                                     <MenuItem value={"Все тег"} disabled primaryText={"Все тег"} />
-                                    {this.state.tags.map((element, index) =>
-                                        <MenuItem value={element} primaryText={element} />
+                                    {this.state.tourSave.tagsUnselected.map((element, index) =>
+                                        <MenuItem value={element.key} primaryText={element.value} />
                                     )}
 
                                 </DropDownMenu>
@@ -626,16 +898,16 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                             </div>
                             <div className="paddingL10 d-flex justify-content-end col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
                                 <div className="d-flex flex-wrap col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 p-0 mb-2">
-                                    {this.state.tagsChip.map((element, index) =>
+                                    {this.state.tourSave.tagsSelected.map((element, index) =>
                                         <Chip
-                                            key={element.key}
-                                            onRequestDelete={() => this.handleRequestDelete(element, "tags")}
+                                            key={element}
+                                            onRequestDelete={() => this.handleRequestDelete(element.key, "tags")}
                                             labelStyle={{ color: "#000" }}
                                             labelColor="#f60"
                                             textColor="#304269"
                                             className="chipClass"
                                         >
-                                            {element.label}
+                                            {element.value}
                                         </Chip>
                                     )}
                                 </div>
@@ -644,7 +916,8 @@ class DriverProfileTripSettingsTourClass extends React.Component {
 
                             <div className="paddingL10 d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
                                 <label htmlFor="newTourPeople" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Количество мест:</label>
-                                <input id="newTourPeople" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12" type="text" />
+                                <input id="newTourPeople" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12" type="text" 
+                                value={this.state.tourSave.seats} onChange={(e)=>this.setState({tourSave: {...this.state.tourSave, seats: e.currentTarget.value}})}/>
                             </div>
                             <div className="paddingL10 addPhotoTour d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-start mt-3">
                                 <label className=" col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12">Загрузить фото:</label>
@@ -652,12 +925,12 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                 <div className="tourPhotoMiniContainer d-flex flex-wrap">
                                     <div className="addPhotoTourLabel">
                                         <label htmlFor="addCarFile" ></label>
-                                        <input type="file" id="addCarFile" style={{ display: "none" }} multiple onChange={this._handleImageChange} required />
+                                        <input type="file" id="addCarFile" style={{ display: "none" }} multiple onChange={this._handleImageChange} />
                                     </div>
-                                    {this.state.carImg.map((element, index) =>
+                                    {this.state.tourSave.image.map((element, index) =>
                                         <div className="position-relative">
-                                            <img src={element} className="tourPhotoMini" alt="add_car" onClick={() => { this.setState({ imagePreviewUrl: this.state.carImg[index] }) }} />
-                                            <span onClick={() => { this.state.carImg.splice(index, 1); this.setState({ carImg: this.state.carImg, imagePreviewUrl: this.state.carImg[0] }) }}></span>
+                                            <img src={element} className="tourPhotoMini" alt="add_car" onClick={() => { this.setState({ imagePreviewUrl: this.state.tourSave.image[index] }) }} />
+                                            <span onClick={() => { this.state.tourSave.image.splice(index, 1); this.state.tourSave.imageFiles.splice(index,1); this.setState({ tourSave:{...this.state.tourSave}, imagePreviewUrl: this.state.tourSave.image[0] })}}></span>
                                         </div>
                                     )}
                                 </div>
@@ -665,14 +938,14 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                             <div className="paddingL10 tourContentAddButton pb-4 d-flex justify-content-xl-start justify-content-lg-start justify-content-md-start justify-content-sm-center justify-content-center mt-3">
                                 <span className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 d-xl-block d-lg-block d-md-block d-sm-none d-none" />
                                 <button htmlFor="newTourForm" type="submit" className="col-8">ДОБАВИТЬ ТУР</button>
-                                <span className="ml-3" onClick={this.toggle}>Отмена</span>
+                                <span className="ml-3" onClick={()=>this.toggle()}>Отмена</span>
                             </div>
                         </form>
                     </div>
                 </Collapse>
                 <div className="tourBodyElement">
                     <div className="p-0 d-flex  justify-content-xl-start justify-content-lg-start justify-content-md-start justify-content-sm-center justify-content-center flex-wrap col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div style={{ display: this.state.collapse ? "none" : "block" }} onClick={this.toggle} className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-11 p-2" >
+                        <div style={{ display: this.state.collapse ? "none" : "block" }} onClick={()=>this.toggle()} className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-11 p-2" >
                             <div className="filledTourImgAddBg">
                                 <div className="d-flex flex-column justify-content-center align-items-center">
                                     <span />
@@ -688,34 +961,30 @@ class DriverProfileTripSettingsTourClass extends React.Component {
 
                                             <label className="cardInformationNameCarIcon"></label>
                                             <div className="filledCardInformationMenu">
-                                                <p className="filledCardInformationDeleteCar">Удалить</p>
-                                                <p className="filledCardInformationNameCarEdit">Редактировать</p>
-                                                <p className="filledCardInformationNameCarEdit">Деактивировать</p>
+                                                <p className="filledCardInformationDeleteCar" onClick={()=>this.destroy(element)}>Удалить</p>
+                                                <p className="filledCardInformationNameCarEdit" onClick={()=>this.toggle(element)}>Редактировать</p>
+                                                <p className="filledCardInformationNameCarEdit" onClick={()=>this.changeActive(element)}>{element.onWork ? 'Деактивировать' : 'Активировать'}</p>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="filledCardImg">
-                                        <img src={/*georgiaImg*/requests.serverAddress+element.image[0].url} className="img-fluid" alt="imgCar" width="100%" height="100%" />
+                                        <img src={requests.serverAddress+element.image[0].url} className="img-fluid" alt="imgCar" width="100%" height="100%" />
                                     </div>
                                     <div className="cardInformationType d-flex flex-column">
-                                        <p>{element.local[0].title}{/*Кутаиси-Боржоми-Тбилиси*/}</p>
-                                        <Stars value={/*5.0 - index*/Math.ceil(element.rating*10)/10} commentNumber={/*22 + " отзывов"*/element.commentNumber+" отзывов"} valueDisplay={true} commentNumberDisplay={true} />
+                                        <p> {this.selectTourName(element)}</p>
+                                        <Stars value={Math.ceil(element.rating*10)/10} commentNumber={element.commentNumber+" отзывов"} valueDisplay={true} commentNumberDisplay={true} />
                                         <div className="settingsTourHeader d-flex pr-1">
                                             <p>Свободных мест:</p>
-                                            <p>{/*15*/element.seats}</p>
+                                            <p>{element.seats}</p>
                                         </div>
                                         <div className="settingsTourPlace d-flex">
-                                            <p>{/*Кутаиси, Храм Баграти, Монастырь Гелати*/element.local[0].points.points }</p>
+                                            <p>{element.local && element.local[0] && element.local[0].points ? element.local[0].points.points : '' }</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         )}
                     </div>
-                    {// TODO доделать render Element 
-                    }
-
-
                 </div>
             </React.Fragment >
         );

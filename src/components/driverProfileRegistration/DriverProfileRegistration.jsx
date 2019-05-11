@@ -54,7 +54,7 @@ class DriverProfileRegistrationClass extends React.Component {
           }
         })
         .then(response =>{
-          //debugger;
+          //;
           console.log('Data profile: ');
           console.log(response.data);
           that.props.dispatch(setProfileData(response.data));

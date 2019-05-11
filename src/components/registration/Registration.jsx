@@ -6,6 +6,7 @@ class Registration extends React.Component{
     constructor(props){
         super(props);
         let that = this;
+        ;
         function sendResult(type,data){
             //alert('send result');
             console.log('sendResult');

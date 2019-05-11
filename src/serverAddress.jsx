@@ -1,2 +1,2 @@
-const serverAddress = 'http://tripfer.com:1337';
+const serverAddress = 'http://srv.tripfer.com:1337';
 export default serverAddress;

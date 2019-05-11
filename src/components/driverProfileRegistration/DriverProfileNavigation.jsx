@@ -31,19 +31,44 @@ class DriverProfileNavigationClass extends React.Component {
     }
     _handleImageChange=(e)=> {
         e.preventDefault();
-        debugger
+        
 
         let file = e.target.files[0];
 
         if (file.type.match('image')) {
-            debugger
+            
             let reader = new FileReader();
             reader.onloadend = () => {
-                debugger
-                var img = reader.result;
-                this.setState({ avatar: img });
+                function readCookie(name) {
+                    var name_cook = name+"=";
+                    var spl = document.cookie.split(";");           
+                    for(var i=0; i<spl.length; i++) {           
+                        var c = spl[i];               
+                        while(c.charAt(0) == " ") {               
+                            c = c.substring(1, c.length);                   
+                        }               
+                        if(c.indexOf(name_cook) == 0) {                   
+                            return c.substring(name_cook.length, c.length);                    
+                        }               
+                    }           
+                    return null;           
+                }
+                let jwt = readCookie('jwt');
+                
+                //
+                if(jwt && jwt!=="-"){
+                    var img = reader.result;
+                    this.setState({ avatar: img });
+                    var carForm = new FormData();
+                    carForm.append('avatar', file);
+                    const request = new XMLHttpRequest();
+                    request.open('PUT', requests.userAvatarChangeRequest);
+                    request.setRequestHeader('Authorization',`Bearer ${jwt}`);
+                    request.send(carForm);
+                }
             }
-            reader.readAsDataURL(file)
+            reader.readAsDataURL(file);
+
         }
     }
 
@@ -79,11 +104,11 @@ class DriverProfileNavigationClass extends React.Component {
                         </div>
                         <div className="bodyTopDriverInfo col-7">
                             <div className="bodyTopDriverInfoName d-flex flex-column align-items-start">
-                                <p className="mb-0 mr-2">{this.state.profile.firstName}</p>
+                                <p className="mb-0 mr-2">{this.state.profile.firstName.length!==0 ? this.state.profile.firstName : this.state.profile.email}</p>
                                 <Stars value={this.state.profile.rating} valueDisplay={true} commentNumberDisplay={true} commentNumber={this.state.profile.comments.length + " отзывов"} />
                             </div>
                             <div className="bodyTopDriverInfoPlace">
-                                <p>{this.state.profile.hometown + ", " + this.state.profile.homecountry}</p>
+                                <p>{this.state.profile.hometown.length!==0 ? (this.state.profile.hometown + ", " + this.state.profile.homecountry) : ""}</p>
                             </div>
                             <div className="bodyTopDriverInfoRide p-0 d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column">
                                 <div className="d-xl-flex d-lg-flex d-md-flex d-sm-none d-none align-items-center col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 p-0">

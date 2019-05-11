@@ -2,22 +2,12 @@ import React from 'react'
 import './DriverProfileCar.css'
 import 'react-telephone-input/lib/withStyles'
 import { connect } from 'react-redux'
-import imgCar from './img/images.jpeg'
-import q from './img/q.jpg'
-import e from './img/e.jpg'
-import r from './img/r.jpg'
-import t from './img/t.jpg'
-import no_smokingIcon, { ReactComponent } from './img/no-smoking.svg'
-import seatIcon from './img/seat.svg'
-import snowflakeIcon from './img/snowflake.svg'
-import wifiIcon from './img/wifi.svg'
 import { Collapse } from 'reactstrap'
 import { isMobile } from 'react-device-detect'
 import DropDownMenu from 'material-ui/DropDownMenu'
 import MenuItem from 'material-ui/MenuItem'
 import TextField from 'material-ui/TextField'
 import config from '../../config';
-
 import requests from '../../config';
 
 class DriverProfileCarClass extends React.Component {
@@ -27,12 +17,6 @@ class DriverProfileCarClass extends React.Component {
         console.log('DriverProfileCarClass constructor');
         console.log(profile);
         this.state = {
-            //language: ["Грузинский", "Русский", "Корейский", "Хинди"],
-            /*seat: { icon: seatIcon, title: "Кожаный салон" },
-            snowflake: { icon: snowflakeIcon, title: "Климот контроль" },
-            wifi: { icon: wifiIcon, title: "Бесплатный Wi-Fi" },
-            no_smoking: { icon: no_smokingIcon, title: "Курение в салоне запрещено" },
-            smoking: { icon: no_smokingIcon, title: "Курение в салоне разрешено" },*/
             comfort: [false,false,false,false],
             carImg: [],
             imgFiles:[],
@@ -91,7 +75,6 @@ class DriverProfileCarClass extends React.Component {
             const request = new XMLHttpRequest();
             if(type){      
                 request.onreadystatechange = function(){
-                    //debugger;
                     console.log(request.status);
                     console.log(request.statusText);
                     console.log(request.responseText);
@@ -122,7 +105,7 @@ class DriverProfileCarClass extends React.Component {
         
     } 
     formSubmit(event) {
-        //debugger
+        //
         
         //alert('Your favorite flavor is: ' + this.state.value);
         console.log('formSubmit');
@@ -209,7 +192,7 @@ class DriverProfileCarClass extends React.Component {
             console.log(element);
             const request = new XMLHttpRequest();
             request.onreadystatechange = function(){
-                //debugger;
+                //;
                 console.log(request.status);
                 console.log(request.statusText);
                 console.log(request.responseText);
@@ -479,11 +462,11 @@ class DriverProfileCarClass extends React.Component {
                                 <input  onClick={(e) => { let comfort = this.state.comfort; comfort[2]=!comfort[2]; this.setState({comfort: comfort});}}  type="checkbox" id="comfort3" checked={this.state.comfort[2]}/>
                                         <span />
                                     </label>
-                                    <label htmlFor="comfort4">Курение в салоне запрещено
+                                    <label htmlFor="comfort4">Курение в салоне разрешено
                                 <input onClick={(e) => { let comfort = this.state.comfort; comfort[3]=!comfort[3]; this.setState({comfort: comfort});}} type="checkbox" id="comfort4" checked={this.state.comfort[3]}/>
                                         <span />
                                     </label>
-                                    <label htmlFor="comfort5">Курение в салоне разрешено
+                                    <label htmlFor="comfort5">Курение в салоне запрещено
                                 <input onClick={(e) => { let comfort = this.state.comfort; comfort[3]=!comfort[3]; this.setState({comfort: comfort});}} type="checkbox" id="comfort5" checked={!this.state.comfort[3]}/>
                                         <span />
                                     </label>
@@ -520,7 +503,7 @@ class DriverProfileCarClass extends React.Component {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="filledCardImg">
+                                <div className="filledCardImg" onClick={()=>this.toggle(element)}>
                                     <img src={element.image[0] ? config.serverAddress+element.image[0].url : ""} className="img-fluid" alt="imgCar" width="100%" height="100%" />
                                 </div>
                                 <div className="cardInformationType d-flex flex-column">

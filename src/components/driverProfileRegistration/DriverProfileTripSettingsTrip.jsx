@@ -29,7 +29,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
         let distance = [];
         if(travelsetting.settings){
             cityRadius=[...travelsetting.settings.points];
-            distance=[...travelsetting.settings.distance];
+            distance=travelsetting.settings.distance;
         }
         this.state = {
             cityRadius:cityRadius,
@@ -100,7 +100,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
         
     }   
     formSubmit(event) {
-        //debugger
+        //
         //alert('Your favorite flavor is: ' + this.state.value);
         this.applyChanges();
         event.preventDefault();

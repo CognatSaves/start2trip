@@ -73,6 +73,7 @@ class HeaderClass extends React.Component {
       }
       return null;
     }
+    ;
     super(props);
     console.log('storeState');
     console.log(this.props.storeState);

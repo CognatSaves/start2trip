@@ -33,7 +33,7 @@ class RenderModalRegistrationClass extends React.Component {
                     selectedRegistrationAnswer: errorId
                 });
             }
-            //debugger;
+            //;
             let errorId = window.localStorage.getItem('errorId');
             if(type==='good'){
                 that.setState({
