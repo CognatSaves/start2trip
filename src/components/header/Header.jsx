@@ -7,7 +7,6 @@ import RenderModalRegistration from './RenderModalRegistration'
 import mapWorldIcon from './pictures/mapWorld.svg'
 import { connect } from 'react-redux';
 import crossIconModal from './pictures/close.svg'
-import people from './pictures/person.jpg'
 import geoFlag from './pictures/georgia.svg'
 import ruFlag from './pictures/russia.svg'
 import enFlag from './pictures/united-kingdom.svg'
@@ -15,9 +14,6 @@ import espFlag from './pictures/spain.svg'
 import { Link } from 'react-router-dom';
 import { Collapse } from 'reactstrap';
 import { Modal, ModalBody } from 'reactstrap';
-import { browserName, isChrome, isFirefox, isOpera, BrowserView } from 'react-device-detect';
-import { EventEmitter } from 'events';
-import ReactDOM from 'react-dom';
 import requests from '../../config';
 import axios from 'axios';
 import { setUser } from '../../redusers/Action';
@@ -25,6 +21,8 @@ import { disablePageScroll, clearQueueScrollLocks, enablePageScroll } from 'scro
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 import arrowDownIcon from './pictures/down-arrow.svg'
+import { whichPageRender } from "../../redusers/ActionDriverProfileRegistration"
+import { whichPageRenderHistory } from "../../redusers/ActionGlobal"
 
 
 const ModalRegistration = (props) => {
@@ -75,6 +73,9 @@ class HeaderClass extends React.Component {
     }
     ;
     super(props);
+    if (this.props.history) {
+      this.props.dispatch(whichPageRenderHistory(this.props.history));
+    }
     console.log('storeState');
     console.log(this.props.storeState);
     this.authorization();
@@ -136,7 +137,8 @@ class HeaderClass extends React.Component {
       ],
       avatarUrl: "",
       userName: "",
-      menuItems: ["Профиль", "Автомобиль", "Настройки поездок", "Туры", "Отзывы", "Настройки", "Биллинг", "Партнерская программа", "Выход"]
+      menuItems: ["Профиль", "Автомобиль", "Настройки поездок", "Туры", "Отзывы", "Настройки", "Биллинг", "Партнерская программа", "Выход"],
+      history: props.history,
     };
     this.toggleLanguage = this.toggleLanguage.bind(this);
     this.toggleDropdownOpen = this.toggleDropdownOpen.bind(this);
@@ -182,30 +184,30 @@ class HeaderClass extends React.Component {
     }
     let jwt = readCookie('jwt');
     //console.log('jwt');
-   // console.log(jwt);
-    if(jwt && jwt!=="-"){
+    // console.log(jwt);
+    if (jwt && jwt !== "-") {
       axios.get(requests.meRequest, {
-            headers: {
-              //Authorization: `${jwt}`
-              Authorization: `Bearer ${jwt}`
-            }
-          })
-          .then(response => {
-            // Handle success.
-            //console.log('Data: ');
-           // console.log(response.data);
-            let avatarUrl = requests.serverAddress+response.data.url;
-            let userName = response.data.firstName ;
-            if(avatarUrl!==this.props.storeState.avatarUrl || userName!==this.props.storeState.userName){
-              this.props.dispatch(setUser(userName,avatarUrl));
-            }
-            
-          })
-          .catch(error => {
-            this.props.dispatch(setUser("",""));
-            //console.log('log off');
-            //console.log('An error occurred:', error);
-          });     
+        headers: {
+          //Authorization: `${jwt}`
+          Authorization: `Bearer ${jwt}`
+        }
+      })
+        .then(response => {
+          // Handle success.
+          //console.log('Data: ');
+          // console.log(response.data);
+          let avatarUrl = requests.serverAddress + response.data.url;
+          let userName = response.data.firstName;
+          if (avatarUrl !== this.props.storeState.avatarUrl || userName !== this.props.storeState.userName) {
+            this.props.dispatch(setUser(userName, avatarUrl));
+          }
+
+        })
+        .catch(error => {
+          this.props.dispatch(setUser("", ""));
+          //console.log('log off');
+          //console.log('An error occurred:', error);
+        });
     }
     /*
     else{
@@ -213,28 +215,21 @@ class HeaderClass extends React.Component {
       console.log('log off');
     }  */
   }
-  logOffFunc(){
+  logOffFunc() {
     //console.log("logOffFunc");
-    let date = new Date(Date.now()-100000000);               
-    let jwtstring = "jwt=-; expires="+date.toString();
-    let jwtstatus = "jwtstatus=-; expires="+date.toString();
-    document.cookie=jwtstring;
-    document.cookie=jwtstatus;
-    let avatarString="avatarUrl=-; expires="+date.toString();
-    let usernameString = "userName=-; expires="+date.toString();
-    document.cookie=avatarString;
-    document.cookie=usernameString;
-    this.props.dispatch(setUser("",""));
+    let date = new Date(Date.now() - 100000000);
+    let jwtstring = "jwt=-; expires=" + date.toString();
+    let jwtstatus = "jwtstatus=-; expires=" + date.toString();
+    document.cookie = jwtstring;
+    document.cookie = jwtstatus;
+    let avatarString = "avatarUrl=-; expires=" + date.toString();
+    let usernameString = "userName=-; expires=" + date.toString();
+    document.cookie = avatarString;
+    document.cookie = usernameString;
+    this.props.dispatch(setUser("", ""));
   }
   render() {
 
-   /// console.log("render header");
-   /* console.log(this.state);
-    console.log('storestate');
-    console.log(this.props.storeState);
-    console.log(window);*/
-    /*console.log("window.opener");
-    console.log(window.opener);*/
     return (
       <React.Fragment>
         <ModalRegistration modalRegistration={this.state.modalRegistration} toggle={this.toggleModalRegistration} className={this.props.className} authorization={this.authorization} />
@@ -275,11 +270,11 @@ class HeaderClass extends React.Component {
                   </DropDownMenu>
                 </div>
                 <div className="burgerMenuBottom">
-                  <span onClick={() => { this.setState({ collapse: !this.state.collapse }) }} style={{background:"url("+arrowDownIcon+") no-repeat"}}>Мои поездки</span>
+                  <span onClick={() => { this.setState({ collapse: !this.state.collapse }) }} style={{ background: "url(" + arrowDownIcon + ") no-repeat" }}>Мои поездки</span>
                   <Collapse isOpen={this.state.collapse}>
                     <div className="d-flex flex-column">
-                      <span style={{paddingLeft:"20px"}}>Предстоящие поездки</span>
-                      <span style={{paddingLeft:"20px"}}>История поездок</span>
+                      <span style={{ paddingLeft: "20px" }}>Предстоящие поездки</span>
+                      <span style={{ paddingLeft: "20px" }}>История поездок</span>
                     </div>
                   </Collapse>
                   {this.state.menuItems.map((element, index) =>
@@ -336,13 +331,17 @@ class HeaderClass extends React.Component {
                 </Dropdown>
               </div>
               <div className="headerRegistration d-flex justify-content-start col-xl-1 col-lg-1 col-md-2 col-sm-1 col-1">
-                <span style={{ display: this.props.storeState.isAuthorized ? 'none' : 'block' }} onClick={this.toggleModalRegistration} >Войти</span>
-                <div style={{ display: this.props.storeState.isAuthorized ? 'flex' : 'none' }}>
+                <span style={{ display: this.props.storeState.isAuthorized ? 'none' : 'block' }} onClick={this.toggleModalRegistration}>Войти</span>
+                <div style={{ display: this.props.storeState.isAuthorized ? 'flex' : 'none' }} className="openMenu position-relative align-items-center">
                   <div className="avatar" style={{ background: 'url(' + this.props.storeState.avatarUrl + ') no-repeat' }}></div>
-                  {
-                    /*<div>{this.props.storeState.userName}</div>*/
-                  }
-                  <button onClick={this.logOffFunc}>X</button>
+                  <i className="openDropDownMenuBt"></i>
+                  <div className="hederMenu">
+                    <span onClick={() => { this.props.dispatch(whichPageRender(1)); this.props.globalhistory.history.push("/account/driver/profile") }}>Профиль</span>
+                    <span onClick={() => { this.props.dispatch(whichPageRender(0)); this.props.globalhistory.history.push("/account/driver/trips") }}>Мои поездки</span>
+                    <span onClick={() => { this.props.dispatch(whichPageRender(6)); this.props.globalhistory.history.push("/account/driver/settings") }}>Настройки</span>
+                    <span onClick={() => { this.props.dispatch(whichPageRender(8)); this.props.globalhistory.history.push("/account/driver/referrals") }}>Партнерская программа</span>
+                    <span onClick={this.logOffFunc}>Выйти</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -357,6 +356,7 @@ class HeaderClass extends React.Component {
 const Header = connect(
   (state) => ({
     storeState: state.AppReduser,
+    globalhistory: state.GlobalReduser,
   }),
 )(HeaderClass);
 

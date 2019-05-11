@@ -12,6 +12,7 @@ import DriverProfileSettings from './DriverProfileSettings'
 import DriverProfileHistory from './DriverProfileHistory'
 import DriverProfileBilling from './DriverProfileBilling'
 import DriverProfileAffiliateProgram from './DriverProfileAffiliateProgram'
+import {Route} from 'react-router-dom';
 
 import requests from '../../config';
 import axios from 'axios';
@@ -54,7 +55,6 @@ class DriverProfileRegistrationClass extends React.Component {
           }
         })
         .then(response =>{
-          //;
           console.log('Data profile: ');
           console.log(response.data);
           that.props.dispatch(setProfileData(response.data));
@@ -79,13 +79,21 @@ class DriverProfileRegistrationClass extends React.Component {
       {
         profile.isDriver ? 
         <React.Fragment>
-        <Header driver={true} />
+        <Header driver={true} history={this.props.history} />
         <DriverProfileNavigation />
         <div className="registrationWrapper d-flex flex-column col-12 p-0">
           <div className="d-flex contentHeight col-12 p-0">
             <div className="d-flex flex-column justify-content-start col-lx-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
-              
-              {{
+            <Route path="/account/driver/trips" component={DriverProfileHistory} />
+            <Route path="/account/driver/profile" component={DriverProfileBasicInformation} />
+            <Route path="/account/driver/cars" component={DriverProfileCar} />
+            <Route path="/account/driver/tripsSettings" component={DriverProfileTripSettingsTrip} />
+            <Route path="/account/driver/tours" component={DriverProfileTripSettingsTour} />
+            <Route path="/account/driver/reviews" component={DriverProfileFeedback} />
+            <Route path="/account/driver/settings" component={DriverProfileSettings} />
+            <Route path="/account/driver/billing" component={DriverProfileBilling} />
+            <Route path="/account/driver/referrals" component={DriverProfileAffiliateProgram} />
+              {/* {{
                 0: <DriverProfileHistory />,
                 1: <DriverProfileBasicInformation />,
                 2: <DriverProfileCar />,
@@ -95,7 +103,7 @@ class DriverProfileRegistrationClass extends React.Component {
                 6: <DriverProfileSettings />,
                 7: <DriverProfileBilling />,
                 8: <DriverProfileAffiliateProgram />,
-              }[this.props.storeState.pageRender]}
+              }[this.props.storeState.pageRender]} */}
             </div>
             
           </div>

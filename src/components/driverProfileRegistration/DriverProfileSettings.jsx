@@ -15,6 +15,7 @@ class DriverProfileSettingsClass extends React.Component {
             thisPasswordType: true,
             newPasswordType: true,
             confirmPasswordType: true,
+            mailing:true,
             settingsValues:{
                 email: profile.email,
                 password: "",
@@ -260,8 +261,8 @@ class DriverProfileSettingsClass extends React.Component {
                 <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start pb-3">
                     <p className="col-2"></p>
                     <div className="driverProfileSettingsContentUnsubscribe d-flex flex-column">
-                        <p className="driverProfileSettingsContentUnsubscribeButton">Отписаться от рассылки</p>
-                        <p>В результате отписки Вы больше не будете получать сообщения от Start2Trip</p>
+                    <p className="driverProfileSettingsContentUnsubscribeButton" onClick={()=>{this.setState({mailing: !this.state.mailing})}}>{this.state.mailing ? "Отписаться от рассылки":"Подписаться на рассылку"}</p>
+                    <p>В результате отписки Вы больше не будете получать сообщения от Tripfer</p>
                     </div>
                 </div>
             </div>

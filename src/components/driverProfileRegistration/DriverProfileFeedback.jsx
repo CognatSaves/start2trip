@@ -35,7 +35,7 @@ class DriverProfileFeedbackClass extends React.Component{
                         <img src={requests.serverAddress+element.clearedAuthor.url} width="auto" height="100%" alt=""></img>
                     </div>
                     <div className="commentBlock_valueBlock d-flex flex-column">
-                        <div className="d-flex">
+                        <div className="d-flex justify-content-between">
                             <div className="valueBlock_firstElement_name">{element.clearedAuthor.firstName}</div>
                             <div className="valueBlock_firstElement_date">{element.updatedAt/*element.date.getDate()+" "+getMonthName(element.date.getMonth())+" "+element.date.getFullYear()*/}</div>
                         </div>

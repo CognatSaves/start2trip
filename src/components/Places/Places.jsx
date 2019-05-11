@@ -30,7 +30,7 @@ class PlacesClass extends React.Component {
       <React.Fragment>
         <div className="drivers_top_background col-12">
           <div className="wrapper d-flex flex-column">
-            <Header />
+            <Header history={this.props.history}/>
             <PlacesCountryInfo />
           </div>
         </div>

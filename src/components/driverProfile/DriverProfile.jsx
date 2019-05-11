@@ -76,7 +76,7 @@ class DriverProfileClass extends React.Component {
                 <div className="drivers_top_background col-12">
                     <div className="wrapper d-flex flex-column">
                         <div className="drivers_top_block d-flex flex-column">
-                            <Header />
+                            <Header history={this.props.history}/>
                             <DriverInfo element={driver} />
                             <DriverAdaptedRoute element={driver} date={this.props.storeState.date} cities={this.props.storeState.cities}
                                 travelTime={this.props.driversState.travelTime} travelLength={this.props.driversState.travelLength} goToDrivers={this.goToDrivers}

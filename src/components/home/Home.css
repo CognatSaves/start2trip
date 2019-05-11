@@ -30,6 +30,7 @@
 
 div.homeBottomIcomRout {
     padding: 0 10px !important;
+    padding-bottom: 30px !important;
 }
 
 .homeBottomTitle {
@@ -116,11 +117,22 @@ h2.homeBottomTitle {
 }
 
 .homeSubscribeButton {
-    background: #304269 !important;
+    background: #304269;
     color: #fff;
-    border-color: #304269 !important;
+    outline: none;
+    border: 1px solid #304269;
+    text-decoration: none;
     font-weight: 400;
     font-size: 15px;
+    min-height: 38px;
+    min-width: 152px;
+    border-radius: 0 5px 5px 0;
+    transition: ease 0.3s;
+}
+
+.homeSubscribeInput:focus,
+.homeSubscribeButton:focus {
+    outline: none;
 }
 
 .homeSubscribeButton:hover {
@@ -134,10 +146,18 @@ h2.homeBottomTitle {
 }
 
 .homeSubscribeInput {
-    border: 1px solid #304269 !important;
-    color: #686868 !important;
+    border: 1px solid #304269;
+    color: #686868;
     font-weight: 400;
     font-size: 18px;
+    min-height: 38px;
+    width: 80%;
+    padding-left: 10px;
+    border-radius: 5px 0 0 5px;
+}
+
+.homeSubscribeInput::placeholder {
+    color: #686868;
 }
 
 .homeSubscribeInput:focus {
@@ -175,4 +195,38 @@ h2.homeBottomTitle {
     transition: all 0.3s;
     text-decoration: none;
     color: #f60;
+}
+
+@media (max-width: 1140px) {}
+
+@media (max-width: 768px) {
+    .homeSubscribe {
+        background: none;
+    }
+    .homeSubscribe p {
+        text-align: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .homeBottomText {
+        text-align: center;
+    }
+    .homeSubscribe span {
+        text-align: center;
+    }
+    .homeSubscribe h2 {
+        color: #333;
+        font-weight: 500;
+        font-size: 34px;
+        text-align: center;
+    }
+    .homeSubscribeInput {
+        width: 100%;
+        margin-bottom: 10px;
+        border-radius: 5px;
+    }
+    .homeSubscribeButton {
+        border-radius: 5px;
+    }
 }

@@ -115,7 +115,7 @@ class TourDescriptionClass extends React.Component {
                     <img src={carthage} width="100%" height="100%" style={{ position: "absolute" }} alt="noImage" />
                     <div style={{ position: "absolute", width: "100%", height: "100%", backgroundColor: "rgba(0,0,0,0.5)" }} />
                     <div className="wrapper d-flex flex-column">
-                        <Header />
+                        <Header history={this.props.history}/>
                         <TourInfo tour={this.state.tour}/>
                     </div>
                 </div>

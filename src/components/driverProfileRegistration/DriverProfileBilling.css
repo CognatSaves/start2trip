@@ -134,6 +134,73 @@
     display: none;
 }
 
+.billingModal {
+    max-width: 400px !important;
+}
+
+.billingModalDiv {
+    border-radius: 5px !important;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2) !important;
+}
+
+.billingModalContent label {
+    font-size: 14px;
+    font-weight: 400;
+    color: #304269;
+    margin: 0;
+}
+
+.billingModalContent input {
+    color: #333;
+    font-weight: 400;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding-left: 10px;
+    min-height: 40px;
+    margin: 5px 0;
+    transition: all 0.3s;
+}
+
+.billingModalContent input:hover,
+.billingModalContent input:focus {
+    border-color: #304269;
+    text-decoration: none;
+    outline: #304269;
+}
+
+.billingBtSubmit {
+    background: none;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+    color: #304269;
+}
+
+.billingBtSubmit:focus {
+    outline: none;
+}
+
+.billingModalContentDropDown {
+    max-height: 50px !important;
+    border: 1px solid #e0e0e0 !important;
+    border-radius: 5px !important;
+    font-size: 14px !important;
+}
+
+.billingModalContentDropDown div {
+    border: none !important;
+    max-height: 50px !important;
+    line-height: 50px !important;
+    padding: 0 !important;
+}
+
+.billingModalContentDropDown button {
+    padding: 0 !important;
+    top: 0px !important;
+    right: 0 !important;
+}
+
 @media (max-width: 1140px) {
     .billingTableBody div :nth-child(2) {
         overflow: initial !important;

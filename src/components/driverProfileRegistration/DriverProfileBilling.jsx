@@ -2,6 +2,11 @@ import React from 'react';
 import './DriverProfileBilling.css'
 import { connect } from 'react-redux';
 import DatePicker from 'material-ui/DatePicker';
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
+import DropDownMenu from 'material-ui/DropDownMenu';
+import MenuItem from 'material-ui/MenuItem';
+import { isMobile } from 'react-device-detect'
 import {
     Table,
     TableBody,
@@ -18,6 +23,12 @@ class DriverProfileBillingClass extends React.Component {
         super(props);
         this.state = {
             hederTitle: ["id Транзакции", "Тип оплаты", "Сумма", "Коммисия", "Дата платежа", "ID поездки", "Маршрут", "Клиент",],
+            withdrawalOfFundsModal: false,
+            toPayModal: false,
+            typeCardValue: "Выберите тип",
+            typeCardArray: ["visa", "mastercard"],
+            toPayPersonalAccountValue: true,
+            toPayCardValue: false,
             bodyTable: [
                 { idTransaction: "1", paymentType: "payPal", sum: "$155", commission: "12%", paymentDate: "20.03.2019", idTrip: "5", route: "Кутаиси-Тбилиси-Гори-Мцхета", client: "Bob" },
                 { idTransaction: "1", paymentType: "payPal", sum: "$155", commission: "12%", paymentDate: "20.03.2019", idTrip: "5", route: "Кутаиси-Тбилиси-Гори-Мцхета", client: "Gibson" },
@@ -29,12 +40,108 @@ class DriverProfileBillingClass extends React.Component {
 
     }
 
+    handleClose = (name, value) => {
+        switch (name) {
+            case 'withdrawal':
+                this.setState({ withdrawalOfFundsModal: !this.state.withdrawalOfFundsModal });
+                break
+            case 'toPay':
+                this.setState({ toPayModal: !this.state.toPayModal });
+                break
+            case 'typeCard':
+                this.setState({ typeCardValue: value });
+                break
+        }
+
+    };
+
 
 
     render() {
 
         return (
             <React.Fragment>
+                <Dialog
+                    contentClassName='billingModal'
+                    paperClassName='billingModalDiv'
+                    contentStyle={{ width: isMobile ? "" : "100%" }}
+                    // actions={actionsWithdrawal}
+                    modal={false}
+                    open={this.state.withdrawalOfFundsModal}
+                    onRequestClose={() => { this.handleClose('withdrawal') }}
+                >
+                    <form action="" className="billingModalContent">
+                        <div className="d-flex align-items-center mt-1">
+                            <label htmlFor="withdrawalSum" className="col-3">Sum</label>
+                            <input id="withdrawalSum" className="col-md-9 col-sm-9" type="text" required />
+                        </div>
+                        <div className="d-flex align-items-center mt-1">
+                            <label htmlFor="NumberCard" className="col-3">Number</label>
+                            <input id="NumberCard" className="col-md-9 col-sm-9" type="text" required />
+                        </div>
+                        <div className="d-flex align-items-center mt-1">
+                            <label htmlFor="typeCard" className="col-3">Type</label>
+                            <DropDownMenu
+                                value={this.state.typeCardValue}
+                                anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
+                                className="billingModalContentDropDown col-md-9 col-sm-9"
+                                onChange={(event, index, value) => { this.handleClose('typeCard', value) }}
+                                style={{ width: "100%" }}
+                                autoWidth={false}
+                                selectedMenuItemStyle={{ color: "#f60" }}
+                            >
+                                <MenuItem value="Выберите тип" disabled={true} primaryText="Выберите тип" />
+                                {this.state.typeCardArray.map((element, index) =>
+                                    <MenuItem value={element} primaryText={element} />
+                                )}
+                            </DropDownMenu>
+                        </div>
+                        <div className="d-flex justify-content-end mt-2">
+                            <FlatButton
+                                label="Закрыть"
+                                primary={true}
+                                onClick={() => { this.handleClose('withdrawal') }}
+                            />
+                            <button className="billingBtSubmit" type="submit">Ok</button>
+                        </div>
+
+                    </form>
+                </Dialog>
+                <Dialog
+                    contentClassName='billingModal'
+                    paperClassName='billingModalDiv'
+                    modal={false}
+                    open={this.state.toPayModal}
+                    onRequestClose={() => { this.handleClose('toPay') }}
+                >
+                    <form action="" className="billingModalContent">
+                        <div className="d-flex align-items-center mt-1">
+                            <label htmlFor="toPaySum" className="col-3">Sum</label>
+                            <input id="toPaySum" className="col-md-6 col-sm-9" type="text" required />
+                        </div>
+                        <div className="d-flex align-items-center">
+                            <input id="toPayPersonalAccount" type="radio"
+                                checked={this.state.toPayPersonalAccountValue}
+                                onClick={()=>{ this.setState({toPayPersonalAccountValue: true ,toPayCardValue: false})}} />
+                            <label htmlFor="toPayPersonalAccount" className="col-md-6 col-sm-9">С лецевого счета</label>
+                        </div>
+                        <div className="d-flex align-items-center">
+                            <input id="toPayCard" type="radio" 
+                                checked={this.state.toPayCardValue}
+                                onClick={()=>{this.setState({toPayPersonalAccountValue: false ,toPayCardValue: true})}} />
+                            <label htmlFor="toPayCard" className="col-md-6 col-sm-9">с банковской карты</label>
+                        </div>
+                        <div className="d-flex justify-content-end mt-2">
+                            <FlatButton
+                                label="Закрыть"
+                                primary={true}
+                                onClick={() => { this.handleClose('toPay') }}
+                            />
+                            <button className="billingBtSubmit" type="submit">Ok</button>
+                        </div>
+
+                    </form>
+                </Dialog>
                 <div className="billingBody">
                     <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column">
                         <div className="billingContentLeft">
@@ -57,7 +164,7 @@ class DriverProfileBillingClass extends React.Component {
                                     </div>
                                 </div>
                                 <div className="billingButton d-flex justify-content-end  align-items-end">
-                                    <span>Вывод средств</span>
+                                    <span onClick={() => { this.handleClose('withdrawal') }}>Вывод средств</span>
                                 </div>
                             </div>
                             <div className="col-8 mt-5 p-0">
@@ -87,7 +194,7 @@ class DriverProfileBillingClass extends React.Component {
                                     </div>
                                 </div>
                                 <div className="billingButton d-flex justify-content-end align-items-end">
-                                    <span>Оплатить</span>
+                                    <span onClick={() => { this.handleClose('toPay') }}>Оплатить</span>
                                 </div>
 
                             </div>
@@ -142,9 +249,9 @@ class DriverProfileBillingClass extends React.Component {
                                 </TableRow>
                             </TableHeader>
                             <TableBody
-                            className="billingTable"
-                            stripedRows={true} 
-                            displayRowCheckbox={false}>
+                                className="billingTable"
+                                stripedRows={true}
+                                displayRowCheckbox={false}>
                                 {this.state.bodyTable.map((element, index) =>
                                     <TableRow>
                                         <TableRowColumn>{element.idTransaction}</TableRowColumn>

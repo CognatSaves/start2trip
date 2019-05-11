@@ -24,15 +24,17 @@ import { PlacesReduser } from './redusers/PlacesReduser';
 import { ToursReduser } from './redusers/ToursReduser';
 import { DriverProfileRegistrationtReduser } from './redusers/DriverProfileRegistrationtReduser';
 import { UserProfileRegistrationtReduser } from './redusers/UserProfileRegistrationtReduser';
+import { GlobalReduser } from './redusers/GlobalReduser';
 import { /*Link,*/ Route, BrowserRouter, Redirect, Switch } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 require('require-context/register');
 
 
+
 const redux = require('redux');
 
-const reducers = redux.combineReducers({ AppReduser, DriversReduser, StateReduser, CommentReduser, PlacesReduser, ToursReduser, DriverProfileRegistrationtReduser,UserProfileRegistrationtReduser });
+const reducers = redux.combineReducers({ AppReduser, DriversReduser, StateReduser, CommentReduser, PlacesReduser, ToursReduser, DriverProfileRegistrationtReduser, UserProfileRegistrationtReduser, GlobalReduser });
 
 const store = redux.createStore(reducers);
 
@@ -58,7 +60,7 @@ const muiTheme = getMuiTheme({
 
 ReactDOM.render(
     <Provider store={store}>
-        <BrowserRouter>
+        <BrowserRouter >
             <React.Fragment>
                 <MuiThemeProvider muiTheme={muiTheme}>
                     <Switch>
@@ -69,9 +71,9 @@ ReactDOM.render(
                         <Route path="/place/:country,:id" component={PlaceDescription} />
                         <Route path="/tours" component={Tours} />
                         <Route path="/tour/:country,:id" component={TourDescription} />
-                        <Route path="/driverProfileRegistration" component={DriverProfileRegistration} />
+                        <Route path="/account/driver" component={DriverProfileRegistration} />
                         <Route path="/registration" component={Registration} />
-                        <Route path="/userProfile" component={UserProfileRegistration} />
+                        <Route path="/account/user" component={UserProfileRegistration} />
                         <Redirect from="/" to="/home" />
                     </Switch>
                     <Footer />

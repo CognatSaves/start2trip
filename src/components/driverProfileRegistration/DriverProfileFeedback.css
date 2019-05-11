@@ -51,7 +51,7 @@
     width: 100%;
     box-shadow: 0 0 1px 1px rgba(221, 221, 221, 1);
     padding: 12px 23px 0 23px;
-    margin-bottom: 12px;
+    margin-bottom: 100px;
     border-radius: 5px;
 }
 
@@ -116,14 +116,12 @@
 }
 
 .valueBlock_firstElement_name {
-    margin-right: auto;
     font-size: 14px;
     font-weight: 600;
     color: #304269;
 }
 
 .valueBlock_firstElement_date {
-    margin-left: auto;
     font-size: 12px;
     font-weight: 300;
     color: #686868;
@@ -141,7 +139,15 @@
     line-height: 20px;
 }
 
-.commentBlock_picture {
+
+/* .commentBlock_picture {
+    height: 60px;
+    width: 60px;
+} */
+
+.commentBlock_picture img {
+    border-radius: 50%;
+    object-fit: cover;
     height: 60px;
     width: 60px;
 }
@@ -161,7 +167,7 @@
     /* Цвет фона */
     position: relative;
     text-overflow: ellipsis;
-    width: 100%;
+    width: 90%;
     font-weight: 400;
     font-size: 14px;
     color: #304269;
@@ -187,6 +193,7 @@
 
 label {
     cursor: pointer;
+    width: 100%;
 }
 
 input:checked+.news {
