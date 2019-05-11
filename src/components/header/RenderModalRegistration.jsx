@@ -147,8 +147,8 @@ class RenderModalRegistrationClass extends React.Component {
                 if(that.state.cookie!==document.cookie){
                     console.log("get good answer");
                     clearInterval(timer);
-                    let jwt = this.props.globalReduser.readCookie("jwt");
-                    let jwtstatus=this.props.globalReduser.readCookie("jwtstatus");
+                    let jwt = that.props.globalReduser.readCookie("jwt");
+                    let jwtstatus=that.props.globalReduser.readCookie("jwtstatus");
                     //console.log(jwt);
                     if(jwt!=="-"&&jwtstatus==="correct"){
                         setAnswerResult('good',{jwt: jwt});

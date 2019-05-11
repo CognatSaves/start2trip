@@ -81,6 +81,7 @@ class DriverProfileSettingsClass extends React.Component {
                         else{
                             console.log("good");         
                             console.log(data);
+                            document.location.reload(true);
                             //that.state.sendResultLocal(true, {jwt:data.jwt, user: data.user});
                         }
                     })
@@ -90,6 +91,7 @@ class DriverProfileSettingsClass extends React.Component {
                         //that.state.sendResultLocal(false,{error: error});
                     });
             }
+            
         }          
     }
     formSubmit(event) {

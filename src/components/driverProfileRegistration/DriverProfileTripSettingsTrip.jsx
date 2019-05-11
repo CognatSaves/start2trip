@@ -26,10 +26,10 @@ class DriverProfileTripSettingsTripClass extends React.Component {
             }
         }
         let cityRadius = [];
-        let distance = [];
+        let distance = '';
         if (travelsetting.settings) {
             cityRadius = [...travelsetting.settings.points];
-            distance = [...travelsetting.settings.distance];
+            distance = travelsetting.settings.distance;
         }
         this.state = {
             cityRadius: cityRadius,
@@ -75,6 +75,8 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                     else {
                         console.log("good");
                         console.log(data);
+
+                        document.location.reload(true);
                         //that.state.sendResultLocal(true, {jwt:data.jwt, user: data.user});
                     }
                 })
@@ -83,6 +85,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                     console.log('An error occurred:', error);
                     //that.state.sendResultLocal(false,{error: error});
                 });
+                
         }
 
     }

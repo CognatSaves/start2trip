@@ -28,7 +28,7 @@ class DriverProfileRegistrationClass extends React.Component {
   constructor(props) {
     super(props);
     const that = this;
-    function getUserData(){
+    function getUserData(callback,params){
       let jwt = that.props.globalReduser.readCookie('jwt');
       if(jwt && jwt!=="-"){    
         axios.get(requests.profileRequest+'?ISO=RUS&countryISO=IRO', {
@@ -38,19 +38,24 @@ class DriverProfileRegistrationClass extends React.Component {
         })
         .then(response =>{
           that.props.dispatch(setProfileData(response.data));
+          if(callback){
+            callback(params);
+          }        
         })
         .catch(error => {
           console.log('error, here must be return to authorization window! or smth else');
         })
       }
     }
+    function tempCallbackFunc(params){
+      alert(params);
+    }
     getUserData();
     this.state = {
       photo:[people1,people2,people3,people4,people2]
-  }
+    }
 
   }
-
   render() {
     let profile = this.props.storeState.profile;
     return (

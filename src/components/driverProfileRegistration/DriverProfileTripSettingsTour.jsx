@@ -325,7 +325,8 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                 request.open('PUT', requests.userTourUpdateRequest+"/"+this.state.tourId);
                 request.setRequestHeader('Authorization',`Bearer ${jwt}`);
                 request.send(tourForm);
-            }         
+            }
+            document.location.reload(true);         
         }
     }
     formSubmit(event) {

@@ -83,6 +83,7 @@ class DriverProfileCarClass extends React.Component {
                 request.setRequestHeader('Authorization',`Bearer ${jwt}`);
                 request.send(carForm);
             }
+            document.location.reload(true);
         }  
         
     } 
@@ -129,6 +130,7 @@ class DriverProfileCarClass extends React.Component {
             request.open('PUT',requests.userCarActivateRequest+'/'+element.id);
             request.setRequestHeader('Authorization',`Bearer ${jwt}`);
             request.send(carForm);
+            document.location.reload(true);
         }
     }
     destroy(element){
@@ -144,6 +146,7 @@ class DriverProfileCarClass extends React.Component {
             request.open('DELETE', requests.userCarDestroyRequest+"/"+element.id);
             request.setRequestHeader('Authorization',`Bearer ${jwt}`);
             request.send();
+            document.location.reload(true);
         }
     }
 

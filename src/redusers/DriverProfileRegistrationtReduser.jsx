@@ -3,7 +3,7 @@ import {WHICH_PAGE_RENDER,SET_PROFILE_DATA} from './ActionDriverProfileRegistrat
 const initialState = {
     pageRender: "0",
     carCards:[],
-    profile: {} ,   
+    profile: {},   
 };
 
 
@@ -18,7 +18,7 @@ export const DriverProfileRegistrationtReduser = (state = initialState, action) 
             let newStatePD = { ...state };
             newStatePD.profile = action.profile;
             return newStatePD;
-        }   
+        }
     default: return state;
     }
 }

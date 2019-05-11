@@ -82,6 +82,7 @@ class DriverProfileBasicInformationClass extends React.Component {
             value.homecountry = pcity.homecountry;
             value.city = undefined;
             let body = JSON.stringify(value);
+            let that = this;
             fetch(requests.profileUpdateRequest, {
                 method: 'PUT', body: body,
                 headers: { 'content-type': 'application/json', Authorization: `Bearer ${jwt}` }
@@ -95,9 +96,13 @@ class DriverProfileBasicInformationClass extends React.Component {
                         throw data.error;
                     }
                     else {
-                        ;
+                    
                         console.log("good");
                         console.log(data);
+
+                        
+                        document.location.reload(true);
+                        
                     }
                 })
                 .catch(function (error) {
