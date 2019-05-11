@@ -107,6 +107,7 @@ p.driverProfileSettingsContentPasswordText {
     color: #304269;
     cursor: pointer;
     margin-bottom: 5px;
+    width: max-content;
 }
 
 .driverProfileSettingsContentUnsubscribeButton:hover {
@@ -275,6 +276,7 @@ p.driverProfileSettingsContentPasswordText {
     justify-content: flex-end;
     align-items: center;
     text-align: center;
+    justify-content: flex-end;
 }
 
 .slide1 span,
@@ -318,7 +320,7 @@ p.driverProfileSettingsContentPasswordText {
 
 .modalStartInformationContent .controls {
     position: relative;
-    padding: 0 auto;
+    padding: 20px;
 }
 
 .modalStartInformationContent label {

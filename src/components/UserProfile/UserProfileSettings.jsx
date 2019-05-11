@@ -18,9 +18,10 @@ class UserProfileSettingsClass extends React.Component {
             newPasswordType: true,
             confirmPasswordType: true,
             privatePhone: "",
+            mailing:true,
 
             // ---------------
-            openModalStart: true,
+            openModalStart: false,
             inputChecked:[true,false,false,false],
             lastValue:0,
             changeBtClose:false,
@@ -82,9 +83,10 @@ class UserProfileSettingsClass extends React.Component {
     render() {
 
 
-
+// TODO Modal
         return (
             <React.Fragment>
+                {/* Модалка для мобильной версии стартовая */}
                 <div className="modalStartInformation" style={{display: this.state.openModalStart? "block":"none"}}>
                     <div className="d-flex align-items-center justify-content-end col-11 mt-3">
                         <span className="modalStartInformationSkip" onClick={this.handleClose}>Пропустить</span>
@@ -135,6 +137,8 @@ class UserProfileSettingsClass extends React.Component {
                         <span className="modalStartInformationNext">{this.state.changeBtClose?"Закрыть":"Далее"}</span>
                     </div>
                 </div>
+                 {/* Модалка для мобильной версии стартовая */}
+
                 <div className="driverProfilesettingsBody pb-1">
 
                     <div className="driverProfilesettingsBodyTitle d-xl-block d-lg-block d-md-block d-sm-none d-none">
@@ -225,8 +229,8 @@ class UserProfileSettingsClass extends React.Component {
                     <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start pb-3">
                         <p className="col-2"></p>
                         <div className="driverProfileSettingsContentUnsubscribe d-flex flex-column">
-                            <p className="driverProfileSettingsContentUnsubscribeButton">Отписаться от рассылки</p>
-                            <p>В результате отписки Вы больше не будете получать сообщения от Start2Trip</p>
+                            <span className="driverProfileSettingsContentUnsubscribeButton" onClick={()=>{this.setState({mailing: !this.state.mailing})}}>{this.state.mailing ? "Отписаться от рассылки":"Подписаться на рассылку"}</span>
+                            <p>В результате отписки Вы больше не будете получать сообщения от Tripfer</p>
                         </div>
                     </div>
                 </div>

@@ -20,7 +20,6 @@ class DriverProfileNavigationClass extends React.Component {
         super(props);
         this.state = {
             navigationText: ["Мои поездки", "Профиль", "Автомобиль", "Настройки поездок", "Туры", "Отзывы", "Настройки", "Биллинг", "Партнерская программа",],
-            shiftLeft: [0, 6, 129, 219, 311, 430, 430],
             avatar: "",
             profile: this.props.storeState.profile,
             route: [
@@ -85,7 +84,6 @@ class DriverProfileNavigationClass extends React.Component {
                         <div className="basicInformationBodyTopImgHover">
                             <label className="basicInformationBodyTopImg" htmlFor="addFile">Обновить фотографию</label>
                             <img src={this.state.avatar} alt="imgPerson" />
-                            {/* <label className="edditIcon" htmlFor="addFile"></label> */}
                             <input type="file" id="addFile" style={{ display: "none" }} onChange={this._handleImageChange} />
                         </div>
                         <div className="bodyTopDriverInfo col-7">

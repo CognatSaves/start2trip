@@ -15,28 +15,51 @@ class UserProfileNavigationClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            navigationText: ["Предстоящие поездки","История поездок","Профиль","Настройки"],
+            navigationText: ["Мои поездки","Профиль","Настройки"],
+            avatar: imgPerson,
+            route: [
+                "/account/user/trips",
+                "/account/user/profile",
+                "/account/user/settings",
+            ],
         }
     }
     shiftLeft = (event) => {
 
         event.currentTarget.parentElement.scrollLeft = event.currentTarget.offsetLeft - 120;
     }
+    _handleImageChange = (e) => {
+        e.preventDefault();
+
+        let file = e.target.files[0];
+
+        if (file.type.match('image')) {
+            let reader = new FileReader();
+            reader.onloadend = () => {
+                var img = reader.result;
+                this.setState({ avatar: img });
+            }
+            reader.readAsDataURL(file)
+        }
+    }
 
     render() {
+        // if (!this.state.avatar) {
+        //     let img = requests.serverAddress + this.state.profile.avatar.url
+        //     this.setState({ avatar: img })
+        // }
         return (
             <div className="registrationWrapper driverBG col-12 p-0" style={{
-                0: { backgroundImage: "url(" + preHistoryBG + ")" },
-                1: { backgroundImage: "url(" + historyBG + ")" },
-                2: { backgroundImage: "url(" + historyBG + ")" },
-                3: { backgroundImage: "url(" + sittingsBG + ")" },
-            }[this.props.storeState.pageRender]}>
+                "/account/user/trips": { backgroundImage: "url(" + preHistoryBG + ")" },
+                // "/account/user/profile": { backgroundImage: "url(" + historyBG + ")" },
+                "/account/user/profile": { backgroundImage: "url(" + historyBG + ")" },
+                "/account/user/settings": { backgroundImage: "url(" + sittingsBG + ")" },
+            }[this.props.globalhistory.history.location.pathname]}>
                 <div className="basicInformationBodyTop d-flex align-items-center ">
                     <div className="basicInformationBodyTopImgHover">
                         <label className="basicInformationBodyTopImg" htmlFor="addFile">Обновить фотографию</label>
-                        <img src={imgPerson} alt="imgPerson" />
-                        {/* <label className="edditIcon" htmlFor="addFile"></label> */}
-                        <input type="file" id="addFile" style={{ display: "none" }} />
+                        <img src={this.state.avatar} alt="imgPerson" />
+                        <input type="file" id="addFile" style={{ display: "none" }} onChange={this._handleImageChange} />
                     </div>
                     <div className="bodyTopDriverInfo col-7">
                         <div className="bodyTopDriverInfoName d-flex flex-column align-items-start">
@@ -76,7 +99,7 @@ class UserProfileNavigationClass extends React.Component {
 
                 <div className="navigationBody d-flex align-items-center">
                     {this.state.navigationText.map((element, index) =>
-                        <span className={{ [index]: "navigationBodyActive", }[this.props.storeState.pageRender] + " navigationButton mb-0 "} onClick={(event) => { this.props.dispatch(whichPageRenderUser(index)); this.shiftLeft(event) }}>{element}</span>
+                        <span className={{ [this.state.route[index]]: "navigationBodyActive", }[this.props.globalhistory.history.location.pathname] + " navigationButton mb-0 "} onClick={(event) => { this.props.dispatch(whichPageRenderUser(index)); this.shiftLeft(event); this.props.globalhistory.history.push(this.state.route[index]) }}>{element}</span>
                     )}
                 </div>
             </div>
@@ -87,6 +110,7 @@ class UserProfileNavigationClass extends React.Component {
 const UserProfileNavigation = connect(
     (state) => ({
         storeState: state.UserProfileRegistrationtReduser,
+        globalhistory: state.GlobalReduser,
     }),
 )(UserProfileNavigationClass);
 

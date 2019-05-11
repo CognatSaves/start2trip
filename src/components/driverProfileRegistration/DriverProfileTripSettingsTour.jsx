@@ -712,9 +712,6 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                             </div>
                         )}
                     </div>
-                    {// TODO доделать render Element 
-                    }
-
 
                 </div>
             </React.Fragment >

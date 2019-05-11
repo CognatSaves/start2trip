@@ -120,14 +120,12 @@
 }
 
 .valueBlock_firstElement_name {
-    margin-right: auto;
     font-size: 14px;
     font-weight: 600;
     color: #304269;
 }
 
 .valueBlock_firstElement_date {
-    margin-left: auto;
     font-size: 12px;
     font-weight: 300;
     color: #686868;
@@ -145,15 +143,17 @@
     line-height: 20px;
 }
 
-.commentBlock_picture {
+
+/* .commentBlock_picture {
     height: 60px;
     width: 60px;
-}
+} */
 
 .commentBlock_valueBlock {
     height: 100%;
     width: 100%;
     margin-left: 2%;
+    overflow: hidden;
 }
 
 .news {

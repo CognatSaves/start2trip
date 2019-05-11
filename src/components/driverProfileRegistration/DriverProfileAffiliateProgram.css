@@ -36,7 +36,7 @@
     cursor: pointer;
     transition: ease 0.3s;
     margin: 5px;
-    min-width: 160px;
+    min-width: 176px;
 }
 
 .affiliateProgramButton :nth-child(2) :nth-child(2) {

@@ -56,7 +56,7 @@ html {
 
 .footerMobile {
     position: fixed;
-    z-index: 3;
+    z-index: 33;
     width: 100%;
     background: #fff;
     bottom: 0px;

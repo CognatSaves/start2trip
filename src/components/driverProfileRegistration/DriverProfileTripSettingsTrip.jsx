@@ -19,20 +19,20 @@ class DriverProfileTripSettingsTripClass extends React.Component {
     constructor(props) {
         super(props);
         let travelsetting = this.props.profileReduser.profile.travelsetting;
-        let dateTour=[];
-        if(travelsetting.calendary){
-            for(let i=0; i<travelsetting.calendary.length;i++){
-                dateTour[i]=new Date(travelsetting.calendary[i]);
+        let dateTour = [];
+        if (travelsetting.calendary) {
+            for (let i = 0; i < travelsetting.calendary.length; i++) {
+                dateTour[i] = new Date(travelsetting.calendary[i]);
             }
         }
         let cityRadius = [];
         let distance = [];
-        if(travelsetting.settings){
-            cityRadius=[...travelsetting.settings.points];
-            distance=[...travelsetting.settings.distance];
+        if (travelsetting.settings) {
+            cityRadius = [...travelsetting.settings.points];
+            distance = [...travelsetting.settings.distance];
         }
         this.state = {
-            cityRadius:cityRadius,
+            cityRadius: cityRadius,
             distance: distance,
             newDate: false,
             dateTour: dateTour,
@@ -42,32 +42,32 @@ class DriverProfileTripSettingsTripClass extends React.Component {
         this.addCityRadius = this.addCityRadius.bind(this);
         this.deleteCityRadius = this.deleteCityRadius.bind(this);
         this.formSubmit = this.formSubmit.bind(this);
-        this.inputChange=this.inputChange.bind(this);
-        this.applyChanges = this.applyChanges.bind(this); 
+        this.inputChange = this.inputChange.bind(this);
+        this.applyChanges = this.applyChanges.bind(this);
     }
-    applyChanges(){
+    applyChanges() {
         function readCookie(name) {
-            var name_cook = name+"=";
-            var spl = document.cookie.split(";");           
-            for(var i=0; i<spl.length; i++) {           
-                var c = spl[i];               
-                while(c.charAt(0) == " ") {               
-                    c = c.substring(1, c.length);                   
-                }               
-                if(c.indexOf(name_cook) == 0) {                   
-                    return c.substring(name_cook.length, c.length);                    
-                }               
-            }           
-            return null;           
+            var name_cook = name + "=";
+            var spl = document.cookie.split(";");
+            for (var i = 0; i < spl.length; i++) {
+                var c = spl[i];
+                while (c.charAt(0) == " ") {
+                    c = c.substring(1, c.length);
+                }
+                if (c.indexOf(name_cook) == 0) {
+                    return c.substring(name_cook.length, c.length);
+                }
+            }
+            return null;
         }
         let jwt = readCookie('jwt');
-        
-        if(jwt && jwt!=="-"){
+
+        if (jwt && jwt !== "-") {
             let value = {
                 travelsetting: {
-                    settings:{
-                        points:this.state.cityRadius,
-                        distance:this.state.distance
+                    settings: {
+                        points: this.state.cityRadius,
+                        distance: this.state.distance
                     },
                     calendary: this.state.dateTour
                 }
@@ -75,30 +75,32 @@ class DriverProfileTripSettingsTripClass extends React.Component {
             console.log('body before json');
             console.log(value);
             let body = JSON.stringify(value);
-            fetch(requests.travelsettingsUpdateRequest, {method: 'PUT',body:body,
-                headers:{'content-type': 'application/json', Authorization: `Bearer ${jwt}`}})
+            fetch(requests.travelsettingsUpdateRequest, {
+                method: 'PUT', body: body,
+                headers: { 'content-type': 'application/json', Authorization: `Bearer ${jwt}` }
+            })
                 .then(response => {
                     return response.json();
                 })
-                .then(function (data) {                   
-                    if(data.error){
+                .then(function (data) {
+                    if (data.error) {
                         console.log("bad");
                         throw data.error;
                     }
-                    else{
-                        console.log("good");         
+                    else {
+                        console.log("good");
                         console.log(data);
                         //that.state.sendResultLocal(true, {jwt:data.jwt, user: data.user});
                     }
                 })
-                .catch(function(error) {
+                .catch(function (error) {
                     console.log("bad");
                     console.log('An error occurred:', error);
                     //that.state.sendResultLocal(false,{error: error});
                 });
-        }  
-        
-    }   
+        }
+
+    }
     formSubmit(event) {
         //debugger
         //alert('Your favorite flavor is: ' + this.state.value);
@@ -122,17 +124,17 @@ class DriverProfileTripSettingsTripClass extends React.Component {
         })
         console.log(this.state.cityRadius)
     }
-    inputChange(value,variable, index=0){
-        switch(variable){
-            case 'radius':{
+    inputChange(value, variable, index = 0) {
+        switch (variable) {
+            case 'radius': {
                 let cityRadius = this.state.cityRadius;
-                cityRadius[index].radius=value;
+                cityRadius[index].radius = value;
                 this.setState({
                     cityRadius: cityRadius
                 });
                 break;
             }
-            case 'distance':{
+            case 'distance': {
                 this.setState({
                     distance: value
                 })
@@ -146,9 +148,9 @@ class DriverProfileTripSettingsTripClass extends React.Component {
         console.log(value);
         console.log(extraData);
         let cityRadius = this.state.cityRadius;
-        cityRadius[index].point=value;
-        cityRadius[index].lat=extraData.location.lat;
-        cityRadius[index].long=extraData.location.long;
+        cityRadius[index].point = value;
+        cityRadius[index].lat = extraData.location.lat;
+        cityRadius[index].long = extraData.location.long;
         this.setState({
             cityRadius: cityRadius
         })
@@ -255,14 +257,14 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                 </Dialog>
                 <form onSubmit={this.formSubmit} id="tripForm" className="tripSettingsBody">
                     <div className="tripSettingsContent">
-                        <div className="tripSettingsContentTitle d-flex align-items-center">
-                            <p className="col-xl-2 col-lg-2 col-md-2 col-sm-11 col-11 p-0">Выберите выходные дни</p>
-                            <span className="newTourDatepickerSpan col-xl-6 col-lg-7 col-md-9 col-sm-12 col-12 p-0" onClick={this.calendarModalShow}>Выбрать даты</span>
+                        <div className="tripSettingsContentTitle d-flex flex-md-row flex-sm-column flex-column align-items-center">
+                            <p className="col-xl-2 col-lg-2 col-md-3 col-sm-11 col-11 p-0">Выберите выходные дни</p>
+                            <span className="newTourDatepickerSpan col-xl-6 col-lg-7 col-md-9 col-sm-11 col-11" onClick={this.calendarModalShow}>Выбрать даты</span>
                         </div>
                         <div className="tripSettingsContentDate d-flex align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start justify-content-center">
 
                             <div className="d-flex flex-wrap flex-row align-items-start col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 p-0 mb-2">
-                               
+
                                 {this.state.dateTour.map((element, index) => {
                                     let day = element.getDate();
                                     let month = element.getMonth();
@@ -293,8 +295,8 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                                     <label htmlFor={"tripLocation" + index} className="col-xl-2 col-lg-2 col-md-2 col-sm-11 col-11 p-0">Базовый город/радиус, км:</label>
                                     <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">
                                         <LocationSearchInput address={element.point} changeCity={this.changeCity} classInput="searchInputDriverInformation" index={index} classDropdown="searchDropdownDriverInformation" />
-                                        <input className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 ml-1 d-xl-block d-lg-block d-md-block d-sm-none d-none" type="text" id="itemRadiu" value={element.radius} 
-                                        onChange={(e)=>this.inputChange(e.target.value,'radius',index)}
+                                        <input className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 ml-1 d-xl-block d-lg-block d-md-block d-sm-none d-none" type="text" id="itemRadiu" value={element.radius}
+                                            onChange={(e) => this.inputChange(e.target.value, 'radius', index)}
                                         />
                                         <TextField
                                             floatingLabelText="Радиус в км"
@@ -303,7 +305,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                                             floatingLabelFocusStyle={{ color: "#304269" }}
                                             underlineFocusStyle={{ borderColor: "#304269" }}
                                             value={element.radius}
-                                            onChange={(e)=>this.inputChange(e.target.value,'radius',index)}
+                                            onChange={(e) => this.inputChange(e.target.value, 'radius', index)}
                                         />
                                     </div>
                                     <span style={{ display: index ? "block" : "none" }} className="tripSettingsContentDeletButton " title="Удалить город" onClick={() => { this.deleteCityRadius(index) }} />
@@ -317,7 +319,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                         <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
                             <label htmlFor="maxDailyMileage" className="col-xl-2 col-lg-2 col-md-2 col-sm-11 col-11 p-0">Максимальный дневной пробег, км:</label>
                             <input id="maxDailyMileage" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12" type="text" value={this.state.distance}
-                                onChange={(e)=>this.inputChange(e.target.value,'distance')}
+                                onChange={(e) => this.inputChange(e.target.value, 'distance')}
                             />
                             <TextField
                                 floatingLabelText="Максимальный дневной пробег"
@@ -326,7 +328,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                                 floatingLabelFocusStyle={{ color: "#304269" }}
                                 underlineFocusStyle={{ borderColor: "#304269" }}
                                 value={this.state.distance}
-                                onChange={(e)=>this.inputChange(e.target.value,'distance')}
+                                onChange={(e) => this.inputChange(e.target.value, 'distance')}
                             />
                             <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none pl-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
                         </div>

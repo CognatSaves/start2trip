@@ -16,9 +16,9 @@ class RenderFourElClass extends React.Component {
     }
     render() {
         return (
-            <div className="d-flex  align-items-center justify-content-center mb-4 p-0 col-12">
+            <div className="d-flex flex-wrap  align-items-center justify-content-center p-0 col-12">
                 {this.props.tours.map((element, index) =>
-                    <div className="tourCard col-3 p-0">
+                    <div className="tourCard col-xl-3 col-lg-3 col-md-6 col-sm-6 col-11 mb-4 p-0">
                         <Card className="tourBody">
                             <Link to={element.link}>
                                 <CardImg top width="100%" src={element.img} alt="Card image cap" />
