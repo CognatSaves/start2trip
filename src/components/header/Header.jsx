@@ -57,20 +57,6 @@ const CountrySelect = (props) => {
 
 class HeaderClass extends React.Component {
   constructor(props) {
-    function readCookie(name) {
-      var name_cook = name + "=";
-      var spl = document.cookie.split(";");
-      for (var i = 0; i < spl.length; i++) {
-        var c = spl[i];
-        while (c.charAt(0) == " ") {
-          c = c.substring(1, c.length);
-        }
-        if (c.indexOf(name_cook) == 0) {
-          return c.substring(name_cook.length, c.length);
-        }
-      }
-      return null;
-    }
     super(props);
     if (this.props.history) {
       this.props.dispatch(whichPageRenderHistory(this.props.history));
@@ -78,9 +64,9 @@ class HeaderClass extends React.Component {
     console.log('storeState');
     console.log(this.props.storeState);
     this.authorization();
-    let avatarUrl = readCookie('avatarUrl');
-    let userName = readCookie('userName');
-    let jwt = readCookie('jwt');
+    let avatarUrl = this.props.globalReduser.readCookie('avatarUrl');
+    let userName = this.props.globalReduser.readCookie('userName');
+    let jwt = this.props.globalReduser.readCookie('jwt');
     console.log('Header constructor');
     console.log("get data from cookie");
     console.log(avatarUrl);
@@ -167,23 +153,7 @@ class HeaderClass extends React.Component {
     });
   }
   authorization() {
-    function readCookie(name) {
-      var name_cook = name + "=";
-      var spl = document.cookie.split(";");
-      for (var i = 0; i < spl.length; i++) {
-        var c = spl[i];
-        while (c.charAt(0) == " ") {
-          c = c.substring(1, c.length);
-        }
-        if (c.indexOf(name_cook) == 0) {
-          return c.substring(name_cook.length, c.length);
-        }
-      }
-      return null;
-    }
-    let jwt = readCookie('jwt');
-    //console.log('jwt');
-    // console.log(jwt);
+    let jwt = this.props.globalReduser.readCookie('jwt');
     if (jwt && jwt !== "-") {
       axios.get(requests.meRequest, {
         headers: {
@@ -356,6 +326,7 @@ const Header = connect(
   (state) => ({
     storeState: state.AppReduser,
     globalhistory: state.GlobalReduser,
+    globalReduser: state.GlobalReduser,
   }),
 )(HeaderClass);
 

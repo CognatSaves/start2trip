@@ -2,22 +2,12 @@ import React from 'react'
 import './DriverProfileCar.css'
 import 'react-telephone-input/lib/withStyles'
 import { connect } from 'react-redux'
-import imgCar from './img/images.jpeg'
-import q from './img/q.jpg'
-import e from './img/e.jpg'
-import r from './img/r.jpg'
-import t from './img/t.jpg'
-import no_smokingIcon, { ReactComponent } from './img/no-smoking.svg'
-import seatIcon from './img/seat.svg'
-import snowflakeIcon from './img/snowflake.svg'
-import wifiIcon from './img/wifi.svg'
 import { Collapse } from 'reactstrap'
 import { isMobile } from 'react-device-detect'
 import DropDownMenu from 'material-ui/DropDownMenu'
 import MenuItem from 'material-ui/MenuItem'
 import TextField from 'material-ui/TextField'
 import config from '../../config';
-
 import requests from '../../config';
 
 class DriverProfileCarClass extends React.Component {
@@ -27,12 +17,6 @@ class DriverProfileCarClass extends React.Component {
         console.log('DriverProfileCarClass constructor');
         console.log(profile);
         this.state = {
-            //language: ["Грузинский", "Русский", "Корейский", "Хинди"],
-            /*seat: { icon: seatIcon, title: "Кожаный салон" },
-            snowflake: { icon: snowflakeIcon, title: "Климот контроль" },
-            wifi: { icon: wifiIcon, title: "Бесплатный Wi-Fi" },
-            no_smoking: { icon: no_smokingIcon, title: "Курение в салоне запрещено" },
-            smoking: { icon: no_smokingIcon, title: "Курение в салоне разрешено" },*/
             comfort: [false,false,false,false],
             carImg: [],
             imgFiles:[],
@@ -50,22 +34,7 @@ class DriverProfileCarClass extends React.Component {
         this.changeActive = this.changeActive.bind(this);
     }
     applyChanges(type){
-        function readCookie(name) {
-            var name_cook = name+"=";
-            var spl = document.cookie.split(";");           
-            for(var i=0; i<spl.length; i++) {           
-                var c = spl[i];               
-                while(c.charAt(0) == " ") {               
-                    c = c.substring(1, c.length);                   
-                }               
-                if(c.indexOf(name_cook) == 0) {                   
-                    return c.substring(name_cook.length, c.length);                    
-                }               
-            }           
-            return null;           
-        }
-        let jwt = readCookie('jwt');
-        
+        let jwt = this.props.globalReduser.readCookie('jwt');       
         if(jwt && jwt!=="-"){
             var carForm = new FormData();
             carForm.append('carBrand',this.state.newCarCard.nameCar);
@@ -82,16 +51,12 @@ class DriverProfileCarClass extends React.Component {
             carForm.append('leatherInterior',comfort[1]);
             carForm.append('freeWiFi',comfort[2]);
             carForm.append('smokingPermit',comfort[3]);
-
-            console.log('img files');         
-            console.log(this.state.imgFiles);
             for(let i=0; i<this.state.imgFiles.length;i++){
                 carForm.append('image',this.state.imgFiles[i]);
             }
             const request = new XMLHttpRequest();
             if(type){      
                 request.onreadystatechange = function(){
-                    //debugger;
                     console.log(request.status);
                     console.log(request.statusText);
                     console.log(request.responseText);
@@ -122,13 +87,7 @@ class DriverProfileCarClass extends React.Component {
         
     } 
     formSubmit(event) {
-        //debugger
-        
-        //alert('Your favorite flavor is: ' + this.state.value);
         console.log('formSubmit');
-        console.log(this.state);
-        console.log('selected car');
-        console.log(this.state.car);
         if(!this.state.car.id){
             this.applyChanges(true);//если новый, то true
         }
@@ -145,8 +104,6 @@ class DriverProfileCarClass extends React.Component {
             comfort: [false,false,false,false], carImg: [], imgFiles:[], car:{} }));       
         }
         else{
-            console.log('try to change a car');
-            console.log(element);
             let carImg = [];let imgFiles=[];
             for(let i=0; i<element.image.length; i++){
                 carImg[i]=requests.serverAddress+element.image[i].url;
@@ -164,21 +121,7 @@ class DriverProfileCarClass extends React.Component {
         }
     }
     changeActive(element){
-        function readCookie(name) {
-            var name_cook = name+"=";
-            var spl = document.cookie.split(";");           
-            for(var i=0; i<spl.length; i++) {           
-                var c = spl[i];               
-                while(c.charAt(0) == " ") {               
-                    c = c.substring(1, c.length);                   
-                }               
-                if(c.indexOf(name_cook) == 0) {                   
-                    return c.substring(name_cook.length, c.length);                    
-                }               
-            }           
-            return null;           
-        }
-        let jwt = readCookie('jwt');
+        let jwt = this.props.globalReduser.readCookie('jwt');
         if(jwt && jwt!=="-"){
             var carForm = new FormData();
             carForm.append('onWork',!element.onWork);
@@ -189,27 +132,11 @@ class DriverProfileCarClass extends React.Component {
         }
     }
     destroy(element){
-        function readCookie(name) {
-            var name_cook = name+"=";
-            var spl = document.cookie.split(";");           
-            for(var i=0; i<spl.length; i++) {           
-                var c = spl[i];               
-                while(c.charAt(0) == " ") {               
-                    c = c.substring(1, c.length);                   
-                }               
-                if(c.indexOf(name_cook) == 0) {                   
-                    return c.substring(name_cook.length, c.length);                    
-                }               
-            }           
-            return null;           
-        }
-        let jwt = readCookie('jwt');      
+        let jwt = this.props.globalReduser.readCookie('jwt');     
         if(jwt && jwt!=="-"){
             console.log('try to destroy a car');
-            console.log(element);
             const request = new XMLHttpRequest();
             request.onreadystatechange = function(){
-                //debugger;
                 console.log(request.status);
                 console.log(request.statusText);
                 console.log(request.responseText);
@@ -242,10 +169,7 @@ class DriverProfileCarClass extends React.Component {
                 this.setState(state => { const carImg = this.state.carImg.push(img); return carImg });
             }
             reader.readAsDataURL(file)
-
         }
-
-
     }
 
     handleChange = (event, index, value, key) => {
@@ -264,10 +188,7 @@ class DriverProfileCarClass extends React.Component {
                 newCarCard: { ...this.state.newCarCard, carClass: value }
             })
         }
-
     }
-
-
 
     render() {
         function findCarTypeNames(cars, carTypes){
@@ -288,7 +209,6 @@ class DriverProfileCarClass extends React.Component {
         }
         let cars = this.props.profileReduser.profile.cars;
         console.log("DriverProfileCar render");
-        console.log(this.state);
         //выдаёт значения строго на русском - впоследствие будет переделана
         let carTypes = findCarTypeNames(cars, this.props.profileReduser.profile.carTypes);
         /*console.log(config.serverAddress+cars[0].url);*/
@@ -479,11 +399,11 @@ class DriverProfileCarClass extends React.Component {
                                 <input  onClick={(e) => { let comfort = this.state.comfort; comfort[2]=!comfort[2]; this.setState({comfort: comfort});}}  type="checkbox" id="comfort3" checked={this.state.comfort[2]}/>
                                         <span />
                                     </label>
-                                    <label htmlFor="comfort4">Курение в салоне запрещено
+                                    <label htmlFor="comfort4">Курение в салоне разрешено
                                 <input onClick={(e) => { let comfort = this.state.comfort; comfort[3]=!comfort[3]; this.setState({comfort: comfort});}} type="checkbox" id="comfort4" checked={this.state.comfort[3]}/>
                                         <span />
                                     </label>
-                                    <label htmlFor="comfort5">Курение в салоне разрешено
+                                    <label htmlFor="comfort5">Курение в салоне запрещено
                                 <input onClick={(e) => { let comfort = this.state.comfort; comfort[3]=!comfort[3]; this.setState({comfort: comfort});}} type="checkbox" id="comfort5" checked={!this.state.comfort[3]}/>
                                         <span />
                                     </label>
@@ -520,7 +440,7 @@ class DriverProfileCarClass extends React.Component {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="filledCardImg">
+                                <div className="filledCardImg" onClick={()=>this.toggle(element)}>
                                     <img src={element.image[0] ? config.serverAddress+element.image[0].url : ""} className="img-fluid" alt="imgCar" width="100%" height="100%" />
                                 </div>
                                 <div className="cardInformationType d-flex flex-column">
@@ -544,6 +464,7 @@ const DriverProfileCar = connect(
     (state) => ({
         storeState: state.AppReduser,
         profileReduser: state.DriverProfileRegistrationtReduser,
+        globalReduser: state.GlobalReduser
     }),
 )(DriverProfileCarClass);
 

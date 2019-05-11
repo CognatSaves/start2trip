@@ -10,10 +10,7 @@ import MenuItem from 'material-ui/MenuItem';
 import Chip from 'material-ui/Chip';
 import flags from './img/flags.png'
 import ReactTelInput from 'react-telephone-input'
-import RefreshIndicator from 'material-ui/RefreshIndicator';
-
 import requests from '../../config';
-import axios from 'axios';
 
 class DriverProfileBasicInformationClass extends React.Component {
     constructor(props) {
@@ -22,7 +19,7 @@ class DriverProfileBasicInformationClass extends React.Component {
             let langList = [];
             let chipData = [];
             for (let i = 0; i < allLanguages.length; i++) {
-                //debugger;
+                //;
                 let j = 0; let max = language.length;
                 for (; j < max; j++) {
                     if (language[j] === allLanguages[i].ISO) {
@@ -39,13 +36,13 @@ class DriverProfileBasicInformationClass extends React.Component {
         let profile = this.props.profileReduser.profile;
         console.log('profile in DriverProfileBasicInformation');
         console.log(profile);
-        //debugger;
+        //;
         let birthday; let passportDate;
 
         birthday = new Date(profile.birthday);
         passportDate = new Date(profile.passportDate);
         let languageArrays = languageArraysConstr(profile.language, profile.allLanguages);
-        //debugger;
+        //;
         this.state = {
             value: "Выберите языки",
             chipData: languageArrays.chipData,
@@ -56,7 +53,7 @@ class DriverProfileBasicInformationClass extends React.Component {
                 birthday: birthday,
                 passportNumber: profile.passportNumber,
                 passportDate: passportDate,
-                city: profile.hometown + ', ' + profile.homecountry,
+                city: profile.hometown.length!==0 ?  (profile.hometown+ ', ' + profile.homecountry) : "",
                 workPhone: profile.workPhone,
                 dataAbout: profile.dataAbout
             }
@@ -66,26 +63,10 @@ class DriverProfileBasicInformationClass extends React.Component {
         this.inputChange = this.inputChange.bind(this);
     }
     applyChanges() {
-        function readCookie(name) {
-            var name_cook = name + "=";
-            var spl = document.cookie.split(";");
-            for (var i = 0; i < spl.length; i++) {
-                var c = spl[i];
-                while (c.charAt(0) == " ") {
-                    c = c.substring(1, c.length);
-                }
-                if (c.indexOf(name_cook) == 0) {
-                    return c.substring(name_cook.length, c.length);
-                }
-            }
-            return null;
-        }
-        let jwt = readCookie('jwt');
+        let jwt = this.props.globalReduser.readCookie('jwt');
         if (jwt && jwt !== "-") {
             function parseCity(city) {
                 let res = city.split(', ');
-                console.log('res');
-                console.log(res);
                 let ht = "";
                 for (let i = 0; i < res.length - 1; i++) {
                     ht = ht + res[i];
@@ -93,13 +74,9 @@ class DriverProfileBasicInformationClass extends React.Component {
                         ht = ht + ", ";
                     }
                 }
-                console.log('ht');
-                console.log(ht);
                 return { hometown: ht, homecountry: res[res.length - 1] };
             }
             let value = { ...this.state.profileData, language: this.state.chipData };
-            console.log('body before stringify');
-            console.log(value);
             let pcity = parseCity(value.city);
             value.hometown = pcity.hometown;
             value.homecountry = pcity.homecountry;
@@ -118,16 +95,14 @@ class DriverProfileBasicInformationClass extends React.Component {
                         throw data.error;
                     }
                     else {
-                        debugger;
+                        ;
                         console.log("good");
                         console.log(data);
-                        //that.state.sendResultLocal(true, {jwt:data.jwt, user: data.user});
                     }
                 })
                 .catch(function (error) {
                     console.log("bad");
                     console.log('An error occurred:', error);
-                    //that.state.sendResultLocal(false,{error: error});
                 });
         }
     }
@@ -169,13 +144,11 @@ class DriverProfileBasicInformationClass extends React.Component {
         })
     }
     formSubmit(event) {
-        //debugger
         event.preventDefault();
         this.applyChanges();
     }
 
     handleChange = (event, index, value) => {
-        // this.setState({ value })
         this.chipData = this.state.chipData;
         this.chipData.push(value);
 
@@ -202,6 +175,7 @@ class DriverProfileBasicInformationClass extends React.Component {
     }
 
     render() {
+        /*
         const style = {
             refresh: {
                 display: 'inline-block',
@@ -209,28 +183,13 @@ class DriverProfileBasicInformationClass extends React.Component {
             },
         };
         let text = "text";
-        console.log('STATESTATE');
-        console.log(this.state);
-        //console.log
+*/
         return (
             <div className="basicInformationBody d-flex flex-column">
                 <div className="basicInformationBodyBottom d-flex flex-column mb-5 p-0">
                     <div className="basicInformationBodyBottomHeader d-xl-block d-lg-block d-md-block d-sm-none d-none">
                         <p>Редактировать профиль</p>
                     </div>
-                    {/* <div className="refreshIndicatorModal">
-                        <RefreshIndicator
-                            size={70}
-                            left={0}
-                            top={0}
-                            loadingColor="#f60"
-                            color="#25ae88"
-                            status="loading"
-                            style={style.refresh}
-                        />
-                        <i className="refreshIndicatorSuccess"></i>
-                     <i className={this.state.flag ?"":"refreshIndicatorSuccess"}></i> 
-                    </div> */}
                     <div className="basicInformationBodyBottomContent d-flex flex-column">
                         <form onSubmit={this.formSubmit} id="basicInformation" className="d-flex flex-column col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" >
                             <div className="bottomContentNote d-flex align-items-center">
@@ -243,6 +202,7 @@ class DriverProfileBasicInformationClass extends React.Component {
                                     underlineFocusStyle={{ borderColor: "#304269" }}
                                     initialValue={this.state.profileData.firstName}
                                     onChange={(e) => { this.inputChange(e.target.value, 'firstName'); }}
+                                    value={this.state.profileData.firstName}
                                 />
                                 <input className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " id="basicInfoName" type="text" value={this.state.profileData.firstName}
                                     onChange={(e) => { this.inputChange(e.target.value, 'firstName'); }} />
@@ -383,6 +343,7 @@ const DriverProfileBasicInformation = connect(
     (state) => ({
         storeState: state.AppReduser,
         profileReduser: state.DriverProfileRegistrationtReduser,
+        globalReduser: state.GlobalReduser,
     }),
 )(DriverProfileBasicInformationClass);
 

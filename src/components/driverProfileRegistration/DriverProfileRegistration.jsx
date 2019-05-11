@@ -29,34 +29,14 @@ class DriverProfileRegistrationClass extends React.Component {
     super(props);
     const that = this;
     function getUserData(){
-      function readCookie(name) {
-        var name_cook = name+"=";
-        var spl = document.cookie.split(";");           
-        for(var i=0; i<spl.length; i++) {           
-            var c = spl[i];               
-            while(c.charAt(0) == " ") {               
-                c = c.substring(1, c.length);                   
-            }               
-            if(c.indexOf(name_cook) == 0) {                   
-                return c.substring(name_cook.length, c.length);                    
-            }               
-        }           
-        return null;           
-      }
-      let jwt = readCookie('jwt');
-      console.log('jwt');
-      console.log(jwt);
-      if(jwt && jwt!=="-"){
-        
+      let jwt = that.props.globalReduser.readCookie('jwt');
+      if(jwt && jwt!=="-"){    
         axios.get(requests.profileRequest+'?ISO=RUS&countryISO=IRO', {
           headers: {
-            //Authorization: `${jwt}`
             Authorization: `Bearer ${jwt}`
           }
         })
         .then(response =>{
-          console.log('Data profile: ');
-          console.log(response.data);
           that.props.dispatch(setProfileData(response.data));
         })
         .catch(error => {
@@ -66,7 +46,6 @@ class DriverProfileRegistrationClass extends React.Component {
     }
     getUserData();
     this.state = {
-      userData:[],
       photo:[people1,people2,people3,people4,people2]
   }
 
@@ -118,6 +97,7 @@ class DriverProfileRegistrationClass extends React.Component {
 const DriverProfileRegistration = connect(
   (state) => ({
     storeState: state.DriverProfileRegistrationtReduser,
+    globalReduser: state.GlobalReduser,
   }),
 )(DriverProfileRegistrationClass);
 
