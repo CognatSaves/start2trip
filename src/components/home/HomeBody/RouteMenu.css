@@ -22,26 +22,46 @@
 
 .routemenu_setDate {
     cursor: pointer;
-    margin-top: 20px;
+    display: flex;
+    align-items: center;
 }
 
 .routemenu_setDate img {
     cursor: pointer;
     max-width: 35px;
+    margin-bottom: 15px !important;
 }
 
 .routemenu_date {
     cursor: pointer;
-    text-align: left;
-    border-width: 0 0 1px;
     border-color: white;
-    background-color: transparent;
-    font-size: 9pt;
     margin-bottom: 40px;
     color: #fff;
     font-weight: 400;
-    min-width: 265px;
+    font-size: 9pt;
+    width: 100%;
 }
+
+.routemenu_date div {
+    width: 100% !important;
+}
+
+.routemenu_date label {
+    color: #fff !important;
+    font-weight: 400 !important;
+    font-size: 9pt;
+}
+
+.routemenu_date input {
+    color: #fff !important;
+    font-weight: 400 !important;
+    font-size: 9pt !important;
+}
+
+
+/* .routemenu_date hr {
+    width: 90% !important;
+} */
 
 .routemenu_date:focus {
     outline: none;
@@ -332,7 +352,6 @@ p.routemenu_search_text {
     font-size: 15px;
     height: 50%;
     width: 100%;
-    min-width: 265px;
 }
 
 .autocomplete-dropdown-container span {

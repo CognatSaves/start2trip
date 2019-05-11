@@ -3,7 +3,7 @@
     border-radius: 5px 0 0 5px;
     background-color: #304269;
     min-height: 540px;
-    min-width: 350px;
+    /* min-width: 350px; */
     margin-bottom: 220px;
 }
 
@@ -11,6 +11,22 @@
     padding: 0px;
     border-radius: 0 5px 5px 0;
     margin-bottom: 220px;
+}
+
+.mobailRoutMenu {
+    background: #304269;
+}
+
+.mobailRoutMenuTitle {
+    color: #fff;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.mobailRoutMenuText {
+    color: #fff;
+    font-weight: 400;
+    font-size: 14px;
 }
 
 
