@@ -21,7 +21,7 @@ class UserProfileSettingsClass extends React.Component {
             mailing:true,
 
             // ---------------
-            openModalStart: false,
+            openModalStart: true,
             inputChecked:[true,false,false,false],
             lastValue:0,
             changeBtClose:false,
