@@ -42,8 +42,8 @@ class HomeClass extends React.Component {
           <div className="home_window">
           <Header history={this.props.history} />
             
-            <div className="home_block col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
-              <div className="home_text col-12">
+            <div className="home_block col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+              <div className="home_text col-12 p-0 d-md-block d-sm-none d-none">
                 <div className="text_firstLine">Cпланируйте свою экскурсию</div>
                 <div className="text_secondLine">Предложения от местных гидов-водителей по вашему индивидуальному маршруту</div>
                 <div className="text_changeBodyBlock">
@@ -51,15 +51,15 @@ class HomeClass extends React.Component {
                   <div className="text_changeBodyBlock_element changeBodyBlock_element_right">КАРТА</div>
                 </div>
               </div>
-              <div className="home_body d-flex justify-content-center col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+              <div className="home_body d-flex justify-content-center col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
                 <HomeBody redirectToDrivers={() => this.redirectFunc('/drivers')} />
               </div>
             </div>
          
           </div>
           <div className="homeBottom container-fluid p-0">
-            <div className="d-flex  align-items-center justify-content-md-start justify-content-center col-12"><h2 className="homeBottomTitle">ПУТЕШЕСТВИЯ С TRIPFER</h2></div>
-            <div className="d-flex flex-wrap align-items-start justify-content-center col-12 p-0">
+            <div className="d-flex  align-items-center justify-content-md-start justify-content-center pl-xl-0  pl-lg-0 pl-md-4 col-12"><h2 className="homeBottomTitle">ПУТЕШЕСТВИЯ С TRIPFER</h2></div>
+            <div className="d-flex flex-wrap align-items-start justify-content-center justify-content-md-start pl-xl-0  pl-lg-0 pl-md-4 pl-sm-4 col-12 p-0">
               <div className="homeBottomIcomRout d-flex flex-column align-items-sm-start align-items-center col-xl-3 col-lg-3 col-md-6 col-sm-6 col-9 p-0">
                 <img className="mb-3" src={routeIcon} alt="routeIcon" width="60px" height="60px" />
                 <p className="mb-2 homeBottomTitle"><span>01</span> Маршрут</p>
@@ -81,17 +81,17 @@ class HomeClass extends React.Component {
                 <p className="homeBottomText">По Вашему запросу водитель сделает остановку в любом месте для фото или видео съемки, посещения достопримечательности.</p>
               </div>
             </div>
-            <div className="d-flex  align-items-center justify-content-md-start justify-content-center col-12"><h2 className="homeBottomTitle">ПОПУЛЯРНЫЕ МЕСТА</h2></div>
+            <div className="d-flex  align-items-center justify-content-md-start justify-content-center pl-xl-0  pl-lg-0 pl-md-4 col-12"><h2 className="homeBottomTitle">ПОПУЛЯРНЫЕ МЕСТА</h2></div>
             <RenderFourEl tours={this.state.popularPlaces} priseDisplay={"none"} />
             <div className="d-flex  align-items-center justify-content-center col-12"><Link to="/places" className="homeBottomLink">ПЕРЕЙТИ К МЕСТАМ</Link></div>
-            <div className="d-flex  align-items-center justify-content-md-start justify-content-center col-12"><h2 className="homeBottomTitle">ОРГАНИЗОВАННЫЕ ТУРЫ</h2></div>
+            <div className="d-flex  align-items-center justify-content-md-start justify-content-center pl-xl-0  pl-lg-0 pl-md-4 col-12"><h2 className="homeBottomTitle">ОРГАНИЗОВАННЫЕ ТУРЫ</h2></div>
             <RenderFourEl tours={this.state.popularPlaces} priseDisplay={"block"} />
             <div className="d-flex  align-items-center justify-content-center col-12"><Link to="/tours" className="homeBottomLink">ПЕРЕЙТИ К ТУРАМ</Link></div>
 
             <div className="homeSubscribe d-flex flex-column align-items-center justify-content-center col-12">
               <h2 className="mb-3">Новостная рассылка</h2>
               <span className="mb-4">Новости, скидки, распродажи, конкурсы и немного искусства:</span>
-              <div className="d-flex flex-md-row flex-sm-column flex-column align-content-center col-xl-6 col-lg-6 col-md-7 col-sm-10 col-11 p-0 mb-4">
+              <div className="d-flex flex-md-row flex-sm-row flex-column align-content-center col-xl-6 col-lg-6 col-md-7 col-sm-10 col-11 p-0 mb-4">
               <input className="homeSubscribeInput" placeholder="Aдрес электронной почты" type="text" name="" id=""/>
               <button className="homeSubscribeButton">ПОДПИСАТЬСЯ</button>
                 {/* <InputGroup>

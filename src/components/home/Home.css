@@ -200,15 +200,27 @@ h2.homeBottomTitle {
 @media (max-width: 1140px) {}
 
 @media (max-width: 768px) {
+    .home_block {
+        padding: 0 !important;
+    }
     .homeSubscribe {
         background: none;
     }
     .homeSubscribe p {
         text-align: center;
     }
+    .home_window {
+        background: none;
+    }
+    .homeSubscribe {
+        min-height: 400px;
+    }
 }
 
 @media (max-width: 576px) {
+    .home_block {
+        padding: 0 !important;
+    }
     .homeBottomText {
         text-align: center;
     }
@@ -225,6 +237,9 @@ h2.homeBottomTitle {
         width: 100%;
         margin-bottom: 10px;
         border-radius: 5px;
+    }
+    .homeSubscribeInput::placeholder {
+        text-align: center;
     }
     .homeSubscribeButton {
         border-radius: 5px;

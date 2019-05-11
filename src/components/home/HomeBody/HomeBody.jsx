@@ -6,16 +6,17 @@ import Calendar from 'react-calendar'
 import './calendary.css';
 import { connect } from 'react-redux'
 
+
 class HomeBodyClass extends React.Component {
   constructor(props) {
     super(props);
 
-     this.state={
-       cities: this.props.storeState.cities,
-       calendaryVisibility: this.props.storeState.calendaryVisibility,
-       date: this.props.storeState.date,
-       picture: this.props.storeState.picture
-     }
+    this.state = {
+      cities: this.props.storeState.cities,
+      calendaryVisibility: this.props.storeState.calendaryVisibility,
+      date: this.props.storeState.date,
+      picture: this.props.storeState.picture
+    }
     this.state = JSON.parse(JSON.stringify(this.props.storeState));
     this.state = { ...this.state, "mapUpdate": true, calendaryVisibility: 'hidden' }
 
@@ -40,7 +41,7 @@ class HomeBodyClass extends React.Component {
     let cities = this.state.cities;
     /*cities[cities.length] = cities[cities.length-1];
     cities[cities.length-2]="";*/
-    cities[cities.length]="";
+    cities[cities.length] = "";
     this.setState({
       cities: cities,
       mapUpdate: true
@@ -61,7 +62,7 @@ class HomeBodyClass extends React.Component {
     })
     this.setState({
       calendaryVisibility: 'visible'
-    }) 
+    })
   }
   closeChooseDate() {
     this.setState({
@@ -117,17 +118,43 @@ class HomeBodyClass extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <div className="body_menu col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 p-0">
+
+        <div className="body_menu d-md-block d-sm-none d-none col-xl-4 col-lg-3 col-md-4 col-sm-3 col-3 p-0">
           <RouteMenu cities={[...this.state.cities]} changeCity={this.changeCity} addCity={this.addCity}
             removeCity={this.removeCity} goToDrivers={this.goToDrivers} chooseDate={this.openChooseDate} date={this.state.date} />
           <div style={{ visibility: this.state.calendaryVisibility }}>
-            <Calendar className="calendary_position"
-              tileClassName={""}
-              onClickDay={(value) => { this.chooseDate(value); this.closeChooseDate() }} />
+            {/* <Calendar className="calendary_position"
+                tileClassName={""}
+                onClickDay={(value) => { this.chooseDate(value); this.closeChooseDate() }} /> */}
           </div>
         </div>
-        <div className="body_map col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 p-0">
+        <div className="body_map d-md-block d-sm-none d-none col-xl-8 col-lg-9 col-md-7 col-sm-6 col-6 p-0">
           <MapContainer cities={this.state.cities} setLengthTime={this.setLengthTime} mapUpdate={/*this.state.mapUpdate*/true} />
+        </div>
+
+        <div className="d-md-none d-sm-block d-block w-100">
+          <div className="mobailRoutMenu">
+            <div className="d-flex flex-column align-items-center">
+              <div className="mobailRoutMenuTitle">Cпланируйте свою экскурсию</div>
+              <p className="mobailRoutMenuText">Предложения от местных гидов-водителей &shy; по вашему индивидуальному маршруту</p>
+              <div className="d-flex">
+                <span>list </span>
+                <span> map</span>
+              </div>
+            </div>
+            <div>
+              <RouteMenu cities={[...this.state.cities]} changeCity={this.changeCity} addCity={this.addCity}
+                removeCity={this.removeCity} goToDrivers={this.goToDrivers} chooseDate={this.openChooseDate} date={this.state.date} />
+              <div style={{ visibility: this.state.calendaryVisibility }}>
+                {/* <Calendar className="calendary_position"
+                tileClassName={""}
+                onClickDay={(value) => { this.chooseDate(value); this.closeChooseDate() }} /> */}
+              </div>
+            </div>
+            <div className="d-none">
+              <MapContainer cities={this.state.cities} setLengthTime={this.setLengthTime} mapUpdate={/*this.state.mapUpdate*/true} />
+            </div>
+          </div>
         </div>
 
       </React.Fragment>

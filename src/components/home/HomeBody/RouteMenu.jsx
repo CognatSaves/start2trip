@@ -15,6 +15,7 @@ import { Redirect } from 'react-router-dom';
 import LocationSearchInput from './Search'
 import { UncontrolledCollapse, Button } from 'reactstrap';
 import { connect } from 'react-redux';
+import DatePicker from 'material-ui/DatePicker';
 import {languageMenuIsVisibal, changePersonsNumberDispatch,
   changePersonsNumberDispatchOld, peopleMenuCall, autoMenuCall} from "../../../redusers/Action"
 
@@ -42,7 +43,7 @@ const CityRouteTable = (props) => {
             <img src={shapeIcon} alt="shapeIcon" width="7px" height="25px" />
           </div>
           <LocationSearchInput address={element} changeCity={changeCity} index={index + 1} classDropdown="searchElement_style" classInput="city_input" />
-          <div className="crossToolTip col-2">
+          <div className="crossToolTip col-3">
             <img src={crossIcon} className="crossIcon " alt="crossIcon" id="crossIcon" width="12px" height="12px" onClick={() => removeCity(index + 1)} style={{ visibility: 'visible' }} />
             <span className="crossToolTipText">Удалить этот пункт назначения</span>
           </div>
@@ -94,9 +95,11 @@ class RouteMenuClass extends React.Component {
             <img className="col-2 p-0" src={addIcon} alt="add" width="15px" height="15px" onClick={() => this.props.addCity()} />
             <div className="routemenu_city_add_text " onClick={() => this.props.addCity()}>Добавить пункт назначения</div>
           </div>
-          <div className="routemenu_setDate  p-0 col-12">
+          <div className="routemenu_setDate  p-0 col-9">
+            {/* <img className="col-2 p-0" src={calendarIcon} alt="calendarIcon" width="15px" height="15px" />
+            <input className="routemenu_date" value={this.props.date} placeholder="Дата отправления" onClick={() => this.props.chooseDate()}></input> */}
             <img className="col-2 p-0" src={calendarIcon} alt="calendarIcon" width="15px" height="15px" />
-            <input className="routemenu_date" value={this.props.date} placeholder="Дата отправления" onClick={() => this.props.chooseDate()}></input>
+            <DatePicker floatingLabelText="Дата отправления"className="routemenu_date " />
           </div>
         </div>
         <div className="routemenu_parameters">

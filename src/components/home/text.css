@@ -4,7 +4,7 @@
     color: #304269;
     font-weight: 700;
     text-transform: uppercase;
-    height: 40px;
+    min-height: 40px;
     margin-top: 81px;
     margin-bottom: 20px;
 }
