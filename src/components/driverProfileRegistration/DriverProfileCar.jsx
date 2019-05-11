@@ -34,22 +34,7 @@ class DriverProfileCarClass extends React.Component {
         this.changeActive = this.changeActive.bind(this);
     }
     applyChanges(type){
-        function readCookie(name) {
-            var name_cook = name+"=";
-            var spl = document.cookie.split(";");           
-            for(var i=0; i<spl.length; i++) {           
-                var c = spl[i];               
-                while(c.charAt(0) == " ") {               
-                    c = c.substring(1, c.length);                   
-                }               
-                if(c.indexOf(name_cook) == 0) {                   
-                    return c.substring(name_cook.length, c.length);                    
-                }               
-            }           
-            return null;           
-        }
-        let jwt = readCookie('jwt');
-        
+        let jwt = this.props.globalReduser.readCookie('jwt');       
         if(jwt && jwt!=="-"){
             var carForm = new FormData();
             carForm.append('carBrand',this.state.newCarCard.nameCar);
@@ -66,9 +51,6 @@ class DriverProfileCarClass extends React.Component {
             carForm.append('leatherInterior',comfort[1]);
             carForm.append('freeWiFi',comfort[2]);
             carForm.append('smokingPermit',comfort[3]);
-
-            console.log('img files');         
-            console.log(this.state.imgFiles);
             for(let i=0; i<this.state.imgFiles.length;i++){
                 carForm.append('image',this.state.imgFiles[i]);
             }
@@ -105,13 +87,7 @@ class DriverProfileCarClass extends React.Component {
         
     } 
     formSubmit(event) {
-        //
-        
-        //alert('Your favorite flavor is: ' + this.state.value);
         console.log('formSubmit');
-        console.log(this.state);
-        console.log('selected car');
-        console.log(this.state.car);
         if(!this.state.car.id){
             this.applyChanges(true);//если новый, то true
         }
@@ -128,8 +104,6 @@ class DriverProfileCarClass extends React.Component {
             comfort: [false,false,false,false], carImg: [], imgFiles:[], car:{} }));       
         }
         else{
-            console.log('try to change a car');
-            console.log(element);
             let carImg = [];let imgFiles=[];
             for(let i=0; i<element.image.length; i++){
                 carImg[i]=requests.serverAddress+element.image[i].url;
@@ -147,21 +121,7 @@ class DriverProfileCarClass extends React.Component {
         }
     }
     changeActive(element){
-        function readCookie(name) {
-            var name_cook = name+"=";
-            var spl = document.cookie.split(";");           
-            for(var i=0; i<spl.length; i++) {           
-                var c = spl[i];               
-                while(c.charAt(0) == " ") {               
-                    c = c.substring(1, c.length);                   
-                }               
-                if(c.indexOf(name_cook) == 0) {                   
-                    return c.substring(name_cook.length, c.length);                    
-                }               
-            }           
-            return null;           
-        }
-        let jwt = readCookie('jwt');
+        let jwt = this.props.globalReduser.readCookie('jwt');
         if(jwt && jwt!=="-"){
             var carForm = new FormData();
             carForm.append('onWork',!element.onWork);
@@ -172,27 +132,11 @@ class DriverProfileCarClass extends React.Component {
         }
     }
     destroy(element){
-        function readCookie(name) {
-            var name_cook = name+"=";
-            var spl = document.cookie.split(";");           
-            for(var i=0; i<spl.length; i++) {           
-                var c = spl[i];               
-                while(c.charAt(0) == " ") {               
-                    c = c.substring(1, c.length);                   
-                }               
-                if(c.indexOf(name_cook) == 0) {                   
-                    return c.substring(name_cook.length, c.length);                    
-                }               
-            }           
-            return null;           
-        }
-        let jwt = readCookie('jwt');      
+        let jwt = this.props.globalReduser.readCookie('jwt');     
         if(jwt && jwt!=="-"){
             console.log('try to destroy a car');
-            console.log(element);
             const request = new XMLHttpRequest();
             request.onreadystatechange = function(){
-                //;
                 console.log(request.status);
                 console.log(request.statusText);
                 console.log(request.responseText);
@@ -225,10 +169,7 @@ class DriverProfileCarClass extends React.Component {
                 this.setState(state => { const carImg = this.state.carImg.push(img); return carImg });
             }
             reader.readAsDataURL(file)
-
         }
-
-
     }
 
     handleChange = (event, index, value, key) => {
@@ -247,10 +188,7 @@ class DriverProfileCarClass extends React.Component {
                 newCarCard: { ...this.state.newCarCard, carClass: value }
             })
         }
-
     }
-
-
 
     render() {
         function findCarTypeNames(cars, carTypes){
@@ -271,7 +209,6 @@ class DriverProfileCarClass extends React.Component {
         }
         let cars = this.props.profileReduser.profile.cars;
         console.log("DriverProfileCar render");
-        console.log(this.state);
         //выдаёт значения строго на русском - впоследствие будет переделана
         let carTypes = findCarTypeNames(cars, this.props.profileReduser.profile.carTypes);
         /*console.log(config.serverAddress+cars[0].url);*/
@@ -527,6 +464,7 @@ const DriverProfileCar = connect(
     (state) => ({
         storeState: state.AppReduser,
         profileReduser: state.DriverProfileRegistrationtReduser,
+        globalReduser: state.GlobalReduser
     }),
 )(DriverProfileCarClass);
 

@@ -30,21 +30,7 @@ class DriverProfileSettingsClass extends React.Component {
         this.inputChange = this.inputChange.bind(this);
     }
     applyChanges(){
-        function readCookie(name) {
-            var name_cook = name+"=";
-            var spl = document.cookie.split(";");           
-            for(var i=0; i<spl.length; i++) {           
-                var c = spl[i];               
-                while(c.charAt(0) == " ") {               
-                    c = c.substring(1, c.length);                   
-                }               
-                if(c.indexOf(name_cook) == 0) {                   
-                    return c.substring(name_cook.length, c.length);                    
-                }               
-            }           
-            return null;           
-        }
-        let jwt = readCookie('jwt');
+        let jwt = this.props.globalReduser.readCookie('jwt');
         if(jwt && jwt!=="-"){
             function checkPasswords(values){
                 if(values.newPassword===values.newPassword2){
@@ -274,6 +260,7 @@ const DriverProfileSettings = connect(
     (state) => ({
         storeState: state.AppReduser,
         profileReduser: state.DriverProfileRegistrationtReduser,
+        globalReduser: state.GlobalReduser,
     }),
 )(DriverProfileSettingsClass);
 

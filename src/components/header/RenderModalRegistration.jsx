@@ -27,6 +27,7 @@ class RenderModalRegistrationClass extends React.Component {
             }
             function setRegWindow(){
                 console.log('setRegWindow func');
+                console.log(errorId);
                 that.setState({
                     regAnswerStatus: true,
                     regProcessStatus: false,
@@ -52,20 +53,6 @@ class RenderModalRegistrationClass extends React.Component {
             }
             setRegWindow();
             clearLocalStorage(['type','errorId']);
-        }
-        function readCookie(name) {
-            var name_cook = name+"=";
-            var spl = document.cookie.split(";");           
-            for(var i=0; i<spl.length; i++) {           
-                var c = spl[i];               
-                while(c.charAt(0) == " ") {               
-                    c = c.substring(1, c.length);                   
-                }               
-                if(c.indexOf(name_cook) == 0) {                   
-                    return c.substring(name_cook.length, c.length);                    
-                }               
-            }           
-            return null;           
         }    
         function sendResultLocal(type,data){
             console.log('sendResult');
@@ -76,7 +63,6 @@ class RenderModalRegistrationClass extends React.Component {
                 document.cookie=jwtstring;
                 document.cookie=jwtstatus;
                 window.localStorage.setItem('errorId',0);
-                //let jwt = readCookie("jwt");
                 let avatarString="avatarUrl="+requests.serverAddress+data.user.avatarUrl+"; expires="+date.toString();
                 let usernameString = "userName="+data.user.userName+"; expires="+date.toString();
                 document.cookie=avatarString;
@@ -96,7 +82,7 @@ class RenderModalRegistrationClass extends React.Component {
                 } 
                 document.cookie=jwtstring;
                 document.cookie=jwtstatus;
-                let status=readCookie("jwtstatus");
+                let status=this.props.globalReduser.readCookie("jwtstatus");
                 setAnswerResult('bad',{jwtstatus:status});
             }
             that.setState({
@@ -150,30 +136,19 @@ class RenderModalRegistrationClass extends React.Component {
                 console.log('An error occurred:', error);
                 that.state.sendResultLocal(false,{error: error});
             });
-            //console.log(body);
         }
         function checkCookie(newWin){
             console.log('check cookie call');
-            console.log(window);
-            //let i=0;
             var timer = setInterval(()=>{
-               // i++;
-                /*if(i%10===0){
-                    console.log(newWin);
-                }*/
                 if(newWin.window===null){
                     alert("window closed");
                     clearInterval(timer);
                 }
                 if(that.state.cookie!==document.cookie){
-                    /*alert("smth new is here");
-                    console.log("check cookie");
-                    console.log(that.state.cookie);
-                    console.log(document.cookie);*/
                     console.log("get good answer");
                     clearInterval(timer);
-                    let jwt = readCookie("jwt");
-                    let jwtstatus=readCookie("jwtstatus");
+                    let jwt = this.props.globalReduser.readCookie("jwt");
+                    let jwtstatus=this.props.globalReduser.readCookie("jwtstatus");
                     //console.log(jwt);
                     if(jwt!=="-"&&jwtstatus==="correct"){
                         setAnswerResult('good',{jwt: jwt});
@@ -333,7 +308,7 @@ class RenderModalRegistrationClass extends React.Component {
         console.log(this.state.selectedRegistrationAnswer);
         let selectedRegistrationAnswer=this.state.selectedRegistrationAnswer;
         let regAnswerVisibility= ( this.state.regAnswerStatus || this.state.regProcessStatus );
-        let regAnswerColor= ( this.state.regAnswerStatus && selectedRegistrationAnswer!=0 );
+        let regAnswerColor= ( this.state.regAnswerStatus && selectedRegistrationAnswer!==0 );
         let regAnswerValue = (this.state.regAnswerStatus ? pageTextInfo.registrationAnswer[selectedRegistrationAnswer][lang] : pageTextInfo.registrationProcess[0][lang]);
         return (
             <React.Fragment>
@@ -425,6 +400,7 @@ class RenderModalRegistrationClass extends React.Component {
 
 const RenderModalRegistration = connect(
     (state) => ({
+        globalReduser: state.GlobalReduser,
         //storeState: state.AppReduser,
     }),
 )(RenderModalRegistrationClass);
