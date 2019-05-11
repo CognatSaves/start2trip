@@ -15,18 +15,47 @@
 
 .mobailRoutMenu {
     background: #304269;
+    padding-bottom: 120px;
 }
 
 .mobailRoutMenuTitle {
     color: #fff;
     font-weight: 500;
-    font-size: 16px;
+    font-size: 14px;
+    margin-top: 20px;
 }
 
 .mobailRoutMenuText {
     color: #fff;
     font-weight: 400;
+    font-size: 12px;
+}
+
+.mobailRoutMenuBtList {
+    padding: 10px 22px;
+    border: 1px solid #fff;
+    border-radius: 50px 0 0 50px;
+    border-right: none;
+    color: #fff;
+    font-weight: 400;
     font-size: 14px;
+    text-transform: uppercase;
+}
+
+.mobailRoutMenuBtMap {
+    padding: 10px 30px;
+    border: 1px solid #fff;
+    border-radius: 0 50px 50px 0;
+    border-left: none;
+    color: #fff;
+    font-weight: 400;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.mobailRoutMenuBt-active {
+    background: #fff;
+    color: #304269;
 }
 
 
