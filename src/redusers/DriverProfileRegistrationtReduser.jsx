@@ -19,6 +19,7 @@ export const DriverProfileRegistrationtReduser = (state = initialState, action) 
             newStatePD.profile = action.profile;
             return newStatePD;
         }
+
     default: return state;
     }
 }

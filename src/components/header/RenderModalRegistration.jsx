@@ -82,7 +82,7 @@ class RenderModalRegistrationClass extends React.Component {
                 } 
                 document.cookie=jwtstring;
                 document.cookie=jwtstatus;
-                let status=this.props.globalReduser.readCookie("jwtstatus");
+                let status=that.props.globalReduser.readCookie("jwtstatus");
                 setAnswerResult('bad',{jwtstatus:status});
             }
             that.setState({

@@ -23,38 +23,22 @@ import people1 from './img/001372a9a88e12c88b532a.jpg'
 import people2 from './img/person.jpg'
 import people3 from './img/mina.jpg'
 import people4 from './img/gruzinskaja-kuhnja.jpg'
-
+import getUserData from './DriverProfileRequest';
 class DriverProfileRegistrationClass extends React.Component {
   constructor(props) {
     super(props);
     const that = this;
-    function getUserData(callback,params){
-      let jwt = that.props.globalReduser.readCookie('jwt');
-      if(jwt && jwt!=="-"){    
-        axios.get(requests.profileRequest+'?ISO=RUS&countryISO=IRO', {
-          headers: {
-            Authorization: `Bearer ${jwt}`
-          }
-        })
-        .then(response =>{
-          that.props.dispatch(setProfileData(response.data));
-          if(callback){
-            callback(params);
-          }        
-        })
-        .catch(error => {
-          console.log('error, here must be return to authorization window! or smth else');
-        })
-      }
+    let requestValues = {
+      readCookie: that.props.globalReduser.readCookie,
+      setProfileData: function(data){
+        that.props.dispatch(setProfileData(data))
+      },
+      requestAddress: requests.profileRequest
     }
-    function tempCallbackFunc(params){
-      alert(params);
-    }
-    getUserData();
+    getUserData(requestValues);
     this.state = {
       photo:[people1,people2,people3,people4,people2]
     }
-
   }
   render() {
     let profile = this.props.storeState.profile;

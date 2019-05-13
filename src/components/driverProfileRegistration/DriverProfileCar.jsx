@@ -10,6 +10,8 @@ import TextField from 'material-ui/TextField'
 import config from '../../config';
 import requests from '../../config';
 
+import { setProfileData } from "../../redusers/ActionDriverProfileRegistration"
+import getUserData from './DriverProfileRequest';
 class DriverProfileCarClass extends React.Component {
     constructor(props) {
         super(props);
@@ -32,9 +34,25 @@ class DriverProfileCarClass extends React.Component {
         this.applyChanges=this.applyChanges.bind(this);
         this.destroy = this.destroy.bind(this);
         this.changeActive = this.changeActive.bind(this);
+        this.getProfileData = this.getProfileData.bind(this);
     }
+
+    getProfileData(thenFunc){
+        console.log('getProfileData');
+        let that = this;
+        let requestValues = {
+            readCookie: this.props.globalReduser.readCookie,
+            setProfileData: function(data){
+              that.props.dispatch(setProfileData(data))
+            },
+            requestAddress: requests.profileRequest
+          }
+        getUserData(requestValues,thenFunc);
+    }
+
     applyChanges(type){
-        let jwt = this.props.globalReduser.readCookie('jwt');       
+        let jwt = this.props.globalReduser.readCookie('jwt');   
+        let that = this;    
         if(jwt && jwt!=="-"){
             var carForm = new FormData();
             carForm.append('carBrand',this.state.newCarCard.nameCar);
@@ -62,8 +80,7 @@ class DriverProfileCarClass extends React.Component {
                     console.log(request.responseText);
                 }
                 request.open('PUT', requests.userCarsCreateRequest);
-                request.setRequestHeader('Authorization',`Bearer ${jwt}`);
-                request.send(carForm);
+                request.setRequestHeader('Authorization',`Bearer ${jwt}`);               
             }
             else{
                 let fileTypeArray = [];
@@ -81,9 +98,23 @@ class DriverProfileCarClass extends React.Component {
                 }
                 request.open('PUT',requests.userCarUpdateRequest+'/'+this.state.car.id);
                 request.setRequestHeader('Authorization',`Bearer ${jwt}`);
-                request.send(carForm);
+
             }
-            document.location.reload(true);
+            request.onreadystatechange = function(){
+                let thenFunc = function(){
+                    console.log('thenFunc');
+                    console.log(that.props.profileReduser);
+                    that.setState({
+                        collapse:false
+                    })
+                }
+                if(request.readyState === XMLHttpRequest.DONE && request.status === 200){
+                    console.log(request.responseText);
+                    that.getProfileData(thenFunc);
+                }
+            }
+            request.send(carForm);
+            //document.location.reload(true);
         }  
         
     } 
@@ -212,6 +243,7 @@ class DriverProfileCarClass extends React.Component {
         }
         let cars = this.props.profileReduser.profile.cars;
         console.log("DriverProfileCar render");
+        console.log(this.state);
         //выдаёт значения строго на русском - впоследствие будет переделана
         let carTypes = findCarTypeNames(cars, this.props.profileReduser.profile.carTypes);
         /*console.log(config.serverAddress+cars[0].url);*/

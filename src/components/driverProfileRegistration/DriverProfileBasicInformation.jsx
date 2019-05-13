@@ -11,7 +11,8 @@ import Chip from 'material-ui/Chip';
 import flags from './img/flags.png'
 import ReactTelInput from 'react-telephone-input'
 import requests from '../../config';
-
+import { setProfileData } from "../../redusers/ActionDriverProfileRegistration"
+import getUserData from './DriverProfileRequest';
 class DriverProfileBasicInformationClass extends React.Component {
     constructor(props) {
         super(props);
@@ -61,6 +62,23 @@ class DriverProfileBasicInformationClass extends React.Component {
         this.formSubmit = this.formSubmit.bind(this);
         this.applyChanges = this.applyChanges.bind(this);
         this.inputChange = this.inputChange.bind(this);
+        this.getProfileData = this.getProfileData.bind(this);
+    }
+    getProfileData(){
+        console.log('getProfileData');
+        let that = this;
+        let requestValues = {
+            readCookie: this.props.globalReduser.readCookie,
+            setProfileData: function(data){
+              that.props.dispatch(setProfileData(data))
+            },
+            requestAddress: requests.profileRequest
+          }
+        let thenFunc = function(){
+            console.log('thenFunc');
+            console.log(that.props.profileReduser);
+        }
+        getUserData(requestValues,thenFunc);
     }
     applyChanges() {
         let jwt = this.props.globalReduser.readCookie('jwt');
@@ -101,8 +119,8 @@ class DriverProfileBasicInformationClass extends React.Component {
                         console.log(data);
 
                         
-                        document.location.reload(true);
-                        
+                        //document.location.reload(true);
+                        that.getProfileData();
                     }
                 })
                 .catch(function (error) {
