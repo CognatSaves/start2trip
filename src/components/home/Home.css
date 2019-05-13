@@ -209,15 +209,15 @@ h2.homeBottomTitle {
     .homeSubscribe p {
         text-align: center;
     }
-    .home_window {
-        background: none;
-    }
     .homeSubscribe {
         min-height: 400px;
     }
 }
 
 @media (max-width: 576px) {
+    .home_window {
+        background: none;
+    }
     .home_block {
         padding: 0 !important;
     }

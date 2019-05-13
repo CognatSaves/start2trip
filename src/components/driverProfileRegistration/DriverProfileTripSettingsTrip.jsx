@@ -12,8 +12,12 @@ import InfiniteCalendar, {
     defaultMultipleDateInterpolation,
     withMultipleDates,
 } from 'react-infinite-calendar';
-
+import { setProfileData } from "../../redusers/ActionDriverProfileRegistration"
+import getUserData from './DriverProfileRequest';
 import requests from '../../config';
+import RefreshIndicator from 'material-ui/RefreshIndicator';
+
+import DriverRefreshIndicator from './DriverRefreshIndicator';
 
 class DriverProfileTripSettingsTripClass extends React.Component {
     constructor(props) {
@@ -37,6 +41,9 @@ class DriverProfileTripSettingsTripClass extends React.Component {
             newDate: false,
             dateTour: dateTour,
             calendarModal: false,
+            isRefreshExist:false,
+            isRefreshing: true,
+            isGoodAnswer: true
         }
 
         this.addCityRadius = this.addCityRadius.bind(this);
@@ -44,10 +51,62 @@ class DriverProfileTripSettingsTripClass extends React.Component {
         this.formSubmit = this.formSubmit.bind(this);
         this.inputChange = this.inputChange.bind(this);
         this.applyChanges = this.applyChanges.bind(this);
+
+        this.getProfileData = this.getProfileData.bind(this);
+        this.startRefresher = this.startRefresher.bind(this);
+        this.thenFunc = this.thenFunc.bind(this);
+        this.catchFunc = this.catchFunc.bind(this);
+    }
+    getProfileData(){
+        console.log('getProfileData');
+        let that = this;
+        let requestValues = {
+            readCookie: this.props.globalReduser.readCookie,
+            setProfileData: function(data){
+              that.props.dispatch(setProfileData(data))
+            },
+            requestAddress: requests.profileRequest
+          }
+        getUserData(requestValues,that.thenFunc,that.catchFunc);
+    }
+    startRefresher(){
+        this.setState({
+            isRefreshExist: true,
+            isRefreshing: true
+        });
+    }   
+    thenFunc(){
+        console.log('thenFunc');
+        console.log(this.props.profileReduser);
+        this.setState({
+            isRefreshExist: true,
+            isRefreshing: false,
+            isGoodAnswer: true,
+        });
+        setTimeout(() => {
+            this.setState({
+                isRefreshExist: false
+            })
+        }, 500);
+    }
+    catchFunc(){
+        console.log('catchFunc');
+        this.setState({
+            isRefreshExist: true,
+            isRefreshing: false,
+            isGoodAnswer: false,
+        });
+        setTimeout(() => {
+            this.setState({
+                isRefreshExist: false
+            })
+        }, 500);
     }
     applyChanges() {
         let jwt = this.props.globalReduser.readCookie('jwt');
         if (jwt && jwt !== "-") {
+            let that = this; 
+            this.startRefresher();
             let value = {
                 travelsetting: {
                     settings: {
@@ -75,8 +134,8 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                     else {
                         console.log("good");
                         console.log(data);
-
-                        document.location.reload(true);
+                        that.getProfileData();
+                        //document.location.reload(true);
                         //that.state.sendResultLocal(true, {jwt:data.jwt, user: data.user});
                     }
                 })
@@ -219,7 +278,12 @@ class DriverProfileTripSettingsTripClass extends React.Component {
             weekdays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
             weekStartsOn: 0,
         };
-
+        const style = {
+            refresh: {
+                display: 'inline-block',
+                position: 'relative',
+            },
+        };
         return (
 
             <React.Fragment>
@@ -243,6 +307,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                         onSelect={this.addDate}
                     />
                 </Dialog>
+                <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer}/>
                 <form onSubmit={this.formSubmit} id="tripForm" className="tripSettingsBody">
                     <div className="tripSettingsContent">
                         <div className="tripSettingsContentTitle d-flex flex-md-row flex-sm-column flex-column align-items-center">

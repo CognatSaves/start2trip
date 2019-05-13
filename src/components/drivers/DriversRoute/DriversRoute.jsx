@@ -95,7 +95,7 @@ class DriversRouteClass extends React.Component {
         return (
           <div className = "drivers_route col-12 d-flex flex-column">
             <div className="route_date d-flex ">
-              <div className="route_date_text">Ваш индивидуальный маршрут на: {this.props.storeState.date}</div>
+              <div className="route_date_text">дата отправления: {this.props.storeState.date}</div>
               <div className="d-flex " onClick={()=>this.props.dispatch(setDriversRouteChange(!this.props.driversState.driversRouteChange))}>               
                 <div className="route_change_text">Изменить маршрут</div>
                 <div className="route_change_emblem"/>
@@ -104,16 +104,16 @@ class DriversRouteClass extends React.Component {
             <div className="route_show d-flex ">
               {this.state.cities.map((element, index) =>
               <div className="route_show_element ">
-                <div className="route_show_icon" />
-                <div className="route_show_text" >{this.state.cities[index]}</div>
-                <div className="route_show_line " style={{visibility: isVisibleArray[index]}}></div>
+                {/* <div className="route_show_icon" /> */}
+                <span className="route_show_text" >{this.state.cities[index]}</span>
+                {/* <div className="route_show_line " style={{visibility: isVisibleArray[index]}}></div> */}
               </div>
               )}
             </div>
             <div className="route_bottomBlock d-flex flex-column">
-              <div className="route_time_text">Время в пути без остановок:
+              {/* <div className="route_time_text">Время в пути без остановок:
                 <p1>{this.props.driversState.travelTime}</p1><p2>{this.props.driversState.travelLength}</p2>
-              </div>
+              </div> */}
               <div className="route_comment">*Возврат в точку отправления в этот же день бесплатно</div>
             </div>                      
           </div>

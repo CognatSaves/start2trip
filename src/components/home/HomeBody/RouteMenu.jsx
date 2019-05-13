@@ -16,8 +16,10 @@ import LocationSearchInput from './Search'
 import { UncontrolledCollapse, Button } from 'reactstrap';
 import { connect } from 'react-redux';
 import DatePicker from 'material-ui/DatePicker';
-import {languageMenuIsVisibal, changePersonsNumberDispatch,
-  changePersonsNumberDispatchOld, peopleMenuCall, autoMenuCall} from "../../../redusers/Action"
+import {
+  languageMenuIsVisibal, changePersonsNumberDispatch,
+  changePersonsNumberDispatchOld, peopleMenuCall, autoMenuCall
+} from "../../../redusers/Action"
 
 
 const CityRouteTable = (props) => {
@@ -99,13 +101,13 @@ class RouteMenuClass extends React.Component {
             {/* <img className="col-2 p-0" src={calendarIcon} alt="calendarIcon" width="15px" height="15px" />
             <input className="routemenu_date" value={this.props.date} placeholder="Дата отправления" onClick={() => this.props.chooseDate()}></input> */}
             <img className="col-2 p-0" src={calendarIcon} alt="calendarIcon" width="15px" height="15px" />
-            <DatePicker floatingLabelText="Дата отправления"className="routemenu_date " />
+            <DatePicker floatingLabelText="Дата отправления" className="routemenu_date " />
           </div>
         </div>
         <div className="routemenu_parameters">
-          <Button className="routemenu_parametersAdd" id="toggler" >
+          <div className="routemenu_parametersAdd" id="toggler" >
             <p>{parameters_text}</p><img src={arrowIcon} alt="arrow" width="15px" height="15px" />
-          </Button>
+          </div>
           <UncontrolledCollapse toggler="#toggler">
             <div className="flex-column col-11 menuHome">
               <div className="d-flex  justify-content-center" style={{ position: "relative" }}>
@@ -117,7 +119,7 @@ class RouteMenuClass extends React.Component {
                   };
                   this.props.dispatch(peopleMenuCall(!this.props.storeState.peopleMenu))
                 }}>
-                  <div className="propertiesPeopleHome"><img src={userWhiteIcon} width="20px" height="25px" alt="P"/>{personsNumberString}</div>
+                  <div className="propertiesPeopleHome"><img src={userWhiteIcon} width="20px" height="25px" alt="P" />{personsNumberString}</div>
                 </div>
                 <PeopleMenu isVisible={this.props.storeState.peopleMenu} />
               </div>
@@ -128,7 +130,7 @@ class RouteMenuClass extends React.Component {
                 <AutoMenu isVisible={this.props.storeState.autoMenu} />
               </div>
               <div className="d-flex   justify-content-center" onClick={() => this.props.dispatch(languageMenuIsVisibal(!this.props.storeState.languageMenu))}>
-                <div className="peopleMenuHome propertiesPeopleHome"><img src={this.props.storeState.languageIcon} width="20px" height="25px" alt="L"/>{this.props.storeState.languageValue}</div>
+                <div className="peopleMenuHome propertiesPeopleHome"><img src={this.props.storeState.languageIcon} width="20px" height="25px" alt="L" />{this.props.storeState.languageValue}</div>
                 <LanguageMenu isVisible={this.props.storeState.languageMenu} />
               </div>
 

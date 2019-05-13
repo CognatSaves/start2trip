@@ -36,9 +36,9 @@
 }
 
 .headerMobail .headerSelect {
-    padding: 0px !important;
     max-height: 30px;
     margin-left: 0;
+    padding-left: 10px;
 }
 
 .headerMobailButton {
@@ -212,7 +212,6 @@
 
 .headerSelect {
     position: relative;
-    padding: 0px !important;
     max-height: 30px;
     margin-left: 18px;
 }

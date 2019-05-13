@@ -71,11 +71,6 @@ class DriverProfileNavigationClass extends React.Component {
             let img = requests.serverAddress + this.state.profile.avatar.url
             this.setState({ avatar: img })
         }
-
-
-
-        // console.log('profile');
-        // console.log(profile);
         return (
             <React.Fragment>
                 <div className="registrationWrapper driverBG col-12 p-0" style={{

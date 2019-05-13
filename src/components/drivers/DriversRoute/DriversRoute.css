@@ -15,13 +15,16 @@
     width: 100%;
     font-size: 24px;
     color: #ffffff;
-
     font-weight: 400;
     margin-bottom: 35px;
 }
 
 .route_date_text {
     display: flex;
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: 400;
+    padding: 10px;
 }
 
 .route_date_value {
@@ -41,7 +44,6 @@
     height: 100%;
     text-align: right;
     text-decoration: underline;
-
     font-weight: 400;
     font-size: 12px;
     color: #ffffff;
@@ -50,19 +52,32 @@
 
 .route_show {
     flex-wrap: wrap;
+    justify-content: center;
     padding-bottom: 25px;
     width: 100%;
+    height: 100%;
 }
-.route_show_bottom{
+
+.route_show_bottom {
     padding-bottom: 0;
 }
+
 .route_show_element {
-    display: flex;
-    position: relative;
-    height: 40px;
-    width: 280px;
+    /* min-height: 40px; */
+    /* width: 280px; */
 }
-.route_show_icon{
+
+.route_show_element::after {
+    position: absolute;
+    content: "";
+    height: 2px;
+    background-color: #242424;
+    width: 50%;
+    left: 80%;
+    top: 28%;
+}
+
+.route_show_icon {
     margin-top: 10px;
     height: 30px;
     width: 30px;
@@ -70,10 +85,10 @@
     background-size: 100% 100%;
     z-index: 10;
 }
+
 .route_show_text {
     position: absolute;
     height: 40px;
-
     font-weight: 400;
     left: 35px;
     font-size: 15px;
@@ -98,7 +113,6 @@
 
 .route_time_text {
     display: flex;
-
     font-weight: 400;
     font-size: 18px;
     color: #ffffff;
@@ -107,7 +121,6 @@
 .route_comment {
     display: flex;
     color: #ffffff;
-
     font-weight: 400;
     font-size: 12px;
 }
