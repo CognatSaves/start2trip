@@ -3,7 +3,7 @@ import './DriverProfileCar.css'
 import 'react-telephone-input/lib/withStyles'
 import { connect } from 'react-redux'
 import { Collapse } from 'reactstrap'
-import { isMobile } from 'react-device-detect'
+import { isMobileOnly } from 'react-device-detect'
 import DropDownMenu from 'material-ui/DropDownMenu'
 import MenuItem from 'material-ui/MenuItem'
 import TextField from 'material-ui/TextField'
@@ -115,7 +115,7 @@ class DriverProfileCarClass extends React.Component {
             typeCar: element.cartype, fuelType: element.fueltype, numberOfSeats: element.seats , carClass: element.carclass},
             comfort: [...element.conveniences], carImg: carImg, imgFiles:imgFiles, car:element }));
         }
-        if (isMobile) {
+        if (isMobileOnly) {
             window.scroll(0, 300);
         } else {
             window.scroll(0, 322);

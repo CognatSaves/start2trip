@@ -58,6 +58,10 @@
     color: #304269;
 }
 
+.mapContain {
+    height: 25vh!important;
+}
+
 
 /* @media (max-width: 360px){
   .body_map {display: none}

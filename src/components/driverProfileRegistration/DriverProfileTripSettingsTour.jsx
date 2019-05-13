@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Collapse } from 'reactstrap';
 import Stars from '../stars/Stars'
 import LocationSearchInput from '../home/HomeBody/Search'
-import { isMobile } from 'react-device-detect';
+import { isMobileOnly ,isMobile } from 'react-device-detect';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 import Chip from 'material-ui/Chip';
@@ -347,7 +347,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
         else{
             this.fillForm(element);
         }
-        if (isMobile) {
+        if (isMobileOnly) {
             window.scroll(0, 300);
         } else {
             window.scroll(0, 322);

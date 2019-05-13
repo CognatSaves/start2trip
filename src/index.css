@@ -16,10 +16,6 @@ body {
     margin-right: -10px !important;
 }
 
-.p-0 {
-    padding: 0px !important;
-}
-
 .col,
 .col-1,
 .col-10,
@@ -91,6 +87,10 @@ body {
 .col-xl-9,
 .col-xl-auto {
     padding: 0 10px !important;
+}
+
+.p-0 {
+    padding: 0px !important;
 }
 
 @media (min-width: 1200px) {

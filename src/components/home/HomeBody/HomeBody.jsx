@@ -5,7 +5,7 @@ import MapContainer from './MapContainer.jsx'
 // import Calendar from 'react-calendar'
 import './calendary.css';
 import { connect } from 'react-redux'
-import { isMobile } from 'react-device-detect'
+import { isMobileOnly } from 'react-device-detect'
 
 
 class HomeBodyClass extends React.Component {
@@ -118,9 +118,10 @@ class HomeBodyClass extends React.Component {
     this.props.setLengthTime(lengthString, timeString);
   }
   render() {
+    console.log(isMobileOnly , "isMobileOnlyBody")
     return (
       <React.Fragment>
-        {isMobile ?
+        {isMobileOnly ?
           <React.Fragment>
             <div className="d-md-none d-sm-block d-block w-100">
               <div className="mobailRoutMenu">
@@ -133,7 +134,7 @@ class HomeBodyClass extends React.Component {
                   </div>
                 </div>
                 {this.state.changeMapList ?
-                  <div className="pb-5">
+                  <div className="mapContain">
                     <MapContainer cities={this.state.cities} setLengthTime={this.setLengthTime} mapUpdate={true} />
                     </div>
                   :
@@ -150,13 +151,13 @@ class HomeBodyClass extends React.Component {
           </React.Fragment>
           :
           <React.Fragment>
-            <div className="body_menu d-md-block d-sm-none d-none col-xl-4 col-lg-3 col-md-4 col-sm-3 col-3 p-0">
+            <div className="body_menu col-xl-4 col-lg-3 col-md-4 col-sm-5 col-3 p-0">
               <RouteMenu cities={[...this.state.cities]} changeCity={this.changeCity} addCity={this.addCity}
                 removeCity={this.removeCity} goToDrivers={this.goToDrivers} chooseDate={this.openChooseDate} date={this.state.date} />
               <div style={{ visibility: this.state.calendaryVisibility }}>
               </div>
             </div>
-            <div className="body_map d-md-block d-sm-none d-none col-xl-8 col-lg-9 col-md-7 col-sm-6 col-6 p-0">
+            <div className="body_map col-xl-8 col-lg-9 col-md-7 col-sm-7 col-6 p-0">
               <MapContainer cities={this.state.cities} setLengthTime={this.setLengthTime} mapUpdate={/*this.state.mapUpdate*/true} />
             </div>
 

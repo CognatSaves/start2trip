@@ -15,7 +15,7 @@ import { connect } from 'react-redux';
 //import HomeHeader from './HomeHeader/HomeHeader.jsx'
 import Header from '../header/Header';
 import HomeBody from './HomeBody/HomeBody.jsx'
-import { isMobile } from 'react-device-detect';
+import { isMobileOnly,isTablet } from 'react-device-detect';
 
 
 class HomeClass extends React.Component {
@@ -36,7 +36,8 @@ class HomeClass extends React.Component {
     
   }
   render() {
-    
+    console.log(isMobileOnly , "isMobileOnly")
+    console.log(isTablet , "isTablet")
     return (
       <React.Fragment>
         <main className="d-flex flex-column container-fluid p-0">
@@ -44,7 +45,8 @@ class HomeClass extends React.Component {
           <Header history={this.props.history} />
             
             <div className="home_block col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
-              <div className="home_text col-12 p-0 d-md-block d-sm-none d-none">
+              {!isMobileOnly ?
+              <div className="home_text col-12 p-0">
                 <div className="text_firstLine">Cпланируйте свою экскурсию</div>
                 <div className="text_secondLine">Предложения от местных гидов-водителей по вашему индивидуальному маршруту</div>
                 <div className="text_changeBodyBlock">
@@ -52,13 +54,15 @@ class HomeClass extends React.Component {
                   <div className="text_changeBodyBlock_element changeBodyBlock_element_right">КАРТА</div>
                 </div>
               </div>
+              :
+              <div/>}
               <div className="home_body d-flex justify-content-center col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
                 <HomeBody redirectToDrivers={() => this.redirectFunc('/drivers')} />
               </div>
             </div>
          
           </div>
-          {isMobile ? 
+          {isMobileOnly ? 
           <div/> 
           :
         <div className="homeBottom container-fluid p-0">

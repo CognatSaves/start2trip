@@ -6,7 +6,7 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
-import { isMobile } from 'react-device-detect'
+import { isMobileOnly } from 'react-device-detect'
 import {
     Table,
     TableBody,
@@ -64,7 +64,7 @@ class DriverProfileBillingClass extends React.Component {
                 <Dialog
                     contentClassName='billingModal'
                     paperClassName='billingModalDiv'
-                    contentStyle={{ width: isMobile ? "" : "100%" }}
+                    contentStyle={{ width: isMobileOnly ? "" : "100%" }}
                     // actions={actionsWithdrawal}
                     modal={false}
                     open={this.state.withdrawalOfFundsModal}
