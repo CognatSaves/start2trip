@@ -9,13 +9,15 @@ import MenuItem from 'material-ui/MenuItem'
 import TextField from 'material-ui/TextField'
 import config from '../../config';
 import requests from '../../config';
-
+import RefreshIndicator from 'material-ui/RefreshIndicator';
+import { setProfileData } from "../../redusers/ActionDriverProfileRegistration"
+import getUserData from './DriverProfileRequest';
+import DriverRefreshIndicator from './DriverRefreshIndicator';
 class DriverProfileCarClass extends React.Component {
     constructor(props) {
         super(props);
         let profile = this.props.profileReduser.profile;
         console.log('DriverProfileCarClass constructor');
-        console.log(profile);
         this.state = {
             comfort: [false,false,false,false],
             carImg: [],
@@ -24,7 +26,10 @@ class DriverProfileCarClass extends React.Component {
             imagePreviewUrl: '',
             collapse: false,
             newCarCard: { nameCar: "", yearCar: "", plateNumberCar: "", typeCar: "", fuelType: "", carClass: "", onWork: true },
-            car:{}
+            car:{},
+            isRefreshExist:false,
+            isRefreshing: true,
+            isGoodAnswer: true
         }
         this.toggle = this.toggle.bind(this);
         this._handleImageChange = this._handleImageChange.bind(this);
@@ -32,10 +37,65 @@ class DriverProfileCarClass extends React.Component {
         this.applyChanges=this.applyChanges.bind(this);
         this.destroy = this.destroy.bind(this);
         this.changeActive = this.changeActive.bind(this);
+        this.getProfileData = this.getProfileData.bind(this);
+        this.startRefresher = this.startRefresher.bind(this);
+        this.thenFunc = this.thenFunc.bind(this);
+        this.catchFunc = this.catchFunc.bind(this);
+    }
+
+    getProfileData(thenFunc,catchFunc){
+        console.log('getProfileData');
+        let that = this;
+        let requestValues = {
+            readCookie: this.props.globalReduser.readCookie,
+            setProfileData: function(data){
+              that.props.dispatch(setProfileData(data))
+            },
+            requestAddress: requests.profileRequest
+          };
+        getUserData(requestValues,thenFunc,catchFunc);
+    }
+    startRefresher(){
+        this.setState({
+            isRefreshExist: true,
+            isRefreshing: true
+        });
+    }   
+    thenFunc(){
+        console.log('thenFunc');
+        this.setState({
+            isRefreshExist: true,
+            isRefreshing: false,
+            isGoodAnswer: true,
+            collapse: false
+        });
+        setTimeout(() => {
+            this.setState({
+                isRefreshExist: false
+            })
+        }, 500);
+    }
+    catchFunc(){
+        console.log('catchFunc');
+        this.setState({
+            isRefreshExist: true,
+            isRefreshing: false,
+            isGoodAnswer: false,
+            collapse: false
+        });
+        setTimeout(() => {
+            this.setState({
+                isRefreshExist: false
+            })
+        }, 500);
     }
     applyChanges(type){
-        let jwt = this.props.globalReduser.readCookie('jwt');       
+        let jwt = this.props.globalReduser.readCookie('jwt');   
+        
+        //debugger;   
         if(jwt && jwt!=="-"){
+            let that = this; 
+            this.startRefresher();
             var carForm = new FormData();
             carForm.append('carBrand',this.state.newCarCard.nameCar);
             carForm.append('manufactureYear', this.state.newCarCard.yearCar);
@@ -56,14 +116,8 @@ class DriverProfileCarClass extends React.Component {
             }
             const request = new XMLHttpRequest();
             if(type){      
-                request.onreadystatechange = function(){
-                    console.log(request.status);
-                    console.log(request.statusText);
-                    console.log(request.responseText);
-                }
                 request.open('PUT', requests.userCarsCreateRequest);
-                request.setRequestHeader('Authorization',`Bearer ${jwt}`);
-                request.send(carForm);
+                request.setRequestHeader('Authorization',`Bearer ${jwt}`);               
             }
             else{
                 let fileTypeArray = [];
@@ -81,9 +135,18 @@ class DriverProfileCarClass extends React.Component {
                 }
                 request.open('PUT',requests.userCarUpdateRequest+'/'+this.state.car.id);
                 request.setRequestHeader('Authorization',`Bearer ${jwt}`);
-                request.send(carForm);
+
             }
-            document.location.reload(true);
+            request.onreadystatechange = function(){
+                //debugger;
+                
+                if(request.readyState === XMLHttpRequest.DONE && request.status === 200){                  
+                    console.log(request.responseText);
+                    that.getProfileData(that.thenFunc,that.catchFunc);
+                }
+            }
+            request.send(carForm);
+            //document.location.reload(true);
         }  
         
     } 
@@ -124,29 +187,40 @@ class DriverProfileCarClass extends React.Component {
     changeActive(element){
         let jwt = this.props.globalReduser.readCookie('jwt');
         if(jwt && jwt!=="-"){
+            this.startRefresher();
+            let that = this; 
             var carForm = new FormData();
             carForm.append('onWork',!element.onWork);
             const request = new XMLHttpRequest();
             request.open('PUT',requests.userCarActivateRequest+'/'+element.id);
             request.setRequestHeader('Authorization',`Bearer ${jwt}`);
+            request.onreadystatechange = function(){
+                if(request.readyState === XMLHttpRequest.DONE && request.status === 200){                  
+                    console.log(request.responseText);
+                    that.getProfileData(that.thenFunc,that.catchFunc);
+                }
+            }
             request.send(carForm);
-            document.location.reload(true);
+            //document.location.reload(true);
         }
     }
     destroy(element){
         let jwt = this.props.globalReduser.readCookie('jwt');     
         if(jwt && jwt!=="-"){
+            this.startRefresher();
+            let that = this; 
             console.log('try to destroy a car');
             const request = new XMLHttpRequest();
             request.onreadystatechange = function(){
-                console.log(request.status);
-                console.log(request.statusText);
-                console.log(request.responseText);
+                if(request.readyState === XMLHttpRequest.DONE && request.status === 200){                  
+                    console.log(request.responseText);
+                    that.getProfileData(that.thenFunc,that.catchFunc);
+                }
             }
             request.open('DELETE', requests.userCarDestroyRequest+"/"+element.id);
             request.setRequestHeader('Authorization',`Bearer ${jwt}`);
             request.send();
-            document.location.reload(true);
+            //document.location.reload(true);
         }
     }
 
@@ -214,9 +288,10 @@ class DriverProfileCarClass extends React.Component {
         console.log("DriverProfileCar render");
         //выдаёт значения строго на русском - впоследствие будет переделана
         let carTypes = findCarTypeNames(cars, this.props.profileReduser.profile.carTypes);
-        /*console.log(config.serverAddress+cars[0].url);*/
         return (
             <div className="_ThisTagIsNeeded">
+            <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer}/>
+                
                 <Collapse isOpen={this.state.collapse}>
                     <div className="carAddNewCar d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-start align-items-lg-start align-items-md-start align-items-sm-center align-items-center">
                         <div className="carAddNewCarPhotoCar col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 pt-5" >

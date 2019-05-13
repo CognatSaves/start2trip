@@ -1,9 +1,12 @@
-import {WHICH_PAGE_RENDER,SET_PROFILE_DATA} from './ActionDriverProfileRegistration';
+import {WHICH_PAGE_RENDER,SET_PROFILE_DATA,SET_REFRESH_STATE} from './ActionDriverProfileRegistration';
 
 const initialState = {
     pageRender: "0",
     carCards:[],
-    profile: {},   
+    profile: {},
+    isRefreshExist: false,
+    isRefreshing: true,
+    isGoodAnswer: true   
 };
 
 
@@ -19,6 +22,19 @@ export const DriverProfileRegistrationtReduser = (state = initialState, action) 
             newStatePD.profile = action.profile;
             return newStatePD;
         }
+        /*case SET_REFRESH_STATE:{
+            let newStateRS = { ...state };
+            if(action.isRefreshExist){
+                newStateRS.isRefreshExist = action.isRefreshExist;
+            }
+            if(action.isRefreshing){
+                newStateRS.isRefreshing = action.isRefreshing;
+            }
+            if(action.isGoodAnswer){
+                newStateRS.isGoodAnswer = action.isGoodAnswer;
+            }
+            return newStateRS;
+        }*/
     default: return state;
     }
 }

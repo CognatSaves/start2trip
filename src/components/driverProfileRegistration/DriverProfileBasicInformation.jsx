@@ -11,7 +11,10 @@ import Chip from 'material-ui/Chip';
 import flags from './img/flags.png'
 import ReactTelInput from 'react-telephone-input'
 import requests from '../../config';
+import { setProfileData } from "../../redusers/ActionDriverProfileRegistration"
+import getUserData from './DriverProfileRequest';
 import RefreshIndicator from 'material-ui/RefreshIndicator';
+import DriverRefreshIndicator from './DriverRefreshIndicator';
 
 class DriverProfileBasicInformationClass extends React.Component {
     constructor(props) {
@@ -20,7 +23,6 @@ class DriverProfileBasicInformationClass extends React.Component {
             let langList = [];
             let chipData = [];
             for (let i = 0; i < allLanguages.length; i++) {
-                //;
                 let j = 0; let max = language.length;
                 for (; j < max; j++) {
                     if (language[j] === allLanguages[i].ISO) {
@@ -36,18 +38,18 @@ class DriverProfileBasicInformationClass extends React.Component {
         }
         let profile = this.props.profileReduser.profile;
         console.log('profile in DriverProfileBasicInformation');
-        console.log(profile);
-        //;
         let birthday; let passportDate;
 
         birthday = new Date(profile.birthday);
         passportDate = new Date(profile.passportDate);
         let languageArrays = languageArraysConstr(profile.language, profile.allLanguages);
-        //;
         this.state = {
             value: "Выберите языки",
             chipData: languageArrays.chipData,
             language: languageArrays.langList,
+            isRefreshExist:false,
+            isRefreshing: true,
+            isGoodAnswer: true,
             profileData: {
                 firstName: profile.firstName,
                 lastName: profile.lastName,
@@ -62,10 +64,61 @@ class DriverProfileBasicInformationClass extends React.Component {
         this.formSubmit = this.formSubmit.bind(this);
         this.applyChanges = this.applyChanges.bind(this);
         this.inputChange = this.inputChange.bind(this);
+        this.getProfileData = this.getProfileData.bind(this);
+        this.startRefresher = this.startRefresher.bind(this);
+        this.thenFunc = this.thenFunc.bind(this);
+        this.catchFunc = this.catchFunc.bind(this);
+    }
+    getProfileData(){
+        console.log('getProfileData');
+        let that = this;
+        let requestValues = {
+            readCookie: this.props.globalReduser.readCookie,
+            setProfileData: function(data){
+              that.props.dispatch(setProfileData(data))
+            },
+            requestAddress: requests.profileRequest
+          }
+        getUserData(requestValues,that.thenFunc,that.catchFunc);
+    }
+    startRefresher(){
+        this.setState({
+            isRefreshExist: true,
+            isRefreshing: true
+        });
+    }  
+    thenFunc(){
+        console.log('thenFunc');
+        this.setState({
+            isRefreshExist: true,
+            isRefreshing: false,
+            isGoodAnswer: true,
+        });
+        setTimeout(() => {
+            this.setState({
+                isRefreshExist: false
+            })
+        }, 500);
+    }
+    catchFunc(){
+        console.log('catchFunc');
+        this.setState({
+            isRefreshExist: true,
+            isRefreshing: false,
+            isGoodAnswer: false,
+        });
+        setTimeout(() => {
+            this.setState({
+                isRefreshExist: false
+            })
+        }, 500);
     }
     applyChanges() {
         let jwt = this.props.globalReduser.readCookie('jwt');
         if (jwt && jwt !== "-") {
+            let that = this;
+            that.startRefresher();
+
             function parseCity(city) {
                 let res = city.split(', ');
                 let ht = "";
@@ -83,7 +136,7 @@ class DriverProfileBasicInformationClass extends React.Component {
             value.homecountry = pcity.homecountry;
             value.city = undefined;
             let body = JSON.stringify(value);
-            let that = this;
+            
             fetch(requests.profileUpdateRequest, {
                 method: 'PUT', body: body,
                 headers: { 'content-type': 'application/json', Authorization: `Bearer ${jwt}` }
@@ -96,14 +149,9 @@ class DriverProfileBasicInformationClass extends React.Component {
                         console.log("bad");
                         throw data.error;
                     }
-                    else {
-                    
+                    else {                 
                         console.log("good");
-                        console.log(data);
-
-                        
-                        document.location.reload(true);
-                        
+                        that.getProfileData();
                     }
                 })
                 .catch(function (error) {
@@ -181,31 +229,9 @@ class DriverProfileBasicInformationClass extends React.Component {
     }
 
     render() {
-    const style = {
-            refresh: {
-                display: 'inline-block',
-                position: 'relative',
-            },
-        };
-
         return (
             <div className="basicInformationBody d-flex flex-column">
-            {/* НЕ удаляй Лев пожалуйста */}
-            <div className="refreshIndicatorModal">
-                        <RefreshIndicator
-                            size={70}
-                            left={0}
-                            top={0}
-                            loadingColor="#f60"
-                            color="#25ae88"
-                            status="loading"
-                            style={style.refresh}
-                        />
-                        <i className="refreshIndicatorSuccess"></i>
-                     <i className={this.state.flag ?"":"refreshIndicatorSuccess"}></i> 
-                    </div>
-
-                    {/* НЕ удаляй Лев пожалуйста */}
+                <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer}/>
                 <div className="basicInformationBodyBottom d-flex flex-column mb-5 p-0">
                     <div className="basicInformationBodyBottomHeader d-xl-block d-lg-block d-md-block d-sm-none d-none">
                         <p>Редактировать профиль</p>
@@ -287,7 +313,6 @@ class DriverProfileBasicInformationClass extends React.Component {
                                     classNames="myPhoneInput"
                                     flagsImagePath={flags}
                                     onChange={(telNumber, selectedCountry) => { this.inputChange(telNumber, 'workPhone'); }}
-                                    onBlur={(value) => { console.log(value) }}
                                     initialValue={this.state.profileData.workPhone}
                                 />
                                 <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>

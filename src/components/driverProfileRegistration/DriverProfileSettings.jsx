@@ -5,6 +5,10 @@ import TextField from 'material-ui/TextField';
 import flags from './img/flags.png'
 import ReactTelInput from 'react-telephone-input'
 import requests from '../../config';
+import { setProfileData } from "../../redusers/ActionDriverProfileRegistration"
+import getUserData from './DriverProfileRequest';
+import RefreshIndicator from 'material-ui/RefreshIndicator';
+import DriverRefreshIndicator from './DriverRefreshIndicator';
 
 
 class DriverProfileSettingsClass extends React.Component {
@@ -22,12 +26,64 @@ class DriverProfileSettingsClass extends React.Component {
                 newPassword: "",
                 newPassword2: "",
                 privatePhone: profile.privatePhone,
-            }
-            
+            },
+            isRefreshExist:false,
+            isRefreshing: true,
+            isGoodAnswer: true,          
         }
         this.formSubmit = this.formSubmit.bind(this);
         this.applyChanges = this.applyChanges.bind(this);
         this.inputChange = this.inputChange.bind(this);
+
+        this.getProfileData = this.getProfileData.bind(this);
+        this.startRefresher = this.startRefresher.bind(this);
+        this.thenFunc = this.thenFunc.bind(this);
+        this.catchFunc = this.catchFunc.bind(this);
+    }
+    getProfileData(){
+        console.log('getProfileData');
+        let that = this;
+        let requestValues = {
+            readCookie: this.props.globalReduser.readCookie,
+            setProfileData: function(data){
+              that.props.dispatch(setProfileData(data))
+            },
+            requestAddress: requests.profileRequest
+          }
+        getUserData(requestValues,that.thenFunc,that.catchFunc);
+    }
+    startRefresher(){
+        this.setState({
+            isRefreshExist: true,
+            isRefreshing: true
+        });
+    }  
+    thenFunc(){
+        console.log('thenFunc');
+        console.log(this.props.profileReduser);
+        this.setState({
+            isRefreshExist: true,
+            isRefreshing: false,
+            isGoodAnswer: true,
+        });
+        setTimeout(() => {
+            this.setState({
+                isRefreshExist: false
+            })
+        }, 1000);
+    }
+    catchFunc(){
+        console.log('catchFunc');
+        this.setState({
+            isRefreshExist: true,
+            isRefreshing: false,
+            isGoodAnswer: false,
+        });
+        setTimeout(() => {
+            this.setState({
+                isRefreshExist: false
+            })
+        }, 2000);
     }
     applyChanges(){
         let jwt = this.props.globalReduser.readCookie('jwt');
@@ -66,7 +122,9 @@ class DriverProfileSettingsClass extends React.Component {
                     privatePhone: data.privatePhone
                 }
             }
-            if(value.email){//если не заполнено - значит есть ошибки         
+            if(value.email){//если не заполнено - значит есть ошибки
+                let that = this;
+                that.startRefresher();         
                 let body = JSON.stringify(value);
                 fetch(requests.profileUpdateRequest, {method: 'PUT',body:body,
                     headers:{'content-type': 'application/json', Authorization: `Bearer ${jwt}`}})
@@ -81,13 +139,16 @@ class DriverProfileSettingsClass extends React.Component {
                         else{
                             console.log("good");         
                             console.log(data);
-                            document.location.reload(true);
+                            that.getProfileData();
+                            //document.location.reload(true);
                             //that.state.sendResultLocal(true, {jwt:data.jwt, user: data.user});
                         }
                     })
                     .catch(function(error) {
                         console.log("bad");
-                        console.log('An error occurred:', error);
+                        console.log('An error occurred:');
+                        console.log(error);
+                        that.catchFunc();
                         //that.state.sendResultLocal(false,{error: error});
                     });
             }
@@ -95,7 +156,6 @@ class DriverProfileSettingsClass extends React.Component {
         }          
     }
     formSubmit(event) {
-        alert('Settings submitted');
         this.applyChanges();
         event.preventDefault();
     }
@@ -143,8 +203,15 @@ class DriverProfileSettingsClass extends React.Component {
 
 
     render() {
+        const style = {
+            refresh: {
+                display: 'inline-block',
+                position: 'relative',
+            },
+        };
         return (
             <div className="driverProfilesettingsBody pb-1">
+                <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer}/>
                 <div className="driverProfilesettingsBodyTitle d-xl-block d-lg-block d-md-block d-sm-none d-none">
                     <p>Настройки профиля</p>
                 </div>

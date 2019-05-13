@@ -18,8 +18,10 @@ import InfiniteCalendar, {
 } from 'react-infinite-calendar';
 import 'react-infinite-calendar/styles.css'; // only needs to be imported once
 import requests from '../../config';
-
-
+import RefreshIndicator from 'material-ui/RefreshIndicator';
+import { setProfileData } from "../../redusers/ActionDriverProfileRegistration"
+import getUserData from './DriverProfileRequest';
+import DriverRefreshIndicator from './DriverRefreshIndicator';
 
 
 
@@ -71,7 +73,6 @@ class DriverProfileTripSettingsTourClass extends React.Component {
             collapse: false,
             calendarModal: false,
             currencies: [...profile.currencies],
-            savedTours:profile.tours,
 
             directions: [...profile.directions],
             directionsValue: "Все направления", 
@@ -113,7 +114,11 @@ class DriverProfileTripSettingsTourClass extends React.Component {
             imagePreviewUrl: '',
             tempValue: 100,
             tour:{},
-            tourId: "" 
+            tourId: "",
+
+            isRefreshExist:false,
+            isRefreshing: true,
+            isGoodAnswer: true, 
         }
 
         this.toggle = this.toggle.bind(this);
@@ -125,6 +130,58 @@ class DriverProfileTripSettingsTourClass extends React.Component {
         this.destroy = this.destroy.bind(this);
         this.changeActive = this.changeActive.bind(this);
         this.selectTourName = this.selectTourName.bind(this);
+
+        this.getProfileData = this.getProfileData.bind(this);
+        this.startRefresher = this.startRefresher.bind(this);
+        this.thenFunc = this.thenFunc.bind(this);
+        this.catchFunc = this.catchFunc.bind(this);
+    }
+    getProfileData(thenFunc,catchFunc){
+        console.log('getProfileData');
+        let that = this;
+        let requestValues = {
+            readCookie: this.props.globalReduser.readCookie,
+            setProfileData: function(data){
+              that.props.dispatch(setProfileData(data))
+            },
+            requestAddress: requests.profileRequest
+          };
+        getUserData(requestValues,thenFunc,catchFunc);
+    }
+    startRefresher(){
+        this.setState({
+            isRefreshExist: true,
+            isRefreshing: true
+        });
+    }   
+    thenFunc(){
+        console.log('thenFunc');
+        console.log(this.props.profileReduser);
+        this.setState({
+            isRefreshExist: true,
+            isRefreshing: false,
+            isGoodAnswer: true,
+            collapse: false
+        });
+        setTimeout(() => {
+            this.setState({
+                isRefreshExist: false
+            })
+        }, 500);
+    }
+    catchFunc(){
+        console.log('catchFunc');
+        this.setState({
+            isRefreshExist: true,
+            isRefreshing: false,
+            isGoodAnswer: false,
+            collapse: false
+        });
+        setTimeout(() => {
+            this.setState({
+                isRefreshExist: false
+            })
+        }, 500);
     }
     fillForm(element){
         let profile = this.props.profileReduser.profile;
@@ -258,22 +315,33 @@ class DriverProfileTripSettingsTourClass extends React.Component {
     changeActive(element){
         let jwt = this.props.globalReduser.readCookie('jwt');
         if(jwt && jwt!=="-"){
+            this.startRefresher();
+            let that = this;
             var tourForm = new FormData();
             tourForm.append('onWork',!element.onWork);
             const request = new XMLHttpRequest();
             request.open('PUT',requests.userTourActivateRequest+'/'+element.id);
             request.setRequestHeader('Authorization',`Bearer ${jwt}`);
+            request.onreadystatechange = function(){
+                if(request.readyState === XMLHttpRequest.DONE && request.status === 200){                  
+                    console.log(request.responseText);
+                    that.getProfileData(that.thenFunc,that.catchFunc);
+                }
+            }
             request.send(tourForm);
         }
     }
     destroy(element){
         let jwt = this.props.globalReduser.readCookie('jwt');      
         if(jwt && jwt!=="-"){
+            this.startRefresher();
+            let that = this; 
             const request = new XMLHttpRequest();
             request.onreadystatechange = function(){
-                console.log(request.status);
-                console.log(request.statusText);
-                console.log(request.responseText);
+                if(request.readyState === XMLHttpRequest.DONE && request.status === 200){                  
+                    console.log(request.responseText);
+                    that.getProfileData(that.thenFunc,that.catchFunc);
+                }
             }
             request.open('DELETE', requests.userTourDestroyRequest+"/"+element.id);
             request.setRequestHeader('Authorization',`Bearer ${jwt}`);
@@ -283,6 +351,9 @@ class DriverProfileTripSettingsTourClass extends React.Component {
     applyChanges(type){
         let jwt = this.props.globalReduser.readCookie('jwt');
         if(jwt && jwt!=="-"){
+            let that = this; 
+            this.startRefresher();
+
             var tourForm = new FormData();
             let tourSave = this.state.tourSave;
             for(let i=0; i<tourSave.local.length; i++){
@@ -309,8 +380,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
             const request = new XMLHttpRequest();
             if(this.state.tourId.length===0){
                 request.open('PUT', requests.userTourCreateRequest);
-                request.setRequestHeader('Authorization',`Bearer ${jwt}`);
-                request.send(tourForm);
+                request.setRequestHeader('Authorization',`Bearer ${jwt}`);              
             }
             else{
                 for(let i=0; i<tourSave.imageFiles.length; i++){
@@ -324,9 +394,14 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                 }
                 request.open('PUT', requests.userTourUpdateRequest+"/"+this.state.tourId);
                 request.setRequestHeader('Authorization',`Bearer ${jwt}`);
-                request.send(tourForm);
             }
-            document.location.reload(true);         
+            request.onreadystatechange = function(){        
+                if(request.readyState === XMLHttpRequest.DONE && request.status === 200){                  
+                    console.log(request.responseText);
+                    that.getProfileData(that.thenFunc,that.catchFunc);
+                }
+            }
+            request.send(tourForm);        
         }
     }
     formSubmit(event) {
@@ -532,6 +607,12 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                 onClick={this.calendarModalShow}
             />,
         ];
+        const style = {
+            refresh: {
+                display: 'inline-block',
+                position: 'relative',
+            },
+        };
         const themeCalendar = {
             accentColor: '#f60',
             floatingNav: {
@@ -584,6 +665,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                         onSelect={this.addDate}
                     />
                 </Dialog>
+                <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer}/>
                 <Collapse isOpen={this.state.collapse}>
                     <div className="tourSettingsBody">
                         <form name='myForm' onSubmit={this.formSubmit} id="newTourForm" className="tourContent col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
@@ -912,7 +994,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                 </div>
                             </div>
                         </div>
-                        {this.state.savedTours.map((element, index) =>
+                        {this.props.profileReduser.profile.tours.map((element, index) =>
                             <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-11 p-2">
                                 <div className="filledCard d-flex flex-column p-0">
                                     <div className="filledCardInformation d-flex flex-column">
@@ -927,7 +1009,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                         </div>
                                     </div>
                                     <div className="filledCardImg">
-                                        <img src={requests.serverAddress+element.image[0].url} className="img-fluid" alt="imgCar" width="100%" height="100%" />
+                                        <img src={element.image && element.image[0] && element.image[0].url ? requests.serverAddress+element.image[0].url : ''} className="img-fluid" alt="imgCar" width="100%" height="100%" />
                                     </div>
                                     <div className="cardInformationType d-flex flex-column">
                                         <p> {this.selectTourName(element)}</p>

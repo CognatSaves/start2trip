@@ -145,6 +145,15 @@
     background-size: 70px 70px;
     background-position: center center;
 }
+.refreshIndicatorFail {
+    position: absolute;
+    z-index: 99;
+    width: 70px;
+    height: 70px;
+    background: url(./img/errorCross.svg) no-repeat;
+    background-size: 70px 70px;
+    background-position: center center;
+}
 
 @media (max-width: 768px) {
     .basicInformationBodyBottom {
