@@ -11,6 +11,7 @@ import Chip from 'material-ui/Chip';
 import flags from './img/flags.png'
 import ReactTelInput from 'react-telephone-input'
 import requests from '../../config';
+import RefreshIndicator from 'material-ui/RefreshIndicator';
 
 class DriverProfileBasicInformationClass extends React.Component {
     constructor(props) {
@@ -180,17 +181,31 @@ class DriverProfileBasicInformationClass extends React.Component {
     }
 
     render() {
-        /*
-        const style = {
+    const style = {
             refresh: {
                 display: 'inline-block',
                 position: 'relative',
             },
         };
-        let text = "text";
-*/
+
         return (
             <div className="basicInformationBody d-flex flex-column">
+            {/* НЕ удаляй Лев пожалуйста */}
+            <div className="refreshIndicatorModal">
+                        <RefreshIndicator
+                            size={70}
+                            left={0}
+                            top={0}
+                            loadingColor="#f60"
+                            color="#25ae88"
+                            status="loading"
+                            style={style.refresh}
+                        />
+                        <i className="refreshIndicatorSuccess"></i>
+                     <i className={this.state.flag ?"":"refreshIndicatorSuccess"}></i> 
+                    </div>
+
+                    {/* НЕ удаляй Лев пожалуйста */}
                 <div className="basicInformationBodyBottom d-flex flex-column mb-5 p-0">
                     <div className="basicInformationBodyBottomHeader d-xl-block d-lg-block d-md-block d-sm-none d-none">
                         <p>Редактировать профиль</p>

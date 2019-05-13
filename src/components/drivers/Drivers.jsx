@@ -48,11 +48,12 @@ class DriversClass extends React.Component {
     return (
       <React.Fragment>  
     
-        
+
       <div className="drivers_top_background">
+      <Header history={this.props.history}/>
         <div className="container d-flex flex-column">
           <div className="row">
-          <Header history={this.props.history}/>
+          
             <DriversRoute />
           </div>
         </div>

@@ -208,7 +208,6 @@ class UserProfileSettingsClass extends React.Component {
                             </div>
                         </div>
                         <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start ">
-                            {/* TODO функционал выбора префикса по стране */}
                             <label htmlFor="sittingsPhoneNumber" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-11 col-11">Телефон:</label>
                             <ReactTelInput
                                 defaultCountry="ge"
