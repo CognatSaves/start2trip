@@ -3,32 +3,34 @@ import './DriversRoute.css'
 import './DriversChangeRoute.css'
 import { connect } from 'react-redux'
 
-import SearchInput from '../../home/HomeBody/Search';
-import {set_state} from '../../../redusers/Action'
-import {setDriversRouteChange} from '../../../redusers/ActionDrivers'
+
+import LocationSearchInput from '../../home/HomeBody/Search';
+import { set_state } from '../../../redusers/Action'
+import { setDriversRouteChange } from '../../../redusers/ActionDrivers'
+import DatePicker from 'material-ui/DatePicker';
 import Calendar from 'react-calendar'
 import '../../home/HomeBody/calendary.css';
 
 class DriversRouteClass extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       calendaryVisibility: 'hidden',
       date: '',
       cities: [...this.props.storeState.cities]
     }
-    this.addCity=this.addCity.bind(this);
-    this.removeCity=this.removeCity.bind(this);
-    this.openChooseDate=this.openChooseDate.bind(this);
+    this.addCity = this.addCity.bind(this);
+    this.removeCity = this.removeCity.bind(this);
+    this.openChooseDate = this.openChooseDate.bind(this);
     this.closeChooseDate = this.closeChooseDate.bind(this);
     this.chooseDate = this.chooseDate.bind(this);
     this.changeCity = this.changeCity.bind(this);
-    this.searchRoute=this.searchRoute.bind(this);
+    this.searchRoute = this.searchRoute.bind(this);
   }
-  
+
   addCity() {
     let cities = this.state.cities;
-    cities[cities.length]="";
+    cities[cities.length] = "";
     this.setState({
       cities: cities,
     })
@@ -44,7 +46,7 @@ class DriversRouteClass extends React.Component {
   openChooseDate() {
     this.setState({
       calendaryVisibility: 'visible'
-    }) 
+    })
   }
   closeChooseDate() {
     this.setState({
@@ -68,126 +70,131 @@ class DriversRouteClass extends React.Component {
       cities: cities,
     });
   }
-  searchRoute(){
-    function isCorrectSearchData(cities, date){
-      for(let i=0; i<cities.length; i++){
-        if(cities[i].length===""){
+  searchRoute() {
+    function isCorrectSearchData(cities, date) {
+      for (let i = 0; i < cities.length; i++) {
+        if (cities[i].length === "") {
           return false;
         }
       }
-      if(date.length===0){
+      if (date.length === 0) {
         return false;
       }
       return true;
     }
-    if(isCorrectSearchData(this.state.cities, this.state.date)){
-      this.props.dispatch(set_state("DriversRoute",[...this.state.cities],this.state.date));
+    if (isCorrectSearchData(this.state.cities, this.state.date)) {
+      this.props.dispatch(set_state("DriversRoute", [...this.state.cities], this.state.date));
       this.props.dispatch(setDriversRouteChange(!this.props.driversState.driversRouteChange))
     }
-    else{
+    else {
       alert("Некоторые данные некорректны! Проверьте все еще раз!");
     }
   }
-    render() {
-      let isVisibleArray = Array(this.props.storeState.cities.length).fill("visible");
-      isVisibleArray[isVisibleArray.length-1]="hidden";
-      if(!this.props.driversState.driversRouteChange){
-        return (
-          <div className = "drivers_route col-12 d-flex flex-column">
-            <div className="route_date d-flex ">
-              <div className="route_date_text">дата отправления: {this.props.storeState.date}</div>
-              <div className="d-flex " onClick={()=>this.props.dispatch(setDriversRouteChange(!this.props.driversState.driversRouteChange))}>               
-                <div className="route_change_text">Изменить маршрут</div>
-                <div className="route_change_emblem"/>
-              </div>
+  render() {
+    let isVisibleArray = Array(this.props.storeState.cities.length).fill("visible");
+    isVisibleArray[isVisibleArray.length - 1] = "hidden";
+    if (!this.props.driversState.driversRouteChange) {
+      return (
+        <div className="drivers_route col-12 d-flex flex-column">
+          <div className="route_date d-flex ">
+            <div className="route_date_text">дата отправления: {this.props.storeState.date}</div>
+            <div className="d-flex " onClick={() => this.props.dispatch(setDriversRouteChange(!this.props.driversState.driversRouteChange))}>
+              <div className="route_change_text">Изменить маршрут</div>
+              <div className="route_change_emblem" />
             </div>
-            <div className="route_show d-flex ">
-              {this.state.cities.map((element, index) =>
-              <div className="route_show_element ">
-                {/* <div className="route_show_icon" /> */}
-                <span className="route_show_text" >{this.state.cities[index]}</span>
-                {/* <div className="route_show_line " style={{visibility: isVisibleArray[index]}}></div> */}
-              </div>
-              )}
-            </div>
-            <div className="route_bottomBlock d-flex flex-column">
-              {/* <div className="route_time_text">Время в пути без остановок:
-                <p1>{this.props.driversState.travelTime}</p1><p2>{this.props.driversState.travelLength}</p2>
-              </div> */}
-              <div className="route_comment">*Возврат в точку отправления в этот же день бесплатно</div>
-            </div>                      
           </div>
-        )
-      }
-      else{
-        let removeArray = Array(this.state.cities.length).fill('block');
-        removeArray[0]='none';
-        removeArray[removeArray.length-1]='none';
-        return (
-          <div className = "drivers_route col-12 d-flex flex-column">
-            <div className="route_date d-flex ">
-              <div className="route_date_text">Ваш индивидуальный маршрут на: {this.props.storeState.date}</div>
-              <div className="d-flex " onClick={()=>this.props.dispatch(setDriversRouteChange(!this.props.driversState.driversRouteChange))}>               
-                <div className="route_change_text">Изменить маршрут</div>
-                <div className="route_change_emblem"/>
-              </div>
-            </div>
-            <div className="route_show d-flex ">
-              {this.state.cities.map((element, index) =>
+          <div className="route_show d-flex">
+            {this.state.cities.map((element, index) =>
               <React.Fragment>
-                <div className="route_show_element" key={element+"/"+index}>
+                <div className="route_show_Line" style={{ display: index ? "block" : "none" }} />
+                <span className="route_show_text" >{this.state.cities[index]}</span>
+              </React.Fragment>
+
+            )}
+          </div>
+          <div className="route_bottomBlock d-flex">
+            <div className="route_comment">*Возврат в точку отправления в этот же день <span>бесплатно</span></div>
+            <div className="route_time_text">Время в пути без остановок:
+                <p1>{this.props.driversState.travelTime}</p1><p2>{this.props.driversState.travelLength}</p2>
+            </div>
+          </div>
+        </div>
+      )
+    }
+    else {
+      let removeArray = Array(this.state.cities.length).fill('block');
+      removeArray[0] = 'none';
+      removeArray[removeArray.length - 1] = 'none';
+      return (
+        <div className="drivers_route col-12 d-flex flex-column">
+          <div className="route_date d-flex justify-content-end ">
+            {/* <div className="route_date_text">Ваш индивидуальный маршрут на: {this.props.storeState.date}</div> */}
+            <div className="d-flex " onClick={() => this.props.dispatch(setDriversRouteChange(!this.props.driversState.driversRouteChange))}>
+              <div className="route_change_text">Изменить маршрут</div>
+              <div className="route_change_emblem" />
+            </div>
+          </div>
+          <div className="route_show d-flex ">
+            {this.state.cities.map((element, index) =>
+              <React.Fragment>
+                <div className="route_show_element" key={element + "/" + index}>
                   <div className="search_input_block">
-                    <div className="search_input_icon"/>
-                    <SearchInput address={element} changeCity={this.changeCity} index={index} class={"search_input_style"}/>
-                  </div>                  
-                  <div className="route_show_cross" style={{display: removeArray[index]}} onClick={()=>this.removeCity(index)}/>                                 
+                    <div className="search_input_icon" />
+                    <LocationSearchInput address={element} changeCity={this.changeCity} index={index} classDropdown="searchDriverDropDown" classInput="search_input_style" />
+                  </div>
+                  <div className="route_show_cross" style={{ display: removeArray[index] }} onClick={() => this.removeCity(index)} />
                 </div>
               </React.Fragment>
-              )}
-            </div>
-            <div className="route_show route_show_bottom d-flex " style={{width: "100%"}}>
-              <div className="route_bottomBlock d-flex flex-column">
-                <div className="route_add_city" onClick={()=>this.addCity()}>
-                  <div className="route_add_city_imageBlock"/>
-                  <div className="route_add_city_text">
-                    Добавить пункт назначения
+            )}
+          </div>
+          <div className="route_show route_show_bottom d-flex " style={{ width: "100%" }}>
+            <div className="route_bottomBlock d-flex flex-column">
+              <div className="route_add_city" onClick={() => this.addCity()}>
+                <div className="route_add_city_imageBlock" />
+                <div className="route_add_city_text">
+                  Добавить пункт назначения
+                  </div>
+              </div>
+              <div className="d-flex justify-content-between col-12">
+                <div>
+                  <div className="route_time_text">Время в пути без остановок:
+                  <p1>{this.props.driversState.travelTime}</p1><p2>{this.props.driversState.travelLength}</p2>
+                  </div>
+                  <div className="route_comment">*Возврат в точку отправления в этот же день <span>бесплатно</span></div>
+                </div>
+
+                <div className="route_secondBottomBlock">
+                  <DatePicker floatingLabelText="Дата отправления" className="calendarModal" />
+                  {/* <div className="route_secondBottomBlock_date route_secondBottomBlock_elementStyle">
+                    <div className="secondBottomBlock_calendarBlock">
+                      <div style={{ visibility: this.state.calendaryVisibility }}>
+                        <Calendar className="calendary_drivers_position"
+                          tileClassName={""}
+                          onClickDay={(value) => { this.chooseDate(value); }} />
+                      </div>
+                      <div className="secondBottomBlock_calendar" />
+                      <input className="secondBottomBlock_dateInput" placeholder="Date must be here" value={this.state.date} onClick={() => this.openChooseDate()}></input>
+                    </div>
+                  </div> */}
+                  <div className="route_secondBottomBlock_button" onClick={() => this.searchRoute()}>
+                    <span>ПОИСК</span>
                   </div>
                 </div>
-                <div className="route_time_text">Время в пути без остановок:
-                  <p1>{this.props.driversState.travelTime}</p1><p2>{this.props.driversState.travelLength}</p2>
-                </div>
-                <div className="route_comment">*Возврат в точку отправления в этот же день бесплатно</div>
+
               </div>
-              <div className="route_secondBottomBlock">
-                <div className="route_secondBottomBlock_date route_secondBottomBlock_elementStyle">
-                  <div className="secondBottomBlock_calendarBlock">
-                    <div style={{ visibility: this.state.calendaryVisibility}}>
-                      <Calendar className="calendary_drivers_position"
-                        tileClassName={""}
-                        onClickDay={(value) => { this.chooseDate(value);}} />
-                    </div>
-                    <div className="secondBottomBlock_calendar"/>
-                    <input className="secondBottomBlock_dateInput" placeholder="Date must be here" value={this.state.date} onClick={()=>this.openChooseDate()}></input>
-                  </div>                 
-                </div>
-                <button className="route_secondBottomBlock_button route_secondBottomBlock_elementStyle"  onClick={()=>this.searchRoute()}>
-                  <div className="secondBottomBlock_button_inner">                   
-                    <div className="route_secondBottomBlock_searchText" >
-                      ПОИСК
-                    </div>
-                  </div>                 
-                </button>
-              </div>
-            </div>                      
+
+            </div>
+
           </div>
-        )        
-        }
+        </div>
+      )
     }
+  }
 
 }
 
 const DriversRoute = connect(
-  (state) =>({
+  (state) => ({
     storeState: state.AppReduser,
     driversState: state.DriversReduser
   })

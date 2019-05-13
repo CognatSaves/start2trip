@@ -16,6 +16,7 @@
     font-size: 24px;
     color: #ffffff;
     font-weight: 400;
+    padding: 10px;
     margin-bottom: 35px;
 }
 
@@ -53,6 +54,7 @@
 .route_show {
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
     padding-bottom: 25px;
     width: 100%;
     height: 100%;
@@ -63,36 +65,25 @@
 }
 
 .route_show_element {
-    /* min-height: 40px; */
-    /* width: 280px; */
+    position: relative;
+    display: flex;
+    min-height: 40px;
+    max-width: 260px;
 }
 
-.route_show_element::after {
-    position: absolute;
-    content: "";
-    height: 2px;
-    background-color: #242424;
-    width: 50%;
-    left: 80%;
-    top: 28%;
-}
-
-.route_show_icon {
-    margin-top: 10px;
-    height: 30px;
-    width: 30px;
-    background: url(pictures/location.svg) no-repeat;
-    background-size: 100% 100%;
-    z-index: 10;
+.route_show_Line {
+    height: 1px;
+    width: 10%;
+    background: #fff;
+    margin: 0 10px;
 }
 
 .route_show_text {
-    position: absolute;
-    height: 40px;
+    width: fit-content;
     font-weight: 400;
-    left: 35px;
-    font-size: 15px;
+    font-size: 16px;
     color: #ffffff;
+    white-space: pre-line;
 }
 
 .route_show_line {
@@ -107,20 +98,20 @@
 }
 
 .route_bottomBlock {
-    padding-bottom: 19px;
-    width: 50%;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 10px;
 }
 
-.route_time_text {
-    display: flex;
-    font-weight: 400;
-    font-size: 18px;
-    color: #ffffff;
-}
-
+.route_time_text,
 .route_comment {
-    display: flex;
+    padding-top: 10px;
     color: #ffffff;
     font-weight: 400;
     font-size: 12px;
+}
+
+.route_comment span {
+    font-weight: 500;
 }
