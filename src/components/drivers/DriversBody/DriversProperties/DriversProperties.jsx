@@ -63,10 +63,10 @@ class DriversPropertiesClass extends React.Component {
     console.log(this.props.storeState.maxPrice);
     return (
       
-      <div className="drivers_properties d-flex flex-wrap justify-content-between col-12" >
+      <div className="drivers_properties d-flex flex-wrap justify-content-md-between justify-content-sm-center justify-content-center col-12" >
        <div className="properties_rightBlock d-flex">
           <div className="properties_rightButton d-flex" onClick={() => this.props.dispatch(setSortMenuVisible(!this.props.storeState.sortMenu))}>
-            <div className="properties_rightButton_characteristic">Сортировать по:</div>
+            <div className="properties_rightButton_characteristic d-sm-block d-none">Сортировать по:</div>
             {/* <div className="properties_rightButton_value">{this.props.storeState.sortMenuValue}</div>
             <div className="properties_arrow"></div> */}
             <SortMenu isVisible={this.props.storeState.sortMenu} />
@@ -78,7 +78,7 @@ class DriversPropertiesClass extends React.Component {
           </div> */}
         </div>
       
-        <div className="properties_leftBlock d-flex">
+        <div className="properties_leftBlock d-md-flex d-sm-none d-none">
           <div className="properties_buttonStyle properties_leftButton d-flex" onClick={() => this.props.dispatch(languageMenuIsVisibal(!this.props.storeState.languageMenu))}>
             <div className="properties_value d-flex"><img src={this.props.storeState.languageIcon} width="15px" height="15px" alt="L"/>{this.props.storeState.languageValue}</div>
             <div className="properties_arrow"></div>

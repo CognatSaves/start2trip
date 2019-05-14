@@ -51,7 +51,7 @@ class DriversClass extends React.Component {
 
       <div className="drivers_top_background">
       <Header history={this.props.history}/>
-        <div className="container d-flex flex-column">
+        <div className="drivers_top_Route d-flex flex-column align-items-center col-12">
             <DriversRoute />
         </div>
       </div>

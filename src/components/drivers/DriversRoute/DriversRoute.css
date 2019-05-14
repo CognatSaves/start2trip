@@ -6,6 +6,7 @@
     padding: 20px 20px 0 20px;
     border-radius: 5px;
     box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.3);
+    max-width: 1180px;
 }
 
 .route_date {
@@ -79,7 +80,6 @@
 
 .route_bottomBlock {
     width: 100%;
-    justify-content: space-between;
     align-items: center;
     padding: 15px 10px;
 }

@@ -162,3 +162,14 @@ span.route_add_city {
 
 
 /* CalendarModal end */
+
+@media (max-width: 1140px) {}
+
+@media (max-width: 768px) {}
+
+@media (max-width: 576px) {
+    .route_secondBottomBlock_button {
+        width: 100%;
+        margin: 10px 0px;
+    }
+}
