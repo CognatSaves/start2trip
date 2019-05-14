@@ -8,7 +8,7 @@ import driverPhoto from './pictures/driver1/drivers_body_photo.png';
 import emptyLike from './pictures/like_contour.svg';
 import filledLike from './pictures/like_blue.svg';
 import selectedFilledLike from './pictures/like_orange.svg';
-import jeep from './pictures/jeep.svg';
+import jeep from './pictures/jeepBlue.svg';
 import { Link } from 'react-router-dom';
 
 import Stars from '../../../stars/Stars';
@@ -56,11 +56,11 @@ class DriversBlockClass extends React.Component {
         }
     });
     switch (type){
-      case "Популярность":
+      case "Популярности":
         return tempArray.sort(sortComments);
-      case "Рейтинг":
+      case "Отзывам":
         return tempArray.sort(sortRating);
-      case "Цена":
+      case "Цене":
         return tempArray.sort(sortPrice);
       default: return array;
     }
@@ -139,9 +139,9 @@ class DriversBlockClass extends React.Component {
               <Link to={ `/driverProfile/${element.id},${element.id},${element.id}`} className="driversBlock_carBlackout">
                 <div className="driversBlock_carBlackout_detailed">Подробнее</div>
               </Link>
-              <div className="driversBlock_bookmark" >
+              {/* <div className="driversBlock_bookmark" >
                 <div className="driversBlock_bookmark_tooltip">Добавить в закладки</div>
-              </div>             
+              </div>              */}
             </div>
 
             <div className="driverBlock_driverInfoBlock d-flex flex-column">

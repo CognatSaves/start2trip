@@ -99,8 +99,7 @@ class DriversRouteClass extends React.Component {
           <div className="route_date d-flex ">
             <div className="route_date_text">дата отправления: {this.props.storeState.date}</div>
             <div className="d-flex " onClick={() => this.props.dispatch(setDriversRouteChange(!this.props.driversState.driversRouteChange))}>
-              <div className="route_change_text">Изменить маршрут</div>
-              <div className="route_change_emblem" />
+              <span className="route_change_text">Изменить маршрут</span>
             </div>
           </div>
           <div className="route_show d-flex">
@@ -130,11 +129,10 @@ class DriversRouteClass extends React.Component {
           <div className="route_date d-flex justify-content-end ">
             {/* <div className="route_date_text">Ваш индивидуальный маршрут на: {this.props.storeState.date}</div> */}
             <div className="d-flex " onClick={() => this.props.dispatch(setDriversRouteChange(!this.props.driversState.driversRouteChange))}>
-              <div className="route_change_text">Изменить маршрут</div>
-              <div className="route_change_emblem" />
+              <span className="route_change_text">Изменить маршрут</span>
             </div>
           </div>
-          <div className="route_show d-flex ">
+          <div className="route_show d-flex justify-content-start ">
             {this.state.cities.map((element, index) =>
               <React.Fragment>
                 <div className="route_show_element" key={element + "/" + index}>
@@ -146,15 +144,10 @@ class DriversRouteClass extends React.Component {
                 </div>
               </React.Fragment>
             )}
+            <span className="route_add_city" onClick={() => this.addCity()} > Добавить пункт назначения</span>
           </div>
           <div className="route_show route_show_bottom d-flex " style={{ width: "100%" }}>
             <div className="route_bottomBlock d-flex flex-column">
-              <div className="route_add_city" onClick={() => this.addCity()}>
-                <div className="route_add_city_imageBlock" />
-                <div className="route_add_city_text">
-                  Добавить пункт назначения
-                  </div>
-              </div>
               <div className="d-flex justify-content-between col-12">
                 <div>
                   <div className="route_time_text">Время в пути без остановок:
@@ -164,7 +157,7 @@ class DriversRouteClass extends React.Component {
                 </div>
 
                 <div className="route_secondBottomBlock">
-                  <DatePicker floatingLabelText="Дата отправления" className="calendarModal" />
+                  <DatePicker floatingLabelText="Дата отправления" className="calendarModalSearch" />
                   {/* <div className="route_secondBottomBlock_date route_secondBottomBlock_elementStyle">
                     <div className="secondBottomBlock_calendarBlock">
                       <div style={{ visibility: this.state.calendaryVisibility }}>

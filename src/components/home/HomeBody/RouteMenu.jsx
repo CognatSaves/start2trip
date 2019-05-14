@@ -1,6 +1,6 @@
 import React from 'react';
 import './RouteMenu.css'
-import addIcon from './pictures/add.svg'
+import addIcon from './pictures/addWhite.svg'
 import calendarIcon from './pictures/calendar.svg'
 import crossIcon from './pictures/close.svg'
 import arrowIcon from './pictures/da_tru_big_arrow.png'

@@ -6,7 +6,7 @@ import SortMenu from './components/SortMenu/SortMenu.jsx'
 import PagesMenu from './components/PagesMenu/PagesMenu.jsx'
 import ValueMenu from './components/ValueMenu/ValueMenu.jsx'
 import AutoMenu from './components/AutoMenu/AutoMenu.jsx'
-import userBlueIcon from '../DriversBlock/pictures/user_blue.svg'
+import userBlueIcon from '../DriversBlock/pictures/userWhite.svg'
 import { connect } from 'react-redux';
 import {
   setPagesVisible, setTempPricePart, languageMenuIsVisibal, setSortMenuVisible,
@@ -63,9 +63,22 @@ class DriversPropertiesClass extends React.Component {
     console.log(this.props.storeState.maxPrice);
     return (
       
-      <div className="drivers_properties d-flex" >
+      <div className="drivers_properties d-flex flex-wrap justify-content-between col-12" >
+       <div className="properties_rightBlock d-flex">
+          <div className="properties_rightButton d-flex" onClick={() => this.props.dispatch(setSortMenuVisible(!this.props.storeState.sortMenu))}>
+            <div className="properties_rightButton_characteristic">Сортировать по:</div>
+            {/* <div className="properties_rightButton_value">{this.props.storeState.sortMenuValue}</div>
+            <div className="properties_arrow"></div> */}
+            <SortMenu isVisible={this.props.storeState.sortMenu} />
+          </div>
+          {/* <div className="properties_buttonStyle properties_rightButton d-flex" onClick={() => this.props.dispatch(setPagesVisible(!this.props.storeState.pagesMenu))}>
+            <div className="properties_rightButton_characteristic">{this.props.storeState.pagesMenuValue} / страниц</div>
+            <div className="properties_arrow"></div>
+            <PagesMenu pagesMenuVariants={this.props.storeState.pagesMenuVariants} isVisible={this.props.storeState.pagesMenu} setPages={setPages}/>
+          </div> */}
+        </div>
+      
         <div className="properties_leftBlock d-flex">
-          <div className="drivers_properties_text">Подобрать:</div>
           <div className="properties_buttonStyle properties_leftButton d-flex" onClick={() => this.props.dispatch(languageMenuIsVisibal(!this.props.storeState.languageMenu))}>
             <div className="properties_value d-flex"><img src={this.props.storeState.languageIcon} width="15px" height="15px" alt="L"/>{this.props.storeState.languageValue}</div>
             <div className="properties_arrow"></div>
@@ -101,19 +114,8 @@ class DriversPropertiesClass extends React.Component {
             <ValueMenu isVisible={this.props.storeState.valueMenu}/>
           </div>
         </div>
-        <div className="properties_rightBlock d-flex">
-          <div className="properties_buttonStyle properties_rightButton d-flex" onClick={() => this.props.dispatch(setSortMenuVisible(!this.props.storeState.sortMenu))}>
-            <div className="properties_rightButton_characteristic">Сортировать:</div>
-            <div className="properties_rightButton_value">{this.props.storeState.sortMenuValue}</div>
-            <div className="properties_arrow"></div>
-            <SortMenu isVisible={this.props.storeState.sortMenu} />
-          </div>
-          <div className="properties_buttonStyle properties_rightButton d-flex" onClick={() => this.props.dispatch(setPagesVisible(!this.props.storeState.pagesMenu))}>
-            <div className="properties_rightButton_characteristic">{this.props.storeState.pagesMenuValue} / страниц</div>
-            <div className="properties_arrow"></div>
-            <PagesMenu pagesMenuVariants={this.props.storeState.pagesMenuVariants} isVisible={this.props.storeState.pagesMenu} setPages={setPages}/>
-          </div>
-        </div>
+       
+       
       </div>
     )
   }

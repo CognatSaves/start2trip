@@ -1,29 +1,32 @@
 .drivers_top_background {
     top: 0;
     /*width: 100%;*/
-    background: url(pictures/Rectangle.jpg) no-repeat;
+    background: url(pictures/tbs_4.jpg) no-repeat 100%;
     background-size: cover;
+    background-position: center center;
+    /* object-fit: cover; */
     padding-bottom: 50px;
-    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
 }
-.wrapper{
+
+.wrapper {
     position: relative;
     top: 0;
     width: 100%;
     max-width: 1200px;
-    height:auto;
+    height: auto;
     margin: 0 auto;
     z-index: 2;
 }
-.drivers_top_block{
+
+.drivers_top_block {
     width: 100%;
     margin: 0 auto;
-    
 }
+
 .drivers_bottom_background {
     padding-top: 30px;
 }
-
 
 
 /*

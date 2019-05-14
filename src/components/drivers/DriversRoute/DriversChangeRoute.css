@@ -43,29 +43,15 @@
     padding-right: 20px;
 }
 
-.route_add_city {
-    display: flex;
-    flex-direction: row;
+span.route_add_city {
+    cursor: pointer;
     color: #ffffff;
-    ;
     font-weight: 400;
     font-size: 12px;
-    margin-bottom: 35px;
-    height: 17px;
-}
-
-.route_add_city_imageBlock {
-    display: flex;
-    width: 17px;
-    height: 17px;
-    margin-right: 10px;
-    background: url(pictures/add.svg);
+    margin-left: 20px;
+    padding-left: 20px;
+    background: url(pictures/addWhite.svg) no-repeat;
     background-size: 17px 17px;
-}
-
-.route_add_city_text {
-    display: flex;
-    margin: auto 0;
 }
 
 .route_secondBottomBlock {
@@ -132,14 +118,47 @@
     color: white;
 }
 
-.secondBottomBlock_button_inner {
-    display: flex;
-    flex-direction: row;
-    margin: auto;
+
+/* CalendarModal Bigin */
+
+.calendarModalSearch div {
+    width: 100% !important;
+    max-height: 50px !important;
+    cursor: pointer !important;
 }
 
-.route_secondBottomBlock_searchText {
-    display: flex;
-    flex-direction: row;
-    margin: auto 0;
+.calendarModalSearch {
+    max-height: 40px;
+    border: 1px solid #ccc !important;
+    border-radius: 5px !important;
 }
+
+.calendarModalSearch hr {
+    display: none;
+}
+
+.calendarModalSearch label {
+    display: none;
+    font-weight: 400 !important;
+    font-size: 14px !important;
+}
+
+.calendarModalSearch input {
+    text-indent: 20px;
+    background: url(./pictures/calendar.svg)no-repeat;
+    background-size: 14px 14px;
+    background-position: top 12px left 6px;
+    color: #fff !important;
+    font-weight: 400 !important;
+    font-size: 14px !important;
+    padding-left: 10px !important;
+    max-height: 40px !important;
+    margin: 0 !important;
+}
+
+.calendarModalSearch input ::placeholder {
+    color: #fff !important;
+}
+
+
+/* CalendarModal end */
