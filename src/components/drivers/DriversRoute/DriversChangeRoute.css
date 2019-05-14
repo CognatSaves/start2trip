@@ -1,20 +1,28 @@
 .route_show_cross {
-    display: flex;
+    position: absolute;
+    cursor: pointer;
+    z-index: 2;
+    right: 0px;
     width: 16px;
     height: 16px;
     margin-left: 5px;
     margin-top: 5px;
     background: url(pictures/close.svg);
     background-size: 16px 16px;
+    background-position: center right;
 }
 
 .search_input_block {
     display: flex;
     flex-direction: row;
-    width: 235px;
+    margin: 0 20px;
     height: 25px;
     background: transparent;
     border-bottom: 1px solid #ffffff;
+}
+
+.search_input_block input:focus {
+    outline: none;
 }
 
 .search_input_icon {
@@ -27,21 +35,23 @@
 
 .search_input_style {
     display: flex;
-    width: 215px;
+    width: fit-content;
     height: 25px;
     border: none;
     color: #ffffff;
     background: transparent;
+    padding-right: 20px;
 }
-.route_add_city{
-  display: flex;
-  flex-direction: row;
-  color:#ffffff;
-  ;
-  font-weight: 400;
-  font-size: 12px;
-  margin-bottom: 35px;
-  height: 17px;
+
+.route_add_city {
+    display: flex;
+    flex-direction: row;
+    color: #ffffff;
+    ;
+    font-weight: 400;
+    font-size: 12px;
+    margin-bottom: 35px;
+    height: 17px;
 }
 
 .route_add_city_imageBlock {
@@ -61,8 +71,7 @@
 .route_secondBottomBlock {
     display: flex;
     flex-direction: row;
-    padding-bottom: 19px;
-    width: 50%;
+    align-items: center;
 }
 
 .route_secondBottomBlock_elementStyle {
@@ -79,10 +88,19 @@
 .route_secondBottomBlock_button {
     background-color: #ff6600;
     border-radius: 5px;
-    border-color: #ff6600;
-    width:235px;
-    height: 48px;
+    width: 235px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin: 0 15px;
+}
+
+.route_secondBottomBlock_button span {
     color: #ffffff;
+    font-weight: 400;
+    font-size: 16px;
 }
 
 .secondBottomBlock_calendarBlock {

@@ -14,6 +14,14 @@
     color: black;
 }
 
+.searchDriverDropDown {
+    position: absolute;
+    z-index: 14;
+    top: 24px;
+    left: 10px;
+    color: black;
+}
+
 .searchInputDriverInformation {
     width: 100%;
 }
