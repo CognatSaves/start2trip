@@ -101,12 +101,9 @@
     -webkit-box-direction: normal;
     -ms-flex-direction: row;
     flex-direction: row;
-    -webkit-box-pack: start;
-    -ms-flex-pack: start;
-    justify-content: start;
+    justify-content: center;
     -ms-flex-line-pack: center;
     align-items: center;
-    padding-left: 20px;
     background: none;
     text-align: center;
     background-color: none;
