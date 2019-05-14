@@ -177,12 +177,7 @@ class HeaderClass extends React.Component {
           //console.log('log off');
           //console.log('An error occurred:', error);
         });
-    }
-    /*
-    else{
-      this.props.dispatch(setUser("",""));
-      console.log('log off');
-    }  */
+    }   
   }
   logOffFunc() {
     //console.log("logOffFunc");
@@ -193,9 +188,13 @@ class HeaderClass extends React.Component {
     document.cookie = jwtstatus;
     let avatarString = "avatarUrl=-; expires=" + date.toString();
     let usernameString = "userName=-; expires=" + date.toString();
+    let usertypeString = "userType="+"none"+"; expires="+date.toString();
+                
     document.cookie = avatarString;
     document.cookie = usernameString;
+    document.cookie=usertypeString;
     this.props.dispatch(setUser("", ""));
+    this.props.globalhistory.history.push('/home');
   }
   render() {
 
