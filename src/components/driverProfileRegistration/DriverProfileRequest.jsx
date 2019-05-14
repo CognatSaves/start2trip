@@ -32,7 +32,6 @@ function getUserData (requestValues,thenFunc,catchFunc,params){
       console.log('error, here must be return to authorization window! or smth else');
     })
   }
-  return 0;
 }
 
 export default getUserData;

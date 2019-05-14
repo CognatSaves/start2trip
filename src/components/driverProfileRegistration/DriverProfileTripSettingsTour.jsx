@@ -167,21 +167,20 @@ class DriverProfileTripSettingsTourClass extends React.Component {
             this.setState({
                 isRefreshExist: false
             })
-        }, 500);
+        }, 1000);
     }
     catchFunc(){
         console.log('catchFunc');
         this.setState({
             isRefreshExist: true,
             isRefreshing: false,
-            isGoodAnswer: false,
-            collapse: false
+            isGoodAnswer: false
         });
         setTimeout(() => {
             this.setState({
                 isRefreshExist: false
             })
-        }, 500);
+        }, 2000);
     }
     fillForm(element){
         let profile = this.props.profileReduser.profile;
@@ -327,6 +326,9 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                     console.log(request.responseText);
                     that.getProfileData(that.thenFunc,that.catchFunc);
                 }
+                if(request.readyState === XMLHttpRequest.DONE && request.status === 0){
+                    that.catchFunc();
+                }  
             }
             request.send(tourForm);
         }
@@ -342,6 +344,9 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                     console.log(request.responseText);
                     that.getProfileData(that.thenFunc,that.catchFunc);
                 }
+                if(request.readyState === XMLHttpRequest.DONE && request.status === 0){
+                    that.catchFunc();
+                }  
             }
             request.open('DELETE', requests.userTourDestroyRequest+"/"+element.id);
             request.setRequestHeader('Authorization',`Bearer ${jwt}`);
@@ -400,6 +405,9 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                     console.log(request.responseText);
                     that.getProfileData(that.thenFunc,that.catchFunc);
                 }
+                if(request.readyState === XMLHttpRequest.DONE && request.status === 0){
+                    that.catchFunc();
+                }  
             }
             request.send(tourForm);        
         }

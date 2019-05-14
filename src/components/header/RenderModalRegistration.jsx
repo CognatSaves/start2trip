@@ -65,8 +65,10 @@ class RenderModalRegistrationClass extends React.Component {
                 window.localStorage.setItem('errorId',0);
                 let avatarString="avatarUrl="+requests.serverAddress+data.user.avatarUrl+"; expires="+date.toString();
                 let usernameString = "userName="+data.user.userName+"; expires="+date.toString();
+                let usertypeString = "userType="+data.user.userType+"; expires="+date.toString();
                 document.cookie=avatarString;
                 document.cookie=usernameString;
+                document.cookie=usertypeString;
                 setAnswerResult('good',{jwt: data.jwt});  
             }
             else{

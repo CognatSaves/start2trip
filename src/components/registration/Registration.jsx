@@ -24,8 +24,10 @@ class Registration extends React.Component{
                 window.opener.document.cookie=jwtstatus;
                 let avatarString="avatarUrl="+requests.serverAddress+data.user.avatarUrl+"; expires="+date.toString();
                 let usernameString = "userName="+data.user.userName+"; expires="+date.toString();
+                let usertypeString = "userType="+data.user.userType+"; expires="+date.toString();
                 window.opener.document.cookie=avatarString;
-                window.opener.document.cookie=usernameString;                            
+                window.opener.document.cookie=usernameString;
+                window.opener.document.cookie=usertypeString;                           
             }
             else{
                 console.log("Failed");
@@ -61,7 +63,8 @@ class Registration extends React.Component{
                         throw data.error;
                     }
                     else{
-                        console.log("You registered");  
+                        console.log("You registered"); 
+                        console.log(data);
                         that.state.sendResult(true,{jwt:data.jwt, user: data.user});       
                     }
                 })
@@ -84,7 +87,7 @@ class Registration extends React.Component{
                     throw data.error;
                 }
                 console.log("You authorized"); 
-                console.log(data);              
+                console.log(data);            
                 that.state.sendResult(true,{jwt:data.jwt, user: data.user});
             })
             .catch(function(error) {

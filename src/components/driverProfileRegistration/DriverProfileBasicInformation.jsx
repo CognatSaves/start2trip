@@ -98,7 +98,7 @@ class DriverProfileBasicInformationClass extends React.Component {
             this.setState({
                 isRefreshExist: false
             })
-        }, 500);
+        }, 1000);
     }
     catchFunc(){
         console.log('catchFunc');
@@ -111,7 +111,7 @@ class DriverProfileBasicInformationClass extends React.Component {
             this.setState({
                 isRefreshExist: false
             })
-        }, 500);
+        }, 2000);
     }
     applyChanges() {
         let jwt = this.props.globalReduser.readCookie('jwt');
@@ -157,6 +157,7 @@ class DriverProfileBasicInformationClass extends React.Component {
                 .catch(function (error) {
                     console.log("bad");
                     console.log('An error occurred:', error);
+                    that.catchFunc();
                 });
         }
     }

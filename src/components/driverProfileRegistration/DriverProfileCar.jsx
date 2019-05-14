@@ -73,21 +73,20 @@ class DriverProfileCarClass extends React.Component {
             this.setState({
                 isRefreshExist: false
             })
-        }, 500);
+        }, 1000);
     }
     catchFunc(){
         console.log('catchFunc');
         this.setState({
             isRefreshExist: true,
             isRefreshing: false,
-            isGoodAnswer: false,
-            collapse: false
+            isGoodAnswer: false
         });
         setTimeout(() => {
             this.setState({
                 isRefreshExist: false
             })
-        }, 500);
+        }, 2000);
     }
     applyChanges(type){
         let jwt = this.props.globalReduser.readCookie('jwt');   
@@ -144,6 +143,9 @@ class DriverProfileCarClass extends React.Component {
                     console.log(request.responseText);
                     that.getProfileData(that.thenFunc,that.catchFunc);
                 }
+                if(request.readyState === XMLHttpRequest.DONE && request.status === 0){
+                    that.catchFunc();
+                }  
             }
             request.send(carForm);
             //document.location.reload(true);
@@ -199,7 +201,11 @@ class DriverProfileCarClass extends React.Component {
                     console.log(request.responseText);
                     that.getProfileData(that.thenFunc,that.catchFunc);
                 }
+                if(request.readyState === XMLHttpRequest.DONE && request.status === 0){
+                        that.catchFunc();
+                }            
             }
+            request.onmessage = 
             request.send(carForm);
             //document.location.reload(true);
         }
@@ -216,6 +222,9 @@ class DriverProfileCarClass extends React.Component {
                     console.log(request.responseText);
                     that.getProfileData(that.thenFunc,that.catchFunc);
                 }
+                if(request.readyState === XMLHttpRequest.DONE && request.status === 0){
+                    that.catchFunc();
+                }  
             }
             request.open('DELETE', requests.userCarDestroyRequest+"/"+element.id);
             request.setRequestHeader('Authorization',`Bearer ${jwt}`);
@@ -286,6 +295,7 @@ class DriverProfileCarClass extends React.Component {
         }
         let cars = this.props.profileReduser.profile.cars;
         console.log("DriverProfileCar render");
+        console.log(this.state.isRefreshExist);
         //выдаёт значения строго на русском - впоследствие будет переделана
         let carTypes = findCarTypeNames(cars, this.props.profileReduser.profile.carTypes);
         return (
