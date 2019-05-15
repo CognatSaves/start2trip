@@ -8,7 +8,7 @@ import seatIcon from '../components/driverProfileRegistration/img/seat.svg';
 import no_smokingIcon from '../components/driverProfileRegistration/img/no-smoking.svg'
 import snowflakeIcon from '../components/driverProfileRegistration/img/snowflake.svg'
 import wifiIcon from '../components/driverProfileRegistration/img/wifi.svg'
-
+import { OPEN_FILTER_SHOW } from './ActionDrivers';
 
 
 import {
@@ -29,7 +29,7 @@ import {
     CHANGE_PERSONS_NUMBER_OLD,
     AUTO_MENU_CALL,
     MODAL_COUNTRY,
-    SET_USER
+    SET_USER,
 } from './Action';
 
 
@@ -83,7 +83,8 @@ const initialState = {
     country: "GEO",
     avatarUrl: "",
     userName: "",
-    isAuthorized: false
+    isAuthorized: false,
+    openFilter: false,
 };
 
 export const AppReduser = (state = initialState, action) => {
@@ -275,7 +276,12 @@ export const AppReduser = (state = initialState, action) => {
                 newState.country = action.country;
                 return newState;
             }
-
+        case OPEN_FILTER_SHOW:
+            {
+                let newState = {...state };
+                newState.openFilter = action.openFilter;
+                return newState;
+            }
 
 
         default:

@@ -5,17 +5,22 @@ import instagramIcon from "./pictures/instagram.svg"
 import logoTripfer from "./pictures/logo_tripfer_white.svg"
 import upArrowIcon from "./pictures/up-arrow.svg"
 import { whichPageRenderHistory } from "../../redusers/ActionGlobal"
+import { openFilterShow } from "../../redusers/ActionDrivers"
 import { connect } from 'react-redux';
+import MobileFilter from '../drivers/DriversBody/DriversProperties/MobileFilter/MobileFilter'
 
 class FooterClass extends React.Component {
   constructor(props) {
     super(props);
     this.state ={
-      openFilter:false,
     }
   }
   render() {
-    let loc = this.props.globalhistory.history.location.pathname;
+    let loc;
+    if(this.props.globalhistory.history){
+     loc = this.props.globalhistory.history.location.pathname;
+    }
+    
     let flagBt = false;
     let flagDiv = true;
     if(loc =="/drivers"){
@@ -47,7 +52,7 @@ class FooterClass extends React.Component {
         <div className="footerMobile d-xl-none d-lg-none d-md-none d-sm-flex d-flex">
           <div className="footerMobileButtonUp" style={{height: flagBt ? "80px":"40px", display: flagDiv ? "block":"none"}}>
             <i className="footerMobileIconUp" onClick={() => { window.scroll(0, 0) }}  style={{height: flagBt ? "50%":"100%"}}/>
-            <i className="footerMobileIconFilter" style={{display: flagBt ? "flex":"none"}} onClick={()=>{this.setState({openFilter: !this.state.openFilter})}} />
+            <i className="footerMobileIconFilter" style={{display: flagBt ? "flex":"none"}} onClick={()=>{this.props.dispatch(openFilterShow(true))}} />
           </div>
           <div className="d-flex flex-column align-items-center justify-content-end foterMobaileItem col-3 " >
             <div className="footerMobileIconRoutes" />
@@ -66,9 +71,7 @@ class FooterClass extends React.Component {
             <div className="footerMobileTextProfile">Профиль</div>
           </div>
         </div>
-        <div className="mobileFilterModal" style={{left: this.state.openFilter?"0px":"100%"}}>
-          <div onClick={()=>{this.setState({openFilter: !this.state.openFilter})}}>НАЗАД</div>
-        </div>
+        <MobileFilter />
       </React.Fragment>
     );
   }

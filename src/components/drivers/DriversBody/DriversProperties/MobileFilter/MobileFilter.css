@@ -1,0 +1,36 @@
+/* mobileFilterModal Bigin */
+
+.mobileFilterModal {
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    background: #ccc;
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s;
+}
+
+.mobileFilterModalHeader {
+    background: #304269;
+    padding: 10px;
+}
+
+.mobileFilterModalBack {
+    cursor: pointer;
+    padding-left: 25px;
+    background: url(./pictures/left-arrow.svg) no-repeat;
+    background-size: 18px 24px;
+    background-position: center left;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.mobileFilterModalClear {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+
+/* mobileFilterModal end */

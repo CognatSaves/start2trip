@@ -7,18 +7,15 @@ import { setPricePart, setTempPricePart } from '../../../../../../redusers/Actio
 class ValueMenuClass extends React.Component {
     constructor(props) {
         super(props);
-        this.changeTempPrice = this.changeTempPrice.bind(this);
-        this.close = this.close.bind(this);
-        this.setPrice = this.setPrice.bind(this);
     }
-    changeTempPrice(value) {
+    changeTempPrice = (value) => {
         this.props.dispatch(setTempPricePart(value, true));
     }
-    setPrice() {
+    setPrice = () => {
         let tempValue = this.props.storeState.tempPricePart;
         this.props.dispatch(setPricePart(tempValue, false));
     }
-    close() {
+    close = () => {
         this.props.dispatch(setTempPricePart(this.props.storeState.pricePart, false));
     }
 

@@ -73,65 +73,10 @@ class DriversBlockClass extends React.Component {
     let srcArray = Array(this.props.storeState.pagesMenuValue*this.props.driversState.showPages).fill(emptyLike);
     srcArray[0]=selectedFilledLike;
     srcArray[1]=filledLike;
-
+    console.log('selectedEl');
+    console.log(selectedElements);
     return (
       <div className="drivers_block d-flex" style={{flexWrap: "wrap"}}>
-        {
-          /*
-          selectedElements.map((element, index) =>
-          <div className="drivers_block_element d-flex">
-            <div className="block_element_left d-flex">
-              <div className="block_element_photo">
-                <img src={driverPhoto} width="100%" height="100%" alt={"photo" + element} />
-              </div>
-              <div className="block_element_infoBlock d-flex flex-column">
-                <div className="block_element_infoBlock_top">
-                  <Link to={`/driverProfile/${element.id},${element.id},${element.id}`} className="block_element_infoBlock_name d-flex">{element.name}</Link>
-                  <Stars value={element.rating} commentNumber={element.comments+" отзывов"} valueDisplay="block" commentNumberDisplay="block"/>
-                </div>
-                <div className="d-flex flex-column">
-                  <div className="block_element_infoBlock_element d-flex">
-                    <div className="infoString">Возраст:</div>
-                    <div className="visibleString">{element.age}</div>
-                  </div>
-                  <div className="block_element_infoBlock_element d-flex">
-                    <div className="infoString">Языки:</div>
-                    <div className="visibleString">{element.language}</div>
-                  </div>
-                  <div className="block_element_infoBlock_element d-flex">
-                    <div className="infoString">За рулем:</div>
-                    <div className="visibleString">{element.drivingAge+" лет"}</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="block_element_right d-flex flex-column">
-                <div className="d-flex">
-                  <div className="tripBlock_carImage" style={{background: "url("+sedan+") no-repeat", backgroundSize: "55px 50px"}}></div>
-                  <div className="tripBlock_carData d-flex flex-column">
-                    <div className="carInfo_line d-flex">
-                      <div className="carBrand_style">{element.carBrand},</div>
-                      <div className="fuelType_style">{element.fuelType}</div>
-                    </div>
-                    <div className="carInfo_line d-flex">
-                      <div className="carProps_style">{element.carType+", "+element.carCapacity+" места"}</div>
-                    </div>
-                  </div>
-                </div>
-                <div className="d-flex tripBlock_priceBlock">
-                  <div className="tripBlock_carImage">{"$"+element.price}</div>
-                  <button className="tripBlock_buttonBlock_button d-flex" onClick={() => this.props.changeTravelVisibility('block')}>ЗАБРОНИРОВАТЬ ПОЕЗДКУ</button>
-                </div>
-                <div className="tripBlock_buttonBlock_commentary">Стоимость окончательная. Топливо включено</div>
-                <Link to={ `/driverProfile/${element.id},${element.id},${element.id}`} className="tripBlock_detailed">Подробнее</Link>
-            </div>
-            <div className="myHeart">
-              <img src={srcArray[index]} width="auto" height="100%" alt="emptyLike"></img>
-            </div>
-          </div>
-        )
-        */
-        }
         {
           selectedElements.map((element,index)=>         
           <div className="driversBlock_driverCard d-flex flex-column">
@@ -139,9 +84,6 @@ class DriversBlockClass extends React.Component {
               <Link to={ `/driverProfile/${element.id},${element.id},${element.id}`} className="driversBlock_carBlackout">
                 <div className="driversBlock_carBlackout_detailed">Подробнее</div>
               </Link>
-              {/* <div className="driversBlock_bookmark" >
-                <div className="driversBlock_bookmark_tooltip">Добавить в закладки</div>
-              </div>              */}
             </div>
 
             <div className="driverBlock_driverInfoBlock d-flex flex-column">
@@ -190,4 +132,3 @@ const DriversBlock = connect(
 )(DriversBlockClass);
 
 export default DriversBlock;
-
