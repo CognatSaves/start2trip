@@ -59,17 +59,9 @@ class DriversBlockClass extends React.Component {
 
     switch (type) {
       case "Популярности":
-        let sortArrayComments = tempArray.sort(sortComments);
-        if (this.props.storeState.sortMenuWay) {
-          sortArrayComments.reverse()
-        }
-        return sortArrayComments
+        return tempArray.sort(sortComments);
       case "Рейтингу":
-        let sortArrayRating = tempArray.sort(sortRating);
-        if (this.props.storeState.sortMenuWay) {
-          sortArrayRating.reverse()
-        }
-        return sortArrayRating
+        return tempArray.sort(sortRating);
       case "Цене":
         let sortArrayPrice = tempArray.sort(sortPrice);
         if (this.props.storeState.sortMenuWay) {
@@ -93,7 +85,7 @@ class DriversBlockClass extends React.Component {
       <div className="drivers_block d-flex flex-wrap">
         {
           selectedElements.map((element, index) =>
-            <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-11 p-2">
+            <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 p-2">
               <div className="driversBlock_driverCard d-flex flex-column ">
                 <div className="driversBlock_carImage" style={{ background: "url(" + ToyotaPrado + ") no-repeat", backgroundSize: "cover" }}>
                   <Link to={`/driverProfile/${element.id},${element.id},${element.id}`} className="driversBlock_carBlackout">

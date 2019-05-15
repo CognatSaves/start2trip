@@ -31,7 +31,7 @@ class SortMenuClass extends React.Component {
                 {this.props.storeState.sortMenuVariants.map((element, index) =>
                     <div className={index?"sortMenu_element":"sortMenu_element sortMenu_element_active"} onClick={(e) => { this.props.dispatch(setSortMenu(element, !this.props.storeState.sortMenuWay)); this.deleteClass(e) }}>
                         <span>{element}</span>
-                        <i className={index?"sortMenu_element_icon":"sortMenu_element_icon sortMenu_element_active"} style={{background: this.props.storeState.sortMenuWay ?"url("+iconSortDown+") no-repeat":"url("+iconSortUp+") no-repeat "}} />
+                        <i className="sortMenu_element_icon sortMenu_element_active" style={!index?{background: this.props.storeState.sortMenuWay ?"url("+iconSortDown+") no-repeat":"url("+iconSortUp+") no-repeat "}:{display:"none"}} />
                     </div>
                     
                 )}

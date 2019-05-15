@@ -13,7 +13,7 @@ export default class DriversBody extends React.Component {
       
         return (
           <div className = "d-flex">
-            <div className="left_body_part col-12 d-flex flex-column">
+            <div className="left_body_part col-12 d-flex flex-column p-0">
               <DriversProperties/>
               <DriversBlock changeTravelVisibility={this.props.changeTravelVisibility} />
             </div>

@@ -21,21 +21,21 @@
     min-height: 30px;
 }
 
-.sortMenu_element_active {
-    visibility: visible !important;
-    border-bottom: 2px solid #f60;
-}
-
 .sortMenu_element_active span {
     color: #f60;
 }
 
 .sortMenu_element_icon {
-    visibility: hidden;
+    display: none;
     width: 15px;
     height: 40px;
     margin-left: 2px;
     background-size: contain !important;
     background-position: center center !important;
     border-bottom: none !important;
+}
+
+.sortMenu_element_active {
+    display: flex;
+    border-bottom: 2px solid #f60;
 }
