@@ -1043,7 +1043,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
 const DriverProfileTripSettingsTour = connect(
     (state) => ({
         storeState: state.AppReduser,
-        profileReduser: state.DriverProfileRegistrationtReduser,
+        profileReduser: state.DriverProfileRegistrationReduser,
         globalReduser: state.GlobalReduser,
     }),
 )(DriverProfileTripSettingsTourClass);

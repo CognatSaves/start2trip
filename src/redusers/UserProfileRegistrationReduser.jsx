@@ -6,7 +6,7 @@ const initialState = {
 };
 
 
-export const UserProfileRegistrationtReduser = (state = initialState, action) => {
+export const UserProfileRegistrationReduser = (state = initialState, action) => {
     switch (action.type){
         case WHICH_PAGE_RENDER_USER:{
             let newState = { ...state };

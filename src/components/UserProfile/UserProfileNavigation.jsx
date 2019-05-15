@@ -109,7 +109,7 @@ class UserProfileNavigationClass extends React.Component {
 
 const UserProfileNavigation = connect(
     (state) => ({
-        storeState: state.UserProfileRegistrationtReduser,
+        storeState: state.UserProfileRegistrationReduser,
         globalhistory: state.GlobalReduser,
     }),
 )(UserProfileNavigationClass);

@@ -388,7 +388,7 @@ class DriverProfileBasicInformationClass extends React.Component {
 const DriverProfileBasicInformation = connect(
     (state) => ({
         storeState: state.AppReduser,
-        profileReduser: state.DriverProfileRegistrationtReduser,
+        profileReduser: state.DriverProfileRegistrationReduser,
         globalReduser: state.GlobalReduser,
     }),
 )(DriverProfileBasicInformationClass);

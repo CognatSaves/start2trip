@@ -22,8 +22,8 @@ import { StateReduser } from './redusers/StateReduser';
 import { CommentReduser } from './redusers/CommentReduser';
 import { PlacesReduser } from './redusers/PlacesReduser';
 import { ToursReduser } from './redusers/ToursReduser';
-import { DriverProfileRegistrationtReduser } from './redusers/DriverProfileRegistrationtReduser';
-import { UserProfileRegistrationtReduser } from './redusers/UserProfileRegistrationtReduser';
+import { DriverProfileRegistrationReduser } from './redusers/DriverProfileRegistrationReduser';
+import { UserProfileRegistrationReduser } from './redusers/UserProfileRegistrationReduser';
 import { GlobalReduser } from './redusers/GlobalReduser';
 import { /*Link,*/ Route, BrowserRouter, Redirect, Switch } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -34,7 +34,7 @@ require('require-context/register');
 
 const redux = require('redux');
 
-const reducers = redux.combineReducers({ AppReduser, DriversReduser, StateReduser, CommentReduser, PlacesReduser, ToursReduser, DriverProfileRegistrationtReduser, UserProfileRegistrationtReduser, GlobalReduser });
+const reducers = redux.combineReducers({ AppReduser, DriversReduser, StateReduser, CommentReduser, PlacesReduser, ToursReduser, DriverProfileRegistrationReduser, UserProfileRegistrationReduser, GlobalReduser });
 
 const store = redux.createStore(reducers);
 

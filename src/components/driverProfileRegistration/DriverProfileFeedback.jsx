@@ -57,7 +57,7 @@ class DriverProfileFeedbackClass extends React.Component{
 const DriverProfileFeedback = connect(
     (state) =>({
       commentState: state.CommentReduser,
-      profileReduser: state.DriverProfileRegistrationtReduser,
+      profileReduser: state.DriverProfileRegistrationReduser,
     }),
 
   )(DriverProfileFeedbackClass);

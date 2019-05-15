@@ -48,7 +48,7 @@ class UserProfileRegistrationClass extends React.Component {
 
 const UserProfileRegistration = connect(
   (state) => ({
-    storeState: state.UserProfileRegistrationtReduser,
+    storeState: state.UserProfileRegistrationReduser,
   }),
 )(UserProfileRegistrationClass);
 

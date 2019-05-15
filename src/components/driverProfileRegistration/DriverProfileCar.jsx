@@ -551,7 +551,7 @@ class DriverProfileCarClass extends React.Component {
 const DriverProfileCar = connect(
     (state) => ({
         storeState: state.AppReduser,
-        profileReduser: state.DriverProfileRegistrationtReduser,
+        profileReduser: state.DriverProfileRegistrationReduser,
         globalReduser: state.GlobalReduser
     }),
 )(DriverProfileCarClass);

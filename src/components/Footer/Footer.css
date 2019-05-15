@@ -151,7 +151,7 @@ html {
     position: fixed;
     z-index: 5;
     bottom: 100px;
-    right: 2%;
+    right: 1%;
     cursor: pointer;
     border-radius: 5px;
     background: #fff;
@@ -163,13 +163,13 @@ html {
 }
 
 .footerMobileIconUp {
+    display: flex;
     cursor: pointer;
     width: 100%;
     height: 50%;
     background: url(./pictures/up-arrow.svg) no-repeat;
     background-size: 20px 30px;
     background-position: center center;
-    border-bottom: 1px solid #ccc;
 }
 
 .footerMobileIconFilter {
@@ -179,7 +179,24 @@ html {
     background: url(./pictures/settings.svg) no-repeat;
     background-size: 25px 25px;
     background-position: center center;
+    border-top: 1px solid #ccc;
 }
 
 
 /* Footer Mobaile End */
+
+
+/* mobileFilterModal Bigin */
+
+.mobileFilterModal {
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    background: #fff;
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s;
+}
+
+
+/* mobileFilterModal end */

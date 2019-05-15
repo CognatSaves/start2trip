@@ -139,7 +139,7 @@ class DriverProfileNavigationClass extends React.Component {
 
 const DriverProfileNavigation = connect(
     (state) => ({
-        storeState: state.DriverProfileRegistrationtReduser,
+        storeState: state.DriverProfileRegistrationReduser,
         globalhistory: state.GlobalReduser,
         globalReduser: state.GlobalReduser,
     }),

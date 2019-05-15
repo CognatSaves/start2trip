@@ -7,15 +7,27 @@ import upArrowIcon from "./pictures/up-arrow.svg"
 import { whichPageRenderHistory } from "../../redusers/ActionGlobal"
 import { connect } from 'react-redux';
 
- class FooterClass extends React.Component {
+class FooterClass extends React.Component {
   constructor(props) {
     super(props);
+    this.state ={
+      openFilter:false,
+    }
   }
   render() {
+    let loc = this.props.globalhistory.history.location.pathname;
+    let flagBt = false;
+    let flagDiv = true;
+    if(loc =="/drivers"){
+      flagBt=true;
+    }
+    if(loc =="/home"){
+      flagDiv=false;
+    }
     return (
       <React.Fragment>
         <div className="footer d-xl-flex d-lg-flex d-md-flex d-sm-none d-none justify-content-center align-items-center col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-        <div className="footerButtonUp" onClick={()=>{window.scroll(0,0)}}><img src={upArrowIcon} width="20px" height="20px"  alt="upArrowIcon" /></div>
+          <div className="footerButtonUp" onClick={() => { window.scroll(0, 0) }}><img src={upArrowIcon} width="20px" height="20px" alt="upArrowIcon" /></div>
           <div className="footer_block d-flex  justify-content-between align-items-center col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <img className="col-1 p-0" src={logoTripfer} width="110px" height="18px" alt="logoWhiteIcon" />
             <div className="footerButtons d-flex  justify-content-around col-xl-8 col-lg-9 col-md-11 col-sm-12 col-12">
@@ -31,9 +43,12 @@ import { connect } from 'react-redux';
             </div>
           </div>
         </div>
-        
+
         <div className="footerMobile d-xl-none d-lg-none d-md-none d-sm-flex d-flex">
-        <div className="footerMobileButtonUp"><i className="footerMobileIconUp" onClick={()=>{window.scroll(0,0)}}/><i className="footerMobileIconFilter"/></div>
+          <div className="footerMobileButtonUp" style={{height: flagBt ? "80px":"40px", display: flagDiv ? "block":"none"}}>
+            <i className="footerMobileIconUp" onClick={() => { window.scroll(0, 0) }}  style={{height: flagBt ? "50%":"100%"}}/>
+            <i className="footerMobileIconFilter" style={{display: flagBt ? "flex":"none"}} onClick={()=>{this.setState({openFilter: !this.state.openFilter})}} />
+          </div>
           <div className="d-flex flex-column align-items-center justify-content-end foterMobaileItem col-3 " >
             <div className="footerMobileIconRoutes" />
             <div className="footerMobileTextRoutes">Маршруты</div>
@@ -50,6 +65,9 @@ import { connect } from 'react-redux';
             <div className="footerMobileIconProfile" />
             <div className="footerMobileTextProfile">Профиль</div>
           </div>
+        </div>
+        <div className="mobileFilterModal" style={{left: this.state.openFilter?"0px":"100%"}}>
+          <div onClick={()=>{this.setState({openFilter: !this.state.openFilter})}}>НАЗАД</div>
         </div>
       </React.Fragment>
     );

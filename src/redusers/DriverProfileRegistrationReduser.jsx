@@ -10,7 +10,7 @@ const initialState = {
 };
 
 
-export const DriverProfileRegistrationtReduser = (state = initialState, action) => {
+export const DriverProfileRegistrationReduser = (state = initialState, action) => {
     switch (action.type){
         case WHICH_PAGE_RENDER:{
             let newState = { ...state };
