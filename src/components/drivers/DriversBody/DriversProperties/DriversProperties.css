@@ -43,7 +43,7 @@
 .properties_buttonStyle {
     position: relative;
     font-weight: 400;
-    font-size: 12px;
+    font-size: 14px;
     color: #fff;
     text-align: center;
     padding: 0 2px;
@@ -78,6 +78,8 @@
 }
 
 .properties_rightButton_characteristic {
+    font-size: 14px;
+    font-weight: 500;
     margin: auto 2px;
     padding-bottom: 2px;
 }
