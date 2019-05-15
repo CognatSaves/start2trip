@@ -31,7 +31,9 @@ import { connect } from 'react-redux';
             </div>
           </div>
         </div>
+        
         <div className="footerMobile d-xl-none d-lg-none d-md-none d-sm-flex d-flex">
+        <div className="footerMobileButtonUp"><i className="footerMobileIconUp" onClick={()=>{window.scroll(0,0)}}/><i className="footerMobileIconFilter"/></div>
           <div className="d-flex flex-column align-items-center justify-content-end foterMobaileItem col-3 " >
             <div className="footerMobileIconRoutes" />
             <div className="footerMobileTextRoutes">Маршруты</div>
