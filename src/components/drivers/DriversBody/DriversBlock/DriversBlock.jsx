@@ -55,14 +55,28 @@ class DriversBlockClass extends React.Component {
           tempArray.push(element);
         }
     });
+    console.log(type,"type")
+
     switch (type){
       case "Популярности":
-        return tempArray.sort(sortComments);
-      case "Отзывам":
-        return tempArray.sort(sortRating);
+        let sortArrayComments = tempArray.sort(sortComments);
+        if(this.props.storeState.sortMenuWay){
+          sortArrayComments.reverse()
+        }
+        return sortArrayComments
+      case "Рейтингу":
+      let sortArrayRating = tempArray.sort(sortRating);
+        if(this.props.storeState.sortMenuWay){
+          sortArrayRating.reverse()
+        }
+        return sortArrayRating
       case "Цене":
-        return tempArray.sort(sortPrice);
-      default: return array;
+        let sortArrayPrice = tempArray.sort(sortPrice);
+        if(this.props.storeState.sortMenuWay){
+          sortArrayPrice.reverse()
+        }
+        return sortArrayPrice
+      default: return tempArray;
     }
   }
   render() {
@@ -83,7 +97,7 @@ class DriversBlockClass extends React.Component {
             <div className="driversBlock_carImage" style={{background: "url("+ToyotaPrado+") no-repeat", backgroundSize: "cover"}}>
               <Link to={ `/driverProfile/${element.id},${element.id},${element.id}`} className="driversBlock_carBlackout">
                 <div className="driversBlock_carBlackout_detailed">Подробнее</div>
-              </Link>
+              </Link>          
             </div>
 
             <div className="driverBlock_driverInfoBlock d-flex flex-column">

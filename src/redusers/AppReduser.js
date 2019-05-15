@@ -67,8 +67,9 @@ const initialState = {
     pagesMenuVariants: [12, 24, 48],
     pagesMenuValue: 12,
     pagesMenu: false,
-    sortMenuValue: "Популярность",
-    sortMenuVariants: ["Цене", "Популярности", "Отзывам"],
+    sortMenuValue: "Цене",
+    sortMenuWay: false,
+    sortMenuVariants: ["Цене", "Популярности", "Рейтингу"],
     sortMenu: false,
     persons: [1, 0],
     personsOld: [1, 0],
@@ -171,6 +172,7 @@ export const AppReduser = (state = initialState, action) => {
             {
                 let newState = {...state };
                 newState.sortMenuValue = action.sortMenuValue;
+                newState.sortMenuWay = action.sortMenuWay;
                 return newState;
             }
 
