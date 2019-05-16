@@ -19,10 +19,10 @@
     padding: 0 5px;
     cursor: pointer;
     background: rgba(48, 66, 105, 0.6);
+    transition: all 0.3s;
 }
 
 .languageMenu_element:hover {
-    transition: all 0.3s;
     background-color: #f60;
 }
 

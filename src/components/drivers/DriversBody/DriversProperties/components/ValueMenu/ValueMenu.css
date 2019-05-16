@@ -8,6 +8,8 @@
     height: 92px;
     background-color: #828ca5;
     z-index: 100;
+    display: flex;
+    flex-direction: column;
 }
 
 .drivers_properties_valueMenu_BG {
@@ -15,34 +17,32 @@
 }
 
 .valueMenu_valueBlock {
-    position: absolute;
-    top: 0px;
-    left: 10px;
     width: 180px;
     height: 45px;
     background-color: black
 }
 
 .valueMenu_borderElement {
-    position: absolute;
-    width: 35%;
+    width: 90%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    top: 15px;
+    justify-content: flex-end;
+    align-items: flex-end;
     font-size: 10pt;
     font-weight: 400;
     color: #fff;
 }
 
-.valueMenu_borderElement p:nth-child(2) {
-    width: 100%;
-    min-width: 60px;
+.valueMenu_borderElement p {
+    margin: 0;
+    padding-top: 10px;
 }
 
-.valueMenu_rightBorder {
-    right: 10px;
-}
+
+/* .valueMenu_borderElement p:nth-child(2) {
+    width: 100%;
+    min-width: 60px;
+} */
 
 .valueMenu_selectBlock {
     position: absolute;

@@ -10,7 +10,7 @@ export default class SliderComponent extends Component{
         console.log("Render Slider");
         console.log(Range);
         return(
-            <div>               
+            <div className="">               
                 <div className="wrapperStyle">
                     <Range min={0} max={100} defaultValue={[this.props.defaultValue[0], this.props.defaultValue[1]]} tipFormatter={value => `${value}%` } onChange={(e)=>this.props.changeMaxValue(e[1])}/>
                 </div>

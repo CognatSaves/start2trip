@@ -38,7 +38,7 @@ const initialState = {
     date: "",
     autoVariants: ["Седан", "Внедорожник", "Минивен", "Микроавтобус"],
     autoIcon: sedan,
-    autoValue: "Тип авто",
+    autoValue: "Любое авто",
     autoMenu: false,
     languages: [{
             languageName: "Русский",
@@ -78,7 +78,7 @@ const initialState = {
     tempPricePart: 100,
     maxPrice: 0,
     valueMenu: false,
-    languageValue: "Язык",
+    languageValue: "Любой язык",
     languageIcon: languageBlueIcon,
     languageMenu: false,
     country: "GEO",

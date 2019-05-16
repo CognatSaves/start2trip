@@ -49,8 +49,8 @@ class DriversBlockClass extends React.Component {
     let tempPrice = this.props.storeState.pricePart * this.props.storeState.maxPrice / 100;
     array.forEach((element, index) => {
       if (element.price < tempPrice && element.carCapacity >= this.props.storeState.persons[1] + this.props.storeState.persons[0] &&
-        (element.carType === this.props.storeState.autoValue || this.props.storeState.autoValue === "Тип авто") &&
-        (element.language.indexOf(this.props.storeState.languageValue) !== -1 || this.props.storeState.languageValue === "Язык")
+        (element.carType === this.props.storeState.autoValue || this.props.storeState.autoValue === "Любое авто") &&
+        (element.language.indexOf(this.props.storeState.languageValue) !== -1 || this.props.storeState.languageValue === "Любой язык")
       ) {
         tempArray.push(element);
       }

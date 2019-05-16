@@ -24,7 +24,7 @@ class ValueMenuClass extends React.Component {
         if (this.props.isVisible) {
             return (
                 <div id={containerId} className="drivers_properties_valueMenu">
-                    <div className="valueMenu_borderElement valueMenu_rightBorder"><p>{"До $" + (this.props.storeState.maxPrice * this.props.storeState.tempPricePart / 100)}</p></div>
+                    <div className="valueMenu_borderElement"><p>{"До $" + (this.props.storeState.maxPrice * this.props.storeState.tempPricePart / 100)}</p></div>
                     <Slider changeMaxValue={this.changeTempPrice} defaultValue={[0, this.props.storeState.tempPricePart]} />
                     <div className="valueMenu_stateBlock">
                         <button className="valueMenu_stateBlock_cancelButton" onClick={() => this.close()}>Отмена</button>
