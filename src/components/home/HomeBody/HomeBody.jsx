@@ -145,18 +145,18 @@ class HomeBodyClass extends React.Component {
           </React.Fragment>
           :
           <React.Fragment>
-            <div className="d-flex flex-column align-items-center">
+            <div className="routContent d-flex flex-column align-items-center col-8">
             <div className="d-flex mb-4">
-              <span className={this.state.changeMapList ? "mobailRoutMenuBtList" : "mobailRoutMenuBt-active mobailRoutMenuBtList"} onClick={() => { this.setState({ changeMapList: false }) }}>Список</span>
-              <span className={this.state.changeMapList ? "mobailRoutMenuBt-active mobailRoutMenuBtMap" : "mobailRoutMenuBtMap"} onClick={() => { this.setState({ changeMapList: true }) }}>Карта</span>
+              <span className={this.state.changeMapList ? "routMenuBtList" : "routMenuBt-active routMenuBtList"} onClick={() => { this.setState({ changeMapList: false }) }}>Список</span>
+              <span className={this.state.changeMapList ? "routMenuBt-active routMenuBtMap" : "routMenuBtMap"} onClick={() => { this.setState({ changeMapList: true }) }}>Карта</span>
             </div>
 
             {this.state.changeMapList ?
-              <div className="">
+              <div className="sizeMap col-12 p-0">
                 <MapContainer cities={this.state.cities} setLengthTime={this.setLengthTime} mapUpdate={true} />
               </div>
               :
-              <div>
+              <div className="col-12 p-0">
                 <RouteMenu cities={[...this.state.cities]} changeCity={this.changeCity} addCity={this.addCity}
                   removeCity={this.removeCity} goToDrivers={this.goToDrivers} chooseDate={this.openChooseDate} date={this.state.date} />
                 <div style={{ visibility: this.state.calendaryVisibility }}>
@@ -167,18 +167,7 @@ class HomeBodyClass extends React.Component {
             </div>
             
           </React.Fragment>}
-        {/* <React.Fragment>
-             <div className="body_menu col-xl-4 col-lg-3 col-md-4 col-sm-5 col-3 p-0">
-              <RouteMenu cities={[...this.state.cities]} changeCity={this.changeCity} addCity={this.addCity} 
-                 removeCity={this.removeCity} goToDrivers={this.goToDrivers} chooseDate={this.openChooseDate} date={this.state.date} />
-               <div style={{ visibility: this.state.calendaryVisibility }}>
-               </div>
-            </div>
-           <div className="body_map col-xl-8 col-lg-9 col-md-7 col-sm-7 col-6 p-0">
-              <MapContainer cities={this.state.cities} setLengthTime={this.setLengthTime} mapUpdate={true} />
-             </div>
-
-         </React.Fragment>} */}
+        
 
 
       </React.Fragment>

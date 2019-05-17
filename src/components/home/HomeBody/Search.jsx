@@ -62,7 +62,7 @@ export default class LocationSearchInput extends React.Component {
                 placeholder: 'Search Places ...',
                 className: ''+this.props.classInput,
               })}
-              // {...opts}
+              {...opts}
             />
             <div className={"autocomplete-dropdown-container " +this.props.classDropdown }>
               {loading && <div>Loading...</div>}

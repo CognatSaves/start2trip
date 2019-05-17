@@ -22,76 +22,27 @@ import {
 } from "../../../redusers/Action"
 
 
-// const CityRouteTable = (props) => {
-//   const { cities, changeCity, removeCity } = props;
-//   let workCities = [...cities];
-//   let tempStart = workCities.shift();
-//   let tempEnd = workCities.pop();
-//   return (
-//     <div className="addCities">
-//       <div className="startCity col-12 p-0" key={"0" + tempStart}>
-//         <div className="iconMass col-2">
-//           <img src={ellipseIcon} alt="ellipseIcon" width="10px" height="12px" />
-//           <img src={shapeIcon} alt="shapeIcon" width="7px" height="25px" />
-//         </div>
-//         <LocationSearchInput address={cities[0]} changeCity={changeCity} index={0} classDropdown="searchElement_style" classInput="city_input" />
-//         <img src={crossIcon} className="crossIcon col-3" alt="crossIcon" width="12px" height="12px" />
-//       </div>
-
-//       {workCities.map((element, index) =>
-//         <div className="startCity col-12 p-0" key={(index + 1) + element}>
-//           <div className="iconMass col-2">
-//             <img src={ellipseIcon} alt="ellipseIcon" width="10px" height="12px" />
-//             <img src={shapeIcon} alt="shapeIcon" width="7px" height="25px" />
-//           </div>
-//           <LocationSearchInput address={element} changeCity={changeCity} index={index + 1} classDropdown="searchElement_style" classInput="city_input" />
-//           <div className="crossToolTip col-3">
-//             <img src={crossIcon} className="crossIcon " alt="crossIcon" id="crossIcon" width="12px" height="12px" onClick={() => removeCity(index + 1)} style={{ visibility: 'visible' }} />
-//             <span className="crossToolTipText">Удалить этот пункт назначения</span>
-//           </div>
-//         </div>
-//       )}
-
-//       <div className="endCity col-12 p-0" key={(cities.length - 1) + tempEnd}>
-//         <img src={geoIcon} alt="geoIcon" className="geoIcon col-2 p-0" width="15px" height="12px" />
-//         <LocationSearchInput address={cities[cities.length - 1]} changeCity={changeCity} index={cities.length - 1} classDropdown="searchElement_style" classInput="city_input" />
-//         <img src={crossIcon} className="crossIcon col-3" alt="crossIcon" width="13px" height="12px" />
-//       </div>
-
-//     </div>
-//   )
-// }
 
 const CityRouteTable = (props) => {
   const { cities, changeCity, removeCity } = props;
+
   let workCities = [...cities];
-  let tempStart = workCities.shift();
-  let tempEnd = workCities.pop();
-  console.log(cities,"cities");
-  console.log(workCities,"workCities");
+  // let tempStart = workCities.shift();
+  workCities.pop();
+  console.log(cities, "cities");
+  console.log(workCities, "workCities");
   return (
     <div className="addCities">
-      {/* <div className="startCity d-flex col-12 p-0" key={"0" + tempStart}>
-        <LocationSearchInput address={cities[0]} changeCity={changeCity} index={0} classDropdown="searchElement_style" classInput="city_input" />
-        <LocationSearchInput address={cities[1]} changeCity={changeCity} index={1} classDropdown="searchElement_style" classInput="city_input" />
-        <img src={crossIcon} className="crossIcon col-3" alt="crossIcon" width="12px" height="12px" />
-      </div> */}
-
-      {cities.map((element, index) =>
-        <div className="startCity d-flex col-12 p-0" key={(index) + element}>
-          <LocationSearchInput readOnlyOn={true} address={element} changeCity={changeCity} index={index} classDropdown="searchElement_style" classInput="city_input" />
+      {workCities.map((element, index) =>
+        <div className="startCity d-flex col-12 p-0" key={element + cities[index + 1]}>
+          <LocationSearchInput readOnlyOn={index ? true : false} address={element} changeCity={changeCity} index={index} classDropdown="searchElement_style" classInput="city_input col-6" />
           <LocationSearchInput address={cities[index + 1]} changeCity={changeCity} index={index + 1} classDropdown="searchElement_style" classInput="city_input" />
-          <div className="crossToolTip col-3">
-            <img src={crossIcon} className="crossIcon " alt="crossIcon" id="crossIcon" width="12px" height="12px" onClick={() => removeCity(index + 1)} style={{ visibility: 'visible' }} />
+          <div className="crossToolTip col-1" style={{ display: index ? "flex" : "none" }}>
+            <i style={{background: "url("+ crossIcon +") no-repeat"}} className="crossIcon" onClick={() => removeCity(index + 1)} ></i>
             <span className="crossToolTipText">Удалить этот пункт назначения</span>
           </div>
         </div>
       )}
-
-      {/* <div className="endCity col-12 p-0" key={(cities.length - 1) + tempEnd}>
-        
-        <img src={crossIcon} className="crossIcon col-3" alt="crossIcon" width="13px" height="12px" />
-      </div> */}
 
     </div>
   )
@@ -128,15 +79,17 @@ class RouteMenuClass extends React.Component {
         <div className="routemenu_container d-flex flex-column col-12">
           <CityRouteTable cities={this.props.cities} changeCity={this.props.changeCity} removeCity={this.props.removeCity} />
 
-          <div className=" d-flex routemenu_addCity  p-0 col-12">
-            <img className="col-2 p-0" src={addIcon} alt="add" width="15px" height="15px" onClick={() => this.props.addCity()} />
-            <div className="routemenu_city_add_text " onClick={() => this.props.addCity()}>Добавить пункт назначения</div>
+          <div className=" d-flex routemenu_addCity " onClick={() => this.props.addCity()}>
+            <img className="col-2 p-0" src={addIcon} alt="add" width="15px" height="15px"  />
+            <div className="routemenu_city_add_text " >Добавить пункт назначения</div>
           </div>
-          <div className="routemenu_setDate  p-0 col-9">
-            {/* <img className="col-2 p-0" src={calendarIcon} alt="calendarIcon" width="15px" height="15px" />
-            <input className="routemenu_date" value={this.props.date} placeholder="Дата отправления" onClick={() => this.props.chooseDate()}></input> */}
-            <img className="col-2 p-0" src={calendarIcon} alt="calendarIcon" width="15px" height="15px" />
-            <DatePicker floatingLabelText="Дата отправления" className="routemenu_date " />
+          <div className="routemenu_setDate  p-0 col-12">
+            <DatePicker hintText="Дата отправления"  className="routemenu_date col-6" />
+            <div className="routemenu_search col" onClick={() => { return (<Redirect to="/drivers" />) }}>
+              <div className="routemenu_search_button " onClick={() => this.props.goToDrivers(this.props.cities, this.props.date)}>
+                <p className="routemenu_search_text">ПОИСК</p>
+              </div>
+            </div>
           </div>
         </div>
         <div className="routemenu_parameters">
@@ -144,9 +97,9 @@ class RouteMenuClass extends React.Component {
             <p>{parameters_text}</p><img src={arrowIcon} alt="arrow" width="15px" height="15px" />
           </div>
           <UncontrolledCollapse toggler="#toggler">
-            <div className="flex-column col-11 menuHome">
-              <div className="d-flex  justify-content-center" style={{ position: "relative" }}>
-                <div className="peopleMenuHome" onClick={() => {
+            <div className="d-flex col-12 menuHome">
+              <div className="d-flex" style={{ position: "relative" }}>
+                <div className="peopleMenuHome col" onClick={() => {
                   if (!this.props.storeState.peopleMenu) {
                     this.props.dispatch(changePersonsNumberDispatchOld(this.props.storeState.persons))
                   } else {
@@ -158,24 +111,19 @@ class RouteMenuClass extends React.Component {
                 </div>
                 <PeopleMenu isVisible={this.props.storeState.peopleMenu} />
               </div>
-              <div className=" d-flex  justify-content-center" onClick={() => this.props.dispatch(autoMenuCall(!this.props.storeState.autoMenu))}>
-                <div className="peopleMenuHome ">
+              <div className=" d-flex" onClick={() => this.props.dispatch(autoMenuCall(!this.props.storeState.autoMenu))}>
+                <div className="peopleMenuHome col">
                   <img src={this.props.storeState.autoIcon} width="40px" height="30px" alt="carImage" />{this.props.storeState.autoValue}
                 </div>
                 <AutoMenu isVisible={this.props.storeState.autoMenu} />
               </div>
-              <div className="d-flex   justify-content-center" onClick={() => this.props.dispatch(languageMenuIsVisibal(!this.props.storeState.languageMenu))}>
-                <div className="peopleMenuHome propertiesPeopleHome"><img src={this.props.storeState.languageIcon} width="20px" height="25px" alt="L" />{this.props.storeState.languageValue}</div>
+              <div className="d-flex" onClick={() => this.props.dispatch(languageMenuIsVisibal(!this.props.storeState.languageMenu))}>
+                <div className="peopleMenuHome propertiesPeopleHome col"><img src={this.props.storeState.languageIcon} width="20px" height="25px" alt="L" />{this.props.storeState.languageValue}</div>
                 <LanguageMenu isVisible={this.props.storeState.languageMenu} />
               </div>
 
             </div>
           </UncontrolledCollapse>
-        </div>
-        <div className="routemenu_search" onClick={() => { return (<Redirect to="/drivers" />) }}>
-          <div className="routemenu_search_button" onClick={() => this.props.goToDrivers(this.props.cities, this.props.date)}>
-            <p className="routemenu_search_text">ПОИСК</p>
-          </div>
         </div>
         <div className="routemenu_comment">
           <div className="routemenu_comment_text">*Возврат в точку отправления в этот же день бесплатно</div>

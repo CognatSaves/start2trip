@@ -63,6 +63,45 @@
     height: 25vh!important;
 }
 
+.routMenuBtList {
+    cursor: pointer;
+    padding: 10px 22px;
+    border: 1px solid #fff;
+    border-radius: 5px 0 0 5px;
+    border-right: none;
+    color: #fff;
+    font-weight: 400;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.routMenuBtMap {
+    cursor: pointer;
+    padding: 10px 30px;
+    border: 1px solid #fff;
+    border-radius: 0 5px 5px 0;
+    border-left: none;
+    color: #fff;
+    font-weight: 400;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.routMenuBt-active {
+    background: rgba(255, 255, 255, 0.3);
+    color: #304269;
+}
+
+.routContent {
+    margin-bottom: 100px;
+}
+
+.sizeMap {
+    position: relative;
+    min-height: 500px;
+    height: 100%;
+}
+
 
 /* @media (max-width: 360px){
   .body_map {display: none}
