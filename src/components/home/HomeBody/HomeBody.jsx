@@ -22,16 +22,10 @@ class HomeBodyClass extends React.Component {
     this.state = JSON.parse(JSON.stringify(this.props.storeState));
     this.state = { ...this.state, "mapUpdate": true, calendaryVisibility: 'hidden' }
 
-    this.changeCity = this.changeCity.bind(this);
-    this.addCity = this.addCity.bind(this);
-    this.removeCity = this.removeCity.bind(this);
-    this.openChooseDate = this.openChooseDate.bind(this);
-    this.closeChooseDate = this.closeChooseDate.bind(this);
-    this.goToDrivers = this.goToDrivers.bind(this);
-    this.setLengthTime = this.setLengthTime.bind(this);
   }
 
-  changeCity(index, value) {
+  changeCity=(index, value)=> {
+    debugger
     let cities = this.state.cities;
     cities[index] = value;
     this.setState({
@@ -39,7 +33,7 @@ class HomeBodyClass extends React.Component {
       mapUpdate: true
     });
   }
-  addCity() {
+  addCity=()=> {
     let cities = this.state.cities;
     /*cities[cities.length] = cities[cities.length-1];
     cities[cities.length-2]="";*/
@@ -49,7 +43,7 @@ class HomeBodyClass extends React.Component {
       mapUpdate: true
     })
   }
-  removeCity(index) {
+  removeCity=(index)=> {
     let cities = this.state.cities;
     cities.splice(index, 1);
     this.setState({
@@ -57,7 +51,7 @@ class HomeBodyClass extends React.Component {
       mapUpdate: true
     })
   }
-  openChooseDate() {
+  openChooseDate=()=> {
     console.log("openChooseDate call");
     this.setState({
       mapUpdate: false,
@@ -66,7 +60,7 @@ class HomeBodyClass extends React.Component {
       calendaryVisibility: 'visible'
     })
   }
-  closeChooseDate() {
+  closeChooseDate=()=> {
     this.setState({
       mapUpdate: false,
     })
@@ -84,11 +78,11 @@ class HomeBodyClass extends React.Component {
       mapUpdate: false
     });
   }
-  goToDrivers() {
+  goToDrivers=()=> {
     this.props.setState(this.state.cities, this.state.date, "drivers");
     this.props.redirectToDrivers();
   }
-  setLengthTime(travelLength, travelTime) {
+  setLengthTime=(travelLength, travelTime)=> {
     function getLengthString(travelLength) {
       let length = travelLength;
       length = Math.ceil(length / 1000);
@@ -118,7 +112,7 @@ class HomeBodyClass extends React.Component {
     this.props.setLengthTime(lengthString, timeString);
   }
   render() {
-    console.log(isMobileOnly , "isMobileOnlyBody")
+    console.log(isMobileOnly, "isMobileOnlyBody")
     return (
       <React.Fragment>
         {isMobileOnly ?
@@ -136,7 +130,7 @@ class HomeBodyClass extends React.Component {
                 {this.state.changeMapList ?
                   <div className="mapContain">
                     <MapContainer cities={this.state.cities} setLengthTime={this.setLengthTime} mapUpdate={true} />
-                    </div>
+                  </div>
                   :
                   <div>
                     <RouteMenu cities={[...this.state.cities]} changeCity={this.changeCity} addCity={this.addCity}
@@ -151,17 +145,40 @@ class HomeBodyClass extends React.Component {
           </React.Fragment>
           :
           <React.Fragment>
-            <div className="body_menu col-xl-4 col-lg-3 col-md-4 col-sm-5 col-3 p-0">
-              <RouteMenu cities={[...this.state.cities]} changeCity={this.changeCity} addCity={this.addCity}
-                removeCity={this.removeCity} goToDrivers={this.goToDrivers} chooseDate={this.openChooseDate} date={this.state.date} />
-              <div style={{ visibility: this.state.calendaryVisibility }}>
-              </div>
-            </div>
-            <div className="body_map col-xl-8 col-lg-9 col-md-7 col-sm-7 col-6 p-0">
-              <MapContainer cities={this.state.cities} setLengthTime={this.setLengthTime} mapUpdate={/*this.state.mapUpdate*/true} />
+            <div className="d-flex flex-column align-items-center">
+            <div className="d-flex mb-4">
+              <span className={this.state.changeMapList ? "mobailRoutMenuBtList" : "mobailRoutMenuBt-active mobailRoutMenuBtList"} onClick={() => { this.setState({ changeMapList: false }) }}>Список</span>
+              <span className={this.state.changeMapList ? "mobailRoutMenuBt-active mobailRoutMenuBtMap" : "mobailRoutMenuBtMap"} onClick={() => { this.setState({ changeMapList: true }) }}>Карта</span>
             </div>
 
+            {this.state.changeMapList ?
+              <div className="">
+                <MapContainer cities={this.state.cities} setLengthTime={this.setLengthTime} mapUpdate={true} />
+              </div>
+              :
+              <div>
+                <RouteMenu cities={[...this.state.cities]} changeCity={this.changeCity} addCity={this.addCity}
+                  removeCity={this.removeCity} goToDrivers={this.goToDrivers} chooseDate={this.openChooseDate} date={this.state.date} />
+                <div style={{ visibility: this.state.calendaryVisibility }}>
+                </div>
+              </div>
+            }
+
+            </div>
+            
           </React.Fragment>}
+        {/* <React.Fragment>
+             <div className="body_menu col-xl-4 col-lg-3 col-md-4 col-sm-5 col-3 p-0">
+              <RouteMenu cities={[...this.state.cities]} changeCity={this.changeCity} addCity={this.addCity} 
+                 removeCity={this.removeCity} goToDrivers={this.goToDrivers} chooseDate={this.openChooseDate} date={this.state.date} />
+               <div style={{ visibility: this.state.calendaryVisibility }}>
+               </div>
+            </div>
+           <div className="body_map col-xl-8 col-lg-9 col-md-7 col-sm-7 col-6 p-0">
+              <MapContainer cities={this.state.cities} setLengthTime={this.setLengthTime} mapUpdate={true} />
+             </div>
+
+         </React.Fragment>} */}
 
 
       </React.Fragment>

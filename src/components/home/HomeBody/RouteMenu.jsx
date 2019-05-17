@@ -22,29 +22,65 @@ import {
 } from "../../../redusers/Action"
 
 
+// const CityRouteTable = (props) => {
+//   const { cities, changeCity, removeCity } = props;
+//   let workCities = [...cities];
+//   let tempStart = workCities.shift();
+//   let tempEnd = workCities.pop();
+//   return (
+//     <div className="addCities">
+//       <div className="startCity col-12 p-0" key={"0" + tempStart}>
+//         <div className="iconMass col-2">
+//           <img src={ellipseIcon} alt="ellipseIcon" width="10px" height="12px" />
+//           <img src={shapeIcon} alt="shapeIcon" width="7px" height="25px" />
+//         </div>
+//         <LocationSearchInput address={cities[0]} changeCity={changeCity} index={0} classDropdown="searchElement_style" classInput="city_input" />
+//         <img src={crossIcon} className="crossIcon col-3" alt="crossIcon" width="12px" height="12px" />
+//       </div>
+
+//       {workCities.map((element, index) =>
+//         <div className="startCity col-12 p-0" key={(index + 1) + element}>
+//           <div className="iconMass col-2">
+//             <img src={ellipseIcon} alt="ellipseIcon" width="10px" height="12px" />
+//             <img src={shapeIcon} alt="shapeIcon" width="7px" height="25px" />
+//           </div>
+//           <LocationSearchInput address={element} changeCity={changeCity} index={index + 1} classDropdown="searchElement_style" classInput="city_input" />
+//           <div className="crossToolTip col-3">
+//             <img src={crossIcon} className="crossIcon " alt="crossIcon" id="crossIcon" width="12px" height="12px" onClick={() => removeCity(index + 1)} style={{ visibility: 'visible' }} />
+//             <span className="crossToolTipText">Удалить этот пункт назначения</span>
+//           </div>
+//         </div>
+//       )}
+
+//       <div className="endCity col-12 p-0" key={(cities.length - 1) + tempEnd}>
+//         <img src={geoIcon} alt="geoIcon" className="geoIcon col-2 p-0" width="15px" height="12px" />
+//         <LocationSearchInput address={cities[cities.length - 1]} changeCity={changeCity} index={cities.length - 1} classDropdown="searchElement_style" classInput="city_input" />
+//         <img src={crossIcon} className="crossIcon col-3" alt="crossIcon" width="13px" height="12px" />
+//       </div>
+
+//     </div>
+//   )
+// }
+
 const CityRouteTable = (props) => {
   const { cities, changeCity, removeCity } = props;
   let workCities = [...cities];
   let tempStart = workCities.shift();
   let tempEnd = workCities.pop();
+  console.log(cities,"cities");
+  console.log(workCities,"workCities");
   return (
     <div className="addCities">
-      <div className="startCity col-12 p-0" key={"0" + tempStart}>
-        <div className="iconMass col-2">
-          <img src={ellipseIcon} alt="ellipseIcon" width="10px" height="12px" />
-          <img src={shapeIcon} alt="shapeIcon" width="7px" height="25px" />
-        </div>
+      {/* <div className="startCity d-flex col-12 p-0" key={"0" + tempStart}>
         <LocationSearchInput address={cities[0]} changeCity={changeCity} index={0} classDropdown="searchElement_style" classInput="city_input" />
+        <LocationSearchInput address={cities[1]} changeCity={changeCity} index={1} classDropdown="searchElement_style" classInput="city_input" />
         <img src={crossIcon} className="crossIcon col-3" alt="crossIcon" width="12px" height="12px" />
-      </div>
+      </div> */}
 
-      {workCities.map((element, index) =>
-        <div className="startCity col-12 p-0" key={(index + 1) + element}>
-          <div className="iconMass col-2">
-            <img src={ellipseIcon} alt="ellipseIcon" width="10px" height="12px" />
-            <img src={shapeIcon} alt="shapeIcon" width="7px" height="25px" />
-          </div>
-          <LocationSearchInput address={element} changeCity={changeCity} index={index + 1} classDropdown="searchElement_style" classInput="city_input" />
+      {cities.map((element, index) =>
+        <div className="startCity d-flex col-12 p-0" key={(index) + element}>
+          <LocationSearchInput readOnlyOn={true} address={element} changeCity={changeCity} index={index} classDropdown="searchElement_style" classInput="city_input" />
+          <LocationSearchInput address={cities[index + 1]} changeCity={changeCity} index={index + 1} classDropdown="searchElement_style" classInput="city_input" />
           <div className="crossToolTip col-3">
             <img src={crossIcon} className="crossIcon " alt="crossIcon" id="crossIcon" width="12px" height="12px" onClick={() => removeCity(index + 1)} style={{ visibility: 'visible' }} />
             <span className="crossToolTipText">Удалить этот пункт назначения</span>
@@ -52,11 +88,10 @@ const CityRouteTable = (props) => {
         </div>
       )}
 
-      <div className="endCity col-12 p-0" key={(cities.length - 1) + tempEnd}>
-        <img src={geoIcon} alt="geoIcon" className="geoIcon col-2 p-0" width="15px" height="12px" />
-        <LocationSearchInput address={cities[cities.length - 1]} changeCity={changeCity} index={cities.length - 1} classDropdown="searchElement_style" classInput="city_input" />
+      {/* <div className="endCity col-12 p-0" key={(cities.length - 1) + tempEnd}>
+        
         <img src={crossIcon} className="crossIcon col-3" alt="crossIcon" width="13px" height="12px" />
-      </div>
+      </div> */}
 
     </div>
   )

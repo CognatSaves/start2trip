@@ -43,6 +43,10 @@ export default class LocationSearchInput extends React.Component {
     /*console.log("LocationSearchInput render");
     console.log(this.state.address);
     console.log(this.props.address);*/
+    var opts = {};
+  if(this.props.readOnlyOn) {
+      opts['readOnly'] = 'readOnly';
+  }
     return (
       <PlacesAutocomplete
         value={this.state.address}
@@ -58,6 +62,7 @@ export default class LocationSearchInput extends React.Component {
                 placeholder: 'Search Places ...',
                 className: ''+this.props.classInput,
               })}
+              // {...opts}
             />
             <div className={"autocomplete-dropdown-container " +this.props.classDropdown }>
               {loading && <div>Loading...</div>}
