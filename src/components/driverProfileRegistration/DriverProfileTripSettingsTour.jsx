@@ -22,7 +22,7 @@ import RefreshIndicator from 'material-ui/RefreshIndicator';
 import { setProfileData } from "../../redusers/ActionDriverProfileRegistration"
 import getUserData from './DriverProfileRequest';
 import DriverRefreshIndicator from './DriverRefreshIndicator';
-
+import { readAndCompressImage } from 'browser-image-resizer';
 
 
 class DriverProfileTripSettingsTourClass extends React.Component {
@@ -566,19 +566,26 @@ class DriverProfileTripSettingsTourClass extends React.Component {
 
             if (!file.type.match('image')) continue;
 
-            let reader = new FileReader();
-            reader.onloadend = () => {
-                var img = reader.result;
-                let tourSave = this.state.tourSave;
-                tourSave.image.push(img);
-                tourSave.imageFiles.push(file);
-                this.setState({
-                    tourSave: tourSave,
-                    file: file,
-                    imagePreviewUrl: img,
-                });
-            }
-            reader.readAsDataURL(file)
+            readAndCompressImage(file, this.props.globalReduser.compressConfig)
+            .then(resizedImage => {
+            let sizFile = new File([resizedImage], file.name);
+            return sizFile;
+            })
+            .then(sizFile => {
+                let reader = new FileReader();
+                reader.onloadend = () => {
+                    var img = reader.result;
+                    let tourSave = this.state.tourSave;
+                    tourSave.image.push(img);
+                    tourSave.imageFiles.push(sizFile);
+                    this.setState({
+                        tourSave: tourSave,
+                        file: file,
+                        imagePreviewUrl: img,
+                    });
+                }
+                reader.readAsDataURL(sizFile)
+            });
         }
 
     }
@@ -1043,7 +1050,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
 const DriverProfileTripSettingsTour = connect(
     (state) => ({
         storeState: state.AppReduser,
-        profileReduser: state.DriverProfileRegistrationtReduser,
+        profileReduser: state.DriverProfileRegistrationReduser,
         globalReduser: state.GlobalReduser,
     }),
 )(DriverProfileTripSettingsTourClass);

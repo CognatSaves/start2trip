@@ -38,14 +38,23 @@
     margin: 5px;
     min-width: 176px;
 }
-
+.affiliateProgramButton input {
+    border-radius: 5px;
+    margin: 5px;
+    padding: 10px;
+}
+.affiliateProgramButton input:focus{
+    outline: none
+}
+/*
 .affiliateProgramButton :nth-child(2) :nth-child(2) {
     background: #304269;
     color: #fff;
     border-color: #304269;
 }
+*/
+/*.affiliateProgramButton :nth-child(2) :nth-child(2):hover,*/
 
-.affiliateProgramButton :nth-child(2) :nth-child(2):hover,
 .affiliateProgramButton span:hover {
     background: #f60;
     color: #fff;

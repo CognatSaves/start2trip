@@ -469,8 +469,8 @@ const initialState = {
 }
 
 export const PlacesReduser = (state=initialState, action)=>{
-    console.log("PlacesReduser");
-    console.log(action);
+    //console.log("PlacesReduser");
+    //console.log(action);
     switch(action.type){
         case SET_PAGES_MENU_VALUE: {
             let newState = { ...state };

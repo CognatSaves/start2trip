@@ -12,15 +12,20 @@ import historyBG from './img/illustrations_history.svg'
 import sittingsBG from './img/illustrations_nastroiki-04.svg'
 import feedbackBG from './img/illustrations_otzivi.svg'
 import preHistoryBG from './img/illustrations_predstoishie.svg'
-
+import { readAndCompressImage } from 'browser-image-resizer';
 import requests from '../../config';
-
+import { setProfileData } from "../../redusers/ActionDriverProfileRegistration"
+import getUserData from './DriverProfileRequest';
+import DriverRefreshIndicator from './DriverRefreshIndicator';
+import { setUser } from '../../redusers/Action';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 class DriverProfileNavigationClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             navigationText: ["Мои поездки", "Профиль", "Автомобиль", "Настройки поездок", "Туры", "Отзывы", "Настройки", "Биллинг", "Партнерская программа",],
-            avatar: "",
+            //avatar: "",
             profile: this.props.storeState.profile,
             route: [
                 "/account/driver/trips",
@@ -33,7 +38,59 @@ class DriverProfileNavigationClass extends React.Component {
                 "/account/driver/billing",
                 "/account/driver/referrals",
             ],
-        }
+            isRefreshExist:false,
+            isRefreshing: true,
+            isGoodAnswer: true, 
+        };
+        this.getProfileData = this.getProfileData.bind(this);
+        this.startRefresher = this.startRefresher.bind(this);
+        this.thenFunc = this.thenFunc.bind(this);
+        this.catchFunc = this.catchFunc.bind(this);
+    }
+    getProfileData(thenFunc,catchFunc){
+        console.log('getProfileData');
+        let that = this;
+        let requestValues = {
+            readCookie: this.props.globalReduser.readCookie,
+            setProfileData: function(data){
+              that.props.dispatch(setProfileData(data))
+            },
+            requestAddress: requests.profileRequest
+          };
+        getUserData(requestValues,thenFunc,catchFunc);
+    }
+    startRefresher(){
+        this.setState({
+            isRefreshExist: true,
+            isRefreshing: true
+        });
+    }   
+    thenFunc(){
+        console.log('thenFunc');
+        console.log(this.props.profileReduser);
+        this.setState({
+            isRefreshExist: true,
+            isRefreshing: false,
+            isGoodAnswer: true,
+        });
+        setTimeout(() => {
+            this.setState({
+                isRefreshExist: false
+            })
+        }, 1000);
+    }
+    catchFunc(){
+        console.log('catchFunc');
+        this.setState({
+            isRefreshExist: true,
+            isRefreshing: false,
+            isGoodAnswer: false
+        });
+        setTimeout(() => {
+            this.setState({
+                isRefreshExist: false
+            })
+        }, 2000);
     }
     shiftLeft = (event) => {
 
@@ -46,22 +103,46 @@ class DriverProfileNavigationClass extends React.Component {
         let file = e.target.files[0];
 
         if (file.type.match('image')) {
-            
-            let reader = new FileReader();
-            reader.onloadend = () => {
-                let jwt = this.props.globalReduser.readCookie('jwt');
-                if(jwt && jwt!=="-"){
-                    var img = reader.result;
-                    this.setState({ avatar: img });
-                    var carForm = new FormData();
-                    carForm.append('avatar', file);
-                    const request = new XMLHttpRequest();
-                    request.open('PUT', requests.userAvatarChangeRequest);
-                    request.setRequestHeader('Authorization',`Bearer ${jwt}`);
-                    request.send(carForm);
+            let that = this; 
+            this.startRefresher();
+
+            readAndCompressImage(file, this.props.globalReduser.compressConfig)
+            .then(resizedImage => {
+            let sizFile = new File([resizedImage], file.name);
+            return sizFile;
+            })
+            .then(sizFile => {
+                let reader = new FileReader();
+                reader.onloadend = () => {
+                    let jwt = this.props.globalReduser.readCookie('jwt');
+                    if(jwt && jwt!=="-"){
+                        var img = reader.result;                      
+                        var carForm = new FormData();
+                        carForm.append('avatar', sizFile);
+                        const request = new XMLHttpRequest();
+                        request.open('PUT', requests.userAvatarChangeRequest);
+                        request.setRequestHeader('Authorization',`Bearer ${jwt}`);
+                        request.onreadystatechange = function(){
+                                                            
+                            if(request.readyState === XMLHttpRequest.DONE && request.status === 200){ 
+                                let responseText = JSON.parse(request.responseText);
+                                let avatar = requests.serverAddress+responseText.avatar;
+                                let date = new Date(Date.now()+1000*3600*24*60); 
+                                cookies.set("avatarUrl",avatar, {path: '/', expires: date});
+                                that.props.dispatch(setUser(that.props.AppReduser.userName, avatar));
+                                that.thenFunc();                                                                                                                      
+                            }
+                            if(request.readyState === XMLHttpRequest.DONE && request.status === 0){
+                                that.catchFunc();
+                            }                      
+                           
+                           
+                        }
+                        request.send(carForm);
+                    }
                 }
-            }
-            reader.readAsDataURL(file);
+                reader.readAsDataURL(sizFile)
+            });
         }
     }
 
@@ -73,6 +154,7 @@ class DriverProfileNavigationClass extends React.Component {
         }
         return (
             <React.Fragment>
+                <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer}/>                
                 <div className="registrationWrapper driverBG col-12 p-0" style={{
                     "/account/driver/trips": { backgroundImage: "url(" + preHistoryBG + ")" },
                     // 1: { backgroundImage: "url(" + historyBG + ")" },
@@ -86,7 +168,7 @@ class DriverProfileNavigationClass extends React.Component {
                     <div className="basicInformationBodyTop d-flex align-items-center ">
                         <div className="basicInformationBodyTopImgHover">
                             <label className="basicInformationBodyTopImg" htmlFor="addFile">Обновить фотографию</label>
-                            <img src={this.state.avatar} alt="imgPerson" />
+                            <img src={this.props.AppReduser.avatarUrl} alt="imgPerson" />
                             <input type="file" id="addFile" style={{ display: "none" }} onChange={this._handleImageChange} />
                         </div>
                         <div className="bodyTopDriverInfo col-7">
@@ -139,9 +221,10 @@ class DriverProfileNavigationClass extends React.Component {
 
 const DriverProfileNavigation = connect(
     (state) => ({
-        storeState: state.DriverProfileRegistrationtReduser,
+        storeState: state.DriverProfileRegistrationReduser,
         globalhistory: state.GlobalReduser,
         globalReduser: state.GlobalReduser,
+        AppReduser: state.AppReduser,
     }),
 )(DriverProfileNavigationClass);
 

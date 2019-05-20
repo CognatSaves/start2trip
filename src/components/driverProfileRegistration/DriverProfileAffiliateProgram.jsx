@@ -1,5 +1,6 @@
 import React from 'react';
 import './DriverProfileAffiliateProgram.css'
+import copy from './img/copy.svg';
 import { connect } from 'react-redux';
 import {
     Table,
@@ -9,7 +10,7 @@ import {
     TableRow,
     TableRowColumn,
 } from 'material-ui/Table';
-
+import requests from '../../config';
 
 
 
@@ -35,10 +36,32 @@ class DriverProfileAffiliateProgramClass extends React.Component {
                         <p className="col-xl-8 col-lg-8 col-md-9 col-sm-10 col-10">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae impedit odio aspernatur veniam obcaecati veritatis fugit id voluptate excepturi nam aliquam architecto quam laboriosam suscipit deserunt neque, ab dolorem alias?</p>
                     </div>
                     <div className="affiliateProgramButton d-flex flex-sm-row flex-column justify-content-between align-items-center">
-                        <span>Промо материалы</span>
+                        <div>
+                            <div>Ваши партнёрские ссылки</div>
+                            <div>
+                                Ссылка на регистрацию
+                            </div>
+                            <div className="d-flex flex-row">
+                                <input placeholder="Ссылка 1" style={{width: '400px'}} value={requests.frontendAddress+'/register/'+this.props.profileReduser.profile._id}/>
+                                <div style={{background: 'url('+copy+') no-repeat center', backgroundSize: '40px 40px', width: '40px'}}/>
+                            </div>
+                            <div>
+                                Ссылка на главную
+                            </div>
+                            <div className="d-flex flex-row">
+                                <input placeholder="Ссылка 1" style={{width: '400px'}} value={requests.frontendAddress+'/start/'+this.props.profileReduser.profile._id}/>
+                                <div style={{background: 'url('+copy+') no-repeat center', backgroundSize: '40px 40px', width: '40px'}}/>
+                            </div>
+                        </div>                   
                         <div className="d-flex flex-sm-row flex-column">
-                            <span>Партнерские ссылки</span>
-                            <span>Пригласить друга</span>
+                        {
+                            /*
+                                <span>Партнерские ссылки</span>
+                                <span>Пригласить друга</span>
+                            */
+                           <span>Промо материалы</span>
+                        }
+                              
                         </div>
                     </div>
                 </div>
@@ -107,6 +130,7 @@ class DriverProfileAffiliateProgramClass extends React.Component {
 const DriverProfileAffiliateProgram = connect(
     (state) => ({
         storeState: state.AppReduser,
+        profileReduser: state.DriverProfileRegistrationReduser,
     }),
 )(DriverProfileAffiliateProgramClass);
 

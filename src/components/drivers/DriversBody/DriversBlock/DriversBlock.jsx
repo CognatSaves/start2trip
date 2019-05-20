@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom';
 import Stars from '../../../stars/Stars';
 import {setPage, setMorePagesShow} from '../../../../redusers/ActionDrivers'
 import ToyotaPrado from './pictures/ToyotaPrado.jpg';
-
+import requests from '../../../../config';
 
 class DriversBlockClass extends React.Component {
   constructor(props) {
@@ -73,7 +73,8 @@ class DriversBlockClass extends React.Component {
     let srcArray = Array(this.props.storeState.pagesMenuValue*this.props.driversState.showPages).fill(emptyLike);
     srcArray[0]=selectedFilledLike;
     srcArray[1]=filledLike;
-
+    console.log('selectedEl');
+    console.log(selectedElements);
     return (
       <div className="drivers_block d-flex" style={{flexWrap: "wrap"}}>
         {
@@ -159,10 +160,10 @@ class DriversBlockClass extends React.Component {
                 </div>
               </div>
               <div className="driversBlock_driverInfoBlock_element d-flex">
-                <div className="driversBlock_languages_text">Языки:</div>
+                <div className="driversBlock_languages_text" style={{visibility: this.props.storeState.languages.length>0 ? 'visible' : 'hidden'}}>Языки:</div>
                   {
                     element.language.map((langElement,index)=>
-                       <div className="driversBlock_languages_flag" style={{background: "url("+this.props.storeState.languages[langElement].icon+")", backgroundSize: "15px 15px"}}/>              
+                       <div className="driversBlock_languages_flag" style={{background: "url("+(this.props.storeState.languages.length>0 ? requests.serverAddress+this.props.storeState.languages[langElement].icon.url : '')+")", backgroundSize: "15px 15px"}}/>              
                     )
                   }
               </div>

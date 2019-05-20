@@ -2,11 +2,11 @@ import {WHICH_PAGE_RENDER_USER,SET_PROFILE_DATA} from './ActionUserProfileRegist
 
 const initialState = {
     pageRender: "0",
-      
+    profile: {}  
 };
 
 
-export const UserProfileRegistrationtReduser = (state = initialState, action) => {
+export const UserProfileRegistrationReduser = (state = initialState, action) => {
     switch (action.type){
         case WHICH_PAGE_RENDER_USER:{
             let newState = { ...state };

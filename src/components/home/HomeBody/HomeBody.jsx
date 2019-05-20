@@ -118,7 +118,7 @@ class HomeBodyClass extends React.Component {
     this.props.setLengthTime(lengthString, timeString);
   }
   render() {
-    console.log(isMobileOnly , "isMobileOnlyBody")
+    //console.log(isMobileOnly , "isMobileOnlyBody")
     return (
       <React.Fragment>
         {isMobileOnly ?
@@ -158,7 +158,12 @@ class HomeBodyClass extends React.Component {
               </div>
             </div>
             <div className="body_map col-xl-8 col-lg-9 col-md-7 col-sm-7 col-6 p-0">
-              <MapContainer cities={this.state.cities} setLengthTime={this.setLengthTime} mapUpdate={/*this.state.mapUpdate*/true} />
+            {
+              /*
+                <MapContainer cities={this.state.cities} setLengthTime={this.setLengthTime} mapUpdate={true} />
+              */
+            }
+              
             </div>
 
           </React.Fragment>}

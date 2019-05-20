@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import requests from '../../config';
 function getUserData (requestValues,thenFunc,catchFunc,params){
   let jwt = requestValues.readCookie('jwt'); 
   if(jwt && jwt!=="-"){    

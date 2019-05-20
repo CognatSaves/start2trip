@@ -1,4 +1,6 @@
 import serverAddress from './serverAddress';
+const frontendAddress = 'http://localhost:3000';
+
 const serverRegistrationRequest = serverAddress+'/auth/local/register';
 const serverAuthorizationRequest = serverAddress+'/auth/local';
 const facebookRequest = serverAddress+'/connect/facebook';
@@ -16,11 +18,12 @@ const userTourCreateRequest = serverAddress + '/tours/me/create';//запрос 
 const userTourDestroyRequest = serverAddress + '/tours/me';//запрос для админки
 const userTourUpdateRequest = serverAddress + '/tours/me';//запрос для админки
 const userTourActivateRequest = serverAddress + '/tours/me/activate';//запрос для админки
-export default {serverAddress: serverAddress, serverRegistrationRequest: serverRegistrationRequest, facebookRequest: facebookRequest,
+const getLocals = serverAddress + "/getLocals";//первичный запрос массивов языков и валют
+export default {frontendAddress:frontendAddress,serverAddress: serverAddress, serverRegistrationRequest: serverRegistrationRequest, facebookRequest: facebookRequest,
      googleRequest: googleRequest, serverAuthorizationRequest: serverAuthorizationRequest, meRequest: meRequest, 
      profileRequest:profileRequest, profileUpdateRequest: profileUpdateRequest, travelsettingsUpdateRequest: travelsettingsUpdateRequest,
      userCarsCreateRequest: userCarsCreateRequest,userCarDestroyRequest:userCarDestroyRequest,
      userCarUpdateRequest: userCarUpdateRequest, userCarActivateRequest:userCarActivateRequest,
      userAvatarChangeRequest:userAvatarChangeRequest, userTourCreateRequest:userTourCreateRequest,
      userTourDestroyRequest:userTourDestroyRequest, userTourUpdateRequest: userTourUpdateRequest,
-     userTourActivateRequest:userTourActivateRequest};
+     userTourActivateRequest:userTourActivateRequest, getLocals:getLocals};

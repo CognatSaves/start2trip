@@ -15,7 +15,14 @@ const initialState = {
             }               
         }           
         return null;
-    }   
+    },
+    compressConfig: {
+        quality: 0.8,
+        maxWidth: 1600,
+        maxHeight: 1200,
+        autoRotate: true,
+        debug: true
+    },
 };
 
 

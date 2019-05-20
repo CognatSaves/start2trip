@@ -62,7 +62,7 @@ class DriverProfileHistoryClass extends React.Component {
 
 const DriverProfileHistory = connect(
   (state) => ({
-    storeState: state.DriverProfileRegistrationtReduser,
+    storeState: state.DriverProfileRegistrationReduser,
   }),
 )(DriverProfileHistoryClass);
 

@@ -13,7 +13,7 @@ const initialState = {
     
     age: 53,
     id: 0,
-    language: [2,1,0,3],
+    language: [1,0],
     drivingAge: 20, //как хранить?
     carImage: "pictures/driver1/drivers_car_image.png",
     carBrand: "Toyota Prius",
@@ -32,7 +32,7 @@ const initialState = {
     
     age: 53,
     id: 1,
-    language: [2,0],
+    language: [1,0],
     drivingAge: 20, //как хранить?
     carImage: "pictures/driver1/drivers_car_image.png",
     carBrand: "Toyota Prius",
@@ -51,7 +51,7 @@ const initialState = {
     
     age: 53,
     id: 2,
-    language: [2,0],
+    language: [1,0],
     drivingAge: 20, //как хранить?
     carImage: "pictures/driver1/drivers_car_image.png",
     carBrand: "Toyota Prius",
@@ -70,7 +70,7 @@ const initialState = {
     
     age: 53,
     id: 3,
-    language: [2,0],
+    language: [1,0],
     drivingAge: 20, //как хранить?
     carImage: "pictures/driver1/drivers_car_image.png",
     carBrand: "Toyota Prius",
@@ -89,7 +89,7 @@ const initialState = {
     
     age: 53,
     id:4,
-    language: [2,0],
+    language: [1,0],
     drivingAge: 20, //как хранить?
     carImage: "pictures/driver1/drivers_car_image.png",
     carBrand: "Toyota Prius",
@@ -108,7 +108,7 @@ const initialState = {
     
     age: 53,
     id: 5,
-    language: [2,0],
+    language: [1,0],
     drivingAge: 20, //как хранить?
     carImage: "pictures/driver1/drivers_car_image.png",
     carBrand: "Toyota Prius",
@@ -127,7 +127,7 @@ const initialState = {
     
     age: 53,
     id: 6,
-    language: [2,0],
+    language: [0],
     drivingAge: 20, //как хранить?
     carImage: "pictures/driver1/drivers_car_image.png",
     carBrand: "Toyota Prius",
@@ -146,7 +146,7 @@ const initialState = {
     
     age: 53,
     id: 7,
-    language: [2,0],
+    language: [0],
     drivingAge: 20, //как хранить?
     carImage: "pictures/driver1/drivers_car_image.png",
     carBrand: "Toyota Prius",
@@ -165,7 +165,7 @@ const initialState = {
     
     age: 53,
     id: 8,
-    language: [2,0],
+    language: [0],
     drivingAge: 20, //как хранить?
     carImage: "pictures/driver1/drivers_car_image.png",
     carBrand: "Toyota Prius",
@@ -184,7 +184,7 @@ const initialState = {
     
     age: 53,
     id: 9,
-    language: [2,0],
+    language: [0],
     drivingAge: 20, //как хранить?
     carImage: "pictures/driver1/drivers_car_image.png",
     carBrand: "Toyota Prius",
@@ -203,7 +203,7 @@ const initialState = {
     
     age: 53,
     id: 10,
-    language: [2,0],
+    language: [0],
     drivingAge: 20, //как хранить?
     carImage: "pictures/driver1/drivers_car_image.png",
     carBrand: "Toyota Prius",
@@ -222,7 +222,7 @@ const initialState = {
     
     age: 53,
     id: 11,
-    language: [2,0],
+    language: [0],
     drivingAge: 20, //как хранить?
     carImage: "pictures/driver1/drivers_car_image.png",
     carBrand: "Toyota Prius",
@@ -241,7 +241,7 @@ const initialState = {
     
     age: 53,
     id: 12,
-    language: [2,0],
+    language: [0],
     drivingAge: 20, //как хранить?
     carImage: "pictures/driver1/drivers_car_image.png",
     carBrand: "Toyota Prius",
@@ -260,7 +260,7 @@ const initialState = {
     
     age: 53,
     id: 13,
-    language: [2,0],
+    language: [0],
     drivingAge: 20, //как хранить?
     carImage: "pictures/driver1/drivers_car_image.png",
     carBrand: "Toyota Prius",
@@ -279,7 +279,7 @@ const initialState = {
     
     age: 53,
     id: 14,
-    language: [2,0],
+    language: [0],
     drivingAge: 20, //как хранить?
     carImage: "pictures/driver1/drivers_car_image.png",
     carBrand: "Toyota Prius",
@@ -298,7 +298,7 @@ const initialState = {
     
     age: 53,
     id: 15,
-    language: [2,0],
+    language: [0],
     drivingAge: 20, //как хранить?
     carImage: "pictures/driver1/drivers_car_image.png",
     carBrand: "Toyota Prius",
@@ -317,7 +317,7 @@ const initialState = {
     
     age: 53,
     id: 16,
-    language: [2,0],
+    language: [0],
     drivingAge: 20, //как хранить?
     carImage: "pictures/driver1/drivers_car_image.png",
     carBrand: "Toyota Prius",
@@ -336,7 +336,7 @@ const initialState = {
     
     age: 53,
     id: 17,
-    language: [2,0],
+    language: [0],
     drivingAge: 20, //как хранить?
     carImage: "pictures/driver1/drivers_car_image.png",
     carBrand: "Toyota Prius",
@@ -355,7 +355,7 @@ const initialState = {
     
     age: 53,
     id: 18,
-    language: [2,0],
+    language: [0],
     drivingAge: 20, //как хранить?
     carImage: "pictures/driver1/drivers_car_image.png",
     carBrand: "Toyota Prius",
@@ -374,7 +374,7 @@ const initialState = {
     
     age: 53,
     id: 19,
-    language: [2,0],
+    language: [0],
     drivingAge: 20, //как хранить?
     carImage: "pictures/driver1/drivers_car_image.png",
     carBrand: "Toyota Prius",
@@ -393,7 +393,7 @@ const initialState = {
     
     age: 53,
     id: 20,
-    language: [2,0],
+    language: [0],
     drivingAge: 20, //как хранить?
     carImage: "pictures/driver1/drivers_car_image.png",
     carBrand: "Toyota Prius",
@@ -412,7 +412,7 @@ const initialState = {
     
     age: 53,
     id: 21,
-    language: [2,0],
+    language: [0],
     drivingAge: 20, //как хранить?
     carImage: "pictures/driver1/drivers_car_image.png",
     carBrand: "Toyota Prius",
@@ -431,7 +431,7 @@ const initialState = {
     
     age: 53,
     id: 22,
-    language: [2,0],
+    language: [0],
     drivingAge: 20, //как хранить?
     carImage: "pictures/driver1/drivers_car_image.png",
     carBrand: "Toyota Prius",
@@ -450,7 +450,7 @@ const initialState = {
     
     age: 53,
     id: 23,
-    language: [2,0],
+    language: [0],
     drivingAge: 20, //как хранить?
     carImage: "pictures/driver1/drivers_car_image.png",
     carBrand: "Toyota Prius",
@@ -469,7 +469,7 @@ const initialState = {
     
     age: 53,
     id: 24,
-    language: [2,0],
+    language: [0],
     drivingAge: 20, //как хранить?
     carImage: "pictures/driver1/drivers_car_image.png",
     carBrand: "Toyota Prius",
@@ -488,7 +488,7 @@ const initialState = {
     
     age: 53,
     id: 25,
-    language: [2,0],
+    language: [0],
     drivingAge: 20, //как хранить?
     carImage: "pictures/driver1/drivers_car_image.png",
     carBrand: "Toyota Prius",
@@ -507,7 +507,7 @@ const initialState = {
     
     age: 53,
     id: 26,
-    language: [2,0],
+    language: [0],
     drivingAge: 20, //как хранить?
     carImage: "pictures/driver1/drivers_car_image.png",
     carBrand: "Toyota Prius",
@@ -526,7 +526,7 @@ const initialState = {
     
     age: 53,
     id: 27,
-    language: [2,0],
+    language: [0],
     drivingAge: 20, //как хранить?
     carImage: "pictures/driver1/drivers_car_image.png",
     carBrand: "Toyota Prius",
@@ -545,7 +545,7 @@ const initialState = {
     
     age: 53,
     id: 28,
-    language: [2,0],
+    language: [0],
     drivingAge: 20, //как хранить?
     carImage: "pictures/driver1/drivers_car_image.png",
     carBrand: "Toyota Prius",
@@ -564,7 +564,7 @@ const initialState = {
     
     age: 53,
     id: 29,
-    language: [2,0],
+    language: [0],
     drivingAge: 20, //как хранить?
     carImage: "pictures/driver1/drivers_car_image.png",
     carBrand: "Toyota Prius",
@@ -583,7 +583,7 @@ const initialState = {
     
     age: 53,
     id: 30,
-    language: [2,0],
+    language: [0],
     drivingAge: 20, //как хранить?
     carImage: "pictures/driver1/drivers_car_image.png",
     carBrand: "Toyota Prius",
@@ -602,7 +602,7 @@ const initialState = {
     
     age: 53,
     id: 31,
-    language: [2,0],
+    language: [0],
     drivingAge: 20, //как хранить?
     carImage: "pictures/driver1/drivers_car_image.png",
     carBrand: "Toyota Prius",
@@ -621,7 +621,7 @@ const initialState = {
     
     age: 53,
     id: 32,
-    language: [2,0],
+    language: [0],
     drivingAge: 20, //как хранить?
     carImage: "pictures/driver1/drivers_car_image.png",
     carBrand: "Toyota Prius",
@@ -640,7 +640,7 @@ const initialState = {
     
     age: 53,
     id: 33,
-    language: [2,0],
+    language: [0],
     drivingAge: 20, //как хранить?
     carImage: "pictures/driver1/drivers_car_image.png",
     carBrand: "Toyota Prius",
@@ -659,7 +659,7 @@ const initialState = {
     
     age: 53,
     id: 34,
-    language: [2,0],
+    language: [0],
     drivingAge: 20, //как хранить?
     carImage: "pictures/driver1/drivers_car_image.png",
     carBrand: "Toyota Prius",
@@ -678,7 +678,7 @@ const initialState = {
     
     age: 53,
     id: 35,
-    language: [2,0],
+    language: [0],
     drivingAge: 20, //как хранить?
     carImage: "pictures/driver1/drivers_car_image.png",
     carBrand: "Toyota Prius",
@@ -697,7 +697,7 @@ const initialState = {
     
     age: 53,
     id: 36,
-    language: [2,0],
+    language: [0],
     drivingAge: 20, //как хранить?
     carImage: "pictures/driver1/drivers_car_image.png",
     carBrand: "Toyota Prius",
@@ -716,7 +716,7 @@ const initialState = {
     
     age: 53,
     id: 37,
-    language: [2,0],
+    language: [0],
     drivingAge: 20, //как хранить?
     carImage: "pictures/driver1/drivers_car_image.png",
     carBrand: "Toyota Prius",
@@ -735,7 +735,7 @@ const initialState = {
     
     age: 53,
     id: 38,
-    language: [2,0],
+    language: [0],
     drivingAge: 20, //как хранить?
     carImage: "pictures/driver1/drivers_car_image.png",
     carBrand: "Toyota Prius",

@@ -6,7 +6,20 @@ class Registration extends React.Component{
     constructor(props){
         super(props);
         let that = this;
-        ;
+        function getFarCookie(name){
+            var name_cook = name+"=";
+            var spl = window.opener.document.cookie.split(";");           
+            for(var i=0; i<spl.length; i++) {           
+                var c = spl[i];               
+                while(c.charAt(0) == " ") {               
+                    c = c.substring(1, c.length);                   
+                }               
+                if(c.indexOf(name_cook) == 0) {                   
+                    return c.substring(name_cook.length, c.length);                    
+                }               
+            }           
+            return null;
+        }
         function sendResult(type,data){
             //alert('send result');
             console.log('sendResult');
@@ -17,25 +30,25 @@ class Registration extends React.Component{
                 console.log("good");
                 console.log('jwt');
                 console.log(data.jwt);                
-                let jwtstring = "jwt="+data.jwt+"; expires="+date.toString();
-                let jwtstatus = "jwtstatus="+'correct'+"; expires="+date.toString();
+                let jwtstring = "jwt="+data.jwt+"; expires="+date.toString()+"; path=/;";
+                let jwtstatus = "jwtstatus="+'correct'+"; expires="+date.toString()+"; path=/;";
                 window.opener.localStorage.setItem('errorId', 0);
                 window.opener.document.cookie=jwtstring;
                 window.opener.document.cookie=jwtstatus;
-                let avatarString="avatarUrl="+requests.serverAddress+data.user.avatarUrl+"; expires="+date.toString();
-                let usernameString = "userName="+data.user.userName+"; expires="+date.toString();
-                let usertypeString = "userType="+data.user.userType+"; expires="+date.toString();
+                let avatarString="avatarUrl="+requests.serverAddress+data.user.avatarUrl+"; expires="+date.toString()+"; path=/;";
+                let usernameString = "userName="+data.user.userName+"; expires="+date.toString()+"; path=/;";
+                let usertypeString = "userType="+data.user.userType+"; expires="+date.toString()+"; path=/;";
                 window.opener.document.cookie=avatarString;
                 window.opener.document.cookie=usernameString;
                 window.opener.document.cookie=usertypeString;                           
             }
             else{
                 console.log("Failed");
-                let jwtstring = "jwt=-; expires="+date.toString();
+                let jwtstring = "jwt=-; expires="+date.toString()+"; path=/;";
                 console.log("error");
                 console.log(data);
                 console.log(data.error);
-                let jwtstatus = "jwtstatus="+data.error.message+"; expires="+date.toString();
+                let jwtstatus = "jwtstatus="+data.error.message+"; expires="+date.toString()+"; path=/;";
                 console.log('jwtstatus');
                 console.log(jwtstatus);
                 if(data.error){
@@ -118,6 +131,7 @@ class Registration extends React.Component{
         console.log(window.location.pathname);
         let type=window.opener.localStorage.getItem('type');
         let userType = Number.parseInt(window.opener.localStorage.getItem('userType'));
+        let partner = getFarCookie('partner');
         if(window.location.pathname==="/registration/facebook"){
            // alert('token');
             //console.log('token');
@@ -129,7 +143,7 @@ class Registration extends React.Component{
                     axios.get('https://graph.facebook.com/me?fields=id,name,first_name,last_name,email&access_token='+token)
                     .then(response => {
                   //  console.log("get answer from facebook");
-                                                                        
+                            
                             let password = generatePassword(10);
                             let body = JSON.stringify({
                                 username: response.data.email,
@@ -138,7 +152,8 @@ class Registration extends React.Component{
                                 isCustomer: userType===1 ? true : false,
                                 isDriver: userType===2 ? true : false,                         
                                 isAgency: userType===3 ? true : false,
-                                provider: 'facebook'
+                                provider: 'facebook',
+                                partner: partner ? partner : ''
                                 });
                             console.log()
                             this.state.socialWebRegistrationRequest(body);
@@ -149,12 +164,19 @@ class Registration extends React.Component{
                 }
                 if(type==="Authorization"){
                     console.log("Try to authorizate facebook");
+                    let password = generatePassword(10);
                     axios.get('https://graph.facebook.com/me?fields=id,name,first_name,last_name,email&access_token='+token)
                     .then(response => {
                         let body = JSON.stringify({
                             token: token,
                             provider: 'facebook',
-                            email: response.data.email
+                            password: password,
+                            username: response.data.email,
+                            email: response.data.email,
+                            isCustomer: false,
+                            isDriver: false,                         
+                            isAgency: false,
+                            partner: partner ? partner : ''
                         });
                         this.state.socialWebAuthorizationRequest(body);
                     })
@@ -178,7 +200,8 @@ class Registration extends React.Component{
                             isCustomer: userType===1 ? true : false,
                             isDriver: userType===2 ? true : false,                         
                             isAgency: userType===3 ? true : false,
-                            provider: 'google'
+                            provider: 'google',
+                            partner: partner ? partner : ''
                         });
                         this.state.socialWebRegistrationRequest(body);
                     })
@@ -187,14 +210,21 @@ class Registration extends React.Component{
                     });
                 }
                 if(type==="Authorization"){
+                    let password = generatePassword(10);
                     axios.get('https://www.googleapis.com/oauth2/v2/userinfo?access_token='+token+'&id_token='+id_token)
                     .then(response => {
                         console.log("Try to authorizate google");
                         let body = JSON.stringify({
                             token: token,
                             id_token: id_token,
+                            username: response.data.email,
+                            password: password,
                             email: response.data.email,
-                            provider: 'google'
+                            provider: 'google',
+                            sCustomer: false,
+                            isDriver: false,                         
+                            isAgency: false,
+                            partner: partner ? partner : ''
                         });
                         this.state.socialWebAuthorizationRequest(body);
                     })

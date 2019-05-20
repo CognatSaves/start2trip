@@ -13,6 +13,9 @@ import RefreshIndicator from 'material-ui/RefreshIndicator';
 import { setProfileData } from "../../redusers/ActionDriverProfileRegistration"
 import getUserData from './DriverProfileRequest';
 import DriverRefreshIndicator from './DriverRefreshIndicator';
+import { readAndCompressImage } from 'browser-image-resizer';
+const jic = require('j-i-c');
+const resizeImg = require('resize-img');
 class DriverProfileCarClass extends React.Component {
     constructor(props) {
         super(props);
@@ -91,7 +94,7 @@ class DriverProfileCarClass extends React.Component {
     applyChanges(type){
         let jwt = this.props.globalReduser.readCookie('jwt');   
         
-        //debugger;   
+           
         if(jwt && jwt!=="-"){
             let that = this; 
             this.startRefresher();
@@ -137,7 +140,7 @@ class DriverProfileCarClass extends React.Component {
 
             }
             request.onreadystatechange = function(){
-                //debugger;
+                
                 
                 if(request.readyState === XMLHttpRequest.DONE && request.status === 200){                  
                     console.log(request.responseText);
@@ -241,20 +244,26 @@ class DriverProfileCarClass extends React.Component {
             let file = fullfile[i]
 
             if (!file.type.match('image')) continue;
-
-            let reader = new FileReader();
-            reader.onloadend = () => {
-                var img = reader.result;
-                let imgFiles = this.state.imgFiles;
-                imgFiles.push(file);
-                this.setState({
-                    file: file,
-                    imagePreviewUrl: img,
-                    imgFiles: imgFiles
-                });
-                this.setState(state => { const carImg = this.state.carImg.push(img); return carImg });
-            }
-            reader.readAsDataURL(file)
+            readAndCompressImage(file, /*config*/this.props.globalReduser.compressConfig)
+            .then(resizedImage => {
+            let sizFile = new File([resizedImage], file.name);
+            return sizFile;
+            })
+            .then(sizFile => {
+                let reader = new FileReader();
+                reader.onloadend = () => {
+                    var img = reader.result;
+                    let imgFiles = this.state.imgFiles;
+                    imgFiles.push(sizFile);                        
+                    this.setState({
+                        file: sizFile,
+                        imagePreviewUrl: img,
+                        imgFiles: imgFiles
+                    });
+                    this.setState(state => { const carImg = this.state.carImg.push(img); return carImg });   
+                }
+                reader.readAsDataURL(sizFile)
+            });        
         }
     }
 
@@ -551,7 +560,7 @@ class DriverProfileCarClass extends React.Component {
 const DriverProfileCar = connect(
     (state) => ({
         storeState: state.AppReduser,
-        profileReduser: state.DriverProfileRegistrationtReduser,
+        profileReduser: state.DriverProfileRegistrationReduser,
         globalReduser: state.GlobalReduser
     }),
 )(DriverProfileCarClass);

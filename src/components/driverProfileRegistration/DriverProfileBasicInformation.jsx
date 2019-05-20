@@ -160,6 +160,9 @@ class DriverProfileBasicInformationClass extends React.Component {
                     that.catchFunc();
                 });
         }
+        else{            
+            this.props.globalReduser.history.push('/login');            
+        }
     }
     inputChange(value, variable) {
         let profileData = this.state.profileData;
@@ -388,7 +391,7 @@ class DriverProfileBasicInformationClass extends React.Component {
 const DriverProfileBasicInformation = connect(
     (state) => ({
         storeState: state.AppReduser,
-        profileReduser: state.DriverProfileRegistrationtReduser,
+        profileReduser: state.DriverProfileRegistrationReduser,
         globalReduser: state.GlobalReduser,
     }),
 )(DriverProfileBasicInformationClass);

@@ -34,6 +34,17 @@ const MODAL_COUNTRY = 'MODAL_COUNTRY';
 
 const SET_USER = 'SET_USER';
 
+const SET_LOCALS = 'SET_LOCALS';
+
+const setLocals = function(languages, currencies){
+  
+  return{
+    type: 'SET_LOCALS',
+    languages: languages,
+    currencies: currencies
+  }
+}
+
 const setUser = function(userName, avatarUrl){
   return{
     type: 'SET_USER',
@@ -186,5 +197,6 @@ export {
   languageMenuIsVisibal, LANGUAGE_MENU_IS_VISIBAL,
   autoMenuCall, AUTO_MENU_CALL,
   modalCountryDispacth, MODAL_COUNTRY,
-  setUser,SET_USER
+  setUser,SET_USER,
+  setLocals,SET_LOCALS
 }

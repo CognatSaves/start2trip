@@ -13,35 +13,19 @@ import wifiIcon from '../components/driverProfileRegistration/img/wifi.svg'
 
 import {
   SET_STATE, SET_CITIES, SET_AUTO, SET_PAGES, SET_PAGES_VISIBLE, SET_SORT_MENU, SET_SORT_MENU_VISIBLE, SET_MAX_PRICE, LANGUAGE_VALUE_CHOOSE, LANGUAGE_MENU_IS_VISIBAL,
-  SET_TEMP_PRICE_PART, SET_PRICE_PART, CHANGE_PERSONS_NUMBER, PEOPLE_MENU_CALL, CHANGE_PERSONS_NUMBER_OLD, AUTO_MENU_CALL, MODAL_COUNTRY,SET_USER
+  SET_TEMP_PRICE_PART, SET_PRICE_PART, CHANGE_PERSONS_NUMBER, PEOPLE_MENU_CALL, CHANGE_PERSONS_NUMBER_OLD, AUTO_MENU_CALL, MODAL_COUNTRY,SET_USER,SET_LOCALS
 } from './Action';
 
 
 const initialState = {
-  cities: ["Тбилиси", "Минск"],
+  cities: [],
   date: "",
   autoVariants: ["Седан", "Внедорожник", "Минивен", "Микроавтобус"],
   autoIcon: sedan,
   autoValue: "Тип авто",
   autoMenu: false,
-  languages: [
-    {
-      languageName: "Русский",
-      icon: ruFlag,
-    },
-    {
-      languageName: "Английский",
-      icon: enFlag,
-    },
-    {
-      languageName: "Грузинский",
-      icon: geoFlag,
-    },
-    {
-      languageName: "Испанский",
-      icon: espFlag,
-    },
-  ],
+  languages: [],
+  currencies: [],
   comfort: [
     { icon: seatIcon, title: "Кожаный салон" },
     { icon: snowflakeIcon, title: "Климат контроль" },
@@ -244,6 +228,13 @@ export const AppReduser = (state = initialState, action) => {
       return newState;
     }
 
+    case SET_LOCALS:{
+      
+      let newState = {...state};
+      newState.languages = [...action.languages];
+      newState.currencies = [...action.currencies];
+      return newState;
+    } 
 
 
     default: return state;

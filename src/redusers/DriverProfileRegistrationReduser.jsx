@@ -3,14 +3,11 @@ import {WHICH_PAGE_RENDER,SET_PROFILE_DATA,SET_REFRESH_STATE} from './ActionDriv
 const initialState = {
     pageRender: "0",
     carCards:[],
-    profile: {},
-    isRefreshExist: false,
-    isRefreshing: true,
-    isGoodAnswer: true   
+    profile: {}  
 };
 
 
-export const DriverProfileRegistrationtReduser = (state = initialState, action) => {
+export const DriverProfileRegistrationReduser = (state = initialState, action) => {
     switch (action.type){
         case WHICH_PAGE_RENDER:{
             let newState = { ...state };

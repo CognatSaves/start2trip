@@ -12,7 +12,11 @@ import axios from 'axios';
 import requests from '../../config.js';
 import ReactDOM from 'react-dom';
 import pageTextInfo from '../../textInfo/RenderModalRegistration';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 const windowProps = "width=420,height=400,resizable=yes,scrollbars=yes,status=yes";
+
 class RenderModalRegistrationClass extends React.Component {
     constructor(props) {
         super(props);
@@ -57,33 +61,29 @@ class RenderModalRegistrationClass extends React.Component {
         function sendResultLocal(type,data){
             console.log('sendResult');
             let date = new Date(Date.now()+1000*3600*24*60); 
-            if(type){                
-                let jwtstring = "jwt="+data.jwt+"; expires="+date.toString();
-                let jwtstatus = "jwtstatus=correct; expires="+date.toString();
-                document.cookie=jwtstring;
-                document.cookie=jwtstatus;
+            if(type){
+                cookies.set("jwt", data.jwt,{path: '/',expires: date});
+                cookies.set("jwtstatus","correct",{path: '/',expires: date});                
+                
                 window.localStorage.setItem('errorId',0);
-                let avatarString="avatarUrl="+requests.serverAddress+data.user.avatarUrl+"; expires="+date.toString();
-                let usernameString = "userName="+data.user.userName+"; expires="+date.toString();
-                let usertypeString = "userType="+data.user.userType+"; expires="+date.toString();
-                document.cookie=avatarString;
-                document.cookie=usernameString;
-                document.cookie=usertypeString;
+
+                cookies.set("avatarUrl", requests.serverAddress+data.user.avatarUrl, {path: '/',expires: date});
+                cookies.set("userName",data.user.userName,{path: '/',expires: date});
+                cookies.set("userType",data.user.userType,{path: '/',expires: date})
                 setAnswerResult('good',{jwt: data.jwt});  
             }
             else{
                 console.log("Не смогли!");
                 console.log('error message');
                 console.log(data.error);
-                let jwtstring = "jwt=-; expires="+date.toString();
-                let jwtstatus = "jwtstatus="+data.error+"; expires="+date.toString();
+                cookies.set("jwt", "-",{path: '/',expires: date});
+                cookies.set("jwtstatus",data.error,{path: '/',expires: date});
+
                 if(data.error){
                     if(data.error.errorId){
                         window.localStorage.setItem('errorId', data.error.errorId);
                     }
                 } 
-                document.cookie=jwtstring;
-                document.cookie=jwtstatus;
                 let status=that.props.globalReduser.readCookie("jwtstatus");
                 setAnswerResult('bad',{jwtstatus:status});
             }
@@ -94,6 +94,7 @@ class RenderModalRegistrationClass extends React.Component {
         }
         function socialWebRegistrationRequest(body){
             console.log("registration");
+            
             fetch(requests.serverRegistrationRequest, {method: 'POST',body:body,
                 headers:{'content-type': 'application/json'}})
                 .then(response => {
@@ -256,7 +257,11 @@ class RenderModalRegistrationClass extends React.Component {
         })
     }
     sendRegistrationRequest(type){
+        
+        let partner = cookies.get('partner');
+
         if(!type){//в случае регистрации
+            
             this.setState({
                 regAnswerStatus: false,
                 regProcessStatus:true
@@ -272,6 +277,7 @@ class RenderModalRegistrationClass extends React.Component {
                 isDriver: this.state.userType===2 ? true : false,                         
                 isAgency: this.state.userType===3 ? true : false,
                 provider: 'local',
+                partner: partner
                 });
             console.log(body);
             this.state.socialWebRegistrationRequest(body);
@@ -291,10 +297,8 @@ class RenderModalRegistrationClass extends React.Component {
     }
     render() {
         function sendRequestFunc(that,address){
-            let jwtstring = "jwt=-; expires=Thu, 01 Jan 1970 00:00:01 GMT";
-            let jwtstatus = "jwtstatus=correct; expires=Thu, 01 Jan 1970 00:00:01 GMT";
-            document.cookie=jwtstring;
-            document.cookie=jwtstatus;
+            cookies.set("jwt", "-",{path: '/',expires: new Date(0)});
+            cookies.set("jwtstatus","correct",{path: '/',expires: new Date(0)}); 
             that.setState({
                 cookie: document.cookie
             });
