@@ -14,7 +14,7 @@ import feedbackBG from './img/illustrations_otzivi.svg'
 import preHistoryBG from './img/illustrations_predstoishie.svg'
 import { readAndCompressImage } from 'browser-image-resizer';
 import requests from '../../config';
-import { setProfileData } from "../../redusers/ActionDriverProfileRegistration"
+import { setProfileData } from "../../redusers/ActionGlobal"
 import getUserData from './DriverProfileRequest';
 import DriverRefreshIndicator from './DriverRefreshIndicator';
 import { setUser } from '../../redusers/Action';
@@ -26,7 +26,7 @@ class DriverProfileNavigationClass extends React.Component {
         this.state = {
             navigationText: ["Мои поездки", "Профиль", "Автомобиль", "Настройки поездок", "Туры", "Отзывы", "Настройки", "Биллинг", "Партнерская программа",],
             //avatar: "",
-            profile: this.props.storeState.profile,
+            profile: this.props.globalReduser.profile,
             route: [
                 "/account/driver/trips",
                 "/account/driver/profile",

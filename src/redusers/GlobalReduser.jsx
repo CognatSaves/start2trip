@@ -1,4 +1,4 @@
-import {WHICH_PAGE_RENDER_HISTORY} from './ActionGlobal';
+import {WHICH_PAGE_RENDER_HISTORY,SET_PROFILE_DATA} from './ActionGlobal';
 
 const initialState = {
     history: "",
@@ -23,6 +23,7 @@ const initialState = {
         autoRotate: true,
         debug: true
     },
+    profile: {}
 };
 
 
@@ -32,6 +33,11 @@ export const GlobalReduser = (state = initialState, action) => {
             let newState = { ...state };
             newState.history = action.history;
             return newState;
+        }
+        case SET_PROFILE_DATA:{
+            let newStatePD = { ...state };
+            newStatePD.profile = action.profile;
+            return newStatePD;
         }  
     default: return state;
     }

@@ -1,37 +1,41 @@
 .drivers_properties_sortMenu {
-    position: absolute;
-    top: 33px;
-    right: 0px;
-    background-color: #ffffff;
-    border-radius: 3px;
-    box-shadow: 0 0 1px 1px rgb(236, 236, 236);
-    z-index: 4;
+    position: relative;
+    display: flex;
+    flex-direction: row;
 }
 
 .sortMenu_element {
-    position: relative;
-    height: 28px;
-    width: 155px;
-    background-color: transparent;
-}
-
-.sortMenu_element :hover {
+    cursor: pointer;
+    margin: 0 10px;
+    padding: 0 2px;
+    display: flex;
     transition: all 0.3s;
-    background-color: #d8e7f4;
 }
 
-.sortMenu_element_text {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-}
-
-.sortMenu_element_text_value {
-    position: absolute;
-    height: 100%;
-    line-height: 28px;
-    left: 10px;
-    text-align: left;
+.sortMenu_element span {
+    color: #304269;
+    font-size: 14px;
     font-weight: 400;
-    font-size: 9pt;
+    line-height: 41px;
+    transition: all 0.3s;
+    min-height: 30px;
+}
+
+.sortMenu_element_active span {
+    color: #f60;
+}
+
+.sortMenu_element_icon {
+    display: none;
+    width: 15px;
+    height: 40px;
+    margin-left: 2px;
+    background-size: contain !important;
+    background-position: center center !important;
+    border-bottom: none !important;
+}
+
+.sortMenu_element_active {
+    display: flex;
+    border-bottom: 2px solid #f60;
 }

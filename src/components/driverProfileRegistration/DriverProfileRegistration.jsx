@@ -13,39 +13,17 @@ import DriverProfileHistory from './DriverProfileHistory'
 import DriverProfileBilling from './DriverProfileBilling'
 import DriverProfileAffiliateProgram from './DriverProfileAffiliateProgram'
 import {Route} from 'react-router-dom';
-import DriverRefreshIndicator from './DriverRefreshIndicator';
-import requests from '../../config';
-import axios from 'axios';
 
-import { setProfileData } from "../../redusers/ActionDriverProfileRegistration"
-
-import people1 from './img/001372a9a88e12c88b532a.jpg'
-import people2 from './img/person.jpg'
-import people3 from './img/mina.jpg'
-import people4 from './img/gruzinskaja-kuhnja.jpg'
-import getUserData from './DriverProfileRequest';
 class DriverProfileRegistrationClass extends React.Component {
   constructor(props) {
     super(props);
-    /*const that = this;
-    let requestValues = {
-      readCookie: that.props.globalReduser.readCookie,
-      setProfileData: function(data){
-        that.props.dispatch(setProfileData(data))
-      },
-      requestAddress: requests.profileRequest
-    }
-    getUserData(requestValues);
-    this.state = {
-      photo:[people1,people2,people3,people4,people2]
-    }*/
   }
   render() {
     console.log('DriverProfileRegistration');
     
     //let profile = this.props.storeState.profile;
     let userType = this.props.globalReduser.readCookie('userType');
-    if(this.props.storeState.profile.isDriver){
+    if(this.props.globalReduser.profile.isDriver){
       return(
         <React.Fragment>
         <Header driver={true} history={this.props.history} />

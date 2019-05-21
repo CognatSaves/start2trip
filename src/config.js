@@ -19,6 +19,9 @@ const userTourDestroyRequest = serverAddress + '/tours/me';//запрос для
 const userTourUpdateRequest = serverAddress + '/tours/me';//запрос для админки
 const userTourActivateRequest = serverAddress + '/tours/me/activate';//запрос для админки
 const getLocals = serverAddress + "/getLocals";//первичный запрос массивов языков и валют
+
+const forgotPassword = serverAddress + "/auth/forgotPassword";
+const resetPassword = serverAddress + "/auth/reset-password";
 export default {frontendAddress:frontendAddress,serverAddress: serverAddress, serverRegistrationRequest: serverRegistrationRequest, facebookRequest: facebookRequest,
      googleRequest: googleRequest, serverAuthorizationRequest: serverAuthorizationRequest, meRequest: meRequest, 
      profileRequest:profileRequest, profileUpdateRequest: profileUpdateRequest, travelsettingsUpdateRequest: travelsettingsUpdateRequest,
@@ -26,4 +29,5 @@ export default {frontendAddress:frontendAddress,serverAddress: serverAddress, se
      userCarUpdateRequest: userCarUpdateRequest, userCarActivateRequest:userCarActivateRequest,
      userAvatarChangeRequest:userAvatarChangeRequest, userTourCreateRequest:userTourCreateRequest,
      userTourDestroyRequest:userTourDestroyRequest, userTourUpdateRequest: userTourUpdateRequest,
-     userTourActivateRequest:userTourActivateRequest, getLocals:getLocals};
+     userTourActivateRequest:userTourActivateRequest, getLocals:getLocals,forgotPassword:forgotPassword,
+     resetPassword:resetPassword};

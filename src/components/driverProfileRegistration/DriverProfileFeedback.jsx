@@ -8,7 +8,7 @@ import requests from '../../config';
 class DriverProfileFeedbackClass extends React.Component{
     constructor(props){
         super(props);
-        let profile = this.props.profileReduser.profile;
+        let profile = this.props.globalReduser.profile;
         this.state={
             comments: profile.comments
         }
@@ -58,6 +58,7 @@ const DriverProfileFeedback = connect(
     (state) =>({
       commentState: state.CommentReduser,
       profileReduser: state.DriverProfileRegistrationReduser,
+      globalReduser: state.GlobalReduser
     }),
 
   )(DriverProfileFeedbackClass);

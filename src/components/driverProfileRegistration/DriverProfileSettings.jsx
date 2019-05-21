@@ -5,7 +5,7 @@ import TextField from 'material-ui/TextField';
 import flags from './img/flags.png'
 import ReactTelInput from 'react-telephone-input'
 import requests from '../../config';
-import { setProfileData } from "../../redusers/ActionDriverProfileRegistration"
+import { setProfileData } from "../../redusers/ActionGlobal"
 import getUserData from './DriverProfileRequest';
 import RefreshIndicator from 'material-ui/RefreshIndicator';
 import DriverRefreshIndicator from './DriverRefreshIndicator';
@@ -14,7 +14,7 @@ import DriverRefreshIndicator from './DriverRefreshIndicator';
 class DriverProfileSettingsClass extends React.Component {
     constructor(props) {
         super(props);
-        let profile = this.props.profileReduser.profile;
+        let profile = this.props.globalReduser.profile;
         this.state = {
             thisPasswordType: true,
             newPasswordType: true,
@@ -60,7 +60,7 @@ class DriverProfileSettingsClass extends React.Component {
     }  
     thenFunc(){
         console.log('thenFunc');
-        console.log(this.props.profileReduser);
+        console.log(this.props.globalReduser);
         this.setState({
             isRefreshExist: true,
             isRefreshing: false,

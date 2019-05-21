@@ -97,10 +97,10 @@ class DriversRouteClass extends React.Component {
       return (
         <div className="drivers_route col-12 d-flex flex-column">
           <div className="route_date d-flex ">
-            <div className="route_date_text">дата отправления: {this.props.storeState.date}</div>
+            <div className="route_date_text">дата отправления:11.12.2018 {this.props.storeState.date}</div>
             <div className="d-flex " onClick={() => this.props.dispatch(setDriversRouteChange(!this.props.driversState.driversRouteChange))}>
-              <div className="route_change_text">Изменить маршрут</div>
-              <div className="route_change_emblem" />
+              <span className="route_change_text  d-sm-block d-none">Изменить маршрут</span>
+              <span className="route_change_text  d-sm-none d-block" />
             </div>
           </div>
           <div className="route_show d-flex">
@@ -112,8 +112,8 @@ class DriversRouteClass extends React.Component {
 
             )}
           </div>
-          <div className="route_bottomBlock d-flex">
-            <div className="route_comment">*Возврат в точку отправления в этот же день <span>бесплатно</span></div>
+          <div className="route_bottomBlock d-flex justify-content-md-between justify-content-sm-end justify-content-end ">
+            <div className="route_comment d-md-block d-sm-none d-none">*Возврат в точку отправления в этот же день <span>бесплатно</span></div>
             <div className="route_time_text">Время в пути без остановок:
                 <p1>{this.props.driversState.travelTime}</p1><p2>{this.props.driversState.travelLength}</p2>
             </div>
@@ -130,11 +130,10 @@ class DriversRouteClass extends React.Component {
           <div className="route_date d-flex justify-content-end ">
             {/* <div className="route_date_text">Ваш индивидуальный маршрут на: {this.props.storeState.date}</div> */}
             <div className="d-flex " onClick={() => this.props.dispatch(setDriversRouteChange(!this.props.driversState.driversRouteChange))}>
-              <div className="route_change_text">Изменить маршрут</div>
-              <div className="route_change_emblem" />
+              <span className="route_change_text">Изменить маршрут</span>
             </div>
           </div>
-          <div className="route_show d-flex ">
+          <div className="route_show d-flex  justify-content-md-start justify-content-sm-center justify-content-center ">
             {this.state.cities.map((element, index) =>
               <React.Fragment>
                 <div className="route_show_element" key={element + "/" + index}>
@@ -146,25 +145,20 @@ class DriversRouteClass extends React.Component {
                 </div>
               </React.Fragment>
             )}
+            <span className="route_add_city" onClick={() => this.addCity()} > Добавить пункт назначения</span>
           </div>
           <div className="route_show route_show_bottom d-flex " style={{ width: "100%" }}>
             <div className="route_bottomBlock d-flex flex-column">
-              <div className="route_add_city" onClick={() => this.addCity()}>
-                <div className="route_add_city_imageBlock" />
-                <div className="route_add_city_text">
-                  Добавить пункт назначения
-                  </div>
-              </div>
-              <div className="d-flex justify-content-between col-12">
-                <div>
+              <div className="d-flex col-12 justify-content-md-between justify-content-sm-center justify-content-center align-items-center">
+                <div className="d-md-flex d-sm-none d-none flex-column">
                   <div className="route_time_text">Время в пути без остановок:
                   <p1>{this.props.driversState.travelTime}</p1><p2>{this.props.driversState.travelLength}</p2>
                   </div>
                   <div className="route_comment">*Возврат в точку отправления в этот же день <span>бесплатно</span></div>
                 </div>
 
-                <div className="route_secondBottomBlock">
-                  <DatePicker floatingLabelText="Дата отправления" className="calendarModal" />
+                <div className="route_secondBottomBlock flex-sm-row flex-column">
+                  <DatePicker floatingLabelText="Дата отправления" className="calendarModalSearch" />
                   {/* <div className="route_secondBottomBlock_date route_secondBottomBlock_elementStyle">
                     <div className="secondBottomBlock_calendarBlock">
                       <div style={{ visibility: this.state.calendaryVisibility }}>

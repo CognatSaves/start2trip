@@ -42,14 +42,14 @@ class DriverProfileAffiliateProgramClass extends React.Component {
                                 Ссылка на регистрацию
                             </div>
                             <div className="d-flex flex-row">
-                                <input placeholder="Ссылка 1" style={{width: '400px'}} value={requests.frontendAddress+'/register/'+this.props.profileReduser.profile._id}/>
+                                <input placeholder="Ссылка 1" style={{width: '400px'}} value={requests.frontendAddress+'/register/'+this.props.globalReduser.profile._id}/>
                                 <div style={{background: 'url('+copy+') no-repeat center', backgroundSize: '40px 40px', width: '40px'}}/>
                             </div>
                             <div>
                                 Ссылка на главную
                             </div>
                             <div className="d-flex flex-row">
-                                <input placeholder="Ссылка 1" style={{width: '400px'}} value={requests.frontendAddress+'/start/'+this.props.profileReduser.profile._id}/>
+                                <input placeholder="Ссылка 1" style={{width: '400px'}} value={requests.frontendAddress+'/start/'+this.props.globalReduser.profile._id}/>
                                 <div style={{background: 'url('+copy+') no-repeat center', backgroundSize: '40px 40px', width: '40px'}}/>
                             </div>
                         </div>                   
@@ -131,6 +131,7 @@ const DriverProfileAffiliateProgram = connect(
     (state) => ({
         storeState: state.AppReduser,
         profileReduser: state.DriverProfileRegistrationReduser,
+        globalReduser: state.GlobalReduser
     }),
 )(DriverProfileAffiliateProgramClass);
 

@@ -19,7 +19,7 @@ import InfiniteCalendar, {
 import 'react-infinite-calendar/styles.css'; // only needs to be imported once
 import requests from '../../config';
 import RefreshIndicator from 'material-ui/RefreshIndicator';
-import { setProfileData } from "../../redusers/ActionDriverProfileRegistration"
+import { setProfileData } from "../../redusers/ActionGlobal"
 import getUserData from './DriverProfileRequest';
 import DriverRefreshIndicator from './DriverRefreshIndicator';
 import { readAndCompressImage } from 'browser-image-resizer';
@@ -28,7 +28,7 @@ import { readAndCompressImage } from 'browser-image-resizer';
 class DriverProfileTripSettingsTourClass extends React.Component {
     constructor(props) {
         super(props);
-        let profile = this.props.profileReduser.profile;
+        let profile = this.props.globalReduser.profile;
         let local = [];
         for(let i=0;i<profile.allLanguages.length;i++){
             local[i] = {
@@ -156,7 +156,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
     }   
     thenFunc(){
         console.log('thenFunc');
-        console.log(this.props.profileReduser);
+        console.log(this.props.globalReduser);
         this.setState({
             isRefreshExist: true,
             isRefreshing: false,
@@ -183,7 +183,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
         }, 2000);
     }
     fillForm(element){
-        let profile = this.props.profileReduser.profile;
+        let profile = this.props.globalReduser.profile;
         if(!element){           
             let local = [];
             for(let i=0;i<profile.allLanguages.length;i++){
@@ -1009,7 +1009,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                 </div>
                             </div>
                         </div>
-                        {this.props.profileReduser.profile.tours.map((element, index) =>
+                        {this.props.globalReduser.profile.tours.map((element, index) =>
                             <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-11 p-2">
                                 <div className="filledCard d-flex flex-column p-0">
                                     <div className="filledCardInformation d-flex flex-column">

@@ -10,7 +10,7 @@ import TextField from 'material-ui/TextField'
 import config from '../../config';
 import requests from '../../config';
 import RefreshIndicator from 'material-ui/RefreshIndicator';
-import { setProfileData } from "../../redusers/ActionDriverProfileRegistration"
+import { setProfileData } from "../../redusers/ActionGlobal"
 import getUserData from './DriverProfileRequest';
 import DriverRefreshIndicator from './DriverRefreshIndicator';
 import { readAndCompressImage } from 'browser-image-resizer';
@@ -19,7 +19,7 @@ const resizeImg = require('resize-img');
 class DriverProfileCarClass extends React.Component {
     constructor(props) {
         super(props);
-        let profile = this.props.profileReduser.profile;
+        let profile = this.props.globalReduser.profile;
         console.log('DriverProfileCarClass constructor');
         this.state = {
             comfort: [false,false,false,false],
@@ -302,11 +302,11 @@ class DriverProfileCarClass extends React.Component {
         if (imagePreviewUrl) {
             $imagePreview = (<img src={imagePreviewUrl} className="carAddNewCarPhotoCarImg" alt="add_car" />);
         }
-        let cars = this.props.profileReduser.profile.cars;
+        let cars = this.props.globalReduser.profile.cars;
         console.log("DriverProfileCar render");
         console.log(this.state.isRefreshExist);
         //выдаёт значения строго на русском - впоследствие будет переделана
-        let carTypes = findCarTypeNames(cars, this.props.profileReduser.profile.carTypes);
+        let carTypes = findCarTypeNames(cars, this.props.globalReduser.profile.carTypes);
         return (
             <div className="_ThisTagIsNeeded">
             <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer}/>
@@ -411,7 +411,7 @@ class DriverProfileCarClass extends React.Component {
                                     name="typeCar"
                                 >
                                 {
-                                    this.props.profileReduser.profile.carTypes.map((element,index)=>
+                                    this.props.globalReduser.profile.carTypes.map((element,index)=>
                                         <MenuItem value={element.id} primaryText={element.name_ru} />
                                     )
                                 }
@@ -432,7 +432,7 @@ class DriverProfileCarClass extends React.Component {
                                     name="carClass"
                                 >
                                 {
-                                    this.props.profileReduser.profile.carClasses.map((element,index)=>
+                                    this.props.globalReduser.profile.carClasses.map((element,index)=>
                                         <MenuItem value={element.id} primaryText={element.class_ru} />
                                     )
                                 }
@@ -452,7 +452,7 @@ class DriverProfileCarClass extends React.Component {
                                     name="typeFuel"
                                 >
                                 {
-                                    this.props.profileReduser.profile.fuelTypes.map((element,index)=>
+                                    this.props.globalReduser.profile.fuelTypes.map((element,index)=>
                                         <MenuItem value={element.id} primaryText={element.name_ru} />
                                     )
                                 }

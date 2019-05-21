@@ -370,7 +370,7 @@ class RenderModalRegistrationClass extends React.Component {
                                     <img className="eyeIcon" src={eyeIcon} alt="eyeIcon" width='15px' height='15px' />
                                 </div>
                                 <div className="registrationAnswerText" style={{visibility: regAnswerVisibility ? 'visible' : 'hidden', color: regAnswerColor ? 'red' : 'green'}}>{regAnswerValue}</div>
-                                <Link className="forgotPasswordLink" style={{ display: this.state.sitingIn ? "block" : "none" }} to="">{pageTextInfo.sitingInLightBackgroundText.linkText[lang]}</Link>
+                                <Link className="forgotPasswordLink" style={{ display: this.state.sitingIn ? "block" : "none" }} to="/forgot-password">{pageTextInfo.sitingInLightBackgroundText.linkText[lang]}</Link>
                                 <div className="d-flex justify-content-center align-items-end">
                                     <div className="returnButton pr-5" style={{display: !this.state.sitingIn ? 'block' : 'none'}} onClick={()=>this.setState({regWindowType: 0})}>{pageTextInfo.registrationUserType.buttonReturn[lang]}</div>
                                     <button disabled={this.state.regProcessStatus || this.state.regAnswerStatus} type="submit" htmlFor="regForm">{this.state.sitingIn ? pageTextInfo.sitingInLightBackgroundText.buttonText[lang] : pageTextInfo.registrationDarkBackgroundText.buttonText[lang]}</button>

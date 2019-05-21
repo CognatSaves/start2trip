@@ -12,7 +12,7 @@ import InfiniteCalendar, {
     defaultMultipleDateInterpolation,
     withMultipleDates,
 } from 'react-infinite-calendar';
-import { setProfileData } from "../../redusers/ActionDriverProfileRegistration"
+import { setProfileData } from "../../redusers/ActionGlobal"
 import getUserData from './DriverProfileRequest';
 import requests from '../../config';
 import RefreshIndicator from 'material-ui/RefreshIndicator';
@@ -22,7 +22,7 @@ import DriverRefreshIndicator from './DriverRefreshIndicator';
 class DriverProfileTripSettingsTripClass extends React.Component {
     constructor(props) {
         super(props);
-        let travelsetting = this.props.profileReduser.profile.travelsetting;
+        let travelsetting = this.props.globalReduser.profile.travelsetting;
         let dateTour = [];
         if (travelsetting.calendary) {
             for (let i = 0; i < travelsetting.calendary.length; i++) {
@@ -77,7 +77,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
     }   
     thenFunc(){
         console.log('thenFunc');
-        console.log(this.props.profileReduser);
+        console.log(this.props.globalReduser);
         this.setState({
             isRefreshExist: true,
             isRefreshing: false,

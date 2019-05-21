@@ -23,7 +23,7 @@ import MenuItem from 'material-ui/MenuItem';
 import arrowDownIcon from './pictures/down-arrow.svg'
 import { whichPageRender } from "../../redusers/ActionDriverProfileRegistration"
 import { whichPageRenderHistory } from "../../redusers/ActionGlobal"
-import { setProfileData } from "../../redusers/ActionDriverProfileRegistration"
+import { setProfileData } from "../../redusers/ActionGlobal"
 import getUserData from '../driverProfileRegistration/DriverProfileRequest';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 import Cookies from 'universal-cookie';
@@ -446,9 +446,10 @@ class HeaderClass extends React.Component {
   accountRedirect(address, number){
     
     function thenFunc(that, address, number){
+      debugger;
       console.log(that);
       console.log(address);
-      let profile = that.props.DriverProfileRegistrationReduser.profile;
+      let profile = that.props.globalReduser.profile;
       let fullAddress = '/account';
       if(profile.isDriver || profile.isCustomer || profile.isAgency){
         if(profile.isDriver){

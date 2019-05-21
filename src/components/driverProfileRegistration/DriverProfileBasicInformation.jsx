@@ -11,7 +11,7 @@ import Chip from 'material-ui/Chip';
 import flags from './img/flags.png'
 import ReactTelInput from 'react-telephone-input'
 import requests from '../../config';
-import { setProfileData } from "../../redusers/ActionDriverProfileRegistration"
+import { setProfileData } from "../../redusers/ActionGlobal"
 import getUserData from './DriverProfileRequest';
 import RefreshIndicator from 'material-ui/RefreshIndicator';
 import DriverRefreshIndicator from './DriverRefreshIndicator';
@@ -36,8 +36,8 @@ class DriverProfileBasicInformationClass extends React.Component {
             }
             return { langList: langList, chipData: chipData };
         }
-        let profile = this.props.profileReduser.profile;
-        console.log('profile in DriverProfileBasicInformation');
+        let profile = this.props.globalReduser.profile;
+        //console.log('profile');
         let birthday; let passportDate;
 
         birthday = new Date(profile.birthday);

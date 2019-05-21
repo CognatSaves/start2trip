@@ -1,8 +1,8 @@
 import React from 'react';
 import './Drivers.css';
 
-import DriversBody from './DriversBody/DriversBody.jsx';
-import DriversRoute from './DriversRoute/DriversRoute.jsx';
+import DriversBody from './DriversBody/DriversBody';
+import DriversRoute from './DriversRoute/DriversRoute';
 import { connect } from 'react-redux'
 import StartTravelForm from '../startTravelForm/StartTravelForm'
 import StartTravelSuccess from '../startTravelForm/StartTravelSuccess'
@@ -51,15 +51,11 @@ class DriversClass extends React.Component {
 
       <div className="drivers_top_background">
       <Header history={this.props.history}/>
-        <div className="container d-flex flex-column">
-          <div className="row">
-          
+        <div className="drivers_top_Route d-flex flex-column align-items-center col-12">
             <DriversRoute />
-          </div>
         </div>
       </div>
       
-
       <div className="wrapper d-flex flex-column">
         <div className="drivers_bottom_background d-flex flex-column" >
           <DriversBody changeTravelVisibility={this.changeTravelVisibility} />

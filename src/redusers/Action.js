@@ -85,97 +85,98 @@ const autoMenuCall = function (autoMenu){
 }
 
 
-const setPages = function (pagesMenuValue){
-  return {
-    type: 'SET_PAGES',
-    pagesMenuValue: pagesMenuValue
-  }
+const setPages = function(pagesMenuValue) {
+    return {
+        type: 'SET_PAGES',
+        pagesMenuValue: pagesMenuValue
+    }
 }
 
-const setPagesVisible = function (pagesMenu){
-  return {
-    type: 'SET_PAGES_VISIBLE',
-    pagesMenu: pagesMenu
-  }
+const setPagesVisible = function(pagesMenu) {
+    return {
+        type: 'SET_PAGES_VISIBLE',
+        pagesMenu: pagesMenu
+    }
 }
 
-const setSortMenu = function (sortMenuValue){
-  return {
-    type: 'SET_SORT_MENU',
-    sortMenuValue: sortMenuValue
-  }
+const setSortMenu = function(sortMenuValue, sortMenuWay) {
+    return {
+        type: 'SET_SORT_MENU',
+        sortMenuValue: sortMenuValue,
+        sortMenuWay: sortMenuWay,
+    }
 }
 
-const setSortMenuVisible = function (sortMenu){
-  return {
-    type: 'SET_SORT_MENU_VISIBLE',
-    sortMenu: sortMenu
-  }
+const setSortMenuVisible = function(sortMenu) {
+    return {
+        type: 'SET_SORT_MENU_VISIBLE',
+        sortMenu: sortMenu
+    }
 }
 
-const setMaxPrice = function (pricePart, maxPrice){
-  return {
-    type: 'SET_MAX_PRICE',
-    pricePart: pricePart,
-    tempPricePart: pricePart,
-    maxPrice: maxPrice
-  }
+const setMaxPrice = function(pricePart, maxPrice) {
+    return {
+        type: 'SET_MAX_PRICE',
+        pricePart: pricePart,
+        tempPricePart: pricePart,
+        maxPrice: maxPrice
+    }
 }
 
-const setTempPricePart = function (tempPricePart, valueMenu){
-  return {
-    type: 'SET_TEMP_PRICE_PART',
-    tempPricePart: tempPricePart,
-    valueMenu: valueMenu
-  }
+const setTempPricePart = function(tempPricePart, valueMenu) {
+    return {
+        type: 'SET_TEMP_PRICE_PART',
+        tempPricePart: tempPricePart,
+        valueMenu: valueMenu
+    }
 }
 
-const setPricePart = function (pricePart, valueMenu){
-  return {
-    type: 'SET_PRICE_PART',
-    pricePart: pricePart,
-    valueMenu: valueMenu
-  }
+const setPricePart = function(pricePart, valueMenu) {
+    return {
+        type: 'SET_PRICE_PART',
+        pricePart: pricePart,
+        valueMenu: valueMenu
+    }
 }
-const changePersonsNumberDispatch = function (persons) {
-  return {
-    type: 'CHANGE_PERSONS_NUMBER',
-    persons: persons,
-  };
+const changePersonsNumberDispatch = function(persons) {
+    return {
+        type: 'CHANGE_PERSONS_NUMBER',
+        persons: persons,
+    };
 }
-const changePersonsNumberDispatchOld = function (personsOld) {
-  return {
-    type: 'CHANGE_PERSONS_NUMBER_OLD',
-    personsOld: personsOld,
-  };
-}
-
-const peopleMenuCall = function (peopleMenu) {
-  return {
-    type: 'PEOPLE_MENU_CALL',
-    peopleMenu: peopleMenu,
-  };
+const changePersonsNumberDispatchOld = function(personsOld) {
+    return {
+        type: 'CHANGE_PERSONS_NUMBER_OLD',
+        personsOld: personsOld,
+    };
 }
 
-const languageValueChooseDispatch = function (languageValue,languageIcon) {
-  return {
-    type: 'LANGUAGE_VALUE_CHOOSE',
-    languageValue: languageValue,
-    languageIcon:languageIcon,
-  };
-}
-const languageMenuIsVisibal = function (languageMenu) {
-  return {
-    type: 'LANGUAGE_MENU_IS_VISIBAL',
-    languageMenu:languageMenu,
-  };
+const peopleMenuCall = function(peopleMenu) {
+    return {
+        type: 'PEOPLE_MENU_CALL',
+        peopleMenu: peopleMenu,
+    };
 }
 
-const modalCountryDispacth = function (country) {
-  return {
-    type: 'MODAL_COUNTRY',
-    country:country,
-  };
+const languageValueChooseDispatch = function(languageValue, languageIcon) {
+    return {
+        type: 'LANGUAGE_VALUE_CHOOSE',
+        languageValue: languageValue,
+        languageIcon: languageIcon,
+    };
+}
+const languageMenuIsVisibal = function(languageMenu) {
+    return {
+        type: 'LANGUAGE_MENU_IS_VISIBAL',
+        languageMenu: languageMenu,
+    };
+}
+
+const modalCountryDispacth = function(country) {
+    return {
+        type: 'MODAL_COUNTRY',
+        country: country,
+    };
 }
 
 

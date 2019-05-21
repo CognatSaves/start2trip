@@ -1,24 +1,33 @@
 .drivers_properties_autoMenu {
     position: absolute;
-    top: 34px;
+    top: 30px;
     right: 0px;
     width: 128px;
     background-color: #ffffff;
-    border-radius: 3px;
-    box-shadow: 0 0 1px 1px rgb(236, 236, 236);
-    z-index: 4;
+    border-radius: 5px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    z-index: 30;
 }
 
 .autoMenu_element {
     position: relative;
     width: 128px;
     height: 30px;
-    background-color: #ffffff;
+    background: rgba(48, 66, 105, 0.6);
+    border: none;
+    transition: all 0.3s;
 }
 
 .autoMenu_element:hover {
-    transition: all 0.3s;
-    background-color: #d8e7f4;
+    background-color: #f60;
+}
+
+.autoMenu_element:first-child {
+    border-radius: 5px 5px 0 0;
+}
+
+.autoMenu_element:last-child {
+    border-radius: 0 0 5px 5px;
 }
 
 .autoMenu_element_textBlock {
@@ -46,5 +55,5 @@
     text-align: left;
     font-weight: 400;
     font-size: 9pt;
-    color: #304269;
+    color: #fff;
 }

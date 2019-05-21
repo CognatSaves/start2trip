@@ -1,0 +1,190 @@
+/* mobileFilterModal Bigin */
+
+.mobileFilterModal {
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    background: #e0e0e0;
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s;
+    overflow: scroll;
+}
+
+.mobileFilterModalHeader {
+    background: #304269;
+    padding: 10px;
+}
+
+.mobileFilterModalBack {
+    cursor: pointer;
+    padding-left: 25px;
+    background: url(./pictures/left-arrow.svg) no-repeat;
+    background-size: 18px 24px;
+    background-position: center left;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.mobileFilterModalClear {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.mobileFilterModalBodyElement {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    margin: 10px 0;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
+}
+
+.mobileFilterCollapseBt {
+    padding: 10px;
+}
+
+.mobileFilterCollapseBt span {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    color: #304269;
+    font-size: 14px;
+    font-weight: 400;
+    background: url(./pictures/caret-downGray.svg) no-repeat;
+    background-size: 10px 10px;
+    background-position: right center;
+}
+
+.mobileFilterModalContent {
+    padding: 10px;
+    color: #304269;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.mobileFilterModalContent p {
+    margin: 0;
+    color: #686868;
+}
+
+.modalBodyElementPeople {
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
+    width: 100%;
+    height: 100%;
+    padding-bottom: 20px;
+    /* background: #304269; */
+}
+
+.modalBodyElementPeople .valueBlock_button {
+    color: #fff;
+}
+
+.modalBodyElementPeople .valueBlock_value_text,
+.modalBodyElementPeople .peopleMenu_element_part p,
+.modalBodyElementPeople .peopleMenu_stateBlock_cancelButton,
+.modalBodyElementPeople .peopleMenu_stateBlock_applyButton {
+    color: #686868;
+}
+
+.modalBodyElementAuto {
+    padding: 10px 0;
+}
+
+.modalBodyElementAuto .autoMenu_element {
+    position: relative;
+    width: 100%;
+    height: 30px;
+    background: none;
+    transition: all 0.3s;
+}
+
+.modalBodyElementAuto .autoMenu_element:hover {
+    background-color: #ccc;
+    border-radius: 0px !important;
+}
+
+.modalBodyElementAuto .autoMenu_element_textBlock {
+    cursor: pointer;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.modalBodyElementAuto .autoMenu_element_text {
+    position: relative;
+    width: 100%;
+    font-weight: 400;
+    padding-left: 40px;
+    left: 0px;
+    margin: 0;
+    font-size: 9pt;
+    color: #686868;
+    background-position: center left 5px !important;
+    background-size: 30px 30px !important;
+}
+
+.modalBodyElementlanguage {
+    padding: 10px 0;
+}
+
+.modalBodyElementlanguage .languageMenu_element {
+    position: relative;
+    width: 100%;
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    cursor: pointer;
+    background: none;
+}
+
+.modalBodyElementlanguage .textBlock_value {
+    position: relative;
+    width: 100%;
+    font-weight: 400;
+    padding-left: 25px;
+    left: 0px;
+    margin: 0;
+    font-size: 9pt;
+    color: #686868;
+    background-position: center left 5px !important;
+    background-size: 15px 15px !important;
+}
+
+.modalBodyElementlanguage .languageMenu_element:hover {
+    background-color: #ccc;
+    border-radius: 0px !important;
+}
+
+.mobileFilterModalFooterComplete {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mobileFilterModalFooterComplete span {
+    width: 60%;
+    text-align: center;
+    padding: 12px 0;
+    background: #f60;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+
+/* mobileFilterModal end */

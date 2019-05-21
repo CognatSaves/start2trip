@@ -1,17 +1,18 @@
 .drivers_properties {
-    justify-content: center;
     align-items: center;
     width: 100%;
-}
-
-.properties_leftBlock {
-    height: 100%;
-    margin-right: auto;
+    border-bottom: 1px solid #ccc;
 }
 
 .properties_rightBlock {
-    height: 100%;
-    margin-left: auto;
+    height: 41px;
+}
+
+.properties_leftBlock {
+    padding: 5px;
+    background: rgba(48, 66, 105, 0.6);
+    border-radius: 5px;
+    margin-bottom: 10px;
 }
 
 .drivers_properties_text {
@@ -31,21 +32,19 @@
 
 .properties_rightButton {
     float: right;
-    margin-left: 5px;
+    font-weight: 400;
+    font-size: 12px;
+    color: #304269;
+    text-align: center;
 }
 
 .properties_buttonStyle {
     position: relative;
-    font-weight: 500;
-    font-size: 9pt;
-    color: #304269;
-    background-color: #d9e8f5;
-    border-radius: 3px;
+    font-weight: 400;
+    font-size: 14px;
+    color: #fff;
     text-align: center;
-    line-height: 250%;
     padding: 0 2px;
-    cursor: pointer;
-    z-index: 100;
 }
 
 
@@ -55,6 +54,7 @@
     align-items: center;
     justify-content: center;
     margin: auto 5px;
+    cursor: pointer;
 }
 
 .properties_value img {
@@ -62,6 +62,7 @@
 }
 
 .properties_arrow {
+    cursor: pointer;
     margin: auto 2px;
     width: 8px;
     height: 8px;
@@ -75,7 +76,10 @@
 }
 
 .properties_rightButton_characteristic {
+    font-size: 14px;
+    font-weight: 500;
     margin: auto 2px;
+    padding-bottom: 2px;
 }
 
 .properties_rightButton_value {

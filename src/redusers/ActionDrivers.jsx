@@ -4,6 +4,8 @@ const SET_PAGE = 'SET_PAGE_DRIVERS';
 
 const SET_MORE_PAGES_SHOW = 'SET_MORE_PAGES_SHOW';
 
+const OPEN_FILTER_SHOW = 'OPEN_FILTER_SHOW';
+
 const setDriversRouteChange = function (driversRouteChange){
     return {
         type: 'SET_DRIVERS_ROUTE_CHANGE',
@@ -26,8 +28,16 @@ const setMorePagesShow = function (){
         type: SET_MORE_PAGES_SHOW
     }
 }
+
+const openFilterShow = function (openFilter){
+    return{
+        type: OPEN_FILTER_SHOW,
+        openFilter:openFilter
+    }
+}
 export {
     setDriversRouteChange, SET_DRIVERS_ROUTE_CHANGE,
     setPage, SET_PAGE,
-    setMorePagesShow, SET_MORE_PAGES_SHOW
+    setMorePagesShow, SET_MORE_PAGES_SHOW,
+    OPEN_FILTER_SHOW,openFilterShow,
 }

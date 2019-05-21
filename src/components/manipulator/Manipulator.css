@@ -134,3 +134,13 @@
     border-color: #ff6600;
     color: #ffffff;
 }
+
+@media (max-width: 1140px) {}
+
+@media (max-width: 768px) {}
+
+@media (max-width: 576px) {
+    .driversBlockManipulator_pageNumbers {
+        display: none;
+    }
+}

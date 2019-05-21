@@ -1,14 +1,10 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import getUserData from '../driverProfileRegistration/DriverProfileRequest';
-import { setProfileData } from "../../redusers/ActionDriverProfileRegistration"
+import { setProfileData } from "../../redusers/ActionGlobal"
 import requests from '../../config';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
-import {Route,Redirect} from 'react-router-dom';
 
-import DriverProfileRegistration from '../driverProfileRegistration/DriverProfileRegistration';
-import UserProfileRegistration from '../UserProfile/UserProfileRegistration';
-import Home from '../home/Home';
 class AccountRedirectorClass extends React.Component{
     constructor(props){
         super(props);
@@ -25,7 +21,7 @@ class AccountRedirectorClass extends React.Component{
     }
     render(){
         
-        let profile = this.props.storeState.profile;
+        let profile = this.props.globalReduser.profile;
         if(!profile.email){
             return(
                 <DriverRefreshIndicator isRefreshExist={true} isRefreshing={true} isGoodAnswer={true}/>

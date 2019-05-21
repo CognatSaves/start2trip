@@ -16,8 +16,8 @@ import UserProfileRegistration from './components/UserProfile/UserProfileRegistr
 import AuthRedirect from './components/registration/AuthRedirect';
 import AccountRedirector from './components/registration/AccountRedirector';
 import PartnerRegister from './components/registration/PartnerRegister';
-
-
+import ForgotPassword from './components/registration/ForgotPassword';
+import ResetPassword from './components/registration/ResetPassword';
 
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
@@ -80,6 +80,9 @@ ReactDOM.render(
                         <Route path="/account/driver" component={DriverProfileRegistration} />
                         <Route path="/account/user" component={UserProfileRegistration} />
 
+                        <Route path="/forgot-password" component={ForgotPassword} />
+                        <Route path="/reset-password/:code" component={ResetPassword} />
+        
                         <Route path="/(register|start)/" component={PartnerRegister} /> 
                         <Route path="/registration" component={Registration} />                       
                         <Route path="/login" component={AuthRedirect}/>
