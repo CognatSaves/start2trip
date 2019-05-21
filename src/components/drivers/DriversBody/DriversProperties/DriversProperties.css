@@ -9,6 +9,7 @@
 }
 
 .properties_leftBlock {
+    display: flex;
     padding: 5px;
     background: rgba(48, 66, 105, 0.6);
     border-radius: 5px;
@@ -86,4 +87,14 @@
     margin: auto 2px;
     font-weight: 500;
     font-size: 9pt;
+}
+
+@media (max-width: 1140px) {}
+
+@media (max-width: 768px) {}
+
+@media (max-width: 910px) {
+    .properties_leftBlock {
+        display: none;
+    }
 }

@@ -8,8 +8,10 @@ import LocationSearchInput from '../../home/HomeBody/Search';
 import { set_state } from '../../../redusers/Action'
 import { setDriversRouteChange } from '../../../redusers/ActionDrivers'
 import DatePicker from 'material-ui/DatePicker';
+import crossIcon from './pictures/close.svg'
 import Calendar from 'react-calendar'
 import '../../home/HomeBody/calendary.css';
+import { isMobileOnly } from 'react-device-detect'
 
 class DriversRouteClass extends React.Component {
   constructor(props) {
@@ -19,23 +21,29 @@ class DriversRouteClass extends React.Component {
       date: '',
       cities: [...this.props.storeState.cities]
     }
-    this.addCity = this.addCity.bind(this);
-    this.removeCity = this.removeCity.bind(this);
-    this.openChooseDate = this.openChooseDate.bind(this);
-    this.closeChooseDate = this.closeChooseDate.bind(this);
-    this.chooseDate = this.chooseDate.bind(this);
-    this.changeCity = this.changeCity.bind(this);
-    this.searchRoute = this.searchRoute.bind(this);
   }
 
-  addCity() {
+  addCity = () => {
     let cities = this.state.cities;
-    cities[cities.length] = "";
-    this.setState({
-      cities: cities,
-    })
+    let flagCities = true;
+    let massInput = document.querySelectorAll("._checkInput")
+    for (let i = 0; i < massInput.length; i++) {
+      if (massInput[i].defaultValue == "") {
+        massInput[i].classList.add("startCity-CheckInput")
+        flagCities = false;
+      }
+    }
+    if (cities[cities.length - 1] == "") {
+    } else if (flagCities) {
+      cities[cities.length] = "";
+      this.setState({
+        cities: cities,
+        mapUpdate: true,
+      })
+    }
+
   }
-  removeCity(index) {
+  removeCity = (index) => {
     let cities = this.state.cities;
     cities.splice(index, 1);
     this.setState({
@@ -43,67 +51,100 @@ class DriversRouteClass extends React.Component {
       mapUpdate: true
     })
   }
-  openChooseDate() {
-    this.setState({
-      calendaryVisibility: 'visible'
-    })
-  }
-  closeChooseDate() {
-    this.setState({
-      calendaryVisibility: 'hidden'
-    })
-  }
-  chooseDate(value) {
+
+  chooseDate = (value) => {
     let dayMass = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
     let monthMass = ["января", "февраля", "марта", "апреля", "мая",
       "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
     let resultString = dayMass[value.getDay()] + ", " + value.getDate() + " " + monthMass[value.getMonth()] + " " + value.getFullYear();
     this.setState({
       date: resultString,
-      calendaryVisibility: 'hidden'
     });
   }
-  changeCity(index, value) {
+  changeCity = (index, value) => {
     let cities = this.state.cities;
     cities[index] = value;
     this.setState({
       cities: cities,
     });
   }
-  searchRoute() {
+  searchRoute = () => {
+    let flagCities = true;
     function isCorrectSearchData(cities, date) {
+      let massInput = document.querySelectorAll("._checkInput")
+      for (let i = 0; i < massInput.length; i++) {
+        if (massInput[i].defaultValue == "") {
+          massInput[i].classList.add("startCity-CheckInput")
+          flagCities = false;
+        }
+        if (massInput[i].defaultValue !== cities[i]) {
+          massInput[i].classList.add("startCity-error")
+          flagCities = false;
+        }
+      }
       for (let i = 0; i < cities.length; i++) {
         if (cities[i].length === "") {
           return false;
         }
       }
       if (date.length === 0) {
+        let datePicer = document.querySelector(".routemenu_date")
+        datePicer.classList.add("routemenu_date-Check")
         return false;
       }
       return true;
     }
-    if (isCorrectSearchData(this.state.cities, this.state.date)) {
+    if (isCorrectSearchData(this.state.cities, this.state.date) && flagCities) {
       this.props.dispatch(set_state("DriversRoute", [...this.state.cities], this.state.date));
       this.props.dispatch(setDriversRouteChange(!this.props.driversState.driversRouteChange))
     }
-    else {
-      alert("Некоторые данные некорректны! Проверьте все еще раз!");
-    }
   }
+
+  CityRouteTable = () => {
+    let workCities = [...this.state.cities];
+    // let tempStart = workCities.shift();
+    workCities.pop();
+    console.log(this.state.cities, "cities");
+    console.log(workCities, "workCities");
+    return (
+      <div className="addCities col-12 p-0" >
+        {workCities.map((element, index) =>
+          <div className="startCity d-flex col-md-8 col-12 p-0" key={element + this.state.cities[index + 1]}>
+            <div className="addCitiesLocationDropDown col-6 p-0">
+              <LocationSearchInput readOnlyOn={index ? true : false} address={element} changeCity={this.changeCity} index={index} classDropdown="searchElement_style" classInput={index ? "city_input" : "city_input _checkInput"} />
+            </div>
+            <div className="addCitiesLocationDropDown">
+              <LocationSearchInput address={this.state.cities[index + 1]} changeCity={this.changeCity} index={index + 1} classDropdown="searchElement_style" classInput="city_input _checkInput" />
+            </div>
+
+            <div className="crossToolTip col-1" style={{ display: index ? "flex" : "none" }} onClick={() => this.removeCity(index + 1)}>
+              <i style={{ background: "url(" + crossIcon + ") no-repeat" }} className="crossIcon"></i>
+              <span className="crossToolTipText" style={{display: isMobileOnly ? "none" : "block" }}>Удалить этот пункт назначения</span>
+            </div>
+          </div>
+        )}
+
+      </div>
+    )
+  }
+
+
   render() {
+
+
     let isVisibleArray = Array(this.props.storeState.cities.length).fill("visible");
     isVisibleArray[isVisibleArray.length - 1] = "hidden";
     if (!this.props.driversState.driversRouteChange) {
       return (
-        <div className="drivers_route col-12 d-flex flex-column">
+        <div className="drivers_route col-8 d-flex flex-column">
           <div className="route_date d-flex ">
-            <div className="route_date_text">дата отправления:11.12.2018 {this.props.storeState.date}</div>
+            <div className="route_date_text">дата отправления: {this.props.storeState.date}</div>
             <div className="d-flex " onClick={() => this.props.dispatch(setDriversRouteChange(!this.props.driversState.driversRouteChange))}>
               <span className="route_change_text  d-sm-block d-none">Изменить маршрут</span>
               <span className="route_change_text  d-sm-none d-block" />
             </div>
           </div>
-          <div className="route_show d-flex">
+          <div className="route_show d-flex flex-sm-row flex-column  justify-content-center align-items-center ">
             {this.state.cities.map((element, index) =>
               <React.Fragment>
                 <div className="route_show_Line" style={{ display: index ? "block" : "none" }} />
@@ -133,19 +174,11 @@ class DriversRouteClass extends React.Component {
               <span className="route_change_text">Изменить маршрут</span>
             </div>
           </div>
-          <div className="route_show d-flex  justify-content-md-start justify-content-sm-center justify-content-center ">
-            {this.state.cities.map((element, index) =>
-              <React.Fragment>
-                <div className="route_show_element" key={element + "/" + index}>
-                  <div className="search_input_block">
-                    <div className="search_input_icon" />
-                    <LocationSearchInput address={element} changeCity={this.changeCity} index={index} classDropdown="searchDriverDropDown" classInput="search_input_style" />
-                  </div>
-                  <div className="route_show_cross" style={{ display: removeArray[index] }} onClick={() => this.removeCity(index)} />
-                </div>
-              </React.Fragment>
-            )}
-            <span className="route_add_city" onClick={() => this.addCity()} > Добавить пункт назначения</span>
+          <div className="route_show d-flex flex-column align-items-center">
+            {this.CityRouteTable()}
+            <div className="d-flex justify-content-end align-items-center col-md-8 col-12">
+              <span className="route_add_city" onClick={() => this.addCity()} > Добавить пункт назначения</span>
+            </div>
           </div>
           <div className="route_show route_show_bottom d-flex " style={{ width: "100%" }}>
             <div className="route_bottomBlock d-flex flex-column">
@@ -158,18 +191,8 @@ class DriversRouteClass extends React.Component {
                 </div>
 
                 <div className="route_secondBottomBlock flex-sm-row flex-column">
-                  <DatePicker floatingLabelText="Дата отправления" className="calendarModalSearch" />
-                  {/* <div className="route_secondBottomBlock_date route_secondBottomBlock_elementStyle">
-                    <div className="secondBottomBlock_calendarBlock">
-                      <div style={{ visibility: this.state.calendaryVisibility }}>
-                        <Calendar className="calendary_drivers_position"
-                          tileClassName={""}
-                          onClickDay={(value) => { this.chooseDate(value); }} />
-                      </div>
-                      <div className="secondBottomBlock_calendar" />
-                      <input className="secondBottomBlock_dateInput" placeholder="Date must be here" value={this.state.date} onClick={() => this.openChooseDate()}></input>
-                    </div>
-                  </div> */}
+                  <DatePicker hintText="Дата отправления" minDate={new Date()} onChange={(e, date) => { this.chooseDate(date); let datePicer = document.querySelector(".routemenu_date"); datePicer.classList.remove("routemenu_date-Check") }} className="routemenu_date col-md-6 col-12" />
+
                   <div className="route_secondBottomBlock_button" onClick={() => this.searchRoute()}>
                     <span>ПОИСК</span>
                   </div>
