@@ -34,7 +34,7 @@ import {
 
 
 const initialState = {
-    cities: ["Тбилиси", "Минск"],
+    cities: ["", ""],
     date: "",
     autoVariants: ["Седан", "Внедорожник", "Минивен", "Микроавтобус"],
     autoIcon: sedan,

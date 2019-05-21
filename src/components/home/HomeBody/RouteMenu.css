@@ -24,18 +24,15 @@
     font-size: 9pt;
     color: #fff;
     font-weight: 300;
+    padding-left: 25px;
+    background-size: 15px 15px !important;
+    background-position: top left !important;
 }
 
 .routemenu_setDate {
     cursor: pointer;
     display: flex;
     align-items: center;
-}
-
-.routemenu_setDate img {
-    cursor: pointer;
-    max-width: 35px;
-    margin-bottom: 15px !important;
 }
 
 .routemenu_date {
@@ -45,6 +42,11 @@
     border-radius: 5px;
     margin: 2px;
     max-height: 41px;
+    min-height: 41px;
+}
+
+.routemenu_date-Check {
+    background: rgba(37, 165, 154, 0.5);
 }
 
 .routemenu_date div {
@@ -53,7 +55,9 @@
     color: #fff !important;
     font-weight: 400 !important;
     font-size: 14px !important;
+    top: 1px;
     max-height: 41px;
+    line-height: 41px;
 }
 
 .routemenu_date input {
@@ -90,14 +94,12 @@
     justify-content: center;
     align-content: center;
     text-align: center;
-    background: rgba(255, 255, 255, 0.3);
     border: none;
     -webkit-box-shadow: none;
     box-shadow: none;
     border-radius: none !important;
     border-radius: 5px;
     cursor: pointer;
-    margin: 2px;
 }
 
 .routemenu_parametersAdd {
@@ -105,8 +107,9 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
     background: rgba(255, 255, 255, 0.3);
-    height: 41px;
+    min-height: 41px;
     width: 100%;
     border-radius: 5px;
     margin: 2px;
@@ -146,6 +149,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 2px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
 }
 
 .menuHome .drivers_properties_peopleMenu {
@@ -177,10 +183,12 @@
 
 .routemenu_search_button {}
 
-
-/* .addCities {
-   
-} */
+.addCities {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
 .iconMass {
     display: -webkit-box;
@@ -263,8 +271,16 @@
     visibility: hidden !important;
 }
 
-.startCity-CheckInput input:last-child {
-    border: 1px solid green;
+.startCity-CheckInput {
+    outline: 2px solid rgba(37, 165, 154, 0.5);
+    outline-offset: -1px;
+    background: rgba(37, 165, 154, 0.5)!important;
+}
+
+.startCity-error {
+    outline: 2px solid #a5252580;
+    outline-offset: -1px;
+    background: #a5252580!important;
 }
 
 .routemenu_search_text {
@@ -278,12 +294,18 @@ p.routemenu_search_text {
 
 .routemenu_comment {
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 41px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    margin: 2px;
 }
 
 .routemenu_comment_text {
     width: 100%;
     text-align: center;
-    float: left;
     font-size: 11px;
     color: #ffffff;
     font-weight: 500;
@@ -300,7 +322,16 @@ p.routemenu_search_text {
     min-height: 38px;
     width: 100%;
     padding: 10px;
+}
+
+.city_input:focus {
+    outline: none;
+}
+
+.addCitiesLocationDropDown {
+    position: relative;
     margin: 2px;
+    width: 100%;
 }
 
 .autocomplete-dropdown-container span {
@@ -353,5 +384,28 @@ p.routemenu_search_text {
 @media (max-width: 1077px) {
     .routemenu_parameters p {
         line-height: normal;
+    }
+}
+
+@media (max-width: 575px) {
+    .routemenu_setDate {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0 2px;
+    }
+    .crossToolTip {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .crossIcon {
+        min-width: 20px;
+        background-size: 15px 15px !important;
+        background-position: center center !important;
+    }
+    .routemenu_footer {
+        margin: 0 2px;
     }
 }

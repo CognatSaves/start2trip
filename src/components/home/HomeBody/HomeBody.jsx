@@ -18,7 +18,6 @@ class HomeBodyClass extends React.Component {
       date: this.props.storeState.date,
       picture: this.props.storeState.picture,
       changeMapList: true,
-      checkInput:false,
     }
     this.state = JSON.parse(JSON.stringify(this.props.storeState));
     this.state = { ...this.state, "mapUpdate": true, calendaryVisibility: 'hidden' }
@@ -26,7 +25,6 @@ class HomeBodyClass extends React.Component {
   }
 
   changeCity = (index, value) => {
-    debugger
     let cities = this.state.cities;
     cities[index] = value;
     this.setState({
@@ -36,20 +34,23 @@ class HomeBodyClass extends React.Component {
   }
   addCity = () => {
     let cities = this.state.cities;
-    /*cities[cities.length] = cities[cities.length-1];
-    cities[cities.length-2]="";*/
+    let flagCities = true;
+    let massInput = document.querySelectorAll("._checkInput")
+    for (let i = 0; i < massInput.length; i++) {
+      if (massInput[i].defaultValue == "") {
+        massInput[i].classList.add("startCity-CheckInput")
+        flagCities = false;
+      }
+    }
     if (cities[cities.length - 1] == "") {
-      this.setState({
-        checkInput: true,
-      })
-    } else {
+    } else if(flagCities){
       cities[cities.length] = "";
       this.setState({
         cities: cities,
         mapUpdate: true,
-        checkInput: false,
       })
     }
+
   }
   removeCity = (index) => {
     let cities = this.state.cities;
@@ -125,7 +126,7 @@ class HomeBodyClass extends React.Component {
       <React.Fragment>
         {isMobileOnly ?
           <React.Fragment>
-            <div className="d-md-none d-sm-block d-block w-100">
+            <div className="w-100">
               <div className="mobailRoutMenu">
                 <div className="d-flex flex-column align-items-center ">
                   <div className="mobailRoutMenuTitle">Cпланируйте свою экскурсию</div>
@@ -142,7 +143,7 @@ class HomeBodyClass extends React.Component {
                   :
                   <div className="p-1">
                     <RouteMenu cities={[...this.state.cities]} changeCity={this.changeCity} addCity={this.addCity}
-                      removeCity={this.removeCity} goToDrivers={this.goToDrivers} chooseDate={this.openChooseDate} date={this.state.date} checkInput={this.state.checkInput}/>
+                      removeCity={this.removeCity} goToDrivers={this.goToDrivers} chooseDate={this.openChooseDate} date={this.state.date} />
                     <div style={{ visibility: this.state.calendaryVisibility }}>
                     </div>
                   </div>
@@ -166,8 +167,8 @@ class HomeBodyClass extends React.Component {
                 :
                 <div className="col-12 p-0">
                   <RouteMenu cities={[...this.state.cities]} changeCity={this.changeCity} addCity={this.addCity}
-                    removeCity={this.removeCity} goToDrivers={this.goToDrivers} chooseDate={this.openChooseDate} date={this.state.date} checkInput={this.state.checkInput}/>
-                  <div style={{ visibility: this.state.calendaryVisibility }}>
+                    removeCity={this.removeCity} goToDrivers={this.goToDrivers} chooseDate={this.openChooseDate} date={this.state.date} />
+                  <div style={{ visibility: this.state.calendaryVisibility }} >
                   </div>
                 </div>
               }

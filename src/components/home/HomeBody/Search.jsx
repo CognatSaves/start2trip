@@ -59,7 +59,7 @@ export default class LocationSearchInput extends React.Component {
           <React.Fragment>
             <input id={this.props.id}
               {...getInputProps({
-                placeholder: 'Search Places ...',
+                placeholder: 'Введите город',
                 className: ''+this.props.classInput,
               })}
               {...opts}

@@ -78,7 +78,7 @@ class DriversPropertiesClass extends React.Component {
           </div> */}
         </div>
       
-        <div className="properties_leftBlock d-md-flex d-sm-none d-none">
+        <div className="properties_leftBlock">
           <div className="properties_buttonStyle properties_leftButton d-flex" onClick={() => this.props.dispatch(languageMenuIsVisibal(!this.props.storeState.languageMenu))}>
             <div className="properties_value d-flex"><img src={this.props.storeState.languageIcon} width="15px" height="15px" alt="L"/>{this.props.storeState.languageValue}</div>
             <div className="properties_arrow"></div>

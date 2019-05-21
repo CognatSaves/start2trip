@@ -17,6 +17,7 @@
     background: #304269;
     padding-bottom: 120px;
     height: 100%;
+    min-height: 100vh;
 }
 
 .mobailRoutMenuTitle {
@@ -65,7 +66,7 @@
 
 .routMenuBtList {
     cursor: pointer;
-    padding: 10px 22px;
+    padding: 10px 25px;
     border: 1px solid #fff;
     border-radius: 5px 0 0 5px;
     border-right: none;
