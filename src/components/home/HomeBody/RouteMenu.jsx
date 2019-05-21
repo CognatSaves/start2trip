@@ -16,6 +16,7 @@ import LocationSearchInput from './Search'
 import { UncontrolledCollapse, Button } from 'reactstrap';
 import { connect } from 'react-redux';
 import DatePicker from 'material-ui/DatePicker';
+import { Link } from 'react-router-dom';
 import {
   languageMenuIsVisibal, changePersonsNumberDispatch,
   changePersonsNumberDispatchOld, peopleMenuCall, autoMenuCall
@@ -44,7 +45,7 @@ const CityRouteTable = (props) => {
           </div>
           <div className="crossToolTip col-1" style={{ display: index ? "flex" : "none" }} onClick={() => removeCity(index + 1)}>
             <i style={{ background: "url(" + crossIcon + ") no-repeat" }} className="crossIcon"></i>
-            <span className="crossToolTipText" style={{display: isMobileOnly ? "none" : "block" }} >Удалить этот пункт назначения</span>
+            <span className="crossToolTipText" style={{ display: isMobileOnly ? "none" : "block" }} >Удалить этот пункт назначения</span>
           </div>
         </div>
       )}
@@ -63,10 +64,10 @@ class RouteMenuClass extends React.Component {
   }
 
   chooseDate = (value) => {
-    let dayMass = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
-    let monthMass = ["января", "февраля", "марта", "апреля", "мая",
-      "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
-    let resultString = dayMass[value.getDay()] + ", " + value.getDate() + " " + monthMass[value.getMonth()] + " " + value.getFullYear();
+    // let dayMass = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
+    // let monthMass = ["января", "февраля", "марта", "апреля", "мая",
+    //   "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
+    let resultString = value.getDate() + "-" + value.getMonth() + "-" + value.getFullYear();
     this.setState({
       date: resultString,
     });
@@ -92,8 +93,24 @@ class RouteMenuClass extends React.Component {
       flagCities = false;
     }
     if (flagCities) {
-      this.props.goToDrivers(this.props.cities, this.state.departureDate);
-      return (<Redirect to="/drivers" />)
+      this.props.goToDrivers(this.props.cities, this.state.date);
+      let newStringCities ="";
+      for(let i=0; i<this.props.cities.length;i++){
+        let arrayAdress = this.props.cities[i].split(',');
+        let stringWhithoutCountry = "";
+        for(let k =0; k<arrayAdress.length-1;k++){
+          stringWhithoutCountry += arrayAdress[k]
+        }
+        debugger
+        let stringWhithoutSpaces = stringWhithoutCountry.replace(/ /g,'-');
+        if(i==0){
+          newStringCities = "from-"+stringWhithoutSpaces;
+        }else{
+          newStringCities += "-to-"+stringWhithoutSpaces;
+        }
+      }
+
+      this.props.globalhistory.history.push(`/drivers/${this.state.date},${newStringCities}`)
     }
   }
 
@@ -183,6 +200,7 @@ class RouteMenuClass extends React.Component {
 const RouteMenu = connect(
   (state) => ({
     storeState: state.AppReduser,
+    globalhistory: state.GlobalReduser,
   }),
 )(RouteMenuClass);
 
