@@ -61,7 +61,8 @@
 }
 
 .mapContain {
-    height: 25vh!important;
+    min-height: 25vh!important;
+    height: 100%;
 }
 
 .routMenuBtList {
@@ -95,6 +96,11 @@
 
 .routContent {
     margin-bottom: 100px;
+    background: rgba(48, 66, 105, 0.8);
+    border-radius: 5px;
+    padding: 20px !important;
+    height: 100%;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 }
 
 .sizeMap {

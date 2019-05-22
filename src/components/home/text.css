@@ -1,7 +1,7 @@
 .text_firstLine {
     text-align: center;
     font-size: 34.5pt;
-    color: #304269;
+    color: #fff;
     font-weight: 700;
     text-transform: uppercase;
     min-height: 40px;
@@ -13,7 +13,7 @@
     font-size: 13.5pt;
     text-align: center;
     font-weight: 400;
-    color: #304269;
+    color: #fff;
     margin-bottom: 46px;
 }
 
