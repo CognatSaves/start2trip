@@ -99,6 +99,7 @@
     background: rgba(48, 66, 105, 0.8);
     border-radius: 0 0 5px 5px;
     padding: 20px !important;
+    padding-bottom: 40px !important;
     height: 100%;
 }
 
