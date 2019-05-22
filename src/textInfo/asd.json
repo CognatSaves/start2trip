@@ -1,0 +1,150 @@
+{
+    "driverProfileRegistration": {
+        "DriverProfileNavigation": {
+            "navigationText": ["Мои поездки", "Профиль", "Автомобиль", "Настройки поездок", "Туры",
+                "Отзывы", "Настройки", "Биллинг", "Партнерская программа"
+            ],
+            "updatePhoto": "Обновить фотографию",
+            "totalTrips": "Всего поездок",
+            "upcomingTrips": "Предстоящие поездки"
+        },
+        "DriverProfileBasicInformation": {
+            "firstName": {
+                "floatingLabelText": "Имя",
+                "description": ""
+            },
+            "lastName": {
+                "floatingLabelText": "Фамилия",
+                "description": ""
+            },
+            "basicInfoBirthday": {
+                "floatingLabelText": "Дата рождения",
+                "description": ""
+            },
+            "basicInfoNumber": {
+                "floatingLabelText": "Номер паспорта",
+                "description": ""
+            },
+            "basicInfoDay": {
+                "floatingLabelText": "Дата выдачи паспорта",
+                "description": ""
+            },
+            "basicInfoLocation": {
+                "label": "Город",
+                "description": ""
+            },
+            "basicInfoLanguage": {
+                "label": "Языки",
+                "description": ""
+            },
+            "MenuItem": {
+                "value": "Выберите языки"
+            },
+            "basicInfoMultiLine": {
+                "floatingLabelText": "О себе",
+                "description": ""
+            },
+            "buttonSubmit": {
+                "text": "Сохранить Изменения"
+            }
+
+        },
+        "DriverProfileCar": {
+            "profileCarBrend": {
+                "floatingLabelText": "Марка автомобиля"
+            },
+            "profileCarYaer": {
+                "floatingLabelText": "Год автомобиля"
+            },
+            "profileCarNumber": {
+                "floatingLabelText": "Номер автомобиля"
+            },
+            "typeCar": {
+                "label": "Тип автомобиля"
+            },
+            "carClass": {
+                "label": "Класс автомобиля"
+            },
+            "typeFuel": {
+                "label": "Тип топлива"
+            },
+            "profileCarNumberOfSeats": {
+                "label": "Количество мест"
+            },
+            "carAddNewCarComfort": {
+                "label": "Удобства",
+                "comfort1": "Климат контроль",
+                "comfort2": "Кожаный салон",
+                "comfort3": "Бесплатный Wi-Fi",
+                "comfort4": "Курение в салоне разрешено",
+                "comfort5": "Курение в салоне запрещено"
+            },
+            "carAddNewCarButton": {
+                "button": "Добавить Автомобиль",
+                "span": "Отмена"
+            },
+            "filledCard": {
+                "button": "Добавить Автомобиль"
+            },
+            "filledCardInformationMenu": {
+                "deleteCar": "Удалить",
+                "carEdit": "Редактировать",
+                "carDeactivate": "Деактивировать"
+            },
+            "cardInformation": {
+                "span": "мест(а)"
+            }
+        },
+        "DriverProfileTripSettingsTrip": {
+            "chooseWeekend": "Выберите выходные дни",
+            "selectDates": "Выбрать даты",
+            "addCityTitle": "Добавьте город и радиусы, где Вы готовы принимать заказы",
+            "tripLocation": "Базовый город/радиус, км",
+            "textField": {
+                "floatingLabelText": "Радиус в км",
+                "description": "",
+                "addCityBt": "+ Добавить город"
+            },
+            "maxDailyMileage": {
+                "floatingLabelText": "Максимальный дневной пробег, км:",
+                "description": ""
+            },
+            "tripSaveBt": "СОХРАНИТЬ ИЗМЕНЕНИЯ"
+        },
+        "DriverProfileSettings": {
+            "settingsBodyTitle": "Настройки профиля",
+            "sittingsEmail": {
+                "floatingLabelText": "Email",
+                "description": ""
+            },
+            "ContentPasswordText": "Пароль",
+            "sittingsCurrentPassword": {
+                "floatingLabelText": "Текущий пароль",
+                "description": ""
+            },
+            "sittingsNewPassword": {
+                "floatingLabelText": "Новый пароль",
+                "description": ""
+            },
+            "sittingsConfirmPassword": {
+                "floatingLabelText": "Подтвердите пароль",
+                "description": ""
+            },
+            "sittingsPhoneNumber": {
+                "label": "Телефон",
+                "description": ""
+            },
+            "sittingsSaveBt": "СОХРАНИТЬ ИЗМЕНЕНИЯ",
+            "unsubscribeButton": {
+                "mailing": {
+                    "unsubscribe": "Отписаться от рассылки",
+                    "subscribe": "Подписаться на рассылку"
+                },
+                "message": "В результате отписки Вы больше не будете получать сообщения от Tripfer"
+            }
+
+
+        }
+
+    }
+}

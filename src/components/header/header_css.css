@@ -199,10 +199,6 @@
     text-decoration: underline;
 }
 
-.dropdownMenu :nth-child(4) {
-    padding-bottom: 5px !important;
-}
-
 .currenty {
     text-align: center !important;
 }

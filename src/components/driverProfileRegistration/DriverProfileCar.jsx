@@ -459,8 +459,8 @@ class DriverProfileCarClass extends React.Component {
                                 </DropDownMenu>
                             </div>
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                <label htmlFor="profileCarNumber" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">Количество мест:</label>
-                                <input id="profileCarNumber" className="d-xl-block d-lg-block d-md-block d-sm-none d-none " value={this.state.newCarCard.numberOfSeats} onChange={(e) => {
+                                <label htmlFor="profileCarNumberOfSeats" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">Количество мест:</label>
+                                <input id="profileCarNumberOfSeats" className="d-xl-block d-lg-block d-md-block d-sm-none d-none " value={this.state.newCarCard.numberOfSeats} onChange={(e) => {
                                     this.setState({
                                         newCarCard: { ...this.state.newCarCard, numberOfSeats: e.currentTarget.value }
                                     })
