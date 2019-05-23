@@ -120,23 +120,8 @@ class DriverProfileTripSettingsTourClass extends React.Component {
             isRefreshing: true,
             isGoodAnswer: true, 
         }
-
-        this.toggle = this.toggle.bind(this);
-        this.formSubmit = this.formSubmit.bind(this);
-        this.addDate = this.addDate.bind(this);
-        this.calendarModalShow = this.calendarModalShow.bind(this);
-        this.fillForm=this.fillForm.bind(this);
-        this.applyChanges=this.applyChanges.bind(this);
-        this.destroy = this.destroy.bind(this);
-        this.changeActive = this.changeActive.bind(this);
-        this.selectTourName = this.selectTourName.bind(this);
-
-        this.getProfileData = this.getProfileData.bind(this);
-        this.startRefresher = this.startRefresher.bind(this);
-        this.thenFunc = this.thenFunc.bind(this);
-        this.catchFunc = this.catchFunc.bind(this);
     }
-    getProfileData(thenFunc,catchFunc){
+    getProfileData=(thenFunc,catchFunc)=>{
         console.log('getProfileData');
         let that = this;
         let requestValues = {
@@ -148,13 +133,13 @@ class DriverProfileTripSettingsTourClass extends React.Component {
           };
         getUserData(requestValues,thenFunc,catchFunc);
     }
-    startRefresher(){
+    startRefresher=()=>{
         this.setState({
             isRefreshExist: true,
             isRefreshing: true
         });
     }   
-    thenFunc(){
+    thenFunc=()=>{
         console.log('thenFunc');
         console.log(this.props.globalReduser);
         this.setState({
@@ -169,7 +154,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
             })
         }, 1000);
     }
-    catchFunc(){
+    catchFunc=()=>{
         console.log('catchFunc');
         this.setState({
             isRefreshExist: true,
@@ -182,7 +167,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
             })
         }, 2000);
     }
-    fillForm(element){
+    fillForm=(element)=>{
         let profile = this.props.globalReduser.profile;
         if(!element){           
             let local = [];
@@ -311,7 +296,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
             });
         }
     }
-    changeActive(element){
+    changeActive=(element)=>{
         let jwt = this.props.globalReduser.readCookie('jwt');
         if(jwt && jwt!=="-"){
             this.startRefresher();
@@ -333,7 +318,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
             request.send(tourForm);
         }
     }
-    destroy(element){
+    destroy=(element)=>{
         let jwt = this.props.globalReduser.readCookie('jwt');      
         if(jwt && jwt!=="-"){
             this.startRefresher();
@@ -412,7 +397,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
             request.send(tourForm);        
         }
     }
-    formSubmit(event) {
+    formSubmit=(event)=> {
         if(!this.state.tour.id){
             this.applyChanges(true);//если новый, то true
         }
@@ -422,7 +407,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
         event.preventDefault();
     }
 
-    toggle(element) { 
+    toggle=(element)=> { 
         this.setState(state => ({ collapse: !state.collapse, tour: {} }));
         if(!element){
             this.fillForm();
@@ -590,7 +575,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
 
     }
 
-    selectTourName(element)
+    selectTourName=(element)=>
     {
         let name = '';
         if(element.local && Array.isArray(element.local)){

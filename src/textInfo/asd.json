@@ -144,6 +144,21 @@
             }
 
 
+        },
+        "DriverProfileAffiliateProgram": {
+            "affiliateProgramsTitle": "Партнерская программа",
+            "affiliateProgramsDescription": "",
+            "affiliateLinks": {
+                "title": "Ваши партнёрские ссылки",
+                "registrationLink": "Ссылка на регистрацию",
+                "linkToHomePage": "Ссылка на регистрацию"
+            },
+            "promotionalMaterials": "Промо материалы",
+            "questionicon": "Начисления никогда не заканчиваются. Чем больше у вас рефералов, и чем лучше они работают - тем больше вы получаете каждый день",
+            "peopleicon": "Всего рефералов",
+            "percenticon": "С каждой оплаты",
+            "currencyicon": "Заработанно Всего",
+            "affiliateProgramTableHeader": ["EMAIL", "Дата регистрации", "Источник регистрации", "Начисления"]
         }
 
     }
