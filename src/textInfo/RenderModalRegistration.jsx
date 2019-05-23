@@ -41,7 +41,7 @@ const pageTextInfo = {
                 userText: ["Водитель","Driver"]
             },
             {
-                userText: ["Партнер","Partner"]
+                userText: ["Автопарк/турагентство","Car park/travel agency"]
             }
         ]
     },

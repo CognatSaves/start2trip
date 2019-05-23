@@ -13,6 +13,9 @@ import requests from '../../config.js';
 import ReactDOM from 'react-dom';
 import pageTextInfo from '../../textInfo/RenderModalRegistration';
 import Cookies from 'universal-cookie';
+import backpackIcon from './pictures/backpack.svg'
+import dealIcon from './pictures/deal.svg'
+import wheelIcon from './pictures/wheel.svg'
 
 const cookies = new Cookies();
 const windowProps = "width=420,height=400,resizable=yes,scrollbars=yes,status=yes";
@@ -323,6 +326,7 @@ class RenderModalRegistrationClass extends React.Component {
             this.state.socialWebAuthorizationRequest(body);
         }
     }
+    
     render() {
         function sendRequestFunc(that,address){
             cookies.set("jwt", "-",{path: '/',expires: new Date(0)});
@@ -342,6 +346,7 @@ class RenderModalRegistrationClass extends React.Component {
         console.log('this.state.selectedRegistrationAnswer');
         console.log(this.state.selectedRegistrationAnswer);
         let selectedRegistrationAnswer=this.state.selectedRegistrationAnswer;
+        let massIcon = [backpackIcon,wheelIcon,dealIcon];
         let regAnswerVisibility= ( this.state.regAnswerStatus || this.state.regProcessStatus );
         let regAnswerColor= ( this.state.regAnswerStatus && selectedRegistrationAnswer!==0 );
         let regAnswerValue = (this.state.regAnswerStatus ? pageTextInfo.registrationAnswer[selectedRegistrationAnswer][lang] : pageTextInfo.registrationProcess[0][lang]);
@@ -406,11 +411,13 @@ class RenderModalRegistrationClass extends React.Component {
                                 </div>
                             </form>
                         </div>
-                        <div style={{display: !this.state.sitingIn && this.state.regWindowType===0 ? 'block' : 'none'}}>
+                        <div className="justify-content-center flex-column" style={{display: !this.state.sitingIn && this.state.regWindowType===0 ? 'flex' : 'none'}}>
                             <p style={{textAlign: "center"}}>{pageTextInfo.registrationUserType.userTypeText[lang]}</p>
                             {
                                 pageTextInfo.registrationUserType.userTypes.map((element,index)=>
-                                    <div className="selectTypeBlock d-flex" style={{visibility: (this.state.agency.length===0 || index===1) ? 'visible': 'hidden'  }}>
+                                
+                                    <div className={ index ? "selectTypeBlockLine selectTypeBlock d-flex align-items-center"  : "selectTypeBlock d-flex align-items-center "}style={{visibility: (this.state.agency.length===0 || index===1) ? 'visible': 'hidden'  }}>
+                                        <i style={{background:"url("+massIcon[index] +") no-repeat"}}/>
                                         <label className="typeCheckLabel" for={"typeCheckbox"+(index+1)}>{element.userText[lang]}</label>
                                         <input disabled = {!(this.state.agency.length===0 || index===1)} className="typeCheckButton" id={"typeCheckbox"+(index+1)} type="radio" name="raz" onClick={()=>this.setState({userType: index+1})}/>
                                     </div>
