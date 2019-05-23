@@ -76,6 +76,7 @@ class RenderModalRegistrationClass extends React.Component {
                 console.log("Не смогли!");
                 console.log('error message');
                 console.log(data.error);
+                console.log(data.error.errorId);
                 cookies.set("jwt", "-",{path: '/',expires: date});
                 cookies.set("jwtstatus",data.error,{path: '/',expires: date});
 
@@ -164,6 +165,31 @@ class RenderModalRegistrationClass extends React.Component {
             },500);
             
         }
+        function getQueryParam (param) {
+            var queries = window.location.search, regex, resRegex, results, response;
+            param = encodeURIComponent(param);
+            regex = new RegExp('[\\?&]' + param + '=([^&#]*)', 'g');
+            resRegex = new RegExp('(.*)=([^&#]*)');
+            results = queries.match(regex);
+          
+            if (!results) {
+                return '';
+            }
+            response = results.map(function (result) {
+              var parsed = resRegex.exec(result);
+          
+              if (!parsed) {
+                  return '';
+              }
+          
+              return parsed[2].match(/(^\d+$)/) ? Number(parsed[2]) : parsed[2];
+            })
+          
+            return response.length > 1 ? response : response[0];
+          };
+        
+        let agency = getQueryParam('agency');
+
         this.state = {
             sitingIn: true,
             sitingInLightAnimation: "",
@@ -187,6 +213,7 @@ class RenderModalRegistrationClass extends React.Component {
             cookie: document.cookie,
             checkCookie: checkCookie,
             socialWindow: "",
+            agency: agency
         };
         let urlParams = new URLSearchParams(window.location.search);
         let token = urlParams.get('access_token');
@@ -277,7 +304,8 @@ class RenderModalRegistrationClass extends React.Component {
                 isDriver: this.state.userType===2 ? true : false,                         
                 isAgency: this.state.userType===3 ? true : false,
                 provider: 'local',
-                partner: partner
+                partner: this.state.agency.length>0 ? "" : partner,
+                agency: this.state.agency
                 });
             console.log(body);
             this.state.socialWebRegistrationRequest(body);
@@ -304,6 +332,7 @@ class RenderModalRegistrationClass extends React.Component {
             });
             window.localStorage.setItem('type',that.state.sitingIn ? "Authorization":"Registration");
             window.localStorage.setItem('userType', that.state.sitingIn ? 0 : that.state.userType);
+            window.localStorage.setItem('agency',that.state.agency);
             let newWin=window.open(address,that.state.sitingIn ? "Authorization":"Registration",windowProps);
             that.state.checkCookie(newWin);            
         }
@@ -381,9 +410,9 @@ class RenderModalRegistrationClass extends React.Component {
                             <p style={{textAlign: "center"}}>{pageTextInfo.registrationUserType.userTypeText[lang]}</p>
                             {
                                 pageTextInfo.registrationUserType.userTypes.map((element,index)=>
-                                    <div className="selectTypeBlock d-flex">
+                                    <div className="selectTypeBlock d-flex" style={{visibility: (this.state.agency.length===0 || index===1) ? 'visible': 'hidden'  }}>
                                         <label className="typeCheckLabel" for={"typeCheckbox"+(index+1)}>{element.userText[lang]}</label>
-                                        <input className="typeCheckButton" id={"typeCheckbox"+(index+1)} type="radio" name="raz" onClick={()=>this.setState({userType: index+1})}/>
+                                        <input disabled = {!(this.state.agency.length===0 || index===1)} className="typeCheckButton" id={"typeCheckbox"+(index+1)} type="radio" name="raz" onClick={()=>this.setState({userType: index+1})}/>
                                     </div>
                                 )
                             }

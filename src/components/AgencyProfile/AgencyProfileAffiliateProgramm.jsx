@@ -1,7 +1,7 @@
 import React from 'react';
-import './DriverProfileAffiliateProgram.css'
-import copy from './img/copy.svg';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
+import '../driverProfileRegistration/DriverProfileAffiliateProgram.css';
+import copy from '../driverProfileRegistration/img/copy.svg';
 import {
     Table,
     TableBody,
@@ -11,26 +11,16 @@ import {
     TableRowColumn,
 } from 'material-ui/Table';
 import requests from '../../config';
-
-
-
-class DriverProfileAffiliateProgramClass extends React.Component {
-    constructor(props) {
+class AgencyProfileAffiliateProgrammClass extends React.Component{
+    constructor(props){
         super(props);
-        this.state = {
-
-        };
-
-
     }
     copyValue = (id) =>{
         let selectedInput = document.getElementById(id);
         selectedInput.select();
         document.execCommand("copy");
     }
-
-
-    render() {
+    render(){
         function paymentsCalculation(partners){
             let res = 0;
             
@@ -40,8 +30,8 @@ class DriverProfileAffiliateProgramClass extends React.Component {
             res = Math.round(res*100)/100;
             return res;
         }
-        var allPayments = paymentsCalculation(this.props.globalReduser.profile.partners);
-
+        var allPayments = paymentsCalculation(this.props.globalReduser.profile.partners ? this.props.globalReduser.profile.partners : []);
+        let partners = this.props.globalReduser.profile.partners ? this.props.globalReduser.profile.partners : [];
         return (
             <div className="affiliateProgramBody">
                 <div className="d-flex flex-column ">
@@ -89,7 +79,7 @@ class DriverProfileAffiliateProgramClass extends React.Component {
                             <div className="col-sm-4 col-12 ">
                                 <div className="affilitaProgramEl d-flex flex-column align-items-center justify-content-center">
                                     <i className="peopleicon"></i>
-                                    <span>{this.props.globalReduser.profile.partners.length}</span>
+                                    <span>{this.props.globalReduser.profile.partners ? this.props.globalReduser.profile.partners.length : 0}</span>
                                     <span>Всего рефералов</span>
                                 </div>
                             </div>
@@ -126,7 +116,7 @@ class DriverProfileAffiliateProgramClass extends React.Component {
                                 className="affiliateProgramTable"
                                 stripedRows={true} 
                                 displayRowCheckbox={false}>
-                                {this.props.globalReduser.profile.partners.map((element, index)=>{
+                                {partners.map((element, index)=>{
                                     function dateConverter(value){
                                         let day = value.getDate();
                                         let month = value.getMonth()+1;
@@ -171,13 +161,12 @@ class DriverProfileAffiliateProgramClass extends React.Component {
         );
     }
 }
-
-const DriverProfileAffiliateProgram = connect(
+const AgencyProfileAffiliateProgramm = connect(
     (state) => ({
         storeState: state.AppReduser,
         profileReduser: state.DriverProfileRegistrationReduser,
-        globalReduser: state.GlobalReduser
+        globalReduser: state.GlobalReduser,
     }),
-)(DriverProfileAffiliateProgramClass);
+)(AgencyProfileAffiliateProgrammClass);
 
-export default DriverProfileAffiliateProgram;
+export default AgencyProfileAffiliateProgramm;

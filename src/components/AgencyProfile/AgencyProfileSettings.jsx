@@ -1,17 +1,14 @@
 import React from 'react';
-import './DriverProfileSettings.css'
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
+import '../driverProfileRegistration/DriverProfileSettings.css';
 import TextField from 'material-ui/TextField';
-import flags from './img/flags.png'
+import flags from '../driverProfileRegistration/img/flags.png';
 import ReactTelInput from 'react-telephone-input'
 import requests from '../../config';
 import { setProfileData } from "../../redusers/ActionGlobal"
-import getUserData from './DriverProfileRequest';
-import RefreshIndicator from 'material-ui/RefreshIndicator';
-import DriverRefreshIndicator from './DriverRefreshIndicator';
-
-
-class DriverProfileSettingsClass extends React.Component {
+import getUserData from '../driverProfileRegistration/DriverProfileRequest';
+import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+class AgencyProfileSettingsClass extends React.Component{
     constructor(props){
         super(props);
         let profile = this.props.globalReduser.profile;
@@ -326,13 +323,12 @@ class DriverProfileSettingsClass extends React.Component {
         );
     }
 }
-
-const DriverProfileSettings = connect(
+const AgencyProfileSettings = connect(
     (state) => ({
         storeState: state.AppReduser,
         profileReduser: state.DriverProfileRegistrationReduser,
         globalReduser: state.GlobalReduser,
     }),
-)(DriverProfileSettingsClass);
+)(AgencyProfileSettingsClass);
 
-export default DriverProfileSettings;
+export default AgencyProfileSettings;

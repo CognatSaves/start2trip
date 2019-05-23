@@ -1,22 +1,22 @@
 import React from 'react';
-import './DriverProfileBasicInformation.css'
-import './DriverProfileCalendar.css'
-import { connect } from 'react-redux'
+import {connect} from 'react-redux';
+import '../driverProfileRegistration/DriverProfileBasicInformation.css';
+import '../driverProfileRegistration/DriverProfileCalendar.css';
 import LocationSearchInput from '../home/HomeBody/Search'
 import TextField from 'material-ui/TextField';
 import DatePicker from 'material-ui/DatePicker';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 import Chip from 'material-ui/Chip';
-import flags from './img/flags.png'
+import flags from '../driverProfileRegistration/img/flags.png'
 import ReactTelInput from 'react-telephone-input'
 import requests from '../../config';
 import { setProfileData } from "../../redusers/ActionGlobal"
-import getUserData from './DriverProfileRequest';
-import DriverRefreshIndicator from './DriverRefreshIndicator';
+import getUserData from '../driverProfileRegistration/DriverProfileRequest';
+import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 
-class DriverProfileBasicInformationClass extends React.Component {
-    constructor(props) {
+class AgencyProfileBasicInformationClass extends React.Component{
+    constructor(props){
         super(props);
         function languageArraysConstr(language, allLanguages) {
             let langList = [];
@@ -52,12 +52,16 @@ class DriverProfileBasicInformationClass extends React.Component {
             profileData: {
                 firstName: profile.firstName,
                 lastName: profile.lastName,
-                birthday: birthday,
-                passportNumber: profile.passportNumber,
-                passportDate: passportDate,
                 city: profile.hometown.length!==0 ?  (profile.hometown+ ', ' + profile.homecountry) : "",
                 workPhone: profile.workPhone,
-                dataAbout: profile.dataAbout
+                dataAbout: profile.dataAbout,
+
+                bankAccount: profile.bankAccount,
+                bankAddress: profile.bankAddress,
+                bankCode: profile.bankCode,
+                legalAddress: profile.legalAddress,
+                organizationName: profile.organizationName,
+                registrationNumber: profile.registrationNumber    
             }
         }
         this.formSubmit = this.formSubmit.bind(this);
@@ -67,6 +71,7 @@ class DriverProfileBasicInformationClass extends React.Component {
         this.startRefresher = this.startRefresher.bind(this);
         this.thenFunc = this.thenFunc.bind(this);
         this.catchFunc = this.catchFunc.bind(this);
+        this.agencyDataChange = this.agencyDataChange.bind(this);
     }
     getProfileData(){
         console.log('getProfileData');
@@ -114,6 +119,7 @@ class DriverProfileBasicInformationClass extends React.Component {
     }
     applyChanges() {
         let jwt = this.props.globalReduser.readCookie('jwt');
+        
         if (jwt && jwt !== "-") {
             let that = this;
             that.startRefresher();
@@ -163,6 +169,39 @@ class DriverProfileBasicInformationClass extends React.Component {
             this.props.globalReduser.history.push('/login');            
         }
     }
+    agencyDataChange(value, variable){
+        let profileData = this.state.profileData;
+        switch (variable) {
+            case 'bankAccount': {
+                profileData.bankAccount = value;
+                break;
+            }
+            case 'bankAddress':{
+                profileData.bankAddress = value;
+                break;
+            }
+            case 'bankCode':{
+                profileData.bankCode = value;
+                break;
+            }
+            case 'legalAddress':{
+                profileData.legalAddress = value;
+                break;
+            }
+            case 'organizationName':{
+                profileData.organizationName = value;
+                break;
+            }
+            case 'registrationNumber':{
+                profileData.registrationNumber = value;
+                break;
+            }
+            default:
+        }
+        this.setState({
+            profileData: profileData
+        });
+    }
     inputChange(value, variable) {
         let profileData = this.state.profileData;
         switch (variable) {
@@ -198,7 +237,7 @@ class DriverProfileBasicInformationClass extends React.Component {
         }
         this.setState({
             profileData: profileData
-        })
+        });
     }
     formSubmit(event) {
         event.preventDefault();
@@ -230,8 +269,7 @@ class DriverProfileBasicInformationClass extends React.Component {
             profileData: { ...this.state.profileData, city: value }
         })
     }
-
-    render() {
+    render(){
         return (
             <div className="basicInformationBody d-flex flex-column">
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer}/>
@@ -241,6 +279,129 @@ class DriverProfileBasicInformationClass extends React.Component {
                     </div>
                     <div className="basicInformationBodyBottomContent d-flex flex-column">
                         <form onSubmit={this.formSubmit} id="basicInformation" className="d-flex flex-column col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" >
+                            <p>Данные организации</p>
+                            <div className="bottomContentNote d-flex align-items-center">
+                                <label htmlFor="basicInfoName" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Название организации:</label>
+                                <TextField
+                                    floatingLabelText="Название организации"
+                                    className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
+                                    fullWidth="100%"
+                                    floatingLabelFocusStyle={{ color: "#304269" }}
+                                    underlineFocusStyle={{ borderColor: "#304269" }}
+                                    initialValue={this.state.profileData.organizationName}
+                                    onChange={(e) => { this.agencyDataChange(e.target.value, 'organizationName'); }}
+                                    value={this.state.profileData.organizationName}
+                                />
+                                <input className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " id="basicInfoName" type="text" value={this.state.profileData.organizationName}
+                                    onChange={(e) => { this.agencyDataChange(e.target.value, 'organizationName'); }} />
+                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
+                            </div>
+                            <div className="bottomContentNote d-flex align-items-center">
+                                <label htmlFor="basicInfoName" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Регистрационный номер:</label>
+                                <TextField
+                                    floatingLabelText="Регистрационный номер"
+                                    className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
+                                    fullWidth="100%"
+                                    floatingLabelFocusStyle={{ color: "#304269" }}
+                                    underlineFocusStyle={{ borderColor: "#304269" }}
+                                    initialValue={this.state.profileData.registrationNumber}
+                                    onChange={(e) => { this.agencyDataChange(e.target.value, 'registrationNumber'); }}
+                                    value={this.state.profileData.registrationNumber}
+                                />
+                                <input className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " id="basicInfoName" type="text" value={this.state.profileData.registrationNumber}
+                                    onChange={(e) => { this.agencyDataChange(e.target.value, 'registrationNumber'); }} />
+                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
+                            </div>
+                            <div className="bottomContentNote d-flex align-items-center">
+                                <label htmlFor="basicInfoName" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Юридический адрес:</label>
+                                <TextField
+                                    floatingLabelText="Юридический адрес"
+                                    className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
+                                    fullWidth="100%"
+                                    floatingLabelFocusStyle={{ color: "#304269" }}
+                                    underlineFocusStyle={{ borderColor: "#304269" }}
+                                    initialValue={this.state.profileData.legalAddress}
+                                    onChange={(e) => { this.agencyDataChange(e.target.value, 'legalAddress'); }}
+                                    value={this.state.profileData.legalAddress}
+                                />
+                                <input className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " id="basicInfoName" type="text" value={this.state.profileData.legalAddress}
+                                    onChange={(e) => { this.agencyDataChange(e.target.value, 'legalAddress'); }} />
+                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
+                            </div>
+                            <div className="bottomContentNote d-flex align-items-center">
+                                <label htmlFor="basicInfoName" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Расчётный счёт:</label>
+                                <TextField
+                                    floatingLabelText="Расчётный счёт"
+                                    className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
+                                    fullWidth="100%"
+                                    floatingLabelFocusStyle={{ color: "#304269" }}
+                                    underlineFocusStyle={{ borderColor: "#304269" }}
+                                    initialValue={this.state.profileData.bankAccount}
+                                    onChange={(e) => { this.agencyDataChange(e.target.value, 'bankAccount'); }}
+                                    value={this.state.profileData.bankAccount}
+                                />
+                                <input className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " id="basicInfoName" type="text" value={this.state.profileData.bankAccount}
+                                    onChange={(e) => { this.agencyDataChange(e.target.value, 'bankAccount'); }} />
+                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
+                            </div>
+                            <div className="bottomContentNote d-flex align-items-center">
+                                <label htmlFor="basicInfoName" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Код банка:</label>
+                                <TextField
+                                    floatingLabelText="Код банка"
+                                    className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
+                                    fullWidth="100%"
+                                    floatingLabelFocusStyle={{ color: "#304269" }}
+                                    underlineFocusStyle={{ borderColor: "#304269" }}
+                                    initialValue={this.state.profileData.bankCode}
+                                    onChange={(e) => { this.agencyDataChange(e.target.value, 'bankCode'); }}
+                                    value={this.state.profileData.bankCode}
+                                />
+                                <input className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " id="basicInfoName" type="text" value={this.state.profileData.bankCode}
+                                    onChange={(e) => { this.agencyDataChange(e.target.value, 'bankCode'); }} />
+                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
+                            </div>
+                            <div className="bottomContentNote d-flex align-items-center">
+                                <label htmlFor="basicInfoName" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Адрес банка:</label>
+                                <TextField
+                                    floatingLabelText="Адрес банка"
+                                    className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
+                                    fullWidth="100%"
+                                    floatingLabelFocusStyle={{ color: "#304269" }}
+                                    underlineFocusStyle={{ borderColor: "#304269" }}
+                                    initialValue={this.state.profileData.bankAddress}
+                                    onChange={(e) => { this.agencyDataChange(e.target.value, 'bankAddress'); }}
+                                    value={this.state.profileData.bankAddress}
+                                />
+                                <input className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " id="basicInfoName" type="text" value={this.state.profileData.bankAddress}
+                                    onChange={(e) => { this.agencyDataChange(e.target.value, 'bankAddress'); }} />
+                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
+                            </div>
+                            <div className="bottomContentNote d-flex align-items-start">
+                                <label htmlFor="basicInfoMultiLine" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">О себе:</label>
+                                <TextField
+                                    floatingLabelText="О себе"
+                                    className="d-xl-none d-lg-none d-md-none d-sm-block d-block multiLineInputClass"
+                                    fullWidth="100%"
+                                    floatingLabelFocusStyle={{ color: "#304269" }}
+                                    underlineFocusStyle={{ borderColor: "#304269" }}
+                                    multiLine={true}
+                                    rows={1}
+                                    value={this.state.profileData.dataAbout}
+                                    onChange={(e) => { this.inputChange(e.target.value, 'dataAbout'); }}
+                                />
+                                <textarea className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " id="basicInfoMultiLine" name="" cols="30" rows="3" value={this.state.profileData.dataAbout}
+                                    onChange={(e) => { let profileData = this.state.profileData; profileData.dataAbout = e.target.value; this.setState({ profileData: profileData }) }}></textarea>
+                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
+                            </div>
+                            
+
+
+
+
+
+
+
+                            <p>Данные контактного лица</p>
                             <div className="bottomContentNote d-flex align-items-center">
                                 <label htmlFor="basicInfoName" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Имя:</label>
                                 <TextField
@@ -272,43 +433,7 @@ class DriverProfileBasicInformationClass extends React.Component {
                                     onChange={(e) => { this.inputChange(e.target.value, 'lastName'); }}
                                 />
                             </div>
-                            <div className="bottomContentNote d-flex align-items-center">
-                                <label htmlFor="basicInfoBirthday" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Дата рождения:</label>
-                                <DatePicker floatingLabelText="Дата рождения" id="basicInfoBirthday" className="calendarModal col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0" value={this.state.profileData.birthday}
-                                    onChange={(undefined, data) => { this.inputChange(data, 'birthday'); }}
-                                />
-                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
-                            </div>
-                            <div className="bottomContentNote d-flex align-items-center">
-                                <label htmlFor="basicInfoNumber" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Номер паспорта:</label>
-                                <TextField
-                                    floatingLabelText="Номер паспорта"
-                                    className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
-                                    fullWidth="100%"
-                                    floatingLabelFocusStyle={{ color: "#304269" }}
-                                    underlineFocusStyle={{ borderColor: "#304269" }}
-                                    value={this.state.profileData.passportNumber}
-                                    onChange={(e) => { this.inputChange(e.target.value, 'passportNumber'); }}
-                                />
-                                <input className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " id="basicInfoNumber" type="text" value={this.state.profileData.passportNumber}
-                                    onChange={(e) => { this.inputChange(e.target.value, 'passportNumber'); }}
-                                />
-                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
-                            </div>
-                            <div className="bottomContentNote d-flex align-items-center">
-                                <label htmlFor="basicInfoDay" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Дата выдачи:</label>
-                                <DatePicker floatingLabelText="Дата выдачи паспорта" id="basicInfoDay" className="calendarModal col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0" value={this.state.profileData.passportDate}
-                                    onChange={(undefined, data) => { this.inputChange(data, 'passportDate'); }}
-                                />
-                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
-                            </div>
-                            <div className="bottomContentNote d-flex align-items-center">
-                                <label htmlFor="basicInfoLocation" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Город:</label>
-                                <div className="d-flex col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">
-                                    <LocationSearchInput address={this.state.profileData.city} changeCity={this.changeCity} classInput="searchInputDriverInformation" id="basicInfoLocation" classDropdown="searchDropdownDriverInformation" />
-                                </div>
-                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
-                            </div>
+                            
                             <div className="bottomContentNote d-flex align-items-center">
                                 <label htmlFor="basicInfoNumber" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Рабочий телефон:</label>
                                 <ReactTelInput
@@ -358,23 +483,6 @@ class DriverProfileBasicInformationClass extends React.Component {
 
                                 </div>
                             </div>
-                            <div className="bottomContentNote d-flex align-items-start">
-                                <label htmlFor="basicInfoMultiLine" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">О себе:</label>
-                                <TextField
-                                    floatingLabelText="О себе"
-                                    className="d-xl-none d-lg-none d-md-none d-sm-block d-block multiLineInputClass"
-                                    fullWidth="100%"
-                                    floatingLabelFocusStyle={{ color: "#304269" }}
-                                    underlineFocusStyle={{ borderColor: "#304269" }}
-                                    multiLine={true}
-                                    rows={1}
-                                    value={this.state.profileData.dataAbout}
-                                    onChange={(e) => { this.inputChange(e.target.value, 'dataAbout'); }}
-                                />
-                                <textarea className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " id="basicInfoMultiLine" name="" cols="30" rows="3" value={this.state.profileData.dataAbout}
-                                    onChange={(e) => { let profileData = this.state.profileData; profileData.dataAbout = e.target.value; this.setState({ profileData: profileData }) }}></textarea>
-                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
-                            </div>
                             <div className="d-flex justify-content-xl-start justify-content-lg-start justify-content-md-start justify-content-sm-center justify-content-center ">
                                 <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2"></label>
                                 <button className="col-8 mb-5" htmlFor="basicInformation" type="submit">Сохранить Изменения</button>
@@ -386,13 +494,12 @@ class DriverProfileBasicInformationClass extends React.Component {
         );
     }
 }
-
-const DriverProfileBasicInformation = connect(
+const AgencyProfileBasicInformation = connect(
     (state) => ({
         storeState: state.AppReduser,
         profileReduser: state.DriverProfileRegistrationReduser,
         globalReduser: state.GlobalReduser,
     }),
-)(DriverProfileBasicInformationClass);
+)(AgencyProfileBasicInformationClass);
 
-export default DriverProfileBasicInformation;
+export default AgencyProfileBasicInformation;

@@ -13,16 +13,22 @@ import DriverProfileHistory from './DriverProfileHistory'
 import DriverProfileBilling from './DriverProfileBilling'
 import DriverProfileAffiliateProgram from './DriverProfileAffiliateProgram'
 import {Route} from 'react-router-dom';
+import { setProfileData } from "../../redusers/ActionGlobal"
+import requests from '../../config';
+import getUserData from './DriverProfileRequest';
+import DriverRefreshIndicator from './DriverRefreshIndicator';
 
 class DriverProfileRegistrationClass extends React.Component {
   constructor(props) {
     super(props);
   }
   render() {
+    
     console.log('DriverProfileRegistration');
     
     //let profile = this.props.storeState.profile;
     let userType = this.props.globalReduser.readCookie('userType');
+    let that = this;
     if(this.props.globalReduser.profile.isDriver){
       return(
         <React.Fragment>
@@ -47,8 +53,24 @@ class DriverProfileRegistrationClass extends React.Component {
       )
     }
     else{
-      this.props.history.push('/home');
-      return null;
+      if(this.props.globalReduser.profile.email){
+        this.props.history.push('/home');
+        return null;
+      }
+      else{
+        let requestValues = {
+          readCookie: this.props.globalReduser.readCookie,
+          setProfileData: function(data){
+              
+              that.props.dispatch(setProfileData(data))
+          },
+          requestAddress: requests.profileRequest
+          }
+        getUserData(requestValues);
+        return(
+          <DriverRefreshIndicator isRefreshExist={true} isRefreshing={true} isGoodAnswer={true}/>
+        )
+      }
     }
     /*
     if(!profile.email){

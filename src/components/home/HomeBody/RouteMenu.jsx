@@ -101,7 +101,7 @@ class RouteMenuClass extends React.Component {
         for(let k =0; k<arrayAdress.length-1;k++){
           stringWhithoutCountry += arrayAdress[k]
         }
-        debugger
+        
         let stringWhithoutSpaces = stringWhithoutCountry.replace(/ /g,'-');
         if(i==0){
           newStringCities = "from-"+stringWhithoutSpaces;

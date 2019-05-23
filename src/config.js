@@ -22,6 +22,7 @@ const getLocals = serverAddress + "/getLocals";//первичный запрос
 
 const forgotPassword = serverAddress + "/auth/forgotPassword";
 const resetPassword = serverAddress + "/auth/reset-password";
+const changeMyDriver = serverAddress + "/users/me/changeDriver";
 export default {frontendAddress:frontendAddress,serverAddress: serverAddress, serverRegistrationRequest: serverRegistrationRequest, facebookRequest: facebookRequest,
      googleRequest: googleRequest, serverAuthorizationRequest: serverAuthorizationRequest, meRequest: meRequest, 
      profileRequest:profileRequest, profileUpdateRequest: profileUpdateRequest, travelsettingsUpdateRequest: travelsettingsUpdateRequest,
@@ -30,4 +31,4 @@ export default {frontendAddress:frontendAddress,serverAddress: serverAddress, se
      userAvatarChangeRequest:userAvatarChangeRequest, userTourCreateRequest:userTourCreateRequest,
      userTourDestroyRequest:userTourDestroyRequest, userTourUpdateRequest: userTourUpdateRequest,
      userTourActivateRequest:userTourActivateRequest, getLocals:getLocals,forgotPassword:forgotPassword,
-     resetPassword:resetPassword};
+     resetPassword:resetPassword, changeMyDriver:changeMyDriver};

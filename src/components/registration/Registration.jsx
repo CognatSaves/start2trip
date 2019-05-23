@@ -130,6 +130,7 @@ class Registration extends React.Component{
         console.log("Registration component");
         console.log(window.location.pathname);
         let type=window.opener.localStorage.getItem('type');
+        let agency = window.opener.localStorage.getItem('agency');
         let userType = Number.parseInt(window.opener.localStorage.getItem('userType'));
         let partner = getFarCookie('partner');
         if(window.location.pathname==="/registration/facebook"){
@@ -153,7 +154,8 @@ class Registration extends React.Component{
                                 isDriver: userType===2 ? true : false,                         
                                 isAgency: userType===3 ? true : false,
                                 provider: 'facebook',
-                                partner: partner ? partner : ''
+                                partner: partner && (!agency || agency.length===0) ? partner : '',
+                                agency: agency ? agency : ''
                                 });
                             console.log()
                             this.state.socialWebRegistrationRequest(body);
@@ -176,7 +178,8 @@ class Registration extends React.Component{
                             isCustomer: false,
                             isDriver: false,                         
                             isAgency: false,
-                            partner: partner ? partner : ''
+                            partner: partner && (!agency || agency.length===0) ? partner : '',
+                            agency: agency ? agency : ''
                         });
                         this.state.socialWebAuthorizationRequest(body);
                     })
@@ -201,7 +204,8 @@ class Registration extends React.Component{
                             isDriver: userType===2 ? true : false,                         
                             isAgency: userType===3 ? true : false,
                             provider: 'google',
-                            partner: partner ? partner : ''
+                            partner: partner && (!agency || agency.length===0) ? partner : '',
+                            agency: agency ? agency : ''
                         });
                         this.state.socialWebRegistrationRequest(body);
                     })
@@ -221,10 +225,11 @@ class Registration extends React.Component{
                             password: password,
                             email: response.data.email,
                             provider: 'google',
-                            sCustomer: false,
+                            isCustomer: false,
                             isDriver: false,                         
                             isAgency: false,
-                            partner: partner ? partner : ''
+                            partner: partner && (!agency || agency.length===0) ? partner : '',
+                            agency: agency ? agency : ''
                         });
                         this.state.socialWebAuthorizationRequest(body);
                     })
