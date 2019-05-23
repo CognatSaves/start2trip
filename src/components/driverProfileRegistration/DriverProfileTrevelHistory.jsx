@@ -14,7 +14,7 @@ class DriverProfileTrevelHistoryClass extends React.Component {
 
 
     render() {
-
+        let textPage = this.props.globalReduser.languageText.DriverProfileTrevelHistory;
         return (
             <div className="d-flex flex-wrap justify-content-center">
                 {this.props.trevelHistory.map((element, index) =>
@@ -29,21 +29,21 @@ class DriverProfileTrevelHistoryClass extends React.Component {
                                 <hr/>
                             </div>
                             <div className="d-flex flex-column historyBodyElement ">
-                                <h5>Клиент</h5>
+                                <h5>{textPage.customer}</h5>
                                 <span>{element.name}</span>
                                 <span>{element.tel}</span>
                                 <span>{element.email}</span>
                             </div>
                             <div className="d-flex flex-column historyBodyElement">
-                                <h5>Место встречи</h5>
+                                <h5>{textPage.venue}</h5>
                                 <span>{element.place}</span>
                             </div>
                             <div className="d-flex flex-column historyBodyElement">
-                                <h5>Стоимость поездки</h5>
+                                <h5>{textPage.costOfTravel}</h5>
                                 <span>{element.price}</span>
                             </div>
                             <div className="d-flex flex-column historyBodyElement">
-                                <h5>Комментарий</h5>
+                                <h5>{textPage.comment}</h5>
                                 <span>{element.feedback}</span>
                             </div>
                         </div>
@@ -57,6 +57,7 @@ class DriverProfileTrevelHistoryClass extends React.Component {
 const DriverProfileTrevelHistory = connect(
     (state) => ({
         storeState: state.AppReduser,
+        globalReduser: state.GlobalReduser
     }),
 )(DriverProfileTrevelHistoryClass);
 

@@ -27,26 +27,26 @@ class DriverProfileAffiliateProgramClass extends React.Component {
 
 
     render() {
-
+        let textPage = this.props.globalReduser.languageText.DriverProfileAffiliateProgram;
         return (
             <div className="affiliateProgramBody">
                 <div className="d-flex flex-column ">
                     <div className="d-flex flex-column align-items-center">
-                        <h3>Партнерская программа</h3>
-                        <p className="col-xl-8 col-lg-8 col-md-9 col-sm-10 col-10">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae impedit odio aspernatur veniam obcaecati veritatis fugit id voluptate excepturi nam aliquam architecto quam laboriosam suscipit deserunt neque, ab dolorem alias?</p>
+                        <h3>{textPage.affiliateProgramsTitle}</h3>
+                        <p className="col-xl-8 col-lg-8 col-md-9 col-sm-10 col-10">{textPage.affiliateProgramsDescription}</p>
                     </div>
                     <div className="affiliateProgramButton d-flex flex-sm-row flex-column justify-content-between align-items-center">
                         <div>
-                            <div>Ваши партнёрские ссылки</div>
+                            <div>{textPage.affiliateLinks.title}</div>
                             <div>
-                                Ссылка на регистрацию
+                            {textPage.affiliateLinks.registrationLink}
                             </div>
                             <div className="d-flex flex-row">
                                 <input placeholder="Ссылка 1" style={{width: '400px'}} value={requests.frontendAddress+'/register/'+this.props.globalReduser.profile._id}/>
                                 <div style={{background: 'url('+copy+') no-repeat center', backgroundSize: '40px 40px', width: '40px'}}/>
                             </div>
                             <div>
-                                Ссылка на главную
+                            {textPage.affiliateLinks.linkToHomePage}
                             </div>
                             <div className="d-flex flex-row">
                                 <input placeholder="Ссылка 1" style={{width: '400px'}} value={requests.frontendAddress+'/start/'+this.props.globalReduser.profile._id}/>
@@ -59,7 +59,7 @@ class DriverProfileAffiliateProgramClass extends React.Component {
                                 <span>Партнерские ссылки</span>
                                 <span>Пригласить друга</span>
                             */
-                           <span>Промо материалы</span>
+                           <span>{textPage.promotionalMaterials}</span>
                         }
                               
                         </div>
@@ -69,28 +69,28 @@ class DriverProfileAffiliateProgramClass extends React.Component {
                     <div className="affiliateProgramContent col-12">
                         <div className="affiliateProgramTitle d-flex">
                             <i className="questionicon"></i>
-                            <span>Начисления никогда не заканчиваются. Чем больше у вас рефералов, и чем лучше они работают - тем больше вы получаете каждый день</span>
+                            <span>{textPage.questionicon}</span>
                         </div>
                         <div className="affiliateProgramAllEl d-flex flex-sm-row flex-column justify-content-around">
                             <div className="col-sm-4 col-12 ">
                                 <div className="affilitaProgramEl d-flex flex-column align-items-center justify-content-center">
                                     <i className="peopleicon"></i>
                                     <span>0</span>
-                                    <span>Всего рефералов</span>
+                                    <span>{textPage.peopleicon}</span>
                                 </div>
                             </div>
                             <div className="col-sm-4 col-12">
                                 <div className="affilitaProgramEl d-flex flex-column align-items-center justify-content-center">
                                     <i className="percenticon"></i>
                                     <span>14%</span>
-                                    <span>С каждой оплаты</span>
+                                    <span>{textPage.percenticon}</span>
                                 </div>
                             </div>
                             <div className="col-sm-4 col-12 ">
                                 <div className="affilitaProgramEl d-flex flex-column align-items-center justify-content-center">
                                     <i className="currencyicon"></i>
                                     <span>0.00$</span>
-                                    <span>Заработанно Всего</span>
+                                    <span>{textPage.currencyicon}</span>
                                 </div>
                             </div>
                         </div>
@@ -102,10 +102,9 @@ class DriverProfileAffiliateProgramClass extends React.Component {
                             displaySelectAll={false} 
                             adjustForCheckbox={false}>
                                 <TableRow >
-                                    <TableHeaderColumn>EMAIL</TableHeaderColumn>
-                                    <TableHeaderColumn>Дата регистрации</TableHeaderColumn>
-                                    <TableHeaderColumn>Источник регистрации</TableHeaderColumn>
-                                    <TableHeaderColumn>Начисления</TableHeaderColumn>
+                                {textPage.affiliateProgramTableHeader.map((element,index)=>
+                                    <TableHeaderColumn>{element}</TableHeaderColumn>
+                                )}
                                 </TableRow>
                             </TableHeader>
                             <TableBody

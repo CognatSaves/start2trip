@@ -24,7 +24,7 @@ class DriverProfileNavigationClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            navigationText: ["Мои поездки", "Профиль", "Автомобиль", "Настройки поездок", "Туры", "Отзывы", "Настройки", "Биллинг", "Партнерская программа",],
+            navigationText:this.props.globalReduser.languageText.DriverProfileNavigation.navigationText,
             //avatar: "",
             profile: this.props.globalReduser.profile,
             route: [
@@ -152,6 +152,7 @@ class DriverProfileNavigationClass extends React.Component {
             let img = requests.serverAddress + this.state.profile.avatar.url
             this.setState({ avatar: img })
         }
+        let textPage = this.props.globalReduser.languageText.DriverProfileNavigation;
         return (
             <React.Fragment>
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer}/>                
@@ -167,14 +168,14 @@ class DriverProfileNavigationClass extends React.Component {
                 }[this.props.globalhistory.history.location.pathname]}>
                     <div className="basicInformationBodyTop d-flex align-items-center ">
                         <div className="basicInformationBodyTopImgHover">
-                            <label className="basicInformationBodyTopImg" htmlFor="addFile">Обновить фотографию</label>
+                            <label className="basicInformationBodyTopImg" htmlFor="addFile">{textPage.updatePhoto}</label>
                             <img src={this.props.AppReduser.avatarUrl} alt="imgPerson" />
                             <input type="file" id="addFile" style={{ display: "none" }} onChange={this._handleImageChange} />
                         </div>
                         <div className="bodyTopDriverInfo col-7">
                             <div className="bodyTopDriverInfoName d-flex flex-column align-items-start">
                                 <p className="mb-0 mr-2">{this.state.profile.firstName.length!==0 ? this.state.profile.firstName : this.state.profile.email}</p>
-                                <Stars value={this.state.profile.rating} valueDisplay={true} commentNumberDisplay={true} commentNumber={this.state.profile.comments.length + " отзывов"} />
+                                <Stars value={this.state.profile.rating} valueDisplay={true} commentNumberDisplay={true} commentNumber={this.state.profile.comments.length + textPage.starsReviews} />
                             </div>
                             <div className="bodyTopDriverInfoPlace">
                                 <p>{this.state.profile.hometown.length!==0 ? (this.state.profile.hometown + ", " + this.state.profile.homecountry) : ""}</p>
@@ -183,23 +184,23 @@ class DriverProfileNavigationClass extends React.Component {
                                 <div className="d-xl-flex d-lg-flex d-md-flex d-sm-none d-none align-items-center col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 p-0">
                                     <span>{this.state.profile.futureTrips.length + this.state.profile.historyTrips.length}</span>
                                     <div className="d-flex flex-column">
-                                        <p>ВСЕГО </p>
-                                        <p>ПОЕЗДОК</p>
+                                        <p>{textPage.totalTrips.firs}</p>
+                                        <p>{textPage.totalTrips.last}</p>
                                     </div>
                                 </div>
                                 <div className="bodyTopDriverInfoRideMobail d-xl-none d-lg-none d-md-none d-sm-flex d-flex align-items-center col-xl-3 col-lg-3 col-md-3 col-sm-5 col-9 p-0">
-                                    <p>ВСЕГО ПОЕЗДОК:</p>
+                                    <p>{textPage.totalTrips.full}:</p>
                                     <span className="pl-1">18</span>
                                 </div>
                                 <div className="d-xl-flex d-lg-flex d-md-flex d-sm-none d-none align-items-center col-xl-2 col-lg-2 col-md-2 col-sm-6 col-6 p-0">
                                     <span>{this.state.profile.futureTrips.length}</span>
                                     <div className="d-flex flex-column ">
-                                        <p>ПРЕДСТОЯЩИЕ </p>
-                                        <p>ПОЕЗДКИ</p>
+                                        <p>{textPage.upcomingTrips.firs}</p>
+                                        <p>{textPage.upcomingTrips.last}</p>
                                     </div>
                                 </div>
                                 <div className="bodyTopDriverInfoRideMobail d-xl-none d-lg-none d-md-none d-sm-flex d-flex align-items-center col-xl-3 col-lg-3 col-md-3 col-sm-5 col-12 p-0">
-                                    <p>ПРЕДСТОЯЩИЕ ПОЕЗДКИ:</p>
+                                    <p>{textPage.upcomingTrips.full}:</p>
                                     <span className="pl-1">8</span>
                                 </div>
                             </div>

@@ -38,16 +38,16 @@ class DriverProfileHistoryClass extends React.Component {
 
 
   render() {
-
+    let textPage = this.props.globalReduser.languageText.DriverProfileHistory;
     return (
       <React.Fragment>
         <div className="driverProfileHistory">
           <div className="driverProfileHistoryTop d-flex">
               <div className={this.state.isPreHistory ? "d-flex align-items-center driverProfileHistoryTop-active":" d-flex align-items-center"} onClick={()=>{this.setState({isPreHistory:true})}}>
-                <span>Предстоящие</span>
+                <span>{textPage.upcoming}</span>
               </div>
               <div className={this.state.isPreHistory ? "d-flex align-items-center":"driverProfileHistoryTop-active d-flex align-items-center"} onClick={()=>{this.setState({isPreHistory:false})}}>
-                <span>История</span>
+                <span>{textPage.story}</span>
               </div>
           </div>
           {{
@@ -63,6 +63,7 @@ class DriverProfileHistoryClass extends React.Component {
 const DriverProfileHistory = connect(
   (state) => ({
     storeState: state.DriverProfileRegistrationReduser,
+    globalReduser: state.GlobalReduser
   }),
 )(DriverProfileHistoryClass);
 

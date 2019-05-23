@@ -75,15 +75,15 @@ class DriverProfileTripSettingsTourClass extends React.Component {
             currencies: [...profile.currencies],
 
             directions: [...profile.directions],
-            directionsValue: "Все направления", 
+            directionsValue: this.props.globalReduser.languageText.DriverProfileTripSettingsTour.directionsValue, 
             categories: [...profile.categories],
-            categoriesValue: "Все категории", // not change
+            categoriesValue: this.props.globalReduser.languageText.DriverProfileTripSettingsTour.categoriesValue, // not change
             tags: [...profile.tags],
-            tagsValue: "Все теги", // not change
+            tagsValue: this.props.globalReduser.languageText.DriverProfileTripSettingsTour.tagsValue, // not change
             languageTour: [...profile.allLanguages],
             languageTourOpen: 0,
-            newTourEverydayTime: "Выберите время",
-            newTourDatepickerTime: "Выберите время",
+            newTourEverydayTime: this.props.globalReduser.languageText.DriverProfileTripSettingsTour.newTourEverydayTime,
+            newTourDatepickerTime: this.props.globalReduser.languageText.DriverProfileTripSettingsTour.newTourDatepickerTime,
             time: [
                 "00:00", "00:15", "00:30", "00:45",
                 "01:00", "01:15", "01:30", "01:45",
@@ -642,6 +642,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
             weekdays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
             weekStartsOn: 0,
         };
+        let textPage = this.props.globalReduser.languageText.DriverProfileTripSettingsTour;
         return (
             <React.Fragment>
 
@@ -680,12 +681,12 @@ class DriverProfileTripSettingsTourClass extends React.Component {
 
                                 <div className={{ [index]: "languageTourItemActive", }[this.state.languageTourOpen] + " languageTourItem"}>
                                     <div className=" tourContentTitle d-flex align-items-center mb-0">
-                                        <p>Добавление тура</p>
+                                        <p>{textPage.tourContentTitle}</p>
                                     </div>
                                     <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mb-0">
-                                        <label htmlFor="nameNewTour" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Название тура:</label>
+                                        <label htmlFor="nameNewTour" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">{textPage.nameNewTour.floatingLabelText}:</label>
                                         <TextField
-                                            floatingLabelText="Название тура"
+                                            floatingLabelText={textPage.nameNewTour.floatingLabelText}
                                             className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
                                             fullWidth="100%"
                                             floatingLabelFocusStyle={{ color: "#304269" }}
@@ -695,21 +696,21 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                         />
                                         <input className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " id="nameNewTour" type="text"
                                         value={element.name} onChange={(e) => {this.handleChange(e.currentTarget.value, 'name', {number: index})}}/>
-                                        <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
+                                        <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">{textPage.nameNewTour.description}</p>
                                     </div>
                                     <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                        <label htmlFor="newTourAttractions" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Место отправления:</label>
+                                        <label htmlFor="newTourAttractions" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">{textPage.newTourAttractions.floatingLabelText}:</label>
                                         <div className="d-flex col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0" key={element.departurePoint}>
                                             <LocationSearchInput address={element.departurePoint} changeCity={(id, value)=>{let tourSave = this.state.tourSave; tourSave.local[index].departurePoint=value; this.setState({tourSave: tourSave})}} classDropdown="searchDropdownDriverTour" id="newTourAttractions" />
                                         </div>
-                                        <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
+                                        <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">{textPage.newTourAttractions.description}</p>
                                     </div>
                                     <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                        <label htmlFor="newTourAttractions" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Достопримечательности по маршруту:</label>
+                                        <label htmlFor="attractionsAlongTheRoute" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">{textPage.attractionsAlongTheRoute.floatingLabelText}:</label>
                                         <div className="d-flex col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0" key={element.points.length}>
-                                            <LocationSearchInput changeCity={(id, value) => { this.handleChange(value, "attractionsAlongTheRoute", {number: index}) }} classDropdown="searchDropdownDriverTour" id="newTourAttractions" />
+                                            <LocationSearchInput changeCity={(id, value) => { this.handleChange(value, "attractionsAlongTheRoute", {number: index}) }} classDropdown="searchDropdownDriverTour" id="attractionsAlongTheRoute" />
                                         </div>
-                                        <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
+                                        <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">{textPage.attractionsAlongTheRoute.description}</p>
                                     </div>
                                     <div className="d-flex justify-content-end col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
                                         <div className="d-flex flex-wrap col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 p-0 mb-2">
@@ -728,11 +729,11 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                         </div>
                                     </div>
                                     <div className="d-flex align-items-start mb-2">
-                                        <label htmlFor="newTourDescription" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Описание:</label>
+                                        <label htmlFor="newTourDescription" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">{textPage.newTourDescription.floatingLabelText}:</label>
                                         <textarea id="newTourDescription" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " name="" cols="30" rows="3"
                                         onChange={(e) => {this.handleChange(e.currentTarget.value, 'info', {number: index})}} value={element.info}/>
                                         <TextField
-                                            floatingLabelText="Описание"
+                                            floatingLabelText={textPage.newTourDescription.floatingLabelText}
                                             className="d-xl-none d-lg-none d-md-none d-sm-block d-block multiLineInputClass"
                                             fullWidth="100%"
                                             floatingLabelFocusStyle={{ color: "#304269" }}
@@ -742,14 +743,14 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                             value={element.info}
                                             onChange={(e) => {this.handleChange(e.currentTarget.value, 'info', {number: index})}}
                                         />
-                                        <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
+                                        <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">{textPage.newTourDescription.description}</p>
                                     </div>
                                 </div>
                             )}
 
                             <div className="paddingL10 d-flex border-top flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-start mt-3">
                                 <div className="tourContentTitle d-flex align-items-center col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 p-0">
-                                    <p className="mb-0">Расписание</p>
+                                    <p className="mb-0">{textPage.schedule.title}</p>
                                 </div>
                                 <div className="d-flex flex-column col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 p-0">
                                     <div className="d-flex p-0">
@@ -760,7 +761,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                             </label>
                                         </div>
                                         <div className="tourContentEveryday d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column  align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start col-xl-4 col-lg-4 col-md-4 col-sm-10 col-10 p-0 mb-0">
-                                            <label htmlFor="newTourEveryday" onClick={() => { this.state.tourSave.daily=true; this.setState({tourSave: this.state.tourSave});}} className="mt-xl-0 mt-lg-0 mt-md-0 mt-3 pr-2">Ежедневно</label>
+                                            <label htmlFor="newTourEveryday" onClick={() => { this.state.tourSave.daily=true; this.setState({tourSave: this.state.tourSave});}} className="mt-xl-0 mt-lg-0 mt-md-0 mt-3 pr-2">{textPage.schedule.newTourEveryday}</label>
                                             <DropDownMenu
                                                 anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
                                                 onChange={(event, index, value) => {this.state.tourSave.time=value;this.setState({tourSave: this.state.tourSave});}}
@@ -771,7 +772,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                                 selectedMenuItemStyle={{ color: "#f60" }}
                                                 value={this.state.tourSave.time}
                                             >
-                                                <MenuItem value="Выберите время" disabled={true} primaryText="Выберите время" />
+                                                <MenuItem value={textPage.newTourEverydayTime} disabled={true} primaryText={textPage.newTourEverydayTime} />
                                                 {this.state.time.map((element, index) =>
                                                     <MenuItem value={element} primaryText={element} />
                                                 )}
@@ -786,9 +787,9 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                             </label>
                                         </div>
                                         <div className="openMultipleDatepicker d-xl-flex d-lg-flex d-md-flex d-sm-block d-block flex-column justify-content-center ml-1 col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 mb-0 p-0">
-                                            <label htmlFor="newTourDatepicker" onClick={() => { this.state.tourSave.daily=false; this.setState({tourSave: this.state.tourSave});}} className="mb-0 mr-2">По определенным дням</label>
+                                            <label htmlFor="newTourDatepicker" onClick={() => { this.state.tourSave.daily=false; this.setState({tourSave: this.state.tourSave});}} className="mb-0 mr-2">{textPage.schedule.newTourDatepicker}</label>
                                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column  align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                                <span style={{ display: !this.state.tourSave.daily ? "block" : "none" }} className="newTourDatepickerSpan col-xl-6 col-lg-7 col-md-9 col-sm-12 col-12 p-0" onClick={this.calendarModalShow}>Выбрать даты</span>
+                                                <span style={{ display: !this.state.tourSave.daily ? "block" : "none" }} className="newTourDatepickerSpan col-xl-6 col-lg-7 col-md-9 col-sm-12 col-12 p-0" onClick={this.calendarModalShow}>{textPage.schedule.selectDates}</span>
                                                 <DropDownMenu
                                                     value={/*this.state.newTourDatepickerTime*/this.state.tourSave.time}
                                                     anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
@@ -799,7 +800,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                                     autoWidth={false}
                                                     selectedMenuItemStyle={{ color: "#f60" }}
                                                 >
-                                                    <MenuItem value="Выберите время" disabled={true} primaryText="Выберите время" />
+                                                    <MenuItem value={textPage.newTourDatepickerTime} disabled={true} primaryText={textPage.newTourDatepickerTime} />
                                                     {this.state.time.map((element, index) =>
                                                         <MenuItem value={element} primaryText={element} />
                                                     )}
@@ -834,13 +835,13 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                 </div>
                             </div>
                             <div className="paddingL10 tourContentTitle border-top d-flex align-items-center mt-3 mb-0">
-                                <p>Дополнительная информация</p>
+                                <p>{textPage.additionalInformation.title}</p>
                             </div>
                             <div className="paddingL10 d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                <label htmlFor="newTourPrice" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Стоимость тура:</label>
+                                <label htmlFor="newTourPrice" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">{textPage.additionalInformation.newTourPrice.floatingLabelText}:</label>
                                 <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">
                                     <TextField
-                                        floatingLabelText="Стоимость тура"
+                                        floatingLabelText={textPage.additionalInformation.newTourPrice.floatingLabelText}
                                         className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
                                         fullWidth="100%"
                                         floatingLabelFocusStyle={{ color: "#304269" }}
@@ -866,7 +867,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                 </div>
                             </div>   
                             <div className="paddingL10 d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 ">Направления:</label>
+                                <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 ">{textPage.additionalInformation.directions.floatingLabelText}:</label>
                                 <DropDownMenu
                                         value={this.state.tourSave.directionId}
                                         anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
@@ -876,15 +877,16 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                         autoWidth={false}
                                         selectedMenuItemStyle={{ color: "#f60" }}
                                     >
+                                        <MenuItem value={textPage.directionsValue} disabled primaryText={textPage.directionsValue} />
                                         {this.state.directions.map((element, index) =>
                                             <MenuItem value={element.id} primaryText={element.local.name} />
                                         )}
                                 </DropDownMenu>
-                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
+                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">{textPage.additionalInformation.directions.description}</p>
                             </div>
 
                             <div className="paddingL10 d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 ">Категории:</label>
+                                <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 ">{textPage.additionalInformation.categories.floatingLabelText}:</label>
                                 <DropDownMenu
                                     value={this.state.categoriesValue}
                                     anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
@@ -894,13 +896,13 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                     autoWidth={false}
                                     selectedMenuItemStyle={{ color: "#f60" }}
                                 >
-                                    <MenuItem value={"Все категори"} disabled primaryText={"Все категори"} />
+                                    <MenuItem value={textPage.categoriesValue} disabled primaryText={textPage.categoriesValue} />
                                     {this.state.tourSave.categoriesUnselected.map((element, index) =>
                                         <MenuItem value={element.key} primaryText={element.value} />
                                     )}
 
                                 </DropDownMenu>
-                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
+                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">{textPage.additionalInformation.categories.description}</p>
                             </div>
                             <div className="paddingL10 d-flex justify-content-end col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
                                 <div className="d-flex flex-wrap col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 p-0 mb-2">
@@ -920,7 +922,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                             </div>
 
                             <div className="paddingL10 d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 ">Теги:</label>
+                                <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 ">{textPage.additionalInformation.tags.floatingLabelText}:</label>
                                 <DropDownMenu
                                     anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
                                     onChange={(event, index, value) => { this.handleChange(value, "tags") }}
@@ -929,13 +931,13 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                     autoWidth={false}
                                     selectedMenuItemStyle={{ color: "#f60" }}
                                 >
-                                    <MenuItem value={"Все тег"} disabled primaryText={"Все тег"} />
+                                    <MenuItem value={textPage.tagsValue} disabled primaryText={textPage.tagsValue} />
                                     {this.state.tourSave.tagsUnselected.map((element, index) =>
                                         <MenuItem value={element.key} primaryText={element.value} />
                                     )}
 
                                 </DropDownMenu>
-                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
+                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">{textPage.additionalInformation.tags.description}</p>
                             </div>
                             <div className="paddingL10 d-flex justify-content-end col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
                                 <div className="d-flex flex-wrap col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 p-0 mb-2">
@@ -956,12 +958,12 @@ class DriverProfileTripSettingsTourClass extends React.Component {
 
 
                             <div className="paddingL10 d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                <label htmlFor="newTourPeople" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Количество мест:</label>
+                                <label htmlFor="newTourPeople" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">{textPage.additionalInformation.newTourPeople}:</label>
                                 <input id="newTourPeople" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12" type="text" 
                                 value={this.state.tourSave.seats} onChange={(e)=>this.setState({tourSave: {...this.state.tourSave, seats: e.currentTarget.value}})}/>
                             </div>
                             <div className="paddingL10 addPhotoTour d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-start mt-3">
-                                <label className=" col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12">Загрузить фото:</label>
+                                <label className=" col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12">{textPage.additionalInformation.uploadPhoto}:</label>
 
                                 <div className="tourPhotoMiniContainer d-flex flex-wrap">
                                     <div className="addPhotoTourLabel">
@@ -978,8 +980,8 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                             </div>
                             <div className="paddingL10 tourContentAddButton pb-4 d-flex justify-content-xl-start justify-content-lg-start justify-content-md-start justify-content-sm-center justify-content-center mt-3">
                                 <span className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 d-xl-block d-lg-block d-md-block d-sm-none d-none" />
-                                <button htmlFor="newTourForm" type="submit" className="col-8">ДОБАВИТЬ ТУР</button>
-                                <span className="ml-3" onClick={()=>this.toggle()}>Отмена</span>
+                                <button htmlFor="newTourForm" type="submit" className="col-8">{textPage.additionalInformation.addTour}</button>
+                                <span className="ml-3" onClick={()=>this.toggle()}>{textPage.additionalInformation.cancel}</span>
                             </div>
                         </form>
                     </div>
@@ -990,7 +992,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                             <div className="filledTourImgAddBg">
                                 <div className="d-flex flex-column justify-content-center align-items-center">
                                     <span />
-                                    <p>Добавить тур</p>
+                                    <p>{textPage.additionalInformation.addTour}</p>
                                 </div>
                             </div>
                         </div>
@@ -1002,9 +1004,9 @@ class DriverProfileTripSettingsTourClass extends React.Component {
 
                                             <label className="cardInformationNameCarIcon"></label>
                                             <div className="filledCardInformationMenu">
-                                                <p className="filledCardInformationDeleteCar" onClick={()=>this.destroy(element)}>Удалить</p>
-                                                <p className="filledCardInformationNameCarEdit" onClick={()=>this.toggle(element)}>Редактировать</p>
-                                                <p className="filledCardInformationNameCarEdit" onClick={()=>this.changeActive(element)}>{element.onWork ? 'Деактивировать' : 'Активировать'}</p>
+                                                <p className="filledCardInformationDeleteCar" onClick={()=>this.destroy(element)}>{textPage.filledCardInformationMenu.deleteTour}</p>
+                                                <p className="filledCardInformationNameCarEdit" onClick={()=>this.toggle(element)}>{textPage.filledCardInformationMenu.tourEdit}</p>
+                                                <p className="filledCardInformationNameCarEdit" onClick={()=>this.changeActive(element)}>{element.onWork ? textPage.filledCardInformationMenu.tourDeactivate : textPage.filledCardInformationMenu.tourActivate}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -1015,7 +1017,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                         <p> {this.selectTourName(element)}</p>
                                         <Stars value={Math.ceil(element.rating*10)/10} commentNumber={element.commentNumber+" отзывов"} valueDisplay={true} commentNumberDisplay={true} />
                                         <div className="settingsTourHeader d-flex pr-1">
-                                            <p>Свободных мест:</p>
+                                            <p>{textPage.cardInformation.emptySeats}:</p>
                                             <p>{element.seats}</p>
                                         </div>
                                         <div className="settingsTourPlace d-flex">
