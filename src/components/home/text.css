@@ -1,20 +1,24 @@
 .text_firstLine {
     text-align: center;
     font-size: 34.5pt;
-    color: #304269;
+    color: #fff;
     font-weight: 700;
     text-transform: uppercase;
     min-height: 40px;
     margin-top: 81px;
-    margin-bottom: 20px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    background: rgba(48, 66, 105, 0.8);
+    border-radius: 5px 5px 0 0;
 }
 
 .text_secondLine {
     font-size: 13.5pt;
     text-align: center;
     font-weight: 400;
-    color: #304269;
-    margin-bottom: 46px;
+    color: #fff;
+    padding-bottom: 46px;
+    background: rgba(48, 66, 105, 0.8);
 }
 
 
