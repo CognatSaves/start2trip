@@ -13,7 +13,6 @@ import ReactTelInput from 'react-telephone-input'
 import requests from '../../config';
 import { setProfileData } from "../../redusers/ActionGlobal"
 import getUserData from './DriverProfileRequest';
-import RefreshIndicator from 'material-ui/RefreshIndicator';
 import DriverRefreshIndicator from './DriverRefreshIndicator';
 
 class DriverProfileBasicInformationClass extends React.Component {

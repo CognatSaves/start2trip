@@ -200,7 +200,10 @@
     top: 0px !important;
     right: 0 !important;
 }
-
+.copyElement{
+    background-size: 25px 25px;
+    width: 25px;
+}
 @media (max-width: 1140px) {
     .billingTableBody div :nth-child(2) {
         overflow: initial !important;

@@ -1,17 +1,14 @@
 import React from 'react';
-import './DriverProfileSettings.css'
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
+import '../driverProfileRegistration/DriverProfileSettings.css';
 import TextField from 'material-ui/TextField';
-import flags from './img/flags.png'
+import flags from '../driverProfileRegistration/img/flags.png';
 import ReactTelInput from 'react-telephone-input'
 import requests from '../../config';
 import { setProfileData } from "../../redusers/ActionGlobal"
-import getUserData from './DriverProfileRequest';
-import RefreshIndicator from 'material-ui/RefreshIndicator';
-import DriverRefreshIndicator from './DriverRefreshIndicator';
-
-
-class DriverProfileSettingsClass extends React.Component {
+import getUserData from '../driverProfileRegistration/DriverProfileRequest';
+import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+class AgencyProfileSettingsClass extends React.Component{
     constructor(props){
         super(props);
         let profile = this.props.globalReduser.profile;
@@ -211,23 +208,22 @@ class DriverProfileSettingsClass extends React.Component {
                 position: 'relative',
             },
         };
-        let textPage = this.props.globalReduser.languageText.DriverProfileSettings;
         return (
             <div className="driverProfilesettingsBody pb-1">
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer}/>
                 <div className="driverProfilesettingsBodyTitle d-xl-block d-lg-block d-md-block d-sm-none d-none">
-                    <p>{textPage.settingsBodyTitle}</p>
+                    <p>Настройки профиля</p>
                 </div>
                 <form onSubmit={this.formSubmit} id="profileSettings" className="driverProfileSettingsContent d-flex flex-column col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" >
                     <div className="driverProfileSettingsContentRow d-xl-flex d-lg-flex d-md-flex d-sm-none d-none align-items-center">
-                        <label htmlFor="sittingsEmail" className="col-xl-2 col-lg-2 col-md-2 col-sm-11 col-11 ">{textPage.sittingsEmail.floatingLabelText}:</label>
+                        <label htmlFor="sittingsEmail" className="col-xl-2 col-lg-2 col-md-2 col-sm-11 col-11 ">Email:</label>
                         <input id="sittingsEmail" className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" value={this.state.settingsValues.email}
                             onChange={(e)=>/*this.inputChange(e.target.value,'email')*/console.log('disabled')} disabled
                         />
-                        <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none pl-2">{textPage.sittingsEmail.description}</p>
+                        <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none pl-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
                     </div>
                     <TextField
-                        floatingLabelText={textPage.sittingsEmail.floatingLabelText}
+                        floatingLabelText="Email"
                         className="inputClass sittingsTextField d-xl-none d-lg-none d-md-none d-sm-block d-block"
                         fullWidth="100%"
                         floatingLabelFocusStyle={{ color: "#304269" }}
@@ -239,16 +235,16 @@ class DriverProfileSettingsClass extends React.Component {
                     />
 
                     <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-start">
-                        <p className="driverProfileSettingsContentPasswordText d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-11 col-11 ">{textPage.ContentPasswordText}:</p>
+                        <p className="driverProfileSettingsContentPasswordText d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-11 col-11 ">Пароль:</p>
                         <div className="driverProfileSettingsContentPassword d-flex flex-column justify-content-end col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12  p-0">
-                            <label htmlFor="sittingsCurrentPassword" className="d-xl-block d-lg-block d-md-block d-sm-none d-none">{textPage.sittingsCurrentPassword.floatingLabelText}</label>
+                            <label htmlFor="sittingsCurrentPassword" className="d-xl-block d-lg-block d-md-block d-sm-none d-none">Текущий пароль</label>
                             <div className="driverProfileSettingsContentRow">
                                 <input id="sittingsCurrentPassword" className="d-xl-block d-lg-block d-md-block d-sm-none d-none" type={this.state.thisPasswordType ? "password" : "text"}
                                 pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
                                 value={this.state.settingsValues.password} onChange={(e)=>this.inputChange(e.target.value,'password')}/>
                                 <TextField
                                     type={this.state.thisPasswordType ? "password" : "text"}
-                                    floatingLabelText={textPage.sittingsCurrentPassword.floatingLabelText}
+                                    floatingLabelText="Текущий пароль"
                                     className="inputClass sittingsTextField d-xl-none d-lg-none d-md-none d-sm-block d-block"
                                     fullWidth="100%"
                                     floatingLabelFocusStyle={{ color: "#304269" }}
@@ -260,14 +256,14 @@ class DriverProfileSettingsClass extends React.Component {
                                 <span onClick={() => { this.setState({ thisPasswordType: !this.state.thisPasswordType }) }} className="driverProfileSettingsContentPasswordEyeIcon" />
                             </div>
 
-                            <label htmlFor="sittingsNewPassword" className="d-xl-block d-lg-block d-md-block d-sm-none d-none">{textPage.sittingsNewPassword.floatingLabelText}</label>
+                            <label htmlFor="sittingsNewPassword" className="d-xl-block d-lg-block d-md-block d-sm-none d-none">Новый пароль</label>
                             <div className="driverProfileSettingsContentRow">
                                 <input id="sittingsNewPassword" className="d-xl-block d-lg-block d-md-block d-sm-none d-none" type={this.state.newPasswordType ? "password" : "text"}
                                 pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
                                 value={this.state.settingsValues.newPassword} onChange={(e)=>this.inputChange(e.target.value,'newPassword')}/>
                                 <TextField
                                     type={this.state.newPasswordType ? "password" : "text"}
-                                    floatingLabelText={textPage.sittingsNewPassword.floatingLabelText}
+                                    floatingLabelText="Новый пароль"
                                     className="inputClass sittingsTextField d-xl-none d-lg-none d-md-none d-sm-block d-block"
                                     fullWidth="100%"
                                     floatingLabelFocusStyle={{ color: "#304269" }}
@@ -278,13 +274,13 @@ class DriverProfileSettingsClass extends React.Component {
                                 />
                                 <span onClick={() => { this.setState({ newPasswordType: !this.state.newPasswordType }) }} className="driverProfileSettingsContentPasswordEyeIcon" />
                             </div>
-                            <label htmlFor="sittingsConfirmPassword" className="d-xl-block d-lg-block d-md-block d-sm-none d-none">{textPage.sittingsConfirmPassword.floatingLabelText}</label>
+                            <label htmlFor="sittingsConfirmPassword" className="d-xl-block d-lg-block d-md-block d-sm-none d-none">Подтвердите пароль</label>
                             <div className="driverProfileSettingsContentRow">
                                 <input id="sittingsConfirmPassword" className="d-xl-block d-lg-block d-md-block d-sm-none d-none mb-4" type={this.state.confirmPasswordType ? "password" : "text"}
                                 title="Must match the previous field" value={this.state.settingsValues.newPassword2} onChange={(e)=>this.inputChange(e.target.value,'newPassword2')}/>
                                 <TextField
                                     type={this.state.confirmPasswordType ? "password" : "text"}
-                                    floatingLabelText={textPage.sittingsConfirmPassword.floatingLabelText}
+                                    floatingLabelText="Подтвердите пароль"
                                     className="inputClass sittingsTextField d-xl-none d-lg-none d-md-none d-sm-block d-block"
                                     fullWidth="100%"
                                     floatingLabelFocusStyle={{ color: "#304269" }}
@@ -299,9 +295,9 @@ class DriverProfileSettingsClass extends React.Component {
                     </div>
                     <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start ">
                         {/* TODO функционал выбора префикса по стране */}
-                        <label htmlFor="sittingsPhoneNumber" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-11 col-11">{textPage.sittingsPhoneNumber.floatingLabelText}:</label>
+                        <label htmlFor="sittingsPhoneNumber" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-11 col-11">Телефон:</label>
                         <ReactTelInput
-                            defaultCountry={textPage.sittingsPhoneNumber.telflag}
+                            defaultCountry="ge"
                             classNames="myPhoneInput col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0"
                             flagsImagePath={flags}
                             onChange={(telNumber, selectedCountry) => { this.inputChange(telNumber,'privatePhone');}}
@@ -309,31 +305,30 @@ class DriverProfileSettingsClass extends React.Component {
                             initialValue={this.state.settingsValues.privatePhone}
                             
                         />
-                        <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none pl-2">{textPage.sittingsPhoneNumber.description}</p>
+                        <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none pl-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
                     </div>
                     <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-center py-3">
                         <label className="col-2" />
-                        <button htmlFor="profileSettings" type="submit">{textPage.sittingsSaveBt}</button>
+                        <button htmlFor="profileSettings" type="submit">СОХРАНИТЬ ИЗМЕНЕНИЯ</button>
                     </div>
                 </form>
                 <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start pb-3">
                     <p className="col-2"></p>
                     <div className="driverProfileSettingsContentUnsubscribe d-flex flex-column">
-                    <p className="driverProfileSettingsContentUnsubscribeButton" onClick={()=>{let settingsValues = this.state.settingsValues; settingsValues.subscription = !settingsValues.subscription; this.setState({settingsValues:settingsValues})}}>{this.state.settingsValues.subscription ? textPage.unsubscribeButton.mailing.unsubscribe:textPage.unsubscribeButton.mailing.subscribe}</p>
-                    <p>{textPage.unsubscribeButton.message}</p>
+                    <p className="driverProfileSettingsContentUnsubscribeButton" onClick={()=>{let settingsValues = this.state.settingsValues; settingsValues.subscription = !settingsValues.subscription; this.setState({settingsValues:settingsValues})}}>{this.state.settingsValues.subscription ? "Отписаться от рассылки":"Подписаться на рассылку"}</p>
+                    <p>В результате отписки Вы больше не будете получать сообщения от Tripfer</p>
                     </div>
                 </div>
             </div>
         );
     }
 }
-
-const DriverProfileSettings = connect(
+const AgencyProfileSettings = connect(
     (state) => ({
         storeState: state.AppReduser,
         profileReduser: state.DriverProfileRegistrationReduser,
         globalReduser: state.GlobalReduser,
     }),
-)(DriverProfileSettingsClass);
+)(AgencyProfileSettingsClass);
 
-export default DriverProfileSettings;
+export default AgencyProfileSettings;

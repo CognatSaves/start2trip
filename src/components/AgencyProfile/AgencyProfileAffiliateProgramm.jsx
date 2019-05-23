@@ -1,7 +1,7 @@
 import React from 'react';
-import './DriverProfileAffiliateProgram.css'
-import copy from './img/copy.svg';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
+import '../driverProfileRegistration/DriverProfileAffiliateProgram.css';
+import copy from '../driverProfileRegistration/img/copy.svg';
 import {
     Table,
     TableBody,
@@ -11,26 +11,16 @@ import {
     TableRowColumn,
 } from 'material-ui/Table';
 import requests from '../../config';
-
-
-
-class DriverProfileAffiliateProgramClass extends React.Component {
-    constructor(props) {
+class AgencyProfileAffiliateProgrammClass extends React.Component{
+    constructor(props){
         super(props);
-        this.state = {
-
-        };
-
-
     }
     copyValue = (id) =>{
         let selectedInput = document.getElementById(id);
         selectedInput.select();
         document.execCommand("copy");
     }
-
-
-    render() {
+    render(){
         function paymentsCalculation(partners){
             let res = 0;
             
@@ -40,28 +30,27 @@ class DriverProfileAffiliateProgramClass extends React.Component {
             res = Math.round(res*100)/100;
             return res;
         }
-        var allPayments = paymentsCalculation(this.props.globalReduser.profile.partners);
-
-        let textPage = this.props.globalReduser.languageText.DriverProfileAffiliateProgram;
+        var allPayments = paymentsCalculation(this.props.globalReduser.profile.partners ? this.props.globalReduser.profile.partners : []);
+        let partners = this.props.globalReduser.profile.partners ? this.props.globalReduser.profile.partners : [];
         return (
             <div className="affiliateProgramBody">
                 <div className="d-flex flex-column ">
                     <div className="d-flex flex-column align-items-center">
-                        <h3>{textPage.affiliateProgramsTitle}</h3>
-                        <p className="col-xl-8 col-lg-8 col-md-9 col-sm-10 col-10">{textPage.affiliateProgramsDescription}</p>
+                        <h3>Партнерская программа</h3>
+                        <p className="col-xl-8 col-lg-8 col-md-9 col-sm-10 col-10">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae impedit odio aspernatur veniam obcaecati veritatis fugit id voluptate excepturi nam aliquam architecto quam laboriosam suscipit deserunt neque, ab dolorem alias?</p>
                     </div>
                     <div className="affiliateProgramButton d-flex flex-sm-row flex-column justify-content-between align-items-center">
                         <div>
-                            <div>{textPage.affiliateLinks.title}</div>
+                            <div>Ваши партнёрские ссылки</div>
                             <div>
-                            {textPage.affiliateLinks.registrationLink}
+                                Ссылка на регистрацию
                             </div>
                             <div className="d-flex flex-row">
                                 <input id="partnerRegistrationLink" placeholder="Ссылка 1" style={{width: '400px'}} value={requests.frontendAddress+'/register/'+this.props.globalReduser.profile._id}/>
                                 <div onClick = {()=>this.copyValue("partnerRegistrationLink")} style={{background: 'url('+copy+') no-repeat center'}} className="copyElement"/>
                             </div>
                             <div>
-                            {textPage.affiliateLinks.linkToHomePage}
+                                Ссылка на главную
                             </div>
                             <div className="d-flex flex-row">
                                 <input id="partnerMainPageLink" placeholder="Ссылка 1" style={{width: '400px'}} value={requests.frontendAddress+'/start/'+this.props.globalReduser.profile._id}/>
@@ -74,7 +63,7 @@ class DriverProfileAffiliateProgramClass extends React.Component {
                                 <span>Партнерские ссылки</span>
                                 <span>Пригласить друга</span>
                             */
-                           <span>{textPage.promotionalMaterials}</span>
+                           <span>Промо материалы</span>
                         }
                               
                         </div>
@@ -84,28 +73,28 @@ class DriverProfileAffiliateProgramClass extends React.Component {
                     <div className="affiliateProgramContent col-12">
                         <div className="affiliateProgramTitle d-flex">
                             <i className="questionicon"></i>
-                            <span>{textPage.questionicon}</span>
+                            <span>Начисления никогда не заканчиваются. Чем больше у вас рефералов, и чем лучше они работают - тем больше вы получаете каждый день</span>
                         </div>
                         <div className="affiliateProgramAllEl d-flex flex-sm-row flex-column justify-content-around">
                             <div className="col-sm-4 col-12 ">
                                 <div className="affilitaProgramEl d-flex flex-column align-items-center justify-content-center">
                                     <i className="peopleicon"></i>
-                                    <span>{this.props.globalReduser.profile.partners.length}</span>
-                                    <span>{textPage.peopleicon}</span>
+                                    <span>{this.props.globalReduser.profile.partners ? this.props.globalReduser.profile.partners.length : 0}</span>
+                                    <span>Всего рефералов</span>
                                 </div>
                             </div>
                             <div className="col-sm-4 col-12">
                                 <div className="affilitaProgramEl d-flex flex-column align-items-center justify-content-center">
                                     <i className="percenticon"></i>
                                     <span>14%</span>
-                                    <span>{textPage.percenticon}</span>
+                                    <span>С каждой оплаты</span>
                                 </div>
                             </div>
                             <div className="col-sm-4 col-12 ">
                                 <div className="affilitaProgramEl d-flex flex-column align-items-center justify-content-center">
                                     <i className="currencyicon"></i>
                                     <span>{allPayments+'$'}</span>
-                                    <span>{textPage.currencyicon}</span>
+                                    <span>Заработанно Всего</span>
                                 </div>
                             </div>
                         </div>
@@ -117,16 +106,17 @@ class DriverProfileAffiliateProgramClass extends React.Component {
                             displaySelectAll={false} 
                             adjustForCheckbox={false}>
                                 <TableRow >
-                                {textPage.affiliateProgramTableHeader.map((element,index)=>
-                                    <TableHeaderColumn>{element}</TableHeaderColumn>
-                                )}
+                                    <TableHeaderColumn>EMAIL</TableHeaderColumn>
+                                    <TableHeaderColumn>Дата регистрации</TableHeaderColumn>
+                                    <TableHeaderColumn>Тип пользователя</TableHeaderColumn>
+                                    <TableHeaderColumn>Начисления</TableHeaderColumn>
                                 </TableRow>
                             </TableHeader>
                             <TableBody
                                 className="affiliateProgramTable"
                                 stripedRows={true} 
                                 displayRowCheckbox={false}>
-                                {this.props.globalReduser.profile.partners.map((element, index)=>{
+                                {partners.map((element, index)=>{
                                     function dateConverter(value){
                                         let day = value.getDate();
                                         let month = value.getMonth()+1;
@@ -171,13 +161,12 @@ class DriverProfileAffiliateProgramClass extends React.Component {
         );
     }
 }
-
-const DriverProfileAffiliateProgram = connect(
+const AgencyProfileAffiliateProgramm = connect(
     (state) => ({
         storeState: state.AppReduser,
         profileReduser: state.DriverProfileRegistrationReduser,
-        globalReduser: state.GlobalReduser
+        globalReduser: state.GlobalReduser,
     }),
-)(DriverProfileAffiliateProgramClass);
+)(AgencyProfileAffiliateProgrammClass);
 
-export default DriverProfileAffiliateProgram;
+export default AgencyProfileAffiliateProgramm;

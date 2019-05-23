@@ -1,4 +1,5 @@
 const pageTextInfo = {
+    lang: ["RUS","ENG"],
     sitingInDarkBackgroundText: { 
         titleSitingIn: ["Войти в аккаунт","Log in"],
         sitingInFirstText: ["С возвращением!","Greetings"], 

@@ -18,6 +18,9 @@ import AccountRedirector from './components/registration/AccountRedirector';
 import PartnerRegister from './components/registration/PartnerRegister';
 import ForgotPassword from './components/registration/ForgotPassword';
 import ResetPassword from './components/registration/ResetPassword';
+import AgencyProfile from './components/AgencyProfile/AgencyProfile';
+
+
 
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
@@ -29,6 +32,7 @@ import { PlacesReduser } from './redusers/PlacesReduser';
 import { ToursReduser } from './redusers/ToursReduser';
 import { DriverProfileRegistrationReduser } from './redusers/DriverProfileRegistrationReduser';
 import { UserProfileRegistrationReduser } from './redusers/UserProfileRegistrationReduser';
+import { AgencyProfileRegistrationReduser } from './redusers/AgencyProfileRegistrationReduser';
 import { GlobalReduser } from './redusers/GlobalReduser';
 import { /*Link,*/ Route, BrowserRouter, Redirect, Switch } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -39,7 +43,9 @@ require('require-context/register');
 
 const redux = require('redux');
 
-const reducers = redux.combineReducers({ AppReduser, DriversReduser, StateReduser, CommentReduser, PlacesReduser, ToursReduser, DriverProfileRegistrationReduser, UserProfileRegistrationReduser, GlobalReduser });
+const reducers = redux.combineReducers({ AppReduser, DriversReduser, StateReduser, CommentReduser,
+    PlacesReduser, ToursReduser, DriverProfileRegistrationReduser, UserProfileRegistrationReduser,
+    GlobalReduser, AgencyProfileRegistrationReduser });
 
 const store = redux.createStore(reducers);
 
@@ -79,7 +85,7 @@ ReactDOM.render(
                         
                         <Route path="/account/driver" component={DriverProfileRegistration} />
                         <Route path="/account/user" component={UserProfileRegistration} />
-
+                        <Route path="/account/agency" component={AgencyProfile}/>
                         <Route path="/forgot-password" component={ForgotPassword} />
                         <Route path="/reset-password/:code" component={ResetPassword} />
         

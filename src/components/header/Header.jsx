@@ -446,7 +446,7 @@ class HeaderClass extends React.Component {
   accountRedirect(address, number){
     
     function thenFunc(that, address, number){
-      debugger;
+      
       console.log(that);
       console.log(address);
       let profile = that.props.globalReduser.profile;
