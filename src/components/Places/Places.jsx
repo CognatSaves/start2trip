@@ -3,6 +3,7 @@ import './Places.css';
 import Header from '../header/Header';
 import PlacesCountryInfo from './PlacesCountryInfo'
 import PlacesPanel from './PlacesPanel';
+import PopularPlaces from './PopularPlaces';
 import DriversCommercial from '../drivers/DriversBody/DriversCommercial/DriversCommercial';
 import PlacesList from './PlacesList';
 import { connect } from 'react-redux';
@@ -39,6 +40,7 @@ class PlacesClass extends React.Component {
           <div className="drivers_bottom_background d-flex flex-column" >
             <div className="drivers_body d-flex">
               <div className="left_body_part col-12">
+                <PopularPlaces />
                 <PlacesPanel />
                 <PlacesList />
                 <Manipulator number={this.props.placesState.places[0].places.length} page={this.props.placesState.page} setPage={this.setPageFunc}
