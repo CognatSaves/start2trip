@@ -238,6 +238,10 @@
     margin-top: 25px;
 }
 
+.mobailsitingInLight button {
+    width: 100%;
+}
+
 .mobailsitingInLight button:hover,
 .sitingInLight button:hover {
     border-color: #f60;
