@@ -93,6 +93,7 @@
     }
 }
 
+.mobailsitingInLight h3,
 .sitingInLight h3 {
     font-weight: 700;
     font-size: 33.16px;
@@ -136,6 +137,7 @@
     margin: 5px;
 }
 
+.mobailsitingInLightInput,
 .sitingInLightInput {
     position: relative;
     border-radius: 5px;
@@ -183,22 +185,26 @@
     right: 15px;
 }
 
+.mobailsitingInLightInput:focus,
 .sitingInLightInput:focus {
     outline: none;
 }
 
+.mobailsitingInLightInput::placeholder,
 .sitingInLightInput::placeholder {
     font-weight: 300;
     font-size: 12px;
     color: #666;
 }
 
+.mobailsitingInLight p,
 .sitingInLight p {
     font-weight: 300;
     font-size: 12px;
     color: #666;
 }
 
+.mobailsitingInLight a,
 .sitingInLight a {
     font-weight: 300;
     font-size: 12px;
@@ -211,10 +217,12 @@
     border-bottom: 1px solid #ccc;
 }
 
+.mobailsitingInLight a:hover,
 .sitingInLight a:hover {
     color: #f60;
 }
 
+.mobailsitingInLight button,
 .sitingInLight button {
     font-weight: 400;
     font-size: 15px;
@@ -230,11 +238,13 @@
     margin-top: 25px;
 }
 
+.mobailsitingInLight button:hover,
 .sitingInLight button:hover {
     border-color: #f60;
     background: #f60;
 }
 
+.mobailsitingInLight button:focus,
 .sitingInLight button:focus {
     outline: none;
 }
@@ -381,3 +391,27 @@
 .selectTypeBt button:focus {
     outline: none;
 }
+
+
+/* Mobail registration Bigin */
+
+.registrationCheckMenuBt {
+    width: 100%;
+}
+
+.registrationCheckMenuBt span {
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #304269;
+    cursor: pointer;
+    text-transform: lowercase;
+}
+
+.mobailsitingInLight {
+    padding: 40px 10px;
+    width: 100%;
+}
+
+
+/* Mobail registration End */

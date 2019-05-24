@@ -8,7 +8,6 @@ import offerIcon from './HomeBody/pictures/offer.svg'
 import enjoy_tripIcon from './HomeBody/pictures/enjoy_trip.svg'
 import RenderFourEl from './HomeBody/RenderFourEl.jsx'
 import georgiaImg from './HomeBody/pictures/georgia.png'
-import { InputGroup, InputGroupAddon, Input, Button } from 'reactstrap';
 
 import { connect } from 'react-redux';
 

@@ -2,6 +2,8 @@ import React from 'react';
 import RenderModalRegistration from '../header/RenderModalRegistration';
 import { Modal, ModalBody } from 'reactstrap';
 import { connect } from 'react-redux';
+
+
 import './AuthRedirect.css';
 const ModalRegistration = (props) => {
     let { modalRegistration, toggle, className, authorization } = props;
