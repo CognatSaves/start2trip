@@ -38,16 +38,16 @@ class PlacesClass extends React.Component {
         <div className="wrapper d-flex flex-column">
           <div className="drivers_bottom_background d-flex flex-column" >
             <div className="drivers_body d-flex">
-              <div className="left_body_part col-9">
+              <div className="left_body_part col-12">
                 <PlacesPanel />
                 <PlacesList />
                 <Manipulator number={this.props.placesState.places[0].places.length} page={this.props.placesState.page} setPage={this.setPageFunc}
                   elementsNumber={this.props.placesState.pagesMenuValue} showMorePages={this.showMorePages}
                 />
               </div>
-              <div className="right_body_part col-3">
+              {/* <div className="right_body_part col-3">
                 <DriversCommercial />
-              </div>
+              </div> */}
             </div>
 
           </div>
