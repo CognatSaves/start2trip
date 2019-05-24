@@ -3,6 +3,7 @@ import './Places.css';
 import Header from '../header/Header';
 import PlacesCountryInfo from './PlacesCountryInfo'
 import PlacesPanel from './PlacesPanel';
+import PopularPlaces from './PopularPlaces';
 import DriversCommercial from '../drivers/DriversBody/DriversCommercial/DriversCommercial';
 import PlacesList from './PlacesList';
 import { connect } from 'react-redux';
@@ -28,25 +29,27 @@ class PlacesClass extends React.Component {
     console.log(this.props.placesState);
     return (
       <React.Fragment>
-        <div className="drivers_top_background col-12">
+        <div className="drivers_top_background col-12 p-0">
+        <Header history={this.props.history}/>
           <div className="wrapper d-flex flex-column">
-            <Header history={this.props.history}/>
+            
             <PlacesCountryInfo />
           </div>
         </div>
         <div className="wrapper d-flex flex-column">
           <div className="drivers_bottom_background d-flex flex-column" >
             <div className="drivers_body d-flex">
-              <div className="left_body_part col-9">
+              <div className="left_body_part col-12">
+                <PopularPlaces />
                 <PlacesPanel />
                 <PlacesList />
                 <Manipulator number={this.props.placesState.places[0].places.length} page={this.props.placesState.page} setPage={this.setPageFunc}
                   elementsNumber={this.props.placesState.pagesMenuValue} showMorePages={this.showMorePages}
                 />
               </div>
-              <div className="right_body_part col-3">
+              {/* <div className="right_body_part col-3">
                 <DriversCommercial />
-              </div>
+              </div> */}
             </div>
 
           </div>

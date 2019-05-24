@@ -13,6 +13,10 @@ import requests from '../../config.js';
 import ReactDOM from 'react-dom';
 import pageTextInfo from '../../textInfo/RenderModalRegistration';
 import Cookies from 'universal-cookie';
+import backpackIcon from './pictures/backpack.svg'
+import dealIcon from './pictures/deal.svg'
+import wheelIcon from './pictures/wheel.svg'
+import { isMobileOnly } from 'react-device-detect'
 
 const cookies = new Cookies();
 const windowProps = "width=420,height=400,resizable=yes,scrollbars=yes,status=yes";
@@ -23,13 +27,13 @@ class RenderModalRegistrationClass extends React.Component {
         console.log("renderModalRegistration constructor");
         let that = this;
         console.log(that.props);
-        function setAnswerResult(type,data){
-            function clearLocalStorage(params){
-                for(let i=0; i<params.length;i++){
+        function setAnswerResult(type, data) {
+            function clearLocalStorage(params) {
+                for (let i = 0; i < params.length; i++) {
                     window.localStorage.removeItem(params[i]);
                 }
             }
-            function setRegWindow(){
+            function setRegWindow() {
                 console.log('setRegWindow func');
                 console.log(errorId);
                 that.setState({
@@ -40,7 +44,7 @@ class RenderModalRegistrationClass extends React.Component {
             }
             //;
             let errorId = window.localStorage.getItem('errorId');
-            if(type==='good'){
+            if (type === 'good') {
                 that.setState({
                     cookie: document.cookie
                 });
@@ -50,152 +54,156 @@ class RenderModalRegistrationClass extends React.Component {
                 that.props.authorization();
                 that.props.close();
             }
-            if(type==='bad'){
+            if (type === 'bad') {
                 /*console.log("all is failed");
                 console.log("this is jwtstatus");
                 console.log(data.jwtstatus);*/
             }
             setRegWindow();
-            clearLocalStorage(['type','errorId']);
-        }    
-        function sendResultLocal(type,data){
+            clearLocalStorage(['type', 'errorId']);
+        }
+        function sendResultLocal(type, data) {
             console.log('sendResult');
-            let date = new Date(Date.now()+1000*3600*24*60); 
-            if(type){
-                cookies.set("jwt", data.jwt,{path: '/',expires: date});
-                cookies.set("jwtstatus","correct",{path: '/',expires: date});                
-                
-                window.localStorage.setItem('errorId',0);
+            let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
+            if (type) {
+                cookies.set("jwt", data.jwt, { path: '/', expires: date });
+                cookies.set("jwtstatus", "correct", { path: '/', expires: date });
 
-                cookies.set("avatarUrl", requests.serverAddress+data.user.avatarUrl, {path: '/',expires: date});
-                cookies.set("userName",data.user.userName,{path: '/',expires: date});
-                cookies.set("userType",data.user.userType,{path: '/',expires: date})
-                setAnswerResult('good',{jwt: data.jwt});  
+                window.localStorage.setItem('errorId', 0);
+
+                cookies.set("avatarUrl", requests.serverAddress + data.user.avatarUrl, { path: '/', expires: date });
+                cookies.set("userName", data.user.userName, { path: '/', expires: date });
+                cookies.set("userType", data.user.userType, { path: '/', expires: date })
+                setAnswerResult('good', { jwt: data.jwt });
             }
-            else{
+            else {
                 console.log("Не смогли!");
                 console.log('error message');
                 console.log(data.error);
                 console.log(data.error.errorId);
-                cookies.set("jwt", "-",{path: '/',expires: date});
-                cookies.set("jwtstatus",data.error,{path: '/',expires: date});
+                cookies.set("jwt", "-", { path: '/', expires: date });
+                cookies.set("jwtstatus", data.error, { path: '/', expires: date });
 
-                if(data.error){
-                    if(data.error.errorId){
+                if (data.error) {
+                    if (data.error.errorId) {
                         window.localStorage.setItem('errorId', data.error.errorId);
                     }
-                } 
-                let status=that.props.globalReduser.readCookie("jwtstatus");
-                setAnswerResult('bad',{jwtstatus:status});
+                }
+                let status = that.props.globalReduser.readCookie("jwtstatus");
+                setAnswerResult('bad', { jwtstatus: status });
             }
             that.setState({
-                cookie:document.cookie
+                cookie: document.cookie
             })
             //
         }
-        function socialWebRegistrationRequest(body){
+        function socialWebRegistrationRequest(body) {
             console.log("registration");
-            
-            fetch(requests.serverRegistrationRequest, {method: 'POST',body:body,
-                headers:{'content-type': 'application/json'}})
+
+            fetch(requests.serverRegistrationRequest, {
+                method: 'POST', body: body,
+                headers: { 'content-type': 'application/json' }
+            })
                 .then(response => {
                     return response.json();
                 })
                 .then(function (data) {
-                    
-                    if(data.error){
+
+                    if (data.error) {
                         console.log("bad");
                         throw data.error;
                     }
-                    else{
-                        console.log("good");         
+                    else {
+                        console.log("good");
                         console.log(data);
-                        that.state.sendResultLocal(true, {jwt:data.jwt, user: data.user});
+                        that.state.sendResultLocal(true, { jwt: data.jwt, user: data.user });
                     }
                 })
-                .catch(function(error) {
+                .catch(function (error) {
                     console.log("bad");
                     console.log('An error occurred:', error);
-                    that.state.sendResultLocal(false,{error: error});
+                    that.state.sendResultLocal(false, { error: error });
                 });
         }
-        function socialWebAuthorizationRequest(body){
-            fetch(requests.serverAuthorizationRequest, {method: 'POST',body:body,
-            headers:{'content-type': 'application/json'}})
-            .then(response => {
-                return response.json();
+        function socialWebAuthorizationRequest(body) {
+            fetch(requests.serverAuthorizationRequest, {
+                method: 'POST', body: body,
+                headers: { 'content-type': 'application/json' }
             })
-            .then(function (data) { 
-                if(data.error){
-                    console.log("bad");
-                    throw data.error;
-                }
-                else{
-                    console.log("good");        
-                    console.log(data);
-                    that.state.sendResultLocal(true, {jwt:data.jwt, user: data.user});
-                }
-            })
-            .catch(function(error) {
-                console.log('An error occurred:', error);
-                that.state.sendResultLocal(false,{error: error});
-            });
+                .then(response => {
+                    return response.json();
+                })
+                .then(function (data) {
+                    if (data.error) {
+                        console.log("bad");
+                        throw data.error;
+                    }
+                    else {
+                        console.log("good");
+                        console.log(data);
+                        that.state.sendResultLocal(true, { jwt: data.jwt, user: data.user });
+                    }
+                })
+                .catch(function (error) {
+                    console.log('An error occurred:', error);
+                    that.state.sendResultLocal(false, { error: error });
+                });
         }
-        function checkCookie(newWin){
+        function checkCookie(newWin) {
             console.log('check cookie call');
-            var timer = setInterval(()=>{
-                if(newWin.window===null){
+            var timer = setInterval(() => {
+                if (newWin.window === null) {
                     alert("window closed");
                     clearInterval(timer);
                 }
-                if(that.state.cookie!==document.cookie){
+                if (that.state.cookie !== document.cookie) {
                     console.log("get good answer");
                     clearInterval(timer);
                     let jwt = that.props.globalReduser.readCookie("jwt");
-                    let jwtstatus=that.props.globalReduser.readCookie("jwtstatus");
+                    let jwtstatus = that.props.globalReduser.readCookie("jwtstatus");
                     //console.log(jwt);
-                    if(jwt!=="-"&&jwtstatus==="correct"){
-                        setAnswerResult('good',{jwt: jwt});
+                    if (jwt !== "-" && jwtstatus === "correct") {
+                        setAnswerResult('good', { jwt: jwt });
                     }
-                    else{
-                        setAnswerResult('bad',{jwtstatus: jwtstatus});
-                    }                
+                    else {
+                        setAnswerResult('bad', { jwtstatus: jwtstatus });
+                    }
                 }
-                console.log('wait');        
-            },500);
-            
+                console.log('wait');
+            }, 500);
+
         }
-        function getQueryParam (param) {
+        function getQueryParam(param) {
             var queries = window.location.search, regex, resRegex, results, response;
             param = encodeURIComponent(param);
             regex = new RegExp('[\\?&]' + param + '=([^&#]*)', 'g');
             resRegex = new RegExp('(.*)=([^&#]*)');
             results = queries.match(regex);
-          
+
             if (!results) {
                 return '';
             }
             response = results.map(function (result) {
-              var parsed = resRegex.exec(result);
-          
-              if (!parsed) {
-                  return '';
-              }
-          
-              return parsed[2].match(/(^\d+$)/) ? Number(parsed[2]) : parsed[2];
+                var parsed = resRegex.exec(result);
+
+                if (!parsed) {
+                    return '';
+                }
+
+                return parsed[2].match(/(^\d+$)/) ? Number(parsed[2]) : parsed[2];
             })
-          
+
             return response.length > 1 ? response : response[0];
-          };
-        
+        };
+
         let agency = getQueryParam('agency');
 
         this.state = {
             sitingIn: true,
             sitingInLightAnimation: "",
             registrationDarkAnimation: "",
-            passwordType:true,
-            logoIconActive:true,
+            passwordType: true,
+            logoIconActive: true,
             languageTextActive: true,
             languageValue: 0,
             languageVariants: ["ru", "en"],
@@ -204,9 +212,10 @@ class RenderModalRegistrationClass extends React.Component {
             token: '',
             socialWebRegistrationRequest: socialWebRegistrationRequest,
             socialWebAuthorizationRequest: socialWebAuthorizationRequest,
-            sendResultLocal:sendResultLocal,
+            sendResultLocal: sendResultLocal,
             regAnswerStatus: false,
             regProcessStatus: false,
+            isError:false,
             selectedRegistrationAnswer: 3,
             regWindowType: 0,
             userType: 0,
@@ -221,12 +230,12 @@ class RenderModalRegistrationClass extends React.Component {
         console.log(requests);
     }
     logout = () => {
-        this.setState({isAuthenticated: false, token: '', user: null})
+        this.setState({ isAuthenticated: false, token: '', user: null })
     };
     onFailure = (error) => {
         alert(error);
     }
-    
+
     changeAnimation() {
         if (this.state.sitingIn) {
             this.setState({
@@ -271,27 +280,27 @@ class RenderModalRegistrationClass extends React.Component {
             }, 700)
         }
     }
-    changeLanguageValue(index){
+    changeLanguageValue(index) {
         this.setState({
             languageValue: index
         })
     }
-    changeInput(value,index){
+    changeInput(value, index) {
         let userData = [...this.state.userData];
-        userData[index]=value;
+        userData[index] = value;
         this.setState({
             userData: userData
         })
     }
-    sendRegistrationRequest(type){
-        
+    sendRegistrationRequest(type) {
+
         let partner = cookies.get('partner');
 
-        if(!type){//в случае регистрации
-            
+        if (!type) {//в случае регистрации
+
             this.setState({
                 regAnswerStatus: false,
-                regProcessStatus:true
+                regProcessStatus: true
             });
             console.log("Send Request");
             let email = document.getElementById("email").value;
@@ -300,17 +309,17 @@ class RenderModalRegistrationClass extends React.Component {
                 username: email,
                 email: email,
                 password: password,
-                isCustomer: this.state.userType===1 ? true : false,
-                isDriver: this.state.userType===2 ? true : false,                         
-                isAgency: this.state.userType===3 ? true : false,
+                isCustomer: this.state.userType === 1 ? true : false,
+                isDriver: this.state.userType === 2 ? true : false,
+                isAgency: this.state.userType === 3 ? true : false,
                 provider: 'local',
-                partner: this.state.agency.length>0 ? "" : partner,
+                partner: this.state.agency.length > 0 ? "" : partner,
                 agency: this.state.agency
-                });
+            });
             console.log(body);
             this.state.socialWebRegistrationRequest(body);
         }
-        else{//в случае авторизации            
+        else {//в случае авторизации            
             console.log("try to log in");
             console.log("Send request");
             console.log("body:");
@@ -323,110 +332,207 @@ class RenderModalRegistrationClass extends React.Component {
             this.state.socialWebAuthorizationRequest(body);
         }
     }
+
     render() {
-        function sendRequestFunc(that,address){
-            cookies.set("jwt", "-",{path: '/',expires: new Date(0)});
-            cookies.set("jwtstatus","correct",{path: '/',expires: new Date(0)}); 
+        function sendRequestFunc(that, address) {
+            cookies.set("jwt", "-", { path: '/', expires: new Date(0) });
+            cookies.set("jwtstatus", "correct", { path: '/', expires: new Date(0) });
             that.setState({
                 cookie: document.cookie
             });
-            window.localStorage.setItem('type',that.state.sitingIn ? "Authorization":"Registration");
+            window.localStorage.setItem('type', that.state.sitingIn ? "Authorization" : "Registration");
             window.localStorage.setItem('userType', that.state.sitingIn ? 0 : that.state.userType);
-            window.localStorage.setItem('agency',that.state.agency);
-            let newWin=window.open(address,that.state.sitingIn ? "Authorization":"Registration",windowProps);
-            that.state.checkCookie(newWin);            
+            window.localStorage.setItem('agency', that.state.agency);
+            let newWin = window.open(address, that.state.sitingIn ? "Authorization" : "Registration", windowProps);
+            that.state.checkCookie(newWin);
         }
         let lang = this.state.languageValue;
         console.log("Render modal registration window");
         console.log(pageTextInfo.registrationAnswer);
         console.log('this.state.selectedRegistrationAnswer');
         console.log(this.state.selectedRegistrationAnswer);
-        let selectedRegistrationAnswer=this.state.selectedRegistrationAnswer;
-        let regAnswerVisibility= ( this.state.regAnswerStatus || this.state.regProcessStatus );
-        let regAnswerColor= ( this.state.regAnswerStatus && selectedRegistrationAnswer!==0 );
+        let selectedRegistrationAnswer = this.state.selectedRegistrationAnswer;
+        let massIcon = [backpackIcon, wheelIcon, dealIcon];
+        let regAnswerVisibility = (this.state.regAnswerStatus || this.state.regProcessStatus);
+        let regAnswerColor = (this.state.regAnswerStatus && selectedRegistrationAnswer !== 0);
         let regAnswerValue = (this.state.regAnswerStatus ? pageTextInfo.registrationAnswer[selectedRegistrationAnswer][lang] : pageTextInfo.registrationProcess[0][lang]);
         return (
             <React.Fragment>
-            <div className="registrationBody d-flex ">
-            <img className="registrationBodyLogoIcon" src={this.state.logoIconActive ? logoBlue : logoWhite} alt="logo" width="100px" height="20px"/>
-            <div className="registrationBodyLanguageBlock d-flex" >
-                {
-                    this.state.languageVariants.map((element,index) => 
-                        <div className={ 
-                            (this.state.languageTextActive ? 
-                                (index===lang ? "registrationBodyLanguageBlock_element_light registrationBodyLanguageBlock_element_selected" : "registrationBodyLanguageBlock_element_light" )  :
-                                (index===lang ? "registrationBodyLanguageBlock_element_dark registrationBodyLanguageBlock_element_selected" : "registrationBodyLanguageBlock_element_dark")
-                            )} onClick={()=>this.changeLanguageValue(index)} key={element+"/"+index}>
-                            {element}
-                        </div>
-                    )
-                }
-            </div>
-                <div className={"sitingInLight d-flex flex-column justify-content-center align-items-center " + this.state.sitingInLightAnimation}>
-                    <h3>{this.state.sitingIn ? pageTextInfo.sitingInLightBackgroundText.titleSitingIn[lang] : pageTextInfo.registrationLightBackgroundText.registrationTitle[lang]}</h3>                
-                        <div style={{display: this.state.sitingIn || this.state.regWindowType===1 ? 'block' : 'none'}}>
-                            <p className="mb-0" style={{textAlign: "center"}}>{pageTextInfo.sitingInLightBackgroundText.sitingInFirstText[lang]}</p>
-                                <div className="iconBlok d-flex align-content-center">                       
-                                    <div target="windowName" className="socialIcon facebookIcon" style={{marginLeft: "auto"}}
-                                    onClick={()=>{
-                                        console.log("REQUEST ADDRESS");
-                                        console.log(requests.facebookRequest);
-                                        sendRequestFunc(this,requests.facebookRequest);
-                                        }}
-                                    />
-                                    <div target="windowName" className="socialIcon googleIcon" style={{marginRight: "auto"}}
-                                    onClick={()=>{
-                                        console.log("REQUEST ADDRESS");
-                                        console.log(requests.googleRequest);
-                                        sendRequestFunc(this,requests.googleRequest);
-                                        }}
-                                    />
-                                    {
-                                    /*
-                                        <div className="socialIcon twitterIcon" style={{marginRight: "auto"}}></div>  
-                                    */
-                                    }                                
-                                </div>                       
-                            <p className="mb-1" >{this.state.sitingIn ? pageTextInfo.sitingInLightBackgroundText.sitingInSecondText[lang] : pageTextInfo.registrationLightBackgroundText.registrationSecondText[lang]}</p>
-                            <form id="regForm" onSubmit={(e)=>{e.preventDefault(); this.sendRegistrationRequest(this.state.sitingIn)}}>
-                                <div className="inputIcon">
-                                    <img className="emailIcon" src={emailIcon} alt="emailIcon" width='13px' height='12px' />
-                                    <input onFocus={()=>{this.setState({regAnswerStatus: false,regProcessStatus: false})}} className="sitingInLightInput" type="email" id="email" pattern="^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$" placeholder={pageTextInfo.sitingInLightBackgroundText.secondInputPlaceholderText[lang]} required />
-                                </div>
-                                <div className="inputIcon">
-                                    <img className="lockIcon" src={lockIcon} alt="lockIcon" width='12px' height='12px' />
-                                    <input onFocus={()=>{this.setState({passwordType: !this.state.passwordType })}} className="sitingInLightInput"  id="password" type={this.state.passwordType ? "password":"text"} placeholder={pageTextInfo.registrationLightBackgroundText.thirdInputPlaceholderText[lang]} required />
-                                    <img className="eyeIcon" src={eyeIcon} alt="eyeIcon" width='15px' height='15px' />
-                                </div>
-                                <div className="registrationAnswerText" style={{visibility: regAnswerVisibility ? 'visible' : 'hidden', color: regAnswerColor ? 'red' : 'green'}}>{regAnswerValue}</div>
-                                <Link className="forgotPasswordLink" style={{ display: this.state.sitingIn ? "block" : "none" }} to="/forgot-password">{pageTextInfo.sitingInLightBackgroundText.linkText[lang]}</Link>
-                                <div className="d-flex justify-content-center align-items-end">
-                                    <div className="returnButton pr-5" style={{display: !this.state.sitingIn ? 'block' : 'none'}} onClick={()=>this.setState({regWindowType: 0})}>{pageTextInfo.registrationUserType.buttonReturn[lang]}</div>
-                                    <button disabled={this.state.regProcessStatus || this.state.regAnswerStatus} type="submit" htmlFor="regForm">{this.state.sitingIn ? pageTextInfo.sitingInLightBackgroundText.buttonText[lang] : pageTextInfo.registrationDarkBackgroundText.buttonText[lang]}</button>
-                                </div>
-                            </form>
-                        </div>
-                        <div style={{display: !this.state.sitingIn && this.state.regWindowType===0 ? 'block' : 'none'}}>
-                            <p style={{textAlign: "center"}}>{pageTextInfo.registrationUserType.userTypeText[lang]}</p>
+
+                    <div className="d-md-none d-flex">
+                        <img className="registrationBodyLogoIcon" src={logoBlue} alt="logo" width="100px" height="20px" />
+                        <div className="registrationBodyLanguageBlock d-flex" >
                             {
-                                pageTextInfo.registrationUserType.userTypes.map((element,index)=>
-                                    <div className="selectTypeBlock d-flex" style={{visibility: (this.state.agency.length===0 || index===1) ? 'visible': 'hidden'  }}>
-                                        <label className="typeCheckLabel" for={"typeCheckbox"+(index+1)}>{element.userText[lang]}</label>
-                                        <input disabled = {!(this.state.agency.length===0 || index===1)} className="typeCheckButton" id={"typeCheckbox"+(index+1)} type="radio" name="raz" onClick={()=>this.setState({userType: index+1})}/>
+                                this.state.languageVariants.map((element, index) =>
+                                    <div className={
+                                        index === lang ? "registrationBodyLanguageBlock_element_dark registrationBodyLanguageBlock_element_selected" : "registrationBodyLanguageBlock_element_dark"
+                                    } onClick={() => this.changeLanguageValue(index)} key={element + "/" + index}>
+                                        {element}
                                     </div>
                                 )
                             }
-                            <button  onClick={()=>this.state.userType===0 ? {} : this.setState({regWindowType: 1})}>{pageTextInfo.registrationUserType.buttonNext[lang]}</button>
                         </div>
-                </div>
-                <div className={"registrationDark d-flex flex-column justify-content-center align-items-center " + this.state.registrationDarkAnimation}>
-                    <h3>{this.state.sitingIn ? pageTextInfo.registrationDarkBackgroundText.registrationTitle[lang] : pageTextInfo.sitingInDarkBackgroundText.titleSitingIn[lang]}</h3>
-                    <p className="mb-0">{this.state.sitingIn ? pageTextInfo.registrationDarkBackgroundText.registrationFirstText[lang] : pageTextInfo.sitingInDarkBackgroundText.sitingInFirstText[lang]}</p>
-                    <p>{this.state.sitingIn ? pageTextInfo.registrationDarkBackgroundText.registrationSecondText[lang] : pageTextInfo.sitingInDarkBackgroundText.sitingInSecondText[lang]}</p>
-                    <button onClick={() => { this.changeAnimation() }}>{this.state.sitingIn ? pageTextInfo.registrationDarkBackgroundText.buttonText[lang] : pageTextInfo.sitingInDarkBackgroundText.buttonText[lang]}</button>
-                </div>
-            </div>
-            
+                        <div className="mobailsitingInLight d-flex flex-column justify-content-center align-items-center ">
+                            <h3>{this.state.sitingIn ? pageTextInfo.sitingInLightBackgroundText.titleSitingIn[lang] : pageTextInfo.registrationLightBackgroundText.registrationTitle[lang]}</h3>
+                            <div style={{ display: this.state.sitingIn || this.state.regWindowType === 1 ? 'block' : 'none' }}>
+                                <p className="mb-0" style={{ textAlign: "center" }}>{pageTextInfo.sitingInLightBackgroundText.sitingInFirstText[lang]}</p>
+                                <div className="iconBlok d-flex align-content-center">
+                                    <div target="windowName" className="socialIcon facebookIcon" style={{ marginLeft: "auto" }}
+                                        onClick={() => {
+                                            console.log("REQUEST ADDRESS");
+                                            console.log(requests.facebookRequest);
+                                            sendRequestFunc(this, requests.facebookRequest);
+                                        }}
+                                    />
+                                    <div target="windowName" className="socialIcon googleIcon" style={{ marginRight: "auto" }}
+                                        onClick={() => {
+                                            console.log("REQUEST ADDRESS");
+                                            console.log(requests.googleRequest);
+                                            sendRequestFunc(this, requests.googleRequest);
+                                        }}
+                                    />
+                                    {
+                                        /*
+                                            <div className="socialIcon twitterIcon" style={{marginRight: "auto"}}></div>  
+                                        */
+                                    }
+                                </div>
+                                <p className="mb-1" >{this.state.sitingIn ? pageTextInfo.sitingInLightBackgroundText.sitingInSecondText[lang] : pageTextInfo.registrationLightBackgroundText.registrationSecondText[lang]}</p>
+                                <form id="regForm" onSubmit={(e) => { e.preventDefault(); this.sendRegistrationRequest(this.state.sitingIn) }}>
+                                    <div className="inputIcon">
+                                        <img className="emailIcon" src={emailIcon} alt="emailIcon" width='13px' height='12px' />
+                                        <input onFocus={() => { this.setState({ regAnswerStatus: false, regProcessStatus: false }) }} className="mobailsitingInLightInput" type="email" id="email" pattern="^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$" placeholder={pageTextInfo.sitingInLightBackgroundText.secondInputPlaceholderText[lang]} required />
+                                    </div>
+                                    <div className="inputIcon">
+                                        <img className="lockIcon" src={lockIcon} alt="lockIcon" width='12px' height='12px' />
+                                        <input onFocus={() => { this.setState({ passwordType: !this.state.passwordType }) }} className="mobailsitingInLightInput" id="password" type={this.state.passwordType ? "password" : "text"} placeholder={pageTextInfo.registrationLightBackgroundText.thirdInputPlaceholderText[lang]} required />
+                                        <img className="eyeIcon" src={eyeIcon} alt="eyeIcon" width='15px' height='15px' />
+                                    </div>
+                                    <div className="registrationAnswerText" style={{ visibility: regAnswerVisibility ? 'visible' : 'hidden', color: regAnswerColor ? 'red' : 'green' }}>{regAnswerValue}</div>
+
+                                    <Link className="forgotPasswordLink" style={{ display: this.state.sitingIn ? "block" : "none" }} to="/forgot-password">{pageTextInfo.sitingInLightBackgroundText.linkText[lang]}</Link>
+
+                                    <div className="d-flex justify-content-center align-items-center">
+                                        <div className="returnButton" style={{ display: !this.state.sitingIn ? 'block' : 'none' }} onClick={() => this.setState({ regWindowType: 0 })}>{pageTextInfo.registrationUserType.buttonReturn[lang]}</div>
+                                        <button disabled={this.state.regProcessStatus || this.state.regAnswerStatus} type="submit" htmlFor="regForm">{this.state.sitingIn ? pageTextInfo.sitingInLightBackgroundText.buttonText[lang] : pageTextInfo.registrationDarkBackgroundText.buttonText[lang]}</button>
+                                    </div>
+                                    <div className="d-flex justify-content-center align-items-center registrationCheckMenuBt">
+                                    <p>{this.state.sitingIn ? pageTextInfo.registrationDarkBackgroundText.mobailText[lang]:pageTextInfo.sitingInLightBackgroundText.mobailText[lang]}</p>
+                                 <span onClick={() => {  this.setState({
+                                        sitingIn: !this.state.sitingIn,
+                                        logoIconActive: !this.state.logoIconActive,
+                                        languageTextActive: !this.state.languageTextActive,
+                                    }) }}>{this.state.sitingIn ? pageTextInfo.registrationDarkBackgroundText.mobailbuttonText[lang] : pageTextInfo.sitingInLightBackgroundText.mobailbuttonText[lang]}</span>
+                                    
+                            </div>
+                                </form>
+                            </div>
+                            <div className=" flex-column" style={{ display: !this.state.sitingIn && this.state.regWindowType === 0 ? 'flex' : 'none' }}>
+                                <p style={{ textAlign: "center" }}>{pageTextInfo.registrationUserType.userTypeText[lang]}</p>
+                                <p style={{ textAlign: "center",color:"#e81123" }}>{this.state.isError?pageTextInfo.registrationUserType.userTypeTextError[lang]:""}</p>
+                                {
+                                    pageTextInfo.registrationUserType.userTypes.map((element, index) =>
+
+                                        <div className={index ? "selectTypeBlockLine selectTypeBlock d-flex align-items-center" : "selectTypeBlock d-flex align-items-center "} style={{ visibility: (this.state.agency.length === 0 || index === 1) ? 'visible' : 'hidden' }}>
+                                            <i style={{ background: "url(" + massIcon[index] + ") no-repeat" }} />
+                                            <label className="typeCheckLabel" for={"typeCheckbox" + (index + 1)}>{element.userText[lang]}</label>
+                                            <input disabled={!(this.state.agency.length === 0 || index === 1)} className="typeCheckButton" id={"typeCheckbox" + (index + 1)} type="radio" name="raz" onClick={() => this.setState({ userType: index + 1 , isError: false})} />
+                                        </div>
+                                    )
+                                }
+                                <button onClick={() => this.state.userType === 0 ? this.setState({ isError: true}) : this.setState({ regWindowType: 1 , isError: true})}>{pageTextInfo.registrationUserType.buttonNext[lang]}</button>
+                                <div className="d-flex justify-content-center align-items-center registrationCheckMenuBt">
+                                <p>{this.state.sitingIn ? pageTextInfo.registrationDarkBackgroundText.mobailText[lang]:pageTextInfo.sitingInLightBackgroundText.mobailText[lang]}</p>
+                                 <span onClick={() => {  this.setState({
+                                        sitingIn: !this.state.sitingIn,
+                                        logoIconActive: !this.state.logoIconActive,
+                                        languageTextActive: !this.state.languageTextActive,
+                                    }) }}>{this.state.sitingIn ? pageTextInfo.registrationDarkBackgroundText.mobailbuttonText[lang] : pageTextInfo.sitingInLightBackgroundText.mobailbuttonText[lang]}</span>
+                                    
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div className="registrationBody d-md-flex d-none">
+                        <img className="registrationBodyLogoIcon" src={this.state.logoIconActive ? logoBlue : logoWhite} alt="logo" width="100px" height="20px" />
+                        <div className="registrationBodyLanguageBlock d-flex" >
+                            {
+                                this.state.languageVariants.map((element, index) =>
+                                    <div className={
+                                        (this.state.languageTextActive ?
+                                            (index === lang ? "registrationBodyLanguageBlock_element_light registrationBodyLanguageBlock_element_selected" : "registrationBodyLanguageBlock_element_light") :
+                                            (index === lang ? "registrationBodyLanguageBlock_element_dark registrationBodyLanguageBlock_element_selected" : "registrationBodyLanguageBlock_element_dark")
+                                        )} onClick={() => this.changeLanguageValue(index)} key={element + "/" + index}>
+                                        {element}
+                                    </div>
+                                )
+                            }
+                        </div>
+                        <div className={"sitingInLight d-flex flex-column justify-content-center align-items-center " + this.state.sitingInLightAnimation}>
+                            <h3>{this.state.sitingIn ? pageTextInfo.sitingInLightBackgroundText.titleSitingIn[lang] : pageTextInfo.registrationLightBackgroundText.registrationTitle[lang]}</h3>
+                            <div style={{ display: this.state.sitingIn || this.state.regWindowType === 1 ? 'block' : 'none' }}>
+                                <p className="mb-0" style={{ textAlign: "center" }}>{pageTextInfo.sitingInLightBackgroundText.sitingInFirstText[lang]}</p>
+                                <div className="iconBlok d-flex align-content-center">
+                                    <div target="windowName" className="socialIcon facebookIcon" style={{ marginLeft: "auto" }}
+                                        onClick={() => {
+                                            console.log("REQUEST ADDRESS");
+                                            console.log(requests.facebookRequest);
+                                            sendRequestFunc(this, requests.facebookRequest);
+                                        }}
+                                    />
+                                    <div target="windowName" className="socialIcon googleIcon" style={{ marginRight: "auto" }}
+                                        onClick={() => {
+                                            console.log("REQUEST ADDRESS");
+                                            console.log(requests.googleRequest);
+                                            sendRequestFunc(this, requests.googleRequest);
+                                        }}
+                                    />
+                                </div>
+                                <p className="mb-1" >{this.state.sitingIn ? pageTextInfo.sitingInLightBackgroundText.sitingInSecondText[lang] : pageTextInfo.registrationLightBackgroundText.registrationSecondText[lang]}</p>
+                                <form id="regForm" onSubmit={(e) => { e.preventDefault(); this.sendRegistrationRequest(this.state.sitingIn) }}>
+                                    <div className="inputIcon">
+                                        <img className="emailIcon" src={emailIcon} alt="emailIcon" width='13px' height='12px' />
+                                        <input onFocus={() => { this.setState({ regAnswerStatus: false, regProcessStatus: false }) }} className="sitingInLightInput" type="email" id="email" pattern="^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$" placeholder={pageTextInfo.sitingInLightBackgroundText.secondInputPlaceholderText[lang]} required />
+                                    </div>
+                                    <div className="inputIcon">
+                                        <img className="lockIcon" src={lockIcon} alt="lockIcon" width='12px' height='12px' />
+                                        <input onFocus={() => { this.setState({ passwordType: !this.state.passwordType }) }} className="sitingInLightInput" id="password" type={this.state.passwordType ? "password" : "text"} placeholder={pageTextInfo.registrationLightBackgroundText.thirdInputPlaceholderText[lang]} required />
+                                        <img className="eyeIcon" src={eyeIcon} alt="eyeIcon" width='15px' height='15px' />
+                                    </div>
+                                    <div className="registrationAnswerText" style={{ visibility: regAnswerVisibility ? 'visible' : 'hidden', color: regAnswerColor ? 'red' : 'green' }}>{regAnswerValue}</div>
+                                    <Link className="forgotPasswordLink" style={{ display: this.state.sitingIn ? "block" : "none" }} to="/forgot-password">{pageTextInfo.sitingInLightBackgroundText.linkText[lang]}</Link>
+                                    <div className="d-flex justify-content-center align-items-end">
+                                        <div className="returnButton pr-5" style={{ display: !this.state.sitingIn ? 'block' : 'none' }} onClick={() => this.setState({ regWindowType: 0 })}>{pageTextInfo.registrationUserType.buttonReturn[lang]}</div>
+                                        <button disabled={this.state.regProcessStatus || this.state.regAnswerStatus} type="submit" htmlFor="regForm">{this.state.sitingIn ? pageTextInfo.sitingInLightBackgroundText.buttonText[lang] : pageTextInfo.registrationDarkBackgroundText.buttonText[lang]}</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div className="justify-content-center flex-column" style={{ display: !this.state.sitingIn && this.state.regWindowType === 0 ? 'flex' : 'none' }}>
+                                <p style={{ textAlign: "center" }}>{pageTextInfo.registrationUserType.userTypeText[lang]}</p>
+                                {
+                                    pageTextInfo.registrationUserType.userTypes.map((element, index) =>
+
+                                        <div className={index ? "selectTypeBlockLine selectTypeBlock d-flex align-items-center" : "selectTypeBlock d-flex align-items-center "} style={{ visibility: (this.state.agency.length === 0 || index === 1) ? 'visible' : 'hidden' }}>
+                                            <i style={{ background: "url(" + massIcon[index] + ") no-repeat" }} />
+                                            <label className="typeCheckLabel" for={"typeCheckbox" + (index + 1)}>{element.userText[lang]}</label>
+                                            <input disabled={!(this.state.agency.length === 0 || index === 1)} className="typeCheckButton" id={"typeCheckbox" + (index + 1)} type="radio" name="raz" onClick={() => this.setState({ userType: index + 1 })} />
+                                        </div>
+                                    )
+                                }
+                                <button onClick={() => this.state.userType === 0 ? {} : this.setState({ regWindowType: 1 })}>{pageTextInfo.registrationUserType.buttonNext[lang]}</button>
+                            </div>
+                        </div>
+                        <div className={"registrationDark d-flex flex-column justify-content-center align-items-center " + this.state.registrationDarkAnimation}>
+                            <h3>{this.state.sitingIn ? pageTextInfo.registrationDarkBackgroundText.registrationTitle[lang] : pageTextInfo.sitingInDarkBackgroundText.titleSitingIn[lang]}</h3>
+                            <p className="mb-0">{this.state.sitingIn ? pageTextInfo.registrationDarkBackgroundText.registrationFirstText[lang] : pageTextInfo.sitingInDarkBackgroundText.sitingInFirstText[lang]}</p>
+                            <p>{this.state.sitingIn ? pageTextInfo.registrationDarkBackgroundText.registrationSecondText[lang] : pageTextInfo.sitingInDarkBackgroundText.sitingInSecondText[lang]}</p>
+                            <button onClick={() => { this.changeAnimation() }}>{this.state.sitingIn ? pageTextInfo.registrationDarkBackgroundText.buttonText[lang] : pageTextInfo.sitingInDarkBackgroundText.buttonText[lang]}</button>
+                        </div>
+                    </div>
             </React.Fragment>
         )
     }

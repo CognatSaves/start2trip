@@ -25,3 +25,17 @@
 .modal-content {
     width: 722px !important;
 }
+
+@media (max-width: 1140px) {}
+
+@media (max-width: 742px) {
+    .modal-dialog {
+        width: 100% !important;
+        margin: 10% 0 !important;
+    }
+    .modal-content {
+        width: 100% !important;
+    }
+}
+
+@media (max-width: 576px) {}

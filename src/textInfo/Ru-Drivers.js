@@ -114,7 +114,7 @@ const driverProfileRegistration = {
     DriverProfileTripSettingsTrip: {
         changeOnWorkP: "Здесь вы можете приостановить и возобновить приём заказов",
         onWorkTrue: "Приостановить работу",
-        onWorkFalse: "Возобновить работы",
+        onWorkFalse: "Возобновить работу",
         chooseWeekend: "Выберите выходные дни",
         selectDates: "Выбрать даты",
         addCityTitle: "Добавьте город и радиусы, где Вы готовы принимать заказы",
