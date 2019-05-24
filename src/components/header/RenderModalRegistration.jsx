@@ -372,23 +372,6 @@ class RenderModalRegistrationClass extends React.Component {
                             }
                         </div>
                         <div className="mobailsitingInLight d-flex flex-column justify-content-center align-items-center ">
-                            <div className="d-flex justify-content-center registrationCheckMenuBt">
-                                <span style={{ color: this.state.sitingIn ? "#f60" : "" }} onClick={() => {
-                                    this.setState({
-                                        sitingIn: true,
-                                        logoIconActive: true,
-                                        languageTextActive: true,
-                                    })
-                                }
-                                }>{pageTextInfo.sitingInDarkBackgroundText.buttonText[lang]}</span>
-                                <span style={{ color: this.state.sitingIn ? "" : "#f60" }} onClick={() => {
-                                    this.setState({
-                                        sitingIn: false,
-                                        logoIconActive: false,
-                                        languageTextActive: false,
-                                    })
-                                }}>{pageTextInfo.registrationDarkBackgroundText.buttonText[lang]}</span>
-                            </div>
                             <h3>{this.state.sitingIn ? pageTextInfo.sitingInLightBackgroundText.titleSitingIn[lang] : pageTextInfo.registrationLightBackgroundText.registrationTitle[lang]}</h3>
                             <div style={{ display: this.state.sitingIn || this.state.regWindowType === 1 ? 'block' : 'none' }}>
                                 <p className="mb-0" style={{ textAlign: "center" }}>{pageTextInfo.sitingInLightBackgroundText.sitingInFirstText[lang]}</p>
@@ -425,11 +408,22 @@ class RenderModalRegistrationClass extends React.Component {
                                         <img className="eyeIcon" src={eyeIcon} alt="eyeIcon" width='15px' height='15px' />
                                     </div>
                                     <div className="registrationAnswerText" style={{ visibility: regAnswerVisibility ? 'visible' : 'hidden', color: regAnswerColor ? 'red' : 'green' }}>{regAnswerValue}</div>
+
                                     <Link className="forgotPasswordLink" style={{ display: this.state.sitingIn ? "block" : "none" }} to="/forgot-password">{pageTextInfo.sitingInLightBackgroundText.linkText[lang]}</Link>
+
                                     <div className="d-flex justify-content-center align-items-end">
                                         <div className="returnButton pr-5" style={{ display: !this.state.sitingIn ? 'block' : 'none' }} onClick={() => this.setState({ regWindowType: 0 })}>{pageTextInfo.registrationUserType.buttonReturn[lang]}</div>
                                         <button disabled={this.state.regProcessStatus || this.state.regAnswerStatus} type="submit" htmlFor="regForm">{this.state.sitingIn ? pageTextInfo.sitingInLightBackgroundText.buttonText[lang] : pageTextInfo.registrationDarkBackgroundText.buttonText[lang]}</button>
                                     </div>
+                                    <div className="d-flex justify-content-center align-items-center registrationCheckMenuBt">
+                                    <p>{this.state.sitingIn ? pageTextInfo.registrationDarkBackgroundText.mobailText[lang]:pageTextInfo.sitingInLightBackgroundText.mobailText[lang]}</p>
+                                 <span onClick={() => {  this.setState({
+                                        sitingIn: !this.state.sitingIn,
+                                        logoIconActive: !this.state.logoIconActive,
+                                        languageTextActive: !this.state.languageTextActive,
+                                    }) }}>{this.state.sitingIn ? pageTextInfo.registrationDarkBackgroundText.mobailbuttonText[lang] : pageTextInfo.sitingInLightBackgroundText.mobailbuttonText[lang]}</span>
+                                    
+                            </div>
                                 </form>
                             </div>
                             <div className=" flex-column" style={{ display: !this.state.sitingIn && this.state.regWindowType === 0 ? 'flex' : 'none' }}>
@@ -445,9 +439,21 @@ class RenderModalRegistrationClass extends React.Component {
                                     )
                                 }
                                 <button onClick={() => this.state.userType === 0 ? {} : this.setState({ regWindowType: 1 })}>{pageTextInfo.registrationUserType.buttonNext[lang]}</button>
+                                <div className="d-flex justify-content-center align-items-center registrationCheckMenuBt">
+                                <p>{this.state.sitingIn ? pageTextInfo.registrationDarkBackgroundText.mobailText[lang]:pageTextInfo.sitingInLightBackgroundText.mobailText[lang]}</p>
+                                 <span onClick={() => {  this.setState({
+                                        sitingIn: !this.state.sitingIn,
+                                        logoIconActive: !this.state.logoIconActive,
+                                        languageTextActive: !this.state.languageTextActive,
+                                    }) }}>{this.state.sitingIn ? pageTextInfo.registrationDarkBackgroundText.mobailbuttonText[lang] : pageTextInfo.sitingInLightBackgroundText.mobailbuttonText[lang]}</span>
+                                    
+                            </div>
                             </div>
                         </div>
                     </div>
+
+
+
 
                     <div className="registrationBody d-md-flex d-none">
                         <img className="registrationBodyLogoIcon" src={this.state.logoIconActive ? logoBlue : logoWhite} alt="logo" width="100px" height="20px" />

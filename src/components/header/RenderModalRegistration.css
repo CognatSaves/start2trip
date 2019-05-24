@@ -397,15 +397,26 @@
 
 .registrationCheckMenuBt {
     width: 100%;
+    margin-top: 10px;
 }
 
 .registrationCheckMenuBt span {
-    padding: 10px;
     font-size: 14px;
     font-weight: 400;
     color: #304269;
     cursor: pointer;
-    text-transform: lowercase;
+    padding: 0 5px;
+}
+
+.registrationCheckMenuBt span:hover {
+    border-bottom: 1px solid #304269;
+}
+
+.registrationCheckMenuBt p {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 300;
+    color: #666;
 }
 
 .mobailsitingInLight {

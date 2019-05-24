@@ -14,14 +14,17 @@ const pageTextInfo = {
         secondInputPlaceholderText: ["Email","Email"],
         linkText: ["Забыли пароль?","Forgot your password?"], 
         buttonText: ["ВОЙТИ","LOG IN"],
-
+        mobailbuttonText: ["Войти","Log in"],
+        mobailText:["Уже есть аккаунт?","Already have an account?"]
     },
 
     registrationDarkBackgroundText: { 
         registrationTitle: ["Добро пожаловать!","Greetings!"], 
         registrationFirstText: ["Введите свои персональные данные","Enter your personal data"], 
         registrationSecondText: ["и начинайте путешествие вместе с нами!","and start the journey with us!"], 
-        buttonText: ["РЕГИСТРАЦИЯ","REGISTRATION"] 
+        buttonText: ["РЕГИСТРАЦИЯ","REGISTRATION"] ,
+        mobailbuttonText: ["Зарегистрироваться","To register"],
+        mobailText:["Нет аккаунта?","No account?"]
     },
     registrationLightBackgroundText: { 
         registrationTitle: ["Создать аккаунт","Create account"], 
