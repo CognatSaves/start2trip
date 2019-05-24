@@ -34,6 +34,7 @@ const pageTextInfo = {
     },
     registrationUserType:{
         userTypeText: ["Выберите тип пользователя","Select user type"],
+        userTypeTextError: ["Сделайте выбор","Make a choice"],
         buttonNext:["Далее","Next"],
         buttonReturn:["Назад","Return"],
         userTypes:[

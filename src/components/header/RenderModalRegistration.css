@@ -344,6 +344,8 @@
     color: #304269;
     font-size: 14px;
     cursor: pointer;
+    margin-top: 25px;
+    padding: 0 15px;
 }
 
 .selectTypeBlock {
@@ -413,7 +415,8 @@
 }
 
 .registrationCheckMenuBt span:hover {
-    border-bottom: 1px solid #304269;
+    text-decoration: underline;
+    text-decoration-color: #304269;
 }
 
 .registrationCheckMenuBt p {

@@ -215,6 +215,7 @@ class RenderModalRegistrationClass extends React.Component {
             sendResultLocal: sendResultLocal,
             regAnswerStatus: false,
             regProcessStatus: false,
+            isError:false,
             selectedRegistrationAnswer: 3,
             regWindowType: 0,
             userType: 0,
@@ -411,8 +412,8 @@ class RenderModalRegistrationClass extends React.Component {
 
                                     <Link className="forgotPasswordLink" style={{ display: this.state.sitingIn ? "block" : "none" }} to="/forgot-password">{pageTextInfo.sitingInLightBackgroundText.linkText[lang]}</Link>
 
-                                    <div className="d-flex justify-content-center align-items-end">
-                                        <div className="returnButton pr-5" style={{ display: !this.state.sitingIn ? 'block' : 'none' }} onClick={() => this.setState({ regWindowType: 0 })}>{pageTextInfo.registrationUserType.buttonReturn[lang]}</div>
+                                    <div className="d-flex justify-content-center align-items-center">
+                                        <div className="returnButton" style={{ display: !this.state.sitingIn ? 'block' : 'none' }} onClick={() => this.setState({ regWindowType: 0 })}>{pageTextInfo.registrationUserType.buttonReturn[lang]}</div>
                                         <button disabled={this.state.regProcessStatus || this.state.regAnswerStatus} type="submit" htmlFor="regForm">{this.state.sitingIn ? pageTextInfo.sitingInLightBackgroundText.buttonText[lang] : pageTextInfo.registrationDarkBackgroundText.buttonText[lang]}</button>
                                     </div>
                                     <div className="d-flex justify-content-center align-items-center registrationCheckMenuBt">
@@ -428,17 +429,18 @@ class RenderModalRegistrationClass extends React.Component {
                             </div>
                             <div className=" flex-column" style={{ display: !this.state.sitingIn && this.state.regWindowType === 0 ? 'flex' : 'none' }}>
                                 <p style={{ textAlign: "center" }}>{pageTextInfo.registrationUserType.userTypeText[lang]}</p>
+                                <p style={{ textAlign: "center",color:"#e81123" }}>{this.state.isError?pageTextInfo.registrationUserType.userTypeTextError[lang]:""}</p>
                                 {
                                     pageTextInfo.registrationUserType.userTypes.map((element, index) =>
 
                                         <div className={index ? "selectTypeBlockLine selectTypeBlock d-flex align-items-center" : "selectTypeBlock d-flex align-items-center "} style={{ visibility: (this.state.agency.length === 0 || index === 1) ? 'visible' : 'hidden' }}>
                                             <i style={{ background: "url(" + massIcon[index] + ") no-repeat" }} />
                                             <label className="typeCheckLabel" for={"typeCheckbox" + (index + 1)}>{element.userText[lang]}</label>
-                                            <input disabled={!(this.state.agency.length === 0 || index === 1)} className="typeCheckButton" id={"typeCheckbox" + (index + 1)} type="radio" name="raz" onClick={() => this.setState({ userType: index + 1 })} />
+                                            <input disabled={!(this.state.agency.length === 0 || index === 1)} className="typeCheckButton" id={"typeCheckbox" + (index + 1)} type="radio" name="raz" onClick={() => this.setState({ userType: index + 1 , isError: false})} />
                                         </div>
                                     )
                                 }
-                                <button onClick={() => this.state.userType === 0 ? {} : this.setState({ regWindowType: 1 })}>{pageTextInfo.registrationUserType.buttonNext[lang]}</button>
+                                <button onClick={() => this.state.userType === 0 ? this.setState({ isError: true}) : this.setState({ regWindowType: 1 , isError: true})}>{pageTextInfo.registrationUserType.buttonNext[lang]}</button>
                                 <div className="d-flex justify-content-center align-items-center registrationCheckMenuBt">
                                 <p>{this.state.sitingIn ? pageTextInfo.registrationDarkBackgroundText.mobailText[lang]:pageTextInfo.sitingInLightBackgroundText.mobailText[lang]}</p>
                                  <span onClick={() => {  this.setState({
