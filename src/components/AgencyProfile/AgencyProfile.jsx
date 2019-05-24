@@ -12,7 +12,7 @@ import AgencyProfileTour from './AgencyProfileTour';
 import AgencyProfileFeedback from './AgencyProfileFeedback';
 import AgencyProfileBilling from './AgencyProfileBilling';
 
-import { setProfileData } from "../../redusers/ActionGlobal"
+import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 import requests from '../../config';
 import getUserData from '../driverProfileRegistration/DriverProfileRequest';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
@@ -70,6 +70,7 @@ class AgencyProfileClass extends React.Component{
                     ) 
                 }
                 else{
+                    this.props.dispatch(setUrlAddress(window.location.href));
                     this.props.history.push('/login');
                     return null;
                 }

@@ -36,6 +36,16 @@
     border-bottom: 3px solid #f60 !important;
 }
 
+.navigationBody .blockedSpan{
+    color: gray;
+}
+.navigationBody .blockedSpan:hover{
+    color: gray;
+    border-bottom-style:none;
+    cursor: default;
+}
+
+
 .navigation3 {
     left: 50%;
     right: 50%;

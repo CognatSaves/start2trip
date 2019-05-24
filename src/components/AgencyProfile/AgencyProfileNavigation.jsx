@@ -24,15 +24,15 @@ class AgencyProfileNavigationClass extends React.Component{
         super(props);
         this.state = {
             navigationText: ["Мои поездки", "Профиль", "Водители", "Туры", "Отзывы", "Настройки", "Биллинг", "Партнерская программа"],
-            profile: this.props.globalReduser.profile,
+            //profile: this.props.globalReduser.profile,
             route: [
-                "/account/agency/trips",
+                "",//"/account/agency/trips",
                 "/account/agency/profile",
                 "/account/agency/drivers",
                 "/account/agency/tours",
-                "/account/agency/reviews",
+                "",//"/account/agency/reviews",
                 "/account/agency/settings",
-                "/account/agency/billing",
+                "",//"/account/agency/billing",
                 "/account/agency/referrals",
             ],
             isRefreshExist:false,
@@ -147,12 +147,7 @@ class AgencyProfileNavigationClass extends React.Component{
         console.log('agency profile navigation render');
         console.log(this.props);
         console.log(this.state);
-        ///???????
-        if (!this.state.avatar) {
-            let img = requests.serverAddress + this.state.profile.avatar.url
-            this.setState({ avatar: img })
-        }
-        ///???????
+        let profile = this.props.globalReduser.profile;
 
         return(
             <React.Fragment>
@@ -175,17 +170,17 @@ class AgencyProfileNavigationClass extends React.Component{
                         </div>
                         <div className="bodyTopDriverInfo col-7">
                             <div className="bodyTopDriverInfoName d-flex flex-column align-items-start" >
-                                <p className="mb-0 mr-2">{this.state.profile.organizationName.length!==0 ? this.state.profile.organizationName : this.state.profile.email}</p>
-                                <div style={{display: this.state.profile.comments.length>0 ? 'block':'none'}}>
-                                    <Stars value={this.state.profile.rating} valueDisplay={true} commentNumberDisplay={true} commentNumber={this.state.profile.comments.length + " отзывов"} />
+                                <p className="mb-0 mr-2">{profile.organizationName.length!==0 ? profile.organizationName : profile.email}</p>
+                                <div style={{display: profile.comments.length>0 ? 'block':'none'}}>
+                                    <Stars value={profile.rating} valueDisplay={true} commentNumberDisplay={true} commentNumber={profile.comments.length + " отзывов"} />
                                 </div>              
                             </div>
                             <div className="bodyTopDriverInfoPlace">
-                                <p>{this.state.profile.legalAddress.length!==0 ? (this.state.profile.legalAddress) : ""}</p>
+                                <p>{profile.legalAddress.length!==0 ? (profile.legalAddress) : ""}</p>
                             </div>
                             <div className="bodyTopDriverInfoRide p-0 d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column">
                                 <div className="d-xl-flex d-lg-flex d-md-flex d-sm-none d-none align-items-center col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 p-0">
-                                    <span>{this.state.profile.futureTrips.length + this.state.profile.historyTrips.length}</span>
+                                    <span>{profile.futureTrips.length + profile.historyTrips.length}</span>
                                     <div className="d-flex flex-column">
                                         <p>ВСЕГО </p>
                                         <p>ПОЕЗДОК</p>
@@ -196,10 +191,10 @@ class AgencyProfileNavigationClass extends React.Component{
                                     <span className="pl-1">18</span>
                                 </div>
                                 <div className="d-xl-flex d-lg-flex d-md-flex d-sm-none d-none align-items-center col-xl-2 col-lg-2 col-md-2 col-sm-6 col-6 p-0">
-                                    <span>{this.state.profile.futureTrips.length}</span>
+                                    <span>{profile.agencyWorkers.length}</span>
                                     <div className="d-flex flex-column ">
-                                        <p>ПРЕДСТОЯЩИЕ </p>
-                                        <p>ПОЕЗДКИ</p>
+                                        <p>ВСЕГО</p>
+                                        <p>ВОДИТЕЛЕЙ</p>
                                     </div>
                                 </div>
                                 <div className="bodyTopDriverInfoRideMobail d-xl-none d-lg-none d-md-none d-sm-flex d-flex align-items-center col-xl-3 col-lg-3 col-md-3 col-sm-5 col-12 p-0">
@@ -212,8 +207,14 @@ class AgencyProfileNavigationClass extends React.Component{
                     <div className="navigationBody d-flex align-items-center">
                         {this.state.navigationText.map((element, index) =>
 
-                            <span className={{ [this.state.route[index]]: "navigationBodyActive", }[this.props.globalhistory.history.location.pathname] + " navigationButton mb-0 "} onClick={(event) => { /*this.props.dispatch(whichPageRender(index));*/this.setState({index: index}); this.shiftLeft(event); this.props.globalhistory.history.push(this.state.route[index]) }}>{element}</span>
-
+                            <span className={{ [this.state.route[index]]: "navigationBodyActive", }[this.props.globalhistory.history.location.pathname] + " navigationButton mb-0 " + (this.state.route[index].length===0 ? "blockedSpan" : "")}
+                            onClick={(event) => { if(this.state.route[index].length>0) {
+                                this.setState({index: index});
+                                //this.props.dispatch(whichPageRender(index));
+                                this.shiftLeft(event);
+                                this.props.globalhistory.history.push(this.state.route[index])
+                            }
+                            }}>{element}</span>
                         )}
                     </div>
                 </div>

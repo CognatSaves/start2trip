@@ -11,7 +11,7 @@ import Chip from 'material-ui/Chip';
 import flags from './img/flags.png'
 import ReactTelInput from 'react-telephone-input'
 import requests from '../../config';
-import { setProfileData } from "../../redusers/ActionGlobal"
+import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 import getUserData from './DriverProfileRequest';
 import DriverRefreshIndicator from './DriverRefreshIndicator';
 
@@ -159,7 +159,8 @@ class DriverProfileBasicInformationClass extends React.Component {
                     that.catchFunc();
                 });
         }
-        else{            
+        else{
+            this.props.dispatch(setUrlAddress(window.location.href));            
             this.props.globalReduser.history.push('/login');            
         }
     }

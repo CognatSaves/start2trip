@@ -394,6 +394,15 @@
     background: rgba(204, 204, 204, 0.6);
 }
 
+.hederMenu .blockedSpan{
+    color: gray;
+}
+.hederMenu .blockedSpan:hover{
+    color: gray;
+    background: transparent;
+    cursor: default;
+}
+
 .preloadHiddenBlock {
     visibility: hidden;
 }

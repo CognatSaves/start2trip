@@ -1,4 +1,4 @@
-import {WHICH_PAGE_RENDER_HISTORY,SET_PROFILE_DATA} from './ActionGlobal';
+import {WHICH_PAGE_RENDER_HISTORY,SET_PROFILE_DATA,SET_URL_ADDRESS} from './ActionGlobal';
 import Ru_Drivers from '../textInfo/Ru-Drivers'
 
 const initialState = {
@@ -25,7 +25,8 @@ const initialState = {
         autoRotate: true,
         debug: true
     },
-    profile: {}
+    profile: {},
+    previousUrl: ''
 };
 
 
@@ -40,6 +41,12 @@ export const GlobalReduser = (state = initialState, action) => {
             let newStatePD = { ...state };
             newStatePD.profile = action.profile;
             return newStatePD;
+        }
+        case SET_URL_ADDRESS:{
+            debugger;
+            let newStateUA = { ...state };
+            newStateUA.previousUrl = action.previousUrl;
+            return newStateUA;
         }  
     default: return state;
     }
