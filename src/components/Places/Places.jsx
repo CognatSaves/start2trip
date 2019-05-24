@@ -28,9 +28,10 @@ class PlacesClass extends React.Component {
     console.log(this.props.placesState);
     return (
       <React.Fragment>
-        <div className="drivers_top_background col-12">
+        <div className="drivers_top_background col-12 p-0">
+        <Header history={this.props.history}/>
           <div className="wrapper d-flex flex-column">
-            <Header history={this.props.history}/>
+            
             <PlacesCountryInfo />
           </div>
         </div>
