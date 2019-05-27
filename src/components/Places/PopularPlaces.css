@@ -1,5 +1,33 @@
 .popularPlacesBody {}
 
+.popularPlacesRender {
+    /* padding: 20px 0 !important;
+    max-width: 85%; */
+    /* overflow-x: auto;
+    scroll-behavior: smooth; */
+}
+
+.popularPlacesMore {
+    position: relative;
+}
+
+.popularPlacesMore img {
+    filter: brightness(0.4)
+}
+
+.popularPlacesMore span {
+    position: absolute;
+    cursor: pointer;
+    z-index: 4;
+    top: 35%;
+    color: #fff !important;
+}
+
+.popularPlacesMore span:hover~img {
+    transform: scale(1.1);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
 .popularPlacesTitle h3 {
     font-size: 20px;
     font-weight: 400;
@@ -22,6 +50,29 @@
 }
 
 
+/* ScrollBar Bigin */
+
+.popularPlacesRender::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    background-color: #F5F5F5;
+}
+
+.popularPlacesRender::-webkit-scrollbar {
+    height: 6px;
+    background-color: #F5F5F5;
+}
+
+.popularPlacesRender::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    background-color: #f60;
+}
+
+
+/* ScrollBar end */
+
+
 /* .popularPlacesEl:last-child img:hover {
     transform: rotateZ(360deg);
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
@@ -31,4 +82,12 @@
     font-size: 16px;
     font-weight: 400;
     color: #304269;
+}
+
+@media (max-width: 1077px) {}
+
+@media (max-width: 746px) {
+    .popularPlacesEl img {
+        height: 60px;
+    }
 }
