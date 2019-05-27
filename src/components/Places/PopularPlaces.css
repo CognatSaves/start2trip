@@ -1,10 +1,8 @@
 .popularPlacesBody {}
 
 .popularPlacesRender {
-    /* padding: 20px 0 !important;
-    max-width: 85%; */
-    /* overflow-x: auto;
-    scroll-behavior: smooth; */
+    padding-top: 16px !important;
+    padding-bottom: 40px !important;
 }
 
 .popularPlacesMore {
@@ -19,7 +17,7 @@
     position: absolute;
     cursor: pointer;
     z-index: 4;
-    top: 35%;
+    top: 30%;
     color: #fff !important;
 }
 
@@ -29,9 +27,13 @@
 }
 
 .popularPlacesTitle h3 {
-    font-size: 20px;
+    font-size: 24px;
     font-weight: 400;
     color: #304269;
+}
+
+.popularPlacesEl {
+    padding-bottom: 10px !important;
 }
 
 .popularPlacesEl img {

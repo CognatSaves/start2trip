@@ -1,0 +1,101 @@
+.carouselMainPhoto {
+    position: relative;
+    height: 305px;
+}
+
+.carouselMainPhoto img {
+    position: relative;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.carouselMainPhotoHorizontal {
+    position: relative;
+    height: 450px;
+}
+
+.carouselMainPhotoHorizontal img {
+    position: relative;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.carouselChoice {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 305px;
+    padding-right: 5px;
+}
+
+.carouselChoiceHorizontal {
+    overflow-y: hidden;
+    overflow-x: auto;
+    display: flex;
+    padding-bottom: 5px;
+}
+
+.carouselChoiceHorizontal div {
+    flex-basis: 200px;
+    min-width: 100px;
+    flex-grow: 1;
+}
+
+.carouselChoiceEl {
+    cursor: pointer;
+    border: 2px solid #fff;
+}
+
+.carouselChoiceEl img {
+    object-fit: cover;
+}
+
+.carouselChoiceEl-active {
+    border: 2px solid #f60;
+}
+
+
+/* ScrollBar Bigin */
+
+.carouselChoiceHorizontal::-webkit-scrollbar-track,
+.carouselChoice::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    background-color: #F5F5F5;
+}
+
+.carouselChoiceHorizontal::-webkit-scrollbar,
+.carouselChoice::-webkit-scrollbar {
+    height: 5px;
+    width: 4px;
+    background-color: #F5F5F5;
+}
+
+.carouselChoiceHorizontal::-webkit-scrollbar-thumb,
+.carouselChoice::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    /* -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3); */
+    background-color: #f60;
+}
+
+
+/* ScrollBar end */
+
+@media (max-width: 990px) {
+    .carouselMainPhoto {
+        height: 405px;
+    }
+    .carouselChoice {
+        height: 405px;
+    }
+}
+
+@media (max-width: 586px) {
+    .carouselMainPhotoHorizontal {
+        height: 255px;
+    }
+    .carouselMainPhotoHorizontal {
+        height: 255px;
+    }
+}

@@ -1,12 +1,12 @@
 import React from 'react';
 import './PopularPlaces.css';
 import { connect } from 'react-redux';
-import Tbilisy from './pictures/tbilisi_desk.jpg'
-import Batumi from './pictures/Batumi.-Podorozh-do-sertsya-Gruziyi-700x420.jpg'
-import kytaisy from './pictures/Kolhidskiy-fontan.-Kutaisi.jpg'
-import Rustavi from './pictures/Rustavi_Museum_(A._Muhranoff,_2011).jpg'
-import samegrello from './pictures/thumb_536_1370_437_0_0_auto.jpg'
-import Andshi from './pictures/Вид_на_деревушку_Адиши,_Грузия.jpg'
+// import Tbilisy from './pictures/tbilisi_desk.jpg'
+// import Batumi from './pictures/Batumi.-Podorozh-do-sertsya-Gruziyi-700x420.jpg'
+// import kytaisy from './pictures/Kolhidskiy-fontan.-Kutaisi.jpg'
+// import Rustavi from './pictures/Rustavi_Museum_(A._Muhranoff,_2011).jpg'
+// import samegrello from './pictures/thumb_536_1370_437_0_0_auto.jpg'
+// import Andshi from './pictures/Вид_на_деревушку_Адиши,_Грузия.jpg'
 
 class PopularPlacesClass extends React.Component {
     constructor(props) {
@@ -17,39 +17,39 @@ class PopularPlacesClass extends React.Component {
         }
     }
     render() {
-        let plase = [
-            { title: "Tbilisy", img: Tbilisy },
-            { title: "Batumi", img: Batumi },
-            { title: "kytaisy", img: kytaisy },
-            { title: "Rustavi", img: Rustavi },
-            { title: "samegrello", img: samegrello },
-            { title: "Tbilisy", img: Tbilisy },
-            { title: "Rustavi", img: Rustavi },
-            { title: "samegrello", img: samegrello },
-            { title: "Tbilisy", img: Tbilisy },
-            { title: "Andshi", img: Andshi },
-            { title: "Batumi", img: Batumi },
-            { title: "kytaisy", img: kytaisy },
-            { title: "Rustavi", img: Rustavi },
-            { title: "samegrello", img: samegrello },
-            { title: "Tbilisy", img: Tbilisy },
-            { title: "Rustavi", img: Rustavi },
-            { title: "samegrello", img: samegrello },
-            { title: "Tbilisy", img: Tbilisy },
-            { title: "Andshi", img: Andshi },
+        // let plase = [
+        //     { title: "Tbilisy", img: Tbilisy },
+        //     { title: "Batumi", img: Batumi },
+        //     { title: "kytaisy", img: kytaisy },
+        //     { title: "Rustavi", img: Rustavi },
+        //     { title: "samegrello", img: samegrello },
+        //     { title: "Tbilisy", img: Tbilisy },
+        //     { title: "Rustavi", img: Rustavi },
+        //     { title: "samegrello", img: samegrello },
+        //     { title: "Tbilisy", img: Tbilisy },
+        //     { title: "Andshi", img: Andshi },
+        //     { title: "Batumi", img: Batumi },
+        //     { title: "kytaisy", img: kytaisy },
+        //     { title: "Rustavi", img: Rustavi },
+        //     { title: "samegrello", img: samegrello },
+        //     { title: "Tbilisy", img: Tbilisy },
+        //     { title: "Rustavi", img: Rustavi },
+        //     { title: "samegrello", img: samegrello },
+        //     { title: "Tbilisy", img: Tbilisy },
+        //     { title: "Andshi", img: Andshi },
 
-        ];
+        // ];
         let plaseRender = [];
-        debugger
-        if (plase.length > this.state.howMuchRender) {
+
+        if (this.state.arrayRender.length > this.state.howMuchRender) {
 
             for (let i = 0; i < this.state.howMuchRender; i++) {
                 if (i < this.state.howMuchRender) {
-                    plaseRender.push(plase[i]);
+                    plaseRender.push(this.state.arrayRender[i]);
                 }
             }
         } else {
-            plaseRender = plase;
+            plaseRender = this.state.arrayRender;
         }
 
         return (
@@ -61,14 +61,14 @@ class PopularPlacesClass extends React.Component {
                     </div>
 
                     <div className="d-flex col-12 p-0">
-                        <div className="d-flex col-12 flex-wrap p-0 my-2 popularPlacesRender">
+                        <div className="d-flex col-12 flex-wrap p-0 popularPlacesRender">
                             {plaseRender.map((element, index) => {
-                                if (plase.length !== plaseRender.length) {
+                                if (this.state.arrayRender.length !== plaseRender.length) {
                                     if (plaseRender.length - 1 == index) {
                                         return (
                                             <div className="col-2 d-flex flex-column align-items-center popularPlacesEl popularPlacesMore" onClick={() => { this.setState({ howMuchRender: this.state.howMuchRender + 6 }) }}>
                                                 <span>{"more"}</span>
-                                                <img src={plase[plase.length-1].img} alt="img" />
+                                                <img src={this.state.arrayRender[this.state.arrayRender.length-1].img} alt="img" />
                                             </div>
                                         )
                                     }

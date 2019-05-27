@@ -62,21 +62,22 @@ class DriverProfileClass extends React.Component {
             successVisibility: value
         })
     }
-    changePanelVariant(value){
+    changePanelVariant(value) {
         this.setState({
             showPanelVariant: value
         })
     }
     render() {
         let driver = this.props.driversState.drivers[this.props.match.params.id];
-        let buttonNames = ["Отзывы ("+this.props.commentState.comments.length+")", "Мои личные самые ценные туры"];
+        let buttonNames = ["Отзывы (" + this.props.commentState.comments.length + ")", "Мои личные самые ценные туры"];
 
         return (
             <React.Fragment>
-                <div className="drivers_top_background col-12">
-                    <div className="wrapper d-flex flex-column">
+                <div className="drivers_top_background">
+                    <Header history={this.props.history} />
+                    <div className="wrapper d-flex flex-column col-12 p-0">
                         <div className="drivers_top_block d-flex flex-column">
-                            <Header history={this.props.history}/>
+
                             <DriverInfo element={driver} />
                             <DriverAdaptedRoute element={driver} date={this.props.storeState.date} cities={this.props.storeState.cities}
                                 travelTime={this.props.driversState.travelTime} travelLength={this.props.driversState.travelLength} goToDrivers={this.goToDrivers}
@@ -89,31 +90,31 @@ class DriverProfileClass extends React.Component {
                     <div className="drivers_bottom_background d-flex flex-column" >
                         <div className="drivers_body d-flex">
                             <div className="left_body_part col-9">
-                            <div className="driverProfileComments_panel d-flex">
+                                <div className="driverProfileComments_panel d-flex">
+                                    {
+                                        buttonNames.map((element, index) =>
+                                            <button className={this.state.showPanelVariant === index ? "driverProfileComments_panel_element driverProfileComments_panel_selectedElement" : "driverProfileComments_panel_element"} onClick={() => this.changePanelVariant(index)}>{element}</button>
+                                        )
+                                    }
+                                </div>
                                 {
-                                    buttonNames.map((element, index)=>
-                                        <button className={this.state.showPanelVariant===index ? "driverProfileComments_panel_element driverProfileComments_panel_selectedElement" : "driverProfileComments_panel_element"} onClick={()=>this.changePanelVariant(index)}>{element}</button>
-                                    )
+                                    this.state.showPanelVariant === 0 &&
+                                    <React.Fragment>
+                                        <DriversProfileComments page={this.state.page} showPages={this.state.showPages} driver={driver} />
+                                        <Manipulator number={this.props.commentState.comments.length} page={this.state.page} elementsNumber={5}
+                                            setPage={this.setPage} showMorePages={this.showMorePages} />
+                                    </React.Fragment>
+                                }
+                                {
+                                    this.state.showPanelVariant === 1 &&
+                                    <React.Fragment>
+                                        <DriverProfileTours />
+                                    </React.Fragment>
                                 }
                             </div>
-                            {
-                                this.state.showPanelVariant===0 &&
-                                <React.Fragment>
-                                    <DriversProfileComments page={this.state.page} showPages={this.state.showPages} driver={driver} />
-                                    <Manipulator number={this.props.commentState.comments.length} page={this.state.page} elementsNumber={5}
-                                     setPage={this.setPage} showMorePages={this.showMorePages} />
-                                </React.Fragment> 
-                            }
-                            {
-                                this.state.showPanelVariant===1 &&
-                                <React.Fragment>
-                                    <DriverProfileTours/>
-                                </React.Fragment>
-                            }
-                            </div>
-                            <div className="right_body_part col-3">
+                            {/* <div className="right_body_part col-3">
                                 <DriversCommercial />
-                            </div>
+                            </div> */}
 
                         </div>
                     </div>
@@ -133,10 +134,6 @@ const DriverProfile = connect(
         driversState: state.DriversReduser,
         commentState: state.CommentReduser
     }),
-    /*
-    (dispatch) => ({
-     // setCities:(cities) => dispatch({type:"SET_CITIES",cities:cities})
-    })*/
 )(DriverProfileClass);
 
 export default DriverProfile;

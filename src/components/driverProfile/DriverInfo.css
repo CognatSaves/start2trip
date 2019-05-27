@@ -1,25 +1,10 @@
 .driverInfo_background {
     background-color: #ffffff;
-    padding: 0;
+    padding: 30px 10px 12px 20px;
+    border-radius: 5px;
     margin-top: 35px;
-}
-
-
-/*
-.driverInfo_element_left {
-    flex-direction: column;
-    
-}
-.driverInfo_element_right {
-    flex-direction: column;
-    margin-top: 15px;
-    margin-bottom: auto;
-}*/
-
-.driverInfo_element {
-    margin-top: 25px;
-    margin-bottom: 15px;
-    height: 325px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
 }
 
 .driverInfo_left_line {
@@ -27,6 +12,12 @@
     flex-direction: row;
     width: 100%;
     margin-bottom: 20px;
+}
+
+.driverInfo_photo {
+    width: 156px;
+    height: 156px;
+    border-radius: 50%;
 }
 
 .driverInfo_carData {
@@ -58,11 +49,6 @@
     height: 50px;
 }
 
-
-/* .element_right_line:nth-child(1){
-    margin: 0;
-} */
-
 .driverInfo_data div:last-child {
     width: 65%;
 }
@@ -76,45 +62,6 @@
 .driverInfo_iconLine_icon {
     width: 16px;
     margin-right: 10px;
-}
-
-.driverInfo_carPhotoBlock {
-    display: flex;
-    position: relative;
-    width: 300px;
-    height: 250px;
-    margin: 0 auto;
-    min-width: 150px;
-    min-height: 100px;
-}
-
-.driverInfo_carPhotoBlock_switchCarPicture {
-    display: flex;
-    position: absolute;
-    top: 50%;
-    transform: translate(0, -50%);
-    width: 40px;
-    height: 40px;
-    border-radius: 100%;
-    text-align: center;
-    border: 1px solid transparent;
-    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
-    background-color: #fff;
-    margin: auto;
-    font-size: 16px;
-    color: #686868;
-    border-radius: 100%;
-    cursor: pointer;
-}
-
-.driverInfo_carPhotoBlock_switchCarPicture:hover {
-    background-color: #304269;
-    color: #686868;
-}
-
-.driverInfo_carPhotoBlock_switchCarPicture:focus {
-    border: none;
-    outline: none;
 }
 
 .album_photo {
@@ -151,9 +98,10 @@
 
 .driverInfo_informationIcon {
     position: inherit;
-    top: -9px;
+    top: 0px;
     width: 18px;
     height: 18px;
+    background-position: top center;
 }
 
 .driverInfo_informationIcon:hover .driverInfo_informationBlock {
@@ -193,8 +141,33 @@
 }
 
 .driverInfo_carTypeValue {
-    margin: auto 0 auto auto;
     line-height: 18px;
     color: #686868;
+    font-size: 14px;
+    font-weight: 400;
     padding-bottom: 10px;
 }
+
+@media (max-width: 990px) {
+    .driverInfo_background {
+        border-radius: 0px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        padding: 20px 10px;
+    }
+    .driverInfo_photo {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+    }
+    .driverInfo_photo img {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+    }
+    .driverInfo_left_line {
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 586px) {}
