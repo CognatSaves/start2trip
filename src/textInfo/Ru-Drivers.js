@@ -6,13 +6,13 @@ const driverProfileRegistration = {
         ],
         updatePhoto: "Обновить фотографию",
         totalTrips: {
-            firs: "Всего",
+            first: "Всего",
             last: "поездок",
             full: "Всего поездок"
         },
         starsReviews: "отзывов",
         upcomingTrips: {
-            firs: "Предстоящие",
+            first: "Предстоящие",
             last: "поездки",
             full: "Предстоящие поездки"
         }
@@ -112,6 +112,9 @@ const driverProfileRegistration = {
         }
     },
     DriverProfileTripSettingsTrip: {
+        changeOnWorkP: "Здесь вы можете приостановить и возобновить приём заказов",
+        onWorkTrue: "Приостановить работу",
+        onWorkFalse: "Возобновить работу",
         chooseWeekend: "Выберите выходные дни",
         selectDates: "Выбрать даты",
         addCityTitle: "Добавьте город и радиусы, где Вы готовы принимать заказы",

@@ -14,8 +14,11 @@ export default class PartnerRegister extends React.Component{
         cookies.set('partner', cookieValue, {path: '/',expires: date});
         switch (values[1]){
             case 'register':{
+                /*
                 this.props.history.push('/home');//данная ересь нужна, т.к. login сделает pop из history
                 //а нам не нужен цикл
+                */
+                //не пушу в редусер чтобы выкинуло на /home
                 this.props.history.push('/login');
                 break;
             }

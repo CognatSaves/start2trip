@@ -13,7 +13,7 @@ import DriverProfileHistory from './DriverProfileHistory'
 import DriverProfileBilling from './DriverProfileBilling'
 import DriverProfileAffiliateProgram from './DriverProfileAffiliateProgram'
 import {Route} from 'react-router-dom';
-import { setProfileData } from "../../redusers/ActionGlobal"
+import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 import requests from '../../config';
 import getUserData from './DriverProfileRequest';
 import DriverRefreshIndicator from './DriverRefreshIndicator';
@@ -58,18 +58,26 @@ class DriverProfileRegistrationClass extends React.Component {
         return null;
       }
       else{
-        let requestValues = {
-          readCookie: this.props.globalReduser.readCookie,
-          setProfileData: function(data){
-              
-              that.props.dispatch(setProfileData(data))
-          },
-          requestAddress: requests.profileRequest
-          }
-        getUserData(requestValues);
-        return(
-          <DriverRefreshIndicator isRefreshExist={true} isRefreshing={true} isGoodAnswer={true}/>
-        )
+        let jwt = this.props.globalReduser.readCookie('jwt');
+        if(jwt && jwt !== '-'){
+            let that = this;
+            let requestValues = {
+                readCookie: this.props.globalReduser.readCookie,
+                setProfileData: function(data){               
+                    that.props.dispatch(setProfileData(data))
+                },
+                requestAddress: requests.profileRequest
+                }
+            getUserData(requestValues);
+            return(
+                <DriverRefreshIndicator isRefreshExist={true} isRefreshing={true} isGoodAnswer={true}/>
+            ) 
+        }
+        else{
+            this.props.dispatch(setUrlAddress(window.location.href));
+            this.props.history.push('/login');
+            return null;
+        }
       }
     }
     /*

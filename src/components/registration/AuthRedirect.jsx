@@ -6,6 +6,8 @@ import Header from '../header/Header'
 
 
 import './AuthRedirect.css';
+import { Url } from 'url';
+import { setUrlAddress } from "../../redusers/ActionGlobal"
 const ModalRegistration = (props) => {
     let { modalRegistration, toggle, className, authorization } = props;
     return (
@@ -32,15 +34,22 @@ class AuthRedirectClass extends React.Component {
     }
     toggle() {//функция завершения работы
         //this.props.globalhistory.history.pop();
+
+        //alert(window.document.referrer);
+        debugger;
+        let address = this.props.globalReduser.previousUrl;
         let jwt = this.props.globalReduser.readCookie('jwt');
         if (jwt && jwt !== "-") {
-
-            console.log(document.referrer, 'referrer');
-            if (document.referrer.length === 0) {
+            //debugger;
+            if(address.length===0){
                 this.props.history.push('/');
             }
-            else {
-                this.props.history.goBack();
+            else{
+                let urlAddress = new Url(address);
+                this.props.dispatch(setUrlAddress(""));
+                
+
+                this.props.history.push(address);
             };
 
             console.log('toggle end');

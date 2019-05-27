@@ -43,7 +43,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
             calendarModal: false,
             isRefreshExist:false,
             isRefreshing: true,
-            isGoodAnswer: true
+            isGoodAnswer: true,
         }
 
         this.addCityRadius = this.addCityRadius.bind(this);
@@ -102,19 +102,24 @@ class DriverProfileTripSettingsTripClass extends React.Component {
             })
         }, 2000);
     }
-    applyChanges() {
+    applyChanges(props) {
         let jwt = this.props.globalReduser.readCookie('jwt');
         if (jwt && jwt !== "-") {
             let that = this; 
             this.startRefresher();
             let value = {
                 travelsetting: {
+
                     settings: {
                         points: this.state.cityRadius,
                         distance: this.state.distance
                     },
                     calendary: this.state.dateTour
                 }
+            }
+            
+            if(props){
+                value.onWork = props.onWork;
             }
             console.log('body before json');
             console.log(value);
@@ -142,6 +147,9 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                 .catch(function (error) {
                     console.log("bad");
                     console.log('An error occurred:', error);
+                    that.setState({
+                        onWork: that.props.globalReduser.profile.onWork
+                    });
                     that.catchFunc();
                     //that.state.sendResultLocal(false,{error: error});
                 });
@@ -311,91 +319,99 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                     />
                 </Dialog>
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer}/>
-                <form onSubmit={this.formSubmit} id="tripForm" className="tripSettingsBody">
+                <div className="tripSettingsBody">
                     <div className="tripSettingsContent">
                         <div className="tripSettingsContentTitle d-flex flex-md-row flex-sm-column flex-column align-items-center">
-                            <p className="col-xl-2 col-lg-2 col-md-3 col-sm-11 col-11 p-0">{textPage.chooseWeekend}</p>
-                            <span className="newTourDatepickerSpan col-xl-6 col-lg-7 col-md-9 col-sm-11 col-11" onClick={this.calendarModalShow}>{textPage.selectDates}</span>
+                            <p className="col-xl-2 col-lg-2 col-md-3 col-sm-11 col-11 p-0">{textPage.changeOnWorkP}</p>
+                            <button onClick = {()=>{this.applyChanges({onWork:!this.props.globalReduser.profile.onWork});}}>{this.props.globalReduser.profile.onWork ? textPage.onWorkTrue : textPage.onWorkFalse}</button>
                         </div>
-                        <div className="tripSettingsContentDate d-flex align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start justify-content-center">
+                    </div>
+                    <form onSubmit={(event)=>this.formSubmit(event)} id="tripForm" className="">
+                        <div className="tripSettingsContent">                        
+                            <div className="tripSettingsContentTitle d-flex flex-md-row flex-sm-column flex-column align-items-center">
+                                <p className="col-xl-2 col-lg-2 col-md-3 col-sm-11 col-11 p-0">{textPage.chooseWeekend}</p>
+                                <span className="newTourDatepickerSpan col-xl-6 col-lg-7 col-md-9 col-sm-11 col-11" onClick={this.calendarModalShow}>{textPage.selectDates}</span>
+                            </div>
+                            <div className="tripSettingsContentDate d-flex align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start justify-content-center">
 
-                            <div className="d-flex flex-wrap flex-row align-items-start col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 p-0 mb-2">
+                                <div className="d-flex flex-wrap flex-row align-items-start col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 p-0 mb-2">
 
-                                {this.state.dateTour.map((element, index) => {
-                                    let day = element.getDate();
-                                    let month = element.getMonth();
-                                    let year = element.getFullYear();
-                                    let newDate = day + "." + month + "." + year;
-                                    return (
-                                        <Chip
-                                            key={element.key}
-                                            onRequestDelete={() => this.handleRequestDelete(element)}
-                                            labelStyle={{ color: "#000" }}
-                                            labelColor="#f60"
-                                            textColor="#304269"
-                                            className="chipClass"
-                                        >
-                                            {newDate}
-                                        </Chip>)
-                                })}
+                                    {this.state.dateTour.map((element, index) => {
+                                        let day = element.getDate();
+                                        let month = element.getMonth();
+                                        let year = element.getFullYear();
+                                        let newDate = day + "." + month + "." + year;
+                                        return (
+                                            <Chip
+                                                key={element.key}
+                                                onRequestDelete={() => this.handleRequestDelete(element)}
+                                                labelStyle={{ color: "#000" }}
+                                                labelColor="#f60"
+                                                textColor="#304269"
+                                                className="chipClass"
+                                            >
+                                                {newDate}
+                                            </Chip>)
+                                    })}
+
+                                </div>
 
                             </div>
-
-                        </div>
-                        <div className="tripSettingsContentTitle d-flex align-items-center">
-                            <p>{textPage.addCityTitle}</p>
-                        </div>
-                        {this.state.cityRadius.map((element, index) =>
-                            <React.Fragment>
-                                <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                    <label htmlFor={"tripLocation" + index} className="col-xl-2 col-lg-2 col-md-2 col-sm-11 col-11 p-0">{textPage.tripLocation}:</label>
-                                    <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">
-                                        <LocationSearchInput address={element.point} changeCity={this.changeCity} classInput="searchInputDriverInformation" index={index} classDropdown="searchDropdownDriverInformation" />
-                                        <input className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 ml-1 d-xl-block d-lg-block d-md-block d-sm-none d-none" type="text" id="itemRadiu" value={element.radius}
-                                            onChange={(e) => this.inputChange(e.target.value, 'radius', index)}
-                                        />
-                                        <TextField
-                                            floatingLabelText={textPage.textField.floatingLabelText}
-                                            className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
-                                            fullWidth="100%"
-                                            floatingLabelFocusStyle={{ color: "#304269" }}
-                                            underlineFocusStyle={{ borderColor: "#304269" }}
-                                            value={element.radius}
-                                            onChange={(e) => this.inputChange(e.target.value, 'radius', index)}
-                                        />
+                            <div className="tripSettingsContentTitle d-flex align-items-center">
+                                <p>{textPage.addCityTitle}</p>
+                            </div>
+                            {this.state.cityRadius.map((element, index) =>
+                                <React.Fragment>
+                                    <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
+                                        <label htmlFor={"tripLocation" + index} className="col-xl-2 col-lg-2 col-md-2 col-sm-11 col-11 p-0">{textPage.tripLocation}:</label>
+                                        <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">
+                                            <LocationSearchInput address={element.point} changeCity={this.changeCity} classInput="searchInputDriverInformation" index={index} classDropdown="searchDropdownDriverInformation" />
+                                            <input className="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 ml-1 d-xl-block d-lg-block d-md-block d-sm-none d-none" type="text" id="itemRadiu" value={element.radius}
+                                                onChange={(e) => this.inputChange(e.target.value, 'radius', index)}
+                                            />
+                                            <TextField
+                                                floatingLabelText={textPage.textField.floatingLabelText}
+                                                className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
+                                                fullWidth="100%"
+                                                floatingLabelFocusStyle={{ color: "#304269" }}
+                                                underlineFocusStyle={{ borderColor: "#304269" }}
+                                                value={element.radius}
+                                                onChange={(e) => this.inputChange(e.target.value, 'radius', index)}
+                                            />
+                                        </div>
+                                        <span style={{ display: index ? "block" : "none" }} className="tripSettingsContentDeletButton " title={textPage.textField.title} onClick={() => { this.deleteCityRadius(index) }} />
+                                        <p className={index ? "d-none" : "d-xl-block d-lg-block d-md-block d-sm-none d-none pl-2"}>{textPage.textField.description}</p>
                                     </div>
-                                    <span style={{ display: index ? "block" : "none" }} className="tripSettingsContentDeletButton " title={textPage.textField.title} onClick={() => { this.deleteCityRadius(index) }} />
-                                    <p className={index ? "d-none" : "d-xl-block d-lg-block d-md-block d-sm-none d-none pl-2"}>{textPage.textField.description}</p>
-                                </div>
-                            </React.Fragment>
-                        )}
-                        <div className="tripSettingsContentAddCity d-flex align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start justify-content-center">
-                            <p className="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 pl-0" onClick={this.addCityRadius}>{textPage.textField.addCityBt}</p>
+                                </React.Fragment>
+                            )}
+                            <div className="tripSettingsContentAddCity d-flex align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start justify-content-center">
+                                <p className="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 pl-0" onClick={this.addCityRadius}>{textPage.textField.addCityBt}</p>
+                            </div>
+                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
+                                <label htmlFor="maxDailyMileage" className="col-xl-2 col-lg-2 col-md-2 col-sm-11 col-11 p-0">{textPage.maxDailyMileage.floatingLabelText}:</label>
+                                <input id="maxDailyMileage" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12" type="text" value={this.state.distance}
+                                    onChange={(e) => this.inputChange(e.target.value, 'distance')}
+                                />
+                                <TextField
+                                    floatingLabelText={textPage.maxDailyMileage.floatingLabelText}
+                                    className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
+                                    fullWidth="100%"
+                                    floatingLabelFocusStyle={{ color: "#304269" }}
+                                    underlineFocusStyle={{ borderColor: "#304269" }}
+                                    value={this.state.distance}
+                                    onChange={(e) => this.inputChange(e.target.value, 'distance')}
+                                />
+                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none pl-2">{textPage.maxDailyMileage.description}</p>
+                            </div>
                         </div>
-                        <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                            <label htmlFor="maxDailyMileage" className="col-xl-2 col-lg-2 col-md-2 col-sm-11 col-11 p-0">{textPage.maxDailyMileage.floatingLabelText}:</label>
-                            <input id="maxDailyMileage" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12" type="text" value={this.state.distance}
-                                onChange={(e) => this.inputChange(e.target.value, 'distance')}
-                            />
-                            <TextField
-                                floatingLabelText={textPage.maxDailyMileage.floatingLabelText}
-                                className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
-                                fullWidth="100%"
-                                floatingLabelFocusStyle={{ color: "#304269" }}
-                                underlineFocusStyle={{ borderColor: "#304269" }}
-                                value={this.state.distance}
-                                onChange={(e) => this.inputChange(e.target.value, 'distance')}
-                            />
-                            <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none pl-2">{textPage.maxDailyMileage.description}</p>
+
+                        <div className="tripSettingsContent d-flex justify-content-md-start justify-content-sm-center justify-content-center p-0">
+                            <p className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 d-xl-block  d-lg-block  d-md-block d-sm-none d-none"></p>
+                            <button htmlFor="tripForm" type="submit">{textPage.tripSaveBt}</button>
                         </div>
-                    </div>
 
-                    <div className="tripSettingsContent d-flex justify-content-md-start justify-content-sm-center justify-content-center p-0">
-                        <p className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 d-xl-block  d-lg-block  d-md-block d-sm-none d-none"></p>
-                        <button htmlFor="tripForm" type="submit">{textPage.tripSaveBt}</button>
-                    </div>
-
-                </form>
+                    </form>
+                </div>
             </React.Fragment>
         );
     }

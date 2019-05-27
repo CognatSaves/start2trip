@@ -28,14 +28,15 @@ class DriverProfileNavigationClass extends React.Component {
             //avatar: "",
             profile: this.props.globalReduser.profile,
             route: [
-                "/account/driver/trips",
+                
+                "",//"/account/driver/trips",
                 "/account/driver/profile",
                 "/account/driver/cars",
                 "/account/driver/tripsSettings",
                 "/account/driver/tours",
-                "/account/driver/reviews",
+                "",//"/account/driver/reviews",
                 "/account/driver/settings",
-                "/account/driver/billing",
+                "",//"/account/driver/billing",
                 "/account/driver/referrals",
             ],
             isRefreshExist:false,
@@ -148,10 +149,10 @@ class DriverProfileNavigationClass extends React.Component {
 
     render() {
 
-        if (!this.state.avatar) {
+        /*if (!this.state.avatar) {
             let img = requests.serverAddress + this.state.profile.avatar.url
             this.setState({ avatar: img })
-        }
+        }*/
         let textPage = this.props.globalReduser.languageText.DriverProfileNavigation;
         return (
             <React.Fragment>
@@ -210,7 +211,13 @@ class DriverProfileNavigationClass extends React.Component {
                     <div className="navigationBody d-flex align-items-center">
                         {this.state.navigationText.map((element, index) =>
 
-                            <span className={{ [this.state.route[index]]: "navigationBodyActive", }[this.props.globalhistory.history.location.pathname] + " navigationButton mb-0 "} onClick={(event) => { this.props.dispatch(whichPageRender(index)); this.shiftLeft(event); this.props.globalhistory.history.push(this.state.route[index]) }}>{element}</span>
+                            <span className={{ [this.state.route[index]]: "navigationBodyActive", }[this.props.globalhistory.history.location.pathname] + " navigationButton mb-0 " + (this.state.route[index].length===0 ? "blockedSpan" : "")}
+                            onClick={(event) => { if(this.state.route[index].length>0) {
+                                this.props.dispatch(whichPageRender(index));
+                                this.shiftLeft(event);
+                                this.props.globalhistory.history.push(this.state.route[index])
+                            }
+                            }}>{element}</span>
 
                         )}
                     </div>

@@ -652,10 +652,10 @@ class HeaderClass extends React.Component {
                   <div className="avatar" style={{ background: 'url(' + this.props.storeState.avatarUrl + ') no-repeat' }}></div>
                   <i className="openDropDownMenuBt"></i>
                   <div className="hederMenu">
-                    <span onClick={() => { /*this.props.dispatch(whichPageRender(1)); this.props.globalhistory.history.push("/account/driver/profile")*/this.accountRedirect("/profile", 1) }}>Профиль</span>
-                    <span onClick={() => { /*this.props.dispatch(whichPageRender(0)); this.props.globalhistory.history.push("/account/driver/trips")*/ this.accountRedirect("/trips", 0) }}>Мои поездки</span>
-                    <span onClick={() => { /*this.props.dispatch(whichPageRender(6)); this.props.globalhistory.history.push("/account/driver/settings")*/this.accountRedirect("/settings", 6) }}>Настройки</span>
-                    <span onClick={() => { /*this.props.dispatch(whichPageRender(8)); this.props.globalhistory.history.push("/account/driver/referrals")*/ this.accountRedirect("/referrals", 8) }}>Партнерская программа</span>
+                    <span onClick={() => { this.accountRedirect("/profile", 1) }}>Профиль</span>
+                    <span className="blockedSpan" onClick={() => { /*this.accountRedirect("/trips", 0)*/}}>Мои поездки</span>
+                    <span onClick={() => { this.accountRedirect("/settings",6) }}>Настройки</span>
+                    <span onClick={() => { this.accountRedirect("/referrals",8) }}>Партнерская программа</span>
                     <span onClick={this.logOffFunc}>Выйти</span>
                   </div>
                 </div>

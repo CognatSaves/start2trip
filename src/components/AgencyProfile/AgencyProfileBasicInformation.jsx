@@ -11,7 +11,7 @@ import Chip from 'material-ui/Chip';
 import flags from '../driverProfileRegistration/img/flags.png'
 import ReactTelInput from 'react-telephone-input'
 import requests from '../../config';
-import { setProfileData } from "../../redusers/ActionGlobal"
+import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 import getUserData from '../driverProfileRegistration/DriverProfileRequest';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 
@@ -73,6 +73,7 @@ class AgencyProfileBasicInformationClass extends React.Component{
         this.catchFunc = this.catchFunc.bind(this);
         this.agencyDataChange = this.agencyDataChange.bind(this);
     }
+    
     getProfileData(){
         console.log('getProfileData');
         let that = this;
@@ -165,7 +166,8 @@ class AgencyProfileBasicInformationClass extends React.Component{
                     that.catchFunc();
                 });
         }
-        else{            
+        else{
+            this.props.dispatch(setUrlAddress(window.location.href));            
             this.props.globalReduser.history.push('/login');            
         }
     }
