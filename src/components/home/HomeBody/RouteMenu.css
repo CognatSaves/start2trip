@@ -278,8 +278,8 @@
 }
 
 .startCity-error {
-    outline: 2px solid #a5252580;
-    outline-offset: -1px;
+    outline: 2px solid #a5252580 !important;
+    outline-offset: -1px !important;
     background: #a5252580!important;
 }
 

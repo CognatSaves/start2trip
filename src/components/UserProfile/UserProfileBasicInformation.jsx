@@ -138,7 +138,7 @@ class UserProfileBasicInformationClass extends React.Component {
                 });
         }
         else{
-            debugger;
+            
             this.props.dispatch(setUrlAddress(window.location.href));            
             this.props.globalReduser.history.push('/login');            
         }

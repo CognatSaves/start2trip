@@ -222,7 +222,9 @@ class RenderModalRegistrationClass extends React.Component {
             cookie: document.cookie,
             checkCookie: checkCookie,
             socialWindow: "",
-            agency: agency
+            agency: agency,
+            email: "",
+            password: ""
         };
         let urlParams = new URLSearchParams(window.location.search);
         let token = urlParams.get('access_token');
@@ -295,7 +297,9 @@ class RenderModalRegistrationClass extends React.Component {
     sendRegistrationRequest(type) {
 
         let partner = cookies.get('partner');
-
+        
+        let email = this.state.email;
+        let password = this.state.password;
         if (!type) {//в случае регистрации
 
             this.setState({
@@ -303,8 +307,7 @@ class RenderModalRegistrationClass extends React.Component {
                 regProcessStatus: true
             });
             console.log("Send Request");
-            let email = document.getElementById("email").value;
-            let password = document.getElementById("password").value;
+            
             let body = JSON.stringify({
                 username: email,
                 email: email,
@@ -323,8 +326,6 @@ class RenderModalRegistrationClass extends React.Component {
             console.log("try to log in");
             console.log("Send request");
             console.log("body:");
-            let email = document.getElementById("email").value;
-            let password = document.getElementById("password").value;
             let body = JSON.stringify({
                 identifier: email,
                 password: password,
@@ -398,14 +399,19 @@ class RenderModalRegistrationClass extends React.Component {
                                     }
                                 </div>
                                 <p className="mb-1" >{this.state.sitingIn ? pageTextInfo.sitingInLightBackgroundText.sitingInSecondText[lang] : pageTextInfo.registrationLightBackgroundText.registrationSecondText[lang]}</p>
-                                <form id="regForm" onSubmit={(e) => { e.preventDefault(); this.sendRegistrationRequest(this.state.sitingIn) }}>
+                                <form id="regForm" onSubmit={(e) => { let email = document.getElementById("email").value; e.preventDefault(); this.sendRegistrationRequest(this.state.sitingIn) }}>
                                     <div className="inputIcon">
                                         <img className="emailIcon" src={emailIcon} alt="emailIcon" width='13px' height='12px' />
-                                        <input onFocus={() => { this.setState({ regAnswerStatus: false, regProcessStatus: false }) }} className="mobailsitingInLightInput" type="email" id="email" pattern="^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$" placeholder={pageTextInfo.sitingInLightBackgroundText.secondInputPlaceholderText[lang]} required />
+                                        <input onFocus={() => { this.setState({ regAnswerStatus: false, regProcessStatus: false }) }} className="mobailsitingInLightInput"
+                                        type="email" pattern="^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$"
+                                        placeholder={pageTextInfo.sitingInLightBackgroundText.secondInputPlaceholderText[lang]} required
+                                        value = {this.state.email} onChange={(e)=>this.setState({email: e.target.value})} />
                                     </div>
                                     <div className="inputIcon">
                                         <img className="lockIcon" src={lockIcon} alt="lockIcon" width='12px' height='12px' />
-                                        <input onFocus={() => { this.setState({ passwordType: !this.state.passwordType }) }} className="mobailsitingInLightInput" id="password" type={this.state.passwordType ? "password" : "text"} placeholder={pageTextInfo.registrationLightBackgroundText.thirdInputPlaceholderText[lang]} required />
+                                        <input onFocus={() => { this.setState({ passwordType: !this.state.passwordType }) }} className="mobailsitingInLightInput"
+                                        type={this.state.passwordType ? "password" : "text"} placeholder={pageTextInfo.registrationLightBackgroundText.thirdInputPlaceholderText[lang]}
+                                        required  value = {this.state.password} onChange={(e)=>this.setState({password: e.target.value})}/>
                                         <img className="eyeIcon" src={eyeIcon} alt="eyeIcon" width='15px' height='15px' />
                                     </div>
                                     <div className="registrationAnswerText" style={{ visibility: regAnswerVisibility ? 'visible' : 'hidden', color: regAnswerColor ? 'red' : 'green' }}>{regAnswerValue}</div>
@@ -496,11 +502,16 @@ class RenderModalRegistrationClass extends React.Component {
                                 <form id="regForm" onSubmit={(e) => { e.preventDefault(); this.sendRegistrationRequest(this.state.sitingIn) }}>
                                     <div className="inputIcon">
                                         <img className="emailIcon" src={emailIcon} alt="emailIcon" width='13px' height='12px' />
-                                        <input onFocus={() => { this.setState({ regAnswerStatus: false, regProcessStatus: false }) }} className="sitingInLightInput" type="email" id="email" pattern="^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$" placeholder={pageTextInfo.sitingInLightBackgroundText.secondInputPlaceholderText[lang]} required />
+                                        <input onFocus={() => { this.setState({ regAnswerStatus: false, regProcessStatus: false }) }} className="sitingInLightInput"
+                                        type="email" pattern="^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$"
+                                        placeholder={pageTextInfo.sitingInLightBackgroundText.secondInputPlaceholderText[lang]}
+                                        required  value = {this.state.email} onChange={(e)=>this.setState({email: e.target.value})}/>
                                     </div>
                                     <div className="inputIcon">
                                         <img className="lockIcon" src={lockIcon} alt="lockIcon" width='12px' height='12px' />
-                                        <input onFocus={() => { this.setState({ passwordType: !this.state.passwordType }) }} className="sitingInLightInput" id="password" type={this.state.passwordType ? "password" : "text"} placeholder={pageTextInfo.registrationLightBackgroundText.thirdInputPlaceholderText[lang]} required />
+                                        <input onFocus={() => { this.setState({ passwordType: !this.state.passwordType }) }} className="sitingInLightInput" 
+                                        type={this.state.passwordType ? "password" : "text"} placeholder={pageTextInfo.registrationLightBackgroundText.thirdInputPlaceholderText[lang]}
+                                        required value = {this.state.password} onChange={(e)=>this.setState({password: e.target.value})}/>
                                         <img className="eyeIcon" src={eyeIcon} alt="eyeIcon" width='15px' height='15px' />
                                     </div>
                                     <div className="registrationAnswerText" style={{ visibility: regAnswerVisibility ? 'visible' : 'hidden', color: regAnswerColor ? 'red' : 'green' }}>{regAnswerValue}</div>

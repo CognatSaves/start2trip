@@ -51,19 +51,19 @@ class DriverProfileAffiliateProgramClass extends React.Component {
                         <p className="col-xl-8 col-lg-8 col-md-9 col-sm-10 col-10">{textPage.affiliateProgramsDescription}</p>
                     </div>
                     <div className="affiliateProgramButton d-flex flex-sm-row flex-column justify-content-between align-items-center">
-                        <div>
+                        <div className="d-flex flex-column " style={{width: '100%'}}>
                             <div>{textPage.affiliateLinks.title}</div>
                             <div>
                             {textPage.affiliateLinks.registrationLink}
                             </div>
-                            <div className="d-flex flex-row">
+                            <div className="d-flex flex-row affiliateProgramInput">
                                 <input id="partnerRegistrationLink" placeholder="Ссылка 1" style={{width: '400px'}} value={requests.frontendAddress+'/register/'+this.props.globalReduser.profile._id}/>
                                 <div onClick = {()=>this.copyValue("partnerRegistrationLink")} style={{background: 'url('+copy+') no-repeat center'}} className="copyElement"/>
                             </div>
                             <div>
                             {textPage.affiliateLinks.linkToHomePage}
                             </div>
-                            <div className="d-flex flex-row">
+                            <div className="d-flex flex-row affiliateProgramInput">
                                 <input id="partnerMainPageLink" placeholder="Ссылка 1" style={{width: '400px'}} value={requests.frontendAddress+'/start/'+this.props.globalReduser.profile._id}/>
                                 <div onClick = {()=>this.copyValue("partnerMainPageLink")} style={{background: 'url('+copy+') no-repeat center'}} className="copyElement"/>
                             </div>

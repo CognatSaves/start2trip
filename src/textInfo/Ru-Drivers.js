@@ -65,10 +65,10 @@ const driverProfileRegistration = {
 
     },
     DriverProfileCar: {
-        profileCarBrend: {
+        profileCarBrand: {
             floatingLabelText: "Марка автомобиля"
         },
-        profileCarYaer: {
+        profileCarYear: {
             floatingLabelText: "Год автомобиля"
         },
         profileCarNumber: {

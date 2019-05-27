@@ -22,11 +22,14 @@
     /* transition: all 0.3s; */
 }
 
-
-/* .tourContent {
-    padding-left: 10px !important;
-} */
-
+.errorColor {
+    outline: 2px solid #a5252580 !important;
+    outline-offset: -4px !important;
+    background: #a5252580!important;
+}
+.tourContent .imageLabelError{
+    color: #e81123;
+}
 .tourContent p {
     font-weight: 400;
     font-size: 13px;

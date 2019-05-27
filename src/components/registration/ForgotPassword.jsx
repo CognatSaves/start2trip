@@ -96,8 +96,9 @@ class ForgotPassword extends React.Component {
                             <input className={this.state.falde ? "forgotPasswordInput-error" : ""} value={this.state.email} placeholder="Введите адрес вашей почты" pattern="" onChange={(e) => { this.emailonchange(e.target.value); this.setState({ falde: false, isSended: false }) }}></input>
                             {
                                     this.state.isSended ?
-                                        <div className={this.state.isGood ? "forgotPasswordContent-active" : "forgotPasswordContent-error"}>{this.state.isGood ? 'Отправлено,проверьте почту' : 'Неверная почта'}</div> :
-                                        <div></div>
+                                        <div className={this.state.isGood ? "forgotPasswordContent-active" : "forgotPasswordContent-error"}>{this.state.isGood ? 'Отправлено,проверьте почту' : 'Неверная почта'}</div>
+                                        :
+                                        <div/>
                                 }
                             <div className="d-flex justify-content-center align-items-center w-100">
                                 <div className="forgotPasswordBt" onClick={() => this.sendRequest()}><span>Отправить на почту</span></div>
