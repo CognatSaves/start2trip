@@ -46,6 +46,9 @@
 .affiliateProgramButton input:focus{
     outline: none
 }
+.affiliateProgramInput {
+    max-width: 400px;
+}
 /*
 .affiliateProgramButton :nth-child(2) :nth-child(2) {
     background: #304269;

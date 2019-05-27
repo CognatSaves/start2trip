@@ -28,7 +28,7 @@ class DriverProfileCarClass extends React.Component {
             file: '',
             imagePreviewUrl: '',
             collapse: false,
-            newCarCard: { nameCar: "", yearCar: "", plateNumberCar: "", typeCar: "", fuelType: "", carClass: "", onWork: true },
+            newCarCard: { nameCar: "", yearCar: "", plateNumberCar: "", typeCar: "", fuelType: "", carClass: "", onWork: true, numberOfSeats: "" },
             car:{},
             isRefreshExist:false,
             isRefreshing: true,
@@ -93,9 +93,63 @@ class DriverProfileCarClass extends React.Component {
     }
     applyChanges(type){
         let jwt = this.props.globalReduser.readCookie('jwt');   
-        
+        function checkCorrectData(newCarCard,imgFiles){
+            let result = true;
+            let obj;
+            debugger;
+            if(newCarCard.nameCar.length===0){
+                obj = document.getElementById('profileCarBrand');
+                obj.classList.add("errorColor");
+                obj = document.querySelectorAll('.inputClass');
+                obj[0].classList.add("errorColor");
+                result = false;
+            }
+            if(newCarCard.yearCar.length===0 || !Number.isInteger(newCarCard.yearCar)){
+                obj = document.getElementById('profileCarYear');
+                obj.classList.add("errorColor");
+                obj = document.querySelectorAll('.inputClass');
+                obj[1].classList.add("errorColor");
+                result = false;
+            }
+            if(newCarCard.plateNumberCar.length===0){
+                obj = document.getElementById('profileCarNumber');
+                obj.classList.add("errorColor");
+                obj = document.querySelectorAll('.inputClass');
+                obj[2].classList.add("errorColor");
+                result = false;
+            }
+            if(newCarCard.typeCar.length===0){
+                obj = document.querySelectorAll('.dropdownClass');
+                obj[0].classList.add("errorColor");
+                result = false;
+            }
+            if(newCarCard.numberOfSeats.length===0 || !Number.isInteger(newCarCard.numberOfSeats)){
+                obj = document.getElementById('profileCarNumberOfSeats');
+                obj.classList.add("errorColor");
+
+                obj = document.querySelectorAll('.inputClass');
+                obj[3].classList.add("errorColor");
+                result = false;
+            }
+            if(newCarCard.fuelType.length===0){
+                obj = document.querySelectorAll('.dropdownClass');
+                obj[2].classList.add("errorColor");
+                result = false;
+            }
+            if(newCarCard.carClass.length===0){
+                obj = document.querySelectorAll('.dropdownClass');
+                obj[1].classList.add("errorColor");
+                result = false;
+            }
+            if(imgFiles.length===0){
+                obj = document.getElementById('labelCarEmpty');
+                obj.style.visibility='visible';
+                result = false;
+            }
+            return result;
+        }
            
-        if(jwt && jwt!=="-"){
+        if(jwt && jwt!=="-" && checkCorrectData(this.state.newCarCard, this.state.imgFiles)){
             let that = this; 
             this.startRefresher();
             var carForm = new FormData();
@@ -238,6 +292,9 @@ class DriverProfileCarClass extends React.Component {
 
     _handleImageChange(e) {
         e.preventDefault();
+        let obj = document.getElementById('labelCarEmpty');
+        obj.style.visibility='hidden';
+
         let fullfile = e.target.files;
 
         for (let i = 0; i < fullfile.length; i++) {
@@ -320,7 +377,7 @@ class DriverProfileCarClass extends React.Component {
                                 {$imagePreview}
                             </div>    
                             <label htmlFor="addCarFile" ></label>
-                            <input type="file" id="addCarFile" style={{ display: "none" }} multiple onChange={this._handleImageChange} required />
+                            <input type="file" id="addCarFile" style={{ display: "none" }} multiple onChange={this._handleImageChange}/>
                             <div className="carPhotoMiniContainer d-flex overflow-auto">
                                 {this.state.carImg.map((element, index) =>
                                     <div className="position-relative">
@@ -329,12 +386,17 @@ class DriverProfileCarClass extends React.Component {
                                     </div>
                                 )}
                             </div>
+                            <div id="labelCarEmpty" className="labelCarEmpty" style={{visibility: 'hidden'}}>Существует крайняя нужда в фото вашего автомобиля</div>
 
                         </div>
                         <form onSubmit={this.formSubmit} id="newCar" className="carAddNewCarInformation d-flex flex-column col-xl-6 col-lg-6 col-md-6 col-sm-11 col-11 p-0">
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mt-2">
-                                <label htmlFor="profileCarBrend" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">{textPage.profileCarBrend.floatingLabelText}:</label>
-                                <input id="profileCarBrend" className="d-xl-block d-lg-block d-md-block d-sm-none d-none " value={this.state.newCarCard.nameCar} onChange={(e) => {
+                                <label htmlFor="profileCarBrand" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">{textPage.profileCarBrand.floatingLabelText}:</label>
+                                <input id="profileCarBrand" className="d-xl-block d-lg-block d-md-block d-sm-none d-none " value={this.state.newCarCard.nameCar} onChange={(e) => {
+                                    let obj = document.getElementById('profileCarBrand');
+                                    obj.classList.remove("errorColor");
+                                    obj = document.querySelectorAll('.inputClass');
+                                    obj[0].classList.remove("errorColor");
                                     this.setState({
                                         newCarCard: { ...this.state.newCarCard, nameCar: e.currentTarget.value }
                                     })
@@ -342,11 +404,15 @@ class DriverProfileCarClass extends React.Component {
                                 <TextField
                                     value={this.state.newCarCard.nameCar}
                                     onChange={(e) => {
+                                        let obj = document.getElementById('profileCarBrand');
+                                        obj.classList.remove("errorColor");
+                                        obj = document.querySelectorAll('.inputClass');
+                                        obj[0].classList.remove("errorColor");
                                         this.setState({
                                             newCarCard: { ...this.state.newCarCard, nameCar: e.currentTarget.value }
                                         })
                                     }}
-                                    floatingLabelText={textPage.profileCarBrend.floatingLabelText}
+                                    floatingLabelText={textPage.profileCarBrand.floatingLabelText}
                                     className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
                                     fullWidth="100%"
                                     floatingLabelFocusStyle={{ color: "#304269" }}
@@ -355,8 +421,12 @@ class DriverProfileCarClass extends React.Component {
                                 />
                             </div>
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                <label htmlFor="profileCarYaer" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">{textPage.profileCarYaer.floatingLabelText}:</label>
-                                <input id="profileCarYaer" className="d-xl-block d-lg-block d-md-block d-sm-none d-none " value={this.state.newCarCard.yearCar} onChange={(e) => {
+                                <label htmlFor="profileCarYear" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">{textPage.profileCarYear.floatingLabelText}:</label>
+                                <input id="profileCarYear" className="d-xl-block d-lg-block d-md-block d-sm-none d-none " value={this.state.newCarCard.yearCar} onChange={(e) => {
+                                    let obj = document.getElementById('profileCarYear');
+                                    obj.classList.remove("errorColor");
+                                    obj = document.querySelectorAll('.inputClass');
+                                    obj[1].classList.remove("errorColor");
                                     this.setState({
                                         newCarCard: { ...this.state.newCarCard, yearCar: e.currentTarget.value }
                                     })
@@ -364,11 +434,15 @@ class DriverProfileCarClass extends React.Component {
                                 <TextField
                                     value={this.state.newCarCard.yearCar}
                                     onChange={(e) => {
+                                        let obj = document.getElementById('profileCarYear');
+                                        obj.classList.remove("errorColor");
+                                        obj = document.querySelectorAll('.inputClass');
+                                        obj[1].classList.remove("errorColor");
                                         this.setState({
                                             newCarCard: { ...this.state.newCarCard, yearCar: e.currentTarget.value }
                                         })
                                     }}
-                                    floatingLabelText={textPage.profileCarYaer.floatingLabelText}
+                                    floatingLabelText={textPage.profileCarYear.floatingLabelText}
                                     className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
                                     fullWidth="100%"
                                     floatingLabelFocusStyle={{ color: "#304269" }}
@@ -379,13 +453,21 @@ class DriverProfileCarClass extends React.Component {
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
                                 <label htmlFor="profileCarNumber" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">{textPage.profileCarNumber.floatingLabelText}:</label>
                                 <input id="profileCarNumber" className="d-xl-block d-lg-block d-md-block d-sm-none d-none " value={this.state.newCarCard.plateNumberCar} onChange={(e) => {
+                                    let obj = document.getElementById('profileCarNumber');
+                                    obj.classList.remove("errorColor");
+                                    obj = document.querySelectorAll('.inputClass');
+                                    obj[2].classList.remove("errorColor");
                                     this.setState({
                                         newCarCard: { ...this.state.newCarCard, plateNumberCar: e.currentTarget.value }
                                     })
-                                }} type="text" required />
+                                }} type="text"/>
                                 <TextField
                                     value={this.state.newCarCard.plateNumberCar}
                                     onChange={(e) => {
+                                        let obj = document.getElementById('profileCarNumber');
+                                        obj.classList.remove("errorColor");
+                                        obj = document.querySelectorAll('.inputClass');
+                                        obj[2].classList.remove("errorColor");
                                         this.setState({
                                             newCarCard: { ...this.state.newCarCard, plateNumberCar: e.currentTarget.value }
                                         })
@@ -405,7 +487,12 @@ class DriverProfileCarClass extends React.Component {
                                     textColor="#fff"
                                     anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
                                     //className=""
-                                    onChange={(event, index, value)=> this.handleChange(event, index, value,'carTypes')}
+                                    onChange={(event, index, value)=> {
+                                        let obj = document.querySelectorAll('.dropdownClass');
+                                        obj[0].classList.remove("errorColor");
+                                        this.handleChange(event, index, value,'carTypes');
+                                        }
+                                    }
                                     style={{ width: "100%" }}
                                     className="dropdownClass"
                                     autoWidth={false}
@@ -426,7 +513,12 @@ class DriverProfileCarClass extends React.Component {
                                     textColor="#fff"
                                     anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
                                     //className=""
-                                    onChange={(event, index, value)=> this.handleChange(event, index, value,'carClasses')}
+                                    onChange={(event, index, value)=> {
+                                        let obj = document.querySelectorAll('.dropdownClass');
+                                        obj[1].classList.remove("errorColor");
+                                        this.handleChange(event, index, value,'carClasses');
+                                        }
+                                    }
                                     style={{ width: "100%" }}
                                     className="dropdownClass"
                                     autoWidth={false}
@@ -446,7 +538,12 @@ class DriverProfileCarClass extends React.Component {
                                     value={this.state.newCarCard.fuelType}
                                     anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
                                     //className=""
-                                    onChange={(event, index, value)=> this.handleChange(event, index, value,'fuelTypes')}
+                                    onChange={(event, index, value)=> {
+                                        let obj = document.querySelectorAll('.dropdownClass');
+                                        obj[2].classList.remove("errorColor");
+                                        this.handleChange(event, index, value,'fuelTypes');
+                                        }
+                                    }
                                     style={{ width: "100%" }}
                                     className="dropdownClass"
                                     autoWidth={false}
@@ -463,13 +560,23 @@ class DriverProfileCarClass extends React.Component {
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
                                 <label htmlFor="profileCarNumberOfSeats" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">{textPage.profileCarNumberOfSeats.label}:</label>
                                 <input id="profileCarNumberOfSeats" className="d-xl-block d-lg-block d-md-block d-sm-none d-none " value={this.state.newCarCard.numberOfSeats} onChange={(e) => {
+                                    let obj = document.getElementById('profileCarNumberOfSeats');
+                                    obj.classList.remove("errorColor");
+
+                                    obj = document.querySelectorAll('.inputClass');
+                                    obj[3].classList.remove("errorColor");
                                     this.setState({
                                         newCarCard: { ...this.state.newCarCard, numberOfSeats: e.currentTarget.value }
                                     })
-                                }} type="text" required />
+                                }} type="text"/>
                                 <TextField
                                     value={this.state.newCarCard.numberOfSeats}
                                     onChange={(e) => {
+                                        let obj = document.getElementById('profileCarNumberOfSeats');
+                                        obj.classList.remove("errorColor");
+
+                                        obj = document.querySelectorAll('.inputClass');
+                                        obj[3].classList.remove("errorColor");
                                         this.setState({
                                             newCarCard: { ...this.state.newCarCard, numberOfSeats: e.currentTarget.value }
                                         })

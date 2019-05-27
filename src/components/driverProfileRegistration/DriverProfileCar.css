@@ -344,6 +344,12 @@ img.carPhotoMini {
     color: #686868;
     margin-bottom: 0px;
 }
+.labelCarEmpty{
+    color: #e81123;
+    font-weight: 400;
+    font-size: 14px;
+    margin-bottom: 0px;
+}
 
 .carAddNewCarInformation input {
     width: 100%;

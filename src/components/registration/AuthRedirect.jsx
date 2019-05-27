@@ -36,11 +36,11 @@ class AuthRedirectClass extends React.Component {
         //this.props.globalhistory.history.pop();
 
         //alert(window.document.referrer);
-        debugger;
+        
         let address = this.props.globalReduser.previousUrl;
         let jwt = this.props.globalReduser.readCookie('jwt');
         if (jwt && jwt !== "-") {
-            //debugger;
+            
             if(address.length===0){
                 this.props.history.push('/');
             }

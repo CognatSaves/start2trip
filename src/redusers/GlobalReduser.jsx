@@ -43,7 +43,7 @@ export const GlobalReduser = (state = initialState, action) => {
             return newStatePD;
         }
         case SET_URL_ADDRESS:{
-            debugger;
+            
             let newStateUA = { ...state };
             newStateUA.previousUrl = action.previousUrl;
             return newStateUA;

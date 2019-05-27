@@ -32,10 +32,10 @@ class DriverProfileTripSettingsTourClass extends React.Component {
         let local = [];
         for(let i=0;i<profile.allLanguages.length;i++){
             local[i] = {
-                name: "name",
-                departurePoint:"departurePoint",
-                points: ["A","B"],
-                info: "lol",
+                name: "",
+                departurePoint:"",
+                points: [],
+                info: "",
                 language: profile.allLanguages[i].ISO
             }
         }
@@ -118,7 +118,9 @@ class DriverProfileTripSettingsTourClass extends React.Component {
 
             isRefreshExist:false,
             isRefreshing: true,
-            isGoodAnswer: true, 
+            isGoodAnswer: true,
+            errorStringVisibility: false,
+            errorString: "" 
         }
     }
     getProfileData=(thenFunc,catchFunc)=>{
@@ -340,7 +342,41 @@ class DriverProfileTripSettingsTourClass extends React.Component {
     }
     applyChanges(type){
         let jwt = this.props.globalReduser.readCookie('jwt');
-        if(jwt && jwt!=="-"){
+        function checkCorrectTour(tourSave){
+            
+            let obj = "";
+            let result = true;
+            if(!tourSave.time){
+                obj = document.querySelectorAll('.dropdownClass');
+                obj[0].classList.add("errorColor");
+                //obj = document.querySelectorAll('.dropdownClass');
+                obj[1].classList.add("errorColor");
+                result = false;
+            }
+            if(tourSave.price.length===0){
+                obj = document.getElementById('newTourPrice');
+                obj.classList.add("errorColor");
+                result = false;
+            }
+            if(tourSave.currency.length===0){
+                obj = document.querySelectorAll('.dropdownClass');
+                obj[2].classList.add("errorColor");
+                result =false;
+            }
+            if(tourSave.seats.length===0 || !Number.isInteger(tourSave.seats)){
+                obj = document.getElementById('newTourPeople');
+                obj.classList.add("errorColor");
+                result = false;
+            }
+            if(tourSave.imageFiles.length===0){
+                obj = document.getElementById('imageLabelError');
+                obj.style.visibility = 'visible';
+                //obj.classList.add("errorColor");
+                result = false;
+            }
+            return result;
+        }
+        if(jwt && jwt!=="-" && checkCorrectTour(this.state.tourSave)){
             let that = this; 
             this.startRefresher();
 
@@ -396,6 +432,11 @@ class DriverProfileTripSettingsTourClass extends React.Component {
             }
             request.send(tourForm);        
         }
+        else{
+            this.setState({
+                errorStringVisibility: true
+            });
+        }
     }
     formSubmit=(event)=> {
         if(!this.state.tour.id){
@@ -407,8 +448,8 @@ class DriverProfileTripSettingsTourClass extends React.Component {
         event.preventDefault();
     }
 
-    toggle=(element)=> { 
-        this.setState(state => ({ collapse: !state.collapse, tour: {} }));
+    toggle=(element, props)=> { 
+        this.setState(state => ({ collapse: props ? props.collapse : !state.collapse, tour: {} }));
         if(!element){
             this.fillForm();
         }
@@ -543,7 +584,9 @@ class DriverProfileTripSettingsTourClass extends React.Component {
     };
     _handleImageChange = (e) => {
         e.preventDefault();
-
+        debugger
+        let obj = document.getElementById('imageLabelError');
+        obj.style.visibility='hidden';
         let fullfile = e.target.files;
 
         for (let i = 0; i < fullfile.length; i++) {
@@ -764,7 +807,11 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                             <label htmlFor="newTourEveryday" onClick={() => { this.state.tourSave.daily=true; this.setState({tourSave: this.state.tourSave});}} className="mt-xl-0 mt-lg-0 mt-md-0 mt-3 pr-2">{textPage.schedule.newTourEveryday}</label>
                                             <DropDownMenu
                                                 anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
-                                                onChange={(event, index, value) => {this.state.tourSave.time=value;this.setState({tourSave: this.state.tourSave});}}
+                                                onChange={(event, index, value) => {let obj = document.querySelectorAll('.dropdownClass');
+                                                    obj[0].classList.remove("errorColor");
+                                                    obj[1].classList.remove("errorColor");
+                                                    this.state.tourSave.time=value;this.setState({tourSave: this.state.tourSave});
+                                                }}
                                                 style={{ width: "100%", display: this.state.tourSave.daily ? "" : "none" }}
                                                 menuStyle={{ maxHeight: "150px" }}
                                                 className="dropdownClass"
@@ -793,7 +840,13 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                                 <DropDownMenu
                                                     value={/*this.state.newTourDatepickerTime*/this.state.tourSave.time}
                                                     anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
-                                                    onChange={(event, index, value) => { this.state.tourSave.time=value;this.setState({tourSave: this.state.tourSave});}}
+                                                    onChange={(event, index, value) => {
+                                                        let obj = document.querySelectorAll('.dropdownClass');
+                                                        obj[0].classList.remove("errorColor");
+                                                        obj[1].classList.remove("errorColor");
+                                                        this.state.tourSave.time=value;
+                                                        this.setState({tourSave: this.state.tourSave});
+                                                    }}
                                                     style={{ width: "100%", display:!this.state.tourSave.daily ? "" : "none" }}
                                                     menuStyle={{ maxHeight: "150px" }}
                                                     className="dropdownClass"
@@ -847,14 +900,28 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                         floatingLabelFocusStyle={{ color: "#304269" }}
                                         underlineFocusStyle={{ borderColor: "#304269" }}
                                         value={this.state.tourSave.price}
-                                        onChange={(e) => {this.setState({tourSave: {...this.state.tourSave, price: e.currentTarget.value}});}}
+                                        onChange={(e) => {
+                                            
+                                            let obj = document.getElementById('newTourPrice');
+                                            obj.classList.remove("errorColor");
+                                            this.setState({tourSave: {...this.state.tourSave, price: e.currentTarget.value}});
+                                        }}
                                     />
                                     <input id="newTourPrice" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 mr-1" type="text"
-                                    value={this.state.tourSave.price} onChange={(e) => {this.setState({tourSave: {...this.state.tourSave, price: e.currentTarget.value}});}}/>
+                                    value={this.state.tourSave.price} onChange={(e) => {
+                                        
+                                        let obj = document.getElementById('newTourPrice');
+                                        obj.classList.remove("errorColor");
+                                        this.setState({tourSave: {...this.state.tourSave, price: e.currentTarget.value}});
+                                    }}/>
                                     <DropDownMenu
                                         value={this.state.tourSave.currency}
                                         anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
-                                        onChange={(event, index, value) => { this.setState({ tourSave: {...this.state.tourSave, currency: value} }) }}
+                                        onChange={(event, index, value) => {
+                                            let obj = document.querySelectorAll('.dropdownClass');
+                                            obj[2].classList.remove("errorColor");
+                                            this.setState({ tourSave: {...this.state.tourSave, currency: value} })
+                                        }}
                                         style={{ width: "100%" }}
                                         className="dropdownClass"
                                         autoWidth={false}
@@ -960,15 +1027,21 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                             <div className="paddingL10 d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
                                 <label htmlFor="newTourPeople" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">{textPage.additionalInformation.newTourPeople}:</label>
                                 <input id="newTourPeople" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12" type="text" 
-                                value={this.state.tourSave.seats} onChange={(e)=>this.setState({tourSave: {...this.state.tourSave, seats: e.currentTarget.value}})}/>
+                                value={this.state.tourSave.seats} onChange={(e)=>{
+                                    let obj = document.getElementById('newTourPeople');
+                                    obj.classList.remove("errorColor");
+                                    this.setState({tourSave: {...this.state.tourSave, seats: e.currentTarget.value}})}
+                                }/>
                             </div>
                             <div className="paddingL10 addPhotoTour d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-start mt-3">
-                                <label className=" col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12">{textPage.additionalInformation.uploadPhoto}:</label>
-
+                                <div className=" col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12">
+                                    <label id="imageLabel" >{textPage.additionalInformation.uploadPhoto}:</label>
+                                    <label id="imageLabelError" className="imageLabelError" style={{visibility: 'hidden'}} >We need some photos here</label>
+                                </div>
                                 <div className="tourPhotoMiniContainer d-flex flex-wrap">
                                     <div className="addPhotoTourLabel">
                                         <label htmlFor="addCarFile" ></label>
-                                        <input type="file" id="addCarFile" style={{ display: "none" }} multiple onChange={this._handleImageChange} />
+                                        <input type="file" id="addCarFile" style={{ display: "none" }} multiple onChange={this._handleImageChange}/>
                                     </div>
                                     {this.state.tourSave.image.map((element, index) =>
                                         <div className="position-relative">
@@ -1005,7 +1078,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                             <label className="cardInformationNameCarIcon"></label>
                                             <div className="filledCardInformationMenu">
                                                 <p className="filledCardInformationDeleteCar" onClick={()=>this.destroy(element)}>{textPage.filledCardInformationMenu.deleteTour}</p>
-                                                <p className="filledCardInformationNameCarEdit" onClick={()=>this.toggle(element)}>{textPage.filledCardInformationMenu.tourEdit}</p>
+                                                <p className="filledCardInformationNameCarEdit" onClick={()=>this.toggle(element, {collapse: true})}>{textPage.filledCardInformationMenu.tourEdit}</p>
                                                 <p className="filledCardInformationNameCarEdit" onClick={()=>this.changeActive(element)}>{element.onWork ? textPage.filledCardInformationMenu.tourDeactivate : textPage.filledCardInformationMenu.tourActivate}</p>
                                             </div>
                                         </div>
