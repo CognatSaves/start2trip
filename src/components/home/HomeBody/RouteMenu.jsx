@@ -32,23 +32,46 @@ const CityRouteTable = (props) => {
   console.log(cities, "cities");
   console.log(workCities, "workCities");
   return (
+    <React.Fragment>
+    { isMobileOnly ? 
     <div className="addCities" >
       {workCities.map((element, index) =>
         <div className="startCity d-flex col-12 p-0" key={element + cities[index + 1]}>
-          <div className="addCitiesLocationDropDown col-6 p-0">
-            <LocationSearchInput readOnlyOn={index ? true : false} address={element} changeCity={changeCity} index={index} classDropdown="searchElement_style" classInput={index ? "city_input" : "city_input _checkInput"} />
+          <div className={ index ?"col-10 pl-0 pr-1":"col-12 p-0"}>
+            <div className="addCitiesLocationDropDown col-md-6 col-12 p-0 mb-1">
+              <LocationSearchInput readOnlyOn={index ? true : false} address={element} changeCity={changeCity} index={index} classDropdown="searchElement_style" classInput={index ? "city_input readOnly" : "city_input _checkInput"} />
+            </div>
+            <div className="addCitiesLocationDropDown col p-0">
+              <LocationSearchInput address={cities[index + 1]} changeCity={changeCity} index={index + 1} classDropdown="searchElement_style" classInput="city_input _checkInput" />
+            </div>
           </div>
-          <div className="addCitiesLocationDropDown">
-            <LocationSearchInput address={cities[index + 1]} changeCity={changeCity} index={index + 1} classDropdown="searchElement_style" classInput="city_input _checkInput" />
-          </div>
-          <div className="crossToolTip col-1" style={{ display: index ? "flex" : "none" }} onClick={() => removeCity(index + 1)}>
+          <div className="crossToolTip col-2 p-0" style={{ display: index ? "flex" : "none" }} onClick={() => removeCity(index + 1)}>
             <i style={{ background: "url(" + crossIcon + ") no-repeat" }} className="crossIcon"></i>
-            <span className="crossToolTipText" style={{ display: isMobileOnly ? "none" : "block" }} >Удалить этот пункт назначения</span>
           </div>
         </div>
       )}
 
     </div>
+    :
+     <div className="addCities" >
+     {workCities.map((element, index) =>
+       <div className="startCity d-flex col-12 p-0" key={element + cities[index + 1]}>
+           <div className="addCitiesLocationDropDown col-md-6 col-12 p-0">
+             <LocationSearchInput readOnlyOn={index ? true : false} address={element} changeCity={changeCity} index={index} classDropdown="searchElement_style" classInput={index ? "city_input" : "city_input _checkInput"} />
+           </div>
+           <div className="addCitiesLocationDropDown col p-0">
+             <LocationSearchInput address={cities[index + 1]} changeCity={changeCity} index={index + 1} classDropdown="searchElement_style" classInput="city_input _checkInput" />
+           </div>
+         <div className="crossToolTip col-md-1 col-3 p-0" style={{ display: index ? "flex" : "none" }} onClick={() => removeCity(index + 1)}>
+           <i style={{ background: "url(" + crossIcon + ") no-repeat" }} className="crossIcon"></i>
+           <span className="crossToolTipText" style={{ display: isMobileOnly ? "none" : "block" }} >Удалить этот пункт назначения</span>
+         </div>
+       </div>
+     )}
+
+   </div>
+    }
+    </React.Fragment>
   )
 }
 
@@ -92,19 +115,19 @@ class RouteMenuClass extends React.Component {
     }
     if (flagCities) {
       this.props.goToDrivers(this.props.cities, this.state.date);
-      let newStringCities ="";
-      for(let i=0; i<this.props.cities.length;i++){
+      let newStringCities = "";
+      for (let i = 0; i < this.props.cities.length; i++) {
         let arrayAdress = this.props.cities[i].split(',');
         let stringWhithoutCountry = "";
-        for(let k =0; k<arrayAdress.length-1;k++){
+        for (let k = 0; k < arrayAdress.length - 1; k++) {
           stringWhithoutCountry += arrayAdress[k]
         }
-        
-        let stringWhithoutSpaces = stringWhithoutCountry.replace(/ /g,'-');
-        if(i==0){
-          newStringCities = "from-"+stringWhithoutSpaces;
-        }else{
-          newStringCities += "-to-"+stringWhithoutSpaces;
+
+        let stringWhithoutSpaces = stringWhithoutCountry.replace(/ /g, '-');
+        if (i == 0) {
+          newStringCities = "from-" + stringWhithoutSpaces;
+        } else {
+          newStringCities += "-to-" + stringWhithoutSpaces;
         }
       }
 

@@ -75,7 +75,7 @@ class DriverProfileClass extends React.Component {
             <React.Fragment>
                 <div className="drivers_top_background">
                     <Header history={this.props.history} />
-                    <div className="wrapper d-flex flex-column col-12 p-0">
+                    <div className="wrapper d-flex flex-column">
                         <div className="drivers_top_block d-flex flex-column">
 
                             <DriverInfo element={driver} />

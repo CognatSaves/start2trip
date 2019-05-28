@@ -283,6 +283,10 @@
     background: #a5252580!important;
 }
 
+.readOnly {
+    background: rgb(119, 125, 139) !important;
+}
+
 .routemenu_search_text {
     font-size: 10.5pt;
     color: #fff;
@@ -399,13 +403,19 @@ p.routemenu_search_text {
         display: flex;
         justify-content: center;
         align-items: center;
+        margin-left: 0px;
+        margin-right: 0px;
     }
     .crossIcon {
         min-width: 20px;
         background-size: 15px 15px !important;
         background-position: center center !important;
     }
+    .addCities,
     .routemenu_footer {
         margin: 0 2px;
+    }
+    .addCitiesLocationDropDown {
+        margin: 2px 0;
     }
 }

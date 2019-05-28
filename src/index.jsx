@@ -75,8 +75,8 @@ ReactDOM.render(
             <React.Fragment>
                 <MuiThemeProvider muiTheme={muiTheme}>
                     <Switch>
-                        <Route path="/home" component={Home} />
-                        <Route path="/drivers/:date,:cities" component={Drivers} />
+                        <Route path="/(home|drivers)" component={Home} />
+                        {/* <Route path="/drivers/:date,:cities" component={Drivers} /> */}
                         <Route path="/driverProfile/:id,:temp1,:temp2" component={DriverProfile} />
                         <Route path="/places" component={Places} />
                         <Route path="/place/:country,:id" component={PlaceDescription} />

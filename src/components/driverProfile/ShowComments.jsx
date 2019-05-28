@@ -20,7 +20,7 @@ export default class ShowComments extends React.Component{
                         <img src={tempPicture} width="auto" height="100%" alt=""></img>
                     </div>
                     <div className="commentBlock_valueBlock d-flex flex-column">
-                        <div className="d-flex justify-content-between">
+                        <div className="d-flex flex-md-row flex-column justify-content-between">
                             <div className="valueBlock_firstElement_name">{element.name}</div>
                             <div className="valueBlock_firstElement_date">{element.date.getDate()+" "+getMonthName(element.date.getMonth())+" "+element.date.getFullYear()}</div>
                         </div>

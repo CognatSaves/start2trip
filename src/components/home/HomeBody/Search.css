@@ -4,6 +4,8 @@
     top: 38px;
     left: 0px;
     color: black;
+    background: #fff;
+    border-radius: 5px;
 }
 
 .searchDropdownDriverInformation {
