@@ -2,59 +2,58 @@ import React from 'react';
 import './DriversProfileComments.css';
 import tempPicture from './pictures/drivers_body_photo.png'
 import Stars from '../stars/Stars';
-import {addComment} from '../../redusers/ActionComments';
+import { addComment } from '../../redusers/ActionComments';
 import { connect } from 'react-redux'
 
-class CreateCommentClass extends React.Component{
-    constructor(props){
+class CreateCommentClass extends React.Component {
+    constructor(props) {
         super(props);
 
-        this.sendComment=this.sendComment.bind(this);
+        this.sendComment = this.sendComment.bind(this);
     }
-    sendComment(){
-        function isCorrectComment(comment){
-            if(comment.length===0){// == -> ===
+    sendComment() {
+        function isCorrectComment(comment) {
+            if (comment.length === 0) {// == -> ===
                 return false;
             }
             return true;
         }
         let newComment = document.getElementById("createComment_textareaStyle").value;
-        if(isCorrectComment){
+        if (isCorrectComment) {
             console.log("Add comment");
-            this.props.dispatch(addComment({name: this.props.userName, date: new Date(Date.now()), value:newComment, rating: this.props.commentState.commentValue}));
+            this.props.dispatch(addComment({ name: this.props.userName, date: new Date(Date.now()), value: newComment, rating: this.props.commentState.commentValue }));
         }
-        document.getElementById("createComment_textareaStyle").value="";
+        document.getElementById("createComment_textareaStyle").value = "";
     }
-    render(){
+    render() {
 
-        return(
+        return (
             <div className="commentBlock_createComment d-flex flex-column">
                 <div className="createComment_element d-flex">
                     <div className="createComment_picture">
                         <img src={tempPicture} width="auto" height="100%" alt=""></img>
                     </div>
-                    <div className="createComment_textBlock">{this.props.createCommentString}</div>
-                    <div style={{margin: "auto 0"}}>
-                        <Stars key="SelectStars" valueDisplay={false} commentNumberDisplay={false} changable={true}/>
+                    <div className="d-flex flex-md-row flex-column pl-2 align-items-md-center align-items-start">
+                        <span className="pt-2 createComment-text">{this.props.createCommentString}</span>
+                        <Stars key="SelectStars" valueDisplay={false} commentNumberDisplay={false} changable={true} />
                     </div>
-                    
                 </div>
-                
+
                 <textarea id="createComment_textareaStyle" className="createComment_textareaStyle" placeholder="Ваш отзыв"></textarea>
-                                        
-                <button className="driversAdaptedRoute_sendRequest createComment_sendButton" onClick={()=>this.sendComment()}>
+
+                <button className="driversAdaptedRoute_sendRequest createComment_sendButton" onClick={() => this.sendComment()}>
                     <text>ОТПРАВИТЬ</text>
                 </button>
-                
-            </div> 
+
+            </div>
         )
     }
 }
 const CreateComment = connect(
-    (state) =>({
-      commentState: state.CommentReduser
+    (state) => ({
+        commentState: state.CommentReduser
     }),
 
-  )(CreateCommentClass);
-  
-  export default CreateComment;
+)(CreateCommentClass);
+
+export default CreateComment;

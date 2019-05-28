@@ -65,6 +65,12 @@
     border-radius: 30px;
 }
 
+.createComment-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: #304269;
+}
+
 .createComment_textBlock {
     margin: 0 10px 0 20px;
     height: 60px;

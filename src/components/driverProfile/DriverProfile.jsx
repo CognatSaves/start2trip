@@ -89,7 +89,7 @@ class DriverProfileClass extends React.Component {
                 <div className="wrapper d-flex flex-column">
                     <div className="drivers_bottom_background d-flex flex-column" >
                         <div className="drivers_body d-flex">
-                            <div className="left_body_part col-9">
+                            <div className="left_body_part col-12">
                                 <div className="driverProfileComments_panel d-flex">
                                     {
                                         buttonNames.map((element, index) =>

@@ -78,13 +78,14 @@ span.route_add_city {
 .route_secondBottomBlock_button {
     background-color: #ff6600;
     border-radius: 5px;
-    width: 235px;
+    /* width: 235px; */
     height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     margin: 0 15px;
+    padding: 0 50px;
 }
 
 .route_secondBottomBlock_button span {

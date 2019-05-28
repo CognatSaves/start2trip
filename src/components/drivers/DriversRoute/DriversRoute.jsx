@@ -136,7 +136,7 @@ class DriversRouteClass extends React.Component {
     isVisibleArray[isVisibleArray.length - 1] = "hidden";
     if (!this.props.driversState.driversRouteChange) {
       return (
-        <div className="drivers_route col-8 d-flex flex-column">
+        <div className="drivers_route col-12 d-flex flex-column">
           <div className="route_date d-flex ">
             <div className="route_date_text">дата отправления: {this.props.storeState.date}</div>
             <div className="d-flex " onClick={() => this.props.dispatch(setDriversRouteChange(!this.props.driversState.driversRouteChange))}>

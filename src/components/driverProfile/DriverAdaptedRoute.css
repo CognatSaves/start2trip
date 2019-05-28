@@ -1,50 +1,75 @@
-.driverAdaptedRoute_bottomBlock{
+.driverAdaptedRoute_bottomBlock {
     width: 100%;
 }
-.driversAdaptedRoute_price{
+
+.driversAdaptedRoute_price {
     text-align: center;
     font-size: 34px;
     font-weight: bold;
     color: #ffffff;
 }
-.driversAdaptedRoute_sendRequest{
-    width: 260px;
+
+.driversAdaptedRoute_sendRequest {
     height: 40px;
     background-color: #ff6600;
     border: 1px solid #ff6600;
     border-radius: 5px;
-
-    margin: 0 auto;
-
     font-size: 16px;
     font-weight: 500;
     color: #ffffff;
 }
-.driversAdaptedRoute_requestCommentary{
+
+.driversAdaptedRoute_requestCommentary {
     text-align: center;
     font-weight: 400;
     font-size: 12px;
     color: #ffffff;
 }
-.driversAdaptedRoute_routeBlock{
-    
+
+.driversAdaptedRoute_routeBlock {
     display: flex;
     flex-direction: row;
     width: 100%;
-
 }
 
-.driverAdaptedRoute_show_element{
+.driverAdaptedRoute_show_element {
     width: 225px;
-    
 }
 
-.driverAdaptedRoute_show_text{
+.driverAdaptedRoute_show_text {}
 
-}
-.driverAdaptedRoute_show_line{
+.driverAdaptedRoute_show_line {
     border-bottom: 3px solid;
     width: 183px;
     margin-left: 9px;
     height: 24px;
+}
+
+.driverAdaptedRoute {
+    padding: 40px 0;
+    flex-wrap: wrap;
+}
+
+.driverAdaptedPrice {
+    color: #fff;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.driverAdaptedBt {
+    background-color: #ff6600;
+    border-radius: 5px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin: 0 15px;
+    padding: 0 20px;
+}
+
+.driverAdaptedBt span {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
 }

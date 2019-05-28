@@ -25,7 +25,7 @@ class DriverInfoClass extends React.Component{
         console.log("DriverInfo render");
         const { element} = this.props;
         return(
-        <div className="driverInfo_background d-flex flex-lg-row flex-column align-items-center">
+        <div className="driverInfo_background d-flex flex-lg-row flex-column align-items-lg-start align-items-center">
             <div className="block_element_left driverInfo_element d-flex flex-column col-lg-6 col-12 p-0">
                 <div className="driverInfo_left_line">
                     <div className="driverInfo_photo">
@@ -71,11 +71,9 @@ class DriverInfoClass extends React.Component{
                             <div className="driverInfo_informationBlock">
                                 {
                                     element.carComfort.map((element, index)=>
-                                        <div className="d-flex" style={{paddingBottom: "5px"}}>
-                                            <div className="driverInfo_comfortIconStyle" style={{background: "url("+this.props.storeState.comfort[element].icon+") no-repeat", backgroundSize: "15px 15px"}}/>    
-                                            <div className="d-flex" style={{height: "15px"}}>
-                                                <div className="driverInfo_comfortTextStyle">{this.props.storeState.comfort[element].title}</div>
-                                            </div>
+                                        <div className="d-flex">
+                                            <i className="driverInfo_comfortIconStyle" style={{background: "url("+this.props.storeState.comfort[element].icon+") no-repeat", backgroundSize: "15px 15px"}}/>    
+                                            <span className="driverInfo_comfortTextStyle">{this.props.storeState.comfort[element].title}</span>
                                         </div>
                                     )
                                 }
