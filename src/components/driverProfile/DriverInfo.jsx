@@ -10,6 +10,8 @@ import ToyotaPrado5 from '../drivers/DriversBody/DriversBlock/pictures/ToyotaPra
 import ToyotaPrado6 from '../drivers/DriversBody/DriversBlock/pictures/ToyotaPrado6.jpg';
 import information from './pictures/information.svg';
 import Carousel from './Carousel';
+import { isMobileOnly } from 'react-device-detect';
+
 
 class DriverInfoClass extends React.Component{
     constructor(props){
@@ -23,11 +25,11 @@ class DriverInfoClass extends React.Component{
         console.log("DriverInfo render");
         const { element} = this.props;
         return(
-        <div className="drivers_block_element driverInfo_background d-flex " style={{marginBottom: 0}}>
-            <div className="block_element_left driverInfo_element d-flex flex-column col-6">
+        <div className="driverInfo_background d-flex flex-lg-row flex-column align-items-center">
+            <div className="block_element_left driverInfo_element d-flex flex-column col-lg-6 col-12 p-0">
                 <div className="driverInfo_left_line">
-                    <div className="block_element_photo">
-                        <img src={driverPhoto} width="auto" height="auto" alt={"photo" + element} />
+                    <div className="driverInfo_photo">
+                        <img src={driverPhoto} alt={"photo" + element} />
                     </div>
                     <div className="block_element_infoBlock">
                         <div style={{paddingBottom: "15px"}}>
@@ -38,31 +40,32 @@ class DriverInfoClass extends React.Component{
                             <div className="d-flex ">
                                 <div className="infoString infoString_driverInfoSize">Языки:</div>
                                 <div className="d-flex">
-                                {
+
+                                {/* {
                                     element.language.map((langElement,index)=>
                                     <div className="driversBlock_languages_flag" style={{background: "url("+this.props.storeState.languages[langElement].icon+") no-repeat", backgroundSize: "15px 15px", margin: "auto 5px auto 0"}}/>              
                                     )
-                                }
+                                } */}
                                 </div>
                             </div>
-                            <div className="d-flex ">
+                            {/* <div className="d-flex ">
                                 <div className="infoString infoString_driverInfoSize">За рулем:</div>
                                 <div className="visibleString">{element.drivingAge + " лет"}</div>
-                            </div>
+                            </div> */}
                         </div>
 
                     </div>
-                    <div className="driverInfo_bookmarkElement"></div>
+                    {/* <div className="driverInfo_bookmarkElement"></div> */}
                 </div>
                 <div className="driverInfo_left_line">
-                    <div className="valueBlock_commentary">
+                    <div className="valueBlock_commentary pr-1">
                         {element.selfInfo}
                     </div>
                 </div>
             </div>
-            <div className="driverInfo_element d-flex flex-column col-6" style={{paddingLeft: "20px"}}>
-                <div className="d-flex">
-                    <div className="block_element_infoBlock_name driversInfo_driverName d-flex" style={{marginRight: "auto", position: "relative"}}>
+            <div className="driverInfo_element d-flex flex-column col-lg-6 col-12 p-0" >
+                <div className="d-flex flex-md-row flex-column justify-content-between">
+                    <div className="block_element_infoBlock_name driversInfo_driverName d-flex" >
                         {"Toyota Land Cruiser Prado "}
                         <div className="driverInfo_informationIcon" style={{ background: "url("+information+")", backgroundSize: "18px 18px"}}>
                             <div className="driverInfo_informationBlock">
@@ -81,10 +84,7 @@ class DriverInfoClass extends React.Component{
                     </div>
                     <div className="driverInfo_carTypeValue">Внедорожник, 4 места</div>
                 </div>
-                <Carousel photoArray={this.state.photoArray} width={460} height={294}
-                            widthCarouselEl={102} heightCarouselEl={64} type={"vertical"}
-                            />
-                
+                <Carousel photoArray={this.state.photoArray} type={isMobileOnly?"horizontal":"vertical"} />
                 
             </div>
             

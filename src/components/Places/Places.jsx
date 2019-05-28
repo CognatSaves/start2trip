@@ -10,9 +10,40 @@ import { connect } from 'react-redux';
 import Manipulator from '../manipulator/Manipulator';
 import { setPage, setMorePagesShow } from '../../redusers/ActionPlaces';
 
+import Tbilisy from './pictures/tbilisi_desk.jpg'
+import Batumi from './pictures/Batumi.-Podorozh-do-sertsya-Gruziyi-700x420.jpg'
+import kytaisy from './pictures/Kolhidskiy-fontan.-Kutaisi.jpg'
+import Rustavi from './pictures/Rustavi_Museum_(A._Muhranoff,_2011).jpg'
+import samegrello from './pictures/thumb_536_1370_437_0_0_auto.jpg'
+import Andshi from './pictures/Вид_на_деревушку_Адиши,_Грузия.jpg'
+
 class PlacesClass extends React.Component {
   constructor(props) {
     super(props);
+    this.state={
+      popularPlaseArrayRender : [
+        { title: "Tbilisy", img: Tbilisy },
+        { title: "Batumi", img: Batumi },
+        { title: "kytaisy", img: kytaisy },
+        { title: "Rustavi", img: Rustavi },
+        { title: "samegrello", img: samegrello },
+        { title: "Tbilisy", img: Tbilisy },
+        { title: "Rustavi", img: Rustavi },
+        { title: "samegrello", img: samegrello },
+        { title: "Tbilisy", img: Tbilisy },
+        { title: "Andshi", img: Andshi },
+        { title: "Batumi", img: Batumi },
+        { title: "kytaisy", img: kytaisy },
+        { title: "Rustavi", img: Rustavi },
+        { title: "samegrello", img: samegrello },
+        { title: "Tbilisy", img: Tbilisy },
+        { title: "Rustavi", img: Rustavi },
+        { title: "samegrello", img: samegrello },
+        { title: "Tbilisy", img: Tbilisy },
+        { title: "Andshi", img: Andshi },
+
+    ],
+    }
     this.setPageFunc = this.setPageFunc.bind(this);
     this.showMorePages = this.showMorePages.bind(this);
   }
@@ -40,7 +71,7 @@ class PlacesClass extends React.Component {
           <div className="drivers_bottom_background d-flex flex-column" >
             <div className="drivers_body d-flex">
               <div className="left_body_part col-12">
-                <PopularPlaces />
+                <PopularPlaces arrayRender={this.state.popularPlaseArrayRender}/>
                 <PlacesPanel />
                 <PlacesList />
                 <Manipulator number={this.props.placesState.places[0].places.length} page={this.props.placesState.page} setPage={this.setPageFunc}
