@@ -59,7 +59,7 @@ class Registration extends React.Component{
                 window.opener.document.cookie=jwtstring;
                 window.opener.document.cookie=jwtstatus;
             }           
-            window.close();
+            //window.close();
         }
         function socialWebRegistrationRequest(body){
             console.log("registration");
@@ -126,6 +126,13 @@ class Registration extends React.Component{
         }
         let urlParams = new URLSearchParams(window.location.search);
         let token = urlParams.get('access_token');
+
+        
+        alert('go');
+        debugger;
+        console.log('window');
+        console.log(window);
+
         //alert("Registration component");
         console.log("Registration component");
         console.log(window.location.pathname);
