@@ -57,13 +57,17 @@ export default class LocationSearchInput extends React.Component {
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => 
         (
           <React.Fragment>
+            <div className={"d-flex align-items-center col-12 " +this.props.classDiv}>
+              <span className={this.props.spanText ?"col-1 p-0":""}>{this.props.spanText}</span>
             <input id={this.props.id}
               {...getInputProps({
-                placeholder: 'Введите город',
+                placeholder: this.props.placeholder,
                 className: ''+this.props.classInput,
               })}
               {...opts}
             />
+            </div>
+            
             <div className={"autocomplete-dropdown-container " +this.props.classDropdown }>
               {loading && <div>Loading...</div>}
               {suggestions.map(suggestion => {

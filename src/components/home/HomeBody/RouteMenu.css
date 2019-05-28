@@ -21,12 +21,12 @@
 .routemenu_city_add_text {
     cursor: pointer;
     height: 20px;
-    font-size: 9pt;
+    font-size: 14px;
     color: #fff;
-    font-weight: 300;
+    font-weight: 400;
     padding-left: 25px;
     background-size: 15px 15px !important;
-    background-position: top left !important;
+    background-position: center left !important;
 }
 
 .routemenu_setDate {
@@ -117,7 +117,7 @@
 
 .routemenu_parametersAdd p {
     margin: 0;
-    font-size: 15px;
+    font-size: 16px;
     color: #fff;
     font-weight: 400;
     padding-right: 25px;
@@ -181,7 +181,8 @@
     align-items: center;
 }
 
-.routemenu_search_button {}
+
+/* .routemenu_search_button {} */
 
 .addCities {
     display: flex;
@@ -267,6 +268,10 @@
     background-size: 15px 15px !important;
 }
 
+.startCity {
+    margin-bottom: 5px;
+}
+
 .startCity:first-child:hover .crossIcon {
     visibility: hidden !important;
 }
@@ -284,7 +289,7 @@
 }
 
 .readOnly {
-    background: rgb(119, 125, 139) !important;
+    background: rgb(186, 186, 186) !important;
 }
 
 .routemenu_search_text {
@@ -302,7 +307,7 @@ p.routemenu_search_text {
     justify-content: center;
     align-items: center;
     min-height: 41px;
-    background: rgba(255, 255, 255, 0.3);
+    /* background: rgba(255, 255, 255, 0.3); */
     border-radius: 5px;
     margin: 2px;
 }
@@ -310,7 +315,7 @@ p.routemenu_search_text {
 .routemenu_comment_text {
     width: 100%;
     text-align: center;
-    font-size: 11px;
+    font-size: 12px;
     color: #ffffff;
     font-weight: 500;
 }
@@ -320,12 +325,33 @@ p.routemenu_search_text {
     z-index: 3;
     border-radius: 5px;
     border: none;
-    background: rgba(255, 255, 255, 0.3);
-    color: #fff;
+    background: none;
+    color: #304269;
     font-size: 14px;
     min-height: 38px;
     width: 100%;
     padding: 10px;
+}
+
+.city_input::placeholder {
+    color: #fff;
+}
+
+.classDivMobail {
+    background: #fff;
+    border-radius: 5px;
+}
+
+.classDiv {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+}
+
+.classDivMobail span {
+    color: #686868;
+    font-size: 16px;
+    font-weight: 400;
+    padding-left: 5px;
 }
 
 .city_input:focus {
@@ -388,6 +414,12 @@ p.routemenu_search_text {
 @media (max-width: 1077px) {
     .routemenu_parameters p {
         line-height: normal;
+    }
+    .city_input {
+        font-size: 16px;
+    }
+    .city_input::placeholder {
+        color: #686868;
     }
 }
 
