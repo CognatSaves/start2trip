@@ -46,7 +46,7 @@
 }
 
 .routemenu_date-Check {
-    background: rgba(37, 165, 154, 0.5);
+    background: rgba(37, 165, 154, 0.911);
 }
 
 .routemenu_date div {
@@ -274,9 +274,10 @@
 }
 
 .startCity-CheckInput {
-    outline: 2px solid rgba(37, 165, 154, 0.5);
-    outline-offset: -1px;
-    background: rgba(37, 165, 154, 0.5)!important;
+    /* outline: 2px solid rgb(37, 165, 154);
+    outline-offset: -1px; */
+    background: rgba(37, 165, 154, 0.911)!important;
+    border-radius: 5px !important;
 }
 
 .startCity-CheckInput i {
