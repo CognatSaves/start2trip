@@ -10,7 +10,7 @@ import TextField from 'material-ui/TextField'
 import config from '../../config';
 import requests from '../../config';
 import RefreshIndicator from 'material-ui/RefreshIndicator';
-import { setProfileData } from "../../redusers/ActionGlobal"
+import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 import getUserData from './DriverProfileRequest';
 import DriverRefreshIndicator from './DriverRefreshIndicator';
 import { readAndCompressImage } from 'browser-image-resizer';
@@ -96,7 +96,7 @@ class DriverProfileCarClass extends React.Component {
         function checkCorrectData(newCarCard,imgFiles){
             let result = true;
             let obj;
-            debugger;
+            
             if(newCarCard.nameCar.length===0){
                 obj = document.getElementById('profileCarBrand');
                 obj.classList.add("errorColor");
@@ -104,7 +104,7 @@ class DriverProfileCarClass extends React.Component {
                 obj[0].classList.add("errorColor");
                 result = false;
             }
-            if(newCarCard.yearCar.length===0 || !Number.isInteger(newCarCard.yearCar)){
+            if(newCarCard.yearCar.length===0 || isNaN(newCarCard.yearCar)){
                 obj = document.getElementById('profileCarYear');
                 obj.classList.add("errorColor");
                 obj = document.querySelectorAll('.inputClass');
@@ -123,7 +123,7 @@ class DriverProfileCarClass extends React.Component {
                 obj[0].classList.add("errorColor");
                 result = false;
             }
-            if(newCarCard.numberOfSeats.length===0 || !Number.isInteger(newCarCard.numberOfSeats)){
+            if(newCarCard.numberOfSeats.length===0 || isNaN(newCarCard.numberOfSeats)){
                 obj = document.getElementById('profileCarNumberOfSeats');
                 obj.classList.add("errorColor");
 
@@ -206,6 +206,11 @@ class DriverProfileCarClass extends React.Component {
             }
             request.send(carForm);
             //document.location.reload(true);
+        }
+        else{
+            this.props.dispatch(setUrlAddress(window.location.pathname));
+            this.props.history.push('/login');
+            //return null;
         }  
         
     } 
@@ -266,6 +271,11 @@ class DriverProfileCarClass extends React.Component {
             request.send(carForm);
             //document.location.reload(true);
         }
+        else{
+            this.props.dispatch(setUrlAddress(window.location.pathname));
+            this.props.history.push('/login');
+            //return null;
+        }
     }
     destroy(element){
         let jwt = this.props.globalReduser.readCookie('jwt');     
@@ -288,10 +298,16 @@ class DriverProfileCarClass extends React.Component {
             request.send();
             //document.location.reload(true);
         }
+        else{
+            this.props.dispatch(setUrlAddress(window.location.pathname));
+            this.props.history.push('/login');
+            //return null;
+        }
     }
 
     _handleImageChange(e) {
         e.preventDefault();
+        
         let obj = document.getElementById('labelCarEmpty');
         obj.style.visibility='hidden';
 

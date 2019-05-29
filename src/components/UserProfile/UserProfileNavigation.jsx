@@ -8,7 +8,7 @@ import Stars from '../stars/Stars'
 import historyBG from './img/history.svg'
 import sittingsBG from './img/user_settings.svg'
 import preHistoryBG from './img/user_predstoiashie.svg'
-import { setProfileData } from "../../redusers/ActionGlobal"
+import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 import requests from '../../config';
 import getUserData from '../driverProfileRegistration/DriverProfileRequest';
 import { readAndCompressImage } from 'browser-image-resizer';
@@ -42,14 +42,22 @@ class UserProfileNavigationClass extends React.Component {
     getProfileData(thenFunc,catchFunc){
         console.log('getProfileData');
         let that = this;
-        let requestValues = {
-            readCookie: this.props.globalReduser.readCookie,
-            setProfileData: function(data){
-              that.props.dispatch(setProfileData(data))
-            },
-            requestAddress: requests.profileRequest
-          };
-        getUserData(requestValues,thenFunc,catchFunc);
+        let jwt = this.props.globalReduser.readCookie('jwt');
+        if(jwt && jwt !== '-'){
+            let requestValues = {
+                readCookie: this.props.globalReduser.readCookie,
+                setProfileData: function(data){
+                that.props.dispatch(setProfileData(data))
+                },
+                requestAddress: requests.profileRequest
+            };
+            getUserData(requestValues,thenFunc,catchFunc);
+        }
+        else{
+            this.props.dispatch(setUrlAddress(window.location.pathname));
+            this.props.history.push('/login');
+            //return null;
+        }
     }
     startRefresher(){
         this.setState({
@@ -94,7 +102,7 @@ class UserProfileNavigationClass extends React.Component {
 
         let file = e.target.files[0];
 
-        if (file.type.match('image')) {
+        if (file && file.type.match('image')) {
             let that = this; 
             this.startRefresher();
 
@@ -131,6 +139,11 @@ class UserProfileNavigationClass extends React.Component {
                            
                         }
                         request.send(carForm);
+                    }
+                    else{
+                        this.props.dispatch(setUrlAddress(window.location.pathname));
+                        this.props.history.push('/login');
+                        //return null;
                     }
                 }
                 reader.readAsDataURL(sizFile)

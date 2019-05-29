@@ -17,21 +17,28 @@ import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 import requests from '../../config';
 import getUserData from './DriverProfileRequest';
 import DriverRefreshIndicator from './DriverRefreshIndicator';
+import AccountFirstEnterModal from '../home/AccountFirstEnterModal';
 
 class DriverProfileRegistrationClass extends React.Component {
   constructor(props) {
     super(props);
+    let accountEnterCookie = this.props.globalReduser.readCookie('accountFirstEnter');
+    
+    this.state = {
+      accountEnter: accountEnterCookie ? false : true
+    }
   }
   render() {
-    
-    console.log('DriverProfileRegistration');
-    
     //let profile = this.props.storeState.profile;
     let userType = this.props.globalReduser.readCookie('userType');
     let that = this;
     if(this.props.globalReduser.profile.isDriver){
       return(
         <React.Fragment>
+        {
+          this.state.accountEnter ?
+          <AccountFirstEnterModal/> : <React.Fragment/>
+        }
         <Header driver={true} history={this.props.history} />
         <DriverProfileNavigation />
         <div className="registrationWrapper d-flex flex-column col-12 p-0">
@@ -74,7 +81,7 @@ class DriverProfileRegistrationClass extends React.Component {
             ) 
         }
         else{
-            this.props.dispatch(setUrlAddress(window.location.href));
+            this.props.dispatch(setUrlAddress(window.location.pathname));
             this.props.history.push('/login');
             return null;
         }

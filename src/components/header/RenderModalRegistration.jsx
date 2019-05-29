@@ -66,6 +66,7 @@ class RenderModalRegistrationClass extends React.Component {
             console.log('sendResult');
             let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
             if (type) {
+                
                 cookies.set("jwt", data.jwt, { path: '/', expires: date });
                 cookies.set("jwtstatus", "correct", { path: '/', expires: date });
 
@@ -341,7 +342,7 @@ class RenderModalRegistrationClass extends React.Component {
             that.setState({
                 cookie: document.cookie
             });
-            debugger;
+            
             window.localStorage.setItem('type', that.state.sitingIn ? "Authorization" : "Registration");
             window.localStorage.setItem('userType', that.state.sitingIn ? 0 : that.state.userType);
             window.localStorage.setItem('agency', that.state.agency);

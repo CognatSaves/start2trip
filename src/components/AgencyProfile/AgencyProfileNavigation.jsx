@@ -13,7 +13,7 @@ import preHistoryBG from '../driverProfileRegistration/img/illustrations_predsto
 
 import { readAndCompressImage } from 'browser-image-resizer';
 import requests from '../../config';
-import { setProfileData } from "../../redusers/ActionGlobal"
+import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 import getUserData from '../driverProfileRegistration/DriverProfileRequest';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 import { setUser } from '../../redusers/Action';
@@ -48,14 +48,22 @@ class AgencyProfileNavigationClass extends React.Component{
     getProfileData(thenFunc,catchFunc){
         console.log('getProfileData');
         let that = this;
-        let requestValues = {
-            readCookie: this.props.globalReduser.readCookie,
-            setProfileData: function(data){
-              that.props.dispatch(setProfileData(data))
-            },
-            requestAddress: requests.profileRequest
-          };
-        getUserData(requestValues,thenFunc,catchFunc);
+        let jwt = this.props.globalReduser.readCookie('jwt');
+        if(jwt && jwt !== '-'){
+            let requestValues = {
+                readCookie: this.props.globalReduser.readCookie,
+                setProfileData: function(data){
+                that.props.dispatch(setProfileData(data))
+                },
+                requestAddress: requests.profileRequest
+            };
+            getUserData(requestValues,thenFunc,catchFunc);
+        }
+        else{
+            this.props.dispatch(setUrlAddress(window.location.pathname));
+            this.props.history.push('/login');
+            //return null;
+        }
     }
     startRefresher(){
         this.setState({
@@ -96,11 +104,10 @@ class AgencyProfileNavigationClass extends React.Component{
     }
     _handleImageChange = (e) => {
         e.preventDefault();
-        
 
         let file = e.target.files[0];
 
-        if (file.type.match('image')) {
+        if (file && file.type.match('image')) {
             let that = this; 
             this.startRefresher();
 
@@ -137,6 +144,11 @@ class AgencyProfileNavigationClass extends React.Component{
                            
                         }
                         request.send(carForm);
+                    }
+                    else{
+                        this.props.dispatch(setUrlAddress(window.location.pathname));
+                        this.props.history.push('/login');
+                        //return null;
                     }
                 }
                 reader.readAsDataURL(sizFile)
@@ -188,7 +200,7 @@ class AgencyProfileNavigationClass extends React.Component{
                                 </div>
                                 <div className="bodyTopDriverInfoRideMobail d-xl-none d-lg-none d-md-none d-sm-flex d-flex align-items-center col-xl-3 col-lg-3 col-md-3 col-sm-5 col-9 p-0">
                                     <p>ВСЕГО ПОЕЗДОК:</p>
-                                    <span className="pl-1">18</span>
+                                    <span className="pl-1">{profile.futureTrips.length + profile.historyTrips.length}</span>
                                 </div>
                                 <div className="d-xl-flex d-lg-flex d-md-flex d-sm-none d-none align-items-center col-xl-2 col-lg-2 col-md-2 col-sm-6 col-6 p-0">
                                     <span>{profile.agencyWorkers.length}</span>
@@ -198,8 +210,8 @@ class AgencyProfileNavigationClass extends React.Component{
                                     </div>
                                 </div>
                                 <div className="bodyTopDriverInfoRideMobail d-xl-none d-lg-none d-md-none d-sm-flex d-flex align-items-center col-xl-3 col-lg-3 col-md-3 col-sm-5 col-12 p-0">
-                                    <p>ПРЕДСТОЯЩИЕ ПОЕЗДКИ:</p>
-                                    <span className="pl-1">8</span>
+                                    <p>ВСЕГО ВОДИТЕЛЕЙ:</p>
+                                    <span className="pl-1">{profile.agencyWorkers.length}</span>
                                 </div>
                             </div>
                         </div>

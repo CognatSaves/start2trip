@@ -1,5 +1,5 @@
 import serverAddress from './serverAddress';
-const frontendAddress = 'https://tripfer.com';
+const frontendAddress = 'http://localhost:3000';
 
 const serverRegistrationRequest = serverAddress+'/auth/local/register';
 const serverAuthorizationRequest = serverAddress+'/auth/local';

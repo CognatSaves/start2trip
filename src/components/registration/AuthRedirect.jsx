@@ -7,7 +7,7 @@ import Header from '../header/Header'
 
 import './AuthRedirect.css';
 import { Url } from 'url';
-import { setUrlAddress } from "../../redusers/ActionGlobal"
+import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 const ModalRegistration = (props) => {
     let { modalRegistration, toggle, className, authorization } = props;
     return (
@@ -26,6 +26,7 @@ class AuthRedirectClass extends React.Component {
         this.state = {
 
         };
+        this.props.dispatch(setProfileData({}));
         this.authorization = this.authorization.bind(this);
         this.toggle = this.toggle.bind(this);
     }
@@ -37,6 +38,7 @@ class AuthRedirectClass extends React.Component {
 
         //alert(window.document.referrer);
         
+        
         let address = this.props.globalReduser.previousUrl;
         let jwt = this.props.globalReduser.readCookie('jwt');
         if (jwt && jwt !== "-") {
@@ -45,7 +47,8 @@ class AuthRedirectClass extends React.Component {
                 this.props.history.push('/');
             }
             else{
-                let urlAddress = new Url(address);
+                
+                //let urlAddress = new Url(address);
                 this.props.dispatch(setUrlAddress(""));
                 
 
@@ -55,7 +58,8 @@ class AuthRedirectClass extends React.Component {
             console.log('toggle end');
         }
         else {
-            alert('Ошибка! JWT не установлен!');
+            console.log('Ошибка! JWT не установлен!');
+            this.props.history.push('/');
         }
     }
     render() {

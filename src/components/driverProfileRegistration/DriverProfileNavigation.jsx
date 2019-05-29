@@ -14,7 +14,7 @@ import feedbackBG from './img/illustrations_otzivi.svg'
 import preHistoryBG from './img/illustrations_predstoishie.svg'
 import { readAndCompressImage } from 'browser-image-resizer';
 import requests from '../../config';
-import { setProfileData } from "../../redusers/ActionGlobal"
+import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 import getUserData from './DriverProfileRequest';
 import DriverRefreshIndicator from './DriverRefreshIndicator';
 import { setUser } from '../../redusers/Action';
@@ -26,7 +26,7 @@ class DriverProfileNavigationClass extends React.Component {
         this.state = {
             navigationText:this.props.globalReduser.languageText.DriverProfileNavigation.navigationText,
             //avatar: "",
-            profile: this.props.globalReduser.profile,
+            //profile: this.props.globalReduser.profile,
             route: [
                 
                 "",//"/account/driver/trips",
@@ -51,14 +51,22 @@ class DriverProfileNavigationClass extends React.Component {
     getProfileData(thenFunc,catchFunc){
         console.log('getProfileData');
         let that = this;
-        let requestValues = {
-            readCookie: this.props.globalReduser.readCookie,
-            setProfileData: function(data){
-              that.props.dispatch(setProfileData(data))
-            },
-            requestAddress: requests.profileRequest
-          };
-        getUserData(requestValues,thenFunc,catchFunc);
+        let jwt = this.props.globalReduser.readCookie('jwt');
+        if(jwt && jwt !== '-'){
+            let requestValues = {
+                readCookie: this.props.globalReduser.readCookie,
+                setProfileData: function(data){
+                that.props.dispatch(setProfileData(data))
+                },
+                requestAddress: requests.profileRequest
+            };
+            getUserData(requestValues,thenFunc,catchFunc);
+        }
+        else{
+            this.props.dispatch(setUrlAddress(window.location.pathname));
+            this.props.history.push('/login');
+            //return null;
+        }
     }
     startRefresher(){
         this.setState({
@@ -103,7 +111,7 @@ class DriverProfileNavigationClass extends React.Component {
 
         let file = e.target.files[0];
 
-        if (file.type.match('image')) {
+        if (file && file.type.match('image')) {
             let that = this; 
             this.startRefresher();
 
@@ -141,6 +149,11 @@ class DriverProfileNavigationClass extends React.Component {
                         }
                         request.send(carForm);
                     }
+                    else{
+                        this.props.dispatch(setUrlAddress(window.location.pathname));
+                        this.props.history.push('/login');
+                        //return null;
+                    }
                 }
                 reader.readAsDataURL(sizFile)
             });
@@ -154,6 +167,7 @@ class DriverProfileNavigationClass extends React.Component {
             this.setState({ avatar: img })
         }*/
         let textPage = this.props.globalReduser.languageText.DriverProfileNavigation;
+        let profile = this.props.globalReduser.profile;
         return (
             <React.Fragment>
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer}/>                
@@ -175,34 +189,34 @@ class DriverProfileNavigationClass extends React.Component {
                         </div>
                         <div className="bodyTopDriverInfo col-7">
                             <div className="bodyTopDriverInfoName d-flex flex-column align-items-start">
-                                <p className="mb-0 mr-2">{this.state.profile.firstName.length!==0 ? this.state.profile.firstName : this.state.profile.email}</p>
-                                <Stars value={this.state.profile.rating} valueDisplay={true} commentNumberDisplay={true} commentNumber={this.state.profile.comments.length + textPage.starsReviews} />
+                                <p className="mb-0 mr-2">{profile.firstName.length!==0 ? profile.firstName : profile.email}</p>
+                                <Stars value={profile.rating} valueDisplay={true} commentNumberDisplay={true} commentNumber={profile.comments.length +" "+ textPage.starsReviews} />
                             </div>
                             <div className="bodyTopDriverInfoPlace">
-                                <p>{this.state.profile.hometown.length!==0 ? (this.state.profile.hometown + ", " + this.state.profile.homecountry) : ""}</p>
+                                <p>{profile.hometown.length!==0 ? (profile.hometown + ", " + profile.homecountry) : ""}</p>
                             </div>
                             <div className="bodyTopDriverInfoRide p-0 d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column">
                                 <div className="d-xl-flex d-lg-flex d-md-flex d-sm-none d-none align-items-center col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 p-0">
-                                    <span>{this.state.profile.futureTrips.length + this.state.profile.historyTrips.length}</span>
+                                    <span>{profile.futureTrips.length + profile.historyTrips.length}</span>
                                     <div className="d-flex flex-column">
-                                        <p>{textPage.totalTrips.firs}</p>
+                                        <p>{textPage.totalTrips.first}</p>
                                         <p>{textPage.totalTrips.last}</p>
                                     </div>
                                 </div>
                                 <div className="bodyTopDriverInfoRideMobail d-xl-none d-lg-none d-md-none d-sm-flex d-flex align-items-center col-xl-3 col-lg-3 col-md-3 col-sm-5 col-9 p-0">
                                     <p>{textPage.totalTrips.full}:</p>
-                                    <span className="pl-1">18</span>
+                                    <span className="pl-1">{profile.futureTrips.length + profile.historyTrips.length}</span>
                                 </div>
                                 <div className="d-xl-flex d-lg-flex d-md-flex d-sm-none d-none align-items-center col-xl-2 col-lg-2 col-md-2 col-sm-6 col-6 p-0">
-                                    <span>{this.state.profile.futureTrips.length}</span>
+                                    <span>{profile.futureTrips.length}</span>
                                     <div className="d-flex flex-column ">
-                                        <p>{textPage.upcomingTrips.firs}</p>
+                                        <p>{textPage.upcomingTrips.first}</p>
                                         <p>{textPage.upcomingTrips.last}</p>
                                     </div>
                                 </div>
                                 <div className="bodyTopDriverInfoRideMobail d-xl-none d-lg-none d-md-none d-sm-flex d-flex align-items-center col-xl-3 col-lg-3 col-md-3 col-sm-5 col-12 p-0">
                                     <p>{textPage.upcomingTrips.full}:</p>
-                                    <span className="pl-1">8</span>
+                                    <span className="pl-1">{profile.futureTrips.length}</span>
                                 </div>
                             </div>
                         </div>

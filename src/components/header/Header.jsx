@@ -23,7 +23,7 @@ import MenuItem from 'material-ui/MenuItem';
 import arrowDownIcon from './pictures/down-arrow.svg'
 import { whichPageRender } from "../../redusers/ActionDriverProfileRegistration"
 import { whichPageRenderHistory } from "../../redusers/ActionGlobal"
-import { setProfileData } from "../../redusers/ActionGlobal"
+import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 import getUserData from '../driverProfileRegistration/DriverProfileRequest';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 import Cookies from 'universal-cookie';
@@ -78,6 +78,11 @@ const ModalUserType = (props) => {
           console.log('An error occurred:', error);
           //that.catchFunc();
         });
+    }
+    else{
+      this.props.dispatch(setUrlAddress(window.location.pathname));
+      this.props.history.push('/login');
+      //return null;
     }
   }
   function setSelectedUserType(value, that) {
@@ -252,6 +257,7 @@ class HeaderClass extends React.Component {
     let that = this;
     let props = {};
     let jwt = this.props.globalReduser.readCookie('jwt');
+    /*
     if (jwt && jwt !== '-') {
       props = {
         headers: {
@@ -259,6 +265,7 @@ class HeaderClass extends React.Component {
         }
       }
     }
+    */
     axios.get(requests.getLocals, props)
       .then(response => {
         let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
@@ -418,7 +425,13 @@ class HeaderClass extends React.Component {
           //console.log('An error occurred:', error);
         });
     }
-    else {
+    else{
+      
+      //this.props.dispatch(setUrlAddress(window.location.pathname));
+      //this.props.history.push('/login');
+
+
+      //нет тела - авторизованного пользователя -> нет дела - отрисовки профиля в шапке
     }
   }
   logOffFunc() {
@@ -500,18 +513,25 @@ class HeaderClass extends React.Component {
 
     }
     const that = this;
-    let requestValues = {
-      readCookie: that.props.globalReduser.readCookie,
-      setProfileData: function (data) {
-        that.props.dispatch(setProfileData(data))
-      },
-      requestAddress: requests.profileRequest
+    let jwt = this.props.globalReduser.readCookie('jwt');
+    if(jwt && jwt !== '-'){
+      let requestValues = {
+        readCookie: that.props.globalReduser.readCookie,
+        setProfileData: function (data) {
+          that.props.dispatch(setProfileData(data))
+        },
+        requestAddress: requests.profileRequest
+      }
+      this.setState({
+        isWaiting: true
+      });
+      getUserData(requestValues, () => thenFunc(that, address, number));
     }
-    this.setState({
-      isWaiting: true
-    });
-    getUserData(requestValues, () => thenFunc(that, address, number));
-
+    else{
+      this.props.dispatch(setUrlAddress(window.location.pathname));
+      this.props.history.push('/login');
+      //return null;
+    }
 
 
   }

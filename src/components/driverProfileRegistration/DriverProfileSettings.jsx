@@ -5,7 +5,7 @@ import TextField from 'material-ui/TextField';
 import flags from './img/flags.png'
 import ReactTelInput from 'react-telephone-input'
 import requests from '../../config';
-import { setProfileData } from "../../redusers/ActionGlobal"
+import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 import getUserData from './DriverProfileRequest';
 import RefreshIndicator from 'material-ui/RefreshIndicator';
 import DriverRefreshIndicator from './DriverRefreshIndicator';
@@ -44,14 +44,22 @@ class DriverProfileSettingsClass extends React.Component {
     getProfileData(){
         console.log('getProfileData');
         let that = this;
-        let requestValues = {
-            readCookie: this.props.globalReduser.readCookie,
-            setProfileData: function(data){
-              that.props.dispatch(setProfileData(data))
-            },
-            requestAddress: requests.profileRequest
-          }
-        getUserData(requestValues,that.thenFunc,that.catchFunc);
+        let jwt = this.props.globalReduser.readCookie('jwt');
+        if(jwt && jwt !== '-'){
+            let requestValues = {
+                readCookie: this.props.globalReduser.readCookie,
+                setProfileData: function(data){
+                that.props.dispatch(setProfileData(data))
+                },
+                requestAddress: requests.profileRequest
+            }
+            getUserData(requestValues,that.thenFunc,that.catchFunc);
+        }
+        else{
+            this.props.dispatch(setUrlAddress(window.location.pathname));
+            this.props.history.push('/login');
+            //return null;
+        }
     }
     startRefresher(){
         this.setState({
@@ -86,7 +94,7 @@ class DriverProfileSettingsClass extends React.Component {
             })
         }, 2000);
     }
-    applyChanges(){
+    applyChanges(sendedData){
         let jwt = this.props.globalReduser.readCookie('jwt');
         if(jwt && jwt!=="-"){
             function checkPasswords(values){
@@ -101,7 +109,7 @@ class DriverProfileSettingsClass extends React.Component {
                 return values.password.length!==0 && values.newPassword.length!==0 && values.newPassword.length!==0;
             }
             let value={};
-            let data = this.state.settingsValues;
+            let data = sendedData ? sendedData : this.state.settingsValues;
             if(isPasswordsFilled(data)){
                 //alert('change password');
                 if(checkPasswords(data)){
@@ -156,6 +164,11 @@ class DriverProfileSettingsClass extends React.Component {
                     });
             }
             
+        }
+        else{
+            this.props.dispatch(setUrlAddress(window.location.pathname));
+            this.props.history.push('/login');
+            //return null;
         }          
     }
     formSubmit(event) {
@@ -212,6 +225,7 @@ class DriverProfileSettingsClass extends React.Component {
             },
         };
         let textPage = this.props.globalReduser.languageText.DriverProfileSettings;
+        let profile = this.props.globalReduser.profile;
         return (
             <div className="driverProfilesettingsBody pb-1">
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer}/>
@@ -244,7 +258,7 @@ class DriverProfileSettingsClass extends React.Component {
                             <label htmlFor="sittingsCurrentPassword" className="d-xl-block d-lg-block d-md-block d-sm-none d-none">{textPage.sittingsCurrentPassword.floatingLabelText}</label>
                             <div className="driverProfileSettingsContentRow">
                                 <input id="sittingsCurrentPassword" className="d-xl-block d-lg-block d-md-block d-sm-none d-none" type={this.state.thisPasswordType ? "password" : "text"}
-                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+                                pattern="[A-Za-z0-9]{6,}" title="Ошибка в вводе"
                                 value={this.state.settingsValues.password} onChange={(e)=>this.inputChange(e.target.value,'password')}/>
                                 <TextField
                                     type={this.state.thisPasswordType ? "password" : "text"}
@@ -263,7 +277,7 @@ class DriverProfileSettingsClass extends React.Component {
                             <label htmlFor="sittingsNewPassword" className="d-xl-block d-lg-block d-md-block d-sm-none d-none">{textPage.sittingsNewPassword.floatingLabelText}</label>
                             <div className="driverProfileSettingsContentRow">
                                 <input id="sittingsNewPassword" className="d-xl-block d-lg-block d-md-block d-sm-none d-none" type={this.state.newPasswordType ? "password" : "text"}
-                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+                                pattern="[A-Za-z0-9]{6,}" title="Ошибка в вводе"
                                 value={this.state.settingsValues.newPassword} onChange={(e)=>this.inputChange(e.target.value,'newPassword')}/>
                                 <TextField
                                     type={this.state.newPasswordType ? "password" : "text"}
@@ -319,7 +333,21 @@ class DriverProfileSettingsClass extends React.Component {
                 <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start pb-3">
                     <p className="col-2"></p>
                     <div className="driverProfileSettingsContentUnsubscribe d-flex flex-column">
-                    <p className="driverProfileSettingsContentUnsubscribeButton" onClick={()=>{let settingsValues = this.state.settingsValues; settingsValues.subscription = !settingsValues.subscription; this.setState({settingsValues:settingsValues})}}>{this.state.settingsValues.subscription ? textPage.unsubscribeButton.mailing.unsubscribe:textPage.unsubscribeButton.mailing.subscribe}</p>
+                    <p className="driverProfileSettingsContentUnsubscribeButton" onClick={()=>
+                    {
+                        let settingsValues = this.state.settingsValues;
+                        settingsValues.subscription = !settingsValues.subscription; 
+                        this.setState({settingsValues:settingsValues}); 
+                        this.applyChanges({ 
+                            email: profile.email,
+                            password: "",
+                            newPassword: "",
+                            newPassword2: "",
+                            privatePhone: profile.privatePhone,
+                            subscription: this.state.settingsValues.subscription
+                        })
+                    }
+                    }>{this.state.settingsValues.subscription ? textPage.unsubscribeButton.mailing.unsubscribe:textPage.unsubscribeButton.mailing.subscribe}</p>
                     <p>{textPage.unsubscribeButton.message}</p>
                     </div>
                 </div>

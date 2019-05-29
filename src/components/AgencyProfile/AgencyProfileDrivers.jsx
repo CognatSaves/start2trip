@@ -14,7 +14,7 @@ import './AgencyProfileDrivers.css';
 import requests from '../../config';
 import copy from '../driverProfileRegistration/img/copy.svg';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
-import { setProfileData } from "../../redusers/ActionGlobal"
+import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 import getUserData from '../driverProfileRegistration/DriverProfileRequest';
 class AgencyProfileDriversClass extends React.Component{
     constructor(props){
@@ -39,14 +39,22 @@ class AgencyProfileDriversClass extends React.Component{
     getProfileData(thenFunc,catchFunc){
         console.log('getProfileData');
         let that = this;
-        let requestValues = {
-            readCookie: this.props.globalReduser.readCookie,
-            setProfileData: function(data){
-              that.props.dispatch(setProfileData(data))
-            },
-            requestAddress: requests.profileRequest
-          };
-        getUserData(requestValues,thenFunc,catchFunc);
+        let jwt = this.props.globalReduser.readCookie('jwt');
+        if(jwt && jwt !== '-'){
+            let requestValues = {
+                readCookie: this.props.globalReduser.readCookie,
+                setProfileData: function(data){
+                that.props.dispatch(setProfileData(data))
+                },
+                requestAddress: requests.profileRequest
+            };
+            getUserData(requestValues,thenFunc,catchFunc);
+        }
+        else{
+            this.props.dispatch(setUrlAddress(window.location.pathname));
+            this.props.history.push('/login');
+            //return null;
+        }
     }
     startRefresher(){
         this.setState({
@@ -113,6 +121,11 @@ class AgencyProfileDriversClass extends React.Component{
                 console.log('An error occurred:', error);
                 that.catchFunc();
             });
+        }
+        else{
+            this.props.dispatch(setUrlAddress(window.location.pathname));
+            this.props.history.push('/login');
+            //return null;
         }
     }
     render(){

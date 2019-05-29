@@ -19,7 +19,7 @@ import InfiniteCalendar, {
 import 'react-infinite-calendar/styles.css'; // only needs to be imported once
 import requests from '../../config';
 import RefreshIndicator from 'material-ui/RefreshIndicator';
-import { setProfileData } from "../../redusers/ActionGlobal"
+import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 import getUserData from './DriverProfileRequest';
 import DriverRefreshIndicator from './DriverRefreshIndicator';
 import { readAndCompressImage } from 'browser-image-resizer';
@@ -126,14 +126,22 @@ class DriverProfileTripSettingsTourClass extends React.Component {
     getProfileData=(thenFunc,catchFunc)=>{
         console.log('getProfileData');
         let that = this;
-        let requestValues = {
-            readCookie: this.props.globalReduser.readCookie,
-            setProfileData: function(data){
-              that.props.dispatch(setProfileData(data))
-            },
-            requestAddress: requests.profileRequest
-          };
-        getUserData(requestValues,thenFunc,catchFunc);
+        let jwt = this.props.globalReduser.readCookie('jwt');
+        if(jwt && jwt !== '-'){
+            let requestValues = {
+                readCookie: this.props.globalReduser.readCookie,
+                setProfileData: function(data){
+                that.props.dispatch(setProfileData(data))
+                },
+                requestAddress: requests.profileRequest
+            };
+            getUserData(requestValues,thenFunc,catchFunc);
+        }
+        else{
+            this.props.dispatch(setUrlAddress(window.location.pathname));
+            this.props.history.push('/login');
+            //return null;
+        }
     }
     startRefresher=()=>{
         this.setState({
@@ -319,6 +327,11 @@ class DriverProfileTripSettingsTourClass extends React.Component {
             }
             request.send(tourForm);
         }
+        else{
+            this.props.dispatch(setUrlAddress(window.location.pathname));
+            this.props.history.push('/login');
+            //return null;
+        }
     }
     destroy=(element)=>{
         let jwt = this.props.globalReduser.readCookie('jwt');      
@@ -339,6 +352,11 @@ class DriverProfileTripSettingsTourClass extends React.Component {
             request.setRequestHeader('Authorization',`Bearer ${jwt}`);
             request.send();
         }
+        else{
+            this.props.dispatch(setUrlAddress(window.location.pathname));
+            this.props.history.push('/login');
+            //return null;
+        }
     }
     applyChanges(type){
         let jwt = this.props.globalReduser.readCookie('jwt');
@@ -353,7 +371,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                 obj[1].classList.add("errorColor");
                 result = false;
             }
-            if(tourSave.price.length===0){
+            if(tourSave.price.length===0 || isNaN(tourSave.price)){
                 obj = document.getElementById('newTourPrice');
                 obj.classList.add("errorColor");
                 result = false;
@@ -363,7 +381,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                 obj[2].classList.add("errorColor");
                 result =false;
             }
-            if(tourSave.seats.length===0 || !Number.isInteger(tourSave.seats)){
+            if(tourSave.seats.length===0 || isNaN(tourSave.seats)){
                 obj = document.getElementById('newTourPeople');
                 obj.classList.add("errorColor");
                 result = false;
@@ -433,9 +451,16 @@ class DriverProfileTripSettingsTourClass extends React.Component {
             request.send(tourForm);        
         }
         else{
-            this.setState({
-                errorStringVisibility: true
-            });
+            if(jwt && jwt!=='-'){//пользователь авторизован корректно, но тур им избитый
+                this.setState({
+                    errorStringVisibility: true
+                });
+            }
+            else{
+                this.props.dispatch(setUrlAddress(window.location.pathname));
+                this.props.history.push('/login');
+                //return null;
+            }
         }
     }
     formSubmit=(event)=> {
@@ -584,12 +609,13 @@ class DriverProfileTripSettingsTourClass extends React.Component {
     };
     _handleImageChange = (e) => {
         e.preventDefault();
-        debugger
+       // 
         let obj = document.getElementById('imageLabelError');
         obj.style.visibility='hidden';
         let fullfile = e.target.files;
-
+        let imageCounter = 0;
         for (let i = 0; i < fullfile.length; i++) {
+            this.startRefresher();
             let file = fullfile[i]
 
             if (!file.type.match('image')) continue;
@@ -602,10 +628,20 @@ class DriverProfileTripSettingsTourClass extends React.Component {
             .then(sizFile => {
                 let reader = new FileReader();
                 reader.onloadend = () => {
+                   // 
                     var img = reader.result;
                     let tourSave = this.state.tourSave;
                     tourSave.image.push(img);
                     tourSave.imageFiles.push(sizFile);
+                    
+                    imageCounter++;
+                    
+                    if(imageCounter===fullfile.length){
+                        this.setState({
+                            isRefreshExist: false,
+                            isRefreshing: false
+                        })
+                    }
                     this.setState({
                         tourSave: tourSave,
                         file: file,
@@ -634,6 +670,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
 
     render() {
         console.log('Trip Tour render');
+        console.log(this.state);
         let { imagePreviewUrl } = this.state;
         let $imagePreview = null;
         if (imagePreviewUrl) {
