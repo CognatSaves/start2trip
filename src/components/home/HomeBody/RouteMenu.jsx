@@ -42,7 +42,7 @@ const CityRouteTable = (props) => {
                   <LocationSearchInput readOnlyOn={index ? true : false} address={element} changeCity={changeCity} index={index} classDropdown="searchElement_style" spanText={"Из"} classDiv={index ? "classDivMobail readOnly " : "classDivMobail _checkDiv"} placeholder={"Откуда, выберите место"} classInput={index ? "city_input readOnly" : "city_input _checkInput"} />
                 </div>
                 <div className="addCitiesLocationDropDown col p-0">
-                  <LocationSearchInput address={cities[index + 1]} changeCity={changeCity} index={index + 1} classDropdown="searchElement_style" spanText={"В"} placeholder={"Куда, выберите место"} classDiv={"classDivMobail  _checkDiv"} classInput="city_input _checkInput" />
+                  <LocationSearchInput address={cities[index + 1]} changeCity={changeCity} index={index + 1} classDropdown="searchElement_style" spanText={"В"} placeholder={"Куда, выберите место"} classDiv={index ?"startCity-CheckInput classDivMobail  _checkDiv":"classDivMobail  _checkDiv"} classInput="city_input _checkInput" />
                 </div>
               </div>
               <div className="crossToolTip col-2 p-0" style={{ display: index ? "flex" : "none" }} onClick={() => removeCity(index + 1)}>
