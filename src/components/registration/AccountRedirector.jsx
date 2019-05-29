@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import getUserData from '../driverProfileRegistration/DriverProfileRequest';
-import { setProfileData } from "../../redusers/ActionGlobal"
+import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 import requests from '../../config';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 
@@ -10,14 +10,22 @@ class AccountRedirectorClass extends React.Component{
         super(props);
         
         const that = this;
-        let requestValues = {
-        readCookie: that.props.globalReduser.readCookie,
-        setProfileData: function(data){
-            that.props.dispatch(setProfileData(data))
-        },
-        requestAddress: requests.profileRequest
+        let jwt = this.props.globalReduser.readCookie('jwt');
+        if(jwt && jwt !== '-'){
+            let requestValues = {
+            readCookie: that.props.globalReduser.readCookie,
+            setProfileData: function(data){
+                that.props.dispatch(setProfileData(data))
+            },
+            requestAddress: requests.profileRequest
+            }
+            getUserData(requestValues);
         }
-        getUserData(requestValues);
+        else{
+            this.props.dispatch(setUrlAddress(window.location.pathname));
+            this.props.history.push('/login');
+            //return null;
+        }
     }
     render(){
         

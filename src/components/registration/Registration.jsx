@@ -127,19 +127,20 @@ class Registration extends React.Component{
         let urlParams = new URLSearchParams(window.location.search);
         let token = urlParams.get('access_token');
 
-        
-        alert('go');
-        debugger;
-        console.log('window');
-        console.log(window);
-
         //alert("Registration component");
         console.log("Registration component");
         console.log(window.location.pathname);
+        
         let type=window.opener.localStorage.getItem('type');
         let agency = window.opener.localStorage.getItem('agency');
         let userType = Number.parseInt(window.opener.localStorage.getItem('userType'));
         let partner = getFarCookie('partner');
+        
+        alert('type='+type);
+        
+        alert('agency='+agency);
+        alert('userType='+userType);
+        alert('partner='+partner);
         if(window.location.pathname==="/registration/facebook"){
            // alert('token');
             //console.log('token');
@@ -197,9 +198,12 @@ class Registration extends React.Component{
             }
         }
         if(window.location.pathname==="/registration/google"){
+            alert('google');
             if(token){
+                alert(token);
                 let id_token = urlParams.get('raw[id_token]');
-                if(type==="Registration"){                    
+                if(type==="Registration"){
+                    alert('registration');                    
                     axios.get('https://www.googleapis.com/oauth2/v2/userinfo?access_token='+token+'&id_token='+id_token) 
                     .then(response => {
                         let password = generatePassword(10);
@@ -222,6 +226,7 @@ class Registration extends React.Component{
                 }
                 if(type==="Authorization"){
                     let password = generatePassword(10);
+                    alert('authorization');
                     axios.get('https://www.googleapis.com/oauth2/v2/userinfo?access_token='+token+'&id_token='+id_token)
                     .then(response => {
                         console.log("Try to authorizate google");

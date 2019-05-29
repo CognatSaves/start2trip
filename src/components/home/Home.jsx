@@ -11,19 +11,21 @@ import {Route} from 'react-router-dom';
 import Header from '../header/Header';
 import HomeBody from './HomeBody/HomeBody.jsx'
 import { isMobileOnly, isTablet } from 'react-device-detect';
-
+import FirstEnterModal from './FirstEnterModal';
 
 class HomeClass extends React.Component {
   constructor(props) {
     super(props);
     this.redirectFunc = this.redirectFunc.bind(this);
+    let firstEnterCookie = this.props.globalReduser.readCookie('firstEnter');
     this.state = {
       popularPlaces: [
         { img: georgiaImg, title: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", link: "/driver", reviews: "32 отзыва", prise: "120$" },
         { img: georgiaImg, title: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", link: "/driver", reviews: "12 отзывов", prise: "80$" },
         { img: georgiaImg, title: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", link: "/driver", reviews: "55 отзыва", prise: "150$" },
         { img: georgiaImg, title: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", link: "/driver", reviews: "22 отзыва", prise: "170$" },
-      ]
+      ],
+      firstEnter: firstEnterCookie ? false : true
     };
   }
   redirectFunc(where) {
@@ -36,6 +38,12 @@ class HomeClass extends React.Component {
     return (
       <React.Fragment>
         <main className="d-flex flex-column container-fluid p-0">
+          {
+            this.state.firstEnter ?
+            <FirstEnterModal/> : <React.Fragment/>
+          }
+          
+
           <div className="home_window">
             <Header history={this.props.history} />
 
@@ -71,6 +79,7 @@ const Home = connect(
   (state) => ({
     storeState: state.AppReduser,
     globalhistory: state.GlobalReduser,
+    globalReduser: state.GlobalReduser
   }),
 )(HomeClass);
 

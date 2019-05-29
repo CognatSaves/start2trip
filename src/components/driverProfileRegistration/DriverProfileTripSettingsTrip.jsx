@@ -12,7 +12,7 @@ import InfiniteCalendar, {
     defaultMultipleDateInterpolation,
     withMultipleDates,
 } from 'react-infinite-calendar';
-import { setProfileData } from "../../redusers/ActionGlobal"
+import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 import getUserData from './DriverProfileRequest';
 import requests from '../../config';
 import RefreshIndicator from 'material-ui/RefreshIndicator';
@@ -60,14 +60,22 @@ class DriverProfileTripSettingsTripClass extends React.Component {
     getProfileData(){
         console.log('getProfileData');
         let that = this;
-        let requestValues = {
-            readCookie: this.props.globalReduser.readCookie,
-            setProfileData: function(data){
-              that.props.dispatch(setProfileData(data))
-            },
-            requestAddress: requests.profileRequest
-          }
-        getUserData(requestValues,that.thenFunc,that.catchFunc);
+        let jwt = this.props.globalReduser.readCookie('jwt');
+        if(jwt && jwt !== '-'){
+            let requestValues = {
+                readCookie: this.props.globalReduser.readCookie,
+                setProfileData: function(data){
+                that.props.dispatch(setProfileData(data))
+                },
+                requestAddress: requests.profileRequest
+            }
+            getUserData(requestValues,that.thenFunc,that.catchFunc);
+        }
+        else{
+            this.props.dispatch(setUrlAddress(window.location.pathname));
+            this.props.history.push('/login');
+            //return null;
+        }
     }
     startRefresher(){
         this.setState({
@@ -155,7 +163,11 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                 });
                 
         }
-
+        else{
+            this.props.dispatch(setUrlAddress(window.location.pathname));
+            this.props.history.push('/login');
+            //return null;
+        }
     }
     formSubmit(event) {
         //

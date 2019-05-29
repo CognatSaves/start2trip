@@ -77,14 +77,23 @@ class AgencyProfileBasicInformationClass extends React.Component{
     getProfileData(){
         console.log('getProfileData');
         let that = this;
-        let requestValues = {
-            readCookie: this.props.globalReduser.readCookie,
-            setProfileData: function(data){
-              that.props.dispatch(setProfileData(data))
-            },
-            requestAddress: requests.profileRequest
-          }
-        getUserData(requestValues,that.thenFunc,that.catchFunc);
+        let jwt = this.props.globalReduser.readCookie('jwt');
+        if(jwt && jwt !== '-'){
+            let requestValues = {
+                readCookie: this.props.globalReduser.readCookie,
+                setProfileData: function(data){
+                that.props.dispatch(setProfileData(data))
+                },
+                requestAddress: requests.profileRequest
+            }
+            getUserData(requestValues,that.thenFunc,that.catchFunc);
+        }
+        else{
+            
+            this.props.dispatch(setUrlAddress(window.location.pathname));
+            this.props.history.push('/login');
+            //return null;
+        }
     }
     startRefresher(){
         this.setState({
@@ -167,8 +176,10 @@ class AgencyProfileBasicInformationClass extends React.Component{
                 });
         }
         else{
-            this.props.dispatch(setUrlAddress(window.location.href));            
-            this.props.globalReduser.history.push('/login');            
+            
+            this.props.dispatch(setUrlAddress(window.location.pathname));            
+            this.props.globalReduser.history.push('/login');
+                        
         }
     }
     agencyDataChange(value, variable){
