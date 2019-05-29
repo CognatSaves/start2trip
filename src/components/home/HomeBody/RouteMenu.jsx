@@ -39,10 +39,10 @@ const CityRouteTable = (props) => {
         <div className="startCity d-flex col-12 p-0" key={element + cities[index + 1]}>
           <div className={ index ?"col-10 pl-0 pr-1":"col-12 p-0"}>
             <div className="addCitiesLocationDropDown col-md-6 col-12 p-0 mb-1">
-              <LocationSearchInput readOnlyOn={index ? true : false} address={element} changeCity={changeCity} index={index} classDropdown="searchElement_style" spanText={"Из"} classDiv={index ? "classDivMobail readOnly":"classDivMobail"} placeholder={"Откуда, выберите место"} classInput={index ? "city_input readOnly" : "city_input _checkInput"} />
+              <LocationSearchInput readOnlyOn={index ? true : false} address={element} changeCity={changeCity} index={index} classDropdown="searchElement_style" spanText={"Из"} classDiv={index ? "classDivMobail readOnly":"classDivMobail _checkDiv"} placeholder={"Откуда, выберите место"} classInput={index ? "city_input readOnly" : "city_input _checkInput"} />
             </div>
             <div className="addCitiesLocationDropDown col p-0">
-              <LocationSearchInput address={cities[index + 1]} changeCity={changeCity} index={index + 1} classDropdown="searchElement_style" spanText={"В"} placeholder={"Куда, выберите место"} classDiv={"classDivMobail"} classInput="city_input _checkInput" />
+              <LocationSearchInput address={cities[index + 1]} changeCity={changeCity} index={index + 1} classDropdown="searchElement_style" spanText={"В"} placeholder={"Куда, выберите место"} classDiv={"classDivMobail  _checkDiv"} classInput="city_input _checkInput" />
             </div>
           </div>
           <div className="crossToolTip col-2 p-0" style={{ display: index ? "flex" : "none" }} onClick={() => removeCity(index + 1)}>
@@ -57,10 +57,10 @@ const CityRouteTable = (props) => {
      {workCities.map((element, index) =>
        <div className="startCity d-flex col-12 p-0" key={element + cities[index + 1]}>
            <div className="addCitiesLocationDropDown col-md-6 col-12 p-0">
-             <LocationSearchInput readOnlyOn={index ? true : false} address={element} changeCity={changeCity} index={index} classDiv={"classDiv"} classDropdown="searchElement_style" placeholder={"Откуда, выберите место"} classInput={index ? "city_input" : "city_input _checkInput"} />
+             <LocationSearchInput readOnlyOn={index ? true : false} address={element} changeCity={changeCity} index={index} classDiv={"classDiv _checkDiv"} classDropdown="searchElement_style" spanText={"Из"} placeholder={"Откуда, выберите место"} classInput={index ? "city_input" : "city_input _checkInput"} />
            </div>
            <div className="addCitiesLocationDropDown col p-0">
-             <LocationSearchInput address={cities[index + 1]} changeCity={changeCity} index={index + 1} classDiv={"classDiv"} classDropdown="searchElement_style"  placeholder={"Куда, выберите место"} classInput="city_input _checkInput" />
+             <LocationSearchInput address={cities[index + 1]} changeCity={changeCity} index={index + 1} classDiv={"classDiv _checkDiv"} classDropdown="searchElement_style" spanText={"В"}  placeholder={"Куда, выберите место"} classInput="city_input _checkInput" />
            </div>
          <div className="crossToolTip col-md-1 col-3 p-0" style={{ display: index ? "flex" : "none" }} onClick={() => removeCity(index + 1)}>
            <i style={{ background: "url(" + crossIcon + ") no-repeat" }} className="crossIcon"></i>
@@ -100,11 +100,13 @@ class RouteMenuClass extends React.Component {
     let massInput = document.querySelectorAll("._checkInput")
     for (let i = 0; i < massInput.length; i++) {
       if (massInput[i].defaultValue == "") {
-        massInput[i].classList.add("startCity-CheckInput")
+        let massDivInput = document.querySelectorAll("._checkDiv")
+        massDivInput[i].classList.add("startCity-CheckInput")
         flagCities = false;
       }
       if (massInput[i].defaultValue !== massCities[i]) {
-        massInput[i].classList.add("startCity-error")
+        let massDivInput = document.querySelectorAll("._checkDiv")
+        massDivInput[i].classList.add("startCity-error")
         flagCities = false;
       }
     }

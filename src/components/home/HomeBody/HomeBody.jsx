@@ -38,7 +38,8 @@ class HomeBodyClass extends React.Component {
     let massInput = document.querySelectorAll("._checkInput")
     for (let i = 0; i < massInput.length; i++) {
       if (massInput[i].defaultValue == "") {
-        massInput[i].classList.add("startCity-CheckInput")
+        let massDivInput = document.querySelectorAll("._checkDiv")
+        massDivInput[i].classList.add("startCity-CheckInput")
         flagCities = false;
       }
     }

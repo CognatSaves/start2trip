@@ -117,7 +117,7 @@
 
 .routemenu_parametersAdd p {
     margin: 0;
-    font-size: 16px;
+    font-size: 14px;
     color: #fff;
     font-weight: 400;
     padding-right: 25px;
@@ -137,6 +137,7 @@
     color: #fff;
     cursor: pointer;
     margin-bottom: 10px;
+    font-size: 14px;
 }
 
 .propertiesPeopleHome img {
@@ -268,10 +269,6 @@
     background-size: 15px 15px !important;
 }
 
-.startCity {
-    margin-bottom: 5px;
-}
-
 .startCity:first-child:hover .crossIcon {
     visibility: hidden !important;
 }
@@ -282,10 +279,19 @@
     background: rgba(37, 165, 154, 0.5)!important;
 }
 
+.startCity-CheckInput input::placeholder,
+.startCity-CheckInput span {
+    color: #fff !important;
+}
+
 .startCity-error {
     outline: 2px solid #a5252580 !important;
     outline-offset: -1px !important;
     background: #a5252580!important;
+}
+
+.startCity-error input {
+    color: #fff;
 }
 
 .readOnly {
@@ -316,7 +322,7 @@ p.routemenu_search_text {
     width: 100%;
     text-align: center;
     font-size: 12px;
-    color: #ffffff;
+    color: #fff;
     font-weight: 500;
 }
 
@@ -326,7 +332,7 @@ p.routemenu_search_text {
     border-radius: 5px;
     border: none;
     background: none;
-    color: #304269;
+    color: #fff;
     font-size: 14px;
     min-height: 38px;
     width: 100%;
@@ -347,9 +353,33 @@ p.routemenu_search_text {
     border-radius: 5px;
 }
 
+.classDiv i {
+    cursor: pointer;
+    width: 15px;
+    height: 15px;
+    background: url(./pictures/close.svg) no-repeat;
+    background-size: 100% 100%;
+}
+
+.classDivMobail i {
+    cursor: pointer;
+    width: 17px;
+    height: 17px;
+    background: url(./pictures/closeGray.svg) no-repeat;
+    background-size: 100% 100%;
+}
+
+.classDiv span {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
+    padding-left: 5px;
+    width: 20px;
+}
+
 .classDivMobail span {
     color: #686868;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 400;
     padding-left: 5px;
 }
@@ -416,10 +446,22 @@ p.routemenu_search_text {
         line-height: normal;
     }
     .city_input {
+        color: #304269;
+    }
+    .routemenu_city_add_text,
+    .classDivMobail span,
+    .city_input {
         font-size: 16px;
     }
     .city_input::placeholder {
         color: #686868;
+    }
+    .startCity {
+        margin-bottom: 5px;
+    }
+    .routemenu_date div {
+        font-size: 16px !important;
+        text-align: center;
     }
 }
 
