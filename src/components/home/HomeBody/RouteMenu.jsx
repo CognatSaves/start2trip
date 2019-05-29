@@ -33,44 +33,44 @@ const CityRouteTable = (props) => {
   console.log(workCities, "workCities");
   return (
     <React.Fragment>
-    { isMobileOnly ? 
-    <div className="addCities" >
-      {workCities.map((element, index) =>
-        <div className="startCity d-flex col-12 p-0" key={element + cities[index + 1]}>
-          <div className={ index ?"col-10 pl-0 pr-1":"col-12 p-0"}>
-            <div className="addCitiesLocationDropDown col-md-6 col-12 p-0 mb-1">
-              <LocationSearchInput readOnlyOn={index ? true : false} address={element} changeCity={changeCity} index={index} classDropdown="searchElement_style" spanText={"Из"} classDiv={index ? "classDivMobail readOnly":"classDivMobail _checkDiv"} placeholder={"Откуда, выберите место"} classInput={index ? "city_input readOnly" : "city_input _checkInput"} />
+      {isMobileOnly ?
+        <div className="addCities" >
+          {workCities.map((element, index) =>
+            <div className="startCity d-flex col-12 p-0" key={element + cities[index + 1]}>
+              <div className={index ? "col-10 pl-0 pr-1" : "col-12 p-0"}>
+                <div className="addCitiesLocationDropDown col-md-6 col-12 p-0 mb-1">
+                  <LocationSearchInput readOnlyOn={index ? true : false} address={element} changeCity={changeCity} index={index} classDropdown="searchElement_style" spanText={"Из"} classDiv={index ? "classDivMobail readOnly " : "classDivMobail _checkDiv"} placeholder={"Откуда, выберите место"} classInput={index ? "city_input readOnly" : "city_input _checkInput"} />
+                </div>
+                <div className="addCitiesLocationDropDown col p-0">
+                  <LocationSearchInput address={cities[index + 1]} changeCity={changeCity} index={index + 1} classDropdown="searchElement_style" spanText={"В"} placeholder={"Куда, выберите место"} classDiv={"classDivMobail  _checkDiv"} classInput="city_input _checkInput" />
+                </div>
+              </div>
+              <div className="crossToolTip col-2 p-0" style={{ display: index ? "flex" : "none" }} onClick={() => removeCity(index + 1)}>
+                <i style={{ background: "url(" + crossIcon + ") no-repeat" }} className="crossIcon"></i>
+              </div>
             </div>
-            <div className="addCitiesLocationDropDown col p-0">
-              <LocationSearchInput address={cities[index + 1]} changeCity={changeCity} index={index + 1} classDropdown="searchElement_style" spanText={"В"} placeholder={"Куда, выберите место"} classDiv={"classDivMobail  _checkDiv"} classInput="city_input _checkInput" />
-            </div>
-          </div>
-          <div className="crossToolTip col-2 p-0" style={{ display: index ? "flex" : "none" }} onClick={() => removeCity(index + 1)}>
-            <i style={{ background: "url(" + crossIcon + ") no-repeat" }} className="crossIcon"></i>
-          </div>
+          )}
+
         </div>
-      )}
+        :
+        <div className="addCities" >
+          {workCities.map((element, index) =>
+            <div className="startCity d-flex col-12 p-0" key={element + cities[index + 1]}>
+              <div className="addCitiesLocationDropDown col-md-6 col-12 p-0">
+                <LocationSearchInput readOnlyOn={index ? true : false} address={element} changeCity={changeCity} index={index} classDiv={index ? "classDiv" : "classDiv _checkDiv"} classDropdown="searchElement_style" spanText={"Из"} placeholder={"Откуда, выберите место"} classInput={index ? "city_input" : "city_input _checkInput"} />
+              </div>
+              <div className="addCitiesLocationDropDown col p-0">
+                <LocationSearchInput address={cities[index + 1]} changeCity={changeCity} index={index + 1} classDiv={"classDiv _checkDiv"} classDropdown="searchElement_style" spanText={"В"} placeholder={"Куда, выберите место"} classInput="city_input _checkInput" />
+              </div>
+              <div className="crossToolTip col-md-1 col-3 p-0" style={{ display: index ? "flex" : "none" }} onClick={() => removeCity(index + 1)}>
+                <i style={{ background: "url(" + crossIcon + ") no-repeat" }} className="crossIcon"></i>
+                <span className="crossToolTipText" style={{ display: isMobileOnly ? "none" : "block" }} >Удалить этот пункт назначения</span>
+              </div>
+            </div>
+          )}
 
-    </div>
-    :
-     <div className="addCities" >
-     {workCities.map((element, index) =>
-       <div className="startCity d-flex col-12 p-0" key={element + cities[index + 1]}>
-           <div className="addCitiesLocationDropDown col-md-6 col-12 p-0">
-             <LocationSearchInput readOnlyOn={index ? true : false} address={element} changeCity={changeCity} index={index} classDiv={"classDiv _checkDiv"} classDropdown="searchElement_style" spanText={"Из"} placeholder={"Откуда, выберите место"} classInput={index ? "city_input" : "city_input _checkInput"} />
-           </div>
-           <div className="addCitiesLocationDropDown col p-0">
-             <LocationSearchInput address={cities[index + 1]} changeCity={changeCity} index={index + 1} classDiv={"classDiv _checkDiv"} classDropdown="searchElement_style" spanText={"В"}  placeholder={"Куда, выберите место"} classInput="city_input _checkInput" />
-           </div>
-         <div className="crossToolTip col-md-1 col-3 p-0" style={{ display: index ? "flex" : "none" }} onClick={() => removeCity(index + 1)}>
-           <i style={{ background: "url(" + crossIcon + ") no-repeat" }} className="crossIcon"></i>
-           <span className="crossToolTipText" style={{ display: isMobileOnly ? "none" : "block" }} >Удалить этот пункт назначения</span>
-         </div>
-       </div>
-     )}
-
-   </div>
-    }
+        </div>
+      }
     </React.Fragment>
   )
 }
@@ -165,12 +165,44 @@ class RouteMenuClass extends React.Component {
           </div>
           <div className="routemenu_setDate">
             <DatePicker hintText="Дата отправления" minDate={new Date()} onChange={(e, date) => { this.chooseDate(date); let datePicer = document.querySelector(".routemenu_date"); datePicer.classList.remove("routemenu_date-Check") }} className="routemenu_date col" />
-            <div className="routemenu_parametersAdd col-sm-6 col-12" id="toggler" >
-              <p style={{ background: "url(" + arrowIcon + ") no-repeat" }}>{parameters_text}</p>
+
+            <div className="routemenu_search col-sm-6 col-12" onClick={() => { this.goToNextPage() }}>
+              <div className="routemenu_search_button " >
+                <p className="routemenu_search_text">ПОИСК</p>
+              </div>
             </div>
           </div>
         </div>
-        <div className="routemenu_parameters">
+
+        <div className="routemenu_footer d-flex flex-sm-row flex-column-reverse align-items-center">
+          <div className="routemenu_comment col">
+            <div className="routemenu_comment_text">*Возврат в точку отправления в этот же день бесплатно</div>
+          </div>
+        </div>
+
+
+
+      </React.Fragment >
+    );
+  }
+}
+
+const RouteMenu = connect(
+  (state) => ({
+    storeState: state.AppReduser,
+    globalhistory: state.GlobalReduser,
+  }),
+)(RouteMenuClass);
+
+export default RouteMenu;
+
+
+
+{/* <div className="routemenu_parametersAdd col-sm-6 col-12" id="toggler" >
+              <p style={{ background: "url(" + arrowIcon + ") no-repeat" }}>{parameters_text}</p>
+            </div> */}
+
+{/* <div className="routemenu_parameters">
           <UncontrolledCollapse toggler="#toggler">
             <div className="d-flex flex-md-row flex-column col-12 menuHome">
               <div className="d-flex col-md-3 col-12" style={{ position: "relative" }}>
@@ -199,32 +231,4 @@ class RouteMenuClass extends React.Component {
 
             </div>
           </UncontrolledCollapse>
-        </div>
-
-        <div className="routemenu_footer d-flex flex-sm-row flex-column-reverse align-items-center">
-          <div className="routemenu_comment col">
-            <div className="routemenu_comment_text">*Возврат в точку отправления в этот же день бесплатно</div>
-          </div>
-          <div className="routemenu_search col-sm-6 col-12" onClick={() => { this.goToNextPage() }}>
-            <div className="routemenu_search_button " >
-              <p className="routemenu_search_text">ПОИСК</p>
-            </div>
-          </div>
-
-        </div>
-
-
-
-      </React.Fragment >
-    );
-  }
-}
-
-const RouteMenu = connect(
-  (state) => ({
-    storeState: state.AppReduser,
-    globalhistory: state.GlobalReduser,
-  }),
-)(RouteMenuClass);
-
-export default RouteMenu;
+        </div> */}

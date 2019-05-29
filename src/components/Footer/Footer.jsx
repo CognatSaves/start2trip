@@ -20,22 +20,21 @@ class FooterClass extends React.Component {
     if(this.props.globalhistory.history){
      loc = this.props.globalhistory.history.location.pathname;
     }
-    
-    let flagBt = false;
+    let flagBt = true;
     let flagDiv = true;
-    if(loc =="/drivers"){
-      flagBt=true;
-    }
-    if(loc =="/home"){
-      flagDiv=false;
-    }
+    // if(loc =="/drivers"){
+    //   flagBt=true;
+    // }
+    // if(loc =="/home"){
+    //   flagDiv=false;
+    // }
     return (
       <React.Fragment>
         <div className="footer d-xl-flex d-lg-flex d-md-flex d-sm-none d-none justify-content-center align-items-center col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
           <div className="footerButtonUp" onClick={() => { window.scroll(0, 0) }}><img src={upArrowIcon} width="20px" height="20px" alt="upArrowIcon" /></div>
           <div className="footer_block d-flex  justify-content-between align-items-center col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <img className="col-1 p-0" src={logoTripfer} width="110px" height="18px" alt="logoWhiteIcon" />
-            <div className="footerButtons d-flex  justify-content-around col-xl-8 col-lg-9 col-md-11 col-sm-12 col-12">
+            <div className="footerButtons d-flex justify-content-around col-xl-8 col-lg-9 col-md-11 col-sm-12 col-12">
               <button className="footerButtons_button">О сервисе</button>
               <button className="footerButtons_button">Партнерам</button>
               <button className="footerButtons_button">Лицензионное соглашение</button>

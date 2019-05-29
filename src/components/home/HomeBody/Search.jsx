@@ -5,6 +5,7 @@ import PlacesAutocomplete, {
 } from 'react-places-autocomplete';
 import './Search.css';
 
+
 const searchOptions = {
   types: []
 }
@@ -77,7 +78,7 @@ export default class LocationSearchInput extends React.Component {
                 />
                 {this.props.readOnlyOn ?
                   <p/>:
-                  <i style={{ display: this.state.inFocus ? "" : "none" }} onClick={() => { this.setState({ address: "" }) }} />
+                  <i style={{ display: this.state.inFocus ? "" : "none"}} onClick={() => { this.setState({ address: "" }) }} />
                 }
 
               </div>

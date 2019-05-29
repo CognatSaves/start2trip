@@ -55,7 +55,7 @@ html {
 /* Footer Mobaile Bigin */
 
 .footerMobile {
-    position: fixed;
+    position: sticky;
     z-index: 33;
     width: 100%;
     background: #fff;
