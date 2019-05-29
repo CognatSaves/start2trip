@@ -63,22 +63,33 @@ export default class LocationSearchInput extends React.Component {
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) =>
           (
             <React.Fragment>
-              <div className={ "d-flex align-items-center col-12 " + this.props.classDiv} onBlur={() => { if (!this.state.address) { this.setState({ inFocus: false }) } }}>
+              <div className={"d-flex align-items-center col-12 " + this.props.classDiv} onBlur={() => {
+                if (!this.state.address) {
+                  this.setState({ inFocus: false })
+                }}}>
                 <span className={this.props.spanText ? "" : " d-none"} style={{ display: this.state.inFocus ? "" : "none" }}>{this.props.spanText}</span>
                 <input id={this.props.id}
-                  onFocus={() => {
+                  onFocus={(e) => {
+                    // debugger
+                    // let el = e.currentTarget.offsetParent.offset().top;
+                    // console.log(el)
+                    // window.scroll(0, el)
+                    var scrolled = window.pageYOffset || document.documentElement.scrollTop;
+                     let el = e.currentTarget.getBoundingClientRect();
+                     console.log(el)
+                     window.scroll(0, el.top)
                     this.setState({ inFocus: true })
                   }}
 
                   {...getInputProps({
                     placeholder: !this.state.inFocus ? this.props.placeholder : "",
-                    className: '' + this.props.classInput ,
+                    className: '' + this.props.classInput,
                   })}
                   {...opts}
                 />
                 {this.props.readOnlyOn ?
-                  <p/>:
-                  <i style={{ display: this.state.inFocus ? "" : "none"}} onClick={() => { this.setState({ address: "" }) }} />
+                  <p /> :
+                  <i style={{ display: this.state.inFocus ? "" : "none" }} onClick={() => { this.setState({ address: "" }) }} />
                 }
 
               </div>

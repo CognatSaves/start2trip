@@ -23,6 +23,7 @@ class TourPanelClass extends React.Component{
     }
     checkPanelFixed(){
         console.log("checkPanelFixed");
+        debugger
         if(document.getElementById(this.props.topBlockId)){
             var scrolled = window.pageYOffset || document.documentElement.scrollTop;
             let headerHeight = document.getElementById(this.props.topBlockId).scrollHeight;
