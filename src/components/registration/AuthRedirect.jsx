@@ -59,7 +59,7 @@ class AuthRedirectClass extends React.Component {
         }
         else {
             console.log('Ошибка! JWT не установлен!');
-            this.props.history.push('/');
+            this.props.history.push('/login');
         }
     }
     render() {

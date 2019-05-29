@@ -21,12 +21,12 @@
 .routemenu_city_add_text {
     cursor: pointer;
     height: 20px;
-    font-size: 9pt;
+    font-size: 14px;
     color: #fff;
-    font-weight: 300;
+    font-weight: 400;
     padding-left: 25px;
     background-size: 15px 15px !important;
-    background-position: top left !important;
+    background-position: center left !important;
 }
 
 .routemenu_setDate {
@@ -46,7 +46,7 @@
 }
 
 .routemenu_date-Check {
-    background: rgba(37, 165, 154, 0.5);
+    background: rgba(37, 165, 154, 0.911);
 }
 
 .routemenu_date div {
@@ -117,7 +117,7 @@
 
 .routemenu_parametersAdd p {
     margin: 0;
-    font-size: 15px;
+    font-size: 14px;
     color: #fff;
     font-weight: 400;
     padding-right: 25px;
@@ -137,6 +137,7 @@
     color: #fff;
     cursor: pointer;
     margin-bottom: 10px;
+    font-size: 14px;
 }
 
 .propertiesPeopleHome img {
@@ -181,7 +182,8 @@
     align-items: center;
 }
 
-.routemenu_search_button {}
+
+/* .routemenu_search_button {} */
 
 .addCities {
     display: flex;
@@ -272,15 +274,46 @@
 }
 
 .startCity-CheckInput {
-    outline: 2px solid rgba(37, 165, 154, 0.5);
-    outline-offset: -1px;
-    background: rgba(37, 165, 154, 0.5)!important;
+    /* outline: 2px solid rgb(37, 165, 154);
+    outline-offset: -1px; */
+    background: rgba(37, 165, 154, 0.911)!important;
+    border-radius: 5px !important;
+}
+
+.startCity-CheckInput i {
+    cursor: pointer;
+    width: 15px !important;
+    height: 15px !important;
+    background: url(./pictures/close.svg) no-repeat !important;
+    background-size: 100% 100% !important;
+}
+
+.startCity-CheckInput input::placeholder,
+.startCity-CheckInput span {
+    color: #fff !important;
 }
 
 .startCity-error {
-    outline: 2px solid #a5252580 !important;
-    outline-offset: -1px !important;
-    background: #a5252580!important;
+    /* outline: 2px solid #a5252580 !important;
+    outline-offset: -1px !important; */
+    background: #a52525c7!important;
+}
+
+.startCity-error i {
+    cursor: pointer;
+    width: 15px !important;
+    height: 15px !important;
+    background: url(./pictures/close.svg) no-repeat !important;
+    background-size: 100% 100% !important;
+}
+
+.startCity-error span,
+.startCity-error input {
+    color: #fff !important;
+}
+
+.readOnly {
+    background: rgb(218, 218, 218) !important;
 }
 
 .routemenu_search_text {
@@ -298,7 +331,7 @@ p.routemenu_search_text {
     justify-content: center;
     align-items: center;
     min-height: 41px;
-    background: rgba(255, 255, 255, 0.3);
+    /* background: rgba(255, 255, 255, 0.3); */
     border-radius: 5px;
     margin: 2px;
 }
@@ -306,8 +339,8 @@ p.routemenu_search_text {
 .routemenu_comment_text {
     width: 100%;
     text-align: center;
-    font-size: 11px;
-    color: #ffffff;
+    font-size: 12px;
+    color: #fff;
     font-weight: 500;
 }
 
@@ -316,12 +349,58 @@ p.routemenu_search_text {
     z-index: 3;
     border-radius: 5px;
     border: none;
-    background: rgba(255, 255, 255, 0.3);
+    background: none;
     color: #fff;
     font-size: 14px;
     min-height: 38px;
     width: 100%;
     padding: 10px;
+}
+
+.city_input::placeholder {
+    color: #fff;
+}
+
+.classDivMobail {
+    background: #fff;
+    border-radius: 5px;
+}
+
+.classDiv {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+}
+
+.classDiv i {
+    cursor: pointer;
+    width: 25px;
+    height: 40px;
+    background: url(./pictures/close.svg) no-repeat;
+    background-size: 15px 15px;
+    background-position: center center;
+}
+
+.classDivMobail i {
+    cursor: pointer;
+    width: 13px;
+    height: 12px;
+    background: url(./pictures/closeGray.svg) no-repeat;
+    background-size: 100% 100%;
+}
+
+.classDiv span {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
+    padding-left: 5px;
+    width: 20px;
+}
+
+.classDivMobail span {
+    color: #686868;
+    font-size: 14px;
+    font-weight: 400;
+    padding-left: 5px;
 }
 
 .city_input:focus {
@@ -385,6 +464,24 @@ p.routemenu_search_text {
     .routemenu_parameters p {
         line-height: normal;
     }
+    .city_input {
+        color: #304269;
+    }
+    .routemenu_city_add_text,
+    .classDivMobail span,
+    .city_input {
+        font-size: 16px;
+    }
+    .city_input::placeholder {
+        color: #686868;
+    }
+    .startCity {
+        margin-bottom: 5px;
+    }
+    .routemenu_date div {
+        font-size: 16px !important;
+        text-align: center;
+    }
 }
 
 @media (max-width: 575px) {
@@ -399,13 +496,19 @@ p.routemenu_search_text {
         display: flex;
         justify-content: center;
         align-items: center;
+        margin-left: 0px;
+        margin-right: 0px;
     }
     .crossIcon {
         min-width: 20px;
         background-size: 15px 15px !important;
         background-position: center center !important;
     }
+    .addCities,
     .routemenu_footer {
         margin: 0 2px;
+    }
+    .addCitiesLocationDropDown {
+        margin: 2px 0;
     }
 }

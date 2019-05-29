@@ -108,27 +108,18 @@ class DriversBlockClass extends React.Component {
                     </div>
                   </div>
                   <div className="driversBlock_driverInfoBlock_element d-flex">
-                    <div className="driversBlock_languages_text">Языки:</div>
+                    <div className="driversBlock_languages_text" style={{ visibility: this.props.storeState.languages.length > 0 ? 'visible' : 'hidden' }}>Языки:</div>
                     {
                       element.language.map((langElement, index) =>
-                        <div className="driversBlock_languages_flag" style={{ background: "url(" + this.props.storeState.languages[langElement].icon + ")", backgroundSize: "15px 15px" }} />
+                        <div className="driversBlock_languages_flag" style={{ background: "url(" + (this.props.storeState.languages.length > 0 ? requests.serverAddress + this.props.storeState.languages[langElement].icon.url : '') + ")", backgroundSize: "15px 15px" }} />
                       )
                     }
                   </div>
-
                 </div>
                 <div className="driversBlock_driverInfoBlock_element driversBlock_commentary">Стоимость окончательная. Топливо включено</div>
                 <button className="driversBlock_driverInfoBlock_element driversBlock_buttonStyle" onClick={() => this.props.changeTravelVisibility('block')}>{"ЗАБРОНИРОВАТЬ $" + element.price}</button>
               </div>
-              <div className="driversBlock_driverInfoBlock_element d-flex">
-                <div className="driversBlock_languages_text" style={{visibility: this.props.storeState.languages.length>0 ? 'visible' : 'hidden'}}>Языки:</div>
-                  {
-                    element.language.map((langElement,index)=>
-                       <div className="driversBlock_languages_flag" style={{background: "url("+(this.props.storeState.languages.length>0 ? requests.serverAddress+this.props.storeState.languages[langElement].icon.url : '')+")", backgroundSize: "15px 15px"}}/>              
-                    )
-                  }
-              </div>
-              
+
             </div>
 
           )
