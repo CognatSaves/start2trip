@@ -67,7 +67,10 @@ export default class LocationSearchInput extends React.Component {
               <div className={"d-flex align-items-center col-12 " + this.props.classDiv} onBlur={() => {
                 if (!this.state.address) {
                   this.setState({ inFocus: false })
-                }}}>
+                }
+                let footer = document.querySelector(".footerMobile");
+                    footer.classList.remove("footerMobile-activeInput")
+              }}>
                 <span className={this.props.spanText ? "" : " d-none"} style={{ display: this.state.inFocus ? "" : "none" }}>{this.props.spanText}</span>
                 <input id={this.props.id}
                   onFocus={(e) => {
@@ -80,6 +83,8 @@ export default class LocationSearchInput extends React.Component {
                       let topMargin =scrolled+el.top-5;
                      window.scroll(0, topMargin)
                     }
+                    let footer = document.querySelector(".footerMobile");
+                    footer.classList.add("footerMobile-activeInput")
                    } 
                     this.setState({ inFocus: true })
                   }}

@@ -64,6 +64,10 @@ html {
     box-shadow: 0 -5px 5px -5px rgba(0, 0, 0, 0.2);
 }
 
+.footerMobile-activeInput {
+    display: none !important;
+}
+
 .foterMobaileItem {
     cursor: pointer;
     font-family: "Roboto";
