@@ -77,7 +77,7 @@ class DriversPropertiesClass extends React.Component {
               : <div />}
             {/* <div className="properties_rightButton_value">{this.props.storeState.sortMenuValue}</div>
             <div className="properties_arrow"></div> */}
-            <SortMenu isVisible={this.state.sortisVisible} />
+            <SortMenu isVisible={this.state.sortisVisible} click={()=>{this.setState({ sortisVisible: false })}} />
           </div>
 
           {/* <div className="properties_buttonStyle properties_rightButton d-flex" onClick={() => this.props.dispatch(setPagesVisible(!this.props.storeState.pagesMenu))}>
