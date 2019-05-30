@@ -50,7 +50,7 @@ class FooterClass extends React.Component {
 
         <div className="footerMobile d-xl-none d-lg-none d-md-none d-sm-flex d-flex">
           <div className="footerMobileButtonUp" style={{height: flagBt ? "80px":"40px", display: flagDiv ? "block":"none"}}>
-            <i className="footerMobileIconUp" onClick={() => { window.scroll(0, 0) }}  style={{height: flagBt ? "50%":"100%"}}/>
+           
             <i className="footerMobileIconFilter" style={{display: flagBt ? "flex":"none"}} onClick={()=>{this.props.dispatch(openFilterShow(true))}} />
           </div>
           <div className="d-flex flex-column align-items-center justify-content-end foterMobaileItem col-3 " >

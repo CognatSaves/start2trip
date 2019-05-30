@@ -30,7 +30,7 @@ import Cookies from 'universal-cookie';
 import pageTextInfo from '../../textInfo/RenderModalRegistration';
 import { setLocals } from '../../redusers/Action';
 import Dialog from 'material-ui/Dialog';
-import { isMobileOnly ,isMobile } from 'react-device-detect';
+import { isMobileOnly, isMobile } from 'react-device-detect';
 import backpackIcon from './pictures/backpack.svg'
 import dealIcon from './pictures/deal.svg'
 import wheelIcon from './pictures/wheel.svg'
@@ -79,7 +79,7 @@ const ModalUserType = (props) => {
           //that.catchFunc();
         });
     }
-    else{
+    else {
       this.props.dispatch(setUrlAddress(window.location.pathname));
       this.props.history.push('/login');
       //return null;
@@ -92,14 +92,14 @@ const ModalUserType = (props) => {
   }
   let { isOpen, that } = props;
   let lang = 0; // подключить мультиязычность!!!
-  let massIcon = [backpackIcon,wheelIcon,dealIcon];
+  let massIcon = [backpackIcon, wheelIcon, dealIcon];
   const customContentStyle = {
     width: '100%',
     maxWidth: 'none',
-};
-const customContentStyle2 = {
-  maxWidth: '512px',
-};
+  };
+  const customContentStyle2 = {
+    maxWidth: '512px',
+  };
   return (
     <Dialog
       modal={true}
@@ -110,8 +110,8 @@ const customContentStyle2 = {
         <span>Выберите тип вашего аккаунта</span>
         {
           pageTextInfo.registrationUserType.userTypes.map((element, index) =>
-            <div className={ index ? "selectTypeBlockLine selectTypeBlock d-flex align-items-center col-8"  : "selectTypeBlock d-flex align-items-center col-8"}>
-              <i style={{background:"url("+massIcon[index] +") no-repeat"}}/>
+            <div className={index ? "selectTypeBlockLine selectTypeBlock d-flex align-items-center col-8" : "selectTypeBlock d-flex align-items-center col-8"}>
+              <i style={{ background: "url(" + massIcon[index] + ") no-repeat" }} />
               <label className="typeCheckLabel" for={"typeCheckbox" + (index + 1)}>{element.userText[lang]}</label>
               <input className="typeCheckButton" id={"typeCheckbox" + (index + 1)}
                 type="radio" name="raz" onClick={() => { setSelectedUserType(index + 1, that) }} />
@@ -215,6 +215,7 @@ class HeaderClass extends React.Component {
       dropdownOpen: false,
       activLanguageNumber: activeLanguageNumber,
       activeCurrencyNumber: activeCurrencyNumber,
+      previousPageYOffset: null,
       modalCountry: false,
       collapse: false,
       modalRegistration: false,
@@ -241,19 +242,12 @@ class HeaderClass extends React.Component {
       savedNumber: 0,
       selectedUserType: 0
     };
-    this.toggleLanguage = this.toggleLanguage.bind(this);
-    this.toggleDropdownOpen = this.toggleDropdownOpen.bind(this);
-    this.toggleModalCountry = this.toggleModalCountry.bind(this);
-    this.toggleModalRegistration = this.toggleModalRegistration.bind(this);
-    this.authorization = this.authorization.bind(this);
-    this.logOffFunc = this.logOffFunc.bind(this);
-    this.accountRedirect = this.accountRedirect.bind(this);
-    this.getLocals = this.getLocals.bind(this);
-    this.setLocals = this.setLocals.bind(this);
+    window.onscroll = (e) => this.checkPanelFixed(e);
+
     this.getLocals();
 
   }
-  getLocals() {
+  getLocals = () => {
     let that = this;
     let props = {};
     let jwt = this.props.globalReduser.readCookie('jwt');
@@ -353,7 +347,7 @@ class HeaderClass extends React.Component {
         console.log(error);
       })
   }
-  setLocals(type, index) {
+  setLocals = (type, index) => {
 
     let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
     switch (type) {
@@ -374,27 +368,27 @@ class HeaderClass extends React.Component {
       default:
     }
   }
-  toggleModalCountry() {
+  toggleModalCountry = () => {
     this.setState(prevState => ({
       modalCountry: !prevState.modalCountry
     }));
   }
-  toggleModalRegistration() {
+  toggleModalRegistration = () => {
     this.setState(prevState => ({
       modalRegistration: !prevState.modalRegistration
     }));
   }
-  toggleLanguage() {
+  toggleLanguage = () => {
     this.setState({
       dropdownLanguageOpen: !this.state.dropdownLanguageOpen
     });
   }
-  toggleDropdownOpen() {
+  toggleDropdownOpen = () => {
     this.setState({
       dropdownOpen: !this.state.dropdownOpen
     });
   }
-  authorization() {
+  authorization = () => {
     let jwt = this.props.globalReduser.readCookie('jwt');
     if (jwt && jwt !== "-") {
       axios.get(requests.meRequest, {
@@ -425,8 +419,8 @@ class HeaderClass extends React.Component {
           //console.log('An error occurred:', error);
         });
     }
-    else{
-      
+    else {
+
       //this.props.dispatch(setUrlAddress(window.location.pathname));
       //this.props.history.push('/login');
 
@@ -434,7 +428,7 @@ class HeaderClass extends React.Component {
       //нет тела - авторизованного пользователя -> нет дела - отрисовки профиля в шапке
     }
   }
-  logOffFunc() {
+  logOffFunc = () => {
     function removeCookie(that) {
       setTimeout(() => {
         //this func is so shitty because there was (is) a chance to save cookie
@@ -471,7 +465,7 @@ class HeaderClass extends React.Component {
     }
     this.props.globalhistory.history.push('/home');
   }
-  accountRedirect(address, number) {
+  accountRedirect = (address, number) => {
 
     function thenFunc(that, address, number) {
 
@@ -514,7 +508,7 @@ class HeaderClass extends React.Component {
     }
     const that = this;
     let jwt = this.props.globalReduser.readCookie('jwt');
-    if(jwt && jwt !== '-'){
+    if (jwt && jwt !== '-') {
       let requestValues = {
         readCookie: that.props.globalReduser.readCookie,
         setProfileData: function (data) {
@@ -527,12 +521,40 @@ class HeaderClass extends React.Component {
       });
       getUserData(requestValues, () => thenFunc(that, address, number));
     }
-    else{
+    else {
       this.props.dispatch(setUrlAddress(window.location.pathname));
       this.props.history.push('/login');
       //return null;
     }
 
+
+  }
+
+  checkPanelFixed = (e) => {
+    let scrollEvent = e.currentTarget.pageYOffset;
+    if (isMobileOnly) {
+      if (this.state.previousPageYOffset > scrollEvent) {
+        if (scrollEvent > 730) {
+          document.querySelector(".btDown").classList.add("btDown-active");
+        }else{
+          document.querySelector(".btDown").classList.remove("btDown-active");
+        }
+      } else {
+        document.querySelector(".btDown").classList.remove("btDown-active");
+      }
+    } else {
+      if (this.state.previousPageYOffset > scrollEvent) {
+        if (scrollEvent > 760) {
+          document.querySelector(".btDown").classList.add("btDown-active");
+        }else{
+          document.querySelector(".btDown").classList.remove("btDown-active");
+        }
+      } else {
+        document.querySelector(".btDown").classList.remove("btDown-active");
+      }
+    }
+
+    this.setState({ previousPageYOffset: scrollEvent })
 
   }
   render() {
@@ -618,7 +640,10 @@ class HeaderClass extends React.Component {
             </nav>
           </div>
         </div>
-
+        <div className="btDown">
+          <span>В начало страницы</span>
+          <i className="footerMobileIconUp" onClick={() => { window.scroll(0, 0) }} />
+        </div>
         <div className={this.props.driver ? "driverHeader" : "homeHeader"}>
           <div className='header d-xl-flex d-lg-flex d-md-flex d-sm-none d-none align-items-stretch justify-content-between'>
             <div className="d-flex align-items-center col-xl-2 col-lg-2 col-md-3 col-sm-2 col-2">
@@ -673,9 +698,9 @@ class HeaderClass extends React.Component {
                   <i className="openDropDownMenuBt"></i>
                   <div className="hederMenu">
                     <span onClick={() => { this.accountRedirect("/profile", 1) }}>Профиль</span>
-                    <span className="blockedSpan" onClick={() => { /*this.accountRedirect("/trips", 0)*/}}>Мои поездки</span>
-                    <span onClick={() => { this.accountRedirect("/settings",6) }}>Настройки</span>
-                    <span onClick={() => { this.accountRedirect("/referrals",8) }}>Партнерская программа</span>
+                    <span className="blockedSpan" onClick={() => { /*this.accountRedirect("/trips", 0)*/ }}>Мои поездки</span>
+                    <span onClick={() => { this.accountRedirect("/settings", 6) }}>Настройки</span>
+                    <span onClick={() => { this.accountRedirect("/referrals", 8) }}>Партнерская программа</span>
                     <span onClick={this.logOffFunc}>Выйти</span>
                   </div>
                 </div>

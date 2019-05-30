@@ -4,6 +4,39 @@
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 }
 
+.btDown {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    top: -10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    width: max-content;
+    height: 30px;
+    background: #fff;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    transition: all 0.3s;
+}
+
+.btDown-active {
+    top: 12%;
+}
+
+.btDown span {
+    padding: 20px;
+    padding-left: 30px;
+    font-size: 12px;
+    font-weight: 400;
+    color: #304269;
+    background: url(./pictures/sortUp.svg) no-repeat;
+    background-size: 13px 13px;
+    background-position: center left 10px;
+}
+
 .driverHeader {
     width: 100%;
     background: #304269;
@@ -394,10 +427,11 @@
     background: rgba(204, 204, 204, 0.6);
 }
 
-.hederMenu .blockedSpan{
+.hederMenu .blockedSpan {
     color: gray;
 }
-.hederMenu .blockedSpan:hover{
+
+.hederMenu .blockedSpan:hover {
     color: gray;
     background: transparent;
     cursor: default;
