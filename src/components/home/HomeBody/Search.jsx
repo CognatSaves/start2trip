@@ -71,13 +71,12 @@ export default class LocationSearchInput extends React.Component {
                 <input id={this.props.id}
                   onFocus={(e) => {
                     // debugger
-                    // let el = e.currentTarget.offsetParent.offset().top;
-                    // console.log(el)
-                    // window.scroll(0, el)
-                    var scrolled = window.pageYOffset || document.documentElement.scrollTop;
                      let el = e.currentTarget.getBoundingClientRect();
-                     console.log(el)
-                     window.scroll(0, el.top)
+                     if(el.top>100){
+                      window.scroll(0, el.top)
+                     }
+                     console.log(el.top)
+                    
                     this.setState({ inFocus: true })
                   }}
 
