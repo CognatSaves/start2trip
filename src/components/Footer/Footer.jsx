@@ -15,13 +15,14 @@ class FooterClass extends React.Component {
     this.state ={
     }
   }
+
   render() {
-    let loc;
-    if(this.props.globalhistory.history){
-     loc = this.props.globalhistory.history.location.pathname;
-    }
-    let flagBt = true;
-    let flagDiv = true;
+    // let loc;
+    // if(this.props.globalhistory.history){
+    //  loc = this.props.globalhistory.history.location.pathname;
+    // }
+    // let flagBt = true;
+    // let flagDiv = true;
     // if(loc =="/drivers"){
     //   flagBt=true;
     // }
@@ -49,10 +50,10 @@ class FooterClass extends React.Component {
         </div>
 
         <div className="footerMobile d-xl-none d-lg-none d-md-none d-sm-flex d-flex">
-          <div className="footerMobileButtonUp" style={{height: flagBt ? "80px":"40px", display: flagDiv ? "block":"none"}}>
+          {/* <div className="footerMobileButtonUp" style={{height: flagBt ? "80px":"40px", display: flagDiv ? "block":"none"}}>
            
             <i className="footerMobileIconFilter" style={{display: flagBt ? "flex":"none"}} onClick={()=>{this.props.dispatch(openFilterShow(true))}} />
-          </div>
+          </div> */}
           <div className="d-flex flex-column align-items-center justify-content-end foterMobaileItem col-3 " >
             <div className="footerMobileIconRoutes" />
             <div className="footerMobileTextRoutes">Маршруты</div>

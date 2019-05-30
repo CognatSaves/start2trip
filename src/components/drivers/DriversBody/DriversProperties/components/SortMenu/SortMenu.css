@@ -37,5 +37,22 @@
 
 .sortMenu_element_active {
     display: flex;
-    border-bottom: 2px solid #f60;
+    /* border-bottom: 2px solid #f60; */
+}
+
+.driver_sortMenu_mobail {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    top: 50px;
+    left: -100%;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s;
+}
+
+.driver_sortMenu_mobail-active {
+    left: 10%;
 }

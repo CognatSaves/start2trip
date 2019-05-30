@@ -242,7 +242,7 @@ class HeaderClass extends React.Component {
       savedNumber: 0,
       selectedUserType: 0
     };
-    window.onscroll = (e) => this.checkPanelFixed(e);
+    window.onscroll = (e) => this.checkBtUp(e);
 
     this.getLocals();
 
@@ -530,30 +530,29 @@ class HeaderClass extends React.Component {
 
   }
 
-  checkPanelFixed = (e) => {
+  checkBtUp = (e) => {
     let scrollEvent = e.currentTarget.pageYOffset;
     if (isMobileOnly) {
       if (this.state.previousPageYOffset > scrollEvent) {
         if (scrollEvent > 730) {
-          document.querySelector(".btDown").classList.add("btDown-active");
-        }else{
-          document.querySelector(".btDown").classList.remove("btDown-active");
+          document.querySelector(".btUp").classList.add("btUp-active");
+        } else {
+          document.querySelector(".btUp").classList.remove("btUp-active");
         }
       } else {
-        document.querySelector(".btDown").classList.remove("btDown-active");
+        document.querySelector(".btUp").classList.remove("btUp-active");
       }
     } else {
       if (this.state.previousPageYOffset > scrollEvent) {
-        if (scrollEvent > 760) {
-          document.querySelector(".btDown").classList.add("btDown-active");
-        }else{
-          document.querySelector(".btDown").classList.remove("btDown-active");
+        if (scrollEvent > 400) {
+          document.querySelector(".footerButtonUp").classList.add("footerButtonUp-active");
+        } else {
+          document.querySelector(".footerButtonUp").classList.remove("footerButtonUp-active");
         }
       } else {
-        document.querySelector(".btDown").classList.remove("btDown-active");
+        document.querySelector(".footerButtonUp").classList.remove("footerButtonUp-active");
       }
     }
-
     this.setState({ previousPageYOffset: scrollEvent })
 
   }
@@ -640,9 +639,9 @@ class HeaderClass extends React.Component {
             </nav>
           </div>
         </div>
-        <div className="btDown">
+        <div className="btUp" onClick={() => { window.scroll(0, 0) }}>
           <span>В начало страницы</span>
-          <i className="footerMobileIconUp" onClick={() => { window.scroll(0, 0) }} />
+          <i className="footerMobileIconUp" />
         </div>
         <div className={this.props.driver ? "driverHeader" : "homeHeader"}>
           <div className='header d-xl-flex d-lg-flex d-md-flex d-sm-none d-none align-items-stretch justify-content-between'>

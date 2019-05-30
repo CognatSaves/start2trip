@@ -31,7 +31,6 @@ class HomeBodyClass extends React.Component {
       cities: cities,
       mapUpdate: true
     });
-    debugger
     let footer = document.querySelector(".footerMobile");
     footer.classList.remove("footerMobile-activeInput")
   }

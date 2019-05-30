@@ -23,13 +23,14 @@
 }
 
 .errorColor {
-    outline-color:  #a5252580 !important;
-
+    outline-color: #a5252580 !important;
     border-color: #a5252580 !important;
 }
-.tourContent .imageLabelError{
+
+.tourContent .imageLabelError {
     color: #e81123;
 }
+
 .tourContent p {
     font-weight: 400;
     font-size: 13px;
@@ -54,7 +55,7 @@
 }
 
 
-/* Content Bigin */
+/* Content Begin */
 
 .tourContent .tripSettingsContentDeletButton {
     position: absolute;
@@ -103,7 +104,7 @@
 }
 
 
-/* TourContentCheckbox Bigin */
+/* TourContentCheckbox Begin */
 
 div.tourContentCheckbox {
     position: relative;
@@ -268,7 +269,7 @@ div.tourContentCheckbox {
 /* Content End */
 
 
-/* languageTour Bigin */
+/* languageTour Begin */
 
 .languageTourTop {
     background: #ccc;
@@ -320,7 +321,7 @@ div.tourContentCheckbox {
 /* languageTour End */
 
 
-/* openMultipleDatepicker Bigin */
+/* openMultipleDatepicker Begin */
 
 
 /* .openMultipleDatepicker {
@@ -368,7 +369,7 @@ span.newTourDatepickerSpan:hover {
 /* openMultipleDatepicker End */
 
 
-/* ItemElement Bigin */
+/* ItemElement Begin */
 
 .settingsTourHeader {
     margin: 15px 0;
@@ -456,7 +457,7 @@ span.newTourDatepickerSpan:hover {
 /* ItemElement End */
 
 
-/* addPhotoTour Bigin */
+/* addPhotoTour Begin */
 
 .addPhotoTour {
     position: relative;

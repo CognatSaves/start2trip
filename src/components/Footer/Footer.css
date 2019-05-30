@@ -31,7 +31,7 @@ html {
 }
 
 .footerButtonUp {
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -47,12 +47,16 @@ html {
     box-shadow: 0 0 15px 0px rgba(0, 0, 0, 0.20);
 }
 
+.footerButtonUp-active {
+    display: flex;
+}
+
 .footerButtonUp:hover {
     box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.4);
 }
 
 
-/* Footer Mobaile Bigin */
+/* Footer Mobaile Begin */
 
 .footerMobile {
     position: sticky;
@@ -143,48 +147,6 @@ html {
 
 .footerMobileIconProfile:hover~.footerMobileTextProfile {
     color: #f60;
-}
-
-.footerMobileButtonUp {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    width: 35px;
-    height: 80px;
-    position: fixed;
-    z-index: 5;
-    bottom: 100px;
-    right: 1%;
-    cursor: pointer;
-    border-radius: 5px;
-    background: #fff;
-    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.4);
-}
-
-.footerMobileButtonUp:hover {
-    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.4);
-}
-
-
-/* .footerMobileIconUp {
-    display: flex;
-    cursor: pointer;
-    width: 30%;
-    height: 100%;
-    background: url(./pictures/up-arrow.svg) no-repeat;
-    background-size: 20px 30px;
-    background-position: center center;
-} */
-
-.footerMobileIconFilter {
-    cursor: pointer;
-    width: 100%;
-    height: 50%;
-    background: url(./pictures/filter.svg) no-repeat;
-    background-size: 25px 25px;
-    background-position: center center;
-    border-top: 1px solid #ccc;
 }
 
 

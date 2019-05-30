@@ -1,10 +1,10 @@
-/* mobileFilterModal Bigin */
+/* mobileFilterModal Begin */
 
 .mobileFilterModal {
     position: fixed;
     top: 0;
     z-index: 100;
-    background: #e0e0e0;
+    background: #fff;
     width: 100%;
     height: 100%;
     transition: all 0.3s;
@@ -23,13 +23,13 @@
     background-size: 18px 24px;
     background-position: center left;
     color: #fff;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 400;
 }
 
 .mobileFilterModalClear {
     color: #fff;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 400;
 }
 
@@ -37,12 +37,13 @@
     width: 100%;
     height: 100%;
     background: #fff;
-    margin: 10px 0;
-    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid #ccc;
+    /* margin: 10px 0;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2); */
 }
 
 .mobileFilterCollapseBt {
-    padding: 10px;
+    padding: 20px 10px;
 }
 
 .mobileFilterCollapseBt span {
@@ -51,7 +52,7 @@
     justify-content: space-between;
     width: 100%;
     color: #304269;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 400;
     background: url(./pictures/caret-downGray.svg) no-repeat;
     background-size: 10px 10px;
@@ -61,7 +62,7 @@
 .mobileFilterModalContent {
     padding: 10px;
     color: #304269;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 400;
 }
 
@@ -89,6 +90,7 @@
 .modalBodyElementPeople .peopleMenu_stateBlock_cancelButton,
 .modalBodyElementPeople .peopleMenu_stateBlock_applyButton {
     color: #686868;
+    font-size: 14px;
 }
 
 .modalBodyElementAuto {
@@ -156,7 +158,7 @@
     padding-left: 25px;
     left: 0px;
     margin: 0;
-    font-size: 9pt;
+    font-size: 16px;
     color: #686868;
     background-position: center left 5px !important;
     background-size: 15px 15px !important;
@@ -168,6 +170,7 @@
 }
 
 .mobileFilterModalFooterComplete {
+    padding-top: 10px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -188,3 +191,13 @@
 
 
 /* mobileFilterModal end */
+
+@media (max-width: 1140px) {}
+
+@media (max-width: 768px) {
+    .modalBodyElementAuto .autoMenu_element_text {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 560px) {}

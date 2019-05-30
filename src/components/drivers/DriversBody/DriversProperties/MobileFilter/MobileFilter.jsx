@@ -83,7 +83,7 @@ class MobileFilterClass extends React.Component {
 
     let pictureArray = [sedan, jeep, minivan, microbus];
     return (
-      <div className="mobileFilterModal" style={{ right: this.props.storeState.openFilter ? "0px" : "100%" }}>
+      <div className="mobileFilterModal" style={{ left: this.props.storeState.openFilter ? "0px" : "100%" }}>
 
         <div className="mobileFilterModalHeader d-flex justify-content-between">
           <span className="mobileFilterModalBack" onClick={() => { this.props.dispatch(openFilterShow(false))}}>Фильтры</span>
@@ -187,7 +187,7 @@ class MobileFilterClass extends React.Component {
         </div>
 
         <div className="mobileFilterModalFooterComplete">
-          <span onClick={() =>{this.setPrice(); this.peopleMenuCall(false) }} >Готово</span>
+          <span onClick={() =>{ this.setPrice(); this.peopleMenuCall(false); this.props.dispatch(openFilterShow(false))}} >Показать результаты</span>
         </div>
       </div>
 

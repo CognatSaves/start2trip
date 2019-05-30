@@ -4,9 +4,9 @@
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 }
 
-.btDown {
+.btUp {
     cursor: pointer;
-    display: flex;
+    display: none;
     align-items: center;
     position: fixed;
     border-radius: 20px;
@@ -22,14 +22,14 @@
     transition: all 0.3s;
 }
 
-.btDown-active {
-    top: 12%;
+.btUp-active {
+    top: 13%;
 }
 
-.btDown span {
+.btUp span {
     padding: 20px;
     padding-left: 30px;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 400;
     color: #304269;
     background: url(./pictures/sortUp.svg) no-repeat;
@@ -50,7 +50,7 @@
 }
 
 
-/* Mobail header Bigin */
+/* Mobail header Begin */
 
 .headerMobail {
     min-height: 60px;
@@ -110,7 +110,7 @@
 /* Mobail header End */
 
 
-/* Modal Country Bigin */
+/* Modal Country Begin */
 
 .modalCountry h4 {
     font-weight: 500;
@@ -135,7 +135,7 @@
 /* Modal Country End */
 
 
-/* Header Bigin */
+/* Header Begin */
 
 .header h3 {
     width: 100px;
@@ -445,3 +445,13 @@
 
 
 /* Header End */
+
+@media (max-width: 1140px) {}
+
+@media (max-width: 742px) {
+    .btUp {
+        display: flex;
+    }
+}
+
+@media (max-width: 576px) {}

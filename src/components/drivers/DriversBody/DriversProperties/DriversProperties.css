@@ -94,6 +94,29 @@
     font-size: 9pt;
 }
 
+.mobailSortIcon {
+    cursor: pointer;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: #304269;
+    font-size: 14px;
+    font-weight: 500;
+    background: url(./pictures/sort_blue.svg) no-repeat;
+    background-size: 15px 15px;
+    background-position: center left;
+}
+
+.footerMobileIconFilter {
+    cursor: pointer;
+    padding-left: 20px;
+    color: #304269;
+    font-size: 14px;
+    font-weight: 500;
+    background: url(./pictures/filter.svg) no-repeat;
+    background-size: 15px 15px;
+    background-position: center left;
+}
+
 @media (max-width: 1140px) {}
 
 @media (max-width: 768px) {}
