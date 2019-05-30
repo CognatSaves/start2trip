@@ -70,10 +70,13 @@ export default class LocationSearchInput extends React.Component {
                 <span className={this.props.spanText ? "" : " d-none"} style={{ display: this.state.inFocus ? "" : "none" }}>{this.props.spanText}</span>
                 <input id={this.props.id}
                   onFocus={(e) => {
-                    // debugger
+                    var scrolled = window.pageYOffset || document.documentElement.scrollTop;
                      let el = e.currentTarget.getBoundingClientRect();
-                     if(el.top>100){
+                     if(el.top>scrolled){
                       window.scroll(0, el.top)
+                     }else{
+                       let topMargin =scrolled+el.top;
+                      window.scroll(0, topMargin)
                      }
                      console.log(el.top)
                     
