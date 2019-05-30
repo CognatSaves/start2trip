@@ -68,6 +68,13 @@ class DriversBlockClass extends React.Component {
           sortArrayPrice.reverse()
         }
         return sortArrayPrice
+      case "Сначала дешевые":
+        let sortArrayPriceLow = tempArray.sort(sortPrice);
+        return sortArrayPriceLow
+      case "Сначала дорогие":
+        let sortArrayPriceHige = tempArray.sort(sortPrice);
+        sortArrayPriceHige.reverse()
+        return sortArrayPriceHige
       default: return tempArray;
     }
   }

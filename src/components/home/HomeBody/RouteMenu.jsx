@@ -134,6 +134,7 @@ class RouteMenuClass extends React.Component {
       }
 
       this.props.globalhistory.history.push(`/drivers/${this.state.date},${newStringCities}`)
+      window.scroll(0,500);
     }
   }
 

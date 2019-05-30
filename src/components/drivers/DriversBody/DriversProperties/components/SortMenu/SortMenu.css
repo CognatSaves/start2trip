@@ -47,12 +47,12 @@
     background: #fff;
     padding: 10px;
     border-radius: 5px;
-    top: 50px;
+    top: 55px;
     left: -100%;
     box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
     transition: all 0.3s;
 }
 
 .driver_sortMenu_mobail-active {
-    left: 10%;
+    left: 5%;
 }
