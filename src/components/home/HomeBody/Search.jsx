@@ -68,8 +68,6 @@ export default class LocationSearchInput extends React.Component {
                 if (!this.state.address) {
                   this.setState({ inFocus: false })
                 }
-                let footer = document.querySelector(".footerMobile");
-                    footer.classList.remove("footerMobile-activeInput")
               }}>
                 <span className={this.props.spanText ? "" : " d-none"} style={{ display: this.state.inFocus ? "" : "none" }}>{this.props.spanText}</span>
                 <input id={this.props.id}
@@ -80,7 +78,7 @@ export default class LocationSearchInput extends React.Component {
                     if(el.top>scrolled){
                      window.scroll(0, el.top-2)
                     }else{
-                      let topMargin =scrolled+el.top-5;
+                      let topMargin = scrolled + el.top-2;
                      window.scroll(0, topMargin)
                     }
                     let footer = document.querySelector(".footerMobile");
