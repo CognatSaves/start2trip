@@ -4,6 +4,7 @@ import PlacesAutocomplete, {
   getLatLng,
 } from 'react-places-autocomplete';
 import './Search.css';
+import { isMobileOnly } from 'react-device-detect';
 
 
 const searchOptions = {
@@ -70,16 +71,16 @@ export default class LocationSearchInput extends React.Component {
                 <span className={this.props.spanText ? "" : " d-none"} style={{ display: this.state.inFocus ? "" : "none" }}>{this.props.spanText}</span>
                 <input id={this.props.id}
                   onFocus={(e) => {
+                   if(isMobileOnly){
                     var scrolled = window.pageYOffset || document.documentElement.scrollTop;
-                     let el = e.currentTarget.getBoundingClientRect();
-                     if(el.top>scrolled){
-                      window.scroll(0, el.top)
-                     }else{
-                       let topMargin =scrolled+el.top;
-                      window.scroll(0, topMargin)
-                     }
-                     console.log(el.top)
-                    
+                    let el = e.currentTarget.getBoundingClientRect();
+                    if(el.top>scrolled){
+                     window.scroll(0, el.top-2)
+                    }else{
+                      let topMargin =scrolled+el.top-5;
+                     window.scroll(0, topMargin)
+                    }
+                   } 
                     this.setState({ inFocus: true })
                   }}
 
