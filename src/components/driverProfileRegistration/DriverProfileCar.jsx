@@ -93,11 +93,11 @@ class DriverProfileCarClass extends React.Component {
     }
     applyChanges(type){
         let jwt = this.props.globalReduser.readCookie('jwt');
-        debugger;   
+           
         function checkCorrectData(newCarCard,imgFiles){
             let result = true;
             let obj;
-            debugger;
+            
             if(newCarCard.nameCar.length===0){
                 obj = document.getElementById('profileCarBrand');
                 obj.classList.add("errorColor");
@@ -149,7 +149,7 @@ class DriverProfileCarClass extends React.Component {
             }
             return result;
         }
-        debugger;   
+           
         if(jwt && jwt!=="-" && checkCorrectData(this.state.newCarCard, this.state.imgFiles)){
             let that = this; 
             this.startRefresher();
@@ -221,7 +221,7 @@ class DriverProfileCarClass extends React.Component {
         
     } 
     formSubmit(event) {
-        debugger;
+        
         console.log('formSubmit');
         if(!this.state.car.id){
             this.applyChanges(true);//если новый, то true
