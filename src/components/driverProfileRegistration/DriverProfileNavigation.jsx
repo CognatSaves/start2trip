@@ -33,7 +33,7 @@ class DriverProfileNavigationClass extends React.Component {
                 "/account/driver/profile",
                 "/account/driver/cars",
                 "/account/driver/tripsSettings",
-                "/account/driver/tours",
+                //"account/driver/tours",
                 "",//"/account/driver/reviews",
                 "/account/driver/settings",
                 "",//"/account/driver/billing",
@@ -177,7 +177,7 @@ class DriverProfileNavigationClass extends React.Component {
                     "/account/driver/profile": { backgroundImage: "url(" + sittingsBG + ")" },
                     "/account/driver/cars": { backgroundImage: "url(" + carBg + ")" },
                     "/account/driver/tripsSettings": { backgroundImage: "url(" + calendarBG + ")" },
-                    "/account/driver/tours": { backgroundImage: "url(" + toursBG + ")" },
+                    //"/account/driver/tours": { backgroundImage: "url(" + toursBG + ")" },
                     "/account/driver/reviews": { backgroundImage: "url(" + feedbackBG + ")" },
                     "/account/driver/settings": { backgroundImage: "url(" + sittingsBG + ")" },
                 }[this.props.globalhistory.history.location.pathname]}>
