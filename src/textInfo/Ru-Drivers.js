@@ -65,6 +65,7 @@ const driverProfileRegistration = {
 
     },
     DriverProfileCar: {
+        carContentTitle: "Добавление автомобиля",
         profileCarBrand: {
             floatingLabelText: "Марка автомобиля"
         },
@@ -172,7 +173,7 @@ const driverProfileRegistration = {
         affiliateLinks: {
             title: "Ваши партнёрские ссылки",
             registrationLink: "Ссылка на регистрацию",
-            linkToHomePage: "Ссылка на регистрацию"
+            linkToHomePage: "Ссылка на главную"
         },
         promotionalMaterials: "Промо материалы",
         questionicon: "Начисления никогда не заканчиваются. Чем больше у вас рефералов, и чем лучше они работают - тем больше вы получаете каждый день",

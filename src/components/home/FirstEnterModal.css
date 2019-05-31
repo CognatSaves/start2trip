@@ -9,7 +9,15 @@
     top: 0;
     left: 0;
 }
-
+.modalStartInformation_logo {
+    width: 100px;
+    height: 40px;
+    margin: 0;
+    margin-left: 5px;
+    background: url(../header/pictures/logo_tripfer_blue.svg) no-repeat;
+    background-size: 100% 100%;
+    margin-right: auto;
+}
 .modalStartInformationSkip {
     cursor: pointer;
     font-size: 14px;
@@ -76,10 +84,10 @@
 }
 
 .iconEnjoy {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     background: url(./img/enjoy_trip.svg) no-repeat;
-    background-size: 100px 100px;
+    background-size: 150px 150px;
     margin-bottom: 20px;
 }
 
@@ -117,7 +125,7 @@
 .slide2 span,
 .slide3 span,
 .slide4 span {
-    font-size: 14px;
+    font-size: 24px;
     font-weight: 400;
     color: #304269;
     margin-bottom: 5px;
@@ -127,10 +135,10 @@
 .slide2 p,
 .slide3 p,
 .slide4 p {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 400;
     color: #686868;
-    line-height: 15px;
+    line-height: 20px;
     padding: 0 15px;
     margin-bottom: 40px;
 }

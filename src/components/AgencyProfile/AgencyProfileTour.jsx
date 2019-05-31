@@ -611,7 +611,10 @@ class AgencyProfileTourClass extends React.Component{
         let fullfile = e.target.files;
         let imageCounter = 0;
         for (let i = 0; i < fullfile.length; i++) {
-            this.startRefresher();
+            if(i===0){
+                this.startRefresher();
+            }
+
             let file = fullfile[i]
 
             if (!file.type.match('image')) continue;
