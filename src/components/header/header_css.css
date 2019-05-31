@@ -340,6 +340,7 @@
 .burgerMenuBottom span:hover {
     color: #f60;
     background: hsla(0, 0%, 80%, 0.5);
+    cursor: pointer;
 }
 
 .headerRegistration span {
@@ -429,11 +430,13 @@
     background: rgba(204, 204, 204, 0.6);
 }
 
-.hederMenu .blockedSpan {
+.hederMenu .blockedSpan,
+.burgerMenuBottom .blockedSpan {
     color: gray;
 }
 
-.hederMenu .blockedSpan:hover {
+.hederMenu .blockedSpan:hover,
+.burgerMenuBottom .blockedSpan:hover {
     color: gray;
     background: transparent;
     cursor: default;

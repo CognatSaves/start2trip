@@ -42,7 +42,7 @@ export default class LocationSearchInput extends React.Component {
       .catch(error => console.error('Error', error));
   };
   onInputBlur = () => {
-    debugger;
+    
     this.setState({ inFocus: false })
   }
 
