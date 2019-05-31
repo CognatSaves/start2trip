@@ -50,7 +50,7 @@ class HomeClass extends React.Component {
             <div className="home_block col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
               {!isMobileOnly ?
                 <div className="home_text col-xl-10 col-lg-10 col-md-12 col-sm-11 col-11 p-0">
-                  <div className="text_firstLine">Cпланируйте свою экскурсию</div>
+                  <div className="text_firstLine">Cпланируйте свой маршрут</div>
                   <div className="text_secondLine">Предложения от местных гидов-водителей по вашему индивидуальному маршруту</div>
                   <div className="text_changeBodyBlock">
                     <div className="text_changeBodyBlock_element changeBody_element_select changeBodyBlock_element_left">СПИСОК</div>
