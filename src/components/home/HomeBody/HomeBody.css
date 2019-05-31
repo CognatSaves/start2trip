@@ -15,8 +15,7 @@
 
 .mobailRoutMenu {
     background: #304269;
-    padding-bottom: 40px;
-    height: 100%;
+    padding-bottom: 10px;
 }
 
 .mobailRoutMenuTitle {
@@ -60,7 +59,9 @@
 }
 
 .mapContain {
-    min-height: 25vh!important;
+    position: relative;
+    z-index: 3;
+    min-height: 80vh;
     height: 100%;
 }
 

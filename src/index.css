@@ -109,6 +109,10 @@ body {
     padding-top: 0px !important;
 }
 
+.p-2 {
+    padding: .5rem!important;
+}
+
 @media (min-width: 1200px) {
     .container {
         max-width: 1200px !important;

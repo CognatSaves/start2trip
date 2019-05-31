@@ -6,7 +6,7 @@ const mapStyles = {
     position: 'absolute',
     width: '100%',
     height: '100%',
-    borderRadius: '0 5px 5px 0',
+    borderRadius: '5px',
   }
 };
 export default class MapContainer extends Component {

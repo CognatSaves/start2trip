@@ -210,7 +210,8 @@
     padding-right: 15px !important;
 }
 
-.selectGeneralButton:hover {}
+
+/* .selectGeneralButton:hover {} */
 
 .selectGeneral img {
     margin-right: 2px;
@@ -352,7 +353,8 @@
     line-height: 15px;
 }
 
-.headerRegistration span:hover {}
+
+/* .headerRegistration span:hover {} */
 
 .headerRegistration span:focus {
     outline: none;
@@ -441,7 +443,8 @@
     visibility: hidden;
 }
 
-.headerUserTypeModal {}
+
+/* .headerUserTypeModal {} */
 
 
 /* Header End */
