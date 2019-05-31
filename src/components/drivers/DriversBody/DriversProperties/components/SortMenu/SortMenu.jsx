@@ -32,7 +32,7 @@ class SortMenuClass extends React.Component {
             {isMobileOnly ?
             <div className={this.props.isVisible ? "driver_sortMenu_mobail driver_sortMenu_mobail-active":"driver_sortMenu_mobail"}>
                 {this.props.storeState.sortMenuVariantsMobail.map((element, index) =>
-                    <div className={index ? "sortMenu_element" : "sortMenu_element sortMenu_element_active"} onClick={(e) => { this.props.dispatch(setSortMenu(element, !this.props.storeState.sortMenuWay)); this.deleteClass(e); this.props.click() }}>
+                    <div style={{border:"none"}} className={index ? "sortMenu_element" : "sortMenu_element sortMenu_element_active"} onClick={(e) => { this.props.dispatch(setSortMenu(element, !this.props.storeState.sortMenuWay)); this.deleteClass(e); this.props.click() }}>
                         <span>{element}</span>
                         <i className="sortMenu_element_icon sortMenu_element_active"/>
                     </div>
