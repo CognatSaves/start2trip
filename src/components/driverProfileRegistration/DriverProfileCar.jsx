@@ -208,9 +208,14 @@ class DriverProfileCarClass extends React.Component {
             //document.location.reload(true);
         }
         else{
-            this.props.dispatch(setUrlAddress(window.location.pathname));
-            this.props.history.push('/login');
-            //return null;
+            if(jwt && jwt!=="-"){
+
+            }
+            else{
+                this.props.dispatch(setUrlAddress(window.location.pathname));
+                this.props.history.push('/login');
+                //return null;
+            }
         }  
         
     } 
@@ -312,10 +317,12 @@ class DriverProfileCarClass extends React.Component {
         obj.style.visibility='hidden';
 
         let fullfile = e.target.files;
-
+        let imageCounter = 0;
         for (let i = 0; i < fullfile.length; i++) {
+            if(i===0){
+                this.startRefresher();
+            }
             let file = fullfile[i]
-
             if (!file.type.match('image')) continue;
             readAndCompressImage(file, /*config*/this.props.globalReduser.compressConfig)
             .then(resizedImage => {
@@ -327,7 +334,16 @@ class DriverProfileCarClass extends React.Component {
                 reader.onloadend = () => {
                     var img = reader.result;
                     let imgFiles = this.state.imgFiles;
-                    imgFiles.push(sizFile);                        
+                    imgFiles.push(sizFile);
+                    imageCounter++;
+                    
+                    
+                    if(imageCounter===fullfile.length){
+                        this.setState({
+                            isRefreshExist: false,
+                            isRefreshing: false
+                        })
+                    }
                     this.setState({
                         file: sizFile,
                         imagePreviewUrl: img,
@@ -387,39 +403,32 @@ class DriverProfileCarClass extends React.Component {
             <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer}/>
                 
                 <Collapse isOpen={this.state.collapse}>
-                    <div className="carAddNewCar d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-start align-items-lg-start align-items-md-start align-items-sm-center align-items-center">
-                        <div className="carAddNewCarPhotoCar col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 pt-5" >
-                            <div style={ this.state.imagePreviewUrl ? {}:{background:"#686868",  height:"300px" ,borderRadius:"5px"}}>
-                                {$imagePreview}
-                            </div>    
-                            <label htmlFor="addCarFile" ></label>
-                            <input type="file" id="addCarFile" style={{ display: "none" }} multiple onChange={this._handleImageChange}/>
-                            <div className="carPhotoMiniContainer d-flex overflow-auto">
-                                {this.state.carImg.map((element, index) =>
-                                    <div className="position-relative">
-                                     <img src={element} className="carPhotoMini" alt="add_car" onClick={() => { this.setState({ imagePreviewUrl: this.state.carImg[index] }) }} />
-                                        <span onClick={() => { this.state.carImg.splice(index, 1); this.state.imgFiles.splice(index,1); this.setState({ imgFiles: this.state.imgFiles, carImg: this.state.carImg, imagePreviewUrl: this.state.carImg[0] }) }}></span>
-                                    </div>
-                                )}
-                            </div>
-                            <div id="labelCarEmpty" className="labelCarEmpty" style={{visibility: 'hidden'}}>Существует крайняя нужда в фото вашего автомобиля</div>
-
+                    <div className="carAddNewCar d-flex flex-column align-items-xl-start align-items-lg-start align-items-md-start align-items-sm-center align-items-center">
+                        <div className="tourContentTitle d-flex align-items-center mb-0" style={{width: '100%'}}>
+                            <p>{textPage.carContentTitle}</p>
                         </div>
-                        <form onSubmit={this.formSubmit} id="newCar" className="carAddNewCarInformation d-flex flex-column col-xl-6 col-lg-6 col-md-6 col-sm-11 col-11 p-0">
-                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mt-2">
-                                <label htmlFor="profileCarBrand" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">{textPage.profileCarBrand.floatingLabelText}:</label>
-                                <input id="profileCarBrand" className="d-xl-block d-lg-block d-md-block d-sm-none d-none " value={this.state.newCarCard.nameCar} onChange={(e) => {
-                                    let obj = document.getElementById('profileCarBrand');
-                                    obj.classList.remove("errorColor");
-                                    obj = document.querySelectorAll('.inputClass');
-                                    obj[0].classList.remove("errorColor");
-                                    this.setState({
-                                        newCarCard: { ...this.state.newCarCard, nameCar: e.currentTarget.value }
-                                    })
-                                }} type="text" />
-                                <TextField
-                                    value={this.state.newCarCard.nameCar}
-                                    onChange={(e) => {
+                        <div style={{width: '100%'}} className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-start align-items-lg-start align-items-md-start align-items-sm-center align-items-center">
+                            <div className="carAddNewCarPhotoCar col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 pt-3">
+                                <div style={ this.state.imagePreviewUrl ? {}:{background:"#686868",  height:"300px" ,borderRadius:"5px"}}>
+                                    {$imagePreview}
+                                </div>    
+                                <label htmlFor="addCarFile" ></label>
+                                <input type="file" id="addCarFile" style={{ display: "none" }} multiple onChange={this._handleImageChange}/>
+                                <div className="carPhotoMiniContainer d-flex overflow-auto">
+                                    {this.state.carImg.map((element, index) =>
+                                        <div className="position-relative">
+                                        <img src={element} className="carPhotoMini" alt="add_car" onClick={() => { this.setState({ imagePreviewUrl: this.state.carImg[index] }) }} />
+                                            <span onClick={() => { this.state.carImg.splice(index, 1); this.state.imgFiles.splice(index,1); this.setState({ imgFiles: this.state.imgFiles, carImg: this.state.carImg, imagePreviewUrl: this.state.carImg[0] }) }}></span>
+                                        </div>
+                                    )}
+                                </div>
+                                <div id="labelCarEmpty" className="labelCarEmpty" style={{visibility: 'hidden'}}>Существует крайняя нужда в фото вашего автомобиля</div>
+
+                            </div>
+                            <form onSubmit={this.formSubmit} id="newCar" className="carAddNewCarInformation d-flex flex-column col-xl-6 col-lg-6 col-md-6 col-sm-11 col-11 p-0">
+                                <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mt-2">
+                                    <label htmlFor="profileCarBrand" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">{textPage.profileCarBrand.floatingLabelText}:</label>
+                                    <input id="profileCarBrand" className="d-xl-block d-lg-block d-md-block d-sm-none d-none " value={this.state.newCarCard.nameCar} onChange={(e) => {
                                         let obj = document.getElementById('profileCarBrand');
                                         obj.classList.remove("errorColor");
                                         obj = document.querySelectorAll('.inputClass');
@@ -427,29 +436,29 @@ class DriverProfileCarClass extends React.Component {
                                         this.setState({
                                             newCarCard: { ...this.state.newCarCard, nameCar: e.currentTarget.value }
                                         })
-                                    }}
-                                    floatingLabelText={textPage.profileCarBrand.floatingLabelText}
-                                    className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
-                                    fullWidth="100%"
-                                    floatingLabelFocusStyle={{ color: "#304269" }}
-                                    underlineFocusStyle={{ borderColor: "#304269" }}
+                                    }} type="text" />
+                                    <TextField
+                                        value={this.state.newCarCard.nameCar}
+                                        onChange={(e) => {
+                                            let obj = document.getElementById('profileCarBrand');
+                                            obj.classList.remove("errorColor");
+                                            obj = document.querySelectorAll('.inputClass');
+                                            obj[0].classList.remove("errorColor");
+                                            this.setState({
+                                                newCarCard: { ...this.state.newCarCard, nameCar: e.currentTarget.value }
+                                            })
+                                        }}
+                                        floatingLabelText={textPage.profileCarBrand.floatingLabelText}
+                                        className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
+                                        fullWidth="100%"
+                                        floatingLabelFocusStyle={{ color: "#304269" }}
+                                        underlineFocusStyle={{ borderColor: "#304269" }}
 
-                                />
-                            </div>
-                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                <label htmlFor="profileCarYear" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">{textPage.profileCarYear.floatingLabelText}:</label>
-                                <input id="profileCarYear" className="d-xl-block d-lg-block d-md-block d-sm-none d-none " value={this.state.newCarCard.yearCar} onChange={(e) => {
-                                    let obj = document.getElementById('profileCarYear');
-                                    obj.classList.remove("errorColor");
-                                    obj = document.querySelectorAll('.inputClass');
-                                    obj[1].classList.remove("errorColor");
-                                    this.setState({
-                                        newCarCard: { ...this.state.newCarCard, yearCar: e.currentTarget.value }
-                                    })
-                                }} type="text" />
-                                <TextField
-                                    value={this.state.newCarCard.yearCar}
-                                    onChange={(e) => {
+                                    />
+                                </div>
+                                <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
+                                    <label htmlFor="profileCarYear" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">{textPage.profileCarYear.floatingLabelText}:</label>
+                                    <input id="profileCarYear" className="d-xl-block d-lg-block d-md-block d-sm-none d-none " value={this.state.newCarCard.yearCar} onChange={(e) => {
                                         let obj = document.getElementById('profileCarYear');
                                         obj.classList.remove("errorColor");
                                         obj = document.querySelectorAll('.inputClass');
@@ -457,29 +466,29 @@ class DriverProfileCarClass extends React.Component {
                                         this.setState({
                                             newCarCard: { ...this.state.newCarCard, yearCar: e.currentTarget.value }
                                         })
-                                    }}
-                                    floatingLabelText={textPage.profileCarYear.floatingLabelText}
-                                    className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
-                                    fullWidth="100%"
-                                    floatingLabelFocusStyle={{ color: "#304269" }}
-                                    underlineFocusStyle={{ borderColor: "#304269" }}
+                                    }} type="text" />
+                                    <TextField
+                                        value={this.state.newCarCard.yearCar}
+                                        onChange={(e) => {
+                                            let obj = document.getElementById('profileCarYear');
+                                            obj.classList.remove("errorColor");
+                                            obj = document.querySelectorAll('.inputClass');
+                                            obj[1].classList.remove("errorColor");
+                                            this.setState({
+                                                newCarCard: { ...this.state.newCarCard, yearCar: e.currentTarget.value }
+                                            })
+                                        }}
+                                        floatingLabelText={textPage.profileCarYear.floatingLabelText}
+                                        className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
+                                        fullWidth="100%"
+                                        floatingLabelFocusStyle={{ color: "#304269" }}
+                                        underlineFocusStyle={{ borderColor: "#304269" }}
 
-                                />
-                            </div>
-                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                <label htmlFor="profileCarNumber" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">{textPage.profileCarNumber.floatingLabelText}:</label>
-                                <input id="profileCarNumber" className="d-xl-block d-lg-block d-md-block d-sm-none d-none " value={this.state.newCarCard.plateNumberCar} onChange={(e) => {
-                                    let obj = document.getElementById('profileCarNumber');
-                                    obj.classList.remove("errorColor");
-                                    obj = document.querySelectorAll('.inputClass');
-                                    obj[2].classList.remove("errorColor");
-                                    this.setState({
-                                        newCarCard: { ...this.state.newCarCard, plateNumberCar: e.currentTarget.value }
-                                    })
-                                }} type="text"/>
-                                <TextField
-                                    value={this.state.newCarCard.plateNumberCar}
-                                    onChange={(e) => {
+                                    />
+                                </div>
+                                <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
+                                    <label htmlFor="profileCarNumber" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">{textPage.profileCarNumber.floatingLabelText}:</label>
+                                    <input id="profileCarNumber" className="d-xl-block d-lg-block d-md-block d-sm-none d-none " value={this.state.newCarCard.plateNumberCar} onChange={(e) => {
                                         let obj = document.getElementById('profileCarNumber');
                                         obj.classList.remove("errorColor");
                                         obj = document.querySelectorAll('.inputClass');
@@ -487,107 +496,106 @@ class DriverProfileCarClass extends React.Component {
                                         this.setState({
                                             newCarCard: { ...this.state.newCarCard, plateNumberCar: e.currentTarget.value }
                                         })
-                                    }}
-                                    floatingLabelText={textPage.profileCarNumber.floatingLabelText}
-                                    className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
-                                    fullWidth="100%"
-                                    floatingLabelFocusStyle={{ color: "#304269" }}
-                                    underlineFocusStyle={{ borderColor: "#304269" }}
+                                    }} type="text"/>
+                                    <TextField
+                                        value={this.state.newCarCard.plateNumberCar}
+                                        onChange={(e) => {
+                                            let obj = document.getElementById('profileCarNumber');
+                                            obj.classList.remove("errorColor");
+                                            obj = document.querySelectorAll('.inputClass');
+                                            obj[2].classList.remove("errorColor");
+                                            this.setState({
+                                                newCarCard: { ...this.state.newCarCard, plateNumberCar: e.currentTarget.value }
+                                            })
+                                        }}
+                                        floatingLabelText={textPage.profileCarNumber.floatingLabelText}
+                                        className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
+                                        fullWidth="100%"
+                                        floatingLabelFocusStyle={{ color: "#304269" }}
+                                        underlineFocusStyle={{ borderColor: "#304269" }}
 
-                                />
-                            </div>
-                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flsex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">{textPage.typeCar.label}:</label>
-                                <DropDownMenu
-                                    value={this.state.newCarCard.typeCar}
-                                    textColor="#fff"
-                                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
-                                    //className=""
-                                    onChange={(event, index, value)=> {
-                                        let obj = document.querySelectorAll('.dropdownClass');
-                                        obj[0].classList.remove("errorColor");
-                                        this.handleChange(event, index, value,'carTypes');
+                                    />
+                                </div>
+                                <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flsex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
+                                    <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">{textPage.typeCar.label}:</label>
+                                    <DropDownMenu
+                                        value={this.state.newCarCard.typeCar}
+                                        textColor="#fff"
+                                        anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
+                                        //className=""
+                                        onChange={(event, index, value)=> {
+                                            let obj = document.querySelectorAll('.dropdownClass');
+                                            obj[0].classList.remove("errorColor");
+                                            this.handleChange(event, index, value,'carTypes');
+                                            }
                                         }
+                                        style={{ width: "100%" }}
+                                        className="dropdownClass"
+                                        autoWidth={false}
+                                        selectedMenuItemStyle={{ color: "#f60" }}
+                                        name="typeCar"
+                                    >
+                                    {
+                                        this.props.globalReduser.profile.carTypes.map((element,index)=>
+                                            <MenuItem value={element.id} primaryText={element.name_ru} />
+                                        )
                                     }
-                                    style={{ width: "100%" }}
-                                    className="dropdownClass"
-                                    autoWidth={false}
-                                    selectedMenuItemStyle={{ color: "#f60" }}
-                                    name="typeCar"
-                                >
-                                {
-                                    this.props.globalReduser.profile.carTypes.map((element,index)=>
-                                        <MenuItem value={element.id} primaryText={element.name_ru} />
-                                    )
-                                }
-                                </DropDownMenu>
-                            </div>
-                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flsex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">{textPage.carClass.label}:</label>
-                                <DropDownMenu
-                                    value={this.state.newCarCard.carClass}
-                                    textColor="#fff"
-                                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
-                                    //className=""
-                                    onChange={(event, index, value)=> {
-                                        let obj = document.querySelectorAll('.dropdownClass');
-                                        obj[1].classList.remove("errorColor");
-                                        this.handleChange(event, index, value,'carClasses');
+                                    </DropDownMenu>
+                                </div>
+                                <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flsex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
+                                    <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">{textPage.carClass.label}:</label>
+                                    <DropDownMenu
+                                        value={this.state.newCarCard.carClass}
+                                        textColor="#fff"
+                                        anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
+                                        //className=""
+                                        onChange={(event, index, value)=> {
+                                            let obj = document.querySelectorAll('.dropdownClass');
+                                            obj[1].classList.remove("errorColor");
+                                            this.handleChange(event, index, value,'carClasses');
+                                            }
                                         }
+                                        style={{ width: "100%" }}
+                                        className="dropdownClass"
+                                        autoWidth={false}
+                                        selectedMenuItemStyle={{ color: "#f60" }}
+                                        name="carClass"
+                                    >
+                                    {
+                                        this.props.globalReduser.profile.carClasses.map((element,index)=>
+                                            <MenuItem value={element.id} primaryText={element.class_ru} />
+                                        )
                                     }
-                                    style={{ width: "100%" }}
-                                    className="dropdownClass"
-                                    autoWidth={false}
-                                    selectedMenuItemStyle={{ color: "#f60" }}
-                                    name="carClass"
-                                >
-                                {
-                                    this.props.globalReduser.profile.carClasses.map((element,index)=>
-                                        <MenuItem value={element.id} primaryText={element.class_ru} />
-                                    )
-                                }
-                                </DropDownMenu>
-                            </div>
-                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">{textPage.typeFuel.label}:</label>
-                                <DropDownMenu
-                                    value={this.state.newCarCard.fuelType}
-                                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
-                                    //className=""
-                                    onChange={(event, index, value)=> {
-                                        let obj = document.querySelectorAll('.dropdownClass');
-                                        obj[2].classList.remove("errorColor");
-                                        this.handleChange(event, index, value,'fuelTypes');
+                                    </DropDownMenu>
+                                </div>
+                                <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
+                                    <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">{textPage.typeFuel.label}:</label>
+                                    <DropDownMenu
+                                        value={this.state.newCarCard.fuelType}
+                                        anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
+                                        //className=""
+                                        onChange={(event, index, value)=> {
+                                            let obj = document.querySelectorAll('.dropdownClass');
+                                            obj[2].classList.remove("errorColor");
+                                            this.handleChange(event, index, value,'fuelTypes');
+                                            }
                                         }
+                                        style={{ width: "100%" }}
+                                        className="dropdownClass"
+                                        autoWidth={false}
+                                        selectedMenuItemStyle={{ color: "#f60" }}
+                                        name="typeFuel"
+                                    >
+                                    {
+                                        this.props.globalReduser.profile.fuelTypes.map((element,index)=>
+                                            <MenuItem value={element.id} primaryText={element.name_ru} />
+                                        )
                                     }
-                                    style={{ width: "100%" }}
-                                    className="dropdownClass"
-                                    autoWidth={false}
-                                    selectedMenuItemStyle={{ color: "#f60" }}
-                                    name="typeFuel"
-                                >
-                                {
-                                    this.props.globalReduser.profile.fuelTypes.map((element,index)=>
-                                        <MenuItem value={element.id} primaryText={element.name_ru} />
-                                    )
-                                }
-                                </DropDownMenu>
-                            </div>
-                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                <label htmlFor="profileCarNumberOfSeats" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">{textPage.profileCarNumberOfSeats.label}:</label>
-                                <input id="profileCarNumberOfSeats" className="d-xl-block d-lg-block d-md-block d-sm-none d-none " value={this.state.newCarCard.numberOfSeats} onChange={(e) => {
-                                    let obj = document.getElementById('profileCarNumberOfSeats');
-                                    obj.classList.remove("errorColor");
-
-                                    obj = document.querySelectorAll('.inputClass');
-                                    obj[3].classList.remove("errorColor");
-                                    this.setState({
-                                        newCarCard: { ...this.state.newCarCard, numberOfSeats: e.currentTarget.value }
-                                    })
-                                }} type="text"/>
-                                <TextField
-                                    value={this.state.newCarCard.numberOfSeats}
-                                    onChange={(e) => {
+                                    </DropDownMenu>
+                                </div>
+                                <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
+                                    <label htmlFor="profileCarNumberOfSeats" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">{textPage.profileCarNumberOfSeats.label}:</label>
+                                    <input id="profileCarNumberOfSeats" className="d-xl-block d-lg-block d-md-block d-sm-none d-none " value={this.state.newCarCard.numberOfSeats} onChange={(e) => {
                                         let obj = document.getElementById('profileCarNumberOfSeats');
                                         obj.classList.remove("errorColor");
 
@@ -596,47 +604,60 @@ class DriverProfileCarClass extends React.Component {
                                         this.setState({
                                             newCarCard: { ...this.state.newCarCard, numberOfSeats: e.currentTarget.value }
                                         })
-                                    }}
-                                    floatingLabelText={textPage.profileCarNumberOfSeats.label}
-                                    className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
-                                    fullWidth="100%"
-                                    floatingLabelFocusStyle={{ color: "#304269" }}
-                                    underlineFocusStyle={{ borderColor: "#304269" }}
+                                    }} type="text"/>
+                                    <TextField
+                                        value={this.state.newCarCard.numberOfSeats}
+                                        onChange={(e) => {
+                                            let obj = document.getElementById('profileCarNumberOfSeats');
+                                            obj.classList.remove("errorColor");
 
-                                />
-                            </div>
+                                            obj = document.querySelectorAll('.inputClass');
+                                            obj[3].classList.remove("errorColor");
+                                            this.setState({
+                                                newCarCard: { ...this.state.newCarCard, numberOfSeats: e.currentTarget.value }
+                                            })
+                                        }}
+                                        floatingLabelText={textPage.profileCarNumberOfSeats.label}
+                                        className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
+                                        fullWidth="100%"
+                                        floatingLabelFocusStyle={{ color: "#304269" }}
+                                        underlineFocusStyle={{ borderColor: "#304269" }}
 
-                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-start mt-2 mb-3">
-                                <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-4 p-0">{textPage.carAddNewCarComfort.label}:</label>
-                                <div className="carAddNewCarComfortCheckBox d-flex flex-column pt-1">
-                                    <label htmlFor="comfort1">{textPage.carAddNewCarComfort.comfort1}
-                                <input onClick={(e) => { let comfort = this.state.comfort; comfort[0]=!comfort[0]; this.setState({comfort: comfort});}} type="checkbox" id="comfort1" checked={this.state.comfort[0]}/>
-                                        <span />
-                                    </label>
-                                    <label htmlFor="comfort2">{textPage.carAddNewCarComfort.comfort2}
-                                <input  onClick={(e) => { let comfort = this.state.comfort; comfort[1]=!comfort[1]; this.setState({comfort: comfort});}}  type="checkbox" id="comfort2" checked={this.state.comfort[1]}/>
-                                        <span />
-                                    </label>
-                                    <label htmlFor="comfort3">{textPage.carAddNewCarComfort.comfort3}
-                                <input  onClick={(e) => { let comfort = this.state.comfort; comfort[2]=!comfort[2]; this.setState({comfort: comfort});}}  type="checkbox" id="comfort3" checked={this.state.comfort[2]}/>
-                                        <span />
-                                    </label>
-                                    <label htmlFor="comfort4">{textPage.carAddNewCarComfort.comfort4}
-                                <input onClick={(e) => { let comfort = this.state.comfort; comfort[3]=!comfort[3]; this.setState({comfort: comfort});}} type="checkbox" id="comfort4" checked={this.state.comfort[3]}/>
-                                        <span />
-                                    </label>
-                                    <label htmlFor="comfort5">{textPage.carAddNewCarComfort.comfort5}
-                                <input onClick={(e) => { let comfort = this.state.comfort; comfort[3]=!comfort[3]; this.setState({comfort: comfort});}} type="checkbox" id="comfort5" checked={!this.state.comfort[3]}/>
-                                        <span />
-                                    </label>
+                                    />
                                 </div>
-                            </div>
-                            <div className="carAddNewCarButton d-flex align-items-center mb-5">
-                                <span className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-4 p-0" />
-                                <button htmlFor="newCar" type="submit">{textPage.carAddNewCarButton.button}</button>
-                                <span className="ml-3" onClick={()=>this.toggle()}>{textPage.carAddNewCarButton.span}</span>
-                            </div>
-                        </form>
+
+                                <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-start mt-2 mb-3">
+                                    <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-4 p-0">{textPage.carAddNewCarComfort.label}:</label>
+                                    <div className="carAddNewCarComfortCheckBox d-flex flex-column pt-1">
+                                        <label htmlFor="comfort1">{textPage.carAddNewCarComfort.comfort1}
+                                    <input onClick={(e) => { let comfort = this.state.comfort; comfort[0]=!comfort[0]; this.setState({comfort: comfort});}} type="checkbox" id="comfort1" checked={this.state.comfort[0]}/>
+                                            <span />
+                                        </label>
+                                        <label htmlFor="comfort2">{textPage.carAddNewCarComfort.comfort2}
+                                    <input  onClick={(e) => { let comfort = this.state.comfort; comfort[1]=!comfort[1]; this.setState({comfort: comfort});}}  type="checkbox" id="comfort2" checked={this.state.comfort[1]}/>
+                                            <span />
+                                        </label>
+                                        <label htmlFor="comfort3">{textPage.carAddNewCarComfort.comfort3}
+                                    <input  onClick={(e) => { let comfort = this.state.comfort; comfort[2]=!comfort[2]; this.setState({comfort: comfort});}}  type="checkbox" id="comfort3" checked={this.state.comfort[2]}/>
+                                            <span />
+                                        </label>
+                                        <label htmlFor="comfort4">{textPage.carAddNewCarComfort.comfort4}
+                                    <input onClick={(e) => { let comfort = this.state.comfort; comfort[3]=!comfort[3]; this.setState({comfort: comfort});}} type="checkbox" id="comfort4" checked={this.state.comfort[3]}/>
+                                            <span />
+                                        </label>
+                                        <label htmlFor="comfort5">{textPage.carAddNewCarComfort.comfort5}
+                                    <input onClick={(e) => { let comfort = this.state.comfort; comfort[3]=!comfort[3]; this.setState({comfort: comfort});}} type="checkbox" id="comfort5" checked={!this.state.comfort[3]}/>
+                                            <span />
+                                        </label>
+                                    </div>
+                                </div>
+                                <div className="carAddNewCarButton d-flex align-items-center mb-5">
+                                    <span className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-4 p-0" />
+                                    <button htmlFor="newCar" type="submit">{textPage.carAddNewCarButton.button}</button>
+                                    <span className="ml-3" onClick={()=>this.toggle()}>{textPage.carAddNewCarButton.span}</span>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </Collapse>
 
