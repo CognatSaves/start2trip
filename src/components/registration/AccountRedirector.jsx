@@ -4,6 +4,10 @@ import getUserData from '../driverProfileRegistration/DriverProfileRequest';
 import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 import requests from '../../config';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+import { /*Link,*/ Route, BrowserRouter, Redirect, Switch } from 'react-router-dom';
+import DriverProfileRegistration from '../driverProfileRegistration/DriverProfileRegistration';
+import UserProfileRegistration from '../UserProfile/UserProfileRegistration';
+import AgencyProfile from '../AgencyProfile/AgencyProfile';
 
 class AccountRedirectorClass extends React.Component{
     constructor(props){
@@ -28,8 +32,43 @@ class AccountRedirectorClass extends React.Component{
         }
     }
     render(){
-        
+        function parseLocationPathname(pathname,profile){
+            let splitedString = pathname.split('/');
+            //debugger;
+            if(profile.isCustomer){
+                address='user';
+                if(splitedString[2]==='user'){
+                    return true
+                }
+                else{
+                    return false;
+                }
+            }
+            if(profile.isDriver){
+                address='driver';
+                if(splitedString[2]==='driver'){
+                    return true
+                }
+                else{
+                    return false;
+                }
+            }
+            if(profile.isAgency){
+                address='agency';
+                if(splitedString[2]==='agency'){
+                    return true
+                }
+                else{
+                    return false;
+                }
+            }
+            return false;
+        }
+        //debugger;
+
         let profile = this.props.globalReduser.profile;
+        let pathname = this.props.history.location.pathname;
+        let address;
         if(!profile.email){
             return(
                 <DriverRefreshIndicator isRefreshExist={true} isRefreshing={true} isGoodAnswer={true}/>
@@ -37,37 +76,23 @@ class AccountRedirectorClass extends React.Component{
         }
         else{
             let selected = false;
-            if(this.props.history.location.pathname==="/account"){
-                this.props.history.push('/home');
-                return null; 
-            }
-            if(profile.isDriver){
-                selected=true;
-                
-                console.log(this.props.history);
-                
-                this.props.history.push("/account/driver");
+            let parseLocationPathnameResult = parseLocationPathname(pathname,profile);
+            //debugger;
+            if(parseLocationPathnameResult){
                 return (
-                    <React.Fragment/>
+                    <React.Fragment>
+                        <Route path="/account/driver" component={DriverProfileRegistration} />
+                        <Route path="/account/user" component={UserProfileRegistration} />
+                        <Route path="/account/agency" component={AgencyProfile}/>
+                    </React.Fragment>
                 )
             }
-            if(profile.isCustomer){
-                selected=true;
-                console.log(this.props.history);
-                //this.props.history.push('/account/user');<Route path="/" component={Home} />
-                this.props.history.push("/account/user");
-                return (
-                    <React.Fragment/>
-                )
+            else{
+                let newPath = '/account/'+address+'/profile';
+                this.props.history.push(newPath);
+                return null;
             }
-
-
-            if(!selected){
-                this.props.history.push('/home');
-                return (
-                    <React.Fragment/>
-                )
-            }
+            
         }
         //if everything is bad! If it entered here there is a problem!
         this.props.history.push('/home');

@@ -82,10 +82,11 @@ ReactDOM.render(
                         <Route path="/place/:country,:id" component={PlaceDescription} />
                         <Route path="/tours" component={Tours} />
                         <Route path="/tour/:country,:id" component={TourDescription} />
+
+                        <Route path="/account" component={AccountRedirector}/>
                         
-                        <Route path="/account/driver" component={DriverProfileRegistration} />
-                        <Route path="/account/user" component={UserProfileRegistration} />
-                        <Route path="/account/agency" component={AgencyProfile}/>
+                        
+                        
                         <Route path="/forgot-password" component={ForgotPassword} />
                         <Route path="/reset-password/:code" component={ResetPassword} />
         
@@ -102,7 +103,9 @@ ReactDOM.render(
     , document.getElementById('root'));
 
 
-/*  <Route path="/" component={App}/>
+/*  <Route path="/account/driver" component={DriverProfileRegistration} />
+    <Route path="/account/user" component={UserProfileRegistration} />
+    <Route path="/account/agency" component={AgencyProfile}/>
 
 */
 // If you want your app to work offline and load faster, you can change

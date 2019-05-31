@@ -29,7 +29,6 @@ class AgencyProfileClass extends React.Component{
     }
     render(){
         console.log('Здесь работает AgencyProfile!');
-        
         if(this.props.globalReduser.profile.isAgency){
             return(
                 <React.Fragment>

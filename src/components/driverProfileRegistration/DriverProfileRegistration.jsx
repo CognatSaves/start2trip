@@ -18,7 +18,8 @@ import requests from '../../config';
 import getUserData from './DriverProfileRequest';
 import DriverRefreshIndicator from './DriverRefreshIndicator';
 import AccountFirstEnterModal from '../home/AccountFirstEnterModal';
-
+import UserProfileRegistration from '../UserProfile/UserProfileRegistration';
+import AgencyProfile from '../AgencyProfile/AgencyProfile';
 class DriverProfileRegistrationClass extends React.Component {
   constructor(props) {
     super(props);
@@ -29,9 +30,10 @@ class DriverProfileRegistrationClass extends React.Component {
     }
   }
   render() {
-    //let profile = this.props.storeState.profile;
+    let profile = this.props.globalReduser.profile;
     let userType = this.props.globalReduser.readCookie('userType');
     let that = this;
+    //debugger;
     if(this.props.globalReduser.profile.isDriver){
       return(
         <React.Fragment>
