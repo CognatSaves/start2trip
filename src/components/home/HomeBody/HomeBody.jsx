@@ -25,6 +25,7 @@ class HomeBodyClass extends React.Component {
   }
 
   changeCity = (index, value) => {
+
     let cities = this.state.cities;
     cities[index] = value;
     this.setState({
