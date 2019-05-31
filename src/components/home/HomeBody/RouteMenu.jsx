@@ -11,7 +11,7 @@ import { isMobileOnly } from 'react-device-detect'
 
 
 const CityRouteTable = (props) => {
-  const { cities, changeCity, removeCity } = props;
+  const { cities, changeCity, removeCity, addCity } = props;
 
   let workCities = [...cities];
   let alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I",
@@ -39,12 +39,12 @@ const CityRouteTable = (props) => {
 
         </div>
         :
-        <div className="d-flex flex-wrap" >
+        <div className="d-flex flex-wrap col-12 p-0" >
           {cities.map((element, index) =>
             <div className="startCity d-flex col-6 p-0" key={element + index}>
-              <div className={index <= 1 ? (index % 2 === 0 ? "col-12 pl-0" : "col-12 pl-0 pr-1") : (index % 2 === 0 ? "col-10 pl-0" : "col-10 pl  -0 pr-1")}>
+              <div className={index <= 1 ? (index % 2 === 0 ? "col-12 pl-0 pr-1" : "col-12 pl-0 pr-1") : (index % 2 === 0 ? "col-10 pl-0 pr-1" : "col-10 pl-0 pr-1 ")}>
                 <div className="addCitiesLocationDropDown col p-0">
-                  <LocationSearchInput address={cities[index]} changeCity={changeCity} index={index} classDropdown="searchElement_style" spanText={alphabet[index]} placeholder={index ? "Куда, выберите место" : "Откуда, выберите место"} classDiv={index > 1 && !cities[index] ? "classDivMobail  _checkDiv startCity-CheckInput" : "classDivMobail  _checkDiv"} classInput="city_input _checkInput" />
+                  <LocationSearchInput address={cities[index]} changeCity={changeCity} index={index} classDropdown="searchElement_style" spanText={alphabet[index]} placeholder={index ? "Куда, выберите место" : "Откуда, выберите место"} classDiv={index > 1 && !cities[index] ? "classDiv  _checkDiv startCity-CheckInput" : "classDiv  _checkDiv"} classInput="city_input _checkInput" />
                 </div>
               </div>
               <div className="crossToolTip col p-0" style={{ display: index <= 1 ? "none" : "" }} onClick={() => removeCity(index)}>
@@ -53,6 +53,9 @@ const CityRouteTable = (props) => {
               </div>
             </div>
           )}
+          <div className=" d-flex routemenu_addCity col" onClick={() =>{ addCity()}}>
+                  <div className="routemenu_city_add_text" style={{ background: "url(" + addIcon + ") no-repeat" }} >Добавить пункт назначения</div>
+                </div>
         </div>
       }
     </React.Fragment>
@@ -144,11 +147,20 @@ class RouteMenuClass extends React.Component {
     return (
       <React.Fragment>
         <div className="routemenu_container d-flex flex-column col-12">
+          {isMobileOnly ?
+            <React.Fragment>
+              <CityRouteTable cities={this.props.cities} changeCity={this.props.changeCity} removeCity={this.props.removeCity} />
+              <div className=" d-flex routemenu_addCity" onClick={() => this.props.addCity()}>
+                <div className="routemenu_city_add_text" style={{ background: "url(" + addIcon + ") no-repeat" }} >Добавить пункт назначения</div>
+              </div>
+            </React.Fragment>
+            :
+            <React.Fragment>
+                <CityRouteTable cities={this.props.cities} changeCity={this.props.changeCity} removeCity={this.props.removeCity} addCity={this.props.addCity}/>
+            </React.Fragment>
+          }
 
-            <CityRouteTable cities={this.props.cities} changeCity={this.props.changeCity} removeCity={this.props.removeCity} />
-            <div className=" d-flex routemenu_addCity" onClick={() => this.props.addCity()}>
-              <div className="routemenu_city_add_text" style={{ background: "url(" + addIcon + ") no-repeat" }} >Добавить пункт назначения</div>
-            </div>
+
 
           <div className="routemenu_setDate">
             <DatePicker hintText="Дата отправления" minDate={new Date()} onChange={(e, date) => { this.chooseDate(date); let datePicer = document.querySelector(".routemenu_date"); datePicer.classList.remove("routemenu_date-Check") }} className="routemenu_date col" />

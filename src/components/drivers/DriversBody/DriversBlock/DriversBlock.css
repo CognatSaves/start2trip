@@ -237,6 +237,8 @@
     width: 15px;
     height: 15px;
     border-radius: 7px;
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
 }
 
 .driversBlock_bookmark {
@@ -282,6 +284,7 @@
 @media (max-width: 742px) {
     .driversBlock_driverInfoBlock_element {
         font-size: 14px;
+        padding-top: 10px;
     }
     .driversBlock_carInfoLine_value {
         font-size: 16px;
@@ -294,6 +297,7 @@
     }
     .driversBlock_buttonStyle {
         font-size: 18px;
+        padding-top: 0px;
     }
     .driversBlock_driverCard_carIcon {
         width: 35px;

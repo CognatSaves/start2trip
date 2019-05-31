@@ -36,8 +36,8 @@
 }
 
 .sortMenu_element_active {
-    /* display: flex; */
-    /* border-bottom: 2px solid #f60; */
+    display: flex;
+    border-bottom: 2px solid #f60;
 }
 
 .driver_sortMenu_mobail {

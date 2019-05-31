@@ -284,7 +284,7 @@
     border-radius: 5px !important;
 }
 
-.startCity-CheckInput i {
+.startCity-CheckInput.classDivMobail i {
     cursor: pointer;
     width: 15px !important;
     height: 15px !important;
@@ -376,14 +376,15 @@ p.routemenu_search_text {
     border-radius: 5px;
 }
 
-.classDiv i {
+
+/* .classDiv i {
     cursor: pointer;
     width: 25px;
     height: 40px;
     background: url(./pictures/close.svg) no-repeat;
     background-size: 15px 15px;
     background-position: center center;
-}
+} */
 
 .classDivMobail i {
     cursor: pointer;
