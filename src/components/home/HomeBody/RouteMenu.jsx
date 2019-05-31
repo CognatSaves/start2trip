@@ -17,7 +17,7 @@ const CityRouteTable = (props) => {
   let alphabet = ["A","B","C","D","E","F","G","H","I",
   "J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
   // let tempStart = workCities.shift();
-  // workCities.pop();
+   workCities.pop();
   console.log(cities, "cities");
   // console.log(workCities, "workCities");
   return (
@@ -28,11 +28,11 @@ const CityRouteTable = (props) => {
             <div className="startCity d-flex col-12 p-0" key={element + index}>
               <div className="col-10 pl-0 pr-1">
                 <div className="addCitiesLocationDropDown col p-0">
-                  <LocationSearchInput address={cities[index]} changeCity={changeCity} index={index} classDropdown="searchElement_style" spanText={alphabet[index]} placeholder={"Куда, выберите место"} classDiv={index>=0 && !cities[index] ? "classDivMobail  _checkDiv startCity-CheckInput":"classDivMobail  _checkDiv"} classInput="city_input _checkInput" />
+                  <LocationSearchInput address={cities[index]} changeCity={changeCity} index={index} classDropdown="searchElement_style" spanText={alphabet[index]} placeholder={index?"Куда, выберите место":"Откуда, выберите место"} classDiv={index>1 && !cities[index] ? "classDivMobail  _checkDiv startCity-CheckInput":"classDivMobail  _checkDiv"} classInput="city_input _checkInput" />
                 </div>
               </div>
               <div className="crossToolTip col-2 p-0" onClick={() => removeCity(index)}>
-                <i style={{ background: "url(" + crossIcon + ") no-repeat" }} className="crossIcon"></i>
+                <i className="crossIcon"></i>
               </div>
             </div>
           )}
@@ -40,7 +40,7 @@ const CityRouteTable = (props) => {
         </div>
         :
         <div className="addCities" >
-          {/* {workCities.map((element, index) =>
+          {workCities.map((element, index) =>
             <div className="startCity d-flex col-12 p-0" key={element + cities[index + 1]}>
               <div className="addCitiesLocationDropDown col-md-6 col-12 p-0">
                 <LocationSearchInput readOnlyOn={index ? true : false} address={element} changeCity={changeCity} index={index} classDiv={index ? "classDiv" : "classDiv _checkDiv"} classDropdown="searchElement_style" spanText={"Из"} placeholder={"Откуда, выберите место"} classInput={index ? "city_input" : "city_input _checkInput"} />
@@ -53,7 +53,7 @@ const CityRouteTable = (props) => {
                 <span className="crossToolTipText" style={{ display: isMobileOnly ? "none" : "block" }} >Удалить этот пункт назначения</span>
               </div>
             </div>
-          )} */}
+          )}
 
         </div>
       }

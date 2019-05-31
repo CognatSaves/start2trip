@@ -624,22 +624,6 @@ class HeaderClass extends React.Component {
 
                 </div>
                 <div className="burgerMenuBottom">
-                {
-                  /*
-                  <span onClick={() => { this.setState({ collapse: !this.state.collapse }) }} style={{ background: "url(" + arrowDownIcon + ") no-repeat" }}>Мои поездки</span>
-                  <Collapse isOpen={this.state.collapse}>
-                    <div className="d-flex flex-column">
-                      <span style={{ paddingLeft: "20px" }}>Предстоящие поездки</span>
-                      <span style={{ paddingLeft: "20px" }}>История поездок</span>
-                    </div>
-                  </Collapse>
-                  {this.state.menuItems.map((element, index) =>
-                    <span>{element}</span>
-                  )}
-
-
-                  */
-                }
                   {
                     this.props.storeState.isAuthorized ?
                     <React.Fragment>
@@ -652,29 +636,8 @@ class HeaderClass extends React.Component {
                     :
                     <span onClick={this.toggleModalRegistration}>Войти</span>
 
-                  }
-                  
-                  
+                  }              
                 </div>
-
-
-
-                {
-                /*
-                <div style={{ display: this.props.storeState.isAuthorized ? 'flex' : 'none' }} className="openMenu position-relative align-items-center">
-                  <div className="avatar" style={{ background: 'url(' + this.props.storeState.avatarUrl + ') no-repeat' }}></div>
-                  <i className="openDropDownMenuBt"></i>
-                  <div className="hederMenu">
-                    <span onClick={() => { this.accountRedirect("/profile", 1) }}>Профиль</span>
-                    <span className="blockedSpan" onClick={() => {  }}>Мои поездки</span>
-                    <span onClick={() => { this.accountRedirect("/settings", 6) }}>Настройки</span>
-                    <span onClick={() => { this.accountRedirect("/referrals", 8) }}>Партнерская программа</span>
-                    <span onClick={this.logOffFunc}>Выйти</span>
-                  </div>
-                </div>
-                */
-                }
-
               </div>
             </nav>
           </div>
