@@ -43,7 +43,6 @@ export default class LocationSearchInput extends React.Component {
       .catch(error => console.error('Error', error));
   };
   onInputBlur = () => {
-    debugger;
     this.setState({ inFocus: false })
   }
 
@@ -69,7 +68,6 @@ export default class LocationSearchInput extends React.Component {
                 if (!this.state.address) {
                   this.setState({ inFocus: false, inFocusOnly: false })
                 }
-                this.setState({ inFocusOnly: false })
               }}>
                 <span className={this.props.spanText ? "locationSvg" : " d-none"} style={{ display: this.state.inFocus ? "" : "none" }}>{this.props.spanText}</span>
                 <input id={this.props.id}
@@ -78,9 +76,9 @@ export default class LocationSearchInput extends React.Component {
                     var scrolled = window.pageYOffset || document.documentElement.scrollTop;
                     let el = e.currentTarget.getBoundingClientRect();
                     if(el.top>scrolled){
-                     window.scroll(0, el.top-2)
+                     window.scroll(0, el.top-46)
                     }else{
-                      let topMargin = scrolled + el.top-2;
+                      let topMargin = scrolled + el.top-46;
                      window.scroll(0, topMargin)
                     }
                     let footer = document.querySelector(".footerMobile");
@@ -96,8 +94,6 @@ export default class LocationSearchInput extends React.Component {
                   {...opts}
                 />
                   <i style={{ display: this.state.inFocusOnly ? "" : "none" }} onClick={() => { this.setState({ address: "" }) }} />
-              
-
               </div>
 
               <div className={"autocomplete-dropdown-container " + this.props.classDropdown}>

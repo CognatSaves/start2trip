@@ -14,10 +14,10 @@ const CityRouteTable = (props) => {
   const { cities, changeCity, removeCity } = props;
 
   let workCities = [...cities];
-  let alphabet = ["A","B","C","D","E","F","G","H","I",
-  "J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
+  let alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I",
+    "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
   // let tempStart = workCities.shift();
-   workCities.pop();
+  workCities.pop();
   console.log(cities, "cities");
   // console.log(workCities, "workCities");
   return (
@@ -26,12 +26,12 @@ const CityRouteTable = (props) => {
         <div className="addCities" >
           {cities.map((element, index) =>
             <div className="startCity d-flex col-12 p-0" key={element + index}>
-              <div className="col-10 pl-0 pr-1">
+              <div className={index <= 1 ? "col-12 p-0" : "col-10 pl-0 pr-1"}>
                 <div className="addCitiesLocationDropDown col p-0">
-                  <LocationSearchInput address={cities[index]} changeCity={changeCity} index={index} classDropdown="searchElement_style" spanText={alphabet[index]} placeholder={index?"Куда, выберите место":"Откуда, выберите место"} classDiv={index>1 && !cities[index] ? "classDivMobail  _checkDiv startCity-CheckInput":"classDivMobail  _checkDiv"} classInput="city_input _checkInput" />
+                  <LocationSearchInput address={cities[index]} changeCity={changeCity} index={index} classDropdown="searchElement_style" spanText={alphabet[index]} placeholder={index ? "Куда, выберите место" : "Откуда, выберите место"} classDiv={index > 1 && !cities[index] ? "classDivMobail  _checkDiv startCity-CheckInput" : "classDivMobail  _checkDiv"} classInput="city_input _checkInput" />
                 </div>
               </div>
-              <div className="crossToolTip col-2 p-0" onClick={() => removeCity(index)}>
+              <div className="crossToolTip col-2 p-0" style={{ display: index <= 1 ? "none" : "" }} onClick={() => removeCity(index)}>
                 <i className="crossIcon"></i>
               </div>
             </div>
@@ -39,22 +39,20 @@ const CityRouteTable = (props) => {
 
         </div>
         :
-        <div className="addCities" >
-          {workCities.map((element, index) =>
-            <div className="startCity d-flex col-12 p-0" key={element + cities[index + 1]}>
-              <div className="addCitiesLocationDropDown col-md-6 col-12 p-0">
-                <LocationSearchInput readOnlyOn={index ? true : false} address={element} changeCity={changeCity} index={index} classDiv={index ? "classDiv" : "classDiv _checkDiv"} classDropdown="searchElement_style" spanText={"Из"} placeholder={"Откуда, выберите место"} classInput={index ? "city_input" : "city_input _checkInput"} />
+        <div className="d-flex flex-wrap" >
+          {cities.map((element, index) =>
+            <div className="startCity d-flex col-6 p-0" key={element + index}>
+              <div className={index <= 1 ? (index % 2 === 0 ? "col-12 pl-0" : "col-12 pl-0 pr-1") : (index % 2 === 0 ? "col-10 pl-0" : "col-10 pl  -0 pr-1")}>
+                <div className="addCitiesLocationDropDown col p-0">
+                  <LocationSearchInput address={cities[index]} changeCity={changeCity} index={index} classDropdown="searchElement_style" spanText={alphabet[index]} placeholder={index ? "Куда, выберите место" : "Откуда, выберите место"} classDiv={index > 1 && !cities[index] ? "classDivMobail  _checkDiv startCity-CheckInput" : "classDivMobail  _checkDiv"} classInput="city_input _checkInput" />
+                </div>
               </div>
-              <div className="addCitiesLocationDropDown col p-0">
-                <LocationSearchInput address={cities[index + 1]} changeCity={changeCity} index={index + 1} classDiv={"classDiv _checkDiv"} classDropdown="searchElement_style" spanText={"В"} placeholder={"Куда, выберите место"} classInput="city_input _checkInput" />
-              </div>
-              <div className="crossToolTip col-md-1 col-3 p-0" style={{ display: index ? "flex" : "none" }} onClick={() => removeCity(index + 1)}>
-                <i style={{ background: "url(" + crossIcon + ") no-repeat" }} className="crossIcon"></i>
+              <div className="crossToolTip col p-0" style={{ display: index <= 1 ? "none" : "" }} onClick={() => removeCity(index)}>
+                <i className="crossIcon"></i>
                 <span className="crossToolTipText" style={{ display: isMobileOnly ? "none" : "block" }} >Удалить этот пункт назначения</span>
               </div>
             </div>
           )}
-
         </div>
       }
     </React.Fragment>
@@ -71,7 +69,7 @@ class RouteMenuClass extends React.Component {
   }
 
   chooseDate = (value) => {
-     //let dayMass = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
+    //let dayMass = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
     // let monthMass = ["января", "февраля", "марта", "апреля", "мая",
     //   "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
     let resultString = value.getDate() + "-" + value.getMonth() + "-" + value.getFullYear();
@@ -120,7 +118,7 @@ class RouteMenuClass extends React.Component {
       }
 
       this.props.globalhistory.history.push(`/drivers/${this.state.date},${newStringCities}`)
-      window.scroll(0,500);
+      window.scroll(0, 500);
     }
   }
 
@@ -146,13 +144,15 @@ class RouteMenuClass extends React.Component {
     return (
       <React.Fragment>
         <div className="routemenu_container d-flex flex-column col-12">
-          <CityRouteTable cities={this.props.cities} changeCity={this.props.changeCity} removeCity={this.props.removeCity} />
-          <div className=" d-flex routemenu_addCity" onClick={() => this.props.addCity()}>
-            <div className="routemenu_city_add_text" style={{ background: "url(" + addIcon + ") no-repeat" }} >Добавить пункт назначения</div>
-          </div>
+
+            <CityRouteTable cities={this.props.cities} changeCity={this.props.changeCity} removeCity={this.props.removeCity} />
+            <div className=" d-flex routemenu_addCity" onClick={() => this.props.addCity()}>
+              <div className="routemenu_city_add_text" style={{ background: "url(" + addIcon + ") no-repeat" }} >Добавить пункт назначения</div>
+            </div>
+
           <div className="routemenu_setDate">
             <DatePicker hintText="Дата отправления" minDate={new Date()} onChange={(e, date) => { this.chooseDate(date); let datePicer = document.querySelector(".routemenu_date"); datePicer.classList.remove("routemenu_date-Check") }} className="routemenu_date col" />
-           
+
             <div className="routemenu_search col-sm-6 col-12" onClick={() => { this.goToNextPage() }}>
               <div className="routemenu_search_button " >
                 <p className="routemenu_search_text">ПОИСК</p>
@@ -161,7 +161,7 @@ class RouteMenuClass extends React.Component {
           </div>
         </div>
 
-     
+
 
         <div className="routemenu_footer d-flex flex-sm-row flex-column-reverse align-items-center">
           <div className="routemenu_comment col">
