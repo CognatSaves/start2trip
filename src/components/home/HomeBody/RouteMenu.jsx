@@ -17,7 +17,7 @@ const CityRouteTable = (props) => {
   let alphabet = ["A","B","C","D","E","F","G","H","I",
   "J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
   // let tempStart = workCities.shift();
-  // workCities.pop();
+   workCities.pop();
   console.log(cities, "cities");
   // console.log(workCities, "workCities");
   return (
