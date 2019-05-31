@@ -31,6 +31,8 @@ class HomeBodyClass extends React.Component {
       cities: cities,
       mapUpdate: true
     });
+    let footer = document.querySelector(".footerMobile");
+    footer.classList.remove("footerMobile-activeInput")
   }
   addCity = () => {
     let cities = this.state.cities;
@@ -55,7 +57,6 @@ class HomeBodyClass extends React.Component {
         mapUpdate: true,
       })
     }
-
   }
   removeCity = (index) => {
     let cities = this.state.cities;

@@ -4,6 +4,7 @@ import PlacesAutocomplete, {
   getLatLng,
 } from 'react-places-autocomplete';
 import './Search.css';
+import { isMobileOnly } from 'react-device-detect';
 
 
 const searchOptions = {
@@ -63,22 +64,38 @@ export default class LocationSearchInput extends React.Component {
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) =>
           (
             <React.Fragment>
-              <div className={ "d-flex align-items-center col-12 " + this.props.classDiv} onBlur={() => { if (!this.state.address) { this.setState({ inFocus: false }) } }}>
+              <div className={"d-flex align-items-center col-12 " + this.props.classDiv} onBlur={() => {
+                if (!this.state.address) {
+                  this.setState({ inFocus: false })
+                }
+              }}>
                 <span className={this.props.spanText ? "" : " d-none"} style={{ display: this.state.inFocus ? "" : "none" }}>{this.props.spanText}</span>
                 <input id={this.props.id}
-                  onFocus={() => {
+                  onFocus={(e) => {
+                   if(isMobileOnly){
+                    var scrolled = window.pageYOffset || document.documentElement.scrollTop;
+                    let el = e.currentTarget.getBoundingClientRect();
+                    if(el.top>scrolled){
+                     window.scroll(0, el.top-2)
+                    }else{
+                      let topMargin = scrolled + el.top-2;
+                     window.scroll(0, topMargin)
+                    }
+                    let footer = document.querySelector(".footerMobile");
+                    footer.classList.add("footerMobile-activeInput")
+                   } 
                     this.setState({ inFocus: true })
                   }}
 
                   {...getInputProps({
                     placeholder: !this.state.inFocus ? this.props.placeholder : "",
-                    className: '' + this.props.classInput ,
+                    className: '' + this.props.classInput,
                   })}
                   {...opts}
                 />
                 {this.props.readOnlyOn ?
-                  <p/>:
-                  <i style={{ display: this.state.inFocus ? "" : "none"}} onClick={() => { this.setState({ address: "" }) }} />
+                  <p /> :
+                  <i style={{ display: this.state.inFocus ? "" : "none" }} onClick={() => { this.setState({ address: "" }) }} />
                 }
 
               </div>

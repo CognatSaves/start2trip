@@ -12,7 +12,6 @@ class TourPanelClass extends React.Component{
         this.state = {
             variantsArray:this.props.variantsArray,
         }
-        this.checkPanelFixed=this.checkPanelFixed.bind(this);
         window.onscroll = (e)=>this.checkPanelFixed(e);
     }
     shouldComponentUpdate(nextProps){ 
@@ -21,7 +20,7 @@ class TourPanelClass extends React.Component{
     componentDidMount(){
         this.checkPanelFixed();
     }
-    checkPanelFixed(){
+    checkPanelFixed=()=>{
         console.log("checkPanelFixed");
         if(document.getElementById(this.props.topBlockId)){
             var scrolled = window.pageYOffset || document.documentElement.scrollTop;

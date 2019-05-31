@@ -2,6 +2,11 @@
     align-items: center;
     width: 100%;
     border-bottom: 1px solid #ccc;
+    position: sticky !important;
+    background: #fff;
+    z-index: 33;
+    padding: 10px !important;
+    top: 0px;
 }
 
 .properties_rightBlock {
@@ -89,9 +94,47 @@
     font-size: 9pt;
 }
 
+.mobailSortIcon {
+    cursor: pointer;
+    width: 50%;
+    padding: 10px 0;
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.5);
+    margin: 5px;
+    color: #304269;
+    font-size: 14px;
+    font-weight: 500;
+    background: url(./pictures/sort_blue.svg) no-repeat;
+    background-size: 15px 15px;
+    background-position: center left 5px;
+}
+
+.footerMobileIconFilter {
+    cursor: pointer;
+    width: 50%;
+    padding: 10px 0;
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.5);
+    margin: 5px;
+    color: #304269;
+    font-size: 14px;
+    font-weight: 500;
+    background: url(./pictures/filter.svg) no-repeat;
+    background-size: 15px 15px;
+    background-position: center left 25px;
+}
+
 @media (max-width: 1140px) {}
 
-@media (max-width: 768px) {}
+@media (max-width: 768px) {
+    .properties_rightBlock {
+        width: 100%;
+    }
+    .properties_rightButton {
+        width: 100%;
+        min-height: 41px;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
 
 @media (max-width: 910px) {
     .properties_leftBlock {
