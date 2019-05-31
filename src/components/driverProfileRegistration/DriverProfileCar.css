@@ -239,9 +239,7 @@ p.filledCardInformationNameCarEdit:hover {
     box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     min-height: 480px;
-    margin-bottom: 30px;
-    margin-top: 30px;
-    margin-left: 20px;
+    margin: 30px 0px;
 }
 
 .carAddNewCarPhotoCar {
@@ -418,7 +416,7 @@ img.carPhotoMini {
 }
 
 .carShowButton,
-.carAddNewCarInformation button {
+.carAddNewCarButton button {
     min-height: 40px;
     max-height: 40px;
     text-align: center;
@@ -433,12 +431,12 @@ img.carPhotoMini {
 }
 
 .carShowButton:hover,
-.carAddNewCarInformation button:hover {
+.carAddNewCarButton button:hover {
     background: #f60;
 }
 
 .carShowButton:focus,
-.carAddNewCarInformation button:focus {
+.carAddNewCarButton button:focus {
     outline: none;
 }
 
@@ -514,8 +512,8 @@ img.carPhotoMini {
 
 @media (max-width: 768px) {
     .carAddNewCar {
-        -webkit-box-shadow: none;
-        box-shadow: none;
+        /*-webkit-box-shadow: none;*/
+        /*box-shadow: none;*/
         margin-left: 0px;
     }
     .carAddNewCarInformation input,

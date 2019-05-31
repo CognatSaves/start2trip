@@ -415,7 +415,7 @@ class RenderModalRegistrationClass extends React.Component {
                                     </div>
                                     <div className="inputIcon">
                                         <img className="lockIcon" src={lockIcon} alt="lockIcon" width='12px' height='12px' />
-                                        <input onFocus={() => { this.setState({ passwordType: !this.state.passwordType }) }} className="mobailsitingInLightInput"
+                                        <input onFocus={() => { this.setState({  regAnswerStatus: false, regProcessStatus: false, passwordType: !this.state.passwordType }) }} className="mobailsitingInLightInput"
                                         type={this.state.passwordType ? "password" : "text"} placeholder={pageTextInfo.registrationLightBackgroundText.thirdInputPlaceholderText[lang]}
                                         required  value = {this.state.password} onChange={(e)=>this.setState({password: e.target.value})}/>
                                         <img className="eyeIcon" src={eyeIcon} alt="eyeIcon" width='15px' height='15px' />
@@ -515,7 +515,7 @@ class RenderModalRegistrationClass extends React.Component {
                                     </div>
                                     <div className="inputIcon">
                                         <img className="lockIcon" src={lockIcon} alt="lockIcon" width='12px' height='12px' />
-                                        <input onFocus={() => { this.setState({ passwordType: !this.state.passwordType }) }} className="sitingInLightInput" 
+                                        <input onFocus={() => { this.setState({ regAnswerStatus: false, regProcessStatus: false, passwordType: !this.state.passwordType }) }} className="sitingInLightInput" 
                                         type={this.state.passwordType ? "password" : "text"} placeholder={pageTextInfo.registrationLightBackgroundText.thirdInputPlaceholderText[lang]}
                                         required value = {this.state.password} onChange={(e)=>this.setState({password: e.target.value})}/>
                                         <img className="eyeIcon" src={eyeIcon} alt="eyeIcon" width='15px' height='15px' />
