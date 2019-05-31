@@ -276,3 +276,39 @@
     font-size: 14px;
     line-height: 30px;
 }
+
+@media (max-width: 1140px) {}
+
+@media (max-width: 742px) {
+    .driversBlock_driverInfoBlock_element {
+        font-size: 14px;
+    }
+    .driversBlock_carInfoLine_value {
+        font-size: 16px;
+    }
+    .driversBlock_carName {
+        font-size: 18px;
+    }
+    .driversBlock_commentary {
+        font-size: 12px;
+    }
+    .driversBlock_buttonStyle {
+        font-size: 18px;
+    }
+    .driversBlock_driverCard_carIcon {
+        width: 35px;
+        height: 30px;
+        margin-right: 5px;
+    }
+    .driversBlock_languages_flag {
+        margin-right: 5px;
+        width: 18px;
+        height: 18px;
+        border-radius: 7px;
+    }
+    .driverBlock_carInfoLine {
+        padding: 0px;
+    }
+}
+
+@media (max-width: 576px) {}

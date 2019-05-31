@@ -1,24 +1,24 @@
 import React from 'react';
 import './RouteMenu.css'
 import addIcon from './pictures/addWhite.svg'
-import calendarIcon from './pictures/calendar.svg'
+// import calendarIcon from './pictures/calendar.svg'
 import crossIcon from './pictures/close.svg'
-import arrowIcon from './pictures/da_tru_big_arrow.png'
-import AutoMenu from '../../drivers/DriversBody/DriversProperties/components/AutoMenu/AutoMenu.jsx'
-import LanguageMenu from '../../drivers/DriversBody/DriversProperties/components/LanguageMenu/LanguageMenu.jsx'
-import PeopleMenu from '../../drivers/DriversBody/DriversProperties/components/PeopleMenu/PeopleMenu'
-import userWhiteIcon from '../HomeBody/pictures/white/user_white.svg'
-import shapeIcon from './pictures/Shape.svg'
-import ellipseIcon from './pictures/Ellipse.svg'
-import geoIcon from '../HomeBody/pictures/geo_icon.svg'
+// import arrowIcon from './pictures/da_tru_big_arrow.png'
+// import AutoMenu from '../../drivers/DriversBody/DriversProperties/components/AutoMenu/AutoMenu.jsx'
+// import LanguageMenu from '../../drivers/DriversBody/DriversProperties/components/LanguageMenu/LanguageMenu.jsx'
+// import PeopleMenu from '../../drivers/DriversBody/DriversProperties/components/PeopleMenu/PeopleMenu'
+// import userWhiteIcon from '../HomeBody/pictures/white/user_white.svg'
+// import shapeIcon from './pictures/Shape.svg'
+// import ellipseIcon from './pictures/Ellipse.svg'
+// import geoIcon from '../HomeBody/pictures/geo_icon.svg'
 import LocationSearchInput from './Search'
-import { UncontrolledCollapse, Button } from 'reactstrap';
+import { DragDropContext } from 'react-beautiful-dnd';
 import { connect } from 'react-redux';
 import DatePicker from 'material-ui/DatePicker';
-import {
-  languageMenuIsVisibal, changePersonsNumberDispatch,
-  changePersonsNumberDispatchOld, peopleMenuCall, autoMenuCall
-} from "../../../redusers/Action"
+// import {
+//   languageMenuIsVisibal, changePersonsNumberDispatch,
+//   changePersonsNumberDispatchOld, peopleMenuCall, autoMenuCall
+// } from "../../../redusers/Action"
 import { isMobileOnly } from 'react-device-detect'
 
 
@@ -38,7 +38,7 @@ const CityRouteTable = (props) => {
           {workCities.map((element, index) =>
             <div className="startCity d-flex col-12 p-0" key={element + cities[index + 1]}>
               <div className={index ? "col-10 pl-0 pr-1" : "col-12 p-0"}>
-                <div className="addCitiesLocationDropDown col-md-6 col-12 p-0 mb-1">
+                <div className="addCitiesLocationDropDown col-md-6 col-12 p-0 mb-1" style={{display: index?"none":"block"}} >
                   <LocationSearchInput readOnlyOn={index ? true : false} address={element} changeCity={changeCity} index={index} classDropdown="searchElement_style" spanText={"Из"} classDiv={index ? "classDivMobail readOnly " : "classDivMobail _checkDiv"} placeholder={"Откуда, выберите место"} classInput={index ? "city_input readOnly" : "city_input _checkInput"} />
                 </div>
                 <div className="addCitiesLocationDropDown col p-0">
@@ -166,7 +166,7 @@ class RouteMenuClass extends React.Component {
           </div>
           <div className="routemenu_setDate">
             <DatePicker hintText="Дата отправления" minDate={new Date()} onChange={(e, date) => { this.chooseDate(date); let datePicer = document.querySelector(".routemenu_date"); datePicer.classList.remove("routemenu_date-Check") }} className="routemenu_date col" />
-
+           
             <div className="routemenu_search col-sm-6 col-12" onClick={() => { this.goToNextPage() }}>
               <div className="routemenu_search_button " >
                 <p className="routemenu_search_text">ПОИСК</p>
