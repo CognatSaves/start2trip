@@ -255,10 +255,11 @@
     transition: opacity 0.3s;
 }
 
-.crossToolTip:hover .crossToolTipText {
+
+/* .crossToolTip:hover .crossToolTipText {
     visibility: visible;
     opacity: 1;
-}
+} */
 
 .crossIcon {
     cursor: pointer;
@@ -266,12 +267,15 @@
     margin: 0;
     width: 15px;
     height: 15px;
+    background: url(./pictures/close.svg) no-repeat;
     background-size: 15px 15px !important;
 }
 
+
+/* 
 .startCity:first-child:hover .crossIcon {
     visibility: hidden !important;
-}
+} */
 
 .startCity-CheckInput {
     /* outline: 2px solid rgb(37, 165, 154);
@@ -400,8 +404,8 @@ p.routemenu_search_text {
 .classDivMobail span {
     color: #686868;
     font-size: 14px;
-    font-weight: 400;
-    padding-left: 5px;
+    font-weight: 500;
+    padding: 5px;
 }
 
 .city_input:focus {
@@ -468,8 +472,8 @@ p.routemenu_search_text {
     .city_input {
         color: #304269;
     }
-    .routemenu_city_add_text,
     .classDivMobail span,
+    .routemenu_city_add_text,
     .city_input {
         font-size: 16px;
     }

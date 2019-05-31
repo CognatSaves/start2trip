@@ -17,6 +17,7 @@ export default class LocationSearchInput extends React.Component {
     this.state = {
       address: this.props.address,
       inFocus: this.props.address ? true : false,
+      inFocusOnly: false,
     }
   }
 
@@ -66,10 +67,11 @@ export default class LocationSearchInput extends React.Component {
             <React.Fragment>
               <div className={"d-flex align-items-center col-12 " + this.props.classDiv} onBlur={() => {
                 if (!this.state.address) {
-                  this.setState({ inFocus: false })
+                  this.setState({ inFocus: false, inFocusOnly: false })
                 }
+                this.setState({ inFocusOnly: false })
               }}>
-                <span className={this.props.spanText ? "" : " d-none"} style={{ display: this.state.inFocus ? "" : "none" }}>{this.props.spanText}</span>
+                <span className={this.props.spanText ? "locationSvg" : " d-none"} style={{ display: this.state.inFocus ? "" : "none" }}>{this.props.spanText}</span>
                 <input id={this.props.id}
                   onFocus={(e) => {
                    if(isMobileOnly){
@@ -84,7 +86,7 @@ export default class LocationSearchInput extends React.Component {
                     let footer = document.querySelector(".footerMobile");
                     footer.classList.add("footerMobile-activeInput")
                    } 
-                    this.setState({ inFocus: true })
+                    this.setState({ inFocus: true, inFocusOnly: true })
                   }}
 
                   {...getInputProps({
@@ -93,10 +95,8 @@ export default class LocationSearchInput extends React.Component {
                   })}
                   {...opts}
                 />
-                {this.props.readOnlyOn ?
-                  <p /> :
-                  <i style={{ display: this.state.inFocus ? "" : "none" }} onClick={() => { this.setState({ address: "" }) }} />
-                }
+                  <i style={{ display: this.state.inFocusOnly ? "" : "none" }} onClick={() => { this.setState({ address: "" }) }} />
+              
 
               </div>
 
