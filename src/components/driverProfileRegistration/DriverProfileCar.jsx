@@ -92,11 +92,12 @@ class DriverProfileCarClass extends React.Component {
         }, 2000);
     }
     applyChanges(type){
-        let jwt = this.props.globalReduser.readCookie('jwt');   
+        let jwt = this.props.globalReduser.readCookie('jwt');
+        debugger;   
         function checkCorrectData(newCarCard,imgFiles){
             let result = true;
             let obj;
-            
+            debugger;
             if(newCarCard.nameCar.length===0){
                 obj = document.getElementById('profileCarBrand');
                 obj.classList.add("errorColor");
@@ -148,7 +149,7 @@ class DriverProfileCarClass extends React.Component {
             }
             return result;
         }
-           
+        debugger;   
         if(jwt && jwt!=="-" && checkCorrectData(this.state.newCarCard, this.state.imgFiles)){
             let that = this; 
             this.startRefresher();
@@ -220,6 +221,7 @@ class DriverProfileCarClass extends React.Component {
         
     } 
     formSubmit(event) {
+        debugger;
         console.log('formSubmit');
         if(!this.state.car.id){
             this.applyChanges(true);//если новый, то true
@@ -393,7 +395,8 @@ class DriverProfileCarClass extends React.Component {
         }
         let cars = this.props.globalReduser.profile.cars;
         console.log("DriverProfileCar render");
-        console.log(this.state.isRefreshExist);
+        console.log('state');
+        console.log(this.state);
         //выдаёт значения строго на русском - впоследствие будет переделана
         let carTypes = findCarTypeNames(cars, this.props.globalReduser.profile.carTypes);
 
@@ -402,30 +405,32 @@ class DriverProfileCarClass extends React.Component {
             <div className="_ThisTagIsNeeded">
             <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer}/>
                 
-                <Collapse isOpen={this.state.collapse}>
-                    <div className="carAddNewCar d-flex flex-column align-items-xl-start align-items-lg-start align-items-md-start align-items-sm-center align-items-center">
-                        <div className="tourContentTitle d-flex align-items-center mb-0" style={{width: '100%'}}>
-                            <p>{textPage.carContentTitle}</p>
+                <Collapse isOpen={this.state.collapse} className="col-12">
+                    <div className="carAddNewCar d-flex flex-column align-items-end">
+                        <div className="tourContentTitle d-flex align-items-center mb-0 col-12" >
+                            <p style={{marginTop: '1rem'}}>{textPage.carContentTitle}</p>
                         </div>
-                        <div style={{width: '100%'}} className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-start align-items-lg-start align-items-md-start align-items-sm-center align-items-center">
+                        
+                        <form onSubmit={this.formSubmit} id="newCar" className="col-12 carAddNewCarInformation d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column-reverse flex-column-reverse align-items-xl-start align-items-lg-start align-items-md-start align-items-sm-center align-items-center">
                             <div className="carAddNewCarPhotoCar col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 pt-3">
-                                <div style={ this.state.imagePreviewUrl ? {}:{background:"#686868",  height:"300px" ,borderRadius:"5px"}}>
-                                    {$imagePreview}
-                                </div>    
-                                <label htmlFor="addCarFile" ></label>
-                                <input type="file" id="addCarFile" style={{ display: "none" }} multiple onChange={this._handleImageChange}/>
-                                <div className="carPhotoMiniContainer d-flex overflow-auto">
-                                    {this.state.carImg.map((element, index) =>
-                                        <div className="position-relative">
-                                        <img src={element} className="carPhotoMini" alt="add_car" onClick={() => { this.setState({ imagePreviewUrl: this.state.carImg[index] }) }} />
-                                            <span onClick={() => { this.state.carImg.splice(index, 1); this.state.imgFiles.splice(index,1); this.setState({ imgFiles: this.state.imgFiles, carImg: this.state.carImg, imagePreviewUrl: this.state.carImg[0] }) }}></span>
-                                        </div>
-                                    )}
-                                </div>
-                                <div id="labelCarEmpty" className="labelCarEmpty" style={{visibility: 'hidden'}}>Существует крайняя нужда в фото вашего автомобиля</div>
-
+                            <div style={ this.state.imagePreviewUrl ? {}:{background:"#686868",  height:"300px" ,borderRadius:"5px"}}>
+                                {$imagePreview}
+                            </div>    
+                            <label htmlFor="addCarFile" ></label>
+                            <input type="file" id="addCarFile" style={{ display: "none" }} multiple onChange={this._handleImageChange}/>
+                            <div className="carPhotoMiniContainer d-flex overflow-auto">
+                                {this.state.carImg.map((element, index) =>
+                                    <div className="position-relative">
+                                    <img src={element} className="carPhotoMini" alt="add_car" onClick={() => { this.setState({ imagePreviewUrl: this.state.carImg[index] }) }} />
+                                        <span onClick={() => { this.state.carImg.splice(index, 1); this.state.imgFiles.splice(index,1); this.setState({ imgFiles: this.state.imgFiles, carImg: this.state.carImg, imagePreviewUrl: this.state.carImg[0] }) }}></span>
+                                    </div>
+                                )}
                             </div>
-                            <form onSubmit={this.formSubmit} id="newCar" className="carAddNewCarInformation d-flex flex-column col-xl-6 col-lg-6 col-md-6 col-sm-11 col-11 p-0">
+                            <div id="labelCarEmpty" className="labelCarEmpty" style={{visibility: 'hidden'}}>Существует крайняя нужда в фото вашего автомобиля</div>
+
+                        </div>
+                        
+                            <div className="d-flex flex-column col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 pt-3">
                                 <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mt-2">
                                     <label htmlFor="profileCarBrand" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">{textPage.profileCarBrand.floatingLabelText}:</label>
                                     <input id="profileCarBrand" className="d-xl-block d-lg-block d-md-block d-sm-none d-none " value={this.state.newCarCard.nameCar} onChange={(e) => {
@@ -651,19 +656,29 @@ class DriverProfileCarClass extends React.Component {
                                         </label>
                                     </div>
                                 </div>
-                                <div className="carAddNewCarButton d-flex align-items-center mb-5">
-                                    <span className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-4 p-0" />
-                                    <button htmlFor="newCar" type="submit">{textPage.carAddNewCarButton.button}</button>
-                                    <span className="ml-3" onClick={()=>this.toggle()}>{textPage.carAddNewCarButton.span}</span>
-                                </div>
-                            </form>
+                            </div>
+                            
+
+                        </form>
+                        <div className="carAddNewCarButton d-flex col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 pt-3 align-items-center justify-content-sm-start justify-content-center mb-5">
+                            <span className="d-xl-block d-lg-block d-md-block d-sm-block d-none col-4 p-0" />
+                            <button htmlFor="newCar" type="submit" onClick={(e)=>this.formSubmit(e)}>{textPage.carAddNewCarButton.button}</button>
+                            <span className="ml-3" onClick={()=>this.toggle()}>{textPage.carAddNewCarButton.span}</span>
                         </div>
+                        
                     </div>
                 </Collapse>
-
+                {
+                    /*
+                <div className="d-none d-sm-block">
+                    <p className="d-block d-sm-none" style={{marginTop: '1rem', marginBottom: '0'}}>Ваши автомобили</p>
+                </div>
+                    */
+                }
                 <div className="filledCardBody p-0 d-flex justify-content-xl-start justify-content-lg-start justify-content-md-start justify-content-sm-center justify-content-center flex-wrap col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 " >
-                    <div style={{ display: this.state.collapse ? "none" : "block" }} onClick={()=>this.toggle()} className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-11 p-2" >
-                        <div className="filledCardImgAdd">
+                    <div onClick={()=>this.toggle()} className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-11 p-2" style={{ display: this.state.collapse ? "none" : "block" }}>
+                        
+                        <div className="filledCardImgAdd" >
                             <div className="d-flex flex-column justify-content-center align-items-center">
                                 <span />
                                 <p>{textPage.filledCard.button}</p>
