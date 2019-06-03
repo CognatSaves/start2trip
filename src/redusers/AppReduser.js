@@ -35,7 +35,10 @@ import {
 
 
 const initialState = {
-    cities: ["", ""],
+    cities: [
+        {point: "", lat: "", long: ""},
+        {point: "", lat: "", long: ""},
+    ],
     date: "",
     autoVariants: ["Седан", "Внедорожник", "Минивен", "Микроавтобус"],
     autoIcon: sedan,

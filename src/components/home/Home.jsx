@@ -35,6 +35,8 @@ class HomeClass extends React.Component {
   render() {
     //console.log(isMobileOnly , "isMobileOnly")
     //console.log(isTablet , "isTablet")
+    console.log('Home render');
+    console.log(this.props);
     return (
       <React.Fragment>
         <main className="d-flex flex-column container-fluid p-0">

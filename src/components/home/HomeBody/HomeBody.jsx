@@ -24,10 +24,14 @@ class HomeBodyClass extends React.Component {
 
   }
 
-  changeCity = (index, value) => {
-
+  changeCity = (index, value, extraData) => {
+    debugger;
     let cities = this.state.cities;
-    cities[index] = value;
+    cities[index] = {
+      point: value,
+      lat: extraData.location.lat,
+      long: extraData.location.long
+    };
     this.setState({
       cities: cities,
       mapUpdate: true
@@ -50,9 +54,13 @@ class HomeBodyClass extends React.Component {
         flagCities = false;
       }
     }
-    if (cities[cities.length - 1] == "") {
+    if (cities[cities.length - 1].point == "") {
     } else if(flagCities){
-      cities[cities.length] = "";
+      cities[cities.length] = {
+        point: '',
+        lat: '',
+        long: ''
+      };
       this.setState({
         cities: cities,
         mapUpdate: true,

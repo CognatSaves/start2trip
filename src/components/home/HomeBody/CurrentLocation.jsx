@@ -63,14 +63,14 @@ export class CurrentLocation extends React.Component {
       let waypoints = [];
       for (let i = 1; i < cities.length - 1; i++) {
         waypoints[i - 1] = {
-          location: cities[i],
+          location: cities[i].point,
           stopover: true
         }
       }
       let request =
       {
-        origin: cities[0], //точка старта
-        destination: cities[cities.length - 1], //точка финиша
+        origin: cities[0].point, //точка старта
+        destination: cities[cities.length - 1].point, //точка финиша
         waypoints: waypoints,
         travelMode: travelMode, //режим прокладки маршрута
       };

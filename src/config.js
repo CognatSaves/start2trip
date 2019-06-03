@@ -19,6 +19,7 @@ const userTourDestroyRequest = serverAddress + '/tours/me';//запрос для
 const userTourUpdateRequest = serverAddress + '/tours/me';//запрос для админки
 const userTourActivateRequest = serverAddress + '/tours/me/activate';//запрос для админки
 const getLocals = serverAddress + "/getLocals";//первичный запрос массивов языков и валют
+const getDrivers = serverAddress + "/findDrivers";//запрос на водителей для выбранного маршрута
 
 const forgotPassword = serverAddress + "/auth/forgotPassword";
 const resetPassword = serverAddress + "/auth/reset-password";
