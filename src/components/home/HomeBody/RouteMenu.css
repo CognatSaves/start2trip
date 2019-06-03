@@ -344,9 +344,9 @@ p.routemenu_search_text {
 .routemenu_comment_text {
     width: 100%;
     text-align: center;
-    font-size: 12px;
+    font-size: 14px;
     color: #fff;
-    font-weight: 500;
+    font-weight: 400;
 }
 
 .city_input {

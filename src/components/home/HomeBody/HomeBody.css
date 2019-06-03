@@ -95,10 +95,10 @@
 
 .routContent {
     margin-bottom: 100px;
-    background: rgba(48, 66, 105, 0.8);
+    background: rgba(48, 66, 105, 0.9);
     border-radius: 0 0 5px 5px;
     padding: 20px !important;
-    padding-bottom: 40px !important;
+    padding-bottom: 20px !important;
     height: 100%;
 }
 

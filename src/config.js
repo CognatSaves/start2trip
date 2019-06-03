@@ -1,5 +1,5 @@
 import serverAddress from './serverAddress';
-const frontendAddress = 'http://localhost:3000';//'http://tripfer.com';
+const frontendAddress = 'http://tripfer.com'; //'http://localhost:3000';
 
 const serverRegistrationRequest = serverAddress+'/auth/local/register';
 const serverAuthorizationRequest = serverAddress+'/auth/local';
@@ -24,12 +24,29 @@ const getDrivers = serverAddress + "/findDrivers";//запрос на водит
 const forgotPassword = serverAddress + "/auth/forgotPassword";
 const resetPassword = serverAddress + "/auth/reset-password";
 const changeMyDriver = serverAddress + "/users/me/changeDriver";
-export default {frontendAddress:frontendAddress,serverAddress: serverAddress, serverRegistrationRequest: serverRegistrationRequest, facebookRequest: facebookRequest,
-     googleRequest: googleRequest, serverAuthorizationRequest: serverAuthorizationRequest, meRequest: meRequest, 
-     profileRequest:profileRequest, profileUpdateRequest: profileUpdateRequest, travelsettingsUpdateRequest: travelsettingsUpdateRequest,
-     userCarsCreateRequest: userCarsCreateRequest,userCarDestroyRequest:userCarDestroyRequest,
-     userCarUpdateRequest: userCarUpdateRequest, userCarActivateRequest:userCarActivateRequest,
-     userAvatarChangeRequest:userAvatarChangeRequest, userTourCreateRequest:userTourCreateRequest,
-     userTourDestroyRequest:userTourDestroyRequest, userTourUpdateRequest: userTourUpdateRequest,
-     userTourActivateRequest:userTourActivateRequest, getLocals:getLocals,forgotPassword:forgotPassword,
-     resetPassword:resetPassword, changeMyDriver:changeMyDriver};
+export default {
+    frontendAddress: frontendAddress,
+    serverAddress: serverAddress,
+    serverRegistrationRequest: serverRegistrationRequest,
+    facebookRequest: facebookRequest,
+    googleRequest: googleRequest,
+    serverAuthorizationRequest: serverAuthorizationRequest,
+    meRequest: meRequest,
+    profileRequest: profileRequest,
+    profileUpdateRequest: profileUpdateRequest,
+    travelsettingsUpdateRequest: travelsettingsUpdateRequest,
+    userCarsCreateRequest: userCarsCreateRequest,
+    userCarDestroyRequest: userCarDestroyRequest,
+    userCarUpdateRequest: userCarUpdateRequest,
+    userCarActivateRequest: userCarActivateRequest,
+    userAvatarChangeRequest: userAvatarChangeRequest,
+    userTourCreateRequest: userTourCreateRequest,
+    userTourDestroyRequest: userTourDestroyRequest,
+    userTourUpdateRequest: userTourUpdateRequest,
+    userTourActivateRequest: userTourActivateRequest,
+    getLocals: getLocals,
+    forgotPassword: forgotPassword,
+    resetPassword: resetPassword,
+    changeMyDriver: changeMyDriver,
+    getDrivers: getDrivers
+};

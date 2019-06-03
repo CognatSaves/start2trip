@@ -92,7 +92,7 @@ class DriversBlockClass extends React.Component {
       <div className="drivers_block d-flex flex-wrap">
         {
           selectedElements.map((element, index) =>
-            <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 p-2">
+            <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 p-2 pb-3">
               <div className="driversBlock_driverCard d-flex flex-column ">
                 <div className="driversBlock_carImage" style={{ background: "url(" + ToyotaPrado + ") no-repeat", backgroundSize: "cover" }}>
                   <Link to={`/driverProfile/${element.id},${element.id},${element.id}`} className="driversBlock_carBlackout">
