@@ -29,7 +29,7 @@ const CityRouteTable = (props) => {
             <div className="startCity d-flex col-12 p-0" key={element + index}>
               <div className={index <= 1 ? "col-12 p-0" : "col-10 pl-0 pr-1"}>
                 <div className="addCitiesLocationDropDown col p-0">
-                  <LocationSearchInput address={cities[index]} changeCity={changeCity} index={index} classDropdown="searchElement_style" spanText={alphabet[index]} placeholder={index ? "Куда, выберите место" : "Откуда, выберите место"} classDiv={index > 1 && !cities[index] ? "classDivMobail  _checkDiv startCity-CheckInput" : "classDivMobail  _checkDiv"} classInput="city_input _checkInput" isoCountryMap={isoCountryMap}/>
+                  <LocationSearchInput address={cities[index].point} changeCity={changeCity} index={index} classDropdown="searchElement_style" spanText={alphabet[index]} placeholder={index ? "Куда, выберите место" : "Откуда, выберите место"} classDiv={index > 1 && !cities[index] ? "classDivMobail  _checkDiv startCity-CheckInput" : "classDivMobail  _checkDiv"} classInput="city_input _checkInput" isoCountryMap={isoCountryMap}/>
                 </div>
               </div>
               <div className="crossToolTip col-2 p-0" style={{ display: index <= 1 ? "none" : "" }} onClick={() => removeCity(index)}>
@@ -45,7 +45,7 @@ const CityRouteTable = (props) => {
             <div className="startCity d-flex col-6 p-0" key={element + index}>
               <div className={index <= 1 ? (index % 2 === 0 ? "col-12 pl-0 pr-1" : "col-12 pl-0 pr-1") : (index % 2 === 0 ? "col-10 pl-0 pr-1" : "col-10 pl-0 pr-1 ")}>
                 <div className="addCitiesLocationDropDown col p-0">
-                  <LocationSearchInput address={cities[index]} changeCity={changeCity} index={index} classDropdown="searchElement_style" spanText={alphabet[index]} placeholder={index ? "Куда, выберите место" : "Откуда, выберите место"} classDiv={index > 1 && !cities[index] ? "classDiv  _checkDiv startCity-CheckInput" : "classDiv  _checkDiv"} classInput="city_input _checkInput" isoCountryMap={isoCountryMap}/>
+                  <LocationSearchInput address={cities[index].point} changeCity={changeCity} index={index} classDropdown="searchElement_style" spanText={alphabet[index]} placeholder={index ? "Куда, выберите место" : "Откуда, выберите место"} classDiv={index > 1 && !cities[index] ? "classDiv  _checkDiv startCity-CheckInput" : "classDiv  _checkDiv"} classInput="city_input _checkInput" isoCountryMap={isoCountryMap}/>
                 </div>
               </div>
               <div className="crossToolTip col p-0" style={{ display: index <= 1 ? "none" : "" }} onClick={() => removeCity(index)}>
@@ -91,7 +91,7 @@ class RouteMenuClass extends React.Component {
         massDivInput[i].classList.add("startCity-CheckInput")
         flag = false;
       }
-      if (massInput[i].defaultValue !== massCities[i]) {
+      if (massInput[i].defaultValue !== massCities[i].point) {
         let massDivInput = document.querySelectorAll("._checkDiv")
         massDivInput[i].classList.add("startCity-error")
         flag = false;
@@ -123,7 +123,7 @@ class RouteMenuClass extends React.Component {
     let canMove;
     let country = "";
     for (let i = 0; i < this.props.cities.length; i++) {
-      let arrayAdress = this.props.cities[i].split(',');
+      let arrayAdress = this.props.cities[i].point.split(',');
 
       let date = this.getCountry(arrayAdress,country);
       country = date.country;

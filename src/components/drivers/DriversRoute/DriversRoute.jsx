@@ -35,7 +35,11 @@ class DriversRouteClass extends React.Component {
     }
     if (cities[cities.length - 1] == "") {
     } else if (flagCities) {
-      cities[cities.length] = "";
+      cities[cities.length] = {
+        point: "",
+        lat: "",
+        long: ""
+      };
       this.setState({
         cities: cities,
         mapUpdate: true,
@@ -61,9 +65,13 @@ class DriversRouteClass extends React.Component {
       date: resultString,
     });
   }
-  changeCity = (index, value) => {
+  changeCity = (index, value, extraData) => {
     let cities = this.state.cities;
-    cities[index] = value;
+    cities[index] = {
+      point:value,
+      lat: extraData.location.lat,
+      long: extraData.location.long
+    };
     this.setState({
       cities: cities,
     });
@@ -77,13 +85,13 @@ class DriversRouteClass extends React.Component {
           massInput[i].classList.add("startCity-CheckInput")
           flagCities = false;
         }
-        if (massInput[i].defaultValue !== cities[i]) {
+        if (massInput[i].defaultValue !== cities[i].point) {
           massInput[i].classList.add("startCity-error")
           flagCities = false;
         }
       }
       for (let i = 0; i < cities.length; i++) {
-        if (cities[i].length === "") {
+        if (cities[i].point.length === "") {
           return false;
         }
       }
@@ -109,12 +117,12 @@ class DriversRouteClass extends React.Component {
     return (
       <div className="addCities col-12 p-0" >
         {workCities.map((element, index) =>
-          <div className="startCity d-flex col-md-8 col-12 p-0" key={element + this.state.cities[index + 1]}>
+          <div className="startCity d-flex col-md-8 col-12 p-0" key={element + this.state.cities[index + 1].point}>
             <div className="addCitiesLocationDropDown col-6 p-0">
-              <LocationSearchInput readOnlyOn={index ? true : false} address={element} changeCity={this.changeCity} index={index} classDropdown="searchElement_style" classInput={index ? "city_input" : "city_input _checkInput"} />
+              <LocationSearchInput readOnlyOn={index ? true : false} address={element.point} changeCity={this.changeCity} index={index} classDropdown="searchElement_style" classInput={index ? "city_input" : "city_input _checkInput"} />
             </div>
             <div className="addCitiesLocationDropDown">
-              <LocationSearchInput address={this.state.cities[index + 1]} changeCity={this.changeCity} index={index + 1} classDropdown="searchElement_style" classInput="city_input _checkInput" />
+              <LocationSearchInput address={this.state.cities[index + 1].point} changeCity={this.changeCity} index={index + 1} classDropdown="searchElement_style" classInput="city_input _checkInput" />
             </div>
 
             <div className="crossToolTip col-1" style={{ display: index ? "flex" : "none" }} onClick={() => this.removeCity(index + 1)}>
@@ -148,7 +156,7 @@ class DriversRouteClass extends React.Component {
             {this.state.cities.map((element, index) =>
               <React.Fragment>
                 <div className="route_show_Line" style={{ display: index ? "block" : "none" }} />
-                <span className="route_show_text" >{this.state.cities[index]}</span>
+                <span className="route_show_text" >{this.state.cities[index].point}</span>
               </React.Fragment>
 
             )}

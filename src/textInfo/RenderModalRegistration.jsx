@@ -3,38 +3,34 @@ const pageTextInfo = {
     sitingInDarkBackgroundText: { 
         titleSitingIn: ["Войти в аккаунт","Log in"],
         sitingInFirstText: ["С возвращением!","Greetings"], 
-        sitingInSecondText: ["Пожалуйста, введите свои данные.","?(Please, enter your data)"], 
+        sitingInSecondText: ["Пожалуйста, введите логин и пароль, чтобы войти.","(Please, enter your login and password to enter)"], 
         buttonText: ["ВОЙТИ","LOG IN"] 
     },
     sitingInLightBackgroundText: { 
         titleSitingIn: ["Войти в аккаунт", "Log in"], 
-        sitingInFirstText: ["Через социальные сети", "Through social networks"], 
-        sitingInSecondText: ["или используйте Ваш email для входа","????(or use your email to login)"], 
+        sitingInFirstText: ["Войти через социальные сети", "Enter with social networks"], 
+        sitingInSecondText: ["или используйте Ваш email для входа","(or use your email to continue)"], 
         firstInputPlaceholderText: ["Имя","Name"],
         secondInputPlaceholderText: ["Email","Email"],
         linkText: ["Забыли пароль?","Forgot your password?"], 
         buttonText: ["ВОЙТИ","LOG IN"],
-        mobailbuttonText: ["Войти","Log in"],
-        mobailText:["Уже есть аккаунт?","Already have an account?"]
+
     },
 
     registrationDarkBackgroundText: { 
-        registrationTitle: ["Добро пожаловать!","Greetings!"], 
-        registrationFirstText: ["Введите свои персональные данные","Enter your personal data"], 
+        registrationTitle: ["Добро пожаловать!","Welcome!"], 
+        registrationFirstText: ["Зарегистрируйтесь на сайте","Sign up with your login and password"], 
         registrationSecondText: ["и начинайте путешествие вместе с нами!","and start the journey with us!"], 
-        buttonText: ["РЕГИСТРАЦИЯ","REGISTRATION"] ,
-        mobailbuttonText: ["Зарегистрироваться","To register"],
-        mobailText:["Нет аккаунта?","No account?"]
+        buttonText: ["РЕГИСТРАЦИЯ","REGISTRATION"] 
     },
     registrationLightBackgroundText: { 
-        registrationTitle: ["Создать аккаунт","Create account"], 
-        registrationFirstText: ["Через социальные сети","Through social networks"], 
-        registrationSecondText: ["или используйте Ваш email для регистрации","????(or use your email for registration)"], 
+        registrationTitle: ["Создать аккаунт","Sign up for Tripfer"], 
+        registrationFirstText: ["Регистрация через социальные сети","Continue with social networks"], 
+        registrationSecondText: ["или используйте Ваш email для регистрации","(or use your email for registration)"], 
         thirdInputPlaceholderText: ["Пароль","Password"],  
     },
     registrationUserType:{
-        userTypeText: ["Выберите тип пользователя","Select user type"],
-        userTypeTextError: ["Сделайте выбор","Make a choice"],
+        userTypeText: ["Выберите тип аккаунта","Select account type"],
         buttonNext:["Далее","Next"],
         buttonReturn:["Назад","Return"],
         userTypes:[
@@ -45,36 +41,35 @@ const pageTextInfo = {
                 userText: ["Водитель","Driver"]
             },
             {
-                userText: ["Автопарк/турагентство","Car park/travel agency"]
+                userText: ["Партнер","Partner"]
             }
         ]
     },
     registrationAnswer:[
         ["Успешно","Success"],
-        ["Почта уже занята","Email is already occupied"],
-        ["Аккаунт имеет неопознанный статус",""],//imposible to find the root role 
-        ["Слишком много знаков $ в пароле","Sending request"],
-        ["Подтвердите ваш аккаунт",""],//отказались от подтверждения
-        ["Регистрация временно запрещена",""],
-        ["Аккаунта с такой почтой не существует","6 answer new"],
-        ["По этой почте аккаунт уже создан","7 answer new"],
-        ["Токен подтверждения некорректен",""],
-        ["Данный оператор сейчас не доступен",""],//соцсети
-        ["Пароль некорректен",""],
-        ["Предоставлены некорректные параметры",""],//?
-        ["Предоставле некорректный код",""],//?
-        ["Почта или пароль некоррректны",""],
-        ["Локальный пароль не создан. Авторизуйтесь через соцсеть",""],//пароль создается всегда
-        ["Вы не администратор",""],//?
-        ["Аккаунт заблокирован",""],
-        ["Подтвердите ваш аккаунт",""],//отказались от подтверждения
-        ["Вставьте пароль",""],//невозможно отправить без пароля
-        ["Вставьте почту",""],//невозможно отправить без почты
+        ["Почта уже занята","Email is already registered"],
+        ["Аккаунт имеет неопознанный статус","Undifined Account status"],//imposible to find the root role 
+        ["Слишком много знаков $ в пароле","Too much $ in password"],
+        ["Подтвердите ваш аккаунт","Confirm your account"],//отказались от подтверждения
+        ["Регистрация временно запрещена","Registration is temporally unavailable"],
+        ["Аккаунта с такой почтой не существует","Email not exist"],
+        ["По этой почте аккаунт уже создан","This email is already registered"],
+        ["Токен подтверждения некорректен","Incorrect token"],
+        ["Данный оператор сейчас не доступен","Social provider error"],//соцсети
+        ["Логин или пароль введены неверно","Incorrect login or password"],
+        ["Предоставлены некорректные параметры","Incorrect parameters"],//?
+        ["Предоставле некорректный код","Incorrect code"],//?
+        ["Почта или пароль введены неверно","Incorrect login or password"],
+        ["Локальный пароль не создан. Авторизуйтесь через соцсеть","Registration error. Contunue with social networks"],//пароль создается всегда
+        ["Вы не администратор","insufficient rights"],//?
+        ["Аккаунт заблокирован","Account has been blocked"],
+        ["Подтвердите ваш аккаунт","Confirm your email"],//отказались от подтверждения
+        ["Вставьте пароль","Enter your password"],//невозможно отправить без пароля
+        ["Вставьте почту","Enter your email"],//невозможно отправить без почты
     ],
     registrationProcess:[
-        ["Запрос отправляется", "Request is sending"]
+        ["Регистрируем Вас", "Registration in process"]
     ]
 }
 export default pageTextInfo;
-
 
