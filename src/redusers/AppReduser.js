@@ -69,6 +69,7 @@ const initialState = {
     languageIcon: languageBlueIcon,
     languageMenu: false,
     country: "GEO",
+    isoCountryMap: "ge",
     avatarUrl: "",
     userName: "",
     isAuthorized: false,
@@ -271,6 +272,7 @@ export const AppReduser = (state = initialState, action) => {
             {
                 let newState = {...state };
                 newState.country = action.country;
+                newState.isoCountryMap = action.isoCountryMap;
                 return newState;
             }
         case OPEN_FILTER_SHOW:

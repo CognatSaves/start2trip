@@ -36,52 +36,52 @@ const SET_USER = 'SET_USER';
 
 const SET_LOCALS = 'SET_LOCALS';
 
-const setLocals = function(languages, currencies){
-  
-  return{
-    type: 'SET_LOCALS',
-    languages: languages,
-    currencies: currencies
-  }
+const setLocals = function(languages, currencies) {
+
+    return {
+        type: 'SET_LOCALS',
+        languages: languages,
+        currencies: currencies
+    }
 }
 
-const setUser = function(userName, avatarUrl){
-  return{
-    type: 'SET_USER',
-    userName: userName,
-    avatarUrl: avatarUrl
-  }
+const setUser = function(userName, avatarUrl) {
+    return {
+        type: 'SET_USER',
+        userName: userName,
+        avatarUrl: avatarUrl
+    }
 }
-const set_state = function (sourse, cities, date, calendaryVisibility, picture) {
-  return {
-    type: 'SET_STATE',
-    sourse: sourse,
-    cities: cities,
-    date: date,
-    calendaryVisibility: calendaryVisibility,
-    picture: picture,
-  };
-}
-
-const setCities = function (cities){
-  return {
-    type: 'SET_CITIES',
-    cities: cities
-  }
+const set_state = function(sourse, cities, date, calendaryVisibility, picture) {
+    return {
+        type: 'SET_STATE',
+        sourse: sourse,
+        cities: cities,
+        date: date,
+        calendaryVisibility: calendaryVisibility,
+        picture: picture,
+    };
 }
 
-const setAuto = function (autoValue,autoIcon){
-  return {
-    type: 'SET_AUTO',
-    autoValue: autoValue,
-    autoIcon: autoIcon,
-  }
+const setCities = function(cities) {
+    return {
+        type: 'SET_CITIES',
+        cities: cities
+    }
 }
-const autoMenuCall = function (autoMenu){
-  return {
-    type: 'AUTO_MENU_CALL',
-    autoMenu: autoMenu,
-  }
+
+const setAuto = function(autoValue, autoIcon) {
+    return {
+        type: 'SET_AUTO',
+        autoValue: autoValue,
+        autoIcon: autoIcon,
+    }
+}
+const autoMenuCall = function(autoMenu) {
+    return {
+        type: 'AUTO_MENU_CALL',
+        autoMenu: autoMenu,
+    }
 }
 
 
@@ -172,32 +172,52 @@ const languageMenuIsVisibal = function(languageMenu) {
     };
 }
 
-const modalCountryDispacth = function(country) {
+const modalCountryDispacth = function(country, iso) {
     return {
         type: 'MODAL_COUNTRY',
         country: country,
+        isoCountryMap: iso,
     };
 }
 
 
 export {
-  set_state, SET_STATE, 
-  setCities, SET_CITIES,
-  setAuto, SET_AUTO,
-  setPages, SET_PAGES,
-  setPagesVisible, SET_PAGES_VISIBLE,
-  setSortMenu, SET_SORT_MENU,
-  setSortMenuVisible, SET_SORT_MENU_VISIBLE,
-  setMaxPrice, SET_MAX_PRICE,
-  setTempPricePart, SET_TEMP_PRICE_PART,
-  setPricePart, SET_PRICE_PART,
-  changePersonsNumberDispatch, CHANGE_PERSONS_NUMBER, 
-  peopleMenuCall, PEOPLE_MENU_CALL,
-  changePersonsNumberDispatchOld, CHANGE_PERSONS_NUMBER_OLD,
-  languageValueChooseDispatch, LANGUAGE_VALUE_CHOOSE,
-  languageMenuIsVisibal, LANGUAGE_MENU_IS_VISIBAL,
-  autoMenuCall, AUTO_MENU_CALL,
-  modalCountryDispacth, MODAL_COUNTRY,
-  setUser,SET_USER,
-  setLocals,SET_LOCALS
+    set_state,
+    SET_STATE,
+    setCities,
+    SET_CITIES,
+    setAuto,
+    SET_AUTO,
+    setPages,
+    SET_PAGES,
+    setPagesVisible,
+    SET_PAGES_VISIBLE,
+    setSortMenu,
+    SET_SORT_MENU,
+    setSortMenuVisible,
+    SET_SORT_MENU_VISIBLE,
+    setMaxPrice,
+    SET_MAX_PRICE,
+    setTempPricePart,
+    SET_TEMP_PRICE_PART,
+    setPricePart,
+    SET_PRICE_PART,
+    changePersonsNumberDispatch,
+    CHANGE_PERSONS_NUMBER,
+    peopleMenuCall,
+    PEOPLE_MENU_CALL,
+    changePersonsNumberDispatchOld,
+    CHANGE_PERSONS_NUMBER_OLD,
+    languageValueChooseDispatch,
+    LANGUAGE_VALUE_CHOOSE,
+    languageMenuIsVisibal,
+    LANGUAGE_MENU_IS_VISIBAL,
+    autoMenuCall,
+    AUTO_MENU_CALL,
+    modalCountryDispacth,
+    MODAL_COUNTRY,
+    setUser,
+    SET_USER,
+    setLocals,
+    SET_LOCALS
 }

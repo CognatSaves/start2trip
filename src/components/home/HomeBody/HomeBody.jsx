@@ -67,23 +67,23 @@ class HomeBodyClass extends React.Component {
       mapUpdate: true
     })
   }
-  openChooseDate = () => {
-    console.log("openChooseDate call");
-    this.setState({
-      mapUpdate: false,
-    })
-    this.setState({
-      calendaryVisibility: 'visible'
-    })
-  }
-  closeChooseDate = () => {
-    this.setState({
-      mapUpdate: false,
-    })
-    this.setState({
-      calendaryVisibility: 'hidden'
-    })
-  }
+  // openChooseDate = () => {
+  //   console.log("openChooseDate call");
+  //   this.setState({
+  //     mapUpdate: false,
+  //   })
+  //   this.setState({
+  //     calendaryVisibility: 'visible'
+  //   })
+  // }
+  // closeChooseDate = () => {
+  //   this.setState({
+  //     mapUpdate: false,
+  //   })
+  //   this.setState({
+  //     calendaryVisibility: 'hidden'
+  //   })
+  // }
   chooseDate(value) {
     let dayMass = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
     let monthMass = ["января", "февраля", "марта", "апреля", "мая",

@@ -7,10 +7,6 @@ import './Search.css';
 import { isMobileOnly } from 'react-device-detect';
 
 
-const searchOptions = {
-  types: []
-}
-
 export default class LocationSearchInput extends React.Component {
   constructor(props) {
     super(props);
@@ -20,6 +16,7 @@ export default class LocationSearchInput extends React.Component {
       inFocusOnly: false,
     }
   }
+  
 
   handleChange = address => {
     this.setState({
@@ -59,7 +56,10 @@ export default class LocationSearchInput extends React.Component {
         value={this.state.address}
         onChange={this.handleChange}
         onSelect={this.handleSelect}
-        searchOptions={searchOptions}
+        searchOptions={{
+          types: [],
+          componentRestrictions: {country: this.props.isoCountryMap},
+        }}
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) =>
           (
