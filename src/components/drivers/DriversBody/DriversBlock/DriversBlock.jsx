@@ -20,7 +20,9 @@ class DriversBlockClass extends React.Component {
   constructor(props) {
     super(props);
     this.state={
-      openModal:false
+      openModal:false,
+      country:this.props.country,
+      cities:this.props.cities,
     }
   }
   setPage=(page)=> {
@@ -88,6 +90,8 @@ class DriversBlockClass extends React.Component {
     srcArray[1] = filledLike;
     console.log('selectedEl');
     console.log(selectedElements);
+    
+    
     return (
       <div className="drivers_block d-flex flex-wrap">
         {
@@ -95,14 +99,14 @@ class DriversBlockClass extends React.Component {
             <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 p-2 pb-3">
               <div className="driversBlock_driverCard d-flex flex-column ">
                 <div className="driversBlock_carImage" style={{ background: "url(" + ToyotaPrado + ") no-repeat", backgroundSize: "cover" }}>
-                  <Link to={`/driverProfile/${element.id},${element.id},${element.id}`} className="driversBlock_carBlackout">
+                  <Link to={`/driverProfile/${element.id}-${element.id}-${this.state.country}-${this.state.cities}`} className="driversBlock_carBlackout">
                     <div className="driversBlock_carBlackout_detailed">Подробнее</div>
                   </Link>
                 </div>
 
                 <div className="driverBlock_driverInfoBlock d-flex flex-column">
 
-                  <Link to={`/driverProfile/${element.id},${element.id},${element.id}`} className="driversBlock_driverInfoBlock_element driversBlock_carName">{element.carBrand}</Link>
+                  <Link to={`/driverProfile/${element.id}-${element.id}-${this.state.country}-${this.state.cities}`} className="driversBlock_driverInfoBlock_element driversBlock_carName">{element.carBrand}</Link>
                   <div className="driverBlock_carInfoLine d-flex">
                     <div className="driversBlock_driverCard_carIcon" style={{ background: "url(" + jeep + ") no-repeat", backgroundSize: "42px 30px", backgroundPosition: "-5px 0px" }} />
                     <div className="driversBlock_carInfoLine_value">{element.carType + ", " + element.carCapacity + " места"}</div>
@@ -110,7 +114,7 @@ class DriversBlockClass extends React.Component {
                   <div className="driversBlock_driverInfoBlock_element d-flex">
                     <div className="driversBlock_driverCard_photo" style={{ background: "url(" + driverPhoto + ") no-repeat", backgroundSize: "40px 40px" }} />
                     <div className="d-flex flex-column driversBlock_driverCard_driverInfo">
-                      <Link to={`/driverProfile/${element.id},${element.id},${element.id}`} className="driversBlock_driversInfo_name">{element.name}</Link>
+                      <Link to={`/driverProfile/${element.id}-${element.id}-${this.state.country}-${this.state.cities}`} className="driversBlock_driversInfo_name">{element.name}</Link>
                       <Stars key={element.rating} value={element.rating} commentNumber={element.comments + " отзывов"} valueDisplay={true} commentNumberDisplay={true} />
                     </div>
                   </div>

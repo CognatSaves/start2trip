@@ -68,7 +68,7 @@ class HomeClass extends React.Component {
 
           </div>
           <Route path="/home" component={HomeBodyBottom} />
-          <Route path="/drivers/:country,:cities" component={Drivers} />
+          <Route path="/drivers/:country-:cities" component={Drivers} />
 
         </main>
 

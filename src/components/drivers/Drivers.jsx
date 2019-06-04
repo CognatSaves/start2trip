@@ -55,22 +55,41 @@ class DriversClass extends React.Component {
   
 
   render() {
+    let cities;
+    let country;
     if(this.props.match){
       if(this.props.storeState.cities[0].point === ""){
-        
-        let cities = this.props.match.params.cities;
-        let country = this.props.match.params.country;
+        cities = this.props.match.params.cities;
+        country = this.props.match.params.country;
         this.parseStringToArray(cities,country);
+      }else{
+        let route = "";
+          for (let i = 0; i < this.props.storeState.cities.length; i++) {
+            let arrayAdress = this.props.storeState.cities[i].point.split(',');
+            country = arrayAdress[arrayAdress.length - 1].slice(1);
+            
+            
+            let stringWhithoutCountry = "";
+            for (let k = 0; k < arrayAdress.length - 1; k++) {
+              stringWhithoutCountry += arrayAdress[k]
+            }
+            let stringWhithoutSpaces = stringWhithoutCountry.replace(/ /g,'-');
+             stringWhithoutSpaces = stringWhithoutSpaces.replace(/[/]/g,'');
+            if (i == 0) {
+              route = "from-" + stringWhithoutSpaces;
+            } else {
+              route += "-to-" + stringWhithoutSpaces;
+            }
+          }
+         cities = route; 
       }
     }
-   
-   
-    // let country = this.props.match.params.country;
+  
     return (
       <React.Fragment>
         <div className="wrapper d-flex flex-column">
           <div className="drivers_bottom_background d-flex flex-column" >
-            <DriversBody changeTravelVisibility={this.changeTravelVisibility} />
+            <DriversBody changeTravelVisibility={this.changeTravelVisibility} country={country} cities={cities}/>
           </div>
         </div>
         <StartTravelForm changeTravelVisibility={this.changeTravelVisibility} changeSuccessVisibility={this.changeSuccessVisibility}

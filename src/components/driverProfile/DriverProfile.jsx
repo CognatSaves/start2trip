@@ -13,6 +13,7 @@ import StartTravelSuccess from '../startTravelForm/StartTravelSuccess';
 import DriverAdaptedRoute from './DriverAdaptedRoute';
 import DriverInfo from './DriverInfo.jsx';
 import DriverProfileTours from './DriverProfileTours';
+import {setCities} from '../../redusers/Action'
 
 class DriverProfileClass extends React.Component {
     constructor(props) {
@@ -67,17 +68,37 @@ class DriverProfileClass extends React.Component {
             showPanelVariant: value
         })
     }
+    parseStringToArray=(cities,country)=>{
+    
+        let newCities = [];
+        let newString = cities.slice(5);
+        let newArrayCities = newString.split("-to-");
+        for(let i = 0; i<newArrayCities.length;i++){
+          let stringWhithSpaces = newArrayCities[i].replace(/-/g, ' ');
+          stringWhithSpaces = stringWhithSpaces + ' , ' +country;
+          newCities[i]={point: stringWhithSpaces, lat: "", long: ""};
+        }
+        this.props.dispatch(setCities(newCities))
+      }
     render() {
         let driver = this.props.driversState.drivers[this.props.match.params.id];
         let buttonNames = ["Отзывы (" + this.props.commentState.comments.length + ")", "Мои личные самые ценные туры"];
 
+        let cities;
+        let country;
+        if(this.props.match){
+            if(this.props.storeState.cities[0].point === ""){
+              cities = this.props.match.params.cities;
+              country = this.props.match.params.country;
+              this.parseStringToArray(cities,country);
+            }
+        }
         return (
             <React.Fragment>
                 <div className="drivers_top_background">
                     <Header history={this.props.history} />
                     <div className="wrapper d-flex flex-column">
                         <div className="drivers_top_block d-flex flex-column">
-
                             <DriverInfo element={driver} />
                             <DriverAdaptedRoute element={driver} date={this.props.storeState.date} cities={this.props.storeState.cities}
                                 travelTime={this.props.driversState.travelTime} travelLength={this.props.driversState.travelLength} goToDrivers={this.goToDrivers}

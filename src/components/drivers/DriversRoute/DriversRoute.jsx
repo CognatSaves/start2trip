@@ -103,7 +103,7 @@ class DriversRouteClass extends React.Component {
       return true;
     }
     if (isCorrectSearchData(this.state.cities, this.state.date) && flagCities) {
-      this.props.dispatch(set_state("DriversRoute", [...this.state.cities], this.state.date));
+      this.props.dispatch(set_state([...this.state.cities], this.state.date));
       this.props.dispatch(setDriversRouteChange(!this.props.driversState.driversRouteChange))
     }
   }

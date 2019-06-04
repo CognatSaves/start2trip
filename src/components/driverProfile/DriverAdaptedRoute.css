@@ -1,3 +1,14 @@
+.drivers_route {
+    justify-content: center;
+    align-items: flex-start;
+    background-color: rgba(48, 66, 105, 0.8);
+    margin-top: 35px;
+    padding: 20px 20px 0 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.3);
+    max-width: 1200px;
+}
+
 .driverAdaptedRoute_bottomBlock {
     width: 100%;
 }
