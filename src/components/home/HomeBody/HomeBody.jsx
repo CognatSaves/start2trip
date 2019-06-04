@@ -42,7 +42,7 @@ class HomeBodyClass extends React.Component {
   addCity = () => {
     let cities = this.props.storeState.cities;
     let flagCities = true;
-    debugger
+    
     let massInput = document.querySelectorAll("._checkInput")
     for(let i = 0; i < massInput.length; i++){
       let massDivInput = document.querySelectorAll("._checkDiv")

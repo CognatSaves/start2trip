@@ -41,7 +41,7 @@ class DriversClass extends React.Component {
     })
   }
   parseStringToArray=(cities,country)=>{
-    debugger
+    
     let newCities = [];
     let newString = cities.slice(5);
     let newArrayCities = newString.split("-to-");
@@ -57,7 +57,7 @@ class DriversClass extends React.Component {
   render() {
     if(this.props.match){
       if(this.props.storeState.cities[0].point === ""){
-        debugger
+        
         let cities = this.props.match.params.cities;
         let country = this.props.match.params.country;
         this.parseStringToArray(cities,country);

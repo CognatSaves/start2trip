@@ -19,20 +19,20 @@ import requests from '../../../../config';
 class DriversBlockClass extends React.Component {
   constructor(props) {
     super(props);
-    this.setPage = this.setPage.bind(this);
-    this.showMorePages = this.showMorePages.bind(this);
-    this.driversSort = this.driversSort.bind(this);
+    this.state={
+      openModal:false
+    }
   }
-  setPage(page) {
+  setPage=(page)=> {
     if (page !== "...") {
       this.props.dispatch(setPage(page));
     }
     //console.log("SetPage has been called");
   }
-  showMorePages() {
+  showMorePages=()=> {
     this.props.dispatch(setMorePagesShow());
   }
-  driversSort(array, type) {
+  driversSort=(array, type)=> {
     function sortPrice(a, b) {
       if (a.price > b.price) return 1;
       if (a.price < b.price) return -1;
