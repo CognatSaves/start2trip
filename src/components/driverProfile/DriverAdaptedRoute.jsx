@@ -45,7 +45,7 @@ export default class DriverAdaptedRoute extends React.Component {
 
                     </div>
                 </div> */}
-                <RouteMenu />
+                <RouteMenu showBtPrice={true}/>
             </div>
         )
     }

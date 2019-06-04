@@ -6,14 +6,14 @@ import LocationSearchInput from './Search'
 import { connect } from 'react-redux';
 import DatePicker from 'material-ui/DatePicker';
 import requests from '../../../config';
-import {setCities,set_state} from '../../../redusers/Action'
+import { setCities, set_state } from '../../../redusers/Action'
 
 import { isMobileOnly } from 'react-device-detect'
-import {setDriversList,setCarTypes} from '../../../redusers/ActionDrivers';
+import { setDriversList, setCarTypes } from '../../../redusers/ActionDrivers';
 import DriverRefreshIndicator from '../../driverProfileRegistration/DriverRefreshIndicator';
 
 const CityRouteTable = (props) => {
-  const {cities, changeCity, removeCity, addCity,isoCountryMap } = props;
+  const { cities, changeCity, removeCity, addCity, isoCountryMap } = props;
   // let workCities = [...cities];
   let alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I",
     "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
@@ -26,10 +26,10 @@ const CityRouteTable = (props) => {
       {isMobileOnly ?
         <div className="addCities" >
           {cities.map((element, index) =>
-            <div className="startCity d-flex col-12 p-0" key={element + index+cities[index].point}>
+            <div className="startCity d-flex col-12 p-0" key={element + index + cities[index].point}>
               <div className={index <= 1 ? "col-12 p-0" : "col-10 pl-0 pr-1"}>
                 <div className="addCitiesLocationDropDown col p-0">
-                  <LocationSearchInput address={cities[index].point} changeCity={changeCity} index={index} classDropdown="searchElement_style" spanText={alphabet[index]} placeholder={index ? "Куда, выберите место" : "Откуда, выберите место"} classDiv={index > 1 && !cities[index].point ? "classDivMobail  _checkDiv startCity-CheckInput" : "classDivMobail  _checkDiv"} classInput="city_input _checkInput" isoCountryMap={isoCountryMap}/>
+                  <LocationSearchInput address={cities[index].point} changeCity={changeCity} index={index} classDropdown="searchElement_style" spanText={alphabet[index]} placeholder={index ? "Куда, выберите место" : "Откуда, выберите место"} classDiv={index > 1 && !cities[index].point ? "classDivMobail  _checkDiv startCity-CheckInput" : "classDivMobail  _checkDiv"} classInput="city_input _checkInput" isoCountryMap={isoCountryMap} />
                 </div>
               </div>
               <div className="crossToolTip col-2 p-0" style={{ display: index <= 1 ? "none" : "" }} onClick={() => removeCity(index)}>
@@ -42,10 +42,10 @@ const CityRouteTable = (props) => {
         :
         <div className="d-flex flex-wrap col-12 p-0" >
           {cities.map((element, index) =>
-            <div className="startCity d-flex col-6 p-0" key={element + index+cities[index].point}>
+            <div className="startCity d-flex col-6 p-0" key={element + index + cities[index].point}>
               <div className={index <= 1 ? (index % 2 === 0 ? "col-12 pl-0 pr-1" : "col-12 pl-0 pr-1") : (index % 2 === 0 ? "col-10 pl-0 pr-1" : "col-10 pl-0 pr-1 ")}>
                 <div className="addCitiesLocationDropDown col p-0">
-                  <LocationSearchInput address={cities[index].point} changeCity={changeCity} index={index} classDropdown="searchElement_style" spanText={alphabet[index]} placeholder={index ? "Куда, выберите место" : "Откуда, выберите место"} classDiv={index > 1 && !cities[index].point ? "classDiv  _checkDiv startCity-CheckInput" : "classDiv  _checkDiv"} classInput="city_input _checkInput" isoCountryMap={isoCountryMap}/>
+                  <LocationSearchInput address={cities[index].point} changeCity={changeCity} index={index} classDropdown="searchElement_style" spanText={alphabet[index]} placeholder={index ? "Куда, выберите место" : "Откуда, выберите место"} classDiv={index > 1 && !cities[index].point ? "classDiv  _checkDiv startCity-CheckInput" : "classDiv  _checkDiv"} classInput="city_input _checkInput" isoCountryMap={isoCountryMap} />
                 </div>
               </div>
               <div className="crossToolTip col p-0" style={{ display: index <= 1 ? "none" : "" }} onClick={() => removeCity(index)}>
@@ -91,9 +91,9 @@ class RouteMenuClass extends React.Component {
   addCity = () => {
     let cities = this.props.storeState.cities;
     let flagCities = true;
-    
+
     let massInput = document.querySelectorAll("._checkInput")
-    for(let i = 0; i < massInput.length; i++){
+    for (let i = 0; i < massInput.length; i++) {
       let massDivInput = document.querySelectorAll("._checkDiv")
       massDivInput[i].classList.remove("startCity-CheckInput")
     }
@@ -105,14 +105,14 @@ class RouteMenuClass extends React.Component {
       }
     }
     if (cities[cities.length - 1].point == "") {
-    } else if(flagCities){
+    } else if (flagCities) {
       cities[cities.length] = {
         point: '',
         lat: '',
         long: ''
       };
       this.props.dispatch(setCities(cities))
-     
+
     }
   }
   removeCity = (index) => {
@@ -136,9 +136,9 @@ class RouteMenuClass extends React.Component {
     });
   }
 
-  validationInput=(massCities)=>{
-    
-    let flag =true;
+  validationInput = (massCities) => {
+
+    let flag = true;
     let massInput = document.querySelectorAll("._checkInput")
     for (let i = 0; i < massInput.length; i++) {
       if (massInput[i].defaultValue == "") {
@@ -160,42 +160,42 @@ class RouteMenuClass extends React.Component {
     return flag
   }
 
-  getCountry=(arrayAdress,country)=>{
-    let flag=true;
+  getCountry = (arrayAdress, country) => {
+    let flag = true;
     let newCountry = arrayAdress[arrayAdress.length - 1].slice(1);
     if (country === newCountry || country === "") {
       country = newCountry;
-    // } else {
-    //   alert("Error")
-    //   flag = false;
+      // } else {
+      //   alert("Error")
+      //   flag = false;
     }
-    return {flag:flag,country:country}
+    return { flag: flag, country: country }
   }
 
-  getRoute=()=>{
+  getRoute = () => {
     let route = "";
     let canMove;
     let country = "";
     for (let i = 0; i < this.props.storeState.cities.length; i++) {
       let arrayAdress = this.props.storeState.cities[i].point.split(',');
 
-      let date = this.getCountry(arrayAdress,country);
+      let date = this.getCountry(arrayAdress, country);
       country = date.country;
       canMove = date.flag;
-      
+
       let stringWhithoutCountry = "";
       for (let k = 0; k < arrayAdress.length - 1; k++) {
         stringWhithoutCountry += arrayAdress[k]
       }
-      let stringWhithoutSpaces = stringWhithoutCountry.replace(/ /g,'-');
-       stringWhithoutSpaces = stringWhithoutSpaces.replace(/[/]/g,'');
+      let stringWhithoutSpaces = stringWhithoutCountry.replace(/ /g, '-');
+      stringWhithoutSpaces = stringWhithoutSpaces.replace(/[/]/g, '');
       if (i == 0) {
         route = "from-" + stringWhithoutSpaces;
       } else {
         route += "-to-" + stringWhithoutSpaces;
       }
     }
-    return {route:route,canMove:canMove,country:country}
+    return { route: route, canMove: canMove, country: country }
   }
 
   goToNextPage = () => {
@@ -219,50 +219,50 @@ class RouteMenuClass extends React.Component {
         distance: '1000'
       });
       let that = this;
-      function convertDate(value){
+      function convertDate(value) {
 
       }
-      
-      this.setState({isWaiting: true, isRefreshing: true, isGoodAnswer: true});
+
+      this.setState({ isWaiting: true, isRefreshing: true, isGoodAnswer: true });
       fetch(requests.getDrivers, {
-          method: 'PUT', body: body,
-          headers: { 'content-type': 'application/json'}
+        method: 'PUT', body: body,
+        headers: { 'content-type': 'application/json' }
       })
-      .then(response => {
-        
-        return response.json();
-      })
-      .then(function (data) {
-        
-        if (data.error) {
+        .then(response => {
+
+          return response.json();
+        })
+        .then(function (data) {
+
+          if (data.error) {
             console.log("bad");
-            that.setState({isRefreshing: false, isGoodAnswer: false});
-            setTimeout(()=>{
-              that.setState({isWaiting: false});
+            that.setState({ isRefreshing: false, isGoodAnswer: false });
+            setTimeout(() => {
+              that.setState({ isWaiting: false });
               throw data.error;
-            },1000);
-            
-        }
-        else {                 
+            }, 1000);
+
+          }
+          else {
             console.log("good");
             console.log(data);
-            
+
             that.props.dispatch(setDriversList(data.drivers));
             that.props.dispatch(setCarTypes(data.carTypes));
-            that.setState({isWaiting: false});
-            
+            that.setState({ isWaiting: false });
+
             if (canMove) {
               that.props.globalhistory.history.push(`/drivers/${country}-${newStringCities}`)
               window.scroll(0, 500);
             }
             //that.getProfileData();
-        }
-      })
-      .catch(function (error) {
+          }
+        })
+        .catch(function (error) {
           console.log("bad");
           console.log('An error occurred:', error);
           //that.catchFunc();
-      });
+        });
 
 
 
@@ -273,7 +273,7 @@ class RouteMenuClass extends React.Component {
 
   render() {
 
-    
+
     return (
       <React.Fragment>
         <div className="routemenu_container d-flex flex-column col-12">
@@ -281,31 +281,46 @@ class RouteMenuClass extends React.Component {
             this.state.isWaiting ?
               <DriverRefreshIndicator isRefreshExist={true} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
               : <React.Fragment />
-          } 
-          { 
+          }
+          {
             isMobileOnly ?
-            <React.Fragment>
-              <CityRouteTable cities={this.props.storeState.cities} changeCity={this.changeCity} removeCity={this.removeCity} isoCountryMap={this.props.storeState.isoCountryMap}/>
-              <div className=" d-flex routemenu_addCity" onClick={() => {this.addCity()}}>
-                <div className="routemenu_city_add_text" style={{ background: "url(" + addIcon + ") no-repeat" }} >Добавить пункт назначения</div>
-              </div>
-            </React.Fragment>
-            :
-            <React.Fragment>
-              <CityRouteTable cities={this.props.storeState.cities} changeCity={this.changeCity} removeCity={this.removeCity} addCity={this.addCity} isoCountryMap={this.props.storeState.isoCountryMap}/>
-            </React.Fragment>
+              <React.Fragment>
+                <CityRouteTable cities={this.props.storeState.cities} changeCity={this.changeCity} removeCity={this.removeCity} isoCountryMap={this.props.storeState.isoCountryMap} />
+                <div className=" d-flex routemenu_addCity" onClick={() => { this.addCity() }}>
+                  <div className="routemenu_city_add_text" style={{ background: "url(" + addIcon + ") no-repeat" }} >Добавить пункт назначения</div>
+                </div>
+              </React.Fragment>
+              :
+              <React.Fragment>
+                <CityRouteTable cities={this.props.storeState.cities} changeCity={this.changeCity} removeCity={this.removeCity} addCity={this.addCity} isoCountryMap={this.props.storeState.isoCountryMap} />
+              </React.Fragment>
           }
 
 
 
           <div className="routemenu_setDate">
             <DatePicker hintText="Дата отправления" minDate={new Date()} onChange={(e, date) => { this.chooseDate(date); let datePicer = document.querySelector(".routemenu_date"); datePicer.classList.remove("routemenu_date-Check") }} className="routemenu_date col" />
-            
-            <div className="routemenu_search col-sm-6 col-12" onClick={() => { this.goToNextPage() }}>
-              <div className="routemenu_search_button " >
-                <p className="routemenu_search_text">ПОИСК</p>
-              </div>
-            </div>
+            {this.props.showBtPrice ?
+              <React.Fragment>
+                <div className="d-flex flex-column align-items-center pb-4 ">
+                  <div className="driverAdaptedPrice">{"$" + "20"}</div>
+                  <div className="driverAdaptedBt">
+                    {/* <span onClick={() => changeTravelVisibility('block')}>ЗАБРОНИРОВАТЬ ПОЕЗДКУ</span> */}
+                  </div>
+                  <div className="route_comment">Стоимость окончательная. Топливо включено</div>
+                </div>
+              </React.Fragment>
+              :
+              <React.Fragment>
+                <div className="routemenu_search col-sm-6 col-12" onClick={() => { this.goToNextPage() }}>
+                  <div className="routemenu_search_button " >
+                    <p className="routemenu_search_text">ПОИСК</p>
+                  </div>
+                </div>
+              </React.Fragment>
+            }
+
+
           </div>
         </div>
 
