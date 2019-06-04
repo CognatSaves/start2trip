@@ -14,9 +14,9 @@ class HomeBodyClass extends React.Component {
 
     this.state = {
       cities: this.props.storeState.cities,
-      calendaryVisibility: this.props.storeState.calendaryVisibility,
+      // calendaryVisibility: this.props.storeState.calendaryVisibility,
       date: this.props.storeState.date,
-      picture: this.props.storeState.picture,
+      // picture: this.props.storeState.picture,
       changeMapList: true,
     }
     this.state = JSON.parse(JSON.stringify(this.props.storeState));
@@ -25,12 +25,13 @@ class HomeBodyClass extends React.Component {
   }
 
   changeCity = (index, value, extraData) => {
-    let cities = this.state.cities;
+    let cities = this.props.storeState.cities;
     cities[index] = {
       point: value,
       lat: extraData.location.lat,
       long: extraData.location.long
     };
+    
     this.setState({
       cities: cities,
       mapUpdate: true
@@ -39,8 +40,9 @@ class HomeBodyClass extends React.Component {
     footer.classList.remove("footerMobile-activeInput")
   }
   addCity = () => {
-    let cities = this.state.cities;
+    let cities = this.props.storeState.cities;
     let flagCities = true;
+    debugger
     let massInput = document.querySelectorAll("._checkInput")
     for(let i = 0; i < massInput.length; i++){
       let massDivInput = document.querySelectorAll("._checkDiv")
@@ -60,6 +62,8 @@ class HomeBodyClass extends React.Component {
         lat: '',
         long: ''
       };
+      
+      this.props.setState(cities);
       this.setState({
         cities: cities,
         mapUpdate: true,
@@ -67,7 +71,7 @@ class HomeBodyClass extends React.Component {
     }
   }
   removeCity = (index) => {
-    let cities = this.state.cities;
+    let cities = this.props.storeState.cities;
     cities.splice(index, 1);
     this.setState({
       cities: cities,
@@ -118,7 +122,12 @@ class HomeBodyClass extends React.Component {
 
     this.props.setLengthTime(lengthString, timeString);
   }
+  
   render() {
+   
+      
+    
+    
     console.log(isMobileOnly, "isMobileOnlyBody")
     return (
       <React.Fragment>
@@ -191,10 +200,10 @@ const HomeBody = connect(
     stateReduserState: state.StateReduser
   }),
   (dispatch) => ({
-    goToDrivers: () => dispatch({ type: "CHANGE_PICTURE", picture: "drivers" }),
-    calendaryVisibility: (visibility) => dispatch({ type: "CHOOSE_DATE_VIS", visibility: visibility }),
+    // goToDrivers: () => dispatch({ type: "CHANGE_PICTURE", picture: "drivers" }),
+    // calendaryVisibility: (visibility) => dispatch({ type: "CHOOSE_DATE_VIS", visibility: visibility }),
     setLengthTime: (travelLength, travelTime) => dispatch({ type: "SET_LENGTH_TIME", travelTime: travelTime, travelLength: travelLength }),
-    setState: (cities, date, visibility, picture) => dispatch({ type: "SET_STATE", sourse: "HomeBody", cities: cities, date: date, calendaryVisibility: visibility, picture: picture })
+    setState: (cities, date, visibility, picture) => dispatch({ type: "SET_STATE", cities: cities, date: date})
   })
 )(HomeBodyClass);
 

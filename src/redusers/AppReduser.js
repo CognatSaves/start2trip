@@ -36,8 +36,8 @@ import {
 
 const initialState = {
     cities: [
-        {point: "", lat: "", long: ""},
-        {point: "", lat: "", long: ""},
+        { point: "", lat: "", long: "" },
+        { point: "", lat: "", long: "" },
     ],
     date: "",
     autoVariants: ["Седан", "Внедорожник", "Минивен", "Микроавтобус"],
@@ -95,6 +95,7 @@ export const AppReduser = (state = initialState, action) => {
             }
         case SET_STATE:
             {
+
                 let newStateSS = {...state };
                 switch (action.sourse) {
                     case "HomeBody":

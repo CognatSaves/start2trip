@@ -47,7 +47,7 @@ class RenderModalCountryClass extends React.Component {
         super(props);
         this.state = {
             country: {
-                title: "ВЫБЕРИТЕ ВАШУ СТРАНУ", arrayCountry: [
+                title: "Выберите страну", arrayCountry: [
                   { img: australiaIcon, ISO:"AUS", isoMap:"au", country: "Австралия" },
                   { img: austriaIcon, ISO:"AUT", isoMap:"at", country: "Австрия" },
                   { img: azerbaijanIcon, ISO:"AZE", isoMap:"az", country: "Азербайджан" },

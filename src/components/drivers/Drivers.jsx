@@ -1,5 +1,6 @@
 import React from 'react';
 import './Drivers.css';
+import {set_state} from '../../redusers/Action'
 
 import DriversBody from './DriversBody/DriversBody';
 import { connect } from 'react-redux'
@@ -39,7 +40,32 @@ class DriversClass extends React.Component {
       successVisibility: value
     })
   }
+  parseStringToArray=(cities,country)=>{
+    debugger
+    let newCities = [];
+    let newString = cities.slice(5);
+    let newArrayCities = newString.split("-to-");
+    for(let i = 0; i<newArrayCities.length;i++){
+      let stringWhithSpaces = newArrayCities[i].replace(/-/g, ' ');
+      stringWhithSpaces = stringWhithSpaces + ' , ' +country;
+      newCities[i]={point: stringWhithSpaces, lat: "", long: ""};
+    }
+    this.props.setCities(newCities)
+  }
+  
+
   render() {
+    if(this.props.match){
+      if(this.props.storeState.cities[0].point === ""){
+        debugger
+        let cities = this.props.match.params.cities;
+        let country = this.props.match.params.country;
+        this.parseStringToArray(cities,country);
+      }
+    }
+   
+   
+    // let country = this.props.match.params.country;
     return (
       <React.Fragment>
         <div className="wrapper d-flex flex-column">
@@ -60,7 +86,7 @@ const Drivers = connect(
     driversState: state.DriversReduser
   }),
   (dispatch) => ({
-    // setCities:(cities) => dispatch({type:"SET_CITIES",cities:cities})
+    setCities:(cities) => dispatch({type:"SET_CITIES",cities:cities}),
     setMaxPrice: (maxPrice) => dispatch({ type: "SET_MAX_PRICE", maxPrice: maxPrice, pricePart: 100 })
   })
 )(DriversClass);

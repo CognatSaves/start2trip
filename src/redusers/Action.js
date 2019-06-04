@@ -52,14 +52,11 @@ const setUser = function(userName, avatarUrl) {
         avatarUrl: avatarUrl
     }
 }
-const set_state = function(sourse, cities, date, calendaryVisibility, picture) {
+const set_state = function(cities, date) {
     return {
         type: 'SET_STATE',
-        sourse: sourse,
         cities: cities,
         date: date,
-        calendaryVisibility: calendaryVisibility,
-        picture: picture,
     };
 }
 

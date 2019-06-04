@@ -11,22 +11,20 @@ import { isMobileOnly } from 'react-device-detect'
 
 
 const CityRouteTable = (props) => {
-  const { cities, changeCity, removeCity, addCity,isoCountryMap } = props;
-
+  const {cities, changeCity, removeCity, addCity,isoCountryMap } = props;
   let workCities = [...cities];
   let alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I",
     "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
   // let tempStart = workCities.shift();
   workCities.pop();
   console.log(cities, "cities");
-  
   // console.log(workCities, "workCities");
   return (
     <React.Fragment>
       {isMobileOnly ?
         <div className="addCities" >
           {cities.map((element, index) =>
-            <div className="startCity d-flex col-12 p-0" key={element + index}>
+            <div className="startCity d-flex col-12 p-0" key={element + index+cities[index].point}>
               <div className={index <= 1 ? "col-12 p-0" : "col-10 pl-0 pr-1"}>
                 <div className="addCitiesLocationDropDown col p-0">
                   <LocationSearchInput address={cities[index].point} changeCity={changeCity} index={index} classDropdown="searchElement_style" spanText={alphabet[index]} placeholder={index ? "Куда, выберите место" : "Откуда, выберите место"} classDiv={index > 1 && !cities[index] ? "classDivMobail  _checkDiv startCity-CheckInput" : "classDivMobail  _checkDiv"} classInput="city_input _checkInput" isoCountryMap={isoCountryMap}/>
@@ -42,7 +40,7 @@ const CityRouteTable = (props) => {
         :
         <div className="d-flex flex-wrap col-12 p-0" >
           {cities.map((element, index) =>
-            <div className="startCity d-flex col-6 p-0" key={element + index}>
+            <div className="startCity d-flex col-6 p-0" key={element + index+cities[index].point}>
               <div className={index <= 1 ? (index % 2 === 0 ? "col-12 pl-0 pr-1" : "col-12 pl-0 pr-1") : (index % 2 === 0 ? "col-10 pl-0 pr-1" : "col-10 pl-0 pr-1 ")}>
                 <div className="addCitiesLocationDropDown col p-0">
                   <LocationSearchInput address={cities[index].point} changeCity={changeCity} index={index} classDropdown="searchElement_style" spanText={alphabet[index]} placeholder={index ? "Куда, выберите место" : "Откуда, выберите место"} classDiv={index > 1 && !cities[index] ? "classDiv  _checkDiv startCity-CheckInput" : "classDiv  _checkDiv"} classInput="city_input _checkInput" isoCountryMap={isoCountryMap}/>
@@ -83,6 +81,7 @@ class RouteMenuClass extends React.Component {
   }
 
   validationInput=(massCities)=>{
+    debugger
     let flag =true;
     let massInput = document.querySelectorAll("._checkInput")
     for (let i = 0; i < massInput.length; i++) {
@@ -107,13 +106,12 @@ class RouteMenuClass extends React.Component {
 
   getCountry=(arrayAdress,country)=>{
     let flag=true;
-    debugger
     let newCountry = arrayAdress[arrayAdress.length - 1].slice(1);
     if (country === newCountry || country === "") {
       country = newCountry;
-    } else {
-      alert("Error")
-      flag = false;
+    // } else {
+    //   alert("Error")
+    //   flag = false;
     }
     return {flag:flag,country:country}
   }
@@ -122,8 +120,8 @@ class RouteMenuClass extends React.Component {
     let route = "";
     let canMove;
     let country = "";
-    for (let i = 0; i < this.props.cities.length; i++) {
-      let arrayAdress = this.props.cities[i].point.split(',');
+    for (let i = 0; i < this.props.storeState.cities.length; i++) {
+      let arrayAdress = this.props.storeState.cities[i].point.split(',');
 
       let date = this.getCountry(arrayAdress,country);
       country = date.country;
@@ -133,7 +131,8 @@ class RouteMenuClass extends React.Component {
       for (let k = 0; k < arrayAdress.length - 1; k++) {
         stringWhithoutCountry += arrayAdress[k]
       }
-      let stringWhithoutSpaces = stringWhithoutCountry.replace(/ /g, '-');
+      let stringWhithoutSpaces = stringWhithoutCountry.replace(/ /g,'-');
+       stringWhithoutSpaces = stringWhithoutSpaces.replace(/[/]/g,'');
       if (i == 0) {
         route = "from-" + stringWhithoutSpaces;
       } else {
@@ -144,13 +143,12 @@ class RouteMenuClass extends React.Component {
   }
 
   goToNextPage = () => {
-    let massCities = this.props.cities;
+    let massCities = this.props.storeState.cities;
     let flagCities;
     let canMove;
-
     flagCities = this.validationInput(massCities);
     if (flagCities) {
-      this.props.goToDrivers(this.props.cities, this.state.date);
+      this.props.goToDrivers(this.props.storeState.cities, this.state.date);
       let routeDate = this.getRoute();
       let newStringCities = routeDate.route;
       let country = routeDate.country;
@@ -173,14 +171,14 @@ class RouteMenuClass extends React.Component {
         <div className="routemenu_container d-flex flex-column col-12">
           {isMobileOnly ?
             <React.Fragment>
-              <CityRouteTable cities={this.props.cities} changeCity={this.props.changeCity} removeCity={this.props.removeCity} isoCountryMap={this.props.storeState.isoCountryMap}/>
-              <div className=" d-flex routemenu_addCity" onClick={() => this.props.addCity()}>
+              <CityRouteTable cities={this.props.storeState.cities} changeCity={this.props.changeCity} removeCity={this.props.removeCity} isoCountryMap={this.props.storeState.isoCountryMap}/>
+              <div className=" d-flex routemenu_addCity" onClick={() => {this.props.addCity()}}>
                 <div className="routemenu_city_add_text" style={{ background: "url(" + addIcon + ") no-repeat" }} >Добавить пункт назначения</div>
               </div>
             </React.Fragment>
             :
             <React.Fragment>
-              <CityRouteTable cities={this.props.cities} changeCity={this.props.changeCity} removeCity={this.props.removeCity} addCity={this.props.addCity} isoCountryMap={this.props.storeState.isoCountryMap}/>
+              <CityRouteTable cities={this.props.storeState.cities} changeCity={this.props.changeCity} removeCity={this.props.removeCity} addCity={this.props.addCity} isoCountryMap={this.props.storeState.isoCountryMap}/>
             </React.Fragment>
           }
 
