@@ -1,5 +1,6 @@
 import React from 'react';
 import './Drivers.css';
+import {set_state} from '../../redusers/Action'
 
 import DriversBody from './DriversBody/DriversBody';
 import { connect } from 'react-redux'
@@ -39,14 +40,56 @@ class DriversClass extends React.Component {
       successVisibility: value
     })
   }
+  parseStringToArray=(cities,country)=>{
+    
+    let newCities = [];
+    let newString = cities.slice(5);
+    let newArrayCities = newString.split("-to-");
+    for(let i = 0; i<newArrayCities.length;i++){
+      let stringWhithSpaces = newArrayCities[i].replace(/-/g, ' ');
+      stringWhithSpaces = stringWhithSpaces + ' , ' +country;
+      newCities[i]={point: stringWhithSpaces, lat: "", long: ""};
+    }
+    this.props.setCities(newCities)
+  }
+  
+
   render() {
-    console.log('Drivers render');
-    console.log(this.props);
+    let cities;
+    let country;
+    if(this.props.match){
+      if(this.props.storeState.cities[0].point === ""){
+        cities = this.props.match.params.cities;
+        country = this.props.match.params.country;
+        this.parseStringToArray(cities,country);
+      }else{
+        let route = "";
+          for (let i = 0; i < this.props.storeState.cities.length; i++) {
+            let arrayAdress = this.props.storeState.cities[i].point.split(',');
+            country = arrayAdress[arrayAdress.length - 1].slice(1);
+            
+            
+            let stringWhithoutCountry = "";
+            for (let k = 0; k < arrayAdress.length - 1; k++) {
+              stringWhithoutCountry += arrayAdress[k]
+            }
+            let stringWhithoutSpaces = stringWhithoutCountry.replace(/ /g,'-');
+             stringWhithoutSpaces = stringWhithoutSpaces.replace(/[/]/g,'');
+            if (i == 0) {
+              route = "from-" + stringWhithoutSpaces;
+            } else {
+              route += "-to-" + stringWhithoutSpaces;
+            }
+          }
+         cities = route; 
+      }
+    }
+  
     return (
       <React.Fragment>
         <div className="wrapper d-flex flex-column">
           <div className="drivers_bottom_background d-flex flex-column" >
-            <DriversBody changeTravelVisibility={this.changeTravelVisibility} />
+            <DriversBody changeTravelVisibility={this.changeTravelVisibility} country={country} cities={cities}/>
           </div>
         </div>
         <StartTravelForm changeTravelVisibility={this.changeTravelVisibility} changeSuccessVisibility={this.changeSuccessVisibility}
@@ -62,7 +105,7 @@ const Drivers = connect(
     driversState: state.DriversReduser
   }),
   (dispatch) => ({
-    // setCities:(cities) => dispatch({type:"SET_CITIES",cities:cities})
+    setCities:(cities) => dispatch({type:"SET_CITIES",cities:cities}),
     setMaxPrice: (maxPrice) => dispatch({ type: "SET_MAX_PRICE", maxPrice: maxPrice, pricePart: 100 })
   })
 )(DriversClass);

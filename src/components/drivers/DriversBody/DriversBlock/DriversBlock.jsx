@@ -19,20 +19,22 @@ import requests from '../../../../config';
 class DriversBlockClass extends React.Component {
   constructor(props) {
     super(props);
-    this.setPage = this.setPage.bind(this);
-    this.showMorePages = this.showMorePages.bind(this);
-    this.driversSort = this.driversSort.bind(this);
+    this.state={
+      openModal:false,
+      country:this.props.country,
+      cities:this.props.cities,
+    }
   }
-  setPage(page) {
+  setPage=(page)=> {
     if (page !== "...") {
       this.props.dispatch(setPage(page));
     }
     //console.log("SetPage has been called");
   }
-  showMorePages() {
+  showMorePages=()=> {
     this.props.dispatch(setMorePagesShow());
   }
-  driversSort(array, type) {
+  driversSort=(array, type)=> {
     function sortPrice(a, b) {
       if (a.price > b.price) return 1;
       if (a.price < b.price) return -1;
@@ -118,6 +120,8 @@ class DriversBlockClass extends React.Component {
     setLanguagesNumbers(this,selectedElements);
     console.log('selectedEl');
     console.log(selectedElements);
+    
+    
     return (
       <div className="drivers_block d-flex flex-wrap">
         {
@@ -125,14 +129,14 @@ class DriversBlockClass extends React.Component {
             <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 p-2 pb-3">
               <div className="driversBlock_driverCard d-flex flex-column ">
                 <div className="driversBlock_carImage" style={{ background: "url(" + requests.serverAddress+element.carImage + ") no-repeat", backgroundSize: "cover" }}>
-                  <Link to={`/driverProfile/${/*element.id*/0},${/*element.id*/0},${/*element.id*/0}`} className="driversBlock_carBlackout">
+                  <Link to={`/driverProfile/${element.id}-${element.id}-${this.state.country}-${this.state.cities}`} className="driversBlock_carBlackout">
                     <div className="driversBlock_carBlackout_detailed">Подробнее</div>
                   </Link>
                 </div>
 
                 <div className="driverBlock_driverInfoBlock d-flex flex-column">
 
-                  <Link to={`/driverProfile/${/*element.id*/0},${/*element.id*/0},${/*element.id*/0}`} className="driversBlock_driverInfoBlock_element driversBlock_carName">{element.carBrand}</Link>
+                  <Link to={`/driverProfile/${element.id}-${element.id}-${this.state.country}-${this.state.cities}`} className="driversBlock_driverInfoBlock_element driversBlock_carName">{element.carBrand}</Link>
                   <div className="driverBlock_carInfoLine d-flex">
                     <div className="driversBlock_driverCard_carIcon" style={{ background: "url(" + requests.serverAddress+this.props.driversState.carTypes[element.carType].carTypeImage + ") no-repeat", backgroundSize: "42px 30px", backgroundPosition: "-5px 0px" }} />
                     <div className="driversBlock_carInfoLine_value">{this.props.driversState.carTypes[element.carType].name_en + ", " + element.carCapacity + " места"}</div>
@@ -140,7 +144,7 @@ class DriversBlockClass extends React.Component {
                   <div className="driversBlock_driverInfoBlock_element d-flex">
                     <div className="driversBlock_driverCard_photo" style={{ background: "url(" + requests.serverAddress+element.avatar + ") no-repeat", backgroundSize: "40px 40px" }} />
                     <div className="d-flex flex-column driversBlock_driverCard_driverInfo">
-                      <Link to={`/driverProfile/${/*element.id*/0},${/*element.id*/0},${/*element.id*/0}`} className="driversBlock_driversInfo_name">{element.name}</Link>
+                      <Link to={`/driverProfile/${element.id}-${element.id}-${this.state.country}-${this.state.cities}`} className="driversBlock_driversInfo_name">{element.name}</Link>
                       <Stars key={element.rating} value={element.rating} commentNumber={element.comments + " отзывов"} valueDisplay={true} commentNumberDisplay={true} />
                     </div>
                   </div>

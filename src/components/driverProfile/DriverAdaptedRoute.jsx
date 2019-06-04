@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'
+import RouteMenu from '../home/HomeBody/RouteMenu'
 
 export default class DriverAdaptedRoute extends React.Component {
     shouldComponentUpdate(nextProps) {
@@ -11,7 +12,7 @@ export default class DriverAdaptedRoute extends React.Component {
 
         return (
             <div className="drivers_route col-12 p-0 d-flex flex-column" >
-                <div className="d-flex col-12">
+                {/* <div className="d-flex col-12">
                     <div className="route_date_text">Дата отправления: {date}</div>
                 </div>
                 <div className="d-flex flex-md-row flex-column justify-content-md-between justify-content-start align-items-center col-12" >
@@ -43,8 +44,8 @@ export default class DriverAdaptedRoute extends React.Component {
                         </div>
 
                     </div>
-                </div>
-
+                </div> */}
+                <RouteMenu />
             </div>
         )
     }

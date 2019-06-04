@@ -6,30 +6,30 @@ import LocationSearchInput from './Search'
 import { connect } from 'react-redux';
 import DatePicker from 'material-ui/DatePicker';
 import requests from '../../../config';
+import {setCities,set_state} from '../../../redusers/Action'
+
 import { isMobileOnly } from 'react-device-detect'
 import {setDriversList,setCarTypes} from '../../../redusers/ActionDrivers';
 import DriverRefreshIndicator from '../../driverProfileRegistration/DriverRefreshIndicator';
 
 const CityRouteTable = (props) => {
-  const { cities, changeCity, removeCity, addCity,isoCountryMap } = props;
-
-  let workCities = [...cities];
+  const {cities, changeCity, removeCity, addCity,isoCountryMap } = props;
+  // let workCities = [...cities];
   let alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I",
     "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
   // let tempStart = workCities.shift();
-  workCities.pop();
-  console.log(cities, "cities");
-  
+  // workCities.pop();
+  // console.log(cities, "cities");
   // console.log(workCities, "workCities");
   return (
     <React.Fragment>
       {isMobileOnly ?
         <div className="addCities" >
           {cities.map((element, index) =>
-            <div className="startCity d-flex col-12 p-0" key={element + index}>
+            <div className="startCity d-flex col-12 p-0" key={element + index+cities[index].point}>
               <div className={index <= 1 ? "col-12 p-0" : "col-10 pl-0 pr-1"}>
                 <div className="addCitiesLocationDropDown col p-0">
-                  <LocationSearchInput address={cities[index].point} changeCity={changeCity} index={index} classDropdown="searchElement_style" spanText={alphabet[index]} placeholder={index ? "Куда, выберите место" : "Откуда, выберите место"} classDiv={index > 1 && !cities[index] ? "classDivMobail  _checkDiv startCity-CheckInput" : "classDivMobail  _checkDiv"} classInput="city_input _checkInput" isoCountryMap={isoCountryMap}/>
+                  <LocationSearchInput address={cities[index].point} changeCity={changeCity} index={index} classDropdown="searchElement_style" spanText={alphabet[index]} placeholder={index ? "Куда, выберите место" : "Откуда, выберите место"} classDiv={index > 1 && !cities[index].point ? "classDivMobail  _checkDiv startCity-CheckInput" : "classDivMobail  _checkDiv"} classInput="city_input _checkInput" isoCountryMap={isoCountryMap}/>
                 </div>
               </div>
               <div className="crossToolTip col-2 p-0" style={{ display: index <= 1 ? "none" : "" }} onClick={() => removeCity(index)}>
@@ -42,10 +42,10 @@ const CityRouteTable = (props) => {
         :
         <div className="d-flex flex-wrap col-12 p-0" >
           {cities.map((element, index) =>
-            <div className="startCity d-flex col-6 p-0" key={element + index}>
+            <div className="startCity d-flex col-6 p-0" key={element + index+cities[index].point}>
               <div className={index <= 1 ? (index % 2 === 0 ? "col-12 pl-0 pr-1" : "col-12 pl-0 pr-1") : (index % 2 === 0 ? "col-10 pl-0 pr-1" : "col-10 pl-0 pr-1 ")}>
                 <div className="addCitiesLocationDropDown col p-0">
-                  <LocationSearchInput address={cities[index].point} changeCity={changeCity} index={index} classDropdown="searchElement_style" spanText={alphabet[index]} placeholder={index ? "Куда, выберите место" : "Откуда, выберите место"} classDiv={index > 1 && !cities[index] ? "classDiv  _checkDiv startCity-CheckInput" : "classDiv  _checkDiv"} classInput="city_input _checkInput" isoCountryMap={isoCountryMap}/>
+                  <LocationSearchInput address={cities[index].point} changeCity={changeCity} index={index} classDropdown="searchElement_style" spanText={alphabet[index]} placeholder={index ? "Куда, выберите место" : "Откуда, выберите место"} classDiv={index > 1 && !cities[index].point ? "classDiv  _checkDiv startCity-CheckInput" : "classDiv  _checkDiv"} classInput="city_input _checkInput" isoCountryMap={isoCountryMap}/>
                 </div>
               </div>
               <div className="crossToolTip col p-0" style={{ display: index <= 1 ? "none" : "" }} onClick={() => removeCity(index)}>
@@ -68,19 +68,68 @@ class RouteMenuClass extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      date: "",
       correctDate: "",
       isWaiting: false,
       isRefreshing: true,
-      isGoodAnswer: true
+      isGoodAnswer: true,
+      date: this.props.storeState.date,
     }
   }
+
+  changeCity = (index, value, extraData) => {
+    let cities = this.props.storeState.cities;
+    cities[index] = {
+      point: value,
+      lat: extraData.location.lat,
+      long: extraData.location.long
+    };
+    this.props.dispatch(setCities(cities))
+    let footer = document.querySelector(".footerMobile");
+    footer.classList.remove("footerMobile-activeInput")
+  }
+
+  addCity = () => {
+    let cities = this.props.storeState.cities;
+    let flagCities = true;
+    
+    let massInput = document.querySelectorAll("._checkInput")
+    for(let i = 0; i < massInput.length; i++){
+      let massDivInput = document.querySelectorAll("._checkDiv")
+      massDivInput[i].classList.remove("startCity-CheckInput")
+    }
+    for (let i = 0; i < massInput.length; i++) {
+      if (massInput[i].defaultValue == "") {
+        let massDivInput = document.querySelectorAll("._checkDiv")
+        massDivInput[i].classList.add("startCity-CheckInput")
+        flagCities = false;
+      }
+    }
+    if (cities[cities.length - 1].point == "") {
+    } else if(flagCities){
+      cities[cities.length] = {
+        point: '',
+        lat: '',
+        long: ''
+      };
+      this.props.dispatch(setCities(cities))
+     
+    }
+  }
+  removeCity = (index) => {
+    let cities = this.props.storeState.cities;
+    cities.splice(index, 1);
+    this.props.dispatch(setCities(cities))
+  }
+
+
 
   chooseDate = (value) => {
     //let dayMass = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
     // let monthMass = ["января", "февраля", "марта", "апреля", "мая",
     //   "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
-    let resultString = value.getDate() + "-" + value.getMonth() + "-" + value.getFullYear();
+    // let resultString = value.getDate() + "-" + value.getMonth() + "-" + value.getFullYear();
+    let resultString = value.toISOString();
+    this.props.dispatch(set_state(this.props.storeState.cities, resultString))
     this.setState({
       date: resultString,
       correctDate: value.toUTCString()
@@ -88,6 +137,7 @@ class RouteMenuClass extends React.Component {
   }
 
   validationInput=(massCities)=>{
+    
     let flag =true;
     let massInput = document.querySelectorAll("._checkInput")
     for (let i = 0; i < massInput.length; i++) {
@@ -112,13 +162,12 @@ class RouteMenuClass extends React.Component {
 
   getCountry=(arrayAdress,country)=>{
     let flag=true;
-    
     let newCountry = arrayAdress[arrayAdress.length - 1].slice(1);
     if (country === newCountry || country === "") {
       country = newCountry;
-    } else {
-      alert("Error")
-      flag = false;
+    // } else {
+    //   alert("Error")
+    //   flag = false;
     }
     return {flag:flag,country:country}
   }
@@ -127,8 +176,8 @@ class RouteMenuClass extends React.Component {
     let route = "";
     let canMove;
     let country = "";
-    for (let i = 0; i < this.props.cities.length; i++) {
-      let arrayAdress = this.props.cities[i].point.split(',');
+    for (let i = 0; i < this.props.storeState.cities.length; i++) {
+      let arrayAdress = this.props.storeState.cities[i].point.split(',');
 
       let date = this.getCountry(arrayAdress,country);
       country = date.country;
@@ -138,7 +187,8 @@ class RouteMenuClass extends React.Component {
       for (let k = 0; k < arrayAdress.length - 1; k++) {
         stringWhithoutCountry += arrayAdress[k]
       }
-      let stringWhithoutSpaces = stringWhithoutCountry.replace(/ /g, '-');
+      let stringWhithoutSpaces = stringWhithoutCountry.replace(/ /g,'-');
+       stringWhithoutSpaces = stringWhithoutSpaces.replace(/[/]/g,'');
       if (i == 0) {
         route = "from-" + stringWhithoutSpaces;
       } else {
@@ -149,23 +199,21 @@ class RouteMenuClass extends React.Component {
   }
 
   goToNextPage = () => {
-    let massCities = this.props.cities;
+    let massCities = this.props.storeState.cities;
     let flagCities;
     let canMove;
-
     flagCities = this.validationInput(massCities);
     if (flagCities) {
-      
-      this.props.goToDrivers(this.props.cities, this.state.date);
+      this.props.goToDrivers(this.props.storeState.cities, this.state.date);
       let routeDate = this.getRoute();
       let newStringCities = routeDate.route;
       let country = routeDate.country;
       canMove = routeDate.canMove;
 
 
-      
+      debugger;
       let body = JSON.stringify({
-        cities: this.props.cities,
+        cities: this.props.storeState.cities,
         country: this.props.storeState.country,
         date: this.state.correctDate,
         distance: '1000'
@@ -204,7 +252,7 @@ class RouteMenuClass extends React.Component {
             that.setState({isWaiting: false});
             
             if (canMove) {
-              that.props.globalhistory.history.push(`/drivers/${country},${newStringCities}`)
+              that.props.globalhistory.history.push(`/drivers/${country}-${newStringCities}`)
               window.scroll(0, 500);
             }
             //that.getProfileData();
@@ -237,14 +285,14 @@ class RouteMenuClass extends React.Component {
           { 
             isMobileOnly ?
             <React.Fragment>
-              <CityRouteTable cities={this.props.cities} changeCity={this.props.changeCity} removeCity={this.props.removeCity} isoCountryMap={this.props.storeState.isoCountryMap}/>
-              <div className=" d-flex routemenu_addCity" onClick={() => this.props.addCity()}>
+              <CityRouteTable cities={this.props.storeState.cities} changeCity={this.changeCity} removeCity={this.removeCity} isoCountryMap={this.props.storeState.isoCountryMap}/>
+              <div className=" d-flex routemenu_addCity" onClick={() => {this.addCity()}}>
                 <div className="routemenu_city_add_text" style={{ background: "url(" + addIcon + ") no-repeat" }} >Добавить пункт назначения</div>
               </div>
             </React.Fragment>
             :
             <React.Fragment>
-              <CityRouteTable cities={this.props.cities} changeCity={this.props.changeCity} removeCity={this.props.removeCity} addCity={this.props.addCity} isoCountryMap={this.props.storeState.isoCountryMap}/>
+              <CityRouteTable cities={this.props.storeState.cities} changeCity={this.changeCity} removeCity={this.removeCity} addCity={this.addCity} isoCountryMap={this.props.storeState.isoCountryMap}/>
             </React.Fragment>
           }
 
@@ -252,7 +300,7 @@ class RouteMenuClass extends React.Component {
 
           <div className="routemenu_setDate">
             <DatePicker hintText="Дата отправления" minDate={new Date()} onChange={(e, date) => { this.chooseDate(date); let datePicer = document.querySelector(".routemenu_date"); datePicer.classList.remove("routemenu_date-Check") }} className="routemenu_date col" />
-
+            
             <div className="routemenu_search col-sm-6 col-12" onClick={() => { this.goToNextPage() }}>
               <div className="routemenu_search_button " >
                 <p className="routemenu_search_text">ПОИСК</p>

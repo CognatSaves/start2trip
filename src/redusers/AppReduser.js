@@ -36,8 +36,8 @@ import {
 
 const initialState = {
     cities: [
-        {point: "", lat: "", long: ""},
-        {point: "", lat: "", long: ""},
+        { point: "", lat: "", long: "" },
+        { point: "", lat: "", long: "" },
     ],
     date: "",
     autoVariants: ["Седан", "Внедорожник", "Минивен", "Микроавтобус"],
@@ -96,21 +96,8 @@ export const AppReduser = (state = initialState, action) => {
         case SET_STATE:
             {
                 let newStateSS = {...state };
-                switch (action.sourse) {
-                    case "HomeBody":
-                        newStateSS.cities = action.cities;
-                        newStateSS.date = action.date;
-                        //newStateSS.picture = action.picture;
-                        break;
-
-                    case "DriversRoute":
-                        newStateSS.cities = action.cities;
-                        newStateSS.date = action.date;
-                        //newStateSS.picture = action.picture;
-                        break;
-
-                    default:
-                }
+                newStateSS.cities = action.cities;
+                newStateSS.date = action.date;
                 return newStateSS;
             }
         case SET_CITIES:

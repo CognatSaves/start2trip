@@ -77,7 +77,7 @@ ReactDOM.render(
                     <Switch>
                         <Route path="/(home|drivers)" component={Home} />
                         {/* <Route path="/drivers/:date,:cities" component={Drivers} /> */}
-                        <Route path="/driverProfile/:id,:temp1,:temp2" component={DriverProfile} />
+                        <Route path="/driverProfile/:id-:temp1-:country-:cities" component={DriverProfile} />
                         <Route path="/places" component={Places} />
                         <Route path="/place/:country,:id" component={PlaceDescription} />
                         <Route path="/tours" component={Tours} />

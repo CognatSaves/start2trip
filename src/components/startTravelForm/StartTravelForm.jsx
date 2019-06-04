@@ -3,13 +3,24 @@ import './StartTravelForm.css';
 import './StartTravelBlockStyles.css';
 import { Link } from 'react-router-dom';
 import grayCross from './pictures/close_gray.svg';
+import Dialog from 'material-ui/Dialog';
 
 export default class StartTravelForm extends React.Component{
-  
+    constructor(props) {
+        super(props);
+      }
     render(){        
         return(
-            <div className="travelFormBlock" style={{display: this.props.travelVisibility}} 
-            onClick={(e)=>{if(e.currentTarget===e.target){this.props.changeTravelVisibility('none')} } }>
+        //     <Dialog
+        //   title="Забронировать поездку"
+        //   modal={false}
+        //   open={this.props.travelVisibility}
+        // //   onRequestClose={this.handleClose}
+        // >
+          
+        
+              <div className="travelFormBlock" style={{display: this.props.travelVisibility}} 
+             onClick={(e)=>{if(e.currentTarget===e.target){this.props.changeTravelVisibility('none')} } }> 
                 <div className="startTravelForm" style={{display: this.props.travelVisibility}} onClick={()=>{}}>
                     <div className="startTravelForm_element">
                         <div className="startTravelForm_headerText">Забронировать поездку</div>
@@ -49,7 +60,8 @@ export default class StartTravelForm extends React.Component{
                         </div>
                     </button>                    
                 </div>
-            </div>
+             </div> 
+            // </Dialog>
         )
                
     }
