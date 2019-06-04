@@ -33,7 +33,7 @@ class DriverProfileRegistrationClass extends React.Component {
     let profile = this.props.globalReduser.profile;
     let userType = this.props.globalReduser.readCookie('userType');
     let that = this;
-    //debugger;
+    
     if(this.props.globalReduser.profile.isDriver){
       return(
         <React.Fragment>

@@ -1,7 +1,7 @@
 const driverProfileRegistration = {
 
     DriverProfileNavigation: {
-        navigationText: ["Мои поездки", "Профиль", "Автомобиль", "Настройки поездок", "Туры",
+        navigationText: ["Мои поездки", "Профиль", "Автомобиль", "Настройки поездок", //"Туры",
             "Отзывы", "Настройки", "Биллинг", "Партнерская программа"
         ],
         updatePhoto: "Обновить фотографию",
@@ -65,10 +65,10 @@ const driverProfileRegistration = {
 
     },
     DriverProfileCar: {
-        profileCarBrend: {
+        profileCarBrand: {
             floatingLabelText: "Марка автомобиля"
         },
-        profileCarYaer: {
+        profileCarYear: {
             floatingLabelText: "Год автомобиля"
         },
         profileCarNumber: {
@@ -114,7 +114,7 @@ const driverProfileRegistration = {
     DriverProfileTripSettingsTrip: {
         changeOnWorkP: "Здесь вы можете приостановить и возобновить приём заказов",
         onWorkTrue: "Приостановить работу",
-        onWorkFalse: "Возобновить работы",
+        onWorkFalse: "Возобновить работу",
         chooseWeekend: "Выберите выходные дни",
         selectDates: "Выбрать даты",
         addCityTitle: "Добавьте город и радиусы, где Вы готовы принимать заказы",

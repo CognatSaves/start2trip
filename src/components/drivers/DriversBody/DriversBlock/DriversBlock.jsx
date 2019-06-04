@@ -48,7 +48,7 @@ class DriversBlockClass extends React.Component {
     let tempArray = [];
     let tempPrice = this.props.storeState.pricePart * this.props.storeState.maxPrice / 100;
     array.forEach((element, index) => {
-      if (element.price < tempPrice && element.carCapacity >= this.props.storeState.persons[1] + this.props.storeState.persons[0] &&
+      if (element.price <= tempPrice && element.carCapacity >= this.props.storeState.persons[1] + this.props.storeState.persons[0] &&
         (element.carType === this.props.storeState.autoValue || this.props.storeState.autoValue === "Любое авто") &&
         (element.language.indexOf(this.props.storeState.languageValue) !== -1 || this.props.storeState.languageValue === "Любой язык")
       ) {
@@ -79,13 +79,43 @@ class DriversBlockClass extends React.Component {
     }
   }
   render() {
-    let driversArray = this.driversSort([...this.props.driversState.drivers], this.props.storeState.sortMenuValue);
+    /*let driversArray = this.driversSort([...this.props.driversState.drivers], this.props.storeState.sortMenuValue);
+    
     let selectedElements = driversArray.slice((this.props.driversState.page - this.props.driversState.showPages) * this.props.storeState.pagesMenuValue,
       (this.props.driversState.page) * this.props.storeState.pagesMenuValue);
 
     let srcArray = Array(this.props.storeState.pagesMenuValue * this.props.driversState.showPages).fill(emptyLike);
     srcArray[0] = selectedFilledLike;
     srcArray[1] = filledLike;
+    console.log('selectedEl');
+    console.log(selectedElements);*/
+
+
+    
+    let driversArray = this.driversSort([...this.props.driversState.driversList], this.props.storeState.sortMenuValue);
+    let from = (this.props.driversState.page - this.props.driversState.showPages) * this.props.storeState.pagesMenuValue;
+    let number = (this.props.driversState.page) * this.props.storeState.pagesMenuValue;
+    let selectedElements = driversArray.slice(from,number);
+    //let srcArray = Array(this.props.storeState.pagesMenuValue * this.props.driversState.showPages).fill(emptyLike);
+    //srcArray[0] = selectedFilledLike;
+    //srcArray[1] = filledLike;
+    function setLanguagesNumbers(that,selectedElements){
+      selectedElements.map((element,index) => {
+        element.language.map((el, i) => {
+          for(let t=0; t<that.props.storeState.languages.length; t++){
+            if(el===that.props.storeState.languages[t].ISO){
+              element.language[i]=t;
+            }
+          }
+        })
+        for(let k=0; k<that.props.driversState.carTypes.length; k++){
+          if(element.carType===that.props.driversState.carTypes[k].id){
+            element.carType=k;
+          }
+        }
+      })
+    }
+    setLanguagesNumbers(this,selectedElements);
     console.log('selectedEl');
     console.log(selectedElements);
     return (
@@ -94,23 +124,23 @@ class DriversBlockClass extends React.Component {
           selectedElements.map((element, index) =>
             <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 p-2 pb-3">
               <div className="driversBlock_driverCard d-flex flex-column ">
-                <div className="driversBlock_carImage" style={{ background: "url(" + ToyotaPrado + ") no-repeat", backgroundSize: "cover" }}>
-                  <Link to={`/driverProfile/${element.id},${element.id},${element.id}`} className="driversBlock_carBlackout">
+                <div className="driversBlock_carImage" style={{ background: "url(" + requests.serverAddress+element.carImage + ") no-repeat", backgroundSize: "cover" }}>
+                  <Link to={`/driverProfile/${/*element.id*/0},${/*element.id*/0},${/*element.id*/0}`} className="driversBlock_carBlackout">
                     <div className="driversBlock_carBlackout_detailed">Подробнее</div>
                   </Link>
                 </div>
 
                 <div className="driverBlock_driverInfoBlock d-flex flex-column">
 
-                  <Link to={`/driverProfile/${element.id},${element.id},${element.id}`} className="driversBlock_driverInfoBlock_element driversBlock_carName">{element.carBrand}</Link>
+                  <Link to={`/driverProfile/${/*element.id*/0},${/*element.id*/0},${/*element.id*/0}`} className="driversBlock_driverInfoBlock_element driversBlock_carName">{element.carBrand}</Link>
                   <div className="driverBlock_carInfoLine d-flex">
-                    <div className="driversBlock_driverCard_carIcon" style={{ background: "url(" + jeep + ") no-repeat", backgroundSize: "42px 30px", backgroundPosition: "-5px 0px" }} />
-                    <div className="driversBlock_carInfoLine_value">{element.carType + ", " + element.carCapacity + " места"}</div>
+                    <div className="driversBlock_driverCard_carIcon" style={{ background: "url(" + requests.serverAddress+this.props.driversState.carTypes[element.carType].carTypeImage + ") no-repeat", backgroundSize: "42px 30px", backgroundPosition: "-5px 0px" }} />
+                    <div className="driversBlock_carInfoLine_value">{this.props.driversState.carTypes[element.carType].name_en + ", " + element.carCapacity + " места"}</div>
                   </div>
                   <div className="driversBlock_driverInfoBlock_element d-flex">
-                    <div className="driversBlock_driverCard_photo" style={{ background: "url(" + driverPhoto + ") no-repeat", backgroundSize: "40px 40px" }} />
+                    <div className="driversBlock_driverCard_photo" style={{ background: "url(" + requests.serverAddress+element.avatar + ") no-repeat", backgroundSize: "40px 40px" }} />
                     <div className="d-flex flex-column driversBlock_driverCard_driverInfo">
-                      <Link to={`/driverProfile/${element.id},${element.id},${element.id}`} className="driversBlock_driversInfo_name">{element.name}</Link>
+                      <Link to={`/driverProfile/${/*element.id*/0},${/*element.id*/0},${/*element.id*/0}`} className="driversBlock_driversInfo_name">{element.name}</Link>
                       <Stars key={element.rating} value={element.rating} commentNumber={element.comments + " отзывов"} valueDisplay={true} commentNumberDisplay={true} />
                     </div>
                   </div>

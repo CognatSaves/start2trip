@@ -355,10 +355,15 @@ class RenderModalRegistrationClass extends React.Component {
             that.state.checkCookie(newWin);
         }
         let lang = this.state.languageValue;
-        console.log("Render modal registration window");
+        /*console.log("Render modal registration window");
         console.log(pageTextInfo.registrationAnswer);
         console.log('this.state.selectedRegistrationAnswer');
-        console.log(this.state.selectedRegistrationAnswer);
+        console.log(this.state.selectedRegistrationAnswer);*/
+        console.log('pageTextInfo');
+        console.log(pageTextInfo);
+        console.log(pageTextInfo.registrationDarkBackgroundText.mobailText[lang]);
+        console.log(pageTextInfo.sitingInLightBackgroundText.mobailText[lang]);
+        
         let selectedRegistrationAnswer = this.state.selectedRegistrationAnswer;
         let massIcon = [backpackIcon, wheelIcon, dealIcon];
         let regAnswerVisibility = (this.state.regAnswerStatus || this.state.regProcessStatus);

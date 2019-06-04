@@ -14,14 +14,17 @@ const pageTextInfo = {
         secondInputPlaceholderText: ["Email","Email"],
         linkText: ["Забыли пароль?","Forgot your password?"], 
         buttonText: ["ВОЙТИ","LOG IN"],
-
+        mobailbuttonText: ["Войти","Log in"],
+        mobailText:["Уже есть аккаунт?","Already have an account?"]
     },
 
     registrationDarkBackgroundText: { 
         registrationTitle: ["Добро пожаловать!","Welcome!"], 
         registrationFirstText: ["Зарегистрируйтесь на сайте","Sign up with your login and password"], 
         registrationSecondText: ["и начинайте путешествие вместе с нами!","and start the journey with us!"], 
-        buttonText: ["РЕГИСТРАЦИЯ","REGISTRATION"] 
+        buttonText: ["РЕГИСТРАЦИЯ","REGISTRATION"],
+        mobailbuttonText: ["Зарегистрироваться","Sign up"],
+        mobailText:["Нет аккаунта?","No account?"] 
     },
     registrationLightBackgroundText: { 
         registrationTitle: ["Создать аккаунт","Sign up for Tripfer"], 
@@ -72,4 +75,5 @@ const pageTextInfo = {
     ]
 }
 export default pageTextInfo;
+
 

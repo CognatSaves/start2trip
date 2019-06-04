@@ -1,4 +1,4 @@
-import {SET_DRIVERS_ROUTE_CHANGE, SET_PAGE, SET_MORE_PAGES_SHOW} from './ActionDrivers';
+import {SET_DRIVERS_ROUTE_CHANGE, SET_PAGE, SET_MORE_PAGES_SHOW,SET_DRIVERS_LIST,SET_CAR_TYPES} from './ActionDrivers';
 
 const initialState = {
     travelTime: '',
@@ -750,6 +750,8 @@ const initialState = {
     },
 
       ],
+    driversList: [],
+    carTypes: []
 }
 
 export const DriversReduser = (state=initialState, action)=>{
@@ -777,7 +779,16 @@ export const DriversReduser = (state=initialState, action)=>{
             newState.page=newState.page+1;
             return newState;
         }
-        
+        case SET_DRIVERS_LIST:{
+            let newState={...state};
+            newState.driversList=action.driversList;
+            return newState;
+        }
+        case SET_CAR_TYPES:{
+            let newState={...state};
+            newState.carTypes=action.carTypes;
+            return newState;
+        }
         default: return state;
     }
 

@@ -5,10 +5,10 @@ import crossIcon from './pictures/close.svg'
 import LocationSearchInput from './Search'
 import { connect } from 'react-redux';
 import DatePicker from 'material-ui/DatePicker';
-
+import requests from '../../../config';
 import { isMobileOnly } from 'react-device-detect'
-
-
+import {setDriversList,setCarTypes} from '../../../redusers/ActionDrivers';
+import DriverRefreshIndicator from '../../driverProfileRegistration/DriverRefreshIndicator';
 
 const CityRouteTable = (props) => {
   const { cities, changeCity, removeCity, addCity,isoCountryMap } = props;
@@ -69,6 +69,10 @@ class RouteMenuClass extends React.Component {
     super(props);
     this.state = {
       date: "",
+      correctDate: "",
+      isWaiting: false,
+      isRefreshing: true,
+      isGoodAnswer: true
     }
   }
 
@@ -79,6 +83,7 @@ class RouteMenuClass extends React.Component {
     let resultString = value.getDate() + "-" + value.getMonth() + "-" + value.getFullYear();
     this.setState({
       date: resultString,
+      correctDate: value.toUTCString()
     });
   }
 
@@ -107,7 +112,7 @@ class RouteMenuClass extends React.Component {
 
   getCountry=(arrayAdress,country)=>{
     let flag=true;
-    debugger
+    
     let newCountry = arrayAdress[arrayAdress.length - 1].slice(1);
     if (country === newCountry || country === "") {
       country = newCountry;
@@ -150,16 +155,69 @@ class RouteMenuClass extends React.Component {
 
     flagCities = this.validationInput(massCities);
     if (flagCities) {
+      
       this.props.goToDrivers(this.props.cities, this.state.date);
       let routeDate = this.getRoute();
       let newStringCities = routeDate.route;
       let country = routeDate.country;
       canMove = routeDate.canMove;
 
-      if (canMove) {
-        this.props.globalhistory.history.push(`/drivers/${country},${newStringCities}`)
-        window.scroll(0, 500);
+
+      
+      let body = JSON.stringify({
+        cities: this.props.cities,
+        country: this.props.storeState.country,
+        date: this.state.correctDate,
+        distance: '1000'
+      });
+      let that = this;
+      function convertDate(value){
+
       }
+      
+      this.setState({isWaiting: true, isRefreshing: true, isGoodAnswer: true});
+      fetch(requests.getDrivers, {
+          method: 'PUT', body: body,
+          headers: { 'content-type': 'application/json'}
+      })
+      .then(response => {
+        
+        return response.json();
+      })
+      .then(function (data) {
+        
+        if (data.error) {
+            console.log("bad");
+            that.setState({isRefreshing: false, isGoodAnswer: false});
+            setTimeout(()=>{
+              that.setState({isWaiting: false});
+              throw data.error;
+            },1000);
+            
+        }
+        else {                 
+            console.log("good");
+            console.log(data);
+            
+            that.props.dispatch(setDriversList(data.drivers));
+            that.props.dispatch(setCarTypes(data.carTypes));
+            that.setState({isWaiting: false});
+            
+            if (canMove) {
+              that.props.globalhistory.history.push(`/drivers/${country},${newStringCities}`)
+              window.scroll(0, 500);
+            }
+            //that.getProfileData();
+        }
+      })
+      .catch(function (error) {
+          console.log("bad");
+          console.log('An error occurred:', error);
+          //that.catchFunc();
+      });
+
+
+
 
     }
   }
@@ -171,7 +229,13 @@ class RouteMenuClass extends React.Component {
     return (
       <React.Fragment>
         <div className="routemenu_container d-flex flex-column col-12">
-          {isMobileOnly ?
+          {
+            this.state.isWaiting ?
+              <DriverRefreshIndicator isRefreshExist={true} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
+              : <React.Fragment />
+          } 
+          { 
+            isMobileOnly ?
             <React.Fragment>
               <CityRouteTable cities={this.props.cities} changeCity={this.props.changeCity} removeCity={this.props.removeCity} isoCountryMap={this.props.storeState.isoCountryMap}/>
               <div className=" d-flex routemenu_addCity" onClick={() => this.props.addCity()}>

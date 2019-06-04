@@ -19,7 +19,7 @@ class DriversClass extends React.Component {
       return maxValue;
     }
     super(props);
-    let maxPrice = maxPriceCalc(this.props.driversState.drivers);
+    let maxPrice = maxPriceCalc(this.props.driversState.driversList);
     this.state = {
       travelVisibility: 'none',
       successVisibility: 'none',
@@ -40,6 +40,8 @@ class DriversClass extends React.Component {
     })
   }
   render() {
+    console.log('Drivers render');
+    console.log(this.props);
     return (
       <React.Fragment>
         <div className="wrapper d-flex flex-column">

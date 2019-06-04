@@ -13,6 +13,7 @@ import StartTravelSuccess from '../startTravelForm/StartTravelSuccess';
 import DriverAdaptedRoute from './DriverAdaptedRoute';
 import DriverInfo from './DriverInfo.jsx';
 import DriverProfileTours from './DriverProfileTours';
+import requests from '../../config';
 
 class DriverProfileClass extends React.Component {
     constructor(props) {
@@ -31,6 +32,36 @@ class DriverProfileClass extends React.Component {
         this.changeTravelVisibility = this.changeTravelVisibility.bind(this);
         this.changeSuccessVisibility = this.changeSuccessVisibility.bind(this);
         this.changePanelVariant = this.changePanelVariant.bind(this);
+        let body = JSON.stringify({
+            id: 'id',
+            carId: 'carId',
+            cities: 'cities',
+            country: 'country',
+            date: 'date',
+            distance: 'distance'
+        })
+        fetch(requests.getDriverData,{
+            method: 'PUT', body: body,
+            headers: { 'content-type': 'application/json'}
+        })
+        .then(response => {
+            return response.json();
+        })
+        .then(function (data){
+            if (data.error) {
+                console.log("bad");
+                throw data.error;
+            }
+            else{
+                console.log('good');
+                console.log(data);
+            }
+
+        })
+        .catch(function (error){
+            console.log('bad');
+            console.log('An error occurred:',error);
+        })
     }
     showMorePages() {
         this.setState({

@@ -1,5 +1,5 @@
 import serverAddress from './serverAddress';
-const frontendAddress = 'http://tripfer.com'; //'http://localhost:3000';
+const frontendAddress = 'http://localhost:3000';//'http://tripfer.com'; //'http://localhost:3000';
 
 const serverRegistrationRequest = serverAddress+'/auth/local/register';
 const serverAuthorizationRequest = serverAddress+'/auth/local';
@@ -19,7 +19,8 @@ const userTourDestroyRequest = serverAddress + '/tours/me';//запрос для
 const userTourUpdateRequest = serverAddress + '/tours/me';//запрос для админки
 const userTourActivateRequest = serverAddress + '/tours/me/activate';//запрос для админки
 const getLocals = serverAddress + "/getLocals";//первичный запрос массивов языков и валют
-const getDrivers = serverAddress + "/findDrivers";//запрос на водителей для выбранного маршрута
+const getDrivers = serverAddress + "/users/findDrivers";//запрос на водителей для выбранного маршрута
+const getDriverData = serverAddress + "/users/getDriverData";//запрос данных водителя с его машиной
 
 const forgotPassword = serverAddress + "/auth/forgotPassword";
 const resetPassword = serverAddress + "/auth/reset-password";
@@ -48,5 +49,6 @@ export default {
     forgotPassword: forgotPassword,
     resetPassword: resetPassword,
     changeMyDriver: changeMyDriver,
-    getDrivers: getDrivers
+    getDrivers: getDrivers,
+    getDriverData:getDriverData
 };

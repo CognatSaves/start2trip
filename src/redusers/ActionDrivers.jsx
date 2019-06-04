@@ -6,6 +6,22 @@ const SET_MORE_PAGES_SHOW = 'SET_MORE_PAGES_SHOW';
 
 const OPEN_FILTER_SHOW = 'OPEN_FILTER_SHOW';
 
+const SET_DRIVERS_LIST = 'SET_DRIVERS_LIST';
+
+const SET_CAR_TYPES = 'SET_CAR_TYPES';
+
+const setCarTypes = function(carTypes){
+    return{
+        type:SET_CAR_TYPES,
+        carTypes: carTypes
+    }
+}
+const setDriversList = function(driversList){
+    return{
+        type: SET_DRIVERS_LIST,
+        driversList: driversList
+    }
+}
 const setDriversRouteChange = function (driversRouteChange){
     return {
         type: 'SET_DRIVERS_ROUTE_CHANGE',
@@ -40,4 +56,6 @@ export {
     setPage, SET_PAGE,
     setMorePagesShow, SET_MORE_PAGES_SHOW,
     OPEN_FILTER_SHOW,openFilterShow,
+    SET_DRIVERS_LIST,setDriversList,
+    SET_CAR_TYPES,setCarTypes
 }

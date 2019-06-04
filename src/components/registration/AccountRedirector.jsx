@@ -34,7 +34,7 @@ class AccountRedirectorClass extends React.Component{
     render(){
         function parseLocationPathname(pathname,profile){
             let splitedString = pathname.split('/');
-            //debugger;
+            
             if(profile.isCustomer){
                 address='user';
                 if(splitedString[2]==='user'){
@@ -64,7 +64,7 @@ class AccountRedirectorClass extends React.Component{
             }
             return false;
         }
-        //debugger;
+        
 
         let profile = this.props.globalReduser.profile;
         let pathname = this.props.history.location.pathname;
@@ -77,7 +77,7 @@ class AccountRedirectorClass extends React.Component{
         else{
             let selected = false;
             let parseLocationPathnameResult = parseLocationPathname(pathname,profile);
-            //debugger;
+            
             if(parseLocationPathnameResult){
                 return (
                     <React.Fragment>

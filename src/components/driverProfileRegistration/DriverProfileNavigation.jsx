@@ -168,6 +168,7 @@ class DriverProfileNavigationClass extends React.Component {
         }*/
         let textPage = this.props.globalReduser.languageText.DriverProfileNavigation;
         let profile = this.props.globalReduser.profile;
+        
         return (
             <React.Fragment>
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer}/>                

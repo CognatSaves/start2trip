@@ -557,9 +557,9 @@ class HeaderClass extends React.Component {
 
   }
   render() {
-    console.log('Header render');
-    console.log(this.state);
-    console.log(this.props);
+    //console.log('Header render');
+    //console.log(this.state);
+    //console.log(this.props);
     let languages = this.props.storeState.languages;
     let currencies = this.props.storeState.currencies;
     return (
