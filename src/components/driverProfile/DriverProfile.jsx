@@ -133,7 +133,7 @@ class DriverProfileClass extends React.Component {
                         <div className="drivers_top_block d-flex flex-column">
                             <DriverInfo element={driver} />
                             <div className="drivers_route col-12 p-0 d-flex flex-column" >
-                                <div className="d-flex justify-content-center col-12 p-0 pb-3">
+                                {/* <div className="d-flex justify-content-center col-12 p-0 pb-3">
                                     <h3 className="drivers_route_title">Ваш Маршрут</h3>
                                 </div>
                                 <div className="d-flex flex-sm-row flex-column col-12 p-0">
@@ -141,8 +141,8 @@ class DriverProfileClass extends React.Component {
                                     <div className="route_time_text col-sm-6 col-12">Время в пути без остановок:
                             <p1>{this.props.driversState.travelTime}</p1><p2>{this.props.driversState.travelLength}</p2>
                                     </div>
-                                </div>
-                                <RouteMenu showBtPrice={true} />
+                                </div> */}
+                                {/* <RouteMenu showBtPrice={true} /> */}
 
                             </div>
                             {/* <DriverAdaptedRoute element={driver} date={this.props.storeState.date} cities={this.props.storeState.cities}
