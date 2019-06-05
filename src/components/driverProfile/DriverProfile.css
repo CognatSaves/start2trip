@@ -3,6 +3,17 @@
 @import '../drivers/DriversBody/DriversBlock/DriversBlock.css';
 @import '../drivers/DriversBody/DriversBlock/InfoBlock.css';
 @import '../drivers/DriversBody/DriversBlock/TripBlock.css';
+.route_date_text {
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: 400;
+    padding: 10px;
+}
 
-
-
+.route_time_text,
+.route_comment {
+    padding-top: 10px;
+    color: #ffffff;
+    font-weight: 400;
+    font-size: 12px;
+}

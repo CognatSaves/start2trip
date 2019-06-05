@@ -92,8 +92,8 @@
 }
 
 .driversInfo_driverName {
-    line-height: 18px;
-    padding-bottom: 10px;
+    /* line-height: 18px;
+    padding-bottom: 10px; */
 }
 
 .driverInfo_informationIcon {
@@ -146,11 +146,11 @@
 }
 
 .driverInfo_carTypeValue {
-    line-height: 18px;
+    display: flex;
+    align-items: flex-end;
     color: #686868;
     font-size: 14px;
     font-weight: 400;
-    padding-bottom: 10px;
 }
 
 @media (max-width: 990px) {

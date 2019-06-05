@@ -16,7 +16,7 @@ export default class LocationSearchInput extends React.Component {
       inFocusOnly: false,
     }
   }
-  
+
 
   handleChange = address => {
     this.setState({
@@ -58,7 +58,7 @@ export default class LocationSearchInput extends React.Component {
         onSelect={this.handleSelect}
         searchOptions={{
           types: [],
-          componentRestrictions: {country: this.props.isoCountryMap},
+          componentRestrictions: { country: this.props.isoCountryMap },
         }}
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) =>
@@ -72,18 +72,18 @@ export default class LocationSearchInput extends React.Component {
                 <span className={this.props.spanText ? "locationSvg" : " d-none"} style={{ display: this.state.inFocus ? "" : "none" }}>{this.props.spanText}</span>
                 <input id={this.props.id}
                   onFocus={(e) => {
-                   if(isMobileOnly){
-                    var scrolled = window.pageYOffset || document.documentElement.scrollTop;
-                    let el = e.currentTarget.getBoundingClientRect();
-                    if(el.top>scrolled){
-                     window.scroll(0, el.top-46)
-                    }else{
-                      let topMargin = scrolled + el.top-46;
-                     window.scroll(0, topMargin)
+                    if (isMobileOnly) {
+                      var scrolled = window.pageYOffset || document.documentElement.scrollTop;
+                      let el = e.currentTarget.getBoundingClientRect();
+                      if (el.top > scrolled) {
+                        window.scroll(0, el.top - 46)
+                      } else {
+                        let topMargin = scrolled + el.top - 46;
+                        window.scroll(0, topMargin)
+                      }
+                      let footer = document.querySelector(".footerMobile");
+                      footer.classList.add("footerMobile-activeInput")
                     }
-                    let footer = document.querySelector(".footerMobile");
-                    footer.classList.add("footerMobile-activeInput")
-                   } 
                     this.setState({ inFocus: true, inFocusOnly: true })
                   }}
 
@@ -93,7 +93,10 @@ export default class LocationSearchInput extends React.Component {
                   })}
                   {...opts}
                 />
+                {this.props.readOnlyOn ? <React.Fragment />
+                  :
                   <i style={{ display: this.state.inFocusOnly ? "" : "none" }} onClick={() => { this.setState({ address: "" }) }} />
+                }
               </div>
 
               <div className={"autocomplete-dropdown-container " + this.props.classDropdown}>

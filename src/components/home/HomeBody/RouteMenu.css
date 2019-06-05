@@ -41,6 +41,7 @@
     background: rgba(255, 255, 255, 0.3);
     border-radius: 5px;
     margin: 2px;
+    padding: 0 15px;
     max-height: 41px;
     min-height: 41px;
 }
@@ -335,7 +336,7 @@ p.routemenu_search_text {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 41px;
+    /* min-height: 41px; */
     /* background: rgba(255, 255, 255, 0.3); */
     border-radius: 5px;
     margin: 2px;
@@ -343,7 +344,7 @@ p.routemenu_search_text {
 
 .routemenu_comment_text {
     width: 100%;
-    text-align: center;
+    /* text-align: center; */
     font-size: 14px;
     color: #fff;
     font-weight: 400;
@@ -496,7 +497,7 @@ p.routemenu_search_text {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        margin: 0 2px;
+        /* margin: 0 2px; */
     }
     .crossToolTip {
         display: flex;

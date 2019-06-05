@@ -144,7 +144,7 @@ class DriversBlockClass extends React.Component {
                     <div className="driversBlock_carInfoLine_value">{this.props.driversState.carTypes[element.carType].name_en + ", " + element.carCapacity + " места"}</div>
                   </div>
                   <div className="driversBlock_driverInfoBlock_element d-flex">
-                    <div className="driversBlock_driverCard_photo" style={{ background: "url(" + requests.serverAddress+element.avatar + ") no-repeat", backgroundSize: "40px 40px" }} />
+                    <div className="driversBlock_driverCard_photo" style={{ background: "url(" + requests.serverAddress+element.avatar + ") no-repeat"}} />
                     <div className="d-flex flex-column driversBlock_driverCard_driverInfo">
                       <Link to={`/driverProfile/${element.id}-${element.carId}-${this.state.country}-${this.state.cities}`} className="driversBlock_driversInfo_name">{element.name}</Link>
                       <Stars key={element.rating} value={element.rating} commentNumber={element.comments + " отзывов"} valueDisplay={true} commentNumberDisplay={true} />
