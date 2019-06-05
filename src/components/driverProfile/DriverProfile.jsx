@@ -15,6 +15,7 @@ import DriverInfo from './DriverInfo.jsx';
 import DriverProfileTours from './DriverProfileTours';
 import requests from '../../config';
 import {setCities} from '../../redusers/Action'
+import RouteMenu from '../home/HomeBody/RouteMenu';
 
 class DriverProfileClass extends React.Component {
     constructor(props) {
@@ -131,10 +132,20 @@ class DriverProfileClass extends React.Component {
                     <div className="wrapper d-flex flex-column">
                         <div className="drivers_top_block d-flex flex-column">
                             <DriverInfo element={driver} />
-                            <DriverAdaptedRoute element={driver} date={this.props.storeState.date} cities={this.props.storeState.cities}
+                            <div className="drivers_route col-12 p-0 d-flex flex-column" >
+                            <div className="d-flex flex-sm-row flex-column col-12">
+                                 <div className="route_date_text col-sm-6 col-12 p-0">Дата отправления: {this.props.storeState.date}</div>
+                                 <div className="route_time_text col-sm-6 col-12 p-0">Время в пути без остановок:
+                            <p1>{this.props.driversState.travelTime}</p1><p2>{this.props.driversState.travelLength}</p2>
+                                </div>
+                            </div>
+                            <RouteMenu showBtPrice={true}/>
+                            
+                            </div>
+                            {/* <DriverAdaptedRoute element={driver} date={this.props.storeState.date} cities={this.props.storeState.cities}
                                 travelTime={this.props.driversState.travelTime} travelLength={this.props.driversState.travelLength} goToDrivers={this.goToDrivers}
                                 changeTravelVisibility={this.changeTravelVisibility}
-                            />
+                            /> */}
                         </div>
                     </div>
                 </div>

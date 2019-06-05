@@ -128,7 +128,7 @@ class DriversBlockClass extends React.Component {
           selectedElements.map((element, index) =>
             <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 p-2 pb-3">
               <div className="driversBlock_driverCard d-flex flex-column ">
-                <div className="driversBlock_carImage" style={{ background: "url(" + requests.serverAddress+element.carImage + ") no-repeat", backgroundSize: "cover" }}>
+                <div className="driversBlock_carImage" style={{ background: "url(" + requests.serverAddress+element.carImage + ") no-repeat"}}>
                   <Link to={`/driverProfile/${0}-${0}-${this.state.country}-${this.state.cities}`} className="driversBlock_carBlackout">
                     <div className="driversBlock_carBlackout_detailed">Подробнее</div>
                   </Link>
@@ -142,7 +142,7 @@ class DriversBlockClass extends React.Component {
                     <div className="driversBlock_carInfoLine_value">{this.props.driversState.carTypes[element.carType].name_en + ", " + element.carCapacity + " места"}</div>
                   </div>
                   <div className="driversBlock_driverInfoBlock_element d-flex">
-                    <div className="driversBlock_driverCard_photo" style={{ background: "url(" + requests.serverAddress+element.avatar + ") no-repeat", backgroundSize: "40px 40px" }} />
+                    <div className="driversBlock_driverCard_photo" style={{ background: "url(" + requests.serverAddress+element.avatar + ") no-repeat"}} />
                     <div className="d-flex flex-column driversBlock_driverCard_driverInfo">
                       <Link to={`/driverProfile/${0}-${0}-${this.state.country}-${this.state.cities}`} className="driversBlock_driversInfo_name">{element.name}</Link>
                       <Stars key={element.rating} value={element.rating} commentNumber={element.comments + " отзывов"} valueDisplay={true} commentNumberDisplay={true} />

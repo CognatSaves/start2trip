@@ -13,7 +13,7 @@ import { setDriversList, setCarTypes } from '../../../redusers/ActionDrivers';
 import DriverRefreshIndicator from '../../driverProfileRegistration/DriverRefreshIndicator';
 
 const CityRouteTable = (props) => {
-  const { cities, changeCity, removeCity, addCity, isoCountryMap } = props;
+  const { cities, changeCity, removeCity, addCity, isoCountryMap, readOnlyOn } = props;
   // let workCities = [...cities];
   let alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I",
     "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
@@ -27,14 +27,19 @@ const CityRouteTable = (props) => {
         <div className="addCities" >
           {cities.map((element, index) =>
             <div className="startCity d-flex col-12 p-0" key={element + index + cities[index].point}>
-              <div className={index <= 1 ? "col-12 p-0" : "col-10 pl-0 pr-1"}>
+              <div className={readOnlyOn?"col-12 p-0":(index <= 1 ? "col-12 p-0" : "col-10 pl-0 pr-1")}>
                 <div className="addCitiesLocationDropDown col p-0">
-                  <LocationSearchInput address={cities[index].point} changeCity={changeCity} index={index} classDropdown="searchElement_style" spanText={alphabet[index]} placeholder={index ? "Куда, выберите место" : "Откуда, выберите место"} classDiv={index > 1 && !cities[index].point ? "classDivMobail  _checkDiv startCity-CheckInput" : "classDivMobail  _checkDiv"} classInput="city_input _checkInput" isoCountryMap={isoCountryMap} />
+                  <LocationSearchInput readOnlyOn={readOnlyOn ? true : false} address={cities[index].point} changeCity={changeCity} index={index} classDropdown="searchElement_style" spanText={alphabet[index]} placeholder={index ? "Куда, выберите место" : "Откуда, выберите место"} classDiv={index > 1 && !cities[index].point ? "classDivMobail  _checkDiv startCity-CheckInput" : "classDivMobail  _checkDiv"} classInput="city_input _checkInput" isoCountryMap={isoCountryMap} />
                 </div>
               </div>
-              <div className="crossToolTip col-2 p-0" style={{ display: index <= 1 ? "none" : "" }} onClick={() => removeCity(index)}>
-                <i className="crossIcon"></i>
-              </div>
+              {readOnlyOn ?
+                <React.Fragment />
+                :
+                <div className="crossToolTip col-2 p-0" style={{ display: index <= 1 ? "none" : "" }} onClick={() => removeCity(index)}>
+                  <i className="crossIcon"></i>
+                </div>
+              }
+
             </div>
           )}
 
@@ -42,21 +47,37 @@ const CityRouteTable = (props) => {
         :
         <div className="d-flex flex-wrap col-12 p-0" >
           {cities.map((element, index) =>
-            <div className="startCity d-flex col-6 p-0" key={element + index + cities[index].point}>
-              <div className={index <= 1 ? (index % 2 === 0 ? "col-12 pl-0 pr-1" : "col-12 pl-0 pr-1") : (index % 2 === 0 ? "col-10 pl-0 pr-1" : "col-10 pl-0 pr-1 ")}>
+            <div className={readOnlyOn ? (index % 2 ==0 && index == cities.length-1 ?"startCity d-flex col-12 p-0":"startCity d-flex col-6 p-0"):"startCity d-flex col-6 p-0"} key={element + index + cities[index].point}>
+              <div className={index <= 1 ? (index%2 ? "col-12 pl-0 pr-1" : "col-12 pl-0 pr-1") : (readOnlyOn ? "col-12 pl-0 pr-1" : "col-10 pl-0 pr-1 ")}>
                 <div className="addCitiesLocationDropDown col p-0">
-                  <LocationSearchInput address={cities[index].point} changeCity={changeCity} index={index} classDropdown="searchElement_style" spanText={alphabet[index]} placeholder={index ? "Куда, выберите место" : "Откуда, выберите место"} classDiv={index > 1 && !cities[index].point ? "classDiv  _checkDiv startCity-CheckInput" : "classDiv  _checkDiv"} classInput="city_input _checkInput" isoCountryMap={isoCountryMap} />
+                  <LocationSearchInput readOnlyOn={readOnlyOn ? true : false} address={cities[index].point} changeCity={changeCity} index={index} classDropdown="searchElement_style" spanText={alphabet[index]} placeholder={index ? "Куда, выберите место" : "Откуда, выберите место"} classDiv={index > 1 && !cities[index].point ? "classDiv  _checkDiv startCity-CheckInput" : "classDiv  _checkDiv"} classInput="city_input _checkInput" isoCountryMap={isoCountryMap} />
                 </div>
               </div>
-              <div className="crossToolTip col p-0" style={{ display: index <= 1 ? "none" : "" }} onClick={() => removeCity(index)}>
-                <i className="crossIcon"></i>
-                <span className="crossToolTipText" style={{ display: isMobileOnly ? "none" : "block" }} >Удалить этот пункт назначения</span>
-              </div>
+              {
+                readOnlyOn ?
+                  <React.Fragment />
+                  :
+                  <div className="crossToolTip col p-0" style={{ display: index <= 1 ? "none" : "" }} onClick={() => removeCity(index)}>
+                    <i className="crossIcon"></i>
+                    <span className="crossToolTipText" style={{ display: isMobileOnly ? "none" : "block" }} >Удалить этот пункт назначения</span>
+                  </div>
+              }
+
             </div>
           )}
-          <div className=" d-flex routemenu_addCity col" onClick={() => { addCity() }}>
-            <div className="routemenu_city_add_text" style={{ background: "url(" + addIcon + ") no-repeat" }} >Добавить пункт назначения</div>
-          </div>
+
+          {
+            readOnlyOn ?
+              <React.Fragment />
+              :
+              <React.Fragment>
+                <div className=" d-flex routemenu_addCity col" onClick={() => { addCity() }}>
+                  <div className="routemenu_city_add_text" style={{ background: "url(" + addIcon + ") no-repeat" }} >Добавить пункт назначения</div>
+                </div>
+              </React.Fragment>
+          }
+
+
         </div>
       }
     </React.Fragment>
@@ -285,38 +306,47 @@ class RouteMenuClass extends React.Component {
           {
             isMobileOnly ?
               <React.Fragment>
-                <CityRouteTable cities={this.props.storeState.cities} changeCity={this.changeCity} removeCity={this.removeCity} isoCountryMap={this.props.storeState.isoCountryMap} />
+                <CityRouteTable readOnlyOn={this.props.showBtPrice} cities={this.props.storeState.cities} changeCity={this.changeCity} removeCity={this.removeCity} isoCountryMap={this.props.storeState.isoCountryMap} />
+                {this.props.showBtPrice ?<React.Fragment/>
+                :
                 <div className=" d-flex routemenu_addCity" onClick={() => { this.addCity() }}>
                   <div className="routemenu_city_add_text" style={{ background: "url(" + addIcon + ") no-repeat" }} >Добавить пункт назначения</div>
                 </div>
+                }
               </React.Fragment>
               :
               <React.Fragment>
-                <CityRouteTable cities={this.props.storeState.cities} changeCity={this.changeCity} removeCity={this.removeCity} addCity={this.addCity} isoCountryMap={this.props.storeState.isoCountryMap} />
+                <CityRouteTable readOnlyOn={this.props.showBtPrice} cities={this.props.storeState.cities} changeCity={this.changeCity} removeCity={this.removeCity} addCity={this.addCity} isoCountryMap={this.props.storeState.isoCountryMap} />
               </React.Fragment>
           }
 
 
 
           <div className="routemenu_setDate">
-            <DatePicker hintText="Дата отправления" minDate={new Date()} onChange={(e, date) => { this.chooseDate(date); let datePicer = document.querySelector(".routemenu_date"); datePicer.classList.remove("routemenu_date-Check") }} className="routemenu_date col" />
+            <div className="col-sm-6 col-12 p-0 pr-1">
+              <DatePicker hintText="Дата отправления" minDate={new Date()} onChange={(e, date) => { this.chooseDate(date); let datePicer = document.querySelector(".routemenu_date"); datePicer.classList.remove("routemenu_date-Check") }} className="routemenu_date" />
+            </div>
+
             {this.props.showBtPrice ?
               <React.Fragment>
-                <div className="d-flex flex-column align-items-center pb-4 ">
-                  <div className="driverAdaptedPrice">{"$" + "20"}</div>
-                  <div className="driverAdaptedBt">
-                    {/* <span onClick={() => changeTravelVisibility('block')}>ЗАБРОНИРОВАТЬ ПОЕЗДКУ</span> */}
+                <div className="col-sm-6 col-12 p-0 pr-1">
+                  <div className="driverAdaptedBt ">
+                    {/* onClick={() => changeTravelVisibility('block')} */}
+                    <span>ЗАБРОНИРОВАТЬ ПОЕЗДКУ <span>{"$" + "20"}</span></span>
                   </div>
-                  <div className="route_comment">Стоимость окончательная. Топливо включено</div>
                 </div>
+
               </React.Fragment>
               :
               <React.Fragment>
-                <div className="routemenu_search col-sm-6 col-12" onClick={() => { this.goToNextPage() }}>
-                  <div className="routemenu_search_button " >
-                    <p className="routemenu_search_text">ПОИСК</p>
+                <div className="col-sm-6 col-12 p-0 ">
+                  <div className="routemenu_search " onClick={() => { this.goToNextPage() }}>
+                    <div className="routemenu_search_button " >
+                      <p className="routemenu_search_text">ПОИСК</p>
+                    </div>
                   </div>
                 </div>
+
               </React.Fragment>
             }
 
@@ -326,9 +356,14 @@ class RouteMenuClass extends React.Component {
 
 
 
-        <div className="routemenu_footer d-flex flex-sm-row flex-column-reverse align-items-center">
-          <div className="routemenu_comment col">
-            <div className="routemenu_comment_text">*Возврат в точку отправления в этот же день бесплатно</div>
+        <div className="routemenu_footer  col-12 p-0">
+          <div className="routemenu_comment d-flex flex-sm-row flex-column-reverse align-items-center">
+            <div className="routemenu_comment_text col-sm-6 col-12 p-0">*Возврат в точку отправления в этот же день бесплатно</div>
+            {this.props.showBtPrice ?
+              <div className="routemenu_comment_text col-sm-6 col-12 p-0 pb-2">Стоимость окончательная. Топливо включено</div>
+              :
+              <div />
+            }
           </div>
         </div>
 
@@ -384,3 +419,5 @@ export default RouteMenu;
             </div>
           </UncontrolledCollapse>
         </div> */}
+
+

@@ -90,6 +90,10 @@
     position: relative;
     height: 210px;
     border-radius: 5px 5px 0 0;
+    background-size: 100% 100% !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-position: center center !important;
 }
 
 .driversBlock_carImage:hover .driversBlock_carBlackout {
@@ -205,14 +209,23 @@
 }
 
 .driversBlock_driverCard_photo {
+    position: relative;
+    z-index: 5;
     width: 40px;
     height: 40px;
     border-radius: 20px;
+    background-size: cover !important;
+    background-position: center center !important;
+    transition: all 0.3s;
 }
 
 .driversBlock_driverCard_driverInfo {
     padding-left: 8px;
     padding-top: 8px;
+}
+
+.driversBlock_driverCard_photo:hover {
+    transform: scale(2.3);
 }
 
 .driversBlock_driversInfo_name {
