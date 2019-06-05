@@ -91,10 +91,11 @@
     background: url('../drivers/DriversBody/DriversBlock/pictures/bookmark_orange.svg');
 }
 
-.driversInfo_driverName {
-    /* line-height: 18px;
-    padding-bottom: 10px; */
-}
+
+/* .driversInfo_driverName {
+     line-height: 18px;
+    padding-bottom: 10px; 
+}  */
 
 .driverInfo_informationIcon {
     position: inherit;

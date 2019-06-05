@@ -27,6 +27,7 @@
     overflow-x: hidden;
     height: 305px;
     padding-right: 5px;
+    scroll-behavior: smooth;
 }
 
 .carouselChoiceHorizontal {
@@ -34,6 +35,7 @@
     overflow-x: auto;
     display: flex;
     padding-bottom: 5px;
+    scroll-behavior: smooth;
 }
 
 .carouselChoiceHorizontal div {

@@ -47,7 +47,7 @@ class DriversClass extends React.Component {
     let newArrayCities = newString.split("-to-");
     for(let i = 0; i<newArrayCities.length;i++){
       let stringWhithSpaces = newArrayCities[i].replace(/-/g, ' ');
-      stringWhithSpaces = stringWhithSpaces + ' , ' +country;
+      stringWhithSpaces = stringWhithSpaces + ', ' +country;
       newCities[i]={point: stringWhithSpaces, lat: "", long: ""};
     }
     this.props.setCities(newCities)
