@@ -14,7 +14,7 @@ import DriverAdaptedRoute from './DriverAdaptedRoute';
 import DriverInfo from './DriverInfo.jsx';
 import DriverProfileTours from './DriverProfileTours';
 import requests from '../../config';
-import {setCities} from '../../redusers/Action'
+import { setCities } from '../../redusers/Action'
 import RouteMenu from '../home/HomeBody/RouteMenu';
 
 class DriverProfileClass extends React.Component {
@@ -42,28 +42,28 @@ class DriverProfileClass extends React.Component {
             date: 'date',
             distance: 'distance'
         })
-        fetch(requests.getDriverData,{
+        fetch(requests.getDriverData, {
             method: 'PUT', body: body,
-            headers: { 'content-type': 'application/json'}
+            headers: { 'content-type': 'application/json' }
         })
-        .then(response => {
-            return response.json();
-        })
-        .then(function (data){
-            if (data.error) {
-                console.log("bad");
-                throw data.error;
-            }
-            else{
-                console.log('good');
-                console.log(data);
-            }
+            .then(response => {
+                return response.json();
+            })
+            .then(function (data) {
+                if (data.error) {
+                    console.log("bad");
+                    throw data.error;
+                }
+                else {
+                    console.log('good');
+                    console.log(data);
+                }
 
-        })
-        .catch(function (error){
-            console.log('bad');
-            console.log('An error occurred:',error);
-        })
+            })
+            .catch(function (error) {
+                console.log('bad');
+                console.log('An error occurred:', error);
+            })
     }
     showMorePages() {
         this.setState({
@@ -100,29 +100,29 @@ class DriverProfileClass extends React.Component {
             showPanelVariant: value
         })
     }
-    parseStringToArray=(cities,country)=>{
-    
+    parseStringToArray = (cities, country) => {
+
         let newCities = [];
         let newString = cities.slice(5);
         let newArrayCities = newString.split("-to-");
-        for(let i = 0; i<newArrayCities.length;i++){
-          let stringWhithSpaces = newArrayCities[i].replace(/-/g, ' ');
-          stringWhithSpaces = stringWhithSpaces + ' , ' +country;
-          newCities[i]={point: stringWhithSpaces, lat: "", long: ""};
+        for (let i = 0; i < newArrayCities.length; i++) {
+            let stringWhithSpaces = newArrayCities[i].replace(/-/g, ' ');
+            stringWhithSpaces = stringWhithSpaces + ', ' + country;
+            newCities[i] = { point: stringWhithSpaces, lat: "", long: "" };
         }
         this.props.dispatch(setCities(newCities))
-      }
+    }
     render() {
         let driver = this.props.driversState.drivers[this.props.match.params.id];
-        let buttonNames = ["Отзывы (" + this.props.commentState.comments.length + ")", "Мои личные самые ценные туры"];
+        let buttonNames = ["Отзывы (" + this.props.commentState.comments.length + ")"];
 
         let cities;
         let country;
-        if(this.props.match){
-            if(this.props.storeState.cities[0].point === ""){
-              cities = this.props.match.params.cities;
-              country = this.props.match.params.country;
-              this.parseStringToArray(cities,country);
+        if (this.props.match) {
+            if (this.props.storeState.cities[0].point === "") {
+                cities = this.props.match.params.cities;
+                country = this.props.match.params.country;
+                this.parseStringToArray(cities, country);
             }
         }
         return (
@@ -133,14 +133,17 @@ class DriverProfileClass extends React.Component {
                         <div className="drivers_top_block d-flex flex-column">
                             <DriverInfo element={driver} />
                             <div className="drivers_route col-12 p-0 d-flex flex-column" >
-                            <div className="d-flex flex-sm-row flex-column col-12">
-                                 <div className="route_date_text col-sm-6 col-12 p-0">Дата отправления: {this.props.storeState.date}</div>
-                                 <div className="route_time_text col-sm-6 col-12 p-0">Время в пути без остановок:
-                            <p1>{this.props.driversState.travelTime}</p1><p2>{this.props.driversState.travelLength}</p2>
+                                <div className="d-flex justify-content-center col-12 p-0 pb-3">
+                                    <h3 className="drivers_route_title">Ваш Маршрут</h3>
                                 </div>
-                            </div>
-                            <RouteMenu showBtPrice={true}/>
-                            
+                                <div className="d-flex flex-sm-row flex-column col-12 p-0">
+                                    <div className="route_date_text col-sm-6 col-12">Дата отправления: {this.props.storeState.date}</div>
+                                    <div className="route_time_text col-sm-6 col-12">Время в пути без остановок:
+                            <p1>{this.props.driversState.travelTime}</p1><p2>{this.props.driversState.travelLength}</p2>
+                                    </div>
+                                </div>
+                                <RouteMenu showBtPrice={true} />
+
                             </div>
                             {/* <DriverAdaptedRoute element={driver} date={this.props.storeState.date} cities={this.props.storeState.cities}
                                 travelTime={this.props.driversState.travelTime} travelLength={this.props.driversState.travelLength} goToDrivers={this.goToDrivers}
@@ -168,12 +171,12 @@ class DriverProfileClass extends React.Component {
                                             setPage={this.setPage} showMorePages={this.showMorePages} />
                                     </React.Fragment>
                                 }
-                                {
+                                {/* {
                                     this.state.showPanelVariant === 1 &&
                                     <React.Fragment>
                                         <DriverProfileTours />
                                     </React.Fragment>
-                                }
+                                } */}
                             </div>
                             {/* <div className="right_body_part col-3">
                                 <DriversCommercial />

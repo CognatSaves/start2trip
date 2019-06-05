@@ -6,7 +6,7 @@ const PhotoSelect = (props) => {
 
     let { src, selectPhoto, photoIndex, selectedPhotoIndex } = props;
     return (
-        <div className={selectedPhotoIndex === photoIndex ? "carouselChoiceEl carouselChoiceEl-active" : "carouselChoiceEl"} onClick={() => { selectPhoto(photoIndex) }}>
+        <div className={selectedPhotoIndex === photoIndex ? "carouselChoiceEl carouselChoiceEl-active" : "carouselChoiceEl"} onClick={(event) => { selectPhoto(photoIndex,event) }}>
             <img src={src} width="100%" height="100%" alt={"/picture " + photoIndex} />
         </div>
     )
@@ -18,7 +18,21 @@ export default class Carousel extends React.Component {
             selectedPhotoIndex: 0,
         }
     }
-    selectPhoto = (photoIndex) => {
+    selectPhoto = (photoIndex,event) => {
+        if(this.props.type == "vertical") {
+            let el = event.currentTarget.offsetTop;
+            event.currentTarget.parentElement.parentElement.scrollTop = el-90;
+        }else{
+            let perent = event.currentTarget.parentElement.scrollLeft;
+            let el = event.currentTarget.offsetLeft;
+            if(perent>el-150){
+                event.currentTarget.parentElement.scrollLeft= el-150;
+            }else{
+                event.currentTarget.parentElement.scrollLeft = el;
+            }
+        }
+        
+         
         this.setState({
             selectedPhotoIndex: photoIndex,
         })

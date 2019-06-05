@@ -19,7 +19,7 @@ class DriversProfileCommentsClass extends React.Component{
         return(
             <React.Fragment>               
                 <div className="driverProfileComments_commentBlock d-flex flex-column">
-                    <CreateComment userName={this.state.userName} createCommentString={createCommentString}/> 
+                    {/* <CreateComment userName={this.state.userName} createCommentString={createCommentString}/>  */}
                     <ShowComments selectedComments={selectedComments}/>            
                 </div>
             </React.Fragment>

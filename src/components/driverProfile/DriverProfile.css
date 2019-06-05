@@ -17,3 +17,14 @@
     font-weight: 400;
     font-size: 12px;
 }
+
+.drivers_route_title {
+    color: #fff;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.drivers_route .classDiv,
+.drivers_route .classDiv input {
+    cursor: default !important;
+}
