@@ -1,4 +1,4 @@
-import {SET_DRIVERS_ROUTE_CHANGE, SET_PAGE, SET_MORE_PAGES_SHOW,SET_DRIVERS_LIST,SET_CAR_TYPES} from './ActionDrivers';
+import {SET_DRIVER_CAR_DESCR,SET_DRIVERS_ROUTE_CHANGE, SET_PAGE, SET_MORE_PAGES_SHOW,SET_DRIVERS_LIST,SET_CAR_TYPES} from './ActionDrivers';
 
 const initialState = {
     travelTime: '',
@@ -751,17 +751,23 @@ const initialState = {
 
       ],
     driversList: [],
-    carTypes: []
+    carTypes: [],
+    driverCarDescription:{}
 }
 
 export const DriversReduser = (state=initialState, action)=>{
     switch(action.type){
-        case "SET_LENGTH_TIME":
-        let newStateLT = {...state};
-        newStateLT.travelTime=action.travelTime;
-        newStateLT.travelLength=action.travelLength;
-        return newStateLT;
-        
+        case "SET_LENGTH_TIME":{
+            let newStateLT = {...state};
+            newStateLT.travelTime=action.travelTime;
+            newStateLT.travelLength=action.travelLength;
+            return newStateLT;
+        }
+        case SET_DRIVER_CAR_DESCR:{
+            let newState = {...state};
+            newState.driverCarDescription=action.driverCarDescription;
+            return newState;
+        }
         case SET_DRIVERS_ROUTE_CHANGE:{
             let newStateSDRC = {...state};
             newStateSDRC.driversRouteChange = action.driversRouteChange;

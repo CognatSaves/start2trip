@@ -27,7 +27,7 @@
 }
 
 .infoString_driverInfoSize {
-    width: 80px;
+    /*width: 80px;*/
 }
 
 @media (max-width: 990px) {

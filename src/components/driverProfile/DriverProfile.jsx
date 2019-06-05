@@ -7,7 +7,7 @@ import DriversCommercial from '../drivers/DriversBody/DriversCommercial/DriversC
 import DriversProfileComments from './DriversProfileComments';
 import Manipulator from '../manipulator/Manipulator';
 import Header from '../header/Header';
-import { setDriversRouteChange } from '../../redusers/ActionDrivers';
+import { setDriversRouteChange, setDriverCarDescription, setCarTypes } from '../../redusers/ActionDrivers';
 import StartTravelForm from '../startTravelForm/StartTravelForm';
 import StartTravelSuccess from '../startTravelForm/StartTravelSuccess';
 import DriverAdaptedRoute from './DriverAdaptedRoute';
@@ -34,36 +34,59 @@ class DriverProfileClass extends React.Component {
         this.changeTravelVisibility = this.changeTravelVisibility.bind(this);
         this.changeSuccessVisibility = this.changeSuccessVisibility.bind(this);
         this.changePanelVariant = this.changePanelVariant.bind(this);
-        let body = JSON.stringify({
-            id: 'id',
-            carId: 'carId',
-            cities: 'cities',
-            country: 'country',
-            date: 'date',
-            distance: 'distance'
-        })
-        fetch(requests.getDriverData, {
-            method: 'PUT', body: body,
-            headers: { 'content-type': 'application/json' }
-        })
+        
+        let now = new Date(Date.now());
+        //debugger;
+        console.log(props.match);
+        if(!(!props.match || !props.match.params.id || !props.match.params.carId)){
+            let body = JSON.stringify({
+                id: props.match.params.id,
+                carId: props.match.params.carId,
+                cities:[
+                    {
+                        point:"Тбилиси, Грузия",
+                        lat:41.7151377,
+                        long:44.82709599999998
+                    },
+                    {
+                        point:"Мцхета, Грузия",
+                        lat:41.8411674,
+                        long:44.70738640000002 
+                    }
+                ],
+                country:"GEO",
+                date:"Fri, 28 Jun 2019 21:00:00 GMT",
+                distance:1000
+            });
+            let that = this;
+            fetch(requests.getDriverData,{
+                method: 'PUT', body: body,
+                headers: { 'content-type': 'application/json'}
+            })
             .then(response => {
                 return response.json();
             })
-            .then(function (data) {
+            .then(function (data){
                 if (data.error) {
                     console.log("bad");
                     throw data.error;
                 }
-                else {
+                else{
                     console.log('good');
                     console.log(data);
+                    that.props.dispatch(setDriverCarDescription(data.driverCarDescription));
+                    that.props.dispatch(setCarTypes(data.carTypes));
                 }
 
             })
-            .catch(function (error) {
+            .catch(function (error){
                 console.log('bad');
-                console.log('An error occurred:', error);
+                console.log('An error occurred:',error);
             })
+        }
+        else{
+           props.history.push('/'); 
+        }
     }
     showMorePages() {
         this.setState({
@@ -113,7 +136,12 @@ class DriverProfileClass extends React.Component {
         this.props.dispatch(setCities(newCities))
     }
     render() {
-        let driver = this.props.driversState.drivers[this.props.match.params.id];
+        console.log('DriverProfile render');
+        console.log(this.props.driversState);
+
+        let driver =this.props.driversState.driverCarDescription;
+        console.log('driver',driver);
+
         let buttonNames = ["Отзывы (" + this.props.commentState.comments.length + ")"];
 
         let cities;

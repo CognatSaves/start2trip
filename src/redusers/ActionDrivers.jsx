@@ -10,6 +10,14 @@ const SET_DRIVERS_LIST = 'SET_DRIVERS_LIST';
 
 const SET_CAR_TYPES = 'SET_CAR_TYPES';
 
+const SET_DRIVER_CAR_DESCR = 'SET_DRIVER_CAR_DESCR';
+
+const setDriverCarDescription = function(driverCarDescription){
+    return{
+        type: SET_DRIVER_CAR_DESCR,
+        driverCarDescription: driverCarDescription
+    }
+}
 const setCarTypes = function(carTypes){
     return{
         type:SET_CAR_TYPES,
@@ -57,5 +65,6 @@ export {
     setMorePagesShow, SET_MORE_PAGES_SHOW,
     OPEN_FILTER_SHOW,openFilterShow,
     SET_DRIVERS_LIST,setDriversList,
-    SET_CAR_TYPES,setCarTypes
+    SET_CAR_TYPES,setCarTypes,
+    SET_DRIVER_CAR_DESCR,setDriverCarDescription
 }
