@@ -13,7 +13,9 @@ class HomeBodyClass extends React.Component {
     super(props);
 
     this.state = {
-      cities: this.props.storeState.cities,
+      //cities: this.props.storeState.cities,
+
+      
       // calendaryVisibility: this.props.storeState.calendaryVisibility,
       date: this.props.storeState.date,
       // picture: this.props.storeState.picture,

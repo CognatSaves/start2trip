@@ -11,7 +11,7 @@ import ToyotaPrado6 from '../drivers/DriversBody/DriversBlock/pictures/ToyotaPra
 import information from './pictures/information.svg';
 import Carousel from './Carousel';
 import { isMobileOnly } from 'react-device-detect';
-
+import requests from '../../config';
 
 class DriverInfoClass extends React.Component{
     constructor(props){
@@ -22,30 +22,65 @@ class DriverInfoClass extends React.Component{
         }     
     }   
     render(){
-        console.log("DriverInfo render");
+        function getCarTypeNumber(element,carTypes){
+            for(let i=0; i<carTypes.length; i++){
+                if(carTypes[i].id===element.carType){
+                    return i;
+                }
+            }
+            return -1;
+        }
+        function createCorrectUrls(urlArray){
+            let res = [];
+            for(let i=0; i<urlArray.length; i++){
+                res[i] = requests.serverAddress+urlArray[i];
+            }
+            return res;
+        }
+        function getLanguageNumbers(userLang, langArray){
+            let res = [];
+            for(let i=0; i<userLang.length;i++){
+                for(let k=0; k<langArray.length; k++){
+                    if(userLang[i]===langArray[k].ISO){
+                        res[i]=k;
+                        continue;
+                    }
+                }
+            }
+            return res;
+        }
+        console.log("DriverInfo render",this.props);
+        
         const { element} = this.props;
+        let carComfort = element.carComfort? element.carComfort : [];
+        let carTypeNumber = getCarTypeNumber(element,this.props.driversState.carTypes);
+        let imageUrls = createCorrectUrls(element.carImages ? element.carImages : []);
+        console.log('PhotoArray', this.state.photoArray);
+        console.log('imageUrls', imageUrls);
+        //debugger;
+        let languageIdsArray = getLanguageNumbers(element.language ? element.language : [], this.props.storeState.languages);
         return(
         <div className="driverInfo_background d-flex flex-lg-row flex-column align-items-lg-start align-items-center">
             <div className="block_element_left driverInfo_element d-flex flex-column col-lg-6 col-12 p-0">
                 <div className="driverInfo_left_line">
                     <div className="driverInfo_photo">
-                        <img src={driverPhoto} alt={"photo" + element} />
+                        <img src={requests.serverAddress+element.avatar} alt={"photo " + element.name} />
                     </div>
                     <div className="block_element_infoBlock">
                         <div style={{paddingBottom: "15px"}}>
                             <div className="block_element_infoBlock_name driversInfo_driverName">{element.name}</div>
-                            <Stars value={element.rating} commentNumber={element.comments + " отзывов"} valueDisplay={true} commentNumberDisplay={true} />
+                            <Stars value={element.rating} commentNumber={element.comments ? element.comments.length + " отзывов" : 0} valueDisplay={true} commentNumberDisplay={true} />
                         </div>
                         <div className="block_element_infoBlock_bot">
                             <div className="d-flex ">
                                 <div className="infoString infoString_driverInfoSize">Языки:</div>
                                 <div className="d-flex">
 
-                                {/* {
-                                    element.language.map((langElement,index)=>
-                                    <div className="driversBlock_languages_flag" style={{background: "url("+this.props.storeState.languages[langElement].icon+") no-repeat", backgroundSize: "15px 15px", margin: "auto 5px auto 0"}}/>              
+                                {
+                                    languageIdsArray.map((langElement,index)=>
+                                    <div className="driversBlock_languages_flag" style={{background: "url("+requests.serverAddress+this.props.storeState.languages[langElement].icon.url+") no-repeat", backgroundSize: "15px 15px", margin: "auto 5px auto 0"}}/>              
                                     )
-                                } */}
+                                }
                                 </div>
                             </div>
                             {/* <div className="d-flex ">
@@ -59,30 +94,33 @@ class DriverInfoClass extends React.Component{
                 </div>
                 <div className="driverInfo_left_line">
                     <div className="valueBlock_commentary pr-1">
-                        {element.selfInfo}
+                        {element.dataAbout}
                     </div>
                 </div>
             </div>
             <div className="driverInfo_element d-flex flex-column col-lg-6 col-12 p-0" >
                 <div className="d-flex flex-md-row flex-column justify-content-between">
                     <div className="block_element_infoBlock_name driversInfo_driverName d-flex" >
-                        {"Toyota Land Cruiser Prado "}
+                        {element.carBrand}
                         <div className="driverInfo_informationIcon" style={{ background: "url("+information+")", backgroundSize: "18px 18px"}}>
                             <div className="driverInfo_informationBlock">
                                 {
-                                    element.carComfort.map((element, index)=>
+                                    carComfort.map((element, index)=>
+                                        element ?
                                         <div className="d-flex">
-                                            <i className="driverInfo_comfortIconStyle" style={{background: "url("+this.props.storeState.comfort[element].icon+") no-repeat", backgroundSize: "15px 15px"}}/>    
-                                            <span className="driverInfo_comfortTextStyle">{this.props.storeState.comfort[element].title}</span>
+                                            <i className="driverInfo_comfortIconStyle" style={{background: "url("+this.props.storeState.comfort[index].icon+") no-repeat", backgroundSize: "15px 15px"}}/>    
+                                            <span className="driverInfo_comfortTextStyle">{this.props.storeState.comfort[index].title}</span>
                                         </div>
+                                        :
+                                        <React.Fragment/>
                                     )
                                 }
                             </div>
                         </div>
                     </div>
-                    <div className="driverInfo_carTypeValue">Внедорожник, 4 места</div>
+                    <div className="driverInfo_carTypeValue">{carTypeNumber>0 ? (this.props.driversState.carTypes[carTypeNumber].name_en+', '+element.carCapacity+ ' места'): ''}</div>
                 </div>
-                <Carousel photoArray={this.state.photoArray} type={isMobileOnly?"horizontal":"vertical"} />
+                <Carousel photoArray={imageUrls} type={isMobileOnly?"horizontal":"vertical"} />
                 
             </div>
             

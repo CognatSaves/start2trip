@@ -14,7 +14,7 @@
     margin-bottom: 20px;
 }
 
-.driverInfo_photo {
+.driverInfo_photo img{
     width: 156px;
     height: 156px;
     border-radius: 50%;

@@ -11,11 +11,23 @@ class DriversProfileCommentsClass extends React.Component{
         }
     }
 
-    render(){        
-        let comments = [...this.props.commentState.comments].reverse();
-        let selectedComments = comments.slice((this.props.page-this.props.showPages) * 5, (this.props.page) * 5);
+    render(){
+        function dateConversion(comments){
+            for(let i=0; i<comments.length; i++){
+                comments[i].date = new Date(comments[i].date);
+            }
+            return comments;
+        }  
+        debugger;      
+        //let comments = [...this.props.commentState.comments].reverse();
+        
+        //let selectedComments = comments.slice((this.props.page-this.props.showPages) * 5, (this.props.page) * 5);
         let createCommentString = this.state.userName+", как ты оцениваешь "+this.props.driver.name;
 
+
+        let comments = this.props.driver.comments ? [...this.props.driver.comments].reverse() : [];
+        let selectedComments = comments.slice((this.props.page-this.props.showPages) * 5, (this.props.page) * 5);
+        selectedComments = dateConversion(selectedComments);
         return(
             <React.Fragment>               
                 <div className="driverProfileComments_commentBlock d-flex flex-column">

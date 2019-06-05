@@ -211,13 +211,16 @@ class RouteMenuClass extends React.Component {
       canMove = routeDate.canMove;
 
 
-      debugger;
+      
+      
       let body = JSON.stringify({
         cities: this.props.storeState.cities,
         country: this.props.storeState.country,
         date: this.state.correctDate,
-        distance: '1000'
+        distance: 1000
       });
+      console.log('send request for drivers');
+      console.log('body',body);
       let that = this;
       function convertDate(value){
 
