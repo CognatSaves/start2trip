@@ -322,7 +322,7 @@ class DriverProfileBasicInformationClass extends React.Component {
                             <div className="bottomContentNote d-flex align-items-center">
                                 <label htmlFor="basicInfoTelNumber" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">{textPage.basicInfoTelNumber.label}:</label>
                                 <ReactTelInput
-                                    defaultCountry={textPage.telflag}
+                                    defaultCountry={this.props.storeState.isoCountryMap}
                                     classNames="myPhoneInput"
                                     flagsImagePath={flags}
                                     onChange={(telNumber, selectedCountry) => { this.inputChange(telNumber, 'workPhone'); }}

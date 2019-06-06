@@ -5,7 +5,7 @@
 @import '../drivers/DriversBody/DriversBlock/TripBlock.css';
 .route_date_text {
     font-size: 14px;
-    color: #ffffff;
+    color: #304269;
     font-weight: 400;
     padding: 10px;
 }
@@ -13,7 +13,7 @@
 .route_time_text,
 .route_comment {
     padding-top: 10px;
-    color: #ffffff;
+    color: #304269;
     font-weight: 400;
     font-size: 12px;
 }
@@ -27,4 +27,274 @@
 .drivers_route .classDiv,
 .drivers_route .classDiv input {
     cursor: default !important;
+}
+
+
+/* .drivers_route_form {
+    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+} */
+
+
+/* .drivers_route_form div:hover,
+.drivers_route_form input:hover {
+    border-color: #ff6600 !important;
+    outline-color: #ff6600 !important;
+} */
+
+.textField {
+    margin: 5px 0 !important;
+}
+
+.textField input {
+    color: #304269;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.textField textarea {
+    color: #304269;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.textField .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: #304269;
+}
+
+.textField .MuiFormLabel-root.Mui-focused {
+    color: #304269;
+}
+
+.textField .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+    border-color: rgba(48, 66, 105, 0.233);
+}
+
+.textField label {
+    font-weight: 400;
+    font-size: 14px;
+    width: max-content !important;
+}
+
+
+/* route_dateCalendarModal Begin */
+
+.route_dateCalendarModal {
+    margin: 5px 0;
+}
+
+.route_dateCalendarModal div {
+    width: 100% !important;
+    cursor: pointer !important;
+    max-height: 52px !important;
+}
+
+.route_dateCalendarModal {
+    border: 1px solid rgba(48, 66, 105, 0.233) !important;
+    border-radius: 5px !important;
+}
+
+.route_dateCalendarModal hr {
+    display: none;
+}
+
+.route_dateCalendarModal label {
+    color: rgba(0, 0, 0, 0.54) !important;
+    font-weight: 400 !important;
+    font-size: 14px !important;
+    top: 16px !important;
+    margin-left: 12px !important;
+}
+
+.route_dateCalendarModal input {
+    font-weight: 400 !important;
+    font-size: 14px !important;
+    padding-left: 10px !important;
+    max-height: 56px !important;
+    margin: 0 !important;
+    color: #304269 !important;
+}
+
+.route_dateCalendarModal_active label {
+    background: #fff !important;
+    width: max-content !important;
+    transform: scale(0.75) translate(0px, -37px) !important;
+}
+
+
+/* route_dateCalendarModal end */
+
+
+/* route_datePhoneInput Begin */
+
+.route_datePhoneInput {
+    width: 100% !important;
+    min-height: 53px !important;
+    margin: 5px 0;
+}
+
+.route_datePhoneInput input {
+    min-height: 53px !important;
+    color: #304269;
+    font-weight: 400 !important;
+    font-size: 14px !important;
+    box-shadow: none !important;
+    border: 1px solid rgba(48, 66, 105, 0.233) !important;
+}
+
+.route_datePhoneInput input:focus {
+    outline: none !important;
+    color: #304269;
+    box-shadow: none !important;
+}
+
+.route_datePhoneInput .form-control:focus {
+    border-color: #304269 !important;
+    border-width: 2px !important;
+}
+
+.route_datePhoneInput button {
+    min-width: auto !important;
+    background: none !important;
+    height: 100% !important;
+    margin: auto 0;
+    border: none !important;
+    outline: none !important;
+}
+
+
+/* route_datePhoneInput end */
+
+
+/* route_dateSelect Begin */
+
+.route_dateSelect {
+    margin: 5px 0 !important;
+    min-height: 53px !important;
+    border-radius: 5px;
+    border: 1px solid rgba(48, 66, 105, 0.233) !important;
+}
+
+.route_dateSelect .MuiSelect-selectMenu {
+    font-weight: 400 !important;
+    font-size: 14px !important;
+    color: #304269 !important;
+    padding-left: 12px;
+}
+
+.route_dateSelect label {
+    font-weight: 400 !important;
+    font-size: 14px !important;
+    margin-left: 12px !important;
+}
+
+.route_dateSelect .MuiInput-underline:after,
+.route_dateSelect .MuiInput-underline:before {
+    display: none;
+}
+
+.route_dateSelect label+.MuiInput-formControl {
+    margin-top: 12px;
+}
+
+.route_dateSelect .MuiInputLabel-formControl {
+    transform: translate(0, 20px) scale(1);
+}
+
+.route_dateSelect .MuiInputLabel-shrink {
+    transform: translate(0, -7px) scale(0.75);
+    transform-origin: top left;
+    background: #fff;
+    width: max-content;
+}
+
+
+/* route_dateSelect end */
+
+
+/* CheckBox Begin */
+
+.MuiIconButton-colorSecondary {
+    color: #304269 !important;
+    transition: all 0.3s !important;
+}
+
+.MuiIconButton-colorSecondary:hover {
+    background-color: rgba(48, 66, 105, 0.1) !important;
+}
+
+
+/* CheckBox end */
+
+span.drivers_route_Link {
+    font-size: 14px;
+    font-weight: 400;
+    color: #304269;
+}
+
+.drivers_routePromo {
+    border-bottom: 1px solid rgba(48, 66, 105, 0.233);
+}
+
+.drivers_routePromo input {
+    border: none;
+    padding-left: 5px;
+    color: #304269;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.drivers_routePromo input::placeholder {
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.drivers_routePromo input:focus {
+    outline: none;
+}
+
+.drivers_routePromo span {
+    cursor: pointer;
+    color: #304269;
+    font-size: 14px;
+    font-weight: 400;
+    transition: ease 0.3s;
+}
+
+.drivers_routePromo span:hover {
+    color: #f60;
+}
+
+.drivers_routePrice {
+    color: #304269;
+    font-weight: 400;
+    font-size: 24px;
+}
+
+.drivers_routeBtn {
+    background: #f60;
+    border-radius: 5px;
+    padding: 10px 30px;
+    cursor: pointer;
+}
+
+.drivers_routeBtn:hover {
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
+}
+
+.drivers_routeBtn span {
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+}
+
+.driversRoute {
+    background: #fff;
+    padding: 20px !important;
+    padding-bottom: 0px !important;
+}
+
+.driversRoute h3 {
+    color: #304269;
+    font-size: 24px;
+    font-weight: 500;
 }

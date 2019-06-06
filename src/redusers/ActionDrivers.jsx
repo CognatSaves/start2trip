@@ -12,6 +12,8 @@ const SET_CAR_TYPES = 'SET_CAR_TYPES';
 
 const SET_DRIVER_CAR_DESCR = 'SET_DRIVER_CAR_DESCR';
 
+const SET_LENGTH_TIME = 'SET_LENGTH_TIME';
+
 const setDriverCarDescription = function(driverCarDescription){
     return{
         type: SET_DRIVER_CAR_DESCR,
@@ -59,6 +61,13 @@ const openFilterShow = function (openFilter){
         openFilter:openFilter
     }
 }
+const setLengthTime = function (travelTime,travelLength){
+    return{
+        type: SET_LENGTH_TIME,
+        travelTime: travelTime,
+        travelLength: travelLength 
+    }
+}
 export {
     setDriversRouteChange, SET_DRIVERS_ROUTE_CHANGE,
     setPage, SET_PAGE,
@@ -66,5 +75,6 @@ export {
     OPEN_FILTER_SHOW,openFilterShow,
     SET_DRIVERS_LIST,setDriversList,
     SET_CAR_TYPES,setCarTypes,
-    SET_DRIVER_CAR_DESCR,setDriverCarDescription
+    SET_DRIVER_CAR_DESCR,setDriverCarDescription,
+    SET_LENGTH_TIME,setLengthTime,
 }

@@ -1,10 +1,8 @@
 .driverInfo_background {
     background-color: #ffffff;
-    padding: 30px 10px 12px 20px;
-    border-radius: 5px;
+    padding: 30px 10px 35px 20px;
+    border-radius: 5px 5px 0 0;
     margin-top: 35px;
-    margin-bottom: 20px;
-    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
 }
 
 .driverInfo_left_line {
@@ -14,10 +12,11 @@
     margin-bottom: 20px;
 }
 
-.driverInfo_photo img{
+.driverInfo_photo img {
     width: 156px;
     height: 156px;
     border-radius: 50%;
+    object-fit: cover;
 }
 
 .driverInfo_carData {

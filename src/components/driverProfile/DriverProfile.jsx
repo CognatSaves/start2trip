@@ -16,6 +16,19 @@ import DriverProfileTours from './DriverProfileTours';
 import requests from '../../config';
 import { setCities } from '../../redusers/Action'
 import RouteMenu from '../home/HomeBody/RouteMenu';
+import TextField from '@material-ui/core/TextField';
+import DatePicker from 'material-ui/DatePicker';
+import ReactTelInput from 'react-telephone-input'
+import flags from '../driverProfileRegistration/img/flags.png'
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import Input from '@material-ui/core/Input';
+import Checkbox from '@material-ui/core/Checkbox';
+import { Link } from 'react-router-dom';
+import MapContainer from '../home/HomeBody/MapContainer';
+import {setLengthTime} from '../../redusers/ActionDrivers'
 
 class DriverProfileClass extends React.Component {
     constructor(props) {
@@ -24,77 +37,102 @@ class DriverProfileClass extends React.Component {
             travelVisibility: 'none',
             successVisibility: 'none',
             page: 1,
+            mapRwanda:true,
             showPages: 1,
             showPanelVariant: 0,
+            flagDate: false,
+            telNumber: "",
+            numberOfPeople:"",
+            checkBoxes:false,
+            date:"",
+            time: [
+                "00:00", "00:15", "00:30", "00:45",
+                "01:00", "01:15", "01:30", "01:45",
+                "02:00", "02:15", "02:30", "02:45",
+                "03:00", "03:15", "03:30", "03:45",
+                "04:00", "04:15", "04:30", "04:45",
+                "05:00", "05:15", "05:30", "05:45",
+                "06:00", "06:15", "06:30", "06:45",
+                "07:00", "07:15", "07:30", "07:45",
+                "08:00", "08:15", "08:30", "08:45",
+                "09:00", "09:15", "09:30", "09:45",
+                "10:00", "10:15", "10:30", "10:45",
+                "11:00", "11:15", "11:30", "11:45",
+                "12:00", "12:15", "12:30", "12:45",
+                "13:00", "13:15", "13:30", "13:45",
+                "14:00", "14:15", "14:30", "14:45",
+                "15:00", "15:15", "15:30", "15:45",
+                "16:00", "16:15", "16:30", "16:45",
+                "17:00", "17:15", "17:30", "17:45",
+                "18:00", "18:15", "18:30", "18:45",
+                "19:00", "19:15", "19:30", "19:45",
+                "20:00", "20:15", "20:30", "20:45",
+                "21:00", "21:15", "21:30", "21:45",
+                "22:00", "22:15", "22:30", "22:45",
+                "23:00", "23:15", "23:30", "23:45",
+            ],
         }
-        this.showMorePages = this.showMorePages.bind(this);
-        this.setPage = this.setPage.bind(this);
-        this.goToDrivers = this.goToDrivers.bind(this);
 
-        this.changeTravelVisibility = this.changeTravelVisibility.bind(this);
-        this.changeSuccessVisibility = this.changeSuccessVisibility.bind(this);
-        this.changePanelVariant = this.changePanelVariant.bind(this);
-        
         let now = new Date(Date.now());
         //debugger;
         console.log(props.match);
-        if(!(!props.match || !props.match.params.id || !props.match.params.carId)){
+        if (!(!props.match || !props.match.params.id || !props.match.params.carId)) {
             let body = JSON.stringify({
                 id: props.match.params.id,
                 carId: props.match.params.carId,
-                cities:[
+                cities: [
                     {
-                        point:"Тбилиси, Грузия",
-                        lat:41.7151377,
-                        long:44.82709599999998
+                        point: "Тбилиси, Грузия",
+                        lat: 41.7151377,
+                        long: 44.82709599999998
                     },
                     {
-                        point:"Мцхета, Грузия",
-                        lat:41.8411674,
-                        long:44.70738640000002 
+                        point: "Мцхета, Грузия",
+                        lat: 41.8411674,
+                        long: 44.70738640000002
                     }
                 ],
-                country:"GEO",
-                date:"Fri, 28 Jun 2019 21:00:00 GMT",
-                distance:1000
+                country: "GEO",
+                date: "Fri, 28 Jun 2019 21:00:00 GMT",
+                distance: 1000
             });
             let that = this;
-            fetch(requests.getDriverData,{
+            fetch(requests.getDriverData, {
                 method: 'PUT', body: body,
-                headers: { 'content-type': 'application/json'}
+                headers: { 'content-type': 'application/json' }
             })
-            .then(response => {
-                return response.json();
-            })
-            .then(function (data){
-                if (data.error) {
-                    console.log("bad");
-                    throw data.error;
-                }
-                else{
-                    console.log('good');
-                    console.log(data);
-                    that.props.dispatch(setDriverCarDescription(data.driverCarDescription));
-                    that.props.dispatch(setCarTypes(data.carTypes));
-                }
+                .then(response => {
+                    return response.json();
+                })
+                .then(function (data) {
+                    if (data.error) {
+                        console.log("bad");
+                        throw data.error;
+                    }
+                    else {
+                        console.log('good');
+                        console.log(data);
+                        that.props.dispatch(setDriverCarDescription(data.driverCarDescription));
+                        that.props.dispatch(setCarTypes(data.carTypes));
+                    }
 
-            })
-            .catch(function (error){
-                console.log('bad');
-                console.log('An error occurred:',error);
-            })
+                })
+                .catch(function (error) {
+                    console.log('bad');
+                    console.log('An error occurred:', error);
+                })
         }
-        else{
-           props.history.push('/'); 
+        else {
+            props.history.push('/');
         }
     }
-    showMorePages() {
+    showMorePages=()=> {
         this.setState({
             page: this.state.page + 1,
             showPages: this.state.showPages + 1
         })
     }
-    setPage(page) {
+    setPage=(page)=> {
         if (page !== "...") {
             this.setState(
                 {
@@ -104,21 +142,21 @@ class DriverProfileClass extends React.Component {
             )
         }
     }
-    goToDrivers() {
+    goToDrivers=()=> {
         this.props.dispatch(setDriversRouteChange(true));
         this.props.history.push('/drivers');
     }
-    changeTravelVisibility(value) {
+    changeTravelVisibility=(value)=> {
         this.setState({
             travelVisibility: value
         })
     }
-    changeSuccessVisibility(value) {
+    changeSuccessVisibility=(value)=> {
         this.setState({
             successVisibility: value
         })
     }
-    changePanelVariant(value) {
+    changePanelVariant=(value)=> {
         this.setState({
             showPanelVariant: value
         })
@@ -135,15 +173,45 @@ class DriverProfileClass extends React.Component {
         }
         this.props.dispatch(setCities(newCities))
     }
+    setLengthTime = (travelLength, travelTime) => {
+        function getLengthString(travelLength) {
+          let length = travelLength;
+          length = Math.ceil(length / 1000);
+          let lengthString = length + " км";
+          return lengthString;
+        }
+        function getTimeString(travelTime) {
+          let hours = travelTime / 3600 ^ 0;
+          let minutes = (travelTime - hours * 3600) / 60 ^ 0;
+          let days = hours / 24 ^ 0;
+          hours = hours - days * 24;
+          let timeString = "";
+          if (days !== 0) {
+            timeString += days + " дн. " + hours + " ч.";
+          }
+          else {
+            if (hours !== 0) {
+              timeString += hours + " ч. ";
+            }
+            timeString += minutes + " мин.";
+          }
+          return timeString;
+        }
+        let lengthString = getLengthString(travelLength);
+        let timeString = getTimeString(travelTime);
+    
+        this.props.dispatch(setLengthTime(lengthString, timeString));
+        
+      }
+
     render() {
         console.log('DriverProfile render');
         console.log(this.props.driversState);
 
-        let driver =this.props.driversState.driverCarDescription;
-        console.log('driver',driver);
+        let driver = this.props.driversState.driverCarDescription;
+        console.log('driver', driver);
 
         let buttonNames = ["Отзывы (" + this.props.commentState.comments.length + ")"];
-
         let cities;
         let country;
         if (this.props.match) {
@@ -153,14 +221,144 @@ class DriverProfileClass extends React.Component {
                 this.parseStringToArray(cities, country);
             }
         }
+        let carCapacityArray = []; 
+        if(this.props.driversState.driverCarDescription.carCapacity){
+            for(let i = 1; i<this.props.driversState.driverCarDescription.carCapacity;i++){
+                carCapacityArray.push(i)
+            }
+        }else{
+            carCapacityArray.push("1") 
+        }
+        
+        
+
         return (
             <React.Fragment>
                 <div className="drivers_top_background">
                     <Header history={this.props.history} />
                     <div className="wrapper d-flex flex-column">
                         <div className="drivers_top_block d-flex flex-column">
+                            
                             <DriverInfo element={driver} />
-                            <div className="drivers_route col-12 p-0 d-flex flex-column" >
+                            <div className="driversRoute col-12 ">
+                                <hr/>
+                                <h3>Гори-Кутаиси-Батуми</h3>
+                                <div className="route_time_text col-sm-6 col-12">Время в пути без остановок:
+                            <p1>{this.props.driversState.travelTime}</p1><p2>{this.props.driversState.travelLength}</p2>
+                                    </div>
+                            </div>
+                            <div className="drivers_route col-12 p-0 d-flex" >
+                                <div className="drivers_route_form col-md-6 col-12 p-0">
+                                    <div className="d-flex flex-sm-row flex-column col-12 p-0">
+                                        <div className="d-flex flex-sm-column flex-column-reverse col-sm-6 col-12">
+                                            <TextField
+                                                label="Имя"
+                                                defaultValue=""
+                                                className="textField"
+                                                margin="normal"
+                                                variant="outlined"
+                                            />
+                                            <ReactTelInput
+                                                defaultCountry={this.props.storeState.isoCountryMap}
+                                                classNames="route_datePhoneInput"
+                                                flagsImagePath={flags}
+                                                onChange={(telNumber, selectedCountry) => { this.setState({ telNumber: telNumber }) }}
+                                                onBlur={(value) => { console.log(value) }}
+                                                initialValue="Телефон"
+                                            />
+
+                                            <DatePicker onChange={(nul, date) => { this.setState({ flagDate: true }) }} floatingLabelText="Дата отправления" className={this.state.flagDate ? "route_dateCalendarModal route_dateCalendarModal_active" : "route_dateCalendarModal"} />
+                                            
+                                            <FormControl className="route_dateSelect">
+                                            <InputLabel htmlFor="select-multiple">Колличество человек</InputLabel>
+                                            <Select
+                                                value={this.state.numberOfPeople}
+                                                input={<Input id="select-multiple" variant="outlined"/>}
+                                                onChange={(event)=>{this.setState({numberOfPeople:event.target.value})}}
+                                            >
+                                                 {carCapacityArray.map(name => ( 
+                                                    <MenuItem key={name} value={name}>
+                                                        {name}
+                                                    </MenuItem>
+                                                ))} 
+                                            </Select>
+                                            </FormControl>
+                                        </div>
+                                        <div className="d-flex flex-column  col-sm-6 col-12">
+                                            <TextField
+                                                label="Фамилия"
+                                                defaultValue=""
+                                                className="textField"
+                                                margin="normal"
+                                                variant="outlined"
+                                            />
+
+                                            <TextField
+                                                label="Email"
+                                                defaultValue=""
+                                                className="textField"
+                                                margin="normal"
+                                                variant="outlined"
+                                            />
+                                            <FormControl className="route_dateSelect">
+                                            <InputLabel htmlFor="select-multiple">Время</InputLabel>
+                                            <Select
+                                                value={this.state.date}
+                                                input={<Input id="select-multiple" variant="outlined"/>}
+                                                onChange={(event)=>{this.setState({date:event.target.value})}}
+                                            >
+                                                 {this.state.time.map(name => ( 
+                                                    <MenuItem key={name} value={name}>
+                                                        {name}
+                                                    </MenuItem>
+                                                ))} 
+                                            </Select>
+                                            </FormControl>
+                                            
+
+                                            <TextField
+                                                label="Место отправления"
+                                                multiline
+                                                rowsMax="4"
+                                                // value={values.multiline}
+                                                // onChange={handleChange('multiline')}
+                                                className="textField"
+                                                margin="normal"
+                                                variant="outlined"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="col-12">
+                                        <TextField
+                                            label="Описание"
+                                            multiline
+                                            rows="2"
+                                            rowsMax="2"
+                                            // value={values.multiline}
+                                            // onChange={handleChange('multiline')}
+                                            className="textField w-100"
+                                            margin="normal"
+                                            variant="outlined"
+                                        />
+                                    </div>
+                                    <div className="d-flex align-items-center col-12 p-0">
+                                    <Checkbox
+                                        checked={this.state.checkBoxes}
+                                        onChange={(event)=>{this.setState({checkBoxes:!this.state.checkBoxes})}}
+                                     />
+                                     <span className="drivers_route_Link">Я принимаю условия <Link to="">договора оферты</Link></span> 
+                                    </div>
+                                    <div className=" d-flex align-items-center justify-content-between col-12 py-2">
+                                        <div className="d-flex drivers_routePromo"><input placeholder="Введите промо код" type="text"/> <span>применить</span></div>
+                                        <h3 className="drivers_routePrice">${this.props.driversState.driverCarDescription.price}</h3>
+                                        <div className="drivers_routeBtn">
+                                            <span>Заказать тур</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-6">
+                                <MapContainer cities={this.props.storeState.cities} setLengthTime={this.setLengthTime} mapUpdate={true} />
+                                </div>
                                 {/* <div className="d-flex justify-content-center col-12 p-0 pb-3">
                                     <h3 className="drivers_route_title">Ваш Маршрут</h3>
                                 </div>

@@ -450,7 +450,7 @@ class AgencyProfileBasicInformationClass extends React.Component{
                             <div className="bottomContentNote d-flex align-items-center">
                                 <label htmlFor="basicInfoNumber" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Рабочий телефон:</label>
                                 <ReactTelInput
-                                    defaultCountry="ge"
+                                    defaultCountry={this.props.storeState.isoCountryMap}
                                     classNames="myPhoneInput"
                                     flagsImagePath={flags}
                                     onChange={(telNumber, selectedCountry) => { this.inputChange(telNumber, 'workPhone'); }}

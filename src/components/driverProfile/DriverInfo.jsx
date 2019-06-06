@@ -118,7 +118,7 @@ class DriverInfoClass extends React.Component{
                             </div>
                         </div>
                     </div>
-                    <div className="driverInfo_carTypeValue">{carTypeNumber>0 ? (this.props.driversState.carTypes[carTypeNumber].name_en+', '+element.carCapacity+ ' места'): ''}</div>
+                    <div className="driverInfo_carTypeValue">{carTypeNumber>=0 ? (this.props.driversState.carTypes[carTypeNumber].name_en+', '+element.carCapacity+ ' места'): ''}</div>
                 </div>
                 <Carousel photoArray={imageUrls} type={isMobileOnly?"horizontal":"vertical"} />
                 
