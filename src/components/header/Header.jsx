@@ -16,7 +16,7 @@ import { Collapse } from 'reactstrap';
 import { Modal, ModalBody } from 'reactstrap';
 import requests from '../../config';
 import axios from 'axios';
-import { setUser } from '../../redusers/Action';
+import { setUser, setActiveCurr, setActiveLang } from '../../redusers/Action';
 import { disablePageScroll, clearQueueScrollLocks, enablePageScroll } from 'scroll-lock';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
@@ -209,12 +209,14 @@ class HeaderClass extends React.Component {
         }
       }
     }
+    this.props.dispatch(setActiveCurr(activeCurrencyNumber));
+    this.props.dispatch(setActiveLang(activeLanguageNumber));
     this.state = {
       dropdownLanguageOpen: false,
       burgerMenu: false,
       dropdownOpen: false,
-      activLanguageNumber: activeLanguageNumber,
-      activeCurrencyNumber: activeCurrencyNumber,
+      //activLanguageNumber: activeLanguageNumber,
+      //activeCurrencyNumber: activeCurrencyNumber,
       previousPageYOffset: null,
       modalCountry: false,
       collapse: false,
@@ -275,17 +277,19 @@ class HeaderClass extends React.Component {
           for (let i = 0; i < languages.length; i++) {
             if (languages[i].ISO === 'RUS') {
               cookies.set('userLang', languages[i].ISO, { path: '/', expires: date });
-              that.setState({
+              that.props.dispatch(setActiveLang(i));
+              /*that.setState({
                 activLanguageNumber: i
-              })
+              })*/
             }
           }
           lang = this.props.globalReduser.readCookie('userLang');
           if (!lang) {
             cookies.set('userLang', languages[0].ISO, { path: '/', expires: date });
-            that.setState({
+            that.props.dispatch(setActiveLang(0));
+            /*that.setState({
               activLanguageNumber: 0
-            })
+            })*/
           }
         }
         else {
@@ -293,34 +297,38 @@ class HeaderClass extends React.Component {
           for (; i < languages.length; i++) {
             if (lang === languages[i].ISO) {
               cookies.set('userLang', languages[i].ISO, { path: '/', expires: date });
-              that.setState({
+              that.props.dispatch(setActiveLang(i));
+              /*that.setState({
                 activLanguageNumber: i
-              });
+              });*/
               break;
             }
           }
           if (i === languages.length) {
             cookies.set('userLang', languages[0].ISO, { path: '/', expires: date });
-            that.setState({
+            that.props.dispatch(setActiveLang(0));
+            /*that.setState({
               activLanguageNumber: 0
-            });
+            });*/
           }
         }
         if (!curr) {
           for (let i = 0; i < currencies.length; i++) {
             if (currencies[i].ISO === "USD") {
               cookies.set('userCurr', currencies[i].ISO, { path: '/', expires: date });
-              that.setState({
+              that.props.dispatch(setActiveCurr(i));
+              /*that.setState({
                 activeCurrencyNumber: i
-              })
+              })*/
             }
           }
           curr = this.props.globalReduser.readCookie('userCurr');
           if (!curr) {
             cookies.set('userCurr', currencies[0].ISO, { path: '/', expires: date });
-            that.setState({
+            that.props.dispatch(setActiveCurr(0));
+            /*that.setState({
               activeCurrencyNumber: 0
-            })
+            })*/
           }
         }
         else {
@@ -328,17 +336,19 @@ class HeaderClass extends React.Component {
           for (; i < currencies.length; i++) {
             if (curr === currencies[i].ISO) {
               cookies.set('userCurr', currencies[i].ISO, { path: '/', expires: date });
-              that.setState({
+              that.props.dispatch(setActiveCurr(i));
+              /*that.setState({
                 activeCurrencyNumber: i
-              });
+              });*/
               break;
             }
           }
           if (i === currencies.length) {
             cookies.set('userCurr', currencies[0].ISO, { path: '/', expires: date });
-            that.setState({
+            that.props.dispatch(setActiveCurr(i));
+            /*that.setState({
               activeCurrencyNumber: 0
-            });
+            });*/
           }
         }
 
@@ -352,16 +362,18 @@ class HeaderClass extends React.Component {
     let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
     switch (type) {
       case 'userLang': {
-        this.setState({
+        this.props.dispatch(setActiveLang(index));
+        /*this.setState({
           activLanguageNumber: index
-        });
+        });*/
         cookies.set('userLang', this.props.storeState.languages[index].ISO, { path: '/', expires: date });
         break;
       }
       case 'userCurr': {
-        this.setState({
+        this.props.dispatch(setActiveCurr(index));
+        /*this.setState({
           activeCurrencyNumber: index
-        });
+        });*/
         cookies.set('userCurr', this.props.storeState.currencies[index].ISO, { path: '/', expires: date });
         break;
       }
@@ -598,14 +610,14 @@ class HeaderClass extends React.Component {
               <div className="burgerMenuBg">
                 <div className="burgerMenuTop">
                   <DropDownMenu anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }} className="burgerMenuTopDropDown" menuStyle={{ width: "30px" }}
-                    value={this.state.activLanguageNumber} onChange={(event, index, value) => { this.setLocals('userLang', index) }}>
+                    value={this.props.storeState.activeLanguageNumber/*this.state.activLanguageNumber*/} onChange={(event, index, value) => { this.setLocals('userLang', index) }}>
                     {languages.map((element, index) =>
                       <MenuItem value={index} primaryText={<React.Fragment><img className="mb-1" src={requests.serverAddress + element.icon.url} width="15px" height="15px" alt={element.ISO} /><span className="burgerMenuTopDropDownSpan">{element.ISO}</span></React.Fragment>} ></MenuItem>
                     )}
                   </DropDownMenu>
                   <DropDownMenu menuItemStyle={{ color: "#304269", fontSize: "14px", fontWeight: "400" }} selectedMenuItemStyle={{ color: "#f60" }}
                     anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }} className="burgerMenuTopDropDown" menuStyle={{ width: "30px" }}
-                    value={this.state.activeCurrencyNumber} onChange={(event, index, value) => { this.setLocals('userCurr', index) }}>
+                    value={this.props.storeState.activeCurrencyNumber/*this.state.activeCurrencyNumber*/} onChange={(event, index, value) => { this.setLocals('userCurr', index) }}>
                     {currencies.map((element, index) =>
                       <MenuItem value={index} primaryText={element.symbol + " " + element.ISO} />
                     )}
@@ -613,7 +625,7 @@ class HeaderClass extends React.Component {
                   {
                     /*
                   <DropDownMenu anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }} className="burgerMenuTopDropDown" menuStyle={{ width: "30px" }}
-                   value={this.state.activLanguageNumber} onChange={(event, index, value) => { this.setLocals('userLang',index) }}>
+                   value={this.props.storeState.activeLanguageNumber} onChange={(event, index, value) => { this.setLocals('userLang',index) }}>
                     {languages.map((element, index) =>
                       <MenuItem value={index} primaryText={<React.Fragment><img className="mb-1" src={requests.serverAddress+element.icon.url} width="15px" height="15px" alt={element.ISO} /><span className="burgerMenuTopDropDownSpan">{element.ISO}</span></React.Fragment>} ></MenuItem>
                     )}
@@ -667,7 +679,7 @@ class HeaderClass extends React.Component {
               <div className="headerSelect d-flex align-items-center justify-content-end col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
                 <Dropdown setActiveFromChild="true" isOpen={this.state.dropdownOpen} toggle={this.toggleDropdownOpen} className={currencies.length > 0 ? "selectGeneral" : "selectGeneral preloadHiddenBlock"}>
                   <DropdownToggle className="selectGeneralButton" caret size="sm">
-                    {/*this.state.activeCurrency[this.state.activeCurrencyNumber]*/ currencies.length > 0 ? currencies[this.state.activeCurrencyNumber].symbol + " " + currencies[this.state.activeCurrencyNumber].ISO : ''}
+                    {/*this.state.activeCurrency[this.state.activeCurrencyNumber]*/ currencies.length > 0 ? currencies[this.props.storeState.activeCurrencyNumber/*this.state.activeCurrencyNumber*/].symbol + " " + currencies[this.props.storeState.activeCurrencyNumber/*this.state.activeCurrencyNumber*/].ISO : ''}
                   </DropdownToggle>
                   <DropdownMenu className="dropdownMenu currenty" >
                     {
@@ -679,8 +691,8 @@ class HeaderClass extends React.Component {
                 </Dropdown>
                 <Dropdown setActiveFromChild="true" isOpen={this.state.dropdownLanguageOpen} toggle={this.toggleLanguage} className={languages.length > 0 ? "selectGeneral" : "selectGeneral preloadHiddenBlock"}>
                   <DropdownToggle className="selectGeneralButton" caret size="sm">
-                    <img src={languages.length > 0 ? requests.serverAddress + languages[this.state.activLanguageNumber].icon.url : ''} height="15px" width="15px" alt="flag" />
-                    {languages.length > 0 ? languages[this.state.activLanguageNumber].ISO : ''}
+                    <img src={languages.length > 0 ? requests.serverAddress + languages[this.props.storeState.activeLanguageNumber/*this.state.activLanguageNumber*/].icon.url : ''} height="15px" width="15px" alt="flag" />
+                    {languages.length > 0 ? languages[this.props.storeState.activeLanguageNumber/*this.state.activLanguageNumber*/].ISO : ''}
                   </DropdownToggle>
                   <DropdownMenu className="dropdownMenu">
                     {

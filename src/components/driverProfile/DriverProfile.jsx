@@ -16,6 +16,7 @@ import DriverProfileTours from './DriverProfileTours';
 import requests from '../../config';
 import { setCities } from '../../redusers/Action'
 import RouteMenu from '../home/HomeBody/RouteMenu';
+import axios from 'axios';
 
 class DriverProfileClass extends React.Component {
     constructor(props) {
@@ -82,11 +83,26 @@ class DriverProfileClass extends React.Component {
             .catch(function (error){
                 console.log('bad');
                 console.log('An error occurred:',error);
+            });
+            
+/*
+            //ЭтО ЗаПрОс На ПрОвЕрКу ПрОмОкОдА. ОчЕнЬ НуЖеН
+
+
+            axios.get(requests.checkPromocode+"?code=PROMOCODE1")
+            .then(response =>{
+                console.log('get promocode answer');
+                console.log(response);
             })
-        }
+            .catch(error => {
+                console.log('get wasted promocode answer');
+            })
+*/
+}
         else{
-           props.history.push('/'); 
-        }
+            props.history.push('/'); 
+        }      
+            
     }
     showMorePages() {
         this.setState({
@@ -134,6 +150,60 @@ class DriverProfileClass extends React.Component {
             newCities[i] = { point: stringWhithSpaces, lat: "", long: "" };
         }
         this.props.dispatch(setCities(newCities))
+    }
+    sendTripRequest = () => {
+        let bodybody = JSON.stringify({
+            newFirstName: 'klo',
+            newSecondName: 'olk',
+            startDate: '2009-09-09',
+            startTime: '10:15',
+            route:[
+                {
+                    point:"Тбилиси, Грузия",
+                    lat:41.7151377,
+                    long:44.82709599999998
+                },
+                {
+                    point:"Мцхета, Грузия",
+                    lat:41.8411674,
+                    long:44.70738640000002 
+                }
+            ],
+            startPlace: '16 проспект Шота Руставели, Тбилиси, Грузия',
+            price: 100,
+            tripCommentary: 'tripCommentary',
+            carrier: this.props.match.params.id,
+            currencyType: this.props.storeState.currencies.length>0 ? this.props.storeState.currencies[this.props.storeState.activeCurrencyNumber].id : undefined,
+            tripType: 'Trip',
+            newPhone: '+1234567890',
+            passengerNumber: '15',
+            promocode: 'PROMOCODE1',
+            clientEmail: 'gorlev98@mail.ru',
+            carId: this.props.match.params.carId,
+            frontendAddress: requests.frontendAddress
+        });
+        
+        fetch(requests.createNewTrip,{
+            method: 'POST', body: bodybody,
+            headers: { 'content-type': 'application/json'}
+        })
+        .then(response => {
+            return response.json();
+        })
+        .then(function (data){
+            if (data.error) {
+                console.log("bad");
+                throw data.error;
+            }
+            else{
+                console.log('good');
+                console.log(data);
+            }
+        })
+        .catch(function (error){
+            console.log('bad');
+            console.log('An error occurred:',error);
+        });
     }
     render() {
         console.log('DriverProfile render');
@@ -191,6 +261,7 @@ class DriverProfileClass extends React.Component {
                                         )
                                     }
                                 </div>
+                                <button onClick={()=>this.sendTripRequest()}>Press Me! Now!</button>
                                 {
                                     this.state.showPanelVariant === 0 &&
                                     <React.Fragment>

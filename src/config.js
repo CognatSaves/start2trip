@@ -21,6 +21,9 @@ const userTourActivateRequest = serverAddress + '/tours/me/activate'; //запр
 const getLocals = serverAddress + "/getLocals"; //первичный запрос массивов языков и валют
 const getDrivers = serverAddress + "/users/findDrivers"; //запрос на водителей для выбранного маршрута
 const getDriverData = serverAddress + "/users/getDriverData"; //запрос данных водителя с его машиной
+const checkPromocode = serverAddress + "/checkPromocode/";//запрос на проверку промокода
+const createNewTrip = serverAddress + "/createNewTrip";//запрос на создание новой поездки (без подтверждений)
+
 
 const forgotPassword = serverAddress + "/auth/forgotPassword";
 const resetPassword = serverAddress + "/auth/reset-password";
@@ -50,5 +53,7 @@ export default {
     resetPassword: resetPassword,
     changeMyDriver: changeMyDriver,
     getDrivers: getDrivers,
-    getDriverData: getDriverData
+    getDriverData: getDriverData,
+    checkPromocode: checkPromocode,
+    createNewTrip: createNewTrip
 };

@@ -67,7 +67,7 @@ class DriverInfoClass extends React.Component{
                         <img src={requests.serverAddress+element.avatar} alt={"photo " + element.name} />
                     </div>
                     <div className="block_element_infoBlock">
-                        <div style={{paddingBottom: "15px"}}>
+                        <div style={{paddingBottom: "15px"}} key={element.rating}>
                             <div className="block_element_infoBlock_name driversInfo_driverName">{element.name}</div>
                             <Stars value={element.rating} commentNumber={element.comments ? element.comments.length + " отзывов" : 0} valueDisplay={true} commentNumberDisplay={true} />
                         </div>
@@ -118,7 +118,7 @@ class DriverInfoClass extends React.Component{
                             </div>
                         </div>
                     </div>
-                    <div className="driverInfo_carTypeValue">{carTypeNumber>0 ? (this.props.driversState.carTypes[carTypeNumber].name_en+', '+element.carCapacity+ ' места'): ''}</div>
+                    <div className="driverInfo_carTypeValue">{carTypeNumber>=0 ? (this.props.driversState.carTypes[carTypeNumber].name_en+', '+element.carCapacity+ ' места'): ''}</div>
                 </div>
                 <Carousel photoArray={imageUrls} type={isMobileOnly?"horizontal":"vertical"} />
                 
