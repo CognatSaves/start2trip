@@ -30,7 +30,9 @@ import {
     AUTO_MENU_CALL,
     MODAL_COUNTRY,
     SET_USER,
-    SET_LOCALS
+    SET_LOCALS,
+    SET_ACTIVE_CURR,
+    SET_ACTIVE_LANG
 } from './Action';
 
 
@@ -45,7 +47,9 @@ const initialState = {
     autoValue: "Любое авто",
     autoMenu: false,
     languages: [],
+    activeLanguageNumber: 0,
     currencies: [],
+    activeCurrencyNumber: 0,
     comfort: [
         { icon: seatIcon, title: "Кожаный салон" },
         { icon: snowflakeIcon, title: "Климат контроль" },
@@ -81,6 +85,16 @@ const initialState = {
 
 export const AppReduser = (state = initialState, action) => {
     switch (action.type) {
+        case SET_ACTIVE_CURR:{
+            let newState = {...state};
+            newState.activeCurrencyNumber=action.activeCurrencyNumber;
+            return newState;
+        }
+        case SET_ACTIVE_LANG:{
+            let newState={...state};
+            newState.activeLanguageNumber=action.activeLanguageNumber;
+            return newState;
+        }
         case SET_USER:
             {
                 let newStateSU = {...state };

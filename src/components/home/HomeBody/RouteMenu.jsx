@@ -288,9 +288,6 @@ class RouteMenuClass extends React.Component {
           //that.catchFunc();
         });
 
-
-
-
     }
   }
 

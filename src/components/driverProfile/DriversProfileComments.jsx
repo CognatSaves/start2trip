@@ -18,6 +18,7 @@ class DriversProfileCommentsClass extends React.Component{
             }
             return comments;
         }  
+        //debugger;      
         //let comments = [...this.props.commentState.comments].reverse();
         
         //let selectedComments = comments.slice((this.props.page-this.props.showPages) * 5, (this.props.page) * 5);

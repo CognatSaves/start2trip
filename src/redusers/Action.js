@@ -36,6 +36,22 @@ const SET_USER = 'SET_USER';
 
 const SET_LOCALS = 'SET_LOCALS';
 
+const SET_ACTIVE_CURR = 'SET_ACTIVE_CURR';
+
+const SET_ACTIVE_LANG = 'SET_ACTIVE_LANG';
+
+const setActiveCurr = function(activeCurrencyNumber){
+    return{
+        type: 'SET_ACTIVE_CURR',
+        activeCurrencyNumber: activeCurrencyNumber
+    }
+}
+const setActiveLang = function(activeLanguageNumber){
+    return{
+        type:'SET_ACTIVE_LANG',
+        activeLanguageNumber:activeLanguageNumber
+    }
+}
 const setLocals = function(languages, currencies) {
 
     return {
@@ -216,5 +232,9 @@ export {
     setUser,
     SET_USER,
     setLocals,
-    SET_LOCALS
+    SET_LOCALS,
+    SET_ACTIVE_CURR,
+    setActiveCurr,
+    SET_ACTIVE_LANG,
+    setActiveLang
 }
