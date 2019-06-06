@@ -244,7 +244,8 @@ class DriverProfileClass extends React.Component {
                                 <hr/>
                                 <h3>Гори-Кутаиси-Батуми</h3>
                                 <div className="route_time_text col-sm-6 col-12">Время в пути без остановок:
-                            <p1>{this.props.driversState.travelTime}</p1><p2>{this.props.driversState.travelLength}</p2>
+                                <p2>{this.props.driversState.travelLength}</p2>
+                            <p1>{this.props.driversState.travelTime}</p1>
                                     </div>
                             </div>
                             <div className="drivers_route col-12 p-0 d-flex" >
