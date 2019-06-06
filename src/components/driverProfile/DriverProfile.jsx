@@ -73,7 +73,9 @@ class DriverProfileClass extends React.Component {
                 "23:00", "23:15", "23:30", "23:45",
             ],
         }
-
+        this.state = { ...this.state, "mapRwanda": true }
+        
+        props.dispatch(setLengthTime("-", "-"));
         let now = new Date(Date.now());
         //debugger;
         console.log(props.match);
@@ -213,10 +215,13 @@ class DriverProfileClass extends React.Component {
           }
           return timeString;
         }
-        let lengthString = getLengthString(travelLength);
-        let timeString = getTimeString(travelTime);
-    
-        this.props.dispatch(setLengthTime(lengthString, timeString));
+        if(this.props.driversState.travelLength == "-" && this.props.driversState.travelTime == "-"){
+            console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
+            let lengthString = getLengthString(travelLength);
+            let timeString = getTimeString(travelTime);
+            this.props.dispatch(setLengthTime(lengthString, timeString));
+        }
+        
         
       }
 
@@ -312,7 +317,11 @@ class DriverProfileClass extends React.Component {
                             <DriverInfo element={driver} />
                             <div className="driversRoute col-12 ">
                                 <hr/>
-                                <h3>Гори-Кутаиси-Батуми</h3>
+                                <h3>{this.props.storeState.cities.map((element,index)=>{
+
+                                    return(index == this.props.storeState.cities.length-1 ? element.point : element.point+ "-")
+                                    
+                                })}</h3>
                                 <div className="route_time_text col-sm-6 col-12">Время в пути без остановок:
                                 <p2>{this.props.driversState.travelLength}</p2>
                             <p1>{this.props.driversState.travelTime}</p1>
@@ -427,8 +436,8 @@ class DriverProfileClass extends React.Component {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-6">
-                                <MapContainer cities={this.props.storeState.cities} setLengthTime={this.setLengthTime} mapUpdate={true} />
+                                <div className="col-6 d-md-block d-none ">
+                                <MapContainer cities={this.props.storeState.cities} setLengthTime={this.setLengthTime} mapUpdate={this.state.mapRwanda} />
                                 </div>
                                 {/* <div className="d-flex justify-content-center col-12 p-0 pb-3">
                                     <h3 className="drivers_route_title">Ваш Маршрут</h3>
