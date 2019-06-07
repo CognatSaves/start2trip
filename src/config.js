@@ -1,5 +1,5 @@
 import serverAddress from './serverAddress';
-const frontendAddress = 'http://localhost:3000';//'http://tripfer.com'; //
+const frontendAddress = 'http://tripfer.com'; //'http://localhost:3000';//
 
 const serverRegistrationRequest = serverAddress + '/auth/local/register';
 const serverAuthorizationRequest = serverAddress + '/auth/local';
@@ -21,9 +21,9 @@ const userTourActivateRequest = serverAddress + '/tours/me/activate'; //запр
 const getLocals = serverAddress + "/getLocals"; //первичный запрос массивов языков и валют
 const getDrivers = serverAddress + "/users/findDrivers"; //запрос на водителей для выбранного маршрута
 const getDriverData = serverAddress + "/users/getDriverData"; //запрос данных водителя с его машиной
-const checkPromocode = serverAddress + "/checkPromocode/";//запрос на проверку промокода
-const createNewTrip = serverAddress + "/createNewTrip";//запрос на создание новой поездки (без подтверждений)
-const customerConfirmation = serverAddress + '/customerConfirmation';//запрсо на подтверждение заказа пользователем
+const checkPromocode = serverAddress + "/checkPromocode/"; //запрос на проверку промокода
+const createNewTrip = serverAddress + "/createNewTrip"; //запрос на создание новой поездки (без подтверждений)
+const customerConfirmation = serverAddress + '/customerConfirmation'; //запрсо на подтверждение заказа пользователем
 
 const forgotPassword = serverAddress + "/auth/forgotPassword";
 const resetPassword = serverAddress + "/auth/reset-password";
@@ -56,5 +56,5 @@ export default {
     getDriverData: getDriverData,
     checkPromocode: checkPromocode,
     createNewTrip: createNewTrip,
-    customerConfirmation:customerConfirmation
+    customerConfirmation: customerConfirmation
 };

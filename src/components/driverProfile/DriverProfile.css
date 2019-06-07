@@ -271,22 +271,31 @@ span.drivers_route_Link {
 }
 
 .drivers_routeBtn {
-    background: #f60;
     border-radius: 5px;
     padding: 10px 30px;
     cursor: pointer;
+    border: 1px solid #f60;
+    transition: all 0.3s;
+}
+
+.drivers_routeBtn-active {
+    background: #f60;
 }
 
 .drivers_routeBtn:hover {
     cursor: pointer;
-    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.2);
 }
 
 .drivers_routeBtn span {
     font-size: 16px;
     font-weight: 500;
-    color: #fff;
+    color: #f60;
     cursor: pointer;
+}
+
+.drivers_routeBtn-active span {
+    color: #fff;
 }
 
 .driversRoute {
@@ -299,4 +308,20 @@ span.drivers_route_Link {
     color: #304269;
     font-size: 24px;
     font-weight: 500;
+}
+
+.route_datePhoneInput input.draver_route-error,
+.draver_route-error {
+    border-color: #a5252580 !important;
+    outline-color: #a5252580 !important;
+}
+
+.errorMes {
+    font-size: 12px;
+    font-weight: 500;
+    color: #e81123;
+}
+
+.textField .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+    border-color: #304269 !important;
 }
