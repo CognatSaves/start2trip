@@ -13,8 +13,18 @@ export default class MapContainer extends Component {
   constructor(props){
     super(props);
     this.state={
-      cities: this.props.cities.slice(0)
+      cities: this.props.cities.slice(0),
+      mapUpdate:true,
     }
+  }
+
+  componentWillReceiveProps(nextProps){
+    if(nextProps.cities == this.props.cities) {
+      this.setState({mapUpdate:false});
+    }else{
+      this.setState({mapUpdate:true});
+    }
+  return true
   }
   render() {
     return (
@@ -23,7 +33,7 @@ export default class MapContainer extends Component {
         google={window.google}
         cities={this.props.cities}
         setLengthTime={this.props.setLengthTime}
-        mapUpdate={this.props.mapUpdate}
+        mapUpdate={this.state.mapUpdate}
         mapStyles={mapStyles}
       >                
       </CurrentLocation>

@@ -38,14 +38,26 @@ class DriverProfileClass extends React.Component {
             travelVisibility: 'none',
             successVisibility: 'none',
             page: 1,
-            mapRwanda:true,
+            // mapRwanda:true,
             showPages: 1,
             showPanelVariant: 0,
-            flagDate: false,
-            telNumber: "",
+
+            //Form value Begin
+            firstName:"",
+            lastName:"",
+            telNumber:"",
+            email:"",
+            date: this.props.storeState.date ? this.props.storeState.date : new Date(),
+            departureTime:"",
             numberOfPeople:"",
+            plaseDeparture:"",
+            description:"",
+            promoCode:"",
             checkBoxes:false,
-            date:"",
+            //Form value end
+
+            promoCod:"",
+
             time: [
                 "00:00", "00:15", "00:30", "00:45",
                 "01:00", "01:15", "01:30", "01:45",
@@ -279,6 +291,9 @@ class DriverProfileClass extends React.Component {
             console.log('An error occurred:',error);
         });
     }
+    validate = ()=>{
+        
+    }
     render() {
         console.log('DriverProfile render');
         console.log(this.props.driversState);
@@ -298,8 +313,8 @@ class DriverProfileClass extends React.Component {
         }
         let carCapacityArray = []; 
         if(this.props.driversState.driverCarDescription.carCapacity){
-            for(let i = 1; i<this.props.driversState.driverCarDescription.carCapacity;i++){
-                carCapacityArray.push(i)
+            for(let i = 0; i<this.props.driversState.driverCarDescription.carCapacity;i++){
+                carCapacityArray.push(i+1)
             }
         }else{
             carCapacityArray.push("1") 
@@ -333,7 +348,8 @@ class DriverProfileClass extends React.Component {
                                         <div className="d-flex flex-sm-column flex-column-reverse col-sm-6 col-12">
                                             <TextField
                                                 label="Имя"
-                                                defaultValue=""
+                                                defaultValue={this.state.firstName}
+                                                onChange={(event)=>{this.setState({firstName:event.target.value})}}
                                                 className="textField"
                                                 margin="normal"
                                                 variant="outlined"
@@ -342,12 +358,13 @@ class DriverProfileClass extends React.Component {
                                                 defaultCountry={this.props.storeState.isoCountryMap}
                                                 classNames="route_datePhoneInput"
                                                 flagsImagePath={flags}
+                                                defaultValue = {this.state.telNumber}
                                                 onChange={(telNumber, selectedCountry) => { this.setState({ telNumber: telNumber }) }}
                                                 onBlur={(value) => { console.log(value) }}
                                                 initialValue="Телефон"
                                             />
 
-                                            <DatePicker onChange={(nul, date) => { this.setState({ flagDate: true }) }} floatingLabelText="Дата отправления" className={this.state.flagDate ? "route_dateCalendarModal route_dateCalendarModal_active" : "route_dateCalendarModal"} />
+                                            <DatePicker onChange={(nul, date) => { this.setState({ date: date }) }} shouldDisableDate={(day)=>{let a = day}} defaultDate={this.state.date} minDate={new Date()} disableYearSelection={true} floatingLabelText="Дата отправления" className="route_dateCalendarModal" />
                                             
                                             <FormControl className="route_dateSelect">
                                             <InputLabel htmlFor="select-multiple">Колличество человек</InputLabel>
@@ -367,7 +384,8 @@ class DriverProfileClass extends React.Component {
                                         <div className="d-flex flex-column  col-sm-6 col-12">
                                             <TextField
                                                 label="Фамилия"
-                                                defaultValue=""
+                                                defaultValue={this.state.lastName}
+                                                onChange={(event)=>{this.setState({lastName:event.target.value})}}
                                                 className="textField"
                                                 margin="normal"
                                                 variant="outlined"
@@ -375,7 +393,8 @@ class DriverProfileClass extends React.Component {
 
                                             <TextField
                                                 label="Email"
-                                                defaultValue=""
+                                                defaultValue={this.state.email}
+                                                onChange={(event)=>{this.setState({email:event.target.value})}}
                                                 className="textField"
                                                 margin="normal"
                                                 variant="outlined"
@@ -383,9 +402,9 @@ class DriverProfileClass extends React.Component {
                                             <FormControl className="route_dateSelect">
                                             <InputLabel htmlFor="select-multiple">Время</InputLabel>
                                             <Select
-                                                value={this.state.date}
+                                                value={this.state.departureTime}
                                                 input={<Input id="select-multiple" variant="outlined"/>}
-                                                onChange={(event)=>{this.setState({date:event.target.value})}}
+                                                onChange={(event)=>{this.setState({departureTime:event.target.value})}}
                                             >
                                                  {this.state.time.map(name => ( 
                                                     <MenuItem key={name} value={name}>
@@ -400,8 +419,8 @@ class DriverProfileClass extends React.Component {
                                                 label="Место отправления"
                                                 multiline
                                                 rowsMax="4"
-                                                // value={values.multiline}
-                                                // onChange={handleChange('multiline')}
+                                                defaultValue={this.state.plaseDeparture}
+                                                onChange={(event)=>{this.setState({plaseDeparture:event.target.value})}}
                                                 className="textField"
                                                 margin="normal"
                                                 variant="outlined"
@@ -414,8 +433,8 @@ class DriverProfileClass extends React.Component {
                                             multiline
                                             rows="2"
                                             rowsMax="2"
-                                            // value={values.multiline}
-                                            // onChange={handleChange('multiline')}
+                                            defaultValue={this.state.description}
+                                            onChange={(event)=>{this.setState({description:event.target.value})}}
                                             className="textField w-100"
                                             margin="normal"
                                             variant="outlined"
@@ -429,27 +448,17 @@ class DriverProfileClass extends React.Component {
                                      <span className="drivers_route_Link">Я принимаю условия <Link to="">договора оферты</Link></span> 
                                     </div>
                                     <div className=" d-flex align-items-center justify-content-between col-12 py-2">
-                                        <div className="d-flex drivers_routePromo"><input placeholder="Введите промо код" type="text"/> <span>применить</span></div>
+                                        <div className="d-flex drivers_routePromo"><input placeholder="Введите промо код" value={this.state.promoCod} onChange={(event)=>{this.setState({promoCod:event.target.value})}} type="text"/> <span onClick={()=>{this.state.promoCode ?(this.setState({promoCod:"",promoCode:""})):(this.setState({promoCode:this.state.promoCod}))}}>{this.state.promoCode ? "сбросить":"применить"}</span></div>
                                         <h3 className="drivers_routePrice">${this.props.driversState.driverCarDescription.price}</h3>
-                                        <div className="drivers_routeBtn">
+                                        <div className="drivers_routeBtn" onClick={()=>{this.validate()}}>
                                             <span>Заказать тур</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="col-6 d-md-block d-none ">
-                                <MapContainer cities={this.props.storeState.cities} setLengthTime={this.setLengthTime} mapUpdate={this.state.mapRwanda} />
+                                <MapContainer cities={this.props.storeState.cities} setLengthTime={this.setLengthTime} mapUpdate={true} />
                                 </div>
-                                {/* <div className="d-flex justify-content-center col-12 p-0 pb-3">
-                                    <h3 className="drivers_route_title">Ваш Маршрут</h3>
-                                </div>
-                                <div className="d-flex flex-sm-row flex-column col-12 p-0">
-                                    <div className="route_date_text col-sm-6 col-12">Дата отправления: {this.props.storeState.date}</div>
-                                    <div className="route_time_text col-sm-6 col-12">Время в пути без остановок:
-                            <p1>{this.props.driversState.travelTime}</p1><p2>{this.props.driversState.travelLength}</p2>
-                                    </div>
-                                </div> */}
-                                {/* <RouteMenu showBtPrice={true} /> */}
-
+                                
                             </div>
                             {/* <DriverAdaptedRoute element={driver} date={this.props.storeState.date} cities={this.props.storeState.cities}
                                 travelTime={this.props.driversState.travelTime} travelLength={this.props.driversState.travelLength} goToDrivers={this.goToDrivers}

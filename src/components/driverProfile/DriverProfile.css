@@ -115,10 +115,10 @@
     color: #304269 !important;
 }
 
-.route_dateCalendarModal_active label {
+.route_dateCalendarModal label {
     background: #fff !important;
     width: max-content !important;
-    transform: scale(0.75) translate(0px, -37px) !important;
+    transform: scale(0.75) translate(0px, -34px) !important;
 }
 
 
@@ -278,6 +278,7 @@ span.drivers_route_Link {
 }
 
 .drivers_routeBtn:hover {
+    cursor: pointer;
     box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
 }
 
@@ -285,6 +286,7 @@ span.drivers_route_Link {
     font-size: 16px;
     font-weight: 500;
     color: #fff;
+    cursor: pointer;
 }
 
 .driversRoute {
