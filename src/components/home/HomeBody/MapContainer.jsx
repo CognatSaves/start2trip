@@ -27,6 +27,11 @@ export default class MapContainer extends Component {
   return true
   }
   render() {
+    console.log('map data');
+    console.log(this.props.cities);
+    console.log(this.props.setLengthTime);
+    console.log(this.props.mapUpdate);
+    //console.log(this.state.)
     return (
       <CurrentLocation
         centerAroundCurrentLocation

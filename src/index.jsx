@@ -19,6 +19,8 @@ import PartnerRegister from './components/registration/PartnerRegister';
 import ForgotPassword from './components/registration/ForgotPassword';
 import ResetPassword from './components/registration/ResetPassword';
 import AgencyProfile from './components/AgencyProfile/AgencyProfile';
+import TripConfirmation from './components/driverProfile/TripConfirmation';
+
 
 
 
@@ -78,6 +80,7 @@ ReactDOM.render(
                         <Route path="/(home|drivers)" component={Home} />
                         {/* <Route path="/drivers/:date,:cities" component={Drivers} /> */}
                         <Route path="/driverProfile/:id-:carId-:country-:cities" component={DriverProfile} />
+                        <Route path="/tripConfirmation/:id-:userId" component={TripConfirmation}/>
                         <Route path="/places" component={Places} />
                         <Route path="/place/:country,:id" component={PlaceDescription} />
                         <Route path="/tours" component={Tours} />

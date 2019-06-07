@@ -319,9 +319,6 @@ class DriverProfileClass extends React.Component {
         }else{
             carCapacityArray.push("1") 
         }
-        
-        
-
         return (
             <React.Fragment>
                 <div className="drivers_top_background">
