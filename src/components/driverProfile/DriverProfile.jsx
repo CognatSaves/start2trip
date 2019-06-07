@@ -299,9 +299,6 @@ class DriverProfileClass extends React.Component {
         }else{
             carCapacityArray.push("1") 
         }
-        
-        
-
         return (
             <React.Fragment>
                 <div className="drivers_top_background">
@@ -428,7 +425,7 @@ class DriverProfileClass extends React.Component {
                                     </div>
                                 </div>
                                 <div className="col-6">
-                                <MapContainer cities={this.props.storeState.cities} setLengthTime={this.setLengthTime} mapUpdate={true} />
+                                <MapContainer cities={this.props.storeState.cities} setLengthTime={()=>{}/*this.setLengthTime*/} mapUpdate={true} />
                                 </div>
                                 {/* <div className="d-flex justify-content-center col-12 p-0 pb-3">
                                     <h3 className="drivers_route_title">Ваш Маршрут</h3>
