@@ -49,17 +49,17 @@ class DriverProfileClass extends React.Component {
             telNumber: "",
             email: "",
             date: this.props.storeState.date ? this.props.storeState.date : new Date(),
-            departureTime:"",
-            numberOfPeople:"",
-            plaseDeparture:"",
-            description:"",
-            promoCode:"",
+            departureTime: "",
+            numberOfPeople: "",
+            plaseDeparture: "",
+            description: "",
+            promoCode: "",
             discount: 0,
-            checkBoxes:false,
+            checkBoxes: false,
             //Form value end
             errorMes: false,
             flagAllOk: false,
-            promoCod:"",
+            promoCod: "",
             isRefreshExist: false,
             isRefreshing: false,
             isGoodAnswer: false,
@@ -94,7 +94,7 @@ class DriverProfileClass extends React.Component {
 
         props.dispatch(setLengthTime("-", "-"));
         let now = new Date(Date.now());
-       
+
         //debugger;
         console.log(props.match);
         if (!(!props.match || !props.match.params.id || !props.match.params.carId)) {
@@ -137,11 +137,11 @@ class DriverProfileClass extends React.Component {
                         that.props.dispatch(setCarTypes(data.carTypes));
                     }
 
-            })
-            .catch(function (error){
-                console.log('bad');
-                console.log('An error occurred:',error);
-            });
+                })
+                .catch(function (error) {
+                    console.log('bad');
+                    console.log('An error occurred:', error);
+                });
         }
         else {
             props.history.push('/');
@@ -220,7 +220,6 @@ class DriverProfileClass extends React.Component {
             return timeString;
         }
         if (this.props.driversState.travelLength == "-" && this.props.driversState.travelTime == "-") {
-            console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
             let lengthString = getLengthString(travelLength);
             let timeString = getTimeString(travelTime);
             this.props.dispatch(setLengthTime(timeString, lengthString));
@@ -262,14 +261,14 @@ class DriverProfileClass extends React.Component {
             travelLength: this.props.driversState.travelLength,
             travelTime: this.props.driversState.travelTime
         });
-        
-        fetch(requests.createNewTrip,{
+
+        fetch(requests.createNewTrip, {
             method: 'POST', body: body ? body : bodybody,
-            headers: { 'content-type': 'application/json'}
+            headers: { 'content-type': 'application/json' }
         })
-        .then(response => {
-            return response.json();
-        })
+            .then(response => {
+                return response.json();
+            })
             .then(response => {
                 return response.json();
             })
@@ -316,36 +315,36 @@ class DriverProfileClass extends React.Component {
             }
             if (this.state.description === "") {
                 description.children[1].children[0].classList.add("draver_route-error")
-            }       
+            }
         }
-        this.setState({errorMes: true})
+        this.setState({ errorMes: true })
 
 
 
 
 
-        let body={
+        let body = {
             newFirstName: this.state.firstName,
             newSecondName: this.state.lastName,
             startDate: '2009-09-09',
             startTime: '10:15',
-            route:[
+            route: [
                 {
-                    point:"Тбилиси, Грузия",
-                    lat:41.7151377,
-                    long:44.82709599999998
+                    point: "Тбилиси, Грузия",
+                    lat: 41.7151377,
+                    long: 44.82709599999998
                 },
                 {
-                    point:"Мцхета, Грузия",
-                    lat:41.8411674,
-                    long:44.70738640000002 
+                    point: "Мцхета, Грузия",
+                    lat: 41.8411674,
+                    long: 44.70738640000002
                 }
             ],
             startPlace: '16 проспект Шота Руставели, Тбилиси, Грузия',
             price: 100,
             tripCommentary: 'tripCommentary',
             carrier: this.props.match.params.id,
-            currencyType: this.props.storeState.currencies.length>0 ? this.props.storeState.currencies[this.props.storeState.activeCurrencyNumber].id : undefined,
+            currencyType: this.props.storeState.currencies.length > 0 ? this.props.storeState.currencies[this.props.storeState.activeCurrencyNumber].id : undefined,
             tripType: 'Trip',
             newPhone: '+1234567890',
             passengerNumber: '15',
@@ -354,7 +353,7 @@ class DriverProfileClass extends React.Component {
             carId: this.props.match.params.carId,
             frontendAddress: requests.frontendAddress,
             travelLength: this.props.driversState.travelLength,
-            travelTime: this.props.driversState.travelTime 
+            travelTime: this.props.driversState.travelTime
         }
     }
     promocodeVerification = () => {
@@ -363,44 +362,44 @@ class DriverProfileClass extends React.Component {
             isRefreshExist: true,
             isRefreshing: true
         });
-        let that =this;
-        
+        let that = this;
+
         //ЭтО ЗаПрОс На ПрОвЕрКу ПрОмОкОдА. ОчЕнЬ НуЖеН
 
 
-        axios.get(requests.checkPromocode+"?code="+this.state.promoCod)
-        .then(response => {
-            console.log(response);
-            return response.data;
-        })
-        .then(data => {
-            //debugger;
-            if (data.error) {
-                console.log("bad");
-                throw data.error;
-            }
-            else{
-                console.log('good');
-                console.log(data);
+        axios.get(requests.checkPromocode + "?code=" + this.state.promoCod)
+            .then(response => {
+                console.log(response);
+                return response.data;
+            })
+            .then(data => {
+                //debugger;
+                if (data.error) {
+                    console.log("bad");
+                    throw data.error;
+                }
+                else {
+                    console.log('good');
+                    console.log(data);
+                    that.setState({
+                        promoCode: this.state.promoCod,
+                        discount: data.discount,
+                        isRefreshExist: true,
+                        isRefreshing: false,
+                        isGoodAnswer: true
+                    });
+                    setTimeout(() => { that.setState({ isRefreshExist: false }) }, 1000);
+                }
+            })
+            .catch(error => {
+                console.log('get wasted promocode answer');
                 that.setState({
-                    promoCode: this.state.promoCod,
-                    discount: data.discount,
                     isRefreshExist: true,
                     isRefreshing: false,
-                    isGoodAnswer: true
+                    isGoodAnswer: false
                 });
-                setTimeout(()=>{that.setState({isRefreshExist: false})},1000);
-            }
-        })
-        .catch(error => {
-            console.log('get wasted promocode answer');
-            that.setState({
-                isRefreshExist: true,
-                isRefreshing: false,
-                isGoodAnswer: false
-            });
-            setTimeout(()=>{that.setState({isRefreshExist: false})},1000);
-        })
+                setTimeout(() => { that.setState({ isRefreshExist: false }) }, 1000);
+            })
     }
 
     render() {
@@ -429,7 +428,7 @@ class DriverProfileClass extends React.Component {
             carCapacityArray.push("1")
         }
         let flagAllOk = false;
-        if(
+        if (
             this.state.firstName !== "" &&
             this.state.lastName !== "" &&
             this.state.telNumber !== "" &&
@@ -439,10 +438,10 @@ class DriverProfileClass extends React.Component {
             this.state.numberOfPeople !== "" &&
             this.state.plaseDeparture !== "" &&
             this.state.description !== "" &&
-            this.state.checkBoxes == true 
-        ){
-            if(!flagAllOk && this.state.errorMes){
-                this.setState({errorMes: false})
+            this.state.checkBoxes == true
+        ) {
+            if (!flagAllOk && this.state.errorMes) {
+                this.setState({ errorMes: false })
             }
             flagAllOk = true;
         }
@@ -451,7 +450,7 @@ class DriverProfileClass extends React.Component {
 
         return (
             <React.Fragment>
-                <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer}/>
+                <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
                 <div className="drivers_top_background">
                     <Header history={this.props.history} />
                     <div className="wrapper d-flex flex-column">
@@ -501,7 +500,7 @@ class DriverProfileClass extends React.Component {
                                                 <Select
                                                     value={this.state.numberOfPeople}
                                                     input={<Input id="select-multiple" variant="outlined" />}
-                                                    onChange={(event) => { this.setState({ numberOfPeople: event.target.value }); document.querySelector(".numberOfPeople").classList.remove("draver_route-error")  }}
+                                                    onChange={(event) => { this.setState({ numberOfPeople: event.target.value }); document.querySelector(".numberOfPeople").classList.remove("draver_route-error") }}
                                                 >
                                                     {carCapacityArray.map(name => (
                                                         <MenuItem key={name} value={name}>
@@ -570,27 +569,31 @@ class DriverProfileClass extends React.Component {
                                             variant="outlined"
                                         />
                                     </div>
-                                    <div className="d-flex align-items-center col-12 p-0">
+
+                                    <div className="d-flex align-items-center col-12 p-0 py-2">
                                         <Checkbox
                                             checked={this.state.checkBoxes}
                                             onChange={(event) => { this.setState({ checkBoxes: !this.state.checkBoxes }) }}
                                         />
                                         <span className="drivers_route_Link">Я принимаю условия <Link to="">договора оферты</Link></span>
                                     </div>
-                                    <div className=" d-flex align-items-center justify-content-between col-12 py-2">
+                                    <div className=" d-flex align-items-center justify-content-between flex-md-row flex-column col-12 py-md-0 py-4">
                                         <div className="d-flex drivers_routePromo">
                                             <input placeholder="Введите промо код" readOnly={this.state.promoCode} value={this.state.promoCod} onChange={(event) => { this.setState({ promoCod: event.target.value }) }} type="text" />
                                             <span onClick={() => { this.state.promoCode ? (this.setState({ promoCod: "", promoCode: "", discount: 0 })) : (this.promocodeVerification()) }}>{this.state.promoCode ? "сбросить" : "применить"}</span>
                                         </div>
-                                        <h3 className="drivers_routePrice">${this.props.driversState.driverCarDescription.price * (100-this.state.discount)/100}</h3>
-                                        <div className={flagAllOk ?"drivers_routeBtn drivers_routeBtn-active":"drivers_routeBtn"} onClick={() => { this.validate() }}>
-                                            <span>Заказать тур</span>
+                                        <div className="d-flex align-items-center pt-md-0 pt-4">
+                                            <h3 className="drivers_routePrice m-0 pr-4">${this.props.driversState.driverCarDescription.price * (100 - this.state.discount) / 100}</h3>
+                                            <div className={flagAllOk ? "drivers_routeBtn drivers_routeBtn-active" : "drivers_routeBtn"} onClick={() => { this.validate() }}>
+                                                <span>Заказать тур</span>
+                                            </div>
                                         </div>
+
                                     </div>
                                     <div className="d-flex justify-content-end errorMes">
-                                        {this.state.errorMes ? <error>Заполните правильно все поля</error>: <div/>}
+                                        {this.state.errorMes ? <error>Заполните правильно все поля</error> : <div />}
                                     </div>
-                                    
+
                                 </div>
                                 <div className="col-6 d-md-block d-none ">
                                     <MapContainer cities={this.props.storeState.cities} setLengthTime={this.setLengthTime} mapUpdate={true} />

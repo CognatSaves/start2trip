@@ -24,7 +24,7 @@
 .tripSettingsContent p {
     font-weight: 400;
     font-size: 13px;
-    color: #666;
+    color: #304269;
     margin-bottom: 0px;
 }
 
@@ -35,14 +35,31 @@
 }
 
 div.tripSettingsContentTitle {
-    margin-bottom: 30px;
+    margin: 30px 0;
 }
 
 .tripSettingsContentTitle p {
+    font-weight: 500;
+    font-size: 16px;
+    color: #304269;
+    margin-bottom: 0px;
+}
+
+.tripSettingsContentP p {
     font-weight: 400;
     font-size: 14px;
     color: #304269;
     margin-bottom: 0px;
+}
+
+.tripSettingsContentP span,
+.tripSettingsContentTitle span {
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 400;
+    color: #686868;
+    text-decoration: underline;
+    padding-top: 5px;
 }
 
 .tripSettingsContent input {
@@ -98,7 +115,7 @@ div.tripSettingsContentAddCity p {
     position: relative;
     width: 50px;
     height: 18px;
-    background: url(./img/garbageBlue.svg) no-repeat;
+    background: url(./img/closeGray.svg) no-repeat;
     background-size: 18px 18px;
     background-position: top 0px left 10px;
     cursor: pointer;
@@ -106,7 +123,7 @@ div.tripSettingsContentAddCity p {
 }
 
 .tripSettingsContentDeletButton:hover {
-    background: url(./img/garbageOrange.svg) no-repeat;
+    background: url(./img/closeOrange.svg) no-repeat;
     background-size: 18px 18px;
     background-position: top 0px left 10px;
 }
