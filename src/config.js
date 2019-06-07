@@ -23,7 +23,9 @@ const getDrivers = serverAddress + "/users/findDrivers"; //запрос на в�
 const getDriverData = serverAddress + "/users/getDriverData"; //запрос данных водителя с его машиной
 const checkPromocode = serverAddress + "/checkPromocode/";//запрос на проверку промокода
 const createNewTrip = serverAddress + "/createNewTrip";//запрос на создание новой поездки (без подтверждений)
-const customerConfirmation = serverAddress + '/customerConfirmation';//запрсо на подтверждение заказа пользователем
+const customerConfirmation = serverAddress + '/customerConfirmation';//запрос на подтверждение заказа пользователем
+const carrierConfirmation =serverAddress + "/carrierConfirmation";//запрос на подтверждение водителем поездки
+
 
 const forgotPassword = serverAddress + "/auth/forgotPassword";
 const resetPassword = serverAddress + "/auth/reset-password";
@@ -56,5 +58,6 @@ export default {
     getDriverData: getDriverData,
     checkPromocode: checkPromocode,
     createNewTrip: createNewTrip,
-    customerConfirmation:customerConfirmation
+    customerConfirmation:customerConfirmation,
+    carrierConfirmation:carrierConfirmation
 };

@@ -30,6 +30,7 @@ import { Link } from 'react-router-dom';
 import MapContainer from '../home/HomeBody/MapContainer';
 import {setLengthTime} from '../../redusers/ActionDrivers'
 import axios from 'axios';
+import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 
 class DriverProfileClass extends React.Component {
     constructor(props) {
@@ -53,11 +54,14 @@ class DriverProfileClass extends React.Component {
             plaseDeparture:"",
             description:"",
             promoCode:"",
+            discount: 0,
             checkBoxes:false,
             //Form value end
 
             promoCod:"",
-
+            isRefreshExist: false,
+            isRefreshing: false,
+            isGoodAnswer: false,
             time: [
                 "00:00", "00:15", "00:30", "00:45",
                 "01:00", "01:15", "01:30", "01:45",
@@ -136,21 +140,7 @@ class DriverProfileClass extends React.Component {
                 console.log('bad');
                 console.log('An error occurred:',error);
             });
-            
-/*
-            //ЭтО ЗаПрОс На ПрОвЕрКу ПрОмОкОдА. ОчЕнЬ НуЖеН
-
-
-            axios.get(requests.checkPromocode+"?code=PROMOCODE1")
-            .then(response =>{
-                console.log('get promocode answer');
-                console.log(response);
-            })
-            .catch(error => {
-                console.log('get wasted promocode answer');
-            })
-*/
-}
+        }
         else{
             props.history.push('/'); 
         }      
@@ -231,13 +221,13 @@ class DriverProfileClass extends React.Component {
             console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
             let lengthString = getLengthString(travelLength);
             let timeString = getTimeString(travelTime);
-            this.props.dispatch(setLengthTime(lengthString, timeString));
+            this.props.dispatch(setLengthTime(timeString,lengthString));
         }
         
         
       }
 
-    sendTripRequest = () => {
+    sendTripRequest = (body) => {
         let bodybody = JSON.stringify({
             newFirstName: 'klo',
             newSecondName: 'olk',
@@ -266,11 +256,13 @@ class DriverProfileClass extends React.Component {
             promocode: 'PROMOCODE1',
             clientEmail: 'gorlev98@mail.ru',
             carId: this.props.match.params.carId,
-            frontendAddress: requests.frontendAddress
+            frontendAddress: requests.frontendAddress,
+            travelLength: this.props.driversState.travelLength,
+            travelTime: this.props.driversState.travelTime
         });
         
         fetch(requests.createNewTrip,{
-            method: 'POST', body: bodybody,
+            method: 'POST', body: body ? body : bodybody,
             headers: { 'content-type': 'application/json'}
         })
         .then(response => {
@@ -292,6 +284,96 @@ class DriverProfileClass extends React.Component {
         });
     }
     validate = ()=>{
+        
+
+
+
+
+
+        let body={
+            newFirstName: this.state.firstName,
+            newSecondName: this.state.lastName,
+            startDate: '2009-09-09',
+            startTime: '10:15',
+            route:[
+                {
+                    point:"Тбилиси, Грузия",
+                    lat:41.7151377,
+                    long:44.82709599999998
+                },
+                {
+                    point:"Мцхета, Грузия",
+                    lat:41.8411674,
+                    long:44.70738640000002 
+                }
+            ],
+            startPlace: '16 проспект Шота Руставели, Тбилиси, Грузия',
+            price: 100,
+            tripCommentary: 'tripCommentary',
+            carrier: this.props.match.params.id,
+            currencyType: this.props.storeState.currencies.length>0 ? this.props.storeState.currencies[this.props.storeState.activeCurrencyNumber].id : undefined,
+            tripType: 'Trip',
+            newPhone: '+1234567890',
+            passengerNumber: '15',
+            promocode: 'PROMOCODE1',
+            clientEmail: 'gorlev98@mail.ru',
+            carId: this.props.match.params.carId,
+            frontendAddress: requests.frontendAddress,
+            travelLength: this.props.driversState.travelLength,
+            travelTime: this.props.driversState.travelTime 
+        }
+    }
+    promocodeVerification = () => {
+        //debugger;
+        this.setState({
+            isRefreshExist: true,
+            isRefreshing: true
+        });
+        let that =this;
+        
+        //ЭтО ЗаПрОс На ПрОвЕрКу ПрОмОкОдА. ОчЕнЬ НуЖеН
+
+
+        axios.get(requests.checkPromocode+"?code="+this.state.promoCod)
+        .then(response => {
+            console.log(response);
+            return response.data;
+        })
+        .then(data => {
+            //debugger;
+            if (data.error) {
+                console.log("bad");
+                throw data.error;
+            }
+            else{
+                console.log('good');
+                console.log(data);
+                that.setState({
+                    promoCode: this.state.promoCod,
+                    discount: data.discount,
+                    isRefreshExist: true,
+                    isRefreshing: false,
+                    isGoodAnswer: true
+                });
+                setTimeout(()=>{that.setState({isRefreshExist: false})},1000);
+            }
+        })
+        .catch(error => {
+            console.log('get wasted promocode answer');
+            that.setState({
+                isRefreshExist: true,
+                isRefreshing: false,
+                isGoodAnswer: false
+            });
+            setTimeout(()=>{that.setState({isRefreshExist: false})},1000);
+        })
+/*
+        setTimeout(()=>{
+            that.setState({promoCode:this.state.promoCod});
+            that.setState({
+                isRefreshExist: false
+            })
+        }, 1000);*/
         
     }
     render() {
@@ -321,6 +403,7 @@ class DriverProfileClass extends React.Component {
         }
         return (
             <React.Fragment>
+                <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer}/>
                 <div className="drivers_top_background">
                     <Header history={this.props.history} />
                     <div className="wrapper d-flex flex-column">
@@ -445,8 +528,8 @@ class DriverProfileClass extends React.Component {
                                      <span className="drivers_route_Link">Я принимаю условия <Link to="">договора оферты</Link></span> 
                                     </div>
                                     <div className=" d-flex align-items-center justify-content-between col-12 py-2">
-                                        <div className="d-flex drivers_routePromo"><input placeholder="Введите промо код" value={this.state.promoCod} onChange={(event)=>{this.setState({promoCod:event.target.value})}} type="text"/> <span onClick={()=>{this.state.promoCode ?(this.setState({promoCod:"",promoCode:""})):(this.setState({promoCode:this.state.promoCod}))}}>{this.state.promoCode ? "сбросить":"применить"}</span></div>
-                                        <h3 className="drivers_routePrice">${this.props.driversState.driverCarDescription.price}</h3>
+                                        <div className="d-flex drivers_routePromo"><input placeholder="Введите промо код" value={this.state.promoCod} onChange={(event)=>{this.setState({promoCod:event.target.value})}} type="text"/> <span onClick={()=>{this.state.promoCode ?(this.setState({promoCod:"",promoCode:"", discount: 0})):(this.promocodeVerification())}}>{this.state.promoCode ? "сбросить":"применить"}</span></div>
+                                        <h3 className="drivers_routePrice">${this.props.driversState.driverCarDescription.price * (100-this.state.discount)/100}</h3>
                                         <div className="drivers_routeBtn" onClick={()=>{this.validate()}}>
                                             <span>Заказать тур</span>
                                         </div>
