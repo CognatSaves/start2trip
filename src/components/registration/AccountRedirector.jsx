@@ -69,6 +69,7 @@ class AccountRedirectorClass extends React.Component{
         let profile = this.props.globalReduser.profile;
         let pathname = this.props.history.location.pathname;
         let address;
+        
         if(!profile.email){
             return(
                 <DriverRefreshIndicator isRefreshExist={true} isRefreshing={true} isGoodAnswer={true}/>

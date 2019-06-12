@@ -61,11 +61,12 @@ const setLocals = function(languages, currencies) {
     }
 }
 
-const setUser = function(userName, avatarUrl) {
+const setUser = function(userName, avatarUrl, userData) {
     return {
         type: 'SET_USER',
         userName: userName,
-        avatarUrl: avatarUrl
+        avatarUrl: avatarUrl,
+        userData: userData
     }
 }
 const set_state = function(cities, date) {

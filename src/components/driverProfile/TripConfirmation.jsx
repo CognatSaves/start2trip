@@ -2,11 +2,11 @@ import React from 'react';
 import {connect} from 'react-redux';
 import requests from '../../config';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
-
+import Header from '../header/Header';
 class TripConfirmationClass extends React.Component{
     constructor(props){
         super(props);
-        //debugger;
+        
         console.log(this.props);
         let id = this.props.match.params.id;
         let userId = this.props.match.params.userId;
@@ -49,7 +49,7 @@ class TripConfirmationClass extends React.Component{
     }
     render(){
         console.log('TripConfirmation render');
-        debugger;
+        
         console.log(this.state);
         return(
             <React.Fragment>
@@ -57,8 +57,11 @@ class TripConfirmationClass extends React.Component{
                     this.state.isRefreshExist ?
                     <DriverRefreshIndicator isRefreshExist={true} isRefreshing={true} isGoodAnswer={true}/>
                     :
-                    <div>
-                        {this.state.text}
+                    <div className="forgotPasswordBody d-flex flex-column align-items-center">
+                        <Header driver={true} history={this.props.history} />
+                        <div className="forgotPasswordSuccess forgotPasswordContent d-flex flex-column align-items-center col-md-7 col-11">
+                            {this.state.text}
+                        </div>
                     </div>
                 }
                 

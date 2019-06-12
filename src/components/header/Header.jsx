@@ -416,17 +416,17 @@ class HeaderClass extends React.Component {
           // console.log(response.data);
           let avatarUrl = requests.serverAddress + response.data.url;
           let userName = response.data.firstName;
-
+          let userData = response.data.userData;
           if (avatarUrl !== this.props.storeState.avatarUrl || userName !== this.props.storeState.userName) {
             let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
             cookies.set('userName', userName, { path: '/', expires: date });
             cookies.set('avatarUrl', avatarUrl, { path: '/', expires: date });
-            this.props.dispatch(setUser(userName, avatarUrl));
+            this.props.dispatch(setUser(userName, avatarUrl,userData));
           }
 
         })
         .catch(error => {
-          this.props.dispatch(setUser("", ""));
+          this.props.dispatch(setUser("", "",{}));
           //console.log('log off');
           //console.log('An error occurred:', error);
         });
@@ -569,7 +569,7 @@ class HeaderClass extends React.Component {
 
   }
   render() {
-    //console.log('Header render');
+    console.log('Header render', this.props);
     //console.log(this.state);
     //console.log(this.props);
     let languages = this.props.storeState.languages;

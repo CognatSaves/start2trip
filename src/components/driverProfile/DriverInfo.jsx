@@ -57,7 +57,7 @@ class DriverInfoClass extends React.Component{
         let imageUrls = createCorrectUrls(element.carImages ? element.carImages : []);
         console.log('PhotoArray', this.state.photoArray);
         console.log('imageUrls', imageUrls);
-        //debugger;
+        
         let languageIdsArray = getLanguageNumbers(element.language ? element.language : [], this.props.storeState.languages);
         return(
         <div className="driverInfo_background d-flex flex-lg-row flex-column align-items-lg-start align-items-center">

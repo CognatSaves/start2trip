@@ -1,4 +1,4 @@
-import {WHICH_PAGE_RENDER_HISTORY,SET_PROFILE_DATA,SET_URL_ADDRESS} from './ActionGlobal';
+import {WHICH_PAGE_RENDER_HISTORY,SET_PROFILE_DATA,SET_URL_ADDRESS,SET_TRANSACTION_DATA} from './ActionGlobal';
 import Ru_Drivers from '../textInfo/Ru-Drivers'
 
 const initialState = {
@@ -47,6 +47,21 @@ export const GlobalReduser = (state = initialState, action) => {
             let newStateUA = { ...state };
             newStateUA.previousUrl = action.previousUrl;
             return newStateUA;
+        }
+        case SET_TRANSACTION_DATA:{
+            let newState = {...state};
+            if(state.profile.email){
+                let profile = newState.profile;
+                profile.filteredTransactions=action.filteredTransactions;
+                profile.billing={
+                    ...profile.billing,
+                    transactionCardPeriod:action.transactionCardPeriod,
+                    transactionCashPeriod:action.transactionCashPeriod,
+                    transactionPartnerPeriod:action.transactionPartnerPeriod
+                }
+                newState.profile=profile;
+            }
+            return newState;
         }  
     default: return state;
     }

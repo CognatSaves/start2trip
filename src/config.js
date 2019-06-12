@@ -1,5 +1,5 @@
 import serverAddress from './serverAddress';
-const frontendAddress = 'http://tripfer.com'; //'http://localhost:3000';//
+const frontendAddress = 'http://localhost:3000';//'http://tripfer.com'; //
 
 const serverRegistrationRequest = serverAddress + '/auth/local/register';
 const serverAuthorizationRequest = serverAddress + '/auth/local';
@@ -25,6 +25,10 @@ const checkPromocode = serverAddress + "/checkPromocode/";//запрос на п
 const createNewTrip = serverAddress + "/createNewTrip";//запрос на создание новой поездки (без подтверждений)
 const customerConfirmation = serverAddress + '/customerConfirmation';//запрос на подтверждение заказа пользователем
 const carrierConfirmation =serverAddress + "/carrierConfirmation";//запрос на подтверждение водителем поездки
+const tripStart = serverAddress + "/tripStart";//функция начала поездки водителем
+const tripEnd = serverAddress + "/tripEnd";//функция окончания поездки водителем
+const executeSystemPayment = serverAddress+"/executeSystemPayment";//выполнить оплату за пользование системой
+const getUserTransactions = serverAddress + "/getUserTransactions";//обновить таблицу транзакций в админке под выбранный пользователем промежуток времени
 
 
 const forgotPassword = serverAddress + "/auth/forgotPassword";
@@ -59,5 +63,9 @@ export default {
     checkPromocode: checkPromocode,
     createNewTrip: createNewTrip,
     customerConfirmation:customerConfirmation,
-    carrierConfirmation:carrierConfirmation
+    carrierConfirmation:carrierConfirmation,
+    tripStart:tripStart,
+    tripEnd:tripEnd,
+    executeSystemPayment:executeSystemPayment,
+    getUserTransactions:getUserTransactions
 };

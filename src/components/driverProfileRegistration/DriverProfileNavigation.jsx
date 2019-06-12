@@ -29,14 +29,14 @@ class DriverProfileNavigationClass extends React.Component {
             //profile: this.props.globalReduser.profile,
             route: [
                 
-                "",//"/account/driver/trips",
+                "/account/driver/trips",
                 "/account/driver/profile",
                 "/account/driver/cars",
                 "/account/driver/tripsSettings",
                 //"account/driver/tours",
                 "",//"/account/driver/reviews",
                 "/account/driver/settings",
-                "",//"/account/driver/billing",
+                "/account/driver/billing",
                 "/account/driver/referrals",
             ],
             isRefreshExist:false,
@@ -207,17 +207,28 @@ class DriverProfileNavigationClass extends React.Component {
                                 <div className="bodyTopDriverInfoRideMobail d-xl-none d-lg-none d-md-none d-sm-flex d-flex align-items-center col-xl-3 col-lg-3 col-md-3 col-sm-5 col-9 p-0">
                                     <p>{textPage.totalTrips.full}:</p>
                                     <span className="pl-1">{profile.futureTrips.length + profile.historyTrips.length}</span>
-                                </div>
+                                </div>                              
                                 <div className="d-xl-flex d-lg-flex d-md-flex d-sm-none d-none align-items-center col-xl-2 col-lg-2 col-md-2 col-sm-6 col-6 p-0">
                                     <span>{profile.futureTrips.length}</span>
                                     <div className="d-flex flex-column ">
                                         <p>{textPage.upcomingTrips.first}</p>
                                         <p>{textPage.upcomingTrips.last}</p>
                                     </div>
-                                </div>
+                                </div>                              
                                 <div className="bodyTopDriverInfoRideMobail d-xl-none d-lg-none d-md-none d-sm-flex d-flex align-items-center col-xl-3 col-lg-3 col-md-3 col-sm-5 col-12 p-0">
                                     <p>{textPage.upcomingTrips.full}:</p>
                                     <span className="pl-1">{profile.futureTrips.length}</span>
+                                </div>
+                                <div className="d-xl-flex d-lg-flex d-md-flex d-sm-none d-none align-items-center col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 p-0">
+                                    <span>{profile.penalty}</span>
+                                    <div className="d-flex flex-column">
+                                        <p>Штрафные</p>
+                                        <p>баллы</p>
+                                    </div>
+                                </div>
+                                <div className="bodyTopDriverInfoRideMobail d-xl-none d-lg-none d-md-none d-sm-flex d-flex align-items-center col-xl-3 col-lg-3 col-md-3 col-sm-5 col-12 p-0">
+                                    <p>Штрафные баллы:</p>
+                                    <span className="pl-1">{profile.penalty}</span>
                                 </div>
                             </div>
                         </div>
