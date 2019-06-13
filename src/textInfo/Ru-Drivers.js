@@ -172,7 +172,8 @@ const driverProfileRegistration = {
         affiliateLinks: {
             title: "Ваши партнёрские ссылки",
             registrationLink: "Ссылка на регистрацию",
-            linkToHomePage: "Ссылка на регистрацию"
+            linkToHomePage: "Ссылка на главную страницу",
+            spanLink: "Копировать"
         },
         promotionalMaterials: "Промо материалы",
         questionicon: "Начисления никогда не заканчиваются. Чем больше у вас рефералов, и чем лучше они работают - тем больше вы получаете каждый день",
