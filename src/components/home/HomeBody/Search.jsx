@@ -64,7 +64,7 @@ export default class LocationSearchInput extends React.Component {
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) =>
           (
             <React.Fragment>
-              <div className={"d-flex align-items-center col-12 " + this.props.classDiv} onBlur={() => {
+              <div className={"d-flex align-items-center " + this.props.classDiv} onBlur={() => {
                 if (!this.state.address) {
                   this.setState({ inFocus: false, inFocusOnly: false })
                 }

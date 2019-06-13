@@ -108,8 +108,8 @@
     height: 100%;
 }
 
-
-/* @media (max-width: 360px){
-  .body_map {display: none}
-  .body_menu {width: 100%; height: auto}
-} */
+@media (min-width: 400px) {
+    .mobailRoutMenuText {
+        text-align: center;
+    }
+}
