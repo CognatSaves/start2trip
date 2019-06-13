@@ -79,6 +79,7 @@ const initialState = {
     isoCountryMap: "ge",
     avatarUrl: "",
     userName: "",
+    userData:{},
     isAuthorized: false,
     openFilter: false,
 };
@@ -100,6 +101,7 @@ export const AppReduser = (state = initialState, action) => {
                 let newStateSU = {...state };
                 newStateSU.avatarUrl = action.avatarUrl;
                 newStateSU.userName = action.userName;
+                newStateSU.userData = action.userData;
                 if (action.avatarUrl.length === 0 && action.userName.length === 0) {
                     newStateSU.isAuthorized = false;
                 } else {

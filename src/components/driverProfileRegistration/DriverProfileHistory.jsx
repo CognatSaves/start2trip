@@ -51,8 +51,8 @@ class DriverProfileHistoryClass extends React.Component {
               </div>
           </div>
           {{
-            true: <DriverProfileTrevelHistory trevelHistory={this.state.trevelHistory} />,
-            false: <DriverProfileTrevelHistory trevelHistory={this.state.trevelHistory1} />,
+            true: <DriverProfileTrevelHistory isHistory={false} trevelHistory={/*this.state.trevelHistory*/this.props.globalReduser.profile &&  this.props.globalReduser.profile.futureTrips ? this.props.globalReduser.profile.futureTrips : []} />,
+            false: <DriverProfileTrevelHistory isHistory={true} trevelHistory={/*this.state.trevelHistory1*/this.props.globalReduser.profile && this.props.globalReduser.profile.historyTrips ? this.props.globalReduser.profile.historyTrips : []} />,
           }[this.state.isPreHistory]}
         </div>
       </React.Fragment>
