@@ -23,6 +23,7 @@
 .affiliateProgramButton {
     margin: 10px;
     margin-top: 20px;
+    height: 100%;
 }
 
 .affiliateProgramButton span {
@@ -35,20 +36,103 @@
     font-weight: 400;
     cursor: pointer;
     transition: ease 0.3s;
-    margin: 5px;
+    min-height: 43px;
     min-width: 176px;
+    margin: 5px;
+    margin-top: 0px;
 }
+
+.affiliateProgramButton span:hover {
+    background: #f60;
+    color: #fff;
+    border-color: #f60;
+}
+
+
+/* RenderShareLink Begin */
+
 .affiliateProgramButton input {
     border-radius: 5px;
     margin: 5px;
     padding: 10px;
 }
-.affiliateProgramButton input:focus{
+
+.affiliateProgramButton input:focus {
     outline: none
 }
+
 .affiliateProgramInput {
-    max-width: 400px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    max-height: 43px;
 }
+
+.affiliateProgramInput spanlink {
+    width: max-content;
+    line-height: 43px;
+    padding: 0 5px;
+    position: relative;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 400;
+    color: #f60;
+}
+
+.affiliateProgramInput spanlink:hover {
+    text-decoration: underline;
+}
+
+.affiliateProgramInput input {
+    outline: none;
+    border: none;
+    font-size: 14px;
+    font-weight: 400;
+    color: #304269;
+    max-width: 250px;
+}
+
+.shareLink spantext {
+    color: #304269;
+    font-size: 16px;
+    font-weight: 400;
+    padding-bottom: 5px;
+}
+
+.affiliateProgramIconsMass {
+    padding-top: 5px;
+    width: 70%;
+}
+
+.affiliateProgramIconsMass i {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.affiliateProgramIconsMass span {
+    cursor: pointer;
+    border: none;
+    min-width: max-content;
+    margin: 0px 5px;
+    width: 30px;
+    height: 30px;
+    background: url(./img/ellipsisBlue.svg) no-repeat;
+    background-size: 100% 100%;
+    transition: all 0.3s;
+}
+
+.affiliateProgramIconsMass span:hover {
+    background: url(./img/ellipsisOrange.svg) no-repeat;
+    background-size: 100% 100%;
+}
+
+
+/* RenderShareLink end */
+
+
 /*
 .affiliateProgramButton :nth-child(2) :nth-child(2) {
     background: #304269;
@@ -56,13 +140,9 @@
     border-color: #304269;
 }
 */
-/*.affiliateProgramButton :nth-child(2) :nth-child(2):hover,*/
 
-.affiliateProgramButton span:hover {
-    background: #f60;
-    color: #fff;
-    border-color: #f60;
-}
+
+/*.affiliateProgramButton :nth-child(2) :nth-child(2):hover,*/
 
 .affiliateProgramContent {
     margin-top: 40px;
@@ -168,6 +248,12 @@
 @media (max-width: 1140px) {
     .affiliateProgramTableBody div :nth-child(2) {
         overflow: initial !important;
+    }
+    .shareLink {
+        margin: 5px 0;
+    }
+    .affiliateProgramButton span {
+        margin-top: 5px;
     }
 }
 

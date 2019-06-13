@@ -21,14 +21,14 @@ const userTourActivateRequest = serverAddress + '/tours/me/activate'; //запр
 const getLocals = serverAddress + "/getLocals"; //первичный запрос массивов языков и валют
 const getDrivers = serverAddress + "/users/findDrivers"; //запрос на водителей для выбранного маршрута
 const getDriverData = serverAddress + "/users/getDriverData"; //запрос данных водителя с его машиной
-const checkPromocode = serverAddress + "/checkPromocode/";//запрос на проверку промокода
-const createNewTrip = serverAddress + "/createNewTrip";//запрос на создание новой поездки (без подтверждений)
-const customerConfirmation = serverAddress + '/customerConfirmation';//запрос на подтверждение заказа пользователем
-const carrierConfirmation =serverAddress + "/carrierConfirmation";//запрос на подтверждение водителем поездки
-const tripStart = serverAddress + "/tripStart";//функция начала поездки водителем
-const tripEnd = serverAddress + "/tripEnd";//функция окончания поездки водителем
-const executeSystemPayment = serverAddress+"/executeSystemPayment";//выполнить оплату за пользование системой
-const getUserTransactions = serverAddress + "/getUserTransactions";//обновить таблицу транзакций в админке под выбранный пользователем промежуток времени
+const checkPromocode = serverAddress + "/checkPromocode/"; //запрос на проверку промокода
+const createNewTrip = serverAddress + "/createNewTrip"; //запрос на создание новой поездки (без подтверждений)
+const customerConfirmation = serverAddress + '/customerConfirmation'; //запрос на подтверждение заказа пользователем
+const carrierConfirmation = serverAddress + "/carrierConfirmation"; //запрос на подтверждение водителем поездки
+const tripStart = serverAddress + "/tripStart"; //функция начала поездки водителем
+const tripEnd = serverAddress + "/tripEnd"; //функция окончания поездки водителем
+const executeSystemPayment = serverAddress + "/executeSystemPayment"; //выполнить оплату за пользование системой
+const getUserTransactions = serverAddress + "/getUserTransactions"; //обновить таблицу транзакций в админке под выбранный пользователем промежуток времени
 
 
 const forgotPassword = serverAddress + "/auth/forgotPassword";
@@ -62,10 +62,10 @@ export default {
     getDriverData: getDriverData,
     checkPromocode: checkPromocode,
     createNewTrip: createNewTrip,
-    customerConfirmation:customerConfirmation,
-    carrierConfirmation:carrierConfirmation,
-    tripStart:tripStart,
-    tripEnd:tripEnd,
-    executeSystemPayment:executeSystemPayment,
-    getUserTransactions:getUserTransactions
+    customerConfirmation: customerConfirmation,
+    carrierConfirmation: carrierConfirmation,
+    tripStart: tripStart,
+    tripEnd: tripEnd,
+    executeSystemPayment: executeSystemPayment,
+    getUserTransactions: getUserTransactions
 };

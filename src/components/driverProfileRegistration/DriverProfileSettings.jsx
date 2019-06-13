@@ -312,8 +312,7 @@ class DriverProfileSettingsClass extends React.Component {
                         </div>
                     </div>
                     <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start ">
-                        {/* TODO функционал выбора префикса по стране */}
-                        <label htmlFor="sittingsPhoneNumber" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-11 col-11">{textPage.sittingsPhoneNumber.floatingLabelText}:</label>
+                        <label htmlFor="sittingsPhoneNumber" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-11 col-11">{textPage.sittingsPhoneNumber.label}:</label>
                         <ReactTelInput
                             defaultCountry={this.props.storeState.isoCountryMap}
                             classNames="myPhoneInput col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0"
