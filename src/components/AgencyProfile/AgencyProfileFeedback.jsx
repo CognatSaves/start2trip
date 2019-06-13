@@ -25,31 +25,73 @@ class AgencyProfileFeedbackClass extends React.Component{
             return monthArray[number];
             
         }
-
+        function createDateTimeString(start){
+            let date = new Date(start);
+            let month = date.getUTCMonth(); let day = date.getUTCDate(); let hours = date.getUTCHours(); let minutes = date.getMinutes();
+            let res = date.getUTCFullYear()+"-"+(month>=10 ? month : '0'+month)+"-"+(day>=10 ? day : '0'+day)+'; '+
+            (hours>=10 ? hours : '0'+hours)+":"+(minutes>=10 ? minutes : '0'+minutes);
+            return res;
+        }
         // TODO добавить кнопку показать еще и пагинацию
         return(
-            <div className="commentBlock_comments d-flex flex-column">
-            {this.state.comments.map((element,index)=>                       
-                <div className="commentBlock_element d-flex" key={element+"/"+index}>
-                    <div className="commentBlock_picture">
-                        <img src={requests.serverAddress+element.clearedAuthor.url} width="auto" height="100%" alt=""></img>
+            <React.Fragment>
+            <div className="d-flex flex-wrap">
+            {this.state.comments.map((element,index)=> 
+                <React.Fragment>
+                {
+                    /*
+                    <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 p-2 pb-3" style={{backgroundColor: 'red'}}>                      
+                        <div className="commentBlock_element d-flex flex-column" key={element+"/"+index}>
+                            <div className="commentBlock_picture d-flex flex-row">
+                                <img src={requests.serverAddress+element.clearedAuthor.url} width="auto" height="100%" alt=""></img>
+                                <div className="d-flex flex-column">
+                                    <div className="valueBlock_firstElement_name">{element.clearedAuthor.firstName}</div>
+                                    <div className="valueBlock_firstElement_date">{element.updatedAt}</div>
+                                    </div>
+                            </div>
+                            <div className="commentBlock_valueBlock d-flex flex-column">
+                                <div style={{marginBottom: "20px"}}>
+                                    <Stars key={element.mark+"/"+element.index} value={element.mark} valueDisplay={true} commentNumberDisplay={false}/>
+                                </div>
+                                <input className="put" id={"put"+element+index} type="checkbox"></input>
+                                <div className="news">
+                                    <label htmlFor={"put"+element+index}>{element.text}</label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div className="commentBlock_valueBlock d-flex flex-column">
-                        <div className="d-flex justify-content-between">
-                            <div className="valueBlock_firstElement_name">{element.clearedAuthor.firstName}</div>
-                            <div className="valueBlock_firstElement_date">{element.updatedAt/*element.date.getDate()+" "+getMonthName(element.date.getMonth())+" "+element.date.getFullYear()*/}</div>
+
+                    */
+                }
+                
+                <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-11 p-2" key={element}>
+                <div className="trevelHistoryBody  d-flex flex-column">
+                    <div className="d-flex flex-column historyBodyHeader">
+                        <div className="d-flex flex-row" style={{marginBottom: '5px'}}>
+                            <img src={requests.serverAddress+element.clearedAuthor.url} width="auto" height="100%" alt=""></img>
+                            <div className="valueBlock_firstElement_name" style={{margin: 'auto 0 auto auto'}}>{element.clearedAuthor.firstName}</div>
                         </div>
-                        <div style={{marginBottom: "20px"}}>
-                            <Stars key={element.mark+"/"+element.index} value={element.mark} valueDisplay={true} commentNumberDisplay={false}/>
+                        <div className="d-flex flex-row">  
+                            <Stars key={element.mark+"/"+element.index} value={element.mark} valueDisplay={true} commentNumberDisplay={false}/>                         
+                            <div className="valueBlock_firstElement_date" style={{margin: 'auto 0 auto auto'}}>{createDateTimeString(element.updatedAt)/*element.date.getDate()+" "+getMonthName(element.date.getMonth())+" "+element.date.getFullYear()*/}</div>
+                            
                         </div>
+                        <hr/>
+                    </div>
+                    <div className="d-flex flex-column historyBodyElement ">
                         <input className="put" id={"put"+element+index} type="checkbox"></input>
                         <div className="news">
                             <label htmlFor={"put"+element+index}>{element.text}</label>
                         </div>
                     </div>
-                </div> 
+        
+                </div>
+            </div>
+                </React.Fragment> 
             )}
             </div> 
+            
+            </React.Fragment>
         )
     }
 }

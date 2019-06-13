@@ -34,7 +34,7 @@ class DriverProfileNavigationClass extends React.Component {
                 "/account/driver/cars",
                 "/account/driver/tripsSettings",
                 //"account/driver/tours",
-                "",//"/account/driver/reviews",
+                "/account/driver/reviews",
                 "/account/driver/settings",
                 "/account/driver/billing",
                 "/account/driver/referrals",

@@ -712,7 +712,7 @@ class HeaderClass extends React.Component {
                   <i className="openDropDownMenuBt"></i>
                   <div className="hederMenu">
                     <span onClick={() => { this.accountRedirect("/profile", 1) }}>Профиль</span>
-                    <span className="blockedSpan" onClick={() => { /*this.accountRedirect("/trips", 0)*/ }}>Мои поездки</span>
+                    <span /*className="blockedSpan"*/ onClick={() => { this.accountRedirect("/trips", 0) }}>Мои поездки</span>
                     <span onClick={() => { this.accountRedirect("/settings", 6) }}>Настройки</span>
                     <span onClick={() => { this.accountRedirect("/referrals", 8) }}>Партнерская программа</span>
                     <span onClick={this.logOffFunc}>Выйти</span>

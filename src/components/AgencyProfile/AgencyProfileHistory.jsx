@@ -6,7 +6,7 @@ import people1 from '../driverProfileRegistration/img/001372a9a88e12c88b532a.jpg
 import people2 from '../driverProfileRegistration/img/person.jpg'
 import people3 from '../driverProfileRegistration/img/mina.jpg'
 import people4 from '../driverProfileRegistration/img/gruzinskaja-kuhnja.jpg'
-import DriverProfileTrevelHistory from '../driverProfileRegistration/DriverProfileTrevelHistory';
+import AgencyProfileTravelHistory from './AgencyProfileTravelHistory'
 
 
 class AgencyProfileHistoryClass extends React.Component{
@@ -45,8 +45,8 @@ class AgencyProfileHistoryClass extends React.Component{
                     </div>
                 </div>
                 {{
-                    true: <DriverProfileTrevelHistory trevelHistory={this.state.travelHistory} />,
-                    false: <DriverProfileTrevelHistory trevelHistory={this.state.travelHistory1} />,
+                    true: <AgencyProfileTravelHistory isHistory={false} trevelHistory={this.props.globalReduser.profile &&  this.props.globalReduser.profile.futureTrips ? this.props.globalReduser.profile.futureTrips : []} />,
+                    false: <AgencyProfileTravelHistory isHistory={true} trevelHistory={this.props.globalReduser.profile && this.props.globalReduser.profile.historyTrips ? this.props.globalReduser.profile.historyTrips : []} />,
                 }[this.state.isPreHistory]}
                 </div>
             </React.Fragment>

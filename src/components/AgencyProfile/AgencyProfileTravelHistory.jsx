@@ -7,7 +7,7 @@ import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIn
 import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 import getUserData from '../driverProfileRegistration/DriverProfileRequest';
 
-class DriverProfileTrevelHistoryClass extends React.Component {
+class AgencyProfileTravelHistoryClass extends React.Component {
     constructor(props) {
         super(props);
         this.state={
@@ -186,23 +186,60 @@ class DriverProfileTrevelHistoryClass extends React.Component {
                                 <span>{element.id}</span>
                             </div>
                             <div className="d-flex flex-column historyBodyElement ">
+                            <h5>Водитель и автомобиль</h5>
+                                <div className="historyBodyElementDriver d-flex align-items-center">
+                                    <img src={requests.serverAddress+element.carrier.image} alt={''} />
+                                    <div className="d-flex flex-column ml-1">
+                                    <span>{element.carrier.firstName}</span>
+                                    <Stars value={element.carrier.rating} commentNumber={element.carrier.comments +" отзыва"} valueDisplay={true} commentNumberDisplay={true} />
+                                    </div>
+                                    
+                                </div>
+                                {
+                                    /*
+                                    <span>{element.carrier.workPhone}</span>
+                                    
+                                    */
+                                }
+                                
+                                <span>{element.carrier.email}</span>
+                                <div className="historyBodyElementDriver d-flex align-items-center">
+                                    <img src={requests.serverAddress+element.car.image} alt={''} />
+                                    <div className="d-flex flex-column ml-1">
+                                    <span>{element.car.carBrand}</span>
+                                    </div>                           
+                                </div>
+                                {
+                                    /**
+                                    <span>{'Количество человек: '+element.passengerNumber}</span>
+                                     */
+                                }
+                                
+                            </div>
+                            <div className="d-flex flex-column historyBodyElement ">
                                 <h5>{textPage.customer}</h5>
                                 <span>{element.client.firstName}</span>
                                 <span>{element.client.phone}</span>
                                 <span>{element.client.email}</span>
-                                <span>{element.passengerNumber+" чел."}</span>
+                                {
+                                    /**
+                                        <span>{element.passengerNumber+" чел."}</span>
+                                    */
+                                }
+                                
                             </div>
-                            <div className="d-flex flex-column historyBodyElement">
-                                <h5>{textPage.venue}</h5>
-                                <span>{element.startPlace}</span>
-                            </div>
+                            {
+                                /**
+                                <div className="d-flex flex-column historyBodyElement">
+                                    <h5>{textPage.venue}</h5>
+                                    <span>{element.startPlace}</span>
+                                </div>
+                                 */
+                            }
+
                             <div className="d-flex flex-column historyBodyElement">
                                 <h5>{textPage.costOfTravel}</h5>
                                 <span>{this.props.globalReduser.profile.currencies ? this.props.globalReduser.profile.currencies[findCurrencyEl(that,element.currencyType)].symbol+element.price : ''}</span>
-                            </div>
-                            <div className="d-flex flex-column historyBodyElement">
-                                <h5>{textPage.comment}</h5>
-                                <span>{element.commentary}</span>
                             </div>
                             {
                                 this.props.isHistory ?
@@ -217,9 +254,6 @@ class DriverProfileTrevelHistoryClass extends React.Component {
                                     </div>
                                 </React.Fragment>
                                 :<React.Fragment>
-                                    <div className="d-flex flex-column historyBodyElement">
-                                        <button onClick={()=>this.stateButtonClicked(element)}>{element.startFact ? 'Закончить поездку' : 'Начать поездку'}</button>
-                                    </div>
                                 </React.Fragment>
                             }
                             
@@ -231,11 +265,11 @@ class DriverProfileTrevelHistoryClass extends React.Component {
     }
 }
 
-const DriverProfileTrevelHistory = connect(
+const AgencyProfileTravelHistory = connect(
     (state) => ({
         storeState: state.AppReduser,
         globalReduser: state.GlobalReduser
     }),
-)(DriverProfileTrevelHistoryClass);
+)(AgencyProfileTravelHistoryClass);
 
-export default DriverProfileTrevelHistory;
+export default AgencyProfileTravelHistory;

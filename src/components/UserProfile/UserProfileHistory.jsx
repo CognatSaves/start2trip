@@ -51,8 +51,8 @@ class UserProfileHistoryClass extends React.Component {
               </div>
           </div>
           {{
-            true: <UserProfileTrevelHistory trevelHistory={this.state.trevelHistory} />,
-            false: <UserProfileTrevelHistory trevelHistory={this.state.trevelHistory1} />,
+            true: <UserProfileTrevelHistory isHistory={false} trevelHistory={/*this.state.trevelHistory*/this.props.globalReduser.profile &&  this.props.globalReduser.profile.futureTrips ? this.props.globalReduser.profile.futureTrips : []} />,
+            false: <UserProfileTrevelHistory isHistory={true} trevelHistory={/*this.state.trevelHistory1*/this.props.globalReduser.profile && this.props.globalReduser.profile.historyTrips ? this.props.globalReduser.profile.historyTrips : []} />,
           }[this.state.isPreHistory]}
         </div>
       </React.Fragment>
@@ -63,6 +63,7 @@ class UserProfileHistoryClass extends React.Component {
 const UserProfileHistory = connect(
   (state) => ({
     storeState: state.DriverProfileRegistrationReduser,
+    globalReduser: state.GlobalReduser
   }),
 )(UserProfileHistoryClass);
 

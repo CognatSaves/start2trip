@@ -22,12 +22,11 @@ class UserProfileNavigationClass extends React.Component {
         this.state = {
             navigationText: ["Мои поездки","Профиль","Настройки", "Биллинг", "Партнерская программа"],
             //avatar: imgPerson,
-            profile: this.props.globalReduser.profile,
             route: [
-                "",//"/account/user/trips",
+                "/account/user/trips",
                 "/account/user/profile",
                 "/account/user/settings",
-                "",//"/account/user/billing",
+                "/account/user/billing",
                 "/account/user/referrals"
             ],
             isRefreshExist:false,
@@ -157,7 +156,7 @@ class UserProfileNavigationClass extends React.Component {
         //     this.setState({ avatar: img })
         // }
         let textPage = this.props.globalReduser.languageText.DriverProfileNavigation;
-        
+        let profile = this.props.globalReduser.profile;
         return (
             <div className="registrationWrapper driverBG col-12 p-0" style={{
                 "/account/user/trips": { backgroundImage: "url(" + preHistoryBG + ")" },
@@ -175,10 +174,10 @@ class UserProfileNavigationClass extends React.Component {
                     
                         
                         <div className="bodyTopDriverInfoName d-flex flex-column align-items-start">
-                            <p className="mb-0 mr-2">{this.state.profile.firstName.length!==0 ? this.state.profile.firstName : this.state.profile.email}</p>
+                            <p className="mb-0 mr-2">{profile.firstName.length!==0 ? profile.firstName : profile.email}</p>
                             {
                                 /*
-                                    <Stars value={this.state.profile.rating} valueDisplay={true} commentNumberDisplay={true} commentNumber={this.state.profile.comments.length + textPage.starsReviews} />
+                                    <Stars value={profile.rating} valueDisplay={true} commentNumberDisplay={true} commentNumber={profile.comments.length + textPage.starsReviews} />
                         
                                 */
                             }
@@ -187,11 +186,11 @@ class UserProfileNavigationClass extends React.Component {
                     
                         
                         <div className="bodyTopDriverInfoPlace">
-                            <p>{this.state.profile.hometown.length!==0 ? (this.state.profile.hometown + ", " + this.state.profile.homecountry) : ""}</p>
+                            <p>{profile.hometown.length!==0 ? (profile.hometown + ", " + profile.homecountry) : ""}</p>
                         </div>
                         <div className="bodyTopDriverInfoRide p-0 d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column">
                             <div className="d-xl-flex d-lg-flex d-md-flex d-sm-none d-none align-items-center col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 p-0">
-                                <span>{this.state.profile.futureTrips.length + this.state.profile.historyTrips.length}</span>
+                                <span>{profile.futureTrips.length + profile.historyTrips.length}</span>
                                 <div className="d-flex flex-column">
                                     <p>{textPage.totalTrips.first}</p>
                                     <p>{textPage.totalTrips.last}</p>
@@ -199,10 +198,10 @@ class UserProfileNavigationClass extends React.Component {
                             </div>
                             <div className="bodyTopDriverInfoRideMobail d-xl-none d-lg-none d-md-none d-sm-flex d-flex align-items-center col-xl-3 col-lg-3 col-md-3 col-sm-5 col-9 p-0">
                                 <p>{textPage.totalTrips.full}:</p>
-                                <span className="pl-1">{this.state.profile.futureTrips.length + this.state.profile.historyTrips.length}</span>
+                                <span className="pl-1">{profile.futureTrips.length + profile.historyTrips.length}</span>
                             </div>
                             <div className="d-xl-flex d-lg-flex d-md-flex d-sm-none d-none align-items-center col-xl-2 col-lg-2 col-md-2 col-sm-6 col-6 p-0">
-                                <span>{this.state.profile.futureTrips.length}</span>
+                                <span>{profile.futureTrips.length}</span>
                                 <div className="d-flex flex-column ">
                                     <p>{textPage.upcomingTrips.first}</p>
                                     <p>{textPage.upcomingTrips.last}</p>
@@ -210,7 +209,7 @@ class UserProfileNavigationClass extends React.Component {
                             </div>
                             <div className="bodyTopDriverInfoRideMobail d-xl-none d-lg-none d-md-none d-sm-flex d-flex align-items-center col-xl-3 col-lg-3 col-md-3 col-sm-5 col-12 p-0">
                                 <p>{textPage.upcomingTrips.full}:</p>
-                                <span className="pl-1">{this.state.profile.futureTrips.length}</span>
+                                <span className="pl-1">{profile.futureTrips.length}</span>
                             </div>
                         </div>
                     </div>
