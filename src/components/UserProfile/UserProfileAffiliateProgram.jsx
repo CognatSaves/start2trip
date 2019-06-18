@@ -38,7 +38,7 @@ class UserProfileAffiliateProgramClass extends React.Component {
         }
         var allPayments = paymentsCalculation(this.props.globalReduser.profile.partners);
 
-        let textPage = this.props.globalReduser.languageText.DriverProfileAffiliateProgram;
+        let textPage = this.props.globalReduser.languageText.driverProfileRegistration.DriverProfileAffiliateProgram;
         return (
             <div className="affiliateProgramBody">
                 <div className="d-flex flex-column ">

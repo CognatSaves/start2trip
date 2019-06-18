@@ -1,4 +1,4 @@
-import {SET_PLACES_PANEL_SELECTED_ELEMENT, CHANGE_PLACES_FIXED_CLASS, SET_PAGES_MENU_VALUE,SET_SORT_MENU_VALUE, SET_PAGE, SET_MORE_PAGES_SHOW} from './ActionPlaces'
+import {SET_PLACES_LIST, SET_PLACES_PANEL_SELECTED_ELEMENT, CHANGE_PLACES_FIXED_CLASS, SET_PAGES_MENU_VALUE,SET_SORT_MENU_VALUE, SET_PAGE, SET_MORE_PAGES_SHOW} from './ActionPlaces'
 
 const initialState = {
     page: 1,
@@ -9,9 +9,12 @@ const initialState = {
     sortMenuValue: 1,
     placePanelFixedClass: "",
     placePanelSelectedElement: -1,
+    placesList: [],
+    tags:[],
+    directions:[],
     places: [
         {
-            country: "Imperii Romani Orientalis",
+            //country: "Imperii Romani Orientalis",
             places: [
                 {
                     rating: 3.1,
@@ -463,7 +466,7 @@ const initialState = {
                 },
             ]
         },
-        
+      
 
     ]
 }
@@ -472,6 +475,13 @@ export const PlacesReduser = (state=initialState, action)=>{
     //console.log("PlacesReduser");
     //console.log(action);
     switch(action.type){
+        case SET_PLACES_LIST: {
+            let newState={...state};
+            newState.placesList = action.placesList;
+            newState.tags = action.tags;
+            newState.directions = action.directions;
+            return newState;
+        }
         case SET_PAGES_MENU_VALUE: {
             let newState = { ...state };
             newState.pagesMenuValue = action.pagesMenuValue;

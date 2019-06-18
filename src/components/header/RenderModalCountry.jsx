@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import './RenderModalCountry.css'
-import {modalCountryDispacth} from '../../redusers/Action'
-
+import {modalCountryDispatch} from '../../redusers/Action'
+import requests from '../../config';
 /// Flag Country----------------------------/////
 import geoFlag from './pictures/georgia.svg'
 import ruFlag from './pictures/russia.svg'
@@ -39,7 +39,8 @@ import estoniaIcon from './pictures/country/estonia.svg'
 import japanIcon from './pictures/country/japan.svg'
 /// Flag Country------------^^^-------------/////
 
-
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 
 class RenderModalCountryClass extends React.Component {
@@ -84,13 +85,19 @@ class RenderModalCountryClass extends React.Component {
               },
         };
     }
+    onSelect = (element) => {
+        this.props.dispatch(modalCountryDispatch(element.ISO,element.isoMap));
+        let date = new Date(Date.now()+1000*3600*24*60); 
+        cookies.set("country",element.ISO, {path: '/', expires: date}); 
+        this.props.close();
+    }
     render() {
         return (
             <div className="countryBody d-flex flex-column flex-wrap">
-                {this.state.country.arrayCountry.map((element, index) =>
+                {this.props.storeState.countries.map((element, index) =>
                     <div className="d-flex align-items-center justify-content-start p-0">
-                        <img src={element.img} alt={element.country} width="15px" height="15px"/>
-                        <p className="m-0 p-1" onClick={()=>{this.props.dispatch(modalCountryDispacth(element.ISO,element.isoMap)); this.props.close()}}>{element.country}</p>
+                        <img src={element.image.url ? requests.serverAddress + element.image.url : ''} alt={element.ISO} width="15px" height="15px"/>
+                        <p className="m-0 p-1" onClick={()=>{this.onSelect(element)}}>{element.defaultName}</p>
                     </div>
                 )}
             </div>

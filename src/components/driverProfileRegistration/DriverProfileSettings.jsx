@@ -224,7 +224,7 @@ class DriverProfileSettingsClass extends React.Component {
                 position: 'relative',
             },
         };
-        let textPage = this.props.globalReduser.languageText.DriverProfileSettings;
+        let textPage = this.props.globalReduser.languageText.driverProfileRegistration.DriverProfileSettings;
         let profile = this.props.globalReduser.profile;
         return (
             <div className="driverProfilesettingsBody pb-1">

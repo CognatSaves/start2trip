@@ -49,6 +49,7 @@ const initialState = {
     languages: [],
     activeLanguageNumber: 0,
     currencies: [],
+    countries: [],
     activeCurrencyNumber: 0,
     comfort: [
         { icon: seatIcon, title: "Кожаный салон" },
@@ -75,8 +76,8 @@ const initialState = {
     languageValue: "Любой язык",
     languageIcon: languageBlueIcon,
     languageMenu: false,
-    country: "GEO",
-    isoCountryMap: "ge",
+    country: "BLR",
+    isoCountryMap: "by",
     avatarUrl: "",
     userName: "",
     userData:{},
@@ -272,6 +273,7 @@ export const AppReduser = (state = initialState, action) => {
                 let newState = {...state };
                 newState.languages = [...action.languages];
                 newState.currencies = [...action.currencies];
+                newState.countries = [...action.countries];
                 return newState;
             }
         case MODAL_COUNTRY:

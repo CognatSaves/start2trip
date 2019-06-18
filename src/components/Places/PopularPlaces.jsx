@@ -7,12 +7,13 @@ import { connect } from 'react-redux';
 // import Rustavi from './pictures/Rustavi_Museum_(A._Muhranoff,_2011).jpg'
 // import samegrello from './pictures/thumb_536_1370_437_0_0_auto.jpg'
 // import Andshi from './pictures/Вид_на_деревушку_Адиши,_Грузия.jpg'
+import requests from '../../config';
 
 class PopularPlacesClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            arrayRender: this.props.arrayRender,
+            //arrayRender: this.props.arrayRender,
             howMuchRender: 6,
         }
     }
@@ -39,36 +40,44 @@ class PopularPlacesClass extends React.Component {
         //     { title: "Andshi", img: Andshi },
 
         // ];
-        let plaseRender = [];
+        //debugger;
+        let placeRender = [];
 
-        if (this.state.arrayRender.length > this.state.howMuchRender) {
+        if (this.props.arrayRender.length > this.state.howMuchRender) {
 
             for (let i = 0; i < this.state.howMuchRender; i++) {
                 if (i < this.state.howMuchRender) {
-                    plaseRender.push(this.state.arrayRender[i]);
+                    placeRender.push(this.props.arrayRender[i]);
                 }
             }
         } else {
-            plaseRender = this.state.arrayRender;
+            placeRender = this.props.arrayRender;
         }
-
+        function getDirectionName(element, that){
+            for(let i=0;i<element.loc.length; i++){
+                if(element.loc[i].language===that.props.storeState.languages[that.props.storeState.activeLanguageNumber].id){
+                    return element.loc[i].name;
+                }
+            }
+            return element.loc.length>0 ? element.loc[0].name : 'no-name';
+        }
         return (
             <React.Fragment>
                 <div className="popularPlacesBody">
 
                     <div className="popularPlacesTitle">
-                        <h3>Популярные места</h3>
+                        <h3>Популярные направления</h3>
                     </div>
 
                     <div className="d-flex col-12 p-0">
                         <div className="d-flex col-12 flex-wrap p-0 popularPlacesRender">
-                            {plaseRender.map((element, index) => {
-                                if (this.state.arrayRender.length !== plaseRender.length) {
-                                    if (plaseRender.length - 1 == index) {
+                            {placeRender.map((element, index) => {
+                                if (this.props.arrayRender.length !== placeRender.length) {
+                                    if (placeRender.length - 1 == index) {
                                         return (
                                             <div className="col-2 d-flex flex-column align-items-center popularPlacesEl popularPlacesMore" onClick={() => { this.setState({ howMuchRender: this.state.howMuchRender + 6 }) }}>
                                                 <span>{"more"}</span>
-                                                <img src={this.state.arrayRender[this.state.arrayRender.length-1].img} alt="img" />
+                                                <img src={this.props.arrayRender[this.props.arrayRender.length-1].image ? requests.serverAddress+ this.props.arrayRender[this.props.arrayRender.length-1].image.url : ''} alt="img" />
                                             </div>
                                         )
                                     }
@@ -76,10 +85,10 @@ class PopularPlacesClass extends React.Component {
                                 return (
                                     <div className="col-2 d-flex flex-column align-items-center popularPlacesEl">
                                         <div>
-                                            <img src={element.img} alt="img" />
+                                            <img src={element.image ? requests.serverAddress + element.image.url : ''} alt="img" />
                                         </div>
                                         <div className="mt-2">
-                                            <span>{element.title}</span>
+                                            <span>{getDirectionName(element,this)}</span>
                                         </div>
                                     </div>
                                 )

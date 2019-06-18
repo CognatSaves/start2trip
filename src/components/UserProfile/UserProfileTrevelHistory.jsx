@@ -16,7 +16,7 @@ class UserProfileTrevelHistoryClass extends React.Component {
 
     render() {
         function createDateTimeString(start){
-            //debugger;
+            
             let date = new Date(start);
             let month = date.getUTCMonth(); let day = date.getUTCDate(); let hours = date.getUTCHours(); let minutes = date.getMinutes();
             let res = date.getUTCFullYear()+"-"+(month>=10 ? month : '0'+month)+"-"+(day>=10 ? day : '0'+day)+'; '+

@@ -363,7 +363,7 @@ class DriverProfileClass extends React.Component {
                 return response.data;
             })
             .then(data => {
-                //debugger;
+                
                 if (data.error) {
                     console.log("bad");
                     throw data.error;
