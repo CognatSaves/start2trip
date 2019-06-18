@@ -20,7 +20,9 @@ class PlacesTagListClass extends React.Component{
     render(){
         let tagBlockWidth; let tempWidth;
         tagBlockWidth= document.getElementById("placesMainBlock");
-        console.log('tagBlockWidth',tagBlockWidth ? tagBlockWidth.style.width : '');
+        tempWidth = document.getElementById("tagLine");
+        console.log('tagBlockWidth',tagBlockWidth ? tagBlockWidth.offsetWidth: '');
+        console.log('tempWidth',tempWidth ? tempWidth.offsetWidth : '');
         return(
             <div className="popularPlacesBody d-flex flex-row">
                 <div className="d-flex justify-content-center" style={{width: '10%'}}>
@@ -31,9 +33,12 @@ class PlacesTagListClass extends React.Component{
                     <React.Fragment>{
                         this.state.tags.map((element,index)=>{
                             //debugger;
-                            
+                            if(index>0){
+                                let temp = document.getElementById("tagno"+(index-1));
+                                console.log('temp',temp ? temp.offsetWidth : '');
+                            }
                             return(
-                            <div style={{border: '2px solid #ff6600', borderRadius: '25px', margin: '5px',padding: '5px'}}>
+                            <div id={'tagno'+index} style={{border: '2px solid #ff6600', borderRadius: '25px', margin: '5px',padding: '5px'}}>
                                 <div style={{}}>{element}</div>
                             </div>
                             )}
@@ -42,7 +47,7 @@ class PlacesTagListClass extends React.Component{
                         
                     </React.Fragment>
                 }</div>
-                <div className="d-flex justify-content-top" style={{width: '5%', margin: '5px',padding: '5px', textDecoration: 'underline'}}>             
+                <div className="d-flex justify-content-top" style={{width: '5%', margin: 'auto auto 5px 0',padding: '5px', textDecoration: 'underline dashed'}}>             
                     <div style={{margin: 'auto'}}>Исчо</div>
                 </div>
             </div>
