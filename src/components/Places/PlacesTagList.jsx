@@ -46,7 +46,7 @@ class PlacesTagListClass extends React.Component{
                             //debugger;
                             
                             return(
-                            <div className="d-flex justify-content-center align-items-center" style={{border: '2px solid #ff6600', borderRadius: '25px', margin: '5px',padding: '5px', flexBasis:"auto", flexGrow:"0.6"}}>
+                            <div className="d-flex justify-content-center align-items-center" style={{border: '2px solid #ff6600', borderRadius: '25px', margin: '5px',padding: '5px', flexBasis:"auto", flexGrow:"0.1"}}>
                                 <div style={{}}>{element}</div>
                             </div>
                             )}
