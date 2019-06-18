@@ -15,6 +15,7 @@ class PlacesTagListClass extends React.Component{
             "hdhdsahhdsahsah dsfs","jsjdhjsjdsnjsd","ksankjdsankjdsanj","ujsajdscbhdsc","bjdscdjjd",
             "jndscjdsanjds","jdscanjdsjndsjn","dscajdsajdsnj","jdsjdsjndsv","dsdsnjdsds","dscajdsadsa",
             "dsjnjndsadsds","jdsvjdsvnjds","dsalkdslkdsk","dsdscokdsnkdsk","jndsajdsjndsa"],
+            howMuchRender:15,
         };
     }
     render(){
@@ -40,10 +41,8 @@ class PlacesTagListClass extends React.Component{
                 <div className="d-flex justify-content-center" style={{width: '10%'}}>
                     <div style={{margin: 'auto'}}>Категории:</div>
                 </div>
-                <div id="tagLine" className="d-flex flex-wrap flex-wrap-reverse flex-row-reverse" style={{width: '85%',overflow: 'hidden', textOveflow: 'ellipsis', height: '100px'}}>
-                    <div className="d-flex justify-content-top" style={{width: '5%', margin: '5px',padding: '5px', textDecoration: 'underline'}}>             
-                        <div style={{margin: 'auto'}} /*onClick={() => { this.setState({ howMuchRender: this.state.howMuchRender + 6 }) }}*/>Исчо</div>
-                    </div>
+                <div id="tagLine" className="d-flex flex-wrap" style={{width: '85%', textOveflow: 'ellipsis', }}>
+                    
                 {    
                     <React.Fragment>{
                         placeRender.map((element,index)=>{
@@ -53,7 +52,7 @@ class PlacesTagListClass extends React.Component{
                                 console.log('temp',temp ? temp.offsetWidth : '');
                             }
                             return(
-                            <div className="d-flex justify-content-center align-items-center " style={{border: '2px solid #ff6600', borderRadius: '25px', margin: '5px',padding: '5px', flexBasis:"auto", flexGrow:"0.6"}}>
+                            <div className="d-flex justify-content-center align-items-center " style={{border: '2px solid #ff6600', borderRadius: '25px', margin: '5px',padding: '5px', flexBasis:"auto", flexGrow:"0.2"}}>
                                 <div style={{}}>{element}</div>
                             </div>
                             )}
@@ -61,7 +60,11 @@ class PlacesTagListClass extends React.Component{
                     }
                         
                     </React.Fragment>
-                }</div>
+                }
+                <div className="d-flex justify-content-top" style={{width: '5%', margin: '5px',padding: '5px', textDecoration: 'underline'}}>             
+                        <div style={{margin: 'auto'}} /*onClick={() => { this.setState({ howMuchRender: this.state.howMuchRender + 6 }) }}*/>Исчо</div>
+                    </div>
+                </div>
                 
             </div>
         )

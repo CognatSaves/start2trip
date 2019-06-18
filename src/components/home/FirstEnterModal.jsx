@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import './FirstEnterModal.css';
 import Cookies from 'universal-cookie';
+import route from './img/route.svg'
 const cookies = new Cookies();
 
 class FirstEnterModalClass extends React.Component {
@@ -11,11 +12,12 @@ class FirstEnterModalClass extends React.Component {
             inputChecked: [true,false,false,false],
             openModalStart: true,
             changeBtClose:false,
+            renderContent:[
+                {Icon:route,},
+            ]
         }
-        this.ChangeinputChecked=this.ChangeinputChecked.bind(this);
-        this.handleClose=this.handleClose.bind(this);
     }
-    ChangeinputChecked(number){
+    ChangeinputChecked=(number)=>{
         let index;
         if(isNaN(number)){
             for(let i=0; i<this.state.inputChecked.length; i++){
@@ -41,7 +43,7 @@ class FirstEnterModalClass extends React.Component {
             this.handleClose();
         }
     }
-    handleClose(){
+    handleClose=()=>{
         let date = new Date(Date.now()+1000*3600*24*60*500);
         cookies.set('firstEnter', 'no',{path: '/', expires: date} );
         this.setState({
@@ -55,13 +57,22 @@ class FirstEnterModalClass extends React.Component {
              //Модалка для мобильной версии стартовая
              }
              {/* style={{display: this.state.openModalStart? "block":"none"}} */}
-             <div className="modalStartInformation " style={{display: this.state.openModalStart? "block":"none"}} >
+             <div className="modalStartInformation " style={{display: this.state.openModalStart? "block":"none"}}>
                 <div className="d-flex align-items-center justify-content-end col-11 mt-3"/*  */ style={{margin: '0 auto'}}>
                     <div className="modalStartInformation_logo"/>
                     <span className="modalStartInformationSkip" onClick={this.handleClose}>Пропустить</span>
                 </div>
                 
                 <div className="modalStartInformationContent d-flex align-items-center">
+                {this.state.renderContent.map((element,index)=>
+                     <div className="d-flex flex-column align-items-center" >
+                     <i className="iconRout"></i>
+                             <span>Маршрут</span>
+                             <p>Стройте свой собственный маршрут путешествия,
+                             с возможностью включить в
+                             него известные достопримечательности.</p>
+                     </div>
+                    )}
                     <div className="d-flex flex-column align-items-center" id="firsItem">
                     <i className="iconRout"></i>
                             <span>Маршрут</span>
@@ -91,6 +102,9 @@ class FirstEnterModalClass extends React.Component {
                     
                 </div>
                 <div className="d-flex">
+                    {/* {map((element,index){
+
+                    })} */}
                     <a href="#firsItem">dot1</a>
                     <a href="#secondItem">dot2</a>
                     <a href="#thirdItem">dot3</a>
