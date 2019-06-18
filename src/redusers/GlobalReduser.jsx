@@ -1,9 +1,9 @@
 import {WHICH_PAGE_RENDER_HISTORY,SET_PROFILE_DATA,SET_URL_ADDRESS,SET_TRANSACTION_DATA} from './ActionGlobal';
-import Ru_Drivers from '../textInfo/Ru-Drivers'
-
+import Ru from '../textInfo/Ru';
+import En from '../textInfo/En';
 const initialState = {
     history: "",
-    languageText:Ru_Drivers,
+    languageText:En,
     readCookie: function(name){
         var name_cook = name+"=";
         var spl = document.cookie.split(";");           

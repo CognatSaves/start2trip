@@ -28,7 +28,7 @@ import getUserData from '../driverProfileRegistration/DriverProfileRequest';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 import Cookies from 'universal-cookie';
 import pageTextInfo from '../../textInfo/RenderModalRegistration';
-import { setLocals } from '../../redusers/Action';
+import { setLocals, modalCountryDispatch } from '../../redusers/Action';
 import Dialog from 'material-ui/Dialog';
 import { isMobileOnly, isMobile } from 'react-device-detect';
 import backpackIcon from './pictures/backpack.svg'
@@ -265,14 +265,16 @@ class HeaderClass extends React.Component {
     axios.get(requests.getLocals, props)
       .then(response => {
         let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
-        console.log(response);
+        console.log('locals',response);
+        //console.log(response);
         let languages = response.data.languages;
         let currencies = response.data.currencies;
-        this.props.dispatch(setLocals(response.data.languages, response.data.currencies));
+        let countries = response.data.countries;
+        this.props.dispatch(setLocals(languages, currencies, countries));
 
         let lang = this.props.globalReduser.readCookie('userLang');
         let curr = this.props.globalReduser.readCookie('userCurr');
-
+        let country = this.props.globalReduser.readCookie('country');
         if (!lang) {
           for (let i = 0; i < languages.length; i++) {
             if (languages[i].ISO === 'RUS') {
@@ -351,7 +353,24 @@ class HeaderClass extends React.Component {
             });*/
           }
         }
-
+        if(!country){
+          //тут должна быть переадресация на страницу с выбором страны!!!(в else должно быть схожее, посмотри)
+        }
+        else{
+          let index = -1;
+          for(let i=0; i<countries.length; i++){
+            if(country===countries[i].ISO){
+              index =i;
+              break;
+            }
+          }
+          if(index!==-1){
+            this.props.dispatch(modalCountryDispatch(countries[index].ISO,countries[index].isoMap));
+          }
+          else{
+            //здесь должна быть переадресация
+          }        
+        }
       })
       .catch(error => {
         console.log(error);
@@ -664,7 +683,7 @@ class HeaderClass extends React.Component {
               <Link className="col-xl-8 col-lg-9 col-md-8 col-sm-8 col-7" to="">
                 <h3 />
               </Link>
-              <div onClick={this.toggleModalCountry} className="headerGeoButton col-xl-5 col-lg-5 col-md-4 col-sm-5 col-5">
+              <div onClick={this.toggleModalCountry} style={{visibility: this.props.storeState.countries.length>0 ? 'visible' : 'hidden'}} className="headerGeoButton col-xl-5 col-lg-5 col-md-4 col-sm-5 col-5">
                 <span>{this.props.storeState.country}</span>
               </div>
             </div>

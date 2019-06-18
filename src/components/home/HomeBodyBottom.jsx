@@ -57,6 +57,8 @@ class HomeBodyBottomClass extends React.Component {
             <p className="homeBottomText">По Вашему запросу водитель сделает остановку в любом месте для фото или видео съемки, посещения достопримечательности.</p>
           </div>
         </div>
+        {
+        /*
         <div className="d-flex  align-items-center justify-content-md-start justify-content-center pl-xl-0  pl-lg-0 pl-md-4 col-12"><h2 className="homeBottomTitle">ПОПУЛЯРНЫЕ МЕСТА</h2></div>
         <RenderFourEl tours={this.state.popularPlaces} priseDisplay={"none"} />
         <div className="d-flex  align-items-center justify-content-center col-12"><Link to="/places" className="homeBottomLink">ПЕРЕЙТИ К МЕСТАМ</Link></div>
@@ -70,13 +72,17 @@ class HomeBodyBottomClass extends React.Component {
           <div className="d-flex flex-md-row flex-sm-row flex-column align-content-center col-xl-6 col-lg-6 col-md-7 col-sm-10 col-11 p-0 mb-4">
           <input className="homeSubscribeInput" placeholder="Aдрес электронной почты" type="text" name="" id=""/>
           <button className="homeSubscribeButton">ПОДПИСАТЬСЯ</button>
-            {/* <InputGroup>
-              <Input className="homeSubscribeInput col-10" placeholder="Aдрес электронной почты" />
-              <InputGroupAddon addonType="append"><Button className="homeSubscribeButton">ПОДПИСАТЬСЯ</Button></InputGroupAddon>
-            </InputGroup> */}
+            {
+            //<InputGroup>
+              //<Input className="homeSubscribeInput col-10" placeholder="Aдрес электронной почты" />
+              //<InputGroupAddon addonType="append"><Button className="homeSubscribeButton">ПОДПИСАТЬСЯ</Button></InputGroupAddon>
+            //</InputGroup> 
+            }
           </div>
           <p>Нажимая "Подписаться", Вы соглашаетесь с правилами<Link to=""> использования сервиса </Link> и <Link to=""> обработки персональных данных.</Link></p>
         </div>
+        */
+        }
       </div>
       
       </React.Fragment>

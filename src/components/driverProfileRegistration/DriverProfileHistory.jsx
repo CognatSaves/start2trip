@@ -38,7 +38,7 @@ class DriverProfileHistoryClass extends React.Component {
 
 
   render() {
-    let textPage = this.props.globalReduser.languageText.DriverProfileHistory;
+    let textPage = this.props.globalReduser.languageText.driverProfileRegistration.DriverProfileHistory;
     return (
       <React.Fragment>
         <div className="driverProfileHistory">

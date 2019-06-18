@@ -73,7 +73,7 @@ class DriverProfileTrevelHistoryClass extends React.Component {
         let body = JSON.stringify({
             id: element.id
         });
-        //debugger;
+        
         //console.log(requests);
         let jwt = this.props.globalReduser.readCookie('jwt');
         
@@ -112,7 +112,7 @@ class DriverProfileTrevelHistoryClass extends React.Component {
                     headers: {'content-type': 'application/json', Authorization: `Bearer ${jwt}`}
                 })
                 .then(response => {
-                    //debugger;
+                    
                     return response.json();
                 })
                 .then(function (data){
@@ -163,8 +163,8 @@ class DriverProfileTrevelHistoryClass extends React.Component {
             (hours>=10 ? hours : '0'+hours)+":"+(minutes>=10 ? minutes : '0'+minutes);
             return res;
         }
-        let textPage = this.props.globalReduser.languageText.DriverProfileTrevelHistory;
-        //debugger;
+        let textPage = this.props.globalReduser.languageText.driverProfileRegistration.DriverProfileTrevelHistory;
+        
         let that =  this;
         return (
             <div className="d-flex flex-wrap justify-content-center">

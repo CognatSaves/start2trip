@@ -128,16 +128,19 @@ class ResetPassword extends React.Component {
                             <span>Введите новый пароль для вашего аккаунта</span>
                         </div>
                         <div className={this.state.isChangePasswordType?"resetPasswordInput resetPasswordInput-active":"resetPasswordInput"}>
-                            <input className={this.state.falde ? "forgotPasswordInput-error" : ""} placeholder="Пароль" type={this.state.isChangePasswordType?"text":"password"} value={this.state.passwords[0]} onChange={(e) => {this.passwordonchange(e.target.value, 0); this.setState({ falde: false, isSended: false, noChange:false, })}} />
+                            <input className={this.state.falde ? "forgotPasswordInput-error" : ""}
+                            placeholder="Пароль" type={this.state.isChangePasswordType?"text":"password"} value={this.state.passwords[0]} onChange={(e) => {this.passwordonchange(e.target.value, 0); this.setState({ falde: false, isSended: false, noChange:false, })}} />
                             <i  onClick={()=>{this.setState({isChangePasswordType: !this.state.isChangePasswordType})}}/>
                         </div>
                         <div className={this.state.isChangePasswordType2?"resetPasswordInput resetPasswordInput-active":"resetPasswordInput"}>
-                            <input className={this.state.falde ? "forgotPasswordInput-error" : ""} placeholder="Повторите пароль" type={this.state.isChangePasswordType2?"text":"password"} value={this.state.passwords[1]} onChange={(e) => {this.passwordonchange(e.target.value, 1);this.setState({ falde: false, isSended: false, noChange:false, })}} />
+                            <input className={this.state.falde ? "forgotPasswordInput-error" : ""}
+                            placeholder="Повторите пароль" type={this.state.isChangePasswordType2?"text":"password"} value={this.state.passwords[1]} onChange={(e) => {this.passwordonchange(e.target.value, 1);this.setState({ falde: false, isSended: false, noChange:false, })}} />
                             <i onClick={()=>{this.setState({isChangePasswordType2: !this.state.isChangePasswordType2})}}/>
                         </div>
                         {
                             this.state.isSended ?
-                                <div className={this.state.isGood ? "forgotPasswordContent-active" : "forgotPasswordContent-error"}>{this.state.isGood ? 'Пароль вашего аккаунта перезаписан' : 'Пароль вашего аккаунта перезаписать не удалось'}</div> :
+                                <div className={this.state.isGood ? "forgotPasswordContent-active" 
+                                : "forgotPasswordContent-error"}>{this.state.isGood ? 'Пароль вашего аккаунта перезаписан' : 'Пароль вашего аккаунта перезаписать не удалось'}</div> :
                                 <React.Fragment />
                         }
                         {

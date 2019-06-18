@@ -29,7 +29,11 @@ const CityRouteTable = (props) => {
             <div className="startCity d-flex col-12 p-0" key={element + index + cities[index].point}>
               <div className={readOnlyOn?"col-12 p-0":(index <= 1 ? "col-12 p-0" : "col-10 pl-0 pr-1")}>
                 <div className="addCitiesLocationDropDown col p-0">
-                  <LocationSearchInput readOnlyOn={readOnlyOn ? true : false} address={cities[index].point} changeCity={changeCity} index={index} classDropdown="searchElement_style" spanText={alphabet[index]} placeholder={index ? "Куда, выберите место" : "Откуда, выберите место"} classDiv={index > 1 && !cities[index].point ? "classDivMobail  _checkDiv startCity-CheckInput col-12" : "classDivMobail  _checkDiv col-12"} classInput="city_input _checkInput" isoCountryMap={isoCountryMap} />
+                  <LocationSearchInput readOnlyOn={readOnlyOn ? true : false} address={cities[index].point} changeCity={changeCity}
+                  index={index} classDropdown="searchElement_style" spanText={alphabet[index]}
+                  placeholder={index ? "Куда, выберите место" : "Откуда, выберите место"}
+                  classDiv={index > 1 && !cities[index].point ? "classDivMobail  _checkDiv startCity-CheckInput col-12"
+                  : "classDivMobail  _checkDiv col-12"} classInput="city_input _checkInput" isoCountryMap={isoCountryMap} />
                 </div>
               </div>
               {readOnlyOn ?
@@ -50,16 +54,22 @@ const CityRouteTable = (props) => {
             <div className={readOnlyOn ? (index % 2 ==0 && index == cities.length-1 ?"startCity d-flex col-12 p-0":"startCity d-flex col-6 p-0"):"startCity d-flex col-6 p-0"} key={element + index + cities[index].point}>
               <div className={index <= 1 ? (index%2 ? "col-12 pl-0 pr-1" : "col-12 pl-0 pr-1") : (readOnlyOn ? "col-12 pl-0 pr-1" : "col-10 pl-0 pr-1 ")}>
                 <div className="addCitiesLocationDropDown col p-0">
-                  <LocationSearchInput readOnlyOn={readOnlyOn ? true : false} address={cities[index].point} changeCity={changeCity} index={index} classDropdown="searchElement_style" spanText={alphabet[index]} placeholder={index ? "Куда, выберите место" : "Откуда, выберите место"} classDiv={index > 1 && !cities[index].point ? "classDiv  _checkDiv startCity-CheckInput col-12" : "classDiv  _checkDiv col-12"} classInput="city_input _checkInput" isoCountryMap={isoCountryMap} />
+                  <LocationSearchInput readOnlyOn={readOnlyOn ? true : false} address={cities[index].point} changeCity={changeCity}
+                  index={index} classDropdown="searchElement_style" spanText={alphabet[index]}
+                  placeholder={index ? "Куда, выберите место" : "Откуда, выберите место"}
+                  classDiv={index > 1 && !cities[index].point ? "classDiv  _checkDiv startCity-CheckInput col-12"
+                  : "classDiv  _checkDiv col-12"} classInput="city_input _checkInput" isoCountryMap={isoCountryMap} />
                 </div>
               </div>
               {
                 readOnlyOn ?
                   <React.Fragment />
                   :
-                  <div className="crossToolTip col p-0" style={{ display: index <= 1 ? "none" : "" }} onClick={() => removeCity(index)}>
+                  <div className="crossToolTip col p-0" style={{ display: index <= 1 ? "none" : "" }}
+                  onClick={() => removeCity(index)}>
                     <i className="crossIcon"></i>
-                    <span className="crossToolTipText" style={{ display: isMobileOnly ? "none" : "block" }} >Удалить этот пункт назначения</span>
+                    <span className="crossToolTipText" style={{ display: isMobileOnly ? "none" : "block" }} >
+                    Удалить этот пункт назначения</span>
                   </div>
               }
 

@@ -400,7 +400,7 @@ class DriverProfileCarClass extends React.Component {
         //выдаёт значения строго на русском - впоследствие будет переделана
         let carTypes = findCarTypeNames(cars, this.props.globalReduser.profile.carTypes);
 
-        let textPage = this.props.globalReduser.languageText.DriverProfileCar;
+        let textPage = this.props.globalReduser.languageText.driverProfileRegistration.DriverProfileCar;
         return (
             <div className="_ThisTagIsNeeded">
             <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer}/>

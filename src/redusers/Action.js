@@ -52,12 +52,13 @@ const setActiveLang = function(activeLanguageNumber){
         activeLanguageNumber:activeLanguageNumber
     }
 }
-const setLocals = function(languages, currencies) {
+const setLocals = function(languages, currencies, countries) {
 
     return {
         type: 'SET_LOCALS',
         languages: languages,
-        currencies: currencies
+        currencies: currencies,
+        countries: countries
     }
 }
 
@@ -186,7 +187,7 @@ const languageMenuIsVisibal = function(languageMenu) {
     };
 }
 
-const modalCountryDispacth = function(country, iso) {
+const modalCountryDispatch = function(country, iso) {
     return {
         type: 'MODAL_COUNTRY',
         country: country,
@@ -228,7 +229,7 @@ export {
     LANGUAGE_MENU_IS_VISIBAL,
     autoMenuCall,
     AUTO_MENU_CALL,
-    modalCountryDispacth,
+    modalCountryDispatch,
     MODAL_COUNTRY,
     setUser,
     SET_USER,

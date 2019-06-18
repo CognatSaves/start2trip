@@ -306,7 +306,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
             },
         };
 
-        let textPage = this.props.globalReduser.languageText.DriverProfileTripSettingsTrip;
+        let textPage = this.props.globalReduser.languageText.driverProfileRegistration.DriverProfileTripSettingsTrip;
         return (
 
             <React.Fragment>

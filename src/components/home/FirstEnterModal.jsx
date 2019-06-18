@@ -55,7 +55,7 @@ class FirstEnterModalClass extends React.Component {
              //Модалка для мобильной версии стартовая
              }
              {/* style={{display: this.state.openModalStart? "block":"none"}} */}
-             <div className="modalStartInformation " >
+             <div className="modalStartInformation " style={{display: this.state.openModalStart? "block":"none"}} >
                 <div className="d-flex align-items-center justify-content-end col-11 mt-3"/*  */ style={{margin: '0 auto'}}>
                     <div className="modalStartInformation_logo"/>
                     <span className="modalStartInformationSkip" onClick={this.handleClose}>Пропустить</span>

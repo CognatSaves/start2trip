@@ -26,7 +26,7 @@ class UserProfileBasicInformationClass extends React.Component {
 
         birthday = new Date(profile.birthday);
         this.state = {
-            value: this.props.globalReduser.languageText.DriverProfileBasicInformation.MenuItem.value,
+            value: this.props.globalReduser.languageText.driverProfileRegistration.DriverProfileBasicInformation.MenuItem.value,
             isRefreshExist:false,
             isRefreshing: true,
             isGoodAnswer: true,
@@ -221,7 +221,7 @@ class UserProfileBasicInformationClass extends React.Component {
 
 
     render() {
-        let textPage = this.props.globalReduser.languageText.DriverProfileBasicInformation;
+        let textPage = this.props.globalReduser.languageText.driverProfileRegistration.DriverProfileBasicInformation;
         return (
             <div className="basicInformationBody d-flex flex-column">
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer}/>
