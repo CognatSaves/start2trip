@@ -8,16 +8,28 @@ class PlacesTagListClass extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            tags: ["AAAAAAA","CCSDFSD","sdfsdf","sadfadsfadsfadf","123esdfdsf","dsaf vcxvxc",
+            tags: ["Церькви и саборы","CCSDFSD","sdfsdf","sadfadsfadsfadf","123esdfdsf","dsaf vcxvxc",
             "dsafbdfgb","ghjymgm","tyutjghmgh","cvxbzdsfaf","erthfgnjty","wer3dsf54","vxzrfgz",
             "asdfa vcx","afwefsz  dsf ads asd ","asdfasd sadf sda fa","asdfsdf sf sd fsdsd","sdf ewrwefrdds",
             "a123dsfsw ","sdfa dsaf 2","sadfsdaf sd ds","dsfasdfa sd fsd"," asdfadsfsad 23 23  2",
             "hdhdsahhdsahsah dsfs","jsjdhjsjdsnjsd","ksankjdsankjdsanj","ujsajdscbhdsc","bjdscdjjd",
             "jndscjdsanjds","jdscanjdsjndsjn","dscajdsajdsnj","jdsjdsjndsv","dsdsnjdsds","dscajdsadsa",
-            "dsjnjndsadsds","jdsvjdsvnjds","dsalkdslkdsk","dsdscokdsnkdsk","jndsajdsjndsa"]
+            "dsjnjndsadsds","jdsvjdsvnjds","dsalkdslkdsk","dsdscokdsnkdsk","jndsajdsjndsa"],
         };
     }
     render(){
+        let placeRender = [];
+
+        if (this.state.tags.length > this.state.howMuchRender) {
+
+            for (let i = 0; i < this.state.howMuchRender; i++) {
+                if (i < this.state.howMuchRender) {
+                    placeRender.push(this.state.tags[i]);
+                }
+            }
+        } else {
+            placeRender = this.state.tags;
+        }
         let tagBlockWidth; let tempWidth;
         tagBlockWidth= document.getElementById("placesMainBlock");
         tempWidth = document.getElementById("tagLine");
@@ -28,17 +40,20 @@ class PlacesTagListClass extends React.Component{
                 <div className="d-flex justify-content-center" style={{width: '10%'}}>
                     <div style={{margin: 'auto'}}>Категории:</div>
                 </div>
-                <div id="tagLine" className="d-flex flex-wrap" style={{width: '85%', overflow: 'hidden', textOveflow: 'ellipsis', height: '100px'}}>{
-                    
+                <div id="tagLine" className="d-flex flex-wrap flex-wrap-reverse flex-row-reverse" style={{width: '85%',overflow: 'hidden', textOveflow: 'ellipsis', height: '100px'}}>
+                    <div className="d-flex justify-content-top" style={{width: '5%', margin: '5px',padding: '5px', textDecoration: 'underline'}}>             
+                        <div style={{margin: 'auto'}} /*onClick={() => { this.setState({ howMuchRender: this.state.howMuchRender + 6 }) }}*/>Исчо</div>
+                    </div>
+                {    
                     <React.Fragment>{
-                        this.state.tags.map((element,index)=>{
+                        placeRender.map((element,index)=>{
                             //debugger;
                             if(index>0){
                                 let temp = document.getElementById("tagno"+(index-1));
                                 console.log('temp',temp ? temp.offsetWidth : '');
                             }
                             return(
-                            <div id={'tagno'+index} style={{border: '2px solid #ff6600', borderRadius: '25px', margin: '5px',padding: '5px'}}>
+                            <div className="d-flex justify-content-center align-items-center " style={{border: '2px solid #ff6600', borderRadius: '25px', margin: '5px',padding: '5px', flexBasis:"auto", flexGrow:"0.6"}}>
                                 <div style={{}}>{element}</div>
                             </div>
                             )}
@@ -47,9 +62,7 @@ class PlacesTagListClass extends React.Component{
                         
                     </React.Fragment>
                 }</div>
-                <div className="d-flex justify-content-top" style={{width: '5%', margin: 'auto auto 5px 0',padding: '5px', textDecoration: 'underline dashed'}}>             
-                    <div style={{margin: 'auto'}}>Исчо</div>
-                </div>
+                
             </div>
         )
     }

@@ -1,5 +1,5 @@
 import serverAddress from './serverAddress';
-const frontendAddress = 'http://localhost:3000';//'http://tripfer.com'; //
+const frontendAddress = 'http://localhost:3000'; //'http://tripfer.com'; //
 
 const serverRegistrationRequest = serverAddress + '/auth/local/register';
 const serverAuthorizationRequest = serverAddress + '/auth/local';
@@ -29,7 +29,7 @@ const tripStart = serverAddress + "/tripStart"; //функция начала п
 const tripEnd = serverAddress + "/tripEnd"; //функция окончания поездки водителем
 const executeSystemPayment = serverAddress + "/executeSystemPayment"; //выполнить оплату за пользование системой
 const getUserTransactions = serverAddress + "/getUserTransactions"; //обновить таблицу транзакций в админке под выбранный пользователем промежуток времени
-const getPlacesList = serverAddress + "/getPlaces";//получить список мест
+const getPlacesList = serverAddress + "/getPlaces"; //получить список мест
 
 const forgotPassword = serverAddress + "/auth/forgotPassword";
 const resetPassword = serverAddress + "/auth/reset-password";
@@ -68,5 +68,5 @@ export default {
     tripEnd: tripEnd,
     executeSystemPayment: executeSystemPayment,
     getUserTransactions: getUserTransactions,
-    getPlacesList:getPlacesList
+    getPlacesList: getPlacesList
 };
