@@ -8,7 +8,7 @@ class PlacesTagListClass extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            tags: ["Церькви и саборы","CCSDFSD","sdfsdf","sadfadsfadsfadf","123esdfdsf","dsaf vcxvxc",
+            tags: ["Церькви и саборы","CCSDFSD","sdfsdfsdfsd sdfsd","sadfadsfadsfadf","123123","123","123esdfdsf","dsaf vcxvxc",
             "dsafbdfgb","ghjymgm","tyutjghmgh","cvxbzdsfaf","erthfgnjty","wer3dsf54","vxzrfgz",
             "asdfa vcx","afwefsz  dsf ads asd ","asdfasd sadf sda fa","asdfsdf sf sd fsdsd","sdf ewrwefrdds",
             "a123dsfsw ","sdfa dsaf 2","sadfsdaf sd ds","dsfasdfa sd fsd"," asdfadsfsad 23 23  2",
