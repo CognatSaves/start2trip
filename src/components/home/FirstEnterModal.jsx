@@ -130,7 +130,7 @@ class FirstEnterModalClass extends React.Component {
                         )}
                     </div>
                     <div className="modalStartInformationDivNext d-flex align-items-center justify-content-center col-11 " onClick={() => { this.state.changeBtClose ? this.handleClose() : this.ChangeinputChecked() }}>
-                        <span className="modalStartInformationNext">{this.state.activeWindow == this.state.renderContent.length ? "Закрыть" : "Далее"}</span>
+                        <span className="modalStartInformationNext">{this.state.activeWindow == this.state.renderContent.length-1 ? "Закрыть" : "Далее"}</span>
                     </div>
                 </div>
                 {
