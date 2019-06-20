@@ -6,6 +6,7 @@ import Icon1 from './img/illustration_user_1.svg'
 import Icon2 from './img/illustration_user_2.svg'
 import Icon3 from './img/illustration_user_3.svg'
 import Icon4 from './img/illustration_user_4.svg'
+import { isMobileOnly } from 'react-device-detect';
 const cookies = new Cookies();
 
 class FirstEnterModalClass extends React.Component {
@@ -75,26 +76,25 @@ class FirstEnterModalClass extends React.Component {
         });
     }
     scrollDiv = (e) => {
-
         let widthOneWindow = e.currentTarget.scrollWidth / this.state.renderContent.length - 2.5;
-        let marginLeft = e.currentTarget.scrollLeft - 10;
-        if (0 === marginLeft) {
+        let marginLeft =  e.currentTarget.scrollLeft;
+        if (0 < marginLeft) {
 
             this.setState({ activeWindow: 0 })
         }
-        if (widthOneWindow === marginLeft) {
+        if (widthOneWindow < marginLeft) {
 
             this.setState({ activeWindow: 1 })
         }
-        if (widthOneWindow * 2 === marginLeft) {
+        if (widthOneWindow * 2 < marginLeft) {
 
             this.setState({ activeWindow: 2 })
         }
-        if (widthOneWindow * 3 === marginLeft) {
+        if (widthOneWindow * 3 < marginLeft) {
 
             this.setState({ activeWindow: 3 })
         }
-        if (widthOneWindow * 4 === marginLeft) {
+        if (widthOneWindow * 4 < marginLeft) {
 
             this.setState({ activeWindow: 4 })
         }
