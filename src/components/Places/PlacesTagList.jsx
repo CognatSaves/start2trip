@@ -52,7 +52,7 @@ class PlacesTagListClass extends React.Component{
                                 console.log('temp',temp ? temp.offsetWidth : '');
                             }
                             return(
-                            <div className="d-flex justify-content-center align-items-center " style={{border: '2px solid #ff6600', borderRadius: '25px', margin: '5px',padding: '5px', flexBasis:"auto", flexGrow:"0.2"}}>
+                            <div className="d-flex justify-content-center align-items-center " id={"tagno"+index} style={{border: '2px solid #ff6600', borderRadius: '25px', margin: '5px',padding: '5px', flexBasis:"auto", flexGrow:"0.2"}}>
                                 <div style={{}}>{element}</div>
                             </div>
                             )}
