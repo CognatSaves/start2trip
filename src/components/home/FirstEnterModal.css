@@ -34,6 +34,7 @@
 }
 
 .modalStartInformationDivNext {
+    cursor: pointer;
     background: #304269;
     border-radius: 2px;
     margin: 0 auto;
@@ -54,6 +55,7 @@
     color: #f60;
 } */
 
+.modalStartInformationContentmodal,
 .modalStartInformationContent {
     position: relative;
     height: 75%;
@@ -76,6 +78,11 @@
     font-size: 15px;
     font-weight: 400;
     text-align: center;
+    margin: 0;
+}
+
+.modalStartInformationContentText:nth-child(2) p {
+    margin-bottom: 21px;
 }
 
 .buttonChenge {
@@ -98,6 +105,7 @@
     transition: all 0.3s;
 }
 
+.modalStartInformationContentmodal::-webkit-scrollbar,
 .modalStartInformationContent::-webkit-scrollbar {
     display: none !important;
 }
@@ -107,8 +115,13 @@
     min-width: 100vw;
 }
 
+.modalStartInformationContentmodal div {
+    scroll-snap-align: center;
+    min-width: 100%;
+}
+
 .iconImg {
-    width: 280px;
+    width: 334px;
     height: 305px;
     background-size: 100% 100%!important;
     object-fit: cover !important;
