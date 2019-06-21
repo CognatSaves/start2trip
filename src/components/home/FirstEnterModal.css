@@ -81,9 +81,10 @@
     margin: 0;
 }
 
-.modalStartInformationContentText:nth-child(2) p {
+
+/* .modalStartInformationContentText:nth-child(2) p {
     margin-bottom: 21px;
-}
+} */
 
 .buttonChenge {
     height: 5%;

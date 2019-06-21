@@ -161,12 +161,12 @@ class FirstEnterModalClass extends React.Component {
                     <React.Fragment>
                         {/* //Модалка для мобильной версии стартовая */}
                         <div className="modalStartInformation " style={{ display: this.state.openModalStart ? "block" : "none" }} >
-                            <div className="d-flex align-items-center justify-content-end col-11 mt-3"/*  */ style={{ margin: '0 auto' }}>
+                            <div className="d-flex align-items-center justify-content-end col-11 mt-3 mx-auto">
                                 <div className="modalStartInformation_logo" />
                                 <span className="modalStartInformationSkip" onClick={this.handleClose}>Пропустить</span>
                             </div>
 
-                            <div className="modalStartInformationContent d-flex align-items-center col-12 " onScroll={(e) => { this.scrollDiv(e) }}>
+                            <div className="modalStartInformationContent d-flex align-items-start pt-4 col-12 " onScroll={(e) => { this.scrollDiv(e) }}>
                                 {this.state.renderContent.map((element, index) =>
                                     <div className="modalStartInformationContentText d-flex flex-column align-items-center justify-content-start px-4" >
                                         <i className="iconImg" style={{ background: "url(" + element.Icon + ")" }} />
