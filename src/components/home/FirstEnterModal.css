@@ -34,6 +34,7 @@
 }
 
 .modalStartInformationDivNext {
+    cursor: pointer;
     background: #304269;
     border-radius: 2px;
     margin: 0 auto;
@@ -49,18 +50,65 @@
     padding: 10px 0px;
 }
 
-.modalStartInformationNext:hover {
-    color: #f60;
-}
 
+/* .modalStartInformationNext:hover {
+    color: #f60;
+} */
+
+.modalStartInformationContentmodal,
 .modalStartInformationContent {
     position: relative;
-    height: 85%;
-    width: 100vw;
+    height: 75%;
     scroll-snap-type: x mandatory;
     overflow-x: scroll;
     overflow-y: hidden;
     scroll-behavior: smooth;
+}
+
+.modalStartInformationContentText span {
+    color: #304269;
+    font-size: 22px;
+    font-weight: 500;
+    text-align: center;
+    padding-bottom: 5px;
+}
+
+.modalStartInformationContentText p {
+    color: #686868;
+    font-size: 15px;
+    font-weight: 400;
+    text-align: center;
+    margin: 0;
+}
+
+
+/* .modalStartInformationContentText:nth-child(2) p {
+    margin-bottom: 21px;
+} */
+
+.buttonChenge {
+    height: 5%;
+}
+
+.buttonChenge span {
+    cursor: pointer;
+    margin: 0 5px;
+    width: 10px;
+    height: 10px;
+    border: 1px solid #686868;
+    border-radius: 50%;
+    transition: all 0.3s;
+    background: transparent;
+}
+
+.buttonChenge span.activeBtChenge {
+    background: #304269;
+    transition: all 0.3s;
+}
+
+.modalStartInformationContentmodal::-webkit-scrollbar,
+.modalStartInformationContent::-webkit-scrollbar {
+    display: none !important;
 }
 
 .modalStartInformationContent div {
@@ -68,39 +116,22 @@
     min-width: 100vw;
 }
 
-.iconRout {
-    width: 100px;
-    height: 100px;
-    background: url(./img/route.svg) no-repeat;
-    background-size: 100px 100px;
+.modalStartInformationContentmodal div {
+    scroll-snap-align: center;
+    min-width: 100%;
+}
+
+.iconImg {
+    width: 334px;
+    height: 305px;
+    background-size: 100% 100%!important;
+    object-fit: cover !important;
+    background-repeat: no-repeat !important;
     margin-bottom: 20px;
 }
 
-.iconCalendar {
-    width: 100px;
-    height: 100px;
-    background: url(./img/calendarHome.svg) no-repeat;
-    background-size: 100px 100px;
-    margin-bottom: 20px;
-}
 
-.iconOffer {
-    width: 100px;
-    height: 100px;
-    background: url(./img/offer.svg) no-repeat;
-    background-size: 100px 100px;
-    margin-bottom: 20px;
-}
-
-.iconEnjoy {
-    width: 150px;
-    height: 150px;
-    background: url(./img/enjoy_trip.svg) no-repeat;
-    background-size: 150px 150px;
-    margin-bottom: 20px;
-}
-
-.slider {
+/* .slider {
     height: 85%;
     overflow: hidden;
     position: relative;
@@ -203,7 +234,7 @@
     top: -1px;
     width: 10px;
     border-radius: 50%;
-}
+} */
 
 
 /* modalStartInformation End */
