@@ -344,7 +344,7 @@ p.routemenu_search_text {
 
 .routemenu_comment_text {
     width: 100%;
-    /* text-align: center; */
+    text-align: center;
     font-size: 14px;
     color: #fff;
     font-weight: 400;

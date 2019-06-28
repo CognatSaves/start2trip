@@ -40,6 +40,30 @@ const SET_ACTIVE_CURR = 'SET_ACTIVE_CURR';
 
 const SET_ACTIVE_LANG = 'SET_ACTIVE_LANG';
 
+const SET_MODAL_REGISTER='SET_MODAL_REGISTER';
+
+const SET_ACTIVE_LANG_ADMIN = 'SET_ACTIVE_LANG_ADMIN';
+
+const CHANGE_LANGUAGE_PART = 'CHANGE_LANGUAGE_PART';
+
+const changeLanguagePart = function(isSecondLanguageGroupPart){
+    return{
+        type: CHANGE_LANGUAGE_PART,
+        isSecondLanguageGroupPart:isSecondLanguageGroupPart
+    }
+}
+const setActiveLangAdmin = function(activeLanguageNumberAdmin){
+    return{
+        type: SET_ACTIVE_LANG_ADMIN,
+        activeLanguageNumberAdmin: activeLanguageNumberAdmin
+    }
+}
+const setModalRegister = function(modalRegistration){
+    return{
+        type: SET_MODAL_REGISTER,
+        modalRegistration: modalRegistration
+    }
+}
 const setActiveCurr = function(activeCurrencyNumber){
     return{
         type: 'SET_ACTIVE_CURR',
@@ -47,16 +71,18 @@ const setActiveCurr = function(activeCurrencyNumber){
     }
 }
 const setActiveLang = function(activeLanguageNumber){
+    
     return{
         type:'SET_ACTIVE_LANG',
         activeLanguageNumber:activeLanguageNumber
     }
 }
-const setLocals = function(languages, currencies, countries) {
+const setLocals = function(languages, adminLanguages,currencies, countries) {
 
     return {
         type: 'SET_LOCALS',
         languages: languages,
+        adminLanguages:adminLanguages,
         currencies: currencies,
         countries: countries
     }
@@ -238,5 +264,11 @@ export {
     SET_ACTIVE_CURR,
     setActiveCurr,
     SET_ACTIVE_LANG,
-    setActiveLang
+    setActiveLang,
+    SET_MODAL_REGISTER,
+    setModalRegister,
+    SET_ACTIVE_LANG_ADMIN,
+    setActiveLangAdmin,
+    CHANGE_LANGUAGE_PART,
+    changeLanguagePart
 }

@@ -23,8 +23,9 @@ const cookies = new Cookies();
 class DriverProfileNavigationClass extends React.Component {
     constructor(props) {
         super(props);
+        
         this.state = {
-            navigationText:this.props.globalReduser.languageText.driverProfileRegistration.DriverProfileNavigation.navigationText,
+           
             //avatar: "",
             //profile: this.props.globalReduser.profile,
             route: [
@@ -166,9 +167,9 @@ class DriverProfileNavigationClass extends React.Component {
             let img = requests.serverAddress + this.state.profile.avatar.url
             this.setState({ avatar: img })
         }*/
-        let textPage = this.props.globalReduser.languageText.driverProfileRegistration.DriverProfileNavigation;
+        let textPage = this.props.AppReduser.languageText.driverProfileRegistration.DriverProfileNavigation;
         let profile = this.props.globalReduser.profile;
-        
+        let navigationText = this.props.AppReduser.languageText.driverProfileRegistration.DriverProfileNavigation.navigationText; 
         return (
             <React.Fragment>
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer}/>                
@@ -235,7 +236,7 @@ class DriverProfileNavigationClass extends React.Component {
                     </div>
 
                     <div className="navigationBody d-flex align-items-center">
-                        {this.state.navigationText.map((element, index) =>
+                        {navigationText.map((element, index) =>
 
                             <span className={{ [this.state.route[index]]: "navigationBodyActive", }[this.props.globalhistory.history.location.pathname] + " navigationButton mb-0 " + (this.state.route[index].length===0 ? "blockedSpan" : "")}
                             onClick={(event) => { if(this.state.route[index].length>0) {

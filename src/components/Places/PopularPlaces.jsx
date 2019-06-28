@@ -40,7 +40,7 @@ class PopularPlacesClass extends React.Component {
         //     { title: "Andshi", img: Andshi },
 
         // ];
-        //debugger;
+        
         let placeRender = [];
 
         if (this.props.arrayRender.length > this.state.howMuchRender) {

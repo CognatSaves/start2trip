@@ -9,6 +9,7 @@ const home = {
         },
     },
     homeBodyBottom:{
+        homeBottomHeader: 'ПУТЕШЕСТВИЯ С TRIPFER(ENG)',
         homeBottomTitle: [
             "Маршрут(ENG)",
             'Дата отправления(ENG)',
@@ -67,7 +68,7 @@ const home = {
     homeBody:{
         mobileRouteMenuTitle: "Cпланируйте свой маршрут(ENG)",
         mobileRouteMenuText:{
-            firstLine: "Предложения от местных гидов-водителей(ENG)",
+            mobileRouteMenuText: "Предложения от местных гидов-водителей(ENG)",
             secondLine:"по вашему индивидуальному маршруту(ENG)"
         },
         changeMapList:{

@@ -19,7 +19,8 @@ export default class MapContainer extends Component {
   }
 
   componentWillReceiveProps(nextProps){
-    if(nextProps.cities == this.props.cities) {
+    
+    if(JSON.stringify(nextProps.cities) === JSON.stringify(this.props.cities)) {
       this.setState({mapUpdate:false});
     }else{
       this.setState({mapUpdate:true});
@@ -27,6 +28,7 @@ export default class MapContainer extends Component {
   return true
   }
   render() {
+    
     console.log('map data');
     console.log(this.props.cities);
     console.log(this.props.setLengthTime);

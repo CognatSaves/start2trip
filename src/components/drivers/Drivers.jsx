@@ -10,25 +10,33 @@ import StartTravelSuccess from '../startTravelForm/StartTravelSuccess'
 class DriversClass extends React.Component {
   constructor(props) {
 
-    function maxPriceCalc(array) {
-      let maxValue = 0;
-      for (let i = 0; i < array.length; i++) {
-        if (array[i].price > maxValue) {
-          maxValue = array[i].price;
-        }
-      }
-      return maxValue;
-    }
+    
     super(props);
-    let maxPrice = maxPriceCalc(this.props.driversState.driversList);
+    let maxPrice = this.maxPriceCalc(this.props.driversState.driversList);
     this.state = {
       travelVisibility: 'none',
       successVisibility: 'none',
       maxPrice: maxPrice
     }
   }
+  maxPriceCalc = (array) =>{
+    let maxValue = 0;
+    for (let i = 0; i < array.length; i++) {
+      if (array[i].price > maxValue) {
+        maxValue = array[i].price;
+      }
+    }
+    return maxValue;
+  }
   componentWillMount() {
     this.props.setMaxPrice(this.state.maxPrice);
+  }
+  shouldComponentUpdate(nextProps, nextState){
+    if(JSON.stringify(nextProps.driversState.driversList)!==JSON.stringify(this.props.driversState.driversList)){
+      
+      this.props.setMaxPrice(this.maxPriceCalc(nextProps.driversState.driversList))
+    }
+    return true;
   }
   changeTravelVisibility=(value)=> {
     this.setState({
@@ -40,16 +48,20 @@ class DriversClass extends React.Component {
       successVisibility: value
     })
   }
-  parseStringToArray=(cities,country)=>{
+  parseStringToArray=(cities,country, langISO)=>{
     
     let newCities = [];
     let newString = cities.slice(5);
     let newArrayCities = newString.split("-to-");
     for(let i = 0; i<newArrayCities.length;i++){
-      let stringWhithSpaces = newArrayCities[i].replace(/-/g, ' ');
-      stringWhithSpaces = stringWhithSpaces + ', ' +country;
-      newCities[i]={point: stringWhithSpaces, lat: "", long: ""};
+      let stringWithSpaces = newArrayCities[i].replace(/-/g, ' ');
+      stringWithSpaces = stringWithSpaces + ', ' +country;
+      
+      stringWithSpaces=this.props.globalReduser.convertFromUrlTranslation(stringWithSpaces, langISO ? langISO : 'ENG');
+      
+      newCities[i]={point: stringWithSpaces, lat: "", long: ""};
     }
+    
     this.props.setCities(newCities)
   }
   
@@ -59,26 +71,29 @@ class DriversClass extends React.Component {
     let country;
     if(this.props.match){
       if(this.props.storeState.cities[0].point === ""){
+        
+        let langISO = this.props.globalReduser.findGetParameter('lang');
+        
         cities = this.props.match.params.cities;
         country = this.props.match.params.country;
-        this.parseStringToArray(cities,country);
+        this.parseStringToArray(cities,country,langISO);
       }else{
         let route = "";
           for (let i = 0; i < this.props.storeState.cities.length; i++) {
-            let arrayAdress = this.props.storeState.cities[i].point.split(',');
-            country = arrayAdress[arrayAdress.length - 1].slice(1);
+            let arrayAddress = this.props.storeState.cities[i].point.split(',');
+            country = arrayAddress[arrayAddress.length - 1].slice(1);
             
             
-            let stringWhithoutCountry = "";
-            for (let k = 0; k < arrayAdress.length - 1; k++) {
-              stringWhithoutCountry += arrayAdress[k]
+            let stringWithoutCountry = "";
+            for (let k = 0; k < arrayAddress.length - 1; k++) {
+              stringWithoutCountry += arrayAddress[k]
             }
-            let stringWhithoutSpaces = stringWhithoutCountry.replace(/ /g,'-');
-             stringWhithoutSpaces = stringWhithoutSpaces.replace(/[/]/g,'');
+            let stringWithoutSpaces = stringWithoutCountry.replace(/ /g,'-');
+             stringWithoutSpaces = stringWithoutSpaces.replace(/[/]/g,'');
             if (i == 0) {
-              route = "from-" + stringWhithoutSpaces;
+              route = "from-" + stringWithoutSpaces;
             } else {
-              route += "-to-" + stringWhithoutSpaces;
+              route += "-to-" + stringWithoutSpaces;
             }
           }
          cities = route; 
@@ -102,7 +117,8 @@ class DriversClass extends React.Component {
 const Drivers = connect(
   (state) => ({
     storeState: state.AppReduser,
-    driversState: state.DriversReduser
+    driversState: state.DriversReduser,
+    globalReduser: state.GlobalReduser
   }),
   (dispatch) => ({
     setCities:(cities) => dispatch({type:"SET_CITIES",cities:cities}),

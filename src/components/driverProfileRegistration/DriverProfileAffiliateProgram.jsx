@@ -48,7 +48,7 @@ class DriverProfileAffiliateProgramClass extends React.Component {
         }
         var allPayments = paymentsCalculation(this.props.globalReduser.profile.partners);
 
-        let textPage = this.props.globalReduser.languageText.driverProfileRegistration.DriverProfileAffiliateProgram;
+        let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileAffiliateProgram;
 
         let iconsRenderArray = [];
         if (this.state.iconsArray.length > this.state.howMuchRender) {

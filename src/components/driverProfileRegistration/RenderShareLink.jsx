@@ -15,7 +15,11 @@ class RenderShareLinkClass extends React.Component {
 
 
     }
-
+    copyValue = (id) =>{
+        let selectedInput = document.getElementById(id);
+        selectedInput.select();
+        document.execCommand("copy");
+    }
     render() {
 
         let iconsRenderArray = [];

@@ -306,7 +306,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
             },
         };
 
-        let textPage = this.props.globalReduser.languageText.driverProfileRegistration.DriverProfileTripSettingsTrip;
+        let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileTripSettingsTrip;
         return (
 
             <React.Fragment>
@@ -385,7 +385,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                                 />
                                 {/* <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none pl-2">{textPage.maxDailyMileage.description}</p> */}
                             </div>
-                            <div className="tripSettingsContentTitle col-12 p-0"><p>Настройка не рабочих дней:</p></div>
+                            <div className="tripSettingsContentTitle col-12 p-0"><p>{textPage.weekendSettings}</p></div>
                             <div className="tripSettingsContentP d-flex flex-md-row flex-sm-column flex-column align-items-center">
                                 <p className="col-xl-2 col-lg-2 col-md-3 col-sm-11 col-11 p-0">{textPage.chooseWeekend}</p>
                                 <span className="newTourDatepickerSpan col-xl-6 col-lg-7 col-md-9 col-sm-11 col-11" onClick={this.calendarModalShow}>{textPage.selectDates}</span>

@@ -15,11 +15,12 @@ class PlacesTagListClass extends React.Component{
             "hdhdsahhdsahsah dsfs","jsjdhjsjdsnjsd","ksankjdsankjdsanj","ujsajdscbhdsc","bjdscdjjd",
             "jndscjdsanjds","jdscanjdsjndsjn","dscajdsajdsnj","jdsjdsjndsv","dsdsnjdsds","dscajdsadsa",
             "dsjnjndsadsds","jdsvjdsvnjds","dsalkdslkdsk","dsdscokdsnkdsk","jndsajdsjndsa"],
-            howMuchRender:15,
+            //howMuchRender:15,
+            isShortTags: true
         };
     }
     render(){
-        let placeRender = [];
+        /*let placeRender = [];
 
         if (this.state.tags.length > this.state.howMuchRender) {
 
@@ -30,42 +31,93 @@ class PlacesTagListClass extends React.Component{
             }
         } else {
             placeRender = this.state.tags;
-        }
+        }*/
         let tagBlockWidth; let tempWidth;
         tagBlockWidth= document.getElementById("placesMainBlock");
         tempWidth = document.getElementById("tagLine");
-        console.log('tagBlockWidth',tagBlockWidth ? tagBlockWidth.offsetWidth: '');
-        console.log('tempWidth',tempWidth ? tempWidth.offsetWidth : '');
+        //console.log('tagBlockWidth',tagBlockWidth ? tagBlockWidth.offsetWidth: '');
+        //console.log('tempWidth',tempWidth ? tempWidth.offsetWidth : '');
+        var widthSum=0;var mapStop=false;
         return(
             <div className="popularPlacesBody d-flex flex-row">
                 <div className="d-flex justify-content-center" style={{width: '10%'}}>
                     <div style={{margin: 'auto'}}>Категории:</div>
                 </div>
-                <div id="tagLine" className="d-flex flex-wrap" style={{width: '85%', textOveflow: 'ellipsis', }}>
-                    
-                {    
-                    <React.Fragment>{
-                        placeRender.map((element,index)=>{
-                            //debugger;
-                            if(index>0){
-                                let temp = document.getElementById("tagno"+(index-1));
-                                console.log('temp',temp ? temp.offsetWidth : '');
-                            }
-                            return(
-                            <div className="d-flex justify-content-center align-items-center " style={{border: '2px solid #ff6600', borderRadius: '25px', margin: '5px',padding: '5px', flexBasis:"auto", flexGrow:"0.2"}}>
-                                <div style={{}}>{element}</div>
-                            </div>
-                            )}
-                        )
-                    }
-                        
-                    </React.Fragment>
-                }
-                <div className="d-flex justify-content-top" style={{width: '5%', margin: '5px',padding: '5px', textDecoration: 'underline'}}>             
-                        <div style={{margin: 'auto'}} /*onClick={() => { this.setState({ howMuchRender: this.state.howMuchRender + 6 }) }}*/>Исчо</div>
-                    </div>
-                </div>
+                <div id="tagLine" className="d-flex flex-wrap placesTagList_tagLine" key={this.state.tags+this.state.isShortTags}>
                 
+                {    
+                    this.props.placesState.tags.map((element,index)=>{                   
+                        if(this.state.isShortTags){
+                            if(mapStop){
+                                return(<React.Fragment/>)
+                            }
+                            else{
+                                if(index>0){                           
+                                    let temp = document.getElementById("tagno"+(index-1));
+                                    if(temp){                                      
+                                        widthSum+=temp.offsetWidth;
+                                        let w = tempWidth.offsetWidth*2-200
+                                        if(w-widthSum<150){                                       
+                                            widthSum-=temp.offsetWidth;
+                                            //console.log('temp',temp);
+                                            temp.classList.remove('d-flex');
+                                            temp.style.display='none';
+                                            //temp.remove();
+                                            let step = 2
+                                            while(w-widthSum<150){
+                                                temp = document.getElementById("tagno"+(index-step));
+                                                widthSum-=temp.offsetWidth;
+                                                //console.log('temp',temp);
+                                                temp.classList.remove('d-flex');
+                                                temp.style.display='none';
+                                                //temp.remove();
+                                                
+                                                step++;
+                                            }
+                                            //console.log('widthSum',widthSum);                                
+                                            mapStop=true;
+                                            return(
+                                                <div className="d-flex justify-content-top placesTagList_stateBlock">             
+                                                    <div style={{margin: 'auto'}} onClick={()=>this.setState({isShortTags: false})}>Ещё</div>
+                                                </div>                  
+                                            )
+                                        }
+                                    }
+                                    //console.log('temp',temp ? temp.offsetWidth : '');
+                                }
+                                return(
+                                <div key={index+Date.now()} id={"tagno"+index} className="d-flex justify-content-center align-items-center placesTagList_tagBlock">
+                                    <div style={{}}>{element.tagLoc.name}</div>
+                                </div>
+                            )}
+                        }
+                        else{
+                            if(index===this.state.tags.length-1){
+                                return(
+                                    <React.Fragment>
+                                        <div key={index+Date.now()} id={"tagno"+index} className="d-flex justify-content-center align-items-center placesTagList_tagBlock">
+                                            <div style={{}}>{element.tagLoc.name}</div>
+                                        </div>
+                                        <div className="d-flex justify-content-top placesTagList_stateBlock">             
+                                            <div style={{margin: 'auto'}} onClick={()=>this.setState({isShortTags: true})}>Свернуть</div>
+                                        </div> 
+                                    </React.Fragment>
+                                )
+                            }
+                            else{
+                                return(
+                                <div id={"tagno"+index} className="d-flex justify-content-center align-items-center placesTagList_tagBlock">
+                                    <div style={{}}>{element.tagLoc.name}</div>
+                                </div>
+                                )
+                            }
+                        }
+                    })
+                }
+
+                
+                
+                </div>
             </div>
         )
     }

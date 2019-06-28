@@ -222,7 +222,7 @@ class AgencyProfileSettingsClass extends React.Component{
             },
         };
         
-        let textPage = this.props.globalReduser.languageText.driverProfileRegistration.DriverProfileSettings;
+        let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileSettings;
         let profile = this.props.globalReduser.profile;
         return (
             <div className="driverProfilesettingsBody pb-1">

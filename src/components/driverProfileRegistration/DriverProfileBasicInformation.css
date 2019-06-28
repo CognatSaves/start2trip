@@ -17,7 +17,9 @@
     line-height: 55px;
     padding-left: 20px;
 }
-
+.classDivDriverHomeCity{
+    width: 100%;
+}
 .basicInformationBodyBottomHeader p {
     color: #304269;
     font-weight: 400;

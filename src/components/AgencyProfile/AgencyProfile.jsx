@@ -18,6 +18,7 @@ import getUserData from '../driverProfileRegistration/DriverProfileRequest';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 import '../driverProfileRegistration/DriverProfileRegistration.css';
 import AccountFirstEnterModal from '../home/AccountFirstEnterModal';
+import {changeLanguagePart} from '../../redusers/Action';
 class AgencyProfileClass extends React.Component{
     constructor(props){
         super(props);
@@ -26,6 +27,10 @@ class AgencyProfileClass extends React.Component{
         this.state = {
         accountEnter: accountEnterCookie ? false : true
         }
+        props.dispatch(changeLanguagePart(true)); //эта ересь сообщает шапке, что мы в админке за водителя/агенство, т.е. нужна 2 партия языков
+    }
+    componentWillUnmount(){
+        this.props.dispatch(changeLanguagePart(false))//эта ересь сообщает шапке, что мы валим из админки водителя/агенства, т.е. нужна стандартная партия языков
     }
     render(){
         console.log('Здесь работает AgencyProfile!');

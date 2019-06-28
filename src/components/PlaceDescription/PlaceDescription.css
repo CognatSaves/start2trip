@@ -1,9 +1,20 @@
 .placeDescription_background {
-    background: transparent;
-    height: 460px;
-    padding-left: 0;
-    padding-right: 0;
-    padding-top: 0;
+    top: 0;
+    /*width: 100%;*/
+    /*background: url(pictures/tbs_4.jpg) no-repeat 100%;
+    background-size: cover;
+    background-position: center center;*/
+    /* object-fit: cover; */
+    padding-bottom: 50px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.placeDescription_topImageMask{
+    top: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .placeDescription_fragmentName {
@@ -125,12 +136,70 @@
     line-height: 40px;
     padding: 15px 20px;
     border-radius: 5px;
+    color: black;
+}
+
+.placesDescription_travelBlock_element :nth-child(2){
+    width: 100%;
+}
+
+.travelBlockSearch{
+    /*width: 100%;*/
+    border: none;
+    outline: none;
+}
+
+.placeDescrDate {
+    cursor: pointer;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    /*margin: 2px;*/
+    max-height: 41px;
+    min-height: 41px;
+}
+
+.placeDescrDate-Check {
+    background: rgba(37, 165, 154, 0.911);
+}
+
+.placeDescrDate div {
+    cursor: pointer !important;
+    width: 100% !important;
+    color: #fff !important;
+    font-weight: 400 !important;
+    font-size: 14px !important;
+    max-height: 41px;
+    line-height: 41px;
+}
+
+.placeDescrDate input {
+    cursor: pointer !important;
+    color:black !important;
+    font-weight: 400 !important;
+    font-size: 16px !important;
+    max-height: 41px;
+}
+
+.placeDescrDate hr {
+    display: none;
+}
+
+
+/* .routemenu_date hr {
+    width: 90% !important;
+} */
+
+.placeDescrDate:focus {
+    outline: none;
 }
 
 .placesDescription_travelBlock_icon {
     width: 25px;
     height: 25px;
-    margin: auto 10px auto 0;
+    min-width: 25px;
+    min-height: 25px;
+    margin: auto 15px auto 0;
     background-size: 25px 25px;
 }
 
@@ -155,9 +224,9 @@
 }
 
 .placeDescription_fragmentName_mapBlock {
-    width: 870px;
+    width: /*870px;*/100%;
     height: 400px;
-    background-color: red;
+    /*background-color: red;*/
 }
 
 .render_otherPlaces {
@@ -187,4 +256,47 @@
 
 .render_otherPlaces div.tourCard div.card-body {
     padding: 14px 20px;
+}
+
+.placePhotos_elementBlock{
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.placePhotos_imageStyle{
+    border-radius: 10px;
+}
+
+.placePhotos_maskBlock{
+    top: 0;
+    left:0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.placePhotos_maskBlock_inner{
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.33);
+    width: 100%;
+    height: 100%;
+}
+
+.placePhoto_imageContainer{
+    margin-bottom: '10px'; 
+}
+
+.placePhoto_imageContainer:hover{
+    cursor: pointer
+}
+
+.placePhotos_maskBlock_inner:hover{
+    cursor: pointer
+}
+
+.placePhotos_maskBlock_innerText{
+    margin: auto;
+    color: #ffffff;
+    font-weight: 600;
+    border-bottom: 1px dashed;
 }

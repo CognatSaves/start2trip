@@ -4,16 +4,19 @@ import './PlacesCountryInfo.css'
 import territoryIcon from './pictures/georgia_Монтажная область 1.svg';
 import peopleIcon from './pictures/people_Монтажная область 1.svg';
 import capitalIcon from './pictures/building_Монтажная область 1.svg';
-
-export default class PlacesCountryInfo extends React.Component {
+import { connect } from 'react-redux';
+class PlacesCountryInfoClass extends React.Component {
     render(){
+        
         return(
             <React.Fragment>
               <div className="placesCountryInfo">
-                <div className="placesCountryInfo_countryName">IMPERII ROMANI ORIENTALIS</div>
+                <div className="placesCountryInfo_countryName">{ this.props.placesState.country.local ?  this.props.placesState.country.local.name : ''}</div>
                 <div className="placesCountryInfo_line"/>
                 <div className="placesCountryInfo_countryinfo">
-                Imperio Romano anno 395 in partes duas diviso, Imperium Romanum Orientale
+                { this.props.placesState.country.local ? this.props.placesState.country.local.description : ''}
+                {
+                /*Imperio Romano anno 395 in partes duas diviso, Imperium Romanum Orientale
                 (Graece: Βασιλεία Ῥωμαίων) vel etiam ab historicis recentioribus imperium
                 Byzantinum nuncupatum principio fuit pars orientalis eius. Postquam
                 imperium occidentale eversum est plus quam decem exinde saecula valebat
@@ -25,7 +28,7 @@ export default class PlacesCountryInfo extends React.Component {
                 est. Georgius Ostrogorsky cum imperii radices variis ex fontibus sumptas atque
                 fusas describeret Byzantinum imperium tribus ex elementis, id est administrationem
                 Romanam, Graecam linguam moresque et Christianam religionem,
-                constetisse distinxit.
+                constetisse distinxit.*/}
                 </div>
                 <div className="placesCountryInfo_countryData">
                   <div className="placesCountryInfo_countryData_element" style={{marginLeft: "auto"}}>
@@ -36,7 +39,7 @@ export default class PlacesCountryInfo extends React.Component {
                       <text style={{textAlign: "center", width: "100%", fontFamily: "Roboto", }}>
                         <text style={{fontWeight: "300", fontSize: "12px"}}>{"территория"} </text>                     
                         <br/>
-                        <text style={{fontWeight: "400", fontSize: "14px"}}>{"69 700 км"}</text>
+                        <text style={{fontWeight: "400", fontSize: "14px"}}>{this.props.placesState.country.local ? this.props.placesState.country.local.propTerritory : ''}</text>
                       </text> 
 
                     </div>
@@ -49,7 +52,7 @@ export default class PlacesCountryInfo extends React.Component {
                       <text style={{textAlign: "center", width: "100%", fontFamily: "Roboto", }}>
                         <text style={{fontWeight: "300", fontSize: "12px"}}>{"население"} </text>                     
                         <br/>
-                        <text style={{fontWeight: "400", fontSize: "14px"}}>{"3.729 млн"}</text>
+                        <text style={{fontWeight: "400", fontSize: "14px"}}>{(this.props.placesState.country.propPopulation ? this.props.placesState.country.propPopulation+" чел." : '')}</text>
                       </text> 
                     </div>
                   </div>
@@ -61,7 +64,7 @@ export default class PlacesCountryInfo extends React.Component {
                       <text style={{textAlign: "center", width: "100%", fontFamily: "Roboto", }}>
                         <text style={{fontWeight: "300", fontSize: "12px"}}>{"столица"} </text>                     
                         <br/>
-                        <text style={{fontWeight: "400", fontSize: "14px"}}>{"Тбилиси"}</text>
+                        <text style={{fontWeight: "400", fontSize: "14px"}}>{this.props.placesState.country.local ? this.props.placesState.country.local.propCapital : ''}</text>
                       </text>  
                     </div>
                   </div>
@@ -71,3 +74,14 @@ export default class PlacesCountryInfo extends React.Component {
         )
     }
 }
+
+const PlacesCountryInfo = connect(
+  (state) => ({
+    storeState: state.AppReduser,
+    globalReduser: state.GlobalReduser, 
+    placesState: state.PlacesReduser
+  }),
+
+)(PlacesCountryInfoClass);
+
+export default PlacesCountryInfo;

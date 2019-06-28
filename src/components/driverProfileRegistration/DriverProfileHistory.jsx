@@ -38,7 +38,7 @@ class DriverProfileHistoryClass extends React.Component {
 
 
   render() {
-    let textPage = this.props.globalReduser.languageText.driverProfileRegistration.DriverProfileHistory;
+    let textPage = this.props.AppReduser.languageText.driverProfileRegistration.DriverProfileHistory;
     return (
       <React.Fragment>
         <div className="driverProfileHistory">
@@ -63,7 +63,8 @@ class DriverProfileHistoryClass extends React.Component {
 const DriverProfileHistory = connect(
   (state) => ({
     storeState: state.DriverProfileRegistrationReduser,
-    globalReduser: state.GlobalReduser
+    globalReduser: state.GlobalReduser,
+    AppReduser: state.AppReduser,
   }),
 )(DriverProfileHistoryClass);
 

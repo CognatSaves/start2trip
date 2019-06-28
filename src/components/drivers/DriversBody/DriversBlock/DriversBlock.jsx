@@ -35,6 +35,7 @@ class DriversBlockClass extends React.Component {
     this.props.dispatch(setMorePagesShow());
   }
   driversSort=(array, type)=> {
+    
     function sortPrice(a, b) {
       if (a.price > b.price) return 1;
       if (a.price < b.price) return -1;
@@ -92,7 +93,7 @@ class DriversBlockClass extends React.Component {
     console.log('selectedEl');
     console.log(selectedElements);*/
 
-
+    console.log('DriversBlock render');
     
     let driversArray = this.driversSort([...this.props.driversState.driversList], this.props.storeState.sortMenuValue);
     let from = (this.props.driversState.page - this.props.driversState.showPages) * this.props.storeState.pagesMenuValue;

@@ -12,6 +12,7 @@ const initialState = {
     placesList: [],
     tags:[],
     directions:[],
+    country:{},
     places: [
         {
             //country: "Imperii Romani Orientalis",
@@ -480,6 +481,7 @@ export const PlacesReduser = (state=initialState, action)=>{
             newState.placesList = action.placesList;
             newState.tags = action.tags;
             newState.directions = action.directions;
+            newState.country=action.country;
             return newState;
         }
         case SET_PAGES_MENU_VALUE: {

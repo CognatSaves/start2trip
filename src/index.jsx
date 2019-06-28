@@ -83,7 +83,7 @@ ReactDOM.render(
                         <Route path="/tripConfirmation/:id-:userId" component={TripConfirmation}/>
                         <Route path="/driverConfirmation/:id-:carrierId-:confirmation" component={DriverConfirmation}/>
                         <Route path="/places" component={Places} />
-                        <Route path="/place/:country,:id" component={PlaceDescription} />
+                        <Route path="/place/:slug" component={PlaceDescription} />
                         <Route path="/tours" component={Tours} />
                         <Route path="/tour/:country,:id" component={TourDescription} />
 

@@ -14,12 +14,18 @@
     line-height: 17px;
     margin: auto 5px auto 0;
 }
-
+.placeCreateCommentStars{
+    font-size: 24px!important;
+}
 .infoBlock_starsBlock_stars {
     align-items: center;
     height: 100%;
     margin: auto 0;
     font-size: 16px;
+}
+
+.infoBlock_starsBlock_hideFirst .infoBlock_starsBlock_value{
+    display: none;
 }
 
 .starsBlock_stars_element {

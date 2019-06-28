@@ -13,12 +13,13 @@ const SET_PLACES_PANEL_SELECTED_ELEMENT = 'SET_PLACES_PANEL_SELECTED_ELEMENT';
 
 const SET_PLACES_LIST = 'SET_PLACES_LIST';
 
-const setPlacesList = function(placesList, tags, directions){
+const setPlacesList = function(placesList, tags, directions,country){
   return {
     type: 'SET_PLACES_LIST',
     placesList: placesList,
     tags: tags,
-    directions:directions
+    directions:directions,
+    country:country
   }
 }
 const setPagesMenuValue = function (pagesMenuValue){

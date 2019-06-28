@@ -43,7 +43,7 @@ class DriverProfileBasicInformationClass extends React.Component {
         passportDate = new Date(profile.passportDate);
         let languageArrays = languageArraysConstr(profile.language, profile.allLanguages);
         this.state = {
-            value: this.props.globalReduser.languageText.driverProfileRegistration.DriverProfileBasicInformation.MenuItem.value,
+            value: this.props.storeState.languageText.driverProfileRegistration.DriverProfileBasicInformation.MenuItem.value,
             chipData: languageArrays.chipData,
             language: languageArrays.langList,
             isRefreshExist:false,
@@ -241,7 +241,7 @@ class DriverProfileBasicInformationClass extends React.Component {
     }
 
     render() {
-        let textPage = this.props.globalReduser.languageText.driverProfileRegistration.DriverProfileBasicInformation;
+        let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileBasicInformation;
         return (
             <div className="basicInformationBody d-flex flex-column">
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer}/>
@@ -315,7 +315,7 @@ class DriverProfileBasicInformationClass extends React.Component {
                             <div className="bottomContentNote d-flex align-items-center">
                                 <label htmlFor="basicInfoLocation" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">{textPage.basicInfoLocation.label}:</label>
                                 <div className="d-flex col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">
-                                    <LocationSearchInput address={this.state.profileData.city} changeCity={this.changeCity} classInput="searchInputDriverInformation" id="basicInfoLocation" classDropdown="searchDropdownDriverInformation" classDiv="p-0"/>
+                                    <LocationSearchInput address={this.state.profileData.city} changeCity={this.changeCity} classInput="searchInputDriverInformation" id="basicInfoLocation" classDropdown="searchDropdownDriverInformation" classDiv="p-0 classDivDriverHomeCity"/>
                                 </div>
                                 <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">{textPage.basicInfoLocation.description}</p>
                             </div>

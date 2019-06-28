@@ -21,14 +21,16 @@ export class CurrentLocation extends React.Component {
     console.log(this.state.travelMode);
   }
 
-  componentWillUpdate(prevProps, prevState) {
-    if (prevProps.google !== window.google) {
+  componentWillUpdate(nextProps, nextState) {
+    
+    if (nextProps.google !== window.google) {
       this.loadMap();
     }
-    if (prevState.currentLocation !== this.state.currentLocation) {
+    if (nextProps.currentLocation !== this.state.currentLocation && nextProps.mapUpdate) {
       this.recenterMap();
     }
-    if (!(this.props.cities.some(city => city === "")) && this.props.mapUpdate) {
+    if (!(this.props.cities.some(city => city === "")) && nextProps.mapUpdate) {
+      this.props=nextProps;
       this.loadMap();
     }
   }
@@ -38,7 +40,12 @@ export class CurrentLocation extends React.Component {
     const google = this.props.google;
     const maps = google.maps;
     if (map) {
+      
+      
       let center = new maps.LatLng(current.lat, current.lng);
+      if(!center || !(center && center.lat && center.lng)){
+        
+      }
       map.panTo(center);
     }
   }
@@ -77,6 +84,7 @@ export class CurrentLocation extends React.Component {
       return request;
     }
 
+    
 
     if (this.props && this.props.google) {
       const { google } = this.props;

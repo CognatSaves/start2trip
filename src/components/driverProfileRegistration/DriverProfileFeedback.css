@@ -46,7 +46,7 @@
     transition: all 0.3s;
 }
 
-.commentBlock_comments {
+.profileFeedbackBlock_comments {
     position: relative;
     width: 100%;
     box-shadow: 0 0 1px 1px rgba(221, 221, 221, 1);

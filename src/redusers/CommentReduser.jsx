@@ -2,7 +2,7 @@ import {ADD_COMMENT, SET_COMMENT_VALUE} from './ActionComments';
 /*import { EditorBorderAll } from 'material-ui/svg-icons';*/
 
 const initialState = {
-    commentValue: 3,
+    commentValue: 0,
     comments: [
         {
             name: "Очень важный человек1",

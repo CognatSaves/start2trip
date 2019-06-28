@@ -37,6 +37,7 @@ class HomeClass extends React.Component {
     //console.log(isTablet , "isTablet")
     console.log('Home render');
     console.log(this.props);
+    let textInfo = this.props.storeState.languageTextMain.home.home;
     return (
       <React.Fragment>
         <main className="d-flex flex-column container-fluid p-0">
@@ -52,11 +53,11 @@ class HomeClass extends React.Component {
             <div className="home_block col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
               {!isMobileOnly ?
                 <div className="home_text col-xl-10 col-lg-10 col-md-12 col-sm-11 col-11 p-0">
-                  <div className="text_firstLine">Cпланируйте свой маршрут</div>
-                  <div className="text_secondLine">Предложения от местных гидов-водителей по вашему индивидуальному маршруту</div>
+                  <div className="text_firstLine">{textInfo.homeTextFirstLine}</div>
+                  <div className="text_secondLine">{textInfo.homeTextSecondLine}</div>
                   <div className="text_changeBodyBlock">
-                    <div className="text_changeBodyBlock_element changeBody_element_select changeBodyBlock_element_left">СПИСОК</div>
-                    <div className="text_changeBodyBlock_element changeBodyBlock_element_right">КАРТА</div>
+                    <div className="text_changeBodyBlock_element changeBody_element_select changeBodyBlock_element_left">{textInfo.changeBodyBlock.left}</div>
+                    <div className="text_changeBodyBlock_element changeBodyBlock_element_right">{textInfo.changeBodyBlock.right}</div>
                   </div>
                 </div>
                 :

@@ -156,6 +156,7 @@ class DriverProfileTrevelHistoryClass extends React.Component {
             routeString+=' ('+length+', '+time+")";
             return routeString; 
         }
+        /*
         function createDateTimeString(start){
             let date = new Date(start);
             let month = date.getUTCMonth(); let day = date.getUTCDate(); let hours = date.getUTCHours(); let minutes = date.getMinutes();
@@ -163,7 +164,8 @@ class DriverProfileTrevelHistoryClass extends React.Component {
             (hours>=10 ? hours : '0'+hours)+":"+(minutes>=10 ? minutes : '0'+minutes);
             return res;
         }
-        let textPage = this.props.globalReduser.languageText.driverProfileRegistration.DriverProfileTrevelHistory;
+        */
+        let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileTrevelHistory;
         
         let that =  this;
         return (
@@ -175,7 +177,7 @@ class DriverProfileTrevelHistoryClass extends React.Component {
                         <div className="trevelHistoryBody  d-flex flex-column">
                             <div className="d-flex flex-column historyBodyHeader">
                                 <div className="d-flex justify-content-between">
-                                    <span>{element.startDefault ? createDateTimeString(element.startDefault) : ''}</span>
+                                    <span>{element.startDefault ? this.props.globalReduser.createDateTimeString(element.startDefault) : ''}</span>
                                     <span className="historyBodyHeaderType">{element.tripType.type_en}</span>
                                 </div>
                                 <span className="historyBodyHeaderRoute">{createCorrectRoute(element.route, element.travelLength, element.travelTime)}</span>
@@ -209,11 +211,11 @@ class DriverProfileTrevelHistoryClass extends React.Component {
                                 <React.Fragment>
                                     <div className="d-flex flex-column historyBodyElement">
                                         <h5>Начало поездки</h5>
-                                        <span>{element.startFact ? createDateTimeString(element.startFact) : 'Поездка не была начата'}</span>
+                                        <span>{element.startFact ? this.props.globalReduser.createDateTimeString(element.startFact) : 'Поездка не была начата'}</span>
                                     </div>
                                     <div className="d-flex flex-column historyBodyElement">
                                         <h5>Окончание поездки</h5>
-                                        <span>{element.endFact ? createDateTimeString(element.endFact) : 'Поездка не была закончена'}</span>
+                                        <span>{element.endFact ? this.props.globalReduser.createDateTimeString(element.endFact) : 'Поездка не была закончена'}</span>
                                     </div>
                                 </React.Fragment>
                                 :<React.Fragment>

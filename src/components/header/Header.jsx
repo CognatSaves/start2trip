@@ -16,7 +16,7 @@ import { Collapse } from 'reactstrap';
 import { Modal, ModalBody } from 'reactstrap';
 import requests from '../../config';
 import axios from 'axios';
-import { setUser, setActiveCurr, setActiveLang } from '../../redusers/Action';
+import { setUser, setActiveCurr, setActiveLang, setModalRegister, setActiveLangAdmin } from '../../redusers/Action';
 import { disablePageScroll, clearQueueScrollLocks, enablePageScroll } from 'scroll-lock';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
@@ -220,7 +220,7 @@ class HeaderClass extends React.Component {
       previousPageYOffset: null,
       modalCountry: false,
       collapse: false,
-      modalRegistration: false,
+      //modalRegistration: false,
       buttonMassElements: [
         {
           to: "/",
@@ -270,7 +270,9 @@ class HeaderClass extends React.Component {
         let languages = response.data.languages;
         let currencies = response.data.currencies;
         let countries = response.data.countries;
-        this.props.dispatch(setLocals(languages, currencies, countries));
+        let adminLanguages = response.data.adminLanguages;
+        
+        this.props.dispatch(setLocals(languages, adminLanguages, currencies, countries));
 
         let lang = this.props.globalReduser.readCookie('userLang');
         let curr = this.props.globalReduser.readCookie('userCurr');
@@ -279,7 +281,9 @@ class HeaderClass extends React.Component {
           for (let i = 0; i < languages.length; i++) {
             if (languages[i].ISO === 'RUS') {
               cookies.set('userLang', languages[i].ISO, { path: '/', expires: date });
+              cookies.set('userLangISO',languages[i].isoAutocomplete, { path: '/', expires: date });
               that.props.dispatch(setActiveLang(i));
+              that.setLocals('userLang',i);
               /*that.setState({
                 activLanguageNumber: i
               })*/
@@ -288,7 +292,9 @@ class HeaderClass extends React.Component {
           lang = this.props.globalReduser.readCookie('userLang');
           if (!lang) {
             cookies.set('userLang', languages[0].ISO, { path: '/', expires: date });
+            cookies.set('userLangISO',languages[0].isoAutocomplete, { path: '/', expires: date });
             that.props.dispatch(setActiveLang(0));
+            that.setLocals('userLang',0);
             /*that.setState({
               activLanguageNumber: 0
             })*/
@@ -299,7 +305,10 @@ class HeaderClass extends React.Component {
           for (; i < languages.length; i++) {
             if (lang === languages[i].ISO) {
               cookies.set('userLang', languages[i].ISO, { path: '/', expires: date });
+              cookies.set('userLangISO',languages[i].isoAutocomplete, { path: '/', expires: date });
               that.props.dispatch(setActiveLang(i));
+              that.setLocals('userLang',i);
+              
               /*that.setState({
                 activLanguageNumber: i
               });*/
@@ -308,7 +317,9 @@ class HeaderClass extends React.Component {
           }
           if (i === languages.length) {
             cookies.set('userLang', languages[0].ISO, { path: '/', expires: date });
+            cookies.set('userLangISO',languages[0].isoAutocomplete, { path: '/', expires: date });
             that.props.dispatch(setActiveLang(0));
+            that.setLocals('userLang',0);
             /*that.setState({
               activLanguageNumber: 0
             });*/
@@ -357,6 +368,7 @@ class HeaderClass extends React.Component {
           //тут должна быть переадресация на страницу с выбором страны!!!(в else должно быть схожее, посмотри)
         }
         else{
+          
           let index = -1;
           for(let i=0; i<countries.length; i++){
             if(country===countries[i].ISO){
@@ -365,7 +377,30 @@ class HeaderClass extends React.Component {
             }
           }
           if(index!==-1){
+            debugger;
+            let adminLang = this.props.globalReduser.readCookie('adminLang');
+            let adminIndex=-1;
+            if(!adminLang){
+              adminLang=countries[index].adminDefaultLang;
+            }
+            let engIndex=-1;
+            for(let k=0 ; k<adminLanguages.length; k++){
+              if(adminLanguages[k].ISO===adminLang){
+                adminIndex=k;
+                break;
+              }
+              if(adminLanguages[k].ISO==='ENG'){
+                engIndex=k;
+              }
+            }
+            if(adminIndex===-1){
+              adminIndex=engIndex;
+              if(adminIndex===-1){
+                adminIndex=0;
+              }
+            }
             this.props.dispatch(modalCountryDispatch(countries[index].ISO,countries[index].isoMap));
+            this.props.dispatch(setActiveLangAdmin(adminIndex));
           }
           else{
             //здесь должна быть переадресация
@@ -381,11 +416,37 @@ class HeaderClass extends React.Component {
     let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
     switch (type) {
       case 'userLang': {
-        this.props.dispatch(setActiveLang(index));
-        /*this.setState({
-          activLanguageNumber: index
-        });*/
-        cookies.set('userLang', this.props.storeState.languages[index].ISO, { path: '/', expires: date });
+        let that = this;
+        function loadScript (url, onload){
+          return new Promise((resolve, reject) => {
+              const script = document.createElement('script');
+              script.type = 'text/javascript';
+              script.onload = resolve;
+              script.onerror = reject;
+              script.src = url;
+              
+              if (document.head) {
+                
+                document.getElementById('langScript').remove();
+                script.id='langScript';
+                document.head.appendChild(script);
+                that.props.dispatch(setActiveLang(index));
+                cookies.set('userLang', that.props.storeState.languages[index].ISO, { path: '/', expires: date });
+              }
+          });
+        }
+        let string = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBxjEYepkLXhQuXcf_1sUakshHN5Jrozc8&libraries=places&callback=initialize";
+        let langString= string+"&language="+this.props.storeState.languages[index].isoAutocomplete;
+        loadScript(langString);
+        
+        break;
+      }
+      case 'adminLang':{
+        
+        let that = this;
+        console.log('adminLang called');
+        this.props.dispatch(setActiveLangAdmin(index));
+        cookies.set('adminLang', that.props.storeState.adminLanguages[index].ISO, { path: '/', expires: date });
         break;
       }
       case 'userCurr': {
@@ -405,9 +466,10 @@ class HeaderClass extends React.Component {
     }));
   }
   toggleModalRegistration = () => {
-    this.setState(prevState => ({
-      modalRegistration: !prevState.modalRegistration
-    }));
+    //this.setState(prevState => ({
+      this.props.dispatch(setModalRegister(!this.props.storeState.modalRegistration));
+      //modalRegistration: !prevState.modalRegistration
+    //}));
   }
   toggleLanguage = () => {
     this.setState({
@@ -576,9 +638,9 @@ class HeaderClass extends React.Component {
     } else {
       if (this.state.previousPageYOffset > scrollEvent) {
         if (scrollEvent > 400) {
-          document.querySelector(".footerButtonUp").classList.add("footerButtonUp-active");
+            document.querySelector(".footerButtonUp").classList.add("footerButtonUp-active");
         } else {
-          document.querySelector(".footerButtonUp").classList.remove("footerButtonUp-active");
+            document.querySelector(".footerButtonUp").classList.remove("footerButtonUp-active");
         }
       } else {
         document.querySelector(".footerButtonUp").classList.remove("footerButtonUp-active");
@@ -588,14 +650,15 @@ class HeaderClass extends React.Component {
 
   }
   render() {
-    console.log('Header render', this.props);
+    console.log('Header render', this.props, window, document);
     //console.log(this.state);
     //console.log(this.props);
     let languages = this.props.storeState.languages;
     let currencies = this.props.storeState.currencies;
+    let adminLanguages = this.props.storeState.adminLanguages;
     return (
       <React.Fragment>
-        <ModalRegistration modalRegistration={this.state.modalRegistration} toggle={this.toggleModalRegistration} className={this.props.className} authorization={this.authorization} />
+        <ModalRegistration modalRegistration={this.props.storeState.modalRegistration} toggle={this.toggleModalRegistration} className={this.props.className} authorization={this.authorization} />
         <CountrySelect modalCountry={this.state.modalCountry} toggleModalCountry={this.toggleModalCountry} className={this.props.className} />
         {
           this.state.isWaiting ?
@@ -708,21 +771,49 @@ class HeaderClass extends React.Component {
                     }
                   </DropdownMenu>
                 </Dropdown>
-                <Dropdown setActiveFromChild="true" isOpen={this.state.dropdownLanguageOpen} toggle={this.toggleLanguage} className={languages.length > 0 ? "selectGeneral" : "selectGeneral preloadHiddenBlock"}>
-                  <DropdownToggle className="selectGeneralButton" caret size="sm">
-                    <img src={languages.length > 0 ? requests.serverAddress + languages[this.props.storeState.activeLanguageNumber/*this.state.activLanguageNumber*/].icon.url : ''} height="15px" width="15px" alt="flag" />
-                    {languages.length > 0 ? languages[this.props.storeState.activeLanguageNumber/*this.state.activLanguageNumber*/].ISO : ''}
-                  </DropdownToggle>
-                  <DropdownMenu className="dropdownMenu">
-                    {
-                      languages.map((element, index) =>
-                        <DropdownItem className="dropdownMenu" onClick={() => { this.setLocals('userLang', index) }}>
-                          <img src={requests.serverAddress + element.icon.url} height="15px" width="15px" alt="RU" />{element.ISO}
-                        </DropdownItem>
-                      )
-                    }
-                  </DropdownMenu>
-                </Dropdown>
+                {
+                  this.props.storeState.isSecondLanguageGroupPart ? 
+
+
+                  <Dropdown setActiveFromChild="true" isOpen={this.state.dropdownLanguageOpen} toggle={this.toggleLanguage} className={adminLanguages.length > 0 ? "selectGeneral" : "selectGeneral preloadHiddenBlock"}>
+                    <DropdownToggle className="selectGeneralButton" caret size="sm">
+                      <img src={adminLanguages.length > 0 ? requests.serverAddress + adminLanguages[this.props.storeState.activeLanguageNumberAdmin/*this.state.activLanguageNumber*/].icon.url : ''} height="15px" width="15px" alt="flag" />
+                      {adminLanguages.length > 0 ? adminLanguages[this.props.storeState.activeLanguageNumberAdmin/*this.state.activLanguageNumber*/].ISO : ''}
+                    </DropdownToggle>
+                    <DropdownMenu className="dropdownMenu">
+                      {
+                        adminLanguages.map((element, index) =>
+                          <DropdownItem className="dropdownMenu" onClick={() => {  this.setLocals('adminLang', index) }}>
+                            <img src={requests.serverAddress + element.icon.url} height="15px" width="15px" alt="RU" />{element.ISO}
+                          </DropdownItem>
+                        )
+                      }
+                    </DropdownMenu>
+                  </Dropdown>
+
+
+                  :
+
+                  
+                  <Dropdown setActiveFromChild="true" isOpen={this.state.dropdownLanguageOpen} toggle={this.toggleLanguage} className={languages.length > 0 ? "selectGeneral" : "selectGeneral preloadHiddenBlock"}>
+                    <DropdownToggle className="selectGeneralButton" caret size="sm">
+                      <img src={languages.length > 0 ? requests.serverAddress + languages[this.props.storeState.activeLanguageNumber/*this.state.activLanguageNumber*/].icon.url : ''} height="15px" width="15px" alt="flag" />
+                      {languages.length > 0 ? languages[this.props.storeState.activeLanguageNumber/*this.state.activLanguageNumber*/].ISO : ''}
+                    </DropdownToggle>
+                    <DropdownMenu className="dropdownMenu">
+                      {
+                        languages.map((element, index) =>
+                          <DropdownItem className="dropdownMenu" onClick={() => { this.setLocals('userLang', index) }}>
+                            <img src={requests.serverAddress + element.icon.url} height="15px" width="15px" alt="RU" />{element.ISO}
+                          </DropdownItem>
+                        )
+                      }
+                    </DropdownMenu>
+                  </Dropdown>
+
+
+                }
+              
               </div>
               <div className="headerRegistration d-flex justify-content-start col-xl-1 col-lg-1 col-md-2 col-sm-1 col-1">
                 <span style={{ display: this.props.storeState.isAuthorized ? 'none' : 'block' }} onClick={this.toggleModalRegistration}>Войти</span>

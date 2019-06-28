@@ -77,7 +77,7 @@ class HomeBodyClass extends React.Component {
    
       
     
-    
+    let textInfo = this.props.storeState.languageTextMain.home.homeBody;
     console.log(isMobileOnly, "isMobileOnlyBody")
     return (
       <React.Fragment>
@@ -86,11 +86,11 @@ class HomeBodyClass extends React.Component {
             <div className="w-100">
               <div className="mobailRoutMenu">
                 <div className="d-flex flex-column align-items-center ">
-                  <div className="mobailRoutMenuTitle">Cпланируйте свой маршрут</div>
-                  <p className="mobailRoutMenuText">Предложения от местных гидов-водителей <br /> по вашему индивидуальному маршруту</p>
+                  <div className="mobailRoutMenuTitle">{textInfo.mobileRouteMenuTitle}</div>
+                  <p className="mobailRoutMenuText">{textInfo.mobileRouteMenuText.mobileRouteMenuText}<br />{textInfo.mobileRouteMenuText.secondLine}</p>
                   <div className="d-flex mb-4">
-                    <span className={this.state.changeMapList ? "mobailRoutMenuBtList" : "mobailRoutMenuBt-active mobailRoutMenuBtList"} onClick={() => { this.setState({ changeMapList: false }) }}>Список</span>
-                    <span className={this.state.changeMapList ? "mobailRoutMenuBt-active mobailRoutMenuBtMap" : "mobailRoutMenuBtMap"} onClick={() => { this.setState({ changeMapList: true }) }}>Карта</span>
+                    <span className={this.state.changeMapList ? "mobailRoutMenuBtList" : "mobailRoutMenuBt-active mobailRoutMenuBtList"} onClick={() => { this.setState({ changeMapList: false }) }}>{textInfo.changeMapList.first}</span>
+                    <span className={this.state.changeMapList ? "mobailRoutMenuBt-active mobailRoutMenuBtMap" : "mobailRoutMenuBtMap"} onClick={() => { this.setState({ changeMapList: true }) }}>{textInfo.changeMapList.second}</span>
                   </div>
                 </div>
                 {this.state.changeMapList ?
@@ -112,8 +112,8 @@ class HomeBodyClass extends React.Component {
           <React.Fragment>
             <div className="routContent d-flex flex-column align-items-center col-xl-10 col-lg-10 col-md-12 col-sm-11 col-11">
               <div className="d-flex mb-4">
-                <span className={this.state.changeMapList ? "routMenuBtList" : "routMenuBt-active routMenuBtList"} onClick={() => { this.setState({ changeMapList: false }) }}>Список</span>
-                <span className={this.state.changeMapList ? "routMenuBt-active routMenuBtMap" : "routMenuBtMap"} onClick={() => { this.setState({ changeMapList: true }) }}>Карта</span>
+                <span className={this.state.changeMapList ? "routMenuBtList" : "routMenuBt-active routMenuBtList"} onClick={() => { this.setState({ changeMapList: false }) }}>{textInfo.changeMapList.first}</span>
+                <span className={this.state.changeMapList ? "routMenuBt-active routMenuBtMap" : "routMenuBtMap"} onClick={() => { this.setState({ changeMapList: true }) }}>{textInfo.changeMapList.second}</span>
               </div>
 
               {this.state.changeMapList ?

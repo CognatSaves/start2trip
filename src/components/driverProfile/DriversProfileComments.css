@@ -33,6 +33,20 @@
     margin-top: 40px;
 }
 
+.commentLinkStyle{
+    color: #0056b3;
+}
+
+.commentLinkStyle:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.commentTextStyle{
+    white-space: pre;
+    color: #999;
+}
+
 .commentBlock_createComment {
     position: relative;
     width: 100%;
@@ -70,6 +84,7 @@
     font-size: 14px;
     font-weight: 500;
     color: #304269;
+    padding-bottom: 5px;
 }
 
 .createComment_textBlock {

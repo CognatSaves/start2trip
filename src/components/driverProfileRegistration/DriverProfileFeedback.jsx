@@ -28,7 +28,7 @@ class DriverProfileFeedbackClass extends React.Component{
 
         // TODO добавить кнопку показать еще и пагинацию
         return(
-            <div className="commentBlock_comments d-flex flex-column">
+            <div className="profileFeedbackBlock_comments d-flex flex-column">
             {this.state.comments.map((element,index)=>                       
                 <div className="commentBlock_element d-flex" key={element+"/"+index}>
                     <div className="commentBlock_picture">

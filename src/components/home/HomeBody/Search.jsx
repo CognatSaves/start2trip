@@ -15,6 +15,10 @@ export default class LocationSearchInput extends React.Component {
       inFocus: this.props.address ? true : false,
       inFocusOnly: false,
     }
+    
+    if(props.address.length>0){
+      this.handleSelect(props.address);
+    }
   }
 
 
@@ -36,8 +40,8 @@ export default class LocationSearchInput extends React.Component {
     }
     geocodeByAddress(address)
       .then(results => {/*console.log('Process results from geocode');console.log(results); */location.lat = results[0].geometry.location.lat(); location.long = results[0].geometry.location.lng(); getLatLng(results[0]); })
-      .then(latLng => {/*console.log('Success', latLng); console.log(address);*/ this.applySelectedValue(this.props.index, address, { location: location }) })
-      .catch(error => console.error('Error', error));
+      .then(latLng => {/*console.log('Success', latLng); console.log(address);*/ /**/ this.applySelectedValue(this.props.index, address, { location: location }) })
+      .catch(error => {/* */console.error('Error', error); this.setState({address: ''})});
   };
   onInputBlur = () => {
     this.setState({ inFocus: false })
@@ -51,6 +55,8 @@ export default class LocationSearchInput extends React.Component {
     if (this.props.readOnlyOn) {
       opts['readOnly'] = 'readOnly';
     }
+    /*
+    console.log(this.props);*/
     return (
       <PlacesAutocomplete
         value={this.state.address}
@@ -58,7 +64,8 @@ export default class LocationSearchInput extends React.Component {
         onSelect={this.handleSelect}
         searchOptions={{
           types: [],
-          componentRestrictions: { country: this.props.isoCountryMap },
+          componentRestrictions: { country: this.props.isoCountryMap, },
+          language: '0' 
         }}
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) =>
@@ -86,7 +93,7 @@ export default class LocationSearchInput extends React.Component {
                     }
                     this.setState({ inFocus: true, inFocusOnly: true })
                   }}
-
+                  defaultValue={this.props.address}
                   {...getInputProps({
                     placeholder: !this.state.inFocus ? this.props.placeholder : "",
                     className: '' + this.props.classInput,

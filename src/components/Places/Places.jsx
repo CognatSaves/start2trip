@@ -22,10 +22,12 @@ import Andshi from './pictures/Вид_на_деревушку_Адиши,_Гру
 import axios from 'axios';
 import { setPlacesList } from '../../redusers/ActionPlaces';
 import requests from '../../config';
+import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 class PlacesClass extends React.Component {
   constructor(props) {
     super(props);
     this.state={
+      /*
       popularPlaseArrayRender : [
         { title: "Tbilisy", img: Tbilisy },
         { title: "Batumi", img: Batumi },
@@ -48,8 +50,10 @@ class PlacesClass extends React.Component {
         { title: "Andshi", img: Andshi },
 
       ],
+      */
       country: "",
-      language: "" 
+      language: "",
+      isRefreshExist: true 
     }
     this.setPageFunc = this.setPageFunc.bind(this);
     this.showMorePages = this.showMorePages.bind(this);
@@ -66,10 +70,11 @@ class PlacesClass extends React.Component {
     console.log("Places render");
     console.log(this.props.placesState);
     if( this.props.storeState.languages.length>0 && (this.state.country!==this.props.storeState.country || this.state.language !==this.props.storeState.languages[this.props.storeState.activeLanguageNumber].ISO ) ){
-      //debugger;
+      
       this.setState({
           country: this.props.storeState.country,
-          language: this.props.storeState.languages[this.props.storeState.activeLanguageNumber].ISO
+          language: this.props.storeState.languages[this.props.storeState.activeLanguageNumber].ISO,
+          isRefreshExist: true
       });
       axios.get(requests.getPlacesList+"?country="+this.props.storeState.country+"&lang="+this.props.storeState.languages[this.props.storeState.activeLanguageNumber].ISO)
       .then(response => {
@@ -84,21 +89,27 @@ class PlacesClass extends React.Component {
           else {
               console.log('good');
               console.log(data);
-              this.props.dispatch(setPlacesList(data.places, data.tags, data.directions));
+              this.props.dispatch(setPlacesList(data.places, data.tags, data.directions,data.country));
+              this.setState({
+                isRefreshExist: false
+              });
+
           }
       })
       .catch(error => {
           console.log('get wasted answer');
+          this.props.globalReduser.history.push('/');
       });
     }
     return (
       <React.Fragment>
+        <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={/*this.state.isRefreshing*/true} isGoodAnswer={/*this.state.isGoodAnswer*/true}/>
+            
         <div className="drivers_top_background col-12 p-0">
         <Header history={this.props.history}/>
-          <div className="wrapper d-flex flex-column">
-            
-            <PlacesCountryInfo />
-          </div>
+        <div className="wrapper d-flex flex-column">            
+          <PlacesCountryInfo />
+        </div>
         </div>
         <div className="wrapper d-flex flex-column">
           <div className="drivers_bottom_background d-flex flex-column" >
@@ -109,7 +120,7 @@ class PlacesClass extends React.Component {
                 <PlacesPanel />
                 
                 <PlacesList />
-                <Manipulator number={this.props.placesState.places[0].places.length} page={this.props.placesState.page} setPage={this.setPageFunc}
+                <Manipulator number={this.props.placesState.placesList.length} page={this.props.placesState.page} setPage={this.setPageFunc}
                   elementsNumber={this.props.placesState.pagesMenuValue} showMorePages={this.showMorePages}
                 />
               </div>

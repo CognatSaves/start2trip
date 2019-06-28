@@ -115,6 +115,7 @@ const driverProfileRegistration = {
         changeOnWorkP: "Вы можете приостановить и возобновить приём заказов",
         onWorkTrue: "Приостановить работу",
         onWorkFalse: "Возобновить работу",
+        weekendSettings: 'Настройка нерабочих дней',
         chooseWeekend: "Выберите выходные дни",
         selectDates: "Выбрать даты",
         addCityTitle: "Добавьте город и радиусы, где Вы готовы принимать заказы",
@@ -254,8 +255,46 @@ const driverProfileRegistration = {
     DriverProfileHistory: {
         upcoming: "Предстоящие",
         story: "История",
+    },
+    DriverProfileBilling:{
+        currentBalance:{
+            currentBalanceText: 'Текущий баланс',
+            personalAccount: 'Лицевой счёт',
+            cardPayments: 'Оплачено картами',
+            partnerPayments: 'Партнёрские начисления',
+            withdrawnTotal: 'Всего снято',
+            accountTotal: 'Всего на счету',
+            fundsWithdrawal: 'Вывод средств',
+            receivedByCash: 'Получено наличными за все время' 
+        },
+        systemPayments:{
+            systemPaymentsText: 'Оплата за пользование системой (всё время)',
+            cardCommission: 'Комиссия с карт',
+            cashCommission: 'Комиссия с наличных',
+            payedPart: 'Оплачено',
+            systemPaymentsTotal: 'Итого',
+            payButtonText: 'Оплатить',
+            systemPaymentInfo: 'Для поддержания работоспособности сервиса с каждой поездки взимается комиссия. Для продолжения пользования системой, Вам необходимо оплатить счет до 5 числа каждого месяца.'
+        },
+        accountOperations:{
+            accountOperationsText: 'Операции по счёту',
+            forPeriod: 'За период',
+            searchButton: 'Просмотреть',
+            infoTableText:{
+                payedByCash: 'Оплачено картами',
+                payedByCard: 'Оплата по картам',
+                payedByPartners: 'Партнёрские начисления',
+                payedForPeriod: 'Всего за период'
+            },
+            valueTableText:[
+                'ID транзакции(ENG)',
+                'Тип оплаты(ENG)',
+                'Сумма(ENG)',
+                'Дата платежа(ENG)',
+                'ID поездки(ENG)'
+            ] 
+        }
     }
-
 }
 
 export default driverProfileRegistration

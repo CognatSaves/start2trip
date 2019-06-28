@@ -20,6 +20,8 @@ import DriverRefreshIndicator from './DriverRefreshIndicator';
 import AccountFirstEnterModal from '../home/AccountFirstEnterModal';
 import UserProfileRegistration from '../UserProfile/UserProfileRegistration';
 import AgencyProfile from '../AgencyProfile/AgencyProfile';
+import {changeLanguagePart} from '../../redusers/Action';
+
 class DriverProfileRegistrationClass extends React.Component {
   constructor(props) {
     super(props);
@@ -28,6 +30,11 @@ class DriverProfileRegistrationClass extends React.Component {
     this.state = {
       accountEnter: accountEnterCookie ? false : true
     }
+    
+    props.dispatch(changeLanguagePart(true)); //эта ересь сообщает шапке, что мы в админке за водителя/агенство, т.е. нужна 2 партия языков
+  }
+  componentWillUnmount(){
+    this.props.dispatch(changeLanguagePart(false))//эта ересь сообщает шапке, что мы валим из админки водителя/агенства, т.е. нужна стандартная партия языков
   }
   render() {
     let profile = this.props.globalReduser.profile;

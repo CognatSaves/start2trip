@@ -10,6 +10,12 @@ import snowflakeIcon from '../components/driverProfileRegistration/img/snowflake
 import wifiIcon from '../components/driverProfileRegistration/img/wifi.svg'
 import { OPEN_FILTER_SHOW } from './ActionDrivers';
 
+import Ru_admin from '../textInfo/Ru-admin.jsx';
+import En_admin from '../textInfo/En-admin.jsx';
+import Ge_admin from '../textInfo/Ge-admin.jsx';
+
+import Ru from '../textInfo/Ru.jsx';
+import En from '../textInfo/En.jsx';
 
 import {
     SET_STATE,
@@ -32,9 +38,16 @@ import {
     SET_USER,
     SET_LOCALS,
     SET_ACTIVE_CURR,
-    SET_ACTIVE_LANG
+    SET_ACTIVE_LANG,
+    SET_MODAL_REGISTER,
+    SET_ACTIVE_LANG_ADMIN,
+    CHANGE_LANGUAGE_PART
 } from './Action';
 
+const langArrayMassAdmin = [En_admin, Ru_admin, Ge_admin];
+const langArrayMassMain = [En,Ru];
+const langArrayMassAdminISO = ['ENG','RUS','GEO'];
+const langArrayMassMainISO=['ENG','RUS'];
 
 const initialState = {
     cities: [
@@ -42,12 +55,21 @@ const initialState = {
         { point: "", lat: "", long: "" },
     ],
     date: "",
+    languageText:langArrayMassAdmin[0],
+    languageTextMain: langArrayMassMain[0],
     autoVariants: ["Седан", "Внедорожник", "Минивен", "Микроавтобус"],
     autoIcon: sedan,
     autoValue: "Любое авто",
     autoMenu: false,
     languages: [],
+    adminLanguages:[],
     activeLanguageNumber: 0,
+
+    activeLanguageNumberAdmin: 0,
+
+    isSecondLanguageGroupPart: false,
+
+
     currencies: [],
     countries: [],
     activeCurrencyNumber: 0,
@@ -78,27 +100,67 @@ const initialState = {
     languageMenu: false,
     country: "BLR",
     isoCountryMap: "by",
+    isoLanguage: 'en',
     avatarUrl: "",
     userName: "",
     userData:{},
     isAuthorized: false,
     openFilter: false,
+
+    modalRegistration: false
 };
 
 export const AppReduser = (state = initialState, action) => {
     switch (action.type) {
+        case CHANGE_LANGUAGE_PART:{
+            let newState = {...state};
+            newState.isSecondLanguageGroupPart=action.isSecondLanguageGroupPart;
+            return newState;
+        }
+        case SET_MODAL_REGISTER:{
+            let newState={...state};
+            newState.modalRegistration=action.modalRegistration;
+            return newState;
+        }
         case SET_ACTIVE_CURR:{
             let newState = {...state};
             newState.activeCurrencyNumber=action.activeCurrencyNumber;
             return newState;
         }
-        case SET_ACTIVE_LANG:{
+        case SET_ACTIVE_LANG_ADMIN:{
             let newState={...state};
-            newState.activeLanguageNumber=action.activeLanguageNumber;
+            newState.activeLanguageNumberAdmin = action.activeLanguageNumberAdmin;
+            if(newState.adminLanguages.length>0){ 
+                
+                let indexAdmin = langArrayMassAdminISO.indexOf(newState.adminLanguages[action.activeLanguageNumberAdmin].ISO);
+                if(indexAdmin===-1){
+                    indexAdmin = langArrayMassAdminISO.indexOf('ENG');
+                    if(indexAdmin===-1){
+                        indexAdmin=0;
+                    }
+                }
+                newState.languageText=langArrayMassAdmin[indexAdmin];
+            }
             return newState;
         }
-        case SET_USER:
-            {
+        case SET_ACTIVE_LANG:{
+            
+            let newState={...state};
+            newState.activeLanguageNumber=action.activeLanguageNumber;
+            if(newState.languages.length>0){
+                let indexMain=langArrayMassMainISO.indexOf(newState.languages[action.activeLanguageNumber].ISO);
+                if(indexMain===-1){
+                    indexMain = langArrayMassMainISO.indexOf('ENG');
+                    if(indexMain===-1){
+                        indexMain=0;
+                    }
+                }     
+                newState.languageTextMain=langArrayMassMain[indexMain];
+            }
+            
+            return newState;
+        }
+        case SET_USER:{
                 let newStateSU = {...state };
                 newStateSU.avatarUrl = action.avatarUrl;
                 newStateSU.userName = action.userName;
@@ -109,20 +171,18 @@ export const AppReduser = (state = initialState, action) => {
                     newStateSU.isAuthorized = true;
                 }
                 return newStateSU;
-            }
-        case SET_STATE:
-            {
+        }
+        case SET_STATE:{
                 let newStateSS = {...state };
                 newStateSS.cities = action.cities;
                 newStateSS.date = action.date;
                 return newStateSS;
-            }
-        case SET_CITIES:
-            {
+        }
+        case SET_CITIES:{
                 let newState = {...state };
                 newState.cities = action.cities;
                 return newState;
-            }
+        }
 
         case SET_AUTO:
             {
@@ -269,11 +329,12 @@ export const AppReduser = (state = initialState, action) => {
 
         case SET_LOCALS:
             {
-
+                
                 let newState = {...state };
                 newState.languages = [...action.languages];
                 newState.currencies = [...action.currencies];
                 newState.countries = [...action.countries];
+                newState.adminLanguages=[...action.adminLanguages];
                 return newState;
             }
         case MODAL_COUNTRY:

@@ -23,7 +23,7 @@ class DriverProfileBillingClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            headerTitle: ["id Транзакции", "Тип оплаты", "Сумма", "Дата платежа", "ID поездки"],
+            headerTitle: ["id Транзакции", "Тип оплаты", "Сумма", "Дата платежа", "ID поездки"],//переводы будут подключаться в месте применения, массив сохранён для соответствующей длины 
             headerWidth: ['26%',"16%","16%","16%","26%"],
             withdrawalOfFundsModal: false,
             toPayModal: false,
@@ -181,6 +181,7 @@ class DriverProfileBillingClass extends React.Component {
         let systemPayingsTotal = profile ? (profile.payments.systemPayments-profile.billing.payedsystempart) : 0;
         systemPayingsTotal=Math.round(systemPayingsTotal*100);
         systemPayingsTotal=profile.currencies[findCurrencyEl(that, profile.payments.currencyType)].symbol+systemPayingsTotal/100;
+        let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileBilling;
         return (
             <React.Fragment>
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer}/>
@@ -281,66 +282,66 @@ class DriverProfileBillingClass extends React.Component {
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-row flex-column align-items-md-end align-items-sm-center align-items-center  justify-content-between">
                                 <div className="billingText col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 p-0">
                                     <div className="billingTextTitle col-12 p-0">
-                                        <span>Текущий баланс (Лицевой счет № 20456787)</span>
+                                        <span>{textPage.currentBalance.currentBalanceText+ ' ('+textPage.currentBalance.personalAccount+' №'+ '20456787'+')'}</span>
                                     </div>
                                     <div className="border-bottom mb-2 d-flex align-items-center justify-content-between">
-                                        <span className="col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0 py-2">Оплачено картами:</span>
+                                        <span className="col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0 py-2">{textPage.currentBalance.cardPayments+':'}</span>
                                         <span>{profile.currencies[findCurrencyEl(that, profile.payments.currencyType)].symbol+profile.billing.transactionCardTotal}</span>
                                     </div>
                                     <div className="specialBorder mb-2 d-flex align-items-center justify-content-between">
-                                        <span className="col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0 py-2">Партнерские начисления:</span>
+                                        <span className="col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0 py-2">{textPage.currentBalance.partnerPayments+':'}</span>
                                         <span>{partnersPayings}</span>
                                     </div>
                                     <div className="specialBorder mb-2 d-flex align-items-center justify-content-between">
-                                        <span className="col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0 py-2">Всего снято:</span>
+                                        <span className="col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0 py-2">{textPage.currentBalance.withdrawnTotal+':'}</span>
                                         <span>{"-"+profile.currencies[findCurrencyEl(that, profile.payments.currencyType)].symbol+profile.billing.payeddriverprofit}</span>
                                     </div>
                                     <div className="d-flex align-items-center justify-content-between">
-                                        <span className="specialText col-xl-7 col-lg-7 col-md-8 col-sm-9 col-8 p-0 py-2">Всего на счету:</span>
+                                        <span className="specialText col-xl-7 col-lg-7 col-md-8 col-sm-9 col-8 p-0 py-2">{textPage.currentBalance.accountTotal+':'}</span>
                                         <span className="specialText">{accountTotal}</span>
                                     </div>
                                 </div>
                                 <div className="billingButton d-flex justify-content-end  align-items-end">
-                                    <span onClick={() => { this.handleClose('withdrawal') }}>Вывод средств</span>
+                                    <span onClick={() => { this.handleClose('withdrawal') }}>{textPage.currentBalance.fundsWithdrawal}</span>
                                 </div>
                             </div>
                             <div className="col-8 mt-5 p-0">
                                 <div className="billingText border-bottom d-flex align-items-center justify-content-between">
-                                    <span className="">Получено наличными за все время:</span>
+                                    <span className="">{textPage.currentBalance.receivedByCash+':'}</span>
                                     <span>{profile.currencies[findCurrencyEl(that, profile.payments.currencyType)].symbol+profile.billing.transactionCashTotal}</span>
                                 </div>
                             </div>
                         </div>
                         <div className="billingContentRight">
                             <div className="billingTextTitle col-12 p-0">
-                                <span>Оплата за пользование системой (всё время)</span>
+                                <span>{textPage.systemPayments.systemPaymentsText}</span>
                             </div>
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-row flex-column align-items-md-end align-items-sm-center align-items-center justify-content-between ">
                                 <div className="billingText col-xl-7 col-lg-7 col-md-7 col-sm-8 col-8 p-0">
                                     <div className="border-bottom mb-2 d-flex align-items-center justify-content-between">
-                                        <span className="col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0 py-2">Коммисия с карт:</span>
+                                        <span className="col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0 py-2">{textPage.systemPayments.cardCommission+':'}</span>
                                         <span>$0</span>
                                     </div>
                                     <div className="specialBorder mb-2 d-flex align-items-center justify-content-between">
-                                        <span className="col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0 py-2">Коммисия с наличных:</span>
+                                        <span className="col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0 py-2">{textPage.systemPayments.cashCommission+':'}</span>
                                         <span>{systemPayings}</span>
                                     </div>
                                     <div className="specialBorder mb-2 d-flex align-items-center justify-content-between">
-                                        <span className="col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0 py-2">Оплачено:</span>
+                                        <span className="col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0 py-2">{textPage.systemPayments.payedPart+':'}</span>
                                         <span>{"-"+profile.currencies[findCurrencyEl(that, profile.payments.currencyType)].symbol+profile.billing.payedsystempart}</span>
                                     </div>
                                     <div className="d-flex align-items-center justify-content-between">
-                                        <span className="specialText col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0 py-2">Итого:</span>
+                                        <span className="specialText col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0 py-2">{textPage.systemPayments.systemPaymentsTotal+':'}</span>
                                         <span className="specialText">{systemPayingsTotal}</span>
                                     </div>
                                 </div>
                                 <div className="billingButton d-flex justify-content-end align-items-end">
-                                    <span onClick={() => { this.handleClose('toPay') }}>Оплатить</span>
+                                    <span onClick={() => { this.handleClose('toPay') }}>{textPage.systemPayments.payButtonText}</span>
                                 </div>
 
                             </div>
                             <div className="billingText col-12 p-0 mt-5">
-                                <p>Для поддержания работоспособности сервиса с каждой поездки взимается комиссия. Для продолжения пользования системой, Вам необходимо оплатить счет до 5 числа каждого месяца.</p>
+                                <p>{textPage.systemPayments.systemPaymentInfo}</p>
                             </div>
                         </div>
                     </div>
@@ -348,33 +349,33 @@ class DriverProfileBillingClass extends React.Component {
                 <div className="billingBody">
                     <div className="d-flex flex-md-row flex-sm-column flex-column justify-content-between col-12 p-0">
                         <div className="d-flex flex-column">
-                            <span className="blillingHeaderTitle">Операции по счету №20456787</span>
+                            <span className="blillingHeaderTitle">{textPage.accountOperations.accountOperationsText+' №'+'20456787'}</span>
                             <div className=" billingText d-flex flex-md-row flex-sm-column flex-column align-items-center mt-5">
-                                <span className="pr-2">За период</span>
+                                <span className="pr-2">{textPage.accountOperations.forPeriod}</span>
                                 <div className="d-flex  ">
                                     <DatePicker onChange={(nul,date)=>{ this.setState({ tableStartDate: date }); }} floatingspanText="Дата начала" className="billingCalendar" value={this.state.tableStartDate}/>
                                     <span className="align-self-end mx-2">&#175;</span>
                                     <DatePicker onChange={(nul,date)=>{ this.setState({ tableEndDate: date }); }} floatingspanText="Дата конца" className="billingCalendar" value={this.state.tableEndDate}/>
-                                    <button onClick={()=>this.getTransactionTable()}>Просмотреть</button>
+                                    <button onClick={()=>this.getTransactionTable()}>{textPage.accountOperations.searchButton}</button>
                                 </div>
                             </div>
                         </div>
                         <div className=" col-md-4 col-sm-12 col-12 p-0 blillingHeader d-flex align-items-end justify-content-between">
                             <div className="col-12">
                                 <div className="billingText border-bottom d-flex align-items-center justify-content-between py-2">
-                                    <span className="">Оплата наличными:</span>
+                                    <span className="">{textPage.accountOperations.infoTableText.payedByCash+':'}</span>
                                     <span>{this.props.globalReduser.profile ? '$'+this.props.globalReduser.profile.billing.transactionCashPeriod : 0}</span>
                                 </div>
                                 <div className="billingText border-bottom d-flex align-items-center justify-content-between py-2">
-                                    <span className="">Оплата по картам:</span>
+                                    <span className="">{textPage.accountOperations.infoTableText.payedByCard+':'}</span>
                                     <span>{this.props.globalReduser.profile ? '$'+this.props.globalReduser.profile.billing.transactionCardPeriod : 0}</span>
                                 </div>
                                 <div className="billingText specialBorder d-flex align-items-center justify-content-between py-2">
-                                    <span className="">Партнёрские начисления:</span>
+                                    <span className="">{textPage.accountOperations.infoTableText.payedByPartners+':'}</span>
                                     <span>{this.props.globalReduser.profile ? '$'+this.props.globalReduser.profile.billing.transactionPartnerPeriod : 0}</span>
                                 </div>
                                 <div className="billingText d-flex align-items-center justify-content-between pt-2">
-                                    <span className="specialText">Всего за период:</span>
+                                    <span className="specialText">{textPage.accountOperations.infoTableText.payedForPeriod+':'}</span>
                                     <span className="specialText">{this.props.globalReduser.profile ? '$'+
                                     (this.props.globalReduser.profile.billing.transactionPartnerPeriod+
                                     this.props.globalReduser.profile.billing.transactionCardPeriod+
@@ -389,7 +390,7 @@ class DriverProfileBillingClass extends React.Component {
                             <TableHeader className="billingTableHeader" displaySelectAll={false} adjustForCheckbox={false}>
                                 <TableRow>
                                     {this.state.headerTitle.map((element, index) =>
-                                        <TableHeaderColumn style={{width: this.state.headerWidth[index],textAlign: 'center'}}>{element}</TableHeaderColumn>
+                                        <TableHeaderColumn style={{width: this.state.headerWidth[index],textAlign: 'center'}}>{textPage.accountOperations.valueTableText[index]}</TableHeaderColumn>
                                     )}
                                 </TableRow>
                             </TableHeader>

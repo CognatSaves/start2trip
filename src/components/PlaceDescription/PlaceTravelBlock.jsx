@@ -1,41 +1,92 @@
 import React from 'react';
+import CurrentLocation from '../home/HomeBody/CurrentLocation.jsx';
+import MapContainer from '../home/HomeBody/MapContainer';
+import LocationSearchInput from '../home/HomeBody/Search';
+import DatePicker from 'material-ui/DatePicker';
+import { connect } from 'react-redux';
 
-
-export default class PlaceTravelBlock extends React.Component{
-    /*constructor(props){
+class PlaceTravelBlockClass extends React.Component{
+    constructor(props){
         super(props);
-    }*/
-    shouldComponentUpdate(nextProps){
-        return !(JSON.stringify(this.props)===JSON.stringify(nextProps));
+        this.state={
+            startPoint:  this.props.place.capital+', '+this.props.place.country,
+            endPoint: this.props.place.location,
+            date: new Date()
+        }
+    }
+    
+    shouldComponentUpdate(nextProps, nextState){
+        return (JSON.stringify(this.props)!==JSON.stringify(nextProps)) || JSON.stringify(nextState)!==JSON.stringify(this.state);
+    }
+    
+    lookAvailable = () => {
+        
+        console.log('look available');
+        let routeDate =this.props.globalhistory.getRoute([{point: this.state.startPoint},{point: this.state.endPoint}]);
+        let country =this.props.place.country;
+        console.log('routeDate',routeDate);
+        console.log('country',country);
+        
+        
     }
     render(){
+        const mapStyles = {
+            map: {
+              position: 'absolute',
+              width: '100%',
+              height: '100%',
+              borderRadius: '0 5px 5px 0',
+            }
+          };
         let  place = this.props.place;
         return (
-            <div className="placeDescription_block d-flex flex-column" id="placeDescriptionId3">
+            <React.Fragment>
+            <div className="placeDescription_block d-flex flex-column col-12" id="placeDescriptionId3">
                 <div className="placeDescription_fragmentName">Как добраться</div>
-                <div className="d-flex flex-column" style={{ marginTop: "15px" }}>
-                    <div className="d-flex">
-                        <div className="placesDescription_travelBlock_element d-flex" style={{ marginRight: "auto" }}>
-                            <div className="placesDescription_travelBlock_icon placesDescription_position" />
-                            <div>Ваше местоположение</div>
+                <div className="d-flex flex-row">
+                    <div className="d-flex flex-column col-6" style={{ marginTop: "15px" }}>
+                        <div className="d-flex">
+                            <div className="placesDescription_travelBlock_element d-flex" style={{ marginRight: "auto" }}>
+                                <div className="placesDescription_travelBlock_icon placesDescription_position" />
+                                <LocationSearchInput /*readOnlyOn={false}*/ address={this.state.startPoint} changeCity={(index, value,extraData)=>this.setState({startPoint: value})}
+                                 id="startPointId" classDropdown="searchElement_style" classInput={"travelBlockSearch"} />   
+                            </div>
+                            <div className="placesDescription_travelBlock_element d-flex" style={{ marginLeft: "auto" }}>
+                                <div className="placesDescription_travelBlock_icon placesDescription_geoIcon" />
+                                <LocationSearchInput readOnlyOn={true} address={this.state.endPoint} changeCity={(index, value,extraData)=>{}} classDropdown="searchElement_style" classInput={"travelBlockSearch" } />
+                            </div>
                         </div>
-                        <div className="placesDescription_travelBlock_element d-flex" style={{ marginLeft: "auto" }}>
-                            <div className="placesDescription_travelBlock_icon placesDescription_geoIcon" />
-                            {place.name}
+                        <div className="d-flex">
+
+                            <div className="placesDescription_travelBlock_element d-flex" style={{ marginRight: "auto" }}>
+                                <div className="placesDescription_travelBlock_icon placesDescription_calendary" />
+                                <div className=""/*"col-sm-6 col-12 p-0 pr-1"*/>
+                                    <DatePicker defaultDate={this.state.date} hintText="Дата отправления" minDate={new Date()} onChange={(e, date) => { this.setState({date: date}); let datePicer = document.querySelector(".placeDescrDate"); datePicer.classList.remove("placeDescrDate-Check") }} className="placeDescrDate"/*"routemenu_date"*/ />
+                                </div>
+                            </div>
+                            <button className="placesDescription_travelBlock_element placesDescription_travelBlock_applyButton d-flex"
+                            style={{ marginLeft: "auto" }} onClick={()=>this.lookAvailable()}>
+                                <text style={{ margin: "auto", fontSize: '16px' }} >СМОТРЕТЬ ПРЕДЛОЖЕНИЯ</text>
+                            </button>
                         </div>
                     </div>
-                    <div className="d-flex">
-                        <div className="placesDescription_travelBlock_element d-flex" style={{ marginRight: "auto" }}>
-                            <div className="placesDescription_travelBlock_icon placesDescription_calendary" />
-                            Дата отправления
-                        </div>
-                        <div className="placesDescription_travelBlock_element placesDescription_travelBlock_applyButton d-flex" style={{ marginLeft: "auto" }}>
-                            <text style={{ margin: "auto" }}>СМОТРЕТЬ ПРЕДЛОЖЕНИЯ</text>
-                        </div>
+                    <div className="placeDescription_fragmentName_mapBlock col-6" style={{marginTop: "15px"}}>       
+                        <MapContainer cities={[...[{point: this.state.startPoint},{point:this.state.endPoint}]]} setLengthTime={()=>{console.log('setLengthTime at work')}} mapUpdate={true} />
                     </div>
                 </div>
+                    
             </div>
+            </React.Fragment>
         )
     }
 
 }
+
+const PlaceTravelBlock = connect(
+    (state) => ({
+      storeState: state.AppReduser,
+      globalhistory: state.GlobalReduser,
+    }),
+  )(PlaceTravelBlockClass);
+  
+  export default PlaceTravelBlock;

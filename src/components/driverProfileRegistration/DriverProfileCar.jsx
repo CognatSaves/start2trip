@@ -377,16 +377,46 @@ class DriverProfileCarClass extends React.Component {
     }
 
     render() {
-        function findCarTypeNames(cars, carTypes){
+        function findCarTypeNames(cars, carTypes, storeState){
             let res = [];
             for(let i=0; i<cars.length; i++){
                 for(let j=0;j<carTypes.length; j++){
                     if(cars[i].cartype===carTypes[j].id){
-                        res[i]=carTypes[j].name_ru;
+                        let selectedISO = storeState.languages[storeState.activeLanguageNumber] ? storeState.languages[storeState.activeLanguageNumber].ISO : '';
+                        switch (selectedISO){
+                            case 'ENG':
+                                res[i]=carTypes[j].name_en;
+                                break;
+                            case 'RUS':
+                                res[i]=carTypes[j].name_ru;
+                                break;
+                            default: res[i]=carTypes[j].name_en;
+                        }
+                        //res[i]=carTypes[j].name_ru;
                     }
                 }
             }
             return res;
+        }
+        function findOneCarProp(element,carProps, storeState){
+            let res;
+            for(let j=0;j<carProps.length; j++){
+                if(element===carProps[j].id){
+                    let selectedISO = storeState.languages[storeState.activeLanguageNumber] ? storeState.languages[storeState.activeLanguageNumber].ISO : '';
+                    switch (selectedISO){
+                        case 'ENG':
+                            res=carProps[j].name_en;
+                            break;
+                        case 'RUS':
+                            res=carProps[j].name_ru;
+                            break;
+                        default: res=carProps[j].name_en;
+                    }
+                    return res;
+                    //res[i]=carTypes[j].name_ru;
+                }
+            }
+            return '';
         }
         let { imagePreviewUrl } = this.state;
         let $imagePreview = null;
@@ -395,12 +425,13 @@ class DriverProfileCarClass extends React.Component {
         }
         let cars = this.props.globalReduser.profile.cars;
         console.log("DriverProfileCar render");
-        console.log('state');
-        console.log(this.state);
+        console.log('state',this.state);
+        //console.log();
+        console.log('props', this.props);
         //выдаёт значения строго на русском - впоследствие будет переделана
-        let carTypes = findCarTypeNames(cars, this.props.globalReduser.profile.carTypes);
+        let carTypes = findCarTypeNames(cars, this.props.globalReduser.profile.carTypes, this.props.storeState);
 
-        let textPage = this.props.globalReduser.languageText.driverProfileRegistration.DriverProfileCar;
+        let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileCar;
         return (
             <div className="_ThisTagIsNeeded">
             <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer}/>
@@ -542,7 +573,7 @@ class DriverProfileCarClass extends React.Component {
                                     >
                                     {
                                         this.props.globalReduser.profile.carTypes.map((element,index)=>
-                                            <MenuItem value={element.id} primaryText={element.name_ru} />
+                                            <MenuItem value={element.id} primaryText={findOneCarProp(element.id,  this.props.globalReduser.profile.carTypes, this.props.storeState)} />
                                         )
                                     }
                                     </DropDownMenu>
@@ -568,7 +599,7 @@ class DriverProfileCarClass extends React.Component {
                                     >
                                     {
                                         this.props.globalReduser.profile.carClasses.map((element,index)=>
-                                            <MenuItem value={element.id} primaryText={element.class_ru} />
+                                            <MenuItem value={element.id} primaryText={findOneCarProp(element.id, this.props.globalReduser.profile.carClasses, this.props.storeState)} />
                                         )
                                     }
                                     </DropDownMenu>
@@ -593,7 +624,7 @@ class DriverProfileCarClass extends React.Component {
                                     >
                                     {
                                         this.props.globalReduser.profile.fuelTypes.map((element,index)=>
-                                            <MenuItem value={element.id} primaryText={element.name_ru} />
+                                            <MenuItem value={element.id} primaryText={findOneCarProp(element.id, this.props.globalReduser.profile.fuelTypes, this.props.storeState)} />
                                         )
                                     }
                                     </DropDownMenu>

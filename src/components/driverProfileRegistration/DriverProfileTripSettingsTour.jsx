@@ -75,15 +75,15 @@ class DriverProfileTripSettingsTourClass extends React.Component {
             currencies: [...profile.currencies],
 
             directions: [...profile.directions],
-            directionsValue: this.props.globalReduser.languageText.driverProfileRegistration.DriverProfileTripSettingsTour.directionsValue, 
+            directionsValue: this.props.storeState.languageText.driverProfileRegistration.DriverProfileTripSettingsTour.directionsValue, 
             categories: [...profile.categories],
-            categoriesValue: this.props.globalReduser.languageText.driverProfileRegistration.DriverProfileTripSettingsTour.categoriesValue, // not change
+            categoriesValue: this.props.storeState.languageText.driverProfileRegistration.DriverProfileTripSettingsTour.categoriesValue, // not change
             tags: [...profile.tags],
-            tagsValue: this.props.globalReduser.languageText.driverProfileRegistration.DriverProfileTripSettingsTour.tagsValue, // not change
+            tagsValue: this.props.storeState.languageText.driverProfileRegistration.DriverProfileTripSettingsTour.tagsValue, // not change
             languageTour: [...profile.allLanguages],
             languageTourOpen: 0,
-            newTourEverydayTime: this.props.globalReduser.languageText.driverProfileRegistration.DriverProfileTripSettingsTour.newTourEverydayTime,
-            newTourDatepickerTime: this.props.globalReduser.languageText.driverProfileRegistration.DriverProfileTripSettingsTour.newTourDatepickerTime,
+            newTourEverydayTime: this.props.storeState.languageText.driverProfileRegistration.DriverProfileTripSettingsTour.newTourEverydayTime,
+            newTourDatepickerTime: this.props.storeState.languageText.driverProfileRegistration.DriverProfileTripSettingsTour.newTourDatepickerTime,
             time: [
                 "00:00", "00:15", "00:30", "00:45",
                 "01:00", "01:15", "01:30", "01:45",
@@ -724,7 +724,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
             weekdays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
             weekStartsOn: 0,
         };
-        let textPage = this.props.globalReduser.languageText.driverProfileRegistration.DriverProfileTripSettingsTour;
+        let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileTripSettingsTour;
         return (
             <React.Fragment>
 

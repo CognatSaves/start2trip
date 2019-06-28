@@ -25,6 +25,7 @@ class AgencyProfileFeedbackClass extends React.Component{
             return monthArray[number];
             
         }
+        /*
         function createDateTimeString(start){
             let date = new Date(start);
             let month = date.getUTCMonth(); let day = date.getUTCDate(); let hours = date.getUTCHours(); let minutes = date.getMinutes();
@@ -32,6 +33,7 @@ class AgencyProfileFeedbackClass extends React.Component{
             (hours>=10 ? hours : '0'+hours)+":"+(minutes>=10 ? minutes : '0'+minutes);
             return res;
         }
+        */
         // TODO добавить кнопку показать еще и пагинацию
         return(
             <React.Fragment>
@@ -73,7 +75,7 @@ class AgencyProfileFeedbackClass extends React.Component{
                         </div>
                         <div className="d-flex flex-row">  
                             <Stars key={element.mark+"/"+element.index} value={element.mark} valueDisplay={true} commentNumberDisplay={false}/>                         
-                            <div className="valueBlock_firstElement_date" style={{margin: 'auto 0 auto auto'}}>{createDateTimeString(element.updatedAt)/*element.date.getDate()+" "+getMonthName(element.date.getMonth())+" "+element.date.getFullYear()*/}</div>
+                            <div className="valueBlock_firstElement_date" style={{margin: 'auto 0 auto auto'}}>{this.props.globalReduser.createDateTimeString(element.updatedAt)/*element.date.getDate()+" "+getMonthName(element.date.getMonth())+" "+element.date.getFullYear()*/}</div>
                             
                         </div>
                         <hr/>

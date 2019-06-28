@@ -115,6 +115,7 @@ const driverProfileRegistration = {
         changeOnWorkP: "Вы можете приостановить и возобновить приём заказов(ENG)",
         onWorkTrue: "Приостановить работу(ENG)",
         onWorkFalse: "Возобновить работу(ENG)",
+        weekendSettings: 'Настройка нерабочих дней(ENG)',
         chooseWeekend: "Выберите выходные дни(ENG)",
         selectDates: "Выбрать даты(ENG)",
         addCityTitle: "Добавьте город и радиусы, где Вы готовы принимать заказы(ENG)",
@@ -254,8 +255,46 @@ const driverProfileRegistration = {
     DriverProfileHistory: {
         upcoming: "Предстоящие(ENG)",
         story: "История(ENG)",
+    },
+    DriverProfileBilling:{
+        currentBalance:{
+            currentBalanceText: 'Текущий баланс(ENG)',
+            personalAccount: 'Лицевой счёт(ENG)',
+            cardPayments: 'Оплачено картами(ENG)',
+            partnerPayments: 'Партнёрские начисления(ENG)',
+            withdrawnTotal: 'Всего снято(ENG)',
+            accountTotal: 'Всего на счету(ENG)',
+            fundsWithdrawal: 'Вывод средств(ENG)',
+            receivedByCash: 'Получено наличными за все время(ENG)' 
+        },
+        systemPayments:{
+            systemPaymentsText: 'Оплата за пользование системой (всё время)(ENG)',
+            cardCommission: 'Комиссия с карт(ENG)',
+            cashCommission: 'Комиссия с наличных(ENG)',
+            payedPart: 'Оплачено(ENG)',
+            systemPaymentsTotal: 'Итого(ENG)',
+            payButtonText: 'Оплатить(ENG)',
+            systemPaymentInfo: 'Для поддержания работоспособности сервиса с каждой поездки взимается комиссия. Для продолжения пользования системой, Вам необходимо оплатить счет до 5 числа каждого месяца.(ENG)'
+        },
+        accountOperations:{
+            accountOperationsText: 'Операции по счёту(ENG)',
+            forPeriod: 'За период(ENG)',
+            searchButton: 'Просмотреть(ENG)',
+            infoTableText:{
+                payedByCash: 'Оплачено картами(ENG)',
+                payedByCard: 'Оплата по картам(ENG)',
+                payedByPartners: 'Партнёрские начисления(ENG)',
+                payedForPeriod: 'Всего за период(ENG)'
+            },
+            valueTableText:[
+                'ID транзакции(ENG)',
+                'Тип оплаты(ENG)',
+                'Сумма(ENG)',
+                'Дата платежа(ENG)',
+                'ID поездки(ENG)'
+            ]     
+        }
     }
-
 }
 
 export default driverProfileRegistration

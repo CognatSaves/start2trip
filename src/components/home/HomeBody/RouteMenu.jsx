@@ -12,8 +12,9 @@ import { isMobileOnly } from 'react-device-detect'
 import { setDriversList, setCarTypes } from '../../../redusers/ActionDrivers';
 import DriverRefreshIndicator from '../../driverProfileRegistration/DriverRefreshIndicator';
 
+import {AppReduser} from '../../../redusers/AppReduser';
 const CityRouteTable = (props) => {
-  const { cities, changeCity, removeCity, addCity, isoCountryMap, readOnlyOn } = props;
+  const { cities, changeCity, removeCity, addCity, isoCountryMap, readOnlyOn, language } = props;
   // let workCities = [...cities];
   let alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I",
     "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
@@ -21,19 +22,20 @@ const CityRouteTable = (props) => {
   // workCities.pop();
   // console.log(cities, "cities");
   // console.log(workCities, "workCities");
+  //
   return (
     <React.Fragment>
       {isMobileOnly ?
-        <div className="addCities" >
+        <div className="addCities" id={'addCities.'+language}>
           {cities.map((element, index) =>
-            <div className="startCity d-flex col-12 p-0" key={element + index + cities[index].point}>
+            <div className="startCity d-flex col-12 p-0" key={'CityRouteTable'+ index + cities[index].point+language} id={'CityRouteTable'+ index + cities[index].point+language}>
               <div className={readOnlyOn?"col-12 p-0":(index <= 1 ? "col-12 p-0" : "col-10 pl-0 pr-1")}>
                 <div className="addCitiesLocationDropDown col p-0">
                   <LocationSearchInput readOnlyOn={readOnlyOn ? true : false} address={cities[index].point} changeCity={changeCity}
                   index={index} classDropdown="searchElement_style" spanText={alphabet[index]}
                   placeholder={index ? "Куда, выберите место" : "Откуда, выберите место"}
                   classDiv={index > 1 && !cities[index].point ? "classDivMobail  _checkDiv startCity-CheckInput col-12"
-                  : "classDivMobail  _checkDiv col-12"} classInput="city_input _checkInput" isoCountryMap={isoCountryMap} />
+                  : "classDivMobail  _checkDiv col-12"} classInput="city_input _checkInput" isoCountryMap={isoCountryMap}/>
                 </div>
               </div>
               {readOnlyOn ?
@@ -49,16 +51,17 @@ const CityRouteTable = (props) => {
 
         </div>
         :
-        <div className="d-flex flex-wrap col-12 p-0" >
+        <div className="d-flex flex-wrap col-12 p-0" id={'addCities2.'+language}>
           {cities.map((element, index) =>
-            <div className={readOnlyOn ? (index % 2 ==0 && index == cities.length-1 ?"startCity d-flex col-12 p-0":"startCity d-flex col-6 p-0"):"startCity d-flex col-6 p-0"} key={element + index + cities[index].point}>
+            <div className={readOnlyOn ? (index % 2 ==0 && index == cities.length-1 ?"startCity d-flex col-12 p-0":"startCity d-flex col-6 p-0"):"startCity d-flex col-6 p-0"}
+             key={element + index + cities[index].point+language}>
               <div className={index <= 1 ? (index%2 ? "col-12 pl-0 pr-1" : "col-12 pl-0 pr-1") : (readOnlyOn ? "col-12 pl-0 pr-1" : "col-10 pl-0 pr-1 ")}>
-                <div className="addCitiesLocationDropDown col p-0">
+                <div className="addCitiesLocationDropDown col p-0" key={'LocationSearchInput'+index+language}>
                   <LocationSearchInput readOnlyOn={readOnlyOn ? true : false} address={cities[index].point} changeCity={changeCity}
                   index={index} classDropdown="searchElement_style" spanText={alphabet[index]}
                   placeholder={index ? "Куда, выберите место" : "Откуда, выберите место"}
                   classDiv={index > 1 && !cities[index].point ? "classDiv  _checkDiv startCity-CheckInput col-12"
-                  : "classDiv  _checkDiv col-12"} classInput="city_input _checkInput" isoCountryMap={isoCountryMap} />
+                  : "classDiv  _checkDiv col-12"} classInput="city_input _checkInput" isoCountryMap={isoCountryMap}/>
                 </div>
               </div>
               {
@@ -98,12 +101,28 @@ const CityRouteTable = (props) => {
 class RouteMenuClass extends React.Component {
   constructor(props) {
     super(props);
+    
+    console.log(window);
+    console.log(props.match);
+    console.log(document);
+    let result=props.globalhistory.findGetParameter("date");
+    
+    let dateValue;
+    if(result){
+      dateValue = props.globalhistory.getDateFromDateString(result);
+    }
+    else{
+      dateValue = new Date();
+    }
+    
     this.state = {
       correctDate: "",
       isWaiting: false,
       isRefreshing: true,
       isGoodAnswer: true,
-      date: this.props.storeState.date,
+      date: /*this.props.storeState.date*/dateValue,
+      isLoaded: false,//переменная для загрузки 1 раза водителей.
+      //language: this.props.storeState.activeLanguageNumber
     }
   }
 
@@ -191,63 +210,26 @@ class RouteMenuClass extends React.Component {
     return flag
   }
 
-  getCountry = (arrayAdress, country) => {
-    let flag = true;
-    let newCountry = arrayAdress[arrayAdress.length - 1].slice(1);
-    if (country === newCountry || country === "") {
-      country = newCountry;
-      // } else {
-      //   alert("Error")
-      //   flag = false;
-    }
-    return { flag: flag, country: country }
-  }
-
-  getRoute = () => {
-    let route = "";
-    let canMove;
-    let country = "";
-    for (let i = 0; i < this.props.storeState.cities.length; i++) {
-      let arrayAdress = this.props.storeState.cities[i].point.split(',');
-
-      let date = this.getCountry(arrayAdress, country);
-      country = date.country;
-      canMove = date.flag;
-
-      let stringWhithoutCountry = "";
-      for (let k = 0; k < arrayAdress.length - 1; k++) {
-        stringWhithoutCountry += arrayAdress[k]
-      }
-      let stringWhithoutSpaces = stringWhithoutCountry.replace(/ /g, '-');
-      stringWhithoutSpaces = stringWhithoutSpaces.replace(/[/]/g, '');
-      if (i == 0) {
-        route = "from-" + stringWhithoutSpaces;
-      } else {
-        route += "-to-" + stringWhithoutSpaces;
-      }
-    }
-    return { route: route, canMove: canMove, country: country }
-  }
-
   goToNextPage = () => {
+    
     let massCities = this.props.storeState.cities;
     let flagCities;
     let canMove;
     flagCities = this.validationInput(massCities);
     if (flagCities) {
       this.props.goToDrivers(this.props.storeState.cities, this.state.date);
-      let routeDate = this.getRoute();
+      let routeDate = this.props.globalhistory.getRoute(this.props.storeState.cities, this.props.storeState.languages[this.props.storeState.activeLanguageNumber].ISO);//this.getRoute(this.props.storeState.cities);
       let newStringCities = routeDate.route;
       let country = routeDate.country;
+      let langISO = routeDate.langISO;
       canMove = routeDate.canMove;
 
 
       
-      
       let body = JSON.stringify({
         cities: this.props.storeState.cities,
         country: this.props.storeState.country,
-        date: this.state.correctDate,
+        date: this.state.date,
         distance: 1000
       });
       console.log('send request for drivers');
@@ -280,13 +262,17 @@ class RouteMenuClass extends React.Component {
           else {
             console.log("good");
             console.log(data);
-
+            
             that.props.dispatch(setDriversList(data.drivers));
             that.props.dispatch(setCarTypes(data.carTypes));
             that.setState({ isWaiting: false });
+            //let date = new Date();
+            let dateString = that.props.globalhistory.createDateTimeString(that.state.date, true);
+            
+            
 
             if (canMove) {
-              that.props.globalhistory.history.push(`/drivers/${country}-${newStringCities}`)
+              that.props.globalhistory.history.push(`/drivers/${country}-${newStringCities}?date=`+dateString+(langISO!=='ENG' ? `&lang=`+langISO : ``));
               window.scroll(0, 500);
             }
             //that.getProfileData();
@@ -303,8 +289,97 @@ class RouteMenuClass extends React.Component {
 
 
   render() {
+    //
+    /*
+    let text = 'Национальная библиотека Беларуси является главной универсальной научной библиотекой страны. Прежде всего она привлекает своим зданием, выполненным в виде ромбокубооктаэдра. Это полуправильный многогранник, с 18 квадратами и 8 треугольниками. Подобных построек на территории Беларуси и многих других стран просто нет. Поэтому гости РБ не упускают возможности полюбоваться этим чудом архитектуры. Но привлекает объект не только зданием, в котором находится.'+
+    'Историческая справка Основали библиотеку в 1922 году. Тогда она принадлежала Белорусскому государственному университету. На момент открытия в залах находилось около 60 тыс. экземпляров печатных изданий и пользовались ими примерно 1,1 тыс. человек.     Изначально библиотека находилась на Захарьевской улице. Сегодня – это проспект Независимости. Но после того, как она вышла из состава БГУ и получила наименование библиотеки В. И. Ленина, заняла новое здание, созданное в конструктивистском стиле.     Уже на начало 1941 года библиотечный фонд составлял примерно 2 млн. томов, а количество читателей достигло 15 тыс. Но после войны много изданий не уцелело, и фонд заметно сократился.    Новое здание, в котором библиотека находится сегодня, начали строить в 2002 году, а открыли для посещения в 2006.    Адрес, график работы, правила посещения'+
+    +'Находится национальная библиотека в Минске на проспекте Независимости, 116. Работает ежедневно с 10:00 до 21:00. По выходным дням время работы сокращается до 18:00. Самой библиотекой можно воспользоваться бесплатно. Оплачиваются только дополнительные услуги. Но мы говорим о ней как о достопримечательности, поэтому будем рассматривать экскурсии. Они платные, цена зависит от масштабов экскурсионной программы, количества человек в группе. Также можно посетить обзорную площадку, чтобы полюбоваться красотами города свысока. Стоимость посещения площадки колеблется в пределах 2,5-3,5 белорусских рублей.'+
+    +'Как добираться   Добраться до библиотеки можно на метро, выйдя на станции «Усход». Также сюда довезут троллейбусы № 41 и 42. Ходят до рассматриваемой достопримечательности и многочисленные автобусы. Но мы рекомендуем подобрать на нашем сервисе предложения по трансферу от местных жителей. Вас довезут до интересующего объекта быстрее и с большим комфортом, не придется долго разбираться в маршрутах незнакомого города.    ';
+    let convertedText = this.props.globalhistory.cyrillLatinConv(text);
+    let returnedText = this.props.globalhistory.latinCyrillConv(convertedText);
+    */
+
+    //
+
+    console.log(AppReduser);
+  
 
 
+    console.log(this.props.storeState);
+    if(!this.state.isLoaded){
+      function isFindAllElems(cities){
+        for(let i=0; i>cities.length;i++){
+          if(cities[i].lat===''){
+            return false;
+          }
+        }
+        return true;
+      }
+      console.log(this.props.match);
+      console.log(window);
+      if(this.props.storeState.cities.length>0 && this.props.storeState.cities[this.props.storeState.cities.length-1].lat!==''
+        && isFindAllElems(this.props.storeState.cities)){
+        //this.goToNextPage();
+        this.setState({ isWaiting: true, isRefreshing: true, isGoodAnswer: true, isLoaded: true });
+        let routeDate = this.props.globalhistory.getRoute(this.props.storeState.cities);//this.getRoute(this.props.storeState.cities);
+        let newStringCities = routeDate.route;
+        let country = routeDate.country;
+        let canMove = routeDate.canMove;
+        let that = this;
+        
+        let body = JSON.stringify({
+          cities: this.props.storeState.cities,
+          country: this.props.storeState.country,
+          date: this.state.date,
+          distance: 1000
+        });
+        fetch(requests.getDrivers, {
+          method: 'PUT', body: body,
+          headers: { 'content-type': 'application/json' }
+        })
+          .then(response => {
+
+            return response.json();
+          })
+          .then(function (data) {
+
+            if (data.error) {
+              console.log("bad");
+              that.setState({ isRefreshing: false, isGoodAnswer: false });
+              setTimeout(() => {
+                that.setState({ isWaiting: false });
+                throw data.error;
+              }, 1000);
+
+            }
+            else {
+              
+              console.log("good");
+              console.log(data);
+              that.props.dispatch(setCarTypes(data.carTypes));
+              that.props.dispatch(setDriversList(data.drivers));
+              
+              that.setState({ isWaiting: false });
+              //let date = new Date();
+              //let dateString = that.props.globalhistory.createDateTimeString(that.state.date, true);
+              
+              /*if (canMove) {
+                that.props.globalhistory.history.push(`/drivers/${country}-${newStringCities}?date=`+dateString);
+                window.scroll(0, 500);
+              }*/
+              //that.getProfileData();
+            }
+          })
+          .catch(function (error) {
+            console.log("bad");
+            console.log('An error occurred:', error);
+            //that.catchFunc();
+          });
+          
+        }
+    }
+    
+    console.log('Route Menu render, lang=',this.props.storeState.activeLanguageNumber );
     return (
       <React.Fragment>
         <div className="routemenu_container d-flex flex-column col-12">
@@ -316,7 +391,10 @@ class RouteMenuClass extends React.Component {
           {
             isMobileOnly ?
               <React.Fragment>
-                <CityRouteTable readOnlyOn={this.props.showBtPrice} cities={this.props.storeState.cities} changeCity={this.changeCity} removeCity={this.removeCity} isoCountryMap={this.props.storeState.isoCountryMap} />
+                <div key={"cityRouteTable"+this.props.storeState.activeLanguageNumber} id={"idCityRouteTable."+this.props.storeState.activeLanguageNumber}>
+                  <CityRouteTable language={this.props.storeState.activeLanguageNumber} readOnlyOn={this.props.showBtPrice} cities={this.props.storeState.cities} changeCity={this.changeCity} removeCity={this.removeCity} isoCountryMap={this.props.storeState.isoCountryMap} />
+                </div>
+
                 {this.props.showBtPrice ?<React.Fragment/>
                 :
                 <div className=" d-flex routemenu_addCity" onClick={() => { this.addCity() }}>
@@ -326,7 +404,9 @@ class RouteMenuClass extends React.Component {
               </React.Fragment>
               :
               <React.Fragment>
-                <CityRouteTable readOnlyOn={this.props.showBtPrice} cities={this.props.storeState.cities} changeCity={this.changeCity} removeCity={this.removeCity} addCity={this.addCity} isoCountryMap={this.props.storeState.isoCountryMap} />
+                <div key={"cityRouteTable2"+this.props.storeState.activeLanguageNumber} id={"idCityRouteTable2."+this.props.storeState.activeLanguageNumber}>
+                  <CityRouteTable language={this.props.storeState.activeLanguageNumber} readOnlyOn={this.props.showBtPrice} cities={this.props.storeState.cities} changeCity={this.changeCity} removeCity={this.removeCity} addCity={this.addCity} isoCountryMap={this.props.storeState.isoCountryMap} />
+                </div>
               </React.Fragment>
           }
 
@@ -334,7 +414,7 @@ class RouteMenuClass extends React.Component {
 
           <div className="routemenu_setDate">
             <div className="col-sm-6 col-12 p-0 pr-1">
-              <DatePicker hintText="Дата отправления" minDate={new Date()} onChange={(e, date) => { this.chooseDate(date); let datePicer = document.querySelector(".routemenu_date"); datePicer.classList.remove("routemenu_date-Check") }} className="routemenu_date" />
+              <DatePicker defaultDate={this.state.date} hintText="Дата отправления" minDate={new Date()} onChange={(e, date) => { this.chooseDate(date); let datePicer = document.querySelector(".routemenu_date"); datePicer.classList.remove("routemenu_date-Check") }} className="routemenu_date" />
             </div>
 
             {this.props.showBtPrice ?

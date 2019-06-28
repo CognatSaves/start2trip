@@ -203,9 +203,9 @@ class DriverProfileClass extends React.Component {
         let newString = cities.slice(5);
         let newArrayCities = newString.split("-to-");
         for (let i = 0; i < newArrayCities.length; i++) {
-            let stringWhithSpaces = newArrayCities[i].replace(/-/g, ' ');
-            stringWhithSpaces = stringWhithSpaces + ', ' + country;
-            newCities[i] = { point: stringWhithSpaces, lat: "", long: "" };
+            let stringWithSpaces = newArrayCities[i].replace(/-/g, ' ');
+            stringWithSpaces = stringWithSpaces + ', ' + country;
+            newCities[i] = { point: stringWithSpaces, lat: "", long: "" };
         }
         this.props.dispatch(setCities(newCities))
     }
@@ -396,6 +396,9 @@ class DriverProfileClass extends React.Component {
         console.log('DriverProfile render');
         console.log(this);
 
+        console.log('cities',this.props.storeState.cities);
+
+        
         let driver = this.props.driversState.driverCarDescription;
         //console.log('driver', driver);
 
