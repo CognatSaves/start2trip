@@ -9,7 +9,7 @@ const home = {
         },
     },
     homeBodyBottom:{
-        homeBottomHeader: 'ПУТЕШЕСТВИЯ С TRIPFER(ENG)',
+        homeBottomHeader: 'ПУТЕШЕСТВИЯ С TRIPFER',
         homeBottomTitle: [
             "Маршрут",
             'Дата отправления',

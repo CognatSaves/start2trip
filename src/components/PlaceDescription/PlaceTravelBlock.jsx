@@ -45,30 +45,30 @@ class PlaceTravelBlockClass extends React.Component{
                 <div className="placeDescription_fragmentName">Как добраться</div>
                 <div className="d-flex flex-row">
                     <div className="d-flex flex-column col-6" style={{ marginTop: "15px" }}>
-                        <div className="d-flex">
-                            <div className="placesDescription_travelBlock_element d-flex" style={{ marginRight: "auto" }}>
+                        
+                            <div className="placesDescription_travelBlock_element d-flex" /*style={{ marginRight: "auto" }}*/>
                                 <div className="placesDescription_travelBlock_icon placesDescription_position" />
                                 <LocationSearchInput /*readOnlyOn={false}*/ address={this.state.startPoint} changeCity={(index, value,extraData)=>this.setState({startPoint: value})}
                                  id="startPointId" classDropdown="searchElement_style" classInput={"travelBlockSearch"} />   
                             </div>
-                            <div className="placesDescription_travelBlock_element d-flex" style={{ marginLeft: "auto" }}>
+                            <div className="placesDescription_travelBlock_element d-flex" /*style={{ marginLeft: "auto" }}*/>
                                 <div className="placesDescription_travelBlock_icon placesDescription_geoIcon" />
                                 <LocationSearchInput readOnlyOn={true} address={this.state.endPoint} changeCity={(index, value,extraData)=>{}} classDropdown="searchElement_style" classInput={"travelBlockSearch" } />
                             </div>
-                        </div>
-                        <div className="d-flex">
+                       
+                        
 
-                            <div className="placesDescription_travelBlock_element d-flex" style={{ marginRight: "auto" }}>
+                            <div className="placesDescription_travelBlock_element d-flex" /*style={{ marginRight: "auto" }}*/>
                                 <div className="placesDescription_travelBlock_icon placesDescription_calendary" />
                                 <div className=""/*"col-sm-6 col-12 p-0 pr-1"*/>
                                     <DatePicker defaultDate={this.state.date} hintText="Дата отправления" minDate={new Date()} onChange={(e, date) => { this.setState({date: date}); let datePicer = document.querySelector(".placeDescrDate"); datePicer.classList.remove("placeDescrDate-Check") }} className="placeDescrDate"/*"routemenu_date"*/ />
                                 </div>
                             </div>
                             <button className="placesDescription_travelBlock_element placesDescription_travelBlock_applyButton d-flex"
-                            style={{ marginLeft: "auto" }} onClick={()=>this.lookAvailable()}>
+                            /*style={{ marginLeft: "auto" }}*/ onClick={()=>this.lookAvailable()}>
                                 <text style={{ margin: "auto", fontSize: '16px' }} >СМОТРЕТЬ ПРЕДЛОЖЕНИЯ</text>
                             </button>
-                        </div>
+                       
                     </div>
                     <div className="placeDescription_fragmentName_mapBlock col-6" style={{marginTop: "15px"}}>       
                         <MapContainer cities={[...[{point: this.state.startPoint},{point:this.state.endPoint}]]} setLengthTime={()=>{console.log('setLengthTime at work')}} mapUpdate={true} />

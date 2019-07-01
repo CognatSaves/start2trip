@@ -2,8 +2,8 @@ import React from 'react';
 import './Manipulator.css'
 import leftArrow from './pictures/arrow_gray_left.svg'
 import rightArrow from './pictures/arrow_gray_right.svg'
-
-export default class Manipulator extends React.Component{
+import { connect } from 'react-redux';
+class ManipulatorClass extends React.Component{
     /*constructor(props){
         super(props);        
     }*/   
@@ -35,17 +35,18 @@ export default class Manipulator extends React.Component{
         if(this.props.page === maxPage){
             showMoreButtonState=true;
         }
+        let textInfo = this.props.storeState.languageTextMain.manipulator;
         return(
          <div className="drivers_block_manipulator">
             <button className="driversBlockManipulator_button" onClick={()=>this.props.showMorePages()} disabled={showMoreButtonState}>
-                <div className="driversBlockManipulator_button_value">Показать еще</div>
+                <div className="driversBlockManipulator_button_value">{textInfo.manupulatorShowMore}</div>
             </button>
             <div className="driversBlockManipulator_pageNumbers">
                 <button className="pageNumbers_arrow" onClick={()=>{ if(this.props.page>1){this.props.setPage(this.props.page-1)}}}>
                     <img src={leftArrow} width="100%" height="100%" alt="leftA" style={{borderRadius: "5px"}}></img>
                 </button>               
                 <div className="pageNumbers_text" onClick={()=>this.props.setPage(1)}>
-                    <div className="pageNumbers_text_value">в начало</div>
+                    <div className="pageNumbers_text_value">{textInfo.moveStart}</div>
                 </div>
                 <div className="pageNumbers_numberPosition">
                     {numberArray.map((element,index)=>                  
@@ -56,7 +57,7 @@ export default class Manipulator extends React.Component{
                     )}
                 </div>
                 <div className="pageNumbers_text" onClick={()=>this.props.setPage(maxPage)}>
-                    <div classNmae="pageNumbers_text_value">в конец</div>
+                    <div classNmae="pageNumbers_text_value">{textInfo.moveEnd}</div>
                 </div>
                 <button className="pageNumbers_arrow" onClick={()=>{ if(this.props.page<maxPage){this.props.setPage(this.props.page+1)}}}>
                     <img src={rightArrow} width="100%" height="auto" alt="rightA" style={{borderRadius: "5px"}}></img>
@@ -68,3 +69,11 @@ export default class Manipulator extends React.Component{
 
     }
 }
+
+const Manipulator = connect(
+    (state) => ({
+      storeState: state.AppReduser,
+    }),
+  )(ManipulatorClass);
+  
+  export default Manipulator;

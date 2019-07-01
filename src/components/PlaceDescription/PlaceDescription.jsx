@@ -176,6 +176,7 @@ class PlaceDescriptionClass extends React.Component {
         
         let topBlockId = "placeDescriptionId";
         let simularPlaceBlockId = 'placeDescriptionId4';
+        let textInfo = this.props.storeState.languageTextMain.placeDescription;
             return (
                 <React.Fragment>
                     <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer}/>
@@ -216,12 +217,12 @@ class PlaceDescriptionClass extends React.Component {
                             <div className="drivers_bottom_background d-flex flex-column" >
                                 <div className="drivers_body d-flex">
                                     <div className="left_body_part col-12">
-                                        <TourPanel topBlockId={topBlockId} descriptionId={"placeDescriptionId"} variantsArray={["Описание","Фотографии","Как добраться","Вас может заинтересовать","Отзывы"]}
+                                        <TourPanel topBlockId={topBlockId} descriptionId={"placeDescriptionId"} variantsArray={textInfo.placeDescription.variantsArray}
                                         setPanelStateFunc={changePlacesFixedClass} panelFixedClass={this.props.placesState.placePanelFixedClass}
                                         panelSelectedElement={this.props.placesState.placePanelSelectedElement} setPanelSelectedElement={setPlacesPanelSelectedElement}/>
                                         <PlaceProgramm tagsArray={this.state.newPlace.tags} place={/*this.state.place*/{...this.state.newPlace.local,tags: this.state.newPlace.place.tags, rating: this.state.newPlace.place.rating, comments: this.state.newPlace.place.commentNumber}}/> 
                                         <div className="placeDescription_block d-flex flex-column" id="placeDescriptionId2"> 
-                                            <div className="placeDescription_fragmentName" style={{marginBottom: "15px"}} >Фотографии</div>                           
+                                            <div className="placeDescription_fragmentName" style={{marginBottom: "15px"}} >{textInfo.placeDescription.variantsArray[1]}</div>                           
                                             <PlacePhotos photoArray={/*this.state.photoArray*/this.state.newPlace.place.images}
                                                 showMask={(clickedImageIndex)=>{ this.setState({isMaskVisible: true,clickedImageIndex:clickedImageIndex})}}/*width={this.state.width} height={this.state.height} number={this.state.n}*//>
                                         </div>
@@ -240,7 +241,7 @@ class PlaceDescriptionClass extends React.Component {
                                                 <SimularToursBlock tours={this.state.popularPlaces} fragmentName={"Вас может заинтересовать"} priseDisplay={"none"}/>
                                             */
                                         }
-                                            <SimularPlaceBlock outerBlock={simularPlaceBlockId} places={this.state.newPlace.additionalPlaces} tags={this.state.newPlace.tags} tours={this.state.popularPlaces} fragmentName={"Вас может заинтересовать"} priseDisplay={"none"}/>   
+                                            <SimularPlaceBlock outerBlock={simularPlaceBlockId} places={this.state.newPlace.additionalPlaces} tags={this.state.newPlace.tags} tours={this.state.popularPlaces} fragmentName={textInfo.placeDescription.variantsArray[3]} priseDisplay={"none"}/>   
                                         </div>
                                         <CommentBlock targetType="place" comments={this.state.newPlace.comments} targetId={this.state.newPlace.place.id} page={this.state.page} setPage={this.setPage}
                                             showMorePages={this.showMorePages} showPages={this.state.showPages} id={"placeDescriptionId5"} startRolling={()=>this.startRolling()} endRolling={(result)=>this.endRolling(result)}/>

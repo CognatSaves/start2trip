@@ -61,12 +61,13 @@ class PopularPlacesClass extends React.Component {
             }
             return element.loc.length>0 ? element.loc[0].name : 'no-name';
         }
+        let textInfo = this.props.storeState.languageTextMain.places;
         return (
             <React.Fragment>
                 <div className="popularPlacesBody">
 
                     <div className="popularPlacesTitle">
-                        <h3>Популярные направления</h3>
+                        <h3>{textInfo.popularPlaces.popularPlacesTitle}</h3>
                     </div>
 
                     <div className="d-flex col-12 p-0">

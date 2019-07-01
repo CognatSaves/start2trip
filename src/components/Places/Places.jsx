@@ -101,6 +101,7 @@ class PlacesClass extends React.Component {
           this.props.globalReduser.history.push('/');
       });
     }
+    
     return (
       <React.Fragment>
         <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={/*this.state.isRefreshing*/true} isGoodAnswer={/*this.state.isGoodAnswer*/true}/>

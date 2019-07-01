@@ -7,7 +7,7 @@ import capitalIcon from './pictures/building_Монтажная область 1
 import { connect } from 'react-redux';
 class PlacesCountryInfoClass extends React.Component {
     render(){
-        
+        let textInfo = this.props.storeState.languageTextMain.places;
         return(
             <React.Fragment>
               <div className="placesCountryInfo">
@@ -37,7 +37,7 @@ class PlacesCountryInfoClass extends React.Component {
                     </div>
                     <div className="countryData_element_text">
                       <text style={{textAlign: "center", width: "100%", fontFamily: "Roboto", }}>
-                        <text style={{fontWeight: "300", fontSize: "12px"}}>{"территория"} </text>                     
+                        <text style={{fontWeight: "300", fontSize: "12px"}}>{textInfo.placesCountryInfo.territory} </text>                     
                         <br/>
                         <text style={{fontWeight: "400", fontSize: "14px"}}>{this.props.placesState.country.local ? this.props.placesState.country.local.propTerritory : ''}</text>
                       </text> 
@@ -50,7 +50,7 @@ class PlacesCountryInfoClass extends React.Component {
                     </div>
                     <div className="countryData_element_text">
                       <text style={{textAlign: "center", width: "100%", fontFamily: "Roboto", }}>
-                        <text style={{fontWeight: "300", fontSize: "12px"}}>{"население"} </text>                     
+                        <text style={{fontWeight: "300", fontSize: "12px"}}>{textInfo.placesCountryInfo.population} </text>                     
                         <br/>
                         <text style={{fontWeight: "400", fontSize: "14px"}}>{(this.props.placesState.country.propPopulation ? this.props.placesState.country.propPopulation+" чел." : '')}</text>
                       </text> 
@@ -62,7 +62,7 @@ class PlacesCountryInfoClass extends React.Component {
                     </div>
                     <div className="countryData_element_text">
                       <text style={{textAlign: "center", width: "100%", fontFamily: "Roboto", }}>
-                        <text style={{fontWeight: "300", fontSize: "12px"}}>{"столица"} </text>                     
+                        <text style={{fontWeight: "300", fontSize: "12px"}}>{textInfo.placesCountryInfo.capital} </text>                     
                         <br/>
                         <text style={{fontWeight: "400", fontSize: "14px"}}>{this.props.placesState.country.local ? this.props.placesState.country.local.propCapital : ''}</text>
                       </text>  

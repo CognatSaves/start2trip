@@ -17,8 +17,9 @@ import requests from '../../config';
 import getUserData from '../driverProfileRegistration/DriverProfileRequest';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 import '../driverProfileRegistration/DriverProfileRegistration.css';
-import AccountFirstEnterModal from '../home/AccountFirstEnterModal';
 import {changeLanguagePart} from '../../redusers/Action';
+import FirstEnterModal from '../home/FirstEnterModal';
+
 class AgencyProfileClass extends React.Component{
     constructor(props){
         super(props);
@@ -39,7 +40,7 @@ class AgencyProfileClass extends React.Component{
                 <React.Fragment>
                 {
                     this.state.accountEnter ?
-                    <AccountFirstEnterModal/> : <React.Fragment/>
+                    <FirstEnterModal whatRender="agency"/> : <React.Fragment/>
                 }
                 <Header driver={true} history={this.props.history} />
                 <AgencyProfileNavigation/>

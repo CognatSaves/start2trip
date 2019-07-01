@@ -29,6 +29,7 @@ class FooterClass extends React.Component {
     // if(loc =="/home"){
     //   flagDiv=false;
     // }
+    let textInfo = this.props.storeState.languageTextMain.footer;
     return (
       <React.Fragment>
         <div className="footer d-xl-flex d-lg-flex d-md-flex d-sm-none d-none justify-content-center align-items-center col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -36,11 +37,11 @@ class FooterClass extends React.Component {
           <div className="footer_block d-flex  justify-content-between align-items-center col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <img className="col-1 p-0" src={logoTripfer} width="110px" height="18px" alt="logoWhiteIcon" />
             <div className="footerButtons d-flex justify-content-around col-xl-8 col-lg-9 col-md-11 col-sm-12 col-12">
-              <button className="footerButtons_button">О сервисе</button>
-              <button className="footerButtons_button">Партнерам</button>
-              <button className="footerButtons_button">Лицензионное соглашение</button>
-              <button className="footerButtons_button">Помощь</button>
-              <button className="footerButtons_button">Контакты</button>
+              <button className="footerButtons_button">{textInfo.footerButtons[0]}</button>
+              <button className="footerButtons_button">{textInfo.footerButtons[1]}</button>
+              <button className="footerButtons_button">{textInfo.footerButtons[2]}</button>
+              <button className="footerButtons_button">{textInfo.footerButtons[3]}</button>
+              <button className="footerButtons_button">{textInfo.footerButtons[4]}</button>
               <div className="footerButtonsIcon d-flex">
                 <img src={facebookIcon} width="16px" height="16px" alt="facebookIcon" />
                 <img src={instagramIcon} width="17px" height="17px" alt="instagramIcon" />
@@ -56,19 +57,19 @@ class FooterClass extends React.Component {
           </div> */}
           <div className="d-flex flex-column align-items-center justify-content-end foterMobaileItem col-3 " >
             <div className="footerMobileIconRoutes" />
-            <div className="footerMobileTextRoutes">Маршруты</div>
+            <div className="footerMobileTextRoutes">{textInfo.footerMobileTextRoutes}</div>
           </div>
           <div className="d-flex flex-column align-items-center justify-content-end foterMobaileItem col-3 " >
             <div className="footerMobileIconTours" />
-            <div className="footerMobileTextTours">Туры</div>
+            <div className="footerMobileTextTours">{textInfo.footerMobileTextTours}</div>
           </div>
           <div className="d-flex flex-column align-items-center justify-content-end foterMobaileItem col-3 " >
             <div className="footerMobileIconPlaces" />
-            <div className="footerMobileTextPlaces">Места</div>
+            <div className="footerMobileTextPlaces">{textInfo.footerMobileTextPlaces}</div>
           </div>
           <div className="d-flex flex-column align-items-center justify-content-end foterMobaileItem col-3 " >
             <div className="footerMobileIconProfile" />
-            <div className="footerMobileTextProfile">Профиль</div>
+            <div className="footerMobileTextProfile">{textInfo.footerMobileTextProfile}</div>
           </div>
         </div>
         <MobileFilter />

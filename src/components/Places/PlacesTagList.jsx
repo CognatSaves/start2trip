@@ -38,10 +38,11 @@ class PlacesTagListClass extends React.Component{
         //console.log('tagBlockWidth',tagBlockWidth ? tagBlockWidth.offsetWidth: '');
         //console.log('tempWidth',tempWidth ? tempWidth.offsetWidth : '');
         var widthSum=0;var mapStop=false;
+        let textInfo = this.props.storeState.languageTextMain.places;
         return(
             <div className="popularPlacesBody d-flex flex-row">
                 <div className="d-flex justify-content-center" style={{width: '10%'}}>
-                    <div style={{margin: 'auto'}}>Категории:</div>
+                    <div style={{margin: 'auto'}}>{textInfo.placesTagList.placesTagListTitle +':'}</div>
                 </div>
                 <div id="tagLine" className="d-flex flex-wrap placesTagList_tagLine" key={this.state.tags+this.state.isShortTags}>
                 
@@ -78,7 +79,7 @@ class PlacesTagListClass extends React.Component{
                                             mapStop=true;
                                             return(
                                                 <div className="d-flex justify-content-top placesTagList_stateBlock">             
-                                                    <div style={{margin: 'auto'}} onClick={()=>this.setState({isShortTags: false})}>Ещё</div>
+                                                    <div style={{margin: 'auto'}} onClick={()=>this.setState({isShortTags: false})}>{textInfo.placesTagList.moreButton}</div>
                                                 </div>                  
                                             )
                                         }
@@ -99,7 +100,7 @@ class PlacesTagListClass extends React.Component{
                                             <div style={{}}>{element.tagLoc.name}</div>
                                         </div>
                                         <div className="d-flex justify-content-top placesTagList_stateBlock">             
-                                            <div style={{margin: 'auto'}} onClick={()=>this.setState({isShortTags: true})}>Свернуть</div>
+                                            <div style={{margin: 'auto'}} onClick={()=>this.setState({isShortTags: true})}>{textInfo.placesTagList.hideButton}</div>
                                         </div> 
                                     </React.Fragment>
                                 )

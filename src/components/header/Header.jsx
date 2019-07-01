@@ -90,7 +90,7 @@ const ModalUserType = (props) => {
       selectedUserType: value
     })
   }
-  let { isOpen, that } = props;
+  let { isOpen, that, textInfo } = props;
   let lang = 0; // подключить мультиязычность!!!
   let massIcon = [backpackIcon, wheelIcon, dealIcon];
   const customContentStyle = {
@@ -107,7 +107,7 @@ const ModalUserType = (props) => {
       contentStyle={isMobile ? customContentStyle : customContentStyle2}
     >
       <div className='d-flex flex-column align-items-center selectTypeBody'>
-        <span>Выберите тип вашего аккаунта</span>
+        <span>{textInfo.modalUserType.selectAccountTypeText}</span>
         {
           pageTextInfo.registrationUserType.userTypes.map((element, index) =>
             <div className={index ? "selectTypeBlockLine selectTypeBlock d-flex align-items-center col-8" : "selectTypeBlock d-flex align-items-center col-8"}>
@@ -126,7 +126,7 @@ const ModalUserType = (props) => {
   )
 }
 const CountrySelect = (props) => {
-  let { modalCountry, toggleModalCountry, className } = props;
+  let { modalCountry, toggleModalCountry, className,textInfo } = props;
   return (
     <Modal isOpen={modalCountry} toggle={toggleModalCountry} className={className}>
       <ModalBody>
@@ -136,7 +136,7 @@ const CountrySelect = (props) => {
             <button className="modalCountryButtton" onClick={() => { toggleModalCountry() }}><img src={crossIconModal} width="20px" height="20px" alt="crossIconModal" /></button>
           </div>
           <div className="modalCountry d-flex flex-column align-items-center mb-5">
-            <h4 className="mb-4">ВЫБЕРИТЕ ВАШУ СТРАНУ</h4>
+            <h4 className="mb-4">{textInfo.modalCountrySelect.selectCountryText}</h4>
             <RenderModalCountry close={toggleModalCountry} />
           </div>
         </div>
@@ -211,6 +211,9 @@ class HeaderClass extends React.Component {
     }
     this.props.dispatch(setActiveCurr(activeCurrencyNumber));
     this.props.dispatch(setActiveLang(activeLanguageNumber));
+
+    //let textInfo = this.props.storeState.languageTextMain.header;
+
     this.state = {
       dropdownLanguageOpen: false,
       burgerMenu: false,
@@ -221,20 +224,7 @@ class HeaderClass extends React.Component {
       modalCountry: false,
       collapse: false,
       //modalRegistration: false,
-      buttonMassElements: [
-        {
-          to: "/",
-          value: "Маршруты"
-        },
-        {
-          to: "/places",
-          value: "Места"
-        },
-        {
-          to: "/tours",
-          value: "Туры"
-        }
-      ],
+      
 
       menuItems: ["Профиль", "Автомобиль", "Настройки поездок", "Туры", "Отзывы", "Настройки", "Биллинг", "Партнерская программа", "Выход"],
       history: props.history,
@@ -377,7 +367,7 @@ class HeaderClass extends React.Component {
             }
           }
           if(index!==-1){
-            debugger;
+            
             let adminLang = this.props.globalReduser.readCookie('adminLang');
             let adminIndex=-1;
             if(!adminLang){
@@ -656,10 +646,25 @@ class HeaderClass extends React.Component {
     let languages = this.props.storeState.languages;
     let currencies = this.props.storeState.currencies;
     let adminLanguages = this.props.storeState.adminLanguages;
+    let textInfo = this.props.storeState.languageTextMain.header;
+    let buttonMassElements= [
+      {
+        to: "/",
+        value: this.props.storeState.languageTextMain.header.menuElements[0]
+      },
+      {
+        to: "/places",
+        value: this.props.storeState.languageTextMain.header.menuElements[1]
+      },
+      {
+        to: "/tours",
+        value: this.props.storeState.languageTextMain.header.menuElements[2]
+      }
+    ];
     return (
       <React.Fragment>
         <ModalRegistration modalRegistration={this.props.storeState.modalRegistration} toggle={this.toggleModalRegistration} className={this.props.className} authorization={this.authorization} />
-        <CountrySelect modalCountry={this.state.modalCountry} toggleModalCountry={this.toggleModalCountry} className={this.props.className} />
+        <CountrySelect textInfo={textInfo} modalCountry={this.state.modalCountry} toggleModalCountry={this.toggleModalCountry} className={this.props.className} />
         {
           this.state.isWaiting ?
             <DriverRefreshIndicator isRefreshExist={true} isRefreshing={true} isGoodAnswer={true} />
@@ -671,7 +676,7 @@ class HeaderClass extends React.Component {
           
           : <React.Fragment/> */
         }
-        <ModalUserType isOpen={this.state.isUsertypeLooking} that={this} />
+        <ModalUserType textInfo={textInfo} isOpen={this.state.isUsertypeLooking} that={this} />
         <div className="headerMobail d-xl-none d-lg-none d-md-none d-sm-flex d-flex align-items-center justify-content-between">
           {/* <div onClick={this.toggleModalCountry} className="headerGeoButton">
             <span>{this.props.storeState.country}</span>
@@ -721,14 +726,14 @@ class HeaderClass extends React.Component {
                   {
                     this.props.storeState.isAuthorized ?
                     <React.Fragment>
-                      <span onClick={() => {  clearQueueScrollLocks(); enablePageScroll();this.setState({burgerMenu: false}); this.accountRedirect("/profile", 1) }}>Профиль</span>
-                      <span className="blockedSpan" onClick={() => {/* this.setState({burgerMenu: false});this.accountRedirect("/trips", 0)*/ }}>Мои поездки</span>
-                      <span onClick={() => {  clearQueueScrollLocks(); enablePageScroll();this.setState({burgerMenu: false}); this.accountRedirect("/settings", 6) }}>Настройки</span>
-                      <span onClick={() => {  clearQueueScrollLocks(); enablePageScroll();this.setState({burgerMenu: false}); this.accountRedirect("/referrals", 8) }}>Партнерская программа</span>
-                      <span onClick={()=>{ clearQueueScrollLocks(); enablePageScroll(); this.setState({burgerMenu: false});this.logOffFunc()}}>Выйти</span> 
+                      <span onClick={() => {  clearQueueScrollLocks(); enablePageScroll();this.setState({burgerMenu: false}); this.accountRedirect("/profile", 1) }}>{textInfo.burgerMenu.profile}</span>
+                      <span className="blockedSpan" onClick={() => {/* this.setState({burgerMenu: false});this.accountRedirect("/trips", 0)*/ }}>{textInfo.burgerMenu.trips}</span>
+                      <span onClick={() => {  clearQueueScrollLocks(); enablePageScroll();this.setState({burgerMenu: false}); this.accountRedirect("/settings", 6) }}>{textInfo.burgerMenu.settings}</span>
+                      <span onClick={() => {  clearQueueScrollLocks(); enablePageScroll();this.setState({burgerMenu: false}); this.accountRedirect("/referrals", 8) }}>{textInfo.burgerMenu.partnership}</span>
+                      <span onClick={()=>{ clearQueueScrollLocks(); enablePageScroll(); this.setState({burgerMenu: false});this.logOffFunc()}}>{textInfo.burgerMenu.exit}</span> 
                     </React.Fragment>
                     :
-                    <span onClick={this.toggleModalRegistration}>Войти</span>
+                    <span onClick={this.toggleModalRegistration}>{textInfo.burgerMenu.enter}</span>
 
                   }              
                 </div>
@@ -737,7 +742,7 @@ class HeaderClass extends React.Component {
           </div>
         </div>
         <div className="btUp" onClick={() => { window.scroll(0, 0) }}>
-          <span>В начало страницы</span>
+          <span>{textInfo.toPageStart}</span>
           <i className="footerMobileIconUp" />
         </div>
         <div className={this.props.driver ? "driverHeader" : "homeHeader"}>
@@ -753,7 +758,7 @@ class HeaderClass extends React.Component {
             <div className="d-flex align-items-center justify-content-end col-xl-6 col-lg-7 col-md-8 col-sm-6 col-6">
               <div className="headerButtonMass d-flex align-self-stretch justify-content-end col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 ">
                 {
-                  this.state.buttonMassElements.map((element, index) =>
+                  buttonMassElements.map((element, index) =>
                     <Link to={element.to} className="buttonMassLink align-self-stretch">{element.value}</Link>
                   )
                 }
@@ -816,16 +821,16 @@ class HeaderClass extends React.Component {
               
               </div>
               <div className="headerRegistration d-flex justify-content-start col-xl-1 col-lg-1 col-md-2 col-sm-1 col-1">
-                <span style={{ display: this.props.storeState.isAuthorized ? 'none' : 'block' }} onClick={this.toggleModalRegistration}>Войти</span>
+                <span style={{ display: this.props.storeState.isAuthorized ? 'none' : 'block' }} onClick={this.toggleModalRegistration}>{textInfo.burgerMenu.enter}</span>
                 <div style={{ display: this.props.storeState.isAuthorized ? 'flex' : 'none' }} className="openMenu position-relative align-items-center">
                   <div className="avatar" style={{ background: 'url(' + this.props.storeState.avatarUrl + ') no-repeat' }}></div>
                   <i className="openDropDownMenuBt"></i>
                   <div className="hederMenu">
-                    <span onClick={() => { this.accountRedirect("/profile", 1) }}>Профиль</span>
-                    <span /*className="blockedSpan"*/ onClick={() => { this.accountRedirect("/trips", 0) }}>Мои поездки</span>
-                    <span onClick={() => { this.accountRedirect("/settings", 6) }}>Настройки</span>
-                    <span onClick={() => { this.accountRedirect("/referrals", 8) }}>Партнерская программа</span>
-                    <span onClick={this.logOffFunc}>Выйти</span>
+                    <span onClick={() => { this.accountRedirect("/profile", 1) }}>{textInfo.burgerMenu.profile}</span>
+                    <span /*className="blockedSpan"*/ onClick={() => { this.accountRedirect("/trips", 0) }}>{textInfo.burgerMenu.trips}</span>
+                    <span onClick={() => { this.accountRedirect("/settings", 6) }}>{textInfo.burgerMenu.settings}</span>
+                    <span onClick={() => { this.accountRedirect("/referrals", 8) }}>{textInfo.burgerMenu.partnership}</span>
+                    <span onClick={this.logOffFunc}>{textInfo.burgerMenu.exit}</span>
                   </div>
                 </div>
               </div>

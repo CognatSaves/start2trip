@@ -5,7 +5,8 @@ const initialState = {
     showPages: 1,
     pagesMenuVariants: [10,20,40],
     pagesMenuValue: 10,
-    sortMenuVariants: ["Популярности", "Отзывам", "Названию"],
+    sortMenuVariants: ["Популярности", "Отзывам", "Названию"],//в случае изменения 
+    //необходимо их кореллировать с изменениями в переводах
     sortMenuValue: 1,
     placePanelFixedClass: "",
     placePanelSelectedElement: -1,

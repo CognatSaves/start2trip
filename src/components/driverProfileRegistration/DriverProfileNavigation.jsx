@@ -198,7 +198,7 @@ class DriverProfileNavigationClass extends React.Component {
                                 <p>{profile.hometown.length!==0 ? (profile.hometown + ", " + profile.homecountry) : ""}</p>
                             </div>
                             <div className="bodyTopDriverInfoRide p-0 d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column">
-                                <div className="d-xl-flex d-lg-flex d-md-flex d-sm-none d-none align-items-center col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 p-0">
+                                <div className="d-xl-flex d-lg-flex d-md-flex d-sm-none d-none align-items-center col-lg-3 col-md-4 col-6 p-0">
                                     <span>{profile.futureTrips.length + profile.historyTrips.length}</span>
                                     <div className="d-flex flex-column">
                                         <p>{textPage.totalTrips.first}</p>
@@ -209,7 +209,7 @@ class DriverProfileNavigationClass extends React.Component {
                                     <p>{textPage.totalTrips.full}:</p>
                                     <span className="pl-1">{profile.futureTrips.length + profile.historyTrips.length}</span>
                                 </div>                              
-                                <div className="d-xl-flex d-lg-flex d-md-flex d-sm-none d-none align-items-center col-xl-2 col-lg-2 col-md-2 col-sm-6 col-6 p-0">
+                                <div className="d-xl-flex d-lg-flex d-md-flex d-sm-none d-none align-items-center col-lg-3 col-md-4 col-6 p-0">
                                     <span>{profile.futureTrips.length}</span>
                                     <div className="d-flex flex-column ">
                                         <p>{textPage.upcomingTrips.first}</p>
@@ -220,15 +220,15 @@ class DriverProfileNavigationClass extends React.Component {
                                     <p>{textPage.upcomingTrips.full}:</p>
                                     <span className="pl-1">{profile.futureTrips.length}</span>
                                 </div>
-                                <div className="d-xl-flex d-lg-flex d-md-flex d-sm-none d-none align-items-center col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 p-0">
+                                <div className="d-xl-flex d-lg-flex d-md-flex d-sm-none d-none align-items-center col-lg-3 col-md-4 col-6 p-0">
                                     <span>{profile.penalty}</span>
                                     <div className="d-flex flex-column">
-                                        <p>Штрафные</p>
-                                        <p>баллы</p>
+                                        <p>{textPage.penalty.first}</p>
+                                        <p>{textPage.penalty.last}</p>
                                     </div>
                                 </div>
                                 <div className="bodyTopDriverInfoRideMobail d-xl-none d-lg-none d-md-none d-sm-flex d-flex align-items-center col-xl-3 col-lg-3 col-md-3 col-sm-5 col-12 p-0">
-                                    <p>Штрафные баллы:</p>
+                                    <p>{textPage.penalty.full+':'}</p>
                                     <span className="pl-1">{profile.penalty}</span>
                                 </div>
                             </div>

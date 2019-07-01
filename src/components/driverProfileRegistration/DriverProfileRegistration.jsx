@@ -17,11 +17,10 @@ import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 import requests from '../../config';
 import getUserData from './DriverProfileRequest';
 import DriverRefreshIndicator from './DriverRefreshIndicator';
-import AccountFirstEnterModal from '../home/AccountFirstEnterModal';
 import UserProfileRegistration from '../UserProfile/UserProfileRegistration';
 import AgencyProfile from '../AgencyProfile/AgencyProfile';
 import {changeLanguagePart} from '../../redusers/Action';
-
+import FirstEnterModal from '../home/FirstEnterModal';
 class DriverProfileRegistrationClass extends React.Component {
   constructor(props) {
     super(props);
@@ -46,7 +45,7 @@ class DriverProfileRegistrationClass extends React.Component {
         <React.Fragment>
         {
           this.state.accountEnter ?
-          <AccountFirstEnterModal/> : <React.Fragment/>
+          <FirstEnterModal whatRender="driver"/> : <React.Fragment/>
         }
         <Header driver={true} history={this.props.history} />
         <DriverProfileNavigation />

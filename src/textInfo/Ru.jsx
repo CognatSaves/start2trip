@@ -3,11 +3,21 @@ import driverProfile from './Ru/Ru-driverProfile';
 import home from './Ru/Ru-home';
 import registration from './Ru/Ru-registration';
 import renderModalRegistration from './Ru/Ru-renderModalRegistration';
+import header from './Ru/Ru-header';
+import footer from './Ru/Ru-footer';
+import places from './Ru/Ru-places';
+import manipulator from './Ru/Ru-manipulator';
+import placeDescription from './Ru/Ru-placeDescription';
 
 export default {
     driverProfile: driverProfile,
     //driverProfileRegistration:driverProfileRegistration,
     home:home,
     registration:registration,
-    renderModalRegistration:renderModalRegistration
+    renderModalRegistration:renderModalRegistration,
+    header:header,
+    places:places,
+    footer:footer,
+    manipulator:manipulator,
+    placeDescription:placeDescription
 }

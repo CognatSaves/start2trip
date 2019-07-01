@@ -61,6 +61,10 @@ class FirstEnterModalClass extends React.Component {
         }
         let widthOneWindow = div.scrollWidth / this.state.renderContent.length - 2.5;
         if (indexEl || indexEl == 0) {
+            
+
+            div.scrollLeft=widthOneWindow*indexEl;
+            /*
             switch (indexEl) {
                 case 0: {
                     div.scrollLeft = 0;
@@ -82,9 +86,12 @@ class FirstEnterModalClass extends React.Component {
                     div.scrollLeft = widthOneWindow * 4;
                 }
                     break;
-            }
+            }*/
 
         } else {
+            div.scrollLeft = widthOneWindow*(this.state.activeWindow+1);
+
+            /*
             if (0 === this.state.activeWindow) {
                 div.scrollLeft = widthOneWindow;
             }
@@ -96,13 +103,19 @@ class FirstEnterModalClass extends React.Component {
             }
             if (3 === this.state.activeWindow) {
                 div.scrollLeft = widthOneWindow * 4;
-            }
+            }*/
         }
 
     }
     handleClose = () => {
+        
         let date = new Date(Date.now() + 1000 * 3600 * 24 * 60 * 500);
-        cookies.set('firstEnter', 'no', { path: '/', expires: date });
+        if(this.props.whatRender==='user'){
+            cookies.set('firstEnter', 'no', { path: '/', expires: date });
+        }
+        else{
+            cookies.set('accountFirstEnter', 'no', { path: '/', expires: date });
+        }
         this.setState({
             openModalStart: false
         });
@@ -138,11 +151,11 @@ class FirstEnterModalClass extends React.Component {
     render() {
         if (this.state.renderContent==0) {
             let whatRender;
-            switch ("agency") {
+            switch (this.props.whatRender) {
                 case "user": {
-                    whatRender = this.state.renderContentUser;
-                }
+                    whatRender = this.state.renderContentUser;             
                     break;
+                }
                 case "driver": {
                     whatRender = this.state.renderContentDriver;
                 }
@@ -213,7 +226,7 @@ class FirstEnterModalClass extends React.Component {
                                     <span className={this.state.activeWindow == index ? "activeBtChenge" : ""} onClick={() => { this.ChangeinputChecked(index) }}></span>
                                 )}
                             </div>
-                            <div className="modalStartInformationDivNext d-flex align-items-center justify-content-center col-6 " onClick={() => { this.state.changeBtClose ? this.handleClose() : this.ChangeinputChecked() }}>
+                            <div className="modalStartInformationDivNext d-flex align-items-center justify-content-center col-6 " onClick={() => { this.state.activeWindow == this.state.renderContent.length - 1 ? this.handleClose() : this.ChangeinputChecked() }}>
                                 <span className="modalStartInformationNext">{this.state.activeWindow == this.state.renderContent.length - 1 ? "Закрыть" : "Далее"}</span>
                             </div>
                         </div>

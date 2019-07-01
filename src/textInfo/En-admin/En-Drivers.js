@@ -15,6 +15,11 @@ const driverProfileRegistration = {
             first: "Предстоящие(ENG)",
             last: "поездки(ENG)",
             full: "Предстоящие поездки(ENG)"
+        },
+        penalty:{
+            first: 'Штрафные(ENG)',
+            last: 'баллы(ENG)',
+            full: 'Штрафные баллы(ENG)'
         }
     },
     DriverProfileBasicInformation: {

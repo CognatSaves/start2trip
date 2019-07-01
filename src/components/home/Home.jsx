@@ -12,7 +12,6 @@ import Header from '../header/Header';
 import HomeBody from './HomeBody/HomeBody.jsx'
 import { isMobileOnly, isTablet } from 'react-device-detect';
 import FirstEnterModal from './FirstEnterModal';
-
 class HomeClass extends React.Component {
   constructor(props) {
     super(props);
@@ -43,7 +42,7 @@ class HomeClass extends React.Component {
         <main className="d-flex flex-column container-fluid p-0">
           {
             this.state.firstEnter ?
-            <FirstEnterModal/> : <React.Fragment/>
+            <FirstEnterModal whatRender="user"/> : <React.Fragment/>
           }
           
 

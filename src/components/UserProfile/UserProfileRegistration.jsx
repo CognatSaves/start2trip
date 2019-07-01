@@ -15,7 +15,7 @@ import requests from '../../config';
 import getUserData from '../driverProfileRegistration/DriverProfileRequest';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 import '../driverProfileRegistration/DriverProfileRegistration.css';
-import AccountFirstEnterModal from '../home/AccountFirstEnterModal';
+import FirstEnterModal from '../home/FirstEnterModal';
 class UserProfileRegistrationClass extends React.Component {
   constructor(props) {
     super(props);
@@ -34,7 +34,7 @@ class UserProfileRegistrationClass extends React.Component {
         <React.Fragment>
           {
             this.state.accountEnter ?
-            <AccountFirstEnterModal/> : <React.Fragment/>
+            <FirstEnterModal whatRender="user"/> : <React.Fragment/>
           }
           <Header driver={true} history={this.props.history}/>
           <UserProfileNavigation />

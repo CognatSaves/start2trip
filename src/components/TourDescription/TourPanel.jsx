@@ -9,9 +9,9 @@ import { connect } from 'react-redux';
 class TourPanelClass extends React.Component{
     constructor(props){
         super(props);
-        this.state = {
+        /*this.state = {
             variantsArray:this.props.variantsArray,
-        }
+        }*/
         window.onscroll = (e)=>this.checkPanelFixed(e);
     }
     shouldComponentUpdate(nextProps){ 
@@ -39,7 +39,7 @@ class TourPanelClass extends React.Component{
             
             let distanceTop = headerHeight;
             let selected = -1;
-            for(let i=0; i<this.state.variantsArray.length; i++){
+            for(let i=0; i<this.props.variantsArray.length; i++){
                 
                 let pageElement = document.getElementById(this.props.descriptionId+(i+1));
                 let elementHeight = pageElement.offsetHeight;
@@ -49,7 +49,7 @@ class TourPanelClass extends React.Component{
                 }  
                 distanceTop=distanceTop+elementHeight; 
             }
-            if(this.state.selectedElement!==selected){
+            if(/*this.state.selectedElement*/null!==selected){
                 this.props.dispatch(this.props.setPanelSelectedElement(selected));
             }
         }
@@ -65,7 +65,7 @@ class TourPanelClass extends React.Component{
             <React.Fragment>
             <div className={"driverProfileComments_panel d-flex "+this.props.panelFixedClass}>
                 {
-                    this.state.variantsArray.map((element,index) =>                    
+                    this.props.variantsArray.map((element,index) =>                    
                         <a className={this.props.panelSelectedElement===index ? "driverProfileComments_panel_element tourPanel_element tourPanelSelected" : "driverProfileComments_panel_element tourPanel_element"} href={"#"+this.props.descriptionId+(index+1)}>{element}</a>
                     )
                 }
