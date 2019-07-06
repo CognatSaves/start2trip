@@ -200,10 +200,12 @@
     top: 0px !important;
     right: 0 !important;
 }
-.copyElement{
+
+.copyElement {
     background-size: 25px 25px;
     width: 25px;
 }
+
 @media (max-width: 1140px) {
     .billingTableBody div :nth-child(2) {
         overflow: initial !important;
@@ -218,15 +220,17 @@
     .billingContentLeft {
         width: 100%;
         border-bottom: 1px solid #ccc;
+        padding-right: 0px;
     }
     .billingTextTitle {
         text-align: center;
     }
     .billingContentRight {
         margin-top: 20px;
+        padding-left: 0px;
     }
     .billingCalendar {
-        margin: 5px 5px !important;
+        margin: 10px 2px !important;
     }
 }
 

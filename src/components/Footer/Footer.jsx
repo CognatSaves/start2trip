@@ -7,12 +7,13 @@ import upArrowIcon from "./pictures/up-arrow.svg"
 import { whichPageRenderHistory } from "../../redusers/ActionGlobal"
 import { openFilterShow } from "../../redusers/ActionDrivers"
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import MobileFilter from '../drivers/DriversBody/DriversProperties/MobileFilter/MobileFilter'
 
 class FooterClass extends React.Component {
   constructor(props) {
     super(props);
-    this.state ={
+    this.state = {
     }
   }
 
@@ -29,6 +30,12 @@ class FooterClass extends React.Component {
     // if(loc =="/home"){
     //   flagDiv=false;
     // }
+  
+    let pathname = "";
+    if(this.props.globalhistory.history !==""){
+       pathname = this.props.globalhistory.history.location.pathname
+    }
+    
     let textInfo = this.props.storeState.languageTextMain.footer;
     return (
       <React.Fragment>
@@ -55,22 +62,30 @@ class FooterClass extends React.Component {
            
             <i className="footerMobileIconFilter" style={{display: flagBt ? "flex":"none"}} onClick={()=>{this.props.dispatch(openFilterShow(true))}} />
           </div> */}
-          <div className="d-flex flex-column align-items-center justify-content-end foterMobaileItem col-3 " >
-            <div className="footerMobileIconRoutes" />
-            <div className="footerMobileTextRoutes">{textInfo.footerMobileTextRoutes}</div>
-          </div>
-          <div className="d-flex flex-column align-items-center justify-content-end foterMobaileItem col-3 " >
-            <div className="footerMobileIconTours" />
-            <div className="footerMobileTextTours">{textInfo.footerMobileTextTours}</div>
-          </div>
-          <div className="d-flex flex-column align-items-center justify-content-end foterMobaileItem col-3 " >
-            <div className="footerMobileIconPlaces" />
-            <div className="footerMobileTextPlaces">{textInfo.footerMobileTextPlaces}</div>
-          </div>
-          <div className="d-flex flex-column align-items-center justify-content-end foterMobaileItem col-3 " >
-            <div className="footerMobileIconProfile" />
-            <div className="footerMobileTextProfile">{textInfo.footerMobileTextProfile}</div>
-          </div>
+          <Link to="/home" className="col-3 d-flex align-items-end">
+            <div className={ (pathname === "/home" ? "foterMobaileItem_active":" " )+ " d-flex flex-column align-items-center justify-content-end col-12 foterMobaileItem "} >
+              <div className={pathname === "/home" ? "footerMobileIconRoutes_active":"footerMobileIconRoutes" } />
+              <div className="footerMobileTextRoutes">{textInfo.footerMobileTextRoutes}</div>
+            </div>
+          </Link>
+          <Link to="/tours" className="col-3 d-flex align-items-end">
+            <div className={ (pathname === "/tours" ? "foterMobaileItem_active":" " )+ " d-flex flex-column align-items-center justify-content-end col-12 foterMobaileItem "} >
+              <div className={pathname === "/tours" ? "footerMobileIconTours_active":"footerMobileIconTours" } />
+              <div className="footerMobileTextTours">{textInfo.footerMobileTextTours}</div>
+            </div>
+          </Link>
+          <Link to="/place" className="col-3 d-flex align-items-end">
+            <div className={ (pathname === "/place" ? "foterMobaileItem_active":" " )+ " d-flex flex-column align-items-center justify-content-end col-12 foterMobaileItem "} >
+              <div className={pathname === "/place" ? "footerMobileIconPlaces_active":"footerMobileIconPlaces" } />
+              <div className="footerMobileTextPlaces">{textInfo.footerMobileTextPlaces}</div>
+            </div>
+          </Link>
+          <Link to="/account" className="col-3 d-flex align-items-end">
+            <div className={ (pathname === "/account/user/profile" || pathname === "/account/driver/profile"|| pathname === "/account/agency/profile" ? "foterMobaileItem_active":" " )+ " d-flex flex-column align-items-center justify-content-end col-12 foterMobaileItem "} >
+              <div className={pathname === "/account/user/profile" || pathname === "/account/driver/profile"|| pathname === "/account/agency/profile" ? "footerMobileIconProfile_active":"footerMobileIconProfile" } />
+              <div className="footerMobileTextProfile">{textInfo.footerMobileTextProfile}</div>
+            </div>
+          </Link>
         </div>
         <MobileFilter />
       </React.Fragment>

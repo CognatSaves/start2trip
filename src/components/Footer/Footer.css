@@ -68,6 +68,10 @@ html {
     box-shadow: 0 -5px 5px -5px rgba(0, 0, 0, 0.2);
 }
 
+.footerMobile a {
+    text-decoration: none;
+}
+
 .footerMobile-activeInput {
     display: none !important;
 }
@@ -81,6 +85,10 @@ html {
     margin-bottom: 5px;
 }
 
+.foterMobaileItem_active {
+    color: #f60;
+}
+
 .footerMobileIconTours {
     width: 20px;
     height: 20px;
@@ -89,13 +97,12 @@ html {
     background-size: contain;
 }
 
-.footerMobileIconTours:hover {
+.footerMobileIconTours_active {
+    width: 20px;
+    height: 20px;
+    margin-bottom: 5px;
     background: url(./pictures/front-bus-Orange.svg) 100% 100% no-repeat;
     background-size: contain;
-}
-
-.footerMobileIconTours:hover~.footerMobileTextTours {
-    color: #f60;
 }
 
 .footerMobileIconRoutes {
@@ -106,13 +113,12 @@ html {
     background-size: contain;
 }
 
-.footerMobileIconRoutes:hover {
+.footerMobileIconRoutes_active {
+    width: 20px;
+    height: 20px;
+    margin-bottom: 5px;
     background: url(./pictures/locationOrange.svg) 100% 100% no-repeat;
     background-size: contain;
-}
-
-.footerMobileIconRoutes:hover~.footerMobileTextRoutes {
-    color: #f60;
 }
 
 .footerMobileIconPlaces {
@@ -123,13 +129,12 @@ html {
     background-size: contain;
 }
 
-.footerMobileIconPlaces:hover {
+.footerMobileIconPlaces_active {
+    width: 20px;
+    height: 20px;
+    margin-bottom: 5px;
     background: url(./pictures/rate-star-Orange.svg) 100% 100% no-repeat;
     background-size: contain;
-}
-
-.footerMobileIconPlaces:hover~.footerMobileTextPlaces {
-    color: #f60;
 }
 
 .footerMobileIconProfile {
@@ -140,13 +145,12 @@ html {
     background-size: contain;
 }
 
-.footerMobileIconProfile:hover {
+.footerMobileIconProfile_active {
+    width: 20px;
+    height: 20px;
+    margin-bottom: 5px;
     background: url(./pictures/man-user-Orange.svg) 100% 100% no-repeat;
     background-size: contain;
-}
-
-.footerMobileIconProfile:hover~.footerMobileTextProfile {
-    color: #f60;
 }
 
 

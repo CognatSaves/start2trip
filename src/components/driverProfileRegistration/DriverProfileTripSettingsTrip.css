@@ -188,6 +188,9 @@ div.tripSettingsContentAddCity p:hover {
     .tripSettingsContentDeletButton:hover {
         background-position: top 0px right 10px;
     }
+    .tripSettingsContent button {
+        margin-left: 0px;
+    }
 }
 
 @media (max-width: 576px) {}

@@ -1,7 +1,7 @@
 .infoBlock_starsBlock {
     position: relative;
-    align-items: center;
-    height: 15px;
+    /* align-items: center; */
+    /* height: 15px; */
 }
 
 .infoBlock_starsBlock_value {
@@ -14,9 +14,11 @@
     line-height: 17px;
     margin: auto 5px auto 0;
 }
-.placeCreateCommentStars{
+
+.placeCreateCommentStars {
     font-size: 24px!important;
 }
+
 .infoBlock_starsBlock_stars {
     align-items: center;
     height: 100%;
@@ -24,7 +26,7 @@
     font-size: 16px;
 }
 
-.infoBlock_starsBlock_hideFirst .infoBlock_starsBlock_value{
+.infoBlock_starsBlock_hideFirst .infoBlock_starsBlock_value {
     display: none;
 }
 
@@ -75,6 +77,9 @@
 
 @media (max-width: 768px) {
     .infoBlock_starsBlock_stars {
+        font-size: 14px;
+    }
+    .infoBlock_starsBlock_number {
         font-size: 14px;
     }
 }

@@ -40,11 +40,11 @@ class RenderShareLinkClass extends React.Component {
                     <spantext>
                         {this.props.textTitle}
                     </spantext>
-                    <div className="d-flex flex-row affiliateProgramInput">
+                    <div className="d-flex flex-md-row flex-column affiliateProgramInput">
                         <input id={this.props.idInput} placeholder="Ссылка 1" value={this.props.valueInput} />
                         <spanlink onClick={() => this.copyValue(this.props.idInput)} className="copyElement" >{this.props.buttonCopyText}</spanlink>
                     </div>
-                    <div className="d-flex align-items-center flex-wrap affiliateProgramIconsMass">
+                    <div className="d-flex align-items-center flex-wrap justify-content-center affiliateProgramIconsMass">
                         {iconsRenderArray.map((element, index) =>
                             <i style={{ background: "url(" + element + ")" }} />
                         )}

@@ -70,7 +70,7 @@ class DriverProfileAffiliateProgramClass extends React.Component {
                         <p className="col-lg-8 col-md-9 col-10">{textPage.affiliateProgramsDescription}</p>
                     </div>
                     <div className="affiliateProgramButton d-flex flex-sm-row flex-column justify-content-between align-items-center">
-                        <div className="d-flex flex-lg-row flex-column align-items-center col-8">
+                        <div className="d-flex flex-lg-row flex-column align-items-center col-md-8 col-12">
                             {/* <div>{textPage.affiliateLinks.title}</div> */}
                             <RenderShareLink classNameDiv={"col-lg-6 col-12"} idInput={"partnerRegistrationLink"} valueInput={requests.frontendAddress + '/register/' + this.props.globalReduser.profile._id} iconsArray={this.state.iconsArray} textTitle={textPage.affiliateLinks.registrationLink} buttonCopyText={textPage.affiliateLinks.spanLink} />
                             <RenderShareLink classNameDiv={"col-lg-6 col-12"} idInput={"partnerMainPageLink"} valueInput={requests.frontendAddress + '/start/' + this.props.globalReduser.profile._id} iconsArray={this.state.iconsArray} textTitle={textPage.affiliateLinks.linkToHomePage} buttonCopyText={textPage.affiliateLinks.spanLink} />

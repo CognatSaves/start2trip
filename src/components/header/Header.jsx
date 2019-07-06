@@ -7,12 +7,12 @@ import RenderModalRegistration from './RenderModalRegistration'
 import mapWorldIcon from './pictures/mapWorld.svg'
 import { connect } from 'react-redux';
 import crossIconModal from './pictures/close.svg'
-import geoFlag from './pictures/georgia.svg'
-import ruFlag from './pictures/russia.svg'
-import enFlag from './pictures/united-kingdom.svg'
-import espFlag from './pictures/spain.svg'
+// import geoFlag from './pictures/georgia.svg'
+// import ruFlag from './pictures/russia.svg'
+// import enFlag from './pictures/united-kingdom.svg'
+// import espFlag from './pictures/spain.svg'
 import { Link } from 'react-router-dom';
-import { Collapse } from 'reactstrap';
+// import { Collapse } from 'reactstrap';
 import { Modal, ModalBody } from 'reactstrap';
 import requests from '../../config';
 import axios from 'axios';
@@ -20,7 +20,7 @@ import { setUser, setActiveCurr, setActiveLang, setModalRegister, setActiveLangA
 import { disablePageScroll, clearQueueScrollLocks, enablePageScroll } from 'scroll-lock';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
-import arrowDownIcon from './pictures/down-arrow.svg'
+// import arrowDownIcon from './pictures/down-arrow.svg'
 import { whichPageRender } from "../../redusers/ActionDriverProfileRegistration"
 import { whichPageRenderHistory } from "../../redusers/ActionGlobal"
 import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
@@ -620,6 +620,7 @@ class HeaderClass extends React.Component {
         if (scrollEvent > 730) {
           document.querySelector(".btUp").classList.add("btUp-active");
         } else {
+          if(document.querySelector(".btUp").classList != null)
           document.querySelector(".btUp").classList.remove("btUp-active");
         }
       } else {
@@ -684,6 +685,9 @@ class HeaderClass extends React.Component {
           <Link className="" to="">
             <h3 />
           </Link>
+          <div onClick={this.toggleModalCountry} style={{visibility: this.props.storeState.countries.length>0 ? 'visible' : 'hidden'}} className="headerGeoButton col-lg-5 col-md-4 col-6">
+                <span>{this.props.storeState.country}</span>
+              </div>
           <div className="headerSelect d-flex align-items-center justify-content-end ">
             <button className={this.state.burgerMenu ? "headerMobailButton-active" : "headerMobailButton"} onClick={() => {
               if (this.state.burgerMenu) {

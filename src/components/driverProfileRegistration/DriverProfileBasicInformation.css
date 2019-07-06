@@ -17,9 +17,11 @@
     line-height: 55px;
     padding-left: 20px;
 }
-.classDivDriverHomeCity{
+
+.classDivDriverHomeCity {
     width: 100%;
 }
+
 .basicInformationBodyBottomHeader p {
     color: #304269;
     font-weight: 400;
@@ -35,7 +37,7 @@
 }
 
 .basicInformationBodyBottomContent input {
-    color: #333;
+    color: #686868;
     font-weight: 400;
     font-size: 14px;
     border-radius: 5px;
@@ -147,6 +149,7 @@
     background-size: 70px 70px;
     background-position: center center;
 }
+
 .refreshIndicatorFail {
     position: absolute;
     z-index: 99;
@@ -160,6 +163,9 @@
 @media (max-width: 768px) {
     .basicInformationBodyBottom {
         box-shadow: none;
+    }
+    .basicInformationBodyBottomContent input {
+        font-size: 16px;
     }
     .basicInformationBodyBottomContent input,
     .basicInformationBodyBottomContent select,

@@ -80,7 +80,8 @@
 .multiLineInputClass label,
 .inputClass label {
     font-weight: 400 !important;
-    font-size: 16px !important;
+    font-size: 18px !important;
+    width: max-content !important;
 }
 
 .chipClass {
@@ -147,8 +148,8 @@
     }
     .calendarModal label {
         display: block;
-        font-size: 16px !important;
-        padding-left: 18px;
+        font-size: 18px !important;
+        /* padding-left: 18px; */
     }
     .calendarModal div {
         max-height: none !important;

@@ -280,8 +280,8 @@ class DriverProfileBillingClass extends React.Component {
                     <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column">
                         <div className="billingContentLeft">
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-row flex-column align-items-md-end align-items-sm-center align-items-center  justify-content-between">
-                                <div className="billingText col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 p-0">
-                                    <div className="billingTextTitle col-12 p-0">
+                                <div className="billingText col-md-8 col-12 p-0">
+                                    <div className="billingTextTitle col-md-12 col-10 p-0 mx-auto">
                                         <span>{textPage.currentBalance.currentBalanceText+ ' ('+textPage.currentBalance.personalAccount+' №'+ '20456787'+')'}</span>
                                     </div>
                                     <div className="border-bottom mb-2 d-flex align-items-center justify-content-between">
@@ -305,7 +305,7 @@ class DriverProfileBillingClass extends React.Component {
                                     <span onClick={() => { this.handleClose('withdrawal') }}>{textPage.currentBalance.fundsWithdrawal}</span>
                                 </div>
                             </div>
-                            <div className="col-8 mt-5 p-0">
+                            <div className="col-md-8 col-12 mt-5 p-0">
                                 <div className="billingText border-bottom d-flex align-items-center justify-content-between">
                                     <span className="">{textPage.currentBalance.receivedByCash+':'}</span>
                                     <span>{profile.currencies[findCurrencyEl(that, profile.payments.currencyType)].symbol+profile.billing.transactionCashTotal}</span>
@@ -317,7 +317,7 @@ class DriverProfileBillingClass extends React.Component {
                                 <span>{textPage.systemPayments.systemPaymentsText}</span>
                             </div>
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-row flex-column align-items-md-end align-items-sm-center align-items-center justify-content-between ">
-                                <div className="billingText col-xl-7 col-lg-7 col-md-7 col-sm-8 col-8 p-0">
+                                <div className="billingText  col-md-7 col-12 p-0">
                                     <div className="border-bottom mb-2 d-flex align-items-center justify-content-between">
                                         <span className="col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0 py-2">{textPage.systemPayments.cardCommission+':'}</span>
                                         <span>$0</span>
@@ -352,11 +352,13 @@ class DriverProfileBillingClass extends React.Component {
                             <span className="blillingHeaderTitle">{textPage.accountOperations.accountOperationsText+' №'+'20456787'}</span>
                             <div className=" billingText d-flex flex-md-row flex-sm-column flex-column align-items-center mt-5">
                                 <span className="pr-2">{textPage.accountOperations.forPeriod}</span>
-                                <div className="d-flex  ">
+                                <div className="d-flex flex-wrap">
                                     <DatePicker onChange={(nul,date)=>{ this.setState({ tableStartDate: date }); }} floatingspanText="Дата начала" className="billingCalendar" value={this.state.tableStartDate}/>
-                                    <span className="align-self-end mx-2">&#175;</span>
+                                    <span className="align-md-self-end align-self-center mx-md-2 mx-0 mt-2">&#175;</span>
                                     <DatePicker onChange={(nul,date)=>{ this.setState({ tableEndDate: date }); }} floatingspanText="Дата конца" className="billingCalendar" value={this.state.tableEndDate}/>
-                                    <button onClick={()=>this.getTransactionTable()}>{textPage.accountOperations.searchButton}</button>
+                                    <div className="billingButton mx-md-0 mx-auto my-md-0 my-2" onClick={()=>this.getTransactionTable()}>
+                                        <span style={{color:"#fff"}}>{textPage.accountOperations.searchButton}</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
