@@ -27,7 +27,7 @@ class DriversPropertiesClass extends React.Component {
     }
   }
 
-  valueMenuCall=(valueMenu)=> {
+  valueMenuCall = (valueMenu) => {
     this.props.dispatch(setTempPricePart(this.props.storeState.pricePart, valueMenu));
   }
 
@@ -77,7 +77,7 @@ class DriversPropertiesClass extends React.Component {
               : <div />}
             {/* <div className="properties_rightButton_value">{this.props.storeState.sortMenuValue}</div>
             <div className="properties_arrow"></div> */}
-            <SortMenu isVisible={this.state.sortisVisible} click={()=>{this.setState({ sortisVisible: false })}} />
+            <SortMenu isVisible={this.state.sortisVisible} click={() => { this.setState({ sortisVisible: false }) }} />
           </div>
 
           {/* <div className="properties_buttonStyle properties_rightButton d-flex" onClick={() => this.props.dispatch(setPagesVisible(!this.props.storeState.pagesMenu))}>
@@ -93,14 +93,17 @@ class DriversPropertiesClass extends React.Component {
             <div className="properties_arrow"></div>
             <LanguageMenu isVisible={this.props.storeState.languageMenu} />
           </div>
-          <div className="properties_buttonStyle properties_leftButton d-flex" onClick={() => this.props.dispatch(autoMenuCall(!this.props.storeState.autoMenu))}>
-            <div className="properties_carPicture">
-              <img src={this.props.storeState.autoIcon} width="100%" height="100%" alt="carImage" />
+          <div className="properties_buttonStyle properties_leftButton d-flex" >
+            <div className="d-flex" onClick={() => this.props.dispatch(autoMenuCall(!this.props.storeState.autoMenu))}>
+              <div className="properties_carPicture">
+                <img src={this.props.storeState.autoIcon} width="100%" height="100%" alt="carImage" />
+              </div>
+              <div className="properties_value d-flex">{this.props.storeState.autoValue}</div>
+              <div className="properties_arrow"></div>
             </div>
-            <div className="properties_value d-flex">{this.props.storeState.autoValue}</div>
-            <div className="properties_arrow"></div>
             <AutoMenu isVisible={this.props.storeState.autoMenu} />
           </div>
+
           <div style={{ position: "relative" }}>
             <div className="properties_buttonStyle properties_leftButton d-flex" onClick={() => {
               if (!this.props.storeState.peopleMenu) {

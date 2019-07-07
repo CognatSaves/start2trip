@@ -67,9 +67,9 @@ class HomeClass extends React.Component {
             </div>
 
           </div>
-          <Route path="/home" component={HomeBodyBottom} />
-          <Route path="/drivers/:country-:cities" component={Drivers} />
-
+          {/* <Route path="/home" component={HomeBodyBottom} />
+          <Route path="/drivers/:country-:cities" component={Drivers} /> */}
+          <Drivers></Drivers>
         </main>
 
       </React.Fragment>

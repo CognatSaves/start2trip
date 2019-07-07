@@ -9,6 +9,32 @@
     z-index: 30;
 }
 
+.classFormControl {
+    position: absolute !important;
+    top: 30px;
+    left: 0;
+    min-width: 150px;
+    max-width: max-content;
+    border-radius: 5px;
+    background-color: #828ca5;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    z-index: 30;
+}
+
+.classFormControl .MuiSelect-selectMenu {
+    color: #fff !important;
+    padding: 5px 10px;
+    padding-right: 20px;
+}
+
+.MuiInput-underline:after {
+    border-bottom: none !important;
+}
+
+.MuiInput-underline:before {
+    border-bottom: none !important;
+}
+
 .autoMenu_element {
     position: relative;
     width: 128px;
@@ -41,7 +67,7 @@
 
 .autoMenu_element_picture {
     position: absolute;
-    left: 2%;
+    right: 2%;
     top: -2px;
     width: 20%;
     height: 100%;
