@@ -15,26 +15,34 @@ import Select from '@material-ui/core/Select';
 import Checkbox from '@material-ui/core/Checkbox';
 
 
-const ITEM_HEIGHT = 98;
-const ITEM_PADDING_TOP = 8;
+
 const MenuProps = {
     PaperProps: {
         style: {
-            maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-            width: 250,
+            maxHeight: 300,
+            width: 220,
             background:"#828ca5",
             color:"#fff",
+            marginTop:'56px',
+            boxShadow:"0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22)",
         },
     },
 };
+
 class AutoMenuClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            carValue: [],
+            carValue: ["Любой автомобиль"],
         }
     }
     handleChange = (e) => {
+        if(e.target.value[0]==="Любой автомобиль"){
+            e.target.value.splice(0,1);
+        }
+        if(e.target.value.length===0){
+            e.target.value.splice(0,1,"Любой автомобиль");
+        }
         this.setState({ carValue: e.target.value })
     }
     render() {
@@ -55,7 +63,7 @@ class AutoMenuClass extends React.Component {
                 //     )}
                 // </div>
                 <FormControl className="classFormControl">
-                    {/* <InputLabel htmlFor="select-multiple-checkbox">Tag</InputLabel> */}
+                     {/* <InputLabel htmlFor="select-multiple-checkbox">Любой автомобиль</InputLabel>  */}
                     <Select
                         multiple
                         value={this.state.carValue}
@@ -64,12 +72,13 @@ class AutoMenuClass extends React.Component {
                         renderValue={selected => selected.join(', ')}
                         MenuProps={MenuProps}
                     >
+                        {/* <MenuItem disabled>Выберите типы</MenuItem> */}
                         {this.props.storeState.autoVariants.map((element, index) => (
                             <MenuItem key={element} value={element}>
                                 <Checkbox color="#fff" checked={this.state.carValue.indexOf(element) > -1} />
                                 <ListItemText primary={element} />
                                 <div className="autoMenu_element_picture">
-                                    <img src={pictureArray[index]} width="100%" height="100%" alt={"auto_" + index}></img>
+                                    <img src={pictureArray[index]} width="80%" height="80%" alt={"auto_" + index}></img>
                                 </div>
                             </MenuItem>
                         ))}

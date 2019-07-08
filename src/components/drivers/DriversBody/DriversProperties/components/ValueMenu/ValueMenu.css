@@ -1,6 +1,6 @@
 .drivers_properties_valueMenu {
     position: absolute;
-    top: 34px;
+    top: 42px;
     right: 0px;
     border-radius: 5px;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
@@ -126,4 +126,23 @@
 
 .valueMenu_stateBlock_cancelButton:focus {
     outline: none;
+}
+
+.MuiSlider-root {
+    color: #304269 !important;
+    width: 90% !important;
+    margin: 0 auto !important;
+}
+
+.MuiSlider-root .MuiSlider-markActive {
+    background-color: #304269;
+}
+
+.MuiSlider-root .MuiSlider-mark {
+    background-color: #304269;
+}
+
+.MuiSlider-root .MuiSlider-rail {
+    background-color: #304269;
+    opacity: 1;
 }

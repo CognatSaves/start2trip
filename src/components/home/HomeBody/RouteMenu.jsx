@@ -334,6 +334,7 @@ class RouteMenuClass extends React.Component {
           date: this.state.date,
           distance: 1000
         });
+        
         fetch(requests.getDrivers, {
           method: 'PUT', body: body,
           headers: { 'content-type': 'application/json' }
@@ -343,7 +344,7 @@ class RouteMenuClass extends React.Component {
             return response.json();
           })
           .then(function (data) {
-            debugger
+            
             if (data.error) {
               console.log("bad");
               that.setState({ isRefreshing: false, isGoodAnswer: false });

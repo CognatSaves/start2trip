@@ -631,7 +631,9 @@ class HeaderClass extends React.Component {
         if (scrollEvent > 400) {
             document.querySelector(".footerButtonUp").classList.add("footerButtonUp-active");
         } else {
+          if(document.querySelector(".footerButtonUp").classList !== null){
             document.querySelector(".footerButtonUp").classList.remove("footerButtonUp-active");
+          }
         }
       } else {
         document.querySelector(".footerButtonUp").classList.remove("footerButtonUp-active");
