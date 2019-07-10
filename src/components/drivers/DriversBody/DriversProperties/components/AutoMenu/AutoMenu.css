@@ -9,6 +9,68 @@
     z-index: 30;
 }
 
+.classFormControl {
+    /* position: absolute !important; */
+    /* top: 30px;
+    left: 0; */
+    min-width: 165px !important;
+    max-width: 165px;
+    border-radius: 5px;
+    background-color: #828ca5;
+    /* box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); */
+    z-index: 30;
+}
+
+.classFormControl .MuiSelect-selectMenu {
+    color: #fff !important;
+    padding: 5px 10px;
+    padding-right: 20px;
+}
+
+.MuiInput-underline:after {
+    border-bottom: none !important;
+}
+
+.MuiInput-underline:before {
+    border-bottom: none !important;
+}
+
+.MuiSelect-icon {
+    color: #fff !important;
+}
+
+.MuiTypography-body1 {
+    font-size: 14px !important;
+}
+
+.MuiMenuItem-root {
+    padding-bottom: 0px !important;
+    padding-top: 0px !important;
+    min-height: 30px !important;
+}
+
+.MuiCheckbox-root {
+    color: #304269 !important;
+}
+
+.MuiListItem-button:hover,
+.MuiListItem-root.Mui-selected:hover {
+    background: rgba(255, 255, 255, 0.329) !important;
+}
+
+.MuiListItem-root.Mui-selected {
+    background: none !important;
+}
+
+.MuiMenuItem-gutters {
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+}
+
+.classFormControl .MuiSelect-selectMenu {
+    font-size: 14px;
+}
+
 .autoMenu_element {
     position: relative;
     width: 128px;
@@ -41,10 +103,13 @@
 
 .autoMenu_element_picture {
     position: absolute;
-    left: 2%;
+    right: 2%;
     top: -2px;
     width: 20%;
     height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .autoMenu_element_text {

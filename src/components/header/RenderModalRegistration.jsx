@@ -456,8 +456,8 @@ class RenderModalRegistrationClass extends React.Component {
 
                                         <div className={index ? "selectTypeBlockLine selectTypeBlock d-flex align-items-center" : "selectTypeBlock d-flex align-items-center "} style={{ visibility: (this.state.agency.length === 0 || index === 1) ? 'visible' : 'hidden' }}>
                                             <i style={{ background: "url(" + massIcon[index] + ") no-repeat" }} />
-                                            <label className="typeCheckLabel" for={"typeCheckbox" + (index + 1)}>{element.userText}</label>
-                                            <input disabled={!(this.state.agency.length === 0 || index === 1)} className="typeCheckButton" id={"typeCheckbox" + (index + 1)} type="radio" name="raz" onClick={() => this.setState({ userType: index + 1 , isError: false})} />
+                                            <label className="typeCheckLabel" for={"typeCheckbox" + (index + 4)}>{element.userText}</label>
+                                            <input disabled={!(this.state.agency.length === 0 || index === 1)} className="typeCheckButton" id={"typeCheckbox" + (index + 4)} type="radio" name="raz" onClick={() => this.setState({ userType: index + 1 , isError: false})} />
                                         </div>
                                     )
                                 }

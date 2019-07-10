@@ -14,7 +14,7 @@ class DriversClass extends React.Component {
     super(props);
     let maxPrice = this.maxPriceCalc(this.props.driversState.driversList);
     this.state = {
-      travelVisibility: 'none',
+      travelVisibility: false,
       successVisibility: 'none',
       maxPrice: maxPrice
     }
@@ -40,7 +40,7 @@ class DriversClass extends React.Component {
   }
   changeTravelVisibility=(value)=> {
     this.setState({
-      travelVisibility: value
+      travelVisibility: !this.state.travelVisibility
     })
   }
   changeSuccessVisibility=(value)=> {
@@ -107,8 +107,8 @@ class DriversClass extends React.Component {
             <DriversBody changeTravelVisibility={this.changeTravelVisibility} country={country} cities={cities}/>
           </div>
         </div>
-        <StartTravelForm changeTravelVisibility={this.changeTravelVisibility} changeSuccessVisibility={this.changeSuccessVisibility}
-          travelVisibility={this.state.travelVisibility} successVisibility={this.changeSuccessVisibility} />
+        <StartTravelForm changeTravelVisibility={this.changeTravelVisibility} 
+                        travelVisibility={this.state.travelVisibility} isoCountryMap={this.props.storeState.isoCountryMap} storeState={this.props.storeState} driversState={this.props.driversState} />
         <StartTravelSuccess successVisibility={this.state.successVisibility} changeSuccessVisibility={this.changeSuccessVisibility} />
       </React.Fragment>
     );

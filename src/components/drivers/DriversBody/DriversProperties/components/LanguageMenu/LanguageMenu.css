@@ -8,6 +8,24 @@
     z-index: 30;
 }
 
+.classFormControlLanguage {
+    min-width: 120px !important;
+    max-width: 120px;
+    border-radius: 5px;
+    background-color: #828ca5;
+    z-index: 30;
+}
+
+.classFormControlLanguage .MuiSelect-selectMenu {
+    color: #fff !important;
+    padding: 5px 10px;
+    padding-right: 20px;
+}
+
+.classFormControlLanguage .MuiSelect-selectMenu {
+    font-size: 14px;
+}
+
 .languageMenu_element {
     position: relative;
     width: 116px;

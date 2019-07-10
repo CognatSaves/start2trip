@@ -329,6 +329,7 @@ class RouteMenuClass extends React.Component {
         let country = routeDate.country;
         let canMove = routeDate.canMove;
         let that = this;
+
         
         let body = JSON.stringify({
           cities: this.props.storeState.cities,
@@ -336,6 +337,7 @@ class RouteMenuClass extends React.Component {
           date: this.state.date,
           distance: 1000
         });
+        
         fetch(requests.getDrivers, {
           method: 'PUT', body: body,
           headers: { 'content-type': 'application/json' }
@@ -345,7 +347,7 @@ class RouteMenuClass extends React.Component {
             return response.json();
           })
           .then(function (data) {
-
+            
             if (data.error) {
               console.log("bad");
               that.setState({ isRefreshing: false, isGoodAnswer: false });

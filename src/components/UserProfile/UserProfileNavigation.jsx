@@ -170,7 +170,7 @@ class UserProfileNavigationClass extends React.Component {
                         <img src={this.props.AppReduser.avatarUrl} alt="imgPerson" />
                         <input type="file" id="addFile" style={{ display: "none" }} onChange={this._handleImageChange} />
                     </div>
-                    <div className="bodyTopDriverInfo col-7">
+                    <div className="bodyTopDriverInfo col-8">
                     
                         
                         <div className="bodyTopDriverInfoName d-flex flex-column align-items-start">

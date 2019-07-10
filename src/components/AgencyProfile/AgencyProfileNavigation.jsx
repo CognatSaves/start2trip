@@ -180,7 +180,7 @@ class AgencyProfileNavigationClass extends React.Component{
                             <img src={this.props.AppReduser.avatarUrl} alt="imgPerson" />
                             <input type="file" id="addFile" style={{ display: "none" }} onChange={this._handleImageChange} />
                         </div>
-                        <div className="bodyTopDriverInfo col-7">
+                        <div className="bodyTopDriverInfo col-8">
                             <div className="bodyTopDriverInfoName d-flex flex-column align-items-start" >
                                 <p className="mb-0 mr-2">{profile.organizationName.length!==0 ? profile.organizationName : profile.email}</p>
                                 <div style={{display: profile.comments.length>0 ? 'block':'none'}}>

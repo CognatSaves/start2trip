@@ -70,10 +70,11 @@
 .properties_arrow {
     cursor: pointer;
     margin: auto 2px;
-    width: 8px;
-    height: 8px;
-    background: url(pictures/da_tru_big_arrow.png) no-repeat;
+    width: 9px;
+    height: 9px;
+    background: url(pictures/da_tru_big_arrow.svg) no-repeat;
     background-size: contain;
+    background-position: top 1px center;
 }
 
 .properties_carPicture {

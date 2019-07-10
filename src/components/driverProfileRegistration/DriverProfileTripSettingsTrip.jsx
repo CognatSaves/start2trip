@@ -344,7 +344,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                                     <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
                                         <label htmlFor={"tripLocation" + index} className="col-xl-2 col-lg-2 col-md-2 col-sm-11 col-11 p-0">{textPage.tripLocation}:</label>
                                         <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column col-md-6 col-sm-12 col-12 p-0">
-                                            <LocationSearchInput address={element.point} changeCity={this.changeCity} classDiv="col-8" classInput="searchInputDriverInformation" index={index} classDropdown="searchDropdownDriverInformation" />
+                                            <LocationSearchInput address={element.point} changeCity={this.changeCity} classDiv="col-12 p-0" classInput="searchInputDriverInformation" index={index} classDropdown="searchDropdownDriverInformation" />
                                             <input className="col-md-4 col-sm-12 col-12 ml-1 d-xl-block d-lg-block d-md-block d-sm-none d-none" type="text" id="itemRadiu" value={element.radius}
                                                 onChange={(e) => this.inputChange(e.target.value, 'radius', index)}
                                             />
@@ -367,7 +367,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                                 <p className="col-md-8 col-sm-12 col-12 " onClick={this.addCityRadius}>{textPage.textField.addCityBt}</p>
                             </div>
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                <label htmlFor="maxDailyMileage" className="col-xl-2 col-lg-2 col-md-2 col-sm-11 col-11 p-0">{textPage.maxDailyMileage.floatingLabelText}</label>
+                                <label htmlFor="maxDailyMileage" className="col-xl-2 col-lg-2 col-md-2 col-sm-11 col-12 p-0">{textPage.maxDailyMileage.floatingLabelText}</label>
                                 <div className="d-md-block d-sm-none d-none col-md-3 col-sm-12 col-12">
                                 <input id="maxDailyMileage" className="" type="text" value={this.state.distance}
                                     onChange={(e) => this.inputChange(e.target.value, 'distance')}
@@ -387,11 +387,11 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                             </div>
                             <div className="tripSettingsContentTitle col-12 p-0"><p>{textPage.weekendSettings}</p></div>
                             <div className="tripSettingsContentP d-flex flex-md-row flex-sm-column flex-column align-items-center">
-                                <p className="col-xl-2 col-lg-2 col-md-3 col-sm-11 col-11 p-0">{textPage.chooseWeekend}</p>
-                                <span className="newTourDatepickerSpan col-xl-6 col-lg-7 col-md-9 col-sm-11 col-11" onClick={this.calendarModalShow}>{textPage.selectDates}</span>
+                                <p className="col-lg-2 col-md-3 col-12 p-0">{textPage.chooseWeekend}</p>
+                                <span className="newTourDatepickerSpan col-xl-6 col-lg-7 col-md-9 col-12" onClick={this.calendarModalShow}>{textPage.selectDates}</span>
                             </div>
                             <div className="tripSettingsContentDate d-flex align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start justify-content-center">
-                                <div className="d-flex flex-wrap flex-row align-items-start col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 p-0 mb-2">
+                                <div className="d-flex flex-wrap flex-row align-items-start col-md-8 col-12 p-0 mb-2">
 
                                     {this.state.dateTour.map((element, index) => {
                                         let day = element.getDate();
@@ -422,7 +422,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
 
                     </form>
                     <div className="tripSettingsContent d-flex justify-content-center">
-                        <div className="tripSettingsContentP d-flex flex-column col-8 py-0">
+                        <div className="tripSettingsContentP d-flex flex-column col-md-8 col-12 py-0">
                             <p className="">{textPage.changeOnWorkP}</p>
                             <span onClick = {()=>{this.applyChanges({onWork:!this.props.globalReduser.profile.onWork});}}>{this.props.globalReduser.profile.onWork ? textPage.onWorkTrue : textPage.onWorkFalse}</span>
                         </div>

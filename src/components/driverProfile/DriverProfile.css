@@ -14,8 +14,13 @@
 .route_comment {
     padding-top: 10px;
     color: #304269;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.route_time_text p1,
+.route_time_text p2 {
     font-weight: 400;
-    font-size: 12px;
 }
 
 .drivers_route_title {
@@ -169,6 +174,8 @@
 /* route_dateSelect Begin */
 
 .route_dateSelect {
+    position: relative;
+    z-index: 33;
     margin: 5px 0 !important;
     min-height: 53px !important;
     border-radius: 5px;
@@ -305,15 +312,24 @@ span.drivers_route_Link {
 }
 
 .driversRoute h3 {
+    padding-top: 6px;
     color: #304269;
-    font-size: 24px;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.driversRoute h3title {
+    color: #304269;
     font-weight: 500;
+    font-size: 24px;
 }
 
 .route_datePhoneInput input.draver_route-error,
-.draver_route-error {
+.draver_route-error,
+.MuiIconButton-colorSecondary.draver_route-error {
     border-color: #a5252580 !important;
     outline-color: #a5252580 !important;
+    color: #e81123 !important;
 }
 
 .errorMes {
@@ -324,4 +340,16 @@ span.drivers_route_Link {
 
 .textField .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
     border-color: #304269 !important;
+}
+
+@media (max-width: 560px) {
+    .drivers_routePrice {
+        padding-top: 10px;
+    }
+    .driversRoute h3 {
+        font-size: 16px;
+    }
+    .driversRoute h3title {
+        font-size: 20px;
+    }
 }

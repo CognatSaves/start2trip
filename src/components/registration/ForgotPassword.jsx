@@ -3,6 +3,7 @@ import Header from '../header/Header';
 import './ForgotPassword.css'
 import requests from '../../config';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+
 class ForgotPassword extends React.Component {
     constructor(props) {
         super(props);
@@ -89,20 +90,24 @@ class ForgotPassword extends React.Component {
                             <span>Спасибо! Информация для смены пароля выслана на Ваш email.</span>
                         </div>
                         :
-                        <div className="forgotPasswordContent d-flex flex-column align-items-center col-md-5 col-11">
+                        <div className="forgotPasswordContent d-flex flex-column align-items-center col-md-8 col-11">
                             <div className="d-flex justify-content-center align-items-center">
-                                <span>Здесь вы можете восстановить ваш пароль</span>
+                                <span>Восстановление пароля</span>
                             </div>
-                            <input className={this.state.falde ? "forgotPasswordInput-error" : ""} value={this.state.email} placeholder="Введите адрес вашей почты" pattern="" onChange={(e) => { this.emailonchange(e.target.value); this.setState({ falde: false, isSended: false }) }}></input>
+                            <div className="d-flex flex-md-row flex-column align-items-center col-md-8 col-12">
+                                <input className={this.state.falde ? "forgotPasswordInput-error col-md-7 col-12" : "col-md-7 col-12"} value={this.state.email} placeholder="Введите адрес Вашей почты" pattern="" onChange={(e) => { this.emailonchange(e.target.value); this.setState({ falde: false, isSended: false }) }}></input>
+                               
+                               
+                                    <div className="forgotPasswordBt d-flex justify-content-center align-items-center col-md-5 col-12" onClick={() => this.sendRequest()}><span>Отправить</span></div>
+                                
+                            </div>
                             {
                                     this.state.isSended ?
                                         <div className={this.state.isGood ? "forgotPasswordContent-active" : "forgotPasswordContent-error"}>{this.state.isGood ? 'Отправлено,проверьте почту' : 'Неверная почта'}</div>
                                         :
-                                        <div/>
+                                        <span className="forgotPasswordContentSpanText">На Вашу почту будет выслана ссылка для восстановления пароля.</span>
                                 }
-                            <div className="d-flex justify-content-center align-items-center w-100">
-                                <div className="forgotPasswordBt" onClick={() => this.sendRequest()}><span>Отправить на почту</span></div>
-                            </div>
+
                         </div>
 
                     }

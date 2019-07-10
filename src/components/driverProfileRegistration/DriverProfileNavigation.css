@@ -36,15 +36,15 @@
     border-bottom: 3px solid #f60 !important;
 }
 
-.navigationBody .blockedSpan{
+.navigationBody .blockedSpan {
     color: gray;
-}
-.navigationBody .blockedSpan:hover{
-    color: gray;
-    border-bottom-style:none;
-    cursor: default;
 }
 
+.navigationBody .blockedSpan:hover {
+    color: gray;
+    border-bottom-style: none;
+    cursor: default;
+}
 
 .navigation3 {
     left: 50%;
@@ -70,6 +70,7 @@
     opacity: 0;
     align-items: center;
     justify-content: center;
+    text-align: center;
     border-radius: 50%;
     background: rgba(48, 66, 105, 0.836);
     width: 156px;
@@ -187,7 +188,7 @@
     }
     .bodyTopDriverInfoName p {
         font-weight: 400;
-        font-size: 16px;
+        font-size: 18px;
     }
     .bodyTopDriverInfoPlace p {
         color: #666;
@@ -204,5 +205,8 @@
 @media (max-width: 576px) {
     .driverBG {
         background: none !important;
+    }
+    .bodyTopDriverInfoRideMobail p {
+        font-size: 12px;
     }
 }
