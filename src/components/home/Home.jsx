@@ -12,6 +12,8 @@ import Header from '../header/Header';
 import HomeBody from './HomeBody/HomeBody.jsx'
 import { isMobileOnly, isTablet } from 'react-device-detect';
 import FirstEnterModal from './FirstEnterModal';
+
+
 class HomeClass extends React.Component {
   constructor(props) {
     super(props);
@@ -24,7 +26,8 @@ class HomeClass extends React.Component {
         { img: georgiaImg, title: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", link: "/driver", reviews: "55 отзыва", prise: "150$" },
         { img: georgiaImg, title: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", link: "/driver", reviews: "22 отзыва", prise: "170$" },
       ],
-      firstEnter: firstEnterCookie ? false : true
+      firstEnter: firstEnterCookie ? false : true,
+      
     };
   }
   redirectFunc(where) {
@@ -35,8 +38,16 @@ class HomeClass extends React.Component {
     //console.log(isMobileOnly , "isMobileOnly")
     //console.log(isTablet , "isTablet")
     console.log('Home render');
+    console.log('this.props')
     console.log(this.props);
+    console.log('this.state');
+    console.log(this.state);
+    
+    
+    
     let textInfo = this.props.storeState.languageTextMain.home.home;
+    
+    let selectedDirection=this.props.match.params.direction;
     return (
       <React.Fragment>
         <main className="d-flex flex-column container-fluid p-0">
@@ -67,7 +78,13 @@ class HomeClass extends React.Component {
             </div>
 
           </div>
-          <Route path="/home" component={HomeBodyBottom} />
+          
+          {
+            selectedDirection ? 
+              <Route path="/home/:direction" component={HomeBodyBottom} />
+            :
+              <Route path="/home" component={HomeBodyBottom} />
+          }          
           <Route path="/drivers/:country-:cities" component={Drivers} />
         </main>
 

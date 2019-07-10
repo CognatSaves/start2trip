@@ -649,22 +649,27 @@ class HeaderClass extends React.Component {
     console.log('Header render', this.props, window, document);
     //console.log(this.state);
     //console.log(this.props);
+    
     let languages = this.props.storeState.languages;
     let currencies = this.props.storeState.currencies;
     let adminLanguages = this.props.storeState.adminLanguages;
-    let textInfo = this.props.storeState.languageTextMain.header;
+    let textInfoMain = this.props.storeState.languageTextMain.header;
+    let textInfoAdmin = this.props.storeState.languageText.header;
+    let isAdmin = this.props.storeState.isSecondLanguageGroupPart;
+    let textInfo = isAdmin ? textInfoAdmin : textInfoMain;
+    
     let buttonMassElements= [
       {
         to: "/",
-        value: this.props.storeState.languageTextMain.header.menuElements[0]
+        value: textInfo.menuElements[0]
       },
       {
         to: "/places",
-        value: this.props.storeState.languageTextMain.header.menuElements[1]
+        value: textInfo.menuElements[1]
       },
       {
         to: "/tours",
-        value: this.props.storeState.languageTextMain.header.menuElements[2]
+        value: textInfo.menuElements[2]
       }
     ];
     return (

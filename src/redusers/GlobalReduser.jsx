@@ -22,6 +22,11 @@ function capitalize(s) {
     return result
 }
 
+function convertionFunc(value, conv){
+    let convId = convMassISO.indexOf(conv);
+    let result=convMassFunc[convId](value);
+    return result;
+}
 
 
 const initialState = {
@@ -50,24 +55,29 @@ const initialState = {
     },
     profile: {},
     previousUrl: '',
-    
+    convFunc: function(value,conv){
+        
+        let result =convertionFunc(value,conv);
+        return result;
+    },
     getRoute: function(cities, conv){
         function getCountry(arrayAddress, country) {
             let flag = true;
-            let newCountry = arrayAddress[arrayAddress.length - 1].slice(1);
-            if (country === newCountry || country === "") {
-              country = newCountry;
+            let newCountry = arrayAddress[arrayAddress.length - 1].split(' ');
+            if (country === newCountry[0] || country === "") {
+              country = newCountry[0];
               // } else {
               //   alert("Error")
               //   flag = false;
             }
             return { flag: flag, country: country }
-        }       
+        }
+               
         let route = "";
         let canMove;
         let country = "";
         for (let i = 0; i < cities.length; i++) {
-          let arrayAddress = cities[i].point.split(',');
+          let arrayAddress = cities[i].point.split(', ');
     
           let date = getCountry(arrayAddress, country);
           country = date.country;
@@ -81,11 +91,12 @@ const initialState = {
           let stringWithoutSpaces = stringWithoutCountry.replace(/ /g, '-');
           stringWithoutSpaces = stringWithoutSpaces.replace(/[/]/g, '');
           let convId;
-          if(conv){
-            
-            convId = convMassISO.indexOf(conv);
-            stringWithoutSpaces=convMassFunc[convId](stringWithoutSpaces);
-            country=convMassFunc[convId](country);
+          if(conv){   
+            stringWithoutSpaces=convertionFunc(stringWithoutSpaces,conv);
+            country= convertionFunc(country,conv); 
+            //convId = convMassISO.indexOf(conv);
+            //stringWithoutSpaces=convMassFunc[convId](stringWithoutSpaces);
+            //country=convMassFunc[convId](country);
           }
           if (i == 0) {
             route = "from-" + stringWithoutSpaces;
@@ -136,6 +147,7 @@ const initialState = {
         return date;
     },
     cyrillLatinConv(text){
+        
         for(var i=0; i<arrru.length; i++){
           var reg = new RegExp(arrru[i], "g");
           text = text.replace(reg, arren[i]);

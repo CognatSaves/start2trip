@@ -21,8 +21,10 @@ import ResetPassword from './components/registration/ResetPassword';
 import AgencyProfile from './components/AgencyProfile/AgencyProfile';
 import TripConfirmation from './components/driverProfile/TripConfirmation';
 import DriverConfirmation from './components/driverProfile/DriverConfirmation';
+import RouteDescription from './components/RouteDescription/RouteDescription';
 
 
+import { hydrate } from "react-dom"
 
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
@@ -39,7 +41,7 @@ import { GlobalReduser } from './redusers/GlobalReduser';
 import { /*Link,*/ Route, BrowserRouter, Redirect, Switch } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-require('require-context/register');
+//require('require-context/register');
 
 
 
@@ -71,19 +73,25 @@ const muiTheme = getMuiTheme({
     fontFamily: 'Roboto',
 });
 
-ReactDOM.render(
+ReactDOM.hydrate(
     <Provider store={store}>
         <BrowserRouter >
             <React.Fragment>
                 <MuiThemeProvider muiTheme={muiTheme}>
                     <Switch>
-                        <Route path="/(home|drivers)" component={Home} />
+                        <Route path="/home/:direction" component={Home} />
+                        <Route path="/home" component={Home} />
+                        <Route path="/drivers" component={Home} />
                         {/* <Route path="/drivers/:date,:cities" component={Drivers} /> */}
                         <Route path="/driverProfile/:id-:carId-:country-:cities" component={DriverProfile} />
                         <Route path="/tripConfirmation/:id-:userId" component={TripConfirmation}/>
                         <Route path="/driverConfirmation/:id-:carrierId-:confirmation" component={DriverConfirmation}/>
+                        <Route path="/places/:direction" component={Places} />
                         <Route path="/places" component={Places} />
                         <Route path="/place/:slug" component={PlaceDescription} />
+                        <Route path="/route/:slug" component={RouteDescription}/>
+
+
                         <Route path="/tours" component={Tours} />
                         <Route path="/tour/:country,:id" component={TourDescription} />
 

@@ -8,6 +8,7 @@ import footer from './En/En-footer';
 import places from './En/En-places';
 import manipulator from './En/En-manipulator';
 import placeDescription from './En/En-placeDescription';
+import tourDescription from './En/En-tourDescription';
 
 export default {
     driverProfile: driverProfile,
@@ -19,5 +20,6 @@ export default {
     footer: footer,
     places:places,
     manipulator:manipulator,
-    placeDescription: placeDescription
+    placeDescription: placeDescription,
+    tourDescription:tourDescription
 }

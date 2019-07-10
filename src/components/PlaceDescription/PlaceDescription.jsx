@@ -44,24 +44,21 @@ class PlaceDescriptionClass extends React.Component {
             slug: '',
             selectedPhotoIndex: 0,
             photoSlice: 0,
-            width: 870,
-            height: 500,
-            n: 7,
-            place: this.props.placesState.places[/*countryId*/0].places[/*placeId*/0],
+            //width: 870,
+            //height: 500,
+            //n: 7,
+            //place: this.props.placesState.places[/*countryId*/0].places[/*placeId*/0],
             newPlace: {},
             couldSendRequest: true,
             isRefreshExist: true,
             isRefreshing: true,
             isGoodAnswer: true,
-            photoArray: [ippodrom, ippodrom4, ippodrom2, ippodrom3, ippodrom, ippodrom4, ippodrom2, ippodrom3, ippodrom, ippodrom4, ippodrom2, ippodrom3, ippodrom, ippodrom4, ippodrom2, ippodrom3, ippodrom, ippodrom4, ippodrom2, ippodrom3],
+            //photoArray: [ippodrom, ippodrom4, ippodrom2, ippodrom3, ippodrom, ippodrom4, ippodrom2, ippodrom3, ippodrom, ippodrom4, ippodrom2, ippodrom3, ippodrom, ippodrom4, ippodrom2, ippodrom3, ippodrom, ippodrom4, ippodrom2, ippodrom3],
+            selectedLanguage: -1,
         };
         this.selectPhoto = this.selectPhoto.bind(this);
         this.showMorePages = this.showMorePages.bind(this);
         this.setPage = this.setPage.bind(this);
-
-        
-        
-
     }
     startRolling = () => {
         this.setState({
@@ -140,14 +137,29 @@ class PlaceDescriptionClass extends React.Component {
         let comments = [...this.props.commentState.comments].reverse();
         //let place = this.props.placesState.places[/*countryId*/0].places[/*placeId*/0];
         let slug = this.props.match.params.slug;
-        if(this.state.couldSendRequest && (!this.state.newPlace.local || this.state.slug!==slug) && this.props.storeState.languages.length>0){
+        if(this.props.storeState.languages.length>0 && this.state.newPlace.local && this.state.selectedLanguage!==this.props.storeState.activeLanguageNumber){
+            
+            let slugArray = this.state.newPlace.local.slugArray;
+            for(let i=0; i<slugArray.length; i++){
+                if(this.props.storeState.languages[this.props.storeState.activeLanguageNumber].id===slugArray[i].language){
+                    this.setState({
+                        selectedLanguage:this.props.storeState.activeLanguageNumber
+                    });
+                    this.props.globalReduser.history.push('/place/'+slugArray[i].slug);
+                }
+            }
+            //надо что-то сделать, если не нашли          
+        }
+        
+        if(this.state.couldSendRequest && (!this.state.newPlace.local || this.state.slug!==slug ) && this.props.storeState.languages.length>0 ){
             
             this.setState({
                 couldSendRequest: false,
-                isRefreshExist: true
+                isRefreshExist: true,
+                selectedLanguage:this.props.storeState.activeLanguageNumber
             })
-            
-            axios.get(requests.showPlace+"?slug="+(slug ? slug : '')+"&lang="+this.props.storeState.languages[this.props.storeState.activeLanguageNumber].id)
+            let that = this;
+            axios.get(requests.showPlace+"?slug="+(slug ? slug : '')/*+"&lang="+this.props.storeState.languages[this.props.storeState.activeLanguageNumber].id*/)
             .then(response => {
                 console.log(response);              
                 return response.data;
@@ -161,13 +173,14 @@ class PlaceDescriptionClass extends React.Component {
                 else {
                     console.log('good');
                     console.log(data);
-                    this.setState({isRefreshExist: false, newPlace: data, couldSendRequest: true, slug: slug});
+                    that.setState({isRefreshExist: false, newPlace: data, couldSendRequest: true, slug: data.local.slug});
+                    that.props.match.params.slug=data.local.slug;
                     //this.props.dispatch(setPlacesList(data.places, data.tags, data.directions,data.country));
                 }
             })
             .catch(error => {
                 console.log('get wasted answer');
-                this.props.globalReduser.history.push('/');
+                that.props.globalReduser.history.push('/');
             });
 
 
@@ -183,86 +196,89 @@ class PlaceDescriptionClass extends React.Component {
         
                 
                     <div style={{position: 'relative'}}>
-                    {
-                        this.state.newPlace.local? 
-                        <PlacePhotoShow onClose={()=>this.setState({isMaskVisible: false})}
-                        isMaskVisible={this.state.isMaskVisible} clickedImageIndex={this.state.clickedImageIndex} images={this.state.newPlace.place.images}/>
-                        : <React.Fragment/>
-                    }
-                    
-                    <div className="placeDescription_background col-12 p-0" id={topBlockId} style={{backgroundImage: 'url('+ippodrom+') no-repeat 100%', backgroundSize: 'cover', backgroundPosition: 'center center'}}>
-                        
                         {
-                            this.state.newPlace.local ? 
-                            <React.Fragment>
-                                <img src={/*ippodrom*/this.state.newPlace.place.images.length>0 ? requests.serverAddress+this.state.newPlace.place.images[0].url : ''} width="100%" height="100%" style={{ position: "absolute" }} alt="noImage"/>
-                                <div className="placeDescription_topImageMask"/>
-                            </React.Fragment>
+                            this.state.newPlace.local? 
+                            <PlacePhotoShow onClose={()=>this.setState({isMaskVisible: false})}
+                            isMaskVisible={this.state.isMaskVisible} clickedImageIndex={this.state.clickedImageIndex} images={this.state.newPlace.place.images}/>
                             : <React.Fragment/>
                         }
                         
-                        <Header history={this.props.history}/>
+                        <div className="placeDescription_background col-12 p-0" id={topBlockId} style={{backgroundImage: 'url('+ippodrom+') no-repeat 100%', backgroundSize: 'cover', backgroundPosition: 'center center'}}>
+                            
+                            {
+                                this.state.newPlace.local ? 
+                                <React.Fragment>
+                                    <img src={/*ippodrom*/this.state.newPlace.place.images.length>0 ? requests.serverAddress+this.state.newPlace.place.images[0].url : ''} width="100%" height="100%" style={{ position: "absolute" }} alt="noImage"/>
+                                    <div className="placeDescription_topImageMask"/>
+                                </React.Fragment>
+                                : <React.Fragment/>
+                            }
+                            
+                            <Header history={this.props.history}/>
+                            {
+                                this.state.newPlace.local ? 
+                                <div className="wrapper d-flex flex-column">                               
+                                    <PlaceInfo tagsArray={this.state.newPlace.tags} date={this.state.newPlace.local.createdAt}
+                                    tags={this.state.newPlace.place.tags} rating={this.state.newPlace.place.rating}
+                                    comments={this.state.newPlace.place.commentNumber} name={this.state.newPlace.local.name}
+                                    /*place={{...this.state.newPlace.local}}*//>                     
+                                </div> 
+                                : <React.Fragment/>
+                            }
+                                            
+                        </div>
                         {
                             this.state.newPlace.local ? 
-                            <div className="wrapper d-flex flex-column">                               
-                                <PlaceInfo place={{name: this.state.newPlace.local.name, info: this.state.newPlace.local.shortInfo}}/>                     
-                            </div> 
+                            <div className="wrapper d-flex flex-column">
+                                <div className="drivers_bottom_background d-flex flex-column" >
+                                    <div className="drivers_body d-flex">
+                                        <div className="left_body_part col-12">
+                                            <TourPanel topBlockId={topBlockId} descriptionId={topBlockId} variantsArray={textInfo.placeDescription.variantsArray}
+                                            setPanelStateFunc={changePlacesFixedClass} panelFixedClass={this.props.placesState.placePanelFixedClass}
+                                            panelSelectedElement={this.props.placesState.placePanelSelectedElement} setPanelSelectedElement={setPlacesPanelSelectedElement}/>
+                                            <PlaceProgramm id={topBlockId+"1"} tagsArray={this.state.newPlace.tags} place={/*this.state.place*/{...this.state.newPlace.local,tags: this.state.newPlace.place.tags, rating: this.state.newPlace.place.rating, comments: this.state.newPlace.place.commentNumber}}/> 
+                                            <div className="placeDescription_block d-flex flex-column" id={topBlockId+"2"}> 
+                                                <div className="placeDescription_fragmentName" style={{marginBottom: "15px"}} >{textInfo.placeDescription.variantsArray[1]}</div>                           
+                                                <PlacePhotos photoArray={/*this.state.photoArray*/this.state.newPlace.place.images}
+                                                    showMask={(clickedImageIndex)=>{ this.setState({isMaskVisible: true,clickedImageIndex:clickedImageIndex})}}/*width={this.state.width} height={this.state.height} number={this.state.n}*//>
+                                            </div>
+                                            
+                                            <PlaceTravelBlock id={topBlockId+"3"} place={{...this.state.newPlace.local, country: this.state.newPlace.country, capital: this.state.newPlace.capital}} />
+                                            {
+                                                /*
+                                                    <PlaceMapBlock />
+                                                */
+                                            }
+                                                
+                                            
+                                            <div className="placeDescription_block d-flex flex-column" id={topBlockId+'4'}>
+                                            {
+                                                /*
+                                                    <SimularToursBlock tours={this.state.popularPlaces} fragmentName={"Вас может заинтересовать"} priseDisplay={"none"}/>
+                                                */
+                                            }
+                                                <SimularPlaceBlock outerBlock={simularPlaceBlockId} places={this.state.newPlace.additionalPlaces} tags={this.state.newPlace.tags} tours={this.state.popularPlaces} fragmentName={textInfo.placeDescription.variantsArray[3]} priseDisplay={"none"}/>   
+                                            </div>
+                                            <CommentBlock targetType="place" comments={this.state.newPlace.comments} targetId={this.state.newPlace.place.id} page={this.state.page} setPage={this.setPage}
+                                                showMorePages={this.showMorePages} showPages={this.state.showPages} id={topBlockId+'5'} startRolling={()=>this.startRolling()} endRolling={(result)=>this.endRolling(result)}/>
+                                        
+                                            </div>
+                                            {
+                                                /*
+                                                <div className="right_body_part d-none">
+                                                    <DriversCommercial />
+                                                </div>
+                                                */
+                                            }
+                                        
+                                    </div>
+
+                                </div>
+                            </div>
                             : <React.Fragment/>
                         }
                                         
                     </div>
-                    {
-                        this.state.newPlace.local ? 
-                        <div className="wrapper d-flex flex-column">
-                            <div className="drivers_bottom_background d-flex flex-column" >
-                                <div className="drivers_body d-flex">
-                                    <div className="left_body_part col-12">
-                                        <TourPanel topBlockId={topBlockId} descriptionId={"placeDescriptionId"} variantsArray={textInfo.placeDescription.variantsArray}
-                                        setPanelStateFunc={changePlacesFixedClass} panelFixedClass={this.props.placesState.placePanelFixedClass}
-                                        panelSelectedElement={this.props.placesState.placePanelSelectedElement} setPanelSelectedElement={setPlacesPanelSelectedElement}/>
-                                        <PlaceProgramm tagsArray={this.state.newPlace.tags} place={/*this.state.place*/{...this.state.newPlace.local,tags: this.state.newPlace.place.tags, rating: this.state.newPlace.place.rating, comments: this.state.newPlace.place.commentNumber}}/> 
-                                        <div className="placeDescription_block d-flex flex-column" id="placeDescriptionId2"> 
-                                            <div className="placeDescription_fragmentName" style={{marginBottom: "15px"}} >{textInfo.placeDescription.variantsArray[1]}</div>                           
-                                            <PlacePhotos photoArray={/*this.state.photoArray*/this.state.newPlace.place.images}
-                                                showMask={(clickedImageIndex)=>{ this.setState({isMaskVisible: true,clickedImageIndex:clickedImageIndex})}}/*width={this.state.width} height={this.state.height} number={this.state.n}*//>
-                                        </div>
-                                        
-                                        <PlaceTravelBlock place={{...this.state.newPlace.local, country: this.state.newPlace.country, capital: this.state.newPlace.capital}} />
-                                        {
-                                            /*
-                                                <PlaceMapBlock />
-                                            */
-                                        }
-                                            
-                                        
-                                        <div className="placeDescription_block d-flex flex-column" id={simularPlaceBlockId}>
-                                        {
-                                            /*
-                                                <SimularToursBlock tours={this.state.popularPlaces} fragmentName={"Вас может заинтересовать"} priseDisplay={"none"}/>
-                                            */
-                                        }
-                                            <SimularPlaceBlock outerBlock={simularPlaceBlockId} places={this.state.newPlace.additionalPlaces} tags={this.state.newPlace.tags} tours={this.state.popularPlaces} fragmentName={textInfo.placeDescription.variantsArray[3]} priseDisplay={"none"}/>   
-                                        </div>
-                                        <CommentBlock targetType="place" comments={this.state.newPlace.comments} targetId={this.state.newPlace.place.id} page={this.state.page} setPage={this.setPage}
-                                            showMorePages={this.showMorePages} showPages={this.state.showPages} id={"placeDescriptionId5"} startRolling={()=>this.startRolling()} endRolling={(result)=>this.endRolling(result)}/>
-                                    
-                                        </div>
-                                        {
-                                            /*
-                                            <div className="right_body_part d-none">
-                                                <DriversCommercial />
-                                            </div>
-                                            */
-                                        }
-                                    
-                                </div>
-
-                            </div>
-                        </div>
-                        : <React.Fragment/>
-                    }
-                                    
-                </div>
                 </React.Fragment>
             )
 

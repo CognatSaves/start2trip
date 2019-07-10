@@ -12,7 +12,7 @@
     font-weight: 600;
     color: #ff6600;
     line-height: 17px;
-    margin: auto 5px auto 0;
+    margin: auto 5px 0 0;
 }
 
 .placeCreateCommentStars {
@@ -56,7 +56,7 @@
     font-size: 12px;
     text-align: center;
     color: #686868;
-    margin: auto 0 auto 5px;
+    margin: auto 0 0 5px;
 }
 
 .react-rater-star {

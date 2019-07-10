@@ -1,14 +1,13 @@
 import React from 'react';
-import './PlacesPanel.css';
+import '../../Places/PlacesPanel.css';
 import { connect } from 'react-redux';
-import {  setPagesVisible  } from '../../redusers/Action';
-import PagesMenu from '../drivers/DriversBody/DriversProperties/components/PagesMenu/PagesMenu';
-import {setPagesMenuValue, setSortMenuValue} from '../../redusers/ActionPlaces'; 
-class PlacesPanelClass extends React.Component {
-    render(){
-        console.log("PlacesPanel render");
-        console.log(this.props.placesState)
+import {  setPagesVisible  } from  '../../../redusers/Action';
+import PagesMenu from '../../drivers/DriversBody/DriversProperties/components/PagesMenu/PagesMenu';
+import {setPagesMenuValue, setSortMenuValue} from '../../../redusers/ActionPlaces'; 
 
+
+class HomeRoutesPanelClass extends React.Component {
+    render(){
         let buttonStyles = Array(this.props.placesState.sortMenuVariants.length).fill("");
         buttonStyles[this.props.placesState.sortMenuValue]="driverProfileComments_panel_selectedElement";
         let textInfo = this.props.storeState.languageTextMain.places;
@@ -29,14 +28,14 @@ class PlacesPanelClass extends React.Component {
                 </div>
             </div>         
           </React.Fragment>
-        )
+        ) 
     }
 }
-const PlacesPanel = connect(
+const HomeRoutesPanel = connect(
     (state) => ({
       storeState: state.AppReduser,
       placesState: state.PlacesReduser
     }),
-  )(PlacesPanelClass);
+  )(HomeRoutesPanelClass);
   
-  export default PlacesPanel;
+  export default HomeRoutesPanel;

@@ -13,6 +13,33 @@ const SET_PLACES_PANEL_SELECTED_ELEMENT = 'SET_PLACES_PANEL_SELECTED_ELEMENT';
 
 const SET_PLACES_LIST = 'SET_PLACES_LIST';
 
+const SET_SELECTED_TAG = 'SET_SELECTED_TAG';
+
+const SET_SELECTED_DIRECTION = 'SET_SELECTED_DIRECTION';
+
+const SET_ROUTES_LIST = 'SET_ROUTES_LIST';
+
+const setRoutesList = function(routesList, directions, country){
+  
+  return{
+    type: SET_ROUTES_LIST,
+    routesList: routesList,
+    directions: directions,
+    country: country
+  }
+}
+const setSelectedDirection = function(directionId){
+  return{
+    type: SET_SELECTED_DIRECTION,
+    directionId: directionId
+  }
+}
+const setSelectedTag = function(tagId){
+  return{
+    type: SET_SELECTED_TAG,
+    tagId: tagId
+  }
+}
 const setPlacesList = function(placesList, tags, directions,country){
   return {
     type: 'SET_PLACES_LIST',
@@ -68,4 +95,7 @@ const setPlacesPanelSelectedElement = function(value){
     changePlacesFixedClass, CHANGE_PLACES_FIXED_CLASS,
     setPlacesPanelSelectedElement, SET_PLACES_PANEL_SELECTED_ELEMENT,
     setPlacesList,SET_PLACES_LIST,
+    setSelectedTag,SET_SELECTED_TAG,
+    setSelectedDirection,SET_SELECTED_DIRECTION,
+    setRoutesList, SET_ROUTES_LIST
   }

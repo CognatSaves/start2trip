@@ -37,7 +37,7 @@ class ManipulatorClass extends React.Component{
         }
         let textInfo = this.props.storeState.languageTextMain.manipulator;
         return(
-         <div className="drivers_block_manipulator">
+         <div className="drivers_block_manipulator" style={{display: this.props.number>0 ? 'flex' : 'none'}}>
             <button className="driversBlockManipulator_button" onClick={()=>this.props.showMorePages()} disabled={showMoreButtonState}>
                 <div className="driversBlockManipulator_button_value">{textInfo.manupulatorShowMore}</div>
             </button>

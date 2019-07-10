@@ -96,8 +96,8 @@ class DriversRouteClass extends React.Component {
         }
       }
       if (date.length === 0) {
-        let datePicer = document.querySelector(".routemenu_date")
-        datePicer.classList.add("routemenu_date-Check")
+        let datePicker = document.querySelector(".routemenu_date")
+        datePicker.classList.add("routemenu_date-Check")
         return false;
       }
       return true;
@@ -199,7 +199,7 @@ class DriversRouteClass extends React.Component {
                 </div>
 
                 <div className="route_secondBottomBlock flex-sm-row flex-column">
-                  <DatePicker hintText="Дата отправления" minDate={new Date()} onChange={(e, date) => { this.chooseDate(date); let datePicer = document.querySelector(".routemenu_date"); datePicer.classList.remove("routemenu_date-Check") }} className="routemenu_date col-md-6 col-12" />
+                  <DatePicker hintText="Дата отправления" minDate={new Date()} onChange={(e, date) => { this.chooseDate(date); let datePicker = document.querySelector(".routemenu_date"); datePicker.classList.remove("routemenu_date-Check") }} className="routemenu_date col-md-6 col-12" />
 
                   <div className="route_secondBottomBlock_button" onClick={() => this.searchRoute()}>
                     <span>ПОИСК</span>

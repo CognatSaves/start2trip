@@ -68,6 +68,21 @@ class PlacesListClass extends React.Component {
     }
     
     render(){
+        function tagFilterFunction(placesList, selectedTags){
+            let res = [];
+            if(selectedTags.length===0){
+                return placesList;
+            }
+            for(let i=0; i<placesList.length; i++){
+                for(let k=0; k<selectedTags.length; k++){
+                    if(placesList[i].tagsArray.indexOf(selectedTags[k])!==-1){
+                        res.push(placesList[i]);
+                        break;
+                    }
+                }
+            }
+            return res;
+        }
         function findTagName(tagId, that){
             
             if(that.props.placesState.tags.length>0){
@@ -91,8 +106,11 @@ class PlacesListClass extends React.Component {
         }
         console.log('PlacesList render');
         console.log(this.props);
+        let tagFilteredArray =tagFilterFunction([...this.props.placesState.placesList], this.props.placesState.selectedTags);
+        console.log('tagFilteredArray',tagFilteredArray);
 
-        let sortedArray = this.placesSort([...this.props.placesState.placesList], this.props.placesState.sortMenuValue);
+        let sortedArray = this.placesSort(/*[...this.props.placesState.placesList]*/tagFilteredArray, this.props.placesState.sortMenuValue);
+         
         let selectedPlaces = sortedArray.slice((this.props.placesState.page-this.props.placesState.showPages)*this.props.placesState.pagesMenuValue,
         this.props.placesState.page*this.props.placesState.pagesMenuValue);
 

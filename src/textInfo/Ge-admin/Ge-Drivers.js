@@ -292,11 +292,11 @@ const driverProfileRegistration = {
                 payedForPeriod: 'Всего за период(GEO)'
             },
             valueTableText:[
-                'ID транзакции(ENG)(GEO)',
-                'Тип оплаты(ENG)(GEO)',
-                'Сумма(ENG)(GEO)',
-                'Дата платежа(ENG)(GEO)',
-                'ID поездки(ENG)(GEO)'
+                'ID транзакции(GEO)',
+                'Тип оплаты(GEO)',
+                'Сумма(GEO)',
+                'Дата платежа(GEO)',
+                'ID поездки(GEO)'
             ] 
         }
     }

@@ -113,10 +113,14 @@
 }
 
 .placesTagList_tagBlock{
-    border: 2px solid #ff6600;
+    border: 2px solid #cccccc;
     border-radius: 25px;
     margin: 5px;
     padding: 5px;
     flex-basis: auto;
     flex-grow: 0.1;
+}
+
+.placesTagList_tagBlock_selected{
+    border: 2px solid #ff6600;
 }
