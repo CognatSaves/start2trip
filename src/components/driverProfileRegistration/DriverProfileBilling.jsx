@@ -6,6 +6,8 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
+import TextField from '@material-ui/core/TextField';
+
 import { isMobileOnly } from 'react-device-detect'
 import {
     Table,
@@ -24,18 +26,20 @@ class DriverProfileBillingClass extends React.Component {
         super(props);
         this.state = {
             headerTitle: ["id Транзакции", "Тип оплаты", "Сумма", "Дата платежа", "ID поездки"],//переводы будут подключаться в месте применения, массив сохранён для соответствующей длины 
-            headerWidth: ['26%',"16%","16%","16%","26%"],
+            headerWidth: ['26%', "16%", "16%", "16%", "26%"],
             withdrawalOfFundsModal: false,
             toPayModal: false,
-            typeCardValue: "Выберите тип",
-            typeCardArray: ["visa", "mastercard"],
+            summ: 0,
+            cardNumber: "",
+            typeCardValue: "Тип карты",
+            typeCardArray: ["Visa", "Mastercard", "American express"],
             toPayPersonalAccountValue: true,
             toPayCardValue: false,
             paymentValue: 0,
-            tableStartDate: new Date(Date.now()-2629800000),
-            tableEndDate:new Date(),
+            tableStartDate: new Date(Date.now() - 2629800000),
+            tableEndDate: new Date(),
 
-            isRefreshExist:false,
+            isRefreshExist: false,
             isRefreshing: true,
             isGoodAnswer: true,
         };
@@ -47,7 +51,7 @@ class DriverProfileBillingClass extends React.Component {
             isRefreshExist: true,
             isRefreshing: true
         });
-    }  
+    }
     thenFunc = () => {
         console.log('thenFunc');
         this.setState({
@@ -61,7 +65,7 @@ class DriverProfileBillingClass extends React.Component {
             })
         }, 1000);
     }
-    catchFunc =() =>{
+    catchFunc = () => {
         console.log('catchFunc');
         this.setState({
             isRefreshExist: true,
@@ -90,54 +94,54 @@ class DriverProfileBillingClass extends React.Component {
 
     };
 
-    formSubmit = (event, value) =>{
+    formSubmit = (event, value) => {
         event.preventDefault();
         alert('Submit completed')
     }
-    changePaymentValue = (value) =>{
+    changePaymentValue = (value) => {
         this.setState({
             paymentValue: value
         })
     }
-    
+
     getTransactionTable = () => {
-        
+
         let jwt = this.props.globalReduser.readCookie('jwt');
         let that = this;
-        if(jwt && jwt !== '-'){
+        if (jwt && jwt !== '-') {
             let body = JSON.stringify({
                 tableStartDate: this.state.tableStartDate,
                 tableEndDate: this.state.tableEndDate
             });
             console.log(requests.getUserTransactions);
-            fetch(requests.getUserTransactions,{
+            fetch(requests.getUserTransactions, {
                 method: 'POST', body: body,
-                headers: {'content-type': 'application/json', Authorization: `Bearer ${jwt}`}
+                headers: { 'content-type': 'application/json', Authorization: `Bearer ${jwt}` }
             })
-            .then(response => {
-                return response.json();
-            })
-            .then(function (data){
-                
-                if (data.error) {
+                .then(response => {
+                    return response.json();
+                })
+                .then(function (data) {
+
+                    if (data.error) {
+                        console.log("bad");
+                        throw data.error;
+                    }
+                    else {
+                        console.log('good');
+                        console.log(data);
+                        that.props.dispatch(setTransactionData(data));
+                        //that.getProfileData();
+                    }
+                })
+                .catch(function (error) {
+
                     console.log("bad");
-                    throw data.error;
-                }
-                else{
-                    console.log('good');
-                    console.log(data);
-                    that.props.dispatch(setTransactionData(data));
-                    //that.getProfileData();
-                }
-            })
-            .catch(function (error) {
-                
-                console.log("bad");
-                console.log('An error occurred:', error);
-                //that.catchFunc();
-            });
+                    console.log('An error occurred:', error);
+                    //that.catchFunc();
+                });
         }
-        else{
+        else {
             this.props.dispatch(setUrlAddress(window.location.pathname));
             this.props.history.push('/login');
             return null;
@@ -146,46 +150,46 @@ class DriverProfileBillingClass extends React.Component {
     }
     render() {
         let profile = this.props.globalReduser.profile;
-        function findCurrencyEl(that,iso){
-            for(let i=0; i<that.props.globalReduser.profile.currencies.length;i++){
-                if(iso===that.props.globalReduser.profile.currencies[i].ISO){
+        function findCurrencyEl(that, iso) {
+            for (let i = 0; i < that.props.globalReduser.profile.currencies.length; i++) {
+                if (iso === that.props.globalReduser.profile.currencies[i].ISO) {
                     return i;
                 }
             }
         }
-        function dateStringConversion(datestr){
+        function dateStringConversion(datestr) {
             let date = new Date(datestr);
             let day = date.getUTCDate();
-            let month = date.getUTCMonth()+1;
+            let month = date.getUTCMonth() + 1;
             let year = date.getUTCFullYear();
             let hours = date.getUTCHours();
             let minutes = date.getMinutes();
-            return (day<10 ? '0'+day : day)+"."+(month<10 ? '0'+month : month)+"."+year+", "+(hours<10 ? '0'+hours : hours)+":"+(minutes<10 ? '0'+minutes : minutes); 
+            return (day < 10 ? '0' + day : day) + "." + (month < 10 ? '0' + month : month) + "." + year + ", " + (hours < 10 ? '0' + hours : hours) + ":" + (minutes < 10 ? '0' + minutes : minutes);
         }
         let that = this;
         console.log('DriverProfileBilling render');
         console.log(this.state);
         //let earnedTotal
-        let partnersPayings=profile ? (profile.billing.partnersProfit) : 0;
-        partnersPayings=Math.round(partnersPayings*100);
-        partnersPayings=profile.currencies[findCurrencyEl(that, profile.payments.currencyType)].symbol+partnersPayings/100;
+        let partnersPayings = profile ? (profile.billing.partnersProfit) : 0;
+        partnersPayings = Math.round(partnersPayings * 100);
+        partnersPayings = profile.currencies[findCurrencyEl(that, profile.payments.currencyType)].symbol + partnersPayings / 100;
 
-        let accountTotal=profile ? (profile.billing.transactionCardTotal+profile.billing.partnersProfit-profile.billing.payeddriverprofit) : 0;
-        accountTotal=Math.round(accountTotal*100);
-        accountTotal=profile.currencies[findCurrencyEl(that, profile.payments.currencyType)].symbol+accountTotal/100;
+        let accountTotal = profile ? (profile.billing.transactionCardTotal + profile.billing.partnersProfit - profile.billing.payeddriverprofit) : 0;
+        accountTotal = Math.round(accountTotal * 100);
+        accountTotal = profile.currencies[findCurrencyEl(that, profile.payments.currencyType)].symbol + accountTotal / 100;
 
         let systemPayings = profile ? (profile.payments.systemPayments) : 0;
-        systemPayings=Math.round(systemPayings*100);
-        systemPayings=profile.currencies[findCurrencyEl(that, profile.payments.currencyType)].symbol+systemPayings/100;
+        systemPayings = Math.round(systemPayings * 100);
+        systemPayings = profile.currencies[findCurrencyEl(that, profile.payments.currencyType)].symbol + systemPayings / 100;
 
-        let systemPayingsTotal = profile ? (profile.payments.systemPayments-profile.billing.payedsystempart) : 0;
-        systemPayingsTotal=Math.round(systemPayingsTotal*100);
-        systemPayingsTotal=profile.currencies[findCurrencyEl(that, profile.payments.currencyType)].symbol+systemPayingsTotal/100;
+        let systemPayingsTotal = profile ? (profile.payments.systemPayments - profile.billing.payedsystempart) : 0;
+        systemPayingsTotal = Math.round(systemPayingsTotal * 100);
+        systemPayingsTotal = profile.currencies[findCurrencyEl(that, profile.payments.currencyType)].symbol + systemPayingsTotal / 100;
         let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileBilling;
         return (
             <React.Fragment>
-                <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer}/>
-                
+                <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
+
                 <Dialog
                     contentClassName='billingModal'
                     paperClassName='billingModalDiv'
@@ -194,40 +198,58 @@ class DriverProfileBillingClass extends React.Component {
                     modal={false}
                     open={this.state.withdrawalOfFundsModal}
                     onRequestClose={() => { this.handleClose('withdrawal') }}
-                >
+                >   
+                    <div className="billingModalHeder">
+                        <span>Доступно к выводу:{accountTotal}$</span>
+                    </div>
                     <form action="" className="billingModalContent">
                         <div className="d-flex align-items-center mt-1">
-                            <label htmlFor="withdrawalSum" className="col-3">Sum</label>
-                            <input id="withdrawalSum" className="col-md-9 col-sm-9" type="text" required />
+                            <TextField
+                                label={"Сумма USD"}
+                                value={this.state.summ}
+                                onChange={(e) => this.setState({ summ: e.target.value })}
+                                className="textField validate w-100"
+                                margin="normal"
+                                variant="outlined"
+                            />
+                            {/* <label htmlFor="withdrawalSum" className="col-3">Sum</label>
+                            <input id="withdrawalSum" className="col-md-9 col-sm-9" type="text" required /> */}
                         </div>
                         <div className="d-flex align-items-center mt-1">
-                            <label htmlFor="NumberCard" className="col-3">Number</label>
-                            <input id="NumberCard" className="col-md-9 col-sm-9" type="text" required />
+                            <TextField
+                                label={"Номер карты"}
+                                value={this.state.cardNumber}
+                                onChange={(e) => this.setState({ cardNumber: e.target.value })}
+                                className="textField validate w-100"
+                                margin="normal"
+                                variant="outlined"
+                            />
+                            {/* <label htmlFor="NumberCard" className="col-3">Number</label>
+                            <input id="NumberCard" className="col-md-9 col-sm-9" type="text" required /> */}
                         </div>
-                        <div className="d-flex align-items-center mt-1">
-                            <label htmlFor="typeCard" className="col-3">Type</label>
-                            <DropDownMenu
-                                value={this.state.typeCardValue}
-                                anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
-                                className="billingModalContentDropDown col-md-9 col-sm-9"
-                                onChange={(event, index, value) => { this.handleClose('typeCard', value) }}
-                                style={{ width: "100%" }}
-                                autoWidth={false}
-                                selectedMenuItemStyle={{ color: "#f60" }}
-                            >
-                                <MenuItem value="Выберите тип" disabled={true} primaryText="Выберите тип" />
-                                {this.state.typeCardArray.map((element, index) =>
-                                    <MenuItem value={element} primaryText={element} />
-                                )}
-                            </DropDownMenu>
-                        </div>
-                        <div className="d-flex justify-content-end mt-2">
+
+                        <DropDownMenu
+                            value={this.state.typeCardValue}
+                            anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
+                            className="billingModalContentDropDown w-100"
+                            onChange={(event, index, value) => { this.handleClose('typeCard', value) }}
+                            style={{ width: "100%" }}
+                            autoWidth={false}
+                            selectedMenuItemStyle={{ color: "#f60" }}
+                        >
+                            <MenuItem value="Тип карты" disabled={true} primaryText="Тип карты" />
+                            {this.state.typeCardArray.map((element, index) =>
+                                <MenuItem value={element} primaryText={element} />
+                            )}
+                        </DropDownMenu>
+
+                        <div className="billingModalFooter d-flex justify-content-end mt-2">
                             <FlatButton
-                                label="Закрыть"
+                                label="Отмена"
                                 primary={true}
                                 onClick={() => { this.handleClose('withdrawal') }}
                             />
-                            <button className="billingBtSubmit" type="submit">Ok</button>
+                            <button className="billingBtSubmit" type="submit">Вывод средств</button>
                         </div>
 
                     </form>
@@ -239,13 +261,24 @@ class DriverProfileBillingClass extends React.Component {
                     open={this.state.toPayModal}
                     onRequestClose={() => { this.handleClose('toPay') }}
                 >
+                    <div className="billingModalHeder">
+                        <span>Сумма к оплате:{systemPayingsTotal}$</span>
+                    </div>
                     <form onSubmit={this.formSubmit} className="billingModalContent">
                         <div className="d-flex align-items-center mt-1">
-                            <label htmlFor="toPaySum" className="col-3">Sum</label>
+                            <TextField
+                                label={"Сумма USD"}
+                                value={this.state.paymentValue}
+                                onChange={(e) => this.changePaymentValue(e.target.value)}
+                                className="textField validate w-100"
+                                margin="normal"
+                                variant="outlined"
+                            />
+                            {/* <label htmlFor="toPaySum" className="col-3">Sum</label>
                             <input id="toPaySum" className="col-md-6 col-sm-9" type="text"
-                             required value={this.state.paymentValue} onChange={(e)=>this.changePaymentValue(e.target.value)}/>
+                                required value={this.state.paymentValue} onChange={(e) => this.changePaymentValue(e.target.value)} /> */}
                         </div>
-                        <div className="d-flex align-items-center mt-1">
+                        <div className="billingModalContentText d-flex align-items-center mt-1">
                             Оплата осуществляется с помощью банковской карты. После ввода суммы и подтверждения вы будете переадресованы в специализированный сервис.
                         </div>
                         {
@@ -264,14 +297,14 @@ class DriverProfileBillingClass extends React.Component {
                             </div>
                             */
                         }
-                        
-                        <div className="d-flex justify-content-end mt-2">
+
+                        <div className="billingModalFooter d-flex justify-content-end mt-2">
                             <FlatButton
-                                label="Закрыть"
+                                label="Отмена"
                                 primary={true}
                                 onClick={() => { this.handleClose('toPay') }}
                             />
-                            <button className="billingBtSubmit" type="submit">Ok</button>
+                            <button className="billingBtSubmit" type="submit">Оплатить</button>
                         </div>
 
                     </form>
@@ -282,22 +315,22 @@ class DriverProfileBillingClass extends React.Component {
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-row flex-column align-items-md-end align-items-sm-center align-items-center  justify-content-between">
                                 <div className="billingText col-md-8 col-12 p-0">
                                     <div className="billingTextTitle col-md-12 col-10 p-0 mx-auto">
-                                        <span>{textPage.currentBalance.currentBalanceText+ ' ('+textPage.currentBalance.personalAccount+' №'+ '20456787'+')'}</span>
+                                        <span>{textPage.currentBalance.currentBalanceText + ' (' + textPage.currentBalance.personalAccount + ' №' + '20456787' + ')'}</span>
                                     </div>
                                     <div className="border-bottom mb-2 d-flex align-items-center justify-content-between">
-                                        <span className="col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0 py-2">{textPage.currentBalance.cardPayments+':'}</span>
-                                        <span>{profile.currencies[findCurrencyEl(that, profile.payments.currencyType)].symbol+profile.billing.transactionCardTotal}</span>
+                                        <span className="col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0 py-2">{textPage.currentBalance.cardPayments + ':'}</span>
+                                        <span>{profile.currencies[findCurrencyEl(that, profile.payments.currencyType)].symbol + profile.billing.transactionCardTotal}</span>
                                     </div>
                                     <div className="specialBorder mb-2 d-flex align-items-center justify-content-between">
-                                        <span className="col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0 py-2">{textPage.currentBalance.partnerPayments+':'}</span>
+                                        <span className="col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0 py-2">{textPage.currentBalance.partnerPayments + ':'}</span>
                                         <span>{partnersPayings}</span>
                                     </div>
                                     <div className="specialBorder mb-2 d-flex align-items-center justify-content-between">
-                                        <span className="col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0 py-2">{textPage.currentBalance.withdrawnTotal+':'}</span>
-                                        <span>{"-"+profile.currencies[findCurrencyEl(that, profile.payments.currencyType)].symbol+profile.billing.payeddriverprofit}</span>
+                                        <span className="col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0 py-2">{textPage.currentBalance.withdrawnTotal + ':'}</span>
+                                        <span>{"-" + profile.currencies[findCurrencyEl(that, profile.payments.currencyType)].symbol + profile.billing.payeddriverprofit}</span>
                                     </div>
                                     <div className="d-flex align-items-center justify-content-between">
-                                        <span className="specialText col-xl-7 col-lg-7 col-md-8 col-sm-9 col-8 p-0 py-2">{textPage.currentBalance.accountTotal+':'}</span>
+                                        <span className="specialText col-xl-7 col-lg-7 col-md-8 col-sm-9 col-8 p-0 py-2">{textPage.currentBalance.accountTotal + ':'}</span>
                                         <span className="specialText">{accountTotal}</span>
                                     </div>
                                 </div>
@@ -307,8 +340,8 @@ class DriverProfileBillingClass extends React.Component {
                             </div>
                             <div className="col-md-8 col-12 mt-5 p-0">
                                 <div className="billingText border-bottom d-flex align-items-center justify-content-between">
-                                    <span className="">{textPage.currentBalance.receivedByCash+':'}</span>
-                                    <span>{profile.currencies[findCurrencyEl(that, profile.payments.currencyType)].symbol+profile.billing.transactionCashTotal}</span>
+                                    <span className="">{textPage.currentBalance.receivedByCash + ':'}</span>
+                                    <span>{profile.currencies[findCurrencyEl(that, profile.payments.currencyType)].symbol + profile.billing.transactionCashTotal}</span>
                                 </div>
                             </div>
                         </div>
@@ -319,19 +352,19 @@ class DriverProfileBillingClass extends React.Component {
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-row flex-column align-items-md-end align-items-sm-center align-items-center justify-content-between ">
                                 <div className="billingText  col-md-7 col-12 p-0">
                                     <div className="border-bottom mb-2 d-flex align-items-center justify-content-between">
-                                        <span className="col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0 py-2">{textPage.systemPayments.cardCommission+':'}</span>
+                                        <span className="col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0 py-2">{textPage.systemPayments.cardCommission + ':'}</span>
                                         <span>$0</span>
                                     </div>
                                     <div className="specialBorder mb-2 d-flex align-items-center justify-content-between">
-                                        <span className="col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0 py-2">{textPage.systemPayments.cashCommission+':'}</span>
+                                        <span className="col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0 py-2">{textPage.systemPayments.cashCommission + ':'}</span>
                                         <span>{systemPayings}</span>
                                     </div>
                                     <div className="specialBorder mb-2 d-flex align-items-center justify-content-between">
-                                        <span className="col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0 py-2">{textPage.systemPayments.payedPart+':'}</span>
-                                        <span>{"-"+profile.currencies[findCurrencyEl(that, profile.payments.currencyType)].symbol+profile.billing.payedsystempart}</span>
+                                        <span className="col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0 py-2">{textPage.systemPayments.payedPart + ':'}</span>
+                                        <span>{"-" + profile.currencies[findCurrencyEl(that, profile.payments.currencyType)].symbol + profile.billing.payedsystempart}</span>
                                     </div>
                                     <div className="d-flex align-items-center justify-content-between">
-                                        <span className="specialText col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0 py-2">{textPage.systemPayments.systemPaymentsTotal+':'}</span>
+                                        <span className="specialText col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0 py-2">{textPage.systemPayments.systemPaymentsTotal + ':'}</span>
                                         <span className="specialText">{systemPayingsTotal}</span>
                                     </div>
                                 </div>
@@ -349,15 +382,15 @@ class DriverProfileBillingClass extends React.Component {
                 <div className="billingBody">
                     <div className="d-flex flex-md-row flex-sm-column flex-column justify-content-between col-12 p-0">
                         <div className="d-flex flex-column">
-                            <span className="blillingHeaderTitle">{textPage.accountOperations.accountOperationsText+' №'+'20456787'}</span>
+                            <span className="blillingHeaderTitle">{textPage.accountOperations.accountOperationsText + ' №' + '20456787'}</span>
                             <div className=" billingText d-flex flex-md-row flex-sm-column flex-column align-items-center mt-5">
                                 <span className="pr-2">{textPage.accountOperations.forPeriod}</span>
                                 <div className="d-flex flex-wrap">
-                                    <DatePicker onChange={(nul,date)=>{ this.setState({ tableStartDate: date }); }} floatingspanText="Дата начала" className="billingCalendar" value={this.state.tableStartDate}/>
+                                    <DatePicker onChange={(nul, date) => { this.setState({ tableStartDate: date }); }} floatingspanText="Дата начала" className="billingCalendar" value={this.state.tableStartDate} />
                                     <span className="align-md-self-end align-self-center mx-md-2 mx-0 mt-2">&#175;</span>
-                                    <DatePicker onChange={(nul,date)=>{ this.setState({ tableEndDate: date }); }} floatingspanText="Дата конца" className="billingCalendar" value={this.state.tableEndDate}/>
-                                    <div className="billingButton mx-md-0 mx-auto my-md-0 my-2" onClick={()=>this.getTransactionTable()}>
-                                        <span style={{color:"#fff"}}>{textPage.accountOperations.searchButton}</span>
+                                    <DatePicker onChange={(nul, date) => { this.setState({ tableEndDate: date }); }} floatingspanText="Дата конца" className="billingCalendar" value={this.state.tableEndDate} />
+                                    <div className="billingButton mx-md-0 mx-auto my-md-0 my-2" onClick={() => this.getTransactionTable()}>
+                                        <span style={{ color: "#fff" }}>{textPage.accountOperations.searchButton}</span>
                                     </div>
                                 </div>
                             </div>
@@ -365,23 +398,23 @@ class DriverProfileBillingClass extends React.Component {
                         <div className=" col-md-4 col-sm-12 col-12 p-0 blillingHeader d-flex align-items-end justify-content-between">
                             <div className="col-12">
                                 <div className="billingText border-bottom d-flex align-items-center justify-content-between py-2">
-                                    <span className="">{textPage.accountOperations.infoTableText.payedByCash+':'}</span>
-                                    <span>{this.props.globalReduser.profile ? '$'+this.props.globalReduser.profile.billing.transactionCashPeriod : 0}</span>
+                                    <span className="">{textPage.accountOperations.infoTableText.payedByCash + ':'}</span>
+                                    <span>{this.props.globalReduser.profile ? '$' + this.props.globalReduser.profile.billing.transactionCashPeriod : 0}</span>
                                 </div>
                                 <div className="billingText border-bottom d-flex align-items-center justify-content-between py-2">
-                                    <span className="">{textPage.accountOperations.infoTableText.payedByCard+':'}</span>
-                                    <span>{this.props.globalReduser.profile ? '$'+this.props.globalReduser.profile.billing.transactionCardPeriod : 0}</span>
+                                    <span className="">{textPage.accountOperations.infoTableText.payedByCard + ':'}</span>
+                                    <span>{this.props.globalReduser.profile ? '$' + this.props.globalReduser.profile.billing.transactionCardPeriod : 0}</span>
                                 </div>
                                 <div className="billingText specialBorder d-flex align-items-center justify-content-between py-2">
-                                    <span className="">{textPage.accountOperations.infoTableText.payedByPartners+':'}</span>
-                                    <span>{this.props.globalReduser.profile ? '$'+this.props.globalReduser.profile.billing.transactionPartnerPeriod : 0}</span>
+                                    <span className="">{textPage.accountOperations.infoTableText.payedByPartners + ':'}</span>
+                                    <span>{this.props.globalReduser.profile ? '$' + this.props.globalReduser.profile.billing.transactionPartnerPeriod : 0}</span>
                                 </div>
                                 <div className="billingText d-flex align-items-center justify-content-between pt-2">
-                                    <span className="specialText">{textPage.accountOperations.infoTableText.payedForPeriod+':'}</span>
-                                    <span className="specialText">{this.props.globalReduser.profile ? '$'+
-                                    (this.props.globalReduser.profile.billing.transactionPartnerPeriod+
-                                    this.props.globalReduser.profile.billing.transactionCardPeriod+
-                                    this.props.globalReduser.profile.billing.transactionCashPeriod) : 0}</span>
+                                    <span className="specialText">{textPage.accountOperations.infoTableText.payedForPeriod + ':'}</span>
+                                    <span className="specialText">{this.props.globalReduser.profile ? '$' +
+                                        (this.props.globalReduser.profile.billing.transactionPartnerPeriod +
+                                            this.props.globalReduser.profile.billing.transactionCardPeriod +
+                                            this.props.globalReduser.profile.billing.transactionCashPeriod) : 0}</span>
                                 </div>
                             </div>
                         </div>
@@ -392,7 +425,7 @@ class DriverProfileBillingClass extends React.Component {
                             <TableHeader className="billingTableHeader" displaySelectAll={false} adjustForCheckbox={false}>
                                 <TableRow>
                                     {this.state.headerTitle.map((element, index) =>
-                                        <TableHeaderColumn style={{width: this.state.headerWidth[index],textAlign: 'center'}}>{textPage.accountOperations.valueTableText[index]}</TableHeaderColumn>
+                                        <TableHeaderColumn style={{ width: this.state.headerWidth[index], textAlign: 'center' }}>{textPage.accountOperations.valueTableText[index]}</TableHeaderColumn>
                                     )}
                                 </TableRow>
                             </TableHeader>
@@ -402,26 +435,26 @@ class DriverProfileBillingClass extends React.Component {
                                 displayRowCheckbox={false}>
                                 {this.props.globalReduser.profile ? this.props.globalReduser.profile.filteredTransactions.map((element, index) =>
                                     <TableRow>
-                                        <TableRowColumn style={{width: this.state.headerWidth[0],textAlign: 'center'}}>{element.id}</TableRowColumn>
-                                        <TableRowColumn style={{width: this.state.headerWidth[1],textAlign: 'center'}}>{element.paymentType}</TableRowColumn>
-                                        <TableRowColumn style={{width: this.state.headerWidth[2],textAlign: 'center'}}>{profile.currencies[findCurrencyEl(that, element.currencyType)].symbol+element.sum}</TableRowColumn>
+                                        <TableRowColumn style={{ width: this.state.headerWidth[0], textAlign: 'center' }}>{element.id}</TableRowColumn>
+                                        <TableRowColumn style={{ width: this.state.headerWidth[1], textAlign: 'center' }}>{element.paymentType}</TableRowColumn>
+                                        <TableRowColumn style={{ width: this.state.headerWidth[2], textAlign: 'center' }}>{profile.currencies[findCurrencyEl(that, element.currencyType)].symbol + element.sum}</TableRowColumn>
                                         {
                                             /**
                                             <TableRowColumn>{element.transactionComission}</TableRowColumn>
                                             */
                                         }
-                                        
-                                        <TableRowColumn style={{width: this.state.headerWidth[3],textAlign: 'center'}}>{dateStringConversion(element.paymentDate)}</TableRowColumn>
-                                        <TableRowColumn style={{width: this.state.headerWidth[4],textAlign: 'center'}}>{element.tripId}</TableRowColumn>
+
+                                        <TableRowColumn style={{ width: this.state.headerWidth[3], textAlign: 'center' }}>{dateStringConversion(element.paymentDate)}</TableRowColumn>
+                                        <TableRowColumn style={{ width: this.state.headerWidth[4], textAlign: 'center' }}>{element.tripId}</TableRowColumn>
                                         {
                                             /**
                                             <TableRowColumn>{element.route.map((city,index)=><text>{city.point+(element.route.length-1<index ? '-':'')}</text>)}</TableRowColumn>
                                             <TableRowColumn>{element.client}</TableRowColumn>
                                             */
                                         }
-                                        
+
                                     </TableRow>
-                                ) : <React.Fragment/>}
+                                ) : <React.Fragment />}
                             </TableBody>
                         </Table>
                     </div>

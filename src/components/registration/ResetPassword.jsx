@@ -123,16 +123,16 @@ class ResetPassword extends React.Component {
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={true} />
                 <div className="forgotPasswordBody d-flex flex-column align-items-center">
                     <Header driver={true} history={this.props.history} />
-                    <div className="forgotPasswordSuccess forgotPasswordContent d-flex flex-column align-items-center col-md-7 col-11">
+                    <div className="forgotPasswordContent d-flex flex-column align-items-center col-md-8 col-11">
                         <div className="d-flex justify-content-center align-items-center">
-                            <span>Введите новый пароль для вашего аккаунта</span>
+                            <span>Новый пароль</span>
                         </div>
-                        <div className={this.state.isChangePasswordType?"resetPasswordInput resetPasswordInput-active":"resetPasswordInput"}>
+                        <div className={this.state.isChangePasswordType?"resetPasswordInput resetPasswordInput-active col-md-5 col-12":"resetPasswordInput col-md-5 col-12"}>
                             <input className={this.state.falde ? "forgotPasswordInput-error" : ""}
-                            placeholder="Пароль" type={this.state.isChangePasswordType?"text":"password"} value={this.state.passwords[0]} onChange={(e) => {this.passwordonchange(e.target.value, 0); this.setState({ falde: false, isSended: false, noChange:false, })}} />
+                            placeholder="Введите новый пароль" type={this.state.isChangePasswordType?"text":"password"} value={this.state.passwords[0]} onChange={(e) => {this.passwordonchange(e.target.value, 0); this.setState({ falde: false, isSended: false, noChange:false, })}} />
                             <i  onClick={()=>{this.setState({isChangePasswordType: !this.state.isChangePasswordType})}}/>
                         </div>
-                        <div className={this.state.isChangePasswordType2?"resetPasswordInput resetPasswordInput-active":"resetPasswordInput"}>
+                        <div className={this.state.isChangePasswordType2?"resetPasswordInput resetPasswordInput-active col-md-5 col-12":"resetPasswordInput col-md-5 col-12"}>
                             <input className={this.state.falde ? "forgotPasswordInput-error" : ""}
                             placeholder="Повторите пароль" type={this.state.isChangePasswordType2?"text":"password"} value={this.state.passwords[1]} onChange={(e) => {this.passwordonchange(e.target.value, 1);this.setState({ falde: false, isSended: false, noChange:false, })}} />
                             <i onClick={()=>{this.setState({isChangePasswordType2: !this.state.isChangePasswordType2})}}/>
@@ -148,7 +148,7 @@ class ResetPassword extends React.Component {
                                 <div className="forgotPasswordContent-error">{this.state.isMatchUp ? 'Нет изменений' : 'Не совпадают пароли'}</div> :
                                 <React.Fragment />
                         }
-                        <div className="forgotPasswordBt" onClick={() => this.sendRequest()}><span>Отправить данные</span></div>
+                        <div className="forgotPasswordBt mt-3 mb-5" onClick={() => this.sendRequest()}><span>Отправить</span></div>
                        
                     </div>
 

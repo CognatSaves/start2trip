@@ -1,14 +1,7 @@
 .startTravelForm {
     position: relative;
-    top: 110px;
     display: flex;
     flex-direction: column;
-    margin: 0 auto auto auto;
-    width: 420px;
-    padding: 30px;
-    background-color: #ffffff;
-    box-shadow: 0 0 2px 2px rgba(221, 221, 221, 1);
-    border-radius: 5px;
 }
 
 .startTravelForm_element {
@@ -34,6 +27,33 @@
     border-radius: 5px;
     border-color: transparent;
     background-color: transparent;
+}
+
+.myPhoneInput.startTravelFormTelInput {
+    width: 100%;
+    margin: 5px 0;
+    /* min-height: 100% !important; */
+}
+
+.startTravelFormTelInput.myPhoneInput input {
+    height: 100% !important;
+}
+
+.startTravelFormTelInput.myPhoneInput input:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.startTravelFormTelInput.myPhoneInput .form-control:focus {
+    border-color: #304269 !important;
+}
+
+.startTravelFormTelInput.myPhoneInput button {
+    min-width: auto !important;
+    border: none !important;
+    background: #fff !important;
+    height: 100% !important;
+    margin: auto 0;
 }
 
 .startTravelForm_text {

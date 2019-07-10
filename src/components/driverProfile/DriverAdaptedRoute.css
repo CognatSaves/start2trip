@@ -81,3 +81,9 @@
     font-size: 14px;
     font-weight: 400;
 }
+
+@media (max-width: 560px) {
+    .drivers_route {
+        border-radius: 0px;
+    }
+}

@@ -6,7 +6,6 @@ import Header from '../header/Header'
 
 
 import './AuthRedirect.css';
-import { Url } from 'url';
 import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 const ModalRegistration = (props) => {
     let { modalRegistration, toggle, className, authorization } = props;
