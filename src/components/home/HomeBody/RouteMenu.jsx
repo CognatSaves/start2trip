@@ -306,7 +306,6 @@ class RouteMenuClass extends React.Component {
 
 
     console.log(this.props.storeState);
-    debugger;
     if(!this.state.isLoaded){
       
       function isFindAllElems(cities){

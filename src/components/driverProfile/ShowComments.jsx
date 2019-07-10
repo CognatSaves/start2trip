@@ -19,7 +19,8 @@ class ShowCommentsClass extends React.Component{
                 <div className="commentBlock_comments d-flex flex-column">
                 {this.props.selectedComments.map((element,index)=>{
                     //let obj = element.name || element.createdAt ? element : {name: element.user.name} 
-                    let date = element.date ? element.date : new Date(element.createdAt);     
+                    
+                    let date = element.date ? new Date(element.date) : new Date(element.createdAt);     
                     
                     return(               
                     <div className="commentBlock_element d-flex" key={element+"/"+index}>

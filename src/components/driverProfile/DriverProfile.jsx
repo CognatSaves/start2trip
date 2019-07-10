@@ -4,11 +4,11 @@ import './DriverInfo.css';
 import './DriverAdaptedRoute.css';
 import { connect } from 'react-redux'
 // import DriversCommercial from '../drivers/DriversBody/DriversCommercial/DriversCommercial';
-import DriversProfileComments from './DriversProfileComments';
-import Manipulator from '../manipulator/Manipulator';
+// import DriversProfileComments from './DriversProfileComments';
+// import Manipulator from '../manipulator/Manipulator';
 import Header from '../header/Header';
 import { setDriversRouteChange, setDriverCarDescription, setCarTypes } from '../../redusers/ActionDrivers';
-import StartTravelForm from '../startTravelForm/StartTravelForm';
+// import StartTravelForm from '../startTravelForm/StartTravelForm';
 import StartTravelSuccess from '../startTravelForm/StartTravelSuccess';
 // import DriverAdaptedRoute from './DriverAdaptedRoute';
 import DriverInfo from './DriverInfo.jsx';
@@ -32,6 +32,8 @@ import { setLengthTime } from '../../redusers/ActionDrivers'
 import axios from 'axios';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 import { isMobileOnly } from 'react-device-detect';
+import CommentBlock from '../TourDescription/CommentBlock'
+
 class DriverProfileClass extends React.Component {
     constructor(props) {
         super(props);
@@ -65,6 +67,8 @@ class DriverProfileClass extends React.Component {
             isRefreshing: false,
             isGoodAnswer: false,
             promoCodIsOk:true,
+            elementPrice:0,
+            comments:{},
             time: [
                 "00:00", "00:15", "00:30", "00:45",
                 "01:00", "01:15", "01:30", "01:45",
@@ -136,6 +140,7 @@ class DriverProfileClass extends React.Component {
                     else {
                         console.log('good');
                         console.log(data);
+                        that.setState({comments:data.driverCarDescription.comments})
                         that.props.dispatch(setDriverCarDescription(data.driverCarDescription));
                         that.props.dispatch(setCarTypes(data.carTypes));
                     }
@@ -417,7 +422,7 @@ class DriverProfileClass extends React.Component {
 
     render() {
         console.log('DriverProfile render');
-        console.log(this);
+        console.log(this.state.comments);
 
         console.log('cities', this.props.storeState.cities);
 
@@ -651,14 +656,18 @@ class DriverProfileClass extends React.Component {
                                             )
                                         }
                                     </div>
-                                    {
+                                    <CommentBlock comments={this.state.comments}  page={this.state.page} setPage={this.setPage}
+                                                showMorePages={this.showMorePages} showPages={this.state.showPages} id={"commentBlockId"}  />
+                                        
+                                    
+                                    {/* {
                                         this.state.showPanelVariant === 0 &&
                                         <React.Fragment>
                                             <DriversProfileComments page={this.state.page} showPages={this.state.showPages} driver={driver} />
                                             <Manipulator number={this.props.commentState.comments.length} page={this.state.page} elementsNumber={5}
                                                 setPage={this.setPage} showMorePages={this.showMorePages} />
                                         </React.Fragment>
-                                    }
+                                    } */}
                                     {/* {
                                         this.state.showPanelVariant === 1 &&
                                         <React.Fragment>
@@ -674,8 +683,8 @@ class DriverProfileClass extends React.Component {
                         </div>
                     </div>
                     {/* successVisibility={this.changeSuccessVisibility} changeSuccessVisibility={this.changeSuccessVisibility}*/}
-                    <StartTravelForm changeTravelVisibility={this.changeTravelVisibility}
-                        travelVisibility={this.state.travelVisibility} isoCountryMap={this.props.storeState.isoCountryMap} storeState={this.props.storeState} driversState={this.props.driversState} />
+                    {/* <StartTravelForm changeTravelVisibility={this.changeTravelVisibility} elementPrice={this.state.elementPrice} driversState={this.props.driversState}
+                        travelVisibility={this.state.travelVisibility} isoCountryMap={this.props.storeState.isoCountryMap} storeState={this.props.storeState} /> */}
                     <StartTravelSuccess successVisibility={this.state.successVisibility} changeSuccessVisibility={this.changeSuccessVisibility} />
                 </React.Fragment>
 

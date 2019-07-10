@@ -160,7 +160,7 @@ class DriversBlockClass extends React.Component {
                   </div>
                 </div>
                 <div className="driversBlock_driverInfoBlock_element driversBlock_commentary">Стоимость окончательная. Топливо включено</div>
-                <button className="driversBlock_driverInfoBlock_element driversBlock_buttonStyle" onClick={() => this.props.changeTravelVisibility('block')}>{"ЗАБРОНИРОВАТЬ $" + element.price}</button>
+                <button className="driversBlock_driverInfoBlock_element driversBlock_buttonStyle" onClick={() => this.props.changeTravelVisibility(element.price)}>{"ЗАБРОНИРОВАТЬ $" + element.price}</button>
               </div>
 
             </div>
