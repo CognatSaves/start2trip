@@ -27,13 +27,14 @@ class StarsClass extends React.Component {
     
     console.log(this.props);
     let classString = "infoBlock_starsBlock_stars d-flex flex-row "+(this.props.changeStarsBlock ? this.props.changeStarsBlock+' ' : '');
+    
     return (
       <div className={"infoBlock_starsBlock d-flex  justify-content-start " }>
-        <div className={this.props.valueDisplay && this.props.commentNumber>0 ? "infoBlock_starsBlock_value" : "infoBlock_starsBlock_value d-none" }>{this.state.tempValue}</div>
+        <div className={this.props.valueDisplay /*&& this.props.commentNumber>0*/ ? "infoBlock_starsBlock_value" : "infoBlock_starsBlock_value d-none" }>{this.state.tempValue}</div>
         <div className={classString}>
           <Rater total={5} onRate={this.onRate} interactive={this.state.changable} rating={this.state.tempValue} />
         </div>
-        <div className={this.props.commentNumberDisplay ? "infoBlock_starsBlock_number d-flex" : "infoBlock_starsBlock_number d-none" }>{this.props.commentNumber}</div>
+        <div className={(this.props.commentNumberDisplay ? "infoBlock_starsBlock_number d-flex " : "infoBlock_starsBlock_number d-none ")+(this.props.commentTextStilizated ? this.props.commentTextStilizated : '' ) }>{this.props.commentNumber}</div>
       </div>
     )
   }

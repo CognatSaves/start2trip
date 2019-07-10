@@ -36,6 +36,10 @@
     padding-bottom: 10px !important;
 }
 
+.popularPlacesEl_selected{
+    border: 3px solid brown;
+}
+
 .popularPlacesEl img {
     cursor: pointer;
     width: 100%;

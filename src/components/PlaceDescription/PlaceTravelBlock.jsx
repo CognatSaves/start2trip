@@ -39,10 +39,11 @@ class PlaceTravelBlockClass extends React.Component{
             }
           };
         let  place = this.props.place;
+        let textInfo = this.props.storeState.languageTextMain.placeDescription.placeTravelBlock;
+        
         return (
-            <React.Fragment>
-            <div className="placeDescription_block d-flex flex-column col-12" id="placeDescriptionId3">
-                <div className="placeDescription_fragmentName">Как добраться</div>
+            <div className="placeDescription_block d-flex flex-column" id={this.props.id} key={JSON.stringify(this.state.endPoint)}>
+                <div className="placeDescription_fragmentName">{textInfo.fragmentName}</div>
                 <div className="d-flex flex-row">
                     <div className="d-flex flex-column col-6" style={{ marginTop: "15px" }}>
                         
@@ -61,12 +62,12 @@ class PlaceTravelBlockClass extends React.Component{
                             <div className="placesDescription_travelBlock_element d-flex" /*style={{ marginRight: "auto" }}*/>
                                 <div className="placesDescription_travelBlock_icon placesDescription_calendary" />
                                 <div className=""/*"col-sm-6 col-12 p-0 pr-1"*/>
-                                    <DatePicker defaultDate={this.state.date} hintText="Дата отправления" minDate={new Date()} onChange={(e, date) => { this.setState({date: date}); let datePicer = document.querySelector(".placeDescrDate"); datePicer.classList.remove("placeDescrDate-Check") }} className="placeDescrDate"/*"routemenu_date"*/ />
+                                    <DatePicker defaultDate={this.state.date} hintText="Дата отправления" minDate={new Date()} onChange={(e, date) => { this.setState({date: date}); let datePicker = document.querySelector(".placeDescrDate"); datePicker.classList.remove("placeDescrDate-Check") }} className="placeDescrDate"/*"routemenu_date"*/ />
                                 </div>
                             </div>
                             <button className="placesDescription_travelBlock_element placesDescription_travelBlock_applyButton d-flex"
                             /*style={{ marginLeft: "auto" }}*/ onClick={()=>this.lookAvailable()}>
-                                <text style={{ margin: "auto", fontSize: '16px' }} >СМОТРЕТЬ ПРЕДЛОЖЕНИЯ</text>
+                                <text style={{ margin: "auto", fontSize: '16px' }} >{textInfo.lookAvailable}</text>
                             </button>
                        
                     </div>
@@ -76,7 +77,6 @@ class PlaceTravelBlockClass extends React.Component{
                 </div>
                     
             </div>
-            </React.Fragment>
         )
     }
 

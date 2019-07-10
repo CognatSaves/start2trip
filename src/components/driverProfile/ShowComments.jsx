@@ -3,13 +3,15 @@ import './DriversProfileComments.css';
 import tempPicture from './pictures/drivers_body_photo.png'
 import Stars from '../stars/Stars';
 import requests from '../../config';
-export default class ShowComments extends React.Component{
+import { connect } from 'react-redux';
+class ShowCommentsClass extends React.Component{
     /*constructor(props){
         super(props);
     }*/
     render(){
+        let textInfo = this.props.storeState.languageTextMain.placeDescription.placeProgramm;
         function getMonthName(number){
-            let monthArray = ["января","февраля","марта","апреля","мая","июня","июля","августа","сентября","октября","ноября","декабря"];
+            let monthArray = textInfo.monthArray;
             return monthArray[number];
         }
         if(this.props.selectedComments.length>0){
@@ -37,21 +39,33 @@ export default class ShowComments extends React.Component{
                             <div className="news">
                                 <label htmlFor={"put"+element+index}>{element.value}</label>
                             </div>
-                            
+
                             
                         </div>
                     </div> 
                     )}
                 )}
+                
             </div> 
             )
         }
         else{
             return(
-                <React.Fragment/>
-                
+                <div className="commentBlock_comments d-flex flex-column">
+                    <div className="commentBlock_element d-flex">
+                        {this.props.noCommentsText}
+                    </div>        
+                </div>             
             )
         }
         
     }
 }
+
+const ShowComments = connect(
+    (state) => ({
+      storeState: state.AppReduser,
+    }),
+  )(ShowCommentsClass);
+  
+  export default ShowComments;

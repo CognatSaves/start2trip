@@ -119,6 +119,8 @@ class DriversBlockClass extends React.Component {
       })
     }
     setLanguagesNumbers(this,selectedElements);
+
+
     console.log('selectedEl');
     console.log(selectedElements);
     

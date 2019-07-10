@@ -1,17 +1,18 @@
 import React from 'react';
 import './Home.css';
 import './text.css';
-import { Link } from 'react-router-dom';
-import routeIcon from './HomeBody/pictures/route.svg'
-import calendarHomeIcon from './HomeBody/pictures/calendarHome.svg'
-import offerIcon from './HomeBody/pictures/offer.svg'
-import enjoy_tripIcon from './HomeBody/pictures/enjoy_trip.svg'
-import RenderFourEl from './HomeBody/RenderFourEl.jsx'
 import georgiaImg from './HomeBody/pictures/georgia.png'
 
 import { connect } from 'react-redux';
 
-
+import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+import axios from 'axios';
+import requests from '../../config';
+import { setRoutesList,setSelectedDirection } from '../../redusers/ActionPlaces';
+import HomePopularPlaces from './HomeBottom/HomePopularPlaces';
+import HomeRoutesList from './HomeBottom/HomeRoutesList';
+import HomePlacesPanel from './HomeBottom/HomePlacesPanel';
+import Manipulator from '../manipulator/Manipulator';
 class HomeBodyBottomClass extends React.Component {
   constructor(props) {
     super(props);
@@ -22,16 +23,127 @@ class HomeBodyBottomClass extends React.Component {
         { img: georgiaImg, title: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", link: "/driver", reviews: "12 отзывов", prise: "80$" },
         { img: georgiaImg, title: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", link: "/driver", reviews: "55 отзыва", prise: "150$" },
         { img: georgiaImg, title: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", link: "/driver", reviews: "22 отзыва", prise: "170$" },
-      ]
+      ],
+      country: "",
+      language: "",
+      isRefreshExist: false,
+      selectedDirection: ''
     };
   }
   redirectFunc(where) {
     this.props.history.push(where);
     
   }
+  shouldComponentUpdate(nextProps, nextState){
+    
+    console.log(this.props);
+    console.log(this.state);
+    return true;
+  }
   render() {
-    let textInfo = this.props.storeState.languageTextMain.home.homeBodyBottom;
-    return (
+
+    console.log('HomeBodyBottom render state=', this.state, 'props=', this.props);
+    
+    let selectedDirection=this.props.match.params.direction;
+    
+    if( !this.state.isRefreshExist && this.props.storeState.languages.length>0 && 
+        (
+          this.state.selectedDirection!==(selectedDirection) ||
+          this.state.country!==this.props.storeState.country ||
+          this.state.language !==this.props.storeState.languages[this.props.storeState.activeLanguageNumber].ISO   
+        )
+      )
+    {
+      //alert('send that request');
+      this.setState({
+        country: this.props.storeState.country,
+        language: this.props.storeState.languages[this.props.storeState.activeLanguageNumber].ISO,
+        isRefreshExist: true,
+        selectedDirection: selectedDirection
+      });
+      let that = this;
+      axios.get(requests.getRoutes+"?country="+this.props.storeState.country+"&lang="+this.props.storeState.languages[this.props.storeState.activeLanguageNumber].ISO+(selectedDirection ? "&slug="+selectedDirection : ''))
+      .then(response => {
+        console.log(response);              
+        return response.data;
+      })
+      .then(data =>{
+              
+        if (data.error) {
+          console.log("bad");
+          throw data.error;
+        }
+        else{
+          function findSelectedDirectionId(directions, slug){
+            for(let i=0; i<directions.length; i++){
+              for(let k=0; k<directions[i].loc.length; k++){
+                if(directions[i].loc[k].slug===slug){
+                  return directions[i].id
+                }
+              }
+            }
+            return 0;
+          }
+          console.log('good');
+          console.log(data);
+          that.props.dispatch(setRoutesList(data.routes, data.directions, data.country));
+          if (selectedDirection){
+            let id = findSelectedDirectionId( data.directions, selectedDirection);
+            if(id!==0){
+              that.props.dispatch(setSelectedDirection(id));
+            }
+            else{
+              //если не нашли - пускаем ещё раз крутилку - если не нашли, сервер не нашёл направление-> вернул всё
+              that.props.globalReduser.history.push('/home');
+            }   
+          }
+          that.setState({
+            isRefreshExist: false
+          });
+        }
+        
+      })
+      .catch(error => {
+        
+        
+        console.log('get wasted answer');
+        //this.props.globalhistory.history.push('/');
+        
+      });
+    }
+    return(
+      <React.Fragment>
+        <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={true} isGoodAnswer={true}/>
+        
+        <div className="home_block col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+          <HomePopularPlaces/>
+          <HomePlacesPanel/>
+          <HomeRoutesList/>
+          <Manipulator number={this.props.placesState.routesList.length} page={this.props.placesState.page} setPage={this.setPageFunc}
+            elementsNumber={this.props.placesState.pagesMenuValue} showMorePages={this.showMorePages}
+          />
+        </div>
+        
+      </React.Fragment>
+    )
+  }
+}
+
+const HomeBodyBottom = connect(
+  (state) => ({
+    storeState: state.AppReduser,
+    globalhistory: state.GlobalReduser,
+    placesState:state.PlacesReduser
+  }),
+)(HomeBodyBottomClass);
+
+export default HomeBodyBottom;
+
+
+/*
+let textInfo = this.props.storeState.languageTextMain.home.homeBodyBottom;
+   
+return (
       <React.Fragment>
       
         <div className="homeBottom container-fluid p-0">
@@ -87,19 +199,11 @@ class HomeBodyBottomClass extends React.Component {
           <p>Нажимая "Подписаться", Вы соглашаетесь с правилами<Link to=""> использования сервиса </Link> и <Link to=""> обработки персональных данных.</Link></p>
         </div>
         */
-        }
+
+        /*
+      }
       </div>
       
       </React.Fragment>
     )
-  }
-}
-
-const HomeBodyBottom = connect(
-  (state) => ({
-    storeState: state.AppReduser,
-    globalhistory: state.GlobalReduser,
-  }),
-)(HomeBodyBottomClass);
-
-export default HomeBodyBottom;
+  */

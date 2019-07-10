@@ -1,5 +1,5 @@
 import React from 'react';
-import './PopularPlaces.css';
+import '../../Places/PopularPlaces.css';
 import { connect } from 'react-redux';
 // import Tbilisy from './pictures/tbilisi_desk.jpg'
 // import Batumi from './pictures/Batumi.-Podorozh-do-sertsya-Gruziyi-700x420.jpg'
@@ -7,8 +7,8 @@ import { connect } from 'react-redux';
 // import Rustavi from './pictures/Rustavi_Museum_(A._Muhranoff,_2011).jpg'
 // import samegrello from './pictures/thumb_536_1370_437_0_0_auto.jpg'
 // import Andshi from './pictures/Вид_на_деревушку_Адиши,_Грузия.jpg'
-import requests from '../../config';
-import { setSelectedDirection } from '../../redusers/ActionPlaces';
+import requests from '../../../config';
+import { setSelectedDirection } from '../../../redusers/ActionPlaces';
 
 class PopularPlacesClass extends React.Component {
     constructor(props) {
@@ -34,6 +34,7 @@ class PopularPlacesClass extends React.Component {
                 
             }
             return false;
+            
         }
         //let index = this.props.placesState.selectedDirections.indexOf(id);
         console.log('onTagClick', id);
@@ -45,7 +46,7 @@ class PopularPlacesClass extends React.Component {
             //let slug = findSelectedDirectionName(this.props.placesState.directions, id);
             //if(slug){
             this.props.dispatch(setSelectedDirection(id));
-            this.props.globalReduser.history.push('/places/'+slug);
+            this.props.globalReduser.history.push('/home/'+slug);
             //}
             //else{
             //    this.props.dispatch(setSelectedDirection(''));
@@ -55,7 +56,7 @@ class PopularPlacesClass extends React.Component {
         }
         else{
             this.props.dispatch(setSelectedDirection(''));
-            this.props.globalReduser.history.push('/places');
+            this.props.globalReduser.history.push('/home');
         }
         
         
@@ -106,7 +107,7 @@ class PopularPlacesClass extends React.Component {
             }
             return element.loc.length>0 ? element.loc[0].name : 'no-name';
         }
-        let textInfo = this.props.storeState.languageTextMain.places;
+       // let textInfo = this.props.storeState.languageTextMain.places;
         /*let directions = arrayRender;
         */
         return (
@@ -114,7 +115,7 @@ class PopularPlacesClass extends React.Component {
                 <div className="popularPlacesBody">
 
                     <div className="popularPlacesTitle">
-                        <h3>{textInfo.popularPlaces.popularPlacesTitle}</h3>
+                        <h3>{/*textInfo.popularPlaces.popularPlacesTitle*/'Готовые маршруты из:'}</h3>
                     </div>
 
                     <div className="d-flex col-12 p-0">

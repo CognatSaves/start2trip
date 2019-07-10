@@ -203,8 +203,8 @@ class RouteMenuClass extends React.Component {
       }
     }
     if (this.state.date == "") {
-      let datePicer = document.querySelector(".routemenu_date")
-      datePicer.classList.add("routemenu_date-Check")
+      let datePicker = document.querySelector(".routemenu_date")
+      datePicker.classList.add("routemenu_date-Check")
       flag = false;
     }
     return flag
@@ -306,7 +306,9 @@ class RouteMenuClass extends React.Component {
 
 
     console.log(this.props.storeState);
+    debugger;
     if(!this.state.isLoaded){
+      
       function isFindAllElems(cities){
         for(let i=0; i>cities.length;i++){
           if(cities[i].lat===''){
@@ -317,6 +319,7 @@ class RouteMenuClass extends React.Component {
       }
       console.log(this.props.match);
       console.log(window);
+      
       if(this.props.storeState.cities.length>0 && this.props.storeState.cities[this.props.storeState.cities.length-1].lat!==''
         && isFindAllElems(this.props.storeState.cities)){
         //this.goToNextPage();
@@ -414,7 +417,7 @@ class RouteMenuClass extends React.Component {
 
           <div className="routemenu_setDate">
             <div className="col-sm-6 col-12 p-0 pr-1">
-              <DatePicker defaultDate={this.state.date} hintText={textInfo.datePickerText} minDate={new Date()} onChange={(e, date) => { this.chooseDate(date); let datePicer = document.querySelector(".routemenu_date"); datePicer.classList.remove("routemenu_date-Check") }} className="routemenu_date" />
+              <DatePicker defaultDate={this.state.date} hintText={textInfo.datePickerText} minDate={new Date()} onChange={(e, date) => { this.chooseDate(date); let datePicker = document.querySelector(".routemenu_date"); datePicker.classList.remove("routemenu_date-Check") }} className="routemenu_date" />
             </div>
 
             {this.props.showBtPrice ?

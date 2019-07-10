@@ -66,6 +66,8 @@ class CreateCommentClass extends React.Component {
     }
     render() {
         let jwt = this.props.globalReduser.readCookie('jwt');
+        let textInfo = this.props.storeState.languageTextMain.driverProfile.createComment;
+    
         if(jwt){
             return (
                 <div className="commentBlock_createComment d-flex flex-column">
@@ -79,11 +81,11 @@ class CreateCommentClass extends React.Component {
                         </div>
                     </div>
 
-                    <textarea id="createComment_textareaStyle" className="createComment_textareaStyle" placeholder="Ваш отзыв"></textarea>
+                    <textarea id="createComment_textareaStyle" className="createComment_textareaStyle" placeholder={textInfo.yourCommentPlaceholder}></textarea>
                     <div className="d-flex flex-row">
-                        <text style={{margin: 'auto 0', color: 'green', fontSize: '14px'}}>Ваш комментарий станет видимым после проверки администратором.</text>
+                        <text style={{margin: 'auto 0', color: 'green', fontSize: '14px'}}>{textInfo.infoText}</text>
                         <button className="driversAdaptedRoute_sendRequest createComment_sendButton" onClick={() => this.sendComment(this.props.targetId)}>
-                            <text>ОТПРАВИТЬ</text>
+                            <text>{textInfo.sendText}</text>
                         </button>
                     </div>
                     
@@ -100,11 +102,11 @@ class CreateCommentClass extends React.Component {
                         </div>
                         <div className="d-flex flex-column pl-2 align-items-start justify-content-center">
                             <div className="d-flex flex-row"/*style={{margin: 'auto 0'}}*/>
-                                <div className="commentTextStyle" >{'Чтобы оставить отзыв, '}</div>
-                                <div className="commentLinkStyle" onClick={()=>this.props.dispatch(setModalRegister(!this.props.storeState.modalRegistration))}>войдите</div>
-                                <div className="commentTextStyle" >{' или '}</div>
-                                <div className="commentLinkStyle" onClick={()=>this.props.dispatch(setModalRegister(!this.props.storeState.modalRegistration))}>зарегистрируйтесь</div>
-                                <div className="commentTextStyle" >{'.'}</div>
+                                <div className="commentTextStyle" >{textInfo.nonRegisteredElement[0]}</div>
+                                <div className="commentLinkStyle" onClick={()=>this.props.dispatch(setModalRegister(!this.props.storeState.modalRegistration))}>{textInfo.nonRegisteredElement[1]}</div>
+                                <div className="commentTextStyle" >{textInfo.nonRegisteredElement[2]}</div>
+                                <div className="commentLinkStyle" onClick={()=>this.props.dispatch(setModalRegister(!this.props.storeState.modalRegistration))}>{textInfo.nonRegisteredElement[4]}</div>
+                                <div className="commentTextStyle" >.</div>
                             </div>
                         </div>
                     </div>

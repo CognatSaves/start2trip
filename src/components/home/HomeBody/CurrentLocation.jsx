@@ -47,8 +47,20 @@ export class CurrentLocation extends React.Component {
         alert('seycas budet myaso. Open F12 for looking');
         
       }*/
+      
       console.log('center',center);
-      map.panTo(center);
+      let a = center.lat;
+      let b= center.lat();
+
+      let c=center.lng;
+      let d = center.lng();
+      console.log(a,b,c,d);
+      try{
+        map.panTo(center);
+      }
+      catch(e){
+        map.panTo({lat: b, lng: d});
+      }
     }
   }
   componentDidMount() {

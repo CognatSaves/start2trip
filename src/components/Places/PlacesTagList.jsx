@@ -2,24 +2,36 @@ import React from 'react';
 import './PopularPlaces.css';
 import { connect } from 'react-redux';
 import requests from '../../config';
-
+import {setSelectedTag} from '../../redusers/ActionPlaces';
 
 class PlacesTagListClass extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            tags: ["Церькви и саборы","CCSDFSD","sdfsdfsdfsd sdfsd","sadfadsfadsfadf","123123","123","123esdfdsf","dsaf vcxvxc",
+            /*tags: ["Церькви и саборы","CCSDFSD","sdfsdfsdfsd sdfsd","sadfadsfadsfadf","123123","123","123esdfdsf","dsaf vcxvxc",
             "dsafbdfgb","ghjymgm","tyutjghmgh","cvxbzdsfaf","erthfgnjty","wer3dsf54","vxzrfgz",
             "asdfa vcx","afwefsz  dsf ads asd ","asdfasd sadf sda fa","asdfsdf sf sd fsdsd","sdf ewrwefrdds",
             "a123dsfsw ","sdfa dsaf 2","sadfsdaf sd ds","dsfasdfa sd fsd"," asdfadsfsad 23 23  2",
             "hdhdsahhdsahsah dsfs","jsjdhjsjdsnjsd","ksankjdsankjdsanj","ujsajdscbhdsc","bjdscdjjd",
             "jndscjdsanjds","jdscanjdsjndsjn","dscajdsajdsnj","jdsjdsjndsv","dsdsnjdsds","dscajdsadsa",
-            "dsjnjndsadsds","jdsvjdsvnjds","dsalkdslkdsk","dsdscokdsnkdsk","jndsajdsjndsa"],
+            "dsjnjndsadsds","jdsvjdsvnjds","dsalkdslkdsk","dsdscokdsnkdsk","jndsajdsjndsa"],*/
             //howMuchRender:15,
             isShortTags: true
         };
     }
+    onTagClick=(id)=>{
+        console.log('onTagClick', id);
+        this.props.dispatch(setSelectedTag(id));
+    }
     render(){
+        function isTagSelected(tagId, selectedTags){
+            for(let i=0; i<selectedTags.length; i++){
+                if(selectedTags[i]===tagId){
+                    return true;
+                }
+            }
+            return false;
+        }
         /*let placeRender = [];
 
         if (this.state.tags.length > this.state.howMuchRender) {
@@ -32,6 +44,7 @@ class PlacesTagListClass extends React.Component{
         } else {
             placeRender = this.state.tags;
         }*/
+        //let that = this;
         let tagBlockWidth; let tempWidth;
         tagBlockWidth= document.getElementById("placesMainBlock");
         tempWidth = document.getElementById("tagLine");
@@ -39,6 +52,8 @@ class PlacesTagListClass extends React.Component{
         //console.log('tempWidth',tempWidth ? tempWidth.offsetWidth : '');
         var widthSum=0;var mapStop=false;
         let textInfo = this.props.storeState.languageTextMain.places;
+        
+        console.log(this.props.placesState.tags);
         return(
             <div className="popularPlacesBody d-flex flex-row">
                 <div className="d-flex justify-content-center" style={{width: '10%'}}>
@@ -87,31 +102,29 @@ class PlacesTagListClass extends React.Component{
                                     //console.log('temp',temp ? temp.offsetWidth : '');
                                 }
                                 return(
-                                <div key={index+Date.now()} id={"tagno"+index} className="d-flex justify-content-center align-items-center placesTagList_tagBlock">
+                                <div key={index+Date.now()} id={"tagno"+index} className={"d-flex justify-content-center align-items-center placesTagList_tagBlock "
+                                 + (isTagSelected(element.id, this.props.placesState.selectedTags) ? 'placesTagList_tagBlock_selected' : '')} onClick={()=>this.onTagClick(element.id)}>
                                     <div style={{}}>{element.tagLoc.name}</div>
                                 </div>
                             )}
                         }
                         else{
-                            if(index===this.state.tags.length-1){
-                                return(
-                                    <React.Fragment>
-                                        <div key={index+Date.now()} id={"tagno"+index} className="d-flex justify-content-center align-items-center placesTagList_tagBlock">
-                                            <div style={{}}>{element.tagLoc.name}</div>
-                                        </div>
+                            return(
+                                <React.Fragment>
+                                    <div key={index+Date.now()} id={"tagno"+index} className={"d-flex justify-content-center align-items-center placesTagList_tagBlock"
+                                        + (isTagSelected(element.id, this.props.placesState.selectedTags) ? 'placesTagList_tagBlock_selected' : '')} onClick={()=>this.onTagClick(element.id)}>
+                                        <div style={{}}>{element.tagLoc.name}</div>
+                                    </div>
+                                    {
+                                        (index===this.state.tags.length-1) ? 
                                         <div className="d-flex justify-content-top placesTagList_stateBlock">             
                                             <div style={{margin: 'auto'}} onClick={()=>this.setState({isShortTags: true})}>{textInfo.placesTagList.hideButton}</div>
                                         </div> 
-                                    </React.Fragment>
-                                )
-                            }
-                            else{
-                                return(
-                                <div id={"tagno"+index} className="d-flex justify-content-center align-items-center placesTagList_tagBlock">
-                                    <div style={{}}>{element.tagLoc.name}</div>
-                                </div>
-                                )
-                            }
+                                        :
+                                        <React.Fragment/>
+                                    }
+                                </React.Fragment>
+                            )
                         }
                     })
                 }

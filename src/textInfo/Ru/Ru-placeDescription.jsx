@@ -3,6 +3,9 @@ let placeDescription = {
         more: 'Ещё'
     },
     placeProgramm:{
+        monthArray: ["января","февраля","марта",
+        "апреля","мая","июня","июля","августа",
+        "сентября","октября","ноября","декабря"],
         comments: 'отзывов'
     },
     placeTravelBlock:{

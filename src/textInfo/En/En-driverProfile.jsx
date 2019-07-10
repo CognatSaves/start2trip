@@ -2,7 +2,9 @@ const driverProfile = {
     lang: 'ENG',
     createComment:{
         yourCommentPlaceholder: "Ваш отзыв(ENG)",
-        sendText: "ОТПРАВИТЬ(ENG)"
+        infoText: 'Ваш комментарий станет видимым после проверки администратором.(ENG)',
+        sendText: "ОТПРАВИТЬ(ENG)",
+        nonRegisteredElement:['Чтобы оставить отзыв, ', 'войдите',' или ','зарегистрируйтесь']
     },
     driverAdaptedRoute:{
         routeDateText: "Дата отправления:(ENG)",

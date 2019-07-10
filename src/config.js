@@ -41,6 +41,9 @@ const createComment = serverAddress + "/createComment"; //создание не�
 const forgotPassword = serverAddress + "/auth/forgotPassword";
 const resetPassword = serverAddress + "/auth/reset-password";
 const changeMyDriver = serverAddress + "/users/me/changeDriver";
+const getRoutes = serverAddress+"/getRoutes";
+
+const showRoute = serverAddress+"/showRoute";
 export default {
     frontendAddress: frontendAddress,
     serverAddress: serverAddress,
@@ -84,5 +87,7 @@ export default {
     getPlacesList: getPlacesList,
     showPlace:showPlace,
     
-    createComment:createComment
+    createComment:createComment,
+    getRoutes:getRoutes,
+    showRoute:showRoute
 };

@@ -9,7 +9,7 @@ import PlacesList from './PlacesList';
 import PlacesTagList from './PlacesTagList';
 import { connect } from 'react-redux';
 import Manipulator from '../manipulator/Manipulator';
-import { setPage, setMorePagesShow } from '../../redusers/ActionPlaces';
+import { setPage, setMorePagesShow,setSelectedDirection } from '../../redusers/ActionPlaces';
 
 import Tbilisy from './pictures/tbilisi_desk.jpg'
 import Batumi from './pictures/Batumi.-Podorozh-do-sertsya-Gruziyi-700x420.jpg'
@@ -53,7 +53,8 @@ class PlacesClass extends React.Component {
       */
       country: "",
       language: "",
-      isRefreshExist: true 
+      isRefreshExist: true,
+      selectedDirection: '' 
     }
     this.setPageFunc = this.setPageFunc.bind(this);
     this.showMorePages = this.showMorePages.bind(this);
@@ -69,14 +70,25 @@ class PlacesClass extends React.Component {
   render() {
     console.log("Places render");
     console.log(this.props.placesState);
-    if( this.props.storeState.languages.length>0 && (this.state.country!==this.props.storeState.country || this.state.language !==this.props.storeState.languages[this.props.storeState.activeLanguageNumber].ISO ) ){
+    
+    let selectedDirection=this.props.match.params.direction;
+    if( this.props.storeState.languages.length>0 &&
+       (
+         this.state.selectedDirection!==selectedDirection ||
+         this.state.country!==this.props.storeState.country ||
+         this.state.language !==this.props.storeState.languages[this.props.storeState.activeLanguageNumber].ISO
+        )
+      ){
       
+      //let selectedDirection = this.props.match.params.direction;
+
       this.setState({
           country: this.props.storeState.country,
           language: this.props.storeState.languages[this.props.storeState.activeLanguageNumber].ISO,
-          isRefreshExist: true
+          isRefreshExist: true,
+          selectedDirection: selectedDirection
       });
-      axios.get(requests.getPlacesList+"?country="+this.props.storeState.country+"&lang="+this.props.storeState.languages[this.props.storeState.activeLanguageNumber].ISO)
+      axios.get(requests.getPlacesList+"?country="+this.props.storeState.country+"&lang="+this.props.storeState.languages[this.props.storeState.activeLanguageNumber].ISO+(selectedDirection ? "&slug="+selectedDirection : ''))
       .then(response => {
           console.log(response);              
           return response.data;
@@ -87,9 +99,31 @@ class PlacesClass extends React.Component {
               throw data.error;
           }
           else {
+              function findSelectedDirectionId(directions, slug){
+                for(let i=0; i<directions.length; i++){
+                  for(let k=0; k<directions[i].loc.length; k++){
+                    if(directions[i].loc[k].slug===slug){
+                      return directions[i].id
+                    }
+                  }
+                }
+                return 0;
+              }
               console.log('good');
               console.log(data);
               this.props.dispatch(setPlacesList(data.places, data.tags, data.directions,data.country));
+              //следующие строки проверяют, смогли ли мы воспользоваться slug направления, если он, конечно, был
+              
+              if (selectedDirection){
+                let id = findSelectedDirectionId( data.directions, selectedDirection);
+                if(id!==0){
+                  this.props.dispatch(setSelectedDirection(id));
+                }
+                else{
+                  //если не нашли - пускаем ещё раз крутилку - если не нашли, сервер не нашёл направление-> вернул всё
+                  this.props.globalReduser.history.push('/places');
+                }   
+              }
               this.setState({
                 isRefreshExist: false
               });
@@ -102,6 +136,10 @@ class PlacesClass extends React.Component {
       });
     }
     
+    console.log(this.props);
+    console.log(this.state);
+    console.log(document);
+    console.log(window);
     return (
       <React.Fragment>
         <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={/*this.state.isRefreshing*/true} isGoodAnswer={/*this.state.isGoodAnswer*/true}/>
@@ -116,7 +154,7 @@ class PlacesClass extends React.Component {
           <div className="drivers_bottom_background d-flex flex-column" >
             <div className="drivers_body d-flex">
               <div id="placesMainBlock" className="left_body_part col-12 p-0">
-                <PopularPlaces arrayRender={/*this.state.popularPlaseArrayRender*/this.props.placesState.directions}/>
+                <PopularPlaces/>
                 <PlacesTagList/>
                 <PlacesPanel />
                 
