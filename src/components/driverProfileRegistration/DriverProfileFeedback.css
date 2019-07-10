@@ -134,7 +134,7 @@
     text-overflow: ellipsis;
     font-weight: 400;
     font-size: 14px;
-    color: #304269;
+    color: rgba(0, 0, 0, 0.6);
     margin: 0;
     line-height: 20px;
 }

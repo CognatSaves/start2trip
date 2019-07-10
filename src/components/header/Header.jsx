@@ -620,11 +620,14 @@ class HeaderClass extends React.Component {
         if (scrollEvent > 730) {
           document.querySelector(".btUp").classList.add("btUp-active");
         } else {
-          if(document.querySelector(".btUp").classList != null)
+          if(document.querySelector(".btUp") !== null){
           document.querySelector(".btUp").classList.remove("btUp-active");
+          }
         }
       } else {
-        document.querySelector(".btUp").classList.remove("btUp-active");
+        if(document.querySelector(".btUp") !== null){
+          document.querySelector(".btUp").classList.remove("btUp-active");
+        } 
       }
     } else {
       if (this.state.previousPageYOffset > scrollEvent) {

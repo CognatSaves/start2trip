@@ -31,13 +31,6 @@
     box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.25);
 }
 
-
-/* .block_element_left {
-    align-items: center;
-    width: 470px;
-    border-right: 1px solid rgba(0, 0, 0, 0.1);
-} */
-
 .block_element_right {
     width: 355px;
     padding-left: 25px;
@@ -325,6 +318,13 @@
     }
     .driverBlock_carInfoLine {
         padding: 0px;
+    }
+    .driverInfo_background .block_element_left,
+    .driverInfo_background .driverInfo_element {
+        border-radius: 5px;
+        box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
+        margin-bottom: 20px;
+        padding: 5px !important;
     }
 }
 
