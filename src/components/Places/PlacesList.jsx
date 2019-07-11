@@ -124,6 +124,13 @@ class PlacesListClass extends React.Component {
                     <PlaceListElement element={element} index={index} findTagName={(tag)=>findTagName(tag,this)}/>
                 </React.Fragment>
                 )}
+                {
+                    selectedPlaces.length===0 ?
+                    <React.Fragment>
+                        <div>Ничего не найдено.</div>
+                    </React.Fragment>
+                    :<React.Fragment/>
+                }
             </div> 
             </React.Fragment>
             

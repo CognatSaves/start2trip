@@ -115,7 +115,41 @@ class DriversBlockClass extends React.Component {
         }
       })
     }
-
+    function fingCorrectCartypeName(carType, selectedISO){
+      let res;
+      switch (selectedISO){
+        case 'ENG':
+            res=carType.name_en;
+            break;
+        case 'RUS':
+            res=carType.name_ru;
+            break;
+        default: res=carType.name_en;
+      }
+      return res;
+    }
+    /*
+    function findOneCarProp(element,carProps, storeState){
+      let res;
+      for(let j=0;j<carProps.length; j++){
+          if(element===carProps[j].id){
+              let selectedISO = storeState.languages[storeState.activeLanguageNumber] ? storeState.languages[storeState.activeLanguageNumber].ISO : '';
+              switch (selectedISO){
+                  case 'ENG':
+                      res=carProps[j].name_en;
+                      break;
+                  case 'RUS':
+                      res=carProps[j].name_ru;
+                      break;
+                  default: res=carProps[j].name_en;
+              }
+              return res;
+              //res[i]=carTypes[j].name_ru;
+          }
+      }
+      return '';
+    }
+    */
     setLanguagesNumbers(this, selectedElements);
     console.log('selectedEl');
     console.log(selectedElements);
@@ -123,7 +157,10 @@ class DriversBlockClass extends React.Component {
 
     console.log('DriversBlock render');
     console.log(this.props);
-
+    let storeState= this.props.storeState;
+    let activeCurrency = storeState.currencies[storeState.activeCurrencyNumber]
+    let textInfo = this.props.storeState.languageTextMain.drivers.driversBlock;
+        
     return (
       <div className="drivers_block d-flex flex-wrap">
         {
@@ -132,7 +169,7 @@ class DriversBlockClass extends React.Component {
               <div className="driversBlock_driverCard d-flex flex-column ">
                 <div className="driversBlock_carImage" style={{ background: "url(" + requests.serverAddress + element.carImage + ") no-repeat", backgroundSize: "cover" }}>
                   <Link to={`/driverProfile/${element.id}-${element.carId}-${this.state.country}-${this.state.cities}`} className="driversBlock_carBlackout">
-                    <div className="driversBlock_carBlackout_detailed">Подробнее</div>
+                    <div className="driversBlock_carBlackout_detailed">{textInfo.detailed}</div>
                   </Link>
                 </div>
 
@@ -141,17 +178,22 @@ class DriversBlockClass extends React.Component {
                   <Link to={`/driverProfile/${element.id}-${element.carId}-${this.state.country}-${this.state.cities}`} className="driversBlock_driverInfoBlock_element driversBlock_carName">{element.carBrand}</Link>
                   <div className="driverBlock_carInfoLine d-flex">
                     <div className="driversBlock_driverCard_carIcon" style={{ background: "url(" + requests.serverAddress + this.props.driversState.carTypes[element.carType].carTypeImage + ") no-repeat", backgroundSize: "42px 30px", backgroundPosition: "-5px 0px" }} />
-                    <div className="driversBlock_carInfoLine_value">{this.props.driversState.carTypes[element.carType].name_en + ", " + element.carCapacity + " места"}</div>
+                    <div className="driversBlock_carInfoLine_value">
+                      {
+                        fingCorrectCartypeName(this.props.driversState.carTypes[element.carType], storeState.languages[storeState.activeLanguageNumber].ISO)
+                        + ", " + element.carCapacity + " " + textInfo.carCapacity
+                      }
+                    </div>
                   </div>
                   <div className="driversBlock_driverInfoBlock_element d-flex">
                     <div className="driversBlock_driverCard_photo" style={{ background: "url(" + requests.serverAddress + element.avatar + ") no-repeat" }} />
                     <div className="d-flex flex-column driversBlock_driverCard_driverInfo">
                       <Link to={`/driverProfile/${element.id}-${element.carId}-${this.state.country}-${this.state.cities}`} className="driversBlock_driversInfo_name">{element.name}</Link>
-                      <Stars key={element.rating} value={element.rating} commentNumber={element.comments + " отзывов"} valueDisplay={true} commentNumberDisplay={true} />
+                      <Stars key={element.rating} value={element.rating} commentNumber={element.comments + " "+textInfo.comments} valueDisplay={true} commentNumberDisplay={true} />
                     </div>
                   </div>
                   <div className="driversBlock_driverInfoBlock_element d-flex">
-                    <div className="driversBlock_languages_text" style={{ visibility: this.props.storeState.languages.length > 0 ? 'visible' : 'hidden' }}>Языки:</div>
+                    <div className="driversBlock_languages_text" style={{ visibility: this.props.storeState.languages.length > 0 ? 'visible' : 'hidden' }}>{textInfo.languages+':'}</div>
                     {
                       element.language.map((langElement, index) =>
                         <div className="driversBlock_languages_flag" style={{ background: "url(" + (this.props.storeState.languages.length > 0 ? requests.serverAddress + this.props.storeState.languages[langElement].icon.url : '') + ")", backgroundSize: "15px 15px" }} />
@@ -159,13 +201,23 @@ class DriversBlockClass extends React.Component {
                     }
                   </div>
                 </div>
-                <div className="driversBlock_driverInfoBlock_element driversBlock_commentary">Стоимость окончательная. Топливо включено</div>
-                <button className="driversBlock_driverInfoBlock_element driversBlock_buttonStyle" onClick={() => this.props.changeTravelVisibility('block')}>{"ЗАБРОНИРОВАТЬ $" + element.price}</button>
+                <div className="driversBlock_driverInfoBlock_element driversBlock_commentary">{textInfo.commentary}</div>
+                <button className="driversBlock_driverInfoBlock_element driversBlock_buttonStyle"
+                 onClick={() => this.props.changeTravelVisibility('block')}>
+                 {textInfo.book+" "+(activeCurrency.isLeft ? activeCurrency.symbol : '')
+                 + Math.ceil(element.price * activeCurrency.costToDefault) +
+                 (!activeCurrency.isLeft ? activeCurrency.symbol : '') }</button>
               </div>
 
             </div>
-
           )
+        }
+        {
+          selectedElements.length===0 ? 
+          <React.Fragment>
+              <div>Ничего не найдено. Попробуйте изменить условия поиска или дату отправления</div>
+          </React.Fragment>
+          :<React.Fragment/>
         }
         <Manipulator number={driversArray.length} page={this.props.driversState.page} setPage={this.setPage}
           elementsNumber={this.props.storeState.pagesMenuValue} showMorePages={this.showMorePages} />

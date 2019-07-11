@@ -62,10 +62,11 @@ const initialState = {
     },
     getRoute: function(cities, conv){
         function getCountry(arrayAddress, country) {
+            
             let flag = true;
             let newCountry = arrayAddress[arrayAddress.length - 1].split(' ');
-            if (country === newCountry[0] || country === "") {
-              country = newCountry[0];
+            if (country === (newCountry[1].length>0 ? newCountry[1] : newCountry[0]) || country === "") {
+              country = newCountry[1];
               // } else {
               //   alert("Error")
               //   flag = false;
@@ -77,9 +78,10 @@ const initialState = {
         let canMove;
         let country = "";
         for (let i = 0; i < cities.length; i++) {
-          let arrayAddress = cities[i].point.split(', ');
+          let arrayAddress = cities[i].point.split(',');
     
           let date = getCountry(arrayAddress, country);
+          
           country = date.country;
           canMove = date.flag;
     

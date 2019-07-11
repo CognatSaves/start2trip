@@ -2,6 +2,12 @@
     font-size: 18px;
 }
 
+.placeinfo_vertical{
+    margin: 3px 5px 0;
+    color: #ffffff;
+    border-left: 1px solid #ffffff;
+}
+
 .placeDescription_background {
     top: 0;
     /*width: 100%;*/
@@ -69,7 +75,7 @@
     font-size: 12px;
     font-weight: 400;
     color: #ffffff;
-    margin: auto 5px auto 0;
+    margin: auto 5px 0 0;
 }
 
 .placeDescription_description_commentTextStyle{

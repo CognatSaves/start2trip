@@ -60,6 +60,13 @@ class HomeRoutesListClass extends React.Component{
                     <RouteListElement element={element} index={index} /*findTagName={(tag)=>findTagName(tag,this)}*//>
                 </React.Fragment>
                 )}
+                {
+                    selectedRoutes.length===0 ?
+                    <React.Fragment>
+                        <div>Ничего не найдено. Попробуйте изменить условия поиска или дату отправления</div>
+                    </React.Fragment>
+                    :<React.Fragment/>
+                }
             </div> 
             </React.Fragment>
             

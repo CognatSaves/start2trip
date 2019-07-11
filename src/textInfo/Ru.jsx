@@ -9,7 +9,7 @@ import places from './Ru/Ru-places';
 import manipulator from './Ru/Ru-manipulator';
 import placeDescription from './Ru/Ru-placeDescription';
 import tourDescription from './Ru/Ru-tourDescription';
-
+import drivers from './Ru/Ru-drivers';
 export default {
     driverProfile: driverProfile,
     //driverProfileRegistration:driverProfileRegistration,
@@ -21,5 +21,6 @@ export default {
     footer:footer,
     manipulator:manipulator,
     placeDescription:placeDescription,
-    tourDescription:tourDescription
+    tourDescription:tourDescription,
+    drivers: drivers
 }

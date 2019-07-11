@@ -38,10 +38,16 @@ class ManipulatorClass extends React.Component{
         let textInfo = this.props.storeState.languageTextMain.manipulator;
         return(
          <div className="drivers_block_manipulator" style={{display: this.props.number>0 ? 'flex' : 'none'}}>
-            <button className="driversBlockManipulator_button" onClick={()=>this.props.showMorePages()} disabled={showMoreButtonState}>
-                <div className="driversBlockManipulator_button_value">{textInfo.manupulatorShowMore}</div>
-            </button>
-            <div className="driversBlockManipulator_pageNumbers">
+            {
+                
+                this.props.page !== maxPage ?
+                <button className="driversBlockManipulator_button" onClick={()=>this.props.showMorePages()} disabled={showMoreButtonState}>
+                    <div className="driversBlockManipulator_button_value">{textInfo.manupulatorShowMore}</div>
+                </button>
+                : <React.Fragment/>
+                
+            }
+            <div className="driversBlockManipulator_pageNumbers" style={{margin: this.props.page !== maxPage ? '0 auto' : 'auto'}}>
                 <button className="pageNumbers_arrow" onClick={()=>{ if(this.props.page>1){this.props.setPage(this.props.page-1)}}}>
                     <img src={leftArrow} width="100%" height="100%" alt="leftA" style={{borderRadius: "5px"}}></img>
                 </button>               
@@ -62,7 +68,6 @@ class ManipulatorClass extends React.Component{
                 <button className="pageNumbers_arrow" onClick={()=>{ if(this.props.page<maxPage){this.props.setPage(this.props.page+1)}}}>
                     <img src={rightArrow} width="100%" height="auto" alt="rightA" style={{borderRadius: "5px"}}></img>
                 </button>
-
             </div>
          </div>
         )

@@ -45,6 +45,13 @@ class ShowCommentsClass extends React.Component{
                     </div> 
                     )}
                 )}
+                {
+                    this.props.selectedComments.length===0 ? 
+                    <React.Fragment>
+                        <div>Ничего не найдено</div>
+                    </React.Fragment>
+                    : <React.Fragment/>
+                }
                 
             </div> 
             )

@@ -324,9 +324,9 @@ span.drivers_route_Link {
     font-size: 24px;
 }
 
-.route_datePhoneInput input.draver_route-error,
-.draver_route-error,
-.MuiIconButton-colorSecondary.draver_route-error {
+.route_datePhoneInput input.driver_route-error,
+.driver_route-error,
+.MuiIconButton-colorSecondary.driver_route-error {
     border-color: #a5252580 !important;
     outline-color: #a5252580 !important;
     color: #e81123 !important;

@@ -32,7 +32,7 @@ const Content = (that,flagAllOk,carCapacityArray) => {
                         <TextField
                             label="Имя"
                             value={that.state.firstName}
-                            onChange={(event) => { that.setState({ firstName: event.target.value }); event.target.previousSibling.classList.remove("draver_route-error") }}
+                            onChange={(event) => { that.setState({ firstName: event.target.value }); event.target.previousSibling.classList.remove("driver_route-error") }}
                             className="textField validate"
                             margin="normal"
                             variant="outlined"
@@ -42,19 +42,19 @@ const Content = (that,flagAllOk,carCapacityArray) => {
                             classNames="route_datePhoneInput"
                             flagsImagePath={flags}
                             value={that.state.telNumber}
-                            onChange={(telNumber, selectedCountry) => { that.setState({ telNumber: telNumber }); document.querySelector(".route_datePhoneInput").children[1].classList.remove("draver_route-error") }}
+                            onChange={(telNumber, selectedCountry) => { that.setState({ telNumber: telNumber }); document.querySelector(".route_datePhoneInput").children[1].classList.remove("driver_route-error") }}
                             onBlur={(value) => { console.log(value) }}
                             initialValue="Телефон"
                         />
 
-                        <DatePicker onChange={(nul, date) => { that.setState({ date: date }); document.querySelector(".route_dateCalendarModal").classList.remove("draver_route-error") }} shouldDisableDate={(day) => { let a = day }} defaultDate={that.state.date} minDate={new Date()} disableYearSelection={true} floatingLabelText="Дата отправления" className="route_dateCalendarModal" />
+                        <DatePicker onChange={(nul, date) => { that.setState({ date: date }); document.querySelector(".route_dateCalendarModal").classList.remove("driver_route-error") }} shouldDisableDate={(day) => { let a = day }} defaultDate={that.state.date} minDate={new Date()} disableYearSelection={true} floatingLabelText="Дата отправления" className="route_dateCalendarModal" />
 
                         <FormControl className="route_dateSelect numberOfPeople">
                             <InputLabel htmlFor="select-multiple">Количество человек</InputLabel>
                             <Select
                                 value={that.state.numberOfPeople}
                                 input={<Input id="select-multiple" variant="outlined" />}
-                                onChange={(event) => { that.setState({ numberOfPeople: event.target.value }); document.querySelector(".numberOfPeople").classList.remove("draver_route-error") }}
+                                onChange={(event) => { that.setState({ numberOfPeople: event.target.value }); document.querySelector(".numberOfPeople").classList.remove("driver_route-error") }}
                             >
                                 {carCapacityArray.map(name => (
                                     <MenuItem key={name} value={name}>
@@ -68,7 +68,7 @@ const Content = (that,flagAllOk,carCapacityArray) => {
                         <TextField
                             label="Фамилия"
                             value={that.state.lastName}
-                            onChange={(event) => { that.setState({ lastName: event.target.value }); event.target.previousSibling.classList.remove("draver_route-error") }}
+                            onChange={(event) => { that.setState({ lastName: event.target.value }); event.target.previousSibling.classList.remove("driver_route-error") }}
                             className="textField validate"
                             margin="normal"
                             variant="outlined"
@@ -77,7 +77,7 @@ const Content = (that,flagAllOk,carCapacityArray) => {
                         <TextField
                             label="Email"
                             value={that.state.email}
-                            onChange={(event) => { that.setState({ email: event.target.value }); event.target.previousSibling.classList.remove("draver_route-error") }}
+                            onChange={(event) => { that.setState({ email: event.target.value }); event.target.previousSibling.classList.remove("driver_route-error") }}
                             className="textField validate"
                             margin="normal"
                             variant="outlined"
@@ -87,7 +87,7 @@ const Content = (that,flagAllOk,carCapacityArray) => {
                             <Select
                                 value={that.state.departureTime}
                                 input={<Input id="select-multiple" variant="outlined" />}
-                                onChange={(event) => { that.setState({ departureTime: event.target.value }); document.querySelector(".departureTime").classList.remove("draver_route-error") }}
+                                onChange={(event) => { that.setState({ departureTime: event.target.value }); document.querySelector(".departureTime").classList.remove("driver_route-error") }}
                             >
                                 {that.state.time.map(name => (
                                     <MenuItem key={name} value={name}>
@@ -103,7 +103,7 @@ const Content = (that,flagAllOk,carCapacityArray) => {
                             multiline
                             rowsMax="4"
                             defaultValue={that.state.placeDeparture}
-                            onChange={(event) => { that.setState({ placeDeparture: event.target.value }); event.target.previousSibling.classList.remove("draver_route-error") }}
+                            onChange={(event) => { that.setState({ placeDeparture: event.target.value }); event.target.previousSibling.classList.remove("driver_route-error") }}
                             className="textField placeDeparture"
                             margin="normal"
                             variant="outlined"
@@ -117,7 +117,7 @@ const Content = (that,flagAllOk,carCapacityArray) => {
                         rows="2"
                         rowsMax="2"
                         defaultValue={that.state.description}
-                        onChange={(event) => { that.setState({ description: event.target.value }); event.target.previousSibling.classList.remove("draver_route-error") }}
+                        onChange={(event) => { that.setState({ description: event.target.value }); event.target.previousSibling.classList.remove("driver_route-error") }}
                         className="textField w-100 description"
                         margin="normal"
                         variant="outlined"

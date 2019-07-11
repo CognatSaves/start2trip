@@ -146,15 +146,40 @@ class RouteDescriptionClass extends React.Component{
                         : <React.Fragment/>
                         
                     }
-                    <div className="placeDescription_background routeDescription_background col-12 p-0" id={topBlockId} style={{
-                    background: 'url('+(this.state.newRoute.local && this.state.newRoute.route.routeMainImage.url ? requests.serverAddress+this.state.newRoute.route.routeMainImage.url : '')+') no-repeat'}}
-                    /* style={{backgroundImage: 'url('+ippodrom+') no-repeat 100%',
-                    backgroundSize: 'cover', backgroundPosition: 'center center'}}*/>
-                        <Header history={this.props.history}/>             
-                        <div className="routeDescription_topImageMask" />  
-                            
+                    {
+                        /*
+                        <div className="placeDescription_background routeDescription_background col-12 p-0" id={topBlockId} style={{
+                        background: 'url('+(this.state.newRoute.local && this.state.newRoute.route.routeMainImage.url
+                        ? requests.serverAddress+this.state.newRoute.route.routeMainImage.url : '')+') no-repeat'}}>
+                            <Header history={this.props.history}/>             
+                            <div className="routeDescription_topImageMask" />                                                 
+                        </div>
+
+                        */
+                    }
+                    <div className="placeDescription_background col-12 p-0" id={topBlockId}>                            
+                        {
+                            this.state.newRoute.local ? 
+                            <React.Fragment>
+                                <img src={this.state.newRoute.local && this.state.newRoute.route.routeMainImage.url ? requests.serverAddress+this.state.newRoute.route.routeMainImage.url : ''}
+                                width="100%" height="100%" style={{ position: "absolute" }} alt="noImage"/>
+                                <div className="placeDescription_topImageMask"/>
+                            </React.Fragment>
+                            : <React.Fragment/>
+                        }
                         
-                                                            
+                        <Header history={this.props.history}/>
+                        {
+                            this.state.newRoute.local ? 
+                            <div className="wrapper d-flex flex-column">                               
+                                <PlaceInfo tagsArray={[]} date={this.state.newRoute.local.createdAt}
+                                tags={[]} rating={this.state.newRoute.route.rating}
+                                comments={this.state.newRoute.route.commentNumber} name={this.state.newRoute.local.name}
+                                /*place={{...this.state.newPlace.local}}*//>                     
+                            </div> 
+                            : <React.Fragment/>
+                        }
+                                        
                     </div>
                     {
                         this.state.newRoute.local ? 
@@ -172,9 +197,11 @@ class RouteDescriptionClass extends React.Component{
                                     }
                                     
 
-                                        
-                                        <PlaceProgramm id={topBlockId+"1"} tagsArray={[]/*this.state.newPlace.tags*/} place={{...this.state.newRoute.local,tags: []/*this.state.newPlace.place.tags*/, rating: this.state.newRoute.route.rating, comments: this.state.newRoute.route.commentNumber}}/> 
-                                    
+                                        <div className="placeDescription_block d-flex flex-column p-0" id={topBlockId+"1"}> 
+                                            <div className="placeDescription_fragmentName" style={{marginBottom: "15px"}} >{textInfo.placeDescription.variantsArray[0]}</div>                           
+  
+                                            <PlaceProgramm id={topBlockId+"1"} tagsArray={[]/*this.state.newPlace.tags*/} place={{...this.state.newRoute.local,tags: []/*this.state.newPlace.place.tags*/, rating: this.state.newRoute.route.rating, comments: this.state.newRoute.route.commentNumber}}/> 
+                                        </div>
                                        
                                         
                                         <div className="placeDescription_block d-flex flex-column" id={topBlockId+"2"}> 

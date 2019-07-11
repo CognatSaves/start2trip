@@ -121,7 +121,7 @@ class RouteMenuClass extends React.Component {
       isRefreshing: true,
       isGoodAnswer: true,
       date: /*this.props.storeState.date*/dateValue,
-      isLoaded: false,//переменная для загрузки 1 раза водителей.
+      isLoaded: document.location.pathname==='/drivers' ? true : false,//переменная для загрузки 1 раза водителей.
       //language: this.props.storeState.activeLanguageNumber
     }
   }
@@ -306,7 +306,7 @@ class RouteMenuClass extends React.Component {
 
 
     console.log(this.props.storeState);
-    debugger;
+    
     if(!this.state.isLoaded){
       
       function isFindAllElems(cities){

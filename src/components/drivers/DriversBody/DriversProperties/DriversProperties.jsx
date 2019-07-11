@@ -62,16 +62,17 @@ class DriversPropertiesClass extends React.Component {
 
     console.log("driversProperties render");
     console.log(this.props.storeState.maxPrice);
+    let textInfo = this.props.storeState.languageTextMain.drivers.driversProperties;
     return (
 
       <div className="drivers_properties d-flex flex-wrap justify-content-md-between justify-content-sm-center justify-content-center col-12" >
         <div className="properties_rightBlock d-flex align-items-center">
           <div className="properties_rightButton d-flex" onClick={() => this.props.dispatch(setSortMenuVisible(!this.props.storeState.sortMenu))}>
-            <div className="properties_rightButton_characteristic d-sm-block d-none">Сортировать по:</div>
+            <div className="properties_rightButton_characteristic d-sm-block d-none">{textInfo.characteristic+':'}</div>
             {isMobileOnly ?
               <React.Fragment>
-                <span className="mobailSortIcon" onClick={() => { this.setState({ sortisVisible: !this.state.sortisVisible }) }}>Сортировать</span>
-                <span className="footerMobileIconFilter" onClick={() => { this.props.dispatch(openFilterShow(true)) }}>Фильтр</span>
+                <span className="mobailSortIcon" onClick={() => { this.setState({ sortisVisible: !this.state.sortisVisible }) }}>{textInfo.sortText}</span>
+                <span className="footerMobileIconFilter" onClick={() => { this.props.dispatch(openFilterShow(true)) }}>{textInfo.filterText}</span>
               </React.Fragment>
               : <div />}
             {/* <div className="properties_rightButton_value">{this.props.storeState.sortMenuValue}</div>

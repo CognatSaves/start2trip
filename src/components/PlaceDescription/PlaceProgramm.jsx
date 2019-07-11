@@ -13,7 +13,7 @@ class PlaceProgrammClass extends React.Component{
         //let textInfo = this.props.storeState.languageTextMain.placeProgramm;
         
         return (
-            <div className="placeDescription_block d-flex flex-column" id={this.props.id}>
+            <div className="col-12 d-flex flex-column">
                 <div className="d-flex placeDescription_description_info">
                     {this.props.place.info}
                 </div>

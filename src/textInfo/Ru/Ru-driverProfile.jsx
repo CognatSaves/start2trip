@@ -12,6 +12,24 @@ const driverProfile = {
         routeComment: "*Возврат в точку отправления в этот же день бесплатно",
         routeBookText: "ЗАБРОНИРОВАТЬ ПОЕЗДКУ",
         routeBookComment: "Стоимость окончательная. Топливо включено" 
+    },
+    driverInfo: {
+        languagesText: 'Языки',
+        carCapacity: 'мест(а)'
+    },
+    driverProfile:{
+        routeTitle: 'Маршрут',
+        routeTimeText: ['Время в пути без остановок','длина пути'],
+        personNumberText: 'Количество человек',
+        timeText: 'Время',
+        driverRouteLink: ['Я принимаю условия', 'договора оферты'],
+        errorMessage: 'Вы должны принять условия договора',
+        promoPlaceholder: 'Введите промо код',
+        promoVerification: ["сбросить", "применить"],
+        bookRoute: 'Заказать поездку',//там написано тур
+        fieldsError: 'Заполните правильно все поля',
+        
+        
     }
 }
 export default driverProfile;

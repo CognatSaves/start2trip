@@ -9,7 +9,7 @@ import places from './En/En-places';
 import manipulator from './En/En-manipulator';
 import placeDescription from './En/En-placeDescription';
 import tourDescription from './En/En-tourDescription';
-
+import drivers from './En/En-drivers';
 export default {
     driverProfile: driverProfile,
     //driverProfileRegistration:driverProfileRegistration,
@@ -21,5 +21,6 @@ export default {
     places:places,
     manipulator:manipulator,
     placeDescription: placeDescription,
-    tourDescription:tourDescription
+    tourDescription:tourDescription,
+    drivers: drivers
 }

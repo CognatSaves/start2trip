@@ -34,17 +34,17 @@ class PlaceInfoClass extends React.Component {
                 }
                 <div className="d-flex" style={{paddingTop: '10px'}}>
                     <div className='d-flex'/*d-flex нужен для того, чтобы margin считывался */>
-                        <div style={{height: '18px', margin: 'auto 0'}}>
-                            <Stars changeStarsBlock={'placeinfo_starsBlock'} commentTextStilizated={'placeDescription_description_commentTextStyle'} value={Math.ceil(this.props.rating*10)/10} commentNumber={this.props.comments + " "+textInfo.comments} valueDisplay={true} commentNumberDisplay={true} />
+                        <div style={{margin: 'auto 0'}}>
+                            <Stars /*changeStarsBlock={'placeinfo_starsBlock'}*/ commentTextStilizated={'placeDescription_description_commentTextStyle'} value={Math.ceil(this.props.rating*10)/10} commentNumber={this.props.comments + " "+textInfo.comments} valueDisplay={true} commentNumberDisplay={true} />
                         </div>
                     </div>
                     
                     {
                         this.props.tags.length>0 ?
                         <React.Fragment>
-                            <div style={{margin: '0 5px', color: '#ffffff', borderLeft: '1px solid #ffffff'}}/>
+                            <div className="placeinfo_vertical"/>
                         
-                            <div className="d-flex" style={{margin: 'auto 0'/* margin: "10px 5px 20px 0px" */}} >
+                            <div className="d-flex" style={{margin: 'auto 0 0 0'/* margin: "10px 5px 20px 0px" */}} >
                                 
                                 
                                     <React.Fragment>
@@ -63,7 +63,7 @@ class PlaceInfoClass extends React.Component {
                     {
                         this.props.date ?
                         <React.Fragment>
-                            <div style={{margin: '0 5px', color: '#ffffff', borderLeft: '1px solid #ffffff'}}/>
+                            <div className="placeinfo_vertical"/>
                             <div className="d-flex" style={{}}>
                                 <div className={"placeDescription_description_tagElement"/*"placeDescription_description_date"*/}>
                                     {date.getDate()+" "+getMonthName(date.getMonth())+" "+date.getFullYear()}

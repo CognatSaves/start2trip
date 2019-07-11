@@ -203,7 +203,7 @@ class PlaceDescriptionClass extends React.Component {
                             : <React.Fragment/>
                         }
                         
-                        <div className="placeDescription_background col-12 p-0" id={topBlockId} style={{backgroundImage: 'url('+ippodrom+') no-repeat 100%', backgroundSize: 'cover', backgroundPosition: 'center center'}}>
+                        <div className="placeDescription_background col-12 p-0" id={topBlockId}>
                             
                             {
                                 this.state.newPlace.local ? 
@@ -236,7 +236,12 @@ class PlaceDescriptionClass extends React.Component {
                                             <TourPanel topBlockId={topBlockId} descriptionId={topBlockId} variantsArray={textInfo.placeDescription.variantsArray}
                                             setPanelStateFunc={changePlacesFixedClass} panelFixedClass={this.props.placesState.placePanelFixedClass}
                                             panelSelectedElement={this.props.placesState.placePanelSelectedElement} setPanelSelectedElement={setPlacesPanelSelectedElement}/>
-                                            <PlaceProgramm id={topBlockId+"1"} tagsArray={this.state.newPlace.tags} place={/*this.state.place*/{...this.state.newPlace.local,tags: this.state.newPlace.place.tags, rating: this.state.newPlace.place.rating, comments: this.state.newPlace.place.commentNumber}}/> 
+                                            
+                                            <div className="placeDescription_block d-flex flex-column p-0" id={topBlockId+"1"}> 
+                                                <div className="placeDescription_fragmentName" style={{marginBottom: "15px"}} >{textInfo.placeDescription.variantsArray[0]}</div>                           
+                                                <PlaceProgramm tagsArray={this.state.newPlace.tags} place={/*this.state.place*/{...this.state.newPlace.local,tags: this.state.newPlace.place.tags, rating: this.state.newPlace.place.rating, comments: this.state.newPlace.place.commentNumber}}/> 
+                                            </div>
+
                                             <div className="placeDescription_block d-flex flex-column" id={topBlockId+"2"}> 
                                                 <div className="placeDescription_fragmentName" style={{marginBottom: "15px"}} >{textInfo.placeDescription.variantsArray[1]}</div>                           
                                                 <PlacePhotos photoArray={/*this.state.photoArray*/this.state.newPlace.place.images}
