@@ -21,6 +21,7 @@
 .route_time_text p1,
 .route_time_text p2 {
     font-weight: 400;
+    color: rgb(0, 0, 0, 0.6);
 }
 
 .drivers_route_title {
@@ -281,7 +282,8 @@ span.drivers_route_Link {
     border-radius: 5px;
     padding: 10px 30px;
     cursor: pointer;
-    border: 1px solid #f60;
+    background: #304269;
+    /* border: 1px solid #f60; */
     transition: all 0.3s;
 }
 
@@ -291,13 +293,14 @@ span.drivers_route_Link {
 
 .drivers_routeBtn:hover {
     cursor: pointer;
+    background: #f60;
     box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.2);
 }
 
 .drivers_routeBtn span {
     font-size: 16px;
     font-weight: 500;
-    color: #f60;
+    color: #fff;
     cursor: pointer;
 }
 
@@ -312,16 +315,22 @@ span.drivers_route_Link {
 }
 
 .driversRoute h3 {
-    padding-top: 6px;
-    color: #304269;
-    font-size: 20px;
+    padding: 2px 0 0 5px;
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 16px;
     font-weight: 400;
+}
+
+.driversRoute h3 span {
+    text-transform: capitalize;
+    padding-bottom: 5px;
+    padding-right: 5px;
 }
 
 .driversRoute h3title {
     color: #304269;
     font-weight: 500;
-    font-size: 24px;
+    font-size: 16px;
 }
 
 .route_datePhoneInput input.driver_route-error,
@@ -342,6 +351,26 @@ span.drivers_route_Link {
     border-color: #304269 !important;
 }
 
+.driversGoBack {
+    border-top: 2px solid rgba(0, 0, 0, 0.3);
+    background: #304269;
+    margin: 0;
+    padding: 0;
+    padding-left: 15px;
+    height: 50px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.driversGoBack span {
+    color: #fff;
+    padding-left: 30px;
+    background: url(./pictures/left-arrow.svg) no-repeat;
+    background-size: 20px 25px;
+    background-position: center left;
+}
+
 @media (max-width: 560px) {
     .drivers_routePrice {
         padding-top: 10px;
@@ -351,5 +380,8 @@ span.drivers_route_Link {
     }
     .driversRoute h3title {
         font-size: 20px;
+    }
+    .driversRoute {
+        padding: 5px !important;
     }
 }

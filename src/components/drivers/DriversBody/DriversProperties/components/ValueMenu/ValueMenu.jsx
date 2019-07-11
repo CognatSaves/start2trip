@@ -16,8 +16,7 @@ class ValueMenuClass extends React.Component {
         this.props.dispatch(setTempPricePart(value, true));
     }
     setPrice = () => {
-        let tempValue = this.state.price;
-        this.props.dispatch(setPricePart(tempValue, false));
+        this.props.dispatch(setPricePart(this.state.price, false));
     }
     close = () => {
         this.props.dispatch(setTempPricePart(this.props.storeState.pricePart, false));
