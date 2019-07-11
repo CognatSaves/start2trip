@@ -34,15 +34,40 @@ class DriversBlockClass extends React.Component {
   showMorePages = () => {
     this.props.dispatch(setMorePagesShow());
   }
+
+  sortLanguage = (element) => {
+    if (this.props.storeState.languageValue.length !== 0) {
+      for (let i = 0; i < this.props.storeState.languageValue.length; i++) {
+        if (element.language.indexOf(this.props.storeState.languageValue[i]) !== -1) {
+          return true
+        }
+      }
+    } else {
+      return true
+    }
+  }
+
+  sortAuto = (element) => {
+    if (this.props.storeState.autoValue.length !== 0) {
+      for (let i = 0; i < this.props.storeState.autoValue.length; i++) {
+        if (element.carType === this.props.storeState.autoValue[i]) {
+          return true
+        }
+      }
+    } else {
+      return true
+    }
+    return false
+  }
   sortDrivers = (array) => {
-    
+
     let tempArray = [];
-    let tempPrice = this.props.storeState.pricePart * this.props.storeState.maxPrice / 100;
+    let tempPrice = this.props.storeState.pricePart;
+    this.setLanguagesNumbers(this, array)
     array.forEach((element, index) => {
-      
+
       if (element.price <= tempPrice && element.carCapacity >= this.props.storeState.persons[1] + this.props.storeState.persons[0] &&
-        (element.carType === this.props.storeState.autoValue || this.props.storeState.autoValue === "Любое авто") &&
-        (element.language.indexOf(this.props.storeState.languageValue) !== -1 || this.props.storeState.languageValue === "Любой язык")
+        (this.sortLanguage(element)) && (this.sortAuto(element))
       ) {
         tempArray.push(element);
       }
@@ -57,25 +82,42 @@ class DriversBlockClass extends React.Component {
 
     switch (type) {
       case "Популярности":
-        return tempArray.sort((a,b)=>{return a.comments > b.comments ? -1 : 1});
+        return tempArray.sort((a, b) => { return a.comments > b.comments ? -1 : 1 });
       case "Рейтингу":
-        return tempArray.sort((a,b)=>{return a.rating > b.rating ? -1 : 1});
+        return tempArray.sort((a, b) => { return a.rating > b.rating ? -1 : 1 });
       case "Цене":
-        let sortArrayPrice = tempArray.sort((a,b)=>{return a.price > b.price ? -1 : 1});
+        let sortArrayPrice = tempArray.sort((a, b) => { return a.price > b.price ? -1 : 1 });
         if (this.props.storeState.sortMenuWay) {
           sortArrayPrice.reverse()
         }
         return sortArrayPrice
       case "Сначала дешевые":
-        let sortArrayPriceLow = tempArray.sort((a,b)=>{return a.price > b.price ? -1 : 1});
+        let sortArrayPriceLow = tempArray.sort((a, b) => { return a.price > b.price ? -1 : 1 });
         return sortArrayPriceLow
       case "Сначала дорогие":
-        let sortArrayPriceHige = tempArray.sort((a,b)=>{return a.price > b.price ? -1 : 1});
+        let sortArrayPriceHige = tempArray.sort((a, b) => { return a.price > b.price ? -1 : 1 });
         sortArrayPriceHige.reverse()
         return sortArrayPriceHige
       default: return tempArray;
     }
- 
+
+  }
+  setLanguagesNumbers = (that, selectedElements) => {
+
+    selectedElements.map((element, index) => {
+      element.language.map((el, i) => {
+        for (let t = 0; t < that.props.storeState.languages.length; t++) {
+          if (el === that.props.storeState.languages[t].ISO) {
+            element.language[i] = t;
+          }
+        }
+      })
+      for (let k = 0; k < that.props.driversState.carTypes.length; k++) {
+        if (element.carType === that.props.driversState.carTypes[k].id) {
+          element.carType = k;
+        }
+      }
+    })
   }
   render() {
     /*let driversArray = this.driversSort([...this.props.driversState.drivers], this.props.storeState.sortMenuValue);
@@ -98,33 +140,17 @@ class DriversBlockClass extends React.Component {
     //srcArray[0] = selectedFilledLike;
     //srcArray[1] = filledLike;
 
-    function setLanguagesNumbers(that, selectedElements) {
 
-      selectedElements.map((element, index) => {
-        element.language.map((el, i) => {
-          for (let t = 0; t < that.props.storeState.languages.length; t++) {
-            if (el === that.props.storeState.languages[t].ISO) {
-              element.language[i] = t;
-            }
-          }
-        })
-        for (let k = 0; k < that.props.driversState.carTypes.length; k++) {
-          if (element.carType === that.props.driversState.carTypes[k].id) {
-            element.carType = k;
-          }
-        }
-      })
-    }
-    function fingCorrectCartypeName(carType, selectedISO){
+    function fingCorrectCartypeName(carType, selectedISO) {
       let res;
-      switch (selectedISO){
+      switch (selectedISO) {
         case 'ENG':
-            res=carType.name_en;
-            break;
+          res = carType.name_en;
+          break;
         case 'RUS':
-            res=carType.name_ru;
-            break;
-        default: res=carType.name_en;
+          res = carType.name_ru;
+          break;
+        default: res = carType.name_en;
       }
       return res;
     }
@@ -150,17 +176,17 @@ class DriversBlockClass extends React.Component {
       return '';
     }
     */
-    setLanguagesNumbers(this, selectedElements);
+    // this.setLanguagesNumbers(this, selectedElements);
     console.log('selectedEl');
     console.log(selectedElements);
     console.log(this.props.storeState.languages, "this.props.storeState.languagess");
 
     console.log('DriversBlock render');
     console.log(this.props);
-    let storeState= this.props.storeState;
+    let storeState = this.props.storeState;
     let activeCurrency = storeState.currencies[storeState.activeCurrencyNumber]
     let textInfo = this.props.storeState.languageTextMain.drivers.driversBlock;
-        
+
     return (
       <div className="drivers_block d-flex flex-wrap">
         {
@@ -189,11 +215,11 @@ class DriversBlockClass extends React.Component {
                     <div className="driversBlock_driverCard_photo" style={{ background: "url(" + requests.serverAddress + element.avatar + ") no-repeat" }} />
                     <div className="d-flex flex-column driversBlock_driverCard_driverInfo">
                       <Link to={`/driverProfile/${element.id}-${element.carId}-${this.state.country}-${this.state.cities}`} className="driversBlock_driversInfo_name">{element.name}</Link>
-                      <Stars key={element.rating} value={element.rating} commentNumber={element.comments + " "+textInfo.comments} valueDisplay={true} commentNumberDisplay={true} />
+                      <Stars key={element.rating} value={element.rating} commentNumber={element.comments + " " + textInfo.comments} valueDisplay={true} commentNumberDisplay={true} />
                     </div>
                   </div>
                   <div className="driversBlock_driverInfoBlock_element d-flex">
-                    <div className="driversBlock_languages_text" style={{ visibility: this.props.storeState.languages.length > 0 ? 'visible' : 'hidden' }}>{textInfo.languages+':'}</div>
+                    <div className="driversBlock_languages_text" style={{ visibility: this.props.storeState.languages.length > 0 ? 'visible' : 'hidden' }}>{textInfo.languages + ':'}</div>
                     {
                       element.language.map((langElement, index) =>
                         <div className="driversBlock_languages_flag" style={{ background: "url(" + (this.props.storeState.languages.length > 0 ? requests.serverAddress + this.props.storeState.languages[langElement].icon.url : '') + ")", backgroundSize: "15px 15px" }} />
@@ -203,21 +229,21 @@ class DriversBlockClass extends React.Component {
                 </div>
                 <div className="driversBlock_driverInfoBlock_element driversBlock_commentary">{textInfo.commentary}</div>
                 <button className="driversBlock_driverInfoBlock_element driversBlock_buttonStyle"
-                 onClick={() => this.props.changeTravelVisibility(element.price)}>
-                 {textInfo.book+" "+(activeCurrency.isLeft ? activeCurrency.symbol : '')
-                 + Math.ceil(element.price * activeCurrency.costToDefault) +
-                 (!activeCurrency.isLeft ? activeCurrency.symbol : '') }</button>
+                  onClick={() => this.props.changeTravelVisibility(element.price)}>
+                  {textInfo.book + " " + (activeCurrency.isLeft ? activeCurrency.symbol : '')
+                    + Math.ceil(element.price * activeCurrency.costToDefault) +
+                    (!activeCurrency.isLeft ? activeCurrency.symbol : '')}</button>
               </div>
 
             </div>
           )
         }
         {
-          selectedElements.length===0 ? 
-          <React.Fragment>
+          selectedElements.length === 0 ?
+            <React.Fragment>
               <div>Ничего не найдено. Попробуйте изменить условия поиска или дату отправления</div>
-          </React.Fragment>
-          :<React.Fragment/>
+            </React.Fragment>
+            : <React.Fragment />
         }
         <Manipulator number={driversArray.length} page={this.props.driversState.page} setPage={this.setPage}
           elementsNumber={this.props.storeState.pagesMenuValue} showMorePages={this.showMorePages} />
