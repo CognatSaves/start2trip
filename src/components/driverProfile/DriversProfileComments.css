@@ -65,7 +65,7 @@
     position: relative;
     width: 100%;
     box-shadow: 0 0 1px 1px rgba(221, 221, 221, 1);
-    padding: 12px 23px 0 23px;
+    /* padding: 12px 23px 0 23px; */
     margin-bottom: 12px;
     border-radius: 5px;
 }
@@ -129,12 +129,14 @@
     margin: auto;
 }*/
 
+
+/* 
 .commentBlock_element {
     position: relative;
     width: 100%;
-    padding: 25px 0;
+    padding: 25px;
     border-bottom: 1px solid #cccccc;
-}
+} */
 
 .commentBlock_element:last-child {
     border: none;
@@ -164,6 +166,18 @@
     line-height: 20px;
 }
 
+.commentBlock_elementIconCross {
+    position: absolute;
+    z-index: 4;
+    cursor: pointer;
+    top: 10px;
+    right: 10px;
+    width: 15px;
+    height: 15px;
+    background: url(./pictures/close.svg)no-repeat;
+    background-size: 100% 100%;
+}
+
 
 /* .commentBlock_picture {
     height: 60px;
@@ -173,12 +187,12 @@
 .commentBlock_valueBlock {
     height: 100%;
     width: 100%;
-    margin-left: 2%;
+    /* margin-left: 2%; */
     overflow: hidden;
 }
 
 .news {
-    height: 60px;
+    height: 100px;
     line-height: 20px;
     overflow: hidden;
     /* Обрезаем все, что не помещается в область */
@@ -214,15 +228,16 @@ label {
     cursor: pointer;
 }
 
-input:checked+.news {
-    height: auto;
-}
-
-input:checked+.news::after {
-    content: none;
-}
-
 .put {
     position: absolute;
     clip: rect(1px, 1px, 1px, 1px);
+}
+
+@media (max-width: 766px) {
+    input:checked+.news {
+        height: auto;
+    }
+    input:checked+.news::after {
+        content: none;
+    }
 }

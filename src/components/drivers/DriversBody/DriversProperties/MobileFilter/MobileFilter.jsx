@@ -2,13 +2,14 @@ import React from 'react';
 import './MobileFilter.css'
 import { connect } from 'react-redux';
 import { Collapse } from 'reactstrap'
-import Slider from '../components/ValueMenu/Slider';
+// import Slider from '../components/ValueMenu/Slider';
 import { openFilterShow } from "../../../../../redusers/ActionDrivers"
 import sedan from './pictures/sedan.svg';
 import jeep from './pictures/jeep.svg';
 import microbus from './pictures/microbus.svg';
 import minivan from './pictures/minivan.svg';
 import languageWhite from './pictures/languageWhite.svg';
+import Slider from '@material-ui/core/Slider';
 import {
   setPricePart,
   setTempPricePart,
@@ -26,21 +27,26 @@ class MobileFilterClass extends React.Component {
       collapsePeople: false,
       collapseLanguageMenu: false,
       collapseAuto: false,
+      price: this.props.storeState.pricePart,
 
     }
   }
 
   changeTempPrice = (value) => {
-    this.props.dispatch(setTempPricePart(value, true));
+      if (value === this.state.price) {
+
+      } else {
+          this.setState({ price: value });
+      }
   }
 
+
   setPrice = () => {
-    let tempValue = this.props.storeState.tempPricePart;
-    this.props.dispatch(setPricePart(tempValue, false));
-  }
-  close = () => {
-    this.props.dispatch(setTempPricePart(this.props.storeState.pricePart, false));
+    this.props.dispatch(setPricePart(this.state.price, false));
 }
+//   close = () => {
+//     this.props.dispatch(setTempPricePart(this.props.storeState.pricePart, false));
+// }
 
   changePersonsNumber=(index, value)=> {
     let persons = this.props.storeState.persons.slice();
@@ -82,12 +88,13 @@ class MobileFilterClass extends React.Component {
       }
 
     let pictureArray = [sedan, jeep, minivan, microbus];
+
     return (
       <div className="mobileFilterModal" style={{ left: this.props.storeState.openFilter ? "0px" : "100%" }}>
 
         <div className="mobileFilterModalHeader d-flex justify-content-between">
           <span className="mobileFilterModalBack" onClick={() => { this.props.dispatch(openFilterShow(false))}}>Фильтры</span>
-          <span className="mobileFilterModalClear" onClick={() => {this.close(); this.peopleMenuCall(true); this.props.dispatch(setAuto("Любое авто", pictureArray[0])); this.props.dispatch(languageValueChooseDispatch("Любой язык", languageWhite)) }}>Сбросить</span>
+          <span className="mobileFilterModalClear" onClick={() => {this.peopleMenuCall(true); this.props.dispatch(setAuto("Любое авто", pictureArray[0])); this.props.dispatch(languageValueChooseDispatch("Любой язык", languageWhite)) }}>Сбросить</span>
         </div>
 
         <div className="mobileFilterModalBody">
@@ -95,10 +102,19 @@ class MobileFilterClass extends React.Component {
           <div className="mobileFilterModalBodyElement d-flex flex-column justify-content-center">
             <div className="mobileFilterModalContent d-flex justify-content-between align-items-center">
               <span>Цена</span>
-              <p>{"До $" + (this.props.storeState.maxPrice * this.props.storeState.tempPricePart / 100)}</p>
+              <p>{"До $" + this.state.price}</p>
             </div>
-
-            <Slider changeMaxValue={this.changeTempPrice} defaultValue={[0, this.props.storeState.tempPricePart]} />
+            <Slider
+                        defaultValue={this.props.storeState.pricePart}
+                        getAriaValueText={this.changeTempPrice}
+                        aria-labelledby="discrete-slider"
+                        valueLabelDisplay="auto"
+                        step={this.props.storeState.maxPrice === 0 ? this.props.storeState.pricePart:this.props.storeState.maxPrice / 25}
+                        marks
+                        min={0}
+                        max={this.props.storeState.maxPrice === 0 ? this.props.storeState.pricePart:this.props.storeState.maxPrice}
+                    />
+            {/* <Slider changeMaxValue={this.changeTempPrice} defaultValue={[0, this.props.storeState.tempPricePart]} /> */}
           </div>
 
           <div className="mobileFilterModalBodyElement">
@@ -187,7 +203,7 @@ class MobileFilterClass extends React.Component {
         </div>
 
         <div className="mobileFilterModalFooterComplete">
-          <span onClick={() =>{ this.setPrice(); this.peopleMenuCall(false); this.props.dispatch(openFilterShow(false))}} >Показать результаты</span>
+          <span onClick={() =>{ this.peopleMenuCall(false); this.props.dispatch(openFilterShow(false)); this.setPrice();}} >Показать результаты</span>
         </div>
       </div>
 

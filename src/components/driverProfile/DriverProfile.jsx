@@ -649,13 +649,13 @@ class DriverProfileClass extends React.Component {
                         <div className="drivers_bottom_background d-flex flex-column" >
                             <div className="drivers_body d-flex">
                                 <div className="left_body_part col-12">
-                                    <div className="driverProfileComments_panel d-flex">
+                                    {/* <div className="driverProfileComments_panel d-flex">
                                         {
                                             buttonNames.map((element, index) =>
                                                 <button className={this.state.showPanelVariant === index ? "driverProfileComments_panel_element driverProfileComments_panel_selectedElement" : "driverProfileComments_panel_element"} onClick={() => this.changePanelVariant(index)}>{element}</button>
                                             )
                                         }
-                                    </div>
+                                    </div> */}
                                     <CommentBlock comments={this.state.comments}  page={this.state.page} setPage={this.setPage}
                                                 showMorePages={this.showMorePages} showPages={this.state.showPages} id={"commentBlockId"}  />
                                         

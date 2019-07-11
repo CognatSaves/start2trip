@@ -107,7 +107,8 @@
     position: relative;
     /* height: 15%; */
     width: 100%;
-    padding: 25px 0;
+    padding: 25px 15px;
+    padding-bottom: 10px;
     border-bottom: 1px solid #cccccc;
 }
 
@@ -155,24 +156,28 @@
 .commentBlock_valueBlock {
     height: 100%;
     width: 100%;
-    margin-left: 2%;
+    /* margin-left: 5%; */
 }
 
-.news {
+
+/* .news {
     height: 60px;
     line-height: 20px;
     overflow: hidden;
-    /* Обрезаем все, что не помещается в область */
-    background: transparent;
-    /* Цвет фона */
-    position: relative;
-    text-overflow: ellipsis;
-    width: 90%;
-    font-weight: 400;
-    font-size: 14px;
-    color: #304269;
-}
 
+
+background: transparent;
+
+
+
+position: relative;
+text-overflow: ellipsis;
+width: 90%;
+font-weight: 400;
+font-size: 14px;
+color: #304269;
+
+}
 .news::after {
     content: '...';
     position: absolute;
@@ -187,22 +192,23 @@
     overflow: hidden;
     pointer-events: none;
     background: #fff;
-    /* Цвет фона */
-    /*background: #fc0;*/
+
 }
+*/
 
 label {
     cursor: pointer;
     width: 100%;
 }
 
-input:checked+.news {
+
+/* input:checked+.news {
     height: auto;
 }
 
 input:checked+.news::after {
     content: none;
-}
+} */
 
 .put {
     position: absolute;
