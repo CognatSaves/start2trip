@@ -35,7 +35,7 @@
     padding: 10px;
 }
 
-.placesList_stars{
+.placesList_stars {
     margin-bottom: 15px;
 }
 
@@ -56,21 +56,20 @@
 }
 
 .placesList_info_position {
-    
     font-weight: 400;
     color: #304269;
     overflow: 'hidden';
     text-overflow: 'ellipsis';
 }
 
-.placesList_info_position_tags{
+.placesList_info_position_tags {
     font-size: 12px;
     height: 24px;
     min-height: 24px;
     line-height: 12px;
 }
 
-.placesList_info_position_loc{
+.placesList_info_position_loc {
     font-size: 14px;
     height: 28px;
     min-height: 28px;
@@ -101,26 +100,45 @@
     width: 20px;
 }
 
-.placesTagList_tagLine{
+.placesTagList_tagLine {
     width: 90%;
     text-overflow: ellipsis
 }
 
-.placesTagList_stateBlock{
+.placesTagList_stateBlock {
     margin: 5px;
     padding: 5px;
     text-decoration: underline
 }
 
-.placesTagList_tagBlock{
+.placesTagList_stateBlock span {
+    color: #304269;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.placesTagList_tagBlock {
     border: 2px solid #cccccc;
     border-radius: 25px;
-    margin: 5px;
+    margin: 5px 5px;
     padding: 5px;
     flex-basis: auto;
     flex-grow: 0.1;
+    cursor: pointer;
 }
 
-.placesTagList_tagBlock_selected{
+.placesTagList_tagBlock span {
+    color: #304269;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.placesTagList_tagBlock_selected {
     border: 2px solid #ff6600;
+}
+
+@media (max-width: 746px) {
+    .placesTagList_tagLine {
+        width: 100%;
+    }
 }

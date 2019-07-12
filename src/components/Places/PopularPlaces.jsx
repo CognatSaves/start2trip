@@ -111,19 +111,17 @@ class PopularPlacesClass extends React.Component {
         */
         return (
             <React.Fragment>
-                <div className="popularPlacesBody">
-
+                <div className="popularPlacesBody pt-4">
                     <div className="popularPlacesTitle">
                         <h3>{textInfo.popularPlaces.popularPlacesTitle}</h3>
                     </div>
-
                     <div className="d-flex col-12 p-0">
-                        <div className="d-flex col-12 flex-wrap p-0 popularPlacesRender">
+                        <div className="d-flex col-12 flex-md-wrap flex-nowrap p-0 py-1 popularPlacesRender">
                             {placeRender.map((element, index) => {
                                 if (arrayRender.length !== placeRender.length) {
                                     if (placeRender.length - 1 == index) {
                                         return (
-                                            <div className="col-2 d-flex flex-column align-items-center popularPlacesEl popularPlacesMore" onClick={() => { this.setState({ howMuchRender: this.state.howMuchRender + 6 }) }}>
+                                            <div className="col-md-2 col-5 d-flex flex-column align-items-center popularPlacesEl popularPlacesMore" onClick={() => { this.setState({ howMuchRender: this.state.howMuchRender + 6 }) }}>
                                                 <span>{"more"}</span>
                                                 <img src={arrayRender[arrayRender.length-1].image ? requests.serverAddress+ arrayRender[arrayRender.length-1].image.url : ''} alt="img" />
                                             </div>
@@ -131,7 +129,8 @@ class PopularPlacesClass extends React.Component {
                                     }
                                 }
                                 return (
-                                    <div className={"col-2 d-flex flex-column align-items-center popularPlacesEl "+(isDirSelected(element.id, this.props.placesState.selectedDirection) ? 'popularPlacesEl_selected' : '')} onClick={()=>this.onDirClick(element.id)}>
+                                    <div className={"col-md-2 col-5 d-flex flex-column align-items-center popularPlacesEl "+(isDirSelected(element.id, this.props.placesState.selectedDirection) ? 'popularPlacesEl_selected' : '')} onClick={()=>this.onDirClick(element.id)}>
+                                        <span className="popularPlacesElMes">Отменить</span>
                                         <div>
                                             <img src={element.image ? requests.serverAddress + element.image.url : ''} alt="img" />
                                         </div>

@@ -14,17 +14,11 @@ class HomeRoutesPanelClass extends React.Component {
         return(
             <React.Fragment>
             <div className="driverProfileComments_panel d-flex">
-                <div className="placesPanel_sortText ">{textInfo.placesPanel.placesPanelSortText+':'}</div>
+                <div className="placesPanel_sortText d-md-block d-none">{textInfo.placesPanel.placesPanelSortText+':'}</div>
+                <div className="d-flex justify-content-between col-md-3 col-12 p-0">
                 {this.props.placesState.sortMenuVariants.map((element, index)=>
-                    <button className={"driverProfileComments_panel_element "+buttonStyles[index]} onClick={()=>this.props.dispatch(setSortMenuValue(element))}>{textInfo.placesPanel.sortMenuVariantsText[index]}</button>
+                    <span className={"driverProfileComments_panel_element "+buttonStyles[index]} onClick={()=>this.props.dispatch(setSortMenuValue(element))}>{textInfo.placesPanel.sortMenuVariantsText[index]}</span>
                 )}
-                
-                <div className="properties_rightBlock ">
-                    <div className="properties_buttonStyle properties_rightButton d-flex" onClick={() =>{} /*this.props.dispatch(setPagesVisible(!this.props.storeState.pagesMenu))*/}>
-                        <div className="properties_rightButton_characteristic">{this.props.placesState.pagesMenuValue+' / '+textInfo.placesPanel.pagesMenuValueText}</div>
-                        <div className="properties_arrow"></div>
-                        <PagesMenu pagesMenuVariants={this.props.placesState.pagesMenuVariants} isVisible={this.props.storeState.pagesMenu} setPages={setPagesMenuValue}/>
-                    </div>
                 </div>
             </div>         
           </React.Fragment>

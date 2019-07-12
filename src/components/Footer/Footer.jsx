@@ -74,9 +74,9 @@ class FooterClass extends React.Component {
               <div className="footerMobileTextTours">{textInfo.footerMobileTextTours}</div>
             </div>
           </Link>
-          <Link to="/place" className="col-3 d-flex align-items-end">
-            <div className={ (pathname === "/place" ? "foterMobaileItem_active":" " )+ " d-flex flex-column align-items-center justify-content-end col-12 foterMobaileItem "} >
-              <div className={pathname === "/place" ? "footerMobileIconPlaces_active":"footerMobileIconPlaces" } />
+          <Link to="/places" className="col-3 d-flex align-items-end">
+            <div className={ (pathname === "/places" ? "foterMobaileItem_active":" " )+ " d-flex flex-column align-items-center justify-content-end col-12 foterMobaileItem "} >
+              <div className={pathname === "/places" ? "footerMobileIconPlaces_active":"footerMobileIconPlaces" } />
               <div className="footerMobileTextPlaces">{textInfo.footerMobileTextPlaces}</div>
             </div>
           </Link>

@@ -45,11 +45,8 @@ class ShowCommentsClass extends React.Component {
                                     <img src={this.state.element.avatar ? requests.serverAddress + this.state.element.avatar.url : tempPicture} width="auto" height="100%" alt=""></img>
                                     <div className="d-flex flex-column justify-content-center col pr-0">
                                         <div className="valueBlock_firstElement_name">{this.state.element.name}</div>
-
-                                        <div className="d-flex justify-content-between">
-                                            <Stars value={this.state.element.rating} valueDisplay={true} commentNumberDisplay={false} />
-                                            <div className="valueBlock_firstElement_date">{this.state.date.getDate() + " " + getMonthName(this.state.date.getMonth()) + " " + this.state.date.getFullYear()}</div>
-                                        </div>
+                                        <Stars value={this.state.element.rating} valueDisplay={true} commentNumberDisplay={false} />
+                                        <div className="valueBlock_firstElement_date">{this.state.date.getDate() + " " + getMonthName(this.state.date.getMonth()) + " " + this.state.date.getFullYear()}</div>
                                     </div>
                                 </div>
                                 <div className="">
@@ -69,7 +66,7 @@ class ShowCommentsClass extends React.Component {
                             let date = element.date ? new Date(element.date) : new Date(element.createdAt);
 
                             return (
-                                <div className="col-lg-3 col-md-6 col-12">
+                                <div className="col-lg-3 col-md-6 col-12 pl-0">
                                     <div className="commentBlock_comments  commentBlock_element" key={element + "/" + index} >
                                         <div className="commentBlock_valueBlock d-flex flex-column">
                                             <div className="commentBlock_picture d-flex pb-2">
@@ -77,10 +74,10 @@ class ShowCommentsClass extends React.Component {
                                                 <div className="d-flex flex-column justify-content-center col pr-0">
                                                     <div className="valueBlock_firstElement_name">{element.name}</div>
 
-                                                    <div className="d-flex justify-content-between">
+                                                    
                                                         <Stars key={element.rating + "/" + element.index} value={element.rating} valueDisplay={true} commentNumberDisplay={false} />
                                                         <div className="valueBlock_firstElement_date">{date.getDate() + " " + getMonthName(date.getMonth()) + " " + date.getFullYear()}</div>
-                                                    </div>
+                                                    
                                                 </div>
                                             </div>
                                             <input className="put" id={"put" + element + index} type="checkbox"></input>

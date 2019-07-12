@@ -55,12 +55,11 @@ class PlacesTagListClass extends React.Component{
         
         console.log(this.props.placesState.tags);
         return(
-            <div className="popularPlacesBody d-flex flex-row">
-                <div className="d-flex justify-content-center" style={{width: '10%'}}>
-                    <div style={{margin: 'auto'}}>{textInfo.placesTagList.placesTagListTitle +':'}</div>
+            <div className="popularPlacesBody d-flex flex-md-row flex-column col-12 py-md-4 py-2">
+                <div className="d-flex align-items-center justify-md-content-start justify-content-center mr-md-5 mr-0">
+                    <span className="popularPlacesTitleTagList">{textInfo.placesTagList.placesTagListTitle +':'}</span>
                 </div>
                 <div id="tagLine" className="d-flex flex-wrap placesTagList_tagLine" key={this.state.tags+this.state.isShortTags}>
-                
                 {    
                     this.props.placesState.tags.map((element,index)=>{                   
                         if(this.state.isShortTags){
@@ -94,7 +93,7 @@ class PlacesTagListClass extends React.Component{
                                             mapStop=true;
                                             return(
                                                 <div className="d-flex justify-content-top placesTagList_stateBlock">             
-                                                    <div style={{margin: 'auto'}} onClick={()=>this.setState({isShortTags: false})}>{textInfo.placesTagList.moreButton}</div>
+                                                    <span style={{margin: 'auto'}} onClick={()=>this.setState({isShortTags: false})}>{textInfo.placesTagList.moreButton}</span>
                                                 </div>                  
                                             )
                                         }
@@ -104,7 +103,7 @@ class PlacesTagListClass extends React.Component{
                                 return(
                                 <div key={index+Date.now()} id={"tagno"+index} className={"d-flex justify-content-center align-items-center placesTagList_tagBlock "
                                  + (isTagSelected(element.id, this.props.placesState.selectedTags) ? 'placesTagList_tagBlock_selected' : '')} onClick={()=>this.onTagClick(element.id)}>
-                                    <div style={{}}>{element.tagLoc.name}</div>
+                                    <span style={{}}>{element.tagLoc.name}</span>
                                 </div>
                             )}
                         }
@@ -113,12 +112,12 @@ class PlacesTagListClass extends React.Component{
                                 <React.Fragment>
                                     <div key={index+Date.now()} id={"tagno"+index} className={"d-flex justify-content-center align-items-center placesTagList_tagBlock"
                                         + (isTagSelected(element.id, this.props.placesState.selectedTags) ? 'placesTagList_tagBlock_selected' : '')} onClick={()=>this.onTagClick(element.id)}>
-                                        <div style={{}}>{element.tagLoc.name}</div>
+                                        <span style={{}}>{element.tagLoc.name}</span>
                                     </div>
                                     {
                                         (index===this.state.tags.length-1) ? 
                                         <div className="d-flex justify-content-top placesTagList_stateBlock">             
-                                            <div style={{margin: 'auto'}} onClick={()=>this.setState({isShortTags: true})}>{textInfo.placesTagList.hideButton}</div>
+                                            <span onClick={()=>this.setState({isShortTags: true})}>{textInfo.placesTagList.hideButton}</span>
                                         </div> 
                                         :
                                         <React.Fragment/>

@@ -1,5 +1,10 @@
 .popularPlacesBody {}
 
+.popularPlacesTitleTagList {
+    color: #304269;
+    font-size: 18px;
+}
+
 .popularPlacesRender {
     padding-top: 16px !important;
     padding-bottom: 40px !important;
@@ -33,11 +38,30 @@
 }
 
 .popularPlacesEl {
+    padding-top: 10px !important;
     padding-bottom: 10px !important;
 }
 
-.popularPlacesEl_selected{
-    border: 3px solid brown;
+.popularPlacesElMes {
+    display: none;
+}
+
+.popularPlacesEl_selected {
+    border: 3px solid #f60;
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.popularPlacesEl_selected .popularPlacesElMes {
+    display: block;
+    position: absolute;
+    z-index: 8;
+    cursor: pointer;
+    top: 35%;
+    left: 28%;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 500;
 }
 
 .popularPlacesEl img {
@@ -65,7 +89,7 @@
 }
 
 .popularPlacesRender::-webkit-scrollbar {
-    height: 6px;
+    height: 0px;
     background-color: #F5F5F5;
 }
 
@@ -93,7 +117,19 @@
 @media (max-width: 1077px) {}
 
 @media (max-width: 746px) {
+    .popularPlacesTitle h3 {
+        font-size: 18px;
+        font-weight: 500;
+        color: #304269;
+        text-align: center;
+        padding: 5px 0;
+    }
     .popularPlacesEl img {
-        height: 60px;
+        height: 120px;
+    }
+    .popularPlacesRender {
+        overflow: scroll;
+        overflow-y: hidden;
+        scroll-behavior: smooth;
     }
 }
