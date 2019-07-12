@@ -10,6 +10,7 @@ import manipulator from './En/En-manipulator';
 import placeDescription from './En/En-placeDescription';
 import tourDescription from './En/En-tourDescription';
 import drivers from './En/En-drivers';
+import startTravelForm from './En/En-startTravelForm';
 export default {
     driverProfile: driverProfile,
     //driverProfileRegistration:driverProfileRegistration,
@@ -22,5 +23,6 @@ export default {
     manipulator:manipulator,
     placeDescription: placeDescription,
     tourDescription:tourDescription,
-    drivers: drivers
+    drivers: drivers,
+    startTravelForm:startTravelForm
 }
