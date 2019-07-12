@@ -18,11 +18,13 @@ import Checkbox from '@material-ui/core/Checkbox';
 import axios from 'axios';
 import requests from '../../config';
 
-const Content = (that,flagAllOk,carCapacityArray) => {
+const Content = (that,flagAllOk,carCapacityArray,activeCurrency,textInfo) => {
+    let isCurrencyLoaded = activeCurrency && activeCurrency.symbol;
+
     return (
         <div className="startTravelForm p-3" >
             <div className="startTravelForm_element mx-auto">
-                <div className="startTravelForm_headerText">Забронировать поездку</div>
+                <div className="startTravelForm_headerText">{textInfo.headerText}</div>
                 <button className="startTravelForm_crossPlace" onClick={() => that.props.changeTravelVisibility()}>
                     <img src={grayCross} width="100%" height="100%" alt="grayCross"></img>
                 </button>
@@ -31,7 +33,7 @@ const Content = (that,flagAllOk,carCapacityArray) => {
                     <div className="d-flex flex-sm-row flex-wrap flex-column col-12 p-0">
                         <div className="col-sm-6 col-12 order-0">
                             <TextField
-                                label="Имя*"
+                                label={textInfo.nameLabel+'*'}
                                 value={that.state.firstName}
                                 onChange={(event) => { that.setState({ firstName: event.target.value }); event.target.previousSibling.classList.remove("driver_route-error") }}
                                 className="textField validate w-100"
@@ -48,15 +50,17 @@ const Content = (that,flagAllOk,carCapacityArray) => {
                                 value={that.state.telNumber}
                                 onChange={(telNumber, selectedCountry) => { that.setState({ telNumber: telNumber }); document.querySelector(".route_datePhoneInput").children[1].classList.remove("driver_route-error") }}
                                 onBlur={(value) => { console.log(value) }}
-                                initialValue="Телефон"
+                                initialValue={textInfo.telInputInitial}
                             />
                         </div>
                         <div className="col-sm-6 col-12 order-6">
-                            <DatePicker onChange={(nul, date) => { that.setState({ date: date }); document.querySelector(".route_dateCalendarModal").classList.remove("driver_route-error") }} shouldDisableDate={(day) => { let a = day }} defaultDate={that.state.date} minDate={new Date()} disableYearSelection={true} floatingLabelText="Дата отправления*" className="route_dateCalendarModal" />
+                            <DatePicker onChange={(nul, date) => { that.setState({ date: date }); document.querySelector(".route_dateCalendarModal").classList.remove("driver_route-error") }}
+                            shouldDisableDate={(day) => { let a = day }} defaultDate={that.state.date} minDate={new Date()} disableYearSelection={true}
+                            floatingLabelText={textInfo.startDate+'*'} className="route_dateCalendarModal" />
                         </div>
                         <div className="col-sm-6 col-12 order-5">
                             <FormControl className="route_dateSelect numberOfPeople w-100">
-                                <InputLabel htmlFor="select-multiple">Количество человек*</InputLabel>
+                                <InputLabel htmlFor="select-multiple">{textInfo.peopleNumber+'*'}</InputLabel>
                                 <Select
                                     value={that.state.numberOfPeople}
                                     input={<Input id="select-multiple" variant="outlined" />}
@@ -72,7 +76,7 @@ const Content = (that,flagAllOk,carCapacityArray) => {
                         </div>
                         <div className="col-sm-6 col-12 order-1">
                             <TextField
-                                label="Фамилия*"
+                                label={textInfo.secondNameLabel+'*'}
                                 value={that.state.lastName}
                                 onChange={(event) => { that.setState({ lastName: event.target.value }); event.target.previousSibling.classList.remove("driver_route-error") }}
                                 className="textField validate w-100"
@@ -92,7 +96,7 @@ const Content = (that,flagAllOk,carCapacityArray) => {
                         </div>
                         <div className="col-sm-6 col-12 order-7">
                             <FormControl className="route_dateSelect departureTime w-100">
-                                <InputLabel htmlFor="select-multiple">Время*</InputLabel>
+                                <InputLabel htmlFor="select-multiple">{textInfo.timeLabel+'*'}</InputLabel>
                                 <Select
                                     value={that.state.departureTime}
                                     input={<Input id="select-multiple" variant="outlined" />}
@@ -108,7 +112,7 @@ const Content = (that,flagAllOk,carCapacityArray) => {
                         </div>
                         <div className="col-sm-6 col-12 order-8">
                             <TextField
-                                label="Место отправления*"
+                                label={textInfo.placeDepartureLabel+'*'}
                                 multiline
                                 rowsMax="4"
                                 defaultValue={that.state.placeDeparture}
@@ -121,7 +125,7 @@ const Content = (that,flagAllOk,carCapacityArray) => {
                     </div>
                     <div className="col-12">
                         <TextField
-                            label="Описание"
+                            label={textInfo.descriptionLabel}
                             multiline
                             rows="2"
                             rowsMax="2"
@@ -141,25 +145,32 @@ const Content = (that,flagAllOk,carCapacityArray) => {
                             className="checkboxStyle"
                             onChange={(event) => { that.setState({ checkBoxes: !that.state.checkBoxes }) }}
                         />
-                        <span className="drivers_route_Link">Я принимаю условия <Link to="">договора оферты</Link></span>
+                        <span className="drivers_route_Link">{textInfo.driversRouteLink[0]+' '}<Link to="">{textInfo.driversRouteLink[1]}</Link></span>
                         </div>
-                        <span className="errorMes col-12" style={{display: !that.state.checkBoxes && that.state.errorMes ? "block" : "none"  }}>Вы должны принять условия договора</span>
+                        <span className="errorMes col-12" style={{display:!that.state.checkBoxes && that.state.errorMes ? "block" : "none"  }}>{textInfo.errorContract}</span>
                     </div>
                     <div className=" d-flex align-items-center justify-content-between flex-md-row flex-column col-12 py-md-0 py-4">
                         <div className="d-flex drivers_routePromo">
-                            <input placeholder="Введите промо код" readOnly={that.state.promoCode} value={that.state.promoCod} onChange={(event) => { that.setState({ promoCod: event.target.value,promoCodIsOk:true }) }} type="text" />
-                            <span onClick={() => { that.state.promoCode ? (that.setState({ promoCod: "", promoCode: "", discount: 0 })) : (that.promocodeVerification()) }}>{that.state.promoCode ? "сбросить" : "применить"}</span>
+                            <input placeholder={textInfo.promoPlaceholder} readOnly={that.state.promoCode} value={that.state.promoCod} onChange={(event) => { that.setState({ promoCod: event.target.value,promoCodIsOk:true }) }} type="text" />
+                            <span onClick={() => { that.state.promoCode ? (that.setState({ promoCod: "", promoCode: "", discount: 0 })) :
+                             (that.promocodeVerification()) }}>{that.state.promoCode ? textInfo.promoVerification[0] : textInfo.promoVerification[1]}</span>
                         </div>
-                        <h3 className="drivers_routePrice">${that.props.elementPrice}</h3>
-                        <div className={flagAllOk ? "drivers_routeBtn drivers_routeBtn-active" : "drivers_routeBtn"} onClick={() => { that.validate() }}>
-                            <span>Заказать тур</span>
-                        </div>
+                        <h3 className="drivers_routePrice">{isCurrencyLoaded ? ((activeCurrency.isLeft ? activeCurrency.symbol : '')
+                        + Math.ceil(that.props.elementPrice*activeCurrency.costToDefault)
+                        + (!activeCurrency.isLeft ? activeCurrency.symbol : '')) : ''}</h3>
+                        {
+                            isCurrencyLoaded ? /**пока валюты не загружены - не будет отображаться кнопка "заказать тур" */
+                            <div className={flagAllOk ? "drivers_routeBtn drivers_routeBtn-active" : "drivers_routeBtn"} onClick={() => { this.validate() }}>
+                                <span>{textInfo.bookTour}</span>
+                            </div>
+                            : <React.Fragment/>
+                        }
                     </div>
                     <div className="d-flex justify-content-start col-12 errorMes">
-                        {!that.state.isGoodAnswer && !that.state.promoCodIsOk ? <error>Неверный промокод</error> : <div />}
+                        {!that.state.isGoodAnswer && !that.state.promoCodIsOk ? <error>{textInfo.uncorrectPromocode}</error> : <div />}
                     </div>
                     <div className="d-flex justify-content-end errorMes">
-                        {that.state.errorMes ? <error>Заполните правильно все поля</error> : <div />}
+                        {that.state.errorMes ? <error>{textInfo.errorFieldsMessage}</error> : <div />}
                     </div>
 
                 </div>
@@ -448,13 +459,13 @@ export default class StartTravelForm extends React.Component {
                 {isMobileOnly ?
                     <React.Fragment>
                         <Dialog fullScreen open={this.props.travelVisibility} onClose={this.props.changeTravelVisibility} >
-                            {Content(this,flagAllOk,carCapacityArray)}
+                            {Content(this,flagAllOk,carCapacityArray,this.props.activeCurrency,this.props.textInfo)}
                         </Dialog>
                     </React.Fragment>
                     :
                     <React.Fragment>
                         <Dialog open={this.props.travelVisibility} onClose={this.props.changeTravelVisibility} >
-                            {Content(this,flagAllOk,carCapacityArray)}
+                            {Content(this,flagAllOk,carCapacityArray,this.props.activeCurrency,this.props.textInfo)}
                         </Dialog>
                     </React.Fragment>
                 }

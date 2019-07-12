@@ -11,6 +11,7 @@ class CommentBlockClass extends React.Component{
         return !(JSON.stringify(this.props)===JSON.stringify(nextProps));
     }
     render(){
+        debugger;
         console.log("CommentBlock render");
         let selectedComments = this.props.comments.slice((this.props.page - this.props.showPages) * 5, (this.props.page) * 5);
         let textInfo = this.props.storeState.languageTextMain.tourDescription.commentBlock;

@@ -40,6 +40,7 @@ class DriversClass extends React.Component {
     return true;
   }
   changeTravelVisibility=(elementPrice)=> {
+    
     this.setState({
       travelVisibility: !this.state.travelVisibility,
       elementPrice:elementPrice
@@ -101,7 +102,9 @@ class DriversClass extends React.Component {
          cities = route; 
       }
     }
-  
+    let storeState= this.props.storeState;
+    let activeCurrency = storeState.currencies[storeState.activeCurrencyNumber];
+    
     return (
       <React.Fragment>
         <div className="wrapper d-flex flex-column">
@@ -110,7 +113,8 @@ class DriversClass extends React.Component {
           </div>
         </div>
         <StartTravelForm changeTravelVisibility={this.changeTravelVisibility} driversState={this.props.driversState}
-                        travelVisibility={this.state.travelVisibility} isoCountryMap={this.props.storeState.isoCountryMap} storeState={this.props.storeState} elementPrice={this.state.elementPrice}/>
+                        travelVisibility={this.state.travelVisibility} isoCountryMap={this.props.storeState.isoCountryMap} storeState={this.props.storeState}
+                        elementPrice={this.state.elementPrice} activeCurrency={activeCurrency} textInfo={this.props.storeState.languageTextMain.startTravelForm}/>
         <StartTravelSuccess successVisibility={this.state.successVisibility} changeSuccessVisibility={this.changeSuccessVisibility} />
       </React.Fragment>
     );

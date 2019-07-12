@@ -469,6 +469,8 @@ class DriverProfileClass extends React.Component {
         let storeState= this.props.storeState;
         let activeCurrency = storeState.currencies[storeState.activeCurrencyNumber]
         let textInfo = this.props.storeState.languageTextMain.drivers.driversBlock;
+        let defaultPrice = this.props.driversState.driverCarDescription.price * (100 - this.state.discount) / 100;
+        let isCurrencyLoaded = activeCurrency && activeCurrency.symbol;
         if (this.props.driversState.driverCarDescription.id) {
             return (
                 <React.Fragment>
@@ -624,10 +626,15 @@ class DriverProfileClass extends React.Component {
                                                 <input placeholder="Введите промо код" readOnly={this.state.promoCode} value={this.state.promoCod} onChange={(event) => { this.setState({ promoCod: event.target.value,promoCodIsOk:true }) }} type="text" />
                                                 <span onClick={() => { this.state.promoCode ? (this.setState({ promoCod: "", promoCode: "", discount: 0 })) : (this.promocodeVerification()) }}>{this.state.promoCode ? "сбросить" : "применить"}</span>
                                             </div>
-                                            <h3 className="drivers_routePrice">${this.props.driversState.driverCarDescription.price * (100 - this.state.discount) / 100}</h3>
-                                            <div className={flagAllOk ? "drivers_routeBtn drivers_routeBtn-active" : "drivers_routeBtn"} onClick={() => { this.validate() }}>
-                                                <span>Заказать тур</span>
-                                            </div>
+                                            <h3 className="drivers_routePrice">{isCurrencyLoaded ? ((activeCurrency.isLeft ? activeCurrency.symbol : '') + Math.ceil(defaultPrice*activeCurrency.costToDefault) + (!activeCurrency.isLeft ? activeCurrency.symbol : '')) : ''}</h3>
+                                            {
+                                                isCurrencyLoaded ? /**пока валюты не загружены - не будет отображаться кнопка "заказать тур" */
+                                                <div className={flagAllOk ? "drivers_routeBtn drivers_routeBtn-active" : "drivers_routeBtn"} onClick={() => { this.validate() }}>
+                                                    <span>Заказать тур</span>
+                                                </div>
+                                                : <React.Fragment/>
+                                            }
+                                            
                                         </div>
                                         <div className="d-flex justify-content-start col-12 errorMes">
                                             {!this.state.isGoodAnswer && !this.state.promoCodIsOk ? <error>Неверный промокод</error> : <div />}
