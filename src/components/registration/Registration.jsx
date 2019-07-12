@@ -1,7 +1,7 @@
 import React from 'react';
 import requests from '../../config';
 import axios from 'axios';
-
+import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 class Registration extends React.Component{
     constructor(props){
         super(props);
@@ -59,7 +59,7 @@ class Registration extends React.Component{
                 window.opener.document.cookie=jwtstring;
                 window.opener.document.cookie=jwtstatus;
             }           
-            //window.close();
+            window.close();
         }
         function socialWebRegistrationRequest(body){
             console.log("registration");
@@ -136,11 +136,6 @@ class Registration extends React.Component{
         let userType = Number.parseInt(window.opener.localStorage.getItem('userType'));
         let partner = getFarCookie('partner');
         
-        alert('type='+type);
-        
-        alert('agency='+agency);
-        alert('userType='+userType);
-        alert('partner='+partner);
         if(window.location.pathname==="/registration/facebook"){
            // alert('token');
             //console.log('token');
@@ -198,12 +193,9 @@ class Registration extends React.Component{
             }
         }
         if(window.location.pathname==="/registration/google"){
-            alert('google');
             if(token){
-                alert(token);
                 let id_token = urlParams.get('raw[id_token]');
-                if(type==="Registration"){
-                    alert('registration');                    
+                if(type==="Registration"){                  
                     axios.get('https://www.googleapis.com/oauth2/v2/userinfo?access_token='+token+'&id_token='+id_token) 
                     .then(response => {
                         let password = generatePassword(10);
@@ -226,7 +218,6 @@ class Registration extends React.Component{
                 }
                 if(type==="Authorization"){
                     let password = generatePassword(10);
-                    alert('authorization');
                     axios.get('https://www.googleapis.com/oauth2/v2/userinfo?access_token='+token+'&id_token='+id_token)
                     .then(response => {
                         console.log("Try to authorizate google");
@@ -256,8 +247,11 @@ class Registration extends React.Component{
     }
     render(){
         return(
-            <React.Fragment>
-            </React.Fragment>
+            <div className="d-flex" style={{zIndex: '100', position: 'absolute', width: '100%', height: '100%', backgroundColor: "#ffffff"}}>
+                <div style={{margin: 'auto'}}>
+                <DriverRefreshIndicator isRefreshExist={true} isRefreshing={true} isGoodAnswer={true} />
+                </div>
+            </div>
         )
     }
 }

@@ -58,7 +58,7 @@ class RouteTravelBlockClass extends React.Component{
                             <div className={"d-flex col-6 " + (points.length%2===0 ? 'routeTravelBlock_pointElement_left' : 'routeTravelBlock_pointElement_right')} >
                                 <div className="routeTravelBlock_pointValue d-flex flex-row">
                                     <div className="placesDescription_travelBlock_icon placesDescription_calendary" />
-                                    <DatePicker defaultDate={this.state.date} hintText="Дата отправления" minDate={new Date()} onChange={(e, date) => { this.setState({date: date}); let datePicker = document.querySelector(".placeDescrDate"); datePicker.classList.remove("placeDescrDate-Check") }} className="placeDescrDate" />
+                                    <DatePicker placeholderText="placeholder" hintText="Дата отправления" minDate={new Date()} onChange={(e, date) => { this.setState({date: date}); let datePicker = document.querySelector(".placeDescrDate"); datePicker.classList.remove("placeDescrDate-Check") }} className="placeDescrDate calendarModal" />
                                 </div>
                             </div>
                             <div className={"d-flex "+((points.length+1)%2===0 ? 'col-12': 'col-6 routeTravelBlock_pointElement_right')}>

@@ -155,7 +155,6 @@ class RenderModalRegistrationClass extends React.Component {
             console.log('check cookie call');
             var timer = setInterval(() => {
                 if (newWin.window === null) {
-                    alert("window closed");
                     clearInterval(timer);
                 }
                 if (that.state.cookie !== document.cookie) {

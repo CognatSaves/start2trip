@@ -54,7 +54,6 @@ class HomeBodyBottomClass extends React.Component {
         )
       )
     {
-      //alert('send that request');
       this.setState({
         country: this.props.storeState.country,
         language: this.props.storeState.languages[this.props.storeState.activeLanguageNumber].ISO,

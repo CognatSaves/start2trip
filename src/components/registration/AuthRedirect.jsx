@@ -34,8 +34,6 @@ class AuthRedirectClass extends React.Component {
     }
     toggle() {//функция завершения работы
         //this.props.globalhistory.history.pop();
-
-        //alert(window.document.referrer);
         
         
         let address = this.props.globalReduser.previousUrl;
