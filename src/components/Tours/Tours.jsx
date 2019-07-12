@@ -74,7 +74,7 @@ const Tours = connect(
     toursState: state.ToursReduser
   }),
   (dispatch) => ({
-    setMaxPrice: (maxPrice) => dispatch({ type: "SET_MAX_PRICE", maxPrice: maxPrice, pricePart: 100 })
+    setMaxPrice: (maxPrice) => dispatch({ type: "SET_MAX_PRICE", maxPrice: maxPrice, pricePart: 1000 })
   })
 )(ToursClass);
 

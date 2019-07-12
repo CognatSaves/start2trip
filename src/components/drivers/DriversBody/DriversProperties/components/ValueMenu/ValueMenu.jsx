@@ -38,6 +38,8 @@ class ValueMenuClass extends React.Component {
                     <div className="valueMenu_borderElement"><p>{"До $" + this.state.price}</p></div>
                     <Slider
                         defaultValue={this.props.storeState.pricePart}
+                        value={this.state.price}
+                        onChange={(e,value)=>{this.setState({price:value})}}
                         getAriaValueText={this.valuetext}
                         aria-labelledby="discrete-slider"
                         valueLabelDisplay="auto"

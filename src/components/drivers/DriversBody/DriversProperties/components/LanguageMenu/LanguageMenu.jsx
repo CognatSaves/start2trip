@@ -72,8 +72,8 @@ const MenuProps = {
            >
                {/* <MenuItem disabled>Выберите типы</MenuItem> */}
                {this.props.storeState.languages.map((element, index) => (
-                   <MenuItem key={element.languageName} value={element.languageName}>
-                       <Checkbox color="#fff" checked={this.state.languageName.indexOf(element.languageName) > -1} />
+                   <MenuItem key={index} value={element.languageName}>
+                       <Checkbox color="#fff" checked={this.state.languageName.indexOf(index) > -1} />
                        <ListItemText primary={element.languageName} />
                        <div className="autoMenu_element_picture">
                            <img src={requests.serverAddress+element.icon.url} width="50%" height="50%" alt={"auto_" + index}></img>
