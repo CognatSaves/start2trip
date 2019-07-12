@@ -67,9 +67,6 @@ const initialState = {
             let newCountry = arrayAddress[arrayAddress.length - 1].split(' ');
             if (country === (newCountry[1].length>0 ? newCountry[1] : newCountry[0]) || country === "") {
               country = newCountry[1];
-              // } else {
-              //   alert("Error")
-              //   flag = false;
             }
             return { flag: flag, country: country }
         }

@@ -43,10 +43,6 @@ export class CurrentLocation extends React.Component {
       
       
       let center = new maps.LatLng(current.lat, current.lng);
-      /*if(!parseFloat(current.lat)){
-        alert('seycas budet myaso. Open F12 for looking');
-        
-      }*/
       
       console.log('center',center);
       let a = center.lat;

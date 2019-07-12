@@ -111,7 +111,6 @@ class DriverProfileSettingsClass extends React.Component {
             let value={};
             let data = sendedData ? sendedData : this.state.settingsValues;
             if(isPasswordsFilled(data)){
-                //alert('change password');
                 if(checkPasswords(data)){
                     value = {
                         email: data.email,
@@ -126,7 +125,6 @@ class DriverProfileSettingsClass extends React.Component {
                 }
             }
             else{
-                //alert('dont change password');
                 value = {
                     email: data.email,
                     privatePhone: data.privatePhone,

@@ -96,7 +96,6 @@ class DriverProfileBillingClass extends React.Component {
 
     formSubmit = (event, value) => {
         event.preventDefault();
-        alert('Submit completed')
     }
     changePaymentValue = (value) => {
         this.setState({

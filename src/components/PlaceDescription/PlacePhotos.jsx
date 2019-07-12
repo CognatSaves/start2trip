@@ -30,7 +30,6 @@ export default class PlacePhotos extends React.Component{
         let photoBlock = document.getElementById("photoBlock");
         var widthSum = 0;
         let maxWidth = photoBlock ? photoBlock.offsetWidth*2 : 0;
-        //alert('start render');
         //let textInfo = this.props.storeState.languageTextMain.placePhotos;
         
         return (

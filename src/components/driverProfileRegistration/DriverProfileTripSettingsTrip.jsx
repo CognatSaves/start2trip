@@ -170,8 +170,6 @@ class DriverProfileTripSettingsTripClass extends React.Component {
         }
     }
     formSubmit(event) {
-        //
-        //alert('Your favorite flavor is: ' + this.state.value);
         this.applyChanges();
         event.preventDefault();
     }
