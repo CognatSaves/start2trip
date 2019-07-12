@@ -33,17 +33,26 @@ class AutoMenuClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            carValue: ["Любой автомобиль"],
+            carName: ["Любой автомобиль"],
+            carValue:[],
         }
     }
-    handleChange = (e) => {
+    handleChange = (e,value) => {
         if(e.target.value[0]==="Любой автомобиль"){
             e.target.value.splice(0,1);
         }
         if(e.target.value.length===0){
             e.target.value.splice(0,1,"Любой автомобиль");
         }
-        this.setState({ carValue: e.target.value })
+        let newArrayVariants = this.state.carValue;
+        let newEl = newArrayVariants.indexOf(Number(value.key))
+        if (newEl === -1) {
+            newArrayVariants.push(Number(value.key))
+        } else {
+            newArrayVariants.splice(newEl, 1)
+        }
+        this.setState({ carName: e.target.value,carValue:newArrayVariants })
+        this.props.dispatch(setAuto(newArrayVariants))
     }
     render() {
 
@@ -66,7 +75,7 @@ class AutoMenuClass extends React.Component {
                      {/* <InputLabel htmlFor="select-multiple-checkbox">Любой автомобиль</InputLabel>  */}
                     <Select
                         multiple
-                        value={this.state.carValue}
+                        value={this.state.carName}
                         onChange={this.handleChange}
                         input={<Input id="select-multiple-checkbox" />}
                         renderValue={selected => selected.join(', ')}
@@ -74,8 +83,8 @@ class AutoMenuClass extends React.Component {
                     >
                         {/* <MenuItem disabled>Выберите типы</MenuItem> */}
                         {this.props.storeState.autoVariants.map((element, index) => (
-                            <MenuItem key={element} value={element}>
-                                <Checkbox color="#fff" checked={this.state.carValue.indexOf(element) > -1} />
+                            <MenuItem key={index} value={element}>
+                                <Checkbox color="#fff" checked={this.state.carName.indexOf(element) > -1} />
                                 <ListItemText primary={element} />
                                 <div className="autoMenu_element_picture">
                                     <img src={pictureArray[index]} width="80%" height="80%" alt={"auto_" + index}></img>
