@@ -3,6 +3,7 @@ import MapContainer from '../home/HomeBody/MapContainer';
 import LocationSearchInput from '../home/HomeBody/Search';
 import DatePicker from 'material-ui/DatePicker';
 import { connect } from 'react-redux';
+import { isMobileOnly } from 'react-device-detect';
 const alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I",
     "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
   
@@ -28,10 +29,10 @@ class RouteTravelBlockClass extends React.Component{
     render(){
         const mapStyles = {
             map: {
-                position: 'absolute',
+                position: 'relative',
                 width: '100%',
                 height: '100%',
-                borderRadius: '0 5px 5px 0',
+                borderRadius: '5px',
             }
         };
         let points = this.props.points;
@@ -41,11 +42,11 @@ class RouteTravelBlockClass extends React.Component{
             <div className="placeDescription_block d-flex flex-column" id={this.props.id} key={JSON.stringify(points)}>
                 <div className="placeDescription_fragmentName">{textInfo.fragmentName}</div>
                 <div className="d-flex flex-row">
-                    <div className="d-flex col-6 p-0 routeTravelBlock_pointPart" >
+                    <div className="d-flex col-md-6 col-12 px-md-2 px-0 routeTravelBlock_pointPart" >
                         <div className="d-flex flex-wrap routeTravelBlock_pointBlock" >
                         {   
                             points.map((element, index)=>
-                                <div className={"d-flex col-6 " + (index%2===0 ? 'routeTravelBlock_pointElement_left' : 'routeTravelBlock_pointElement_right')}>
+                                <div className={"d-flex col-md-6 col-12 " + (index%2===0 ? 'routeTravelBlock_pointElement_left' : 'routeTravelBlock_pointElement_right')}>
                                     <div className="routeTravelBlock_pointValue d-flex flex-row">
                                         <div style={{paddingRight: '10px',margin: 'auto 0'}}>{alphabet[index]}</div>
                                         <div className="d-flex routeTravelBlock_height">
@@ -55,23 +56,26 @@ class RouteTravelBlockClass extends React.Component{
                                 </div>
                             )
                         }
-                            <div className={"d-flex col-6 " + (points.length%2===0 ? 'routeTravelBlock_pointElement_left' : 'routeTravelBlock_pointElement_right')} >
+                            <div className={"d-flex col-md-6 col-12 " + (points.length%2===0 ? 'routeTravelBlock_pointElement_left' : 'routeTravelBlock_pointElement_right')} >
                                 <div className="routeTravelBlock_pointValue d-flex flex-row">
                                     <div className="placesDescription_travelBlock_icon placesDescription_calendary" />
-                                    <DatePicker placeholderText="placeholder" hintText="Дата отправления" minDate={new Date()} onChange={(e, date) => { this.setState({date: date}); let datePicker = document.querySelector(".placeDescrDate"); datePicker.classList.remove("placeDescrDate-Check") }} className="placeDescrDate calendarModal" />
+                                    <DatePicker  hintText="Дата отправления" minDate={new Date()} onChange={(e, date) => { this.setState({date: date});  }} className="routeDescrDate" />
                                 </div>
                             </div>
-                            <div className={"d-flex "+((points.length+1)%2===0 ? 'col-12': 'col-6 routeTravelBlock_pointElement_right')}>
+                            <div className={"d-flex "+((points.length+1)%2===0 ? 'col-12': 'col-md-6 col-12 routeTravelBlock_pointElement_right')}>
                                 <button className="placesDescription_travelBlock_applyButton p-0" style={{marginBottom: '15px', width: '100%', border: 'none', borderRadius: '5px'}} onClick={()=>this.lookAvailable()}>
                                     <text style={{ margin: "auto", fontSize: '16px' }} >{textInfo.lookAvailable}</text>
                                 </button>
                             </div>
                         </div>
-                    </div>                
+                    </div>     
+                    {isMobileOnly?<React.Fragment>
+
+</React.Fragment>:<React.Fragment>           
                     <div className="placeDescription_fragmentName_mapBlock col-6" style={{marginTop: "15px"}}>       
-                        <MapContainer cities={points} setLengthTime={()=>{console.log('setLengthTime at work')}} mapUpdate={true} />
+                        <MapContainer newMapStyles={mapStyles} cities={points} setLengthTime={()=>{console.log('setLengthTime at work')}} mapUpdate={true} />
                     </div>
-                    
+                    </React.Fragment>}
                     
                 </div>
                     

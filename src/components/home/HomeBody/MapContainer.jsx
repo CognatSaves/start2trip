@@ -41,7 +41,7 @@ export default class MapContainer extends Component {
         cities={this.props.cities}
         setLengthTime={this.props.setLengthTime}
         mapUpdate={this.state.mapUpdate}
-        mapStyles={mapStyles}
+        mapStyles={this.props.newMapStyles?this.props.newMapStyles:mapStyles}
       >                
       </CurrentLocation>
     );

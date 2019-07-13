@@ -4,6 +4,7 @@ import MapContainer from '../home/HomeBody/MapContainer';
 import LocationSearchInput from '../home/HomeBody/Search';
 import DatePicker from 'material-ui/DatePicker';
 import { connect } from 'react-redux';
+import { isMobileOnly } from 'react-device-detect';
 
 class PlaceTravelBlockClass extends React.Component{
     constructor(props){
@@ -32,10 +33,10 @@ class PlaceTravelBlockClass extends React.Component{
     render(){
         const mapStyles = {
             map: {
-              position: 'absolute',
+              position: 'relative',
               width: '100%',
               height: '100%',
-              borderRadius: '0 5px 5px 0',
+              borderRadius: '5px',
             }
           };
         let  place = this.props.place;
@@ -45,7 +46,7 @@ class PlaceTravelBlockClass extends React.Component{
             <div className="placeDescription_block d-flex flex-column" id={this.props.id} key={JSON.stringify(this.state.endPoint)}>
                 <div className="placeDescription_fragmentName">{textInfo.fragmentName}</div>
                 <div className="d-flex flex-row">
-                    <div className="d-flex flex-column col-6" style={{ marginTop: "15px" }}>
+                    <div className="d-flex flex-column col-md-6 col-12 px-md-2 px-0" style={{ marginTop: "15px" }}>
                         
                             <div className="placesDescription_travelBlock_element d-flex" /*style={{ marginRight: "auto" }}*/>
                                 <div className="placesDescription_travelBlock_icon placesDescription_position" />
@@ -57,8 +58,6 @@ class PlaceTravelBlockClass extends React.Component{
                                 <LocationSearchInput readOnlyOn={true} address={this.state.endPoint} changeCity={(index, value,extraData)=>{}} classDropdown="searchElement_style" classInput={"travelBlockSearch" } />
                             </div>
                        
-                        
-
                             <div className="placesDescription_travelBlock_element d-flex" /*style={{ marginRight: "auto" }}*/>
                                 <div className="placesDescription_travelBlock_icon placesDescription_calendary" />
                                 <div className=""/*"col-sm-6 col-12 p-0 pr-1"*/>
@@ -71,9 +70,14 @@ class PlaceTravelBlockClass extends React.Component{
                             </button>
                        
                     </div>
+                    {isMobileOnly?<React.Fragment>
+
+                    </React.Fragment>:<React.Fragment>
                     <div className="placeDescription_fragmentName_mapBlock col-6" style={{marginTop: "15px"}}>       
-                        <MapContainer cities={[...[{point: this.state.startPoint},{point:this.state.endPoint}]]} setLengthTime={()=>{console.log('setLengthTime at work')}} mapUpdate={true} />
+                        <MapContainer newMapStyles={mapStyles} cities={[...[{point: this.state.startPoint},{point:this.state.endPoint}]]} setLengthTime={()=>{console.log('setLengthTime at work')}} mapUpdate={true} />
                     </div>
+                    </React.Fragment>}
+                    
                 </div>
                     
             </div>

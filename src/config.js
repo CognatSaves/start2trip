@@ -1,5 +1,5 @@
 import serverAddress from './serverAddress';
-const frontendAddress = 'http://tripfer.com'; //'http://localhost:3000'; //
+const frontendAddress = 'http://localhost:3000'; //'http://tripfer.com'; //
 
 const serverRegistrationRequest = serverAddress + '/auth/local/register';
 const serverAuthorizationRequest = serverAddress + '/auth/local';
@@ -35,15 +35,15 @@ const tripEnd = serverAddress + "/tripEnd"; //функция окончания 
 const executeSystemPayment = serverAddress + "/executeSystemPayment"; //выполнить оплату за пользование системой
 const getUserTransactions = serverAddress + "/getUserTransactions"; //обновить таблицу транзакций в админке под выбранный пользователем промежуток времени
 const getPlacesList = serverAddress + "/getPlaces"; //получить список мест
-const showPlace = serverAddress+"/showPlace";//отобразить одно место подробно
+const showPlace = serverAddress + "/showPlace"; //отобразить одно место подробно
 
 const createComment = serverAddress + "/createComment"; //создание немодерированного комментария
 const forgotPassword = serverAddress + "/auth/forgotPassword";
 const resetPassword = serverAddress + "/auth/reset-password";
 const changeMyDriver = serverAddress + "/users/me/changeDriver";
-const getRoutes = serverAddress+"/getRoutes";
+const getRoutes = serverAddress + "/getRoutes";
 
-const showRoute = serverAddress+"/showRoute";
+const showRoute = serverAddress + "/showRoute";
 export default {
     frontendAddress: frontendAddress,
     serverAddress: serverAddress,
@@ -85,9 +85,9 @@ export default {
     executeSystemPayment: executeSystemPayment,
     getUserTransactions: getUserTransactions,
     getPlacesList: getPlacesList,
-    showPlace:showPlace,
-    
-    createComment:createComment,
-    getRoutes:getRoutes,
-    showRoute:showRoute
+    showPlace: showPlace,
+
+    createComment: createComment,
+    getRoutes: getRoutes,
+    showRoute: showRoute
 };

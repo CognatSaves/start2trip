@@ -134,11 +134,21 @@
 }
 
 .placesTagList_tagBlock_selected {
+    background: url(./pictures/close.svg) no-repeat;
+    background-size: 15px 15px;
+    background-position: right 8px center;
     border: 2px solid #ff6600;
 }
 
 @media (max-width: 746px) {
     .placesTagList_tagLine {
         width: 100%;
+    }
+    .placesTagList_tagBlock {
+        padding: 5px 17px;
+    }
+    .placesTagList_tagBlock_selected {
+        background-size: 10px 10px;
+        background-position: right 5px center;
     }
 }

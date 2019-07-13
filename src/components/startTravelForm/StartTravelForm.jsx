@@ -160,7 +160,7 @@ const Content = (that,flagAllOk,carCapacityArray,activeCurrency,textInfo) => {
                         + (!activeCurrency.isLeft ? activeCurrency.symbol : '')) : ''}</h3>
                         {
                             isCurrencyLoaded ? /**пока валюты не загружены - не будет отображаться кнопка "заказать тур" */
-                            <div className={flagAllOk ? "drivers_routeBtn drivers_routeBtn-active" : "drivers_routeBtn"} onClick={() => { this.validate() }}>
+                            <div className={flagAllOk ? "drivers_routeBtn drivers_routeBtn-active" : "drivers_routeBtn"} onClick={() => { that.validate() }}>
                                 <span>{textInfo.bookTour}</span>
                             </div>
                             : <React.Fragment/>
@@ -300,41 +300,41 @@ export default class StartTravelForm extends React.Component {
             let el = massValidate[i].children[1];
             if (el.children.length == 2) {
                 if (el.children[1].value == "") {
-                    massValidate[i].children[1].children[0].classList.add("driver_route-error");
+                    massValidate[i].children[1].children[0].classList.add("draver_route-error");
                     isAllGood = false;
                 }
             }
             
             if(this.state.email === "" || !emailValid|| !this.state.emailValid){
-                email.children[1].children[0].classList.add("driver_route-error");
+                email.children[1].children[0].classList.add("draver_route-error");
                 isAllGood = false;
             }
             if (this.state.telNumber === undefined) {
-                phoneInput.children[1].classList.add("driver_route-error");
+                phoneInput.children[1].classList.add("draver_route-error");
                 isAllGood = false;
             }
             if (this.state.checkBoxes === false) {
-                checkBoxes.classList.add("driver_route-error");
+                checkBoxes.classList.add("draver_route-error");
                 isAllGood = false;
             }
             if (this.state.departureTime === "") {
-                departureTime.classList.add("driver_route-error");
+                departureTime.classList.add("draver_route-error");
                 isAllGood = false;
             }
             if (this.state.numberOfPeople === "") {
-                numberOfPeople.classList.add("driver_route-error");
+                numberOfPeople.classList.add("draver_route-error");
                 isAllGood = false;
             }
             if (this.state.placeDeparture === "") {
-                placeDeparture.children[1].children[0].classList.add("driver_route-error");
+                placeDeparture.children[1].children[0].classList.add("draver_route-error");
                 isAllGood = false;
             }
             if (this.state.placeDeparture === "") {
-                placeDeparture.children[1].children[0].classList.add("driver_route-error");
+                placeDeparture.children[1].children[0].classList.add("draver_route-error");
                 isAllGood = false;
             }
             // if (this.state.description === "") {
-            //     description.children[1].children[0].classList.add("driver_route-error");
+            //     description.children[1].children[0].classList.add("draver_route-error");
             //     isAllGood = false;
             // }
         }
