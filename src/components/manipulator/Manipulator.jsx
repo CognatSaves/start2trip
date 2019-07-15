@@ -36,40 +36,48 @@ class ManipulatorClass extends React.Component{
             showMoreButtonState=true;
         }
         let textInfo = this.props.storeState.languageTextMain.manipulator;
+        let isEnoughPages = this.props.maxPage>1
         return(
-         <div className="drivers_block_manipulator" style={{display: this.props.number>0 ? 'flex' : 'none'}}>
-            {
-                
-                this.props.page !== maxPage ?
-                <button className="driversBlockManipulator_button" onClick={()=>this.props.showMorePages()} disabled={showMoreButtonState}>
-                    <div className="driversBlockManipulator_button_value">{textInfo.manupulatorShowMore}</div>
-                </button>
-                : <React.Fragment/>
-                
-            }
-            <div className="driversBlockManipulator_pageNumbers" style={{margin: this.props.page !== maxPage ? '0 auto' : 'auto'}}>
-                <button className="pageNumbers_arrow" onClick={()=>{ if(this.props.page>1){this.props.setPage(this.props.page-1)}}}>
-                    <img src={leftArrow} width="100%" height="100%" alt="leftA" style={{borderRadius: "5px"}}></img>
-                </button>               
-                <div className="pageNumbers_text" onClick={()=>this.props.setPage(1)}>
-                    <div className="pageNumbers_text_value">{textInfo.moveStart}</div>
-                </div>
-                <div className="pageNumbers_numberPosition">
-                    {numberArray.map((element,index)=>                  
-                        <div className="numberPosition_numberBlock" style={{padding: spaceWidthSize[numberArray.length]}}>
-                            <button className={numberStyle[index]} onClick={()=>this.props.setPage(element)}>{element}</button>
+        <React.Fragment>
+            <div className="drivers_block_manipulator" style={{display: this.props.page>0 ? 'flex' : 'none'}}>
+                {
+                    
+                    this.props.page !== maxPage ?
+                    <button className="driversBlockManipulator_button" onClick={()=>this.props.showMorePages()} disabled={showMoreButtonState}>
+                        <div className="driversBlockManipulator_button_value">{textInfo.manupulatorShowMore}</div>
+                    </button>
+                    : <React.Fragment/>
+                    
+                }
+                {
+                    isEnoughPages ? 
+                    <div className="driversBlockManipulator_pageNumbers" style={{margin: this.props.page !== maxPage ? '0 auto' : 'auto'}}>
+                        <button className="pageNumbers_arrow" onClick={()=>{ if(this.props.page>1){this.props.setPage(this.props.page-1)}}}>
+                            <img src={leftArrow} width="100%" height="100%" alt="leftA" style={{borderRadius: "5px"}}></img>
+                        </button>               
+                        <div className="pageNumbers_text" onClick={()=>this.props.setPage(1)}>
+                            <div className="pageNumbers_text_value">{textInfo.moveStart}</div>
                         </div>
-                                              
-                    )}
-                </div>
-                <div className="pageNumbers_text" onClick={()=>this.props.setPage(maxPage)}>
-                    <div classNmae="pageNumbers_text_value">{textInfo.moveEnd}</div>
-                </div>
-                <button className="pageNumbers_arrow" onClick={()=>{ if(this.props.page<maxPage){this.props.setPage(this.props.page+1)}}}>
-                    <img src={rightArrow} width="100%" height="auto" alt="rightA" style={{borderRadius: "5px"}}></img>
-                </button>
+                        <div className="pageNumbers_numberPosition">
+                            {numberArray.map((element,index)=>                  
+                                <div className="numberPosition_numberBlock" style={{padding: spaceWidthSize[numberArray.length]}}>
+                                    <button className={numberStyle[index]} onClick={()=>this.props.setPage(element)}>{element}</button>
+                                </div>
+                                                        
+                            )}
+                        </div>
+                        <div className="pageNumbers_text" onClick={()=>this.props.setPage(maxPage)}>
+                            <div classNmae="pageNumbers_text_value">{textInfo.moveEnd}</div>
+                        </div>
+                        <button className="pageNumbers_arrow" onClick={()=>{ if(this.props.page<maxPage){this.props.setPage(this.props.page+1)}}}>
+                            <img src={rightArrow} width="100%" height="auto" alt="rightA" style={{borderRadius: "5px"}}></img>
+                        </button>
+                    </div> : <React.Fragment/>
+                }
+                
             </div>
-         </div>
+            
+        </React.Fragment>
         )
 
     }
