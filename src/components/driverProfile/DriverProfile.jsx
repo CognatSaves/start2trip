@@ -301,7 +301,7 @@ class DriverProfileClass extends React.Component {
                 email.children[1].children[0].classList.add("draver_route-error");
                 isAllGood = false;
             }
-            if (this.state.telNumber === undefined) {
+            if (this.state.telNumber === '') {
                 phoneInput.children[1].classList.add("draver_route-error");
                 isAllGood = false;
             }

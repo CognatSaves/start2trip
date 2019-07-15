@@ -72,14 +72,14 @@ class PlacesTagListClass extends React.Component{
                                     if(temp){                                      
                                         widthSum+=temp.offsetWidth;
                                         let w = tempWidth.offsetWidth*2-200
-                                        if(w-widthSum<150){                                       
+                                        if(w-widthSum<120){                                       
                                             widthSum-=temp.offsetWidth;
                                             //console.log('temp',temp);
                                             temp.classList.remove('d-flex');
                                             temp.style.display='none';
                                             //temp.remove();
                                             let step = 2
-                                            while(w-widthSum<150){
+                                            while(w-widthSum<120){
                                                 temp = document.getElementById("tagno"+(index-step));
                                                 widthSum-=temp.offsetWidth;
                                                 //console.log('temp',temp);
@@ -112,7 +112,7 @@ class PlacesTagListClass extends React.Component{
                                 <React.Fragment>
                                     <div key={index+Date.now()} id={"tagno"+index} className={"d-flex justify-content-center align-items-center placesTagList_tagBlock"
                                         + (isTagSelected(element.id, this.props.placesState.selectedTags) ? 'placesTagList_tagBlock_selected' : '')} onClick={()=>this.onTagClick(element.id)}>
-                                        <span style={{}}>{element.tagLoc.name}</span>
+                                        <span>{element.tagLoc.name}</span>
                                     </div>
                                     {
                                         (index===this.state.tags.length-1) ? 

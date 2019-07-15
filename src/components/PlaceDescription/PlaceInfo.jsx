@@ -32,7 +32,7 @@ class PlaceInfoClass extends React.Component {
                         </div>
                     </div>
                 }
-                <div className="d-flex" style={{paddingTop: '10px'}}>
+                <div className="d-flex flex-md-row flex-column" style={{paddingTop: '10px'}}>
                     <div className='d-flex'/*d-flex нужен для того, чтобы margin считывался */>
                         <div style={{margin: 'auto 0'}}>
                             <Stars /*changeStarsBlock={'placeinfo_starsBlock'}*/ commentTextStilizated={'placeDescription_description_commentTextStyle'} value={Math.ceil(this.props.rating*10)/10} commentNumber={this.props.comments + " "+textInfo.comments} valueDisplay={true} commentNumberDisplay={true} />

@@ -133,6 +133,7 @@ class PopularPlacesClass extends React.Component {
                                 }
                                 return (
                                     <div className={"col-md-2 col-5 d-flex flex-column align-items-center popularPlacesEl "+(isDirSelected(element.id, this.props.placesState.selectedDirection) ? 'popularPlacesEl_selected' : '')} onClick={()=>this.onDirClick(element.id)}>
+                                        <span className="popularPlacesElMes">Отменить</span>
                                         <div>
                                             <img src={element.image ? requests.serverAddress + element.image.url : ''} alt="img" />
                                         </div>

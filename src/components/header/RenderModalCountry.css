@@ -36,6 +36,12 @@
     .modal-content {
         width: 100% !important;
     }
+    .modalCountry .countryBody {
+        min-width: 250px !important;
+        max-width: none !important;
+        min-height: 200px !important;
+        max-height: none !important;
+    }
 }
 
 @media (max-width: 576px) {}
