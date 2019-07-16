@@ -3,8 +3,8 @@ import {SET_ROUTES_LIST, SET_SELECTED_DIRECTION, SET_PLACES_LIST, SET_PLACES_PAN
 const initialState = {
     page: 1,
     showPages: 1,
-    pagesMenuVariants: [10,20,40],
-    pagesMenuValue: 10,
+    pagesMenuVariants: [8,16,32],
+    pagesMenuValue: 8,
     sortMenuVariants: ["Популярности", "Отзывам", "Названию"],//в случае изменения количества
     // или смысла необходимо их кореллировать с изменениями в переводах
     sortMenuValue: 1,

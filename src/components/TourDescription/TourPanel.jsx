@@ -64,10 +64,23 @@ class TourPanelClass extends React.Component{
         console.log("TourPanel render");
         return(
             <React.Fragment>
-            <div className={"driverProfileComments_panel d-flex flex-wrap "}>
+            <div className={"tourPanel_panel driverProfileComments_panel d-flex "}>
                 {
-                    this.props.variantsArray.map((element,index) =>                    
-                        <a className={this.props.panelSelectedElement===index ? "driverProfileComments_panel_element tourPanel_element tourPanelSelected pr-2" : "driverProfileComments_panel_element tourPanel_element pr-2"} href={"#"+this.props.descriptionId+(index+1)}>{element}</a>
+                    this.props.variantsArray.map((element,index) => {
+                        let indexOfRemovedElement;
+                        let elementId = this.props.descriptionId+(index+1);
+                        if(this.props.removeElements && this.props.removeElements.length>0){
+                            indexOfRemovedElement = this.props.removeElements.indexOf(elementId);
+                        }
+                        else{
+                            indexOfRemovedElement=-1;
+                        }
+                        return (indexOfRemovedElement===-1 ?
+                            <a className={this.props.panelSelectedElement===index ? "descriptionPanel_element tourPanel_element tourPanelSelected" :
+                             "descriptionPanel_element tourPanel_element"} href={"#"+elementId}>{element}</a>
+                            : <React.Fragment/>)
+                        
+                    }                   
                     )
                 }
             </div>

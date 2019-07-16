@@ -65,9 +65,18 @@ const initialState = {
             
             let flag = true;
             let newCountry = arrayAddress[arrayAddress.length - 1].split(' ');
-            if (country === (newCountry[1].length>0 ? newCountry[1] : newCountry[0]) || country === "") {
-              country = newCountry[1];
+            country="";
+            for(let i=0; i<newCountry.length; i++){
+                if(newCountry[i].length>0){
+                    if(i!==0 && country.length>0){//не 1й элемент и 1й не был пустым
+                        country+=' ';
+                    }
+                    country+=newCountry[i];
+                }             
             }
+            /*if (country === (newCountry[1].length>0 ? newCountry[1] : newCountry[0]) || country === "") {
+              country = newCountry[1];
+            }*/
             return { flag: flag, country: country }
         }
                
@@ -88,7 +97,9 @@ const initialState = {
 
           }
           let stringWithoutSpaces = stringWithoutCountry.replace(/ /g, '-');
+          country = country.replace(/ /g, '-');
           stringWithoutSpaces = stringWithoutSpaces.replace(/[/]/g, '');
+          country = country.replace(/[/]/g, '');
           let convId;
           if(conv){   
             stringWithoutSpaces=convertionFunc(stringWithoutSpaces,conv);

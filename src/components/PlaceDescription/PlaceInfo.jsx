@@ -27,9 +27,9 @@ class PlaceInfoClass extends React.Component {
                 <div style={{padding: '75px 0'}}>
                 {
                     <div className="d-flex">
-                        <div className="placeDescription_description_name" >
+                        <h1 className="placeDescription_description_name" >
                             {this.props.name}
-                        </div>
+                        </h1>
                     </div>
                 }
                 <div className="d-flex flex-md-row flex-column" style={{paddingTop: '10px'}}>

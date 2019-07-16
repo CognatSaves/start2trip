@@ -52,10 +52,10 @@ class DriversClass extends React.Component {
     })
   }
   parseStringToArray=(cities,country, langISO)=>{
-    
+    debugger
     let newCities = [];
-    let newString = cities.slice(5);
-    let newArrayCities = newString.split("-to-");
+    let newString = cities.split('from-');
+    let newArrayCities = newString[1].split("-to-");
     for(let i = 0; i<newArrayCities.length;i++){
       let stringWithSpaces = newArrayCities[i].replace(/-/g, ' ');
       stringWithSpaces = stringWithSpaces + ', ' +country;

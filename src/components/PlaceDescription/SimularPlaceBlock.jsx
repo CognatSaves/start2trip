@@ -37,29 +37,29 @@ class SimularToursBlockClass extends React.Component{
         console.log('outerBlock',outerBlock ? outerBlock.offsetWidth : 0);
         return ( 
         <React.Fragment>
-        {
-            /*
-            <div className="placeDescription_fragmentName">{this.props.fragmentName}</div>
-            <div className="render_otherPlaces" style={{ marginTop: "15px" }}>
-                <RenderFourEl tours={tours} priseDisplay={this.props.priseDisplay}/>
-            </div>
+            {
+                /*
+                <div className="placeDescription_fragmentName">{this.props.fragmentName}</div>
+                <div className="render_otherPlaces" style={{ marginTop: "15px" }}>
+                    <RenderFourEl tours={tours} priseDisplay={this.props.priseDisplay}/>
+                </div>
 
-            */
-        }
-        <div className="placeDescription_fragmentName">{this.props.fragmentName}</div>
-        <div className="drivers_block d-flex flex-wrap">
-        {
-            this.props.places.map((element, index)=> {
-                if(index>0){
-                    let temp = document.getElementById("addPlace"+(index-1));
-                    console.log('temp',temp ? temp.offsetWidth : 0);
-                }
-                return(
-                <PlaceListElement element={element} index={'addPlace'+index} findTagName={(tagId)=>findTagName(tagId,this)}/>
-                )
-            })
-        }
-        </div>  
+                */
+            }
+            <div className="placeDescription_fragmentName">{this.props.fragmentName}</div>
+            <div className="drivers_block d-flex flex-wrap" >
+            {
+                this.props.places.map((element, index)=> {
+                    if(index>0){
+                        let temp = document.getElementById("addPlace"+(index-1));
+                        console.log('temp',temp ? temp.offsetWidth : 0);
+                    }
+                    return(
+                    <PlaceListElement element={element} index={'addPlace'+index} findTagName={(tagId)=>findTagName(tagId,this)}/>
+                    )
+                })
+            }
+            </div>  
         </React.Fragment>             
         )
     }

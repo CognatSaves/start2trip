@@ -208,8 +208,8 @@ class DriverProfileClass extends React.Component {
     parseStringToArray = (cities, country) => {
 
         let newCities = [];
-        let newString = cities.slice(5);
-        let newArrayCities = newString.split("-to-");
+        let newString = cities.split("from-");
+        let newArrayCities = newString[1].split("-to-");
         for (let i = 0; i < newArrayCities.length; i++) {
             let stringWithSpaces = newArrayCities[i].replace(/-/g, ' ');
             stringWithSpaces = stringWithSpaces + ', ' + country;
@@ -434,7 +434,9 @@ class DriverProfileClass extends React.Component {
         let cities;
         let country;
         if (this.props.match) {
+            
             if (this.props.storeState.cities[0].point === "") {
+                
                 cities = this.props.match.params.cities;
                 country = this.props.match.params.country;
                 this.parseStringToArray(cities, country);

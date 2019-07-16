@@ -71,8 +71,7 @@ class RouteDescriptionClass extends React.Component {
     }
     render() {
 
-        console.log('RouteDescription render');
-
+        console.log('RouteDescription render', this.state, this.props);
         let topBlockId = "routeDescriptionId";
         let slug = this.props.match.params.slug;
 
@@ -131,7 +130,7 @@ class RouteDescriptionClass extends React.Component {
 
         }
         let textInfo = this.props.storeState.languageTextMain.placeDescription;
-
+        let simularPlaceBlockId = topBlockId+'4';
         return (
             <React.Fragment>
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist}
@@ -141,14 +140,14 @@ class RouteDescriptionClass extends React.Component {
                     {
 
                         this.state.newRoute.local ?
-                            <PlacePhotoShow onClose={() => this.setState({ isMaskVisible: false })}
+                            <PlacePhotoShow onClose={() => {alert('QWJBDKJQFBH'); this.setState({ isMaskVisible: false })}}
                                 isMaskVisible={this.state.isMaskVisible} clickedImageIndex={this.state.clickedImageIndex} images={this.state.newRoute.route.images} />
                             : <React.Fragment />
 
                     }
                  
 
-                    <div className="placeDescription_background col-12 p-0" style={{ background: "url(" + (this.state.newRoute.local && this.state.newRoute.route.routeMainImage.url ? requests.serverAddress + this.state.newRoute.route.routeMainImage.url : '') + ") no-repeat" }} id={topBlockId}>
+                    <div className="placeDescription_background col-12 p-0" style={{ background: "url(" + (this.state.newRoute.local && this.state.newRoute.route.mainImage ? requests.serverAddress + this.state.newRoute.route.mainImage.url : '') + ") no-repeat" }} id={topBlockId}>
                         <Header history={this.props.history} />
 
                         {
@@ -176,7 +175,8 @@ class RouteDescriptionClass extends React.Component {
 
                                                 <TourPanel topBlockId={topBlockId} descriptionId={topBlockId} variantsArray={/*['a','b','v','g','d']*/textInfo.placeDescription.variantsArray}
                                                     setPanelStateFunc={changePlacesFixedClass} panelFixedClass={this.props.placesState.placePanelFixedClass}
-                                                    panelSelectedElement={this.props.placesState.placePanelSelectedElement} setPanelSelectedElement={setPlacesPanelSelectedElement} />
+                                                    panelSelectedElement={this.props.placesState.placePanelSelectedElement} setPanelSelectedElement={setPlacesPanelSelectedElement}
+                                                    removeElements={this.state.newRoute.additionalRoutes.length===0 ? [simularPlaceBlockId] : []} />
 
 
                                             }
@@ -202,9 +202,9 @@ class RouteDescriptionClass extends React.Component {
 
 
 
-                                            <div className="placeDescription_block d-flex flex-column" id={topBlockId + '4'}>
+                                            <div className="placeDescription_block flex-column" id={simularPlaceBlockId} style={{display: this.state.newRoute.additionalRoutes.length>0 ? 'flex' : 'none'}}>
 
-                                                <SimularRouteBlock outerBlock={topBlockId + '4'} routes={this.state.newRoute.additionalRoutes} fragmentName={textInfo.placeDescription.variantsArray[3]} priseDisplay={"none"} />
+                                                <SimularRouteBlock outerBlock={simularPlaceBlockId} routes={this.state.newRoute.additionalRoutes} fragmentName={textInfo.placeDescription.variantsArray[3]} priseDisplay={"none"} />
                                             </div>
 
                                             <CommentBlock targetType="route" comments={this.state.newRoute.comments} targetId={this.state.newRoute.route.id} page={this.state.page} setPage={this.setPage}

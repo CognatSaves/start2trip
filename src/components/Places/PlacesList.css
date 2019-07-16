@@ -31,7 +31,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 160px;
+    height: 150px;
     padding: 10px;
 }
 
@@ -78,7 +78,7 @@
 
 .placesList_info_position_textStyle {
     margin-left: 5px;
-    line-height: 14px;
+    line-height: 16px;
     width: 90%;
 }
 

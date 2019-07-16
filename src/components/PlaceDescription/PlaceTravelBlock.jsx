@@ -23,10 +23,15 @@ class PlaceTravelBlockClass extends React.Component{
     lookAvailable = () => {
         
         console.log('look available');
-        let routeDate =this.props.globalhistory.getRoute([{point: this.state.startPoint},{point: this.state.endPoint}]);
-        let country =this.props.place.country;
-        console.log('routeDate',routeDate);
-        console.log('country',country);
+        
+        let routeDate = this.props.globalhistory.getRoute([{point:this.state.startPoint}, {point:this.state.endPoint}], this.props.storeState.languages[this.props.storeState.activeLanguageNumber].ISO);//this.getRoute(this.props.storeState.cities);
+        
+        let newStringCities = routeDate.route;
+        let country = routeDate.country;
+        let langISO = routeDate.langISO;
+        let dateString = this.props.globalhistory.createDateTimeString(this.state.date, true);
+        this.props.globalhistory.history.push(`/drivers/${country}-${newStringCities}?date=`+dateString+(langISO!=='ENG' ? `&lang=`+langISO : ``));
+    
         
         
     }

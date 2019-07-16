@@ -17,6 +17,15 @@
     cursor: pointer;
 }
 
+.descriptionPanel_element {
+    height: 100%;
+    background: transparent;
+    border: none;
+    line-height: 35px;
+    padding-right: 30px;
+    cursor: pointer;
+}
+
 .driverProfileComments_panel_selectedElement {
     color: #ff6600;
     position: relative;

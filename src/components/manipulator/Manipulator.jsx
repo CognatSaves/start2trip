@@ -36,14 +36,15 @@ class ManipulatorClass extends React.Component{
             showMoreButtonState=true;
         }
         let textInfo = this.props.storeState.languageTextMain.manipulator;
-        let isEnoughPages = this.props.maxPage>1
+        //debugger;
+        let isEnoughPages = (maxPage>1);
         return(
         <React.Fragment>
             <div className="drivers_block_manipulator" style={{display: this.props.page>0 ? 'flex' : 'none'}}>
                 {
                     
                     this.props.page !== maxPage ?
-                    <button className="driversBlockManipulator_button" onClick={()=>this.props.showMorePages()} disabled={showMoreButtonState}>
+                    <button className="driversBlockManipulator_button" onClick={()=>{this.props.showMorePages(); setTimeout(()=>{window.scrollBy(0,400)}, 1)}} disabled={showMoreButtonState}>
                         <div className="driversBlockManipulator_button_value">{textInfo.manupulatorShowMore}</div>
                     </button>
                     : <React.Fragment/>

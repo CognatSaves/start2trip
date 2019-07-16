@@ -141,6 +141,7 @@
     font-weight: 500;
     font-size: 16px;
     color: #304269;
+
 }
 
 .tourPanel_element:hover {
@@ -150,3 +151,25 @@
 .tourPanelSelected {
     color: #ff6600 !important;
 }
+
+.tourPanel_panel{
+    width: 100%;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+}
+
+.tourPanel_panel::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+.tourPanel_panel a {
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.tourPanel_panel a:hover{
+    color: #f60;
+    /*border-bottom: 3px solid #f60;*/
+}
+

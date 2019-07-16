@@ -30,46 +30,49 @@ class PlacesCountryInfoClass extends React.Component {
                 Romanam, Graecam linguam moresque et Christianam religionem,
                 constetisse distinxit.*/}
                 </div>
-                <div className="placesCountryInfo_countryData">
-                  <div className="placesCountryInfo_countryData_element" style={{marginLeft: "auto"}}>
-                    <div className="countryData_element_icon">
-                      <img src={territoryIcon} width="100%" height="15%" alt=" "/>
-                    </div>
-                    <div className="countryData_element_text">
-                      <text style={{textAlign: "center", width: "100%", fontFamily: "Roboto", }}>
-                        <text style={{fontWeight: "300", fontSize: "12px"}}>{textInfo.placesCountryInfo.territory} </text>                     
-                        <br/>
-                        <text style={{fontWeight: "400", fontSize: "14px"}}>{this.props.placesState.country.local ? this.props.placesState.country.local.propTerritory : ''}</text>
-                      </text> 
+                {
+                  false ?
+                  <div className="placesCountryInfo_countryData">
+                    <div className="placesCountryInfo_countryData_element" style={{marginLeft: "auto"}}>
+                      <div className="countryData_element_icon">
+                        <img src={territoryIcon} width="100%" height="15%" alt=" "/>
+                      </div>
+                      <div className="countryData_element_text">
+                        <text style={{textAlign: "center", width: "100%", fontFamily: "Roboto", }}>
+                          <text style={{fontWeight: "300", fontSize: "12px"}}>{textInfo.placesCountryInfo.territory} </text>                     
+                          <br/>
+                          <text style={{fontWeight: "400", fontSize: "14px"}}>{this.props.placesState.country.local ? this.props.placesState.country.local.propTerritory : ''}</text>
+                        </text> 
 
+                      </div>
                     </div>
-                  </div>
-                  <div className="placesCountryInfo_countryData_element">
-                    <div className="countryData_element_icon" >
-                      <img src={peopleIcon} width="100%" height="15%" alt=" "/>
+                    <div className="placesCountryInfo_countryData_element">
+                      <div className="countryData_element_icon" >
+                        <img src={peopleIcon} width="100%" height="15%" alt=" "/>
+                      </div>
+                      <div className="countryData_element_text">
+                        <text style={{textAlign: "center", width: "100%", fontFamily: "Roboto", }}>
+                          <text style={{fontWeight: "300", fontSize: "12px"}}>{textInfo.placesCountryInfo.population} </text>                     
+                          <br/>
+                          <text style={{fontWeight: "400", fontSize: "14px"}}>{(this.props.placesState.country.propPopulation ? this.props.placesState.country.propPopulation+" чел." : '')}</text>
+                        </text> 
+                      </div>
                     </div>
-                    <div className="countryData_element_text">
-                      <text style={{textAlign: "center", width: "100%", fontFamily: "Roboto", }}>
-                        <text style={{fontWeight: "300", fontSize: "12px"}}>{textInfo.placesCountryInfo.population} </text>                     
-                        <br/>
-                        <text style={{fontWeight: "400", fontSize: "14px"}}>{(this.props.placesState.country.propPopulation ? this.props.placesState.country.propPopulation+" чел." : '')}</text>
-                      </text> 
+                    <div className="placesCountryInfo_countryData_element" style={{marginRight: "auto"}}>
+                      <div className="countryData_element_icon"  >
+                        <img src={capitalIcon} width="100%" height="15%" alt=" "/>
+                      </div>
+                      <div className="countryData_element_text">
+                        <text style={{textAlign: "center", width: "100%", fontFamily: "Roboto", }}>
+                          <text style={{fontWeight: "300", fontSize: "12px"}}>{textInfo.placesCountryInfo.capital} </text>                     
+                          <br/>
+                          <text style={{fontWeight: "400", fontSize: "14px"}}>{this.props.placesState.country.local ? this.props.placesState.country.local.propCapital : ''}</text>
+                        </text>  
+                      </div>
                     </div>
-                  </div>
-                  <div className="placesCountryInfo_countryData_element" style={{marginRight: "auto"}}>
-                    <div className="countryData_element_icon"  >
-                      <img src={capitalIcon} width="100%" height="15%" alt=" "/>
-                    </div>
-                    <div className="countryData_element_text">
-                      <text style={{textAlign: "center", width: "100%", fontFamily: "Roboto", }}>
-                        <text style={{fontWeight: "300", fontSize: "12px"}}>{textInfo.placesCountryInfo.capital} </text>                     
-                        <br/>
-                        <text style={{fontWeight: "400", fontSize: "14px"}}>{this.props.placesState.country.local ? this.props.placesState.country.local.propCapital : ''}</text>
-                      </text>  
-                    </div>
-                  </div>
-                </div>
-              </div>         
+                  </div> : <React.Fragment/>       
+                }
+                </div>         
             </React.Fragment>
         )
     }

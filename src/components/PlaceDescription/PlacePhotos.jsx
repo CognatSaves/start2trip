@@ -31,7 +31,7 @@ export default class PlacePhotos extends React.Component{
         var widthSum = 0;
         let maxWidth = photoBlock ? photoBlock.offsetWidth*2 : 0;
         //let textInfo = this.props.storeState.languageTextMain.placePhotos;
-        
+        let className= "col-3 col-lg-3 placePhotos_elementBlock";
         return (
             <React.Fragment>
                 {
@@ -65,7 +65,7 @@ export default class PlacePhotos extends React.Component{
                         if(!this.state.isShortPhotos || maxWidth===0){
                             return(
                                 <React.Fragment>
-                                    <div className="col-3 col-lg-2 placePhotos_elementBlock" id={"photono"+index}>
+                                    <div className={className} id={"photono"+index}>
                                         <img style={{borderRadius: '10px'}} src={requests.serverAddress+element.url} width="100%" height="100%" alt={"/picture " + index} onClick={()=>this.props.showMask(index)}/>
                                     </div>
                                 </React.Fragment>
@@ -83,7 +83,7 @@ export default class PlacePhotos extends React.Component{
                                         if(maxWidth-widthSum<2*temp.offsetWidth && index!==this.props.photoArray.length-1){
                                             isOver=true;
                                             return(
-                                                <div className="col-3 col-lg-2 placePhotos_elementBlock" id={"photono"+index} >
+                                                <div className={className} id={"photono"+index} >
                                                     <img className="placePhotos_imageStyle" src={requests.serverAddress+element.url} width="100%" height="100%" alt={"/picture " + index} />
                                                     <div className="col-12 placePhotos_maskBlock" onClick={()=>this.photoStateChange(false)}>                               
                                                         <div className="d-flex placePhotos_maskBlock_inner">
@@ -96,7 +96,7 @@ export default class PlacePhotos extends React.Component{
                                     }
                                 }
                                 return(
-                                    <div className="col-3 col-lg-2 placePhoto_imageContainer" id={"photono"+index}>
+                                    <div className={className} id={"photono"+index}>
                                         <img style={{borderRadius: '10px'}} src={requests.serverAddress+element.url} width="100%" height="100%" alt={"/picture " + index} onClick={()=>this.props.showMask(index)}/>
                                     </div> 
                                 )                            

@@ -23,7 +23,7 @@ export default class PlacePhotoShow extends React.Component{
                     <Modal onClose={this.props.onClose}>
                         <Carousel 
                         views={this.state.imageArray}
-                        currentIndex={this.props.clickedImageIndex}  />
+                        currentIndex={this.props.clickedImageIndex} />
                     </Modal>
                     ) : null}
                 </ModalGateway> 

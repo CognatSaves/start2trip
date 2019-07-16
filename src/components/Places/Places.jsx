@@ -23,6 +23,10 @@ import axios from 'axios';
 import { setPlacesList } from '../../redusers/ActionPlaces';
 import requests from '../../config';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
+
 class PlacesClass extends React.Component {
   constructor(props) {
     super(props);
@@ -88,7 +92,9 @@ class PlacesClass extends React.Component {
           isRefreshExist: true,
           selectedDirection: selectedDirection
       });
-      axios.get(requests.getPlacesList+"?country="+this.props.storeState.country+"&lang="+this.props.storeState.languages[this.props.storeState.activeLanguageNumber].ISO+(selectedDirection ? "&slug="+selectedDirection : ''))
+      debugger;
+      let country = cookies.get('country', { path: '/' });
+      axios.get(requests.getPlacesList+"?country="+(country ? country : this.props.storeState.country)+"&lang="+this.props.storeState.languages[this.props.storeState.activeLanguageNumber].ISO+(selectedDirection ? "&slug="+selectedDirection : ''))
       .then(response => {
           console.log(response);              
           return response.data;
@@ -120,6 +126,7 @@ class PlacesClass extends React.Component {
                   this.props.dispatch(setSelectedDirection(id));
                 }
                 else{
+                  debugger;
                   //если не нашли - пускаем ещё раз крутилку - если не нашли, сервер не нашёл направление-> вернул всё
                   this.props.globalReduser.history.push('/places');
                 }   

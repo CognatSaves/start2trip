@@ -13,6 +13,7 @@ import HomePopularPlaces from './HomeBottom/HomePopularPlaces';
 import HomeRoutesList from './HomeBottom/HomeRoutesList';
 import HomePlacesPanel from './HomeBottom/HomePlacesPanel';
 import Manipulator from '../manipulator/Manipulator';
+import { setPage, setMorePagesShow } from '../../redusers/ActionPlaces';
 class HomeBodyBottomClass extends React.Component {
   constructor(props) {
     super(props);
@@ -39,6 +40,14 @@ class HomeBodyBottomClass extends React.Component {
     console.log(this.props);
     console.log(this.state);
     return true;
+  }
+  setPageFunc = (page) => {
+    if (page !== "...") {
+      this.props.dispatch(setPage(page));
+    }
+  }
+  showMorePages = () => {
+    this.props.dispatch(setMorePagesShow());
   }
   render() {
 

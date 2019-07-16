@@ -9,7 +9,8 @@
     border-radius: 5px;
 }
 .routeTravelBlock_pointBlock{
-    margin:20px 0 auto 0;
+    padding: 20px 0;
+    margin:0 0 auto 0;
     width: 100%;
 }
 .routeTravelBlock_pointElement_left{
@@ -22,7 +23,7 @@
 }
 .routeTravelBlock_pointValue{
     width: 100%;
-    margin-bottom: 15px;
+    /*margin-bottom: 15px;*/
     padding:10px;
     box-shadow:0 0 5px 0px rgba(0, 0, 0, 0.25);
     border-radius: 5px;
@@ -36,4 +37,7 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
+}
+.routeTravelBlock_element{
+    padding: 5px!important;
 }

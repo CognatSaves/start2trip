@@ -188,7 +188,7 @@ class PlaceDescriptionClass extends React.Component {
         }
 
         let topBlockId = "placeDescriptionId";
-        let simularPlaceBlockId = 'placeDescriptionId4';
+        let simularPlaceBlockId = topBlockId+'4';
         let textInfo = this.props.storeState.languageTextMain.placeDescription;
         return (
             <React.Fragment>
@@ -203,7 +203,7 @@ class PlaceDescriptionClass extends React.Component {
                             : <React.Fragment />
                     }
 
-                    <div className="placeDescription_background col-12 p-0" style={{ background: "url(" + (this.state.newPlace.place && this.state.newPlace.place.images.length > 0 ? requests.serverAddress + this.state.newPlace.place.images[0].url : '') + ") no-repeat" }} id={topBlockId}>
+                    <div className="placeDescription_background col-12 p-0" style={{ background: "url(" + (this.state.newPlace.place && this.state.newPlace.place.mainImage ? requests.serverAddress + this.state.newPlace.place.mainImage.url : '') + ") no-repeat" }} id={topBlockId}>
                         <Header history={this.props.history} />
                         {
                             this.state.newPlace.local ?
@@ -228,7 +228,8 @@ class PlaceDescriptionClass extends React.Component {
                                         <div className="left_body_part col-12">
                                             <TourPanel topBlockId={topBlockId} descriptionId={topBlockId} variantsArray={textInfo.placeDescription.variantsArray}
                                                 setPanelStateFunc={changePlacesFixedClass} panelFixedClass={this.props.placesState.placePanelFixedClass}
-                                                panelSelectedElement={this.props.placesState.placePanelSelectedElement} setPanelSelectedElement={setPlacesPanelSelectedElement} />
+                                                panelSelectedElement={this.props.placesState.placePanelSelectedElement} setPanelSelectedElement={setPlacesPanelSelectedElement}
+                                                removeElements={this.state.newPlace.additionalPlaces.length===0 ? [simularPlaceBlockId] : []}/>
 
                                             <div className="placeDescription_block d-flex flex-column p-0" id={topBlockId + "1"}>
                                                 <div className="placeDescription_fragmentName" style={{ marginBottom: "15px" }} >{textInfo.placeDescription.variantsArray[0]}</div>
@@ -249,7 +250,7 @@ class PlaceDescriptionClass extends React.Component {
                                             }
 
 
-                                            <div className="placeDescription_block d-flex flex-column" id={topBlockId + '4'}>
+                                            <div className="placeDescription_block flex-column" id={simularPlaceBlockId} style={{display: this.state.newPlace.additionalPlaces.length>0 ? 'flex' : 'none'}}>
                                                 {
                                                     /*
                                                         <SimularToursBlock tours={this.state.popularPlaces} fragmentName={"Вас может заинтересовать"} priseDisplay={"none"}/>
