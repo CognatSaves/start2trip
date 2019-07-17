@@ -36,7 +36,7 @@ class ManipulatorClass extends React.Component{
             showMoreButtonState=true;
         }
         let textInfo = this.props.storeState.languageTextMain.manipulator;
-        //debugger;
+        
         let isEnoughPages = (maxPage>1);
         return(
         <React.Fragment>

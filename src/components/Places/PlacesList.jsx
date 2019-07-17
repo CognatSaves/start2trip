@@ -121,7 +121,9 @@ class PlacesListClass extends React.Component {
             <div className="drivers_block d-flex flex-wrap">
                 {selectedPlaces.map((element,index)=>
                 <React.Fragment>
-                    <PlaceListElement element={element} index={index} findTagName={(tag)=>findTagName(tag,this)}/>
+                    <PlaceListElement element={element} index={index} findTagName={(tag)=>findTagName(tag,this)}
+                        
+                    />
                 </React.Fragment>
                 )}
                 {

@@ -92,7 +92,7 @@ class PlacesClass extends React.Component {
           isRefreshExist: true,
           selectedDirection: selectedDirection
       });
-      debugger;
+      
       let country = cookies.get('country', { path: '/' });
       axios.get(requests.getPlacesList+"?country="+(country ? country : this.props.storeState.country)+"&lang="+this.props.storeState.languages[this.props.storeState.activeLanguageNumber].ISO+(selectedDirection ? "&slug="+selectedDirection : ''))
       .then(response => {
@@ -126,7 +126,7 @@ class PlacesClass extends React.Component {
                   this.props.dispatch(setSelectedDirection(id));
                 }
                 else{
-                  debugger;
+                  
                   //если не нашли - пускаем ещё раз крутилку - если не нашли, сервер не нашёл направление-> вернул всё
                   this.props.globalReduser.history.push('/places');
                 }   

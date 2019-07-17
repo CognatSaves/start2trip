@@ -1,10 +1,3 @@
-.driverProfileComments_panel {
-    width: 100%;
-    border-bottom: 1px solid #cccccc;
-    font-size: 16px;
-    font-weight: 600;
-}
-
 .driverProfileComments_panel_element {
     height: 100%;
     background: transparent;
@@ -15,6 +8,7 @@
     font-size: 16px;
     font-weight: 400;
     cursor: pointer;
+    margin: 0 15px;
 }
 
 .descriptionPanel_element {
@@ -26,37 +20,6 @@
     cursor: pointer;
 }
 
-.driverProfileComments_panel_selectedElement {
-    color: #ff6600;
-    position: relative;
-}
-
-.driverProfileComments_panel_selectedElement::after {
-    content: "";
-    display: block;
-    position: absolute;
-    width: 100%;
-    border-bottom: 3px solid #ff6600;
-}
-
-.driverProfileComments_commentBlock {
-    width: 100%;
-    margin-top: 40px;
-}
-
-.commentBlock_createComment {
-    position: relative;
-    width: 100%;
-    box-shadow: 0 0 1px 1px rgba(221, 221, 221, 1);
-    padding: 12px 23px;
-    margin-bottom: 12px;
-    border-radius: 5px;
-}
-
-.commentBlock_createComment:hover {
-    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s;
-}
 
 .profileFeedbackBlock_comments {
     position: relative;
@@ -67,54 +30,6 @@
     border-radius: 5px;
 }
 
-.createComment_picture {
-    height: 60px;
-    width: 60px;
-    border-radius: 30px;
-}
-
-.createComment_textBlock {
-    margin: 0 10px 0 20px;
-    height: 60px;
-    line-height: 60px;
-    font-size: 14px;
-    font-weight: 500;
-    color: #304269;
-}
-
-.createComment_textareaStyle {
-    width: 100%;
-    height: 85px;
-    border-radius: 5px;
-    margin: 15px 0;
-    padding: 5px;
-}
-
-.createComment_textareaStyle::placeholder {
-    color: #cccccc;
-}
-
-.createComment_sendButton {
-    width: 205px;
-    /*height: 40px;
-    background-color: #ff6600;
-    border-radius: 5px;
-    border-color: #ff6600;
-    color: #ffffff;
-
-    font-size: 16px;
-    
-    font-weight: 400;*/
-    margin: 10px 0 0 auto;
-}
-
-
-/*
-.createComment_sendButton_value{
-    display: flex;
-    margin: auto;
-}*/
-
 .commentBlock_element {
     position: relative;
     /* height: 15%; */
@@ -124,105 +39,10 @@
     border-bottom: 1px solid #cccccc;
 }
 
-.commentBlock_element:last-child {
-    border: none;
-}
-
-.valueBlock_firstElement_name {
-    font-size: 14px;
-    font-weight: 600;
-    color: #304269;
-}
-
-.valueBlock_firstElement_date {
-    font-size: 12px;
-    font-weight: 300;
-    color: #686868;
-}
-
-.valueBlock_commentary {
-    width: 100%;
-    max-height: 80px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-weight: 400;
-    font-size: 14px;
-    color: rgba(0, 0, 0, 0.6);
-    margin: 0;
-    line-height: 20px;
-}
-
-
-/* .commentBlock_picture {
-    height: 60px;
-    width: 60px;
-} */
 
 .commentBlock_picture img {
     border-radius: 50%;
     object-fit: cover;
     height: 60px;
     width: 60px;
-}
-
-.commentBlock_valueBlock {
-    height: 100%;
-    width: 100%;
-    /* margin-left: 5%; */
-}
-
-
-/* .news {
-    height: 60px;
-    line-height: 20px;
-    overflow: hidden;
-
-
-background: transparent;
-
-
-
-position: relative;
-text-overflow: ellipsis;
-width: 90%;
-font-weight: 400;
-font-size: 14px;
-color: #304269;
-
-}
-.news::after {
-    content: '...';
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    word-spacing: 99in;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    display: block;
-    width: 45px;
-    padding-left: 5px;
-    overflow: hidden;
-    pointer-events: none;
-    background: #fff;
-
-}
-*/
-
-label {
-    cursor: pointer;
-    width: 100%;
-}
-
-
-/* input:checked+.news {
-    height: auto;
-}
-
-input:checked+.news::after {
-    content: none;
-} */
-
-.put {
-    position: absolute;
-    clip: rect(1px, 1px, 1px, 1px);
 }

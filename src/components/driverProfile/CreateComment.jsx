@@ -9,11 +9,15 @@ import { setModalRegister } from '../../redusers/Action';
 class CreateCommentClass extends React.Component {
     constructor(props) {
         super(props);
-        this.state={};
+        this.state={
+            isNotFilled: false,
+            isAllCorrect: false
+        };
     }
     sendComment = (targetId) => {
-        function isCorrectComment(comment) {
-            if (comment.length === 0) {// == -> ===
+        function isCorrectComment(comment, commentValue) {
+            if (comment.length === 0 || commentValue===0) {// == -> ===
+                //alert('Некорректный комментарий!');
                 return false;
             }
             return true;
@@ -22,7 +26,8 @@ class CreateCommentClass extends React.Component {
         console.log('sendComment targetId=',targetId);
         let newComment = document.getElementById("createComment_textareaStyle").value;
         let jwt = this.props.globalReduser.readCookie('jwt');
-        if(this.props.commentState.commentValue!==0 && isCorrectComment(newComment) && jwt && jwt !== '-'){
+        let isCorrect = isCorrectComment(newComment,this.props.commentState.commentValue);
+        if(isCorrect && jwt && jwt !== '-'){
             
             this.props.startRolling();
             let body = JSON.stringify({targetId:this.props.targetId, text: newComment, mark: this.props.commentState.commentValue });
@@ -48,6 +53,10 @@ class CreateCommentClass extends React.Component {
                     console.log(data);
                     that.props.endRolling(true);
                     //that.getProfileData();
+                    that.setState({
+                        isAllCorrect: true,
+                        isNotFilled: false
+                    })
                 }
             })
             .catch(function (error) {
@@ -56,6 +65,14 @@ class CreateCommentClass extends React.Component {
                 that.props.endRolling(false);
                 //that.catchFunc();
             });
+        }
+        else{
+            if(!isCorrect){
+                this.setState({
+                    isAllCorrect: false,
+                    isNotFilled: true
+                });
+            }
         }
         /*let newComment = document.getElementById("createComment_textareaStyle").value;
         if (isCorrectComment) {
@@ -75,15 +92,17 @@ class CreateCommentClass extends React.Component {
                         <div className="createComment_picture">
                             <img  style={{borderRadius: '30px'}} src={this.props.storeState.avatarUrl} width="100%" height="100%" alt=""></img>
                         </div>
-                        <div className="d-flex flex-column pl-2 align-items-start">
+                        <div className="d-flex flex-column pl-2 align-items-start" onClick={()=>{if(this.state.isNotFilled || this.state.isAllCorrect){this.setState({isNotFilled: false,isAllCorrect: false})}}}>
                             <span className="pt-2 createComment-text">{this.props.createCommentString}</span>
                             <Stars key="SelectStars" valueDisplay={false} commentNumberDisplay={false} changable={true} changeStarsBlock={'placeCreateCommentStars'}/>
                         </div>
                     </div>
 
-                    <textarea id="createComment_textareaStyle" className="createComment_textareaStyle" placeholder={textInfo.yourCommentPlaceholder}></textarea>
+                    <textarea id="createComment_textareaStyle" className="createComment_textareaStyle" placeholder={textInfo.yourCommentPlaceholder}
+                        onClick={()=>{if(this.state.isNotFilled || this.state.isAllCorrect){this.setState({isNotFilled: false, isAllCorrect: false})}}}></textarea>
                     <div className="d-flex flex-row">
-                        <text style={{margin: 'auto 0', color: 'green', fontSize: '14px'}}>{textInfo.infoText}</text>
+                        <text style={{margin: 'auto auto auto 0', color: 'green', fontSize: '14px', display: this.state.isAllCorrect ? 'flex' : 'none'}}>{textInfo.infoText}</text>
+                        <text style={{margin: 'auto auto auto 0', color: 'red', fontSize: '14px', display: this.state.isNotFilled ? 'flex' : 'none'}}>Заполните рейтинг и отзыв</text>
                         <button className="driversAdaptedRoute_sendRequest createComment_sendButton" onClick={() => this.sendComment(this.props.targetId)}>
                             <text>{textInfo.sendText}</text>
                         </button>

@@ -1,6 +1,7 @@
 import React from 'react';
 import Carousel from '../driverProfile/Carousel';
 import requests from '../../config';
+import { isMobileOnly,isMobile } from 'react-device-detect'
 
 export default class PlacePhotos extends React.Component{
     constructor(props){
@@ -24,6 +25,9 @@ export default class PlacePhotos extends React.Component{
     render(){
         
         console.log('placePhotos render');
+        
+        console.log('isMobileOnly', isMobileOnly);
+        console.log('isMobile',isMobile);
         console.log(this.state.update);
         console.log(this.props.photoArray);
         var isOver=false;
@@ -31,7 +35,7 @@ export default class PlacePhotos extends React.Component{
         var widthSum = 0;
         let maxWidth = photoBlock ? photoBlock.offsetWidth*2 : 0;
         //let textInfo = this.props.storeState.languageTextMain.placePhotos;
-        let className= "col-3 col-lg-3 placePhotos_elementBlock";
+        let className= "col-8 col-md-6 col-lg-3 placePhotos_elementBlock";/*placePhotos_elementBlock*/
         return (
             <React.Fragment>
                 {
@@ -45,7 +49,7 @@ export default class PlacePhotos extends React.Component{
                     */
                 }
                 
-                <div id="photoBlock" className="d-flex flex-wrap col-12 p-0">
+                <div id="photoBlock" className="d-flex col-12 flex-md-wrap flex-nowrap p-0 popularPlacesRender">
                 {
                     this.props.photoArray.map((element, index)=>{
                        
@@ -62,7 +66,7 @@ export default class PlacePhotos extends React.Component{
                             
                         }
                         */
-                        if(!this.state.isShortPhotos || maxWidth===0){
+                        if(!this.state.isShortPhotos || maxWidth===0 || isMobile){
                             return(
                                 <React.Fragment>
                                     <div className={className} id={"photono"+index}>

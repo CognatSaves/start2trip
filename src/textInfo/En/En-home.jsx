@@ -8,6 +8,21 @@ const home = {
             right: "КАРТА(ENG)"
         },
     },
+    homeBottom:{
+        homePopularPlaces: {
+            popularPlacesTitle: 'Готовые маршруты из(ENG)',
+            cancel: 'Отменить(ENG)',
+            morePics: 'ещё(ENG)'
+        },
+        homeRoutesList:{
+            noElementsText: 'Ничего не найдено. Попробуйте изменить условия поиска или дату отправления(ENG)'
+        },
+        routeListElement: {
+            detailed: 'Подробнее(ENG)',
+            comments: 'отзывов(ENG)',
+            from: 'Из(ENG)'
+        }
+    },
     homeBodyBottom:{
         homeBottomHeader: 'ПУТЕШЕСТВИЯ С TRIPFER(ENG)',
         homeBottomTitle: [

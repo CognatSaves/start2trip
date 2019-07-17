@@ -5,17 +5,19 @@ import { Link } from 'react-router-dom';
 import requests from '../../config';
 import tagBlue from './pictures/tag_blue.svg';
 import geoIcon from '../home/HomeBody/pictures/geo_icon.svg';
-export default class PlaceListElement extends React.Component{
+import { connect } from 'react-redux';
+class PlaceListElementClass extends React.Component{
     render(){
-    
+    let textInfo = this.props.storeState.languageTextMain.home.homeBottom.routeListElement;
+        
     let element = this.props.element;
     let index = this.props.index;
     return(
-        <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 p-2 pb-3">
+        <div className={this.props.placeListElementClass ? this.props.placeListElementClass : "col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 p-2 pb-3"} >
             <div className={"drivers_block_element d-flex p-0 flex-column"} id={index}>                       
                 <div className="driversBlock_carImage" style={{ background: "url(" + (element.image ? (requests.serverAddress+element.image) : '') + ") no-repeat", backgroundSize: "cover", width: '100%' }}>
                     <Link to={`/place/${element.placelocalization.slug}`} className="driversBlock_carBlackout">
-                        <div className="driversBlock_carBlackout_detailed">Подробнее</div>
+                        <div className="driversBlock_carBlackout_detailed">{textInfo.detailed}</div>
                     </Link>
                 </div>
                 <div className="placesList_info d-flex flex-column">
@@ -42,3 +44,10 @@ export default class PlaceListElement extends React.Component{
     )
     }
 }
+const PlaceListElement = connect(
+    (state) => ({
+        storeState: state.AppReduser, 
+    }),
+  )(PlaceListElementClass);
+  
+export default PlaceListElement;

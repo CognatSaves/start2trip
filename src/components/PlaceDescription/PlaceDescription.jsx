@@ -25,7 +25,7 @@ import requests from '../../config';
 import SimularPlaceBlock from './SimularPlaceBlock';
 import PlacePhotoShow from './PlacePhotoShow.jsx';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
-
+import { isMobile } from 'react-device-detect'
 class PlaceDescriptionClass extends React.Component {
     constructor(props) {
         super(props);
@@ -55,11 +55,22 @@ class PlaceDescriptionClass extends React.Component {
             isGoodAnswer: true,
             //photoArray: [ippodrom, ippodrom4, ippodrom2, ippodrom3, ippodrom, ippodrom4, ippodrom2, ippodrom3, ippodrom, ippodrom4, ippodrom2, ippodrom3, ippodrom, ippodrom4, ippodrom2, ippodrom3, ippodrom, ippodrom4, ippodrom2, ippodrom3],
             selectedLanguage: -1,
+            //isMobile: false,
+            //topBlockImage:''
         };
         this.selectPhoto = this.selectPhoto.bind(this);
         this.showMorePages = this.showMorePages.bind(this);
         this.setPage = this.setPage.bind(this);
     }
+    /*
+    shouldComponentUpdate(nextProps, nextState){
+        debugger;
+        let a = (JSON.stringify(nextProps)!==JSON.stringify(this.props));
+        let b = (JSON.stringify(nextState)!==JSON.stringify(this.state));
+        //let c = (isMobile!==this.state.isMobile);
+        return a || b ;
+    }
+    */
     startRolling = () => {
         this.setState({
             isRefreshExist: true
@@ -131,7 +142,7 @@ class PlaceDescriptionClass extends React.Component {
     }
     render() {
         console.log('Place description render', this.state, this.props);
-
+        
         ///let countryId = this.props.match.params.country;
         //let placeId = this.props.match.params.id;
         let comments = [...this.props.commentState.comments].reverse();
@@ -190,10 +201,13 @@ class PlaceDescriptionClass extends React.Component {
         let topBlockId = "placeDescriptionId";
         let simularPlaceBlockId = topBlockId+'4';
         let textInfo = this.props.storeState.languageTextMain.placeDescription;
+        let bigImage = 'url(' + (this.state.newPlace.place && this.state.newPlace.place.mainImage ?
+            requests.serverAddress + this.state.newPlace.place.mainImage.url : '') + ') no-repeat';
+        let smallImage = 'url(' + (this.state.newPlace.place && this.state.newPlace.place.blockListImage ?
+            requests.serverAddress + this.state.newPlace.place.blockListImage.url : '') + ') no-repeat';
         return (
             <React.Fragment>
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
-
 
                 <div style={{ position: 'relative' }}>
                     {
@@ -203,7 +217,7 @@ class PlaceDescriptionClass extends React.Component {
                             : <React.Fragment />
                     }
 
-                    <div className="placeDescription_background col-12 p-0" style={{ background: "url(" + (this.state.newPlace.place && this.state.newPlace.place.mainImage ? requests.serverAddress + this.state.newPlace.place.mainImage.url : '') + ") no-repeat" }} id={topBlockId}>
+                    <div className="placeDescription_background col-12 p-0" style={{ background: isMobile ? smallImage : bigImage }} id={topBlockId}>
                         <Header history={this.props.history} />
                         {
                             this.state.newPlace.local ?

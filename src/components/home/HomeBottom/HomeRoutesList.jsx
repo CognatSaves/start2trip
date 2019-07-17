@@ -51,6 +51,7 @@ class HomeRoutesListClass extends React.Component{
         this.props.placesState.page*this.props.placesState.pagesMenuValue);
 
         console.log('selectedRoutes',selectedRoutes);
+        let textInfo = this.props.storeState.languageTextMain.home.homeBottom.homeRoutesList;
         return(
             
             <React.Fragment>
@@ -63,7 +64,7 @@ class HomeRoutesListClass extends React.Component{
                 {
                     selectedRoutes.length===0 ?
                     <React.Fragment>
-                        <div>Ничего не найдено. Попробуйте изменить условия поиска или дату отправления</div>
+                        <div>{textInfo.noElementsText}</div>
                     </React.Fragment>
                     :<React.Fragment/>
                 }

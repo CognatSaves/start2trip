@@ -11,6 +11,8 @@ let placeDescription = {
     },
     placeTravelBlock:{
         fragmentName: 'Как добраться(ENG)',
+        startPointPlaceholder: 'Введите место отправления(ENG)',
+        startDate:"Дата отправления(ENG)",
         lookAvailable: 'СМОТРЕТЬ ПРЕДЛОЖЕНИЯ(ENG)'
     },
     placeDescription:{

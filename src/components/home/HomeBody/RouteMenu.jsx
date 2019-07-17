@@ -112,7 +112,7 @@ class RouteMenuClass extends React.Component {
       dateValue = props.globalhistory.getDateFromDateString(result);
     }
     else{
-      dateValue = new Date();
+      dateValue = /*new Date()*/'';
     }
     
     this.state = {
@@ -187,9 +187,9 @@ class RouteMenuClass extends React.Component {
   }
 
   validationInput = (massCities) => {
-
+    //debugger;
     let flag = true;
-    let massInput = document.querySelectorAll("._checkInput")
+    /*let massInput = document.querySelectorAll("._checkInput")
     for (let i = 0; i < massInput.length; i++) {
       if (massInput[i].defaultValue == "") {
         let massDivInput = document.querySelectorAll("._checkDiv")
@@ -201,6 +201,9 @@ class RouteMenuClass extends React.Component {
         massDivInput[i].classList.add("startCity-error")
         flag = false;
       }
+    }*/
+    if(!this.props.validationInput(massCities)){
+      flag=false;
     }
     if (this.state.date == "") {
       let datePicker = document.querySelector(".routemenu_date")
@@ -418,7 +421,7 @@ class RouteMenuClass extends React.Component {
 
           <div className="routemenu_setDate">
             <div className="col-sm-6 col-12 p-0 pr-1">
-              <DatePicker defaultDate={this.state.date} hintText={textInfo.datePickerText} minDate={new Date()} onChange={(e, date) => { this.chooseDate(date); let datePicker = document.querySelector(".routemenu_date"); datePicker.classList.remove("routemenu_date-Check") }} className="routemenu_date" />
+              <DatePicker /*defaultDate={this.state.date}*/ hintText={textInfo.datePickerText} minDate={new Date()} onChange={(e, date) => { this.chooseDate(date); let datePicker = document.querySelector(".routemenu_date"); datePicker.classList.remove("routemenu_date-Check") }} className="routemenu_date" />
             </div>
 
             {this.props.showBtPrice ?

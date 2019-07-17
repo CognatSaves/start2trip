@@ -47,7 +47,7 @@ class SimularToursBlockClass extends React.Component{
                 */
             }
             <div className="placeDescription_fragmentName">{this.props.fragmentName}</div>
-            <div className="drivers_block d-flex flex-wrap" >
+            <div className="d-flex col-12 flex-md-wrap flex-nowrap p-0 popularPlacesRender" >
             {
                 this.props.places.map((element, index)=> {
                     if(index>0){
@@ -55,7 +55,9 @@ class SimularToursBlockClass extends React.Component{
                         console.log('temp',temp ? temp.offsetWidth : 0);
                     }
                     return(
-                    <PlaceListElement element={element} index={'addPlace'+index} findTagName={(tagId)=>findTagName(tagId,this)}/>
+                    <PlaceListElement element={element} index={'addPlace'+index} findTagName={(tagId)=>findTagName(tagId,this)}
+                        placeListElementClass={"col-xl-3 col-lg-3 col-md-4 col-sm-6 col-10 p-2 pb-3"}
+                    />
                     )
                 })
             }

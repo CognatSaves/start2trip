@@ -77,7 +77,7 @@ export default class LocationSearchInput extends React.Component {
                 }
               }}>
                 <span className={this.props.spanText ? "locationSvg" : " d-none"} style={{ display: this.state.inFocus ? "" : "none" }}>{this.props.spanText}</span>
-                <input id={this.props.id}
+                <input id={this.props.id} placeholder={this.props.placeholder ? this.props.placeholder : ''}
                   onFocus={(e) => {
                     if (isMobileOnly) {
                       var scrolled = window.pageYOffset || document.documentElement.scrollTop;

@@ -1,6 +1,14 @@
 import React from 'react';
-
+import { Markdown } from 'react-showdown';
 import { connect } from 'react-redux';
+
+/*
+var showdown = require('showdown');
+var converter = new showdown.Converter();
+*/
+
+
+
 class PlaceProgrammClass extends React.Component{
     /*constructor(props){
         super(props);
@@ -8,19 +16,40 @@ class PlaceProgrammClass extends React.Component{
     shouldComponentUpdate(nextProps){
         return !(JSON.stringify(this.props)===JSON.stringify(nextProps));
     }
+    /*
     render(){
         
         //let textInfo = this.props.storeState.languageTextMain.placeProgramm;
+        //var htmlElement =
         
-        return (
-            <div className="col-12 d-flex flex-column">
+        <div className="col-12 d-flex flex-column">
                 <div className="d-flex placeDescription_description_info">
-                    {this.props.place.info}
+                    
+                    { converter.makeHtml(this.props.place.info)}
                 </div>
             </div>
+
+
+        
+        return (
+            <Markdown markup={ this.props.place.info } components={{ MyComponent }} />
+            
         )
     }
+*/
+    render() {
+        return(
+		    <Markdown markup={ this.props.place.info } />
+        )
+	}
 }
+
+/*
+render: () => {
+    var markdown = '# Hello\n\n<MyComponent tag="strong">More Content...</MyComponent>';
+    return <Markdown markup={ markdown } components={{ PlaceProgrammClass }} />
+}
+*/
 
 const PlaceProgramm = connect(
     (state) => ({

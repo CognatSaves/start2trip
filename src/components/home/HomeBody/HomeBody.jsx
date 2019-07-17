@@ -7,7 +7,56 @@ import './calendary.css';
 import { connect } from 'react-redux'
 import { isMobileOnly } from 'react-device-detect'
 
-
+const ChangeMapListBlock = (props) =>{
+  let {mapContainerClass, routeMenuClass, that} = props;
+  return(
+    <React.Fragment>
+      {
+        that.state.changeMapList ?
+        <div className={mapContainerClass}>
+          <MapContainer cities={that.props.storeState.cities} setLengthTime={that.setLengthTime} mapUpdate={true} />
+        </div>
+        :
+        <div className={routeMenuClass}>
+          <RouteMenu  goToDrivers={that.goToDrivers} date={that.state.date} validationInput={(cities)=>that.validationInput(cities)}/>
+          <div style={{ visibility: that.state.calendaryVisibility }} >
+          </div>
+        </div>
+      }
+    </React.Fragment>
+  )
+}
+const ConstructorButtonsBlock = (props) => {
+  let {that, buttonClasses, textInfo} = props;
+  return(
+    <React.Fragment>
+    {
+      <div className="d-flex mb-4">
+        <span className={that.state.changeMapList ? buttonClasses[0] : buttonClasses[1]} onClick={() => { 
+              that.setState(
+                { 
+                  changeMapList: false
+                }
+              )
+            }
+          }
+          >{textInfo.changeMapList.first}</span>
+        <span className={that.state.changeMapList ? buttonClasses[2] : buttonClasses[3]} 
+          onClick=
+          {() => 
+            {           
+              if(that.validationInput(that.props.storeState.cities))
+              {
+                that.setState({ changeMapList: true })
+              }
+            }
+          }
+        >{textInfo.changeMapList.second}</span>
+      </div>
+    }
+    </React.Fragment>
+  )
+}
 class HomeBodyClass extends React.Component {
   constructor(props) {
     super(props);
@@ -25,24 +74,11 @@ class HomeBodyClass extends React.Component {
     this.state = { ...this.state, "mapUpdate": true, calendaryVisibility: 'hidden' }
 
   }
-
-
-  // chooseDate(value) {
-  //   let dayMass = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
-  //   let monthMass = ["января", "февраля", "марта", "апреля", "мая",
-  //     "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
-  //   let resultString = dayMass[value.getDay()] + ", " + value.getDate() + " " + monthMass[value.getMonth()] + " " + value.getFullYear();
-  //   this.setState({
-  //     date: resultString,
-  //     mapUpdate: false
-  //   });
-  // }
   goToDrivers = () => {
     this.setState({mapUpdate: false});
     this.props.setState(this.state.cities, this.state.date, "drivers");
     this.props.redirectToDrivers();
   }
-
   setLengthTime = (travelLength, travelTime) => {
     function getLengthString(travelLength) {
       let length = travelLength;
@@ -72,11 +108,27 @@ class HomeBodyClass extends React.Component {
 
     this.props.setLengthTime(lengthString, timeString);
   }
-  
+  validationInput = (massCities) => {
+    //Внимание!(спасибо за внимание) Эта функция использует элементы из RouteMenu(первоначально эта функция и принадлежит вышеупомянутому классу).
+    //В случае их изменения, может ругаться и сильно.
+    //в исходной функции ещё есть проверка на дату - она осталась на старом месте
+    let flag = true;
+    let massInput = document.querySelectorAll("._checkInput")
+    for (let i = 0; i < massInput.length; i++) {
+      if (massInput[i].defaultValue == "") {
+        let massDivInput = document.querySelectorAll("._checkDiv")
+        massDivInput[i].classList.add("startCity-CheckInput")
+        flag = false;
+      }
+      if (massInput[i].defaultValue !== massCities[i].point) {
+        let massDivInput = document.querySelectorAll("._checkDiv")
+        massDivInput[i].classList.add("startCity-error")
+        flag = false;
+      }
+    }
+    return flag
+  }
   render() {
-   
-      
-    
     let textInfo = this.props.storeState.languageTextMain.home.homeBody;
     console.log(isMobileOnly, "isMobileOnlyBody")
     return (
@@ -88,50 +140,24 @@ class HomeBodyClass extends React.Component {
                 <div className="d-flex flex-column align-items-center ">
                   <div className="mobailRoutMenuTitle">{textInfo.mobileRouteMenuTitle}</div>
                   <p className="mobailRoutMenuText">{textInfo.mobileRouteMenuText.mobileRouteMenuText}<br />{textInfo.mobileRouteMenuText.secondLine}</p>
-                  <div className="d-flex mb-4">
-                    <span className={this.state.changeMapList ? "mobailRoutMenuBtList" : "mobailRoutMenuBt-active mobailRoutMenuBtList"} onClick={() => { this.setState({ changeMapList: false }) }}>{textInfo.changeMapList.first}</span>
-                    <span className={this.state.changeMapList ? "mobailRoutMenuBt-active mobailRoutMenuBtMap" : "mobailRoutMenuBtMap"} onClick={() => { this.setState({ changeMapList: true }) }}>{textInfo.changeMapList.second}</span>
-                  </div>
+                  <ConstructorButtonsBlock that={this} textInfo={textInfo} 
+                  buttonClasses={["mobailRoutMenuBtList","mobailRoutMenuBt-active mobailRoutMenuBtList",
+                  "mobailRoutMenuBt-active mobailRoutMenuBtMap","mobailRoutMenuBtMap"]}/>
                 </div>
-                {this.state.changeMapList ?
-                  <div className="mapContain">
-                    <MapContainer cities={this.props.storeState.cities} setLengthTime={this.setLengthTime} mapUpdate={true} />
-                  </div>
-                  :
-                  <div className="p-2">
-                    <RouteMenu  goToDrivers={this.goToDrivers} date={this.state.date} />
-                    <div style={{ visibility: this.state.calendaryVisibility }}>
-                    </div>
-                  </div>
-                }
+                <ChangeMapListBlock that={this} mapContainerClass="mapContain" routeMenuClass="p-2"/>
               </div>
             </div>
 
           </React.Fragment>
           :
           <React.Fragment>
-            <div className="routContent d-flex flex-column align-items-center col-xl-10 col-lg-10 col-md-12 col-sm-11 col-11">
-              <div className="d-flex mb-4">
-                <span className={this.state.changeMapList ? "routMenuBtList" : "routMenuBt-active routMenuBtList"} onClick={() => { this.setState({ changeMapList: false }) }}>{textInfo.changeMapList.first}</span>
-                <span className={this.state.changeMapList ? "routMenuBt-active routMenuBtMap" : "routMenuBtMap"} onClick={() => { this.setState({ changeMapList: true }) }}>{textInfo.changeMapList.second}</span>
-              </div>
-
-              {this.state.changeMapList ?
-                <div className="sizeMap col-12 p-0">
-                  <MapContainer cities={this.props.storeState.cities} setLengthTime={this.setLengthTime} mapUpdate={true} />
-                </div>
-                :
-                <div className="col-12 p-0">
-                  <RouteMenu goToDrivers={this.goToDrivers} date={this.state.date} />
-                </div>
-              }
-
+            <div className="routeContent d-flex flex-column align-items-center col-xl-10 col-lg-10 col-md-12 col-sm-11 col-11">
+              <ConstructorButtonsBlock that={this} textInfo={textInfo} 
+                    buttonClasses={["routMenuBtList","routMenuBt-active routMenuBtList",
+                    "routMenuBt-active routMenuBtMap","routMenuBtMap"]}/>              
+              <ChangeMapListBlock that={this} mapContainerClass="sizeMap col-12 p-0" routeMenuClass="col-12 p-0"/>
             </div>
-
           </React.Fragment>}
-
-
-
       </React.Fragment>
     );
   }

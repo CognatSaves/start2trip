@@ -110,12 +110,13 @@ class PopularPlacesClass extends React.Component {
        // let textInfo = this.props.storeState.languageTextMain.places;
         /*let directions = arrayRender;
         */
+        let textInfo = this.props.storeState.languageTextMain.home.homeBottom.homePopularPlaces;
         return (
             <React.Fragment>
                 <div className="popularPlacesBody pt-4">
 
                     <div className="popularPlacesTitle">
-                        <h3>{/*textInfo.popularPlaces.popularPlacesTitle*/'Готовые маршруты из:'}</h3>
+                        <h3>{textInfo.popularPlacesTitle+':'}</h3>
                     </div>
 
                     <div className="d-flex col-12 p-0">
@@ -124,16 +125,19 @@ class PopularPlacesClass extends React.Component {
                                 if (arrayRender.length !== placeRender.length) {
                                     if (placeRender.length - 1 == index) {
                                         return (
-                                            <div className="col-md-2 col-5 d-flex flex-column align-items-center popularPlacesEl popularPlacesMore" onClick={() => { this.setState({ howMuchRender: this.state.howMuchRender + 6 }) }}>
-                                                <span>{"more"}</span>
-                                                <img src={arrayRender[arrayRender.length-1].image ? requests.serverAddress+ arrayRender[arrayRender.length-1].image.url : ''} alt="img" />
+                                            <div className="col-md-2 col-5 d-flex flex-column align-items-center popularPlacesEl popularPlacesMore"
+                                            onClick={() => { this.setState({ howMuchRender: this.state.howMuchRender + 6 }) }}>
+                                                <span>{textInfo.morePics}</span>
+                                                <img src={arrayRender[arrayRender.length-1].image ? requests.serverAddress + arrayRender[arrayRender.length-1].image.url : ''} alt="img" />
                                             </div>
                                         )
                                     }
                                 }
                                 return (
-                                    <div className={"col-md-2 col-5 d-flex flex-column align-items-center popularPlacesEl "+(isDirSelected(element.id, this.props.placesState.selectedDirection) ? 'popularPlacesEl_selected' : '')} onClick={()=>this.onDirClick(element.id)}>
-                                        <span className="popularPlacesElMes">Отменить</span>
+                                    <div className={"col-md-2 col-5 d-flex flex-column align-items-center popularPlacesEl "
+                                     +(isDirSelected(element.id, this.props.placesState.selectedDirection) ? 'popularPlacesEl_selected' : '')}
+                                     onClick={()=>this.onDirClick(element.id)}>
+                                        <span className="popularPlacesElMes">{textInfo.cancel}</span>
                                         <div>
                                             <img src={element.image ? requests.serverAddress + element.image.url : ''} alt="img" />
                                         </div>
