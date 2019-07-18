@@ -64,7 +64,7 @@ class PlaceDescriptionClass extends React.Component {
     }
     /*
     shouldComponentUpdate(nextProps, nextState){
-        debugger;
+        
         let a = (JSON.stringify(nextProps)!==JSON.stringify(this.props));
         let b = (JSON.stringify(nextState)!==JSON.stringify(this.state));
         //let c = (isMobile!==this.state.isMobile);

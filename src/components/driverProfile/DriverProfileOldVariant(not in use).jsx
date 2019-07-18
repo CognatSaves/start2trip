@@ -9,6 +9,7 @@ import { connect } from 'react-redux'
 import Header from '../header/Header';
 import { setDriversRouteChange, setDriverCarDescription, setCarTypes } from '../../redusers/ActionDrivers';
 // import StartTravelForm from '../startTravelForm/StartTravelForm';
+import StartTravelSuccess from '../startTravelForm/StartTravelSuccess';
 // import DriverAdaptedRoute from './DriverAdaptedRoute';
 import DriverInfo from './DriverInfo.jsx';
 // import DriverProfileTours from './DriverProfileTours';
@@ -31,19 +32,14 @@ import { setLengthTime } from '../../redusers/ActionDrivers'
 import axios from 'axios';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 import { isMobileOnly } from 'react-device-detect';
-import CommentBlock from '../TourDescription/CommentBlock';
-import StartTravelForm from '../startTravelForm/StartTravelForm';
-import StartTravelSuccess from '../startTravelForm/StartTravelSuccess';
-import LocationSearchInput from '../home/HomeBody/Search';
-const alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I",
-    "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+import CommentBlock from '../TourDescription/CommentBlock'
 
 class DriverProfileClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             travelVisibility: false,
-            successVisibility: 'none',
+            // successVisibility: 'none',
             page: 1,
             // mapRwanda:true,
             showPages: 1,
@@ -161,20 +157,6 @@ class DriverProfileClass extends React.Component {
         }
 
     }
-    changeTravelVisibility=(elementPrice)=> {
-    
-        this.setState({
-            travelVisibility: !this.state.travelVisibility,
-            elementPrice:elementPrice
-        })
-    }
-    changeSuccessVisibility=(value, travelVisibility)=> {
-        debugger;
-        this.setState({
-            travelVisibility: travelVisibility ? travelVisibility : this.state.travelVisibility,
-            successVisibility: value
-        })
-    }
     componentDidUpdate(prevProps, prevState) {
 
         if (prevProps.storeState.userData.firstName !== this.props.storeState.userData.firstName) {
@@ -213,26 +195,16 @@ class DriverProfileClass extends React.Component {
             travelVisibility: !this.state.travelVisibility
         })
     }
-    changeSuccessVisibility = (value) => {
-        this.setState({
-            successVisibility: value,
-            travelVisibility: false
-        })
-    }
+    // changeSuccessVisibility = (value) => {
+    //     this.setState({
+    //         successVisibility: value
+    //     })
+    // }
     changePanelVariant = (value) => {
         this.setState({
             showPanelVariant: value
         })
     }
-    changeCity = (index, value, extraData) => {
-        let cities = this.props.storeState.cities;
-        cities[index] = {
-          point:value,
-          lat: extraData.location.lat,
-          long: extraData.location.long
-        };
-        this.props.dispatch(setCities(cities))
-      }
     parseStringToArray = (cities, country) => {
 
         let newCities = [];
@@ -522,7 +494,6 @@ class DriverProfileClass extends React.Component {
             return (
                 <React.Fragment>
                     <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
-                    
                     <div className="drivers_top_background">
                         <Header history={this.props.history} />
                         <dir className="driversGoBack" style={{display: isMobileOnly?"flex":"none"}}>
@@ -532,84 +503,170 @@ class DriverProfileClass extends React.Component {
                             <div className="drivers_top_block d-flex flex-column">
 
                                 <DriverInfo element={driver} />
-                                {
-                                    /*
-                                    <div className="driversRoute col-12 ">
-                                        <hr />
-                                        <div className="d-flex flex-sm-row flex-column pb-3 col-12">
-                                            <h3title>Маршрут: </h3title>
-                                            <h3 className="d-flex flex-sm-row flex-wrap flex-column"> {this.props.storeState.cities.map((element, index) => {
-                                                let returned = (index === this.props.storeState.cities.length - 1 ? element.point : element.point + "  ⟶  ") 
-                                                return<span>{returned}</span>
-                                            })}</h3>
-                                        </div>
-                                        
-
-                                        <div className="route_time_text col-sm-6 col-12">Время в пути без остановок:
-                                        <p1> {this.props.driversState.travelTime}</p1>
-                                            , длина пути:
-                                        <p2> {this.props.driversState.travelLength}</p2>
-
-                                        </div>
+                                <div className="driversRoute col-12 ">
+                                    <hr />
+                                    <div className="d-flex flex-sm-row flex-column pb-3 col-12">
+                                        <h3title>Маршрут: </h3title>
+                                        <h3 className="d-flex flex-sm-row flex-wrap flex-column"> {this.props.storeState.cities.map((element, index) => {
+                                             let returned = (index === this.props.storeState.cities.length - 1 ? element.point : element.point + "  ⟶  ") 
+                                             return<span>{returned}</span>
+                                        })}</h3>
                                     </div>
+                                    
 
-                                    */
-                                }
-                                
-                                <div className="drivers_route col-12 d-flex " >
-                                    <div className="d-flex flex-column routeTravelBlock_pointPart col-md-6 col-12" style={{margin: 0}}>
-                                        <div style={{paddingTop: '10px'}}>
-                                            <div className="route_time_text col-12">Время в пути без остановок:
-                                            <p1> {this.props.driversState.travelTime}</p1>
-                                                , длина пути:
-                                            <p2> {this.props.driversState.travelLength}</p2>
+                                    <div className="route_time_text col-sm-6 col-12">Время в пути без остановок:
+                                    <p1> {this.props.driversState.travelTime}</p1>
+                                        , длина пути:
+                                    <p2> {this.props.driversState.travelLength}</p2>
 
+                                    </div>
+                                </div>
+                                <div className="drivers_route col-12 d-flex" >
+                                    <div className="drivers_route_form col-md-6 col-12 p-0">
+                                        <div className="d-flex flex-sm-row flex-wrap flex-column col-12 p-0">
+                                            <div className="col-sm-6 col-12 order-0">
+                                                <TextField
+                                                    label="Имя*"
+                                                    value={this.state.firstName}
+                                                    onChange={(event) => { this.setState({ firstName: event.target.value }); event.target.previousSibling.classList.remove("draver_route-error") }}
+                                                    className="textField validate w-100"
+                                                    margin="normal"
+                                                    variant="outlined"
+                                                />
+
+                                            </div>
+                                            <div className="col-sm-6 col-12 order-2">
+                                                <ReactTelInput
+                                                    defaultCountry={this.props.storeState.isoCountryMap}
+                                                    classNames="route_datePhoneInput w-100"
+                                                    flagsImagePath={flags}
+                                                    value={this.state.telNumber}
+                                                    onChange={(telNumber, selectedCountry) => { this.setState({ telNumber: telNumber }); document.querySelector(".route_datePhoneInput").children[1].classList.remove("draver_route-error") }}
+                                                    onBlur={(value) => { console.log(value) }}
+                                                    initialValue="Телефон"
+                                                />
+                                            </div>
+                                            <div className="col-sm-6 col-12 order-6">
+                                                <DatePicker onChange={(nul, date) => { this.setState({ date: date }); document.querySelector(".route_dateCalendarModal").classList.remove("draver_route-error") }} shouldDisableDate={(day) => { let a = day }} defaultDate={this.state.date} minDate={new Date()} disableYearSelection={true} floatingLabelText="Дата отправления*" className="route_dateCalendarModal" />
+                                            </div>
+                                            <div className="col-sm-6 col-12 order-5">
+                                                <FormControl className="route_dateSelect numberOfPeople w-100">
+                                                    <InputLabel htmlFor="select-multiple">Количество человек*</InputLabel>
+                                                    <Select
+                                                        value={this.state.numberOfPeople}
+                                                        input={<Input id="select-multiple" variant="outlined" />}
+                                                        onChange={(event) => { this.setState({ numberOfPeople: event.target.value }); document.querySelector(".numberOfPeople").classList.remove("draver_route-error") }}
+                                                    >
+                                                        {carCapacityArray.map(name => (
+                                                            <MenuItem key={name} value={name}>
+                                                                {name}
+                                                            </MenuItem>
+                                                        ))}
+                                                    </Select>
+                                                </FormControl>
+                                            </div>
+                                            <div className="col-sm-6 col-12 order-1">
+                                                <TextField
+                                                    label="Фамилия*"
+                                                    value={this.state.lastName}
+                                                    onChange={(event) => { this.setState({ lastName: event.target.value }); event.target.previousSibling.classList.remove("draver_route-error") }}
+                                                    className="textField validate w-100"
+                                                    margin="normal"
+                                                    variant="outlined"
+                                                />
+                                            </div>
+                                            <div className="col-sm-6 col-12 order-3">
+                                                <TextField
+                                                    label="Email*"
+                                                    value={this.state.email}
+                                                    onChange={(event) => { this.setState({ email: event.target.value }); event.target.previousSibling.classList.remove("draver_route-error") }}
+                                                    className="textField validateEmail w-100"
+                                                    margin="normal"
+                                                    variant="outlined"
+                                                />
+                                            </div>
+                                            <div className="col-sm-6 col-12 order-7">
+                                                <FormControl className="route_dateSelect departureTime w-100">
+                                                    <InputLabel htmlFor="select-multiple">Время*</InputLabel>
+                                                    <Select
+                                                        value={this.state.departureTime}
+                                                        input={<Input id="select-multiple" variant="outlined" />}
+                                                        onChange={(event) => { this.setState({ departureTime: event.target.value }); document.querySelector(".departureTime").classList.remove("draver_route-error") }}
+                                                    >
+                                                        {this.state.time.map(name => (
+                                                            <MenuItem key={name} value={name}>
+                                                                {name}
+                                                            </MenuItem>
+                                                        ))}
+                                                    </Select>
+                                                </FormControl>
+                                            </div>
+                                            <div className="col-sm-6 col-12 order-8">
+                                                <TextField
+                                                    label="Место отправления*"
+                                                    multiline
+                                                    rowsMax="4"
+                                                    defaultValue={this.state.placeDeparture}
+                                                    onChange={(event) => { this.setState({ placeDeparture: event.target.value }); event.target.previousSibling.classList.remove("draver_route-error") }}
+                                                    className="textField placeDeparture w-100"
+                                                    margin="normal"
+                                                    variant="outlined"
+                                                />
                                             </div>
                                         </div>
-                                            <div className=" col-12 p-0 d-flex flex-wrap" >
-                                                <div className="d-flex flex-wrap routeTravelBlock_pointBlock">
-                                                {
-                                                    this.props.storeState.cities.map((element, index) => 
-                                                    <div className={"routeTravelBlock_element d-flex col-md-6 col-12 " /*+ (index%2===0 ? 'routeTravelBlock_pointElement_left' : 'routeTravelBlock_pointElement_right')*/}>
-                                                        <div className="routeTravelBlock_pointValue d-flex flex-row">
-                                                            <div style={{paddingRight: '10px',margin: 'auto 0'}}>{alphabet[index]}</div>
-                                                            <div className="d-flex routeTravelBlock_height driverProfile_searchContainer">
-                                                                <LocationSearchInput readOnlyOn={true} address={element.point} changeCity={this.changeCity} index={index} classDropdown="searchElement_style" classInput={index ? "city_input" : "city_input _checkInput"} />
-                                                                {
-                                                                    /*
-                                                                        <div style={{margin: 'auto 0', textTransform: 'capitalize'}}>{element.point}</div>
-                                                                    */
-                                                                }
-                                                                
-                                                            </div>
-                                                            
-                                                        </div>
-                                                    </div>
-                                                    )
-                                                }
-                                                <div className={"routeTravelBlock_element d-flex col-md-6 col-12 "}>
-                                                    <div className={"routeTravelBlock_pointValue d-flex flex-row "}
-                                                    onClick={()=>{if(this.state.isDateHighlighted){this.setState({isDateHighlighted: false})}}}>
-                                                        <div className="placesDescription_travelBlock_icon placesDescription_calendary" />
-                                                        <DatePicker defaultDate={this.state.date} hintText={textInfo.startDate} minDate={new Date()} onChange={(e, date) => { this.setState({date: date});  }} className="routeDescrDate" />
-                                                    </div>
-                                                </div>
-                                                <div className={"routeTravelBlock_element d-flex "+((this.props.storeState.cities.length+1)%2===0 ? 'col-12': 'col-md-6 col-12') }>
-                                                    <button className='driversBlock_buttonStyle' /*"placesDescription_travelBlock_applyButton p-0 "*/
-                                                    style={{/*marginBottom: '15px',*/ width: '100%', border: 'none', borderRadius: '5px'}}
-                                                    onClick={()=>{this.changeTravelVisibility(defaultPrice)}}>
-                                                        <text style={{ margin: "auto", fontSize: '16px' }} >
-                                                        {"ЗАБРОНИРОВАТЬ " + (isCurrencyLoaded ? ((activeCurrency.isLeft ? activeCurrency.symbol : '')
-                                                        + Math.ceil(defaultPrice*activeCurrency.costToDefault) 
-                                                        + (!activeCurrency.isLeft ? activeCurrency.symbol : '')) : '')}</text>
-                                                    </button>
-                                                </div>
+                                        <div className="col-12">
+                                            <TextField
+                                                label="Описание"
+                                                multiline
+                                                rows="2"
+                                                rowsMax="2"
+                                                defaultValue={this.state.description}
+                                                onChange={(event) => { this.setState({ description: event.target.value }); event.target.previousSibling.classList.remove("draver_route-error") }}
+                                                className="textField w-100 description"
+                                                margin="normal"
+                                                variant="outlined"
+                                            />
+                                        </div>
+
+
+                                        <div className="col-12 p-0">
+                                            <div className="d-flex align-items-center ">
+                                            <Checkbox
+                                                checked={this.state.checkBoxes}
+                                                className="checkboxStyle"
+                                                onChange={(event) => { this.setState({ checkBoxes: !this.state.checkBoxes }) }}
+                                            />
+                                            <span className="drivers_route_Link">Я принимаю условия <Link to="">договора оферты</Link></span>
                                             </div>
+                                            <span className="errorMes col-12" style={{display: !this.state.checkBoxes && this.state.errorMes ? "block" : "none"  }}>Вы должны принять условия договора</span>
+                                        </div>
+                                        <div className=" d-flex align-items-center justify-content-between flex-md-row flex-column col-12 py-md-0 py-4">
+                                            <div className="d-flex drivers_routePromo">
+                                                <input placeholder="Введите промо код" readOnly={this.state.promoCode} value={this.state.promoCod} onChange={(event) => { this.setState({ promoCod: event.target.value,promoCodIsOk:true }) }} type="text" />
+                                                <span onClick={() => { this.state.promoCode ? (this.setState({ promoCod: "", promoCode: "", discount: 0 })) : (this.promocodeVerification()) }}>{this.state.promoCode ? "сбросить" : "применить"}</span>
                                             </div>
+                                            <h3 className="drivers_routePrice">{isCurrencyLoaded ? ((activeCurrency.isLeft ? activeCurrency.symbol : '') + Math.ceil(defaultPrice*activeCurrency.costToDefault) + (!activeCurrency.isLeft ? activeCurrency.symbol : '')) : ''}</h3>
+                                            {
+                                                isCurrencyLoaded ? /**пока валюты не загружены - не будет отображаться кнопка "заказать тур" */
+                                                <div className={flagAllOk ? "drivers_routeBtn drivers_routeBtn-active" : "drivers_routeBtn"} onClick={() => { this.validate() }}>
+                                                    <span>Заказать тур</span>
+                                                </div>
+                                                : <React.Fragment/>
+                                            }
+                                            
+                                        </div>
+                                        <div className="d-flex justify-content-start col-12 errorMes">
+                                            {!this.state.isGoodAnswer && !this.state.promoCodIsOk ? <error>Неверный промокод</error> : <div />}
+                                        </div>
+                                        <div className="d-flex justify-content-end errorMes">
+                                            {this.state.errorMes ? <error>Заполните правильно все поля</error> : <div />}
+                                        </div>
+
                                     </div>
-                                    <div className="col-6 d-md-block d-none " style={{height: '400px'}}>
+                                    <div className="col-6 d-md-block d-none ">
                                         <MapContainer cities={this.props.storeState.cities} setLengthTime={this.setLengthTime} mapUpdate={true} />
                                     </div>
+
                                 </div>
 
                             </div>
@@ -655,10 +712,6 @@ class DriverProfileClass extends React.Component {
                     {/* successVisibility={this.changeSuccessVisibility} changeSuccessVisibility={this.changeSuccessVisibility}*/}
                     {/* <StartTravelForm changeTravelVisibility={this.changeTravelVisibility} elementPrice={this.state.elementPrice} driversState={this.props.driversState}
                         travelVisibility={this.state.travelVisibility} isoCountryMap={this.props.storeState.isoCountryMap} storeState={this.props.storeState} /> */}
-                    <StartTravelForm {...this.props} changeTravelVisibility={this.changeTravelVisibility} driversState={this.props.driversState} changeSuccessVisibility={this.changeSuccessVisibility}
-                        travelVisibility={this.state.travelVisibility} isoCountryMap={this.props.storeState.isoCountryMap} storeState={this.props.storeState}
-                        elementPrice={defaultPrice} activeCurrency={activeCurrency} textInfo={this.props.storeState.languageTextMain.startTravelForm}/>
-        
                     <StartTravelSuccess successVisibility={this.state.successVisibility} changeSuccessVisibility={this.changeSuccessVisibility} />
                 </React.Fragment>
 

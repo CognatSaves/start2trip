@@ -321,6 +321,9 @@
     position: relative;
 }
 
+.placePhotos_elementBlock:hover{
+    cursor: pointer;
+}
 .placePhotos_imageStyle {
     border-radius: 10px;
 }
