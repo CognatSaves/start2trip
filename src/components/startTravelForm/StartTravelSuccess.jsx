@@ -7,9 +7,9 @@ import successImage from './pictures/success.svg'
 export default class StartTravelSuccess extends React.Component {
     render() {
         return (
-            <div className="travelFormBlock" style={{ display: "none" }}
-                onClick={(e) => { if (e.currentTarget === e.target) { this.props.changeSuccessVisibility('none') } }}>
-                <div className="startTravelForm" style={{ display: this.props.successVisibility }}>
+            <div className="travelFormBlock"  style={{ display: this.props.successVisibility }}/*style={{ display: "none" }}*/
+                /*onClick={(e) => { if (e.currentTarget === e.target) { this.props.changeSuccessVisibility('none') } }}*/>
+                <div className="startTravelForm">
                     <div className="successImageBlock">
                         <img src={successImage} width="100%" height="100%" alt="SUCCESS"></img>
                     </div>

@@ -44,7 +44,7 @@ class RouteTravelBlockClass extends React.Component{
         };
         let points = [...this.props.points];
         let textInfo = this.props.storeState.languageTextMain.placeDescription.placeTravelBlock;
-        //debugger;
+       
         return(
             <div className="placeDescription_block d-flex flex-column" id={this.props.id} key={JSON.stringify(points)}>
                 <div className="placeDescription_fragmentName">{textInfo.fragmentName}</div>

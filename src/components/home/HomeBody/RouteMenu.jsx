@@ -84,7 +84,7 @@ const CityRouteTable = (props) => {
               <React.Fragment />
               :
               <React.Fragment>
-                <div className=" d-flex routemenu_addCity col" onClick={() => { addCity() }}>
+                <div className=" d-flex routemenu_addCity col-12" onClick={() => { addCity() }}>
                   <div className="routemenu_city_add_text" style={{ background: "url(" + addIcon + ") no-repeat" }} >{textInfo.addPointText}</div>
                 </div>
               </React.Fragment>
@@ -121,7 +121,7 @@ class RouteMenuClass extends React.Component {
       isRefreshing: true,
       isGoodAnswer: true,
       date: /*this.props.storeState.date*/dateValue,
-      isLoaded: document.location.pathname==='/drivers' ? true : false,//переменная для загрузки 1 раза водителей.
+      isLoaded: document.location.pathname==='/drivers' || document.location.pathname==='/home' ? true : false,//переменная для загрузки 1 раза водителей.
       //language: this.props.storeState.activeLanguageNumber
     }
   }
@@ -187,7 +187,7 @@ class RouteMenuClass extends React.Component {
   }
 
   validationInput = (massCities) => {
-    //debugger;
+   
     let flag = true;
     /*let massInput = document.querySelectorAll("._checkInput")
     for (let i = 0; i < massInput.length; i++) {
