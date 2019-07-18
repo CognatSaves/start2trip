@@ -26,17 +26,14 @@ class AgencyProfileDriversClass extends React.Component{
             isRefreshing: true,
             isGoodAnswer: true
         }
-        this.getProfileData = this.getProfileData.bind(this);
-        this.startRefresher = this.startRefresher.bind(this);
-        this.thenFunc = this.thenFunc.bind(this);
-        this.catchFunc = this.catchFunc.bind(this);
+
     }
     copyValue = (id) =>{
         let selectedInput = document.getElementById(id);
         selectedInput.select();
         document.execCommand("copy");
     }
-    getProfileData(thenFunc,catchFunc){
+    getProfileData=(thenFunc,catchFunc)=>{
         console.log('getProfileData');
         let that = this;
         let jwt = this.props.globalReduser.readCookie('jwt');
@@ -56,13 +53,13 @@ class AgencyProfileDriversClass extends React.Component{
             //return null;
         }
     }
-    startRefresher(){
+    startRefresher=()=>{
         this.setState({
             isRefreshExist: true,
             isRefreshing: true
         });
     }   
-    thenFunc(){
+    thenFunc=()=>{
         console.log('thenFunc');
         this.setState({
             isRefreshExist: true,
@@ -76,7 +73,7 @@ class AgencyProfileDriversClass extends React.Component{
             })
         }, 1000);
     }
-    catchFunc(){
+    catchFunc=()=>{
         console.log('catchFunc');
         this.setState({
             isRefreshExist: true,

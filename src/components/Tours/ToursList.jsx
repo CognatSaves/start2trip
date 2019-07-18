@@ -10,21 +10,19 @@ import { setToursPage, setToursMorePagesShow } from '../../redusers/ActionTours'
 import ToursListBlock from './ToursListBlock';
 
 class ToursListClass extends React.Component {
-    constructor(props) {
-        super(props);
-        this.toursSort = this.toursSort.bind(this);
-        this.setPage = this.setPage.bind(this);
-        this.showMorePages = this.showMorePages.bind(this);
-    }
-    setPage(page) {
+    // constructor(props) {
+    //     super(props);
+
+    // }
+    setPage=(page)=> {
         if (page !== "...") {
             this.props.dispatch(setToursPage(page));
         }
     }
-    showMorePages() {
+    showMorePages=()=> {
         this.props.dispatch(setToursMorePagesShow());
     }
-    toursSort(array, type) {
+    toursSort=(array, type)=> {
         function sortPrice(a, b) {
             if (a.price > b.price) return 1;
             if (a.price < b.price) return -1;

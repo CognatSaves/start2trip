@@ -7,17 +7,16 @@ import bookmarkSelected from '../Places/pictures/bookmark_orange.svg';
 import { setToursPage, setToursMorePagesShow } from '../../redusers/ActionTours';
 
 class DriverProfileToursClass extends React.Component{
-    constructor(props){
-        super(props);
-        this.setPage = this.setPage.bind(this);
-        this.showMorePages = this.showMorePages.bind(this);
-    }
-    setPage(page) {
+    // constructor(props){
+    //     super(props);
+
+    // }
+    setPage=(page)=> {
         if (page !== "...") {
             this.props.dispatch(setToursPage(page));
         }
     }
-    showMorePages() {
+    showMorePages=()=> {
         this.props.dispatch(setToursMorePagesShow());
     }
     render(){

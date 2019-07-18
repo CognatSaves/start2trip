@@ -45,19 +45,8 @@ class DriverProfileTripSettingsTripClass extends React.Component {
             isRefreshing: true,
             isGoodAnswer: true,
         }
-
-        this.addCityRadius = this.addCityRadius.bind(this);
-        this.deleteCityRadius = this.deleteCityRadius.bind(this);
-        this.formSubmit = this.formSubmit.bind(this);
-        this.inputChange = this.inputChange.bind(this);
-        this.applyChanges = this.applyChanges.bind(this);
-
-        this.getProfileData = this.getProfileData.bind(this);
-        this.startRefresher = this.startRefresher.bind(this);
-        this.thenFunc = this.thenFunc.bind(this);
-        this.catchFunc = this.catchFunc.bind(this);
     }
-    getProfileData(){
+    getProfileData=()=>{
         console.log('getProfileData');
         let that = this;
         let jwt = this.props.globalReduser.readCookie('jwt');
@@ -77,13 +66,13 @@ class DriverProfileTripSettingsTripClass extends React.Component {
             //return null;
         }
     }
-    startRefresher(){
+    startRefresher=()=>{
         this.setState({
             isRefreshExist: true,
             isRefreshing: true
         });
     }   
-    thenFunc(){
+    thenFunc=()=>{
         console.log('thenFunc');
         console.log(this.props.globalReduser);
         this.setState({
@@ -97,7 +86,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
             })
         }, 1000);
     }
-    catchFunc(){
+    catchFunc=()=>{
         console.log('catchFunc');
         this.setState({
             isRefreshExist: true,
@@ -110,7 +99,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
             })
         }, 2000);
     }
-    applyChanges(props) {
+    applyChanges=(props)=> {
         let jwt = this.props.globalReduser.readCookie('jwt');
         if (jwt && jwt !== "-") {
             let that = this; 
@@ -169,12 +158,12 @@ class DriverProfileTripSettingsTripClass extends React.Component {
             //return null;
         }
     }
-    formSubmit(event) {
+    formSubmit=(event)=> {
         this.applyChanges();
         event.preventDefault();
     }
 
-    addCityRadius() {
+    addCityRadius=()=> {
         let newArrayCity = this.state.cityRadius;
         newArrayCity.push({ point: "", radius: "", lat: '', long: '' });
         this.setState({
@@ -182,7 +171,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
         })
     }
 
-    deleteCityRadius(index) {
+    deleteCityRadius=(index)=> {
         let newArrayCity = this.state.cityRadius;
         newArrayCity.splice(index, 1);
         this.setState({
@@ -190,7 +179,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
         })
         console.log(this.state.cityRadius)
     }
-    inputChange(value, variable, index = 0) {
+    inputChange=(value, variable, index = 0)=> {
         switch (variable) {
             case 'radius': {
                 let cityRadius = this.state.cityRadius;

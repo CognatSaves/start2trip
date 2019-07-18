@@ -6,11 +6,11 @@ import RouteListElement from './RouteListElement';
 
 
 class HomeRoutesListClass extends React.Component{
-    constructor(props){
-        super(props);
-        this.placesSort=this.placesSort.bind(this);
-    }
-    placesSort(array,type){
+    // constructor(props){
+    //     super(props);
+
+    // }
+    placesSort=(array,type)=>{
         function sortRating(a,b){//1
             if(a.rating>b.rating) return -1;
             if(a.rating<b.rating) return 1;

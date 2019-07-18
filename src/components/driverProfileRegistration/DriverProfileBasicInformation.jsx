@@ -60,15 +60,9 @@ class DriverProfileBasicInformationClass extends React.Component {
                 dataAbout: profile.dataAbout
             }
         }
-        this.formSubmit = this.formSubmit.bind(this);
-        this.applyChanges = this.applyChanges.bind(this);
-        this.inputChange = this.inputChange.bind(this);
-        this.getProfileData = this.getProfileData.bind(this);
-        this.startRefresher = this.startRefresher.bind(this);
-        this.thenFunc = this.thenFunc.bind(this);
-        this.catchFunc = this.catchFunc.bind(this);
+
     }
-    getProfileData(){
+    getProfileData=()=>{
         console.log('getProfileData');
         let that = this;
         let jwt = this.props.globalReduser.readCookie('jwt');
@@ -88,13 +82,13 @@ class DriverProfileBasicInformationClass extends React.Component {
             //return null;
         }
     }
-    startRefresher(){
+    startRefresher=()=>{
         this.setState({
             isRefreshExist: true,
             isRefreshing: true
         });
     }  
-    thenFunc(){
+    thenFunc=()=>{
         console.log('thenFunc');
         this.setState({
             isRefreshExist: true,
@@ -107,7 +101,7 @@ class DriverProfileBasicInformationClass extends React.Component {
             })
         }, 1000);
     }
-    catchFunc(){
+    catchFunc=()=>{
         console.log('catchFunc');
         this.setState({
             isRefreshExist: true,
@@ -120,7 +114,7 @@ class DriverProfileBasicInformationClass extends React.Component {
             })
         }, 2000);
     }
-    applyChanges() {
+    applyChanges=()=> {
         let jwt = this.props.globalReduser.readCookie('jwt');
         if (jwt && jwt !== "-") {
             let that = this;
@@ -172,7 +166,7 @@ class DriverProfileBasicInformationClass extends React.Component {
             this.props.globalReduser.history.push('/login');            
         }
     }
-    inputChange(value, variable) {
+    inputChange=(value, variable)=> {
         let profileData = this.state.profileData;
         switch (variable) {
             case 'firstName': {
@@ -209,7 +203,7 @@ class DriverProfileBasicInformationClass extends React.Component {
             profileData: profileData
         })
     }
-    formSubmit(event) {
+    formSubmit=(event)=> {
         event.preventDefault();
         this.applyChanges();
     }
@@ -315,7 +309,7 @@ class DriverProfileBasicInformationClass extends React.Component {
                             <div className="bottomContentNote d-flex align-items-center">
                                 <label htmlFor="basicInfoLocation" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">{textPage.basicInfoLocation.label}:</label>
                                 <div className="d-flex col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">
-                                    <LocationSearchInput address={this.state.profileData.city} changeCity={this.changeCity} classInput="searchInputDriverInformation" id="basicInfoLocation" classDropdown="searchDropdownDriverInformation" classDiv="p-0 classDivDriverHomeCity"/>
+                                    <LocationSearchInput placeholder={"Введите город"} address={this.state.profileData.city} changeCity={this.changeCity} classInput="searchInputDriverInformation" id="basicInfoLocation" classDropdown="searchDropdownDriverInformation" classDiv="p-0 classDivDriverHomeCity"/>
                                 </div>
                                 <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">{textPage.basicInfoLocation.description}</p>
                             </div>

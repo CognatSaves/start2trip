@@ -49,21 +49,14 @@ class TourDescriptionClass extends React.Component {
                 { img: georgiaImg, title: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", link: "/driver", reviews: "55 отзыва", prise: "150$" },
             ],
         }
-        
-        
-        
-        this.selectPhoto=this.selectPhoto.bind(this);
-        this.showMorePages=this.showMorePages.bind(this);
-        this.setPage=this.setPage.bind(this);
-        
     }
-    showMorePages() {
+    showMorePages=()=> {
         this.setState({
             page: this.state.page + 1,
             showPages: this.state.showPages + 1
         })
     }
-    setPage(page) {
+    setPage=(page)=> {
         if (page !== "...") {
             this.setState(
                 {
@@ -73,7 +66,7 @@ class TourDescriptionClass extends React.Component {
             )
         }
     }
-    selectPhoto(photoIndex){
+    selectPhoto=(photoIndex)=>{
         function calculatePhotoSlice(photoIndex, length,OldPhotoIndex, OldPhotoSlice){
             let photoSlice=0;
             if(OldPhotoIndex<photoIndex){

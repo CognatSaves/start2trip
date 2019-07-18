@@ -32,13 +32,11 @@ class UserProfileNavigationClass extends React.Component {
             isRefreshExist:false,
             isRefreshing: true,
             isGoodAnswer: true,
+            activePage:"",
         };
-        this.getProfileData = this.getProfileData.bind(this);
-        this.startRefresher = this.startRefresher.bind(this);
-        this.thenFunc = this.thenFunc.bind(this);
-        this.catchFunc = this.catchFunc.bind(this);
+
     }
-    getProfileData(thenFunc,catchFunc){
+    getProfileData=(thenFunc,catchFunc)=>{
         console.log('getProfileData');
         let that = this;
         let jwt = this.props.globalReduser.readCookie('jwt');
@@ -58,13 +56,13 @@ class UserProfileNavigationClass extends React.Component {
             //return null;
         }
     }
-    startRefresher(){
+    startRefresher=()=>{
         this.setState({
             isRefreshExist: true,
             isRefreshing: true
         });
     }   
-    thenFunc(){
+    thenFunc=()=>{
         console.log('thenFunc');
         console.log(this.props.profileReduser);
         this.setState({
@@ -78,7 +76,7 @@ class UserProfileNavigationClass extends React.Component {
             })
         }, 1000);
     }
-    catchFunc(){
+    catchFunc=()=>{
         console.log('catchFunc');
         this.setState({
             isRefreshExist: true,
@@ -155,6 +153,7 @@ class UserProfileNavigationClass extends React.Component {
         //     let img = requests.serverAddress + this.state.profile.avatar.url
         //     this.setState({ avatar: img })
         // }
+
         let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileNavigation;
         let profile = this.props.globalReduser.profile;
         return (
@@ -224,6 +223,7 @@ class UserProfileNavigationClass extends React.Component {
                                 this.shiftLeft(event);
                                 this.props.globalhistory.history.push(this.state.route[index]);
                             }
+                            this.setState({activePage:this.state.route[index]})
                         }
                         }>{element}</span>
                     )}
@@ -235,7 +235,7 @@ class UserProfileNavigationClass extends React.Component {
 
 const UserProfileNavigation = connect(
     (state) => ({
-        storeState: state.UserProfileRegistrationReduser,
+        storeState: state.AppReduser,
         globalhistory: state.GlobalReduser,
         globalReduser: state.GlobalReduser,
         AppReduser: state.AppReduser,

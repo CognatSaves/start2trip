@@ -16,7 +16,7 @@ import requests from '../../config';
 class PlacesListClass extends React.Component {
     constructor(props){
         super(props);
-        this.placesSort=this.placesSort.bind(this);
+
 
         let that = this;
         
@@ -41,7 +41,7 @@ class PlacesListClass extends React.Component {
         });
         */
     }
-    placesSort(array,type){
+    placesSort=(array,type)=>{
         function sortRating(a,b){//1
             if(a.rating>b.rating) return -1;
             if(a.rating<b.rating) return 1;

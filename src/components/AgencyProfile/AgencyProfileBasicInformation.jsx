@@ -64,17 +64,10 @@ class AgencyProfileBasicInformationClass extends React.Component{
                 registrationNumber: profile.registrationNumber    
             }
         }
-        this.formSubmit = this.formSubmit.bind(this);
-        this.applyChanges = this.applyChanges.bind(this);
-        this.inputChange = this.inputChange.bind(this);
-        this.getProfileData = this.getProfileData.bind(this);
-        this.startRefresher = this.startRefresher.bind(this);
-        this.thenFunc = this.thenFunc.bind(this);
-        this.catchFunc = this.catchFunc.bind(this);
-        this.agencyDataChange = this.agencyDataChange.bind(this);
+
     }
     
-    getProfileData(){
+    getProfileData=()=>{
         console.log('getProfileData');
         let that = this;
         let jwt = this.props.globalReduser.readCookie('jwt');
@@ -95,13 +88,13 @@ class AgencyProfileBasicInformationClass extends React.Component{
             //return null;
         }
     }
-    startRefresher(){
+    startRefresher=()=>{
         this.setState({
             isRefreshExist: true,
             isRefreshing: true
         });
     }  
-    thenFunc(){
+    thenFunc=()=>{
         console.log('thenFunc');
         this.setState({
             isRefreshExist: true,
@@ -114,7 +107,7 @@ class AgencyProfileBasicInformationClass extends React.Component{
             })
         }, 1000);
     }
-    catchFunc(){
+    catchFunc=()=>{
         console.log('catchFunc');
         this.setState({
             isRefreshExist: true,
@@ -127,7 +120,7 @@ class AgencyProfileBasicInformationClass extends React.Component{
             })
         }, 2000);
     }
-    applyChanges() {
+    applyChanges=()=> {
         let jwt = this.props.globalReduser.readCookie('jwt');
         
         if (jwt && jwt !== "-") {
@@ -182,7 +175,7 @@ class AgencyProfileBasicInformationClass extends React.Component{
                         
         }
     }
-    agencyDataChange(value, variable){
+    agencyDataChange=(value, variable)=>{
         let profileData = this.state.profileData;
         switch (variable) {
             case 'bankAccount': {
@@ -215,7 +208,7 @@ class AgencyProfileBasicInformationClass extends React.Component{
             profileData: profileData
         });
     }
-    inputChange(value, variable) {
+    inputChange=(value, variable)=> {
         let profileData = this.state.profileData;
         switch (variable) {
             case 'firstName': {
@@ -252,7 +245,7 @@ class AgencyProfileBasicInformationClass extends React.Component{
             profileData: profileData
         });
     }
-    formSubmit(event) {
+    formSubmit=(event)=> {
         event.preventDefault();
         this.applyChanges();
     }

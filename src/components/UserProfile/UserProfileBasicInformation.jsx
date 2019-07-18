@@ -5,11 +5,11 @@ import { connect } from 'react-redux'
 import LocationSearchInput from '../home/HomeBody/Search'
 import TextField from 'material-ui/TextField';
 import DatePicker from 'material-ui/DatePicker';
-import DropDownMenu from 'material-ui/DropDownMenu';
-import MenuItem from 'material-ui/MenuItem';
-import Chip from 'material-ui/Chip';
-import flags from '../driverProfileRegistration/img/flags.png'
-import ReactTelInput from 'react-telephone-input'
+// import DropDownMenu from 'material-ui/DropDownMenu';
+// import MenuItem from 'material-ui/MenuItem';
+// import Chip from 'material-ui/Chip';
+// import flags from '../driverProfileRegistration/img/flags.png'
+// import ReactTelInput from 'react-telephone-input'
 import requests from '../../config';
 import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 import getUserData from '../driverProfileRegistration/DriverProfileRequest';
@@ -37,16 +37,9 @@ class UserProfileBasicInformationClass extends React.Component {
                 city: profile.hometown.length!==0 ?  (profile.hometown+ ', ' + profile.homecountry) : "",
             }
         }
-        this.formSubmit = this.formSubmit.bind(this);
-        this.applyChanges = this.applyChanges.bind(this);
-        this.inputChange = this.inputChange.bind(this);
-        this.getProfileData = this.getProfileData.bind(this);
-        this.startRefresher = this.startRefresher.bind(this);
-        this.thenFunc = this.thenFunc.bind(this);
-        this.catchFunc = this.catchFunc.bind(this);
     
     }
-    getProfileData(){
+    getProfileData=()=>{
         console.log('getProfileData');
         let that = this;
         let jwt = this.props.globalReduser.readCookie('jwt');
@@ -66,13 +59,13 @@ class UserProfileBasicInformationClass extends React.Component {
             //return null;
         }
     }
-    startRefresher(){
+    startRefresher=()=>{
         this.setState({
             isRefreshExist: true,
             isRefreshing: true
         });
     }  
-    thenFunc(){
+    thenFunc=()=>{
         console.log('thenFunc');
         this.setState({
             isRefreshExist: true,
@@ -85,7 +78,7 @@ class UserProfileBasicInformationClass extends React.Component {
             })
         }, 1000);
     }
-    catchFunc(){
+    catchFunc=()=>{
         console.log('catchFunc');
         this.setState({
             isRefreshExist: true,
@@ -98,7 +91,7 @@ class UserProfileBasicInformationClass extends React.Component {
             })
         }, 2000);
     }
-    applyChanges() {
+    applyChanges=()=>{
         let jwt = this.props.globalReduser.readCookie('jwt');
         if (jwt && jwt !== "-") {
             let that = this;
@@ -151,7 +144,7 @@ class UserProfileBasicInformationClass extends React.Component {
             this.props.globalReduser.history.push('/login');            
         }
     }
-    inputChange(value, variable) {
+    inputChange=(value, variable)=>{
         let profileData = this.state.profileData;
         switch (variable) {
             case 'firstName': {
@@ -188,7 +181,7 @@ class UserProfileBasicInformationClass extends React.Component {
             profileData: profileData
         })
     }
-    formSubmit(event) {
+    formSubmit=(event)=>{
         event.preventDefault();
         this.applyChanges();
     }
@@ -272,7 +265,7 @@ class UserProfileBasicInformationClass extends React.Component {
                             <div className="bottomContentNote d-flex align-items-center">
                                 <label htmlFor="basicInfoLocation" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">{textPage.basicInfoLocation.label}:</label>
                                 <div className="d-flex col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">
-                                    <LocationSearchInput address={this.state.profileData.city} changeCity={this.changeCity} classInput="searchInputDriverInformation" id="basicInfoLocation" classDropdown="searchDropdownDriverInformation" classDiv="p-0"/>
+                                    <LocationSearchInput placeholder={"Введите город"} address={this.state.profileData.city} changeCity={this.changeCity} classInput="searchInputDriverInformation" id="basicInfoLocation" classDropdown="searchDropdownDriverInformation" classDiv="p-0 classDivDriverHomeCity"/>
                                 </div>
                                 <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">{textPage.basicInfoLocation.description}</p>
                             </div>
@@ -305,10 +298,10 @@ class UserProfileBasicInformationClass extends React.Component {
         this.state = {
 
         }
-        this.formSubmit = this.formSubmit.bind(this);
+        
     }
 
-    formSubmit(event) {
+    formSubmit=(event)=> {
         alert('Your favorite flavor is: ' + this.state.value);
         event.preventDefault();
     }

@@ -26,13 +26,11 @@ class AuthRedirectClass extends React.Component {
 
         };
         this.props.dispatch(setProfileData({}));
-        this.authorization = this.authorization.bind(this);
-        this.toggle = this.toggle.bind(this);
     }
-    authorization() {
+    authorization=()=> {
         return 0;
     }
-    toggle() {//функция завершения работы
+    toggle=()=> {//функция завершения работы
         //this.props.globalhistory.history.pop();
         
         

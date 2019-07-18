@@ -32,16 +32,8 @@ class DriverProfileSettingsClass extends React.Component {
             isRefreshing: true,
             isGoodAnswer: true,          
         }
-        this.formSubmit = this.formSubmit.bind(this);
-        this.applyChanges = this.applyChanges.bind(this);
-        this.inputChange = this.inputChange.bind(this);
-
-        this.getProfileData = this.getProfileData.bind(this);
-        this.startRefresher = this.startRefresher.bind(this);
-        this.thenFunc = this.thenFunc.bind(this);
-        this.catchFunc = this.catchFunc.bind(this);
     }
-    getProfileData(){
+    getProfileData=()=>{
         console.log('getProfileData');
         let that = this;
         let jwt = this.props.globalReduser.readCookie('jwt');
@@ -61,13 +53,13 @@ class DriverProfileSettingsClass extends React.Component {
             //return null;
         }
     }
-    startRefresher(){
+    startRefresher=()=>{
         this.setState({
             isRefreshExist: true,
             isRefreshing: true
         });
     }  
-    thenFunc(){
+    thenFunc=()=>{
         console.log('thenFunc');
         console.log(this.props.globalReduser);
         this.setState({
@@ -81,7 +73,7 @@ class DriverProfileSettingsClass extends React.Component {
             })
         }, 1000);
     }
-    catchFunc(){
+    catchFunc=()=>{
         console.log('catchFunc');
         this.setState({
             isRefreshExist: true,
@@ -94,7 +86,7 @@ class DriverProfileSettingsClass extends React.Component {
             })
         }, 2000);
     }
-    applyChanges(sendedData){
+    applyChanges=(sendedData)=>{
         let jwt = this.props.globalReduser.readCookie('jwt');
         if(jwt && jwt!=="-"){
             function checkPasswords(values){
@@ -169,11 +161,11 @@ class DriverProfileSettingsClass extends React.Component {
             //return null;
         }          
     }
-    formSubmit(event) {
+    formSubmit=(event)=> {
         this.applyChanges();
         event.preventDefault();
     }
-    inputChange(value, variable){
+    inputChange=(value, variable)=>{
         let settingsValues = this.state.settingsValues;
         switch(variable){
             case 'email':{

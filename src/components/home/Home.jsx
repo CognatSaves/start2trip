@@ -17,7 +17,6 @@ import FirstEnterModal from './FirstEnterModal';
 class HomeClass extends React.Component {
   constructor(props) {
     super(props);
-    this.redirectFunc = this.redirectFunc.bind(this);
     let firstEnterCookie = this.props.globalReduser.readCookie('firstEnter');
     this.state = {
       popularPlaces: [
@@ -30,7 +29,7 @@ class HomeClass extends React.Component {
       
     };
   }
-  redirectFunc(where) {
+  redirectFunc=(where)=> {
     this.props.history.push(where);
 
   }

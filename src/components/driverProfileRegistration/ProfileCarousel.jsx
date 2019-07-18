@@ -18,9 +18,9 @@ export default class Carousel extends React.Component {
             selectedPhotoIndex: 0,
             stepType: 0// 0 - вверх, 1 - вниз
         }
-        this.selectPhoto = this.selectPhoto.bind(this);
+
     }
-    selectPhoto(photoIndex, size) {
+    selectPhoto=(photoIndex, size)=> {
         function calculatePhotoSlice(photoIndex, length, OldPhotoIndex, OldPhotoSlice, size) {
             let photoSlice = 0;
             if (OldPhotoIndex === length - 1 && OldPhotoIndex - photoIndex === 1) {

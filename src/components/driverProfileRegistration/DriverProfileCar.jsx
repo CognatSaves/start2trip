@@ -34,19 +34,9 @@ class DriverProfileCarClass extends React.Component {
             isRefreshing: true,
             isGoodAnswer: true
         }
-        this.toggle = this.toggle.bind(this);
-        this._handleImageChange = this._handleImageChange.bind(this);
-        this.formSubmit = this.formSubmit.bind(this);
-        this.applyChanges=this.applyChanges.bind(this);
-        this.destroy = this.destroy.bind(this);
-        this.changeActive = this.changeActive.bind(this);
-        this.getProfileData = this.getProfileData.bind(this);
-        this.startRefresher = this.startRefresher.bind(this);
-        this.thenFunc = this.thenFunc.bind(this);
-        this.catchFunc = this.catchFunc.bind(this);
     }
 
-    getProfileData(thenFunc,catchFunc){
+    getProfileData=(thenFunc,catchFunc)=>{
         console.log('getProfileData');
         let that = this;
         let requestValues = {
@@ -58,13 +48,13 @@ class DriverProfileCarClass extends React.Component {
           };
         getUserData(requestValues,thenFunc,catchFunc);
     }
-    startRefresher(){
+    startRefresher=()=>{
         this.setState({
             isRefreshExist: true,
             isRefreshing: true
         });
     }   
-    thenFunc(){
+    thenFunc=()=>{
         console.log('thenFunc');
         this.setState({
             isRefreshExist: true,
@@ -78,7 +68,7 @@ class DriverProfileCarClass extends React.Component {
             })
         }, 1000);
     }
-    catchFunc(){
+    catchFunc=()=>{
         console.log('catchFunc');
         this.setState({
             isRefreshExist: true,
@@ -91,7 +81,7 @@ class DriverProfileCarClass extends React.Component {
             })
         }, 2000);
     }
-    applyChanges(type){
+    applyChanges=(type)=>{
         let jwt = this.props.globalReduser.readCookie('jwt');
            
         function checkCorrectData(newCarCard,imgFiles){
@@ -220,7 +210,7 @@ class DriverProfileCarClass extends React.Component {
         }  
         
     } 
-    formSubmit(event) {
+    formSubmit=(event)=> {
         
         console.log('formSubmit');
         if(!this.state.car.id){
@@ -232,7 +222,7 @@ class DriverProfileCarClass extends React.Component {
         event.preventDefault();
     }
 
-    toggle(element) {
+    toggle=(element)=> {
         if(!element){
             this.setState(state => ({ collapse: !state.collapse, imagePreviewUrl: '',
             newCarCard: { nameCar: "", yearCar: "", plateNumberCar: "", typeCar: "", fuelType: "", numberOfSeats: "" , carClass: ""},
@@ -255,7 +245,7 @@ class DriverProfileCarClass extends React.Component {
             window.scroll(0, 322);
         }
     }
-    changeActive(element){
+    changeActive=(element)=>{
         let jwt = this.props.globalReduser.readCookie('jwt');
         if(jwt && jwt!=="-"){
             this.startRefresher();
@@ -284,7 +274,7 @@ class DriverProfileCarClass extends React.Component {
             //return null;
         }
     }
-    destroy(element){
+    destroy=(element)=>{
         let jwt = this.props.globalReduser.readCookie('jwt');     
         if(jwt && jwt!=="-"){
             this.startRefresher();
@@ -312,7 +302,7 @@ class DriverProfileCarClass extends React.Component {
         }
     }
 
-    _handleImageChange(e) {
+    _handleImageChange=(e)=> {
         e.preventDefault();
         
         let obj = document.getElementById('labelCarEmpty');

@@ -17,7 +17,6 @@ import { setPage, setMorePagesShow } from '../../redusers/ActionPlaces';
 class HomeBodyBottomClass extends React.Component {
   constructor(props) {
     super(props);
-    this.redirectFunc = this.redirectFunc.bind(this);
     this.state = {
       popularPlaces: [
         { img: georgiaImg, title: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", link: "/driver", reviews: "32 отзыва", prise: "120$" },
@@ -31,7 +30,7 @@ class HomeBodyBottomClass extends React.Component {
       selectedDirection: ''
     };
   }
-  redirectFunc(where) {
+  redirectFunc=(where)=> {
     this.props.history.push(where);
     
   }

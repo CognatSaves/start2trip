@@ -60,15 +60,13 @@ class PlacesClass extends React.Component {
       isRefreshExist: true,
       selectedDirection: '' 
     }
-    this.setPageFunc = this.setPageFunc.bind(this);
-    this.showMorePages = this.showMorePages.bind(this);
   }
-  setPageFunc(page) {
+  setPageFunc=(page)=> {
     if (page !== "...") {
       this.props.dispatch(setPage(page));
     }
   }
-  showMorePages() {
+  showMorePages=()=> {
     this.props.dispatch(setMorePagesShow());
   }
   render() {

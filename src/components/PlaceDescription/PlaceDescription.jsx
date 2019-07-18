@@ -58,9 +58,6 @@ class PlaceDescriptionClass extends React.Component {
             //isMobile: false,
             //topBlockImage:''
         };
-        this.selectPhoto = this.selectPhoto.bind(this);
-        this.showMorePages = this.showMorePages.bind(this);
-        this.setPage = this.setPage.bind(this);
     }
     /*
     shouldComponentUpdate(nextProps, nextState){
@@ -95,7 +92,7 @@ class PlaceDescriptionClass extends React.Component {
         return result;
     }
     */
-    selectPhoto(photoIndex) {
+    selectPhoto=(photoIndex)=> {
         function calculatePhotoSlice(photoIndex, length, OldPhotoIndex, OldPhotoSlice) {
             let photoSlice = 0;
             if (OldPhotoIndex < photoIndex) {
@@ -124,13 +121,13 @@ class PlaceDescriptionClass extends React.Component {
         })
 
     }
-    showMorePages() {
+    showMorePages=()=> {
         this.setState({
             page: this.state.page + 1,
             showPages: this.state.showPages + 1
         })
     }
-    setPage(page) {
+    setPage=(page)=> {
         if (page !== "...") {
             this.setState(
                 {
