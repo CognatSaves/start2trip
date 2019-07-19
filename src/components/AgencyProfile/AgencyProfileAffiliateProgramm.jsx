@@ -11,9 +11,18 @@ import {
     TableRowColumn,
 } from 'material-ui/Table';
 import requests from '../../config';
+import messengerIcon from '../driverProfileRegistration/img/messenger.svg'
+import whatsappIcon from '../driverProfileRegistration/img/whatsapp.svg'
+import viberIcon from '../driverProfileRegistration/img/viber.svg'
+import telegramIcon from '../driverProfileRegistration/img/telegram.svg'
+import RenderShareLink from '../driverProfileRegistration/RenderShareLink';
 class AgencyProfileAffiliateProgrammClass extends React.Component{
     constructor(props){
         super(props);
+        this.state={
+            iconsArray: [messengerIcon, whatsappIcon, viberIcon, telegramIcon, messengerIcon, whatsappIcon, viberIcon, telegramIcon, messengerIcon, whatsappIcon, viberIcon, telegramIcon],
+            howMuchRender: 4,
+        }
     }
     copyValue = (id) =>{
         let selectedInput = document.getElementById(id);
@@ -40,7 +49,7 @@ class AgencyProfileAffiliateProgrammClass extends React.Component{
                         <p className="col-xl-8 col-lg-8 col-md-9 col-sm-10 col-10">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae impedit odio aspernatur veniam obcaecati veritatis fugit id voluptate excepturi nam aliquam architecto quam laboriosam suscipit deserunt neque, ab dolorem alias?</p>
                     </div>
                     <div className="affiliateProgramButton d-flex flex-sm-row flex-column justify-content-between align-items-center">
-                        <div>
+                        {/* <div>
                             <div>Ваши партнёрские ссылки</div>
                             <div>
                                 Ссылка на регистрацию
@@ -56,7 +65,12 @@ class AgencyProfileAffiliateProgrammClass extends React.Component{
                                 <input id="partnerMainPageLink" placeholder="Ссылка 1" style={{width: '400px'}} value={requests.frontendAddress+'/start/'+this.props.globalReduser.profile._id}/>
                                 <div onClick = {()=>this.copyValue("partnerMainPageLink")} style={{background: 'url('+copy+') no-repeat center'}} className="copyElement"/>
                             </div>
-                        </div>                   
+                        </div>   */}
+                        <div className="d-flex flex-lg-row flex-column align-items-center col-md-8 col-12">
+                            {/* <div>{textPage.affiliateLinks.title}</div> */}
+                            <RenderShareLink classNameDiv={"col-lg-6 col-12"} idInput={"partnerRegistrationLink"} valueInput={requests.frontendAddress+'/register/'+this.props.globalReduser.profile._id} iconsArray={this.state.iconsArray} textTitle={"Ссылка на регистрацию"} buttonCopyText={"Копировать"} />
+                            <RenderShareLink classNameDiv={"col-lg-6 col-12"} idInput={"partnerMainPageLink"} valueInput={requests.frontendAddress+'/start/'+this.props.globalReduser.profile._id} iconsArray={this.state.iconsArray} textTitle={"Ссылка на главную"} buttonCopyText={"Копировать"} />
+                        </div>                      
                         <div className="d-flex flex-sm-row flex-column">
                         {
                             /*

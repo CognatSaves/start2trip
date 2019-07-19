@@ -5,6 +5,8 @@ import { whichPageRenderUser } from "../../redusers/ActionUserProfileRegistratio
 import imgPerson from './img/person.jpg'
 import Stars from '../stars/Stars'
 
+import billingBG from './img/illustrations_billing.svg'
+import referralsBG from './img/illustrations_partners.svg'
 import historyBG from './img/history.svg'
 import sittingsBG from './img/user_settings.svg'
 import preHistoryBG from './img/user_predstoiashie.svg'
@@ -162,6 +164,8 @@ class UserProfileNavigationClass extends React.Component {
                 // "/account/user/profile": { backgroundImage: "url(" + historyBG + ")" },
                 "/account/user/profile": { backgroundImage: "url(" + historyBG + ")" },
                 "/account/user/settings": { backgroundImage: "url(" + sittingsBG + ")" },
+                "/account/user/billing": { backgroundImage: "url(" + billingBG + ")" },
+                "/account/user/referrals": { backgroundImage: "url(" + referralsBG + ")" },
             }[this.props.globalhistory.history.location.pathname]}>
                 <div className="basicInformationBodyTop d-flex align-items-center ">
                     <div className="basicInformationBodyTopImgHover">

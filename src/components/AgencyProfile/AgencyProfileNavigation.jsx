@@ -6,7 +6,8 @@ import Stars from '../stars/Stars'
 import calendarBG from '../driverProfileRegistration/img/illustrations_calendar.svg'
 import carBg from '../driverProfileRegistration/img/illustrations_nastroiki-01.svg'
 import toursBG from '../driverProfileRegistration/img/illustrations_poezdki_tours.svg'
-import historyBG from '../driverProfileRegistration/img/illustrations_history.svg'
+import billingBG from '../driverProfileRegistration/img/illustrations_billing.svg'
+import referralsBG from '../driverProfileRegistration/img/illustrations_partners.svg'
 import sittingsBG from '../driverProfileRegistration/img/illustrations_nastroiki-04.svg'
 import feedbackBG from '../driverProfileRegistration/img/illustrations_otzivi.svg'
 import preHistoryBG from '../driverProfileRegistration/img/illustrations_predstoishie.svg'
@@ -162,14 +163,16 @@ class AgencyProfileNavigationClass extends React.Component{
             <React.Fragment>
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer}/> 
                 <div className="registrationWrapper driverBG col-12 p-0" style={{
-                    "/account/driver/trips": { backgroundImage: "url(" + preHistoryBG + ")" },
+                    "/account/agency/trips": { backgroundImage: "url(" + preHistoryBG + ")" },
                     // 1: { backgroundImage: "url(" + historyBG + ")" },
-                    "/account/driver/profile": { backgroundImage: "url(" + sittingsBG + ")" },
-                    "/account/driver/drivers": { backgroundImage: "url(" + carBg + ")" },
-                    "/account/driver/tripsSettings": { backgroundImage: "url(" + calendarBG + ")" },
-                    "/account/driver/tours": { backgroundImage: "url(" + toursBG + ")" },
-                    "/account/driver/reviews": { backgroundImage: "url(" + feedbackBG + ")" },
-                    "/account/driver/settings": { backgroundImage: "url(" + sittingsBG + ")" },
+                    "/account/agency/profile": { backgroundImage: "url(" + sittingsBG + ")" },
+                    "/account/agency/drivers": { backgroundImage: "url(" + carBg + ")" },
+                    "/account/agency/tripsSettings": { backgroundImage: "url(" + calendarBG + ")" },
+                    "/account/agency/tours": { backgroundImage: "url(" + toursBG + ")" },
+                    "/account/agency/reviews": { backgroundImage: "url(" + feedbackBG + ")" },
+                    "/account/agency/settings": { backgroundImage: "url(" + sittingsBG + ")" },
+                    "/account/agency/billing": { backgroundImage: "url(" + billingBG + ")" },
+                    "/account/agency/referrals": { backgroundImage: "url(" + referralsBG + ")" },
                 }[this.props.globalhistory.history.location.pathname]}>
                     <div className="basicInformationBodyTop d-flex align-items-center ">
                         <div className="basicInformationBodyTopImgHover">

@@ -16,6 +16,11 @@ import copy from '../driverProfileRegistration/img/copy.svg';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 import getUserData from '../driverProfileRegistration/DriverProfileRequest';
+import RenderShareLink from '../driverProfileRegistration/RenderShareLink';
+import messengerIcon from '../driverProfileRegistration/img/messenger.svg'
+import whatsappIcon from '../driverProfileRegistration/img/whatsapp.svg'
+import viberIcon from '../driverProfileRegistration/img/viber.svg'
+import telegramIcon from '../driverProfileRegistration/img/telegram.svg'
 class AgencyProfileDriversClass extends React.Component{
     constructor(props){
         super(props);
@@ -24,7 +29,9 @@ class AgencyProfileDriversClass extends React.Component{
             headerWidth: ["30%", "16%","12%","12%","12%","18%"],
             isRefreshExist:false,
             isRefreshing: true,
-            isGoodAnswer: true
+            isGoodAnswer: true,
+            iconsArray: [messengerIcon, whatsappIcon, viberIcon, telegramIcon, messengerIcon, whatsappIcon, viberIcon, telegramIcon, messengerIcon, whatsappIcon, viberIcon, telegramIcon],
+            howMuchRender: 4,
         }
 
     }
@@ -133,7 +140,12 @@ class AgencyProfileDriversClass extends React.Component{
                 <div className="basicInformationBodyBottomHeader d-xl-block d-lg-block d-md-block d-sm-none d-none">
                     <p>Подключённые водители</p>
                 </div>
-                <p>Ваша ссылка на регистрацию нового водителя в автопарк</p>
+                <div className="d-flex flex-lg-row flex-column col-12">
+                    <RenderShareLink classNameDiv={"col-lg-5 col-12 affiliateProgramButton mx-0"} idInput={"partnerMainPageLink"} valueInput={requests.frontendAddress+'/login?agency='+this.props.globalReduser.profile._id} iconsArray={this.state.iconsArray} textTitle={"Ваша ссылка на регистрацию нового водителя в автопарк"} buttonCopyText={"Копировать"} />
+                </div>
+                
+
+                {/* <p>Ваша ссылка на регистрацию нового водителя в автопарк</p>
                 <div className="affiliateProgramButton d-flex flex-sm-row flex-column justify-content-between align-items-center">
                     <div>
                         <div className="d-flex flex-row">
@@ -141,7 +153,7 @@ class AgencyProfileDriversClass extends React.Component{
                             <div onClick = {()=>this.copyValue("registerDriverInput")} style={{background: 'url('+copy+') no-repeat center'}} className="copyElement"/>
                         </div>
                     </div>
-                </div>
+                </div> */}
                 <div className="billingTableBody">
                     <Table className="billingTable">
                         <TableHeader className="billingTableHeader" displaySelectAll={false} adjustForCheckbox={false}>
