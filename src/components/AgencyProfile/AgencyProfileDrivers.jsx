@@ -9,10 +9,10 @@ import {
     TableRowColumn,
 } from 'material-ui/Table';
 import '../driverProfileRegistration/DriverProfileBilling.css';
-import people3 from '../UserProfile/img/mina.jpg'
+
 import './AgencyProfileDrivers.css';
 import requests from '../../config';
-import copy from '../driverProfileRegistration/img/copy.svg';
+
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 import getUserData from '../driverProfileRegistration/DriverProfileRequest';

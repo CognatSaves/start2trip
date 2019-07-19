@@ -1,13 +1,13 @@
 import React from 'react';
-import driverPhoto from './pictures/drivers_body_photo.png';
+// import driverPhoto from './pictures/drivers_body_photo.png';
 import Stars from '../stars/Stars';
 import { connect } from 'react-redux';
-import ToyotaPrado from '../drivers/DriversBody/DriversBlock/pictures/ToyotaPrado.jpg';
-import ToyotaPrado2 from '../drivers/DriversBody/DriversBlock/pictures/ToyotaPrado2.jpg';
-import ToyotaPrado3 from '../drivers/DriversBody/DriversBlock/pictures/ToyotaPrado3.jpg';
-import ToyotaPrado4 from '../drivers/DriversBody/DriversBlock/pictures/ToyotaPrado4.jpg';
-import ToyotaPrado5 from '../drivers/DriversBody/DriversBlock/pictures/ToyotaPrado5.jpg';
-import ToyotaPrado6 from '../drivers/DriversBody/DriversBlock/pictures/ToyotaPrado6.jpg';
+// import ToyotaPrado from '../drivers/DriversBody/DriversBlock/pictures/ToyotaPrado.jpg';
+// import ToyotaPrado2 from '../drivers/DriversBody/DriversBlock/pictures/ToyotaPrado2.jpg';
+// import ToyotaPrado3 from '../drivers/DriversBody/DriversBlock/pictures/ToyotaPrado3.jpg';
+// import ToyotaPrado4 from '../drivers/DriversBody/DriversBlock/pictures/ToyotaPrado4.jpg';
+// import ToyotaPrado5 from '../drivers/DriversBody/DriversBlock/pictures/ToyotaPrado5.jpg';
+// import ToyotaPrado6 from '../drivers/DriversBody/DriversBlock/pictures/ToyotaPrado6.jpg';
 import information from './pictures/information.svg';
 import Carousel from './Carousel';
 import { isMobileOnly } from 'react-device-detect';
@@ -17,7 +17,7 @@ class DriverInfoClass extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            photoArray: [ToyotaPrado, ToyotaPrado6, ToyotaPrado2, ToyotaPrado, ToyotaPrado6, ToyotaPrado2, ToyotaPrado3, ToyotaPrado4, ToyotaPrado5, ToyotaPrado6, ToyotaPrado],
+            // photoArray: [ToyotaPrado, ToyotaPrado6, ToyotaPrado2, ToyotaPrado, ToyotaPrado6, ToyotaPrado2, ToyotaPrado3, ToyotaPrado4, ToyotaPrado5, ToyotaPrado6, ToyotaPrado],
             
         }     
     }   

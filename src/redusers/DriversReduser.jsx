@@ -9,7 +9,7 @@ const initialState = {
     drivers: [//на данный момент адреса картинок не используются, все прописано статически в css. Названия хранятся как декорации))))
     {
     name: "Валерий1",
-    picture: "pictures/driver1/drivers_body_photo.png",
+    //// picture: "pictures/driver1/drivers_body_photo.png",
     
     age: 53,
     id: 0,
@@ -28,7 +28,7 @@ const initialState = {
     },
     {
     name: "Валерий2",
-    picture: "pictures/driver1/drivers_body_photo.png",
+   // picture: "pictures/driver1/drivers_body_photo.png",
     
     age: 53,
     id: 1,
@@ -47,7 +47,7 @@ const initialState = {
     },
     {
     name: "Валерий3",
-    picture: "pictures/driver1/drivers_body_photo.png",
+   // picture: "pictures/driver1/drivers_body_photo.png",
     
     age: 53,
     id: 2,
@@ -66,7 +66,7 @@ const initialState = {
     },
     {
     name: "Валерий4",
-    picture: "pictures/driver1/drivers_body_photo.png",
+   // picture: "pictures/driver1/drivers_body_photo.png",
     
     age: 53,
     id: 3,
@@ -85,7 +85,7 @@ const initialState = {
     },
     {
     name: "Валерий5",
-    picture: "pictures/driver1/drivers_body_photo.png",
+   // picture: "pictures/driver1/drivers_body_photo.png",
     
     age: 53,
     id:4,
@@ -104,7 +104,7 @@ const initialState = {
     },
     {
     name: "Валерий6",
-    picture: "pictures/driver1/drivers_body_photo.png",
+   // picture: "pictures/driver1/drivers_body_photo.png",
     
     age: 53,
     id: 5,
@@ -123,7 +123,7 @@ const initialState = {
     },
     {
     name: "Валерий7",
-    picture: "pictures/driver1/drivers_body_photo.png",
+   // picture: "pictures/driver1/drivers_body_photo.png",
     
     age: 53,
     id: 6,
@@ -142,7 +142,7 @@ const initialState = {
     },
     {
     name: "Валерий8",
-    picture: "pictures/driver1/drivers_body_photo.png",
+   // picture: "pictures/driver1/drivers_body_photo.png",
     
     age: 53,
     id: 7,
@@ -161,7 +161,7 @@ const initialState = {
     },
     {
     name: "Валерий9",
-    picture: "pictures/driver1/drivers_body_photo.png",
+   // picture: "pictures/driver1/drivers_body_photo.png",
     
     age: 53,
     id: 8,
@@ -180,7 +180,7 @@ const initialState = {
     },
     {
     name: "Валерий10",
-    picture: "pictures/driver1/drivers_body_photo.png",
+   // picture: "pictures/driver1/drivers_body_photo.png",
     
     age: 53,
     id: 9,
@@ -199,7 +199,7 @@ const initialState = {
     },
     {
     name: "Валерий11",
-    picture: "pictures/driver1/drivers_body_photo.png",
+   // picture: "pictures/driver1/drivers_body_photo.png",
     
     age: 53,
     id: 10,
@@ -218,7 +218,7 @@ const initialState = {
     },
     {
     name: "Валерий12",
-    picture: "pictures/driver1/drivers_body_photo.png",
+   // picture: "pictures/driver1/drivers_body_photo.png",
     
     age: 53,
     id: 11,
@@ -237,7 +237,7 @@ const initialState = {
     },
     {
     name: "Валерий13",
-    picture: "pictures/driver1/drivers_body_photo.png",
+   // picture: "pictures/driver1/drivers_body_photo.png",
     
     age: 53,
     id: 12,
@@ -256,7 +256,7 @@ const initialState = {
     },
     {
     name: "Валерий14",
-    picture: "pictures/driver1/drivers_body_photo.png",
+   // picture: "pictures/driver1/drivers_body_photo.png",
     
     age: 53,
     id: 13,
@@ -275,7 +275,7 @@ const initialState = {
     },
     {
     name: "Валерий15",
-    picture: "pictures/driver1/drivers_body_photo.png",
+   // picture: "pictures/driver1/drivers_body_photo.png",
     
     age: 53,
     id: 14,
@@ -294,7 +294,7 @@ const initialState = {
     },
     {
     name: "Валерий16",
-    picture: "pictures/driver1/drivers_body_photo.png",
+   // picture: "pictures/driver1/drivers_body_photo.png",
     
     age: 53,
     id: 15,
@@ -313,7 +313,7 @@ const initialState = {
     },
     {
     name: "Валерий17",
-    picture: "pictures/driver1/drivers_body_photo.png",
+   // picture: "pictures/driver1/drivers_body_photo.png",
     
     age: 53,
     id: 16,
@@ -332,7 +332,7 @@ const initialState = {
     },
     {
     name: "Валерий18",
-    picture: "pictures/driver1/drivers_body_photo.png",
+   // picture: "pictures/driver1/drivers_body_photo.png",
     
     age: 53,
     id: 17,
@@ -351,7 +351,7 @@ const initialState = {
     },
     {
     name: "Валерий19",
-    picture: "pictures/driver1/drivers_body_photo.png",
+   // picture: "pictures/driver1/drivers_body_photo.png",
     
     age: 53,
     id: 18,
@@ -370,7 +370,7 @@ const initialState = {
     },
     {
     name: "Валерий20",
-    picture: "pictures/driver1/drivers_body_photo.png",
+   // picture: "pictures/driver1/drivers_body_photo.png",
     
     age: 53,
     id: 19,
@@ -389,7 +389,7 @@ const initialState = {
     },
     {
     name: "Валерий21",
-    picture: "pictures/driver1/drivers_body_photo.png",
+   // picture: "pictures/driver1/drivers_body_photo.png",
     
     age: 53,
     id: 20,
@@ -408,7 +408,7 @@ const initialState = {
     },
     {
     name: "Валерий22",
-    picture: "pictures/driver1/drivers_body_photo.png",
+   // picture: "pictures/driver1/drivers_body_photo.png",
     
     age: 53,
     id: 21,
@@ -427,7 +427,7 @@ const initialState = {
     },
     {
     name: "Валерий23",
-    picture: "pictures/driver1/drivers_body_photo.png",
+   // picture: "pictures/driver1/drivers_body_photo.png",
     
     age: 53,
     id: 22,
@@ -446,7 +446,7 @@ const initialState = {
     },
     {
     name: "Валерий24",
-    picture: "pictures/driver1/drivers_body_photo.png",
+   // picture: "pictures/driver1/drivers_body_photo.png",
     
     age: 53,
     id: 23,
@@ -465,7 +465,7 @@ const initialState = {
     },
     {
     name: "Валерий25",
-    picture: "pictures/driver1/drivers_body_photo.png",
+   // picture: "pictures/driver1/drivers_body_photo.png",
     
     age: 53,
     id: 24,
@@ -484,7 +484,7 @@ const initialState = {
     },
     {
     name: "Валерий26",
-    picture: "pictures/driver1/drivers_body_photo.png",
+   // picture: "pictures/driver1/drivers_body_photo.png",
     
     age: 53,
     id: 25,
@@ -503,7 +503,7 @@ const initialState = {
     },
     {
     name: "Валерий27",
-    picture: "pictures/driver1/drivers_body_photo.png",
+   // picture: "pictures/driver1/drivers_body_photo.png",
     
     age: 53,
     id: 26,
@@ -522,7 +522,7 @@ const initialState = {
     },
     {
     name: "Валерий28",
-    picture: "pictures/driver1/drivers_body_photo.png",
+   // picture: "pictures/driver1/drivers_body_photo.png",
     
     age: 53,
     id: 27,
@@ -541,7 +541,7 @@ const initialState = {
     },
     {
     name: "Валерий29",
-    picture: "pictures/driver1/drivers_body_photo.png",
+   // picture: "pictures/driver1/drivers_body_photo.png",
     
     age: 53,
     id: 28,
@@ -560,7 +560,7 @@ const initialState = {
     },
     {
     name: "Валерий30",
-    picture: "pictures/driver1/drivers_body_photo.png",
+   // picture: "pictures/driver1/drivers_body_photo.png",
     
     age: 53,
     id: 29,
@@ -579,7 +579,7 @@ const initialState = {
     },
     {
     name: "Валерий31",
-    picture: "pictures/driver1/drivers_body_photo.png",
+   // picture: "pictures/driver1/drivers_body_photo.png",
     
     age: 53,
     id: 30,
@@ -598,7 +598,7 @@ const initialState = {
     },
     {
     name: "Валерий32",
-    picture: "pictures/driver1/drivers_body_photo.png",
+   // picture: "pictures/driver1/drivers_body_photo.png",
     
     age: 53,
     id: 31,
@@ -617,7 +617,7 @@ const initialState = {
     },
     {
     name: "Валерий33",
-    picture: "pictures/driver1/drivers_body_photo.png",
+   // picture: "pictures/driver1/drivers_body_photo.png",
     
     age: 53,
     id: 32,
@@ -636,7 +636,7 @@ const initialState = {
     },
     {
     name: "Валерий34",
-    picture: "pictures/driver1/drivers_body_photo.png",
+   // picture: "pictures/driver1/drivers_body_photo.png",
     
     age: 53,
     id: 33,
@@ -655,7 +655,7 @@ const initialState = {
     },
     {
     name: "Валерий35",
-    picture: "pictures/driver1/drivers_body_photo.png",
+   // picture: "pictures/driver1/drivers_body_photo.png",
     
     age: 53,
     id: 34,
@@ -674,7 +674,7 @@ const initialState = {
     },
     {
     name: "Валерий36",
-    picture: "pictures/driver1/drivers_body_photo.png",
+   // picture: "pictures/driver1/drivers_body_photo.png",
     
     age: 53,
     id: 35,
@@ -693,7 +693,7 @@ const initialState = {
     },
     {
     name: "Валерий37",
-    picture: "pictures/driver1/drivers_body_photo.png",
+   // picture: "pictures/driver1/drivers_body_photo.png",
     
     age: 53,
     id: 36,
@@ -712,7 +712,7 @@ const initialState = {
     },
     {
     name: "Валерий38",
-    picture: "pictures/driver1/drivers_body_photo.png",
+   // picture: "pictures/driver1/drivers_body_photo.png",
     
     age: 53,
     id: 37,
@@ -731,7 +731,7 @@ const initialState = {
     },
     {
     name: "Валерий39",
-    picture: "pictures/driver1/drivers_body_photo.png",
+   // picture: "pictures/driver1/drivers_body_photo.png",
     
     age: 53,
     id: 38,

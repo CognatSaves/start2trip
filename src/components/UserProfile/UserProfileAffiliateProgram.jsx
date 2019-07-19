@@ -1,6 +1,5 @@
 import React from 'react';
 import '../driverProfileRegistration/DriverProfileAffiliateProgram.css';
-import copy from '../driverProfileRegistration/img/copy.svg';
 import {connect} from 'react-redux';
 import {
     Table,
@@ -30,7 +29,6 @@ class UserProfileAffiliateProgramClass extends React.Component {
         selectedInput.select();
         document.execCommand("copy");
     }
-
 
     render() {
         function paymentsCalculation(partners){

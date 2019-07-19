@@ -4,16 +4,12 @@ import './InfoBlock.css'
 import './TripBlock.css'
 import Manipulator from '../../../manipulator/Manipulator';
 import { connect } from 'react-redux';
-// import driverPhoto from './pictures/driver1/drivers_body_photo.png';
-// import emptyLike from './pictures/like_contour.svg';
-// import filledLike from './pictures/like_blue.svg';
-// import selectedFilledLike from './pictures/like_orange.svg';
-// import jeep from './pictures/jeepBlue.svg';
+
 import { Link } from 'react-router-dom';
 
 import Stars from '../../../stars/Stars';
 import { setPage, setMorePagesShow } from '../../../../redusers/ActionDrivers'
-// import ToyotaPrado from './pictures/ToyotaPrado.jpg';
+
 import requests from '../../../../config';
 
 class DriversBlockClass extends React.Component {

@@ -1,6 +1,6 @@
 import React from 'react';
 import './DriversProfileComments.css';
-import tempPicture from './pictures/drivers_body_photo.png'
+// import tempPicture from './pictures/drivers_body_photo.png'
 import Stars from '../stars/Stars';
 import { addComment } from '../../redusers/ActionComments';
 import { connect } from 'react-redux'
