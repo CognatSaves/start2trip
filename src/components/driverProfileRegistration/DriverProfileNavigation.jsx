@@ -2,16 +2,15 @@ import React from 'react';
 import './DriverProfileNavigation.css'
 import { connect } from 'react-redux';
 import { whichPageRender } from "../../redusers/ActionDriverProfileRegistration"
-// import imgPerson from './img/drivers_body_photo.png'
 import Stars from '../stars/Stars'
 
-import calendarBG from './img/illustrations_calendar.svg'
-import carBg from './img/illustrations_nastroiki-01.svg'
-import billingBG from './img/illustrations_billing.svg'
-import referralsBG from './img/illustrations_partners.svg'
-import sittingsBG from './img/illustrations_nastroiki-04.svg'
-import feedbackBG from './img/illustrations_otzivi.svg'
-import preHistoryBG from './img/illustrations_predstoishie.svg'
+import calendarBG from '../media/illustrations_calendar.svg'
+import carBg from '../media/illustrations_nastroiki-01.svg'
+import billingBG from '../media/illustrations_billing.svg'
+import referralsBG from '../media/illustrations_partners.svg'
+import sittingsBG from '../media/illustrations_nastroiki-04.svg'
+import feedbackBG from '../media/illustrations_otzivi.svg'
+import preHistoryBG from '../media/illustrations_predstoishie.svg'
 import { readAndCompressImage } from 'browser-image-resizer';
 import requests from '../../config';
 import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"

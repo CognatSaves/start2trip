@@ -1,6 +1,6 @@
 import React from 'react';
 import './DriverProfileAffiliateProgram.css'
-import copy from './img/copy.svg';
+// import copy from '../media/copy.svg';
 import { connect } from 'react-redux';
 import {
     Table,
@@ -11,10 +11,10 @@ import {
     TableRowColumn,
 } from 'material-ui/Table';
 import requests from '../../config';
-import messengerIcon from './img/messenger.svg'
-import whatsappIcon from './img/whatsapp.svg'
-import viberIcon from './img/viber.svg'
-import telegramIcon from './img/telegram.svg'
+import messengerIcon from '../media/messenger.svg'
+import whatsappIcon from '../media/whatsapp.svg'
+import viberIcon from '../media/viber.svg'
+import telegramIcon from '../media/telegram.svg'
 import RenderShareLink from './RenderShareLink';
 
 

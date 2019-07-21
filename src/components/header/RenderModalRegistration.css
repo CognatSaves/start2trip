@@ -116,7 +116,7 @@
 .facebookIcon {
     width: 35px;
     height: 35px;
-    background: url(./pictures/facebook.svg) no-repeat;
+    background: url(../media/facebook.svg) no-repeat;
     background-size: 35px 35px;
     margin: 5px;
 }
@@ -124,7 +124,7 @@
 .googleIcon {
     width: 35px;
     height: 35px;
-    background: url(./pictures/search.svg) no-repeat;
+    background: url(../media/search.svg) no-repeat;
     background-size: 35px 35px;
     margin: 5px;
 }
@@ -132,7 +132,7 @@
 .twitterIcon {
     width: 35px;
     height: 35px;
-    background: url(./pictures/twitter.svg) no-repeat;
+    background: url(../media/twitter.svg) no-repeat;
     background-size: 35px 35px;
     margin: 5px;
 }

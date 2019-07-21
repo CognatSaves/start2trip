@@ -2,7 +2,6 @@ import React from 'react';
 import './HomeBody.css'
 import RouteMenu from './RouteMenu.jsx'
 import MapContainer from './MapContainer.jsx'
-// import Calendar from 'react-calendar'
 import './calendary.css';
 import { connect } from 'react-redux'
 import { isMobileOnly } from 'react-device-detect'

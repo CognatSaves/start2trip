@@ -34,20 +34,24 @@
 .drivers_route .classDiv input {
     cursor: default !important;
 }
-.driverProfile_searchContainer{
+
+.driverProfile_searchContainer {
     width: 100%;
     margin: auto 0;
-    
 }
-.driverProfile_searchContainer div{
+
+.driverProfile_searchContainer div {
     width: 100%;
 }
-.driverProfile_searchContainer input{
-    color: black/*!important*/;
+
+.driverProfile_searchContainer input {
+    color: black/*!important*/
+    ;
     text-transform: capitalize;
     font-size: 16px;
     font-family: Roboto;
 }
+
 
 /* .drivers_route_form {
     box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.3);
@@ -380,7 +384,7 @@ span.drivers_route_Link {
 .driversGoBack span {
     color: #fff;
     padding-left: 30px;
-    background: url(./pictures/left-arrow.svg) no-repeat;
+    background: url(../media/left-arrow.svg) no-repeat;
     background-size: 20px 25px;
     background-position: center left;
 }

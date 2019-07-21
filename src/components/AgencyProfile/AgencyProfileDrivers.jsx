@@ -17,10 +17,10 @@ import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIn
 import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 import getUserData from '../driverProfileRegistration/DriverProfileRequest';
 import RenderShareLink from '../driverProfileRegistration/RenderShareLink';
-import messengerIcon from '../driverProfileRegistration/img/messenger.svg'
-import whatsappIcon from '../driverProfileRegistration/img/whatsapp.svg'
-import viberIcon from '../driverProfileRegistration/img/viber.svg'
-import telegramIcon from '../driverProfileRegistration/img/telegram.svg'
+import messengerIcon from '../media/messenger.svg'
+import whatsappIcon from '../media/whatsapp.svg'
+import viberIcon from '../media/viber.svg'
+import telegramIcon from '../media/telegram.svg'
 class AgencyProfileDriversClass extends React.Component{
     constructor(props){
         super(props);

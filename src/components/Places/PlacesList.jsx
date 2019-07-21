@@ -1,14 +1,14 @@
 import React from 'react';
 import './PlacesList.css';
 import { connect } from 'react-redux';
-import ippodrom from './pictures/ippodrom.jpg';
-import Stars from '../stars/Stars';
-import geoIcon from '../home/HomeBody/pictures/geo_icon.svg';
-import bookmarkEmpty from './pictures/bookmark_contour.svg';
-import bookmarkFilled from './pictures/bookmark_blue.svg';
-import bookmarkSelected from './pictures/bookmark_orange.svg';
-import { Link } from 'react-router-dom';
-import tagBlue from './pictures/tag_blue.svg';
+// import ippodrom from './pictures/ippodrom.jpg';
+// import Stars from '../stars/Stars';
+// import geoIcon from '../home/HomeBody/pictures/geo_icon.svg';
+// import bookmarkEmpty from './pictures/bookmark_contour.svg';
+// import bookmarkFilled from './pictures/bookmark_blue.svg';
+// import bookmarkSelected from './pictures/bookmark_orange.svg';
+// import { Link } from 'react-router-dom';
+// import tagBlue from './pictures/tag_blue.svg';
 import PlaceListElement from './PlaceListElement';
 import requests from '../../config';
 

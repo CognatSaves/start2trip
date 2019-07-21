@@ -19,7 +19,7 @@ import { setCities } from '../../redusers/Action'
 import TextField from '@material-ui/core/TextField';
 import DatePicker from 'material-ui/DatePicker';
 import ReactTelInput from 'react-telephone-input'
-import flags from '../driverProfileRegistration/img/flags.png'
+import flags from '../media/flags.png'
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';

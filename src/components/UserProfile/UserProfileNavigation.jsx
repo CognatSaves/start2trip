@@ -2,11 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { whichPageRenderUser } from "../../redusers/ActionUserProfileRegistration"
 
-import billingBG from './img/illustrations_billing.svg'
-import referralsBG from './img/illustrations_partners.svg'
-import historyBG from './img/history.svg'
-import sittingsBG from './img/user_settings.svg'
-import preHistoryBG from './img/user_predstoiashie.svg'
+import billingBG from '../media/illustrations_billing.svg'
+import referralsBG from '../media/illustrations_partners.svg'
+import historyBG from '../media/history.svg'
+import sittingsBG from '../media/user_settings.svg'
+import preHistoryBG from '../media/user_predstoiashie.svg'
 import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 import requests from '../../config';
 import getUserData from '../driverProfileRegistration/DriverProfileRequest';

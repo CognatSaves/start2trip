@@ -3,9 +3,9 @@ import './ToursList.css';
 import '../Places/PlacesList.css';
 import { connect } from 'react-redux';
 
-import bookmarkEmpty from '../Places/pictures/bookmark_contour.svg';
-import bookmarkFilled from '../Places/pictures/bookmark_blue.svg';
-import bookmarkSelected from '../Places/pictures/bookmark_orange.svg';
+import bookmarkEmpty from '../media/bookmark_contour.svg';
+import bookmarkFilled from '../media/bookmark_blue.svg';
+import bookmarkSelected from '../media/bookmark_orange.svg';
 import { setToursPage, setToursMorePagesShow } from '../../redusers/ActionTours';
 import ToursListBlock from './ToursListBlock';
 

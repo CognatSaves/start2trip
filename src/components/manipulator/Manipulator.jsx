@@ -1,7 +1,7 @@
 import React from 'react';
 import './Manipulator.css'
-import leftArrow from './pictures/arrow_gray_left.svg'
-import rightArrow from './pictures/arrow_gray_right.svg'
+import leftArrow from '../media/arrow_gray_left.svg'
+import rightArrow from '../media/arrow_gray_right.svg'
 import { connect } from 'react-redux';
 class ManipulatorClass extends React.Component{
     /*constructor(props){

@@ -1,7 +1,7 @@
 import React from 'react';
 import './Home.css';
 import './text.css';
-import georgiaImg from './HomeBody/pictures/georgia.png'
+import georgiaImg from '../media/georgia.png'
 
 import { connect } from 'react-redux';
 

@@ -1,16 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { whichPageRender } from "../../redusers/ActionAgencyProfileRegistration"
+// import { whichPageRender } from "../../redusers/ActionAgencyProfileRegistration"
 import Stars from '../stars/Stars'
 
-import calendarBG from '../driverProfileRegistration/img/illustrations_calendar.svg'
-import carBg from '../driverProfileRegistration/img/illustrations_nastroiki-01.svg'
-import toursBG from '../driverProfileRegistration/img/illustrations_poezdki_tours.svg'
-import billingBG from '../driverProfileRegistration/img/illustrations_billing.svg'
-import referralsBG from '../driverProfileRegistration/img/illustrations_partners.svg'
-import sittingsBG from '../driverProfileRegistration/img/illustrations_nastroiki-04.svg'
-import feedbackBG from '../driverProfileRegistration/img/illustrations_otzivi.svg'
-import preHistoryBG from '../driverProfileRegistration/img/illustrations_predstoishie.svg'
+import calendarBG from '../media/illustrations_calendar.svg'
+import carBg from '../media/illustrations_nastroiki-01.svg'
+import toursBG from '../media/illustrations_poezdki_tours.svg'
+import billingBG from '../media/illustrations_billing.svg'
+import referralsBG from '../media/illustrations_partners.svg'
+import sittingsBG from '../media/illustrations_nastroiki-04.svg'
+import feedbackBG from '../media/illustrations_otzivi.svg'
+import preHistoryBG from '../media/illustrations_predstoishie.svg'
 
 import { readAndCompressImage } from 'browser-image-resizer';
 import requests from '../../config';

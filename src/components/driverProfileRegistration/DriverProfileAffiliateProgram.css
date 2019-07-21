@@ -119,13 +119,13 @@
     margin: 0px 5px;
     width: 30px;
     height: 30px;
-    background: url(./img/ellipsisBlue.svg) no-repeat;
+    background: url(../media/ellipsisBlue.svg) no-repeat;
     background-size: 100% 100%;
     transition: all 0.3s;
 }
 
 .affiliateProgramIconsMass span:hover {
-    background: url(./img/ellipsisOrange.svg) no-repeat;
+    background: url(../media/ellipsisOrange.svg) no-repeat;
     background-size: 100% 100%;
 }
 
@@ -156,21 +156,21 @@
 .peopleicon {
     width: 40px;
     height: 40px;
-    background: url(./img/referal.svg) no-repeat;
+    background: url(../media/referal.svg) no-repeat;
     background-size: 40px 40px;
 }
 
 .percenticon {
     width: 40px;
     height: 40px;
-    background: url(./img/percent.svg) no-repeat;
+    background: url(../media/percent.svg) no-repeat;
     background-size: 40px 40px;
 }
 
 .currencyicon {
     width: 40px;
     height: 40px;
-    background: url(./img/money.svg) no-repeat;
+    background: url(../media/money.svg) no-repeat;
     background-size: 40px 40px;
 }
 
@@ -187,7 +187,7 @@
 .questionicon {
     width: 20px;
     height: 20px;
-    background: url(./img/question-mark.svg) no-repeat;
+    background: url(../media/question-mark.svg) no-repeat;
     background-size: 20px 20px;
     padding-right: 30px;
 }

@@ -203,7 +203,7 @@ div.tourContentCheckbox {
     font-size: 14px;
     cursor: pointer;
     appearance: none;
-    background: url(./img/arrow-point-to-down.svg) no-repeat;
+    background: url(../media/arrow-point-to-down.svg) no-repeat;
     background-size: 8px 8px;
     background-position: top 15px right 10px;
     transition: all 0.3s;
@@ -356,7 +356,7 @@ span.newTourDatepickerSpan {
     font-size: 14px;
     color: #304269;
     text-indent: 20px;
-    background: url(./img/calendarGray.svg)no-repeat;
+    background: url(../media/calendarGray.svg)no-repeat;
     background-size: 14px 14px;
     background-position: top 2px left 10px;
 }
@@ -413,13 +413,13 @@ span.newTourDatepickerSpan:hover {
     z-index: 3;
     width: 160px;
     height: 90px;
-    background: url(./img/frontBusBlue.svg) no-repeat;
+    background: url(../media/frontBusBlue.svg) no-repeat;
     background-size: 160px 90px;
     transition: all 0.3s;
 }
 
 .filledTourImgAddBg:hover span {
-    background: url(./img/frontBusOrange.svg) no-repeat;
+    background: url(../media/frontBusOrange.svg) no-repeat;
     background-size: 160px 90px;
 }
 
@@ -434,7 +434,7 @@ span.newTourDatepickerSpan:hover {
 
 .settingsTourPlace p {
     text-indent: 15px;
-    background: url(./img/locationGray.svg)no-repeat;
+    background: url(../media/locationGray.svg)no-repeat;
     background-size: 14px 14px;
     background-position: top 2px left 0;
 }
@@ -474,7 +474,7 @@ span.newTourDatepickerSpan:hover {
 .addPhotoTourLabel label {
     width: 120px;
     height: 80px;
-    background: url(./img/plus.svg)no-repeat;
+    background: url(../media/plus.svg)no-repeat;
     background-size: 50px 50px;
     background-position: center center;
 }
@@ -489,7 +489,7 @@ span.newTourDatepickerSpan:hover {
 }
 
 .tourPhotoMiniContainer span:hover {
-    background: url(./img/error.svg) no-repeat;
+    background: url(../media/error.svg) no-repeat;
     background-size: 20px 20px;
 }
 
@@ -508,7 +508,7 @@ img.tourPhotoMini {
 }
 
 .tourPhotoMini:hover~span {
-    background: url(./img/error.svg) no-repeat;
+    background: url(../media/error.svg) no-repeat;
     background-size: 20px 20px;
 }
 

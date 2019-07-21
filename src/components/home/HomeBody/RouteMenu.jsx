@@ -1,7 +1,7 @@
 import React from 'react';
 import './RouteMenu.css'
-import addIcon from './pictures/addWhite.svg'
-import crossIcon from './pictures/close.svg'
+import addIcon from '../../media/addWhite.svg'
+// import crossIcon from './pictures/close.svg'
 import LocationSearchInput from './Search'
 import { connect } from 'react-redux';
 import DatePicker from 'material-ui/DatePicker';

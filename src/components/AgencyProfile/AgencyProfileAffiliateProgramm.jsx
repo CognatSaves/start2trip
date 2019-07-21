@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import '../driverProfileRegistration/DriverProfileAffiliateProgram.css';
-import copy from '../driverProfileRegistration/img/copy.svg';
+// import copy from '../media/copy.svg';
 import {
     Table,
     TableBody,
@@ -11,10 +11,10 @@ import {
     TableRowColumn,
 } from 'material-ui/Table';
 import requests from '../../config';
-import messengerIcon from '../driverProfileRegistration/img/messenger.svg'
-import whatsappIcon from '../driverProfileRegistration/img/whatsapp.svg'
-import viberIcon from '../driverProfileRegistration/img/viber.svg'
-import telegramIcon from '../driverProfileRegistration/img/telegram.svg'
+import messengerIcon from '../media/messenger.svg'
+import whatsappIcon from '../media/whatsapp.svg'
+import viberIcon from '../media/viber.svg'
+import telegramIcon from '../media/telegram.svg'
 import RenderShareLink from '../driverProfileRegistration/RenderShareLink';
 class AgencyProfileAffiliateProgrammClass extends React.Component{
     constructor(props){

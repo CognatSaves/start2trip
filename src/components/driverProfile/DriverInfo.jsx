@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 // import ToyotaPrado4 from '../drivers/DriversBody/DriversBlock/pictures/ToyotaPrado4.jpg';
 // import ToyotaPrado5 from '../drivers/DriversBody/DriversBlock/pictures/ToyotaPrado5.jpg';
 // import ToyotaPrado6 from '../drivers/DriversBody/DriversBlock/pictures/ToyotaPrado6.jpg';
-import information from './pictures/information.svg';
+import information from '../media/information.svg';
 import Carousel from './Carousel';
 import { isMobileOnly } from 'react-device-detect';
 import requests from '../../config';

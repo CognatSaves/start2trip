@@ -72,7 +72,7 @@
     margin: auto 2px;
     width: 9px;
     height: 9px;
-    background: url(pictures/da_tru_big_arrow.svg) no-repeat;
+    background: url(../../../media/da_tru_big_arrow.svg) no-repeat;
     background-size: contain;
     background-position: top 1px center;
 }
@@ -104,7 +104,7 @@
     color: #304269;
     font-size: 14px;
     font-weight: 500;
-    background: url(./pictures/sort_blue.svg) no-repeat;
+    background: url(../../../media/sort_blue.svg) no-repeat;
     background-size: 15px 15px;
     background-position: center left 5px;
 }
@@ -118,7 +118,7 @@
     color: #304269;
     font-size: 14px;
     font-weight: 500;
-    background: url(./pictures/filter.svg) no-repeat;
+    background: url(../../../media/filter.svg) no-repeat;
     background-size: 15px 15px;
     background-position: center left 25px;
 }

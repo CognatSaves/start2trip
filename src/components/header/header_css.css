@@ -32,7 +32,7 @@
     font-size: 14px;
     font-weight: 400;
     color: #304269;
-    background: url(./pictures/sortUp.svg) no-repeat;
+    background: url(../media/sortUp.svg) no-repeat;
     background-size: 13px 13px;
     background-position: center left 10px;
 }
@@ -64,7 +64,7 @@
     height: 40px;
     margin: 0;
     margin-left: 5px;
-    background: url(./pictures/logo_tripfer_white.svg) no-repeat;
+    background: url(../media/logo_tripfer_white.svg) no-repeat;
     background-size: 100% 100%;
     /* background-position: top 0px left 0px; */
 }
@@ -81,7 +81,7 @@
     margin-right: 10px;
     outline: none;
     border: none;
-    background: url(pictures/menu-button-White.svg) no-repeat;
+    background: url(../media/menu-button-White.svg) no-repeat;
     background-size: 100% 100%;
     cursor: pointer;
 }
@@ -96,7 +96,7 @@
     margin-right: 10px;
     outline: none;
     border: none;
-    background: url(pictures/arrowWhite.svg) no-repeat;
+    background: url(../media/arrowWhite.svg) no-repeat;
     background-size: 100% 100%;
     cursor: pointer;
     outline: none;
@@ -141,7 +141,7 @@
     width: 100px;
     height: 30px;
     margin: 0;
-    background: url(./pictures/logo_tripfer_white.svg) no-repeat;
+    background: url(../media/logo_tripfer_white.svg) no-repeat;
     background-size: 100% 100%;
     /* background-position: top 0px left 0px; */
 }
@@ -166,7 +166,7 @@
     color: #fff;
     border-bottom: 1px dashed #fff;
     padding-left: 14px;
-    background: url(./pictures/location_white.svg) no-repeat;
+    background: url(../media/location_white.svg) no-repeat;
     background-size: 18px 15px;
     background-position: top 0px left -2px;
 }
@@ -382,7 +382,7 @@
     margin-left: 10px;
     width: 14px;
     height: 14px;
-    background: url(./pictures/moreWhite.svg) no-repeat;
+    background: url(../media/moreWhite.svg) no-repeat;
     background-size: 12px 12px;
     background-position: center center;
     object-fit: cover;

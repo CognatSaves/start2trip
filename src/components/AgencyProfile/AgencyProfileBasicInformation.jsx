@@ -2,13 +2,13 @@ import React from 'react';
 import {connect} from 'react-redux';
 import '../driverProfileRegistration/DriverProfileBasicInformation.css';
 import '../driverProfileRegistration/DriverProfileCalendar.css';
-import LocationSearchInput from '../home/HomeBody/Search'
+// import LocationSearchInput from '../home/HomeBody/Search'
 import TextField from 'material-ui/TextField';
-import DatePicker from 'material-ui/DatePicker';
+// import DatePicker from 'material-ui/DatePicker';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 import Chip from 'material-ui/Chip';
-import flags from '../driverProfileRegistration/img/flags.png'
+import flags from '../media/flags.png'
 import ReactTelInput from 'react-telephone-input'
 import requests from '../../config';
 import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"

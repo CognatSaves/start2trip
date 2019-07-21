@@ -2,12 +2,12 @@ import React from 'react';
 import './StartTravelForm.css';
 import './StartTravelBlockStyles.css';
 import { Link } from 'react-router-dom';
-import grayCross from './pictures/close_gray.svg';
+import grayCross from '../media/close_gray.svg';
 import Dialog from '@material-ui/core/Dialog';
 import TextField from '@material-ui/core/TextField';
 import DatePicker from 'material-ui/DatePicker';
 import ReactTelInput from 'react-telephone-input'
-import flags from '../driverProfileRegistration/img/flags.png'
+import flags from '../media/flags.png'
 import { isMobileOnly } from 'react-device-detect';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';

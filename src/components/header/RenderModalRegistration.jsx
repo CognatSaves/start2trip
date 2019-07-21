@@ -3,20 +3,20 @@ import { connect } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 import './RenderModalRegistration.css'
-import emailIcon from './pictures/email.svg'
-import lockIcon from './pictures/lock.svg'
-import eyeIcon from './pictures/eye.svg'
-import eyeOrange from './pictures/eyeOrange.svg';
-import logoBlue from './pictures/logo_tripfer_blue.svg'
-import logoWhite from './pictures/logo_tripfer_white.svg'
+import emailIcon from '../media/email.svg'
+import lockIcon from '../media/lock.svg'
+import eyeIcon from '../media/eye.svg'
+import eyeOrange from '../media/eyeOrange.svg';
+import logoBlue from '../media/logo_tripfer_blue.svg'
+import logoWhite from '../media/logo_tripfer_white.svg'
 import axios from 'axios';
 import requests from '../../config.js';
 import ReactDOM from 'react-dom';
 //import pageTextInfo from '../../textInfo/RenderModalRegistration';
 import Cookies from 'universal-cookie';
-import backpackIcon from './pictures/backpack.svg'
-import dealIcon from './pictures/deal.svg'
-import wheelIcon from './pictures/wheel.svg'
+import backpackIcon from '../media/backpack.svg'
+import dealIcon from '../media/deal.svg'
+import wheelIcon from '../media/wheel.svg'
 import { isMobileOnly } from 'react-device-detect'
 import { setModalRegister, setActiveLang } from '../../redusers/Action';
 const cookies = new Cookies();

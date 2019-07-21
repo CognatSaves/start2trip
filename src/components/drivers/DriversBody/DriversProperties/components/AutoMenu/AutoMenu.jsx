@@ -2,10 +2,10 @@ import React from 'react';
 import './AutoMenu.css'
 import { connect } from 'react-redux';
 import { setAuto } from "../../../../../../redusers/Action"
-import sedan from './pictures/sedan.svg';
-import jeep from './pictures/jeep.svg';
-import microbus from './pictures/microbus.svg';
-import minivan from './pictures/minivan.svg';
+import sedan from '../../../../../media/sedan.svg';
+import jeep from '../../../../../media/jeep.svg';
+import microbus from '../../../../../media/microbus.svg';
+import minivan from '../../../../../media/minivan.svg';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';

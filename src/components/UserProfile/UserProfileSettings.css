@@ -121,14 +121,14 @@ p.driverProfileSettingsContentPasswordText {
     z-index: 2;
     top: 10px;
     right: 15px;
-    background: url(./img/eyeBlue.svg) no-repeat;
+    background: url(../media/eyeBlue.svg) no-repeat;
     background-size: 20px 20px;
     cursor: pointer;
     transition: all 0.3s;
 }
 
 .driverProfileSettingsContentPasswordEyeIcon:hover {
-    background: url(./img/eyeOrange.svg) no-repeat;
+    background: url(../media/eyeOrange.svg) no-repeat;
     background-size: 20px 20px;
 }
 

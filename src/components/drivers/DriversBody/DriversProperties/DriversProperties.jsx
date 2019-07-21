@@ -6,7 +6,7 @@ import SortMenu from './components/SortMenu/SortMenu.jsx'
 import PagesMenu from './components/PagesMenu/PagesMenu.jsx'
 import ValueMenu from './components/ValueMenu/ValueMenu.jsx'
 import AutoMenu from './components/AutoMenu/AutoMenu.jsx'
-import userBlueIcon from '../DriversBlock/pictures/userWhite.svg'
+import userBlueIcon from '../../../media/userWhite.svg'
 import { openFilterShow } from "../../../../redusers/ActionDrivers"
 import { connect } from 'react-redux';
 import {

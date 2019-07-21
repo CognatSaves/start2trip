@@ -9,10 +9,10 @@ import {
     TableRow,
     TableRowColumn,
 } from 'material-ui/Table';
-import messengerIcon from '../driverProfileRegistration/img/messenger.svg'
-import whatsappIcon from '../driverProfileRegistration/img/whatsapp.svg'
-import viberIcon from '../driverProfileRegistration/img/viber.svg'
-import telegramIcon from '../driverProfileRegistration/img/telegram.svg'
+import messengerIcon from '../media/messenger.svg'
+import whatsappIcon from '../media/whatsapp.svg'
+import viberIcon from '../media/viber.svg'
+import telegramIcon from '../media/telegram.svg'
 import requests from '../../config';
 import RenderShareLink from '../driverProfileRegistration/RenderShareLink';
 

@@ -1,9 +1,8 @@
 import React from 'react';
 import '../Places/PlacesCountryInfo.css';
 import './ToursCountryInfo.css';
-
-import calendar from './pictures/calendar.svg';
-import geoIcon from './pictures/geo_icon.svg';
+import calendar from '../media/calendar.svg';
+import geoIcon from '../media/geo_icon.svg';
 
 export default class ToursCountryInfo extends React.Component {
   render() {
