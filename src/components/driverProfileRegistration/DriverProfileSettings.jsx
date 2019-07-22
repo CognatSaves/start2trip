@@ -2,7 +2,7 @@ import React from 'react';
 import './DriverProfileSettings.css'
 import { connect } from 'react-redux';
 import TextField from 'material-ui/TextField';
-import flags from './img/flags.png'
+import flags from '../media/flags.png'
 import ReactTelInput from 'react-telephone-input'
 import requests from '../../config';
 import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"

@@ -1,13 +1,13 @@
-import React from 'react';
+import React, {Suspense, lazy } from 'react';
 import './UserProfileRegistration.css'
 import { connect } from 'react-redux';
 import Header from '../header/Header'
 import UserProfileNavigation from './UserProfileNavigation'
-import UserProfileBasicInformation from './UserProfileBasicInformation'
-import UserProfileSettings from './UserProfileSettings'
-import UserProfileHistory from './UserProfileHistory'
-import UserProfileBilling from './UserProfileBilling';
-import UserProfileAffiliateProgram from './UserProfileAffiliateProgram';
+// import UserProfileBasicInformation from './UserProfileBasicInformation'
+// import UserProfileSettings from './UserProfileSettings'
+// import UserProfileHistory from './UserProfileHistory'
+// import UserProfileBilling from './UserProfileBilling';
+// import UserProfileAffiliateProgram from './UserProfileAffiliateProgram';
 import {Route} from 'react-router-dom';
 
 import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
@@ -16,6 +16,15 @@ import getUserData from '../driverProfileRegistration/DriverProfileRequest';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 import '../driverProfileRegistration/DriverProfileRegistration.css';
 import FirstEnterModal from '../home/FirstEnterModal';
+
+
+const UserProfileHistory = lazy(()=> import('./UserProfileHistory'));
+const UserProfileBasicInformation = lazy(()=> import('./UserProfileBasicInformation'));
+const UserProfileSettings = lazy(()=> import('./UserProfileSettings'));
+const UserProfileBilling = lazy(()=> import('./UserProfileBilling'));
+const UserProfileAffiliateProgram = lazy(()=> import('./UserProfileAffiliateProgram'));
+
+
 class UserProfileRegistrationClass extends React.Component {
   constructor(props) {
     super(props);
@@ -41,11 +50,13 @@ class UserProfileRegistrationClass extends React.Component {
           <div className="registrationWrapper d-flex flex-column col-12 p-0">
             <div className="contentHeight d-flex col-12 p-0">
               <div className="d-flex flex-column justify-content-start col-lx-12 col-lg-12 col-md-12 col-sm-12 col-12">
+              <Suspense fallback={<div>Загрузка...</div>}>
               <Route path="/account/user/trips" component={UserProfileHistory} />
               <Route path="/account/user/profile" component={UserProfileBasicInformation} />
               <Route path="/account/user/settings" component={UserProfileSettings} />
               <Route path="/account/user/billing" component={UserProfileBilling} />
               <Route path="/account/user/referrals" component={UserProfileAffiliateProgram} />
+              </Suspense>
                 {/* {{
                   0: <UserProfileTrevelHistory trevelHistory={this.state.trevelHistory} />,
                   1: <UserProfileTrevelHistory trevelHistory={this.state.trevelHistory} />,

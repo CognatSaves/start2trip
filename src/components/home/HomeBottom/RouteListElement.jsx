@@ -3,8 +3,8 @@ import '../../Places/PlacesList.css';
 import Stars from '../../stars/Stars';
 import { Link } from 'react-router-dom';
 import requests from '../../../config';
-import tagBlue from '../../Places/pictures/tag_blue.svg';
-import geoIcon from '../../home/HomeBody/pictures/geo_icon.svg';
+// import tagBlue from '../../media/tag_blue.svg';
+import geoIcon from '../../media/geo_icon.svg';
 import { connect } from 'react-redux';
 class RouteListElementClass extends React.Component{
     render(){

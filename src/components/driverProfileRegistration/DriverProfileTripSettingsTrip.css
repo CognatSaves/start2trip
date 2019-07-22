@@ -88,7 +88,7 @@ div.tripSettingsContentTitle {
     padding-left: 10px;
     cursor: pointer;
     appearance: none;
-    background: url(./img/arrow-point-to-down.svg) no-repeat;
+    background: url(../media/arrow-point-to-down.svg) no-repeat;
     background-size: 8px 8px;
     background-position: top 15px right 10px;
     transition: all 0.3s;
@@ -115,7 +115,7 @@ div.tripSettingsContentAddCity p {
     position: relative;
     width: 50px;
     height: 18px;
-    background: url(./img/closeGray.svg) no-repeat;
+    background: url(../media/closeGray.svg) no-repeat;
     background-size: 18px 18px;
     background-position: top 0px left 10px;
     cursor: pointer;
@@ -123,7 +123,7 @@ div.tripSettingsContentAddCity p {
 }
 
 .tripSettingsContentDeletButton:hover {
-    background: url(./img/closeOrange.svg) no-repeat;
+    background: url(../media/closeOrange.svg) no-repeat;
     background-size: 18px 18px;
     background-position: top 0px left 10px;
 }

@@ -81,13 +81,13 @@
 .driverInfo_bookmarkElement {
     margin-left: auto;
     background-size: 20px 25px;
-    background: url('../drivers/DriversBody/DriversBlock/pictures/bookmark_contour.svg');
+    background: url(../media/bookmark_contour.svg);
     width: 20px;
     height: 25px;
 }
 
 .driverInfo_bookmarkElement:hover {
-    background: url('../drivers/DriversBody/DriversBlock/pictures/bookmark_orange.svg');
+    background: url('../media/bookmark_orange.svg');
 }
 
 

@@ -62,7 +62,7 @@
     height: 32px;
     width: 24px;
     margin: auto 0;
-    background: url(../Places/pictures/bookmark_contour.svg);
+    background: url(../media/bookmark_contour.svg);
     background-size: 24px 32px;
 }
 
@@ -70,7 +70,7 @@
     height: 14px;
     width: 14px;
     margin: auto 5px auto 0;
-    background: url(pictures/tag_white.svg);
+    background: url(../media/tag_white.svg);
     background-size: 14px 14px;
 }
 
@@ -157,17 +157,15 @@
     color: black;
 }
 
-.placesDescription_travelBlock_element ::-webkit-input-placeholder{
+.placesDescription_travelBlock_element ::-webkit-input-placeholder {
     color: black;
 }
 
-.placesDescription_travelBlock_highlighted
-{
+.placesDescription_travelBlock_highlighted {
     background: rgba(34, 157, 78, 0.49);
-    
 }
 
-.placesDescription_travelBlock_highlighted input{
+.placesDescription_travelBlock_highlighted input {
     background: transparent;
 }
 
@@ -260,15 +258,15 @@
 }
 
 .placesDescription_calendary {
-    background-image: url(pictures/calendar.svg);
+    background-image: url(../media/calendar.svg);
 }
 
 .placesDescription_geoIcon {
-    background-image: url(pictures/geo_icon.svg);
+    background-image: url(../media/geo_icon.svg);
 }
 
 .placesDescription_position {
-    background-image: url(pictures/my_location.svg);
+    background-image: url(../media/my_location.svg);
 }
 
 .placesDescription_travelBlock_applyButton {
@@ -321,9 +319,10 @@
     position: relative;
 }
 
-.placePhotos_elementBlock:hover{
+.placePhotos_elementBlock:hover {
     cursor: pointer;
 }
+
 .placePhotos_imageStyle {
     border-radius: 10px;
 }

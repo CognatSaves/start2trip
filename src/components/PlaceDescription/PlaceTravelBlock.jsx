@@ -1,5 +1,5 @@
 import React from 'react';
-import CurrentLocation from '../home/HomeBody/CurrentLocation.jsx';
+// import CurrentLocation from '../home/HomeBody/CurrentLocation.jsx';
 import MapContainer from '../home/HomeBody/MapContainer';
 import LocationSearchInput from '../home/HomeBody/Search';
 import DatePicker from 'material-ui/DatePicker';

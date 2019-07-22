@@ -5,14 +5,14 @@ import TourPanel from './TourPanel.jsx';
 import DriversCommercial from '../drivers/DriversBody/DriversCommercial/DriversCommercial';
 
 import './TourDescription.css';
-import carthage from '../Tours/pictures/Carthage.webp';
-import antioch from './pictures/antioch.jpg';
-import roma from './pictures/roma.jpg';
-import alexandria from './pictures/alexandria.jpg';
-import konstantinople from './pictures/konstantinople.jpg';
+import carthage from '../media/bachground.jpg';
+import antioch from '../media/bachground.jpg';
+import roma from '../media/bachground.jpg';
+import alexandria from '../media/bachground.jpg';
+import konstantinople from '../media/bachground.jpg';
 
 import { connect } from 'react-redux';
-import georgiaImg from '../home/HomeBody/pictures/georgia.png';
+import georgiaImg from '../media/georgia.png';
 
 import TourProgram from './TourProgram.jsx';
 import PlacePhotos from '../PlaceDescription/PlacePhotos';

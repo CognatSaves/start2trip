@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import Manipulator from '../manipulator/Manipulator';
-import dromon from './pictures/dromon.jpg';
+import dromon from '../media/dromon.jpg';
 import Stars from '../stars/Stars';
 
-import userBlueIcon from '../drivers/DriversBody/DriversBlock/pictures/user_blue.svg';
+import userBlueIcon from '../media/user_blue.svg';
 
 export default class ToursListBlock extends React.Component{
     render(){

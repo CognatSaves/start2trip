@@ -8,7 +8,7 @@ import DatePicker from 'material-ui/DatePicker';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 import Chip from 'material-ui/Chip';
-import flags from './img/flags.png'
+import flags from '../media/flags.png'
 import ReactTelInput from 'react-telephone-input'
 import requests from '../../config';
 import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"

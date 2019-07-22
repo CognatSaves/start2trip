@@ -1,7 +1,7 @@
 import React from 'react';
 import './DriverProfileFeedback.css';
 import { connect } from 'react-redux'
-import tempPicture from './img/drivers_body_photo.png'
+// import tempPicture from './img/drivers_body_photo.png'
 import Stars from '../stars/Stars';
 import requests from '../../config';
 

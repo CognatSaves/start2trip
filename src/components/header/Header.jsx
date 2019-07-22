@@ -4,9 +4,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import RenderModalCountry from './RenderModalCountry'
 import RenderModalRegistration from './RenderModalRegistration'
-import mapWorldIcon from './pictures/mapWorld.svg'
+import mapWorldIcon from '../media/mapWorld.svg'
 import { connect } from 'react-redux';
-import crossIconModal from './pictures/close.svg'
+import crossIconModal from '../media/close.svg'
 // import geoFlag from './pictures/georgia.svg'
 // import ruFlag from './pictures/russia.svg'
 // import enFlag from './pictures/united-kingdom.svg'
@@ -31,9 +31,9 @@ import pageTextInfo from '../../textInfo/RenderModalRegistration';
 import { setLocals, modalCountryDispatch } from '../../redusers/Action';
 import Dialog from 'material-ui/Dialog';
 import { isMobileOnly, isMobile } from 'react-device-detect';
-import backpackIcon from './pictures/backpack.svg'
-import dealIcon from './pictures/deal.svg'
-import wheelIcon from './pictures/wheel.svg'
+import backpackIcon from '../media/backpack.svg'
+import dealIcon from '../media/deal.svg'
+import wheelIcon from '../media/wheel.svg'
 const cookies = new Cookies();
 
 const ModalRegistration = (props) => {

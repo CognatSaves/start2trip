@@ -120,7 +120,7 @@
 
 .billingCalendar input {
     text-indent: 25px;
-    background: url(./img/calendarGray.svg)no-repeat;
+    background: url(../media/calendarGray.svg)no-repeat;
     background-size: 12px 12px;
     background-position: top 8px left 5px;
     font-size: 14px !important;

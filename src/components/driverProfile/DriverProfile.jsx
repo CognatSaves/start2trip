@@ -15,17 +15,17 @@ import DriverInfo from './DriverInfo.jsx';
 import requests from '../../config';
 import { setCities } from '../../redusers/Action'
 // import RouteMenu from '../home/HomeBody/RouteMenu';
-import TextField from '@material-ui/core/TextField';
+// import TextField from '@material-ui/core/TextField';
 import DatePicker from 'material-ui/DatePicker';
-import ReactTelInput from 'react-telephone-input'
-import flags from '../driverProfileRegistration/img/flags.png'
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
-import Input from '@material-ui/core/Input';
-import Checkbox from '@material-ui/core/Checkbox';
-import { Link } from 'react-router-dom';
+// import ReactTelInput from 'react-telephone-input'
+// import flags from '../driverProfileRegistration/img/flags.png'
+// import Select from '@material-ui/core/Select';
+// import MenuItem from '@material-ui/core/MenuItem';
+// import InputLabel from '@material-ui/core/InputLabel';
+// import FormControl from '@material-ui/core/FormControl';
+// import Input from '@material-ui/core/Input';
+// import Checkbox from '@material-ui/core/Checkbox';
+// import { Link } from 'react-router-dom';
 import MapContainer from '../home/HomeBody/MapContainer';
 import { setLengthTime } from '../../redusers/ActionDrivers'
 import axios from 'axios';

@@ -58,7 +58,7 @@
     margin-top: 25px;
     height: 35px;
     width: 35px;
-    background: url(../drivers/DriversRoute/pictures/location.svg);
+    background: url(../media/location.svg);
     background-size: 35px 35px;
     box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.25);
     border-radius: 18px;
@@ -141,7 +141,6 @@
     font-weight: 500;
     font-size: 16px;
     color: #304269;
-
 }
 
 .tourPanel_element:hover {
@@ -152,7 +151,7 @@
     color: #ff6600 !important;
 }
 
-.tourPanel_panel{
+.tourPanel_panel {
     width: 100%;
     overflow-x: auto;
     scroll-behavior: smooth;
@@ -168,8 +167,7 @@
     white-space: nowrap;
 }
 
-.tourPanel_panel a:hover{
+.tourPanel_panel a:hover {
     color: #f60;
     /*border-bottom: 3px solid #f60;*/
 }
-

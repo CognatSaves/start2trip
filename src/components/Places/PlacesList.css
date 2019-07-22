@@ -134,7 +134,7 @@
 }
 
 .placesTagList_tagBlock_selected {
-    background: url(./pictures/close.svg) no-repeat;
+    background: url(../media/close.svg) no-repeat;
     background-size: 15px 15px;
     background-position: right 8px center;
     border: 2px solid #ff6600;

@@ -1,9 +1,9 @@
 import React from 'react';
 import './PlacesCountryInfo.css'
 
-import territoryIcon from './pictures/georgia_Монтажная область 1.svg';
-import peopleIcon from './pictures/people_Монтажная область 1.svg';
-import capitalIcon from './pictures/building_Монтажная область 1.svg';
+import territoryIcon from '../media/georgia_Монтажная область 1.svg';
+import peopleIcon from '../media/people_Монтажная область 1.svg';
+import capitalIcon from '../media/building_Монтажная область 1.svg';
 import { connect } from 'react-redux';
 class PlacesCountryInfoClass extends React.Component {
     render(){

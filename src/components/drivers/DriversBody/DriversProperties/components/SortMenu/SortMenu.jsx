@@ -2,8 +2,8 @@ import React from 'react';
 import './SortMenu.css'
 import { connect } from 'react-redux';
 import { setSortMenu } from '../../../../../../redusers/Action'
-import iconSortUp from './img/sortUp.svg'
-import iconSortDown from './img/sortDown.svg'
+import iconSortUp from '../../../../../media/sortUp.svg'
+import iconSortDown from '../../../../../media/sortDown.svg'
 import { isMobileOnly } from 'react-device-detect';
 
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import Stars from '../stars/Stars';
-import geoIcon from './pictures/geo_icon.svg';
+import geoIcon from '../media/geo_icon.svg';
 export default class TourProgram extends React.Component{
     /*constructor(props){
         super(props);

@@ -1,8 +1,0 @@
-<svg 
- xmlns="http://www.w3.org/2000/svg"
- xmlns:xlink="http://www.w3.org/1686868/xlink"
- width="18.5px" height="18.5px">
-<path fill-rule="evenodd"  stroke="rgb(255, 255, 255)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter" fill="none"
- d="M5.500,0.500 L12.500,0.500 C15.261,0.500 17.500,2.739 17.500,5.500 L17.500,12.500 C17.500,15.261 15.261,17.500 12.500,17.500 L5.500,17.500 C2.738,17.500 0.500,15.261 0.500,12.500 L0.500,5.500 C0.500,2.739 2.738,0.500 5.500,0.500 Z"/>
-<text font-family="Roboto" fill="rgb(255, 255, 255)" font-size="13px" x="5.5px" y="13.75px">&#43;</text>
-</svg>

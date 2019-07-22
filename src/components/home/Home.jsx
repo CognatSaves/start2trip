@@ -1,7 +1,7 @@
 import React from 'react';
 import './Home.css';
 import './text.css';
-import georgiaImg from './HomeBody/pictures/georgia.png'
+import georgiaImg from '../media/georgia.png'
 import Drivers from '../drivers/Drivers'
 import HomeBodyBottom from './HomeBodyBottom'
 import { connect } from 'react-redux';
@@ -10,7 +10,7 @@ import {Route} from 'react-router-dom';
 //import HomeHeader from './HomeHeader/HomeHeader.jsx'
 import Header from '../header/Header';
 import HomeBody from './HomeBody/HomeBody.jsx'
-import { isMobileOnly, isTablet } from 'react-device-detect';
+import { isMobileOnly } from 'react-device-detect';
 import FirstEnterModal from './FirstEnterModal';
 
 

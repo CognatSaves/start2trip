@@ -2,16 +2,15 @@ import React from 'react';
 import './DriverProfileNavigation.css'
 import { connect } from 'react-redux';
 import { whichPageRender } from "../../redusers/ActionDriverProfileRegistration"
-import imgPerson from './img/drivers_body_photo.png'
 import Stars from '../stars/Stars'
 
-import calendarBG from './img/illustrations_calendar.svg'
-import carBg from './img/illustrations_nastroiki-01.svg'
-import toursBG from './img/illustrations_poezdki_tours.svg'
-import historyBG from './img/illustrations_history.svg'
-import sittingsBG from './img/illustrations_nastroiki-04.svg'
-import feedbackBG from './img/illustrations_otzivi.svg'
-import preHistoryBG from './img/illustrations_predstoishie.svg'
+import calendarBG from '../media/illustrations_calendar.svg'
+import carBg from '../media/illustrations_nastroiki-01.svg'
+import billingBG from '../media/illustrations_billing.svg'
+import referralsBG from '../media/illustrations_partners.svg'
+import sittingsBG from '../media/illustrations_nastroiki-04.svg'
+import feedbackBG from '../media/illustrations_otzivi.svg'
+import preHistoryBG from '../media/illustrations_predstoishie.svg'
 import { readAndCompressImage } from 'browser-image-resizer';
 import requests from '../../config';
 import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
@@ -178,6 +177,8 @@ class DriverProfileNavigationClass extends React.Component {
                     //"/account/driver/tours": { backgroundImage: "url(" + toursBG + ")" },
                     "/account/driver/reviews": { backgroundImage: "url(" + feedbackBG + ")" },
                     "/account/driver/settings": { backgroundImage: "url(" + sittingsBG + ")" },
+                    "/account/driver/billing": { backgroundImage: "url(" + billingBG + ")" },
+                    "/account/driver/referrals": { backgroundImage: "url(" + referralsBG + ")" },
                 }[this.props.globalhistory.history.location.pathname]}>
                     <div className="basicInformationBodyTop d-flex align-items-center ">
                         <div className="basicInformationBodyTopImgHover">

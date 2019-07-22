@@ -1,26 +1,38 @@
-import React from 'react';
+import React, {Suspense, lazy } from 'react';
 import './DriverProfileRegistration.css'
 import { connect } from 'react-redux';
 import Header from '../header/Header'
 import DriverProfileNavigation from './DriverProfileNavigation'
-import DriverProfileCar from './DriverProfileCar'
-import DriverProfileBasicInformation from './DriverProfileBasicInformation'
-import DriverProfileFeedback from './DriverProfileFeedback'
-import DriverProfileTripSettingsTrip from './DriverProfileTripSettingsTrip'
-import DriverProfileTripSettingsTour from './DriverProfileTripSettingsTour'
-import DriverProfileSettings from './DriverProfileSettings'
-import DriverProfileHistory from './DriverProfileHistory'
-import DriverProfileBilling from './DriverProfileBilling'
-import DriverProfileAffiliateProgram from './DriverProfileAffiliateProgram'
+
+// import DriverProfileCar from './DriverProfileCar'
+// import DriverProfileBasicInformation from './DriverProfileBasicInformation'
+// import DriverProfileFeedback from './DriverProfileFeedback'
+// import DriverProfileTripSettingsTrip from './DriverProfileTripSettingsTrip'
+// import DriverProfileTripSettingsTour from './DriverProfileTripSettingsTour'
+// import DriverProfileSettings from './DriverProfileSettings'
+// import DriverProfileHistory from './DriverProfileHistory'
+// import DriverProfileBilling from './DriverProfileBilling'
+// import DriverProfileAffiliateProgram from './DriverProfileAffiliateProgram'
+
 import {Route} from 'react-router-dom';
 import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 import requests from '../../config';
 import getUserData from './DriverProfileRequest';
 import DriverRefreshIndicator from './DriverRefreshIndicator';
-import UserProfileRegistration from '../UserProfile/UserProfileRegistration';
-import AgencyProfile from '../AgencyProfile/AgencyProfile';
+// import UserProfileRegistration from '../UserProfile/UserProfileRegistration';
+// import AgencyProfile from '../AgencyProfile/AgencyProfile';
 import {changeLanguagePart} from '../../redusers/Action';
 import FirstEnterModal from '../home/FirstEnterModal';
+
+const DriverProfileHistory = lazy(()=> import('./DriverProfileHistory'));
+const DriverProfileBasicInformation = lazy(()=> import('./DriverProfileBasicInformation'));
+const DriverProfileCar = lazy(()=> import('./DriverProfileCar'));
+const DriverProfileTripSettingsTrip = lazy(()=> import('./DriverProfileTripSettingsTrip'));
+const DriverProfileFeedback = lazy(()=> import('./DriverProfileFeedback'));
+const DriverProfileSettings = lazy(()=> import('./DriverProfileSettings'));
+const DriverProfileBilling = lazy(()=> import('./DriverProfileBilling'));
+const DriverProfileAffiliateProgram = lazy(()=> import('./DriverProfileAffiliateProgram'));
+
 class DriverProfileRegistrationClass extends React.Component {
   constructor(props) {
     super(props);
@@ -52,6 +64,7 @@ class DriverProfileRegistrationClass extends React.Component {
         <div className="registrationWrapper d-flex flex-column col-12 p-0">
           <div className="d-flex contentHeight col-12 p-0">
             <div className="d-flex flex-column justify-content-start col-lx-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+            <Suspense fallback={<div>Загрузка...</div>}>
             <Route path="/account/driver/trips" component={DriverProfileHistory} />
             <Route path="/account/driver/profile" component={DriverProfileBasicInformation} />
             <Route path="/account/driver/cars" component={DriverProfileCar} />
@@ -66,6 +79,7 @@ class DriverProfileRegistrationClass extends React.Component {
             <Route path="/account/driver/settings" component={DriverProfileSettings} />
             <Route path="/account/driver/billing" component={DriverProfileBilling} />
             <Route path="/account/driver/referrals" component={DriverProfileAffiliateProgram} />
+            </Suspense>
             </div>           
           </div>
         </div>

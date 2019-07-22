@@ -7,7 +7,7 @@
     height: 16px;
     margin-left: 5px;
     margin-top: 5px;
-    background: url(pictures/close.svg);
+    background: url(../../media/close.svg);
     background-size: 16px 16px;
     background-position: center right;
 }
@@ -29,7 +29,7 @@
     display: flex;
     width: 20px;
     height: 25px;
-    background: url(pictures/location_white.svg);
+    background: url(../../media/location_white.svg);
     background-size: 20px 25px;
 }
 
@@ -53,7 +53,7 @@ span.route_add_city {
     margin: 2px;
     font-size: 12px;
     padding-left: 20px;
-    background: url(pictures/addWhite.svg) no-repeat;
+    background: url(../../media/addWhite.svg) no-repeat;
     background-size: 17px 17px;
     background-position: center left;
 }
@@ -110,7 +110,7 @@ span.route_add_city {
     width: 17px;
     height: 17px;
     margin-right: 13px;
-    background: url(pictures/calendar.svg);
+    background: url(../../media/calendar.svg);
     background-size: 17px 17px;
 }
 

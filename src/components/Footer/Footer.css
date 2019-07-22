@@ -93,7 +93,7 @@ html {
     width: 20px;
     height: 20px;
     margin-bottom: 5px;
-    background: url(./pictures/front-bus-Gray.svg) 100% 100% no-repeat;
+    background: url(../media/front-bus-Gray.svg) 100% 100% no-repeat;
     background-size: contain;
 }
 
@@ -101,7 +101,7 @@ html {
     width: 20px;
     height: 20px;
     margin-bottom: 5px;
-    background: url(./pictures/front-bus-Orange.svg) 100% 100% no-repeat;
+    background: url(../media/frontBusOrange.svg) 100% 100% no-repeat;
     background-size: contain;
 }
 
@@ -109,7 +109,7 @@ html {
     width: 20px;
     height: 20px;
     margin-bottom: 5px;
-    background: url(./pictures/locationGray.svg) 100% 100% no-repeat;
+    background: url(../media/locationGray.svg) 100% 100% no-repeat;
     background-size: contain;
 }
 
@@ -117,7 +117,7 @@ html {
     width: 20px;
     height: 20px;
     margin-bottom: 5px;
-    background: url(./pictures/locationOrange.svg) 100% 100% no-repeat;
+    background: url(../media/locationOrange.svg) 100% 100% no-repeat;
     background-size: contain;
 }
 
@@ -125,7 +125,7 @@ html {
     width: 20px;
     height: 20px;
     margin-bottom: 5px;
-    background: url(./pictures/rate-star-Gray.svg) 100% 100% no-repeat;
+    background: url(../media/rate-star-Gray.svg) 100% 100% no-repeat;
     background-size: contain;
 }
 
@@ -133,7 +133,7 @@ html {
     width: 20px;
     height: 20px;
     margin-bottom: 5px;
-    background: url(./pictures/rate-star-Orange.svg) 100% 100% no-repeat;
+    background: url(../media/rate-star-Orange.svg) 100% 100% no-repeat;
     background-size: contain;
 }
 
@@ -141,7 +141,7 @@ html {
     width: 20px;
     height: 20px;
     margin-bottom: 5px;
-    background: url(./pictures/man-user-Gray.svg) 100% 100% no-repeat;
+    background: url(../media/man-user-Gray.svg) 100% 100% no-repeat;
     background-size: contain;
 }
 
@@ -149,7 +149,7 @@ html {
     width: 20px;
     height: 20px;
     margin-bottom: 5px;
-    background: url(./pictures/man-user-Orange.svg) 100% 100% no-repeat;
+    background: url(../media/man-user-Orange.svg) 100% 100% no-repeat;
     background-size: contain;
 }
 

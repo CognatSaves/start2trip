@@ -4,11 +4,11 @@ import { connect } from 'react-redux';
 import { Collapse } from 'reactstrap'
 // import Slider from '../components/ValueMenu/Slider';
 import { openFilterShow } from "../../../../../redusers/ActionDrivers"
-import sedan from './pictures/sedan.svg';
-import jeep from './pictures/jeep.svg';
-import microbus from './pictures/microbus.svg';
-import minivan from './pictures/minivan.svg';
-import languageWhite from './pictures/languageWhite.svg';
+import sedan from '../../../../media/sedan.svg';
+import jeep from '../../../../media/jeep.svg';
+import microbus from '../../../../media/microbus.svg';
+import minivan from '../../../../media/minivan.svg';
+// import languageWhite from '../../../../media/languageWhite.svg';
 import Slider from '@material-ui/core/Slider';
 import Checkbox from '@material-ui/core/Checkbox';
 

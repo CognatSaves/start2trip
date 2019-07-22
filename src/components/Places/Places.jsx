@@ -4,19 +4,19 @@ import Header from '../header/Header';
 import PlacesCountryInfo from './PlacesCountryInfo'
 import PlacesPanel from './PlacesPanel';
 import PopularPlaces from './PopularPlaces';
-import DriversCommercial from '../drivers/DriversBody/DriversCommercial/DriversCommercial';
+// import DriversCommercial from '../drivers/DriversBody/DriversCommercial/DriversCommercial';
 import PlacesList from './PlacesList';
 import PlacesTagList from './PlacesTagList';
 import { connect } from 'react-redux';
 import Manipulator from '../manipulator/Manipulator';
 import { setPage, setMorePagesShow,setSelectedDirection } from '../../redusers/ActionPlaces';
 
-import Tbilisy from './pictures/tbilisi_desk.jpg'
-import Batumi from './pictures/Batumi.-Podorozh-do-sertsya-Gruziyi-700x420.jpg'
-import kytaisy from './pictures/Kolhidskiy-fontan.-Kutaisi.jpg'
-import Rustavi from './pictures/Rustavi_Museum_(A._Muhranoff,_2011).jpg'
-import samegrello from './pictures/thumb_536_1370_437_0_0_auto.jpg'
-import Andshi from './pictures/Вид_на_деревушку_Адиши,_Грузия.jpg'
+// import Tbilisy from './pictures/tbilisi_desk.jpg'
+// import Batumi from './pictures/Batumi.-Podorozh-do-sertsya-Gruziyi-700x420.jpg'
+// import kytaisy from './pictures/Kolhidskiy-fontan.-Kutaisi.jpg'
+// import Rustavi from './pictures/Rustavi_Museum_(A._Muhranoff,_2011).jpg'
+// import samegrello from './pictures/thumb_536_1370_437_0_0_auto.jpg'
+// import Andshi from './pictures/Вид_на_деревушку_Адиши,_Грузия.jpg'
 
 
 import axios from 'axios';

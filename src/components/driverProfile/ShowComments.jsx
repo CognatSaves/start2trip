@@ -1,6 +1,6 @@
 import React from 'react';
 import './DriversProfileComments.css';
-import tempPicture from './pictures/drivers_body_photo.png'
+// import tempPicture from './pictures/drivers_body_photo.png'
 import Stars from '../stars/Stars';
 import requests from '../../config';
 import { connect } from 'react-redux';
@@ -42,7 +42,7 @@ class ShowCommentsClass extends React.Component {
                                 <i className="commentBlock_elementIconCross" onClick={()=>{this.setState({ openModal: !this.state.openModal })}}/>
                             <div className="commentBlock_valueBlock d-flex flex-column">
                                 <div className="commentBlock_picture d-flex pb-2">
-                                    <img src={this.state.element.avatar ? requests.serverAddress + this.state.element.avatar.url : tempPicture} width="auto" height="100%" alt=""></img>
+                                    <img src={requests.serverAddress + this.state.element.avatar.url} width="auto" height="100%" alt=""></img>
                                     <div className="d-flex flex-column justify-content-center col pr-0">
                                         <div className="valueBlock_firstElement_name">{this.state.element.name}</div>
                                         <Stars value={this.state.element.rating} valueDisplay={true} commentNumberDisplay={false} />
@@ -70,7 +70,7 @@ class ShowCommentsClass extends React.Component {
                                     <div className="commentBlock_comments  commentBlock_element" key={element + "/" + index} >
                                         <div className="commentBlock_valueBlock d-flex flex-column">
                                             <div className="commentBlock_picture d-flex pb-2">
-                                                <img src={element.avatar ? requests.serverAddress + element.avatar.url : tempPicture} width="auto" height="100%" alt=""></img>
+                                                <img src={requests.serverAddress + element.avatar.url} width="auto" height="100%" alt=""></img>
                                                 <div className="d-flex flex-column justify-content-center col pr-0">
                                                     <div className="valueBlock_firstElement_name">{element.name}</div>
 

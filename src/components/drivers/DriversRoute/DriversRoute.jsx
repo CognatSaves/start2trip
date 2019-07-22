@@ -8,8 +8,7 @@ import LocationSearchInput from '../../home/HomeBody/Search';
 import { set_state } from '../../../redusers/Action'
 import { setDriversRouteChange } from '../../../redusers/ActionDrivers'
 import DatePicker from 'material-ui/DatePicker';
-import crossIcon from './pictures/close.svg'
-import Calendar from 'react-calendar'
+import crossIcon from '../../media/close.svg'
 import '../../home/HomeBody/calendary.css';
 import { isMobileOnly } from 'react-device-detect'
 

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 import Header from '../header/Header';
 import PlaceInfo from '../PlaceDescription/PlaceInfo.jsx';
-import ippodrom from '../PlaceDescription/pictures/ippodrom.jpg';
+// import ippodrom from '../PlaceDescription/pictures/ippodrom.jpg';
 import axios from 'axios';
 import requests from '../../config';
 import { changePlacesFixedClass, setPlacesPanelSelectedElement } from '../../redusers/ActionPlaces';

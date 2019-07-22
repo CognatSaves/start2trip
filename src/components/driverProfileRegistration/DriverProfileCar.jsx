@@ -14,8 +14,7 @@ import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 import getUserData from './DriverProfileRequest';
 import DriverRefreshIndicator from './DriverRefreshIndicator';
 import { readAndCompressImage } from 'browser-image-resizer';
-const jic = require('j-i-c');
-const resizeImg = require('resize-img');
+
 class DriverProfileCarClass extends React.Component {
     constructor(props) {
         super(props);

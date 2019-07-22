@@ -1,6 +1,5 @@
 import React from 'react';
 import '../driverProfileRegistration/DriverProfileAffiliateProgram.css';
-import copy from '../driverProfileRegistration/img/copy.svg';
 import {connect} from 'react-redux';
 import {
     Table,
@@ -10,13 +9,19 @@ import {
     TableRow,
     TableRowColumn,
 } from 'material-ui/Table';
+import messengerIcon from '../media/messenger.svg'
+import whatsappIcon from '../media/whatsapp.svg'
+import viberIcon from '../media/viber.svg'
+import telegramIcon from '../media/telegram.svg'
 import requests from '../../config';
+import RenderShareLink from '../driverProfileRegistration/RenderShareLink';
 
 class UserProfileAffiliateProgramClass extends React.Component {
     constructor(props){
         super(props);
         this.state ={
-
+            iconsArray: [messengerIcon, whatsappIcon, viberIcon, telegramIcon, messengerIcon, whatsappIcon, viberIcon, telegramIcon, messengerIcon, whatsappIcon, viberIcon, telegramIcon],
+            howMuchRender: 4,
         };
     }
     copyValue = (id) =>{
@@ -24,7 +29,6 @@ class UserProfileAffiliateProgramClass extends React.Component {
         selectedInput.select();
         document.execCommand("copy");
     }
-
 
     render() {
         function paymentsCalculation(partners){
@@ -47,7 +51,7 @@ class UserProfileAffiliateProgramClass extends React.Component {
                         <p className="col-xl-8 col-lg-8 col-md-9 col-sm-10 col-10">{textPage.affiliateProgramsDescription}</p>
                     </div>
                     <div className="affiliateProgramButton d-flex flex-sm-row flex-column justify-content-between align-items-center">
-                        <div>
+                        {/* <div>
                             <div>{textPage.affiliateLinks.title}</div>
                             <div>
                             {textPage.affiliateLinks.registrationLink}
@@ -63,7 +67,12 @@ class UserProfileAffiliateProgramClass extends React.Component {
                                 <input id="partnerMainPageLink" placeholder="Ссылка 1" style={{width: '400px'}} value={requests.frontendAddress+'/start/'+this.props.globalReduser.profile._id}/>
                                 <div onClick = {()=>this.copyValue("partnerMainPageLink")} style={{background: 'url('+copy+') no-repeat center'}} className="copyElement"/>
                             </div>
-                        </div>                   
+                        </div>    */}
+                        <div className="d-flex flex-lg-row flex-column align-items-center col-md-8 col-12">
+                            {/* <div>{textPage.affiliateLinks.title}</div> */}
+                            <RenderShareLink classNameDiv={"col-lg-6 col-12"} idInput={"partnerRegistrationLink"} valueInput={requests.frontendAddress+'/register/'+this.props.globalReduser.profile._id} iconsArray={this.state.iconsArray} textTitle={textPage.affiliateLinks.registrationLink} buttonCopyText={textPage.affiliateLinks.spanLink} />
+                            <RenderShareLink classNameDiv={"col-lg-6 col-12"} idInput={"partnerMainPageLink"} valueInput={requests.frontendAddress+'/start/'+this.props.globalReduser.profile._id} iconsArray={this.state.iconsArray} textTitle={textPage.affiliateLinks.linkToHomePage} buttonCopyText={textPage.affiliateLinks.spanLink} />
+                        </div>                
                         <div className="d-flex flex-sm-row flex-column">
                         {
                             /*
