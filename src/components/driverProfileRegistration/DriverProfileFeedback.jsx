@@ -2,8 +2,9 @@ import React from 'react';
 
 import { connect } from 'react-redux'
 // import tempPicture from './img/drivers_body_photo.png'
-import Stars from '../stars/Stars';
-import requests from '../../config';
+// import Stars from '../stars/Stars';
+// import requests from '../../config';
+import ShowComments from '../driverProfile/ShowComments';
 
 class DriverProfileFeedbackClass extends React.Component{
     constructor(props){
@@ -20,16 +21,17 @@ class DriverProfileFeedbackClass extends React.Component{
         /*let comments = [...this.props.commentState.comments].reverse();
         let selectedComments = comments.slice((1-4) * 5, (1) * 5);
         */
-        function getMonthName(number){
-            let monthArray = ["января","февраля","марта","апреля","мая","июня","июля","августа","сентября","октября","ноября","декабря"];
-            return monthArray[number];
+        // function getMonthName(number){
+        //     let monthArray = ["января","февраля","марта","апреля","мая","июня","июля","августа","сентября","октября","ноября","декабря"];
+        //     return monthArray[number];
             
-        }
+        // }
 
         // TODO добавить кнопку показать еще и пагинацию
         return(
-            <div className="profileFeedbackBlock_comments d-flex flex-column">
-            {this.state.comments.map((element,index)=>                       
+            <div className="profileFeedbackBlock_comments d-flex flex-column">  
+            <ShowComments selectedComments={this.state.comments} />
+            {/* {this.state.comments.map((element,index)=>                       
                 <div className="commentBlock_element d-flex" key={element+"/"+index}>
                     <div className="commentBlock_picture">
                         <img src={requests.serverAddress+element.clearedAuthor.url} width="auto" height="100%" alt=""></img>
@@ -37,7 +39,7 @@ class DriverProfileFeedbackClass extends React.Component{
                     <div className="commentBlock_valueBlock d-flex flex-column">
                         <div className="d-flex justify-content-between">
                             <div className="valueBlock_firstElement_name">{element.clearedAuthor.firstName}</div>
-                            <div className="valueBlock_firstElement_date">{element.updatedAt/*element.date.getDate()+" "+getMonthName(element.date.getMonth())+" "+element.date.getFullYear()*/}</div>
+                            <div className="valueBlock_firstElement_date">{element.updatedAt}</div>
                         </div>
                         <div style={{marginBottom: "20px"}}>
                             <Stars key={element.mark+"/"+element.index} value={element.mark} valueDisplay={true} commentNumberDisplay={false}/>
@@ -48,7 +50,7 @@ class DriverProfileFeedbackClass extends React.Component{
                         </div>
                     </div>
                 </div> 
-            )}
+            )} */}
             </div> 
         )
     }

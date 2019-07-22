@@ -14,6 +14,7 @@ import '../driverProfileRegistration/DriverProfileSettings.css';
 import './UserProfileSettings.css';
 import '../driverProfileRegistration/DriverProfileBilling.css';
 import '../driverProfileRegistration/DriverProfileAffiliateProgram.css';
+import './UserProfileTrevelHistory.css'
 //import css
 
 import {Route} from 'react-router-dom';

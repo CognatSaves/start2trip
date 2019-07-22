@@ -7,6 +7,7 @@ import './components/driverProfile/DriverInfo.css';
 import './components/driverProfile/DriverAdaptedRoute.css';
 import './components/PlaceDescription/PlaceDescription.css'
 import './components/RouteDescription/RouteDescription.css';
+import './components/driverProfile/DriversProfileComments.css';
 
 //import css
 import Home from './components/home/Home.jsx';

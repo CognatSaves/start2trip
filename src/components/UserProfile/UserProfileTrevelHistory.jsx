@@ -1,5 +1,5 @@
 import React from 'react';
-import './UserProfileTrevelHistory.css'
+
 import { connect } from 'react-redux'
 import Stars from '../stars/Stars';
 import requests from '../../config';
