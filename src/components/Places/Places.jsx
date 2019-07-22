@@ -57,7 +57,7 @@ class PlacesClass extends React.Component {
       */
       country: "",
       language: "",
-      isRefreshExist: true,
+      isRefreshExist: false,
       selectedDirection: '' 
     }
   }
@@ -69,7 +69,7 @@ class PlacesClass extends React.Component {
   showMorePages=()=> {
     this.props.dispatch(setMorePagesShow());
   }
-  render() {
+  sendRequestFunc = () => {
     function findSelectedDirectionId(directions, slug){
       for(let i=0; i<directions.length; i++){
         //for(let k=0; k<directions[i].loc.length; k++){
@@ -80,63 +80,67 @@ class PlacesClass extends React.Component {
       }
       return 0;
     }
-    
-    console.log("Places render");
-    console.log(this.props.placesState);
-    
     let selectedDirection=this.props.match.params.direction;
-    if( this.props.storeState.languages.length>0 &&
-       (
-         this.state.selectedDirection!==selectedDirection ||
-         this.state.country!==this.props.storeState.country ||
-         this.state.language !==this.props.storeState.languages[this.props.storeState.activeLanguageNumber].ISO
-        )
-      ){
+    if(!selectedDirection){//защита от undefined
+      selectedDirection='';
+    }
+    let country = cookies.get('country', { path: '/' });
+    let lang =  cookies.get('userLang', { path: '/' });
+
+    let shouldSendRequest = !this.state.isRefreshExist && 
+      (
+        this.state.selectedDirection!==(selectedDirection) ||
+        this.state.country!==country ||
+        (this.state.language !==lang )
+      );
+
+    if( shouldSendRequest){
       
       //let selectedDirection = this.props.match.params.direction;
 
       this.setState({
-          country: this.props.storeState.country,
-          language: this.props.storeState.languages[this.props.storeState.activeLanguageNumber].ISO,
+          country: country,
+          language: lang,
           isRefreshExist: true,
           selectedDirection: selectedDirection
       });
       
-      let country = cookies.get('country', { path: '/' });
+      //let country = cookies.get('country', { path: '/' });
       let that = this;
-      axios.get(requests.getPlacesList+"?country="+(country ? country : this.props.storeState.country)+"&lang="+this.props.storeState.languages[this.props.storeState.activeLanguageNumber].ISO+(selectedDirection ? "&slug="+selectedDirection : ''))
+      
+      axios.get(requests.getPlacesList+"?country="+country+"&lang="+lang+(selectedDirection ? "&slug="+selectedDirection : ''))
       .then(response => {
           console.log(response);              
           return response.data;
       })
       .then(data => {
-        
+          
           if (data.error) {
               console.log("bad");
               throw data.error;
           }
           else {
               
-              console.log('good');
-              console.log(data);
-              that.props.dispatch(setPlacesList(data.places, data.tags, data.directions,data.country));
-              //следующие строки проверяют, смогли ли мы воспользоваться slug направления, если он, конечно, был
-              
-              
-              if (that.state.selectedDirection && that.state.selectedDirection.length>0){
-                let id = findSelectedDirectionId( data.directions, that.state.selectedDirection);
-                if(id!==0){
-                  that.props.dispatch(setSelectedDirection(id));
-                }
-                else{       
-                  //если не нашли - пускаем ещё раз крутилку - если не нашли, сервер не нашёл направление-> вернул всё
-                  that.props.globalReduser.history.push('/places');
-                }   
+            console.log('good');
+            console.log(data);
+            that.props.dispatch(setPlacesList(data.places, data.tags, data.directions,data.country));
+            //следующие строки проверяют, смогли ли мы воспользоваться slug направления, если он, конечно, был
+            
+            
+            if (that.state.selectedDirection && that.state.selectedDirection.length>0){
+              let id = findSelectedDirectionId( data.directions, that.state.selectedDirection);
+              if(id!==0){
+                that.props.dispatch(setSelectedDirection(id));
               }
-              
-              that.setState({
-                isRefreshExist: false
-              });
+              else{       
+                //если не нашли - пускаем ещё раз крутилку - если не нашли, сервер не нашёл направление-> вернул всё
+                that.props.globalReduser.history.push('/places');
+              }   
+            }
+            
+            that.setState({
+              isRefreshExist: false
+            });
 
           }
       })
@@ -145,11 +149,18 @@ class PlacesClass extends React.Component {
           this.props.globalReduser.history.push('/');
       });
     }
+  }
+  render() {
     
+    
+    console.log("Places render",this.props.placesState);   
+    
+    this.sendRequestFunc();
+    /*
     console.log(this.props);
     console.log(this.state);
     console.log(document);
-    console.log(window);
+    console.log(window);*/
     return (
       <React.Fragment>
         <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={/*this.state.isRefreshing*/true} isGoodAnswer={/*this.state.isGoodAnswer*/true}/>
