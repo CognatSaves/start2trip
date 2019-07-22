@@ -16,9 +16,22 @@ import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 import requests from '../../config';
 import getUserData from '../driverProfileRegistration/DriverProfileRequest';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
-import '../driverProfileRegistration/DriverProfileRegistration.css';
 import {changeLanguagePart} from '../../redusers/Action';
 import FirstEnterModal from '../home/FirstEnterModal';
+
+//import css
+import '../driverProfileRegistration/DriverProfileRegistration.css';
+import '../driverProfileRegistration/DriverProfileBasicInformation.css';
+import '../driverProfileRegistration/DriverProfileCalendar.css';
+import '../driverProfileRegistration/DriverProfileAffiliateProgram.css';
+import '../driverProfileRegistration/DriverProfileHistory.css';
+import '../driverProfileRegistration/DriverProfileBilling.css';
+import '../driverProfileRegistration/DriverProfileSettings.css';
+import '../driverProfileRegistration/DriverProfileTripSettingsTour.css';
+import '../driverProfileRegistration/DriverProfileFeedback.css';
+import '../driverProfileRegistration/DriverProfileBilling.css';
+import './AgencyProfileDrivers.css';
+//import css
 
 const AgencyProfileBasicInformation = lazy(()=> import('./AgencyProfileBasicInformation'));
 const AgencyProfileAffiliateProgramm = lazy(()=> import('./AgencyProfileAffiliateProgramm'));

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../driverProfileRegistration/DriverProfileAffiliateProgram.css';
+
 import {connect} from 'react-redux';
 import {
     Table,

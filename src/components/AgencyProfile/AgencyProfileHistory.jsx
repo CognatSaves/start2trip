@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import '../driverProfileRegistration/DriverProfileHistory.css';
+
 import AgencyProfileTravelHistory from './AgencyProfileTravelHistory'
 
 

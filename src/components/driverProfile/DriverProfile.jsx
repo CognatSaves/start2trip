@@ -1,31 +1,12 @@
 import React from 'react';
-import './DriverProfile.css';
-import './DriverInfo.css';
-import './DriverAdaptedRoute.css';
+
 import { connect } from 'react-redux'
-// import DriversCommercial from '../drivers/DriversBody/DriversCommercial/DriversCommercial';
-// import DriversProfileComments from './DriversProfileComments';
-// import Manipulator from '../manipulator/Manipulator';
 import Header from '../header/Header';
 import { setDriversRouteChange, setDriverCarDescription, setCarTypes } from '../../redusers/ActionDrivers';
-// import StartTravelForm from '../startTravelForm/StartTravelForm';
-// import DriverAdaptedRoute from './DriverAdaptedRoute';
 import DriverInfo from './DriverInfo.jsx';
-// import DriverProfileTours from './DriverProfileTours';
 import requests from '../../config';
 import { setCities } from '../../redusers/Action'
-// import RouteMenu from '../home/HomeBody/RouteMenu';
-// import TextField from '@material-ui/core/TextField';
 import DatePicker from 'material-ui/DatePicker';
-// import ReactTelInput from 'react-telephone-input'
-// import flags from '../driverProfileRegistration/img/flags.png'
-// import Select from '@material-ui/core/Select';
-// import MenuItem from '@material-ui/core/MenuItem';
-// import InputLabel from '@material-ui/core/InputLabel';
-// import FormControl from '@material-ui/core/FormControl';
-// import Input from '@material-ui/core/Input';
-// import Checkbox from '@material-ui/core/Checkbox';
-// import { Link } from 'react-router-dom';
 import MapContainer from '../home/HomeBody/MapContainer';
 import { setLengthTime } from '../../redusers/ActionDrivers'
 import axios from 'axios';

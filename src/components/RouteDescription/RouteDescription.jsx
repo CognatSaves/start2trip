@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 import Header from '../header/Header';
 import PlaceInfo from '../PlaceDescription/PlaceInfo.jsx';
-// import ippodrom from '../PlaceDescription/pictures/ippodrom.jpg';
 import axios from 'axios';
 import requests from '../../config';
 import { changePlacesFixedClass, setPlacesPanelSelectedElement } from '../../redusers/ActionPlaces';
@@ -15,7 +14,7 @@ import RouteTravelBlock from './RouteTravelBlock';
 import SimularRouteBlock from './SimularRouteBlock';
 import CommentBlock from '../TourDescription/CommentBlock.jsx';
 
-import './RouteDescription.css';
+
 import TourPanel from '../TourDescription/TourPanel.jsx';
 
 class RouteDescriptionClass extends React.Component {

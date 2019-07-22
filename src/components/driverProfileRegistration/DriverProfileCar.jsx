@@ -1,5 +1,5 @@
 import React from 'react'
-import './DriverProfileCar.css'
+
 import 'react-telephone-input/lib/withStyles'
 import { connect } from 'react-redux'
 import { Collapse } from 'reactstrap'

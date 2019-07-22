@@ -1,5 +1,4 @@
 import React from 'react';
-import '../driverProfileRegistration/DriverProfileBilling.css';
 import { connect } from 'react-redux';
 import DatePicker from 'material-ui/DatePicker';
 import Dialog from 'material-ui/Dialog';

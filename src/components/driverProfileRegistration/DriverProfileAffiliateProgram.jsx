@@ -1,5 +1,5 @@
 import React from 'react';
-import './DriverProfileAffiliateProgram.css'
+
 // import copy from '../media/copy.svg';
 import { connect } from 'react-redux';
 import {

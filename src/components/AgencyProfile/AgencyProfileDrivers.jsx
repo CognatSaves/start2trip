@@ -8,9 +8,7 @@ import {
     TableRow,
     TableRowColumn,
 } from 'material-ui/Table';
-import '../driverProfileRegistration/DriverProfileBilling.css';
 
-import './AgencyProfileDrivers.css';
 import requests from '../../config';
 
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
