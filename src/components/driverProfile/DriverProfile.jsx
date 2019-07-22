@@ -142,12 +142,12 @@ class DriverProfileClass extends React.Component {
                     that.setState({comments:data.driverCarDescription.comments})
                     that.props.dispatch(setDriverCarDescription(data.driverCarDescription));
                     that.props.dispatch(setCarTypes(data.carTypes));
-                    /*that.setState({
+                    that.setState({
                         isRefreshExist: true,
                         isRefreshing: false,
                         isGoodAnswer: true
-                    })*/
-                    //setTimeout(()=>{that.setState({isRefreshExist: false})}, 1000);
+                    })
+                    setTimeout(()=>{that.setState({isRefreshExist: false})}, 1000);
                     
                 }
 
@@ -155,13 +155,13 @@ class DriverProfileClass extends React.Component {
             .catch(function (error) {
                 console.log('bad');
                 console.log('An error occurred:', error);
-                /*that.setState({
+                that.setState({
                     isRefreshExist: true,
                     isRefreshing: false,
                     isGoodAnswer: false
                 })
                 setTimeout(()=>{that.props.history.push('/')}, 1000);
-                */
+                
             });
 
     }
