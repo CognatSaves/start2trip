@@ -277,6 +277,7 @@ export default class StartTravelForm extends React.Component {
     }
     sendTripRequest = (body) => {
         if (body) {
+            
             let that = this;
             that.setState({
                 isRefreshExist: true,
@@ -302,7 +303,7 @@ export default class StartTravelForm extends React.Component {
                             isRefreshing: false,
                             isGoodAnswer:true
                         });
-                        setTimeout(() => { debugger; that.props.changeSuccessVisibility('block', false); that.setState({ isRefreshExist: false });  }, 1000);
+                        setTimeout(() => {  that.props.changeSuccessVisibility('block', false); that.setState({ isRefreshExist: false });  }, 1000);
 
                     }
                 })
@@ -327,7 +328,7 @@ export default class StartTravelForm extends React.Component {
         let checkBoxes = document.querySelector(".checkboxStyle");
         let email  = document.querySelector(".validateEmail");
         // let description = document.querySelector(".description");
-        debugger;
+        
         let isAllGood = true;
         var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         let emailValid = re.test(String(this.state.email).toLowerCase());
@@ -379,7 +380,7 @@ export default class StartTravelForm extends React.Component {
 
 
         if (isAllGood) {
-            debugger;
+            
             let date = this.state.date;
             let year = date.getUTCFullYear(); let month = date.getUTCMonth() + 1; let day = date.getUTCDate();
             let body = {

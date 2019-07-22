@@ -153,7 +153,7 @@ class UserProfileNavigationClass extends React.Component {
         //     let img = requests.serverAddress + this.state.profile.avatar.url
         //     this.setState({ avatar: img })
         // }
-
+        
         let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileNavigation;
         let profile = this.props.globalReduser.profile;
         return (

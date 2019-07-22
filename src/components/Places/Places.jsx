@@ -70,6 +70,17 @@ class PlacesClass extends React.Component {
     this.props.dispatch(setMorePagesShow());
   }
   render() {
+    function findSelectedDirectionId(directions, slug){
+      for(let i=0; i<directions.length; i++){
+        //for(let k=0; k<directions[i].loc.length; k++){
+          if(directions[i].loc.slug===slug){
+            return directions[i].id
+          }
+        //}
+      }
+      return 0;
+    }
+    
     console.log("Places render");
     console.log(this.props.placesState);
     
@@ -92,44 +103,38 @@ class PlacesClass extends React.Component {
       });
       
       let country = cookies.get('country', { path: '/' });
+      let that = this;
       axios.get(requests.getPlacesList+"?country="+(country ? country : this.props.storeState.country)+"&lang="+this.props.storeState.languages[this.props.storeState.activeLanguageNumber].ISO+(selectedDirection ? "&slug="+selectedDirection : ''))
       .then(response => {
           console.log(response);              
           return response.data;
       })
       .then(data => {
+        
           if (data.error) {
               console.log("bad");
               throw data.error;
           }
           else {
-              function findSelectedDirectionId(directions, slug){
-                for(let i=0; i<directions.length; i++){
-                  for(let k=0; k<directions[i].loc.length; k++){
-                    if(directions[i].loc[k].slug===slug){
-                      return directions[i].id
-                    }
-                  }
-                }
-                return 0;
-              }
+              
               console.log('good');
               console.log(data);
-              this.props.dispatch(setPlacesList(data.places, data.tags, data.directions,data.country));
+              that.props.dispatch(setPlacesList(data.places, data.tags, data.directions,data.country));
               //следующие строки проверяют, смогли ли мы воспользоваться slug направления, если он, конечно, был
               
-              if (selectedDirection){
-                let id = findSelectedDirectionId( data.directions, selectedDirection);
+              
+              if (that.state.selectedDirection && that.state.selectedDirection.length>0){
+                let id = findSelectedDirectionId( data.directions, that.state.selectedDirection);
                 if(id!==0){
-                  this.props.dispatch(setSelectedDirection(id));
+                  that.props.dispatch(setSelectedDirection(id));
                 }
-                else{
-                  
+                else{       
                   //если не нашли - пускаем ещё раз крутилку - если не нашли, сервер не нашёл направление-> вернул всё
-                  this.props.globalReduser.history.push('/places');
+                  that.props.globalReduser.history.push('/places');
                 }   
               }
-              this.setState({
+              
+              that.setState({
                 isRefreshExist: false
               });
 

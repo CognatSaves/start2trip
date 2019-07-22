@@ -417,9 +417,9 @@ class HeaderClass extends React.Component {
               
               if (document.head) {
                 
-                document.getElementById('langScript').remove();
+                //document.getElementById('langScript').remove();
                 script.id='langScript';
-                document.head.appendChild(script);
+                //document.head.appendChild(script);
                 that.props.dispatch(setActiveLang(index));
                 cookies.set('userLang', that.props.storeState.languages[index].ISO, { path: '/', expires: date });
               }

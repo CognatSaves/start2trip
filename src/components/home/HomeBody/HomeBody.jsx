@@ -6,6 +6,7 @@ import MapContainer from './MapContainer.jsx'
 import './calendary.css';
 import { connect } from 'react-redux'
 import { isMobileOnly } from 'react-device-detect'
+import { setLengthTime } from '../../../redusers/ActionDrivers'
 
 const ChangeMapListBlock = (props) =>{
   let {mapContainerClass, routeMenuClass, that} = props;
@@ -18,7 +19,7 @@ const ChangeMapListBlock = (props) =>{
         </div>
         :
         <div className={routeMenuClass}>
-          <RouteMenu  goToDrivers={that.goToDrivers} date={that.state.date} validationInput={(cities)=>that.validationInput(cities)}/>
+          <RouteMenu  goToDrivers={that.goToDrivers} date={that.state.date} setLengthTime={that.setLengthTime} validationInput={(cities)=>that.validationInput(cities)}/>
           <div style={{ visibility: that.state.calendaryVisibility }} >
           </div>
         </div>
@@ -103,10 +104,14 @@ class HomeBodyClass extends React.Component {
       }
       return timeString;
     }
-    let lengthString = getLengthString(travelLength);
-    let timeString = getTimeString(travelTime);
-
-    this.props.setLengthTime(lengthString, timeString);
+    
+    if ((this.props.driversState.travelLength == "-" && this.props.driversState.travelTime == "-") ||
+     (this.props.driversState.travelLength.length===0 || this.props.driversState.travelLength.length===0))
+    {
+      let lengthString = getLengthString(travelLength);
+      let timeString = getTimeString(travelTime);
+      this.props.setLengthTime(timeString, lengthString);
+    }
   }
   validationInput = (massCities) => {
     //Внимание!(спасибо за внимание) Эта функция использует элементы из RouteMenu(первоначально эта функция и принадлежит вышеупомянутому классу).
@@ -168,6 +173,7 @@ class HomeBodyClass extends React.Component {
 
 const HomeBody = connect(
   (state) => ({
+    driversState: state.DriversReduser,
     storeState: state.AppReduser,
     stateReduserState: state.StateReduser
   }),

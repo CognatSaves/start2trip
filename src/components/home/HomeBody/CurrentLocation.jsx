@@ -125,6 +125,7 @@ export class CurrentLocation extends React.Component {
       let tempTravelLength = 0;
       let obj = this;
       service.route(request, function (response, status) {
+        
         if (status === google.maps.DirectionsStatus.OK) {
           directionsDisplay.setDirections(response);
 

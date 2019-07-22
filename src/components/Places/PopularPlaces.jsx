@@ -19,17 +19,19 @@ class PopularPlacesClass extends React.Component {
         }
     }
     onDirClick=(id)=>{
+       
         function findSelectedDirectionName(directions, id, storeState){
             
             for(let i=0; i<directions.length; i++){
                 if(directions[i].id===id){
-                    for(let k=0; k<directions[i].loc.length; k++){
+                    /*for(let k=0; k<directions[i].loc.length; k++){
                         let lang1 = directions[i].loc[k].language;
                         let lang2=storeState.languages[storeState.activeLanguageNumber].id;
                         if(lang1===lang2){
                             return directions[i].loc[k].slug
                         }
-                    }
+                    }*/
+                    return directions[i].loc.slug;
                 }
                 
             }
@@ -75,6 +77,7 @@ class PopularPlacesClass extends React.Component {
 
     }
     render() {
+        
         function isDirSelected(directionId, selectedDirection){
             /*for(let i=0; i<selectedDirections.length; i++){
                 if(selectedDirections[i]===directionId){
@@ -97,14 +100,6 @@ class PopularPlacesClass extends React.Component {
             }
         } else {
             placeRender = arrayRender;
-        }
-        function getDirectionName(element, that){
-            for(let i=0;i<element.loc.length; i++){
-                if(element.loc[i].language===that.props.storeState.languages[that.props.storeState.activeLanguageNumber].id){
-                    return element.loc[i].name;
-                }
-            }
-            return element.loc.length>0 ? element.loc[0].name : 'no-name';
         }
         let textInfo = this.props.storeState.languageTextMain.places;
         /*let directions = arrayRender;
@@ -135,7 +130,7 @@ class PopularPlacesClass extends React.Component {
                                             <img src={element.image ? requests.serverAddress + element.image.url : ''} alt="img" />
                                         </div>
                                         <div className="mt-2">
-                                            <span>{getDirectionName(element,this)}</span>
+                                            <span>{element.loc.name}</span>
                                         </div>
                                     </div>
                                 )

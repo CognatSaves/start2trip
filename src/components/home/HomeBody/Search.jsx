@@ -34,6 +34,7 @@ export default class LocationSearchInput extends React.Component {
     })
   }
   handleSelect = address => {
+    
     let location = {
       lat: "",
       long: ""

@@ -175,6 +175,7 @@ const initialState = {
 };
 
 
+
 export const GlobalReduser = (state = initialState, action) => {
     switch (action.type){
         case WHICH_PAGE_RENDER_HISTORY:{

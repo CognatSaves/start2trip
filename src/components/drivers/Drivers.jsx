@@ -102,6 +102,7 @@ class DriversClass extends React.Component {
          cities = route; 
       }
     }
+    
     let storeState= this.props.storeState;
     let activeCurrency = storeState.currencies[storeState.activeCurrencyNumber];
     

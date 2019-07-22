@@ -111,9 +111,9 @@ class RouteMenuClass extends React.Component {
     if(result){
       dateValue = props.globalhistory.getDateFromDateString(result);
     }
-    else{
-      dateValue = /*new Date()*/'';
-    }
+    /*else{
+      dateValue = '';
+    }*/
     
     this.state = {
       correctDate: "",
@@ -217,32 +217,89 @@ class RouteMenuClass extends React.Component {
     
     let massCities = this.props.storeState.cities;
     let flagCities;
-    let canMove;
+    
     flagCities = this.validationInput(massCities);
     if (flagCities) {
-      this.props.goToDrivers(this.props.storeState.cities, this.state.date);
-      let routeDate = this.props.globalhistory.getRoute(this.props.storeState.cities, this.props.storeState.languages[this.props.storeState.activeLanguageNumber].ISO);//this.getRoute(this.props.storeState.cities);
-      let newStringCities = routeDate.route;
-      let country = routeDate.country;
-      let langISO = routeDate.langISO;
-      canMove = routeDate.canMove;
+      this.props.goToDrivers(this.props.storeState.cities, this.state.date)
+      this.requestFunction((that,cities, date, languageISO)=>{
+          let routeDate = that.props.globalhistory.getRoute(cities, languageISO);
+          let newStringCities = routeDate.route;
+          let country = routeDate.country;
+          let langISO = routeDate.langISO;
+          let canMove;
+          canMove = routeDate.canMove;
+          let dateString = that.props.globalhistory.createDateTimeString(date, true);
+          if (canMove) {
+            that.props.globalhistory.history.push(`/drivers/${country}-${newStringCities}?date=`+dateString+(langISO!=='ENG' ? `&lang=`+langISO : ``));
+            window.scroll(0, 500);
+          }
+        }
+      );
+    }
+  }
+  requestFunction = (allGoodAfterfunc) => {
+    this.setState({ isWaiting: true, isRefreshing: true, isGoodAnswer: true, isLoaded: true });
 
+    let that = this;
+        
+        
+    function createRequestElement(cities, travelMode){
+      let waypoints = [];
+      for (let i = 1; i < cities.length - 1; i++) {
+        waypoints[i - 1] = {
+          location: cities[i].point,
+          stopover: true
+        }
+      }
+      let request =
+      {
+        origin: cities[0].point, //точка старта
+        destination: cities[cities.length - 1].point, //точка финиша
+        waypoints: waypoints,
+        travelMode: travelMode, //режим прокладки маршрута
+      };
+      return request;
+    }
+    
+    let request = createRequestElement(this.props.storeState.cities, window.google.maps.DirectionsTravelMode.DRIVING);
+    let service = new window.google.maps.DirectionsService();
+    
+    let cities = this.props.storeState.cities;
+    let date = this.state.date;
+    let langISO = this.props.storeState.languages.length>0 ? this.props.storeState.languages[this.props.storeState.activeLanguageNumber].ISO : '';
+    let country = this.props.storeState.country;
 
+    service.route(request, function(response, status)
+    {
+      if (status !== window.google.maps.DirectionsStatus.OK){
+        return false;
+      }
+      function lengthTimeCalc(response){
+        let res = {
+          duration: 0,
+          distance: 0
+        };
+        for(let i=0; i<response.routes[0].legs.length;i++){
+          res.duration+=response.routes[0].legs[i].duration.value;
+          res.distance+=response.routes[0].legs[i].distance.value;
+        }
+        res.distance = res.distance/1000;//конверсия в км
+        res.duration = res.duration/60;//конверсия в минуты
+        return res;
+      }
+      
+      console.log(response);
+      console.log(status);
+      let routeProps = lengthTimeCalc(response);
+      
       
       let body = JSON.stringify({
-        cities: this.props.storeState.cities,
-        country: this.props.storeState.country,
-        date: this.state.date,
-        distance: 1000
+        cities: cities,
+        country: country,
+        date: date,
+        distance: routeProps.distance,
+        duration: routeProps.duration
       });
-      console.log('send request for drivers');
-      console.log('body',body);
-      let that = this;
-      function convertDate(value) {
-
-      }
-
-      this.setState({ isWaiting: true, isRefreshing: true, isGoodAnswer: true });
       fetch(requests.getDrivers, {
         method: 'PUT', body: body,
         headers: { 'content-type': 'application/json' }
@@ -252,7 +309,7 @@ class RouteMenuClass extends React.Component {
           return response.json();
         })
         .then(function (data) {
-
+          
           if (data.error) {
             console.log("bad");
             that.setState({ isRefreshing: false, isGoodAnswer: false });
@@ -263,53 +320,34 @@ class RouteMenuClass extends React.Component {
 
           }
           else {
+            
             console.log("good");
             console.log(data);
-            
-            that.props.dispatch(setDriversList(data.drivers));
             that.props.dispatch(setCarTypes(data.carTypes));
+            that.props.dispatch(setDriversList(data.drivers));
+            
             that.setState({ isWaiting: false });
-            //let date = new Date();
-            let dateString = that.props.globalhistory.createDateTimeString(that.state.date, true);
-            
-            
-
-            if (canMove) {
-              that.props.globalhistory.history.push(`/drivers/${country}-${newStringCities}?date=`+dateString+(langISO!=='ENG' ? `&lang=`+langISO : ``));
-              window.scroll(0, 500);
+            if(allGoodAfterfunc){
+              allGoodAfterfunc(that,cities, date, langISO);
             }
-            //that.getProfileData();
           }
         })
         .catch(function (error) {
           console.log("bad");
           console.log('An error occurred:', error);
-          //that.catchFunc();
         });
+      })
 
-    }
-  }
-
-
-  render() {
-    //
-    /*
-    let text = 'Национальная библиотека Беларуси является главной универсальной научной библиотекой страны. Прежде всего она привлекает своим зданием, выполненным в виде ромбокубооктаэдра. Это полуправильный многогранник, с 18 квадратами и 8 треугольниками. Подобных построек на территории Беларуси и многих других стран просто нет. Поэтому гости РБ не упускают возможности полюбоваться этим чудом архитектуры. Но привлекает объект не только зданием, в котором находится.'+
-    'Историческая справка Основали библиотеку в 1922 году. Тогда она принадлежала Белорусскому государственному университету. На момент открытия в залах находилось около 60 тыс. экземпляров печатных изданий и пользовались ими примерно 1,1 тыс. человек.     Изначально библиотека находилась на Захарьевской улице. Сегодня – это проспект Независимости. Но после того, как она вышла из состава БГУ и получила наименование библиотеки В. И. Ленина, заняла новое здание, созданное в конструктивистском стиле.     Уже на начало 1941 года библиотечный фонд составлял примерно 2 млн. томов, а количество читателей достигло 15 тыс. Но после войны много изданий не уцелело, и фонд заметно сократился.    Новое здание, в котором библиотека находится сегодня, начали строить в 2002 году, а открыли для посещения в 2006.    Адрес, график работы, правила посещения'+
-    +'Находится национальная библиотека в Минске на проспекте Независимости, 116. Работает ежедневно с 10:00 до 21:00. По выходным дням время работы сокращается до 18:00. Самой библиотекой можно воспользоваться бесплатно. Оплачиваются только дополнительные услуги. Но мы говорим о ней как о достопримечательности, поэтому будем рассматривать экскурсии. Они платные, цена зависит от масштабов экскурсионной программы, количества человек в группе. Также можно посетить обзорную площадку, чтобы полюбоваться красотами города свысока. Стоимость посещения площадки колеблется в пределах 2,5-3,5 белорусских рублей.'+
-    +'Как добираться   Добраться до библиотеки можно на метро, выйдя на станции «Усход». Также сюда довезут троллейбусы № 41 и 42. Ходят до рассматриваемой достопримечательности и многочисленные автобусы. Но мы рекомендуем подобрать на нашем сервисе предложения по трансферу от местных жителей. Вас довезут до интересующего объекта быстрее и с большим комфортом, не придется долго разбираться в маршрутах незнакомого города.    ';
-    let convertedText = this.props.globalhistory.cyrillLatinConv(text);
-    let returnedText = this.props.globalhistory.latinCyrillConv(convertedText);
-    */
-
-    //
-
-    console.log(AppReduser);
+    
+      
+    }    
   
 
+  render() {
+    console.log(AppReduser);
 
     console.log(this.props.storeState);
-    if(!this.state.isLoaded){
+    if(!this.state.isLoaded && this.props.storeState.languages.length>0){
       
       function isFindAllElems(cities){
         for(let i=0; i>cities.length;i++){
@@ -324,66 +362,10 @@ class RouteMenuClass extends React.Component {
       
       if(this.props.storeState.cities.length>0 && this.props.storeState.cities[this.props.storeState.cities.length-1].lat!==''
         && isFindAllElems(this.props.storeState.cities)){
-        //this.goToNextPage();
-        this.setState({ isWaiting: true, isRefreshing: true, isGoodAnswer: true, isLoaded: true });
-        let routeDate = this.props.globalhistory.getRoute(this.props.storeState.cities);//this.getRoute(this.props.storeState.cities);
-        let newStringCities = routeDate.route;
-        let country = routeDate.country;
-        let canMove = routeDate.canMove;
-        let that = this;
 
-        
-        let body = JSON.stringify({
-          cities: this.props.storeState.cities,
-          country: this.props.storeState.country,
-          date: this.state.date,
-          distance: 1000
-        });
-        
-        fetch(requests.getDrivers, {
-          method: 'PUT', body: body,
-          headers: { 'content-type': 'application/json' }
-        })
-          .then(response => {
-
-            return response.json();
-          })
-          .then(function (data) {
-            
-            if (data.error) {
-              console.log("bad");
-              that.setState({ isRefreshing: false, isGoodAnswer: false });
-              setTimeout(() => {
-                that.setState({ isWaiting: false });
-                throw data.error;
-              }, 1000);
-
-            }
-            else {
-              
-              console.log("good");
-              console.log(data);
-              that.props.dispatch(setCarTypes(data.carTypes));
-              that.props.dispatch(setDriversList(data.drivers));
-              
-              that.setState({ isWaiting: false });
-              //let date = new Date();
-              //let dateString = that.props.globalhistory.createDateTimeString(that.state.date, true);
-              
-              /*if (canMove) {
-                that.props.globalhistory.history.push(`/drivers/${country}-${newStringCities}?date=`+dateString);
-                window.scroll(0, 500);
-              }*/
-              //that.getProfileData();
-            }
-          })
-          .catch(function (error) {
-            console.log("bad");
-            console.log('An error occurred:', error);
-            //that.catchFunc();
-          });
-          
-        }
+        this.requestFunction();
+      
+      }
     }
     let textInfo = this.props.storeState.languageTextMain.home.routeMenu;
     console.log('Route Menu render, lang=',this.props.storeState.activeLanguageNumber );
@@ -412,7 +394,10 @@ class RouteMenuClass extends React.Component {
               :
               <React.Fragment>
                 <div key={"cityRouteTable2"+this.props.storeState.activeLanguageNumber} id={"idCityRouteTable2."+this.props.storeState.activeLanguageNumber}>
-                  <CityRouteTable textInfo={textInfo} language={this.props.storeState.activeLanguageNumber} readOnlyOn={this.props.showBtPrice} cities={this.props.storeState.cities} changeCity={this.changeCity} removeCity={this.removeCity} addCity={this.addCity} isoCountryMap={this.props.storeState.isoCountryMap} />
+                  <CityRouteTable textInfo={textInfo} language={this.props.storeState.activeLanguageNumber}
+                  readOnlyOn={this.props.showBtPrice} cities={this.props.storeState.cities} changeCity={this.changeCity}
+                  removeCity={this.removeCity} addCity={this.addCity}
+                  isoCountryMap={this.props.storeState.isoCountryMap} />
                 </div>
               </React.Fragment>
           }
@@ -421,7 +406,7 @@ class RouteMenuClass extends React.Component {
 
           <div className="routemenu_setDate">
             <div className="col-sm-6 col-12 p-0 pr-1">
-              <DatePicker /*defaultDate={this.state.date}*/ hintText={textInfo.datePickerText} minDate={new Date()} onChange={(e, date) => { this.chooseDate(date); let datePicker = document.querySelector(".routemenu_date"); datePicker.classList.remove("routemenu_date-Check") }} className="routemenu_date" />
+              <DatePicker defaultDate={this.state.date} hintText={textInfo.datePickerText} minDate={new Date()} onChange={(e, date) => { this.chooseDate(date); let datePicker = document.querySelector(".routemenu_date"); datePicker.classList.remove("routemenu_date-Check") }} className="routemenu_date" />
             </div>
 
             {this.props.showBtPrice ?
