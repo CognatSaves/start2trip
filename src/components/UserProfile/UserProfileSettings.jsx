@@ -1,8 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import '../driverProfileRegistration/DriverProfileSettings.css';
+
 import AgencyProfileSettings from '../AgencyProfile/AgencyProfileSettings'
-import './UserProfileSettings.css';
+
 
 class UserProfileSettingsClass extends React.Component {
     render(){

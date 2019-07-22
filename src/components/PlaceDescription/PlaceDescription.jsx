@@ -1,23 +1,18 @@
 import React from 'react';
-import './PlaceDescription.css';
+
 import Header from '../header/Header';
 import PlaceInfo from './PlaceInfo.jsx';
 // import DriversCommercial from '../drivers/DriversBody/DriversCommercial/DriversCommercial';
 
 import { connect } from 'react-redux';
 
-// import ippodrom from './pictures/ippodrom.jpg';
-// import ippodrom2 from './pictures/ippodrom2.jpg';
-// import ippodrom3 from './pictures/ippodrom3.jpg';
-// import ippodrom4 from './pictures/ippodrom4.jpg';
+
 import georgiaImg from '../media/georgia.png';
 
 import PlaceProgramm from './PlaceProgramm.jsx';
 import PlacePhotos from './PlacePhotos.jsx';
 import PlaceTravelBlock from './PlaceTravelBlock.jsx';
-// import PlaceMapBlock from './PlaceMapBlock.jsx';
 import CommentBlock from '../TourDescription/CommentBlock.jsx';
-// import SimularToursBlock from '../TourDescription/SimularToursBlock.jsx';
 import TourPanel from '../TourDescription/TourPanel.jsx';
 import { changePlacesFixedClass, setPlacesPanelSelectedElement } from '../../redusers/ActionPlaces';
 import axios from 'axios';

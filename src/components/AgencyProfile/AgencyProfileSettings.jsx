@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import '../driverProfileRegistration/DriverProfileSettings.css';
+
 import TextField from 'material-ui/TextField';
 import flags from '../media/flags.png';
 import ReactTelInput from 'react-telephone-input'

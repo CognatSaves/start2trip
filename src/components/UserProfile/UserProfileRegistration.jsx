@@ -1,20 +1,27 @@
 import React, {Suspense, lazy } from 'react';
-import './UserProfileRegistration.css'
+
 import { connect } from 'react-redux';
 import Header from '../header/Header'
 import UserProfileNavigation from './UserProfileNavigation'
-// import UserProfileBasicInformation from './UserProfileBasicInformation'
-// import UserProfileSettings from './UserProfileSettings'
-// import UserProfileHistory from './UserProfileHistory'
-// import UserProfileBilling from './UserProfileBilling';
-// import UserProfileAffiliateProgram from './UserProfileAffiliateProgram';
-import {Route} from 'react-router-dom';
 
+//import css
+import '../driverProfileRegistration/DriverProfileRegistration.css';
+import './UserProfileRegistration.css'
+import '../driverProfileRegistration/DriverProfileHistory.css'
+import '../driverProfileRegistration/DriverProfileBasicInformation.css'
+import '../driverProfileRegistration/DriverProfileCalendar.css'
+import '../driverProfileRegistration/DriverProfileSettings.css';
+import './UserProfileSettings.css';
+import '../driverProfileRegistration/DriverProfileBilling.css';
+import '../driverProfileRegistration/DriverProfileAffiliateProgram.css';
+//import css
+
+import {Route} from 'react-router-dom';
 import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 import requests from '../../config';
 import getUserData from '../driverProfileRegistration/DriverProfileRequest';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
-import '../driverProfileRegistration/DriverProfileRegistration.css';
+
 import FirstEnterModal from '../home/FirstEnterModal';
 
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import './DriverProfileSettings.css'
+
 import { connect } from 'react-redux';
 import TextField from 'material-ui/TextField';
 import flags from '../media/flags.png'

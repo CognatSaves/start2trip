@@ -1,5 +1,5 @@
 import React from 'react';
-import './DriverProfileHistory.css'
+
 import { connect } from 'react-redux';
 import DriverProfileTrevelHistory from './DriverProfileTrevelHistory'
 

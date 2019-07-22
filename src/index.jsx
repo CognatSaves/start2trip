@@ -1,22 +1,22 @@
 import React, { Suspense,lazy } from 'react';
 import ReactDOM from 'react-dom';
+//import css
 import './index.css';
+import './components/driverProfile/DriverProfile.css'
+import './components/driverProfile/DriverInfo.css';
+import './components/driverProfile/DriverAdaptedRoute.css';
+import './components/PlaceDescription/PlaceDescription.css'
+import './components/RouteDescription/RouteDescription.css';
+
+//import css
 import Home from './components/home/Home.jsx';
-// import DriverProfile from './components/driverProfile/DriverProfile.jsx';
 import Places from './components/Places/Places.jsx';
-// import PlaceDescription from './components/PlaceDescription/PlaceDescription.jsx';
 import Tours from './components/Tours/Tours.jsx';
 import Footer from './components/Footer/Footer'
 import TourDescription from './components/TourDescription/TourDescription.jsx';
-// import Registration from './components/registration/Registration';
-// import AuthRedirect from './components/registration/AuthRedirect';
 import AccountRedirector from './components/registration/AccountRedirector';
-// import PartnerRegister from './components/registration/PartnerRegister';
-// import ForgotPassword from './components/registration/ForgotPassword';
-// import ResetPassword from './components/registration/ResetPassword';
 import TripConfirmation from './components/driverProfile/TripConfirmation';
 import DriverConfirmation from './components/driverProfile/DriverConfirmation';
-// import RouteDescription from './components/RouteDescription/RouteDescription';
 import axios from 'axios';
 import requests from './config';
 import { hydrate } from "react-dom"

@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import '../driverProfileRegistration/DriverProfileTripSettingsTour.css';
+
 import { Collapse } from 'reactstrap';
 import Stars from '../stars/Stars'
 import LocationSearchInput from '../home/HomeBody/Search'

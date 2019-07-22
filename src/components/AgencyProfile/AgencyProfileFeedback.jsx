@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import '../driverProfileRegistration/DriverProfileFeedback.css';
+
 // import '../driverProfileRegistration/img/drivers_body_photo.png';
 import Stars from '../stars/Stars';
 import requests from '../../config';

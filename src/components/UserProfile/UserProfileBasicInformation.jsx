@@ -1,6 +1,4 @@
 import React from 'react';
-import '../driverProfileRegistration/DriverProfileBasicInformation.css'
-import '../driverProfileRegistration/DriverProfileCalendar.css'
 import { connect } from 'react-redux'
 import LocationSearchInput from '../home/HomeBody/Search'
 import TextField from 'material-ui/TextField';

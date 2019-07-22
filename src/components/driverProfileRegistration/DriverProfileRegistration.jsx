@@ -1,26 +1,27 @@
 import React, {Suspense, lazy } from 'react';
-import './DriverProfileRegistration.css'
+
 import { connect } from 'react-redux';
 import Header from '../header/Header'
 import DriverProfileNavigation from './DriverProfileNavigation'
 
-// import DriverProfileCar from './DriverProfileCar'
-// import DriverProfileBasicInformation from './DriverProfileBasicInformation'
-// import DriverProfileFeedback from './DriverProfileFeedback'
-// import DriverProfileTripSettingsTrip from './DriverProfileTripSettingsTrip'
-// import DriverProfileTripSettingsTour from './DriverProfileTripSettingsTour'
-// import DriverProfileSettings from './DriverProfileSettings'
-// import DriverProfileHistory from './DriverProfileHistory'
-// import DriverProfileBilling from './DriverProfileBilling'
-// import DriverProfileAffiliateProgram from './DriverProfileAffiliateProgram'
+// import css
+import './DriverProfileRegistration.css'
+import './DriverProfileHistory.css'
+import './DriverProfileBasicInformation.css'
+import './DriverProfileCalendar.css'
+import './DriverProfileCar.css'
+import './DriverProfileTripSettingsTrip.css'
+import './DriverProfileFeedback.css';
+import './DriverProfileSettings.css'
+import './DriverProfileBilling.css'
+import './DriverProfileAffiliateProgram.css'
+// import css
 
 import {Route} from 'react-router-dom';
 import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 import requests from '../../config';
 import getUserData from './DriverProfileRequest';
 import DriverRefreshIndicator from './DriverRefreshIndicator';
-// import UserProfileRegistration from '../UserProfile/UserProfileRegistration';
-// import AgencyProfile from '../AgencyProfile/AgencyProfile';
 import {changeLanguagePart} from '../../redusers/Action';
 import FirstEnterModal from '../home/FirstEnterModal';
 

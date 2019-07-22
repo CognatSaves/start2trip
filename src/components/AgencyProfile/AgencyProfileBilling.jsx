@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import '../driverProfileRegistration/DriverProfileBilling.css';
+
 import DatePicker from 'material-ui/DatePicker';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
