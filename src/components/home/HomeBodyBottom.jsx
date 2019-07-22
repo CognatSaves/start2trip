@@ -14,6 +14,9 @@ import HomeRoutesList from './HomeBottom/HomeRoutesList';
 import HomePlacesPanel from './HomeBottom/HomePlacesPanel';
 import Manipulator from '../manipulator/Manipulator';
 import { setPage, setMorePagesShow } from '../../redusers/ActionPlaces';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
+
 class HomeBodyBottomClass extends React.Component {
   constructor(props) {
     super(props);
@@ -27,8 +30,9 @@ class HomeBodyBottomClass extends React.Component {
       country: "",
       language: "",
       isRefreshExist: false,
-      selectedDirection: ''
+      selectedDirection: ""
     };
+    //this.sendRequestFunc();
   }
   redirectFunc=(where)=> {
     this.props.history.push(where);
@@ -48,28 +52,31 @@ class HomeBodyBottomClass extends React.Component {
   showMorePages = () => {
     this.props.dispatch(setMorePagesShow());
   }
-  render() {
-
-    console.log('HomeBodyBottom render state=', this.state, 'props=', this.props);
-    
+  sendRequestFunc = () =>{
     let selectedDirection=this.props.match.params.direction;
-    
-    if( !this.state.isRefreshExist && this.props.storeState.languages.length>0 && 
-        (
-          this.state.selectedDirection!==(selectedDirection) ||
-          this.state.country!==this.props.storeState.country ||
-          this.state.language !==this.props.storeState.languages[this.props.storeState.activeLanguageNumber].ISO   
-        )
-      )
-    {
+    if(!selectedDirection){//защита от undefined
+      selectedDirection="";
+    }
+
+    let country = cookies.get('country', { path: '/' });
+    let lang =  cookies.get('userLang', { path: '/' });
+
+    let shouldSendRequest = !this.state.isRefreshExist && 
+      (
+        this.state.selectedDirection!==(selectedDirection) ||
+        this.state.country!==country ||
+        (this.state.language !==lang )
+      );
+    if( shouldSendRequest)
+    {    
       this.setState({
-        country: this.props.storeState.country,
-        language: this.props.storeState.languages[this.props.storeState.activeLanguageNumber].ISO,
+        country: country,
+        language: lang,
         isRefreshExist: true,
         selectedDirection: selectedDirection
       });
       let that = this;
-      axios.get(requests.getRoutes+"?country="+this.props.storeState.country+"&lang="+this.props.storeState.languages[this.props.storeState.activeLanguageNumber].ISO+(selectedDirection ? "&slug="+selectedDirection : ''))
+      axios.get(requests.getRoutes+"?country="+country+"&lang="+lang+(selectedDirection ? "&slug="+selectedDirection : ''))
       .then(response => {
         console.log(response);              
         return response.data;
@@ -110,14 +117,17 @@ class HomeBodyBottomClass extends React.Component {
         }
         
       })
-      .catch(error => {
-        
-        
+      .catch(error => { 
         console.log('get wasted answer');
-        //this.props.globalhistory.history.push('/');
-        
+        //this.props.globalhistory.history.push('/');       
       });
     }
+  }
+  render() {
+
+    console.log('HomeBodyBottom render state=', this.state, 'props=', this.props);
+    
+    this.sendRequestFunc();
     return(
       <React.Fragment>
         <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={true} isGoodAnswer={true}/>

@@ -17,8 +17,8 @@ import AccountRedirector from './components/registration/AccountRedirector';
 import TripConfirmation from './components/driverProfile/TripConfirmation';
 import DriverConfirmation from './components/driverProfile/DriverConfirmation';
 // import RouteDescription from './components/RouteDescription/RouteDescription';
-
-
+import axios from 'axios';
+import requests from './config';
 import { hydrate } from "react-dom"
 
 import * as serviceWorker from './serviceWorker';
@@ -37,9 +37,11 @@ import { Route, BrowserRouter, Redirect, Switch } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 //require('require-context/register');
+import Cookies from 'universal-cookie';
+import { setLocals, modalCountryDispatch } from './redusers/Action';
+import { setUser, setActiveCurr, setActiveLang, setModalRegister, setActiveLangAdmin } from './redusers/Action';
 
-
-
+const cookies = new Cookies();
 const DriverProfile = lazy(()=> import('./components/driverProfile/DriverProfile'));
 const PlaceDescription = lazy(()=> import('./components/PlaceDescription/PlaceDescription'));
 const RouteDescription = lazy(()=> import('./components/RouteDescription/RouteDescription'));
@@ -72,7 +74,176 @@ const muiTheme = getMuiTheme({
     },
     fontFamily: 'Roboto',
 });
+function getLocals(){
+    let redusers = store.getState();
+    let props = {};
 
+    axios.get(requests.getLocals, props)
+      .then(response => {
+        let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
+        let languages = response.data.languages;
+        let currencies = response.data.currencies;
+        let countries = response.data.countries;
+        let adminLanguages = response.data.adminLanguages;
+        
+        store.dispatch(setLocals(languages, adminLanguages, currencies, countries));
+
+        let lang = redusers.GlobalReduser.readCookie('userLang');
+        let curr = redusers.GlobalReduser.readCookie('userCurr');
+        let country = redusers.GlobalReduser.readCookie('country');
+        
+        if (!lang) {
+          for (let i = 0; i < languages.length; i++) {
+            if (languages[i].ISO === 'RUS') {
+              cookies.set('userLang', languages[i].ISO, { path: '/', expires: date });
+              cookies.set('userLangISO',languages[i].isoAutocomplete, { path: '/', expires: date });
+
+              setLocalsFunc('userLang',i);
+
+            }
+          }
+          lang = redusers.GlobalReduser.readCookie('userLang');
+          if (!lang) {
+            cookies.set('userLang', languages[0].ISO, { path: '/', expires: date });
+            cookies.set('userLangISO',languages[0].isoAutocomplete, { path: '/', expires: date });
+            setLocalsFunc('userLang',0);
+
+          }
+        }
+        else {
+          let i = 0;
+          for (; i < languages.length; i++) {
+            if (lang === languages[i].ISO) {
+              cookies.set('userLang', languages[i].ISO, { path: '/', expires: date });
+              cookies.set('userLangISO',languages[i].isoAutocomplete, { path: '/', expires: date });
+              setLocalsFunc('userLang',i);
+              break;
+            }
+          }
+          if (i === languages.length) {
+            cookies.set('userLang', languages[0].ISO, { path: '/', expires: date });
+            cookies.set('userLangISO',languages[0].isoAutocomplete, { path: '/', expires: date });
+            setLocalsFunc('userLang',0);
+          }
+        }
+        if (!curr) {
+          for (let i = 0; i < currencies.length; i++) {
+            if (currencies[i].ISO === "USD") {
+              cookies.set('userCurr', currencies[i].ISO, { path: '/', expires: date });
+              store.dispatch(setActiveCurr(i));
+            }
+          }
+          curr = this.props.globalReduser.readCookie('userCurr');
+          if (!curr) {
+            cookies.set('userCurr', currencies[0].ISO, { path: '/', expires: date });
+            store.dispatch(setActiveCurr(0));
+          }
+        }
+        else {
+          let i = 0;
+          for (; i < currencies.length; i++) {
+            if (curr === currencies[i].ISO) {
+              cookies.set('userCurr', currencies[i].ISO, { path: '/', expires: date });
+              store.dispatch(setActiveCurr(i));
+              break;
+            }
+          }
+          if (i === currencies.length) {
+            cookies.set('userCurr', currencies[0].ISO, { path: '/', expires: date });
+            store.dispatch(setActiveCurr(i));
+          }
+        }
+        if(!country){
+          //тут должна быть переадресация на страницу с выбором страны!!!(в else должно быть схожее, посмотри)
+        }
+        else{
+          
+          let index = -1;
+          for(let i=0; i<countries.length; i++){
+            if(country===countries[i].ISO){
+              index =i;
+              break;
+            }
+          }
+          if(index!==-1){
+            
+            let adminLang = redusers.GlobalReduser.readCookie('adminLang');
+            let adminIndex=-1;
+            if(!adminLang){
+              adminLang=countries[index].adminDefaultLang;
+            }
+            let engIndex=-1;
+            for(let k=0 ; k<adminLanguages.length; k++){
+              if(adminLanguages[k].ISO===adminLang){
+                adminIndex=k;
+                break;
+              }
+              if(adminLanguages[k].ISO==='ENG'){
+                engIndex=k;
+              }
+            }
+            if(adminIndex===-1){
+              adminIndex=engIndex;
+              if(adminIndex===-1){
+                adminIndex=0;
+              }
+            }
+            store.dispatch(modalCountryDispatch(countries[index].ISO,countries[index].isoMap));
+            store.dispatch(setActiveLangAdmin(adminIndex));
+          }
+          else{
+            //здесь должна быть переадресация
+          }        
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      })
+}
+function setLocalsFunc(type, index){
+    let redusers = store.getState();
+    let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
+    switch (type) {
+      case 'userLang': {
+        function loadScript (url, onload){
+          return new Promise((resolve, reject) => {
+              const script = document.createElement('script');
+              script.type = 'text/javascript';
+              script.onload = resolve;
+              script.onerror = reject;
+              script.src = url;
+              
+              if (document.head) {
+                
+                //document.getElementById('langScript').remove();
+                script.id='langScript';
+                //document.head.appendChild(script);
+                store.dispatch(setActiveLang(index));
+                cookies.set('userLang', redusers.AppReduser.languages[index].ISO, { path: '/', expires: date });
+              }
+          });
+        }
+        let string = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBxjEYepkLXhQuXcf_1sUakshHN5Jrozc8&libraries=places&callback=initialize";
+        let langString= string+"&language="+redusers.AppReduser.languages[index].isoAutocomplete;
+        loadScript(langString);
+        
+        break;
+      }
+      case 'adminLang':{
+        console.log('adminLang called');
+        store.dispatch(setActiveLangAdmin(index));
+        cookies.set('adminLang',redusers.AppReduser.adminLanguages[index].ISO, { path: '/', expires: date });
+        break;
+      }
+      case 'userCurr': {
+        store.dispatch(setActiveCurr(index));
+        cookies.set('userCurr', redusers.AppReduser.currencies[index].ISO, { path: '/', expires: date });
+        break;
+      }
+      default:
+    }
+}
+getLocals();
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter >
