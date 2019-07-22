@@ -16,30 +16,7 @@ import requests from '../../config';
 class PlacesListClass extends React.Component {
     constructor(props){
         super(props);
-
-
-        let that = this;
-        
-        /*
-        axios.get(requests.getPlacesList+"?country="+this.props.storeState.country+"&lang="+this.props.storeState.languages[this.props.storeState.activeLanguageNumber])
-        .then(response => {
-            console.log(response);
-            return response.data;
-        })
-        .then(data => {
-            if (data.error) {
-                console.log("bad");
-                throw data.error;
-            }
-            else {
-                console.log('good');
-                console.log(data);
-            }
-        })
-        .catch(error => {
-            console.log('get wasted answer');
-        });
-        */
+        this.state={}
     }
     placesSort=(array,type)=>{
         function sortRating(a,b){//1
