@@ -1,22 +1,22 @@
-import React from 'react';
+import React, { Suspense,lazy } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Home from './components/home/Home.jsx';
-import DriverProfile from './components/driverProfile/DriverProfile.jsx';
+// import DriverProfile from './components/driverProfile/DriverProfile.jsx';
 import Places from './components/Places/Places.jsx';
-import PlaceDescription from './components/PlaceDescription/PlaceDescription.jsx';
+// import PlaceDescription from './components/PlaceDescription/PlaceDescription.jsx';
 import Tours from './components/Tours/Tours.jsx';
 import Footer from './components/Footer/Footer'
 import TourDescription from './components/TourDescription/TourDescription.jsx';
-import Registration from './components/registration/Registration';
-import AuthRedirect from './components/registration/AuthRedirect';
+// import Registration from './components/registration/Registration';
+// import AuthRedirect from './components/registration/AuthRedirect';
 import AccountRedirector from './components/registration/AccountRedirector';
-import PartnerRegister from './components/registration/PartnerRegister';
-import ForgotPassword from './components/registration/ForgotPassword';
-import ResetPassword from './components/registration/ResetPassword';
+// import PartnerRegister from './components/registration/PartnerRegister';
+// import ForgotPassword from './components/registration/ForgotPassword';
+// import ResetPassword from './components/registration/ResetPassword';
 import TripConfirmation from './components/driverProfile/TripConfirmation';
 import DriverConfirmation from './components/driverProfile/DriverConfirmation';
-import RouteDescription from './components/RouteDescription/RouteDescription';
+// import RouteDescription from './components/RouteDescription/RouteDescription';
 
 
 import { hydrate } from "react-dom"
@@ -38,6 +38,16 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 //require('require-context/register');
 
+
+
+const DriverProfile = lazy(()=> import('./components/driverProfile/DriverProfile'));
+const PlaceDescription = lazy(()=> import('./components/PlaceDescription/PlaceDescription'));
+const RouteDescription = lazy(()=> import('./components/RouteDescription/RouteDescription'));
+const ForgotPassword = lazy(()=> import('./components/registration/ForgotPassword'));
+const ResetPassword = lazy(()=> import('./components/registration/ResetPassword'));
+const PartnerRegister = lazy(()=> import('./components/registration/PartnerRegister'));
+const Registration = lazy(()=> import('./components/registration/Registration'));
+const AuthRedirect = lazy(()=> import('./components/registration/AuthRedirect'));
 
 
 const redux = require('redux');
@@ -63,12 +73,14 @@ const muiTheme = getMuiTheme({
     fontFamily: 'Roboto',
 });
 
-ReactDOM.hydrate(
+ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter >
             <React.Fragment>
                 <MuiThemeProvider muiTheme={muiTheme}>
+                <Suspense fallback={<div>Загрузка...</div>}>
                     <Switch>
+                    
                         <Route path="/home/:direction" component={Home} />
                         <Route path="/home" component={Home} />
                         <Route path="/drivers" component={Home} />
@@ -93,7 +105,9 @@ ReactDOM.hydrate(
                         <Route path="/registration" component={Registration} />                       
                         <Route path="/login" component={AuthRedirect}/>
                         <Redirect from="/" to="/home" />
+                        
                     </Switch>
+                    </Suspense>
                     <Footer />
                 </MuiThemeProvider>
             </React.Fragment>

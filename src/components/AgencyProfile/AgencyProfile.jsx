@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { Suspense,lazy } from 'react';
 import { connect } from 'react-redux';
 import Header from '../header/Header'
 import {Route} from 'react-router-dom';
 import AgencyProfileNavigation from './AgencyProfileNavigation';
-import AgencyProfileBasicInformation from './AgencyProfileBasicInformation';
-import AgencyProfileAffiliateProgramm from './AgencyProfileAffiliateProgramm';
-import AgencyProfileHistory from './AgencyProfileHistory';
-import AgencyProfileDrivers from './AgencyProfileDrivers';
-import AgencyProfileSettings from './AgencyProfileSettings';
-import AgencyProfileTour from './AgencyProfileTour';
-import AgencyProfileFeedback from './AgencyProfileFeedback';
-import AgencyProfileBilling from './AgencyProfileBilling';
+// import AgencyProfileBasicInformation from './AgencyProfileBasicInformation';
+// import AgencyProfileAffiliateProgramm from './AgencyProfileAffiliateProgramm';
+//  import AgencyProfileHistory from './AgencyProfileHistory';
+// import AgencyProfileDrivers from './AgencyProfileDrivers';
+// import AgencyProfileSettings from './AgencyProfileSettings';
+// import AgencyProfileTour from './AgencyProfileTour';
+// import AgencyProfileFeedback from './AgencyProfileFeedback';
+// import AgencyProfileBilling from './AgencyProfileBilling';
 
 import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 import requests from '../../config';
@@ -19,6 +19,15 @@ import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIn
 import '../driverProfileRegistration/DriverProfileRegistration.css';
 import {changeLanguagePart} from '../../redusers/Action';
 import FirstEnterModal from '../home/FirstEnterModal';
+
+const AgencyProfileBasicInformation = lazy(()=> import('./AgencyProfileBasicInformation'));
+const AgencyProfileAffiliateProgramm = lazy(()=> import('./AgencyProfileAffiliateProgramm'));
+const AgencyProfileHistory = lazy(()=> import('./AgencyProfileHistory'));
+const AgencyProfileDrivers = lazy(()=> import('./AgencyProfileDrivers'));
+const AgencyProfileSettings = lazy(()=> import('./AgencyProfileSettings'));
+const AgencyProfileTour = lazy(()=> import('./AgencyProfileTour'));
+const AgencyProfileFeedback = lazy(()=> import('./AgencyProfileFeedback'));
+const AgencyProfileBilling = lazy(()=> import('./AgencyProfileBilling'));
 
 class AgencyProfileClass extends React.Component{
     constructor(props){
@@ -47,7 +56,7 @@ class AgencyProfileClass extends React.Component{
                 <div className="registrationWrapper d-flex flex-column col-12 p-0">
                     <div className="d-flex contentHeight col-12 p-0">
                         <div className="d-flex flex-column justify-content-start col-lx-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
-        
+                        <Suspense fallback={<div>Загрузка...</div>}>
                             <Route path="/account/agency/profile" component={AgencyProfileBasicInformation}/>
                             <Route path="/account/agency/referrals" component={AgencyProfileAffiliateProgramm}/>
                             <Route path="/account/agency/trips" component={AgencyProfileHistory}/>
@@ -56,7 +65,7 @@ class AgencyProfileClass extends React.Component{
                             <Route path="/account/agency/tours" component={AgencyProfileTour}/>
                             <Route path="/account/agency/reviews" component={AgencyProfileFeedback}/>
                             <Route path="/account/agency/billing" component={AgencyProfileBilling}/>
-                
+                            </Suspense>
                         </div>           
                     </div>
                 </div>
