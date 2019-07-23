@@ -65,7 +65,6 @@ class RenderShareLinkClass extends React.Component {
 const RenderShareLink = connect(
     (state) => ({
         storeState: state.AppReduser,
-        profileReduser: state.DriverProfileRegistrationReduser,
         globalReduser: state.GlobalReduser
     }),
 )(RenderShareLinkClass);

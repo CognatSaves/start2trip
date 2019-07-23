@@ -1,7 +1,6 @@
 import React from 'react';
 import './DriverProfileNavigation.css'
 import { connect } from 'react-redux';
-import { whichPageRender } from "../../redusers/ActionDriverProfileRegistration"
 import Stars from '../stars/Stars'
 
 import calendarBG from '../media/illustrations_calendar.svg'
@@ -42,6 +41,7 @@ class DriverProfileNavigationClass extends React.Component {
             isRefreshExist: false,
             isRefreshing: true,
             isGoodAnswer: true,
+            index:this.props.globalReduser.pageRender,
         };
     }
     getProfileData = (thenFunc, catchFunc) => {
@@ -157,7 +157,6 @@ class DriverProfileNavigationClass extends React.Component {
     }
 
     render() {
-
         /*if (!this.state.avatar) {
             let img = requests.serverAddress + this.state.profile.avatar.url
             this.setState({ avatar: img })
@@ -170,11 +169,9 @@ class DriverProfileNavigationClass extends React.Component {
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
                 <div className="registrationWrapper driverBG col-12 p-0" style={{
                     "/account/driver/trips": { backgroundImage: "url(" + preHistoryBG + ")" },
-                    // 1: { backgroundImage: "url(" + historyBG + ")" },
                     "/account/driver/profile": { backgroundImage: "url(" + sittingsBG + ")" },
                     "/account/driver/cars": { backgroundImage: "url(" + carBg + ")" },
                     "/account/driver/tripsSettings": { backgroundImage: "url(" + calendarBG + ")" },
-                    //"/account/driver/tours": { backgroundImage: "url(" + toursBG + ")" },
                     "/account/driver/reviews": { backgroundImage: "url(" + feedbackBG + ")" },
                     "/account/driver/settings": { backgroundImage: "url(" + sittingsBG + ")" },
                     "/account/driver/billing": { backgroundImage: "url(" + billingBG + ")" },
@@ -235,10 +232,10 @@ class DriverProfileNavigationClass extends React.Component {
                     <div className="navigationBody d-flex align-items-center">
                         {navigationText.map((element, index) =>
 
-                            <span className={{ [this.state.route[index]]: "navigationBodyActive", }[this.props.globalhistory.history.location.pathname] + " navigationButton mb-0 " + (this.state.route[index].length === 0 ? "blockedSpan" : "")}
+                            <span key={this.state.route[index]} className={{ [this.state.route[index]]: "navigationBodyActive", }[this.props.globalhistory.history.location.pathname] + " navigationButton mb-0 " + (this.state.route[index].length === 0 ? "blockedSpan" : "")}
                                 onClick={(event) => {
                                     if (this.state.route[index].length > 0) {
-                                        this.props.dispatch(whichPageRender(index));
+                                        this.setState({index: index});
                                         this.shiftLeft(event);
                                         this.props.globalhistory.history.push(this.state.route[index])
                                     }
@@ -254,7 +251,6 @@ class DriverProfileNavigationClass extends React.Component {
 
 const DriverProfileNavigation = connect(
     (state) => ({
-        storeState: state.DriverProfileRegistrationReduser,
         globalhistory: state.GlobalReduser,
         globalReduser: state.GlobalReduser,
         AppReduser: state.AppReduser,

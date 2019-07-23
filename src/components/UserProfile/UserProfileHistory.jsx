@@ -38,7 +38,6 @@ class UserProfileHistoryClass extends React.Component {
 
 const UserProfileHistory = connect(
   (state) => ({
-    storeState: state.DriverProfileRegistrationReduser,
     globalReduser: state.GlobalReduser
   }),
 )(UserProfileHistoryClass);

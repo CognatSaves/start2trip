@@ -1,6 +1,5 @@
 import React from 'react';
 import './DriversProfileComments.css';
-// import tempPicture from './pictures/drivers_body_photo.png'
 import Stars from '../stars/Stars';
 import requests from '../../config';
 import { connect } from 'react-redux';
@@ -17,10 +16,7 @@ class ShowCommentsClass extends React.Component {
             date: null,
         }
     }
-    // openModalComment = () => {
-    //     this.setState({openModal:!this.state.openModal})
 
-    // }
 
     render() {
         let textInfo = this.props.storeState.languageTextMain.placeDescription.placeProgramm;
@@ -63,6 +59,7 @@ class ShowCommentsClass extends React.Component {
                         {this.props.selectedComments.map((element, index) => {
                             //let obj = element.name || element.createdAt ? element : {name: element.user.name} 
                             // let openModal = false
+                            debugger
                             let date = element.date ? new Date(element.date) : new Date(element.createdAt);
 
                             return (
@@ -72,9 +69,8 @@ class ShowCommentsClass extends React.Component {
                                             <div className="commentBlock_picture d-flex pb-2">
                                                 <img src={requests.serverAddress + element.avatar.url} width="auto" height="100%" alt=""></img>
                                                 <div className="d-flex flex-column justify-content-center col pr-0">
-                                                    <div className="valueBlock_firstElement_name">{element.name}</div>
-
-                                                    
+                                                    <div className="valueBlock_firstElement_name">{element.name}</div>                                                
+                                                        
                                                         <Stars key={element.rating + "/" + element.index} value={element.rating} valueDisplay={true} commentNumberDisplay={false} />
                                                         <div className="valueBlock_firstElement_date">{date.getDate() + " " + getMonthName(date.getMonth()) + " " + date.getFullYear()}</div>
                                                     

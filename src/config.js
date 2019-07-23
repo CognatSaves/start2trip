@@ -93,7 +93,7 @@ export default {
     createComment: createComment,
     getRoutes: getRoutes,
     showRoute: showRoute,
-    getDriverDescription:getDriverDescription,
-    getDriverInfo:getDriverInfo,
-    
+    getDriverDescription: getDriverDescription,
+    getDriverInfo: getDriverInfo,
+
 };

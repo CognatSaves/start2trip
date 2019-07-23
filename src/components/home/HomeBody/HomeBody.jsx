@@ -173,12 +173,9 @@ class HomeBodyClass extends React.Component {
 const HomeBody = connect(
   (state) => ({
     driversState: state.DriversReduser,
-    storeState: state.AppReduser,
-    stateReduserState: state.StateReduser
+    storeState: state.AppReduser
   }),
   (dispatch) => ({
-    // goToDrivers: () => dispatch({ type: "CHANGE_PICTURE", picture: "drivers" }),
-    // calendaryVisibility: (visibility) => dispatch({ type: "CHOOSE_DATE_VIS", visibility: visibility }),
     setLengthTime: (travelLength, travelTime) => dispatch({ type: "SET_LENGTH_TIME", travelTime: travelTime, travelLength: travelLength }),
     setState: (cities, date, visibility, picture) => dispatch({ type: "SET_STATE", cities: cities, date: date})
   })

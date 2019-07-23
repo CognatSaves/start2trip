@@ -1,4 +1,4 @@
-import {WHICH_PAGE_RENDER_HISTORY,SET_PROFILE_DATA,SET_URL_ADDRESS,SET_TRANSACTION_DATA} from './ActionGlobal';
+import {WHICH_PAGE_RENDER,WHICH_PAGE_RENDER_HISTORY,SET_PROFILE_DATA,SET_URL_ADDRESS,SET_TRANSACTION_DATA} from './ActionGlobal';
 
 
 const arrru = ['Я','я','Ю','ю','Ч','ч','Ш','ш','Щ','щ','Ж','ж','Х','х','Э','э','ъ','Ъ','А','а','Б','б','В','в','Г','г','Д','д','Е','е','Ё','ё','З','з','И','и','Й','й','К','к','Л','л','М','м','Н','н', 'О','о','П','п','Р','р','С','с','Т','т','У','у','Ф','ф','Ц','ц','Ы','ы','ь','Ь','-'];
@@ -59,7 +59,7 @@ const initialState = {
     alphabet: ["A", "B", "C", "D", "E", "F", "G", "H", "I",
     "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
     time:time,
-    
+    pageRender: "0",
     readCookie: function(name){
         var name_cook = name+"=";
         var spl = document.cookie.split(";");           
@@ -215,6 +215,11 @@ export const GlobalReduser = (state = initialState, action) => {
         case WHICH_PAGE_RENDER_HISTORY:{
             let newState = { ...state };
             newState.history = action.history;
+            return newState;
+        }
+        case WHICH_PAGE_RENDER:{
+            let newState = { ...state };
+            newState.pageRender = action.pageRender;
             return newState;
         }
         case SET_PROFILE_DATA:{

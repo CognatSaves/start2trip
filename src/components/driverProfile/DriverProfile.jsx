@@ -9,7 +9,7 @@ import { setCities } from '../../redusers/Action'
 import DatePicker from 'material-ui/DatePicker';
 import MapContainer from '../home/HomeBody/MapContainer';
 import { setLengthTime } from '../../redusers/ActionDrivers'
-import axios from 'axios';
+// import axios from 'axios';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 import { isMobileOnly } from 'react-device-detect';
 import CommentBlock from '../TourDescription/CommentBlock';
@@ -244,7 +244,7 @@ class DriverProfileClass extends React.Component {
             }
             return timeString;
         }
-        if (this.props.driversState.travelLength == "-" && this.props.driversState.travelTime == "-") {
+        if (this.props.driversState.travelLength === "-" && this.props.driversState.travelTime === "-") {
             let lengthString = getLengthString(travelLength);
             let timeString = getTimeString(travelTime);
             this.props.dispatch(setLengthTime(timeString, lengthString));
@@ -305,7 +305,7 @@ class DriverProfileClass extends React.Component {
         let driver = this.props.driversState.driverCarDescription;
         //console.log('driver', driver);
 
-        let buttonNames = ["Отзывы (" + this.props.commentState.comments.length + ")"];
+        // let buttonNames = ["Отзывы (" + this.props.commentState.comments.length + ")"];
         
         //обработка захода по url - тогда в storeState не будет точек - следовательно, их надо взять из адреса
         //или быть выкинутым на страницу drivers (скорее всего туда, хотя можно выкинуть на home)

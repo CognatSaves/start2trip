@@ -103,7 +103,6 @@ class AccountRedirectorClass extends React.Component{
 
 const AccountRedirector = connect(
     (state) => ({
-        storeState: state.DriverProfileRegistrationReduser,
         globalReduser: state.GlobalReduser,
     }),
 )(AccountRedirectorClass);

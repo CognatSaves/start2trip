@@ -178,7 +178,6 @@ class AgencyProfileAffiliateProgrammClass extends React.Component{
 const AgencyProfileAffiliateProgramm = connect(
     (state) => ({
         storeState: state.AppReduser,
-        profileReduser: state.DriverProfileRegistrationReduser,
         globalReduser: state.GlobalReduser,
     }),
 )(AgencyProfileAffiliateProgrammClass);

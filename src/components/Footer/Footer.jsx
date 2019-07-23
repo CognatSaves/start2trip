@@ -4,8 +4,6 @@ import facebookIcon from "../media/facebook-letter-logo.svg"
 import instagramIcon from "../media/instagram.svg"
 import logoTripfer from "../media/logo_tripfer_white.svg"
 import upArrowIcon from "../media/up-arrow.svg"
-// import { whichPageRenderHistory } from "../../redusers/ActionGlobal"
-// import { openFilterShow } from "../../redusers/ActionDrivers"
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import MobileFilter from '../drivers/DriversBody/DriversProperties/MobileFilter/MobileFilter'

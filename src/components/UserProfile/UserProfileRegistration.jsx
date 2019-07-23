@@ -14,6 +14,7 @@ import '../driverProfileRegistration/DriverProfileSettings.css';
 import './UserProfileSettings.css';
 import '../driverProfileRegistration/DriverProfileBilling.css';
 import '../driverProfileRegistration/DriverProfileAffiliateProgram.css';
+import './UserProfileTrevelHistory.css'
 //import css
 
 import {Route} from 'react-router-dom';
@@ -110,7 +111,6 @@ class UserProfileRegistrationClass extends React.Component {
 
 const UserProfileRegistration = connect(
   (state) => ({
-    storeState: state.UserProfileRegistrationReduser,
     globalReduser: state.GlobalReduser,
   }),
 )(UserProfileRegistrationClass);
