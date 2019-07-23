@@ -4,8 +4,6 @@ import LocationSearchInput from '../home/HomeBody/Search';
 import DatePicker from 'material-ui/DatePicker';
 import { connect } from 'react-redux';
 import { isMobileOnly } from 'react-device-detect';
-const alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I",
-    "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 class RouteTravelBlockClass extends React.Component{
     constructor(props){
         super(props);
@@ -49,13 +47,13 @@ class RouteTravelBlockClass extends React.Component{
             <div className="placeDescription_block d-flex flex-column" id={this.props.id} key={JSON.stringify(points)}>
                 <div className="placeDescription_fragmentName">{textInfo.fragmentName}</div>
                 <div className="d-flex flex-row">
-                    <div className="d-flex col-md-6 col-12 routeTravelBlock_pointPart "/*+px-md-2 px-0 */ >
+                    <div className="d-flex col-md-6 col-12 routeTravelBlock_pointPart ">
                         <div className="d-flex flex-wrap routeTravelBlock_pointBlock" >
                         {   
                             points.map((element, index)=>
-                                <div className={"routeTravelBlock_element d-flex col-md-6 col-12 " /*+ (index%2===0 ? 'routeTravelBlock_pointElement_left' : 'routeTravelBlock_pointElement_right')*/}>
+                                <div className={"routeTravelBlock_element d-flex col-md-6 col-12 "}>
                                     <div className="routeTravelBlock_pointValue d-flex flex-row">
-                                        <div style={{paddingRight: '10px',margin: 'auto 0'}}>{alphabet[index]}</div>
+                                        <div style={{paddingRight: '10px',margin: 'auto 0'}}>{this.props.globalhistory.alphabet[index]}</div>
                                         <div className="d-flex routeTravelBlock_height">
                                             <div style={{margin: 'auto 0'}}>{element.point}</div>
                                         </div>
@@ -80,12 +78,12 @@ class RouteTravelBlockClass extends React.Component{
                             </div>
                         </div>
                     </div>     
-                    {isMobileOnly?<React.Fragment>
-
-</React.Fragment>:<React.Fragment>           
-                    <div className="placeDescription_fragmentName_mapBlock col-6" style={{marginTop: "15px"}}>       
-                        <MapContainer newMapStyles={mapStyles} cities={points} setLengthTime={()=>{console.log('setLengthTime at work')}} mapUpdate={true} />
-                    </div>
+                    {isMobileOnly?
+                    <React.Fragment/>:
+                    <React.Fragment>           
+                        <div className="placeDescription_fragmentName_mapBlock col-6" style={{marginTop: "15px"}}>       
+                            <MapContainer newMapStyles={mapStyles} cities={points} setLengthTime={()=>{console.log('setLengthTime at work')}} mapUpdate={true} />
+                        </div>
                     </React.Fragment>}
                     
                 </div>

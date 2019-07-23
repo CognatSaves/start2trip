@@ -40,7 +40,8 @@ class DriverProfileBasicInformationClass extends React.Component {
 
         birthday = new Date(profile.birthday);
         passportDate = new Date(profile.passportDate);
-        let languageArrays = languageArraysConstr(profile.language, profile.allLanguages);
+        debugger;
+        let languageArrays = languageArraysConstr(profile.language, profile.frontLanguages);
         this.state = {
             value: this.props.storeState.languageText.driverProfileRegistration.DriverProfileBasicInformation.MenuItem.value,
             chipData: languageArrays.chipData,

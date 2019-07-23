@@ -14,10 +14,8 @@ import DriverRefreshIndicator from '../../driverProfileRegistration/DriverRefres
 
 import {AppReduser} from '../../../redusers/AppReduser';
 const CityRouteTable = (props) => {
-  const { cities, changeCity, removeCity, addCity, isoCountryMap, readOnlyOn, language, textInfo } = props;
+  const { cities, changeCity, removeCity, addCity, isoCountryMap, readOnlyOn, language, textInfo,alphabet } = props;
   // let workCities = [...cities];
-  let alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I",
-    "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
   // let tempStart = workCities.shift();
   // workCities.pop();
   // console.log(cities, "cities");
@@ -174,10 +172,6 @@ class RouteMenuClass extends React.Component {
 
 
   chooseDate = (value) => {
-    //let dayMass = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
-    // let monthMass = ["января", "февраля", "марта", "апреля", "мая",
-    //   "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
-    // let resultString = value.getDate() + "-" + value.getMonth() + "-" + value.getFullYear();
     let resultString = value.toISOString();
     this.props.dispatch(set_state(this.props.storeState.cities, resultString))
     this.setState({
@@ -381,7 +375,11 @@ class RouteMenuClass extends React.Component {
             isMobileOnly ?
               <React.Fragment>
                 <div key={"cityRouteTable"+this.props.storeState.activeLanguageNumber} id={"idCityRouteTable."+this.props.storeState.activeLanguageNumber}>
-                  <CityRouteTable textInfo={textInfo} language={this.props.storeState.activeLanguageNumber} readOnlyOn={this.props.showBtPrice} cities={this.props.storeState.cities} changeCity={this.changeCity} removeCity={this.removeCity} isoCountryMap={this.props.storeState.isoCountryMap} />
+                  <CityRouteTable textInfo={textInfo} language={this.props.storeState.activeLanguageNumber}
+                   readOnlyOn={this.props.showBtPrice} cities={this.props.storeState.cities}
+                   changeCity={this.changeCity} removeCity={this.removeCity}
+                   isoCountryMap={this.props.storeState.isoCountryMap}
+                   alphabet={this.props.globalhistory.alphabet} />
                 </div>
 
                 {this.props.showBtPrice ?<React.Fragment/>
@@ -397,7 +395,8 @@ class RouteMenuClass extends React.Component {
                   <CityRouteTable textInfo={textInfo} language={this.props.storeState.activeLanguageNumber}
                   readOnlyOn={this.props.showBtPrice} cities={this.props.storeState.cities} changeCity={this.changeCity}
                   removeCity={this.removeCity} addCity={this.addCity}
-                  isoCountryMap={this.props.storeState.isoCountryMap} />
+                  isoCountryMap={this.props.storeState.isoCountryMap}
+                  alphabet={this.props.globalhistory.alphabet} />
                 </div>
               </React.Fragment>
           }

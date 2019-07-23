@@ -35,6 +35,7 @@ class AgencyProfileFeedbackClass extends React.Component{
         }
         */
         // TODO добавить кнопку показать еще и пагинацию
+        debugger;
         return(
             <React.Fragment>
             <div className="d-flex flex-wrap">
@@ -70,12 +71,12 @@ class AgencyProfileFeedbackClass extends React.Component{
                 <div className="trevelHistoryBody  d-flex flex-column">
                     <div className="d-flex flex-column historyBodyHeader">
                         <div className="d-flex flex-row" style={{marginBottom: '5px'}}>
-                            <img src={requests.serverAddress+element.clearedAuthor.url} width="auto" height="100%" alt=""></img>
-                            <div className="valueBlock_firstElement_name" style={{margin: 'auto 0 auto auto'}}>{element.clearedAuthor.firstName}</div>
+                            <img src={requests.serverAddress+element.avatar.url} width="auto" height="100%" alt=""></img>
+                            <div className="valueBlock_firstElement_name" style={{margin: 'auto 0 auto auto'}}>{element.name}</div>
                         </div>
                         <div className="d-flex flex-row">  
-                            <Stars key={element.mark+"/"+element.index} value={element.mark} valueDisplay={true} commentNumberDisplay={false}/>                         
-                            <div className="valueBlock_firstElement_date" style={{margin: 'auto 0 auto auto'}}>{this.props.globalReduser.createDateTimeString(element.updatedAt)/*element.date.getDate()+" "+getMonthName(element.date.getMonth())+" "+element.date.getFullYear()*/}</div>
+                            <Stars key={element.rating+"/"+element.index} value={element.rating} valueDisplay={true} commentNumberDisplay={false}/>                         
+                            <div className="valueBlock_firstElement_date" style={{margin: 'auto 0 auto auto'}}>{this.props.globalReduser.createDateTimeString(element.createdAt)/*element.date.getDate()+" "+getMonthName(element.date.getMonth())+" "+element.date.getFullYear()*/}</div>
                             
                         </div>
                         <hr/>
@@ -83,7 +84,7 @@ class AgencyProfileFeedbackClass extends React.Component{
                     <div className="d-flex flex-column historyBodyElement ">
                         <input className="put" id={"put"+element+index} type="checkbox"></input>
                         <div className="news">
-                            <label htmlFor={"put"+element+index}>{element.text}</label>
+                            <label htmlFor={"put"+element+index}>{element.value}</label>
                         </div>
                     </div>
         

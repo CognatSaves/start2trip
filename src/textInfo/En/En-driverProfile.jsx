@@ -1,4 +1,4 @@
-const driverProfile = {
+﻿const driverProfile = {
     lang: 'ENG',
     createComment:{
         yourCommentPlaceholder: "Ваш отзыв(ENG)",
@@ -14,16 +14,16 @@ const driverProfile = {
         routeBookComment: "Стоимость окончательная. Топливо включено(ENG)" 
     },
     driverProfile:{
-        routeTitle: 'Маршрут',
-        routeTimeText: ['Время в пути без остановок','длина пути'],
-        personNumberText: 'Количество человек',
-        timeText: 'Время',
-        driverRouteLink: ['Я принимаю условия', 'договора оферты'],
-        errorMessage: 'Вы должны принять условия договора',
-        promoPlaceholder: 'Введите промо код',
-        promoVerification: ["сбросить", "применить"],
-        bookRoute: 'Заказать поездку',//там написано тур
-        fieldsError: 'Заполните правильно все поля',      
+        routeTitle: 'Маршрут(ENG)',
+        routeTimeText: ['Время в пути без остановок(ENG)','длина пути(ENG)'],
+        personNumberText: 'Количество человек(ENG)',
+        timeText: 'Время(ENG)',
+        driverRouteLink: ['Я принимаю условия(ENG)', 'договора оферты(ENG)'],
+        errorMessage: 'Вы должны принять условия договора(ENG)',
+        promoPlaceholder: 'Введите промо код(ENG)',
+        promoVerification: ["сбросить(ENG)", "применить(ENG)"],
+        bookRoute: 'Заказать поездку(ENG)',
+        fieldsError: 'Заполните правильно все поля(ENG)',      
     }
 }
 export default driverProfile;

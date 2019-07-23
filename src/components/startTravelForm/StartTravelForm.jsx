@@ -303,7 +303,13 @@ export default class StartTravelForm extends React.Component {
                             isRefreshing: false,
                             isGoodAnswer:true
                         });
-                        setTimeout(() => {  that.props.changeSuccessVisibility('block', false); that.setState({ isRefreshExist: false });  }, 1000);
+                        
+                        setTimeout(() => {  
+                            
+                            that.props.changeTravelVisibility();
+                            that.props.changeSuccessVisibility('block', false); 
+                            that.setState({ isRefreshExist: false });  
+                        }, 1000);
 
                     }
                 })

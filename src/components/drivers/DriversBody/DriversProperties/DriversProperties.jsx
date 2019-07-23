@@ -3,17 +3,17 @@ import './DriversProperties.css'
 import LanguageMenu from './components/LanguageMenu/LanguageMenu.jsx'
 import PeopleMenu from './components/PeopleMenu/PeopleMenu.jsx'
 import SortMenu from './components/SortMenu/SortMenu.jsx'
-import PagesMenu from './components/PagesMenu/PagesMenu.jsx'
+//import PagesMenu from './components/PagesMenu/PagesMenu.jsx'
 import ValueMenu from './components/ValueMenu/ValueMenu.jsx'
 import AutoMenu from './components/AutoMenu/AutoMenu.jsx'
 import userBlueIcon from '../../../media/userWhite.svg'
 import { openFilterShow } from "../../../../redusers/ActionDrivers"
 import { connect } from 'react-redux';
 import {
-  setPagesVisible, setTempPricePart, languageMenuIsVisibal, setSortMenuVisible,
-  changePersonsNumberDispatch, changePersonsNumberDispatchOld, peopleMenuCall, autoMenuCall
+  /*setPagesVisible,*/ setTempPricePart,/* languageMenuIsVisibal, */setSortMenuVisible,
+  changePersonsNumberDispatch, changePersonsNumberDispatchOld, peopleMenuCall/*, autoMenuCall*/
 } from "../../../../redusers/Action"
-import { setPages } from '../../../../redusers/Action'
+//import { setPages } from '../../../../redusers/Action'
 import { isMobileOnly } from 'react-device-detect';
 
 
@@ -23,7 +23,7 @@ class DriversPropertiesClass extends React.Component {
     super(props);
     this.state = {
       selectedPrice: this.props.maxValue,
-      sortisVisible: false,
+      sortIsVisible: false,
     }
   }
 
@@ -71,37 +71,19 @@ class DriversPropertiesClass extends React.Component {
             <div className="properties_rightButton_characteristic d-sm-block d-none">{textInfo.characteristic+':'}</div>
             {isMobileOnly ?
               <React.Fragment>
-                <span className="mobailSortIcon" onClick={() => { this.setState({ sortisVisible: !this.state.sortisVisible }) }}>{textInfo.sortText}</span>
+                <span className="mobailSortIcon" onClick={() => { this.setState({ sortIsVisible: !this.state.sortIsVisible }) }}>{textInfo.sortText}</span>
                 <span className="footerMobileIconFilter" onClick={() => { this.props.dispatch(openFilterShow(true)) }}>{textInfo.filterText}</span>
               </React.Fragment>
               : <div />}
-            {/* <div className="properties_rightButton_value">{this.props.storeState.sortMenuValue}</div>
-            <div className="properties_arrow"></div> */}
-            <SortMenu isVisible={this.state.sortisVisible} click={() => { this.setState({ sortisVisible: false }) }} />
+            <SortMenu isVisible={this.state.sortIsVisible} click={() => { this.setState({ sortIsVisible: false }) }} />
           </div>
-
-          {/* <div className="properties_buttonStyle properties_rightButton d-flex" onClick={() => this.props.dispatch(setPagesVisible(!this.props.storeState.pagesMenu))}>
-            <div className="properties_rightButton_characteristic">{this.props.storeState.pagesMenuValue} / страниц</div>
-            <div className="properties_arrow"></div>
-            <PagesMenu pagesMenuVariants={this.props.storeState.pagesMenuVariants} isVisible={this.props.storeState.pagesMenu} setPages={setPages}/>
-          </div> */}
         </div>
 
         <div className="properties_leftBlock">
           <div className="properties_buttonStyle properties_leftButton d-flex" >
-            {/* onClick={() => this.props.dispatch(languageMenuIsVisibal(!this.props.storeState.languageMenu))}
-            <div className="properties_value d-flex"><img src={this.props.storeState.languageIcon} width="15px" height="15px" alt="L" />{this.props.storeState.languageValue}</div>
-            <div className="properties_arrow"></div> */}
             <LanguageMenu isVisible={true} />
           </div>
           <div className="properties_buttonStyle properties_leftButton d-flex" >
-            {/* <div className="d-flex" onClick={() => this.props.dispatch(autoMenuCall(!this.props.storeState.autoMenu))}>
-              <div className="properties_carPicture">
-                <img src={this.props.storeState.autoIcon} width="100%" height="100%" alt="carImage" />
-              </div>
-              <div className="properties_value d-flex">{this.props.storeState.autoValue}</div>
-              <div className="properties_arrow"></div>
-            </div> */}
             <AutoMenu isVisible={true} />
           </div>
 
@@ -127,8 +109,6 @@ class DriversPropertiesClass extends React.Component {
             <ValueMenu isVisible={this.props.storeState.valueMenu} />
           </div>
         </div>
-
-
       </div>
     )
   }

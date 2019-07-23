@@ -73,7 +73,6 @@ class RouteDescriptionClass extends React.Component {
         console.log('RouteDescription render', this.state, this.props);
         let topBlockId = "routeDescriptionId";
         let slug = this.props.match.params.slug;
-
         if (this.props.storeState.languages.length > 0 && this.state.newRoute.local && this.state.selectedLanguage !== this.props.storeState.activeLanguageNumber) {
 
             let slugArray = this.state.newRoute.local.slugArray;
@@ -95,16 +94,13 @@ class RouteDescriptionClass extends React.Component {
                 isRefreshExist: true,
                 selectedLanguage: this.props.storeState.activeLanguageNumber
             });
-
             let that = this;
             axios.get(requests.showRoute + "?slug=" + (slug ? slug : ''))
                 .then(response => {
-
                     console.log(response);
                     return response.data;
                 })
                 .then(data => {
-
                     if (data.error) {
                         console.log("bad");
                         throw data.error;
@@ -118,8 +114,6 @@ class RouteDescriptionClass extends React.Component {
                             couldSendRequest: true,
                             slug: data.local.slug
                         });
-                        //that.props.match.params.slug=data.local.slug;
-                        //that.props.dispatch(setPlacesList(data.places, data.tags, data.directions,data.country));
                     }
                 })
                 .catch(error => {
@@ -144,8 +138,6 @@ class RouteDescriptionClass extends React.Component {
                             : <React.Fragment />
 
                     }
-                 
-
                     <div className="placeDescription_background col-12 p-0" style={{ background: "url(" + (this.state.newRoute.local && this.state.newRoute.route.mainImage ? requests.serverAddress + this.state.newRoute.route.mainImage.url : '') + ") no-repeat" }} id={topBlockId}>
                         <Header history={this.props.history} />
 
@@ -155,11 +147,9 @@ class RouteDescriptionClass extends React.Component {
                                     <div className="wrapper d-flex flex-column  ">
                                         <PlaceInfo tagsArray={[]} date={this.state.newRoute.local.createdAt}
                                             tags={[]} rating={this.state.newRoute.route.rating}
-                                            comments={this.state.newRoute.route.commentNumber} name={this.state.newRoute.local.name}
-                                /*place={{...this.state.newPlace.local}}*/ />
+                                            comments={this.state.newRoute.route.commentNumber} name={this.state.newRoute.local.name} />
                                     </div>
                                 </div>
-
                                 : <React.Fragment />
                         }
 
@@ -171,20 +161,16 @@ class RouteDescriptionClass extends React.Component {
                                     <div className="drivers_body d-flex">
                                         <div className="left_body_part col-12">
                                             {
-
-                                                <TourPanel topBlockId={topBlockId} descriptionId={topBlockId} variantsArray={/*['a','b','v','g','d']*/textInfo.placeDescription.variantsArray}
+                                                <TourPanel topBlockId={topBlockId} descriptionId={topBlockId} variantsArray={textInfo.placeDescription.variantsArray}
                                                     setPanelStateFunc={changePlacesFixedClass} panelFixedClass={this.props.placesState.placePanelFixedClass}
                                                     panelSelectedElement={this.props.placesState.placePanelSelectedElement} setPanelSelectedElement={setPlacesPanelSelectedElement}
                                                     removeElements={this.state.newRoute.additionalRoutes.length===0 ? [simularPlaceBlockId] : []} />
-
-
                                             }
-
 
                                             <div className="placeDescription_block d-flex flex-column p-0" id={topBlockId + "1"}>
                                                 <div className="placeDescription_fragmentName" style={{ marginBottom: "15px" }} >{textInfo.placeDescription.variantsArray[0]}</div>
 
-                                                <PlaceProgramm id={topBlockId + "1"} tagsArray={[]/*this.state.newPlace.tags*/} place={{ ...this.state.newRoute.local, tags: []/*this.state.newPlace.place.tags*/, rating: this.state.newRoute.route.rating, comments: this.state.newRoute.route.commentNumber }} />
+                                                <PlaceProgramm id={topBlockId + "1"} tagsArray={[]} place={{ ...this.state.newRoute.local, tags: []/*this.state.newPlace.place.tags*/, rating: this.state.newRoute.route.rating, comments: this.state.newRoute.route.commentNumber }} />
                                             </div>
 
 
@@ -193,14 +179,7 @@ class RouteDescriptionClass extends React.Component {
                                                 <PlacePhotos photoArray={this.state.newRoute.route.images}
                                                     showMask={(clickedImageIndex) => { this.setState({ isMaskVisible: true, clickedImageIndex: clickedImageIndex }) }} />
                                             </div>
-
-
-
-
                                             <RouteTravelBlock points={this.state.newRoute.local.points} id={topBlockId + "3"} />
-
-
-
                                             <div className="placeDescription_block flex-column" id={simularPlaceBlockId} style={{display: this.state.newRoute.additionalRoutes.length>0 ? 'flex' : 'none'}}>
 
                                                 <SimularRouteBlock outerBlock={simularPlaceBlockId} routes={this.state.newRoute.additionalRoutes} fragmentName={textInfo.placeDescription.variantsArray[3]} priseDisplay={"none"} />
@@ -212,7 +191,6 @@ class RouteDescriptionClass extends React.Component {
 
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                             : <React.Fragment />

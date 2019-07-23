@@ -6,6 +6,13 @@ import snowflakeIcon from '../components/media/snowflake.svg'
 import wifiIcon from '../components/media/wifi.svg'
 import { OPEN_FILTER_SHOW } from './ActionDrivers';
 
+/*
+const Ru_admin = lazy(()=> import('../textInfo/Ru-admin.jsx'));
+const En_admin = lazy(()=> import('../textInfo/En-admin.jsx'));
+const Ge_admin = lazy(()=> import('../textInfo/Ge-admin.jsx'));
+const Ru = lazy(()=> import('../textInfo/Ru.jsx'));
+const En = lazy(()=> import('../textInfo/En.jsx'));*/
+
 import Ru_admin from '../textInfo/Ru-admin.jsx';
 import En_admin from '../textInfo/En-admin.jsx';
 import Ge_admin from '../textInfo/Ge-admin.jsx';

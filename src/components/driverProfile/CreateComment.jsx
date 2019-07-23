@@ -74,12 +74,6 @@ class CreateCommentClass extends React.Component {
                 });
             }
         }
-        /*let newComment = document.getElementById("createComment_textareaStyle").value;
-        if (isCorrectComment) {
-            console.log("Add comment");
-            this.props.dispatch(addComment({ name: this.props.userName, date: new Date(Date.now()), value: newComment, rating: this.props.commentState.commentValue }));
-        }
-        document.getElementById("createComment_textareaStyle").value = "";*/
     }
     render() {
         let jwt = this.props.globalReduser.readCookie('jwt');

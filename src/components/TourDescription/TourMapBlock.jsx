@@ -3,7 +3,8 @@ import CurrentLocation from '../home/HomeBody/CurrentLocation.jsx';
 import bookmarkEmpty from '../media/bookmark_contour.svg';
 import userBlueIcon from '../media/user_blue.svg';
 import { Link } from 'react-router-dom';
-export default class TourMapBlock extends React.Component{
+import { connect } from 'react-redux'
+class TourMapBlockClass extends React.Component{
     /*constructor(props){
         super(props);
     }*/
@@ -20,10 +21,12 @@ export default class TourMapBlock extends React.Component{
         }
       };
     function departureDateString(value){
-        let dayMass = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
+        let resultString = this.props.globalReduser.createDayString(value);
+        /*let dayMass = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
         let monthMass = ["января", "февраля", "марта", "апреля", "мая",
           "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
         let resultString = dayMass[value.getDay()] + ", " + value.getDate() + " " + monthMass[value.getMonth()] + " " + value.getFullYear();
+        */
         return resultString;
     }
     return (
@@ -90,3 +93,11 @@ export default class TourMapBlock extends React.Component{
     )
     }
 }
+
+const TourMapBlock = connect(
+    (state) => ({
+      globalReduser: state.GlobalReduser
+    })
+  )(TourMapBlockClass);
+  
+  export default TourMapBlock;

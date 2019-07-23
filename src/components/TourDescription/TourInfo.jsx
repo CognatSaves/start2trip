@@ -1,7 +1,8 @@
 import React from 'react';
 import '../Places/PlacesCountryInfo.css';
 import './TourInfo.css';
-export default class TourInfo extends React.Component {
+import { connect } from 'react-redux'
+class TourInfoClass extends React.Component {
     shouldComponentUpdate(nextProps){ 
         return !(JSON.stringify(this.props)===JSON.stringify(nextProps));
     }
@@ -14,10 +15,12 @@ export default class TourInfo extends React.Component {
             return res;
         }
         function departureDateString(value){
-            let dayMass = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
+            let resultString = this.props.globalReduser.createDayString(value);
+            /*let dayMass = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
             let monthMass = ["января", "февраля", "марта", "апреля", "мая",
               "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
             let resultString = dayMass[value.getDay()] + ", " + value.getDate() + " " + monthMass[value.getMonth()] + " " + value.getFullYear();
+            */
             return resultString;
         }
         console.log("TourInfo");
@@ -36,3 +39,11 @@ export default class TourInfo extends React.Component {
         )
     }
 }
+
+const TourInfo = connect(
+    (state) => ({
+      globalReduser: state.GlobalReduser
+    })
+  )(TourInfoClass);
+  
+  export default TourInfo;

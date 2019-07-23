@@ -9,6 +9,7 @@ import './components/PlaceDescription/PlaceDescription.css'
 import './components/RouteDescription/RouteDescription.css';
 import './components/driverProfile/DriversProfileComments.css';
 //import css
+import App from './App';
 import Home from './components/home/Home.jsx';
 import Places from './components/Places/Places.jsx';
 import Tours from './components/Tours/Tours.jsx';
@@ -40,6 +41,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import Cookies from 'universal-cookie';
 import { setLocals, modalCountryDispatch } from './redusers/Action';
 import { setUser, setActiveCurr, setActiveLang, setModalRegister, setActiveLangAdmin } from './redusers/Action';
+
 
 const cookies = new Cookies();
 const DriverProfile = lazy(()=> import('./components/driverProfile/DriverProfile'));
@@ -275,6 +277,7 @@ ReactDOM.render(
                         <Route path="/(register|start)/" component={PartnerRegister} /> 
                         <Route path="/registration" component={Registration} />                       
                         <Route path="/login" component={AuthRedirect}/>
+                        <Route path="/:ISO" component={App}/>
                         <Redirect from="/" to="/home" />
                         
                     </Switch>

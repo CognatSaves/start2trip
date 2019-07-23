@@ -14,22 +14,12 @@ class FooterClass extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+
+      
     }
   }
 
   render() {
-    // let loc;
-    // if(this.props.globalhistory.history){
-    //  loc = this.props.globalhistory.history.location.pathname;
-    // }
-    // let flagBt = true;
-    // let flagDiv = true;
-    // if(loc =="/drivers"){
-    //   flagBt=true;
-    // }
-    // if(loc =="/home"){
-    //   flagDiv=false;
-    // }
   
     let pathname = "";
     if(this.props.globalhistory.history !==""){
@@ -37,6 +27,36 @@ class FooterClass extends React.Component {
     }
     
     let textInfo = this.props.storeState.languageTextMain.footer;
+    let mobileElemArray = [
+      {
+        pathname: "/home",
+        pathnamesInner: ["/home"],
+        iconClasses: ['footerMobileIconRoutes_active','footerMobileIconRoutes'],
+        classValue: 'footerMobileTextRoutes',
+        value: textInfo.footerMobileTextRoutes
+      },
+      {
+        pathname: "/tours",
+        pathnamesInner: ["/tours"],
+        iconClasses: ["footerMobileIconTours_active","footerMobileIconTours"],
+        classValue:"footerMobileTextTours",
+        value: textInfo.footerMobileTextTours
+      },
+      {
+        pathname: "/places",
+        pathnamesInner: ["/places"],
+        iconClasses: ['footerMobileIconPlaces_active','footerMobileIconPlaces'],
+        classValue: 'footerMobileTextPlaces',
+        value: textInfo.footerMobileTextPlaces
+      },
+      {
+        pathname: "/account",
+        pathnamesInner: ["/account/user/profile","/account/driver/profile","/account/agency/profile"],
+        iconClasses: ['footerMobileIconProfile_active','footerMobileIconProfile'],
+        classValue: 'footerMobileTextProfile',
+        value: textInfo.footerMobileTextProfile
+      }
+    ]
     return (
       <React.Fragment>
         <div className="footer d-xl-flex d-lg-flex d-md-flex d-sm-none d-none justify-content-center align-items-center col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -58,34 +78,16 @@ class FooterClass extends React.Component {
         </div>
 
         <div className="footerMobile d-xl-none d-lg-none d-md-none d-sm-flex d-flex">
-          {/* <div className="footerMobileButtonUp" style={{height: flagBt ? "80px":"40px", display: flagDiv ? "block":"none"}}>
-           
-            <i className="footerMobileIconFilter" style={{display: flagBt ? "flex":"none"}} onClick={()=>{this.props.dispatch(openFilterShow(true))}} />
-          </div> */}
-          <Link to="/home" className="col-3 d-flex align-items-end">
-            <div className={ (pathname === "/home" ? "foterMobaileItem_active":" " )+ " d-flex flex-column align-items-center justify-content-end col-12 foterMobaileItem "} >
-              <div className={pathname === "/home" ? "footerMobileIconRoutes_active":"footerMobileIconRoutes" } />
-              <div className="footerMobileTextRoutes">{textInfo.footerMobileTextRoutes}</div>
-            </div>
-          </Link>
-          <Link to="/tours" className="col-3 d-flex align-items-end">
-            <div className={ (pathname === "/tours" ? "foterMobaileItem_active":" " )+ " d-flex flex-column align-items-center justify-content-end col-12 foterMobaileItem "} >
-              <div className={pathname === "/tours" ? "footerMobileIconTours_active":"footerMobileIconTours" } />
-              <div className="footerMobileTextTours">{textInfo.footerMobileTextTours}</div>
-            </div>
-          </Link>
-          <Link to="/places" className="col-3 d-flex align-items-end">
-            <div className={ (pathname === "/places" ? "foterMobaileItem_active":" " )+ " d-flex flex-column align-items-center justify-content-end col-12 foterMobaileItem "} >
-              <div className={pathname === "/places" ? "footerMobileIconPlaces_active":"footerMobileIconPlaces" } />
-              <div className="footerMobileTextPlaces">{textInfo.footerMobileTextPlaces}</div>
-            </div>
-          </Link>
-          <Link to="/account" className="col-3 d-flex align-items-end">
-            <div className={ (pathname === "/account/user/profile" || pathname === "/account/driver/profile"|| pathname === "/account/agency/profile" ? "foterMobaileItem_active":" " )+ " d-flex flex-column align-items-center justify-content-end col-12 foterMobaileItem "} >
-              <div className={pathname === "/account/user/profile" || pathname === "/account/driver/profile"|| pathname === "/account/agency/profile" ? "footerMobileIconProfile_active":"footerMobileIconProfile" } />
-              <div className="footerMobileTextProfile">{textInfo.footerMobileTextProfile}</div>
-            </div>
-          </Link>
+          {
+            mobileElemArray.map((element, index)=>
+            <Link to={element.pathname} className="col-3 d-flex align-items-end">
+              <div className={ (element.pathnamesInner.indexOf(pathname)!==-1 ? "foterMobaileItem_active":" " )+ " d-flex flex-column align-items-center justify-content-end col-12 foterMobaileItem "} >
+                <div className={element.pathnamesInner.indexOf(pathname)!==-1 ? element.iconClasses[0]:element.iconClasses[1] } />
+                <div className={element.classValue}>{element.value}</div>
+              </div>
+            </Link>
+            )
+          }
         </div>
         <MobileFilter />
       </React.Fragment>

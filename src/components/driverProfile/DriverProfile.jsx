@@ -16,8 +16,6 @@ import CommentBlock from '../TourDescription/CommentBlock';
 import StartTravelForm from '../startTravelForm/StartTravelForm';
 import StartTravelSuccess from '../startTravelForm/StartTravelSuccess';
 import LocationSearchInput from '../home/HomeBody/Search';
-const alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I",
-    "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 
 class DriverProfileClass extends React.Component {
     constructor(props) {
@@ -49,8 +47,8 @@ class DriverProfileClass extends React.Component {
             errorMes: false,
             flagAllOk: false,
             promoCod: "",
-            isRefreshExist: false,
-            isRefreshing: false,
+            isRefreshExist: true,//в конструкторе происходит вызов ф-ции
+            isRefreshing: true,//следовательно можно крутить по кд с начала
             isGoodAnswer: false,
             promoCodIsOk:true,
             elementPrice:0,
@@ -97,13 +95,14 @@ class DriverProfileClass extends React.Component {
         let body = JSON.stringify({
             id: props.match.params.id,
             carId: props.match.params.carId,
-           // cities: cities,
-            //country: country,
-            //date: date,
-            //distance: routeProps.distance,
-            //duration: routeProps.duration
         });
-        
+
+/*
+        that.setState({
+            isRefreshExist: true,
+            isRefreshing: true
+        });
+*/
         fetch(requests.getDriverDescription, {
             method: 'PUT', body: body,
             headers: { 'content-type': 'application/json' }
@@ -123,12 +122,12 @@ class DriverProfileClass extends React.Component {
                     that.setState({comments:data.driverCarDescription.comments})
                     that.props.dispatch(setDriverCarDescription(data.driverCarDescription));
                     that.props.dispatch(setCarTypes(data.carTypes));
-                    that.setState({
+                    /*that.setState({
                         isRefreshExist: true,
                         isRefreshing: false,
                         isGoodAnswer: true
                     })
-                    setTimeout(()=>{that.setState({isRefreshExist: false})}, 1000);
+                    setTimeout(()=>{that.setState({isRefreshExist: false})}, 1000);*/
                     
                 }
 
@@ -276,12 +275,12 @@ class DriverProfileClass extends React.Component {
                     else {
                         console.log('good');
                         console.log(data);
-                        that.setState({
+                        /*that.setState({
                             isRefreshExist: true,
                             isRefreshing: false,
                             isGoodAnswer:true
                         });
-                        setTimeout(() => { that.setState({ isRefreshExist: false }) }, 1000);
+                        setTimeout(() => { that.setState({ isRefreshExist: false }) }, 1000);*/
                     }
                 })
                 .catch(function (error) {
@@ -290,7 +289,7 @@ class DriverProfileClass extends React.Component {
                     this.setState({
                         isRefreshExist: true,
                         isRefreshing: false,
-                        isGoodAnswer:true
+                        isGoodAnswer:false
                     });
                     setTimeout(() => { that.setState({ isRefreshExist: false }) }, 1000);
                 });
@@ -434,48 +433,8 @@ class DriverProfileClass extends React.Component {
                             isRefreshing: false,
                             isGoodAnswer: false
                         })
-                        setTimeout(()=>{that.props.history.push('/')}, 1000);
-                        
+                        setTimeout(()=>{that.props.history.push('/')}, 1000);                      
                     });
-                /*fetch(requests.getDriverData, {
-                    method: 'PUT', body: body,
-                    headers: { 'content-type': 'application/json' }
-                })
-                    .then(response => {
-                        return response.json();
-                    })
-                    .then(function (data) {
-                        if (data.error) {
-                            console.log("bad");
-                            throw data.error;
-                        }
-                        else {
-                            console.log('good');
-                            console.log(data);
-                            that.setState({comments:data.driverCarDescription.comments})
-                            that.props.dispatch(setDriverCarDescription(data.driverCarDescription));
-                            that.props.dispatch(setCarTypes(data.carTypes));
-                            that.setState({
-                                isRefreshExist: true,
-                                isRefreshing: false,
-                                isGoodAnswer: true
-                            })
-                            setTimeout(()=>{that.setState({isRefreshExist: false})}, 1000);
-    
-                        }
-    
-                    })
-                    .catch(function (error) {
-                        console.log('bad');
-                        console.log('An error occurred:', error);
-                        that.setState({
-                            isRefreshExist: true,
-                            isRefreshing: false,
-                            isGoodAnswer: false
-                        })
-                        setTimeout(()=>{that.props.history.push('/')}, 1000);
-                        
-                    });*/
             });           
             this.setState({isLoaded: true});
         }
@@ -552,7 +511,7 @@ class DriverProfileClass extends React.Component {
                                                         this.props.storeState.cities.map((element, index) => 
                                                         <div className={"routeTravelBlock_element d-flex col-md-6 col-12 " /*+ (index%2===0 ? 'routeTravelBlock_pointElement_left' : 'routeTravelBlock_pointElement_right')*/}>
                                                             <div className="routeTravelBlock_pointValue d-flex flex-row">
-                                                                <div style={{paddingRight: '10px',margin: 'auto 0'}}>{alphabet[index]}</div>
+                                                                <div style={{paddingRight: '10px',margin: 'auto 0'}}>{this.props.globalReduser.alphabet[index]}</div>
                                                                 <div className="d-flex routeTravelBlock_height driverProfile_searchContainer">
                                                                     <LocationSearchInput /*readOnlyOn={true}*/ address={element.point}
                                                                     changeCity={this.changeCity} index={index}

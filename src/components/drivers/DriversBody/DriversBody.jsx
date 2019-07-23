@@ -1,7 +1,7 @@
 import React from 'react';
 import './DriversBody.css'
 import DriversBlock from './DriversBlock/DriversBlock.jsx';
-import DriversCommercial from './DriversCommercial/DriversCommercial.jsx';
+//import DriversCommercial from './DriversCommercial/DriversCommercial.jsx';
 import DriversProperties from './DriversProperties/DriversProperties.jsx';
 
 
