@@ -80,7 +80,7 @@ class UserProfileRegistrationClass extends React.Component {
     }
     else{
       if(this.props.globalReduser.profile.email){
-        this.props.history.push('/home');
+        this.props.history.push("/"+(this.props.storeState.country.toLowerCase())+'/home');
         return null;
       }
       else{

@@ -2,6 +2,7 @@ import React from 'react';
 import MapContainer from '../home/HomeBody/MapContainer';
 import LocationSearchInput from '../home/HomeBody/Search';
 import DatePicker from 'material-ui/DatePicker';
+import requests from '../../config'
 import { connect } from 'react-redux';
 import { isMobileOnly } from 'react-device-detect';
 class RouteTravelBlockClass extends React.Component{
@@ -23,7 +24,7 @@ class RouteTravelBlockClass extends React.Component{
             let country = routeDate.country;
             let langISO = routeDate.langISO;
             let dateString = this.props.globalhistory.createDateTimeString(this.state.date, true);
-            this.props.globalhistory.history.push(`/drivers/${country}-${newStringCities}?date=`+dateString+(langISO!=='ENG' ? `&lang=`+langISO : ``));
+            this.props.globalhistory.history.push("/"+(this.props.storeState.country.toLowerCase())+`/drivers/${country}-${newStringCities}?date=`+dateString+(langISO!=='ENG' ? `&lang=`+langISO : ``));
         }
         else{
             this.setState({

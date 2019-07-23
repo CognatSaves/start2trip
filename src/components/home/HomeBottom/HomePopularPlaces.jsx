@@ -46,7 +46,7 @@ class PopularPlacesClass extends React.Component {
             //let slug = findSelectedDirectionName(this.props.placesState.directions, id);
             //if(slug){
             this.props.dispatch(setSelectedDirection(id));
-            this.props.globalReduser.history.push('/home/'+slug);
+            this.props.globalReduser.history.push("/"+(this.props.storeState.country.toLowerCase())+'/home/'+slug);
             //}
             //else{
             //    this.props.dispatch(setSelectedDirection(''));
@@ -56,7 +56,7 @@ class PopularPlacesClass extends React.Component {
         }
         else{
             this.props.dispatch(setSelectedDirection(''));
-            this.props.globalReduser.history.push('/home');
+            this.props.globalReduser.history.push("/"+(this.props.storeState.country.toLowerCase())+'/home');
         }
         
         

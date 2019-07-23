@@ -108,7 +108,7 @@ class HomeBodyBottomClass extends React.Component {
             }
             else{
               //если не нашли - пускаем ещё раз крутилку - если не нашли, сервер не нашёл направление-> вернул всё
-              that.props.globalReduser.history.push('/home');
+              that.props.globalReduser.history.push("/"+(this.props.storeState.country.toLowerCase())+'/home');
             }   
           }
           that.setState({
