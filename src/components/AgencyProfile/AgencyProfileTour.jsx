@@ -1145,7 +1145,6 @@ class AgencyProfileTourClass extends React.Component{
 const AgencyProfileTour = connect(
     (state) => ({
         storeState: state.AppReduser,
-        profileReduser: state.DriverProfileRegistrationReduser,
         globalReduser: state.GlobalReduser,
     }),
 )(AgencyProfileTourClass);

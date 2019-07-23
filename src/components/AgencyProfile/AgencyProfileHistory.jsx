@@ -35,7 +35,6 @@ class AgencyProfileHistoryClass extends React.Component{
 const AgencyProfileHistory = connect(
     (state) => ({
         storeState: state.AppReduser,
-        profileReduser: state.DriverProfileRegistrationReduser,
         globalReduser: state.GlobalReduser,
     }),
 )(AgencyProfileHistoryClass);

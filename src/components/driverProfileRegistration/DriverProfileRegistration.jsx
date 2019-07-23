@@ -5,6 +5,7 @@ import Header from '../header/Header'
 import DriverProfileNavigation from './DriverProfileNavigation'
 
 // import css
+import './react-tel-input.css'
 import './DriverProfileRegistration.css'
 import './DriverProfileHistory.css'
 import './DriverProfileBasicInformation.css'
@@ -15,6 +16,9 @@ import './DriverProfileFeedback.css';
 import './DriverProfileSettings.css'
 import './DriverProfileBilling.css'
 import './DriverProfileAffiliateProgram.css'
+import './DriverProfileCalendar.css'
+import '../startTravelForm/StartTravelForm.css';
+
 // import css
 
 import {Route} from 'react-router-dom';
@@ -198,7 +202,6 @@ class DriverProfileRegistrationClass extends React.Component {
 
 const DriverProfileRegistration = connect(
   (state) => ({
-    storeState: state.DriverProfileRegistrationReduser,
     globalReduser: state.GlobalReduser,
   }),
 )(DriverProfileRegistrationClass);

@@ -274,7 +274,6 @@ class AgencyProfileBillingClass extends React.Component{
 const AgencyProfileBilling = connect(
     (state) => ({
         storeState: state.AppReduser,
-        profileReduser: state.DriverProfileRegistrationReduser,
         globalReduser: state.GlobalReduser,
     }),
 )(AgencyProfileBillingClass);

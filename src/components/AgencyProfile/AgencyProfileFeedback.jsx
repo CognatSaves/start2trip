@@ -31,7 +31,6 @@ class AgencyProfileFeedbackClass extends React.Component{
 const AgencyProfileFeedback = connect(
     (state) => ({
         storeState: state.AppReduser,
-        profileReduser: state.DriverProfileRegistrationReduser,
         globalReduser: state.GlobalReduser,
     }),
 )(AgencyProfileFeedbackClass);

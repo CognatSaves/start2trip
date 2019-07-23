@@ -277,7 +277,6 @@ class UserProfileBasicInformationClass extends React.Component {
 const UserProfileBasicInformation = connect(
     (state) => ({
         storeState: state.AppReduser,
-        profileReduser: state.DriverProfileRegistrationReduser,
         globalReduser: state.GlobalReduser,
     }),
 )(UserProfileBasicInformationClass);

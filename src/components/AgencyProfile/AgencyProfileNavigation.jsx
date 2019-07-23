@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// import { whichPageRender } from "../../redusers/ActionAgencyProfileRegistration"
 import Stars from '../stars/Stars'
 
 import calendarBG from '../media/illustrations_calendar.svg'
@@ -222,7 +221,6 @@ class AgencyProfileNavigationClass extends React.Component{
                             <span className={{ [this.state.route[index]]: "navigationBodyActive", }[this.props.globalhistory.history.location.pathname] + " navigationButton mb-0 " + (this.state.route[index].length===0 ? "blockedSpan" : "")}
                             onClick={(event) => { if(this.state.route[index].length>0) {
                                 this.setState({index: index});
-                                //this.props.dispatch(whichPageRender(index));
                                 this.shiftLeft(event);
                                 this.props.globalhistory.history.push(this.state.route[index])
                             }

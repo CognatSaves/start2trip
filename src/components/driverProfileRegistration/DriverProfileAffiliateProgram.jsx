@@ -183,7 +183,6 @@ class DriverProfileAffiliateProgramClass extends React.Component {
 const DriverProfileAffiliateProgram = connect(
     (state) => ({
         storeState: state.AppReduser,
-        profileReduser: state.DriverProfileRegistrationReduser,
         globalReduser: state.GlobalReduser
     }),
 )(DriverProfileAffiliateProgramClass);

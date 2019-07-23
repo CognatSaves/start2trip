@@ -20,15 +20,13 @@ import { setUser, setActiveCurr, setActiveLang, setModalRegister, setActiveLangA
 import { disablePageScroll, clearQueueScrollLocks, enablePageScroll } from 'scroll-lock';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
-// import arrowDownIcon from './pictures/down-arrow.svg'
-import { whichPageRender } from "../../redusers/ActionDriverProfileRegistration"
-import { whichPageRenderHistory } from "../../redusers/ActionGlobal"
+import { whichPageRenderHistory ,whichPageRender } from "../../redusers/ActionGlobal"
 import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 import getUserData from '../driverProfileRegistration/DriverProfileRequest';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 import Cookies from 'universal-cookie';
 import pageTextInfo from '../../textInfo/RenderModalRegistration';
-import { setLocals, modalCountryDispatch } from '../../redusers/Action';
+// import { setLocals, modalCountryDispatch } from '../../redusers/Action';
 import Dialog from 'material-ui/Dialog';
 import { isMobileOnly, isMobile } from 'react-device-detect';
 import backpackIcon from '../media/backpack.svg'
@@ -700,7 +698,6 @@ const Header = connect(
     storeState: state.AppReduser,
     globalhistory: state.GlobalReduser,
     globalReduser: state.GlobalReduser,
-    DriverProfileRegistrationReduser: state.DriverProfileRegistrationReduser
   }),
 )(HeaderClass);
 

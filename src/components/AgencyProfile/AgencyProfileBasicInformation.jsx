@@ -502,7 +502,6 @@ class AgencyProfileBasicInformationClass extends React.Component{
 const AgencyProfileBasicInformation = connect(
     (state) => ({
         storeState: state.AppReduser,
-        profileReduser: state.DriverProfileRegistrationReduser,
         globalReduser: state.GlobalReduser,
     }),
 )(AgencyProfileBasicInformationClass);
