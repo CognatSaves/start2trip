@@ -303,7 +303,6 @@ class HeaderClass extends React.Component {
     let pathnameLength = pathnameUrl.split('');
     if(pathnameLength.length===3){
       if(cookiesIso!==pathnameUrl){
-        pathnameUrl = pathnameUrl.toUpperCase()
         cookies.set('country',pathnameUrl,{path:"/", expires: date });
         this.props.dispatch(modalCountryDispatch(pathnameUrl))
       }
@@ -456,7 +455,7 @@ class HeaderClass extends React.Component {
     if (jwt && jwt !== "-") {
       removeCookie(this);
     }
-    this.props.globalhistory.history.push("/"+(this.props.storeState.country.toLowerCase())+'/home');
+    this.props.globalhistory.history.push("/"+(this.props.storeState.country)+'/home');
   }
   accountRedirect = (address, number) => {
 
@@ -613,7 +612,7 @@ class HeaderClass extends React.Component {
           {/* <div onClick={this.toggleModalCountry} className="headerGeoButton">
             <span>{this.props.storeState.country}</span>
           </div> */}
-          <Link className="" to={"/"+(this.props.storeState.country.toLowerCase())+"/home"}>
+          <Link className="" to={"/"+(this.props.storeState.country)+"/root"}>
             <h3 />
           </Link>
           <div onClick={this.toggleModalCountry} style={{visibility: this.props.storeState.countries.length>0 ? 'visible' : 'hidden'}} className="headerGeoButton col-lg-5 col-md-4 col-6">
@@ -683,7 +682,7 @@ class HeaderClass extends React.Component {
         <div className={this.props.driver ? "driverHeader" : "homeHeader"}>
           <div className='header d-xl-flex d-lg-flex d-md-flex d-sm-none d-none align-items-stretch justify-content-between'>
             <div className="d-flex align-items-center col-xl-2 col-lg-2 col-md-3 col-sm-2 col-2">
-              <Link className="col-xl-8 col-lg-9 col-md-8 col-sm-8 col-7" to={"/"+(this.props.storeState.country.toLowerCase())+"/home"}>
+              <Link className="col-xl-8 col-lg-9 col-md-8 col-sm-8 col-7" to={"/"+(this.props.storeState.country)+"/root"}>
                 <h3 />
               </Link>
               <div onClick={this.toggleModalCountry} style={{visibility: this.props.storeState.countries.length>0 ? 'visible' : 'hidden'}} className="headerGeoButton col-xl-5 col-lg-5 col-md-4 col-sm-5 col-5">
@@ -694,7 +693,7 @@ class HeaderClass extends React.Component {
               <div className="headerButtonMass d-flex align-self-stretch justify-content-end col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 ">
                 {
                   buttonMassElements.map((element, index) =>
-                    <Link to={"/"+(this.props.storeState.country.toLowerCase())+element.to} className="buttonMassLink align-self-stretch">{element.value}</Link>
+                    <Link to={"/"+(this.props.storeState.country)+element.to} className="buttonMassLink align-self-stretch">{element.value}</Link>
                   )
                 }
               </div>

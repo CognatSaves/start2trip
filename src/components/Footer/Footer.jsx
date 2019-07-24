@@ -28,8 +28,8 @@ class FooterClass extends React.Component {
     let textInfo = this.props.storeState.languageTextMain.footer;
     let mobileElemArray = [
       {
-        pathname: "/home",
-        pathnamesInner: ["/home"],
+        pathname: "/root",
+        pathnamesInner: ["/root"],
         iconClasses: ['footerMobileIconRoutes_active','footerMobileIconRoutes'],
         classValue: 'footerMobileTextRoutes',
         value: textInfo.footerMobileTextRoutes
@@ -79,7 +79,7 @@ class FooterClass extends React.Component {
         <div className="footerMobile d-xl-none d-lg-none d-md-none d-sm-flex d-flex">
           {
             mobileElemArray.map((element, index)=>
-            <Link to={"/"+(this.props.storeState.country.toLowerCase())+element.pathname} className="col-3 d-flex align-items-end">
+            <Link to={"/"+(this.props.storeState.country)+element.pathname} className="col-3 d-flex align-items-end">
               <div className={ (element.pathnamesInner.indexOf(pathname)!==-1 ? "foterMobaileItem_active":" " )+ " d-flex flex-column align-items-center justify-content-end col-12 foterMobaileItem "} >
                 <div className={element.pathnamesInner.indexOf(pathname)!==-1 ? element.iconClasses[0]:element.iconClasses[1] } />
                 <div className={element.classValue}>{element.value}</div>

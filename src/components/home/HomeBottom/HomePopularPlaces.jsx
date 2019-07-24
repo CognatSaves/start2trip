@@ -46,7 +46,7 @@ class PopularPlacesClass extends React.Component {
             //let slug = findSelectedDirectionName(this.props.placesState.directions, id);
             //if(slug){
             this.props.dispatch(setSelectedDirection(id));
-            this.props.globalReduser.history.push("/"+(this.props.storeState.country.toLowerCase())+'/home/'+slug);
+            this.props.globalReduser.history.push("/"+(this.props.storeState.country)+'/home/'+slug);
             //}
             //else{
             //    this.props.dispatch(setSelectedDirection(''));
@@ -56,7 +56,7 @@ class PopularPlacesClass extends React.Component {
         }
         else{
             this.props.dispatch(setSelectedDirection(''));
-            this.props.globalReduser.history.push("/"+(this.props.storeState.country.toLowerCase())+'/home');
+            this.props.globalReduser.history.push("/"+(this.props.storeState.country)+'/home');
         }
         
         
@@ -100,7 +100,6 @@ class PopularPlacesClass extends React.Component {
             placeRender = arrayRender;
         }
         function getDirectionName(element, that){
-            debugger;
             for(let i=0;i<element.loc.length; i++){
                 if(element.loc[i].language===that.props.storeState.languages[that.props.storeState.activeLanguageNumber].id){
                     return element.loc[i].name;

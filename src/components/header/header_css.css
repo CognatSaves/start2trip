@@ -160,6 +160,7 @@
 
 .headerGeoButton span {
     cursor: pointer;
+    text-transform: uppercase;
     font-family: "Roboto";
     font-weight: 300;
     font-size: 14px;

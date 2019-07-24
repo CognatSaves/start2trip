@@ -24,7 +24,7 @@ export default class PartnerRegister extends React.Component{
                 break;
             }
             case 'start':{
-                this.props.history.push("/"+(this.props.storeState.country.toLowerCase())+'/home');
+                this.props.history.push("/"+(this.props.storeState.country)+'/home');
                 break;
             }
             default:

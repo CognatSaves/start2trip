@@ -86,7 +86,7 @@ class TourMapBlockClass extends React.Component{
             </div>       
             <div className="mapBlock_selfTourBlock d-flex">
                 <div>{"Не подобрали тур? Постройте"}</div>
-                <Link to={"/"+(this.props.storeState.country.toLowerCase())+"/home"} className="mapBlock_selfTourBlock_selfTour">{"индивидуальный маршрут!"}</Link>
+                <Link to={"/"+(this.props.storeState.country)+"/root"} className="mapBlock_selfTourBlock_selfTour">{"индивидуальный маршрут!"}</Link>
             </div>               
         </div>
     </div>

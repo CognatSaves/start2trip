@@ -82,7 +82,7 @@ class RouteDescriptionClass extends React.Component {
                         selectedLanguage: this.props.storeState.activeLanguageNumber,
 
                     });
-                    this.props.globalReduser.history.push("/"+(this.props.storeState.country.toLowerCase())+'/route/' + slugArray[i].slug);
+                    this.props.globalReduser.history.push("/"+(this.props.storeState.country)+'/route/' + slugArray[i].slug);
                 }
             }
             //надо что-то сделать, если не нашли          

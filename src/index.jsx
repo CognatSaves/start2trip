@@ -283,8 +283,8 @@ ReactDOM.render(
         <MuiThemeProvider muiTheme={muiTheme}>
           <Suspense fallback={<div>Загрузка...</div>}>
             <Switch>
-              <Route path={"/"+config.routeMap+"/home/:direction"} component={Home} />
-              <Route path={"/"+config.routeMap+"/home"} component={Home} />
+              <Route path={"/"+config.routeMap+"/root/:direction"} component={Home} />
+              <Route path={"/"+config.routeMap+"/root"} component={Home} />
               <Route path={"/"+config.routeMap+"/drivers"} component={Home} />
               <Route path={"/"+config.routeMap+"/driverProfile/:id-:carId-:country-:cities"} component={DriverProfile} />
               <Route path={"/"+config.routeMap+"/tripConfirmation/:id-:userId"} component={TripConfirmation} />
@@ -305,7 +305,7 @@ ReactDOM.render(
               <Route path="/registration" component={Registration} />
               <Route path="/login" component={AuthRedirect} />
               <Route path="/countrySelection" component={AuthModalCountry} />
-              <Redirect from="/" to={"/"+(redirectPage===undefined?"countrySelection":redirectPage+"/home")} />
+              <Redirect from="/" to={"/"+(redirectPage===undefined?"countrySelection":redirectPage+"/root")} />
             </Switch>
           </Suspense>
           <Footer />
