@@ -128,6 +128,7 @@ class HomeBodyBottomClass extends React.Component {
       })
       .catch(error => { 
         console.log('get wasted answer');
+        alert('')
         //this.props.globalhistory.history.push('/');       
       });
     }

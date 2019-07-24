@@ -294,7 +294,7 @@ class HeaderClass extends React.Component {
     //this.getLocals();
   }
   readIsoInUrl=()=>{
-    debugger
+    
     let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
     let cookiesIso = cookies.get('country',{path:"/"})
     let pathnameUrl = this.props.history.location.pathname;

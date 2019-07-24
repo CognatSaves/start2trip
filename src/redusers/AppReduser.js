@@ -368,9 +368,22 @@ export const AppReduser = (state = initialState, action) => {
             }
         case MODAL_COUNTRY:
             {
+                
                 let newState = {...state };
                 newState.country = action.country;
-                newState.isoCountryMap = action.isoCountryMap;
+                if(action.isoCountryMap){
+                    newState.isoCountryMap = action.isoCountryMap;
+                }
+                else{
+                    if(newState.countries.length>0){
+                        for(let i=0; i<newState.countries.length; i++){
+                            if(newState.countries[i].ISO===action.country){
+                                newState.isoCountryMap=newState.countries[i].isoMap;
+                                break;
+                            }
+                        }
+                    }
+                }
                 return newState;
             }
         case OPEN_FILTER_SHOW:

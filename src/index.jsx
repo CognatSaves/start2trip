@@ -80,14 +80,31 @@ const muiTheme = getMuiTheme({
 function getLocals() {
   let redusers = store.getState();
   let props = {};
-
+  
   let adminLang = cookies.get('adminLang',{path: '/'});
   let userLang = cookies.get('userLang', {path: '/'});
-  store.dispatch(setActiveLangISO(userLang,adminLang));
-  
-  debugger;
   let userBrowserLanguage = window.navigator.language;
   let userBrowserLanguageISO = userBrowserLanguage.substr(0,2);
+  if(!adminLang || !userLang){
+    let langSelector = 'ENG';
+    let date = new Date(Date.now()+1000*3600*24*60); 
+    if(userBrowserLanguageISO==='ru'){
+      langSelector='RUS';
+    }
+    if(!adminLang){
+      cookies.set('adminLang', langSelector, {path: '/',expires: date});
+      adminLang=langSelector;
+    }
+    if(!userLang){
+      cookies.set('userLang', langSelector, {path: '/',expires: date}); 
+      userLang=langSelector;
+    }   
+  }
+
+  store.dispatch(setActiveLangISO(userLang,adminLang));
+  
+  
+  
   //console.log(window.navigator);
 
   axios.get(requests.getLocals, props)
@@ -103,14 +120,11 @@ function getLocals() {
       let lang = redusers.GlobalReduser.readCookie('userLang');
       let curr = redusers.GlobalReduser.readCookie('userCurr');
       let country = redusers.GlobalReduser.readCookie('country');
-      debugger;
+      
       if (!lang) {
-        let langSelector = 'ENG';
-        if(userBrowserLanguageISO==='ru'){
-          langSelector='RUS';
-        }
+        
         for (let i = 0; i < languages.length; i++) {
-          if (languages[i].ISO === langSelector) {
+          if (languages[i].ISO === 'ENG') {
             cookies.set('userLang', languages[i].ISO, { path: '/', expires: date });
             cookies.set('userLangISO', languages[i].isoAutocomplete, { path: '/', expires: date });
 
@@ -149,7 +163,7 @@ function getLocals() {
             store.dispatch(setActiveCurr(i));
           }
         }
-        curr = this.props.globalReduser.readCookie('userCurr');
+        curr =  redusers.GlobalReduser.readCookie('userCurr');
         if (!curr) {
           cookies.set('userCurr', currencies[0].ISO, { path: '/', expires: date });
           store.dispatch(setActiveCurr(0));
