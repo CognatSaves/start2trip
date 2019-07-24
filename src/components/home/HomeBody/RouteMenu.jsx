@@ -114,6 +114,9 @@ class RouteMenuClass extends React.Component {
     /*else{
       dateValue = '';
     }*/
+    ;
+    let pathnameMAss = document.location.pathname.split("/");
+    let resultpathname =(pathnameMAss[2]==='drivers'|| pathnameMAss[2]==='root') ? true : false
     
     this.state = {
       correctDate: "",
@@ -121,7 +124,7 @@ class RouteMenuClass extends React.Component {
       isRefreshing: true,
       isGoodAnswer: true,
       date: /*this.props.storeState.date*/dateValue,
-      isLoaded: document.location.pathname==='/drivers' || document.location.pathname==='/home' ? true : false,//переменная для загрузки 1 раза водителей.
+      isLoaded: resultpathname//переменная для загрузки 1 раза водителей.
       //language: this.props.storeState.activeLanguageNumber
     }
   }
@@ -226,7 +229,8 @@ class RouteMenuClass extends React.Component {
           canMove = routeDate.canMove;
           let dateString = that.props.globalhistory.createDateTimeString(date, true);
           if (canMove) {
-            that.props.globalhistory.history.push('/'+(this.props.storeState.country.toLowerCase())+`/drivers/${country}-${newStringCities}?date=`+dateString+(langISO!=='ENG' ? `&lang=`+langISO : ``));
+            let phathName = this.props.storeState.country
+            that.props.globalhistory.history.push('/'+phathName+`/drivers/${country}-${newStringCities}?date=`+dateString+(langISO!=='ENG' ? `&lang=`+langISO : ``));
             window.scroll(0, 500);
           }
         }
@@ -343,6 +347,7 @@ class RouteMenuClass extends React.Component {
     console.log(AppReduser);
 
     console.log(this.props.storeState);
+    
     if(!this.state.isLoaded && this.props.storeState.languages.length>0){
       
       function isFindAllElems(cities){

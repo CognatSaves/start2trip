@@ -87,7 +87,7 @@ class AgencyProfileClass extends React.Component{
         }
         else{
             if(this.props.globalReduser.profile.email){
-                this.props.history.push("/"+(this.props.storeState.country.toLowerCase())+'/home');
+                this.props.history.push("/"+(this.props.storeState.country)+'/root');
                 return null;
             }
             else{

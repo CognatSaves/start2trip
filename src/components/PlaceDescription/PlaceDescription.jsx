@@ -148,7 +148,7 @@ class PlaceDescriptionClass extends React.Component {
                     this.setState({
                         selectedLanguage: this.props.storeState.activeLanguageNumber
                     });
-                    this.props.globalReduser.history.push("/"+(this.props.storeState.country.toLowerCase())+'/place/' + slugArray[i].slug);
+                    this.props.globalReduser.history.push("/"+(this.props.storeState.country)+'/place/' + slugArray[i].slug);
                 }
             }
             //надо что-то сделать, если не нашли          
@@ -295,7 +295,6 @@ const PlaceDescription = connect(
         placesState: state.PlacesReduser,
         storeState: state.AppReduser,
         globalReduser: state.GlobalReduser,
-        //commentState: state.CommentReduser
     }),
 
 )(PlaceDescriptionClass);
