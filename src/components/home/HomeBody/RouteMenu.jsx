@@ -226,7 +226,7 @@ class RouteMenuClass extends React.Component {
           canMove = routeDate.canMove;
           let dateString = that.props.globalhistory.createDateTimeString(date, true);
           if (canMove) {
-            that.props.globalhistory.history.push('/'+requests.routeMap+`/drivers/${country}-${newStringCities}?date=`+dateString+(langISO!=='ENG' ? `&lang=`+langISO : ``));
+            that.props.globalhistory.history.push('/'+(this.props.storeState.country.toLowerCase())+`/drivers/${country}-${newStringCities}?date=`+dateString+(langISO!=='ENG' ? `&lang=`+langISO : ``));
             window.scroll(0, 500);
           }
         }

@@ -10,7 +10,7 @@ import './components/RouteDescription/RouteDescription.css';
 import './components/driverProfile/DriversProfileComments.css';
 
 //import css
-import App from './App.jsx';
+// import App from './App.jsx';
 import Home from './components/home/Home.jsx';
 import Places from './components/Places/Places.jsx';
 import Tours from './components/Tours/Tours.jsx';
@@ -60,6 +60,8 @@ const reducers = redux.combineReducers({
 });
 
 const store = redux.createStore(reducers);
+
+const redirectPage = cookies.get('country', { path: '/' });
 
 const muiTheme = getMuiTheme({
   palette: {
@@ -274,7 +276,7 @@ ReactDOM.render(
               <Route path="/(register|start)/" component={PartnerRegister} />
               <Route path="/registration" component={Registration} />
               <Route path="/login" component={AuthRedirect} />
-              <Redirect from="/" to="/blr/home" />
+              <Redirect from="/" to={"/"+redirectPage+"/home"} />
             </Switch>
           </Suspense>
           <Footer />

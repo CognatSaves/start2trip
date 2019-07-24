@@ -149,6 +149,7 @@ class HeaderClass extends React.Component {
     if (this.props.history) {
       this.props.dispatch(whichPageRenderHistory(this.props.history));
     }
+    this.readIsoInUrl();
     this.authorization();
     let avatarUrl = this.props.globalReduser.readCookie('avatarUrl');
     let userName = this.props.globalReduser.readCookie('userName');
@@ -235,8 +236,25 @@ class HeaderClass extends React.Component {
     window.onscroll = (e) => this.checkBtUp(e);
 
     //this.getLocals();
-
   }
+  readIsoInUrl=()=>{
+    debugger
+    let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
+    let cookiesIso = cookies.get('country',{path:"/"})
+    let pathnameUrl = this.props.history.location.pathname;
+    pathnameUrl = pathnameUrl.split('/');
+    pathnameUrl = pathnameUrl[1];
+    let pathnameLength = pathnameUrl.split('');
+    if(pathnameLength.length===3){
+      if(cookiesIso!==pathnameUrl){
+        pathnameUrl = pathnameUrl.toUpperCase()
+        cookies.set('country',pathnameUrl,{path:"/", expires: date });
+        
+      }
+      
+    }
+  }
+
   setLocals = (type, index) => {
 
     let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
