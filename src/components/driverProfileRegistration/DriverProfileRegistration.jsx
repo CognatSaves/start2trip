@@ -93,7 +93,7 @@ class DriverProfileRegistrationClass extends React.Component {
     }
     else{
       if(this.props.globalReduser.profile.email){
-        this.props.history.push("/"+(this.props.storeState.country)+'/root');
+        this.props.history.push("/"+(this.props.storeState.country)+'/route');
         return null;
       }
       else{

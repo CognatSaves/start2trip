@@ -82,9 +82,9 @@ class HomeClass extends React.Component {
           
           {
             selectedDirection ? 
-              <Route path={'/'+requests.routeMap+"/root/:direction"} component={HomeBodyBottom} />
+              <Route path={'/'+requests.routeMap+"/route/:direction"} component={HomeBodyBottom} />
             :
-              <Route path={'/'+requests.routeMap+"/root"} component={HomeBodyBottom} />
+              <Route path={'/'+requests.routeMap+"/route"} component={HomeBodyBottom} />
           }          
           <Route path={'/'+requests.routeMap+"/drivers/:country-:cities"} component={Drivers} />
         </main>

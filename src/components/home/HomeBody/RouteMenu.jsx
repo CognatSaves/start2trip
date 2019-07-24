@@ -117,7 +117,7 @@ class RouteMenuClass extends React.Component {
     }*/
     ;
     let pathnameMAss = document.location.pathname.split("/");
-    let resultpathname =(pathnameMAss[2]==='drivers'|| pathnameMAss[2]==='root') ? true : false
+    let resultpathname =(pathnameMAss[2]==='drivers'|| pathnameMAss[2]==='route') ? true : false
     
     this.state = {
       correctDate: "",
@@ -231,9 +231,7 @@ class RouteMenuClass extends React.Component {
           canMove = routeDate.canMove;
           let dateString = that.props.globalhistory.createDateTimeString(date, true);
           if (canMove) {
-            debugger;
-            let phathName = this.props.storeState.country
-            that.props.globalhistory.history.push('/'+phathName+`/drivers/${country}-${newStringCities}?date=`+dateString+(langISO!=='ENG' ? `&lang=`+langISO : ``));
+            that.props.globalhistory.history.push('/'+this.props.storeState.country+`/drivers/${country}-${newStringCities}?date=`+dateString+(langISO!=='ENG' ? `&lang=`+langISO : ``));
             window.scroll(0, 500);
           }
         }
