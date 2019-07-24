@@ -62,7 +62,7 @@ const reducers = redux.combineReducers({
 
 const store = redux.createStore(reducers);
 
-const redirectPage = cookies.get('country', { path: '/' });
+const redirectPage = cookies.get('country', { path: '/' })+"-"+cookies.get('userLangISO', { path: '/' });
 
 const muiTheme = getMuiTheme({
   palette: {
@@ -251,6 +251,7 @@ function setLocalsFunc(type, index) {
             //document.head.appendChild(script);
             store.dispatch(setActiveLang(index));
             cookies.set('userLang', redusers.AppReduser.languages[index].ISO, { path: '/', expires: date });
+            cookies.set('userLangISO', redusers.AppReduser.languages[index].isoAutocomplete, { path: '/', expires: date });
           }
         });
       }
@@ -283,8 +284,8 @@ ReactDOM.render(
         <MuiThemeProvider muiTheme={muiTheme}>
           <Suspense fallback={<div>Загрузка...</div>}>
             <Switch>
-              <Route path={"/"+config.routeMap+"/root/:direction"} component={Home} />
-              <Route path={"/"+config.routeMap+"/root"} component={Home} />
+              <Route path={"/"+config.routeMap+"/route/:direction"} component={Home} />
+              <Route path={"/"+config.routeMap+"/route"} component={Home} />
               <Route path={"/"+config.routeMap+"/drivers"} component={Home} />
               <Route path={"/"+config.routeMap+"/driverProfile/:id-:carId-:country-:cities"} component={DriverProfile} />
               <Route path={"/"+config.routeMap+"/tripConfirmation/:id-:userId"} component={TripConfirmation} />
@@ -305,7 +306,7 @@ ReactDOM.render(
               <Route path="/registration" component={Registration} />
               <Route path="/login" component={AuthRedirect} />
               <Route path="/countrySelection" component={AuthModalCountry} />
-              <Redirect from="/" to={"/"+(redirectPage===undefined?"countrySelection":redirectPage+"/root")} />
+              <Redirect from="/" to={"/"+(redirectPage==="undefined-undefined"?"countrySelection":redirectPage+"/route")} />
             </Switch>
           </Suspense>
           <Footer />

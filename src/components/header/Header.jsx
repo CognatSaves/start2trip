@@ -297,14 +297,21 @@ class HeaderClass extends React.Component {
     
     let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
     let cookiesIso = cookies.get('country',{path:"/"})
+    let cookiesLangISO = cookies.get('userLangISO',{path:"/"})
     let pathnameUrl = this.props.history.location.pathname;
     pathnameUrl = pathnameUrl.split('/');
     pathnameUrl = pathnameUrl[1];
     let pathnameLength = pathnameUrl.split('');
-    if(pathnameLength.length===3){
-      if(cookiesIso!==pathnameUrl){
-        cookies.set('country',pathnameUrl,{path:"/", expires: date });
-        this.props.dispatch(modalCountryDispatch(pathnameUrl))
+    debugger
+    if(pathnameLength.length===6){
+      let stringCookies = (cookiesIso+"-"+cookiesLangISO)
+      if(stringCookies!==pathnameUrl){
+        pathnameUrl = pathnameUrl.split("-")
+        if((pathnameUrl[0].length===3)&&(pathnameUrl[1].length===2)){
+          cookies.set('country',pathnameUrl[0],{path:"/", expires: date });
+          cookies.set('userLangISO', pathnameUrl[1], { path: '/', expires: date });
+          this.props.dispatch(modalCountryDispatch(pathnameUrl[0]))
+        }
       }
       
     }
@@ -331,6 +338,11 @@ class HeaderClass extends React.Component {
                 //document.head.appendChild(script);
                 that.props.dispatch(setActiveLang(index));
                 cookies.set('userLang', that.props.storeState.languages[index].ISO, { path: '/', expires: date });
+                cookies.set('userLangISO', that.props.storeState.languages[index].isoAutocomplete, { path: '/', expires: date });
+                let namePage = that.props.globalhistory.history.location.pathname.split("/");
+                namePage = namePage.splice(2)
+                namePage = namePage.join('/')
+                that.props.history.push("/"+that.props.storeState.country+"-"+that.props.storeState.languages[index].isoAutocomplete+"/"+(namePage===""?"route":namePage))
               }
           });
         }
@@ -614,7 +626,7 @@ class HeaderClass extends React.Component {
           {/* <div onClick={this.toggleModalCountry} className="headerGeoButton">
             <span>{this.props.storeState.country}</span>
           </div> */}
-          <Link className="" to={"/"+(this.props.storeState.country)+"/root"}>
+          <Link className="" to={"/"+(this.props.storeState.country)+"/route"}>
             <h3 />
           </Link>
           <div onClick={this.toggleModalCountry} style={{visibility: this.props.storeState.countries.length>0 ? 'visible' : 'hidden'}} className="headerGeoButton col-lg-5 col-md-4 col-6">
@@ -684,7 +696,7 @@ class HeaderClass extends React.Component {
         <div className={this.props.driver ? "driverHeader" : "homeHeader"}>
           <div className='header d-xl-flex d-lg-flex d-md-flex d-sm-none d-none align-items-stretch justify-content-between'>
             <div className="d-flex align-items-center col-xl-2 col-lg-2 col-md-3 col-sm-2 col-2">
-              <Link className="col-xl-8 col-lg-9 col-md-8 col-sm-8 col-7" to={"/"+(this.props.storeState.country)+"/root"}>
+              <Link className="col-xl-8 col-lg-9 col-md-8 col-sm-8 col-7" to={"/"+(this.props.storeState.country)+"/route"}>
                 <h3 />
               </Link>
               <div onClick={this.toggleModalCountry} style={{visibility: this.props.storeState.countries.length>0 ? 'visible' : 'hidden'}} className="headerGeoButton col-xl-5 col-lg-5 col-md-4 col-sm-5 col-5">

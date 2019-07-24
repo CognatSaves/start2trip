@@ -86,15 +86,20 @@ class RenderModalCountryClass extends React.Component {
         };
     }
     onSelect = (element) => {
-        
+        debugger
         this.props.dispatch(modalCountryDispatch(element.ISO,element.isoMap));
         let date = new Date(Date.now()+1000*3600*24*60); 
         cookies.set("country",element.ISO, {path: '/', expires: date}); 
+        let cookiesLangISO = cookies.get('userLangISO', { path: '/' })
+        if(cookiesLangISO===undefined){
+            cookies.set('userLangISO', "en", { path: '/', expires: date });
+        }
+       
         this.props.close();
        let namePage = this.props.globalhistory.history.location.pathname.split("/");
        namePage = namePage.splice(2)
        namePage = namePage.join('/')
-        this.props.globalhistory.history.push("/"+element.ISO+'/'+(namePage===""?"root":namePage))
+        this.props.globalhistory.history.push("/"+element.ISO+"-"+cookiesLangISO+'/'+(namePage===""?"route":namePage))
         // window.location.reload()
     }
     render() {

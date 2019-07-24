@@ -1,12 +1,12 @@
 import serverAddress from './serverAddress';
-const frontendAddress = 'http://localhost:3000'; //'http://tripfer.com'; //
+const frontendAddress = 'http://tripfer.com'; //'http://localhost:3000'; //
 
 const serverRegistrationRequest = serverAddress + '/auth/local/register';
 const serverAuthorizationRequest = serverAddress + '/auth/local';
 const facebookRequest = serverAddress + '/connect/facebook';
 const googleRequest = serverAddress + '/connect/google';
 const meRequest = serverAddress + '/users/me/auth';
-const routeMap = "(blr|rus|geo|arm|aze|tur|isr)";
+const routeMap = "(blr-en|blr-ru|rus-en|rus-ru|geo-en|geo-ru|arm-en|arm-ru|aze-en|aze-ru|tur-en|tur-ru|isr-en|isr-ru)";
 
 const profileRequest = serverAddress + '/users/me/profile';
 const profileUpdateRequest = serverAddress + "/users/me/update";
