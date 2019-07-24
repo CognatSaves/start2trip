@@ -331,6 +331,7 @@ class HeaderClass extends React.Component {
                 //document.head.appendChild(script);
                 that.props.dispatch(setActiveLang(index));
                 cookies.set('userLang', that.props.storeState.languages[index].ISO, { path: '/', expires: date });
+                
               }
           });
         }

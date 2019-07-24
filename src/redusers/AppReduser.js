@@ -160,7 +160,7 @@ export const AppReduser = (state = initialState, action) => {
                         newState.languageTextMain = langArrayMassMain[isoMainIndex];
                     }
                 }
-                if(action.mainISO && action.adminISO){
+                if(action.adminISO && action.adminISO>0){
                     let isoAdminIndex = langArrayMassAdminISO.indexOf(action.adminISO);
                     if(isoAdminIndex!==-1){
                         newState.languageText = langArrayMassAdmin[isoAdminIndex];
@@ -173,6 +173,7 @@ export const AppReduser = (state = initialState, action) => {
 
                 let newState = {...state };
                 newState.activeLanguageNumber = action.activeLanguageNumber;
+
                 if (newState.languages.length > 0) {
                     let indexMain = langArrayMassMainISO.indexOf(newState.languages[action.activeLanguageNumber].ISO);
                     if (indexMain === -1) {

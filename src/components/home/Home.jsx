@@ -31,6 +31,7 @@ class HomeClass extends React.Component {
     };
   }
   redirectFunc=(where)=> {
+    debugger;
     this.props.history.push(where);
 
   }

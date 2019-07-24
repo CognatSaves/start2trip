@@ -105,6 +105,7 @@ class RouteMenuClass extends React.Component {
     console.log(window);
     console.log(props.match);
     console.log(document);
+    debugger;
     let result=props.globalhistory.findGetParameter("date");
     
     let dateValue;
@@ -219,7 +220,8 @@ class RouteMenuClass extends React.Component {
     
     flagCities = this.validationInput(massCities);
     if (flagCities) {
-      this.props.goToDrivers(this.props.storeState.cities, this.state.date)
+            //this.props.goToDrivers(this.props.storeState.cities, this.state.date)
+      debugger;
       this.requestFunction((that,cities, date, languageISO)=>{
           let routeDate = that.props.globalhistory.getRoute(cities, languageISO);
           let newStringCities = routeDate.route;
@@ -229,6 +231,7 @@ class RouteMenuClass extends React.Component {
           canMove = routeDate.canMove;
           let dateString = that.props.globalhistory.createDateTimeString(date, true);
           if (canMove) {
+            debugger;
             let phathName = this.props.storeState.country
             that.props.globalhistory.history.push('/'+phathName+`/drivers/${country}-${newStringCities}?date=`+dateString+(langISO!=='ENG' ? `&lang=`+langISO : ``));
             window.scroll(0, 500);
@@ -238,6 +241,7 @@ class RouteMenuClass extends React.Component {
     }
   }
   requestFunction = (allGoodAfterfunc) => {
+    debugger;
     this.setState({ isWaiting: true, isRefreshing: true, isGoodAnswer: true, isLoaded: true });
 
     let that = this;
@@ -263,7 +267,7 @@ class RouteMenuClass extends React.Component {
     
     let request = createRequestElement(this.props.storeState.cities, window.google.maps.DirectionsTravelMode.DRIVING);
     let service = new window.google.maps.DirectionsService();
-    
+    debugger;
     let cities = this.props.storeState.cities;
     let date = this.state.date;
     let langISO = this.props.storeState.languages.length>0 ? this.props.storeState.languages[this.props.storeState.activeLanguageNumber].ISO : '';
