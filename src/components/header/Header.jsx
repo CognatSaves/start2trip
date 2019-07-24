@@ -16,7 +16,7 @@ import { Link } from 'react-router-dom';
 import { Modal, ModalBody } from 'reactstrap';
 import requests from '../../config';
 import axios from 'axios';
-import { setUser, setActiveCurr, setActiveLang, setModalRegister, setActiveLangAdmin } from '../../redusers/Action';
+import { setUser, setActiveCurr, setActiveLang, setModalRegister, setActiveLangAdmin,modalCountryDispatch } from '../../redusers/Action';
 import { disablePageScroll, clearQueueScrollLocks, enablePageScroll } from 'scroll-lock';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
@@ -26,7 +26,7 @@ import getUserData from '../driverProfileRegistration/DriverProfileRequest';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 import Cookies from 'universal-cookie';
 import pageTextInfo from '../../textInfo/RenderModalRegistration';
-// import { setLocals, modalCountryDispatch } from '../../redusers/Action';
+
 import Dialog from 'material-ui/Dialog';
 import { isMobileOnly, isMobile } from 'react-device-detect';
 import backpackIcon from '../media/backpack.svg'
@@ -305,7 +305,7 @@ class HeaderClass extends React.Component {
       if(cookiesIso!==pathnameUrl){
         pathnameUrl = pathnameUrl.toUpperCase()
         cookies.set('country',pathnameUrl,{path:"/", expires: date });
-        
+        this.props.dispatch(modalCountryDispatch(pathnameUrl))
       }
       
     }
