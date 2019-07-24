@@ -416,11 +416,11 @@ class DriverProfileClass extends React.Component {
                             that.props.dispatch(setDriverCarDescription({...that.props.driversState.driverCarDescription, price: data.price}));
                             
                             that.setState({
-                                isRefreshExist: true,
+                                isRefreshExist: false,
                                 isRefreshing: false,
                                 isGoodAnswer: true
                             })
-                            setTimeout(()=>{that.setState({isRefreshExist: false})}, 1000);
+                            //setTimeout(()=>{that.setState({isRefreshExist: false})}, 1000);
                             
                         }
     
@@ -488,8 +488,8 @@ class DriverProfileClass extends React.Component {
                     </dir>
                     {
                         /*this.props.driversState.driverCarDescription.id*/true /*this.props.storeState.languages.length>0*/ ? 
-                        <div className="wrapper d-flex flex-column">
-                            <div className="drivers_top_block d-flex flex-column">
+                        <div className="wrapper d-flex flex-column"/* style={{background: this.props.driversState.driverCarDescription.id ? 'transpatent' : '#fff'}}*/>
+                            <div className="drivers_top_block d-flex flex-column" style={{visibility: this.props.driversState.driverCarDescription.id ? 'visible' : 'hidden'}}>
 
                                 <DriverInfo element={driver} />
                                 
@@ -513,7 +513,7 @@ class DriverProfileClass extends React.Component {
                                                             <div className="routeTravelBlock_pointValue d-flex flex-row">
                                                                 <div style={{paddingRight: '10px',margin: 'auto 0'}}>{this.props.globalReduser.alphabet[index]}</div>
                                                                 <div className="d-flex routeTravelBlock_height driverProfile_searchContainer">
-                                                                    <LocationSearchInput /*readOnlyOn={true}*/ address={element.point}
+                                                                    <LocationSearchInput readOnlyOn={true} address={element.point}
                                                                     changeCity={this.changeCity} index={index}
                                                                     classDropdown="searchElement_style"
                                                                     classInput={index ? "city_input" : "city_input _checkInput"} />

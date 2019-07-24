@@ -247,7 +247,7 @@ class AgencyProfileSettingsClass extends React.Component{
                             <label htmlFor="sittingsCurrentPassword" className="d-xl-block d-lg-block d-md-block d-sm-none d-none">{textPage.sittingsCurrentPassword.floatingLabelText}</label>
                             <div className="driverProfileSettingsContentRow">
                                 <input id="sittingsCurrentPassword" className="d-xl-block d-lg-block d-md-block d-sm-none d-none" type={this.state.thisPasswordType ? "password" : "text"}
-                                pattern="[A-Za-z0-9]{6,}" title="Ошибка в вводе"
+                                pattern="[A-Za-z0-9]{6,}" title="Должен содержать не менее 6-ти сомволов латинских букв (заглавных или строчных) и цифр"
                                 value={this.state.settingsValues.password} onChange={(e)=>this.inputChange(e.target.value,'password')}/>
                                 <TextField
                                     type={this.state.thisPasswordType ? "password" : "text"}
@@ -266,7 +266,7 @@ class AgencyProfileSettingsClass extends React.Component{
                             <label htmlFor="sittingsNewPassword" className="d-xl-block d-lg-block d-md-block d-sm-none d-none">{textPage.sittingsNewPassword.floatingLabelText}</label>
                             <div className="driverProfileSettingsContentRow">
                                 <input id="sittingsNewPassword" className="d-xl-block d-lg-block d-md-block d-sm-none d-none" type={this.state.newPasswordType ? "password" : "text"}
-                                pattern="[A-Za-z0-9]{6,}" title="Ошибка в вводе"
+                                pattern="[A-Za-z0-9]{6,}" title="Должен содержать не менее 6-ти сомволов латинских букв (заглавных или строчных) и цифр"
                                 value={this.state.settingsValues.newPassword} onChange={(e)=>this.inputChange(e.target.value,'newPassword')}/>
                                 <TextField
                                     type={this.state.newPasswordType ? "password" : "text"}

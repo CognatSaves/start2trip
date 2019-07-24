@@ -44,7 +44,8 @@ import {
     SET_ACTIVE_LANG,
     SET_MODAL_REGISTER,
     SET_ACTIVE_LANG_ADMIN,
-    CHANGE_LANGUAGE_PART
+    CHANGE_LANGUAGE_PART,
+    SET_ACTIVE_LANG_ISO
 } from './Action';
 
 const langArrayMassAdmin = [En_admin, Ru_admin, Ge_admin];
@@ -147,6 +148,23 @@ export const AppReduser = (state = initialState, action) => {
                         }
                     }
                     newState.languageText = langArrayMassAdmin[indexAdmin];
+                }
+                return newState;
+            }
+        case SET_ACTIVE_LANG_ISO:
+            {
+                let newState = {...state };
+                if(action.mainISO && action.mainISO.length>0){
+                    let isoMainIndex = langArrayMassMainISO.indexOf(action.mainISO);
+                    if(isoMainIndex!==-1){
+                        newState.languageTextMain = langArrayMassMain[isoMainIndex];
+                    }
+                }
+                if(action.mainISO && action.adminISO){
+                    let isoAdminIndex = langArrayMassAdminISO.indexOf(action.adminISO);
+                    if(isoAdminIndex!==-1){
+                        newState.languageText = langArrayMassAdmin[isoAdminIndex];
+                    }            
                 }
                 return newState;
             }

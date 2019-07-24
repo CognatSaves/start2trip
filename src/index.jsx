@@ -37,7 +37,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 //require('require-context/register');
 import Cookies from 'universal-cookie';
 import { setLocals, modalCountryDispatch } from './redusers/Action';
-import {  setActiveCurr, setActiveLang, setActiveLangAdmin } from './redusers/Action';
+import {  setActiveCurr, setActiveLang, setActiveLangAdmin, setActiveLangISO } from './redusers/Action';
 
 
 const cookies = new Cookies();
@@ -75,7 +75,11 @@ const muiTheme = getMuiTheme({
 function getLocals(){
     let redusers = store.getState();
     let props = {};
-
+    
+    let adminLang = cookies.get('adminLang',{path: '/'});
+    let userLang = cookies.get('userLang', {path: '/'});
+    store.dispatch(setActiveLangISO(userLang,adminLang));
+    
     axios.get(requests.getLocals, props)
       .then(response => {
         let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
@@ -90,9 +94,13 @@ function getLocals(){
         let curr = redusers.GlobalReduser.readCookie('userCurr');
         let country = redusers.GlobalReduser.readCookie('country');
         
+        if(!country){
+          country='BLR';
+        }
+
         if (!lang) {
           for (let i = 0; i < languages.length; i++) {
-            if (languages[i].ISO === 'RUS') {
+            if (languages[i].ISO === 'ENG') {
               cookies.set('userLang', languages[i].ISO, { path: '/', expires: date });
               cookies.set('userLangISO',languages[i].isoAutocomplete, { path: '/', expires: date });
 
@@ -153,6 +161,7 @@ function getLocals(){
         }
         if(!country){
           //тут должна быть переадресация на страницу с выбором страны!!!(в else должно быть схожее, посмотри)
+          //временно тут стоит заглушка
         }
         else{
           
@@ -163,6 +172,7 @@ function getLocals(){
               break;
             }
           }
+
           if(index!==-1){
             
             let adminLang = redusers.GlobalReduser.readCookie('adminLang');
@@ -186,6 +196,7 @@ function getLocals(){
                 adminIndex=0;
               }
             }
+            
             store.dispatch(modalCountryDispatch(countries[index].ISO,countries[index].isoMap));
             store.dispatch(setActiveLangAdmin(adminIndex));
           }
@@ -273,7 +284,12 @@ ReactDOM.render(
                         <Route path="/(register|start)/" component={PartnerRegister} /> 
                         <Route path="/registration" component={Registration} />                       
                         <Route path="/login" component={AuthRedirect}/>
-                        <Route path="/:ISO" component={App}/>
+                        {
+                          /*
+                          <Route path="/:ISO" component={App}/>
+                          */
+                        }
+                        
                         <Redirect from="/" to="/home" />
                         
                     </Switch>

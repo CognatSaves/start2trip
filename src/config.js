@@ -46,6 +46,7 @@ const getRoutes = serverAddress + "/getRoutes";
 const showRoute = serverAddress + "/showRoute";
 const getDriverInfo = serverAddress + "/users/getDriverInfo";
 const getDriverDescription = serverAddress + "/users/getDriverDescription";
+const profileCheck = serverAddress+"/users/me/profileCheck";
 
 export default {
     frontendAddress: frontendAddress,
@@ -96,4 +97,5 @@ export default {
     getDriverDescription: getDriverDescription,
     getDriverInfo: getDriverInfo,
 
+    profileCheck: profileCheck
 };

@@ -59,7 +59,7 @@ class ShowCommentsClass extends React.Component {
                         {this.props.selectedComments.map((element, index) => {
                             //let obj = element.name || element.createdAt ? element : {name: element.user.name} 
                             // let openModal = false
-                            debugger
+                            
                             let date = element.date ? new Date(element.date) : new Date(element.createdAt);
 
                             return (

@@ -52,7 +52,7 @@ const ModalUserType = (props) => {
         isWaiting: true,
         isUsertypeLooking: false
       });
-      let body = JSON.stringify({ userType: that.state.selectedUserType });
+      let body = JSON.stringify({ userType: that.state.selectedUserType, country: that.state.selectedUserCountry });
       fetch(requests.profileUpdateRequest, {
         method: 'PUT', body: body,
         headers: { 'content-type': 'application/json', Authorization: `Bearer ${jwt}` }
@@ -98,6 +98,26 @@ const ModalUserType = (props) => {
   const customContentStyle2 = {
     maxWidth: '512px',
   };
+  if(that.state.selectedUserCountry.length===0 && that.props.storeState.country.length>0){
+    that.setState({
+      selectedUserCountry: that.props.storeState.country
+    })
+  }
+  let profile = that.props.globalReduser.profile;
+  let selectUserTypeVisibility = true;
+  
+  if(profile.isDriver || profile.isAgency){
+    selectUserTypeVisibility=false;
+    if(that.state.selectedUserType===0){
+      if(profile.isDriver){
+        setSelectedUserType(2,that);
+      }
+      if(profile.isAgency){
+        setSelectedUserType(3,that);
+      }
+
+    }
+  }
   return (
     <Dialog
       modal={true}
@@ -105,19 +125,54 @@ const ModalUserType = (props) => {
       contentStyle={isMobile ? customContentStyle : customContentStyle2}
     >
       <div className='d-flex flex-column align-items-center selectTypeBody'>
-        <span>{textInfo.modalUserType.selectAccountTypeText}</span>
         {
-          pageTextInfo.registrationUserType.userTypes.map((element, index) =>
-            <div className={index ? "selectTypeBlockLine selectTypeBlock d-flex align-items-center col-8" : "selectTypeBlock d-flex align-items-center col-8"}>
-              <i style={{ background: "url(" + massIcon[index] + ") no-repeat" }} />
-              <label className="typeCheckLabel" for={"typeCheckbox" + (index + 1)}>{element.userText[lang]}</label>
-              <input className="typeCheckButton" id={"typeCheckbox" + (index + 1)}
-                type="radio" name="raz" onClick={() => { setSelectedUserType(index + 1, that) }} />
-            </div>
-          )
+          selectUserTypeVisibility ? 
+          <React.Fragment>
+            <span>{textInfo.modalUserType.selectAccountTypeText}</span>
+            {
+              pageTextInfo.registrationUserType.userTypes.map((element, index) =>
+                <div className={index ? "selectTypeBlockLine selectTypeBlock d-flex align-items-center col-8" : "selectTypeBlock d-flex align-items-center col-8"}
+                  onClick={() => { setSelectedUserType(index + 1, that) }} >
+                  <i style={{ background: "url(" + massIcon[index] + ") no-repeat" }} />
+                  <label className="typeCheckLabel" for={"typeCheckbox" + (index + 1)}>{element.userText[lang]}</label>
+                  <input className="typeCheckButton" id={"typeCheckbox" + (index + 1)}
+                    type="radio" name="raz" />
+                </div>
+              )
+            }
+          </React.Fragment> : <React.Fragment/>
+        }    
+        {
+          that.state.selectedUserType>1 ? 
+          <React.Fragment>
+            <span>{"Укажите страну, в которой вы будете работать"}</span>
+            <DropDownMenu
+              value={that.state.selectedUserCountry}
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
+              onChange={(event, index, value)=>{ that.setState({
+                selectedUserCountry: value
+              })}}
+              style={{ width: "100%" }}
+              className="dropdownClass"
+              autoWidth={false}
+              selectedMenuItemStyle={{ color: "#f60" }}   
+            >
+              {
+                that.props.storeState.countries.map((element, index)=>
+                  <MenuItem value={element.ISO} primaryText={element.ISO}/>
+                )
+              }
+            </DropDownMenu>
+          </React.Fragment> : <React.Fragment/>
         }
-        <button className="selectTypeBt" onClick={() => that.state.selectedUserType === 0 ? {} : sendUserType(that)}>{pageTextInfo.registrationUserType.buttonNext[lang]}</button>
-
+        {
+          that.state.selectedUserType>0 ? 
+          <button className="selectTypeBt" onClick={() => that.state.selectedUserType === 0 ?
+            {} : sendUserType(that)}>{pageTextInfo.registrationUserType.buttonNext[lang]}
+          </button>
+          : <React.Fragment/>
+        }
+        
       </div>
     </Dialog>
 
@@ -174,7 +229,7 @@ class HeaderClass extends React.Component {
 
       if (!lang) {
         for (let i = 0; i < languages.length; i++) {
-          if (languages[i].ISO === 'RUS') {
+          if (languages[i].ISO === 'ENG') {
             activeLanguageNumber = i;
             break;
           }
@@ -211,7 +266,7 @@ class HeaderClass extends React.Component {
     this.props.dispatch(setActiveLang(activeLanguageNumber));
 
     //let textInfo = this.props.storeState.languageTextMain.header;
-
+    
     this.state = {
       dropdownLanguageOpen: false,
       burgerMenu: false,
@@ -228,6 +283,7 @@ class HeaderClass extends React.Component {
       history: props.history,
       isWaiting: false,
       isUsertypeLooking: false,
+      selectedUserCountry: '',
       savedAddress: '',
       savedNumber: 0,
       selectedUserType: 0
@@ -387,12 +443,12 @@ class HeaderClass extends React.Component {
   accountRedirect = (address, number) => {
 
     function thenFunc(that, address, number) {
-
+      
       console.log(that);
       console.log(address);
       let profile = that.props.globalReduser.profile;
       let fullAddress = '/account';
-      if (profile.isDriver || profile.isCustomer || profile.isAgency) {
+      if ((profile.isDriver && profile.country) || profile.isCustomer || (profile.isAgency && profile.country)) {
         if (profile.isDriver) {
           fullAddress += '/driver';
         }
@@ -425,20 +481,31 @@ class HeaderClass extends React.Component {
       }
 
     }
+    
     const that = this;
     let jwt = this.props.globalReduser.readCookie('jwt');
+    
     if (jwt && jwt !== '-') {
-      let requestValues = {
-        readCookie: that.props.globalReduser.readCookie,
-        setProfileData: function (data) {
-          that.props.dispatch(setProfileData(data))
-        },
-        requestAddress: requests.profileRequest
+      let profile = that.props.globalReduser.profile;
+      if( !( (profile.isDriver && profile.country) || profile.isCustomer || (profile.isAgency && profile.country) ) ){
+        axios.get(requests.profileCheck, {
+          headers: {
+            Authorization: `Bearer ${jwt}`
+          }
+        })
+        .then(response => {
+          
+          console.log();
+          that.props.dispatch(setProfileData(response.data));
+          thenFunc(that, address, number);
+        })
+        .catch(error => {
+          this.props.dispatch(setUser("", "",{}));
+        });
       }
-      this.setState({
-        isWaiting: true
-      });
-      getUserData(requestValues, () => thenFunc(that, address, number));
+      else{
+        thenFunc(that, address, number);
+      }
     }
     else {
       this.props.dispatch(setUrlAddress(window.location.pathname));

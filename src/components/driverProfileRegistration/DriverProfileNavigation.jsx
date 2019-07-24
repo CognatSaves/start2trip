@@ -215,7 +215,7 @@ class DriverProfileNavigationClass extends React.Component {
                                     <span className="pl-1">{profile.futureTrips.length}</span>
                                 </div>
                                 <div className=" d-md-flex d-none align-items-center col-lg-3 col-md-4 col-6 p-0">
-                                    <span>{profile.penalty}</span>
+                                    <span>{profile.penalty!==null ? profile.penalty : 0}</span>
                                     <div className="d-flex flex-column">
                                         <p>{textPage.penalty.first}</p>
                                         <p>{textPage.penalty.last}</p>
@@ -223,7 +223,7 @@ class DriverProfileNavigationClass extends React.Component {
                                 </div>
                                 <div className="bodyTopDriverInfoRideMobail  d-md-none d-flex align-items-center justify-content-between col-md-3 col-sm-5 col-12 p-0">
                                     <p>{textPage.penalty.full + ':'}</p>
-                                    <span className="pl-1">{profile.penalty}</span>
+                                    <span className="pl-1">{profile.penalty!==null ? profile.penalty : 0}</span>
                                 </div>
                             </div>
                         </div>

@@ -59,9 +59,17 @@ class HomeBodyBottomClass extends React.Component {
     }
 
     let country = cookies.get('country', { path: '/' });
+    let couldSendRequest = true;
+    if(country===undefined){
+      country="";
+      couldSendRequest=false;
+    }
     let lang =  cookies.get('userLang', { path: '/' });
-
-    let shouldSendRequest = !this.state.isRefreshExist && 
+    if(lang===undefined){
+      lang="";
+      couldSendRequest=false;
+    }
+    let shouldSendRequest = !this.state.isRefreshExist && couldSendRequest &&
       (
         this.state.selectedDirection!==(selectedDirection) ||
         this.state.country!==country ||
@@ -76,13 +84,14 @@ class HomeBodyBottomClass extends React.Component {
         selectedDirection: selectedDirection
       });
       let that = this;
+       
       axios.get(requests.getRoutes+"?country="+country+"&lang="+lang+(selectedDirection ? "&slug="+selectedDirection : ''))
       .then(response => {
         console.log(response);              
         return response.data;
       })
       .then(data =>{
-              
+        
         if (data.error) {
           console.log("bad");
           throw data.error;

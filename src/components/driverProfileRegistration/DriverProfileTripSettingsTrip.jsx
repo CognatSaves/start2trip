@@ -22,7 +22,9 @@ import DriverRefreshIndicator from './DriverRefreshIndicator';
 class DriverProfileTripSettingsTripClass extends React.Component {
     constructor(props) {
         super(props);
+        
         let travelsetting = this.props.globalReduser.profile.travelsetting;
+        let calend = eval(travelsetting.calendary);
         let dateTour = [];
         if (travelsetting.calendary) {
             for (let i = 0; i < travelsetting.calendary.length; i++) {
@@ -34,6 +36,13 @@ class DriverProfileTripSettingsTripClass extends React.Component {
         if (travelsetting.settings) {
             cityRadius = [...travelsetting.settings.points];
             distance = travelsetting.settings.distance;
+        }
+        if(cityRadius.length===0){
+            cityRadius[0]={
+                point: '',
+                lat: '',
+                long: ''
+            }
         }
         this.state = {
             cityRadius: cityRadius,
@@ -100,62 +109,70 @@ class DriverProfileTripSettingsTripClass extends React.Component {
         }, 2000);
     }
     applyChanges=(props)=> {
+        
         let jwt = this.props.globalReduser.readCookie('jwt');
-        if (jwt && jwt !== "-") {
-            let that = this; 
-            this.startRefresher();
-            let value = {
-                travelsetting: {
-
-                    settings: {
-                        points: this.state.cityRadius,
-                        distance: this.state.distance
-                    },
-                    calendary: this.state.dateTour
-                }
-            }
-            
-            if(props){
-                value.onWork = props.onWork;
-            }
-            console.log('body before json');
-            console.log(value);
-            let body = JSON.stringify(value);
-            fetch(requests.travelsettingsUpdateRequest, {
-                method: 'PUT', body: body,
-                headers: { 'content-type': 'application/json', Authorization: `Bearer ${jwt}` }
-            })
-                .then(response => {
-                    return response.json();
-                })
-                .then(function (data) {
-                    if (data.error) {
-                        console.log("bad");
-                        throw data.error;
-                    }
-                    else {
-                        console.log("good");
-                        console.log(data);
-                        that.getProfileData();
-                        //document.location.reload(true);
-                        //that.state.sendResultLocal(true, {jwt:data.jwt, user: data.user});
-                    }
-                })
-                .catch(function (error) {
-                    console.log("bad");
-                    console.log('An error occurred:', error);
-                    that.setState({
-                        onWork: that.props.globalReduser.profile.onWork
-                    });
-                    that.catchFunc();
-                    //that.state.sendResultLocal(false,{error: error});
-                });
-                
+        let a = this.state.cityRadius[0].point.length===0;
+        let b =!(Number.isInteger(eval(this.state.distance)));
+        if(a || b){
+            return false;
         }
         else{
-            this.props.dispatch(setUrlAddress(window.location.pathname));
-            this.props.history.push('/login');
-            //return null;
+            if (jwt && jwt !== "-") {
+                let that = this; 
+                this.startRefresher();
+                let value = {
+                    travelsetting: {
+
+                        settings: {
+                            points: this.state.cityRadius,
+                            distance: this.state.distance
+                        },
+                        calendary: this.state.dateTour
+                    }
+                }
+                
+                if(props){
+                    value.onWork = props.onWork;
+                }
+                console.log('body before json');
+                console.log(value);
+                let body = JSON.stringify(value);
+                fetch(requests.travelsettingsUpdateRequest, {
+                    method: 'PUT', body: body,
+                    headers: { 'content-type': 'application/json', Authorization: `Bearer ${jwt}` }
+                })
+                    .then(response => {
+                        return response.json();
+                    })
+                    .then(function (data) {
+                        if (data.error) {
+                            console.log("bad");
+                            throw data.error;
+                        }
+                        else {
+                            console.log("good");
+                            console.log(data);
+                            that.getProfileData();
+                            //document.location.reload(true);
+                            //that.state.sendResultLocal(true, {jwt:data.jwt, user: data.user});
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log("bad");
+                        console.log('An error occurred:', error);
+                        that.setState({
+                            onWork: that.props.globalReduser.profile.onWork
+                        });
+                        that.catchFunc();
+                        //that.state.sendResultLocal(false,{error: error});
+                    });
+                    
+            }
+            else{
+                this.props.dispatch(setUrlAddress(window.location.pathname));
+                this.props.history.push('/login');
+                //return null;
+            }
         }
     }
     formSubmit=(event)=> {
@@ -331,7 +348,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                                     <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
                                         <label htmlFor={"tripLocation" + index} className="col-xl-2 col-lg-2 col-md-2 col-sm-11 col-11 p-0">{textPage.tripLocation}:</label>
                                         <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column col-md-6 col-sm-12 col-12 p-0">
-                                            <LocationSearchInput address={element.point} changeCity={this.changeCity} classDiv="col-12 p-0" classInput="searchInputDriverInformation" index={index} classDropdown="searchDropdownDriverInformation" />
+                                            <LocationSearchInput address={element.point} changeCity={this.changeCity} classDiv="col-md-8 col-12 p-0" classInput="searchInputDriverInformation" index={index} classDropdown="searchDropdownDriverInformation" />
                                             <input className="col-md-4 col-sm-12 col-12 ml-1 d-xl-block d-lg-block d-md-block d-sm-none d-none" type="text" id="itemRadiu" value={element.radius}
                                                 onChange={(e) => this.inputChange(e.target.value, 'radius', index)}
                                             />

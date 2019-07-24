@@ -55,6 +55,7 @@ class PlaceTravelBlockClass extends React.Component{
         let place = this.props.place;
         let textInfo = this.props.storeState.languageTextMain.placeDescription.placeTravelBlock;
         let cities = this.state.startPoint.length>0 ? [{point: this.state.startPoint},{point:this.state.endPoint}] : [{point:this.state.endPoint}];
+        
         return (
             <div className="placeDescription_block d-flex flex-column" id={this.props.id} key={JSON.stringify(this.state.endPoint)}>
                 <div className="placeDescription_fragmentName">{textInfo.fragmentName}</div>
@@ -66,7 +67,8 @@ class PlaceTravelBlockClass extends React.Component{
                             onClick={()=>{if(this.state.isStartHighlighted){this.setState({isStartHighlighted: false})}}}>
                                 <div className="placesDescription_travelBlock_icon placesDescription_position" />
                                 <LocationSearchInput address={this.state.startPoint} changeCity={(index, value,extraData)=>this.setState({startPoint: value})}
-                                  classDropdown="searchElement_style" classInput={"travelBlockSearch"} placeholder={textInfo.startPointPlaceholder}/>   
+                                  classDropdown="searchElement_style" classInput={"travelBlockSearch"} placeholder={textInfo.startPointPlaceholder}
+                                  isoCountryMap={this.props.storeState.isoCountryMap}/>   
                             </div>
 
                             <div className="placesDescription_travelBlock_element d-flex">

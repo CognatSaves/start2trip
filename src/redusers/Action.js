@@ -46,6 +46,8 @@ const SET_ACTIVE_LANG_ADMIN = 'SET_ACTIVE_LANG_ADMIN';
 
 const CHANGE_LANGUAGE_PART = 'CHANGE_LANGUAGE_PART';
 
+const SET_ACTIVE_LANG_ISO = 'SET_ACTIVE_LANG_ISO';
+
 const changeLanguagePart = function(isSecondLanguageGroupPart) {
     return {
         type: CHANGE_LANGUAGE_PART,
@@ -68,6 +70,13 @@ const setActiveCurr = function(activeCurrencyNumber) {
     return {
         type: 'SET_ACTIVE_CURR',
         activeCurrencyNumber: activeCurrencyNumber
+    }
+}
+const setActiveLangISO = function(mainISO, adminISO){
+    return{
+        type: SET_ACTIVE_LANG_ISO,
+        mainISO: mainISO,
+        adminISO: adminISO
     }
 }
 const setActiveLang = function(activeLanguageNumber) {
@@ -270,5 +279,7 @@ export {
     SET_ACTIVE_LANG_ADMIN,
     setActiveLangAdmin,
     CHANGE_LANGUAGE_PART,
-    changeLanguagePart
+    changeLanguagePart,
+    SET_ACTIVE_LANG_ISO,
+    setActiveLangISO
 }
