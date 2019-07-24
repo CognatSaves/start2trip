@@ -6,7 +6,7 @@ import RenderModalCountry from './RenderModalCountry'
 import RenderModalRegistration from './RenderModalRegistration'
 import mapWorldIcon from '../media/mapWorld.svg'
 import { connect } from 'react-redux';
-import crossIconModal from '../media/close.svg'
+import crossIconModal from '../media/closeGray.svg'
 // import geoFlag from './pictures/georgia.svg'
 // import ruFlag from './pictures/russia.svg'
 // import enFlag from './pictures/united-kingdom.svg'
@@ -294,7 +294,7 @@ class HeaderClass extends React.Component {
     //this.getLocals();
   }
   readIsoInUrl=()=>{
-    debugger
+    
     let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
     let cookiesIso = cookies.get('country',{path:"/"})
     let pathnameUrl = this.props.history.location.pathname;
