@@ -86,6 +86,11 @@ function getLocals() {
   let userLang = cookies.get('userLang', {path: '/'});
   store.dispatch(setActiveLangISO(userLang,adminLang));
   
+  debugger;
+  let userBrowserLanguage = window.navigator.language;
+  let userBrowserLanguageISO = userBrowserLanguage.substr(0,2);
+  //console.log(window.navigator);
+
   axios.get(requests.getLocals, props)
     .then(response => {
       let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
@@ -99,10 +104,14 @@ function getLocals() {
       let lang = redusers.GlobalReduser.readCookie('userLang');
       let curr = redusers.GlobalReduser.readCookie('userCurr');
       let country = redusers.GlobalReduser.readCookie('country');
-
+      debugger;
       if (!lang) {
+        let langSelector = 'ENG';
+        if(userBrowserLanguageISO==='ru'){
+          langSelector='RUS';
+        }
         for (let i = 0; i < languages.length; i++) {
-          if (languages[i].ISO === 'RUS') {
+          if (languages[i].ISO === langSelector) {
             cookies.set('userLang', languages[i].ISO, { path: '/', expires: date });
             cookies.set('userLangISO', languages[i].isoAutocomplete, { path: '/', expires: date });
 
