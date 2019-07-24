@@ -6,6 +6,7 @@ import Drivers from '../drivers/Drivers'
 import HomeBodyBottom from './HomeBodyBottom'
 import { connect } from 'react-redux';
 import {Route} from 'react-router-dom';
+import requests from '../../config'
 
 //import HomeHeader from './HomeHeader/HomeHeader.jsx'
 import Header from '../header/Header';
@@ -72,7 +73,7 @@ class HomeClass extends React.Component {
                 :
                 <div />}
               <div className="home_body d-flex justify-content-center col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
-                <HomeBody redirectToDrivers={() => this.redirectFunc('/drivers')} />
+                <HomeBody redirectToDrivers={() => this.redirectFunc('/'+requests.routeMap+'/drivers')} />
               </div>
             </div>
 
@@ -80,11 +81,11 @@ class HomeClass extends React.Component {
           
           {
             selectedDirection ? 
-              <Route path="/home/:direction" component={HomeBodyBottom} />
+              <Route path={'/'+requests.routeMap+"/home/:direction"} component={HomeBodyBottom} />
             :
-              <Route path="/home" component={HomeBodyBottom} />
+              <Route path={'/'+requests.routeMap+"/home"} component={HomeBodyBottom} />
           }          
-          <Route path="/drivers/:country-:cities" component={Drivers} />
+          <Route path={'/'+requests.routeMap+"/drivers/:country-:cities"} component={Drivers} />
         </main>
 
       </React.Fragment>

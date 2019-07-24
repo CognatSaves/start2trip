@@ -13,6 +13,8 @@ import { setDriversList, setCarTypes } from '../../../redusers/ActionDrivers';
 import DriverRefreshIndicator from '../../driverProfileRegistration/DriverRefreshIndicator';
 
 import {AppReduser} from '../../../redusers/AppReduser';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 const CityRouteTable = (props) => {
   const { cities, changeCity, removeCity, addCity, isoCountryMap, readOnlyOn, language, textInfo,alphabet } = props;
   // let workCities = [...cities];
@@ -224,7 +226,7 @@ class RouteMenuClass extends React.Component {
           canMove = routeDate.canMove;
           let dateString = that.props.globalhistory.createDateTimeString(date, true);
           if (canMove) {
-            that.props.globalhistory.history.push(`/drivers/${country}-${newStringCities}?date=`+dateString+(langISO!=='ENG' ? `&lang=`+langISO : ``));
+            that.props.globalhistory.history.push('/'+requests.routeMap+`/drivers/${country}-${newStringCities}?date=`+dateString+(langISO!=='ENG' ? `&lang=`+langISO : ``));
             window.scroll(0, 500);
           }
         }

@@ -162,7 +162,7 @@ class DriverProfileClass extends React.Component {
     }
     goToDrivers = () => {
         this.props.dispatch(setDriversRouteChange(true));
-        this.props.history.push('/drivers');
+        this.props.history.push("/"+(this.props.storeState.country.toLowerCase())+'/drivers');
     }
     changeTravelVisibility = () => {
         this.setState({

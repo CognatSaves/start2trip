@@ -438,7 +438,7 @@ class HeaderClass extends React.Component {
     if (jwt && jwt !== "-") {
       removeCookie(this);
     }
-    this.props.globalhistory.history.push('/home');
+    this.props.globalhistory.history.push("/"+(this.props.storeState.country.toLowerCase())+'/home');
   }
   accountRedirect = (address, number) => {
 
@@ -676,7 +676,7 @@ class HeaderClass extends React.Component {
               <div className="headerButtonMass d-flex align-self-stretch justify-content-end col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 ">
                 {
                   buttonMassElements.map((element, index) =>
-                    <Link to={element.to} className="buttonMassLink align-self-stretch">{element.value}</Link>
+                    <Link to={"/"+(this.props.storeState.country.toLowerCase())+element.to} className="buttonMassLink align-self-stretch">{element.value}</Link>
                   )
                 }
               </div>

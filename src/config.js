@@ -6,6 +6,7 @@ const serverAuthorizationRequest = serverAddress + '/auth/local';
 const facebookRequest = serverAddress + '/connect/facebook';
 const googleRequest = serverAddress + '/connect/google';
 const meRequest = serverAddress + '/users/me/auth';
+const routeMap = "(blr|rus|geo|arm|aze|tur|isr)";
 
 const profileRequest = serverAddress + '/users/me/profile';
 const profileUpdateRequest = serverAddress + "/users/me/update";
@@ -97,5 +98,6 @@ export default {
     getDriverDescription: getDriverDescription,
     getDriverInfo: getDriverInfo,
 
-    profileCheck: profileCheck
+    profileCheck: profileCheck,
+    routeMap: routeMap,
 };

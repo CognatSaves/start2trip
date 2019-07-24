@@ -5,6 +5,7 @@ import LocationSearchInput from '../home/HomeBody/Search';
 import DatePicker from 'material-ui/DatePicker';
 import { connect } from 'react-redux';
 import { isMobileOnly } from 'react-device-detect';
+import requests from '../../config'
 
 class PlaceTravelBlockClass extends React.Component{
     constructor(props){
@@ -32,7 +33,7 @@ class PlaceTravelBlockClass extends React.Component{
             let country = routeDate.country;
             let langISO = routeDate.langISO;
             let dateString = this.props.globalhistory.createDateTimeString(this.state.date, true);
-            this.props.globalhistory.history.push(`/drivers/${country}-${newStringCities}?date=`+dateString+(langISO!=='ENG' ? `&lang=`+langISO : ``));
+            this.props.globalhistory.history.push("/"+(this.props.storeState.country.toLowerCase())+`/drivers/${country}-${newStringCities}?date=`+dateString+(langISO!=='ENG' ? `&lang=`+langISO : ``));
         
         }
         else{
