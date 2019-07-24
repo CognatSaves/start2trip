@@ -94,7 +94,7 @@ class RenderModalCountryClass extends React.Component {
        let namePage = this.props.globalhistory.history.location.pathname.split("/");
        namePage = namePage.splice(2)
        namePage = namePage.join('/')
-        this.props.globalhistory.history.push("/"+element.ISO.toLowerCase()+'/'+namePage)
+        this.props.globalhistory.history.push("/"+element.ISO.toLowerCase()+'/'+(namePage===""?"home":namePage))
         // window.location.reload()
     }
     render() {

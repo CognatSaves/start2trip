@@ -50,6 +50,7 @@ const ResetPassword = lazy(() => import('./components/registration/ResetPassword
 const PartnerRegister = lazy(() => import('./components/registration/PartnerRegister'));
 const Registration = lazy(() => import('./components/registration/Registration'));
 const AuthRedirect = lazy(() => import('./components/registration/AuthRedirect'));
+const AuthModalCountry = lazy(() => import('./components/registration/AuthModalCountry'));
 
 
 const redux = require('redux');
@@ -303,7 +304,8 @@ ReactDOM.render(
               <Route path="/(register|start)/" component={PartnerRegister} />
               <Route path="/registration" component={Registration} />
               <Route path="/login" component={AuthRedirect} />
-              <Redirect from="/" to={"/"+redirectPage+"/home"} />
+              <Route path="/countrySelection" component={AuthModalCountry} />
+              <Redirect from="/" to={"/"+(redirectPage===undefined?"countrySelection":redirectPage+"/home")} />
             </Switch>
           </Suspense>
           <Footer />

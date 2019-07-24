@@ -84,7 +84,7 @@ const CityRouteTable = (props) => {
               <React.Fragment />
               :
               <React.Fragment>
-                <div className=" d-flex routemenu_addCity col-12" onClick={() => { addCity() }}>
+                <div className=" d-flex routemenu_addCity col" onClick={() => { addCity() }}>
                   <div className="routemenu_city_add_text" style={{ background: "url(" + addIcon + ") no-repeat" }} >{textInfo.addPointText}</div>
                 </div>
               </React.Fragment>
