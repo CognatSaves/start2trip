@@ -100,7 +100,7 @@ class PopularPlacesClass extends React.Component {
             placeRender = arrayRender;
         }
         function getDirectionName(element, that){
-            debugger;
+            
             for(let i=0;i<element.loc.length; i++){
                 if(element.loc[i].language===that.props.storeState.languages[that.props.storeState.activeLanguageNumber].id){
                     return element.loc[i].name;

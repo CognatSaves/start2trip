@@ -552,15 +552,17 @@ class HeaderClass extends React.Component {
       }
     } else {
       if (this.state.previousPageYOffset > scrollEvent) {
-        if (scrollEvent > 400) {
-            document.querySelector(".footerButtonUp").classList.add("footerButtonUp-active");
-        } else {
-          if(document.querySelector(".footerButtonUp").classList !== null){
-            document.querySelector(".footerButtonUp").classList.remove("footerButtonUp-active");
+        if(document.querySelector(".footerButtonUp").classList !== null){
+          if (scrollEvent > 400) {
+              document.querySelector(".footerButtonUp").classList.add("footerButtonUp-active");
+          }
+          else {         
+              document.querySelector(".footerButtonUp").classList.remove("footerButtonUp-active");            
           }
         }
-      } else {
-        document.querySelector(".footerButtonUp").classList.remove("footerButtonUp-active");
+        else {
+          document.querySelector(".footerButtonUp").classList.remove("footerButtonUp-active");
+        }
       }
     }
     this.setState({ previousPageYOffset: scrollEvent })

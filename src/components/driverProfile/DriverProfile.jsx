@@ -52,7 +52,7 @@ class DriverProfileClass extends React.Component {
             isGoodAnswer: false,
             promoCodIsOk:true,
             elementPrice:0,
-            comments:{},
+            comments:[],
             time: [
                 "00:00", "00:15", "00:30", "00:45",
                 "01:00", "01:15", "01:30", "01:45",
@@ -102,7 +102,7 @@ class DriverProfileClass extends React.Component {
             isRefreshExist: true,
             isRefreshing: true
         });
-*/
+*/      
         fetch(requests.getDriverDescription, {
             method: 'PUT', body: body,
             headers: { 'content-type': 'application/json' }
@@ -111,6 +111,7 @@ class DriverProfileClass extends React.Component {
                 return response.json();
             })
             .then(function (data) {
+                
                 if (data.error) {
                     console.log("bad");
                     throw data.error;
@@ -260,6 +261,7 @@ class DriverProfileClass extends React.Component {
                 isRefreshExist: true,
                 isRefreshing: true
             });
+            
             fetch(requests.createNewTrip, {
                 method: 'POST', body: body,
                 headers: { 'content-type': 'application/json' }
@@ -268,6 +270,7 @@ class DriverProfileClass extends React.Component {
                     return response.json();
                 })
                 .then(function (data) {
+                    
                     if (data.error) {
                         console.log("bad");
                         throw data.error;
@@ -327,10 +330,11 @@ class DriverProfileClass extends React.Component {
         //запрос можно отправить тогда и только тогда, когда все имеющиеся города получат свои координаты
         //обработки события, когда какой-то из городов не получил координат пока(19.07.19) нет
         //запрос отправляется только один раз - isLoaded
+        
         if (!this.state.isLoaded && this.props.storeState.cities.length>0
              && this.props.storeState.cities[this.props.storeState.cities.length-1].lat!=='' && this.props.storeState.languages.length>0) {
             
-        
+            
             let cities;
             let country;
             function createRequestElement(cities, travelMode){
@@ -404,6 +408,7 @@ class DriverProfileClass extends React.Component {
                         return response.json();
                     })
                     .then(function (data) {
+                        
                         if (data.error) {
                             console.log("bad");
                             throw data.error;
@@ -513,7 +518,7 @@ class DriverProfileClass extends React.Component {
                                                             <div className="routeTravelBlock_pointValue d-flex flex-row">
                                                                 <div style={{paddingRight: '10px',margin: 'auto 0'}}>{this.props.globalReduser.alphabet[index]}</div>
                                                                 <div className="d-flex routeTravelBlock_height driverProfile_searchContainer">
-                                                                    <LocationSearchInput readOnlyOn={true} address={element.point}
+                                                                    <LocationSearchInput readOnlyOn={this.props.driversState.driverCarDescription.id ? true : false} address={element.point}
                                                                     changeCity={this.changeCity} index={index}
                                                                     classDropdown="searchElement_style"
                                                                     classInput={index ? "city_input" : "city_input _checkInput"} />

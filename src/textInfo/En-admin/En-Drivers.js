@@ -88,6 +88,9 @@ const driverProfileRegistration = {
         typeFuel: {
             label: "Тип топлива(ENG)"
         },
+        profileCarFuelConsumption:{
+            label: 'Потребление топлива(ENG)'
+        },
         profileCarNumberOfSeats: {
             label: "Количество мест(ENG)"
         },

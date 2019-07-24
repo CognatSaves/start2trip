@@ -13,6 +13,7 @@ class CommentBlockClass extends React.Component{
     render(){
         
         console.log("CommentBlock render");
+        debugger;
         let selectedComments = this.props.comments.slice((this.props.page - this.props.showPages) * 5, (this.props.page) * 5);
         let textInfo = this.props.storeState.languageTextMain.tourDescription.commentBlock;
         

@@ -27,7 +27,7 @@ class DriverProfileCarClass extends React.Component {
             file: '',
             imagePreviewUrl: '',
             collapse: false,
-            newCarCard: { nameCar: "", yearCar: "", plateNumberCar: "", typeCar: "", fuelType: "", carClass: "", onWork: true, numberOfSeats: "" },
+            newCarCard: { nameCar: "", yearCar: "", plateNumberCar: "", typeCar: "", fuelType: "", fuelConsumption: "",carClass: "", onWork: true, numberOfSeats: "" },
             car:{},
             isRefreshExist:false,
             isRefreshing: true,
@@ -113,8 +113,19 @@ class DriverProfileCarClass extends React.Component {
                 obj[0].classList.add("errorColor");
                 result = false;
             }
-            if(newCarCard.numberOfSeats.length===0 || isNaN(newCarCard.numberOfSeats)){
+            if(newCarCard.numberOfSeats.length===0 || isNaN(newCarCard.numberOfSeats) || Number(newCarCard.numberOfSeats)<=0){
                 obj = document.getElementById('profileCarNumberOfSeats');
+                obj.classList.add("errorColor");
+
+                obj = document.querySelectorAll('.inputClass');
+                obj[4].classList.add("errorColor");
+                result = false;
+            }
+            debugger;
+            //let fuelConsumption =  Number(newCarCard.fuelConsumption);
+            //let b = (fuelConsumption<=0);
+            if(newCarCard.fuelConsumption.length===0 || isNaN(newCarCard.fuelConsumption) ||  Number(newCarCard.fuelConsumption)<=0){
+                obj = document.getElementById('profileCarFuelConsumption');
                 obj.classList.add("errorColor");
 
                 obj = document.querySelectorAll('.inputClass');
@@ -150,7 +161,7 @@ class DriverProfileCarClass extends React.Component {
             carForm.append('fueltype', this.state.newCarCard.fuelType);
             carForm.append('cartype',this.state.newCarCard.typeCar);
             carForm.append('carclass',this.state.newCarCard.carClass);
-
+            carForm.append('fuelConsumption', this.state.newCarCard.fuelConsumption);
             carForm.append('onWork',true);
             let comfort = this.state.comfort;
             carForm.append('climatControl',comfort[0]);
@@ -235,7 +246,8 @@ class DriverProfileCarClass extends React.Component {
             }
             this.setState(state => ({ collapse: true, imagePreviewUrl: carImg[0] ? carImg[0] : '',
             newCarCard: { nameCar: element.carBrand, yearCar: element.manufactureYear, plateNumberCar: element.carNumber,
-            typeCar: element.cartype, fuelType: element.fueltype, numberOfSeats: element.seats , carClass: element.carclass},
+            typeCar: element.cartype, fuelType: element.fueltype, numberOfSeats: element.seats , carClass: element.carclass,
+            fuelConsumption: element.fuelConsumption},
             comfort: [...element.conveniences], carImg: carImg, imgFiles:imgFiles, car:element }));
         }
         if (isMobileOnly) {
@@ -618,6 +630,68 @@ class DriverProfileCarClass extends React.Component {
                                     }
                                     </DropDownMenu>
                                 </div>
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                
+                                <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
+                                    <label htmlFor="profileCarFuelConsumption" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">{textPage.profileCarFuelConsumption.label}:</label>
+                                    <input id="profileCarFuelConsumption" className="d-xl-block d-lg-block d-md-block d-sm-none d-none " value={this.state.newCarCard.fuelConsumption} onChange={(e) => {
+                                        let obj = document.getElementById('profileCarFuelConsumption');
+                                        obj.classList.remove("errorColor");
+
+                                        obj = document.querySelectorAll('.inputClass');
+                                        obj[3].classList.remove("errorColor");
+                                        this.setState({
+                                            newCarCard: { ...this.state.newCarCard, fuelConsumption: e.currentTarget.value }
+                                        })
+                                    }} type="text"/>
+                                    <TextField
+                                        value={this.state.newCarCard.numberOfSeats}
+                                        onChange={(e) => {
+                                            let obj = document.getElementById('profileCarFuelConsumption');
+                                            obj.classList.remove("errorColor");
+
+                                            obj = document.querySelectorAll('.inputClass');
+                                            obj[3].classList.remove("errorColor");
+                                            this.setState({
+                                                newCarCard: { ...this.state.newCarCard, fuelConsumption: e.currentTarget.value }
+                                            })
+                                        }}
+                                        floatingLabelText={textPage.profileCarFuelConsumption.label}
+                                        className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
+                                        fullWidth="100%"
+                                        floatingLabelFocusStyle={{ color: "#304269" }}
+                                        underlineFocusStyle={{ borderColor: "#304269" }}
+
+                                    />
+                                </div>
+
                                 <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
                                     <label htmlFor="profileCarNumberOfSeats" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">{textPage.profileCarNumberOfSeats.label}:</label>
                                     <input id="profileCarNumberOfSeats" className="d-xl-block d-lg-block d-md-block d-sm-none d-none " value={this.state.newCarCard.numberOfSeats} onChange={(e) => {
@@ -625,7 +699,7 @@ class DriverProfileCarClass extends React.Component {
                                         obj.classList.remove("errorColor");
 
                                         obj = document.querySelectorAll('.inputClass');
-                                        obj[3].classList.remove("errorColor");
+                                        obj[4].classList.remove("errorColor");
                                         this.setState({
                                             newCarCard: { ...this.state.newCarCard, numberOfSeats: e.currentTarget.value }
                                         })
