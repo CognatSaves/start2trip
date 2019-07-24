@@ -86,7 +86,7 @@ function getLocals() {
   let userLang = cookies.get('userLang', {path: '/'});
   store.dispatch(setActiveLangISO(userLang,adminLang));
   
-  debugger;
+  
   let userBrowserLanguage = window.navigator.language;
   let userBrowserLanguageISO = userBrowserLanguage.substr(0,2);
   //console.log(window.navigator);
@@ -104,7 +104,7 @@ function getLocals() {
       let lang = redusers.GlobalReduser.readCookie('userLang');
       let curr = redusers.GlobalReduser.readCookie('userCurr');
       let country = redusers.GlobalReduser.readCookie('country');
-      debugger;
+      
       if (!lang) {
         let langSelector = 'ENG';
         if(userBrowserLanguageISO==='ru'){
