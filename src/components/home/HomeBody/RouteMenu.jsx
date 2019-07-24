@@ -105,7 +105,7 @@ class RouteMenuClass extends React.Component {
     console.log(window);
     console.log(props.match);
     console.log(document);
-    debugger;
+    
     let result=props.globalhistory.findGetParameter("date");
     
     let dateValue;
@@ -115,10 +115,13 @@ class RouteMenuClass extends React.Component {
     /*else{
       dateValue = '';
     }*/
-    ;
+    debugger;
     let pathnameMAss = document.location.pathname.split("/");
-    let resultpathname =(pathnameMAss[2]==='drivers'|| pathnameMAss[2]==='route') ? true : false
-    
+    let resultpathname =(pathnameMAss.length<=3) ? true : false;
+    //вышестоящее условие звучит следующим образом - если в адресной строке больше или равно 4 элементов,
+    //то мы находимся не в /geo/(drivers|route) просто,а в /geo/(drivers|route)/что-то там, что
+    //означает, что можно попробовать построить маршрут
+    // так как проверка идёт а-ля - загружено ли(и мы считаем, что загружено, если грузить не надо), то сравнение наоборот
     this.state = {
       correctDate: "",
       isWaiting: false,
@@ -230,8 +233,10 @@ class RouteMenuClass extends React.Component {
           let canMove;
           canMove = routeDate.canMove;
           let dateString = that.props.globalhistory.createDateTimeString(date, true);
+          debugger;
           if (canMove) {
-            that.props.globalhistory.history.push('/'+this.props.storeState.country+`/drivers/${country}-${newStringCities}?date=`+dateString+(langISO!=='ENG' ? `&lang=`+langISO : ``));
+            let index = that.props.storeState.activeLanguageNumber;
+            that.props.globalhistory.history.push('/'+this.props.storeState.country+`-`+that.props.storeState.languages[index].isoAutocomplete+`/drivers/${country}-${newStringCities}?date=`+dateString+(langISO!=='ENG' ? `&lang=`+langISO : ``));
             window.scroll(0, 500);
           }
         }
@@ -269,10 +274,11 @@ class RouteMenuClass extends React.Component {
     let cities = this.props.storeState.cities;
     let date = this.state.date;
     let langISO = this.props.storeState.languages.length>0 ? this.props.storeState.languages[this.props.storeState.activeLanguageNumber].ISO : '';
-    let country = this.props.storeState.country;
+    let country = cookies.get('country',{path: '/'});//this.props.storeState.country;
 
     service.route(request, function(response, status)
     {
+      debugger;
       if (status !== window.google.maps.DirectionsStatus.OK){
         return false;
       }
@@ -307,11 +313,11 @@ class RouteMenuClass extends React.Component {
         headers: { 'content-type': 'application/json' }
       })
         .then(response => {
-
+          debugger;
           return response.json();
         })
         .then(function (data) {
-          
+          debugger;
           if (data.error) {
             console.log("bad");
             that.setState({ isRefreshing: false, isGoodAnswer: false });
