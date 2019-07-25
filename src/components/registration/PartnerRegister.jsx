@@ -1,7 +1,6 @@
 import React from 'react';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 import Cookies from 'universal-cookie';
-import requests from '../../config'
 const cookies = new Cookies();
 
 export default class PartnerRegister extends React.Component{
@@ -24,7 +23,7 @@ export default class PartnerRegister extends React.Component{
                 break;
             }
             case 'start':{
-                this.props.history.push("/"+(this.props.storeState.country)+'/home');
+                this.props.history.push("/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+'/home');
                 break;
             }
             default:

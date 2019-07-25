@@ -21,6 +21,9 @@ import SimularPlaceBlock from './SimularPlaceBlock';
 import PlacePhotoShow from './PlacePhotoShow.jsx';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 import { isMobile } from 'react-device-detect'
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
+
 class PlaceDescriptionClass extends React.Component {
     constructor(props) {
         super(props);
@@ -148,7 +151,7 @@ class PlaceDescriptionClass extends React.Component {
                     this.setState({
                         selectedLanguage: this.props.storeState.activeLanguageNumber
                     });
-                    this.props.globalReduser.history.push("/"+(this.props.storeState.country)+'/place/' + slugArray[i].slug);
+                    this.props.globalReduser.history.push("/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+'/place/' + slugArray[i].slug);
                 }
             }
             //надо что-то сделать, если не нашли          

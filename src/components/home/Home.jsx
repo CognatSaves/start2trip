@@ -13,6 +13,8 @@ import Header from '../header/Header';
 import HomeBody from './HomeBody/HomeBody.jsx'
 import { isMobileOnly } from 'react-device-detect';
 import FirstEnterModal from './FirstEnterModal';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 
 class HomeClass extends React.Component {

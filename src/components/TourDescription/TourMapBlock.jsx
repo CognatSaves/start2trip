@@ -4,6 +4,9 @@ import bookmarkEmpty from '../media/bookmark_contour.svg';
 import userBlueIcon from '../media/user_blue.svg';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
+
 class TourMapBlockClass extends React.Component{
     /*constructor(props){
         super(props);
@@ -86,7 +89,7 @@ class TourMapBlockClass extends React.Component{
             </div>       
             <div className="mapBlock_selfTourBlock d-flex">
                 <div>{"Не подобрали тур? Постройте"}</div>
-                <Link to={"/"+(this.props.storeState.country)+"/route"} className="mapBlock_selfTourBlock_selfTour">{"индивидуальный маршрут!"}</Link>
+                <Link to={"/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+"/route"} className="mapBlock_selfTourBlock_selfTour">{"индивидуальный маршрут!"}</Link>
             </div>               
         </div>
     </div>

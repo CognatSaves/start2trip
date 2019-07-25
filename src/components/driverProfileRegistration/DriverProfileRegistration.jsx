@@ -28,6 +28,8 @@ import getUserData from './DriverProfileRequest';
 import DriverRefreshIndicator from './DriverRefreshIndicator';
 import {changeLanguagePart} from '../../redusers/Action';
 import FirstEnterModal from '../home/FirstEnterModal';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 const DriverProfileHistory = lazy(()=> import('./DriverProfileHistory'));
 const DriverProfileBasicInformation = lazy(()=> import('./DriverProfileBasicInformation'));
@@ -37,6 +39,7 @@ const DriverProfileFeedback = lazy(()=> import('./DriverProfileFeedback'));
 const DriverProfileSettings = lazy(()=> import('./DriverProfileSettings'));
 const DriverProfileBilling = lazy(()=> import('./DriverProfileBilling'));
 const DriverProfileAffiliateProgram = lazy(()=> import('./DriverProfileAffiliateProgram'));
+
 
 class DriverProfileRegistrationClass extends React.Component {
   constructor(props) {
@@ -93,7 +96,7 @@ class DriverProfileRegistrationClass extends React.Component {
     }
     else{
       if(this.props.globalReduser.profile.email){
-        this.props.history.push("/"+(this.props.storeState.country)+'/route');
+        this.props.history.push("/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+'/route');
         return null;
       }
       else{

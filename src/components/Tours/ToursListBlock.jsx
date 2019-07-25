@@ -4,9 +4,10 @@ import { Link } from 'react-router-dom';
 import Manipulator from '../manipulator/Manipulator';
 import dromon from '../media/dromon.jpg';
 import Stars from '../stars/Stars';
-import requests from '../../config'
 
 import userBlueIcon from '../media/user_blue.svg';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 export default class ToursListBlock extends React.Component{
     render(){
@@ -33,7 +34,7 @@ export default class ToursListBlock extends React.Component{
                                 <div className="d-flex flex-column toursList_leftBlock">
                                     <div className="placesList_info_row">
                                         <div className="d-flex flex-column" style={{ marginRight: "auto" }}>
-                                            <Link to={"/"+(this.props.storeState.country)+`/tour/${0},${element.id}`} className="placesList_placeName">
+                                            <Link to={"/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+`/tour/${0},${element.id}`} className="placesList_placeName">
                                                 {this.props.namesArray[index]}
                                             </Link>
                                             <div>
@@ -62,7 +63,7 @@ export default class ToursListBlock extends React.Component{
                                     <button className="toursList_rightBlock_bookTourButton">Заказать тур</button>
                                     <div className="toursList_rightBlock_priceInfo">Стоимость на человека</div>
                                     <div className="d-flex" style={{ marginTop: "auto" }}>
-                                        <Link to={"/"+(this.props.storeState.country)+`/tour/${0},${element.id}`} className="placesList_readMoreButton">
+                                        <Link to={"/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+`/tour/${0},${element.id}`} className="placesList_readMoreButton">
                                             Подробнее
                                         </Link>
                                     </div>

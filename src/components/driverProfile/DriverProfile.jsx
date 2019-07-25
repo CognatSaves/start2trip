@@ -16,6 +16,8 @@ import CommentBlock from '../TourDescription/CommentBlock';
 import StartTravelForm from '../startTravelForm/StartTravelForm';
 import StartTravelSuccess from '../startTravelForm/StartTravelSuccess';
 import LocationSearchInput from '../home/HomeBody/Search';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 class DriverProfileClass extends React.Component {
     constructor(props) {
@@ -191,7 +193,7 @@ class DriverProfileClass extends React.Component {
     }
     goToDrivers = () => {
         this.props.dispatch(setDriversRouteChange(true));
-        this.props.history.push("/"+(this.props.storeState.country)+'/drivers');
+        this.props.history.push("/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+'/drivers');
     }
     changePanelVariant = (value) => {
         this.setState({
