@@ -102,7 +102,7 @@
 
 .placesTagList_tagLine {
     width: 90%;
-    text-overflow: ellipsis
+    text-overflow: ellipsis;
 }
 
 .placesTagList_stateBlock {
@@ -120,7 +120,7 @@
 .placesTagList_tagBlock {
     border: 2px solid #cccccc;
     border-radius: 25px;
-    margin: 5px 5px;
+    margin: 5px;
     padding: 5px;
     flex-basis: auto;
     flex-grow: 0.1;
@@ -131,6 +131,7 @@
     color: #304269;
     font-size: 14px;
     font-weight: 400;
+    white-space: nowrap;
 }
 
 .placesTagList_tagBlock_selected {

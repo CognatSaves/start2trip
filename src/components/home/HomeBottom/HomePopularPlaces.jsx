@@ -139,7 +139,7 @@ class PopularPlacesClass extends React.Component {
                                             <div>
                                                 <img src={element.image ? requests.serverAddress + element.image.url : ''} alt="img" />
                                             </div>
-                                            <div className="mt-2">
+                                            <div className="mt-2 d-flex justify-content-center">
                                                 <span>{getDirectionName(element,this)}</span>
                                             </div>
                                         </div>

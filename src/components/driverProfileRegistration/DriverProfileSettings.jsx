@@ -7,7 +7,7 @@ import ReactTelInput from 'react-telephone-input'
 import requests from '../../config';
 import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 import getUserData from './DriverProfileRequest';
-import RefreshIndicator from 'material-ui/RefreshIndicator';
+// import RefreshIndicator from 'material-ui/RefreshIndicator';
 import DriverRefreshIndicator from './DriverRefreshIndicator';
 
 
@@ -208,12 +208,12 @@ class DriverProfileSettingsClass extends React.Component {
     }
 
     render(){
-        const style = {
-            refresh: {
-                display: 'inline-block',
-                position: 'relative',
-            },
-        };
+        // const style = {
+        //     refresh: {
+        //         display: 'inline-block',
+        //         position: 'relative',
+        //     },
+        // };
         let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileSettings;
         let profile = this.props.globalReduser.profile;
         return (

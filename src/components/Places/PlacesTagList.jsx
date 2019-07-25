@@ -37,7 +37,7 @@ class PlacesTagListClass extends React.Component {
                 <div className="d-flex align-items-center justify-md-content-start justify-content-center mr-md-5 mr-0">
                     <span className="popularPlacesTitleTagList">{textInfo.placesTagList.placesTagListTitle + ':'}</span>
                 </div>
-                <div id="tagLine" className="d-flex flex-md-row flex-column placesTagList_tagLine" key={this.state.tags + this.state.isShortTags}>
+                <div id="tagLine" className="d-flex flex-md-row flex-column flex-wrap placesTagList_tagLine" key={this.state.tags + this.state.isShortTags}>
                     {
                         this.props.placesState.tags.map((element, index) => {
                             if (this.state.isShortTags) {
@@ -46,7 +46,8 @@ class PlacesTagListClass extends React.Component {
                                 }
                                 else {
                                     if (index > 0) {
-                                        let temp = document.getElementById("tagno" + (index - 1));
+                                        let indexTemp = index - 1
+                                        let temp = document.getElementById("tagno" + indexTemp);
                                         if (temp) {
                                             widthSum += temp.offsetWidth;
                                             let w = tempWidth.offsetWidth * 2 - 200

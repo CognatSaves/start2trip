@@ -86,7 +86,7 @@ class RenderModalCountryClass extends React.Component {
         };
     }
     onSelect = (element) => {
-        debugger
+        
         this.props.dispatch(modalCountryDispatch(element.ISO,element.isoMap));
         let date = new Date(Date.now()+1000*3600*24*60); 
         cookies.set("country",element.ISO, {path: '/', expires: date}); 

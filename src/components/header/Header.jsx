@@ -302,7 +302,7 @@ class HeaderClass extends React.Component {
     pathnameUrl = pathnameUrl.split('/');
     pathnameUrl = pathnameUrl[1];
     let pathnameLength = pathnameUrl.split('');
-    debugger
+    
     if(pathnameLength.length===6){
       let stringCookies = (cookiesIso+"-"+cookiesLangISO)
       if(stringCookies!==pathnameUrl){
