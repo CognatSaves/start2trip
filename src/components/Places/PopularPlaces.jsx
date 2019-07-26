@@ -1,14 +1,10 @@
 import React from 'react';
 import './PopularPlaces.css';
 import { connect } from 'react-redux';
-// import Tbilisy from './pictures/tbilisi_desk.jpg'
-// import Batumi from './pictures/Batumi.-Podorozh-do-sertsya-Gruziyi-700x420.jpg'
-// import kytaisy from './pictures/Kolhidskiy-fontan.-Kutaisi.jpg'
-// import Rustavi from './pictures/Rustavi_Museum_(A._Muhranoff,_2011).jpg'
-// import samegrello from './pictures/thumb_536_1370_437_0_0_auto.jpg'
-// import Andshi from './pictures/Вид_на_деревушку_Адиши,_Грузия.jpg'
 import requests from '../../config';
 import { setSelectedDirection } from '../../redusers/ActionPlaces';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 class PopularPlacesClass extends React.Component {
     constructor(props) {
@@ -47,7 +43,7 @@ class PopularPlacesClass extends React.Component {
             //let slug = findSelectedDirectionName(this.props.placesState.directions, id);
             //if(slug){
             this.props.dispatch(setSelectedDirection(id));
-            this.props.globalReduser.history.push("/"+(this.props.storeState.country)+'/places/'+slug);
+            this.props.globalReduser.history.push("/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+'/places/'+slug);
             //}
             //else{
             //    this.props.dispatch(setSelectedDirection(''));
@@ -57,7 +53,7 @@ class PopularPlacesClass extends React.Component {
         }
         else{
             this.props.dispatch(setSelectedDirection(''));
-            this.props.globalReduser.history.push("/"+(this.props.storeState.country)+'/places');
+            this.props.globalReduser.history.push("/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+'/places');
         }
         
         

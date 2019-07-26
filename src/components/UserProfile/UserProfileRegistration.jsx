@@ -24,6 +24,8 @@ import getUserData from '../driverProfileRegistration/DriverProfileRequest';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 
 import FirstEnterModal from '../home/FirstEnterModal';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 
 const UserProfileHistory = lazy(()=> import('./UserProfileHistory'));
@@ -80,7 +82,7 @@ class UserProfileRegistrationClass extends React.Component {
     }
     else{
       if(this.props.globalReduser.profile.email){
-        this.props.history.push("/"+(this.props.storeState.country)+'/home');
+        this.props.history.push("/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+'/home');
         return null;
       }
       else{

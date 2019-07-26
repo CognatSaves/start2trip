@@ -6,6 +6,8 @@ import requests from '../../../config';
 // import tagBlue from '../../media/tag_blue.svg';
 import geoIcon from '../../media/geo_icon.svg';
 import { connect } from 'react-redux';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 class RouteListElementClass extends React.Component{
     render(){
         let textInfo = this.props.storeState.languageTextMain.home.homeBottom.routeListElement;
@@ -41,12 +43,12 @@ class RouteListElementClass extends React.Component{
             <div className={this.props.routeListElementClass ? this.props.routeListElementClass : "col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 pb-0 p-2 "}>
                 <div className={"drivers_block_element d-flex p-0 flex-column"} id={index}>                       
                     <div className="driversBlock_carImage" style={{ background: "url(" + (element.image ? (requests.serverAddress+element.image) : '') + ") no-repeat", backgroundSize: "cover", width: '100%' }}>
-                        <Link to={"/"+(this.props.storeState.country)+`/route/${element.placelocalization.slug}`} className="driversBlock_carBlackout">
+                        <Link to={"/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+`/route/${element.placelocalization.slug}`} className="driversBlock_carBlackout">
                             <div className="driversBlock_carBlackout_detailed">{textInfo.detailed}</div>
                         </Link>
                     </div>
                     <div className="placesList_info d-flex flex-column">
-                        <Link to={"/"+(this.props.storeState.country)+`/route/${element.placelocalization.slug}`} className="placesList_placeName d-flex">
+                        <Link to={"/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+`/route/${element.placelocalization.slug}`} className="placesList_placeName d-flex">
                             <div>
                                 {element.placelocalization.name}
                             </div>

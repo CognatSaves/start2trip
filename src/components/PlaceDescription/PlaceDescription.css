@@ -334,8 +334,18 @@
 	padding:0 3px!important;
 }
 
+.placePhotos_elementBlock img {
+    transition: all 0.3s;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
+}
+
 .placePhotos_elementBlock:hover {
     cursor: pointer;
+}
+
+.placePhotos_elementBlock img:hover {
+    transform: scale(1.04);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
 .placePhotos_imageStyle {

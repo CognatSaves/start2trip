@@ -33,6 +33,9 @@ import '../driverProfileRegistration/DriverProfileBilling.css';
 import './AgencyProfileDrivers.css';
 //import css
 
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
+
 const AgencyProfileBasicInformation = lazy(()=> import('./AgencyProfileBasicInformation'));
 const AgencyProfileAffiliateProgramm = lazy(()=> import('./AgencyProfileAffiliateProgramm'));
 const AgencyProfileHistory = lazy(()=> import('./AgencyProfileHistory'));
@@ -87,7 +90,7 @@ class AgencyProfileClass extends React.Component{
         }
         else{
             if(this.props.globalReduser.profile.email){
-                this.props.history.push("/"+(this.props.storeState.country)+'/route');
+                this.props.history.push("/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+'/route');
                 return null;
             }
             else{

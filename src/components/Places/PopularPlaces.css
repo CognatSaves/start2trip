@@ -147,4 +147,7 @@ padding:0;
         overflow-y: hidden;
         scroll-behavior: smooth;
     }
+    .popularPlacesEl span {
+        text-align: center;
+    }
 }

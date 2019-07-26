@@ -6,8 +6,9 @@ import logoTripfer from "../media/logo_tripfer_white.svg"
 import upArrowIcon from "../media/up-arrow.svg"
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import requests from '../../config'
 import MobileFilter from '../drivers/DriversBody/DriversProperties/MobileFilter/MobileFilter'
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 class FooterClass extends React.Component {
   constructor(props) {
@@ -79,7 +80,7 @@ class FooterClass extends React.Component {
         <div className="footerMobile d-xl-none d-lg-none d-md-none d-sm-flex d-flex">
           {
             mobileElemArray.map((element, index)=>
-            <Link to={"/"+(this.props.storeState.country)+element.pathname} className="col-3 d-flex align-items-end">
+            <Link to={"/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+element.pathname} className="col-3 d-flex align-items-end">
               <div className={ (element.pathnamesInner.indexOf(pathname)!==-1 ? "foterMobaileItem_active":" " )+ " d-flex flex-column align-items-center justify-content-end col-12 foterMobaileItem "} >
                 <div className={element.pathnamesInner.indexOf(pathname)!==-1 ? element.iconClasses[0]:element.iconClasses[1] } />
                 <div className={element.classValue}>{element.value}</div>

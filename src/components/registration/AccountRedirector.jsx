@@ -8,6 +8,8 @@ import { /*Link,*/ Route, BrowserRouter, Redirect, Switch } from 'react-router-d
 import DriverProfileRegistration from '../driverProfileRegistration/DriverProfileRegistration';
 import UserProfileRegistration from '../UserProfile/UserProfileRegistration';
 import AgencyProfile from '../AgencyProfile/AgencyProfile';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 class AccountRedirectorClass extends React.Component{
     constructor(props){
@@ -96,7 +98,7 @@ class AccountRedirectorClass extends React.Component{
             
         }
         //if everything is bad! If it entered here there is a problem!
-        this.props.history.push("/"+(this.props.storeState.country)+'/home');
+        this.props.history.push("/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+'/home');
         return null;
     }
 }

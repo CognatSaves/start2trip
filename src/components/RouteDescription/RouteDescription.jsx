@@ -14,8 +14,9 @@ import RouteTravelBlock from './RouteTravelBlock';
 import SimularRouteBlock from './SimularRouteBlock';
 import CommentBlock from '../TourDescription/CommentBlock.jsx';
 
-
 import TourPanel from '../TourDescription/TourPanel.jsx';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 class RouteDescriptionClass extends React.Component {
     constructor(props) {
@@ -82,7 +83,7 @@ class RouteDescriptionClass extends React.Component {
                         selectedLanguage: this.props.storeState.activeLanguageNumber,
 
                     });
-                    this.props.globalReduser.history.push("/"+(this.props.storeState.country)+'/route/' + slugArray[i].slug);
+                    this.props.globalReduser.history.push("/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+'/route/' + slugArray[i].slug);
                 }
             }
             //надо что-то сделать, если не нашли          

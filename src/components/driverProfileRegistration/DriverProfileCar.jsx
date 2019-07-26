@@ -9,7 +9,7 @@ import MenuItem from 'material-ui/MenuItem'
 import TextField from 'material-ui/TextField'
 import config from '../../config';
 import requests from '../../config';
-import RefreshIndicator from 'material-ui/RefreshIndicator';
+// import RefreshIndicator from 'material-ui/RefreshIndicator';
 import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 import getUserData from './DriverProfileRequest';
 import DriverRefreshIndicator from './DriverRefreshIndicator';
@@ -121,7 +121,7 @@ class DriverProfileCarClass extends React.Component {
                 obj[4].classList.add("errorColor");
                 result = false;
             }
-            debugger;
+            
             //let fuelConsumption =  Number(newCarCard.fuelConsumption);
             //let b = (fuelConsumption<=0);
             if(newCarCard.fuelConsumption.length===0 || isNaN(newCarCard.fuelConsumption) ||  Number(newCarCard.fuelConsumption)<=0){

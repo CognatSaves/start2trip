@@ -115,7 +115,7 @@ class RouteMenuClass extends React.Component {
     /*else{
       dateValue = '';
     }*/
-    debugger;
+    
     let pathnameMAss = document.location.pathname.split("/");
     let resultpathname =(pathnameMAss.length<=3) ? true : false;
     //вышестоящее условие звучит следующим образом - если в адресной строке больше или равно 4 элементов,
@@ -224,7 +224,7 @@ class RouteMenuClass extends React.Component {
     flagCities = this.validationInput(massCities);
     if (flagCities) {
             //this.props.goToDrivers(this.props.storeState.cities, this.state.date)
-      debugger;
+      
       this.requestFunction((that,cities, date, languageISO)=>{
           let routeDate = that.props.globalhistory.getRoute(cities, languageISO);
           let newStringCities = routeDate.route;
@@ -233,7 +233,7 @@ class RouteMenuClass extends React.Component {
           let canMove;
           canMove = routeDate.canMove;
           let dateString = that.props.globalhistory.createDateTimeString(date, true);
-          debugger;
+          
           if (canMove) {
             let index = that.props.storeState.activeLanguageNumber;
             that.props.globalhistory.history.push('/'+this.props.storeState.country+`-`+that.props.storeState.languages[index].isoAutocomplete+`/drivers/${country}-${newStringCities}?date=`+dateString+(langISO!=='ENG' ? `&lang=`+langISO : ``));
@@ -244,7 +244,7 @@ class RouteMenuClass extends React.Component {
     }
   }
   requestFunction = (allGoodAfterfunc) => {
-    debugger;
+    
     this.setState({ isWaiting: true, isRefreshing: true, isGoodAnswer: true, isLoaded: true });
 
     let that = this;
@@ -270,7 +270,7 @@ class RouteMenuClass extends React.Component {
     
     let request = createRequestElement(this.props.storeState.cities, window.google.maps.DirectionsTravelMode.DRIVING);
     let service = new window.google.maps.DirectionsService();
-    debugger;
+    
     let cities = this.props.storeState.cities;
     let date = this.state.date;
     let langISO = this.props.storeState.languages.length>0 ? this.props.storeState.languages[this.props.storeState.activeLanguageNumber].ISO : '';
@@ -278,7 +278,7 @@ class RouteMenuClass extends React.Component {
 
     service.route(request, function(response, status)
     {
-      debugger;
+      
       if (status !== window.google.maps.DirectionsStatus.OK){
         return false;
       }
@@ -313,11 +313,11 @@ class RouteMenuClass extends React.Component {
         headers: { 'content-type': 'application/json' }
       })
         .then(response => {
-          debugger;
+          
           return response.json();
         })
         .then(function (data) {
-          debugger;
+          
           if (data.error) {
             console.log("bad");
             that.setState({ isRefreshing: false, isGoodAnswer: false });
