@@ -35,6 +35,7 @@
     background: #f60;
 }
 
+
 .specialBorder {
     border-bottom: 2px solid #ccc;
 }
@@ -65,6 +66,7 @@
     color: #304269;
     font-size: 16px;
     font-weight: 500;
+    text-transform: uppercase;
 }
 
 .blillingHeader {
@@ -77,6 +79,8 @@
     font-size: 16px;
     font-weight: 500;
     color: #304269;
+    text-transform: uppercase;
+    text-align:center;
 }
 
 .billingTable tr td {
@@ -276,6 +280,10 @@
     .billingCalendar {
         margin: 10px 2px !important;
     }
+    .billingButton
+{
+    padding-bottom:20px;
+}
 }
 
 @media (max-width: 576px) {}

@@ -199,10 +199,7 @@ class DriverProfileNavigationClass extends React.Component {
                                         <p>{textPage.totalTrips.last}</p>
                                     </div>
                                 </div>
-                                <div className="bodyTopDriverInfoRideMobail  d-md-none d-flex align-items-center justify-content-between col-md-3 col-sm-5 col-12 p-0">
-                                    <p>{textPage.totalTrips.full}:</p>
-                                    <span className="pl-1">{profile.futureTrips.length + profile.historyTrips.length}</span>
-                                </div>
+                                
                                 <div className="d-md-flex d-none align-items-center col-lg-3 col-md-4 col-6 p-0">
                                     <span>{profile.futureTrips.length}</span>
                                     <div className="d-flex flex-column ">

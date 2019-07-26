@@ -336,17 +336,19 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                 </Dialog>
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer}/>
                 <div className="tripSettingsBody">
-                    
+                <div className="basicInformationBodyBottomHeader d-xl-block d-lg-block d-md-block d-sm-none d-none">
+                        <p>{textPage.titlePage}</p>
+                    </div>
                     <form onSubmit={(event)=>this.formSubmit(event)} id="tripForm" className="">
                         <div className="tripSettingsContent">                        
                             
-                            <div className="tripSettingsContentTitle d-flex align-items-center">
-                                <p>{textPage.addCityTitle}</p>
+                            <div className="tripSettingsContentTitle d-flex align-items-center tripname">
+                                {textPage.addCityTitle}
                             </div>
                             {this.state.cityRadius.map((element, index) =>
                                 <React.Fragment>
                                     <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                        <label htmlFor={"tripLocation" + index} className="col-xl-2 col-lg-2 col-md-2 col-sm-11 col-11 p-0">{textPage.tripLocation}:</label>
+                                        <label htmlFor={"tripLocation" + index} className="col-xl-2 col-lg-2 col-md-2 col-sm-11 col-11 p-0 triplabel">{textPage.tripLocation}:</label>
                                         <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column col-md-6 col-sm-12 col-12 p-0">
                                             <LocationSearchInput address={element.point} changeCity={this.changeCity} classDiv="col-md-8 col-12 p-0" classInput="searchInputDriverInformation" index={index} classDropdown="searchDropdownDriverInformation" />
                                             <input className="col-md-4 col-sm-12 col-12 ml-1 d-xl-block d-lg-block d-md-block d-sm-none d-none" type="text" id="itemRadiu" value={element.radius}
@@ -371,7 +373,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                                 <p className="col-md-8 col-sm-12 col-12 " onClick={this.addCityRadius}>{textPage.textField.addCityBt}</p>
                             </div>
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                <label htmlFor="maxDailyMileage" className="col-xl-2 col-lg-2 col-md-2 col-sm-11 col-12 p-0">{textPage.maxDailyMileage.floatingLabelText}</label>
+                                <label htmlFor="maxDailyMileage" className="col-xl-2 col-lg-2 col-md-2 col-sm-11 col-12 p-0 dailymile">{textPage.maxDailyMileage.floatingLabelText}</label>
                                 <div className="d-md-block d-sm-none d-none col-md-3 col-sm-12 col-12">
                                 <input id="maxDailyMileage" className="" type="text" value={this.state.distance}
                                     onChange={(e) => this.inputChange(e.target.value, 'distance')}
@@ -389,13 +391,13 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                                 />
                                 {/* <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none pl-2">{textPage.maxDailyMileage.description}</p> */}
                             </div>
-                            <div className="tripSettingsContentTitle col-12 p-0"><p>{textPage.weekendSettings}</p></div>
-                            <div className="tripSettingsContentP d-flex flex-md-row flex-sm-column flex-column align-items-center">
-                                <p className="col-lg-2 col-md-3 col-12 p-0">{textPage.chooseWeekend}</p>
-                                <span className="newTourDatepickerSpan col-xl-6 col-lg-7 col-md-9 col-12" onClick={this.calendarModalShow}>{textPage.selectDates}</span>
+                            <div className="tripSettingsContentTitle col-12 p-0">{textPage.weekendSettings}</div>
+                            <div className="tripSettingsContentP d-flex">
+                                <p className="col-lg-2 col-md-3 col-6 p-0 closetext">{textPage.chooseWeekend}</p>
+                                <span className="newTourDatepickerSpan col-xl-6 col-lg-7 col-md-9 col-6" onClick={this.calendarModalShow}>{textPage.selectDates}</span>
                             </div>
                             <div className="tripSettingsContentDate d-flex align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start justify-content-center">
-                                <div className="d-flex flex-wrap flex-row align-items-start col-md-8 col-12 p-0 mb-2">
+                                <div className="d-flex flex-wrap flex-row align-items-start col-md-8 col-6 p-0 mb-2">
 
                                     {this.state.dateTour.map((element, index) => {
                                         let day = element.getDate();

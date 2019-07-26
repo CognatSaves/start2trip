@@ -206,7 +206,7 @@ class AgencyProfileBillingClass extends React.Component{
                     <div className="d-flex flex-md-row flex-sm-column flex-column justify-content-between col-12 p-0">
                         <div className="d-flex flex-column">
                             <span className="blillingHeaderTitle">Операции по счету №20456787</span>
-                            <div className=" billingText d-flex flex-md-row flex-sm-column flex-column align-items-center mt-5">
+                            <div className=" billingText d-flex flex-md-row flex-sm-column flex-column align-items-center mt-3">
                                 <span className="pr-2">За период</span>
                                 <div className="d-flex  ">
                                     <DatePicker floatingspanText="Дата начала" className="billingCalendar" />
