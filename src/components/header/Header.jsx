@@ -189,7 +189,7 @@ const CountrySelect = (props) => {
             <button className="modalCountryButtton" onClick={() => { toggleModalCountry() }}><img src={crossIconModal} width="20px" height="20px" alt="crossIconModal" /></button>
           </div>
           <div className="modalCountry d-flex flex-column align-items-center mb-5">
-            <h4 className="mb-4">{textInfo.modalCountrySelect.selectCountryText}</h4>
+            <span className="mb-4">{textInfo.modalCountrySelect.selectCountryText}</span>
             <RenderModalCountry close={toggleModalCountry} />
           </div>
         </div>
@@ -629,7 +629,7 @@ class HeaderClass extends React.Component {
           <Link className="" to={"/"+(this.props.storeState.country)+"/route"}>
             <h3 />
           </Link>
-          <div onClick={this.toggleModalCountry} style={{visibility: this.props.storeState.countries.length>0 ? 'visible' : 'hidden'}} className="headerGeoButton col-lg-5 col-md-4 col-6">
+          <div onClick={this.toggleModalCountry} style={{visibility: this.props.storeState.countries.length>0 ? 'visible' : 'hidden'}} className="headerGeoButton col-lg-5 col-md-4 col-7">
                 <span>{this.props.storeState.country}</span>
               </div>
           <div className="headerSelect d-flex align-items-center justify-content-end ">

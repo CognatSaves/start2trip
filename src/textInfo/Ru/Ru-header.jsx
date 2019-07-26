@@ -4,7 +4,7 @@ const header = {
         selectAccountTypeText: 'Выберите тип вашего аккаунта',       
     },
     modalCountrySelect:{
-        selectCountryText: 'ВЫБЕРИТЕ ВАШУ СТРАНУ'
+        selectCountryText: 'ВЫБЕРИТЕ СТРАНУ ДЛЯ ПОИСКА ВОДИТЕЛЕЙ'
     },
     menuElements:[
         "Маршруты","Места","Туры"

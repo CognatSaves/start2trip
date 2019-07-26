@@ -982,9 +982,7 @@ react-tel-input {
     top: 0;
     bottom: 0;
     padding: 0;
-    background-color: #eaeaea;
-    border: 1px solid #cacaca;
-    border-radius: 3px 0 0 3px;
+   
 }
 
 .react-tel-input .flag-dropdown {

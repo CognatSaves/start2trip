@@ -2,6 +2,12 @@
     font-size: 18px;
 }
 
+.h2, h2
+
+{
+	font-size:20px!important;
+}
+
 .placeinfo_vertical {
     margin: 3px 5px 0;
     color: #ffffff;
@@ -29,6 +35,8 @@
     height: 100%; */
     /* filter: brightness(0.5); */
     background-color: rgba(0, 0, 0, 0.5);
+	min-height:210px;
+	
 }
 
 .placeDescription_fragmentName {
@@ -82,7 +90,13 @@
 }
 
 .placeDescription_description_commentTextStyle {
-    color: #ffffff;
+    color: #ffffff!important;
+
+}
+
+.placeDescription_topImageMask .infoBlock_starsBlock_value
+{
+	color:#ffffff!important;
 }
 
 .placeDescription_description_info {
@@ -315,8 +329,9 @@
 }
 
 .placePhotos_elementBlock {
-    margin: 10px 0;
+    margin: 0px 0;
     position: relative;
+	padding:0 3px!important;
 }
 
 .placePhotos_elementBlock:hover {
@@ -359,4 +374,15 @@
     color: #ffffff;
     font-weight: 600;
     border-bottom: 1px dashed;
+}
+
+@media (max-width: 742px) {
+	#placeDescriptionId
+	
+	{
+		max-height:210px;
+		height:210px;
+	}
+	
+	
 }

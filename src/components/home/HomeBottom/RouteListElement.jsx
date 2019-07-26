@@ -65,8 +65,8 @@ class RouteListElementClass extends React.Component{
                         }
                         
                         <div className="d-flex placesList_info_position placesList_info_position_loc">
-                            <img src={geoIcon} height="14px" width="14px" alt="tagBlue"/>
-                            <div className="placesList_info_position_textStyle" style={{color: '#686868', fontSize: '14px'}}>{createRouteString(element.placelocalization.points)}</div>
+                        
+                            <div className="placesList_info_position_textStyle">{createRouteString(element.placelocalization.points)}</div>
                         </div>
                     </div>
                 </div>

@@ -24,7 +24,7 @@ class PlaceInfoClass extends React.Component {
         return(
             <React.Fragment>
             <div className="col-12">
-                <div style={{padding: '75px 0'}}>
+                <div style={{padding: '40px 0'}}>
                 {
                     <div className="d-flex">
                         <h1 className="placeDescription_description_name" >
@@ -60,21 +60,7 @@ class PlaceInfoClass extends React.Component {
                         </React.Fragment>
                         : <React.Fragment/>
                     }
-                    {
-                        this.props.date ?
-                        <React.Fragment>
-                            <div className="placeinfo_vertical"/>
-                            <div className="d-flex" style={{}}>
-                                <div className={"placeDescription_description_tagElement"/*"placeDescription_description_date"*/}>
-                                    {date.getDate()+" "+getMonthName(date.getMonth())+" "+date.getFullYear()}
-                                </div>
-                               
-                                
-                            </div>
-                        </React.Fragment>
-                        :
-                        <React.Fragment/>
-                    }
+                    
                          
                 </div>
                 

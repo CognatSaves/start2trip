@@ -35,7 +35,7 @@ class PlaceListElementClass extends React.Component{
                         <div className="placesList_info_position_textStyle">{element.tagsArray.map((tag, tagIndex)=><text>{ this.props.findTagName(tag) +(element.tagsArray.length-1>tagIndex ? ",":"")+" "}</text>) }</div>
                     </div>
                     <div className="d-flex placesList_info_position placesList_info_position_loc">
-                        <img src={geoIcon} height="14px" width="14px" alt="tagBlue"/>
+                       
                         <div className="placesList_info_position_textStyle" style={{color: '#686868', fontSize: '14px'}}>{element.placelocalization.location}</div>
                     </div>
                 </div>

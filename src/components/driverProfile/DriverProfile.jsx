@@ -501,10 +501,10 @@ class DriverProfileClass extends React.Component {
                                 <div className="drivers_route col-12 d-flex " >
                                     <div className="d-flex flex-column routeTravelBlock_pointPart col-md-6 col-12" style={{margin: 0}}>
                                         <div style={{paddingTop: '10px'}}>
-                                            <div className="route_time_text col-12">Время в пути без остановок:
-                                            <p1> {this.props.driversState.travelTime}</p1>
-                                                , длина пути:
-                                            <p2> {this.props.driversState.travelLength}</p2>
+                                            <div className="route_time_text col-12">
+											<div class="marsh"> Ваш маршрут:</div>
+                                            <div class="param">Время в пути: <span>{this.props.driversState.travelTime}</span></div>
+                                            <div class="param par">Длина пути: <span>{this.props.driversState.travelLength}</span></div>
 
                                             </div>
                                         </div>
@@ -516,7 +516,7 @@ class DriverProfileClass extends React.Component {
                                                         this.props.storeState.cities.map((element, index) => 
                                                         <div className={"routeTravelBlock_element d-flex col-md-6 col-12 " /*+ (index%2===0 ? 'routeTravelBlock_pointElement_left' : 'routeTravelBlock_pointElement_right')*/}>
                                                             <div className="routeTravelBlock_pointValue d-flex flex-row">
-                                                                <div style={{paddingRight: '10px',margin: 'auto 0'}}>{this.props.globalReduser.alphabet[index]}</div>
+                                                                <div class="alfab">{this.props.globalReduser.alphabet[index]}</div>
                                                                 <div className="d-flex routeTravelBlock_height driverProfile_searchContainer">
                                                                     <LocationSearchInput readOnlyOn={this.props.driversState.driverCarDescription.id ? true : false} address={element.point}
                                                                     changeCity={this.changeCity} index={index}

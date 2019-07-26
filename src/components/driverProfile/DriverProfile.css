@@ -13,10 +13,19 @@
 .route_time_text,
 .route_comment {
     padding-top: 10px;
-    color: #304269;
+    color: #686868;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.route_time_text span,
+.route_comment span {
+    padding-top: 10px;
+    color: #686868;
     font-weight: 500;
     font-size: 16px;
 }
+
 
 .route_time_text p1,
 .route_time_text p2 {
@@ -267,7 +276,7 @@ span.drivers_route_Link {
     color: #304269;
     font-size: 14px;
     font-weight: 400;
-    width: 120px;
+ 
 }
 
 .drivers_routePromo input::placeholder {
@@ -388,8 +397,33 @@ span.drivers_route_Link {
     background-size: 20px 25px;
     background-position: center left;
 }
+.marsh
+{
+	color: #304269;
+	font-size:25px;
+    font-weight: 500;
+    text-align: left;
+    padding-bottom: 10px;
+}
 
-@media (max-width: 560px) {
+.param
+{
+	display:inline-block!important;
+}
+.par
+{
+	    padding-left: 15px;
+}
+
+.alfab
+{
+	font-weight:500;
+	color:#304269;
+	padding-right:10px;
+	margin:auto 0;
+}
+
+@media (max-width: 768px) {
     .drivers_routePrice {
         padding-top: 10px;
     }
@@ -402,4 +436,9 @@ span.drivers_route_Link {
     .driversRoute {
         padding: 5px !important;
     }
+	.par
+{
+	    padding-left: 0px;
+}
+	
 }

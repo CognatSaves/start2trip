@@ -71,9 +71,10 @@
 
 .placesList_info_position_loc {
     font-size: 14px;
-    height: 28px;
-    min-height: 28px;
+height: 40px;
+    min-height: 40px;
     line-height: 14px;
+
 }
 
 .placesList_info_position_textStyle {
@@ -151,4 +152,12 @@
         background-size: 10px 10px;
         background-position: right 5px center;
     }
+	
+	.placesList_placeName {
+    font-size: 20px;
+    line-height: 16px;
+    font-weight: 500;
+
+}
+	
 }

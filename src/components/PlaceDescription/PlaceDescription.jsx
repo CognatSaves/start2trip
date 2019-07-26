@@ -208,9 +208,9 @@ class PlaceDescriptionClass extends React.Component {
                                 isMaskVisible={this.state.isMaskVisible} clickedImageIndex={this.state.clickedImageIndex} images={this.state.newPlace.place.images} />
                             : <React.Fragment />
                     }
-
+<Header history={this.props.history} />
                     <div className="placeDescription_background col-12 p-0" style={{ background: isMobile ? smallImage : bigImage }} id={topBlockId}>
-                        <Header history={this.props.history} />
+                        
                         {
                             this.state.newPlace.local ?
                                 <div className="placeDescription_topImageMask">

@@ -12,7 +12,7 @@
     font-weight: 600;
     color: #ff6600;
     line-height: 17px;
-    margin: auto 5px 0 0;
+    margin: 3px 5px 0 0;
 }
 
 .placeCreateCommentStars {
@@ -56,7 +56,7 @@
     font-size: 12px;
     text-align: center;
     color: #686868;
-    margin: auto 0 0 5px;
+    margin: 2px 0 0 5px;
 }
 
 .react-rater-star {
@@ -77,9 +77,17 @@
 
 @media (max-width: 768px) {
     .infoBlock_starsBlock_stars {
-        font-size: 14px;
+        font-size: 16px;
     }
     .infoBlock_starsBlock_number {
         font-size: 14px;
     }
+	
+	.placesList_info_position_textStyle
+	{
+
+    line-height: 19px!important;
+	    color: rgb(104, 104, 104);
+    font-size: 16px;
+	}
 }

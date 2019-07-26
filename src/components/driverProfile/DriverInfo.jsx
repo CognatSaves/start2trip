@@ -67,7 +67,7 @@ class DriverInfoClass extends React.Component{
                         <img src={requests.serverAddress+element.avatar} alt={"photo " + element.name} />
                     </div>
                     <div className="block_element_infoBlock">
-                        <div style={{paddingBottom: "15px"}} key={element.rating}>
+                        <div style={{paddingBottom: "2px"}} key={element.rating}>
                             <div className="block_element_infoBlock_name driversInfo_driverName">{element.name}</div>
                             <Stars value={element.rating} commentNumber={element.comments ? element.comments.length + " отзывов" : 0} valueDisplay={true} commentNumberDisplay={true} />
                         </div>
