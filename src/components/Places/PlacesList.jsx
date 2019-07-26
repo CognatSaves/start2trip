@@ -19,6 +19,7 @@ class PlacesListClass extends React.Component {
         this.state={}
     }
     placesSort=(array,type)=>{
+        
         function sortRating(a,b){//1
             if(a.rating>b.rating) return -1;
             if(a.rating<b.rating) return 1;
@@ -28,8 +29,8 @@ class PlacesListClass extends React.Component {
             if(a.comments<b.comments) return 1;
         }
         function sortName(a,b){//3
-            if(a.name>b.name) return 1;
-            if(a.name<b.name) return -1;
+            if(a.name>b.placelocalization.name) return 1;
+            if(a.name<b.placelocalization.name) return -1;
         }
         
         switch (type){
@@ -42,6 +43,7 @@ class PlacesListClass extends React.Component {
 
             default: return array;
         }
+        
     }
     
     render(){
@@ -85,9 +87,14 @@ class PlacesListClass extends React.Component {
         console.log(this.props);
         let tagFilteredArray =tagFilterFunction([...this.props.placesState.placesList], this.props.placesState.selectedTags);
         console.log('tagFilteredArray',tagFilteredArray);
-
-        let sortedArray = this.placesSort(/*[...this.props.placesState.placesList]*/tagFilteredArray, this.props.placesState.sortMenuValue);
-         
+        let sortedArray;
+        // 
+        // if(tagFilteredArray.length !== 0){
+            
+            sortedArray = this.placesSort(/*[...this.props.placesState.placesList]*/tagFilteredArray, this.props.placesState.sortMenuValue);
+        // }
+        
+        
         let selectedPlaces = sortedArray.slice((this.props.placesState.page-this.props.placesState.showPages)*this.props.placesState.pagesMenuValue,
         this.props.placesState.page*this.props.placesState.pagesMenuValue);
 

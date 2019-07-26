@@ -31,8 +31,8 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 150px;
-    padding: 10px;
+    height: 140px;
+    padding: 0px 10px;
 }
 
 .placesList_stars {
@@ -80,6 +80,8 @@
     margin-left: 5px;
     line-height: 16px;
     width: 90%;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .placesList_readMoreButton {
@@ -132,6 +134,7 @@
     font-size: 14px;
     font-weight: 400;
     white-space: nowrap;
+    cursor: pointer;
 }
 
 .placesTagList_tagBlock_selected {
