@@ -629,7 +629,7 @@ class HeaderClass extends React.Component {
           <Link className="" to={"/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+"/route"}>
             <h3 />
           </Link>
-          <div onClick={this.toggleModalCountry} style={{visibility: this.props.storeState.countries.length>0 ? 'visible' : 'hidden'}} className="headerGeoButton col-lg-5 col-md-4 col-7">
+          <div onClick={this.toggleModalCountry} style={{visibility: this.props.storeState.countries.length>0 ? 'visible' : 'hidden'}} className="headerGeoButton col-lg-5 col-md-4 col-6">
                 <span>{this.props.storeState.country}</span>
               </div>
           <div className="headerSelect d-flex align-items-center justify-content-end ">

@@ -29,7 +29,7 @@
     color: #fff;
     font-weight: 400;
     font-size: 14px;
-	margin-top: -20px;
+    margin-top: -20px;
     padding-bottom: 25px;
 }
 
@@ -110,9 +110,9 @@
     height: 100%;
 }
 
-@media (min-width: 400px) {
+@media (max-width: 600px) {
+    .mobailRoutMenuTitle,
     .mobailRoutMenuText {
         text-align: center;
     }
 }
-

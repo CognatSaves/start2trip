@@ -1,8 +1,9 @@
 .drivers_route {
     background-color: #fff;
     padding: 20px !important;
-    border-radius: 0 0 5px 5px;
+    border-radius: 5px;
     max-width: 1200px;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
 }
 
 .driverAdaptedRoute_bottomBlock {
