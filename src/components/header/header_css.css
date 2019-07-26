@@ -23,7 +23,7 @@
 }
 
 .btUp-active {
-    top: 15%;
+    top: 10%;
 }
 
 .btUp span {
@@ -112,10 +112,11 @@
 
 /* Modal Country Begin */
 
-.modalCountry h4 {
+.modalCountry span {
     font-weight: 500;
-    font-size: 24px;
+    font-size: 21px;
     color: #333;
+	text-align:center;
 }
 
 .modalCountryButtton {

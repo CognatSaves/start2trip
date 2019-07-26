@@ -59,7 +59,7 @@ html {
 /* Footer Mobaile Begin */
 
 .footerMobile {
-    position: sticky;
+    position: fixed;
     z-index: 33;
     width: 100%;
     background: #fff;

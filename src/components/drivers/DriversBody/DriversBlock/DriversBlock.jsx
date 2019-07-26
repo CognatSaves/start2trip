@@ -221,13 +221,12 @@ class DriversBlockClass extends React.Component {
                     </div>
                     <div className="driversBlock_driverInfoBlock_element d-flex">
                       <div className="driversBlock_driverCard_photo" style={{ background: "url(" + requests.serverAddress + element.avatar + ") no-repeat" }} />
-                      <div className="d-flex flex-column driversBlock_driverCard_driverInfo">
+                      <div className="d-flex  driversBlock_driverCard_driverInfo">
                         <Link to={linkAddress} className="driversBlock_driversInfo_name">{element.name}</Link>
-                        <Stars key={element.rating} value={element.rating} commentNumber={element.comments + " " + textInfo.comments} valueDisplay={true} commentNumberDisplay={true} />
+                       
                       </div>
-                    </div>
-                    <div className="driversBlock_driverInfoBlock_element d-flex">
-                      <div className="driversBlock_languages_text" style={{ visibility: this.props.storeState.languages.length > 0 ? 'visible' : 'hidden' }}>{textInfo.languages + ':'}</div>
+					   <div className="langi">
+                      
                       {
                         element.language.map((langElement, index) =>
                           <div className="driversBlock_languages_flag" style={{ background: "url(" + (this.props.storeState.languages.length > 0 ? requests.serverAddress + this.props.storeState.languages[langElement].icon.url : '') + ")", backgroundSize: "15px 15px" }} />
@@ -235,6 +234,9 @@ class DriversBlockClass extends React.Component {
                       }
                     </div>
                   </div>
+				   <div class="starsd"><Stars key={element.rating} value={element.rating} commentNumber={element.comments + " " + textInfo.comments} valueDisplay={true} commentNumberDisplay={true} /></div>
+                    </div>
+                   
                   <div className="driversBlock_driverInfoBlock_element driversBlock_commentary">{textInfo.commentary}</div>
                   <button className="driversBlock_driverInfoBlock_element driversBlock_buttonStyle"
                     onClick={() => this.props.changeTravelVisibility(element.price)}>

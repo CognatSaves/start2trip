@@ -1,8 +1,8 @@
 const home = {
     lang: "RUS",
     home:{
-        homeTextFirstLine: "Cпланируйте свой маршрут",
-        homeTextSecondLine: "Предложения от местных гидов-водителей по вашему индивидуальному маршруту",
+        homeTextFirstLine: "Cпланируйте свою поездку",
+        homeTextSecondLine: "Предложения от местных водителей по вашему индивидуальному маршруту",
         changeBodyBlock:{
             left: "СПИСОК",
             right: "КАРТА"
@@ -81,9 +81,9 @@ const home = {
         ]
     },
     homeBody:{
-        mobileRouteMenuTitle: "Cпланируйте свой маршрут",
+        mobileRouteMenuTitle: "Cпланируйте свою поездку",
         mobileRouteMenuText:{
-            firstLine: "Предложения от местных гидов-водителей",
+            firstLine: "Предложения от местных водителей",
             secondLine:"по вашему индивидуальному маршруту"
         },
         changeMapList:{

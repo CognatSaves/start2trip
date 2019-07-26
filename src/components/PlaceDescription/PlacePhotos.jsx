@@ -70,7 +70,7 @@ export default class PlacePhotos extends React.Component{
                             return(
                                 <React.Fragment>
                                     <div className={className} id={"photono"+index}>
-                                        <img style={{borderRadius: '10px'}} src={requests.serverAddress+element.url} width="100%" height="100%" alt={"/picture " + index} onClick={()=>this.props.showMask(index)}/>
+                                        <img style={{borderRadius: '5px'}} src={requests.serverAddress+element.url} width="100%" height="100%" alt={"/picture " + index} onClick={()=>this.props.showMask(index)}/>
                                     </div>
                                 </React.Fragment>
                             )

@@ -5,9 +5,10 @@
     margin: 5% auto;
     padding: 20px;
     border-radius: 5px;
-    text-align: center;
+    text-align: left;
     color: #fff;
     background: rgba(44, 66, 108, 0.8);
+	text-indent:1em;
 }
 
 .placesCountryInfo_countryName {

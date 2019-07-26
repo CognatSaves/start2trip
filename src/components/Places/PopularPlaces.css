@@ -31,33 +31,45 @@
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
-.popularPlacesTitle h3 {
+.popularPlacesTitle h2 {
     font-size: 24px;
-    font-weight: 400;
+    font-weight: 500;
+	    padding-left: 10px;
+		padding-bottom: 0px;
     color: #304269;
 }
 
 .popularPlacesEl {
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
+padding:0;
+}
+
+.routeName
+{
+    text-align: center;	
 }
 
 .popularPlacesElMes {
     display: none;
 }
 
-.popularPlacesEl_selected {
+.popularPlacesEl_selected img {
     border: 3px solid #f60;
     border-radius: 5px;
     background: rgba(0, 0, 0, 0.4);
 }
+
+.popularPlacesEl_selected .routeName span {
+    color:#ff6600!important;
+	font-weight: 500;
+}
+
 
 .popularPlacesEl_selected .popularPlacesElMes {
     display: block;
     position: absolute;
     z-index: 8;
     cursor: pointer;
-    top: 35%;
+    top: 28%;
     left: 0;
     right: 0;
     color: #fff;
@@ -114,6 +126,7 @@
     font-size: 16px;
     font-weight: 400;
     color: #304269;
+	
 }
 
 @media (max-width: 1077px) {}

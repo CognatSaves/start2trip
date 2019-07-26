@@ -113,7 +113,7 @@ class PopularPlacesClass extends React.Component {
                 <div className="popularPlacesBody pt-4">
 
                     <div className="popularPlacesTitle">
-                        <h3>{textInfo.popularPlacesTitle+':'}</h3>
+                        <h2>{textInfo.popularPlacesTitle+':'}</h2>
                     </div>
                     {
                         this.props.storeState.languages.length>0 ?
@@ -123,7 +123,7 @@ class PopularPlacesClass extends React.Component {
                                     if (arrayRender.length !== placeRender.length) {
                                         if (placeRender.length - 1 == index) {
                                             return (
-                                                <div className="col-md-2 col-5 d-flex flex-column align-items-center popularPlacesEl popularPlacesMore"
+                                                <div className="col-md-2 col-7 d-flex flex-column popularPlacesEl popularPlacesMore"
                                                 onClick={() => { this.setState({ howMuchRender: this.state.howMuchRender + 6 }) }}>
                                                     <span>{textInfo.morePics}</span>
                                                     <img src={arrayRender[arrayRender.length-1].image ? requests.serverAddress + arrayRender[arrayRender.length-1].image.url : ''} alt="img" />
@@ -132,14 +132,14 @@ class PopularPlacesClass extends React.Component {
                                         }
                                     }
                                     return (
-                                        <div className={"col-md-2 col-5 d-flex flex-column align-items-center popularPlacesEl "
+                                        <div className={"col-md-2 col-7 d-flex flex-column popularPlacesEl "
                                         +(isDirSelected(element.id, this.props.placesState.selectedDirection) ? 'popularPlacesEl_selected' : '')}
                                         onClick={()=>this.onDirClick(element.id)}>
                                             <span className="popularPlacesElMes">{textInfo.cancel}</span>
                                             <div>
                                                 <img src={element.image ? requests.serverAddress + element.image.url : ''} alt="img" />
                                             </div>
-                                            <div className="mt-2 d-flex justify-content-center">
+                                            <div className="mt-2 routeName">
                                                 <span>{getDirectionName(element,this)}</span>
                                             </div>
                                         </div>

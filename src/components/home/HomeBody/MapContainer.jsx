@@ -7,6 +7,9 @@ const mapStyles = {
     width: '100%',
     height: '100%',
     borderRadius: '5px',
+	zoom: 1,
+	scaleControl: true
+
   }
 };
 export default class MapContainer extends Component {
