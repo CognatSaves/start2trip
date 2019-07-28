@@ -195,10 +195,11 @@ class UserProfileBillingClass extends React.Component {
                                 <DatePicker onChange={(nul, date) => { this.setState({ tableStartDate: date }); }} floatingspanText="Дата начала" className="billingCalendar" value={this.state.tableStartDate} />
                                 <span className="align-md-self-end align-self-center mx-md-2 mx-0 mt-2">&#175;</span>
                                 <DatePicker onChange={(nul, date) => { this.setState({ tableEndDate: date }); }} floatingspanText="Дата конца" className="billingCalendar" value={this.state.tableEndDate} />
-                                <div className="billingButton mx-md-0 mx-auto my-md-0 my-2" onClick={() => this.getTransactionTable()}>
+                                
+                            </div>
+                            <div className="billingButton mx-md-0 mx-auto my-md-0 my-2" onClick={() => this.getTransactionTable()}>
                                     <span style={{ color: "#fff" }}>Показать</span>
                                 </div>
-                            </div>
                         </div>
                         <div className=" col-md-4 col-12 p-0 blillingHeader d-flex align-items-end justify-content-between">
                             <div className="col-12">

@@ -71,7 +71,7 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    border-radius: 50%;
+    border-radius: 10%;
     background: rgba(48, 66, 105, 0.836);
     width: 156px;
     height: 156px;
@@ -88,7 +88,7 @@
 .basicInformationBodyTopImgHover img {
     width: 156px;
     height: 156px;
-    border-radius: 50%;
+    border-radius: 10%;
     object-fit: cover;
 }
 
@@ -141,11 +141,12 @@
     font-size: 14px;
     line-height: 20px;
     margin: 0;
+    text-transform:uppercase;
 
 }
 
 .bodyTopDriverInfoRideMobail {
-    max-width: 172px;
+    max-width: 205px;
 }
 
 .bodyTopDriverInfoRideMobail span {
@@ -202,6 +203,34 @@
         height: 90px;
         text-align: center;
     }
+
+    .basicInformationBodyTop {
+        position: relative;
+        padding: 15px;
+        padding-bottom:30px;
+    }
+
+    .navigationBody span {
+        text-transform:uppercase;
+
+    }
+
+    .navigationBody span
+    {
+        font-weight:500;
+    }
+
+    .bodyTopDriverInfoRide
+    {
+        margin-top:-10px;
+    }
+    .registrationWrapper .infoBlock_starsBlock
+{
+    margin-top:-9px;
+}
+.bodyTopDriverInfoRide p{
+    text-transform: unset;
+}
 }
 
 @media (max-width: 576px) {
