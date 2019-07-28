@@ -17,7 +17,7 @@
 .driverInfo_photo img {
     width: 156px;
     height: 156px;
-    border-radius: 10%;
+    border-radius: 50%;
     object-fit: cover;
 }
 
@@ -173,6 +173,7 @@
     .driverInfo_photo img {
         width: 120px;
         height: 120px;
+        border-radius: 10%;
     }
     .driverInfo_left_line {
         margin-bottom: 30px;

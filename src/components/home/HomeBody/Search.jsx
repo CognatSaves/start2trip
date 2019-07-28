@@ -64,6 +64,7 @@ export default class LocationSearchInput extends React.Component {
         onChange={this.handleChange}
         onSelect={this.handleSelect}
         searchOptions={{
+          // ['establishment'||'(cities)']
           types: [],
           componentRestrictions: { country: this.props.isoCountryMap, },
           language: '0' 

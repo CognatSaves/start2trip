@@ -85,6 +85,7 @@
 
 @media (max-width: 560px) {
     .drivers_route {
+        padding: 15px !important;
         border-radius: 0px;
     }
 }

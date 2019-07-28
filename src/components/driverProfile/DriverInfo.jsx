@@ -61,7 +61,7 @@ class DriverInfoClass extends React.Component{
         let languageIdsArray = getLanguageNumbers(element.language ? element.language : [], this.props.storeState.languages);
         return(
         <div className="driverInfo_background d-flex flex-lg-row flex-column align-items-lg-start align-items-center">
-            <div className="block_element_left d-flex flex-column col-lg-6 col-12 p-0">
+            <div className="block_element_left d-flex flex-column col-lg-6 col-12 ">
                 <div className="driverInfo_left_line">
                     <div className="driverInfo_photo">
                         <img src={requests.serverAddress+element.avatar} alt={"photo " + element.name} />
@@ -99,7 +99,7 @@ class DriverInfoClass extends React.Component{
                 </div>
             </div>
             <div className="driverInfo_element d-flex flex-column col-lg-6 col-12 p-0" >
-                <div className="d-flex flex-md-row flex-column justify-content-between">
+                <div className="d-flex flex-md-row flex-column justify-content-between col-12">
                     <div className="block_element_infoBlock_name driversInfo_driverName d-flex" >
                         {element.carBrand}
                         <div className="driverInfo_informationIcon" style={{ background: "url("+information+")", backgroundSize: "18px 18px"}}>

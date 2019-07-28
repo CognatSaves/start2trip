@@ -228,15 +228,15 @@ class RouteMenuClass extends React.Component {
       this.requestFunction((that,cities, date, languageISO)=>{
           let routeDate = that.props.globalhistory.getRoute(cities, languageISO);
           let newStringCities = routeDate.route;
-          let country = routeDate.country;
-          let langISO = routeDate.langISO;
+          // let country = routeDate.country;
+          // let langISO = routeDate.langISO;
           let canMove;
           canMove = routeDate.canMove;
           let dateString = that.props.globalhistory.createDateTimeString(date, true);
           
           if (canMove) {
             let index = that.props.storeState.activeLanguageNumber;
-            that.props.globalhistory.history.push('/'+this.props.storeState.country+`-`+that.props.storeState.languages[index].isoAutocomplete+`/drivers/${country}-${newStringCities}?date=`+dateString+(langISO!=='ENG' ? `&lang=`+langISO : ``));
+            that.props.globalhistory.history.push('/'+this.props.storeState.country+`-`+that.props.storeState.languages[index].isoAutocomplete+`/drivers/${newStringCities}?date=`+dateString);
             window.scroll(0, 500);
           }
         }

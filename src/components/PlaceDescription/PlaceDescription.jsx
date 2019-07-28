@@ -20,7 +20,7 @@ import requests from '../../config';
 import SimularPlaceBlock from './SimularPlaceBlock';
 import PlacePhotoShow from './PlacePhotoShow.jsx';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
-import { isMobile } from 'react-device-detect'
+import { isMobileOnly } from 'react-device-detect'
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
@@ -211,9 +211,17 @@ class PlaceDescriptionClass extends React.Component {
                                 isMaskVisible={this.state.isMaskVisible} clickedImageIndex={this.state.clickedImageIndex} images={this.state.newPlace.place.images} />
                             : <React.Fragment />
                     }
-<Header history={this.props.history} />
-                    <div className="placeDescription_background col-12 p-0" style={{ background: isMobile ? smallImage : bigImage }} id={topBlockId}>
-                        
+                    {isMobileOnly ? 
+                    <Header history={this.props.history} />
+                    :
+                    <React.Fragment />
+                    }
+                    <div className="placeDescription_background col-12 p-0" style={{ background: isMobileOnly ? smallImage : bigImage }} id={topBlockId}>
+                    {!isMobileOnly ? 
+                    <Header history={this.props.history} />
+                    :
+                    <React.Fragment />
+                    }
                         {
                             this.state.newPlace.local ?
                                 <div className="placeDescription_topImageMask">

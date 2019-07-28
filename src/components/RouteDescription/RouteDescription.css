@@ -1,44 +1,63 @@
-.routeDescription_background{
+.routeDescription_background {
     height: 30vh;
     background-size: cover !important;
-    background-position:center center !important
+    background-position: center center !important
 }
-.routeTravelBlock_pointPart{
+
+.routeTravelBlock_pointPart {
     margin-top: 15px;
-    box-shadow:0 0 10px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.25);
     border-radius: 5px;
 }
-.routeTravelBlock_pointBlock{
+
+.routeTravelBlock_pointBlock {
     padding: 20px 0;
-    margin:0 0 auto 0;
+    margin: 0 0 auto 0;
     width: 100%;
 }
-.routeTravelBlock_pointElement_left{
+
+.routeTravelBlock_pointElement_left {
     padding-left: 10px!important;
     padding-right: 5px!important;
 }
-.routeTravelBlock_pointElement_right{
+
+.routeTravelBlock_pointElement_right {
     padding-left: 5px!important;
     padding-right: 10px!important;
 }
-.routeTravelBlock_pointValue{
+
+.routeTravelBlock_pointValue {
     width: 100%;
     /*margin-bottom: 15px;*/
-    padding:10px;
-    box-shadow:0 0 5px 0px rgba(0, 0, 0, 0.25);
+    padding: 10px;
+    box-shadow: 0 0 5px 0px rgba(0, 0, 0, 0.25);
     border-radius: 5px;
 }
-.routeTravelBlock_height{
+
+.routeTravelBlock_height {
     min-height: 41px;
     max-height: 41px;
     overflow: hidden;
 }
-.routeDescription_topImageMask{
+
+.routeDescription_topImageMask {
     top: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
 }
-.routeTravelBlock_element{
+
+.routeTravelBlock_element {
     padding: 5px!important;
 }
+
+@media (max-width: 900) {}
+
+@media (max-width: 560px) {
+    .routeTravelBlock_pointPart {
+        margin-top: 0px;
+        box-shadow: none;
+    }
+}
+
+@media (max-width: 430px) {}

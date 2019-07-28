@@ -23,6 +23,7 @@
     cursor: pointer;
     z-index: 4;
     top: 30%;
+    left: 42%;
     color: #fff !important;
 }
 
@@ -34,18 +35,17 @@
 .popularPlacesTitle h2 {
     font-size: 24px;
     font-weight: 500;
-	    padding-left: 10px;
-		padding-bottom: 0px;
+    padding-left: 10px;
+    padding-bottom: 0px;
     color: #304269;
 }
 
 .popularPlacesEl {
-padding:0;
+    padding: 0;
 }
 
-.routeName
-{
-    text-align: center;	
+.routeName {
+    text-align: center;
 }
 
 .popularPlacesElMes {
@@ -59,10 +59,9 @@ padding:0;
 }
 
 .popularPlacesEl_selected .routeName span {
-    color:#ff6600!important;
-	font-weight: 500;
+    color: #ff6600!important;
+    font-weight: 500;
 }
-
 
 .popularPlacesEl_selected .popularPlacesElMes {
     display: block;
@@ -126,7 +125,6 @@ padding:0;
     font-size: 16px;
     font-weight: 400;
     color: #304269;
-	
 }
 
 @media (max-width: 1077px) {}

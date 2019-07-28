@@ -287,7 +287,7 @@ ReactDOM.render(
               <Route path={"/"+config.routeMap+"/route/:direction"} component={Home} />
               <Route path={"/"+config.routeMap+"/route"} component={Home} />
               <Route path={"/"+config.routeMap+"/drivers"} component={Home} />
-              <Route path={"/"+config.routeMap+"/driverProfile/:id-:carId-:country-:cities"} component={DriverProfile} />
+              <Route path={"/"+config.routeMap+"/driverProfile/:id-:carId-:cities"} component={DriverProfile} />
               <Route path={"/"+config.routeMap+"/tripConfirmation/:id-:userId"} component={TripConfirmation} />
               <Route path={"/"+config.routeMap+"/driverConfirmation/:id-:carrierId-:confirmation"} component={DriverConfirmation} />
               <Route path={"/"+config.routeMap+"/places/:direction"} component={Places} />

@@ -52,7 +52,7 @@ class DriversClass extends React.Component {
     })
   }
   parseStringToArray=(cities,country, langISO)=>{
-    
+      
     let newCities = [];
     let newString = cities.split('from-');
     let newArrayCities = newString[1].split("-to-");
@@ -60,7 +60,7 @@ class DriversClass extends React.Component {
       let stringWithSpaces = newArrayCities[i].replace(/-/g, ' ');
       stringWithSpaces = stringWithSpaces + ', ' +country;
       
-      stringWithSpaces=this.props.globalReduser.convertFromUrlTranslation(stringWithSpaces, langISO ? langISO : 'ENG');
+      stringWithSpaces=this.props.globalReduser.convertFromUrlTranslation(stringWithSpaces, langISO ? langISO : 'en');
       
       newCities[i]={point: stringWithSpaces, lat: "", long: ""};
     }
@@ -73,13 +73,15 @@ class DriversClass extends React.Component {
     let cities;
     let country;
     if(this.props.match){
+      
       if(this.props.storeState.cities[0].point === ""){
         
-        let langISO = this.props.globalReduser.findGetParameter('lang');
+        // let langISO = this.props.globalReduser.findGetParameter('lang');
         
         cities = this.props.match.params.cities;
-        country = this.props.match.params.country;
-        this.parseStringToArray(cities,country,langISO);
+        country = this.props.match.params[0];
+        country = country.split("-")
+        this.parseStringToArray(cities,country[0],country[1]);
       }else{
         let route = "";
           for (let i = 0; i < this.props.storeState.cities.length; i++) {

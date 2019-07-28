@@ -210,14 +210,15 @@ class DriverProfileClass extends React.Component {
         };
         this.props.dispatch(setCities(cities))
       }
-    parseStringToArray = (cities, country) => {
-
+    parseStringToArray = (cities, country, langISO) => {
+        
         let newCities = [];
         let newString = cities.split("from-");
         let newArrayCities = newString[1].split("-to-");
         for (let i = 0; i < newArrayCities.length; i++) {
             let stringWithSpaces = newArrayCities[i].replace(/-/g, ' ');
             stringWithSpaces = stringWithSpaces + ', ' + country;
+            stringWithSpaces=this.props.globalReduser.convertFromUrlTranslation(stringWithSpaces, langISO ? langISO : 'en');
             newCities[i] = { point: stringWithSpaces, lat: "", long: "" };
         }
         this.props.dispatch(setCities(newCities));
@@ -314,16 +315,19 @@ class DriverProfileClass extends React.Component {
         
         //обработка захода по url - тогда в storeState не будет точек - следовательно, их надо взять из адреса
         //или быть выкинутым на страницу drivers (скорее всего туда, хотя можно выкинуть на home)
+        
         if(this.props.storeState.cities.length===0 || this.props.storeState.cities[0].point===""){
             
             if( this.props.match.params && this.props.match.params.cities){
                 let urlCities = this.props.match.params.cities;
-                let urlCountry = this.props.match.params.country;
-                let cityNamesArray = this.parseStringToArray(urlCities, urlCountry);
+                let urlCountry = this.props.match.params[0];
+                urlCountry = urlCountry.split("-")
+                let cityNamesArray = this.parseStringToArray(urlCities, urlCountry[0],urlCountry[1]);
                 this.props.dispatch(setCities(cityNamesArray));
             }
             else{
-                this.props.globalReduser.history.push('/');
+                
+                 this.props.globalReduser.history.push('/');
             }
             
         }
@@ -358,9 +362,10 @@ class DriverProfileClass extends React.Component {
             }
             
             cities = this.props.storeState.cities;
-
-
-            country = this.props.globalReduser.findGetParameter('countryISO');
+            
+            let urlCountry = this.props.match.params[0];
+                urlCountry = urlCountry.split("-")
+            country = urlCountry[0];
             let that = this;
             //let cityNamesArray = this.parseStringToArray(cities, country);
 
@@ -403,6 +408,7 @@ class DriverProfileClass extends React.Component {
                 console.log(requests.getDriverInfo);
                 
                 fetch(requests.getDriverInfo, {
+                    
                     method: 'PUT', body: body,
                     headers: { 'content-type': 'application/json' }
                 })
@@ -501,7 +507,7 @@ class DriverProfileClass extends React.Component {
                                 <DriverInfo element={driver} />
                                 
                                 <div className="drivers_route col-12 d-flex " >
-                                    <div className="d-flex flex-column routeTravelBlock_pointPart col-md-6 col-12" style={{margin: 0}}>
+                                    <div className="d-flex flex-column routeTravelBlock_pointPart col-md-6 col-12 p-md-2 p-0" style={{margin: 0}}>
                                         <div style={{paddingTop: '10px'}}>
                                             <div className="route_time_text col-12">
 											<div class="marsh"> Ваш маршрут:</div>

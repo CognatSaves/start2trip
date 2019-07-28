@@ -37,8 +37,10 @@
     .drivers_top_background {
         padding-bottom: 0px;
         box-shadow: none;
+        background: none;
     }
     .drivers_route {
+        padding: 15px !important;
         border-radius: 0px;
     }
 }

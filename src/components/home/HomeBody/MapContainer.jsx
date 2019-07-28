@@ -8,7 +8,7 @@ const mapStyles = {
     height: '100%',
     borderRadius: '5px',
 	zoom: 1,
-	scaleControl: true
+  scaleControl: true,
 
   }
 };
