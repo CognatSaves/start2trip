@@ -7,12 +7,9 @@ import RenderModalRegistration from './RenderModalRegistration'
 import mapWorldIcon from '../media/mapWorld.svg'
 import { connect } from 'react-redux';
 import crossIconModal from '../media/closeGray.svg'
-// import geoFlag from './pictures/georgia.svg'
-// import ruFlag from './pictures/russia.svg'
-// import enFlag from './pictures/united-kingdom.svg'
-// import espFlag from './pictures/spain.svg'
+
 import { Link } from 'react-router-dom';
-// import { Collapse } from 'reactstrap';
+
 import { Modal, ModalBody } from 'reactstrap';
 import requests from '../../config';
 import axios from 'axios';
@@ -22,7 +19,6 @@ import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 import { whichPageRenderHistory ,whichPageRender } from "../../redusers/ActionGlobal"
 import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
-import getUserData from '../driverProfileRegistration/DriverProfileRequest';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 import Cookies from 'universal-cookie';
 import pageTextInfo from '../../textInfo/RenderModalRegistration';

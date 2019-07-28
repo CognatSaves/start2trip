@@ -224,8 +224,9 @@ class RouteMenuClass extends React.Component {
     flagCities = this.validationInput(massCities);
     if (flagCities) {
             //this.props.goToDrivers(this.props.storeState.cities, this.state.date)
-      
+            
       this.requestFunction((that,cities, date, languageISO)=>{
+        
           let routeDate = that.props.globalhistory.getRoute(cities, languageISO);
           let newStringCities = routeDate.route;
           // let country = routeDate.country;
@@ -251,6 +252,7 @@ class RouteMenuClass extends React.Component {
         
         
     function createRequestElement(cities, travelMode){
+      
       let waypoints = [];
       for (let i = 1; i < cities.length - 1; i++) {
         waypoints[i - 1] = {
@@ -283,6 +285,7 @@ class RouteMenuClass extends React.Component {
         return false;
       }
       function lengthTimeCalc(response){
+        
         let res = {
           duration: 0,
           distance: 0

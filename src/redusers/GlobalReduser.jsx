@@ -90,7 +90,6 @@ const initialState = {
     },
     getRoute: function(cities, conv){
         function getCountry(arrayAddress, country) {
-            
             let flag = true;
             let newCountry = arrayAddress[arrayAddress.length - 1].split(' ');
             country="";
@@ -120,10 +119,14 @@ const initialState = {
           canMove = date.flag;
     
           let stringWithoutCountry = "";
+          if(arrayAddress.length !== 1 ){
           for (let k = 0; k < arrayAddress.length - 1; k++) {
             stringWithoutCountry += arrayAddress[k];
 
           }
+        }else{
+            stringWithoutCountry += arrayAddress[0];
+        }
           let stringWithoutSpaces = stringWithoutCountry.replace(/ /g, '-');
           country = country.replace(/ /g, '-');
           stringWithoutSpaces = stringWithoutSpaces.replace(/[/]/g, '');

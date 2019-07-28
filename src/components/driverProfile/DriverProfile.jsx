@@ -85,18 +85,22 @@ class DriverProfileClass extends React.Component {
         }
         this.state = { ...this.state, "mapRwanda": true }
 
-        props.dispatch(setLengthTime("-", "-"));
+        
+
+    }
+    componentDidMount(){
+        this.props.dispatch(setLengthTime("-", "-"));
         // let now = new Date(Date.now());
 
         
         let that = this;
-        console.log(props.match);
+        console.log(this.props.match);
         //let cityNamesArray = parseStringToArray(props.match.params.cities, props.match.params.country, 'ENG');
-        props.dispatch(setDriverCarDescription({}));//зачищает старое значение
+        this.props.dispatch(setDriverCarDescription({}));//зачищает старое значение
 
         let body = JSON.stringify({
-            id: props.match.params.id,
-            carId: props.match.params.carId,
+            id: this.props.match.params.id,
+            carId: this.props.match.params.carId,
         });
 
 /*
@@ -146,7 +150,6 @@ class DriverProfileClass extends React.Component {
                 setTimeout(()=>{that.props.history.push('/')}, 1000);
                 
             });
-
     }
     changeTravelVisibility=(elementPrice)=> {
     
@@ -551,7 +554,7 @@ class DriverProfileClass extends React.Component {
                                                     <div className={"routeTravelBlock_element d-flex "+((this.props.storeState.cities.length+1)%2===0 ? 'col-12': 'col-md-6 col-12') }>
                                                         <button className='driversBlock_buttonStyle' /*"placesDescription_travelBlock_applyButton p-0 "*/
                                                         style={{/*marginBottom: '15px',*/ width: '100%', border: 'none', borderRadius: '5px', height: '100%'}}
-                                                        onClick={()=>{this.changeTravelVisibility(defaultPrice)}}>
+                                                        onClick={()=>{this.changeTravelVisibility(defaultPrice); this.props.dispatch(setDriverCarDescription(this.props.driversState.driverCarDescription))}}>
                                                             <text style={{ margin: "auto", fontSize: '16px' }} >
                                                             {"ЗАБРОНИРОВАТЬ " + (isCurrencyLoaded ? ((activeCurrency.isLeft ? activeCurrency.symbol : '')
                                                             + Math.ceil(defaultPrice*activeCurrency.costToDefault) 

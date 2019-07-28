@@ -1,5 +1,4 @@
 @import '../drivers/Drivers.css';
-@import '../drivers/DriversBody/DriversBody.css';
 @import '../drivers/DriversBody/DriversBlock/DriversBlock.css';
 @import '../drivers/DriversBody/DriversBlock/InfoBlock.css';
 @import '../drivers/DriversBody/DriversBlock/TripBlock.css';
@@ -25,7 +24,6 @@
     font-weight: 500;
     font-size: 16px;
 }
-
 
 .route_time_text p1,
 .route_time_text p2 {
@@ -276,7 +274,6 @@ span.drivers_route_Link {
     color: #304269;
     font-size: 14px;
     font-weight: 400;
- 
 }
 
 .drivers_routePromo input::placeholder {
@@ -397,30 +394,28 @@ span.drivers_route_Link {
     background-size: 20px 25px;
     background-position: center left;
 }
-.marsh
-{
-	color: #304269;
-	font-size:25px;
+
+.marsh {
+    color: #304269;
+    font-size: 25px;
     font-weight: 500;
     text-align: left;
     padding-bottom: 10px;
 }
 
-.param
-{
-	display:inline-block!important;
-}
-.par
-{
-	    padding-left: 15px;
+.param {
+    display: inline-block!important;
 }
 
-.alfab
-{
-	font-weight:500;
-	color:#304269;
-	padding-right:10px;
-	margin:auto 0;
+.par {
+    padding-left: 15px;
+}
+
+.alfab {
+    font-weight: 500;
+    color: #304269;
+    padding-right: 10px;
+    margin: auto 0;
 }
 
 @media (max-width: 768px) {
@@ -436,9 +431,7 @@ span.drivers_route_Link {
     .driversRoute {
         padding: 5px !important;
     }
-	.par
-{
-	    padding-left: 0px;
-}
-	
+    .par {
+        padding-left: 0px;
+    }
 }

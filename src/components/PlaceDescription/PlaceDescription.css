@@ -187,6 +187,7 @@ h2 {
     /*width: 100%;*/
     border: none;
     outline: none;
+    color: #686868;
 }
 
 .placeDescrDate {
@@ -268,7 +269,7 @@ h2 {
 }
 
 .placesDescription_calendary {
-    background-image: url(../media/calendar.svg);
+    background-image: url(../media/calendarGray.svg);
 }
 
 .placesDescription_geoIcon {

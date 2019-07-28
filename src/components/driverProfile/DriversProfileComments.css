@@ -255,3 +255,9 @@ label {
         z-index: 10;
     }
 }
+
+@media (max-width: 356px) {
+    .valueBlock_commentary {
+        padding: 0px 10px;
+    }
+}

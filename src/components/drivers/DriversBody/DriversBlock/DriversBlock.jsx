@@ -8,7 +8,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import Stars from '../../../stars/Stars';
-import { setPage, setMorePagesShow } from '../../../../redusers/ActionDrivers'
+import { setPage, setMorePagesShow,setDriverCarDescription } from '../../../../redusers/ActionDrivers'
+
 
 import requests from '../../../../config';
 import Cookies from 'universal-cookie';
@@ -197,6 +198,7 @@ class DriversBlockClass extends React.Component {
       <div className="drivers_block d-flex flex-wrap">
         {
           selectedElements.map((element, index) =>{
+            
             let linkAddress = "/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+`/driverProfile/${element.id}-${element.carId}-${this.state.cities}?date=`+this.state.date;
             return(
               <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 p-2 py-1">
@@ -239,7 +241,7 @@ class DriversBlockClass extends React.Component {
                    
                   <div className="driversBlock_driverInfoBlock_element driversBlock_commentary">{textInfo.commentary}</div>
                   <button className="driversBlock_driverInfoBlock_element driversBlock_buttonStyle"
-                    onClick={() => this.props.changeTravelVisibility(element.price)}>
+                    onClick={() => {this.props.changeTravelVisibility(element.price); debugger ;this.props.dispatch(setDriverCarDescription(element))}}>
                     {textInfo.book + " " + (activeCurrency.isLeft ? activeCurrency.symbol : '')
                       + Math.ceil(element.price * activeCurrency.costToDefault) +
                       (!activeCurrency.isLeft ? activeCurrency.symbol : '')}</button>

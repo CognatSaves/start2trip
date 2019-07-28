@@ -378,4 +378,8 @@
     }
 }
 
-@media (max-width: 576px) {}
+@media (max-width: 576px) {
+    .block_element_left {
+        padding: 0px !important;
+    }
+}

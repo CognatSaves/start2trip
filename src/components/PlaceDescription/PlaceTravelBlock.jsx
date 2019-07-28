@@ -75,7 +75,7 @@ class PlaceTravelBlockClass extends React.Component{
 
                             <div className="placesDescription_travelBlock_element d-flex">
                                 <div className="placesDescription_travelBlock_icon placesDescription_geoIcon" />
-                                <LocationSearchInput readOnlyOn={true} address={this.state.endPoint} changeCity={(index, value,extraData)=>{}} classDropdown="searchElement_style" classInput={"travelBlockSearch" } />
+                                <LocationSearchInput readOnlyOn={true} address={this.state.endPoint} changeCity={(index, value,extraData)=>{}} classDropdown="searchElement_style" classInput="travelBlockSearch" />
                             </div>
                        
                             <div id="placeTravelBlock_datePicker" className={"placesDescription_travelBlock_element d-flex "

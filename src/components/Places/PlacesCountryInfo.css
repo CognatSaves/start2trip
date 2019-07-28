@@ -8,7 +8,7 @@
     text-align: left;
     color: #fff;
     background: rgba(44, 66, 108, 0.8);
-	text-indent:1em;
+    text-indent: 1em;
 }
 
 .placesCountryInfo_countryName {
@@ -71,3 +71,14 @@
 .countryData_element_text text {}
 
 .countryData_textStyle {}
+
+@media (max-width: 768px) {
+    .placesCountryInfo_countryName {
+        font-size: 43px;
+        line-height: 43px;
+    }
+    .placesCountryInfo_countryName::after {
+        width: 50%;
+        margin: 4% auto;
+    }
+}
