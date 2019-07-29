@@ -289,8 +289,8 @@ ReactDOM.render(
               <Route path={"/"+config.routeMap+"/route"} component={Home} />
               <Route path={"/"+config.routeMap+"/drivers"} component={Home} />
               <Route path={"/"+config.routeMap+"/driverProfile/:id-:carId-:cities"} component={DriverProfile} />
-              <Route path={"/"+config.routeMap+"/tripConfirmation/:id-:userId"} component={TripConfirmation} />
-              <Route path={"/"+config.routeMap+"/driverConfirmation/:id-:carrierId-:confirmation"} component={DriverConfirmation} />
+              
+              
               <Route path={"/"+config.routeMap+"/places/:direction"} component={Places} />
               <Route path={"/"+config.routeMap+"/places"} component={Places} />
               <Route path={"/"+config.routeMap+"/place/:slug"} component={PlaceDescription} />
@@ -303,6 +303,8 @@ ReactDOM.render(
               <Route path="/forgot-password" component={ForgotPassword} />
               <Route path="/reset-password/:code" component={ResetPassword} />
 
+              <Route path={"/driverConfirmation/:id-:carrierId-:confirmation"} component={DriverConfirmation} />
+              <Route path={"/tripConfirmation/:id-:userId"} component={TripConfirmation} />
               <Route path="/(register|start)/" component={PartnerRegister} />
               <Route path="/registration" component={Registration} />
               <Route path="/login" component={AuthRedirect} />

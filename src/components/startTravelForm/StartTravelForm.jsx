@@ -322,7 +322,7 @@ export default class StartTravelForm extends React.Component {
                 .catch(function (error) {
                     console.log('bad');
                     console.log('An error occurred:', error);
-                    this.setState({
+                    that.setState({
                         isRefreshExist: true,
                         isRefreshing: false,
                         isGoodAnswer: true

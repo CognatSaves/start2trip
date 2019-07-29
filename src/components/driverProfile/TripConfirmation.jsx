@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import requests from '../../config';
+import '../registration/ForgotPassword.css'
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 import Header from '../header/Header';
 class TripConfirmationClass extends React.Component{
@@ -57,10 +58,19 @@ class TripConfirmationClass extends React.Component{
                     this.state.isRefreshExist ?
                     <DriverRefreshIndicator isRefreshExist={true} isRefreshing={true} isGoodAnswer={true}/>
                     :
-                    <div className="forgotPasswordBody d-flex flex-column align-items-center">
-                        <Header driver={true} history={this.props.history} />
-                        <div className="forgotPasswordSuccess forgotPasswordContent d-flex flex-column align-items-center col-md-7 col-11">
-                            {this.state.text}
+                    <div className="home_window" style={{ minHeight: "95vh" }}>
+                    <Header driver={true} history={this.props.history} />
+                    <div className="forgotPasswordContent d-flex flex-column align-items-center col-md-8 col-12 mx-auto">
+                            <div className="d-flex flex-column justify-content-center align-items-center">
+                                <span className="pt-2 pb-1">Ваш заказ подтверждён!</span>
+                                <span1>{this.state.text}</span1>
+                            </div>
+                            <div className="d-flex flex-md-row flex-column justify-content-center align-items-center col-md-8 col-12">
+                                    <div className="forgotPasswordBt d-flex justify-content-center align-items-center col-md-5 col-12" onClick={() => {this.props.history.push("/")}}><span>На главную</span></div>
+                            </div>
+                            <div className="d-flex flex-column justify-content-center align-items-center col-md-5 col-12">
+                                <p>Вы можете посмотреть информацию о поездке в Вашем личном кабинете на нашем сайте.</p>
+                            </div>
                         </div>
                     </div>
                 }
