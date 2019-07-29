@@ -19,7 +19,7 @@ import TourDescription from './components/TourDescription/TourDescription.jsx';
 import AccountRedirector from './components/registration/AccountRedirector';
 import TripConfirmation from './components/driverProfile/TripConfirmation';
 import DriverConfirmation from './components/driverProfile/DriverConfirmation';
-import DriverProfile from './components/driverProfile/DriverProfile';
+// import DriverProfile from './components/driverProfile/DriverProfile';
 import axios from 'axios';
 import requests from './config';
 // import { hydrate } from "react-dom"
@@ -43,7 +43,7 @@ import config from './config.js'
 
 
 const cookies = new Cookies();
-// const DriverProfile = lazy(() => import('./components/driverProfile/DriverProfile'));
+const DriverProfile = lazy(() => import('./components/driverProfile/DriverProfile'));
 const PlaceDescription = lazy(() => import('./components/PlaceDescription/PlaceDescription'));
 const RouteDescription = lazy(() => import('./components/RouteDescription/RouteDescription'));
 const ForgotPassword = lazy(() => import('./components/registration/ForgotPassword'));
