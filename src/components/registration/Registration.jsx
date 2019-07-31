@@ -133,9 +133,9 @@ class Registration extends React.Component{
         
         let type=window.opener.localStorage.getItem('type');
         let agency = window.opener.localStorage.getItem('agency');
+        let userLangCookies = window.opener.localStorage.getItem('userLangCookies');
         let userType = Number.parseInt(window.opener.localStorage.getItem('userType'));
         let partner = getFarCookie('partner');
-        
         if(window.location.pathname==="/registration/facebook"){
            // alert('token');
             //console.log('token');
@@ -158,7 +158,8 @@ class Registration extends React.Component{
                                 isAgency: userType===3 ? true : false,
                                 provider: 'facebook',
                                 partner: partner && (!agency || agency.length===0) ? partner : '',
-                                agency: agency ? agency : ''
+                                agency: agency ? agency : '',
+                                userLangCookies:userLangCookies
                                 });
                             console.log()
                             this.state.socialWebRegistrationRequest(body);
@@ -182,7 +183,8 @@ class Registration extends React.Component{
                             isDriver: false,                         
                             isAgency: false,
                             partner: partner && (!agency || agency.length===0) ? partner : '',
-                            agency: agency ? agency : ''
+                            agency: agency ? agency : '',
+                            userLangCookies:userLangCookies
                         });
                         this.state.socialWebAuthorizationRequest(body);
                     })

@@ -320,7 +320,7 @@ class RenderModalRegistrationClass extends React.Component {
                 provider: 'local',
                 partner: this.state.agency.length > 0 ? "" : partner,
                 agency: this.state.agency,
-                UserLangCookies:userLang
+                userLangCookies:userLang
             });
             console.log(body);
             this.state.socialWebRegistrationRequest(body);
@@ -344,15 +344,17 @@ class RenderModalRegistrationClass extends React.Component {
             that.setState({
                 cookie: document.cookie
             });
-            
+            //debugger;
             window.localStorage.setItem('type', that.state.sitingIn ? "Authorization" : "Registration");
             window.localStorage.setItem('userType', that.state.sitingIn ? 0 : that.state.userType);
             window.localStorage.setItem('agency', that.state.agency);
-            let newWin = window.open(address, that.state.sitingIn ? "Authorization" : "Registration", windowProps);
-            newWin.localStorage.setItem('type', that.state.sitingIn ? "Authorization" : "Registration");
-            newWin.localStorage.setItem('userType', that.state.sitingIn ? 0 : that.state.userType);
-            newWin.localStorage.setItem('agency', that.state.agency);
+            window.localStorage.setItem('userLangCookies',cookies.get('userLang',{path:"/"}));
             
+            let newWin = window.open(address, that.state.sitingIn ? "Authorization" : "Registration", windowProps);
+            //newWin.localStorage.setItem('type', that.state.sitingIn ? "Authorization" : "Registration");
+            //newWin.localStorage.setItem('userType', that.state.sitingIn ? 0 : that.state.userType);
+            //newWin.localStorage.setItem('agency', that.state.agency);
+            //newWin.localStorage.setItem('userLangCookies',cookies.get('userLang',{path:"/"}));
             that.state.checkCookie(newWin);
         }
         //let lang = this.state.languageValue;
