@@ -309,7 +309,7 @@ class RenderModalRegistrationClass extends React.Component {
             });
             console.log("Send Request");
             let userLang = cookies.get('userLang',{path:"/"})
-            debugger
+
             let body = JSON.stringify({
                 username: email,
                 email: email,

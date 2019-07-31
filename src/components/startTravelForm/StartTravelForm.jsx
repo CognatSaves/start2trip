@@ -344,7 +344,6 @@ export default class StartTravelForm extends React.Component {
         let isAllGood = true;
         var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         let emailValid = re.test(String(this.state.email).toLowerCase());
-
         for (let i = 0; i < massValidate.length; i++) {
             let el = massValidate[i].children[1];
             if (el.children.length == 2) {
