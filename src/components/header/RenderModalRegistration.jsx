@@ -308,7 +308,8 @@ class RenderModalRegistrationClass extends React.Component {
                 regProcessStatus: true
             });
             console.log("Send Request");
-            
+            let userLang = cookies.get('userLang',{path:"/"})
+            debugger
             let body = JSON.stringify({
                 username: email,
                 email: email,
@@ -318,7 +319,8 @@ class RenderModalRegistrationClass extends React.Component {
                 isAgency: this.state.userType === 3 ? true : false,
                 provider: 'local',
                 partner: this.state.agency.length > 0 ? "" : partner,
-                agency: this.state.agency
+                agency: this.state.agency,
+                UserLangCookies:userLang
             });
             console.log(body);
             this.state.socialWebRegistrationRequest(body);
