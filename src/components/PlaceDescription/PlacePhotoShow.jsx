@@ -6,15 +6,12 @@ export default class PlacePhotoShow extends React.Component{
     constructor(props){
         super(props);
         
-        let imageArray = [];
-        for(let i=0; i<this.props.images.length; i++){
-            imageArray[i]={src: requests.serverAddress+props.images[i].url};
-        }
-        this.state={
-            imageArray: imageArray
-        };
     }
     render(){
+        let imageArray = [];
+        for(let i=0; i<this.props.images.length; i++){
+            imageArray[i]={src: requests.serverAddress+this.props.images[i].url};
+        }
         let modalIsOpen  = this.props.isMaskVisible;
         return(
             <React.Fragment>
@@ -22,7 +19,7 @@ export default class PlacePhotoShow extends React.Component{
                     {modalIsOpen ? (
                     <Modal onClose={this.props.onClose}>
                         <Carousel 
-                        views={this.state.imageArray}
+                        views={imageArray}
                         currentIndex={this.props.clickedImageIndex} />
                     </Modal>
                     ) : null}

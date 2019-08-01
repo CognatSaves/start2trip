@@ -39,7 +39,7 @@ class PlacesListClass extends React.Component {
             case 1:
                 return array.sort((a, b) => { return a.comments > b.comments ? -1 : 1 });
             case 2:
-                return array.sort((a, b) => { return a.placelocalization.name > b.placelocalization.name ? -1 : 1 });
+                return array.sort((a, b) => { return a.placelocalization.name < b.placelocalization.name ? -1 : 1 });
 
             default: return array;
         }

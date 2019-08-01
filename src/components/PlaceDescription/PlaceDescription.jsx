@@ -48,6 +48,7 @@ class PlaceDescriptionClass extends React.Component {
             isGoodAnswer: true,
             //photoArray: [ippodrom, ippodrom4, ippodrom2, ippodrom3, ippodrom, ippodrom4, ippodrom2, ippodrom3, ippodrom, ippodrom4, ippodrom2, ippodrom3, ippodrom, ippodrom4, ippodrom2, ippodrom3, ippodrom, ippodrom4, ippodrom2, ippodrom3],
             selectedLanguage: -1,
+            images:null,
             //isMobile: false,
             //topBlockImage:''
         };
@@ -139,7 +140,7 @@ class PlaceDescriptionClass extends React.Component {
         //let place = this.props.placesState.places[/*countryId*/0].places[/*placeId*/0];
         let slug = this.props.match.params.slug;
         if (this.props.storeState.languages.length > 0 && this.state.newPlace.local && this.state.selectedLanguage !== this.props.storeState.activeLanguageNumber) {
-
+            
             let slugArray = this.state.newPlace.local.slugArray;
             for (let i = 0; i < slugArray.length; i++) {
                 if (this.props.storeState.languages[this.props.storeState.activeLanguageNumber].id === slugArray[i].language) {
@@ -172,6 +173,7 @@ class PlaceDescriptionClass extends React.Component {
                         throw data.error;
                     }
                     else {
+                        
                         console.log('good');
                         console.log(data);
                         that.setState({ isRefreshExist: false, newPlace: data, couldSendRequest: true, slug: data.local.slug });
@@ -201,9 +203,9 @@ class PlaceDescriptionClass extends React.Component {
 
                 <div style={{ position: 'relative' }}>
                     {
-                        this.state.newPlace.local ?
+                        this.state.images !==null ?
                             <PlacePhotoShow onClose={() => this.setState({ isMaskVisible: false })}
-                                isMaskVisible={this.state.isMaskVisible} clickedImageIndex={this.state.clickedImageIndex} images={this.state.newPlace.place.images} />
+                                isMaskVisible={this.state.isMaskVisible} clickedImageIndex={this.state.clickedImageIndex} images={this.state.images} />
                             : <React.Fragment />
                     }
                     {isMobileOnly ? 
@@ -251,7 +253,7 @@ class PlaceDescriptionClass extends React.Component {
                                             <div className="placeDescription_block d-flex flex-column" id={topBlockId + "2"}>
                                                 <div className="placeDescription_fragmentName" style={{ marginBottom: "15px" }} >{textInfo.placeDescription.variantsArray[1]}</div>
                                                 <PlacePhotos photoArray={/*this.state.photoArray*/this.state.newPlace.place.images}
-                                                    showMask={(clickedImageIndex) => { this.setState({ isMaskVisible: true, clickedImageIndex: clickedImageIndex }) }}/*width={this.state.width} height={this.state.height} number={this.state.n}*/ />
+                                                    showMask={(clickedImageIndex,images) => { this.setState({ isMaskVisible: true, clickedImageIndex: clickedImageIndex, images:images }) }}/*width={this.state.width} height={this.state.height} number={this.state.n}*/ />
                                             </div>
 
                                             <PlaceTravelBlock id={topBlockId + "3"} place={{ ...this.state.newPlace.local, country: this.state.newPlace.country, capital: this.state.newPlace.capital }} />
