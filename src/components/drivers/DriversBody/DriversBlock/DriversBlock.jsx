@@ -186,7 +186,7 @@ class DriversBlockClass extends React.Component {
     */
     // this.setLanguagesNumbers(this, selectedElements);
     console.log('selectedEl--------------------------------');
-    debugger
+    
     console.log(selectedElements);
     console.log(this.props.storeState.languages, "this.props.storeState.languagess");
 
