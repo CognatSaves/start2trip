@@ -33,7 +33,7 @@ class PlacesTagListClass extends React.Component {
 
         console.log(this.props.placesState.tags);
         return (
-            <div className="popularPlacesBody d-flex flex-md-row flex-column col-12 py-md-4 py-2">
+            <div className={(this.props.placesState.tags.length>0 ? "popularPlacesBody d-flex flex-md-row flex-column col-12 py-md-4 py-2" : 'd-none')} >
                 <div className="d-flex align-items-center justify-md-content-start justify-content-center mr-md-5 mr-0">
                     <span className="popularPlacesTitleTagList">{textInfo.placesTagList.placesTagListTitle + ':'}</span>
                 </div>

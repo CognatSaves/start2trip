@@ -205,9 +205,10 @@ class RouteMenuClass extends React.Component {
         flag = false;
       }
     }*/
+    /*
     if(!this.props.validationInput(massCities)){
       flag=false;
-    }
+    }*/
     if (this.state.date === undefined) {
       let datePicker = document.querySelector(".routemenu_date")
       datePicker.classList.add("routemenu_date-Check")
@@ -269,11 +270,13 @@ class RouteMenuClass extends React.Component {
       };
       return request;
     }
+    let cities =this.props.storeState.cities ;
+    let filteredCities = this.props.globalhistory.firstLastCityCompare(cities);//проверка 1-го и последнего городов
     
-    let request = createRequestElement(this.props.storeState.cities, window.google.maps.DirectionsTravelMode.DRIVING);
+    let request = createRequestElement(filteredCities, window.google.maps.DirectionsTravelMode.DRIVING);
     let service = new window.google.maps.DirectionsService();
     
-    let cities = this.props.storeState.cities;
+    
     let date = this.state.date;
     let langISO = this.props.storeState.languages.length>0 ? this.props.storeState.languages[this.props.storeState.activeLanguageNumber].ISO : '';
     let country = cookies.get('country',{path: '/'});//this.props.storeState.country;
@@ -282,6 +285,7 @@ class RouteMenuClass extends React.Component {
     {
       
       if (status !== window.google.maps.DirectionsStatus.OK){
+        //необходима обработка случая, когда не смог построить маршрут)))
         return false;
       }
       function lengthTimeCalc(response){
@@ -305,7 +309,7 @@ class RouteMenuClass extends React.Component {
       
       
       let body = JSON.stringify({
-        cities: cities,
+        cities: filteredCities,
         country: country,
         date: date,
         distance: routeProps.distance,
