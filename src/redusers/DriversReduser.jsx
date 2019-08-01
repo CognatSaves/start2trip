@@ -48,7 +48,7 @@ export const DriversReduser = (state=initialState, action)=>{
         }
         case SET_CAR_TYPES:{
             function sortCarTypes(carTypes){
-                debugger;
+                
                 let orderInNeed = ['Sedan', 'Minivan', 'Jeep', 'Microbus'];
                 let res = [];
                 let tempCarTypes = [...carTypes];
@@ -64,7 +64,7 @@ export const DriversReduser = (state=initialState, action)=>{
                 res=[...res, ...tempCarTypes];
                 return res;
             }
-            debugger;
+            
             let newState={...state};
             newState.carTypes=sortCarTypes(action.carTypes);
             return newState;

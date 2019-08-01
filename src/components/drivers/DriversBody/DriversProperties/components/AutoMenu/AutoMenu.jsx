@@ -89,7 +89,7 @@ class AutoMenuClass extends React.Component {
             let textInfoMain = this.props.storeState.languageTextMain.drivers.driversProperties;
             
             let nameArray = createCarTypesString(this.props.driversState.carTypes, this.state.carValue);
-            debugger;
+            
             return (
                 <FormControl className="classFormControl">
                     <Select
