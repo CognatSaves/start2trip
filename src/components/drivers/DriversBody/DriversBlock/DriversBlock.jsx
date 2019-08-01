@@ -136,7 +136,8 @@ class DriversBlockClass extends React.Component {
     srcArray[1] = filledLike;
     console.log('selectedEl');
     console.log(selectedElements);*/
-
+    
+    
     console.log('DriversBlock render');
     
     let driversArray = this.driversSort([...this.props.driversState.driversList], this.props.storeState.sortMenuValue);
@@ -184,7 +185,8 @@ class DriversBlockClass extends React.Component {
     }
     */
     // this.setLanguagesNumbers(this, selectedElements);
-    console.log('selectedEl');
+    console.log('selectedEl--------------------------------');
+    debugger
     console.log(selectedElements);
     console.log(this.props.storeState.languages, "this.props.storeState.languagess");
 

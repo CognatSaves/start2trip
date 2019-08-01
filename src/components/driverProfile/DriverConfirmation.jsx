@@ -10,11 +10,31 @@ class DriverConfirmationClass extends React.Component {
             text: 'Ожидаем ответа',
             isRefreshExist: true,
             heAgrees: null,
+            id:this.props.match.params.id,
+            carrierId:this.props.match.params.carrierId,
+            confirmation:this.props.match.params.confirmation,
         }
 
-        let id = this.props.match.params.id;
-        let carrierId = this.props.match.params.carrierId;
-        let confirmation = this.props.match.params.confirmation;
+         let id = this.props.match.params.id;
+         let carrierId = this.props.match.params.carrierId;
+         let confirmation = this.props.match.params.confirmation;
+         
+        
+        if(confirmation){
+            console.log("-------------------------------")
+         console.log(confirmation)
+            this.sendRequest(id,carrierId,confirmation);
+        }else{
+            console.log("-------------------------------")
+         console.log(confirmation)
+            this.setState({
+                heAgrees: this.props.match.params.confirmation,
+            })
+        }
+    }
+
+    sendRequest=(id,carrierId,confirmation)=>{
+        debugger
         let body = JSON.stringify({
             id: id,
             carrierId: carrierId,
@@ -60,6 +80,7 @@ class DriverConfirmationClass extends React.Component {
                 console.log('An error occurred:', error);
             });
     }
+
     render() {
         console.log('DriverConfirmation render');
 
@@ -94,8 +115,8 @@ class DriverConfirmationClass extends React.Component {
                                         </span1>
                                     </div>
                                     <div className="d-flex flex-md-row flex-column justify-content-center align-items-center col-md-8 col-12">
-                                        <div className="forgotPasswordBt d-flex justify-content-center align-items-center col-md-5 col-12" style={{background:"#ccc"}} onClick={() => { this.props.history.push("/") }}><span>Да</span></div>
-                                        <div className="forgotPasswordBt d-flex justify-content-center align-items-center col-md-5 col-12" onClick={() => { this.props.history.push("/") }}><span>Нет</span></div>
+                                        <div className="forgotPasswordBt d-flex justify-content-center align-items-center col-md-5 col-12" style={{background:"#686868"}} onClick={() => { this.setState({confirmation:false}); this.sendRequest(this.state.id,this.state.carrierId,this.state.confirmation); this.props.history.push("/") }}><span>Да</span></div>
+                                        <div className="forgotPasswordBt d-flex justify-content-center align-items-center col-md-5 col-12" onClick={() => { this.setState({confirmation:true, heAgrees: true });this.sendRequest(this.state.id,this.state.carrierId,this.state.confirmation);}}><span>Нет</span></div>
                                     </div>
                                     <div className="d-flex flex-column justify-content-center align-items-center col-md-5 col-12">
                                         <p>* По достижении 5 баллов Вы будете навсегда отключины из системы.</p>

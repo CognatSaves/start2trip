@@ -141,7 +141,7 @@ const Drivers = connect(
   }),
   (dispatch) => ({
     setCities: (cities) => dispatch({ type: "SET_CITIES", cities: cities }),
-    setMaxPrice: (maxPrice) => dispatch({ type: "SET_MAX_PRICE", maxPrice: maxPrice, pricePart: 1000 })
+    setMaxPrice: (maxPrice) => dispatch({ type: "SET_MAX_PRICE", maxPrice: maxPrice, pricePart: maxPrice })
   })
 )(DriversClass);
 

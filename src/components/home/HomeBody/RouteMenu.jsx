@@ -208,7 +208,7 @@ class RouteMenuClass extends React.Component {
     if(!this.props.validationInput(massCities)){
       flag=false;
     }
-    if (this.state.date == "") {
+    if (this.state.date === undefined) {
       let datePicker = document.querySelector(".routemenu_date")
       datePicker.classList.add("routemenu_date-Check")
       flag = false;

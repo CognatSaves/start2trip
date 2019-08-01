@@ -95,9 +95,9 @@ const initialState = {
     persons: [1, 0],
     personsOld: [1, 0],
     peopleMenu: false,
-    pricePart: 1000,
-    tempPricePart: 1000,
     maxPrice: 0,
+    pricePart: 0,
+    tempPricePart: 0,
     valueMenu: false,
     languageValue: [],
     languageIcon: languageBlueIcon,
@@ -154,17 +154,17 @@ export const AppReduser = (state = initialState, action) => {
         case SET_ACTIVE_LANG_ISO:
             {
                 let newState = {...state };
-                if(action.mainISO && action.mainISO.length>0){
+                if (action.mainISO && action.mainISO.length > 0) {
                     let isoMainIndex = langArrayMassMainISO.indexOf(action.mainISO);
-                    if(isoMainIndex!==-1){
+                    if (isoMainIndex !== -1) {
                         newState.languageTextMain = langArrayMassMain[isoMainIndex];
                     }
                 }
-                if(action.adminISO && action.adminISO>0){
+                if (action.adminISO && action.adminISO > 0) {
                     let isoAdminIndex = langArrayMassAdminISO.indexOf(action.adminISO);
-                    if(isoAdminIndex!==-1){
+                    if (isoAdminIndex !== -1) {
                         newState.languageText = langArrayMassAdmin[isoAdminIndex];
-                    }            
+                    }
                 }
                 return newState;
             }
@@ -369,17 +369,16 @@ export const AppReduser = (state = initialState, action) => {
             }
         case MODAL_COUNTRY:
             {
-                
+
                 let newState = {...state };
                 newState.country = action.country;
-                if(action.isoCountryMap){
+                if (action.isoCountryMap) {
                     newState.isoCountryMap = action.isoCountryMap;
-                }
-                else{
-                    if(newState.countries.length>0){
-                        for(let i=0; i<newState.countries.length; i++){
-                            if(newState.countries[i].ISO===action.country){
-                                newState.isoCountryMap=newState.countries[i].isoMap;
+                } else {
+                    if (newState.countries.length > 0) {
+                        for (let i = 0; i < newState.countries.length; i++) {
+                            if (newState.countries[i].ISO === action.country) {
+                                newState.isoCountryMap = newState.countries[i].isoMap;
                                 break;
                             }
                         }
