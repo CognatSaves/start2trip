@@ -29,8 +29,8 @@ class FooterClass extends React.Component {
     let textInfo = this.props.storeState.languageTextMain.footer;
     let mobileElemArray = [
       {
-        pathname: "/route",
-        pathnamesInner: ["/route"],
+        pathname: "/routes",
+        pathnamesInner: ["/routes"],
         iconClasses: ['footerMobileIconRoutes_active','footerMobileIconRoutes'],
         classValue: 'footerMobileTextRoutes',
         value: textInfo.footerMobileTextRoutes

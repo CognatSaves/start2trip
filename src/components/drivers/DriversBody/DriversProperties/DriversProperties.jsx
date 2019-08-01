@@ -47,22 +47,23 @@ class DriversPropertiesClass extends React.Component {
         result += item;
       })
       let resultString = "";
-      if ([2, 3, 4].some(el => el === result)) {
+      /*if ([2, 3, 4].some(el => el === result)) {
         resultString = result + " человека";
       }
       else {
         resultString = result + " человек";
-      }
+      }*/
+      resultString = result + " "+textInfo.person;
       return resultString;
     }
-
+    let textInfo = this.props.storeState.languageTextMain.drivers.driversProperties;
+    
     let personsNumberString = personsCalculation(this.props.storeState.persons);
 
     let valueText = valueTextGenerator(this.props.storeState.pricePart, this.props.storeState.maxPrice);
 
     console.log("driversProperties render");
     console.log(this.props.storeState.maxPrice);
-    let textInfo = this.props.storeState.languageTextMain.drivers.driversProperties;
     return (
 
       <div className="drivers_properties d-flex flex-wrap justify-content-md-between justify-content-sm-center justify-content-center col-12" >

@@ -128,7 +128,7 @@ class DriverProfileClass extends React.Component {
                     console.log('getDriverDescription answer',data);
                     that.setState({comments:data.driverCarDescription.comments})
                     that.props.dispatch(setDriverCarDescription(data.driverCarDescription));
-                    that.props.dispatch(setCarTypes(data.carTypes));
+                    //that.props.dispatch(setCarTypes(data.carTypes));
                     /*that.setState({
                         isRefreshExist: true,
                         isRefreshing: false,

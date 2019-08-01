@@ -47,8 +47,26 @@ export const DriversReduser = (state=initialState, action)=>{
             return newState;
         }
         case SET_CAR_TYPES:{
+            function sortCarTypes(carTypes){
+                debugger;
+                let orderInNeed = ['Sedan', 'Minivan', 'Jeep', 'Microbus'];
+                let res = [];
+                let tempCarTypes = [...carTypes];
+                for(let i=0; i<orderInNeed.length; i++){
+                    for(let j=0; j<tempCarTypes.length; j++){
+                        if(orderInNeed[i]===tempCarTypes[j].name_en){
+                            res.push(tempCarTypes[j]);
+                            tempCarTypes.splice(j,1);
+                            break;
+                        }
+                    }
+                }
+                res=[...res, ...tempCarTypes];
+                return res;
+            }
+            debugger;
             let newState={...state};
-            newState.carTypes=action.carTypes;
+            newState.carTypes=sortCarTypes(action.carTypes);
             return newState;
         }
         default: return state;

@@ -1,8 +1,10 @@
 const driverProfile = {
+    //внимание! это driverProfileRegistration
     lang: 'RUS',
     createComment:{
         yourCommentPlaceholder: "Ваш отзыв",
         infoText: 'Ваш комментарий станет видимым после проверки администратором.',
+        nonFilledText: 'Заполните рейтинг и отзыв',
         sendText: "ОТПРАВИТЬ",
         nonRegisteredElement:['Чтобы оставить отзыв, ', 'войдите',' или ','зарегистрируйтесь'] 
     },

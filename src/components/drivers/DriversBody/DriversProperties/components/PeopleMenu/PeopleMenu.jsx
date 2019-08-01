@@ -26,6 +26,8 @@ class PeopleMenuClass extends React.Component {
         let peopleDisabledPlus = false ;
         let childrenDisabledMinus = true ;
         let childrenDisabledPlus = false ;
+        let textInfo = this.props.storeState.languageTextMain.drivers.driversProperties.peopleMenu;
+        
         if (this.props.isVisible) {
             if (this.props.storeState.persons[0] === 1) {//заменил 2е на 3е равенства
                 peopleDisabledMinus = true;
@@ -43,7 +45,7 @@ class PeopleMenuClass extends React.Component {
                 <div className="drivers_properties_peopleMenu">
                     <div className="peopleMenu_element">
                         <div className="peopleMenu_element_part">
-                            <p>Взрослые</p>
+                            <p>{textInfo.adults}</p>
                             <div className="element_part_valueBlock">
                                 <button className="valueBlock_button minus" disabled={peopleDisabledMinus} onClick={() => this.changePersonsNumber(0, -1)}>&#8211;</button>
                                 <div className="valueBlock_value_text">{this.props.storeState.persons[0]}</div>
@@ -52,8 +54,8 @@ class PeopleMenuClass extends React.Component {
                         </div>
                         <div className="peopleMenu_element_part">
                             <div className="element_part_children">
-                                <p>Дети</p>
-                                <p className="cildren">от 2 до 12 лет</p>
+                                <p>{textInfo.children}</p>
+                                <p className="cildren">{textInfo.childrenProps}</p>
                             </div>
                             <div className="element_part_valueBlock">
                                 <button className="valueBlock_button minus" disabled={childrenDisabledMinus} onClick={() => this.changePersonsNumber(1, -1)}>&#8211;</button>
@@ -62,8 +64,8 @@ class PeopleMenuClass extends React.Component {
                             </div>
                         </div>
                         <div className="peopleMenu_element_stateBlock">
-                            <button className="peopleMenu_stateBlock_cancelButton" onClick={() => { this.peopleMenuCall(true) }}>Отмена</button>
-                            <button className="peopleMenu_stateBlock_applyButton" onClick={()=>this.peopleMenuCall(false)}>Готово</button>
+                            <button className="peopleMenu_stateBlock_cancelButton" onClick={() => { this.peopleMenuCall(true) }}>{textInfo.cancel}</button>
+                            <button className="peopleMenu_stateBlock_applyButton" onClick={()=>this.peopleMenuCall(false)}>{textInfo.done}</button>
                         </div>
                     </div>
                 </div>

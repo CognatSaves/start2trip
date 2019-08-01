@@ -96,7 +96,7 @@ class CreateCommentClass extends React.Component {
                         onClick={()=>{if(this.state.isNotFilled || this.state.isAllCorrect){this.setState({isNotFilled: false, isAllCorrect: false})}}}></textarea>
                     <div className="d-flex flex-row">
                         <text style={{margin: 'auto auto auto 0', color: 'green', fontSize: '14px', display: this.state.isAllCorrect ? 'flex' : 'none'}}>{textInfo.infoText}</text>
-                        <text style={{margin: 'auto auto auto 0', color: 'red', fontSize: '14px', display: this.state.isNotFilled ? 'flex' : 'none'}}>Заполните рейтинг и отзыв</text>
+                        <text style={{margin: 'auto auto auto 0', color: 'red', fontSize: '14px', display: this.state.isNotFilled ? 'flex' : 'none'}}>{textInfo.nonFilledText}</text>
                         <button className="driversAdaptedRoute_sendRequest createComment_sendButton" onClick={() => this.sendComment(this.props.targetId)}>
                             <text>{textInfo.sendText}</text>
                         </button>
@@ -118,7 +118,7 @@ class CreateCommentClass extends React.Component {
                                 <div className="commentTextStyle" >{textInfo.nonRegisteredElement[0]}</div>
                                 <div className="commentLinkStyle" onClick={()=>this.props.dispatch(setModalRegister(!this.props.storeState.modalRegistration))}>{textInfo.nonRegisteredElement[1]}</div>
                                 <div className="commentTextStyle" >{textInfo.nonRegisteredElement[2]}</div>
-                                <div className="commentLinkStyle" onClick={()=>this.props.dispatch(setModalRegister(!this.props.storeState.modalRegistration))}>{textInfo.nonRegisteredElement[4]}</div>
+                                <div className="commentLinkStyle" onClick={()=>this.props.dispatch(setModalRegister(!this.props.storeState.modalRegistration))}>{textInfo.nonRegisteredElement[3]}</div>
                                 <div className="commentTextStyle" >.</div>
                             </div>
                         </div>

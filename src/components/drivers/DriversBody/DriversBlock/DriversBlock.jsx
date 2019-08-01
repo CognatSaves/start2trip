@@ -195,7 +195,14 @@ class DriversBlockClass extends React.Component {
     let storeState = this.props.storeState;
     let activeCurrency = storeState.currencies[storeState.activeCurrencyNumber]
     let textInfo = this.props.storeState.languageTextMain.drivers.driversBlock;
-
+    let basicCurrency;
+    if(storeState.currencies.length>0){
+      for(let i=0; i<storeState.currencies.length; i++){
+        if(storeState.currencies[i].costToDefault===1){
+          basicCurrency=storeState.currencies[i];
+        }
+      }
+    }
     return (
       <div className="drivers_block d-flex flex-wrap">
         {
@@ -243,7 +250,7 @@ class DriversBlockClass extends React.Component {
                    
                   <div className="driversBlock_driverInfoBlock_element driversBlock_commentary">{textInfo.commentary}</div>
                   <button className="driversBlock_driverInfoBlock_element driversBlock_buttonStyle"
-                    onClick={() => {this.props.changeTravelVisibility(element.price); debugger ;this.props.dispatch(setDriverCarDescription(element))}}>
+                    onClick={() => {this.props.changeTravelVisibility(element.price);  ;this.props.dispatch(setDriverCarDescription(element))}}>
                     {textInfo.book + " " + (activeCurrency.isLeft ? activeCurrency.symbol : '')
                       + Math.ceil(element.price * activeCurrency.costToDefault) +
                       (!activeCurrency.isLeft ? activeCurrency.symbol : '')}</button>
