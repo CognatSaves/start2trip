@@ -80,19 +80,23 @@ const muiTheme = getMuiTheme({
   },
   fontFamily: 'Roboto',
 });
+
 function getLocals() {
+
   let redusers = store.getState();
   let props = {};
   
   let adminLang = cookies.get('adminLang',{path: '/'});
   let userLang = cookies.get('userLang', {path: '/'});
+  let cookiesLangISO = cookies.get('userLangISO', { path: '/' })
   let userBrowserLanguage = window.navigator.language;
   let userBrowserLanguageISO = userBrowserLanguage.substr(0,2);
-  if(!adminLang || !userLang){
-    let langSelector = 'ENG';
+  if(!adminLang || !userLang || !cookiesLangISO){
+    let langSelector = 'ENG';let smallLangSelector='en';
     let date = new Date(Date.now()+1000*3600*24*60); 
     if(userBrowserLanguageISO==='ru'){
       langSelector='RUS';
+      smallLangSelector='ru'
     }
     if(!adminLang){
       cookies.set('adminLang', langSelector, {path: '/',expires: date});
@@ -101,6 +105,10 @@ function getLocals() {
     if(!userLang){
       cookies.set('userLang', langSelector, {path: '/',expires: date}); 
       userLang=langSelector;
+    }
+    if(!cookiesLangISO){
+      cookies.set('userLangISO', smallLangSelector, { path: '/', expires: date });
+      cookiesLangISO=smallLangSelector;
     }   
   }
 
