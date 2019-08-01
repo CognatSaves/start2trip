@@ -334,7 +334,7 @@ class RouteMenuClass extends React.Component {
             
             console.log("good");
             console.log(data);
-            that.props.dispatch(setCarTypes(data.carTypes));
+            //that.props.dispatch(setCarTypes(data.carTypes));
             that.props.dispatch(setDriversList(data.drivers));
             
             that.setState({ isWaiting: false });

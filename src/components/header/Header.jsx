@@ -559,7 +559,7 @@ class HeaderClass extends React.Component {
       }
     } else {
       if (this.state.previousPageYOffset > scrollEvent) {
-        if(document.querySelector(".footerButtonUp").classList !== null){
+        if(document.querySelector(".footerButtonUp") !== null){
           if (scrollEvent > 400) {
               document.querySelector(".footerButtonUp").classList.add("footerButtonUp-active");
           }
@@ -622,7 +622,7 @@ class HeaderClass extends React.Component {
           {/* <div onClick={this.toggleModalCountry} className="headerGeoButton">
             <span>{this.props.storeState.country}</span>
           </div> */}
-          <Link className="" to={"/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+"/route"}>
+          <Link className="" to={"/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+"/routes"}>
             <h3 />
           </Link>
           <div onClick={this.toggleModalCountry} style={{visibility: this.props.storeState.countries.length>0 ? 'visible' : 'hidden'}} className="headerGeoButton col-lg-5 col-md-4 col-6">
@@ -692,7 +692,7 @@ class HeaderClass extends React.Component {
         <div className={this.props.driver ? "driverHeader" : "homeHeader"}>
           <div className='header d-xl-flex d-lg-flex d-md-flex d-sm-none d-none align-items-stretch justify-content-between'>
             <div className="d-flex align-items-center col-xl-2 col-lg-2 col-md-3 col-sm-2 col-2">
-              <Link className="col-xl-8 col-lg-9 col-md-8 col-sm-8 col-7" to={"/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+"/route"}>
+              <Link className="col-xl-8 col-lg-9 col-md-8 col-sm-8 col-7" to={"/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+"/routes"}>
                 <h3 />
               </Link>
               <div onClick={this.toggleModalCountry} style={{visibility: this.props.storeState.countries.length>0 ? 'visible' : 'hidden'}} className="headerGeoButton col-xl-5 col-lg-5 col-md-4 col-sm-5 col-5">

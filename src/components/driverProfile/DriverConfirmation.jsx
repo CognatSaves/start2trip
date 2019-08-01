@@ -82,7 +82,7 @@ class DriverConfirmationClass extends React.Component {
                                         <div className="forgotPasswordBt d-flex justify-content-center align-items-center col-md-5 col-12" onClick={() => { this.props.history.push("/") }}><span>На главную</span></div>
                                     </div>
                                     <div className="d-flex flex-column justify-content-center align-items-center col-md-5 col-12">
-                                        <p>* По достижении 5 баллов Вы будете навсегда отключины из системы.</p>
+                                        <p>* По достижении 5 баллов Вы будете навсегда отключены из системы.</p>
                                     </div>
                                 </div>
                             </React.Fragment> : <React.Fragment>
@@ -98,7 +98,7 @@ class DriverConfirmationClass extends React.Component {
                                         <div className="forgotPasswordBt d-flex justify-content-center align-items-center col-md-5 col-12" onClick={() => { this.props.history.push("/") }}><span>Нет</span></div>
                                     </div>
                                     <div className="d-flex flex-column justify-content-center align-items-center col-md-5 col-12">
-                                        <p>* По достижении 5 баллов Вы будете навсегда отключины из системы.</p>
+                                        <p>* По достижении 5 баллов Вы будете навсегда отключены из системы.</p>
                                     </div>
                                 </div>
                                 </React.Fragment>}

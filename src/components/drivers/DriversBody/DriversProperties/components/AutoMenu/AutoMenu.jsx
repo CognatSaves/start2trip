@@ -13,7 +13,7 @@ import FormControl from '@material-ui/core/FormControl';
 import ListItemText from '@material-ui/core/ListItemText';
 import Select from '@material-ui/core/Select';
 import Checkbox from '@material-ui/core/Checkbox';
-
+import requests from '../../../../../../config';
 
 
 const MenuProps = {
@@ -33,55 +33,152 @@ class AutoMenuClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            carName: ["Любой автомобиль"],
+            carName: [],
             carValue:[],
+            carTypeIds:[]
         }
     }
     handleChange = (e,value) => {
-        if(e.target.value[0]==="Любой автомобиль"){
-            e.target.value.splice(0,1);
-        }
-        if(e.target.value.length===0){
-            e.target.value.splice(0,1,"Любой автомобиль");
-        }
+        
+        let carTypesArray = this.props.driversState.carTypes;
         let newArrayVariants = this.state.carValue;
-        let newEl = newArrayVariants.indexOf(Number(value.key))
+        //let newEl = -1;
+        let arrayIndex = carTypesArray.indexOf(value.props.value);
+        let newEl = newArrayVariants.indexOf(arrayIndex);
+
+        //console.log(index);
+        
         if (newEl === -1) {
-            newArrayVariants.push(Number(value.key))
+            newArrayVariants.push(arrayIndex);
         } else {
-            newArrayVariants.splice(newEl, 1)
+            newArrayVariants.splice(newEl, 1);
         }
-        this.setState({ carName: e.target.value,carValue:newArrayVariants })
+
+        
+        let carName = e.target.value;
+        if(carName.length>newArrayVariants.length){
+            carName.splice(0,1);
+        }
+
+        this.setState({ carName: carName,carValue:newArrayVariants })
         this.props.dispatch(setAuto(newArrayVariants))
+        
     }
     render() {
 
-        if (this.props.isVisible) {
+        if (this.props.isVisible && this.props.driversState.carTypes.length>0){
+            function createCarTypesString(carTypes, selectedIndexes) {
+                let nameArray =[];
+                for(let i=0; i<selectedIndexes.length; i++){
+                    nameArray[i]=/*carTypes[selectedIndexes[i]].name_en;*/getCorrectTypeName(carTypes[selectedIndexes[i]],language);
+                }
+                return nameArray;
+            }
+            function getCorrectTypeName(carType, langISO){
+                if(langISO==='RUS'){
+                    return carType.name_ru;
+                }
+                else{
+                    return carType.name_en;
+                }
+            }
+            
+            let language = this.props.storeState.languages.length>0 ?
+             this.props.storeState.languages[this.props.storeState.activeLanguageNumber].ISO : 'ENG' ;
             let pictureArray = [sedan, jeep, minivan, microbus];
+            let textInfoMain = this.props.storeState.languageTextMain.drivers.driversProperties;
+            
+            let nameArray = createCarTypesString(this.props.driversState.carTypes, this.state.carValue);
+            debugger;
             return (
-                // <div className="drivers_properties_autoMenu" >
-                //     {this.props.storeState.autoVariants.map((element,index)=>
-                //         <div className="autoMenu_element">
-                //             <div className="autoMenu_element_textBlock" onClick={()=>this.props.dispatch(setAuto(element,pictureArray[index]))}>
-                //                 <div className="autoMenu_element_picture">
-                //                     <img src={pictureArray[index]} width="100%" height="100%" alt={"auto_"+index}></img>
-                //                 </div>
-                //                 <div className="autoMenu_element_text">{element}</div>
-                //             </div>
-                //         </div>
-                //     )}
-                // </div>
                 <FormControl className="classFormControl">
-                     {/* <InputLabel htmlFor="select-multiple-checkbox">Любой автомобиль</InputLabel>  */}
                     <Select
                         multiple
-                        value={this.state.carName}
+                        value={nameArray.length>0 ? nameArray : [textInfoMain.anyCar]/*this.state.carName.length>0 ? this.state.carName : [textInfoMain.anyCar]*/}
                         onChange={this.handleChange}
                         input={<Input id="select-multiple-checkbox" />}
                         renderValue={selected => selected.join(', ')}
                         MenuProps={MenuProps}
                     >
-                        {/* <MenuItem disabled>Выберите типы</MenuItem> */}
+                        {this.props.driversState.carTypes.map((element, index) => (
+                            <MenuItem key={index} value={element}>
+                                <Checkbox color="#fff" checked={this.state.carValue.indexOf(index) > -1} />
+                                <ListItemText primary={getCorrectTypeName(element,language)} />
+                                <div className="autoMenu_element_picture">
+                                    <img src={requests.serverAddress+element.carTypeImage} width="80%" height="80%" alt={"auto_" + index}></img>
+                                </div>
+                            </MenuItem>
+                        ))}
+                    </Select>
+                </FormControl>
+            )
+        }
+        else {
+            return (
+                <React.Fragment></React.Fragment>
+            )
+        }
+    }
+}
+const AutoMenu = connect(
+    (state) => ({
+        storeState: state.AppReduser,
+        driversState: state.DriversReduser,
+    }),
+)(AutoMenuClass);
+
+export default AutoMenu;
+
+/*
+
+class AutoMenuClass extends React.Component {
+    constructor(props) {
+        super(props);
+        let textInfoMain = this.props.storeState.languageTextMain.drivers.driversProperties;
+        this.state = {
+            carName: [],
+            carValue:[],
+            carTypeIds:[]
+        }
+    }
+    handleChange = (e,value) => {
+
+        let newArrayVariants = this.state.carValue;
+        let newEl = newArrayVariants.indexOf(Number(value.key))
+
+        if (newEl === -1) {
+            newArrayVariants.push(Number(value.key))
+        } else {
+            newArrayVariants.splice(newEl, 1)
+        }
+        let carName = e.target.value;
+        if(carName.length>newArrayVariants.length){
+            carName.splice(0,1);
+        }
+
+        this.setState({ carName: carName,carValue:newArrayVariants })
+        this.props.dispatch(setAuto(newArrayVariants))
+    }
+    render() {
+
+        if (this.props.isVisible) {
+
+            
+            let language = this.props.storeState.languages.length>0 ?
+             this.props.storeState.languages[this.props.storeState.activeLanguageNumber].ISO : 'ENG' ;
+            let pictureArray = [sedan, jeep, minivan, microbus];
+            let textInfoMain = this.props.storeState.languageTextMain.drivers.driversProperties;
+            
+            return (
+                <FormControl className="classFormControl">
+                    <Select
+                        multiple
+                        value={this.state.carName.length>0 ? this.state.carName : [textInfoMain.anyCar]}
+                        onChange={this.handleChange}
+                        input={<Input id="select-multiple-checkbox" />}
+                        renderValue={selected => selected.join(', ')}
+                        MenuProps={MenuProps}
+                    >
                         {this.props.storeState.autoVariants.map((element, index) => (
                             <MenuItem key={index} value={element}>
                                 <Checkbox color="#fff" checked={this.state.carName.indexOf(element) > -1} />
@@ -105,7 +202,9 @@ class AutoMenuClass extends React.Component {
 const AutoMenu = connect(
     (state) => ({
         storeState: state.AppReduser,
+        driversState: state.DriversReduser,
     }),
 )(AutoMenuClass);
 
 export default AutoMenu;
+*/

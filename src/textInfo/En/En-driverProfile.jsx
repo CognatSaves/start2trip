@@ -1,10 +1,12 @@
 ﻿const driverProfile = {
+    //внимание! это driverProfileRegistration
     lang: 'ENG',
     createComment:{
         yourCommentPlaceholder: "Ваш отзыв(ENG)",
         infoText: 'Ваш комментарий станет видимым после проверки администратором.(ENG)',
+        nonFilledText: 'Заполните рейтинг и отзыв(ENG)',
         sendText: "ОТПРАВИТЬ(ENG)",
-        nonRegisteredElement:['Чтобы оставить отзыв, ', 'войдите',' или ','зарегистрируйтесь']
+        nonRegisteredElement:['Чтобы оставить отзыв, (ENG)', 'войдите(ENG)',' или (ENG)','зарегистрируйтесь(ENG)']
     },
     driverAdaptedRoute:{
         routeDateText: "Дата отправления(ENG)",
@@ -24,6 +26,7 @@
         promoVerification: ["сбросить(ENG)", "применить(ENG)"],
         bookRoute: 'Заказать поездку(ENG)',
         fieldsError: 'Заполните правильно все поля(ENG)',      
-    }
+    },
+
 }
 export default driverProfile;

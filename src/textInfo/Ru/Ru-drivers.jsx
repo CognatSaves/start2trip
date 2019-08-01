@@ -11,7 +11,19 @@ const drivers = {
     driversProperties:{
         characteristic: 'Сортировать по',
         sortText: 'Сортировать',
-        filterText: 'Фильтр',  
+        sortMenuVariants: ["Цене", "Популярности", "Рейтингу"],
+        filterText: 'Фильтр',
+        anyLanguage: 'Любой язык',
+        anyCar: 'Любой автомобиль',
+        person: 'человек',
+        upTo: 'до',
+        peopleMenu:{
+            adults: 'Взрослые',
+            children: 'Дети',
+            childrenProps: 'от 2 до 12 лет',
+            cancel: 'Отмена',
+            done: 'Готово'
+        }   
     }
 }
 

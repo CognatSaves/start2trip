@@ -22,12 +22,6 @@ class HomeClass extends React.Component {
     super(props);
     let firstEnterCookie = this.props.globalReduser.readCookie('firstEnter');
     this.state = {
-      popularPlaces: [
-        { img: georgiaImg, title: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", link: "/driver", reviews: "32 отзыва", prise: "120$" },
-        { img: georgiaImg, title: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", link: "/driver", reviews: "12 отзывов", prise: "80$" },
-        { img: georgiaImg, title: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", link: "/driver", reviews: "55 отзыва", prise: "150$" },
-        { img: georgiaImg, title: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, sapiente dolor fugiat maiores quibusdam eum tempore delectus accusamus facere", link: "/driver", reviews: "22 отзыва", prise: "170$" },
-      ],
       firstEnter: firstEnterCookie ? false : true,
       
     };
@@ -84,9 +78,9 @@ class HomeClass extends React.Component {
           
           {
             selectedDirection ? 
-              <Route path={'/'+requests.routeMap+"/route/:direction"} component={HomeBodyBottom} />
+              <Route path={'/'+requests.routeMap+"/routes-:direction"} component={HomeBodyBottom} />
             :
-              <Route path={'/'+requests.routeMap+"/route"} component={HomeBodyBottom} />
+              <Route path={'/'+requests.routeMap+"/routes"} component={HomeBodyBottom} />
           }          
           <Route path={'/'+requests.routeMap+"/drivers/:cities"} component={Drivers} />
         </main>

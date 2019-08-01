@@ -344,7 +344,7 @@ class RenderModalRegistrationClass extends React.Component {
             that.setState({
                 cookie: document.cookie
             });
-            //debugger;
+            
             window.localStorage.setItem('type', that.state.sitingIn ? "Authorization" : "Registration");
             window.localStorage.setItem('userType', that.state.sitingIn ? 0 : that.state.userType);
             window.localStorage.setItem('agency', that.state.agency);

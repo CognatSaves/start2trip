@@ -39,6 +39,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import Cookies from 'universal-cookie';
 import { setLocals, modalCountryDispatch } from './redusers/Action';
 import {  setActiveCurr, setActiveLang, setActiveLangAdmin, setActiveLangISO } from './redusers/Action';
+import { setCarTypes } from './redusers/ActionDrivers';
 import config from './config.js'
 
 
@@ -111,13 +112,16 @@ function getLocals() {
 
   axios.get(requests.getLocals, props)
     .then(response => {
+      
       let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
       let languages = response.data.languages;
       let currencies = response.data.currencies;
       let countries = response.data.countries;
       let adminLanguages = response.data.adminLanguages;
+      let carTypes = response.data.carTypes;
 
       store.dispatch(setLocals(languages, adminLanguages, currencies, countries));
+      store.dispatch(setCarTypes(carTypes));
 
       let lang = redusers.GlobalReduser.readCookie('userLang');
       let curr = redusers.GlobalReduser.readCookie('userCurr');
@@ -285,8 +289,10 @@ ReactDOM.render(
         <MuiThemeProvider muiTheme={muiTheme}>
           <Suspense fallback={<div>Загрузка...</div>}>
             <Switch>
-              <Route path={"/"+config.routeMap+"/route/:direction"} component={Home} />
-              <Route path={"/"+config.routeMap+"/route"} component={Home} />
+              <Route path={"/"+config.routeMap+"/routes/:slug"} component={RouteDescription} />
+              <Route path={"/"+config.routeMap+"/routes-:direction"} component={Home} />
+              <Route path={"/"+config.routeMap+"/routes"} component={Home} />
+              
               <Route path={"/"+config.routeMap+"/drivers"} component={Home} />
               <Route path={"/"+config.routeMap+"/driverProfile/:id-:carId-:cities"} component={DriverProfile} />
               
@@ -294,7 +300,7 @@ ReactDOM.render(
               <Route path={"/"+config.routeMap+"/places/:direction"} component={Places} />
               <Route path={"/"+config.routeMap+"/places"} component={Places} />
               <Route path={"/"+config.routeMap+"/place/:slug"} component={PlaceDescription} />
-              <Route path={"/"+config.routeMap+"/route/:slug"} component={RouteDescription} />
+              
 
               <Route path={"/"+config.routeMap+"/tours"} component={Tours} />
               <Route path={"/"+config.routeMap+"/tour/:country,:id"} component={TourDescription} />
@@ -309,7 +315,7 @@ ReactDOM.render(
               <Route path="/registration" component={Registration} />
               <Route path="/login" component={AuthRedirect} />
               <Route path="/countrySelection" component={AuthModalCountry} />
-              <Redirect from="/" to={"/"+(redirectPage==="undefined-undefined"?"countrySelection":redirectPage+"/route")} />
+              <Redirect from="/" to={"/"+(redirectPage==="undefined-undefined"?"countrySelection":redirectPage+"/routes")} />
             </Switch>
           </Suspense>
           <Footer />

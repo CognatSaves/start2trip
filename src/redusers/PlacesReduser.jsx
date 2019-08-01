@@ -67,7 +67,7 @@ export const PlacesReduser = (state=initialState, action)=>{
             return newState;
           }
         case SET_SORT_MENU_VALUE: {
-            debugger
+            
             let newState = {...state};
             newState.sortMenuValue=newState.sortMenuVariants.indexOf(action.sortMenuValueText);
             return newState;

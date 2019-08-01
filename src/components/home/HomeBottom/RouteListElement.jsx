@@ -38,17 +38,18 @@ class RouteListElementClass extends React.Component{
         }
         let element = this.props.element;
         let index = this.props.index;
-    
+        let linkString = "/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+
+        `/routes/${element.placelocalization.slug}`;
         return(
             <div className={this.props.routeListElementClass ? this.props.routeListElementClass : "col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 pb-0 p-2 "}>
                 <div className={"drivers_block_element d-flex p-0 flex-column"} id={index}>                       
                     <div className="driversBlock_carImage" style={{ background: "url(" + (element.image ? (requests.serverAddress+element.image) : '') + ") no-repeat", backgroundSize: "cover", width: '100%' }}>
-                        <Link to={"/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+`/route/${element.placelocalization.slug}`} className="driversBlock_carBlackout">
+                        <Link to={linkString} className="driversBlock_carBlackout">
                             <div className="driversBlock_carBlackout_detailed">{textInfo.detailed}</div>
                         </Link>
                     </div>
                     <div className="placesList_info d-flex flex-column">
-                        <Link to={"/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+`/route/${element.placelocalization.slug}`} className="placesList_placeName d-flex">
+                        <Link to={linkString} className="placesList_placeName d-flex">
                             <div>
                                 {element.placelocalization.name}
                             </div>

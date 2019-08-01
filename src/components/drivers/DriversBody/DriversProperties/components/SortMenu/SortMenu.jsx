@@ -27,13 +27,14 @@ class SortMenuClass extends React.Component {
     }
 
     render() {
+        let textInfo = this.props.storeState.languageTextMain.drivers.driversProperties;
         return (
             <React.Fragment>
             {isMobileOnly ?
             <div className={this.props.isVisible ? "driver_sortMenu_mobail driver_sortMenu_mobail-active":"driver_sortMenu_mobail"}>
                 {this.props.storeState.sortMenuVariantsMobail.map((element, index) =>
                     <div style={{border:"none"}} className={index ? "sortMenu_element" : "sortMenu_element sortMenu_element_active"} onClick={(e) => { this.props.dispatch(setSortMenu(element, !this.props.storeState.sortMenuWay)); this.deleteClass(e); this.props.click() }}>
-                        <span>{element}</span>
+                        <span>{textInfo.sortMenuVariants[index]}</span>
                         <i className="sortMenu_element_icon sortMenu_element_active"/>
                     </div>
                 )}
@@ -42,7 +43,7 @@ class SortMenuClass extends React.Component {
             <div className="drivers_properties_sortMenu">
                 {this.props.storeState.sortMenuVariants.map((element, index) =>
                     <div className={index ? "sortMenu_element" : "sortMenu_element sortMenu_element_active"} onClick={(e) => { this.props.dispatch(setSortMenu(element, !this.props.storeState.sortMenuWay)); this.deleteClass(e) }}>
-                        <span>{element}</span>
+                        <span>{textInfo.sortMenuVariants[index]}</span>
                         <i className="sortMenu_element_icon sortMenu_element_active" style={!index ? { background: this.props.storeState.sortMenuWay ? "url(" + iconSortDown + ") no-repeat" : "url(" + iconSortUp + ") no-repeat " } : { display: "none" }} />
                     </div>
                 )}

@@ -90,7 +90,7 @@ class AgencyProfileClass extends React.Component{
         }
         else{
             if(this.props.globalReduser.profile.email){
-                this.props.history.push("/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+'/route');
+                this.props.history.push("/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+'/routes');
                 return null;
             }
             else{

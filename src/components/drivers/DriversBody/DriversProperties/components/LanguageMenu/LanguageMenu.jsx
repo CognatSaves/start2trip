@@ -30,18 +30,21 @@ const MenuProps = {
 class LanguageMenuClass extends React.Component {
     constructor(props) {
         super(props);
+        
         this.state = {
-            languageName: ["Любой язык"],
+            languageName: [],
             LanguageValue: [],
         }
     }
     handleChange = (e, value) => {
-        if (e.target.value[0] === "Любой язык") {
+        /*
+        if (e.target.value[0] === textInfoMain.anyLanguage) {
             e.target.value.splice(0, 1);
         }
         if (e.target.value.length === 0) {
-            e.target.value.splice(0, 1, "Любой язык");
-        }
+            e.target.value.splice(0, 1, textInfoMain.anyLanguage);
+        }*/
+        
         let newArrayVariants = this.state.LanguageValue;
         let newEl = newArrayVariants.indexOf(Number(value.key))
         if (newEl === -1) {
@@ -49,14 +52,18 @@ class LanguageMenuClass extends React.Component {
         } else {
             newArrayVariants.splice(newEl, 1)
         }
-
-        this.setState({ languageName: e.target.value, LanguageValue: newArrayVariants })
+        let languageName = e.target.value;
+        if(languageName.length>newArrayVariants.length){//значит спереди стоит слово - любой язык
+            languageName.splice(0,1);
+        }
+        this.setState({ languageName: languageName, LanguageValue: newArrayVariants })
         this.languageValueChoose(newArrayVariants)
     }
     languageValueChoose(value) {
         this.props.dispatch(languageValueChooseDispatch(value));
       }
     render() {
+        let textInfoMain = this.props.storeState.languageTextMain.drivers.driversProperties;
         if (this.props.isVisible) {
             return (
                 // <div className="drivers_properties_languageMenu" >
@@ -74,7 +81,9 @@ class LanguageMenuClass extends React.Component {
                     {/* <InputLabel htmlFor="select-multiple-checkbox">Любой автомобиль</InputLabel>  */}
                     <Select
                         multiple
-                        value={this.state.languageName}
+                        value={this.state.languageName.length>0 ? this.state.languageName : [textInfoMain.anyLanguage]/*this.state.languageName*/}
+
+                        //this.state.languageName.length>0 ? this.state.languageName : ['Тут никого нет']
                         onChange={this.handleChange}
                         input={<Input id="select-multiple-checkbox" />}
                         renderValue={selected => selected.join(', ')}
