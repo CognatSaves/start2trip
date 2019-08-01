@@ -365,7 +365,9 @@ class DriverProfileClass extends React.Component {
             }
             
             cities = this.props.storeState.cities;
+            let filteredCities = this.props.globalReduser.firstLastCityCompare(cities);//проверка 1-го и последнего городов
             
+
             let urlCountry = this.props.match.params[0];
                 urlCountry = urlCountry.split("-")
             country = urlCountry[0];
@@ -376,7 +378,7 @@ class DriverProfileClass extends React.Component {
 
 
             
-            let request = createRequestElement(cities, window.google.maps.DirectionsTravelMode.DRIVING);
+            let request = createRequestElement(filteredCities, window.google.maps.DirectionsTravelMode.DRIVING);
             let service = new window.google.maps.DirectionsService();
 
             service.route(request, function(response, status){
@@ -401,7 +403,7 @@ class DriverProfileClass extends React.Component {
                 let body = JSON.stringify({
                     id: that.props.match.params.id,
                     carId: that.props.match.params.carId,
-                    cities: cities,
+                    cities: filteredCities,
                     country: country,
                     date: date,
                     distance: routeProps.distance,

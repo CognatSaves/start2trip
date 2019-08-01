@@ -34,7 +34,7 @@ class RenderModalCountryClass extends React.Component {
             //если всё уже совсем плохо, но что-то всё-таки пришло, берём первое попавшееся
             return 0;
         }
-        debugger;
+        
         this.props.dispatch(modalCountryDispatch(element.ISO,element.isoMap));
         let date = new Date(Date.now()+1000*3600*24*60); 
         cookies.set("country",element.ISO, {path: '/', expires: date}); 

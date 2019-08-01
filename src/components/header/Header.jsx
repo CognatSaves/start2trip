@@ -567,9 +567,6 @@ class HeaderClass extends React.Component {
               document.querySelector(".footerButtonUp").classList.remove("footerButtonUp-active");            
           }
         }
-        else {
-          document.querySelector(".footerButtonUp").classList.remove("footerButtonUp-active");
-        }
       }
     }
     this.setState({ previousPageYOffset: scrollEvent })

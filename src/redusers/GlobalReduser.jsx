@@ -208,6 +208,28 @@ const initialState = {
         text = text.replace(reg, arrru[i]);
         }
         return text;
+    },
+    //следующая функция сравнивает первый и последний города массива
+    //в случае, если они совпадают, то последний город удаляется, т.к. по условию возврат в начальную
+    //точку бесплатный. Это происходит за исключением случая, когда городов только 2-а (в функции наприсано 
+    //<= 2, т.к. в задачу функции не входит проверка аутизма) - в данном
+    //случае маршрут всё равно длины 0
+    firstLastCityCompare(cities){
+      
+      if(cities.length<=2){
+          return cities;
+      }
+      else{
+          if(cities[0].lat===cities[cities.length-1].lat && cities[0].long===cities[cities.length-1].long){
+              let res = [...cities];
+              res.splice(res.length-1, 1);
+              return res;
+          }
+          else{
+              return cities;
+          }
+      }
+      //return cities;
     }
 };
 
