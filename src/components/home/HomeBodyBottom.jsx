@@ -136,7 +136,7 @@ class HomeBodyBottomClass extends React.Component {
       <React.Fragment>
         <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={true} isGoodAnswer={true}/>
         
-        <div className="home_block col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+        <div className="home_block col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
           <HomePopularPlaces/>
           <HomePlacesPanel/>
           <HomeRoutesList/>

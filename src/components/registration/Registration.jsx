@@ -124,29 +124,31 @@ class Registration extends React.Component{
             socialWebAuthorizationRequest:socialWebAuthorizationRequest,
             sendResult:sendResult
         }
+        
         let urlParams = new URLSearchParams(window.location.search);
         let token = urlParams.get('access_token');
 
-        //alert("Registration component");
-        console.log("Registration component");
-        console.log(window.location.pathname);
+            //console.log("Registration component");
+            //console.log(window.location.pathname);
         
         let type=window.opener.localStorage.getItem('type');
         let agency = window.opener.localStorage.getItem('agency');
         let userLangCookies = window.opener.localStorage.getItem('userLangCookies');
+        let correctAddress = window.opener.localStorage.getItem('correctAddress');
+
         let userType = Number.parseInt(window.opener.localStorage.getItem('userType'));
         let partner = getFarCookie('partner');
         if(window.location.pathname==="/registration/facebook"){
-           // alert('token');
+        // alert('token');
             //console.log('token');
-           // console.log(token);
+        // console.log(token);
             if(token){
-               // console.log('window.name');
-               // console.log(window.name);
+            // console.log('window.name');
+            // console.log(window.name);
                 if(type==="Registration"){ 
                     axios.get('https://graph.facebook.com/me?fields=id,name,first_name,last_name,email&access_token='+token)
                     .then(response => {
-                  //  console.log("get answer from facebook");
+                //  console.log("get answer from facebook");
                             
                             let password = generatePassword(10);
                             let body = JSON.stringify({

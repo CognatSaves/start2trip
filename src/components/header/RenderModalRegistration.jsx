@@ -349,6 +349,7 @@ class RenderModalRegistrationClass extends React.Component {
             window.localStorage.setItem('userType', that.state.sitingIn ? 0 : that.state.userType);
             window.localStorage.setItem('agency', that.state.agency);
             window.localStorage.setItem('userLangCookies',cookies.get('userLang',{path:"/"}));
+            window.localStorage.setItem('correctAddress', address );
             
             let newWin = window.open(address, that.state.sitingIn ? "Authorization" : "Registration", windowProps);
             //newWin.localStorage.setItem('type', that.state.sitingIn ? "Authorization" : "Registration");
@@ -395,17 +396,21 @@ class RenderModalRegistrationClass extends React.Component {
                             <div style={{ display: this.state.sitingIn || this.state.regWindowType === 1 ? 'block' : 'none' }}>
                                 <p className="mb-0" style={{ textAlign: "center" }}>{textInfo.sitingInLightBackgroundText.sitingInFirstText}</p>
                                 <div className="iconBlok d-flex align-content-center">
-                                    <div target="windowName" className="socialIcon facebookIcon" style={{ marginLeft: "auto" }}
+                                    <div /*target="windowName"*/ className="socialIcon facebookIcon" style={{ marginLeft: "auto" }}
                                         onClick={() => {
-                                            console.log("REQUEST ADDRESS");
-                                            console.log(requests.facebookRequest);
+                                            
+                                            console.log("REQUEST ADDRESS, "+requests.facebookRequest);
+                                            //console.log("REQUEST ADDRESS");
+                                            //console.log(requests.facebookRequest);
                                             sendRequestFunc(this, requests.facebookRequest);
                                         }}
                                     />
-                                    <div target="windowName" className="socialIcon googleIcon" style={{ marginRight: "auto" }}
+                                    <div /*target="windowName"*/ className="socialIcon googleIcon" style={{ marginRight: "auto" }}
                                         onClick={() => {
-                                            console.log("REQUEST ADDRESS");
-                                            console.log(requests.googleRequest);
+                                            
+                                            console.log("REQUEST ADDRESS, "+requests.googleRequest);
+                                            //console.log("REQUEST ADDRESS");
+                                            //console.log(requests.googleRequest);
                                             sendRequestFunc(this, requests.googleRequest);
                                         }}
                                     />
@@ -501,15 +506,17 @@ class RenderModalRegistrationClass extends React.Component {
                             <div style={{ display: this.state.sitingIn || this.state.regWindowType === 1 ? 'block' : 'none' }}>
                                 <p className="mb-0" style={{ textAlign: "center" }}>{textInfo.sitingInLightBackgroundText.sitingInFirstText}</p>
                                 <div className="iconBlok d-flex align-content-center">
-                                    <div target="windowName" className="socialIcon facebookIcon" style={{ marginLeft: "auto" }}
+                                    <div /*target="windowName"*/ className="socialIcon facebookIcon" style={{ marginLeft: "auto" }}
                                         onClick={() => {
+                                            
                                             console.log("REQUEST ADDRESS");
                                             console.log(requests.facebookRequest);
                                             sendRequestFunc(this, requests.facebookRequest);
                                         }}
                                     />
-                                    <div target="windowName" className="socialIcon googleIcon" style={{ marginRight: "auto" }}
+                                    <div /*target="windowName"*/ className="socialIcon googleIcon" style={{ marginRight: "auto" }}
                                         onClick={() => {
+                                            
                                             console.log("REQUEST ADDRESS");
                                             console.log(requests.googleRequest);
                                             sendRequestFunc(this, requests.googleRequest);

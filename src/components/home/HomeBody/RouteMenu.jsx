@@ -100,6 +100,16 @@ const CityRouteTable = (props) => {
 
 class RouteMenuClass extends React.Component {
   constructor(props) {
+    function setCitiesFromUrl(pathname){
+      
+      
+      let newString = pathname.split('from-');
+      let newArrayCities = newString[1].split("-to-");
+      let langISO = cookies.get('userLang', {path: '/'});
+
+      return true;
+      
+    }
     super(props);
     
     console.log(window);
@@ -122,6 +132,10 @@ class RouteMenuClass extends React.Component {
     //то мы находимся не в /geo/(drivers|route) просто,а в /geo/(drivers|route)/что-то там, что
     //означает, что можно попробовать построить маршрут
     // так как проверка идёт а-ля - загружено ли(и мы считаем, что загружено, если грузить не надо), то сравнение наоборот
+    if(!resultpathname){//т.е. есть города в адресе
+      setCitiesFromUrl(pathnameMAss[3]);
+    }
+    
     this.state = {
       correctDate: "",
       isWaiting: false,
@@ -140,12 +154,14 @@ class RouteMenuClass extends React.Component {
       lat: extraData.location.lat,
       long: extraData.location.long
     };
+    
     this.props.dispatch(setCities(cities))
     let footer = document.querySelector(".footerMobile");
     footer.classList.remove("footerMobile-activeInput")
   }
 
   addCity = () => {
+    
     let cities = this.props.storeState.cities;
     let flagCities = true;
 
@@ -168,6 +184,7 @@ class RouteMenuClass extends React.Component {
         lat: '',
         long: ''
       };
+      
       this.props.dispatch(setCities(cities))
 
     }
@@ -175,6 +192,7 @@ class RouteMenuClass extends React.Component {
   removeCity = (index) => {
     let cities = this.props.storeState.cities;
     cities.splice(index, 1);
+    
     this.props.dispatch(setCities(cities))
   }
 
@@ -227,7 +245,7 @@ class RouteMenuClass extends React.Component {
             //this.props.goToDrivers(this.props.storeState.cities, this.state.date)
             
       this.requestFunction((that,cities, date, languageISO)=>{
-        
+          
           let routeDate = that.props.globalhistory.getRoute(cities, languageISO);
           let newStringCities = routeDate.route;
           // let country = routeDate.country;
@@ -238,7 +256,7 @@ class RouteMenuClass extends React.Component {
           
           if (canMove) {
             let index = that.props.storeState.activeLanguageNumber;
-            that.props.globalhistory.history.push('/'+this.props.storeState.country+`-`+that.props.storeState.languages[index].isoAutocomplete+`/drivers/${newStringCities}?date=`+dateString);
+            that.props.globalhistory.history.push('/'+this.props.storeState.country+`-`+that.props.storeState.languages[index].isoAutocomplete+`/drivers/${newStringCities}?date=`+dateString/*+`&lang=`+languageISO*/);
             window.scroll(0, 500);
           }
         }
@@ -278,7 +296,7 @@ class RouteMenuClass extends React.Component {
     
     
     let date = this.state.date;
-    let langISO = this.props.storeState.languages.length>0 ? this.props.storeState.languages[this.props.storeState.activeLanguageNumber].ISO : '';
+    let langISO = this.props.storeState.languages.length>0 ? this.props.storeState.languages[this.props.storeState.activeLanguageNumber].isoAutocomplete : 'en';
     let country = cookies.get('country',{path: '/'});//this.props.storeState.country;
 
     service.route(request, function(response, status)

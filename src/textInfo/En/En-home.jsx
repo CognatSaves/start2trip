@@ -15,7 +15,7 @@ const home = {
             morePics: 'ещё(ENG)'
         },
         homeRoutesList:{
-            noElementsText: 'Ничего не найдено. Попробуйте изменить условия поиска или дату отправления(ENG)'
+            noElementsText: 'Ничего не найдено. Похоже, Саша ещё не добралась до этого :( Но мы будем очень ждать, просто очень ... (ENG)'
         },
         routeListElement: {
             detailed: 'Подробнее(ENG)',

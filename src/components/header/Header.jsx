@@ -21,7 +21,7 @@ import { whichPageRenderHistory ,whichPageRender } from "../../redusers/ActionGl
 import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 import Cookies from 'universal-cookie';
-import pageTextInfo from '../../textInfo/RenderModalRegistration';
+//import pageTextInfo from '../../textInfo/RenderModalRegistration';
 
 import Dialog from 'material-ui/Dialog';
 import { isMobileOnly, isMobile } from 'react-device-detect';
@@ -84,7 +84,7 @@ const ModalUserType = (props) => {
       selectedUserType: value
     })
   }
-  let { isOpen, that, textInfo } = props;
+  let { isOpen, that, textInfo, pageTextInfo } = props;
   let lang = 0; // подключить мультиязычность!!!
   let massIcon = [backpackIcon, wheelIcon, dealIcon];
   const customContentStyle = {
@@ -114,6 +114,19 @@ const ModalUserType = (props) => {
 
     }
   }
+  debugger;
+
+  let activeLanguageId =that.props.storeState.languages.length>0 ? that.props.storeState.languages[that.props.storeState.activeLanguageNumber].id : 'notFound';
+  
+  function selectCountryLoc(activeLanguageId, countryEl){
+    debugger;
+    for(let i=0; i<countryEl.locals.length; i++){
+      if(countryEl.locals[i].langId===activeLanguageId){
+        return countryEl.locals[i].name
+      }
+    }
+    return countryEl.locals[1].name
+  }
   return (
     <Dialog
       modal={true}
@@ -130,9 +143,9 @@ const ModalUserType = (props) => {
                 <div className={index ? "selectTypeBlockLine selectTypeBlock d-flex align-items-center col-8" : "selectTypeBlock d-flex align-items-center col-8"}
                   onClick={() => { setSelectedUserType(index + 1, that) }} >
                   <i style={{ background: "url(" + massIcon[index] + ") no-repeat" }} />
-                  <label className="typeCheckLabel" for={"typeCheckbox" + (index + 1)}>{element.userText[lang]}</label>
+                  <label className="typeCheckLabel" for={"typeCheckbox" + (index + 1)}>{element.userText}</label>
                   <input className="typeCheckButton" id={"typeCheckbox" + (index + 1)}
-                    type="radio" name="raz" />
+                    type="radio" name="raz" checked={index + 1 === that.state.selectedUserType ? true : false}/>
                 </div>
               )
             }
@@ -155,7 +168,7 @@ const ModalUserType = (props) => {
             >
               {
                 that.props.storeState.countries.map((element, index)=>
-                  <MenuItem value={element.ISO} primaryText={element.ISO}/>
+                  <MenuItem value={element.ISO} primaryText={selectCountryLoc(activeLanguageId,element)}/>
                 )
               }
             </DropDownMenu>
@@ -164,7 +177,7 @@ const ModalUserType = (props) => {
         {
           that.state.selectedUserType>0 ? 
           <button className="selectTypeBt" onClick={() => that.state.selectedUserType === 0 ?
-            {} : sendUserType(that)}>{pageTextInfo.registrationUserType.buttonNext[lang]}
+            {} : sendUserType(that)}>{pageTextInfo.registrationUserType.buttonNext}
           </button>
           : <React.Fragment/>
         }
@@ -585,6 +598,7 @@ class HeaderClass extends React.Component {
     let isAdmin = this.props.storeState.isSecondLanguageGroupPart;
     let textInfo = isAdmin ? textInfoAdmin : textInfoMain;
     
+    let pageTextInfo = this.props.storeState.languageTextMain.renderModalRegistration;
     let buttonMassElements= [
       {
         to: "/",
@@ -614,7 +628,7 @@ class HeaderClass extends React.Component {
           
           : <React.Fragment/> */
         }
-        <ModalUserType textInfo={textInfo} isOpen={this.state.isUsertypeLooking} that={this} />
+        <ModalUserType textInfo={textInfo} isOpen={this.state.isUsertypeLooking} that={this} pageTextInfo={pageTextInfo}/>
         <div className="headerMobail d-xl-none d-lg-none d-md-none d-sm-flex d-flex align-items-center justify-content-between">
           {/* <div onClick={this.toggleModalCountry} className="headerGeoButton">
             <span>{this.props.storeState.country}</span>

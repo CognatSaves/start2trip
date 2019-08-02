@@ -38,7 +38,7 @@ class ManipulatorClass extends React.Component{
         let textInfo = this.props.storeState.languageTextMain.manipulator;
         
         let isEnoughPages = (maxPage>1);
-        debugger;
+        
         return(
         <React.Fragment>
             <div className="drivers_block_manipulator" style={{display: this.props.page>0 && maxPage>0 ? 'flex' : 'none'}}>

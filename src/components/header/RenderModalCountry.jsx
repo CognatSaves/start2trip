@@ -17,6 +17,7 @@ class RenderModalCountryClass extends React.Component {
         };
     }
     onSelect = (element) => {
+        
         function findTargetCurrency(currencies, selectedId){
             //если набор валют корректен, то отработает только этот цикл
             for(let i=0; i<currencies.length; i++){
@@ -51,8 +52,8 @@ class RenderModalCountryClass extends React.Component {
         this.props.close();
         let namePage = this.props.globalhistory.history.location.pathname.split("/");
         namePage = namePage.splice(2)
-        namePage = namePage.join('/')
-        this.props.globalhistory.history.push("/"+element.ISO+"-"+cookiesLangISO+'/'+(namePage===""?"route":namePage))
+        namePage = namePage.join('/')//в случае, когда мы стоим в countrySelect при первом заходе в namePage остаётся пустая строка
+        this.props.globalhistory.history.push("/"+element.ISO+"-"+cookiesLangISO+'/'+(namePage===""?"routes":namePage))
         // window.location.reload()
     }
     render() {

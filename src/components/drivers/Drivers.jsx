@@ -79,7 +79,7 @@ class DriversClass extends React.Component {
       if (this.props.storeState.cities[0].point === "") {
 
         // let langISO = this.props.globalReduser.findGetParameter('lang');
-
+        
         cities = this.props.match.params.cities;
         country = this.props.match.params[0];
         country = country.split("-")

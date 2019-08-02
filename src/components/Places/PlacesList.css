@@ -105,6 +105,16 @@
     width: 20px;
 }
 
+.placesList_noElementsBlock{
+    width: 100%;
+    background: url('../media/noResultImage.png') no-repeat;
+    height: 600px;
+    text-align: center;
+    line-height: 300px;
+    font-size: 24px;
+    color: #ff6600;
+}
+
 .placesTagList_tagLine {
     width: 90%;
     text-overflow: ellipsis;
