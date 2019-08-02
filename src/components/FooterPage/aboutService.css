@@ -1,0 +1,75 @@
+.aboutService {
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
+    padding: 30px 20px !important;
+    border-radius: 5px;
+    margin: 40px 10px;
+}
+
+.aboutService_Title {
+    background: url(../media/phone.png)no-repeat;
+    background-position: right 20% bottom;
+}
+
+.aboutService_Title h2 {
+    font-size: 36px !important;
+    font-weight: 500;
+    color: #304269;
+}
+
+.aboutService_Title p {
+    font-size: 16px;
+    font-weight: 400;
+    color: #686868;
+    margin: 0;
+}
+
+.aboutService_Title p strong {
+    color: #304269;
+}
+
+.aboutService_Title span {
+    font-size: 21px;
+    font-weight: 500;
+    color: #304269;
+    margin-bottom: 10px;
+}
+
+.aboutService_content {
+    margin-top: 60px;
+}
+
+.aboutService_content i {
+    width: 300px;
+    min-height: 120px;
+    background-position: center !important;
+}
+
+@media (max-width: 800px) {
+    .aboutService_Title {
+        background: none;
+    }
+    .aboutService_Title h2 {
+        text-align: center;
+    }
+    .aboutService_Title span,
+    .aboutService_Title p {
+        width: 100%;
+        text-align: start;
+    }
+    .aboutService {
+        margin-bottom: 80px;
+    }
+}
+
+@media (max-width: 420px) {
+    .aboutService {
+        padding: 20px 10px !important;
+        box-shadow: none;
+        margin-top: 20px;
+    }
+    .aboutService_content i {
+        width: 300px;
+        min-height: 200px;
+        background-position: center !important;
+    }
+}

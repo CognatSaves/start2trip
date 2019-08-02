@@ -1,0 +1,142 @@
+.affiliateProgram {
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
+    padding: 30px 20px !important;
+    border-radius: 5px;
+    margin: 40px 10px;
+}
+
+.affiliateProgram_Title {
+    background: url(../media/affiliateProgram.png)no-repeat;
+    background-size: 40% 40%;
+    background-position: right center;
+}
+
+.affiliateProgram_Title h2 {
+    font-size: 36px !important;
+    font-weight: 500;
+    color: #304269;
+}
+
+.affiliateProgram_Title p {
+    font-size: 16px;
+    font-weight: 400;
+    color: #686868;
+    margin: 0;
+}
+
+.affiliateProgram_Title p strong {
+    color: #304269;
+}
+
+.affiliateProgram_Title span {
+    font-size: 21px;
+    font-weight: 500;
+    color: #304269;
+    margin-bottom: 10px;
+}
+
+.affiliateProgram_content {
+    margin-top: 60px;
+}
+
+.affiliateProgram_content i {
+    width: 90px;
+    min-height: 80px;
+    background-position: center !important;
+}
+
+.affiliateProgram_Footer h3 {
+    font-size: 36px !important;
+    font-weight: 500;
+    color: #304269;
+    text-align: center;
+    padding: 40px 0 60px 0;
+}
+
+.affiliateProgram_FooterContent {
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
+    padding: 30px 20px !important;
+    border-radius: 5px;
+    padding-bottom: 0px !important;
+    height: 100%;
+}
+
+.affiliateProgram_FooterContent span {
+    font-size: 21px;
+    font-weight: 500;
+    color: #304269;
+    padding: 20px 0;
+}
+
+.affiliateProgram_FooterContent p {
+    font-size: 14px;
+    font-weight: 400;
+    color: #686868;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.affiliateProgram_FooterCircle {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #ccc;
+    background: #fff;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.affiliateProgram_FooterContent .affiliateProgram_FooterCircle span {
+    font-size: 30px;
+    font-weight: 400;
+    color: #686868;
+}
+
+.affiliateProgram_FooterContent i {
+    width: 90px;
+    min-height: 90px;
+    background-position: center !important;
+}
+
+@media (max-width: 800px) {
+    .affiliateProgram_Title {
+        background: none;
+    }
+    .affiliateProgram_Title span,
+    .affiliateProgram_Title h2 {
+        text-align: center;
+    }
+    .affiliateProgram_Title p {
+        width: 100%;
+        text-align: start;
+    }
+    .affiliateProgram {
+        margin-bottom: 80px;
+    }
+}
+
+@media (max-width: 420px) {
+    .affiliateProgram {
+        padding: 20px 10px !important;
+        box-shadow: none;
+        margin-top: 20px;
+    }
+    .affiliateProgram_content i {
+        width: 80px;
+        min-height: 80px;
+        background-position: center !important;
+        margin: 10px 0;
+    }
+    .affiliateProgram_content {
+        margin-top: 30px;
+    }
+    .affiliateProgram_Title h2,
+    .affiliateProgram_Footer h3 {
+        font-size: 32px !important;
+    }
+}

@@ -54,56 +54,17 @@ class FirstEnterModalClass extends React.Component {
         }
 
     }
-    ChangeinputChecked = (indexEl) => {
+    ChangeinputChecked = (indexEl) => {    
+        console.log(this.state.activeWindow)
         let div = document.querySelector(".modalStartInformationContent");
         if (!div) {
             div = document.querySelector(".modalStartInformationContentmodal");
         }
         let widthOneWindow = div.scrollWidth / this.state.renderContent.length - 2.5;
         if (indexEl || indexEl == 0) {
-            
-
             div.scrollLeft=widthOneWindow*indexEl;
-            /*
-            switch (indexEl) {
-                case 0: {
-                    div.scrollLeft = 0;
-                }
-                    break;
-                case 1: {
-                    div.scrollLeft = widthOneWindow;
-                }
-                    break;
-                case 2: {
-                    div.scrollLeft = widthOneWindow * 2;
-                }
-                    break;
-                case 3: {
-                    div.scrollLeft = widthOneWindow * 3;
-                }
-                    break;
-                case 4: {
-                    div.scrollLeft = widthOneWindow * 4;
-                }
-                    break;
-            }*/
-
         } else {
             div.scrollLeft = widthOneWindow*(this.state.activeWindow+1);
-
-            /*
-            if (0 === this.state.activeWindow) {
-                div.scrollLeft = widthOneWindow;
-            }
-            if (1 === this.state.activeWindow) {
-                div.scrollLeft = widthOneWindow * 2;
-            }
-            if (2 === this.state.activeWindow) {
-                div.scrollLeft = widthOneWindow * 3;
-            }
-            if (3 === this.state.activeWindow) {
-                div.scrollLeft = widthOneWindow * 4;
-            }*/
         }
 
     }
@@ -120,33 +81,33 @@ class FirstEnterModalClass extends React.Component {
             openModalStart: false
         });
     }
+
     scrollDiv = (e) => {
         let widthOneWindow = e.currentTarget.scrollWidth / this.state.renderContent.length - 3.5;
         let marginLeft = e.currentTarget.scrollLeft;
+        let firstOn = widthOneWindow;
+        let second = widthOneWindow * 2;
+        let third = (widthOneWindow * 3)-10;
+        let fourth = (widthOneWindow * 4)-10;
         if (0 < marginLeft) {
-
             this.setState({ activeWindow: 0 })
         }
-        if (widthOneWindow < marginLeft) {
-
+        if (firstOn < marginLeft&&second >= marginLeft&&second < marginLeft){
             this.setState({ activeWindow: 1 })
+            e.currentTarget.scrollLeft = widthOneWindow;
         }
-        if (widthOneWindow * 2 < marginLeft) {
-
+        if (second < marginLeft&&third >= marginLeft &&(this.state.activeWindow===1||this.state.activeWindow===3)){
             this.setState({ activeWindow: 2 })
+            e.currentTarget.scrollLeft = widthOneWindow*2;
         }
-        if ((widthOneWindow * 3) - 10 < marginLeft) {
-
+        if (third < marginLeft&&fourth >= marginLeft &&(this.state.activeWindow===2||this.state.activeWindow===4)){
             this.setState({ activeWindow: 3 })
+            e.currentTarget.scrollLeft = widthOneWindow*3;
         }
-        if ((widthOneWindow * 4) - 10 < marginLeft) {
-
+        if (fourth < marginLeft&&this.state.activeWindow===3) {
             this.setState({ activeWindow: 4 })
+            e.currentTarget.scrollLeft = widthOneWindow*4;
         }
-
-
-
-
     }
     render() {
         if (this.state.renderContent==0) {

@@ -53,7 +53,8 @@ const PartnerRegister = lazy(() => import('./components/registration/PartnerRegi
 const Registration = lazy(() => import('./components/registration/Registration'));
 const AuthRedirect = lazy(() => import('./components/registration/AuthRedirect'));
 const AuthModalCountry = lazy(() => import('./components/registration/AuthModalCountry'));
-
+const AboutService = lazy(() => import('./components/FooterPage/aboutService'));
+const affiliateProgram = lazy(() => import('./components/FooterPage/affiliateProgram'));
 
 const redux = require('redux');
 
@@ -313,12 +314,14 @@ ReactDOM.render(
               <Route path={"/"+config.routeMap+"/tours"} component={Tours} />
               <Route path={"/"+config.routeMap+"/tour/:country,:id"} component={TourDescription} />
 
-              <Route path={"/account"} component={AccountRedirector} />
+              <Route path="/account" component={AccountRedirector} />
               <Route path="/forgot-password" component={ForgotPassword} />
               <Route path="/reset-password/:code" component={ResetPassword} />
-
-              <Route path={"/driverConfirmation/:id-:carrierId-:confirmation"} component={DriverConfirmation} />
-              <Route path={"/tripConfirmation/:id-:userId"} component={TripConfirmation} />
+              
+              <Route path="/affiliate-program" component={affiliateProgram} />
+              <Route path="/about-service" component={AboutService} />
+              <Route path="/driverConfirmation/:id-:carrierId-:confirmation" component={DriverConfirmation} />
+              <Route path="/tripConfirmation/:id-:userId" component={TripConfirmation} />
               <Route path="/(register|start)/" component={PartnerRegister} />
               <Route path="/registration" component={Registration} />
               <Route path="/login" component={AuthRedirect} />

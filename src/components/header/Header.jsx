@@ -127,7 +127,7 @@ const ModalUserType = (props) => {
             <span>{textInfo.modalUserType.selectAccountTypeText}</span>
             {
               pageTextInfo.registrationUserType.userTypes.map((element, index) =>
-                <div className={index ? "selectTypeBlockLine selectTypeBlock d-flex align-items-center col-8" : "selectTypeBlock d-flex align-items-center col-8"}
+                <div key={element+index} className={index ? "selectTypeBlockLine selectTypeBlock d-flex align-items-center col-8" : "selectTypeBlock d-flex align-items-center col-8"}
                   onClick={() => { setSelectedUserType(index + 1, that) }} >
                   <i style={{ background: "url(" + massIcon[index] + ") no-repeat" }} />
                   <label className="typeCheckLabel" for={"typeCheckbox" + (index + 1)}>{element.userText[lang]}</label>

@@ -46,6 +46,16 @@ const Content = (that, flagAllOk, carCapacityArray, activeCurrency, textInfo, ch
                             />
 
                         </div>
+                        <div className="col-sm-6 col-12 order-1">
+                            <TextField
+                                label={textInfo.secondNameLabel + '*'}
+                                value={that.state.lastName}
+                                onChange={(event) => { that.setState({ lastName: event.target.value }); event.target.previousSibling.classList.remove("driver_route-error") }}
+                                className="textField validate w-100"
+                                margin="normal"
+                                variant="outlined"
+                            />
+                        </div>
                         <div className="col-sm-6 col-12 order-2">
                             <ReactTelInput
                                 defaultCountry={that.props.storeState.isoCountryMap}
@@ -55,6 +65,16 @@ const Content = (that, flagAllOk, carCapacityArray, activeCurrency, textInfo, ch
                                 onChange={(telNumber, selectedCountry) => { that.setState({ telNumber: telNumber }); document.querySelector(".route_datePhoneInput").children[1].classList.remove("driver_route-error") }}
                                 onBlur={(value) => { console.log(value) }}
                                 initialValue={textInfo.telInputInitial}
+                            />
+                        </div>
+                        <div className="col-sm-6 col-12 order-3">
+                            <TextField
+                                label="Email*"
+                                value={that.state.email}
+                                onChange={(event) => { that.setState({ email: event.target.value }); event.target.previousSibling.classList.remove("driver_route-error") }}
+                                className="textField validateEmail w-100"
+                                margin="normal"
+                                variant="outlined"
                             />
                         </div>
                         <div className="col-sm-6 col-12 order-6">
@@ -77,26 +97,6 @@ const Content = (that, flagAllOk, carCapacityArray, activeCurrency, textInfo, ch
                                     ))}
                                 </Select>
                             </FormControl>
-                        </div>
-                        <div className="col-sm-6 col-12 order-1">
-                            <TextField
-                                label={textInfo.secondNameLabel + '*'}
-                                value={that.state.lastName}
-                                onChange={(event) => { that.setState({ lastName: event.target.value }); event.target.previousSibling.classList.remove("driver_route-error") }}
-                                className="textField validate w-100"
-                                margin="normal"
-                                variant="outlined"
-                            />
-                        </div>
-                        <div className="col-sm-6 col-12 order-3">
-                            <TextField
-                                label="Email*"
-                                value={that.state.email}
-                                onChange={(event) => { that.setState({ email: event.target.value }); event.target.previousSibling.classList.remove("driver_route-error") }}
-                                className="textField validateEmail w-100"
-                                margin="normal"
-                                variant="outlined"
-                            />
                         </div>
                         <div className="col-sm-6 col-12 order-7">
                             <FormControl className="route_dateSelect departureTime w-100">
@@ -205,6 +205,7 @@ const Content = (that, flagAllOk, carCapacityArray, activeCurrency, textInfo, ch
 }
 
 export default class StartTravelForm extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -216,11 +217,11 @@ export default class StartTravelForm extends React.Component {
             showPanelVariant: 0,
 
             //Form value Begin
-            firstName: this.props.storeState.userData ? this.props.storeState.userData.firstName : "",
-            lastName: this.props.storeState.userData ? this.props.storeState.userData.lastName : "",
-            telNumber: this.props.storeState.userData ? this.props.storeState.userData.workPhone : "",
-            email: this.props.storeState.userData ? this.props.storeState.userData.email : "",
-            date: this.props.storeState.date ? this.props.storeState.date : new Date(),
+            firstName: props.storeState.userData ? props.storeState.userData.firstName : "",
+            lastName: props.storeState.userData ? props.storeState.userData.lastName : "",
+            telNumber: props.storeState.userData ? props.storeState.userData.workPhone : "",
+            email: props.storeState.userData ? props.storeState.userData.email : "",
+            date: props.storeState.date.length>0 ? new Date(props.storeState.date) : new Date(),
             departureTime: "",
             numberOfPeople: "",
             placeDeparture: "",

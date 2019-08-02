@@ -111,6 +111,7 @@ class RouteMenuClass extends React.Component {
     let dateValue;
     if(result){
       dateValue = props.globalhistory.getDateFromDateString(result);
+      dateValue = new Date(dateValue);
     }
     /*else{
       dateValue = '';

@@ -57,19 +57,18 @@ class FooterClass extends React.Component {
         value: textInfo.footerMobileTextProfile
       }
     ]
-
     return (
       <React.Fragment>
         <div className="footer d-xl-flex d-lg-flex d-md-flex d-sm-none d-none justify-content-center align-items-center  col-12 p-0">
           <div className="footerButtonUp" onClick={() => { window.scroll(0, 0) }}><img src={upArrowIcon} width="20px" height="20px" alt="upArrowIcon" /></div>
           <div className="footer_block d-flex  justify-content-between align-items-center col-12 p-0">
-          <Link to={"/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+"/routes"} className="col-md-1 col-2 p-0 "><img src={logoTripfer} width="110px" height="18px" alt="logoWhiteIcon" /></Link>
+            <img className="col-md-1 col-2 p-0 " src={logoTripfer} width="110px" height="18px" alt="logoWhiteIcon" />
             <div className="footerButtons d-flex justify-content-between col-xl-7 col-lg-7 col-md-9 col-sm-12 col-12">
-              <Link to="/about-service" className="footerButtons_button">{textInfo.footerButtons[0]}</Link>
-              <Link to="/affiliate-program" className="footerButtons_button">{textInfo.footerButtons[1]}</Link>
-              <Link to="" className="footerButtons_button">{textInfo.footerButtons[2]}</Link>
-              <Link to="" className="footerButtons_button">{textInfo.footerButtons[3]}</Link>
-              <Link to="" className="footerButtons_button">{textInfo.footerButtons[4]}</Link>
+              <button className="footerButtons_button">{textInfo.footerButtons[0]}</button>
+              <button className="footerButtons_button">{textInfo.footerButtons[1]}</button>
+              <button className="footerButtons_button">{textInfo.footerButtons[2]}</button>
+              <button className="footerButtons_button">{textInfo.footerButtons[3]}</button>
+              <button className="footerButtons_button">{textInfo.footerButtons[4]}</button>
               <div className="footerButtonsIcon d-flex">
                 <img src={facebookIcon} width="16px" height="16px" alt="facebookIcon" />
                 <img src={instagramIcon} width="17px" height="17px" alt="instagramIcon" />

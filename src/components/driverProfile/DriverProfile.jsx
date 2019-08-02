@@ -32,11 +32,11 @@ class DriverProfileClass extends React.Component {
             showPanelVariant: 0,
 
             //Form value Begin
-            firstName: this.props.storeState.userData ? this.props.storeState.userData.firstName : "",
-            lastName: this.props.storeState.userData ? this.props.storeState.userData.lastName : "",
-            telNumber: this.props.storeState.userData ? this.props.storeState.userData.workPhone : "",
-            email: this.props.storeState.userData ? this.props.storeState.userData.email : "",
-            date: this.props.storeState.date ? this.props.storeState.date : new Date(),
+            firstName: props.storeState.userData ? props.storeState.userData.firstName : "",
+            lastName: props.storeState.userData ? props.storeState.userData.lastName : "",
+            telNumber: props.storeState.userData ? props.storeState.userData.workPhone : "",
+            email: props.storeState.userData ? props.storeState.userData.email : "",
+            date: props.storeState.date.length>0 ? new Date(props.storeState.date) : new Date(),
             departureTime: "",
             numberOfPeople: "",
             placeDeparture: "",

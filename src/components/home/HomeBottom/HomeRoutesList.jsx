@@ -11,26 +11,26 @@ class HomeRoutesListClass extends React.Component{
 
     // }
     placesSort=(array,type)=>{
-        function sortRating(a,b){//1
-            if(a.rating>b.rating) return -1;
-            if(a.rating<b.rating) return 1;
-        }
-        function sortComments(a,b){//2
-            if(a.comments>b.comments) return -1;
-            if(a.comments<b.comments) return 1;
-        }
-        function sortName(a,b){//3
-            if(a.name>b.name) return 1;
-            if(a.name<b.name) return -1;
-        }
-        
+        // function sortRating(a,b){//1
+        //     if(a.rating>b.rating) return -1;
+        //     if(a.rating<b.rating) return 1;
+        // }
+        // function sortComments(a,b){//2
+        //     if(a.comments>b.comments) return -1;
+        //     if(a.comments<b.comments) return 1;
+        // }
+        // function sortName(a,b){//3
+        //     if(a.name>b.name) return 1;
+        //     if(a.name<b.name) return -1;
+        // }
+
         switch (type){
             case 0:
-                return array.sort(sortRating);
+                return array.sort((a, b) => { return a.rating > b.rating ? -1 : 1 });
             case 1:
-                return array.sort(sortComments);
+                return array.sort((a, b) => { return a.comments > b.comments ? -1 : 1 });
             case 2:
-                return array.sort(sortName);
+                return array.sort((a, b) => { return a.placelocalization.name < b.placelocalization.name ? -1 : 1 });
 
             default: return array;
         }
