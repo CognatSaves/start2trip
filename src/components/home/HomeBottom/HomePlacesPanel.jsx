@@ -13,7 +13,7 @@ class HomeRoutesPanelClass extends React.Component {
         let textInfo = this.props.storeState.languageTextMain.places;
         return(
             <React.Fragment>
-            <div className="driverProfileComments_panel d-flex">
+            <div className={this.props.placesState.routesList.length>0 ? "driverProfileComments_panel d-flex" : 'd-none'}>
                 <div className="placesPanel_sortText d-md-block d-none">{textInfo.placesPanel.placesPanelSortText+':'}</div>
                 <div className="d-flex justify-content-between col-md-3 col-12 p-md-0">
                 {this.props.placesState.sortMenuVariants.map((element, index)=>

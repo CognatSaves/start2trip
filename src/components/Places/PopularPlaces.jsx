@@ -102,7 +102,7 @@ class PopularPlacesClass extends React.Component {
         */
         return (
             <React.Fragment>
-                <div className="popularPlacesBody pt-4">
+                <div className={placeRender.length>0 ? "popularPlacesBody pt-4" : 'd-none'} >
                     <div className="popularPlacesTitle">
                         <h2>{textInfo.popularPlaces.popularPlacesTitle}</h2>
                     </div>

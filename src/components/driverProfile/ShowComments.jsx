@@ -101,7 +101,7 @@ class ShowCommentsClass extends React.Component {
         else {
             return (
                 <div className="commentBlock_comments d-flex flex-column">
-                    <div className="commentBlock_element d-flex">
+                    <div className="commentBlock_noCommentsText d-flex">
                         {this.props.noCommentsText}
                     </div>
                 </div>

@@ -110,7 +110,7 @@ class PopularPlacesClass extends React.Component {
         let textInfo = this.props.storeState.languageTextMain.home.homeBottom.homePopularPlaces;
         return (
             <React.Fragment>
-                <div className="popularPlacesBody pt-4">
+                <div className={placeRender.length>0 ? "popularPlacesBody pt-4" : 'd-none'} >
 
                     <div className="popularPlacesTitle">
                         <h2>{textInfo.popularPlacesTitle+':'}</h2>

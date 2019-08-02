@@ -57,7 +57,7 @@ class HomeClass extends React.Component {
           <div className="home_window">
             <Header history={this.props.history} />
 
-            <div className="home_block col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+            <div className="home_block col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
               {!isMobileOnly ?
                 <div className="home_text col-xl-10 col-lg-10 col-md-12 col-sm-11 col-11 p-0">
                   <div className="text_firstLine">{textInfo.homeTextFirstLine}</div>

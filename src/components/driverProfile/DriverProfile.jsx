@@ -326,6 +326,7 @@ class DriverProfileClass extends React.Component {
                 let urlCountry = this.props.match.params[0];
                 urlCountry = urlCountry.split("-")
                 let cityNamesArray = this.parseStringToArray(urlCities, urlCountry[0],urlCountry[1]);
+                
                 this.props.dispatch(setCities(cityNamesArray));
             }
             else{
@@ -515,10 +516,9 @@ class DriverProfileClass extends React.Component {
                                     <div className="d-flex flex-column routeTravelBlock_pointPart col-md-6 col-12 p-md-2 p-0" style={{margin: 0}}>
                                         <div style={{paddingTop: '10px'}}>
                                             <div className="route_time_text col-12">
-											<div class="marsh"> Ваш маршрут:</div>
-                                            <div class="param">Время в пути: <span>{this.props.driversState.travelTime}</span></div>
-                                            <div class="param par">Длина пути: <span>{this.props.driversState.travelLength}</span></div>
-
+                                                <div class="marsh">Ваш маршрут:</div>
+                                                <div class="param">Время в пути: <span>{this.props.driversState.travelTime}</span></div>
+                                                <div class="param par">Длина пути: <span>{this.props.driversState.travelLength}</span></div>
                                             </div>
                                         </div>
                                             <div className=" col-12 p-0 d-flex flex-wrap" >

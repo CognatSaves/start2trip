@@ -129,7 +129,8 @@ export class CurrentLocation extends React.Component {
         
         if (status === google.maps.DirectionsStatus.OK) {
           directionsDisplay.setDirections(response);
-
+          
+          
           for (var i = 0; i < response.routes[0].legs.length; i++) {
             var STEPS = response.routes[0].legs[i].steps;
             var TempLeg = response.routes[0].legs[i];
@@ -146,16 +147,17 @@ export class CurrentLocation extends React.Component {
               '</div>' +
               '<div class="infowindowClass_distance">' + TempLeg.distance.text + '</div>' +
               '</div>';
-
-            var infowindow2 = new google.maps.InfoWindow({
-              map: theMap,
-              position: STEPS[step].start_location,
-              content: contentString2,
-            })
-
-            infowindow2.open(theMap);
+              //следующий комментарий содержит создание инфоокон на карте
+              /*
+              var infowindow2 = new google.maps.InfoWindow({
+                map: theMap,
+                position: STEPS[step].start_location,
+                content: contentString2,
+              })
+              infowindow2.open(theMap);
+              */
           }
-
+          
           obj.props.setLengthTime(tempTravelLength, tempTravelTime);
 
         }

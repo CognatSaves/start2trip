@@ -28,13 +28,13 @@ class PlaceTravelBlockClass extends React.Component{
         
         console.log('look available');
         if(this.state.startPoint.length>0 && this.state.date!==''){
-            let routeDate = this.props.globalhistory.getRoute([{point:this.state.startPoint}, {point:this.state.endPoint}], this.props.storeState.languages[this.props.storeState.activeLanguageNumber].ISO);//this.getRoute(this.props.storeState.cities);
+            let routeDate = this.props.globalhistory.getRoute([{point:this.state.startPoint}, {point:this.state.endPoint}], this.props.storeState.languages[this.props.storeState.activeLanguageNumber].isoAutocomplete);//this.getRoute(this.props.storeState.cities);
         
             let newStringCities = routeDate.route;
             let country = routeDate.country;
             let langISO = routeDate.langISO;
             let dateString = this.props.globalhistory.createDateTimeString(this.state.date, true);
-            this.props.globalhistory.history.push("/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+`/drivers/${country}-${newStringCities}?date=`+dateString+(langISO!=='ENG' ? `&lang=`+langISO : ``));
+            this.props.globalhistory.history.push("/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+`/drivers/${newStringCities}?date=`+dateString/*+(langISO!=='en' ? `&lang=`+langISO : ``)*/);
         
         }
         else{

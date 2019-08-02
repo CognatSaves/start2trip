@@ -5,7 +5,7 @@ const arrru = ['Я','я','Ю','ю','Ч','ч','Ш','ш','Щ','щ','Ж','ж','Х',
 
 const arren = ['Ya','ya','Yu','yu','Ch','ch','Sh','sh','Sh','sh','Zh','zh','Kh','kh','Je', 'je','__','__','A','a','B','b','V','v','G','g','D','d','E','e','E','e','Z','z','I','i','J','j','K','k','L','l','M','m','N','n', 'O','o','P','p','R','r','S','s','T','t','U','u','F','f','C','c','Y','y','_','_','-'];
 
-const convMassISO=["ENG","RUS"];
+const convMassISO=["en","ru"];
 
 const convMassFunc=[(value)=> {return value.toLowerCase()}, (value)=>initialState.cyrillLatinConv(value).toLowerCase()];
 
@@ -23,6 +23,7 @@ function capitalize(s) {
 }
 
 function convertionFunc(value, conv){
+    
     let convId = convMassISO.indexOf(conv);
     let result=convMassFunc[convId](value);
     return result;
@@ -132,7 +133,8 @@ const initialState = {
           stringWithoutSpaces = stringWithoutSpaces.replace(/[/]/g, '');
           country = country.replace(/[/]/g, '');
           let convId;
-          if(conv){   
+          if(conv){  
+               
             stringWithoutSpaces=convertionFunc(stringWithoutSpaces,conv);
             country= convertionFunc(country,conv); 
             //convId = convMassISO.indexOf(conv);
@@ -145,13 +147,13 @@ const initialState = {
             route += "-to-" + stringWithoutSpaces;
           }
         }
-        return { route: route, canMove: canMove, country: country, langISO: conv ?  conv : 'ENG'}
+        return { route: route, canMove: canMove, country: country, langISO: conv ?  conv : 'en'}
     },
 
     convertFromUrlTranslation(value, langISO){
         let index = convMassISO.indexOf(langISO);
         if (index===-1){
-            index = convMassISO.indexOf('ENG');
+            index = convMassISO.indexOf('en');
             if(index===-1){
                 index=0;
             }

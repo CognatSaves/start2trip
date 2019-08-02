@@ -392,7 +392,7 @@ export default class StartTravelForm extends React.Component {
 
 
         if (isAllGood) {
-
+            
             let date = this.state.date;
             let year = date.getUTCFullYear(); let month = date.getUTCMonth() + 1; let day = date.getUTCDate();
             let body = {

@@ -64,7 +64,7 @@ class HomeRoutesListClass extends React.Component{
                 {
                     selectedRoutes.length===0 ?
                     <React.Fragment>
-                        <div>{textInfo.noElementsText}</div>
+                        <div className="placesList_noElementsBlock">{textInfo.noElementsText}</div>
                     </React.Fragment>
                     :<React.Fragment/>
                 }

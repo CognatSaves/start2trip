@@ -5,6 +5,7 @@ import DatePicker from 'material-ui/DatePicker';
 import { connect } from 'react-redux';
 import { isMobileOnly } from 'react-device-detect';
 import Cookies from 'universal-cookie';
+import { setLengthTime } from '../../redusers/ActionDrivers'
 const cookies = new Cookies();
 
 class RouteTravelBlockClass extends React.Component{
@@ -21,18 +22,51 @@ class RouteTravelBlockClass extends React.Component{
     lookAvailable = () =>{
         console.log('look available');
         if(this.state.date!==''){
-            let routeDate = this.props.globalhistory.getRoute(this.props.points, this.props.storeState.languages[this.props.storeState.activeLanguageNumber].ISO);//this.getRoute(this.props.storeState.cities);
+            let routeDate = this.props.globalhistory.getRoute(this.props.points, this.props.storeState.languages[this.props.storeState.activeLanguageNumber].isoAutocomplete);//this.getRoute(this.props.storeState.cities);
             let newStringCities = routeDate.route;
             let country = routeDate.country;
             let langISO = routeDate.langISO;
             let dateString = this.props.globalhistory.createDateTimeString(this.state.date, true);
-            this.props.globalhistory.history.push("/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+`/drivers/${country}-${newStringCities}?date=`+dateString+(langISO!=='ENG' ? `&lang=`+langISO : ``));
-        }
+            this.props.globalhistory.history.push("/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+`/drivers/${newStringCities}?date=`+dateString/*+(langISO!=='en' ? `&lang=`+langISO : ``)*/);        }
         else{
             this.setState({
                 isDateHighlighted: true
             })
         }
+    }
+    setLengthTime = (travelLength, travelTime) => {
+        function getLengthString(travelLength) {
+            let length = travelLength;
+            length = Math.ceil(length / 1000);
+            let lengthString = length + " км";
+            return lengthString;
+        }
+        function getTimeString(travelTime) {
+            let hours = travelTime / 3600 ^ 0;
+            let minutes = (travelTime - hours * 3600) / 60 ^ 0;
+            let days = hours / 24 ^ 0;
+            hours = hours - days * 24;
+            let timeString = "";
+            if (days !== 0) {
+                timeString += days + " дн. " + hours + " ч.";
+            }
+            else {
+                if (hours !== 0) {
+                    timeString += hours + " ч. ";
+                }
+                timeString += minutes + " мин.";
+            }
+            return timeString;
+        }
+        
+        if ((this.props.driversState.travelLength.length===0 || this.props.driversState.travelLength === "-") &&
+         (this.props.driversState.travelTime.length===0 || this.props.driversState.travelTime === "-")) {
+            let lengthString = getLengthString(travelLength);
+            let timeString = getTimeString(travelTime);
+            this.props.dispatch(setLengthTime(timeString, lengthString));
+        }
+
+
     }
     render(){
         const mapStyles = {
@@ -45,25 +79,34 @@ class RouteTravelBlockClass extends React.Component{
         };
         let points = [...this.props.points];
         let textInfo = this.props.storeState.languageTextMain.placeDescription.placeTravelBlock;
-       
+        
+        console.log(this.props.driversState);
         return(
             <div className="placeDescription_block d-flex flex-column" id={this.props.id} key={JSON.stringify(points)}>
                 <div className="placeDescription_fragmentName">{textInfo.fragmentName}</div>
                 <div className="d-flex flex-row">
                     <div className="d-flex col-md-6 col-12 routeTravelBlock_pointPart ">
+                        
                         <div className="d-flex flex-wrap routeTravelBlock_pointBlock" >
-                        {   
-                            points.map((element, index)=>
-                                <div className={"routeTravelBlock_element d-flex col-md-6 col-12 "}>
-                                    <div className="routeTravelBlock_pointValue d-flex flex-row">
-                                        <div style={{paddingRight: '10px',margin: 'auto 0'}}>{this.props.globalhistory.alphabet[index]}</div>
-                                        <div className="d-flex routeTravelBlock_height">
-                                            <div style={{margin: 'auto 0'}}>{element.point}</div>
+                            <div style={{paddingBottom: '10px'}}>
+                                <div className="route_time_text col-12">
+                                    <div class="marsh">Ваш маршрут:</div>
+                                    <div class="param">Время в пути: <span>{this.props.driversState.travelTime}</span></div>
+                                    <div class="param par">Длина пути: <span>{this.props.driversState.travelLength}</span></div>
+                                </div>
+                            </div>
+                            {   
+                                points.map((element, index)=>
+                                    <div className={"routeTravelBlock_element d-flex col-md-6 col-12 "}>
+                                        <div className="routeTravelBlock_pointValue d-flex flex-row">
+                                            <div style={{paddingRight: '10px',margin: 'auto 0'}}>{this.props.globalhistory.alphabet[index]}</div>
+                                            <div className="d-flex routeTravelBlock_height">
+                                                <div style={{margin: 'auto 0'}}>{element.point}</div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            )
-                        }
+                                )
+                            }
                             <div className={"routeTravelBlock_element d-flex col-md-6 col-12 "}>
                                 <div className={"routeTravelBlock_pointValue d-flex flex-row "
                                 + (this.state.isDateHighlighted ? 'placesDescription_travelBlock_highlighted' : '')}
@@ -85,7 +128,7 @@ class RouteTravelBlockClass extends React.Component{
                     <React.Fragment/>:
                     <React.Fragment>           
                         <div className="placeDescription_fragmentName_mapBlock col-6" style={{marginTop: "15px"}}>       
-                            <MapContainer newMapStyles={mapStyles} cities={points} setLengthTime={()=>{console.log('setLengthTime at work')}} mapUpdate={true} />
+                            <MapContainer newMapStyles={mapStyles} cities={points} setLengthTime={this.setLengthTime} mapUpdate={true} />
                         </div>
                     </React.Fragment>}
                     
@@ -100,6 +143,7 @@ const RouteTravelBlock = connect(
     (state) => ({
       storeState: state.AppReduser,
       globalhistory: state.GlobalReduser,
+      driversState: state.DriversReduser,
     }),
   )(RouteTravelBlockClass);
   
