@@ -92,21 +92,21 @@ class FirstEnterModalClass extends React.Component {
         if (0 < marginLeft) {
             this.setState({ activeWindow: 0 })
         }
-        if (firstOn < marginLeft&&second >= marginLeft&&second < marginLeft){
+        if (firstOn < marginLeft&&second >= marginLeft){
             this.setState({ activeWindow: 1 })
-            e.currentTarget.scrollLeft = widthOneWindow;
+            // e.currentTarget.scrollLeft = widthOneWindow;
         }
-        if (second < marginLeft&&third >= marginLeft &&(this.state.activeWindow===1||this.state.activeWindow===3)){
+        if (second < marginLeft&&third >= marginLeft){
             this.setState({ activeWindow: 2 })
-            e.currentTarget.scrollLeft = widthOneWindow*2;
+            // e.currentTarget.scrollLeft = widthOneWindow*2;
         }
-        if (third < marginLeft&&fourth >= marginLeft &&(this.state.activeWindow===2||this.state.activeWindow===4)){
+        if (third < marginLeft&&fourth >= marginLeft){
             this.setState({ activeWindow: 3 })
-            e.currentTarget.scrollLeft = widthOneWindow*3;
+            // e.currentTarget.scrollLeft = widthOneWindow*3;
         }
-        if (fourth < marginLeft&&this.state.activeWindow===3) {
+        if (fourth < marginLeft) {
             this.setState({ activeWindow: 4 })
-            e.currentTarget.scrollLeft = widthOneWindow*4;
+            // e.currentTarget.scrollLeft = widthOneWindow*4;
         }
     }
     render() {
@@ -150,7 +150,7 @@ class FirstEnterModalClass extends React.Component {
                                 )}
 
                             </div>
-                            <div className="d-flex justify-content-center buttonChenge mb-2">
+                            <div className="d-flex justify-content-center buttonChenge mt-2 pt-2 mb-1">
                                 {this.state.renderContent.map((element, index) =>
                                     <span className={this.state.activeWindow == index ? "activeBtChenge" : ""} onClick={() => { this.ChangeinputChecked(index) }}></span>
                                 )}

@@ -59,7 +59,10 @@
 .modalStartInformationContent {
     position: relative;
     height: 75%;
-    scroll-snap-type: x mandatory;
+    scroll-snap-type: x proximity;
+    /* scroll-snap-type: x mandatory; */
+    scroll-snap-points-x: repeat(100%);
+    scroll-snap-destination: 100% 0;
     overflow-x: scroll;
     overflow-y: hidden;
     scroll-behavior: smooth;

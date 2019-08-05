@@ -114,12 +114,12 @@ const ModalUserType = (props) => {
 
     }
   }
-  debugger;
+  
 
   let activeLanguageId =that.props.storeState.languages.length>0 ? that.props.storeState.languages[that.props.storeState.activeLanguageNumber].id : 'notFound';
   
   function selectCountryLoc(activeLanguageId, countryEl){
-    debugger;
+    
     for(let i=0; i<countryEl.locals.length; i++){
       if(countryEl.locals[i].langId===activeLanguageId){
         return countryEl.locals[i].name
