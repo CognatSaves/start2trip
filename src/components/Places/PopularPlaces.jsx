@@ -86,7 +86,18 @@ class PopularPlacesClass extends React.Component {
 
         
         let placeRender = [];
-        let arrayRender = this.props.placesState.directions;
+        let arrayRender = [...this.props.placesState.directions];
+        arrayRender.sort((a,b)=>{
+            if(a.zIndex!==b.zIndex){
+                return b.zIndex-a.zIndex; 
+            }
+            else{
+                return b.placesNumber-a.placesNumber;
+            }
+        })
+        if(arrayRender.length>0){
+            debugger;
+        }
         if (arrayRender.length > this.state.howMuchRender) {
 
             for (let i = 0; i < this.state.howMuchRender; i++) {
