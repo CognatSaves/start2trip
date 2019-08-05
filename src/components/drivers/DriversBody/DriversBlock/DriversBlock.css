@@ -376,6 +376,10 @@
         margin-bottom: 20px;
         /* padding: 5px !important; */
     }
+    .drivers_block_element:hover {
+        transform: none;
+        box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
+    }
 }
 
 @media (max-width: 576px) {

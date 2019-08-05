@@ -105,14 +105,24 @@
     width: 20px;
 }
 
-.placesList_noElementsBlock{
+.placesList_noElementsBlock {
     width: 100%;
-    background: url('../media/noResultImage.png') no-repeat;
-    height: 600px;
-    text-align: center;
-    line-height: 300px;
+    background: url(../media/no-result.svg) no-repeat;
+    background-size: 60% 60%;
+    background-position: top 10% center;
+    height: 450px;
     font-size: 24px;
-    color: #ff6600;
+    color: #304269;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.placesList_noElementsBlock span {
+    height: max-content;
+    width: 48%;
+    text-align: center;
+    padding-bottom: 60px;
 }
 
 .placesTagList_tagLine {

@@ -69,7 +69,7 @@ class FirstEnterModalClass extends React.Component {
 
     }
     handleClose = () => {
-        
+        debugger
         let date = new Date(Date.now() + 1000 * 3600 * 24 * 60 * 500);
         if(this.props.whatRender==='user'){
             cookies.set('firstEnter', 'no', { path: '/', expires: date });
@@ -92,21 +92,21 @@ class FirstEnterModalClass extends React.Component {
         if (0 < marginLeft) {
             this.setState({ activeWindow: 0 })
         }
-        if (firstOn < marginLeft&&second >= marginLeft&&second < marginLeft){
+        if (firstOn < marginLeft&&second >= marginLeft){
             this.setState({ activeWindow: 1 })
-            e.currentTarget.scrollLeft = widthOneWindow;
+            // e.currentTarget.scrollLeft = widthOneWindow;
         }
-        if (second < marginLeft&&third >= marginLeft &&(this.state.activeWindow===1||this.state.activeWindow===3)){
+        if (second < marginLeft&&third >= marginLeft){
             this.setState({ activeWindow: 2 })
-            e.currentTarget.scrollLeft = widthOneWindow*2;
+            // e.currentTarget.scrollLeft = widthOneWindow*2;
         }
-        if (third < marginLeft&&fourth >= marginLeft &&(this.state.activeWindow===2||this.state.activeWindow===4)){
+        if (third < marginLeft&&fourth >= marginLeft){
             this.setState({ activeWindow: 3 })
-            e.currentTarget.scrollLeft = widthOneWindow*3;
+            // e.currentTarget.scrollLeft = widthOneWindow*3;
         }
-        if (fourth < marginLeft&&this.state.activeWindow===3) {
+        if (fourth < marginLeft) {
             this.setState({ activeWindow: 4 })
-            e.currentTarget.scrollLeft = widthOneWindow*4;
+            // e.currentTarget.scrollLeft = widthOneWindow*4;
         }
     }
     render() {
@@ -150,12 +150,12 @@ class FirstEnterModalClass extends React.Component {
                                 )}
 
                             </div>
-                            <div className="d-flex justify-content-center buttonChenge mb-2">
+                            <div className="d-flex justify-content-center buttonChenge mt-2 pt-2 mb-1">
                                 {this.state.renderContent.map((element, index) =>
                                     <span className={this.state.activeWindow == index ? "activeBtChenge" : ""} onClick={() => { this.ChangeinputChecked(index) }}></span>
                                 )}
                             </div>
-                            <div className="modalStartInformationDivNext d-flex align-items-center justify-content-center col-11 " onClick={() => { this.state.changeBtClose ? this.handleClose() : this.ChangeinputChecked() }}>
+                            <div className="modalStartInformationDivNext d-flex align-items-center justify-content-center col-11 " onClick={() => { this.state.activeWindow == this.state.renderContent.length - 1 ? this.handleClose() : this.ChangeinputChecked() }}>
                                 <span className="modalStartInformationNext">{this.state.activeWindow == this.state.renderContent.length - 1 ? "Закрыть" : "Далее"}</span>
                             </div>
                         </div>
