@@ -14,6 +14,7 @@ class PopularPlacesClass extends React.Component {
             howMuchRender: 6,
         }
     }
+    /*
     onDirClick=(id)=>{
         function findSelectedDirectionName(directions, id, storeState){
             
@@ -32,22 +33,15 @@ class PopularPlacesClass extends React.Component {
             return false;
             
         }
-        //let index = this.props.placesState.selectedDirections.indexOf(id);
+    
         console.log('onTagClick', id);
         
         let selectedDirection = this.props.placesState.selectedDirection;
         let slug = findSelectedDirectionName(this.props.placesState.directions, id,this.props.storeState);
         if(selectedDirection!==id && slug){
-            
-            //let slug = findSelectedDirectionName(this.props.placesState.directions, id);
-            //if(slug){
+
             this.props.dispatch(setSelectedDirection(id));
             this.props.globalReduser.history.push("/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+`/routes-${slug}`);
-            //}
-            //else{
-            //    this.props.dispatch(setSelectedDirection(''));
-            //    this.props.globalReduser.history.push('/places');
-            //}
             
         }
         else{
@@ -57,19 +51,37 @@ class PopularPlacesClass extends React.Component {
         
         
         
-        
-        //let totalIndex = this.props.placesState.directions.indexOf(id);
-        //let value = this.props.globalReduser.convFunc(this.props.placesState.directions[this.props.placesState.directions.indexOf(id)], this.props.storeState.languages[this.props.storeState.activeLanguageNumber].ISO);
-        
-        //console.log(value);
-        /*if(index===-1){
+    }
+    */
+    onDirClickCleared = (address) =>{
+        this.props.globalReduser.history.push(address);
+    }
+    directionHrefCreator=(id)=>{
+        function findSelectedDirectionName(directions, id, storeState){
+            
+            for(let i=0; i<directions.length; i++){
+                if(directions[i].id===id){
+                    for(let k=0; k<directions[i].loc.length; k++){
+                        let lang1 = directions[i].loc[k].language;
+                        let lang2=storeState.languages[storeState.activeLanguageNumber].id;
+                        if(lang1===lang2){
+                            return directions[i].loc[k].slug
+                        }
+                    }
+                }
+                
+            }
+            return false;
             
         }
-        else{
-            this.props.globalReduser.history.push('/places')
+        let selectedDirection = this.props.placesState.selectedDirection;
+        let slug = findSelectedDirectionName(this.props.placesState.directions, id,this.props.storeState);
+        if(selectedDirection!==id && slug){
+            return "/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+`/routes-${slug}`
         }
-        */
-
+        else{
+            return "/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+`/routes`
+        }
     }
     render() {
         function isDirSelected(directionId, selectedDirection){
@@ -133,6 +145,7 @@ class PopularPlacesClass extends React.Component {
                         <div className="d-flex col-12 p-0">
                             <div className="d-flex col-12 flex-md-wrap flex-nowrap p-0 py-2 popularPlacesRender">
                                 {placeRender.map((element, index) => {
+                                    let address = this.directionHrefCreator(element.id);
                                     if (arrayRender.length !== placeRender.length) {
                                         if (placeRender.length - 1 == index) {
                                             return (
@@ -145,17 +158,21 @@ class PopularPlacesClass extends React.Component {
                                         }
                                     }
                                     return (
-                                        <div className={"col-md-2 col-7 d-flex flex-column popularPlacesEl "
-                                        +(isDirSelected(element.id, this.props.placesState.selectedDirection) ? 'popularPlacesEl_selected' : '')}
-                                        onClick={()=>this.onDirClick(element.id)}>
-                                            <span className="popularPlacesElMes">{textInfo.cancel}</span>
-                                            <div>
-                                                <img src={element.image ? requests.serverAddress + element.image.url : ''} alt="img" />
-                                            </div>
-                                            <div className="mt-2 routeName">
-                                                <span>{getDirectionName(element,this)}</span>
-                                            </div>
-                                        </div>
+                                        <React.Fragment>
+                                        {                                      
+                                            <a href={requests.frontendAddress+address} className={"col-md-2 col-7 d-flex flex-column popularPlacesEl "
+                                                +(isDirSelected(element.id, this.props.placesState.selectedDirection) ? 'popularPlacesEl_selected' : '')}
+                                                onClick={(e)=>{e.preventDefault(); this.onDirClickCleared(address)}}>
+                                                <span className="popularPlacesElMes">{textInfo.cancel}</span>
+                                                <div>
+                                                    <img src={element.image ? requests.serverAddress + element.image.url : ''} alt="img" />
+                                                </div>
+                                                <div className="mt-2 routeName">
+                                                    <span>{getDirectionName(element,this)}</span>
+                                                </div>
+                                            </a>                                     
+                                        }
+                                        </React.Fragment>
                                     )
                                 }
 

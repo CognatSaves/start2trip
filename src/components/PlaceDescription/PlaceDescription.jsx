@@ -147,7 +147,7 @@ class PlaceDescriptionClass extends React.Component {
                     this.setState({
                         selectedLanguage: this.props.storeState.activeLanguageNumber
                     });
-                    this.props.globalReduser.history.push("/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+'/place/' + slugArray[i].slug);
+                    this.props.globalReduser.history.push("/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+'/places/' + slugArray[i].slug);
                 }
             }
             //надо что-то сделать, если не нашли          

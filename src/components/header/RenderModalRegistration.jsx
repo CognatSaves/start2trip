@@ -219,6 +219,7 @@ class RenderModalRegistrationClass extends React.Component {
             isError:false,
             selectedRegistrationAnswer: 3,
             regWindowType: 0,
+            nonSelectedTypeVisibility: false,//если true, то делает видимым блок (Выберите тип аккаунта)
             userType: 0,
             cookie: document.cookie,
             checkCookie: checkCookie,
@@ -555,11 +556,12 @@ class RenderModalRegistrationClass extends React.Component {
                                         <div className={index ? "selectTypeBlockLine selectTypeBlock d-flex align-items-center" : "selectTypeBlock d-flex align-items-center "} style={{ visibility: (this.state.agency.length === 0 || index === 1) ? 'visible' : 'hidden' }}>
                                             <i style={{ background: "url(" + massIcon[index] + ") no-repeat" }} />
                                             <label className="typeCheckLabel" for={"typeCheckbox" + (index + 1)}>{element.userText}</label>
-                                            <input disabled={!(this.state.agency.length === 0 || index === 1)} className="typeCheckButton" id={"typeCheckbox" + (index + 1)} type="radio" name="raz" onClick={() => this.setState({ userType: index + 1 })} />
+                                            <input disabled={!(this.state.agency.length === 0 || index === 1)} className="typeCheckButton" id={"typeCheckbox" + (index + 1)} type="radio" name="raz" onClick={() => this.setState({ userType: index + 1, nonSelectedTypeVisibility:false })} />
                                         </div>
                                     )
                                 }
-                                <button onClick={() => this.state.userType === 0 ? {} : this.setState({ regWindowType: 1 })}>{textInfo.registrationUserType.buttonNext}</button>
+                                <div style={{visibility: this.state.nonSelectedTypeVisibility ? 'visible' : 'hidden', color: "#304269"}}>Выберите тип аккаунта</div>
+                                <button style={{marginTop: '10px'}} onClick={() => this.state.userType === 0 ? this.setState({nonSelectedTypeVisibility: true}) : this.setState({ nonSelectedTypeVisibility:false, regWindowType: 1 })}>{textInfo.registrationUserType.buttonNext}</button>
                             </div>
                         </div>
                         <div className={"registrationDark d-flex flex-column justify-content-center align-items-center " + this.state.registrationDarkAnimation}>
