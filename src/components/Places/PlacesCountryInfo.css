@@ -74,8 +74,25 @@
 
 @media (max-width: 768px) {
     .placesCountryInfo_countryName {
-        font-size: 43px;
-        line-height: 43px;
+        font-size: 27px;
+        line-height: 27px;
+    }
+    .placesCountryInfo_countryName::after {
+        width: 50%;
+        margin: 4% auto;
+    }
+    .placesCountryInfo {
+        margin: 0;
+        border-radius: 0px;
+        color: #fff;
+        background: rgba(48, 66, 108, 0.8);
+    }
+}
+
+@media (max-width: 518px) {
+    .placesCountryInfo_countryName {
+        font-size: 20px;
+        line-height: 27px;
     }
     .placesCountryInfo_countryName::after {
         width: 50%;

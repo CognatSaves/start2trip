@@ -186,4 +186,10 @@
     .placesList_info_position_loc .placesList_info_position_textStyle {
         width: 100%;
     }
+    .placesList_noElementsBlock span {
+        height: max-content;
+        width: 95%;
+        text-align: center;
+        padding-bottom: 60px;
+    }
 }

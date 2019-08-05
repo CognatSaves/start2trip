@@ -77,6 +77,10 @@ html {
     text-decoration: none;
 }
 
+.footerMobile a:hover {
+    text-decoration: none;
+}
+
 .footerMobile-activeInput {
     display: none !important;
 }

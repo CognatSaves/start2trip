@@ -55,6 +55,7 @@ const AuthRedirect = lazy(() => import('./components/registration/AuthRedirect')
 const AuthModalCountry = lazy(() => import('./components/registration/AuthModalCountry'));
 const AboutService = lazy(() => import('./components/FooterPage/aboutService'));
 const affiliateProgram = lazy(() => import('./components/FooterPage/affiliateProgram'));
+const contacts = lazy(() => import('./components/FooterPage/contacts'));
 
 const redux = require('redux');
 
@@ -317,7 +318,8 @@ ReactDOM.render(
               <Route path="/account" component={AccountRedirector} />
               <Route path="/forgot-password" component={ForgotPassword} />
               <Route path="/reset-password/:code" component={ResetPassword} />
-              
+
+              <Route path="/contacts" component={contacts} />
               <Route path="/affiliate-program" component={affiliateProgram} />
               <Route path="/about-service" component={AboutService} />
               <Route path="/driverConfirmation/:id-:carrierId-:confirmation" component={DriverConfirmation} />

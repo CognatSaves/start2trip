@@ -1,6 +1,6 @@
 import React from 'react';
 import './header_css.css'
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import RenderModalCountry from './RenderModalCountry'
 import RenderModalRegistration from './RenderModalRegistration'

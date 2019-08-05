@@ -49,7 +49,7 @@ class PlacesCountryInfoClass extends React.Component {
         return(
             <React.Fragment>
               <div className="placesCountryInfo">
-                <div className="placesCountryInfo_countryName">{ data.name }</div>
+                <h1 className="placesCountryInfo_countryName">{ data.name }</h1>
                 <div className="placesCountryInfo_line"/>
                 <div className="placesCountryInfo_countryinfo">
                 { data.description }

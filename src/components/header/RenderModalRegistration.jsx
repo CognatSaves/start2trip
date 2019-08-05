@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 import './RenderModalRegistration.css'
 import emailIcon from '../media/email.svg'

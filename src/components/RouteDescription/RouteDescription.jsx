@@ -16,6 +16,7 @@ import CommentBlock from '../TourDescription/CommentBlock.jsx';
 
 import TourPanel from '../TourDescription/TourPanel.jsx';
 import Cookies from 'universal-cookie';
+import { isMobileOnly } from 'react-device-detect';
 const cookies = new Cookies();
 
 class RouteDescriptionClass extends React.Component {
@@ -139,7 +140,7 @@ class RouteDescriptionClass extends React.Component {
                             : <React.Fragment />
 
                     }
-                    <div className="placeDescription_background col-12 p-0" style={{ background: "url(" + (this.state.newRoute.local && this.state.newRoute.route.mainImage ? requests.serverAddress + this.state.newRoute.route.mainImage.url : '') + ") no-repeat" }} id={topBlockId}>
+                    <div className="placeDescription_background col-12 p-0" style={{ background: "url(" + (this.state.newRoute.local && this.state.newRoute.route.mainImage ? (isMobileOnly ? requests.serverAddress + this.state.newRoute.route.blockListImage.url:requests.serverAddress + this.state.newRoute.route.mainImage.url)  : '') + ") no-repeat" }} id={topBlockId}>
                         <Header history={this.props.history} />
 
                         {

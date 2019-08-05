@@ -1,5 +1,6 @@
 import React from 'react';
 import './Footer.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import facebookIcon from "../media/facebook-letter-logo.svg"
 import instagramIcon from "../media/instagram.svg"
 import logoTripfer from "../media/logo_tripfer_white.svg"
@@ -69,7 +70,7 @@ class FooterClass extends React.Component {
               <Link to="/affiliate-program" className="footerButtons_button">{textInfo.footerButtons[1]}</Link>
               <Link to="" className="footerButtons_button">{textInfo.footerButtons[2]}</Link>
               <Link to="" className="footerButtons_button">{textInfo.footerButtons[3]}</Link>
-              <Link to="" className="footerButtons_button">{textInfo.footerButtons[4]}</Link>
+              <Link to="/contacts" className="footerButtons_button">{textInfo.footerButtons[4]}</Link>
               <div className="footerButtonsIcon d-flex">
                 <img src={facebookIcon} width="16px" height="16px" alt="facebookIcon" />
                 <img src={instagramIcon} width="17px" height="17px" alt="instagramIcon" />
