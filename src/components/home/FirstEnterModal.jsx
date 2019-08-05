@@ -69,7 +69,7 @@ class FirstEnterModalClass extends React.Component {
 
     }
     handleClose = () => {
-        
+        debugger
         let date = new Date(Date.now() + 1000 * 3600 * 24 * 60 * 500);
         if(this.props.whatRender==='user'){
             cookies.set('firstEnter', 'no', { path: '/', expires: date });
@@ -155,7 +155,7 @@ class FirstEnterModalClass extends React.Component {
                                     <span className={this.state.activeWindow == index ? "activeBtChenge" : ""} onClick={() => { this.ChangeinputChecked(index) }}></span>
                                 )}
                             </div>
-                            <div className="modalStartInformationDivNext d-flex align-items-center justify-content-center col-11 " onClick={() => { this.state.changeBtClose ? this.handleClose() : this.ChangeinputChecked() }}>
+                            <div className="modalStartInformationDivNext d-flex align-items-center justify-content-center col-11 " onClick={() => { this.state.activeWindow == this.state.renderContent.length - 1 ? this.handleClose() : this.ChangeinputChecked() }}>
                                 <span className="modalStartInformationNext">{this.state.activeWindow == this.state.renderContent.length - 1 ? "Закрыть" : "Далее"}</span>
                             </div>
                         </div>

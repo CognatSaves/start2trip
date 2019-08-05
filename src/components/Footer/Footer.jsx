@@ -30,28 +30,28 @@ class FooterClass extends React.Component {
     let mobileElemArray = [
       {
         pathname: "/routes",
-        pathnamesInner: ["/routes"],
+        pathnamesInner: ["/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+"/routes"],
         iconClasses: ['footerMobileIconRoutes_active','footerMobileIconRoutes'],
         classValue: 'footerMobileTextRoutes',
         value: textInfo.footerMobileTextRoutes
       },
       {
         pathname: "/tours",
-        pathnamesInner: ["/tours"],
+        pathnamesInner: ["/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+"/tours"],
         iconClasses: ["footerMobileIconTours_active","footerMobileIconTours"],
         classValue:"footerMobileTextTours",
         value: textInfo.footerMobileTextTours
       },
       {
         pathname: "/places",
-        pathnamesInner: ["/places"],
+        pathnamesInner: ["/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+"/places"],
         iconClasses: ['footerMobileIconPlaces_active','footerMobileIconPlaces'],
         classValue: 'footerMobileTextPlaces',
         value: textInfo.footerMobileTextPlaces
       },
       {
         pathname: "/account",
-        pathnamesInner: ["/account/user/profile","/account/driver/profile","/account/agency/profile"],
+        pathnamesInner: ["/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+"/account/user/profile","/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+"/account/driver/profile","/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+"/account/agency/profile"],
         iconClasses: ['footerMobileIconProfile_active','footerMobileIconProfile'],
         classValue: 'footerMobileTextProfile',
         value: textInfo.footerMobileTextProfile
