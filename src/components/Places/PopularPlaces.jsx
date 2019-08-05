@@ -14,63 +14,58 @@ class PopularPlacesClass extends React.Component {
             howMuchRender: 6,
         }
     }
+    /*
     onDirClick=(id)=>{
        
         function findSelectedDirectionName(directions, id, storeState){
             
             for(let i=0; i<directions.length; i++){
                 if(directions[i].id===id){
-                    /*for(let k=0; k<directions[i].loc.length; k++){
-                        let lang1 = directions[i].loc[k].language;
-                        let lang2=storeState.languages[storeState.activeLanguageNumber].id;
-                        if(lang1===lang2){
-                            return directions[i].loc[k].slug
-                        }
-                    }*/
                     return directions[i].loc.slug;
                 }
                 
             }
             return false;
         }
-        //let index = this.props.placesState.selectedDirections.indexOf(id);
         console.log('onTagClick', id);
         
         let selectedDirection = this.props.placesState.selectedDirection;
         let slug = findSelectedDirectionName(this.props.placesState.directions, id,this.props.storeState);
         if(selectedDirection!==id && slug){
-            
-            //let slug = findSelectedDirectionName(this.props.placesState.directions, id);
-            //if(slug){
             this.props.dispatch(setSelectedDirection(id));
             this.props.globalReduser.history.push("/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+'/places/'+slug);
-            //}
-            //else{
-            //    this.props.dispatch(setSelectedDirection(''));
-            //    this.props.globalReduser.history.push('/places');
-            //}
             
         }
         else{
             this.props.dispatch(setSelectedDirection(''));
             this.props.globalReduser.history.push("/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+'/places');
         }
-        
-        
-        
-        
-        //let totalIndex = this.props.placesState.directions.indexOf(id);
-        //let value = this.props.globalReduser.convFunc(this.props.placesState.directions[this.props.placesState.directions.indexOf(id)], this.props.storeState.languages[this.props.storeState.activeLanguageNumber].ISO);
-        
-        //console.log(value);
-        /*if(index===-1){
+
+
+    }
+    */
+    directionHrefCreator = (id)=>{
+        function findSelectedDirectionName(directions, id, storeState){
             
+            for(let i=0; i<directions.length; i++){
+                if(directions[i].id===id){
+                    return directions[i].loc.slug;
+                }
+                
+            }
+            return false;
+        }
+        let selectedDirection = this.props.placesState.selectedDirection;
+        let slug = findSelectedDirectionName(this.props.placesState.directions, id,this.props.storeState);
+        if(selectedDirection!==id && slug){
+            return "/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+'/places-'+slug;
         }
         else{
-            this.props.globalReduser.history.push('/places')
+            return "/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+'/places';
         }
-        */
-
+    }
+    onDirClickCleared = (address) =>{
+        this.props.globalReduser.history.push(address);
     }
     render() {
         
@@ -86,7 +81,18 @@ class PopularPlacesClass extends React.Component {
 
         
         let placeRender = [];
-        let arrayRender = this.props.placesState.directions;
+        let arrayRender = [...this.props.placesState.directions];
+        arrayRender.sort((a,b)=>{
+            if(a.zIndex!==b.zIndex){
+                return b.zIndex-a.zIndex; 
+            }
+            else{
+                return b.placesNumber-a.placesNumber;
+            }
+        })
+        if(arrayRender.length>0){
+            debugger;
+        }
         if (arrayRender.length > this.state.howMuchRender) {
 
             for (let i = 0; i < this.state.howMuchRender; i++) {
@@ -109,6 +115,7 @@ class PopularPlacesClass extends React.Component {
                     <div className="d-flex col-12 p-0">
                         <div className="d-flex col-12 flex-md-wrap flex-nowrap p-0 py-1 popularPlacesRender">
                             {placeRender.map((element, index) => {
+                                let address = this.directionHrefCreator(element.id);
                                 if (arrayRender.length !== placeRender.length) {
                                     if (placeRender.length - 1 == index) {
                                         return (
@@ -120,7 +127,9 @@ class PopularPlacesClass extends React.Component {
                                     }
                                 }
                                 return (
-                                    <div className={"col-md-2 col-7 d-flex flex-column popularPlacesEl "+(isDirSelected(element.id, this.props.placesState.selectedDirection) ? 'popularPlacesEl_selected' : '')} onClick={()=>this.onDirClick(element.id)}>
+                                    <a href = {requests.frontendAddress+address}
+                                     className={"col-md-2 col-7 d-flex flex-column popularPlacesEl "+(isDirSelected(element.id, this.props.placesState.selectedDirection) ? 'popularPlacesEl_selected' : '')}
+                                     onClick={(e)=>{e.preventDefault(); this.onDirClickCleared(address)}}>
                                         <span className="popularPlacesElMes">Отменить</span>
                                         <div>
                                             <img src={element.image ? requests.serverAddress + element.image.url : ''} alt="img" />
@@ -128,7 +137,7 @@ class PopularPlacesClass extends React.Component {
                                         <div className="mt-2 routeName">
                                             <span>{element.loc.name}</span>
                                         </div>
-                                    </div>
+                                    </a>
                                 )
                             }
 

@@ -306,10 +306,10 @@ ReactDOM.render(
               <Route path={"/"+config.routeMap+"/drivers"} component={Home} />
               <Route path={"/"+config.routeMap+"/driverProfile/:id-:carId-:cities"} component={DriverProfile} />
               
-              
-              <Route path={"/"+config.routeMap+"/places/:direction"} component={Places} />
+              <Route path={"/"+config.routeMap+"/places/:slug"} component={PlaceDescription} />
+              <Route path={"/"+config.routeMap+"/places-:direction"} component={Places} />
               <Route path={"/"+config.routeMap+"/places"} component={Places} />
-              <Route path={"/"+config.routeMap+"/place/:slug"} component={PlaceDescription} />
+              
               
 
               <Route path={"/"+config.routeMap+"/tours"} component={Tours} />
