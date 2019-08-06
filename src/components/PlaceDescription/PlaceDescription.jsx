@@ -132,6 +132,7 @@ class PlaceDescriptionClass extends React.Component {
         }
     }
     render() {
+        debugger;
         console.log('Place description render', this.state, this.props);
         
         ///let countryId = this.props.match.params.country;

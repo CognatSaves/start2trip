@@ -100,6 +100,7 @@ const CityRouteTable = (props) => {
 
 class RouteMenuClass extends React.Component {
   constructor(props) {
+    debugger;
     function setCitiesFromUrl(pathname){
       
       
@@ -128,7 +129,8 @@ class RouteMenuClass extends React.Component {
     }*/
     
     let pathnameMAss = document.location.pathname.split("/");
-    let resultpathname =(pathnameMAss.length<=3) ? true : false;
+    //случай массива ['','geo-ru','routes',''], который возникает в случае, когда мы закрыли последний слеш, тоже надо учесть - отсюда 'или' ниже
+    let resultpathname =((pathnameMAss[pathnameMAss.length-1].length>0 && pathnameMAss.length<=3) || (pathnameMAss.length<=4)) ? true : false;
     //вышестоящее условие звучит следующим образом - если в адресной строке больше или равно 4 элементов,
     //то мы находимся не в /geo/(drivers|route) просто,а в /geo/(drivers|route)/что-то там, что
     //означает, что можно попробовать построить маршрут

@@ -302,7 +302,7 @@ ReactDOM.render(
               <Route path={"/"+config.routeMap+"/routes-:direction"} component={Home} />
               <Route path={"/"+config.routeMap+"/routes"} component={Home} />
               
-              <Route path={"/"+config.routeMap+"/drivers"} component={Home} />
+              <Route path={"/"+config.routeMap+"/drivers/"} component={Home} />
               <Route path={"/"+config.routeMap+"/driverProfile/:id-:carId-:cities"} component={DriverProfile} />
               
               <Route path={"/"+config.routeMap+"/places/:slug"} component={PlaceDescription} />
