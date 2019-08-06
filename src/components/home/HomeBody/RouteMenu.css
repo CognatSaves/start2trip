@@ -480,7 +480,7 @@ p.routemenu_search_text {
         font-size: 16px;
     }
     .city_input::placeholder {
-        color: #686868;
+        color: #fff;
     }
     .startCity {
         margin-bottom: 5px;
@@ -520,5 +520,8 @@ p.routemenu_search_text {
     }
     .addCitiesLocationDropDown {
         margin: 2px 0;
+    }
+    .city_input::placeholder {
+        color: #686868;
     }
 }

@@ -18,6 +18,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import axios from 'axios';
 import requests from '../../config';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+import { thisExpression } from '@babel/types';
 
 const Content = (that, flagAllOk, carCapacityArray, activeCurrency, textInfo, changeSuccessVisibility) => {
     let isCurrencyLoaded = activeCurrency && activeCurrency.symbol;
@@ -46,7 +47,7 @@ const Content = (that, flagAllOk, carCapacityArray, activeCurrency, textInfo, ch
                             />
 
                         </div>
-                        <div className="col-sm-6 col-12 order-1">
+                        {/* <div className="col-sm-6 col-12 order-1">
                             <TextField
                                 label={textInfo.secondNameLabel + '*'}
                                 value={that.state.lastName}
@@ -55,7 +56,7 @@ const Content = (that, flagAllOk, carCapacityArray, activeCurrency, textInfo, ch
                                 margin="normal"
                                 variant="outlined"
                             />
-                        </div>
+                        </div> */}
                         <div className="col-sm-6 col-12 order-2">
                             <ReactTelInput
                                 defaultCountry={that.props.storeState.isoCountryMap}
@@ -77,12 +78,12 @@ const Content = (that, flagAllOk, carCapacityArray, activeCurrency, textInfo, ch
                                 variant="outlined"
                             />
                         </div>
-                        <div className="col-sm-6 col-12 order-6">
+                        {/* <div className="col-sm-6 col-12 order-6">
                             <DatePicker disabled={true} onChange={(nul, date) => { that.setState({ date: date }); document.querySelector(".route_dateCalendarModal").classList.remove("driver_route-error") }}
                                 shouldDisableDate={(day) => { let a = day }} defaultDate={that.state.date} minDate={new Date()} disableYearSelection={true}
                                 floatingLabelText={textInfo.startDate + '*'} className="route_dateCalendarModal" />
-                        </div>
-                        <div className="col-sm-6 col-12 order-5">
+                        </div> */}
+                        {/* <div className="col-sm-6 col-12 order-5">
                             <FormControl className="route_dateSelect numberOfPeople w-100">
                                 <InputLabel htmlFor="select-multiple">{textInfo.peopleNumber + '*'}</InputLabel>
                                 <Select
@@ -97,7 +98,7 @@ const Content = (that, flagAllOk, carCapacityArray, activeCurrency, textInfo, ch
                                     ))}
                                 </Select>
                             </FormControl>
-                        </div>
+                        </div> */}
                         <div className="col-sm-6 col-12 order-7">
                             <FormControl className="route_dateSelect departureTime w-100">
                                 <InputLabel htmlFor="select-multiple">{textInfo.timeLabel + '*'}</InputLabel>
@@ -114,7 +115,7 @@ const Content = (that, flagAllOk, carCapacityArray, activeCurrency, textInfo, ch
                                 </Select>
                             </FormControl>
                         </div>
-                        <div className="col-sm-6 col-12 order-8">
+                        <div className=" col-12 order-8">
                             <TextField
                                 label={textInfo.placeDepartureLabel + '*'}
                                 multiline
@@ -370,10 +371,10 @@ export default class StartTravelForm extends React.Component {
             departureTime.classList.add("draver_route-error");
             isAllGood = false;
         }
-        if (this.state.numberOfPeople === "") {
-            numberOfPeople.classList.add("draver_route-error");
-            isAllGood = false;
-        }
+        // if (this.state.numberOfPeople === "") {
+        //     numberOfPeople.classList.add("draver_route-error");
+        //     isAllGood = false;
+        // }
         if (this.state.placeDeparture === "") {
             placeDeparture.children[1].children[0].classList.add("draver_route-error");
             isAllGood = false;
@@ -389,8 +390,6 @@ export default class StartTravelForm extends React.Component {
 
         this.setState({ errorMes: true, emailValid: emailValid })
 
-
-
         if (isAllGood) {
             
             let date = this.state.date;
@@ -404,14 +403,14 @@ export default class StartTravelForm extends React.Component {
                 startPlace: this.state.placeDeparture,
                 price: this.props.driversState.driverCarDescription.price,
                 tripCommentary: this.state.description,
-                carrier: this.props.match.params.id,
+                carrier: this.props.match === undefined ? this.props.driversState.driverCarDescription.id :this.props.match.params.id,
                 currencyType: this.props.storeState.currencies.length > 0 ? this.props.storeState.currencies[this.props.storeState.activeCurrencyNumber].id : undefined,
                 tripType: 'Trip',
                 newPhone: this.state.telNumber,
                 passengerNumber: this.state.numberOfPeople,
                 promocode: this.state.promoCode,
                 clientEmail: this.state.email,
-                carId: this.props.match.params.carId,
+                carId: this.props.match === undefined ? this.props.driversState.driverCarDescription.carId :this.props.match.params.carId,
                 frontendAddress: requests.frontendAddress,
                 travelLength: this.props.driversState.travelLength,
                 travelTime: this.props.driversState.travelTime
@@ -470,13 +469,13 @@ export default class StartTravelForm extends React.Component {
         let flagAllOk = false;
         if (
             this.state.firstName !== "" &&
-            this.state.lastName !== "" &&
+            // this.state.lastName !== "" &&
             this.state.telNumber !== "" &&
             this.state.email !== "" &&
             this.state.emailValid === true &&
             this.state.date !== "" &&
             this.state.departureTime !== "" &&
-            this.state.numberOfPeople !== "" &&
+            // this.state.numberOfPeople !== "" &&
             this.state.placeDeparture !== "" &&
             this.state.checkBoxes === true
         ) {

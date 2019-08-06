@@ -6,7 +6,7 @@ const startTravelForm ={
     secondNameLabel: 'Фамилия',
     timeLabel: 'Время',
     placeDepartureLabel: 'Место отправления',
-    descriptionLabel: 'Описание',
+    descriptionLabel: 'Комментарий',
     driversRouteLink: ['Я принимаю условия', 'договора оферты'],
     errorContract: 'Вы должны принять условия договора',
     promoPlaceholder: 'Введите промо код',

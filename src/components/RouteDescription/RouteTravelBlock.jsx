@@ -85,7 +85,7 @@ class RouteTravelBlockClass extends React.Component{
             <div className="placeDescription_block d-flex flex-column" id={this.props.id} key={JSON.stringify(points)}>
                 <div className="placeDescription_fragmentName">{textInfo.fragmentName}</div>
                 <div className="d-flex flex-row">
-                    <div className="d-flex col-md-6 col-12 routeTravelBlock_pointPart ">
+                    <div className="d-flex col-md-6 col-12 pl-0 routeTravelBlock_pointPart ">
                         
                         <div className="d-flex flex-wrap routeTravelBlock_pointBlock" >
                             <div style={{paddingBottom: '10px'}}>
@@ -108,7 +108,7 @@ class RouteTravelBlockClass extends React.Component{
                                 )
                             }
                             <div className={"routeTravelBlock_element d-flex col-md-6 col-12 "}>
-                                <div className={"routeTravelBlock_pointValue d-flex flex-row "
+                                <div className={"routeTravelBlock_pointValue specialDate  d-flex flex-row "
                                 + (this.state.isDateHighlighted ? 'placesDescription_travelBlock_highlighted' : '')}
                                 onClick={()=>{if(this.state.isDateHighlighted){this.setState({isDateHighlighted: false})}}}>
                                     <div className="placesDescription_travelBlock_icon placesDescription_calendary" />

@@ -4,6 +4,7 @@
     border-radius: 5px;
     margin: 40px 10px;
     padding-bottom: 60px !important;
+    min-height: 78.8vh;
 }
 
 .contacts_Title h2 {
@@ -165,6 +166,11 @@
         border-top: 1px solid #dadada;
         padding: 10px 0;
     }
+    .contacts_content_rightFooter label {
+        background-size: 15px 15px !important;
+        background-position: top left !important;
+        margin-bottom: 20px;
+    }
 }
 
 @media (max-width: 420px) {
@@ -172,5 +178,10 @@
         padding: 20px 10px !important;
         box-shadow: none;
         margin-top: 20px;
+    }
+    .contacts_content_rightFooter label {
+        background-size: 15px 15px !important;
+        background-position: top left !important;
+        margin-bottom: 20px;
     }
 }

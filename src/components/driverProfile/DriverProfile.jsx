@@ -513,7 +513,7 @@ class DriverProfileClass extends React.Component {
                                 <DriverInfo element={driver} />
                                 
                                 <div className="drivers_route col-12 d-flex " >
-                                    <div className="d-flex flex-column routeTravelBlock_pointPart col-md-6 col-12 p-md-2 p-0" style={{margin: 0}}>
+                                    <div className="d-flex flex-column routeTravelBlock_pointPart col-md-6 col-12 p-md-2 p-0">
                                         <div style={{paddingTop: '10px'}}>
                                             <div className="route_time_text col-12">
                                                 <div class="marsh">Ваш маршрут:</div>
@@ -548,7 +548,7 @@ class DriverProfileClass extends React.Component {
                                                     <div className={"routeTravelBlock_pointValue d-flex flex-row "}
                                                     onClick={()=>{if(this.state.isDateHighlighted){this.setState({isDateHighlighted: false})}}}>
                                                         <div className="placesDescription_travelBlock_icon placesDescription_calendary" />
-                                                        <DatePicker defaultDate={this.state.date} hintText={textInfo.startDate} minDate={new Date()} onChange={(e, date) => { this.setState({date: date});  }} className="routeDescrDate" />
+                                                        <DatePicker defaultDate={this.state.date} shouldDisableDate={(day) => { let a = day }} hintText={textInfo.startDate} minDate={new Date()} onChange={(e, date) => { this.setState({date: date});  }} className="routeDescrDate" />
                                                     </div>
                                                 </div>
                                                 {

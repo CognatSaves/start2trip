@@ -16,7 +16,7 @@ const driverProfileRegistration = {
             last: "поездки",
             full: "Предстоящие поездки"
         },
-        penalty:{
+        penalty: {
             first: 'Штрафные',
             last: 'баллы',
             full: 'Штрафные баллы'
@@ -88,7 +88,7 @@ const driverProfileRegistration = {
         typeFuel: {
             label: "Тип топлива"
         },
-        profileCarFuelConsumption:{
+        profileCarFuelConsumption: {
             label: 'Потребление топлива'
         },
         profileCarNumberOfSeats: {
@@ -120,6 +120,7 @@ const driverProfileRegistration = {
         }
     },
     DriverProfileTripSettingsTrip: {
+        titlePage: "Редактировать поездки",
         changeOnWorkP: "Вы можете приостановить и возобновить приём заказов",
         onWorkTrue: "Приостановить работу",
         onWorkFalse: "Возобновить работу",
@@ -192,6 +193,7 @@ const driverProfileRegistration = {
         affiliateProgramTableHeader: ["EMAIL", "Дата регистрации", "Источник регистрации", "Начисления"]
     },
     DriverProfileTripSettingsTour: {
+        titlePage: "Редактировать Поездки",
         directionsValue: "Все направления",
         categoriesValue: "Все категории",
         tagsValue: "Все теги",
@@ -264,8 +266,8 @@ const driverProfileRegistration = {
         upcoming: "Предстоящие",
         story: "История",
     },
-    DriverProfileBilling:{
-        currentBalance:{
+    DriverProfileBilling: {
+        currentBalance: {
             currentBalanceText: 'Текущий баланс',
             personalAccount: 'Лицевой счёт',
             cardPayments: 'Оплачено картами',
@@ -273,9 +275,9 @@ const driverProfileRegistration = {
             withdrawnTotal: 'Всего снято',
             accountTotal: 'Всего на счету',
             fundsWithdrawal: 'Вывод средств',
-            receivedByCash: 'Получено наличными за все время' 
+            receivedByCash: 'Получено наличными за все время'
         },
-        systemPayments:{
+        systemPayments: {
             systemPaymentsText: 'Оплата за пользование системой (всё время)',
             cardCommission: 'Комиссия с карт',
             cashCommission: 'Комиссия с наличных',
@@ -284,23 +286,23 @@ const driverProfileRegistration = {
             payButtonText: 'Оплатить',
             systemPaymentInfo: 'Для поддержания работоспособности сервиса с каждой поездки взимается комиссия. Для продолжения пользования системой, Вам необходимо оплатить счет до 5 числа каждого месяца.'
         },
-        accountOperations:{
+        accountOperations: {
             accountOperationsText: 'Операции по счёту',
             forPeriod: 'За период',
             searchButton: 'Просмотреть',
-            infoTableText:{
+            infoTableText: {
                 payedByCash: 'Оплачено картами',
                 payedByCard: 'Оплата по картам',
                 payedByPartners: 'Партнёрские начисления',
                 payedForPeriod: 'Всего за период'
             },
-            valueTableText:[
+            valueTableText: [
                 'ID транзакции(ENG)',
                 'Тип оплаты(ENG)',
                 'Сумма(ENG)',
                 'Дата платежа(ENG)',
                 'ID поездки(ENG)'
-            ] 
+            ]
         }
     }
 }

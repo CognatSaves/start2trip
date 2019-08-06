@@ -425,7 +425,7 @@ class RenderModalRegistrationClass extends React.Component {
                                     <div className="inputIcon">
                                         <img className="emailIcon" src={emailIcon} alt="emailIcon" width='13px' height='12px' />
                                         <input onFocus={() => { this.setState({ regAnswerStatus: false, regProcessStatus: false }) }} className="mobailsitingInLightInput"
-                                        type="email" pattern="^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$"
+                                        type="email" pattern="^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,100}$"
                                         placeholder={textInfo.sitingInLightBackgroundText.secondInputPlaceholderText} required
                                         value = {this.state.email} onChange={(e)=>this.setState({email: e.target.value})} />
                                     </div>
@@ -528,7 +528,7 @@ class RenderModalRegistrationClass extends React.Component {
                                     <div className="inputIcon">
                                         <img className="emailIcon" src={emailIcon} alt="emailIcon" width='13px' height='12px' />
                                         <input onFocus={() => { this.setState({ regAnswerStatus: false, regProcessStatus: false }) }} className="sitingInLightInput"
-                                        type="email" pattern="^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$"
+                                        type="email" pattern="^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,100}$"
                                         placeholder={textInfo.sitingInLightBackgroundText.secondInputPlaceholderText}
                                         required  value = {this.state.email} onChange={(e)=>this.setState({email: e.target.value})}/>
                                     </div>

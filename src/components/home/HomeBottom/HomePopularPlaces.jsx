@@ -99,7 +99,7 @@ class PopularPlacesClass extends React.Component {
         
         let arrayRender = [...this.props.placesState.directions];
         if(arrayRender.length>0){
-            debugger;
+            
         }
         arrayRender.sort((a,b)=>{
             if(a.zIndex!==b.zIndex){

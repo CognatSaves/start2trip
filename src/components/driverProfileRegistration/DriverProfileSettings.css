@@ -7,9 +7,9 @@
 }
 
 .driverProfilesettingsBodyTitle {
-    min-height: 40px;
+    min-height: 55px;
     border-bottom: 1px solid #ccc;
-    line-height: 40px;
+    line-height: 55px;
 }
 
 .driverProfilesettingsBodyTitle p {
@@ -62,7 +62,7 @@ p.driverProfileSettingsContentPasswordText {
     padding-left: 10px;
     width: 100%;
     min-height: 40px;
-    max-height: 40px;
+    max-height: 45px;
     transition: all 0.3s;
 }
 

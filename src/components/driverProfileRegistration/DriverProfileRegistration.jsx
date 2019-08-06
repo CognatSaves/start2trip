@@ -71,7 +71,7 @@ class DriverProfileRegistrationClass extends React.Component {
         <DriverProfileNavigation />
         <div className="registrationWrapper d-flex flex-column col-12 p-0">
           <div className="d-flex contentHeight col-12 p-0">
-            <div className="d-flex flex-column justify-content-start col-lx-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+            <div className="d-flex flex-column justify-content-start col-12 p-0 ">
             <Suspense fallback={<div>Загрузка...</div>}>
             <Route path="/account/driver/trips" component={DriverProfileHistory} />
             <Route path="/account/driver/profile" component={DriverProfileBasicInformation} />

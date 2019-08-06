@@ -30,21 +30,21 @@ class FooterClass extends React.Component {
     let textInfo = this.props.storeState.languageTextMain.footer;
     let mobileElemArray = [
       {
-        pathname: "/routes",
+        pathname: "/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+"/routes",
         pathnamesInner: ["/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+"/routes"],
         iconClasses: ['footerMobileIconRoutes_active','footerMobileIconRoutes'],
         classValue: 'footerMobileTextRoutes',
         value: textInfo.footerMobileTextRoutes
       },
       {
-        pathname: "/tours",
+        pathname: "/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"}),
         pathnamesInner: ["/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+"/tours"],
         iconClasses: ["footerMobileIconTours_active","footerMobileIconTours"],
         classValue:"footerMobileTextTours",
         value: textInfo.footerMobileTextTours
       },
       {
-        pathname: "/places",
+        pathname: "/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+"/places",
         pathnamesInner: ["/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+"/places"],
         iconClasses: ['footerMobileIconPlaces_active','footerMobileIconPlaces'],
         classValue: 'footerMobileTextPlaces',
@@ -52,7 +52,7 @@ class FooterClass extends React.Component {
       },
       {
         pathname: "/account",
-        pathnamesInner: ["/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+"/account/user/profile","/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+"/account/driver/profile","/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+"/account/agency/profile"],
+        pathnamesInner: ["/account/user/profile","/account/driver/profile","/account/agency/profile"],
         iconClasses: ['footerMobileIconProfile_active','footerMobileIconProfile'],
         classValue: 'footerMobileTextProfile',
         value: textInfo.footerMobileTextProfile
@@ -82,7 +82,7 @@ class FooterClass extends React.Component {
         <div className="footerMobile d-xl-none d-lg-none d-md-none d-sm-flex d-flex">
           {
             mobileElemArray.map((element, index)=>
-            <Link to={"/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+element.pathname} className="col-3 d-flex align-items-end">
+            <Link to={element.pathname} className="col-3 d-flex align-items-end">
               <div className={ (element.pathnamesInner.indexOf(pathname)!==-1 ? "foterMobaileItem_active":" " )+ " d-flex flex-column align-items-center justify-content-end col-12 foterMobaileItem "} >
                 <div className={element.pathnamesInner.indexOf(pathname)!==-1 ? element.iconClasses[0]:element.iconClasses[1] } />
                 <div className={element.classValue}>{element.value}</div>

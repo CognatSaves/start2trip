@@ -47,6 +47,7 @@ h2 {
 .placeDescription_block {
     padding-top: 30px;
     border-top: 1px solid transparent;
+    color: rgb(0, 0, 0, 0.6);
 }
 
 .placeDescription_description_name {
@@ -213,7 +214,7 @@ h2 {
 .routeDescrDate div {
     cursor: pointer !important;
     width: 100% !important;
-    color: #000 !important;
+    color: #304269 !important;
     font-weight: 400 !important;
     font-size: 16px !important;
     max-height: 41px;
@@ -238,7 +239,7 @@ h2 {
 .routeDescrDate input,
 .placeDescrDate input {
     cursor: pointer !important;
-    color: black !important;
+    color: #304269 !important;
     font-weight: 400 !important;
     font-size: 16px !important;
     max-height: 41px;
@@ -265,7 +266,9 @@ h2 {
     min-width: 25px;
     min-height: 25px;
     margin: auto 15px auto 0;
-    background-size: 25px 25px;
+    background-size: 15px 15px;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .placesDescription_calendary {
@@ -281,12 +284,17 @@ h2 {
 }
 
 .placesDescription_travelBlock_applyButton {
-    background-color: #f26101;
+    background-color: #f60;
     font-weight: 500;
     font-size: 24px;
     text-align: center;
     color: #fff;
-    min-height: 61px;
+    min-height: 51px;
+    transition: all 0.2s;
+}
+
+.placesDescription_travelBlock_applyButton:hover {
+    box-shadow: 0px 4px 6px 3px rgba(0, 0, 0, 0.25);
 }
 
 .placeDescription_fragmentName_mapBlock {

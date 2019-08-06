@@ -36,6 +36,7 @@
     line-height: 40px;
 }
 
+.basicInformationBodyBottomContent textarea,
 .basicInformationBodyBottomContent input {
     color: #686868;
     font-weight: 400;

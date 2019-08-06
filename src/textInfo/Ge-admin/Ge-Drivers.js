@@ -16,7 +16,7 @@ const driverProfileRegistration = {
             last: "поездки(GEO)",
             full: "Предстоящие поездки(GEO)"
         },
-        penalty:{
+        penalty: {
             first: 'Штрафные(GEO)',
             last: 'баллы(GEO)',
             full: 'Штрафные баллы(GEO)'
@@ -88,7 +88,7 @@ const driverProfileRegistration = {
         typeFuel: {
             label: "Тип топлива(GEO)"
         },
-        profileCarFuelConsumption:{
+        profileCarFuelConsumption: {
             label: 'Потребление топлива(GEO)'
         },
         profileCarNumberOfSeats: {
@@ -120,6 +120,7 @@ const driverProfileRegistration = {
         }
     },
     DriverProfileTripSettingsTrip: {
+        titlePage: "Редактировать поездки (GEO)",
         changeOnWorkP: "Вы можете приостановить и возобновить приём заказов(GEO)",
         onWorkTrue: "Приостановить работу(GEO)",
         onWorkFalse: "Возобновить работу(GEO)",
@@ -264,8 +265,8 @@ const driverProfileRegistration = {
         upcoming: "Предстоящие(GEO)",
         story: "История(GEO)",
     },
-    DriverProfileBilling:{
-        currentBalance:{
+    DriverProfileBilling: {
+        currentBalance: {
             currentBalanceText: 'Текущий баланс(GEO)',
             personalAccount: 'Лицевой счёт(GEO)',
             cardPayments: 'Оплачено картами(GEO)',
@@ -273,9 +274,9 @@ const driverProfileRegistration = {
             withdrawnTotal: 'Всего снято(GEO)',
             accountTotal: 'Всего на счету(GEO)',
             fundsWithdrawal: 'Вывод средств(GEO)',
-            receivedByCash: 'Получено наличными за все время(GEO)' 
+            receivedByCash: 'Получено наличными за все время(GEO)'
         },
-        systemPayments:{
+        systemPayments: {
             systemPaymentsText: 'Оплата за пользование системой (всё время)(GEO)',
             cardCommission: 'Комиссия с карт(GEO)',
             cashCommission: 'Комиссия с наличных(GEO)',
@@ -284,23 +285,23 @@ const driverProfileRegistration = {
             payButtonText: 'Оплатить(GEO)',
             systemPaymentInfo: 'Для поддержания работоспособности сервиса с каждой поездки взимается комиссия. Для продолжения пользования системой, Вам необходимо оплатить счет до 5 числа каждого месяца.(GEO)'
         },
-        accountOperations:{
+        accountOperations: {
             accountOperationsText: 'Операции по счёту(GEO)',
             forPeriod: 'За период(GEO)',
             searchButton: 'Просмотреть(GEO)',
-            infoTableText:{
+            infoTableText: {
                 payedByCash: 'Оплачено картами(GEO)',
                 payedByCard: 'Оплата по картам(GEO)',
                 payedByPartners: 'Партнёрские начисления(GEO)',
                 payedForPeriod: 'Всего за период(GEO)'
             },
-            valueTableText:[
+            valueTableText: [
                 'ID транзакции(GEO)',
                 'Тип оплаты(GEO)',
                 'Сумма(GEO)',
                 'Дата платежа(GEO)',
                 'ID поездки(GEO)'
-            ] 
+            ]
         }
     }
 }

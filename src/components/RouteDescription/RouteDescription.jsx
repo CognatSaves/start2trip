@@ -135,7 +135,7 @@ class RouteDescriptionClass extends React.Component {
                     {
 
                         this.state.newRoute.local ?
-                            <PlacePhotoShow onClose={() => {alert('QWJBDKJQFBH'); this.setState({ isMaskVisible: false })}}
+                            <PlacePhotoShow onClose={() => { this.setState({ isMaskVisible: false })}}
                                 isMaskVisible={this.state.isMaskVisible} clickedImageIndex={this.state.clickedImageIndex} images={this.state.newRoute.route.images} />
                             : <React.Fragment />
 

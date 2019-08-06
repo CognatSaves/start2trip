@@ -13,6 +13,7 @@
     line-height: 20px;
     font-weight: 500;
     max-height: 42px;
+    min-height: 42px;
     text-overflow: ellipsis;
     overflow: hidden;
     color: #304269;
@@ -66,25 +67,28 @@
 }
 
 .placesList_info_position_loc {
-    font-size: 14px;
+    font-size: 13px;
+    line-height: 16px;
 }
 
 .placesList_info_position_textStyle {
     margin-left: 5px;
     width: 90%;
-    white-space: nowrap;
+    /* white-space: nowrap; */
     overflow: hidden;
 }
 
 .placesList_info_position_loc .placesList_info_position_textStyle {
-    padding-left: 18px;
+    color: #686868;
+    padding-left: 15px;
     margin-left: 0px;
-    width: 90%;
-    white-space: nowrap;
+    width: 100%;
+    /* white-space: nowrap; */
+    max-height: 34px;
     overflow: hidden;
     background: url(../media/geo_icon.svg) no-repeat;
-    background-size: 14px 14px;
-    background-position: left center;
+    background-size: 12px 12px;
+    background-position: left top 2px;
 }
 
 .placesList_readMoreButton {
@@ -179,8 +183,8 @@
         background-position: right 5px center;
     }
     .placesList_placeName {
-        font-size: 20px;
-        line-height: 22px;
+        font-size: 18px;
+        line-height: 20px;
         font-weight: 500;
     }
     .placesList_info_position_loc .placesList_info_position_textStyle {

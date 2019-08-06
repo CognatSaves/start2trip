@@ -6,6 +6,7 @@ import phone_callSvg from '../media/phone-call.svg'
 import placeholderSvg from '../media/placeholder.svg'
 import webSvg from '../media/web.svg'
 import Header from '../header/Header';
+import { isMobileOnly } from 'react-device-detect';
 
 
 class contactsClass extends React.Component {
@@ -17,7 +18,9 @@ class contactsClass extends React.Component {
 
 
     }
+    sendMessage=()=>{
 
+    }
     render() {
         return (
             <React.Fragment>
@@ -62,7 +65,7 @@ class contactsClass extends React.Component {
                                         </div>
                                         <div className="contacts_content_rightFooter d-flex">
                                             <label style={{background:"url("+placeholderSvg+")no-repeat"}} className="col-md-2 col-3 p-0" htmlFor="adress">Адрес:</label>
-                                            <span id="adress">220015, г.Минск, ул.Янки Мавра,<br/> д. 41, офис.410</span>
+                                            <span id="adress">220015, г.Минск, ул.Янки Мавра,{isMobileOnly ? <React.Fragment></React.Fragment> : <br/>} д. 41, офис.410</span>
                                         </div>
                                     </div>
 

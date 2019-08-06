@@ -114,7 +114,7 @@ class CreateCommentClass extends React.Component {
                             <img  style={{borderRadius: '30px'}} src={requests.serverAddress+'/uploads/user.svg'} width="100%" height="100%" alt=""></img>
                         </div>
                         <div className="d-flex flex-column pl-2 align-items-start justify-content-center">
-                            <div className="d-flex flex-row"/*style={{margin: 'auto 0'}}*/>
+                            <div className="d-flex flex-row flex-wrap">
                                 <div className="commentTextStyle" >{textInfo.nonRegisteredElement[0]}</div>
                                 <div className="commentLinkStyle" onClick={()=>this.props.dispatch(setModalRegister(!this.props.storeState.modalRegistration))}>{textInfo.nonRegisteredElement[1]}</div>
                                 <div className="commentTextStyle" >{textInfo.nonRegisteredElement[2]}</div>

@@ -35,7 +35,6 @@
     background: #f60;
 }
 
-
 .specialBorder {
     border-bottom: 2px solid #ccc;
 }
@@ -71,7 +70,6 @@
 
 .blillingHeader {
     background-color: rgba(204, 204, 204, 0.2);
-    margin-right: 35px;
     padding-bottom: 20px !important;
 }
 
@@ -80,7 +78,7 @@
     font-weight: 500;
     color: #304269;
     text-transform: uppercase;
-    text-align:center;
+    text-align: center;
 }
 
 .billingTable tr td {
@@ -112,8 +110,10 @@
     border-radius: 5px;
     max-width: 120px;
     margin: 0 5px;
-    max-height: 30px;
+    min-height: 36px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
 }
 
 .billingCalendar :nth-child(1) {
@@ -280,10 +280,9 @@
     .billingCalendar {
         margin: 10px 2px !important;
     }
-    .billingButton
-{
-    padding-bottom:20px;
-}
+    .billingButton {
+        padding-bottom: 20px;
+    }
 }
 
 @media (max-width: 576px) {}
