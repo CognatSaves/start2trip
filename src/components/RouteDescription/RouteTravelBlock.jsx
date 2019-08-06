@@ -77,7 +77,11 @@ class RouteTravelBlockClass extends React.Component{
                 borderRadius: '5px',
             }
         };
+        
         let points = [...this.props.points];
+        if(points.length>0){
+            
+        }
         let textInfo = this.props.storeState.languageTextMain.placeDescription.placeTravelBlock;
         
         console.log(this.props.driversState);

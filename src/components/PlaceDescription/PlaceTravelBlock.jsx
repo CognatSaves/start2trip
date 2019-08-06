@@ -13,7 +13,8 @@ class PlaceTravelBlockClass extends React.Component{
         super(props);
         this.state={
             startPoint:''/*  this.props.place.capital+', '+this.props.place.country*/,
-            endPoint: this.props.place.location,
+            //endPoint: this.props.place.point.place,//this.props.place.location, //произошло переподключение
+            endPlace: this.props.place.endPlace,
             date:'' /*new Date()*/,
             isStartHighlighted: false,
             isDateHighlighted: false
@@ -54,12 +55,13 @@ class PlaceTravelBlockClass extends React.Component{
               borderRadius: '5px',
             }
           };
+        
         let place = this.props.place;
         let textInfo = this.props.storeState.languageTextMain.placeDescription.placeTravelBlock;
-        let cities = this.state.startPoint.length>0 ? [{point: this.state.startPoint},{point:this.state.endPoint}] : [{point:this.state.endPoint}];
-        
+        let cities = this.state.startPoint.length>0 ? [{point: this.state.startPoint},this.state.endPlace] : [this.state.endPlace];
+        debugger;
         return (
-            <div className="placeDescription_block d-flex flex-column" id={this.props.id} key={JSON.stringify(this.state.endPoint)}>
+            <div className="placeDescription_block d-flex flex-column" id={this.props.id} key={JSON.stringify(this.state.endPlace)}>
                 <div className="placeDescription_fragmentName">{textInfo.fragmentName}</div>
                 <div className="d-flex flex-row">
                     <div className="d-flex flex-column col-md-6 col-12 px-md-2 px-0" style={{ marginTop: "15px" }}>
@@ -72,10 +74,19 @@ class PlaceTravelBlockClass extends React.Component{
                                   classDropdown="searchElement_style" classInput={"travelBlockSearch"} placeholder={textInfo.startPointPlaceholder}
                                   isoCountryMap={this.props.storeState.isoCountryMap}/>   
                             </div>
-
+                            {
+                                /*
+                                <div className="placesDescription_travelBlock_element d-flex">
+                                    <div className="placesDescription_travelBlock_icon placesDescription_geoIcon" />
+                                    <LocationSearchInput readOnlyOn={true} address={this.state.endPlace.point} changeCity={(index, value,extraData)=>{}} classDropdown="searchElement_style" classInput="travelBlockSearch" />
+                                </div>
+                                */
+                            }
                             <div className="placesDescription_travelBlock_element d-flex">
                                 <div className="placesDescription_travelBlock_icon placesDescription_geoIcon" />
-                                <LocationSearchInput readOnlyOn={true} address={this.state.endPoint} changeCity={(index, value,extraData)=>{}} classDropdown="searchElement_style" classInput="travelBlockSearch" />
+                                <div className="d-flex routeTravelBlock_height">
+                                    <div style={{margin: 'auto 0'}}>{this.state.endPlace.point}</div>
+                                </div>
                             </div>
                        
                             <div id="placeTravelBlock_datePicker" className={"placesDescription_travelBlock_element d-flex "

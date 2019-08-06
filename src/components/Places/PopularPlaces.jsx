@@ -91,7 +91,7 @@ class PopularPlacesClass extends React.Component {
             }
         })
         if(arrayRender.length>0){
-            debugger;
+            
         }
         if (arrayRender.length > this.state.howMuchRender) {
 
