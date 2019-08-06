@@ -77,17 +77,17 @@ export class CurrentLocation extends React.Component {
   }
   loadMap() {
     function createRequestElement(cities, google, travelMode) {
-      let waypoints = [];
+      let waypoints = []
       for (let i = 1; i < cities.length - 1; i++) {
         waypoints[i - 1] = {
-          location: cities[i].point,
+          location: new google.maps.LatLng(cities[i].lat,cities[i].long)/*cities[i].point*/,
           stopover: true
         }
       }
       let request =
       {
-        origin: cities[0].point, //точка старта
-        destination: cities[cities.length - 1].point, //точка финиша
+        origin: new google.maps.LatLng(cities[0].lat, cities[0].long)/*cities[0].point*/, //точка старта
+        destination: new google.maps.LatLng(cities[cities.length - 1].lat, cities[cities.length - 1].long)/*cities[cities.length - 1].point*/, //точка финиша
         waypoints: waypoints,
         travelMode: travelMode, //режим прокладки маршрута
       };
@@ -115,7 +115,7 @@ export class CurrentLocation extends React.Component {
 
       this.map = new maps.Map(node, mapConfig);
       let request = createRequestElement(this.props.cities, google, this.state.travelMode);
-
+      debugger;
       let service = new google.maps.DirectionsService();
       let directionsDisplay = new google.maps.DirectionsRenderer({
       });
@@ -126,7 +126,7 @@ export class CurrentLocation extends React.Component {
       let tempTravelLength = 0;
       let obj = this;
       service.route(request, function (response, status) {
-        
+        debugger;
         if (status === google.maps.DirectionsStatus.OK) {
           directionsDisplay.setDirections(response);
           
