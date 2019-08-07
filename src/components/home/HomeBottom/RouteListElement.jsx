@@ -48,7 +48,7 @@ class RouteListElementClass extends React.Component{
                             <div className="driversBlock_carBlackout_detailed">{textInfo.detailed}</div>
                         </Link>
                     </div>
-                    <div className="placesList_info d-flex flex-column">
+                    <div className="placesList_info routes_info d-flex flex-column">
                         <Link to={linkString} className="placesList_placeName d-flex">
                             <div>
                                 {element.placelocalization.name}

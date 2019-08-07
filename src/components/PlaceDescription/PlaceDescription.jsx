@@ -210,11 +210,13 @@ class PlaceDescriptionClass extends React.Component {
                             : <React.Fragment />
                     }
                     {isMobileOnly ? 
-                    <Header history={this.props.history} />
+                    <Header history={this.props.history} a={true} />
+                    
                     :
                     <React.Fragment />
                     }
                     <div className="placeDescription_background col-12 p-0" style={{ background: isMobileOnly ? smallImage : bigImage }} id={topBlockId}>
+                        
                     {!isMobileOnly ? 
                     <Header history={this.props.history} />
                     :

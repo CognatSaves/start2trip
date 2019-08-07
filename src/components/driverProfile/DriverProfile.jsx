@@ -501,10 +501,8 @@ class DriverProfileClass extends React.Component {
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
                 
                 <div className="drivers_top_background">
-                    <Header history={this.props.history} />
-                    <dir className="driversGoBack" style={{display: isMobileOnly?"flex":"none"}}>
-                        <span onClick={()=>{this.props.history.goBack()}}>Назад</span>
-                    </dir>
+                    <Header history={this.props.history} a={true} />
+                    
                     {
                         /*this.props.driversState.driverCarDescription.id*/true /*this.props.storeState.languages.length>0*/ ? 
                         <div className="wrapper d-flex flex-column"/* style={{background: this.props.driversState.driverCarDescription.id ? 'transpatent' : '#fff'}}*/>
@@ -545,7 +543,7 @@ class DriverProfileClass extends React.Component {
                                                 }
                                                 
                                                 <div className={"routeTravelBlock_element d-flex col-md-6 col-12 "}>
-                                                    <div className={"routeTravelBlock_pointValue d-flex flex-row "}
+                                                    <div className={"routeTravelBlock_pointValue anidate d-flex flex-row "}
                                                     onClick={()=>{if(this.state.isDateHighlighted){this.setState({isDateHighlighted: false})}}}>
                                                         <div className="placesDescription_travelBlock_icon placesDescription_calendary" />
                                                         <DatePicker defaultDate={this.state.date} shouldDisableDate={(day) => { debugger  }} hintText={textInfo.startDate} minDate={new Date()} onChange={(e, date) => { this.setState({date: date});  }} className="routeDescrDate" />

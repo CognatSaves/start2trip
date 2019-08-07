@@ -66,7 +66,7 @@ class PlaceTravelBlockClass extends React.Component{
                 <div className="d-flex flex-row">
                     <div className="d-flex flex-column col-md-6 col-12 px-md-2 px-0" style={{ marginTop: "15px" }}>
                         
-                            <div id="placeTravelBlock_startPointId" className={"placesDescription_travelBlock_element d-flex " 
+                            <div id="placeTravelBlock_startPointId" className={"placesDescription_travelBlock_element d-flex anidate " 
                             + (this.state.isStartHighlighted ? 'placesDescription_travelBlock_highlighted' : '')} 
                             onClick={()=>{if(this.state.isStartHighlighted){this.setState({isStartHighlighted: false})}}}>
                                 <div className="placesDescription_travelBlock_icon placesDescription_position" />
@@ -89,7 +89,7 @@ class PlaceTravelBlockClass extends React.Component{
                                 </div>
                             </div>
                        
-                            <div id="placeTravelBlock_datePicker" className={"placesDescription_travelBlock_element d-flex "
+                            <div id="placeTravelBlock_datePicker" className={"placesDescription_travelBlock_element d-flex anidate "
                             + (this.state.isDateHighlighted ? 'placesDescription_travelBlock_highlighted' : '')}
                             onClick={()=>{if(this.state.isDateHighlighted){this.setState({isDateHighlighted: false})}}}>
                                 <div className="placesDescription_travelBlock_icon placesDescription_calendary" />
