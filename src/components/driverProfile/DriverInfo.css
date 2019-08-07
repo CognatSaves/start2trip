@@ -166,13 +166,13 @@
         padding-bottom: 0px;
     }
     .driverInfo_photo {
-        width: 120px;
-        height: 120px;
+        width: 105px;
+        height: 105px;
         padding: 5px;
     }
     .driverInfo_photo img {
-        width: 120px;
-        height: 120px;
+        width: 105px;
+        height: 105px;
         border-radius: 10%;
     }
     .driverInfo_left_line {

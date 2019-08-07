@@ -701,6 +701,11 @@ class HeaderClass extends React.Component {
           <i className="footerMobileIconUp" />
         </div>
         <div className={this.props.driver ? "driverHeader" : "homeHeader"}>
+          { this.props.a ? <div className="driversGoBack" style={{display: isMobileOnly?"flex":"none"}}>
+                        <span onClick={()=>{this.props.history.goBack()}}>Назад</span>
+                    </div> :
+                  <React.Fragment /> }
+        
           <div className='header d-xl-flex d-lg-flex d-md-flex d-sm-none d-none align-items-stretch justify-content-between'>
             <div className="d-flex align-items-center col-xl-2 col-lg-2 col-md-3 col-sm-2 col-2">
               <Link className="col-xl-8 col-lg-9 col-md-8 col-sm-8 col-7" to={"/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+"/routes"}>
