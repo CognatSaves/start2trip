@@ -296,98 +296,8 @@ getLocals();
 
 
 
-if (rootElement.hasChildNodes()) {
-  ReactDOM.hydrate(<Provider store={store}>
-    <BrowserRouter >
-      <React.Fragment>
-        <MuiThemeProvider muiTheme={muiTheme}>
-          <Suspense fallback={<div>Загрузка...</div>}>
-            <Switch>
-              <Route path={"/"+config.routeMap+"/routes/:slug"} component={RouteDescription} />
-              <Route path={"/"+config.routeMap+"/routes-:direction"} component={Home} />
-              <Route path={"/"+config.routeMap+"/routes"} component={Home} />
-              
-              <Route path={"/"+config.routeMap+"/drivers/"} component={Home} />
-              <Route path={"/"+config.routeMap+"/driverProfile/:id-:carId-:cities"} component={DriverProfile} />
-              
-              <Route path={"/"+config.routeMap+"/places/:slug"} component={PlaceDescription} />
-              <Route path={"/"+config.routeMap+"/places-:direction"} component={Places} />
-              <Route path={"/"+config.routeMap+"/places"} component={Places} />
-              
-              
-
-              <Route path={"/"+config.routeMap+"/tours"} component={Tours} />
-              <Route path={"/"+config.routeMap+"/tour/:country,:id"} component={TourDescription} />
-
-              <Route path="/account" component={AccountRedirector} />
-              <Route path="/forgot-password" component={ForgotPassword} />
-              <Route path="/reset-password/:code" component={ResetPassword} />
-
-              <Route path="/contacts" component={contacts} />
-              <Route path="/affiliate-program" component={affiliateProgram} />
-              <Route path="/about-service" component={AboutService} />
-              <Route path="/driverConfirmation/:id-:carrierId-:confirmation" component={DriverConfirmation} />
-              <Route path="/tripConfirmation/:id-:userId" component={TripConfirmation} />
-              <Route path="/(register|start)/" component={PartnerRegister} />
-              <Route path="/registration" component={Registration} />
-              <Route path="/login" component={AuthRedirect} />
-              <Route path="/countrySelection" component={AuthModalCountry} />
-              <Redirect from="/" to={"/"+(redirectPage==="undefined-undefined"?"countrySelection":redirectPage+"/routes")} />
-            </Switch>
-          </Suspense>
-          <Footer />
-        </MuiThemeProvider>
-      </React.Fragment>
-    </BrowserRouter>
-  </Provider>, rootElement);
-} else {
-  ReactDOM.render(<Provider store={store}>
-    <BrowserRouter >
-      <React.Fragment>
-        <MuiThemeProvider muiTheme={muiTheme}>
-          <Suspense fallback={<div>Загрузка...</div>}>
-            <Switch>
-              <Route path={"/"+config.routeMap+"/routes/:slug"} component={RouteDescription} />
-              <Route path={"/"+config.routeMap+"/routes-:direction"} component={Home} />
-              <Route path={"/"+config.routeMap+"/routes"} component={Home} />
-              
-              <Route path={"/"+config.routeMap+"/drivers/"} component={Home} />
-              <Route path={"/"+config.routeMap+"/driverProfile/:id-:carId-:cities"} component={DriverProfile} />
-              
-              <Route path={"/"+config.routeMap+"/places/:slug"} component={PlaceDescription} />
-              <Route path={"/"+config.routeMap+"/places-:direction"} component={Places} />
-              <Route path={"/"+config.routeMap+"/places"} component={Places} />
-              
-              
-
-              <Route path={"/"+config.routeMap+"/tours"} component={Tours} />
-              <Route path={"/"+config.routeMap+"/tour/:country,:id"} component={TourDescription} />
-
-              <Route path="/account" component={AccountRedirector} />
-              <Route path="/forgot-password" component={ForgotPassword} />
-              <Route path="/reset-password/:code" component={ResetPassword} />
-
-              <Route path="/contacts" component={contacts} />
-              <Route path="/affiliate-program" component={affiliateProgram} />
-              <Route path="/about-service" component={AboutService} />
-              <Route path="/driverConfirmation/:id-:carrierId-:confirmation" component={DriverConfirmation} />
-              <Route path="/tripConfirmation/:id-:userId" component={TripConfirmation} />
-              <Route path="/(register|start)/" component={PartnerRegister} />
-              <Route path="/registration" component={Registration} />
-              <Route path="/login" component={AuthRedirect} />
-              <Route path="/countrySelection" component={AuthModalCountry} />
-              <Redirect from="/" to={"/"+(redirectPage==="undefined-undefined"?"countrySelection":redirectPage+"/routes")} />
-            </Switch>
-          </Suspense>
-          <Footer />
-        </MuiThemeProvider>
-      </React.Fragment>
-    </BrowserRouter>
-  </Provider>, rootElement);
-}
-
-// ReactDOM.render(
-//   <Provider store={store}>
+// if (rootElement.hasChildNodes()) {
+//   ReactDOM.hydrate(<Provider store={store}>
 //     <BrowserRouter >
 //       <React.Fragment>
 //         <MuiThemeProvider muiTheme={muiTheme}>
@@ -429,8 +339,98 @@ if (rootElement.hasChildNodes()) {
 //         </MuiThemeProvider>
 //       </React.Fragment>
 //     </BrowserRouter>
-//   </Provider>
-//   , document.getElementById('root'))
+//   </Provider>, rootElement);
+// } else {
+//   ReactDOM.render(<Provider store={store}>
+//     <BrowserRouter >
+//       <React.Fragment>
+//         <MuiThemeProvider muiTheme={muiTheme}>
+//           <Suspense fallback={<div>Загрузка...</div>}>
+//             <Switch>
+//               <Route path={"/"+config.routeMap+"/routes/:slug"} component={RouteDescription} />
+//               <Route path={"/"+config.routeMap+"/routes-:direction"} component={Home} />
+//               <Route path={"/"+config.routeMap+"/routes"} component={Home} />
+              
+//               <Route path={"/"+config.routeMap+"/drivers/"} component={Home} />
+//               <Route path={"/"+config.routeMap+"/driverProfile/:id-:carId-:cities"} component={DriverProfile} />
+              
+//               <Route path={"/"+config.routeMap+"/places/:slug"} component={PlaceDescription} />
+//               <Route path={"/"+config.routeMap+"/places-:direction"} component={Places} />
+//               <Route path={"/"+config.routeMap+"/places"} component={Places} />
+              
+              
+
+//               <Route path={"/"+config.routeMap+"/tours"} component={Tours} />
+//               <Route path={"/"+config.routeMap+"/tour/:country,:id"} component={TourDescription} />
+
+//               <Route path="/account" component={AccountRedirector} />
+//               <Route path="/forgot-password" component={ForgotPassword} />
+//               <Route path="/reset-password/:code" component={ResetPassword} />
+
+//               <Route path="/contacts" component={contacts} />
+//               <Route path="/affiliate-program" component={affiliateProgram} />
+//               <Route path="/about-service" component={AboutService} />
+//               <Route path="/driverConfirmation/:id-:carrierId-:confirmation" component={DriverConfirmation} />
+//               <Route path="/tripConfirmation/:id-:userId" component={TripConfirmation} />
+//               <Route path="/(register|start)/" component={PartnerRegister} />
+//               <Route path="/registration" component={Registration} />
+//               <Route path="/login" component={AuthRedirect} />
+//               <Route path="/countrySelection" component={AuthModalCountry} />
+//               <Redirect from="/" to={"/"+(redirectPage==="undefined-undefined"?"countrySelection":redirectPage+"/routes")} />
+//             </Switch>
+//           </Suspense>
+//           <Footer />
+//         </MuiThemeProvider>
+//       </React.Fragment>
+//     </BrowserRouter>
+//   </Provider>, rootElement);
+// }
+
+ReactDOM.render(
+  <Provider store={store}>
+    <BrowserRouter >
+      <React.Fragment>
+        <MuiThemeProvider muiTheme={muiTheme}>
+          <Suspense fallback={<div>Загрузка...</div>}>
+            <Switch>
+              <Route path={"/"+config.routeMap+"/routes/:slug"} component={RouteDescription} />
+              <Route path={"/"+config.routeMap+"/routes-:direction"} component={Home} />
+              <Route path={"/"+config.routeMap+"/routes"} component={Home} />
+              
+              <Route path={"/"+config.routeMap+"/drivers/"} component={Home} />
+              <Route path={"/"+config.routeMap+"/driverProfile/:id-:carId-:cities"} component={DriverProfile} />
+              
+              <Route path={"/"+config.routeMap+"/places/:slug"} component={PlaceDescription} />
+              <Route path={"/"+config.routeMap+"/places-:direction"} component={Places} />
+              <Route path={"/"+config.routeMap+"/places"} component={Places} />
+              
+              
+
+              <Route path={"/"+config.routeMap+"/tours"} component={Tours} />
+              <Route path={"/"+config.routeMap+"/tour/:country,:id"} component={TourDescription} />
+
+              <Route path="/account" component={AccountRedirector} />
+              <Route path="/forgot-password" component={ForgotPassword} />
+              <Route path="/reset-password/:code" component={ResetPassword} />
+
+              <Route path="/contacts" component={contacts} />
+              <Route path="/affiliate-program" component={affiliateProgram} />
+              <Route path="/about-service" component={AboutService} />
+              <Route path="/driverConfirmation/:id-:carrierId-:confirmation" component={DriverConfirmation} />
+              <Route path="/tripConfirmation/:id-:userId" component={TripConfirmation} />
+              <Route path="/(register|start)/" component={PartnerRegister} />
+              <Route path="/registration" component={Registration} />
+              <Route path="/login" component={AuthRedirect} />
+              <Route path="/countrySelection" component={AuthModalCountry} />
+              <Redirect from="/" to={"/"+(redirectPage==="undefined-undefined"?"countrySelection":redirectPage+"/routes")} />
+            </Switch>
+          </Suspense>
+          <Footer />
+        </MuiThemeProvider>
+      </React.Fragment>
+    </BrowserRouter>
+  </Provider>
+  , document.getElementById('root'))
 
 
 // If you want your app to work offline and load faster, you can change

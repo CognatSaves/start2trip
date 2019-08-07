@@ -34,8 +34,7 @@
     padding: 0px 10px;
 }
 
-.routes_info
-{
+.routes_info {
     height: 140px;
 }
 
@@ -81,7 +80,7 @@
     width: 90%;
     /* white-space: nowrap; */
     overflow: hidden;
-    color:#304269;
+    color: #686868;
 }
 
 .placesList_info_position_loc .placesList_info_position_textStyle {
@@ -178,17 +177,13 @@
 }
 
 @media (max-width: 746px) {
-
-    .routes_info
-{
-    height: auto;
-    padding-bottom: 15px;
-}
-
-.placesList_info_position_loc .placesList_info_position_textStyle
-{
-    max-height: 50px;
-}
+    .routes_info {
+        height: auto;
+        padding-bottom: 15px;
+    }
+    .placesList_info_position_loc .placesList_info_position_textStyle {
+        max-height: 50px;
+    }
     .placesTagList_tagLine {
         width: 100%;
     }

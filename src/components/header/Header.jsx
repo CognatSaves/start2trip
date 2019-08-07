@@ -694,7 +694,7 @@ class HeaderClass extends React.Component {
                           <span className="exit" onClick={() => { clearQueueScrollLocks(); enablePageScroll(); this.setState({ burgerMenu: false }); this.logOffFunc() }}>{textInfo.burgerMenu.exit}</span>
                         </React.Fragment>
                         :
-                        <span className="profile" onClick={this.toggleModalRegistration}>{textInfo.burgerMenu.enter}</span>
+                        <span className="profile" onClick={this.toggleModalRegistration}>{textInfo.burgerMenu.burgerEnter}</span>
 
                     }
                   </div>

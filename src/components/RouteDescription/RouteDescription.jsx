@@ -36,6 +36,7 @@ class RouteDescriptionClass extends React.Component {
             page: 1,
             showPages: 1,
         }
+        
     }
     showMorePages = () => {
         this.setState({
@@ -71,7 +72,7 @@ class RouteDescriptionClass extends React.Component {
         )
     }
     render() {
-
+        
         console.log('RouteDescription render', this.state, this.props);
         let topBlockId = "routeDescriptionId";
         let slug = this.props.match.params.slug;
@@ -108,6 +109,7 @@ class RouteDescriptionClass extends React.Component {
                         throw data.error;
                     }
                     else {
+                        window.scroll(0,0)
                         console.log('good');
                         console.log(data);
                         that.setState({

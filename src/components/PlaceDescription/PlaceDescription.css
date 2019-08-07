@@ -3,15 +3,22 @@
 }
 
 @keyframes glowing {
-    0% {     background: rgba(34,157,78,.49); }
-    50% {     background:#fff;}
-    100% {     background: rgba(34,157,78,.49);}
-  }
+    0% {
+        background: rgba(34, 157, 78, .49);
+    }
+    50% {
+        background: #fff;
+    }
+    100% {
+        background: rgba(34, 157, 78, .49);
+    }
+}
 
-.anidate  {
+
+/* .anidate {
     animation: glowing 2000ms infinite;
-    cursor:pointer;
-  }
+    cursor: pointer;
+} */
 
 .h2,
 h2 {
@@ -171,6 +178,7 @@ h2 {
 .placesDescription_travelBlock_element {
     width: 100%;
     padding: 5px 10px;
+    margin: 5px 0;
     border: 1px solid #ededed;
     border-radius: 5px;
     -webkit-transition: all .2s;
@@ -178,14 +186,14 @@ h2 {
     height: 53px;
 }
 
-
-
 .placesDescription_travelBlock_element ::-webkit-input-placeholder {
     color: black;
 }
 
 .placesDescription_travelBlock_highlighted {
-    background: rgba(34, 157, 78, 0.49);
+    /* background: rgba(34, 157, 78, 0.49); */
+    animation: glowing 2000ms infinite;
+    cursor: pointer;
 }
 
 .placesDescription_travelBlock_highlighted input {
@@ -309,6 +317,11 @@ h2 {
     box-shadow: 0px 4px 6px 3px rgba(0, 0, 0, 0.25);
 }
 
+.placesDescription_travelBlock_applyButton:focus {
+    border: none;
+    outline: none;
+}
+
 .placeDescription_fragmentName_mapBlock {
     width: /*870px;*/
     100%;
@@ -407,11 +420,11 @@ h2 {
         max-height: 210px;
         height: 210px;
     }
-    .placeDescription_block ol{
-        padding-left:15px;
+    .placeDescription_block ol {
+        padding-left: 15px;
     }
-    .placeDescription_block ul{
-        padding-left:15px;
+    .placeDescription_block ul {
+        padding-left: 15px;
     }
     .placePhotos_elementBlock {
         margin: 0px 0;

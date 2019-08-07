@@ -15,7 +15,8 @@ const header = {
         settings: 'Настройки(GEO)',
         partnership: 'Партнерская программа(GEO)',
         exit: 'Выйти(GEO)',
-        enter: 'Войти или создать профиль(GEO)'
+        enter: 'Войти(GEO)',
+        burgerEnter:"Войти или создать профиль(GEO)",
     },
     toPageStart: 'В начало страницы(GEO)'
 }

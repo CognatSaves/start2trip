@@ -164,7 +164,7 @@ class RouteMenuClass extends React.Component {
   }
 
   addCity = () => {
-    
+
     let cities = this.props.storeState.cities;
     let flagCities = true;
 
@@ -192,6 +192,7 @@ class RouteMenuClass extends React.Component {
 
     }
   }
+  
   removeCity = (index) => {
     let cities = this.props.storeState.cities;
     cities.splice(index, 1);
@@ -213,7 +214,7 @@ class RouteMenuClass extends React.Component {
   validationInput = (massCities) => {
    
     let flag = true;
-    /*let massInput = document.querySelectorAll("._checkInput")
+    let massInput = document.querySelectorAll("._checkInput")
     for (let i = 0; i < massInput.length; i++) {
       if (massInput[i].defaultValue == "") {
         let massDivInput = document.querySelectorAll("._checkDiv")
@@ -225,7 +226,7 @@ class RouteMenuClass extends React.Component {
         massDivInput[i].classList.add("startCity-error")
         flag = false;
       }
-    }*/
+    }
     /*
     if(!this.props.validationInput(massCities)){
       flag=false;

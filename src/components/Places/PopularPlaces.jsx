@@ -65,6 +65,7 @@ class PopularPlacesClass extends React.Component {
         }
     }
     onDirClickCleared = (address) =>{
+        
         this.props.globalReduser.history.push(address);
     }
     render() {

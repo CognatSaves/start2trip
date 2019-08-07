@@ -174,7 +174,7 @@ class PlaceDescriptionClass extends React.Component {
                         throw data.error;
                     }
                     else {
-                        
+                        window.scroll(0, 0);
                         console.log('good');
                         console.log(data);
                         that.setState({ isRefreshExist: false, newPlace: data, couldSendRequest: true, slug: data.local.slug });
@@ -206,7 +206,7 @@ class PlaceDescriptionClass extends React.Component {
                     {
                         this.state.images !==null ?
                             <PlacePhotoShow onClose={() => this.setState({ isMaskVisible: false })}
-                                isMaskVisible={this.state.isMaskVisible} clickedImageIndex={this.state.clickedImageIndex} images={this.state.images} />
+                                isMaskVisible={this.state.isMaskVisible} clickedImageIndex={this.state.clickedImageIndex} images={this.state.newPlace.place.images} />
                             : <React.Fragment />
                     }
                     {isMobileOnly ? 
