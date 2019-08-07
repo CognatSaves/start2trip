@@ -15,7 +15,7 @@ const header = {
         settings: 'Настройки',
         partnership: 'Партнерская программа',
         exit: 'Выйти',
-        enter: 'Войти'
+        enter: 'Войти или создать профиль '
     },
     toPageStart: 'В начало страницы'
 }

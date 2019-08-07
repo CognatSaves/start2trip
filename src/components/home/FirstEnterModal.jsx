@@ -55,13 +55,14 @@ class FirstEnterModalClass extends React.Component {
 
     }
     ChangeinputChecked = (indexEl) => {    
+        
         console.log(this.state.activeWindow)
         let div = document.querySelector(".modalStartInformationContent");
         if (!div) {
             div = document.querySelector(".modalStartInformationContentmodal");
         }
         let widthOneWindow = div.scrollWidth / this.state.renderContent.length - 2.5;
-        if (indexEl || indexEl == 0) {
+        if (indexEl || indexEl === 0) {
             div.scrollLeft=widthOneWindow*indexEl;
         } else {
             div.scrollLeft = widthOneWindow*(this.state.activeWindow+1);
@@ -89,7 +90,7 @@ class FirstEnterModalClass extends React.Component {
         let second = widthOneWindow * 2;
         let third = (widthOneWindow * 3)-10;
         let fourth = (widthOneWindow * 4)-10;
-        if (0 < marginLeft) {
+        if (0 <= marginLeft) {
             this.setState({ activeWindow: 0 })
         }
         if (firstOn < marginLeft&&second >= marginLeft){
@@ -97,7 +98,7 @@ class FirstEnterModalClass extends React.Component {
             // e.currentTarget.scrollLeft = widthOneWindow;
         }
         if (second < marginLeft&&third >= marginLeft){
-            this.setState({ activeWindow: 2 })
+            this.setState({ activeWindow: 2 })      
             // e.currentTarget.scrollLeft = widthOneWindow*2;
         }
         if (third < marginLeft&&fourth >= marginLeft){

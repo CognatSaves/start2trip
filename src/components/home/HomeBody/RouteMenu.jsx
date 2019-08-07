@@ -100,7 +100,7 @@ const CityRouteTable = (props) => {
 
 class RouteMenuClass extends React.Component {
   constructor(props) {
-    debugger;
+    
     function setCitiesFromUrl(pathname){
       
       
