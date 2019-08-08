@@ -100,7 +100,7 @@ const CityRouteTable = (props) => {
 
 class RouteMenuClass extends React.Component {
   constructor(props) {
-    debugger;
+    
     function setCitiesFromUrl(pathname){
       
       
@@ -127,16 +127,18 @@ class RouteMenuClass extends React.Component {
     /*else{
       dateValue = '';
     }*/
-    
+    debugger;
     let pathnameMAss = document.location.pathname.split("/");
     //случай массива ['','geo-ru','routes',''], который возникает в случае, когда мы закрыли последний слеш, тоже надо учесть - отсюда 'или' ниже
-    let resultpathname =((pathnameMAss[pathnameMAss.length-1].length>0 && pathnameMAss.length<=3) || (pathnameMAss.length<=4)) ? true : false;
+    let ares = (pathnameMAss[pathnameMAss.length-1].length>0 && pathnameMAss.length<=3);
+    let bres = (pathnameMAss.length<=4)
+    let resultpathname =( ares || bres) ? true : false;
     //вышестоящее условие звучит следующим образом - если в адресной строке больше или равно 4 элементов,
     //то мы находимся не в /geo/(drivers|route) просто,а в /geo/(drivers|route)/что-то там, что
     //означает, что можно попробовать построить маршрут
     // так как проверка идёт а-ля - загружено ли(и мы считаем, что загружено, если грузить не надо), то сравнение наоборот
     if(!resultpathname){//т.е. есть города в адресе
-      setCitiesFromUrl(pathnameMAss[3]);
+      setCitiesFromUrl(pathnameMAss[ares ? 3 : 4]);
     }
     
     this.state = {
@@ -145,12 +147,13 @@ class RouteMenuClass extends React.Component {
       isRefreshing: true,
       isGoodAnswer: true,
       date: /*this.props.storeState.date*/dateValue,
-      isLoaded: resultpathname//переменная для загрузки 1 раза водителей.
+      isLoaded: !resultpathname//переменная для загрузки 1 раза водителей.
       //language: this.props.storeState.activeLanguageNumber
     }
   }
 
   changeCity = (index, value, extraData) => {
+    debugger;
     let cities = this.props.storeState.cities;
     cities[index] = {
       point: value,
@@ -213,19 +216,19 @@ class RouteMenuClass extends React.Component {
   validationInput = (massCities) => {
    
     let flag = true;
-    /*let massInput = document.querySelectorAll("._checkInput")
+    let massInput = document.querySelectorAll("._checkInput")
     for (let i = 0; i < massInput.length; i++) {
-      if (massInput[i].defaultValue == "") {
+      if (massInput[i].defaultValue.length===0) {
         let massDivInput = document.querySelectorAll("._checkDiv")
         massDivInput[i].classList.add("startCity-CheckInput")
         flag = false;
       }
-      if (massInput[i].defaultValue !== massCities[i].point) {
+      if (massInput[i].defaultValue !== massCities[i].point || massCities[i].point.length===0) {
         let massDivInput = document.querySelectorAll("._checkDiv")
         massDivInput[i].classList.add("startCity-error")
         flag = false;
       }
-    }*/
+    }
     /*
     if(!this.props.validationInput(massCities)){
       flag=false;
@@ -387,22 +390,64 @@ class RouteMenuClass extends React.Component {
     if(!this.state.isLoaded && this.props.storeState.languages.length>0){
       
       function isFindAllElems(cities){
-        for(let i=0; i>cities.length;i++){
-          if(cities[i].lat===''){
-            return false;
+        let answer = true;
+        let citiesCopy = [...cities];
+        for(let i=0; i<cities.length;i++){
+          let res = Number.parseFloat(cities[i].lat);
+          if(!res){
+            //this.setCities()
+            /*citiesCopy[i]={
+              point: '',
+              lat: '',
+              long: ''
+            }*/
+            if(cities[i].point.length>0){//если строка осталась заполненой, но координат нет
+              //, предполагаем, что они ещё не пришли - надо ждать
+              answer = false;
+            }
+            else{
+              //если затёрто, но блок сохранён - значит не нашли
+              isEmptyBlockExist=true;
+            }
           }
         }
-        return true;
+        //debugger;
+        /*if(!answer){
+          this.props.dispatch(setCities(citiesCopy));
+        }*/
+        return answer;
       }
       console.log(this.props.match);
       console.log(window);
-      
-      if(this.props.storeState.cities.length>0 && this.props.storeState.cities[this.props.storeState.cities.length-1].lat!==''
-        && isFindAllElems(this.props.storeState.cities)){
+      debugger;
+      let isEmptyBlockExist = false;
+      let isFindAll = isFindAllElems(this.props.storeState.cities);
+      if(this.props.storeState.cities.length>0){
+        if( isFindAll && !isEmptyBlockExist){//нашил все города без затёртых - всё корректно
 
-        this.requestFunction();
-      
+          this.requestFunction();     
+        }
+        else{
+          if( isEmptyBlockExist)//есть затёртые - ничего искать не надо, всё, шабаш
+          {
+            this.setState({
+              isLoaded: true//нет городов - нечего загружать
+            })
+          }
+        }
       }
+      else{
+        this.setState({
+          isLoaded: true//нет городов - нечего загружать
+        })
+      }
+      /*else{
+        if(!isFindAll){//если с считыванием городов косяк, то сворачиваемся
+          this.setState({
+            isLoaded: true
+          })
+        }
+      }*/
     }
     let textInfo = this.props.storeState.languageTextMain.home.routeMenu;
     console.log('Route Menu render, lang=',this.props.storeState.activeLanguageNumber );
