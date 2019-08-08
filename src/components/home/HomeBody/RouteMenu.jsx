@@ -167,7 +167,7 @@ class RouteMenuClass extends React.Component {
   }
 
   addCity = () => {
-    
+
     let cities = this.props.storeState.cities;
     let flagCities = true;
 
@@ -195,6 +195,7 @@ class RouteMenuClass extends React.Component {
 
     }
   }
+  
   removeCity = (index) => {
     let cities = this.props.storeState.cities;
     cities.splice(index, 1);

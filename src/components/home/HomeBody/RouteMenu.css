@@ -46,8 +46,22 @@
     min-height: 41px;
 }
 
+@keyframes glowing {
+    0% {
+        background: rgba(34, 157, 78, .49);
+    }
+    50% {
+        background: rgba(255, 255, 255, 0.3);
+        ;
+    }
+    100% {
+        background: rgba(34, 157, 78, .49);
+    }
+}
+
 .routemenu_date-Check {
-    background: rgba(37, 165, 154, 0.911);
+    animation: glowing 2000ms infinite;
+    cursor: pointer;
 }
 
 .routemenu_date div {
@@ -281,7 +295,8 @@
 .startCity-CheckInput {
     /* outline: 2px solid rgb(37, 165, 154);
     outline-offset: -1px; */
-    background: rgba(37, 165, 154, 0.911)!important;
+    animation: glowing 2000ms infinite;
+    /* background: rgba(37, 165, 154, 0.911)!important; */
     border-radius: 5px !important;
 }
 

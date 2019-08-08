@@ -11,6 +11,11 @@
     text-overflow: ellipsis;
 }
 
+.driversBlock_driverCard .driversBlock_buttonStyle
+{
+    height: 50px!important;
+}
+
 .infoString {
     font-size: 10.5pt;
     font-weight: 400;

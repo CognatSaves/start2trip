@@ -112,7 +112,7 @@ class RouteTravelBlockClass extends React.Component{
                                 )
                             }
                             <div className={"routeTravelBlock_element d-flex col-md-6 col-12 "}>
-                                <div className={"routeTravelBlock_pointValue specialDate  d-flex flex-row "
+                                <div className={"routeTravelBlock_pointValue specialDate anidate  d-flex flex-row "
                                 + (this.state.isDateHighlighted ? 'placesDescription_travelBlock_highlighted' : '')}
                                 onClick={()=>{if(this.state.isDateHighlighted){this.setState({isDateHighlighted: false})}}}>
                                     <div className="placesDescription_travelBlock_icon placesDescription_calendary" />

@@ -10,6 +10,14 @@
     padding-bottom: 40px !important;
 }
 
+.popularPlacesRender a {
+    text-decoration: none;
+}
+
+.popularPlacesRender a:hover {
+    text-decoration: none;
+}
+
 .popularPlacesMore {
     position: relative;
 }

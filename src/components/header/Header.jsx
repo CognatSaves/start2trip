@@ -13,11 +13,11 @@ import { Link } from 'react-router-dom';
 import { Modal, ModalBody } from 'reactstrap';
 import requests from '../../config';
 import axios from 'axios';
-import { setUser, setActiveCurr, setActiveLang, setModalRegister, setActiveLangAdmin,modalCountryDispatch } from '../../redusers/Action';
+import { setUser, setActiveCurr, setActiveLang, setModalRegister, setActiveLangAdmin, modalCountryDispatch } from '../../redusers/Action';
 import { disablePageScroll, clearQueueScrollLocks, enablePageScroll } from 'scroll-lock';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
-import { whichPageRenderHistory ,whichPageRender } from "../../redusers/ActionGlobal"
+import { whichPageRenderHistory, whichPageRender } from "../../redusers/ActionGlobal"
 import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 import Cookies from 'universal-cookie';
@@ -94,34 +94,34 @@ const ModalUserType = (props) => {
   const customContentStyle2 = {
     maxWidth: '512px',
   };
-  if(that.state.selectedUserCountry.length===0 && that.props.storeState.country.length>0){
+  if (that.state.selectedUserCountry.length === 0 && that.props.storeState.country.length > 0) {
     that.setState({
       selectedUserCountry: that.props.storeState.country
     })
   }
   let profile = that.props.globalReduser.profile;
   let selectUserTypeVisibility = true;
-  
-  if(profile.isDriver || profile.isAgency){
-    selectUserTypeVisibility=false;
-    if(that.state.selectedUserType===0){
-      if(profile.isDriver){
-        setSelectedUserType(2,that);
+
+  if (profile.isDriver || profile.isAgency) {
+    selectUserTypeVisibility = false;
+    if (that.state.selectedUserType === 0) {
+      if (profile.isDriver) {
+        setSelectedUserType(2, that);
       }
-      if(profile.isAgency){
-        setSelectedUserType(3,that);
+      if (profile.isAgency) {
+        setSelectedUserType(3, that);
       }
 
     }
   }
-  
 
-  let activeLanguageId =that.props.storeState.languages.length>0 ? that.props.storeState.languages[that.props.storeState.activeLanguageNumber].id : 'notFound';
-  
-  function selectCountryLoc(activeLanguageId, countryEl){
-    
-    for(let i=0; i<countryEl.locals.length; i++){
-      if(countryEl.locals[i].langId===activeLanguageId){
+
+  let activeLanguageId = that.props.storeState.languages.length > 0 ? that.props.storeState.languages[that.props.storeState.activeLanguageNumber].id : 'notFound';
+
+  function selectCountryLoc(activeLanguageId, countryEl) {
+
+    for (let i = 0; i < countryEl.locals.length; i++) {
+      if (countryEl.locals[i].langId === activeLanguageId) {
         return countryEl.locals[i].name
       }
     }
@@ -135,60 +135,62 @@ const ModalUserType = (props) => {
     >
       <div className='d-flex flex-column align-items-center selectTypeBody'>
         {
-          selectUserTypeVisibility ? 
-          <React.Fragment>
-            <span>{textInfo.modalUserType.selectAccountTypeText}</span>
-            {
-              pageTextInfo.registrationUserType.userTypes.map((element, index) =>
-                <div key={element+index} className={index ? "selectTypeBlockLine selectTypeBlock d-flex align-items-center col-8" : "selectTypeBlock d-flex align-items-center col-8"}
-                  onClick={() => { setSelectedUserType(index + 1, that) }} >
-                  <i style={{ background: "url(" + massIcon[index] + ") no-repeat" }} />
-                  <label className="typeCheckLabel" for={"typeCheckbox" + (index + 1)}>{element.userText}</label>
-                  <input className="typeCheckButton" id={"typeCheckbox" + (index + 1)}
-                    type="radio" name="raz" checked={index + 1 === that.state.selectedUserType ? true : false}/>
-                </div>
-              )
-            }
-          </React.Fragment> : <React.Fragment/>
-        }    
-        {
-          that.state.selectedUserType>1 ? 
-          <React.Fragment>
-            <span>{"Укажите страну, в которой вы будете работать"}</span>
-            <DropDownMenu
-              value={that.state.selectedUserCountry}
-              anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
-              onChange={(event, index, value)=>{ that.setState({
-                selectedUserCountry: value
-              })}}
-              style={{ width: "100%" }}
-              className="dropdownClass"
-              autoWidth={false}
-              selectedMenuItemStyle={{ color: "#f60" }}   
-            >
+          selectUserTypeVisibility ?
+            <React.Fragment>
+              <span>{textInfo.modalUserType.selectAccountTypeText}</span>
               {
-                that.props.storeState.countries.map((element, index)=>
-                  <MenuItem value={element.ISO} primaryText={selectCountryLoc(activeLanguageId,element)}/>
+                pageTextInfo.registrationUserType.userTypes.map((element, index) =>
+                  <div key={element + index} className={index ? "selectTypeBlockLine selectTypeBlock d-flex align-items-center col-8" : "selectTypeBlock d-flex align-items-center col-8"}
+                    onClick={() => { setSelectedUserType(index + 1, that) }} >
+                    <i style={{ background: "url(" + massIcon[index] + ") no-repeat" }} />
+                    <label className="typeCheckLabel" for={"typeCheckbox" + (index + 1)}>{element.userText}</label>
+                    <input className="typeCheckButton" id={"typeCheckbox" + (index + 1)}
+                      type="radio" name="raz" checked={index + 1 === that.state.selectedUserType ? true : false} />
+                  </div>
                 )
               }
-            </DropDownMenu>
-          </React.Fragment> : <React.Fragment/>
+            </React.Fragment> : <React.Fragment />
         }
         {
-          that.state.selectedUserType>0 ? 
-          <button className="selectTypeBt" onClick={() => that.state.selectedUserType === 0 ?
-            {} : sendUserType(that)}>{pageTextInfo.registrationUserType.buttonNext}
-          </button>
-          : <React.Fragment/>
+          that.state.selectedUserType > 1 ?
+            <React.Fragment>
+              <span>{"Укажите страну, в которой вы будете работать"}</span>
+              <DropDownMenu
+                value={that.state.selectedUserCountry}
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
+                onChange={(event, index, value) => {
+                  that.setState({
+                    selectedUserCountry: value
+                  })
+                }}
+                style={{ width: "100%" }}
+                className="dropdownClass"
+                autoWidth={false}
+                selectedMenuItemStyle={{ color: "#f60" }}
+              >
+                {
+                  that.props.storeState.countries.map((element, index) =>
+                    <MenuItem value={element.ISO} primaryText={selectCountryLoc(activeLanguageId, element)} />
+                  )
+                }
+              </DropDownMenu>
+            </React.Fragment> : <React.Fragment />
         }
-        
+        {
+          that.state.selectedUserType > 0 ?
+            <button className="selectTypeBt" onClick={() => that.state.selectedUserType === 0 ?
+              {} : sendUserType(that)}>{pageTextInfo.registrationUserType.buttonNext}
+            </button>
+            : <React.Fragment />
+        }
+
       </div>
     </Dialog>
 
   )
 }
 const CountrySelect = (props) => {
-  let { modalCountry, toggleModalCountry, className,textInfo } = props;
+  let { modalCountry, toggleModalCountry, className, textInfo } = props;
   return (
     <Modal isOpen={modalCountry} toggle={toggleModalCountry} className={className}>
       <ModalBody>
@@ -276,7 +278,7 @@ class HeaderClass extends React.Component {
     this.props.dispatch(setActiveLang(activeLanguageNumber));
 
     //let textInfo = this.props.storeState.languageTextMain.header;
-    
+
     this.state = {
       dropdownLanguageOpen: false,
       burgerMenu: false,
@@ -287,7 +289,7 @@ class HeaderClass extends React.Component {
       modalCountry: false,
       collapse: false,
       //modalRegistration: false,
-      
+
 
       menuItems: ["Профиль", "Автомобиль", "Настройки поездок", "Туры", "Отзывы", "Настройки", "Биллинг", "Партнерская программа", "Выход"],
       history: props.history,
@@ -302,27 +304,27 @@ class HeaderClass extends React.Component {
 
     //this.getLocals();
   }
-  readIsoInUrl=()=>{
-    
+  readIsoInUrl = () => {
+
     let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
-    let cookiesIso = cookies.get('country',{path:"/"})
-    let cookiesLangISO = cookies.get('userLangISO',{path:"/"})
+    let cookiesIso = cookies.get('country', { path: "/" })
+    let cookiesLangISO = cookies.get('userLangISO', { path: "/" })
     let pathnameUrl = this.props.history.location.pathname;
     pathnameUrl = pathnameUrl.split('/');
     pathnameUrl = pathnameUrl[1];
     let pathnameLength = pathnameUrl.split('');
-    
-    if(pathnameLength.length===6){
-      let stringCookies = (cookiesIso+"-"+cookiesLangISO)
-      if(stringCookies!==pathnameUrl){
+
+    if (pathnameLength.length === 6) {
+      let stringCookies = (cookiesIso + "-" + cookiesLangISO)
+      if (stringCookies !== pathnameUrl) {
         pathnameUrl = pathnameUrl.split("-")
-        if((pathnameUrl[0].length===3)&&(pathnameUrl[1].length===2)){
-          cookies.set('country',pathnameUrl[0],{path:"/", expires: date });
+        if ((pathnameUrl[0].length === 3) && (pathnameUrl[1].length === 2)) {
+          cookies.set('country', pathnameUrl[0], { path: "/", expires: date });
           cookies.set('userLangISO', pathnameUrl[1], { path: '/', expires: date });
           this.props.dispatch(modalCountryDispatch(pathnameUrl[0]))
         }
       }
-      
+
     }
   }
 
@@ -332,37 +334,37 @@ class HeaderClass extends React.Component {
     switch (type) {
       case 'userLang': {
         let that = this;
-        function loadScript (url, onload){
+        function loadScript(url, onload) {
           return new Promise((resolve, reject) => {
-              const script = document.createElement('script');
-              script.type = 'text/javascript';
-              script.onload = resolve;
-              script.onerror = reject;
-              script.src = url;
-              
-              if (document.head) {
-                
-                //document.getElementById('langScript').remove();
-                script.id='langScript';
-                //document.head.appendChild(script);
-                that.props.dispatch(setActiveLang(index));
-                cookies.set('userLang', that.props.storeState.languages[index].ISO, { path: '/', expires: date });
-                cookies.set('userLangISO', that.props.storeState.languages[index].isoAutocomplete, { path: '/', expires: date });
-                let namePage = that.props.globalhistory.history.location.pathname.split("/");
-                namePage = namePage.splice(2)
-                namePage = namePage.join('/')
-                that.props.history.push("/"+that.props.storeState.country+"-"+that.props.storeState.languages[index].isoAutocomplete+"/"+(namePage===""?"route":namePage))
-              }
+            const script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.onload = resolve;
+            script.onerror = reject;
+            script.src = url;
+
+            if (document.head) {
+
+              //document.getElementById('langScript').remove();
+              script.id = 'langScript';
+              //document.head.appendChild(script);
+              that.props.dispatch(setActiveLang(index));
+              cookies.set('userLang', that.props.storeState.languages[index].ISO, { path: '/', expires: date });
+              cookies.set('userLangISO', that.props.storeState.languages[index].isoAutocomplete, { path: '/', expires: date });
+              let namePage = that.props.globalhistory.history.location.pathname.split("/");
+              namePage = namePage.splice(2)
+              namePage = namePage.join('/')
+              that.props.history.push("/" + that.props.storeState.country + "-" + that.props.storeState.languages[index].isoAutocomplete + "/" + (namePage === "" ? "route" : namePage))
+            }
           });
         }
         let string = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBxjEYepkLXhQuXcf_1sUakshHN5Jrozc8&libraries=places&callback=initialize";
-        let langString= string+"&language="+this.props.storeState.languages[index].isoAutocomplete;
+        let langString = string + "&language=" + this.props.storeState.languages[index].isoAutocomplete;
         loadScript(langString);
-        
+
         break;
       }
-      case 'adminLang':{
-        
+      case 'adminLang': {
+
         let that = this;
         console.log('adminLang called');
         this.props.dispatch(setActiveLangAdmin(index));
@@ -387,8 +389,8 @@ class HeaderClass extends React.Component {
   }
   toggleModalRegistration = () => {
     //this.setState(prevState => ({
-      this.props.dispatch(setModalRegister(!this.props.storeState.modalRegistration));
-      //modalRegistration: !prevState.modalRegistration
+    this.props.dispatch(setModalRegister(!this.props.storeState.modalRegistration));
+    //modalRegistration: !prevState.modalRegistration
     //}));
   }
   toggleLanguage = () => {
@@ -422,12 +424,12 @@ class HeaderClass extends React.Component {
             let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
             cookies.set('userName', userName, { path: '/', expires: date });
             cookies.set('avatarUrl', avatarUrl, { path: '/', expires: date });
-            this.props.dispatch(setUser(userName, avatarUrl,userData));
+            this.props.dispatch(setUser(userName, avatarUrl, userData));
           }
 
         })
         .catch(error => {
-          this.props.dispatch(setUser("", "",{}));
+          this.props.dispatch(setUser("", "", {}));
           //console.log('log off');
           //console.log('An error occurred:', error);
         });
@@ -476,12 +478,12 @@ class HeaderClass extends React.Component {
     if (jwt && jwt !== "-") {
       removeCookie(this);
     }
-    this.props.globalhistory.history.push("/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+'/home');
+    this.props.globalhistory.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/home');
   }
   accountRedirect = (address, number) => {
 
     function thenFunc(that, address, number) {
-      
+
       console.log(that);
       console.log(address);
       let profile = that.props.globalReduser.profile;
@@ -519,29 +521,29 @@ class HeaderClass extends React.Component {
       }
 
     }
-    
+
     const that = this;
     let jwt = this.props.globalReduser.readCookie('jwt');
-    
+
     if (jwt && jwt !== '-') {
       let profile = that.props.globalReduser.profile;
-      if( !( (profile.isDriver && profile.country) || profile.isCustomer || (profile.isAgency && profile.country) ) ){
+      if (!((profile.isDriver && profile.country) || profile.isCustomer || (profile.isAgency && profile.country))) {
         axios.get(requests.profileCheck, {
           headers: {
             Authorization: `Bearer ${jwt}`
           }
         })
-        .then(response => {
-          
-          console.log();
-          that.props.dispatch(setProfileData(response.data));
-          thenFunc(that, address, number);
-        })
-        .catch(error => {
-          this.props.dispatch(setUser("", "",{}));
-        });
+          .then(response => {
+
+            console.log();
+            that.props.dispatch(setProfileData(response.data));
+            thenFunc(that, address, number);
+          })
+          .catch(error => {
+            this.props.dispatch(setUser("", "", {}));
+          });
       }
-      else{
+      else {
         thenFunc(that, address, number);
       }
     }
@@ -561,23 +563,23 @@ class HeaderClass extends React.Component {
         if (scrollEvent > 730) {
           document.querySelector(".btUp").classList.add("btUp-active");
         } else {
-          if(document.querySelector(".btUp") !== null){
-          document.querySelector(".btUp").classList.remove("btUp-active");
+          if (document.querySelector(".btUp") !== null) {
+            document.querySelector(".btUp").classList.remove("btUp-active");
           }
         }
       } else {
-        if(document.querySelector(".btUp") !== null){
+        if (document.querySelector(".btUp") !== null) {
           document.querySelector(".btUp").classList.remove("btUp-active");
-        } 
+        }
       }
     } else {
       if (this.state.previousPageYOffset > scrollEvent) {
-        if(document.querySelector(".footerButtonUp") !== null){
+        if (document.querySelector(".footerButtonUp") !== null) {
           if (scrollEvent > 400) {
-              document.querySelector(".footerButtonUp").classList.add("footerButtonUp-active");
+            document.querySelector(".footerButtonUp").classList.add("footerButtonUp-active");
           }
-          else {         
-              document.querySelector(".footerButtonUp").classList.remove("footerButtonUp-active");            
+          else {
+            document.querySelector(".footerButtonUp").classList.remove("footerButtonUp-active");
           }
         }
       }
@@ -589,7 +591,7 @@ class HeaderClass extends React.Component {
     console.log('Header render', this.props, window, document);
     //console.log(this.state);
     //console.log(this.props);
-    
+
     let languages = this.props.storeState.languages;
     let currencies = this.props.storeState.currencies;
     let adminLanguages = this.props.storeState.adminLanguages;
@@ -597,9 +599,9 @@ class HeaderClass extends React.Component {
     let textInfoAdmin = this.props.storeState.languageText.header;
     let isAdmin = this.props.storeState.isSecondLanguageGroupPart;
     let textInfo = isAdmin ? textInfoAdmin : textInfoMain;
-    
+
     let pageTextInfo = this.props.storeState.languageTextMain.renderModalRegistration;
-    let buttonMassElements= [
+    let buttonMassElements = [
       {
         to: "/",
         value: textInfo.menuElements[0]
@@ -628,17 +630,17 @@ class HeaderClass extends React.Component {
           
           : <React.Fragment/> */
         }
-        <ModalUserType textInfo={textInfo} isOpen={this.state.isUsertypeLooking} that={this} pageTextInfo={pageTextInfo}/>
+        <ModalUserType textInfo={textInfo} isOpen={this.state.isUsertypeLooking} that={this} pageTextInfo={pageTextInfo} />
         <div className="headerMobail d-xl-none d-lg-none d-md-none d-sm-flex d-flex align-items-center justify-content-between">
           {/* <div onClick={this.toggleModalCountry} className="headerGeoButton">
             <span>{this.props.storeState.country}</span>
           </div> */}
-          <Link className="" to={"/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+"/routes"}>
+          <Link className="" to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes"}>
             <h3 />
           </Link>
-          <div onClick={this.toggleModalCountry} style={{visibility: this.props.storeState.countries.length>0 ? 'visible' : 'hidden'}} className="headerGeoButton col-lg-5 col-md-4 col-6">
-                <span>{this.props.storeState.country}</span>
-              </div>
+          <div onClick={this.toggleModalCountry} style={{ visibility: this.props.storeState.countries.length > 0 ? 'visible' : 'hidden' }} className="headerGeoButton col-lg-5 col-md-4 col-6">
+            <span>{this.props.storeState.country}</span>
+          </div>
           <div className="headerSelect d-flex align-items-center justify-content-end ">
             <button className={this.state.burgerMenu ? "headerMobailButton-active" : "headerMobailButton"} onClick={() => {
               if (this.state.burgerMenu) {
@@ -651,46 +653,59 @@ class HeaderClass extends React.Component {
             <nav className={this.state.burgerMenu ? "burgerMenu burgerMenu-active" : "burgerMenu"}>
               <div className="burgerMenuBg">
                 <div className="burgerMenuTop">
-                  <DropDownMenu anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }} className="burgerMenuTopDropDown" menuStyle={{ width: "30px" }}
-                    value={this.props.storeState.activeLanguageNumber/*this.state.activLanguageNumber*/} onChange={(event, index, value) => { this.setLocals('userLang', index) }}>
-                    {languages.map((element, index) =>
-                      <MenuItem value={index} primaryText={<React.Fragment><img className="mb-1" src={requests.serverAddress + element.icon.url} width="15px" height="15px" alt={element.ISO} /><span className="burgerMenuTopDropDownSpan">{element.ISO}</span></React.Fragment>} ></MenuItem>
-                    )}
-                  </DropDownMenu>
-                  <DropDownMenu menuItemStyle={{ color: "#304269", fontSize: "14px", fontWeight: "400" }} selectedMenuItemStyle={{ color: "#f60" }}
-                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }} className="burgerMenuTopDropDown" menuStyle={{ width: "30px" }}
-                    value={this.props.storeState.activeCurrencyNumber/*this.state.activeCurrencyNumber*/} onChange={(event, index, value) => { this.setLocals('userCurr', index) }}>
-                    {currencies.map((element, index) =>
-                      <MenuItem value={index} primaryText={element.symbol + " " + element.ISO} />
-                    )}
-                  </DropDownMenu>
-                  {
-                    /*
-                  <DropDownMenu anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }} className="burgerMenuTopDropDown" menuStyle={{ width: "30px" }}
-                   value={this.props.storeState.activeLanguageNumber} onChange={(event, index, value) => { this.setLocals('userLang',index) }}>
-                    {languages.map((element, index) =>
-                      <MenuItem value={index} primaryText={<React.Fragment><img className="mb-1" src={requests.serverAddress+element.icon.url} width="15px" height="15px" alt={element.ISO} /><span className="burgerMenuTopDropDownSpan">{element.ISO}</span></React.Fragment>} ></MenuItem>
-                    )}
-                  </DropDownMenu>
+                  <h4 className="col-11 pt-4 pb-2">Настройки</h4>
+                  <div className="burgerMenuBlock burgerMenuP d-flex flex-column justify-content-center align-items-center col-11">
+                    <div className="d-flex align-items-end justify-content-between w-100 border-bottom">
+                      <label>Сменить язык</label>
+                      <DropDownMenu anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }} className="burgerMenuTopDropDown" menuStyle={{ width: "30px" }}
+                        value={this.props.storeState.activeLanguageNumber/*this.state.activLanguageNumber*/} onChange={(event, index, value) => { this.setLocals('userLang', index) }}>
+                        {languages.map((element, index) =>
+                          <MenuItem value={index} primaryText={<React.Fragment><img className="mb-1" src={requests.serverAddress + element.icon.url} width="15px" height="15px" alt={element.ISO} /><span className="burgerMenuTopDropDownSpan">{element.ISO}</span></React.Fragment>} ></MenuItem>
+                        )}
+                      </DropDownMenu>
+                    </div>
+                    <div className="d-flex align-items-end justify-content-between w-100 ">
+                      <label>Сменить валюту</label>
+                      <DropDownMenu menuItemStyle={{ color: "#304269", fontSize: "14px", fontWeight: "400" }} selectedMenuItemStyle={{ color: "#f60" }}
+                        anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }} className="burgerMenuTopDropDown" menuStyle={{ width: "30px" }}
+                        value={this.props.storeState.activeCurrencyNumber/*this.state.activeCurrencyNumber*/} onChange={(event, index, value) => { this.setLocals('userCurr', index) }}>
+                        {currencies.map((element, index) =>
+                          <MenuItem value={index} primaryText={<span className="pl-2">{element.symbol + " " + element.ISO}</span>} />
+                        )}
+                      </DropDownMenu>
+                    </div>
+                  </div>
+                  <h4 className="col-11 pt-4 pb-2">Сервисы</h4>
+                  <div className="burgerMenuBlock d-flex flex-column justify-content-center align-items-start col-11">
+                  <Link to={"/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+"/routes"} className="border-bottom routes" onClick={()=>{ clearQueueScrollLocks(); enablePageScroll(); this.setState({ burgerMenu: false });}}>Маршруты</Link>
+                  <Link to={"/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+"/tours"} className="border-bottom tours" onClick={()=>{ clearQueueScrollLocks(); enablePageScroll(); this.setState({ burgerMenu: false });}}>Туры</Link>
+                  <Link to={"/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+"/places"} className="places" onClick={()=>{ clearQueueScrollLocks(); enablePageScroll(); this.setState({ burgerMenu: false });}}>Места</Link>
+                  </div>
 
-                    */
-                  }
+                  <h4 className="col-11 pt-4 pb-2">Профиль</h4>
+                  <div className="burgerMenuBlock d-flex flex-column justify-content-center align-items-start col-11">
+                    {
+                      this.props.storeState.isAuthorized ?
+                        <React.Fragment>
+                          <span className="border-bottom profile" onClick={() => { clearQueueScrollLocks(); enablePageScroll(); this.setState({ burgerMenu: false }); this.accountRedirect("/profile", 1) }}>{textInfo.burgerMenu.profile}</span>
+                          <span className="border-bottom blockedSpan timetable" onClick={() => {/* this.setState({burgerMenu: false});this.accountRedirect("/trips", 0)*/ }}>{textInfo.burgerMenu.trips}</span>
+                          <span className="border-bottom settingsGears" onClick={() => { clearQueueScrollLocks(); enablePageScroll(); this.setState({ burgerMenu: false }); this.accountRedirect("/settings", 6) }}>{textInfo.burgerMenu.settings}</span>
+                          <span className="border-bottom saveMoney" onClick={() => { clearQueueScrollLocks(); enablePageScroll(); this.setState({ burgerMenu: false }); this.accountRedirect("/referrals", 8) }}>{textInfo.burgerMenu.partnership}</span>
+                          <span className="exit" onClick={() => { clearQueueScrollLocks(); enablePageScroll(); this.setState({ burgerMenu: false }); this.logOffFunc() }}>{textInfo.burgerMenu.exit}</span>
+                        </React.Fragment>
+                        :
+                        <span className="profile" onClick={this.toggleModalRegistration}>{textInfo.burgerMenu.burgerEnter}</span>
 
-                </div>
-                <div className="burgerMenuBottom">
-                  {
-                    this.props.storeState.isAuthorized ?
-                    <React.Fragment>
-                      <span onClick={() => {  clearQueueScrollLocks(); enablePageScroll();this.setState({burgerMenu: false}); this.accountRedirect("/profile", 1) }}>{textInfo.burgerMenu.profile}</span>
-                      <span className="blockedSpan" onClick={() => {/* this.setState({burgerMenu: false});this.accountRedirect("/trips", 0)*/ }}>{textInfo.burgerMenu.trips}</span>
-                      <span onClick={() => {  clearQueueScrollLocks(); enablePageScroll();this.setState({burgerMenu: false}); this.accountRedirect("/settings", 6) }}>{textInfo.burgerMenu.settings}</span>
-                      <span onClick={() => {  clearQueueScrollLocks(); enablePageScroll();this.setState({burgerMenu: false}); this.accountRedirect("/referrals", 8) }}>{textInfo.burgerMenu.partnership}</span>
-                      <span onClick={()=>{ clearQueueScrollLocks(); enablePageScroll(); this.setState({burgerMenu: false});this.logOffFunc()}}>{textInfo.burgerMenu.exit}</span> 
-                    </React.Fragment>
-                    :
-                    <span onClick={this.toggleModalRegistration}>{textInfo.burgerMenu.enter}</span>
-
-                  }              
+                    }
+                  </div>
+                  <h4 className="col-11 pt-4 pb-2">Полезные ссылки</h4>
+                  <div className="burgerMenuBlock d-flex flex-column justify-content-center align-items-start col-11">
+                    <Link to="/about-service" className="border-bottom logoIcon" onClick={()=>{ clearQueueScrollLocks(); enablePageScroll(); this.setState({ burgerMenu: false });}}>О сервисе</Link>
+                    <Link to="/affiliate-program" className="border-bottom partner" onClick={()=>{ clearQueueScrollLocks(); enablePageScroll(); this.setState({ burgerMenu: false });}}>Партнерам</Link>
+                    <Link to="" className="border-bottom contract" onClick={()=>{ clearQueueScrollLocks(); enablePageScroll(); this.setState({ burgerMenu: false });}}>Лицензионное соглашение</Link>
+                    <Link to="" className="border-bottom questionMarkGray" onClick={()=>{ clearQueueScrollLocks(); enablePageScroll(); this.setState({ burgerMenu: false });}}>Помощь</Link>
+                    <Link to="/contacts"className="phoneBook " onClick={()=>{ clearQueueScrollLocks(); enablePageScroll(); this.setState({ burgerMenu: false });}}>Контакты</Link>
+                  </div>
                 </div>
               </div>
             </nav>
@@ -701,12 +716,17 @@ class HeaderClass extends React.Component {
           <i className="footerMobileIconUp" />
         </div>
         <div className={this.props.driver ? "driverHeader" : "homeHeader"}>
+          { this.props.a ? <div className="driversGoBack" style={{display: isMobileOnly?"flex":"none"}}>
+                        <span onClick={()=>{this.props.history.goBack()}}>Назад</span>
+                    </div> :
+                  <React.Fragment /> }
+        
           <div className='header d-xl-flex d-lg-flex d-md-flex d-sm-none d-none align-items-stretch justify-content-between'>
             <div className="d-flex align-items-center col-xl-2 col-lg-2 col-md-3 col-sm-2 col-2">
-              <Link className="col-xl-8 col-lg-9 col-md-8 col-sm-8 col-7" to={"/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+"/routes"}>
+              <Link className="col-xl-8 col-lg-9 col-md-8 col-sm-8 col-7" to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes"}>
                 <h3 />
               </Link>
-              <div onClick={this.toggleModalCountry} style={{visibility: this.props.storeState.countries.length>0 ? 'visible' : 'hidden'}} className="headerGeoButton col-xl-5 col-lg-5 col-md-4 col-sm-5 col-5">
+              <div onClick={this.toggleModalCountry} style={{ visibility: this.props.storeState.countries.length > 0 ? 'visible' : 'hidden' }} className="headerGeoButton col-xl-5 col-lg-5 col-md-4 col-sm-5 col-5">
                 <span>{this.props.storeState.country}</span>
               </div>
             </div>
@@ -714,7 +734,7 @@ class HeaderClass extends React.Component {
               <div className="headerButtonMass d-flex align-self-stretch justify-content-end col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 ">
                 {
                   buttonMassElements.map((element, index) =>
-                    <Link to={"/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+element.to} className="buttonMassLink align-self-stretch">{element.value}</Link>
+                    <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + element.to} className="buttonMassLink align-self-stretch">{element.value}</Link>
                   )
                 }
               </div>
@@ -732,48 +752,48 @@ class HeaderClass extends React.Component {
                   </DropdownMenu>
                 </Dropdown>
                 {
-                  this.props.storeState.isSecondLanguageGroupPart ? 
+                  this.props.storeState.isSecondLanguageGroupPart ?
 
 
-                  <Dropdown setActiveFromChild="true" isOpen={this.state.dropdownLanguageOpen} toggle={this.toggleLanguage} className={adminLanguages.length > 0 ? "selectGeneral" : "selectGeneral preloadHiddenBlock"}>
-                    <DropdownToggle className="selectGeneralButton" caret size="sm">
-                      <img src={adminLanguages.length > 0 ? requests.serverAddress + adminLanguages[this.props.storeState.activeLanguageNumberAdmin/*this.state.activLanguageNumber*/].icon.url : ''} height="15px" width="15px" alt="flag" />
-                      {adminLanguages.length > 0 ? adminLanguages[this.props.storeState.activeLanguageNumberAdmin/*this.state.activLanguageNumber*/].ISO : ''}
-                    </DropdownToggle>
-                    <DropdownMenu className="dropdownMenu">
-                      {
-                        adminLanguages.map((element, index) =>
-                          <DropdownItem className="dropdownMenu" onClick={() => {  this.setLocals('adminLang', index) }}>
-                            <img src={requests.serverAddress + element.icon.url} height="15px" width="15px" alt="RU" />{element.ISO}
-                          </DropdownItem>
-                        )
-                      }
-                    </DropdownMenu>
-                  </Dropdown>
+                    <Dropdown setActiveFromChild="true" isOpen={this.state.dropdownLanguageOpen} toggle={this.toggleLanguage} className={adminLanguages.length > 0 ? "selectGeneral" : "selectGeneral preloadHiddenBlock"}>
+                      <DropdownToggle className="selectGeneralButton" caret size="sm">
+                        <img src={adminLanguages.length > 0 ? requests.serverAddress + adminLanguages[this.props.storeState.activeLanguageNumberAdmin/*this.state.activLanguageNumber*/].icon.url : ''} height="15px" width="15px" alt="flag" />
+                        {adminLanguages.length > 0 ? adminLanguages[this.props.storeState.activeLanguageNumberAdmin/*this.state.activLanguageNumber*/].ISO : ''}
+                      </DropdownToggle>
+                      <DropdownMenu className="dropdownMenu">
+                        {
+                          adminLanguages.map((element, index) =>
+                            <DropdownItem className="dropdownMenu" onClick={() => { this.setLocals('adminLang', index) }}>
+                              <img src={requests.serverAddress + element.icon.url} height="15px" width="15px" alt="RU" />{element.ISO}
+                            </DropdownItem>
+                          )
+                        }
+                      </DropdownMenu>
+                    </Dropdown>
 
 
-                  :
+                    :
 
-                  
-                  <Dropdown setActiveFromChild="true" isOpen={this.state.dropdownLanguageOpen} toggle={this.toggleLanguage} className={languages.length > 0 ? "selectGeneral" : "selectGeneral preloadHiddenBlock"}>
-                    <DropdownToggle className="selectGeneralButton" caret size="sm">
-                      <img src={languages.length > 0 ? requests.serverAddress + languages[this.props.storeState.activeLanguageNumber/*this.state.activLanguageNumber*/].icon.url : ''} height="15px" width="15px" alt="flag" />
-                      {languages.length > 0 ? languages[this.props.storeState.activeLanguageNumber/*this.state.activLanguageNumber*/].ISO : ''}
-                    </DropdownToggle>
-                    <DropdownMenu className="dropdownMenu">
-                      {
-                        languages.map((element, index) =>
-                          <DropdownItem className="dropdownMenu" onClick={() => { this.setLocals('userLang', index) }}>
-                            <img src={requests.serverAddress + element.icon.url} height="15px" width="15px" alt="RU" />{element.ISO}
-                          </DropdownItem>
-                        )
-                      }
-                    </DropdownMenu>
-                  </Dropdown>
+
+                    <Dropdown setActiveFromChild="true" isOpen={this.state.dropdownLanguageOpen} toggle={this.toggleLanguage} className={languages.length > 0 ? "selectGeneral" : "selectGeneral preloadHiddenBlock"}>
+                      <DropdownToggle className="selectGeneralButton" caret size="sm">
+                        <img src={languages.length > 0 ? requests.serverAddress + languages[this.props.storeState.activeLanguageNumber/*this.state.activLanguageNumber*/].icon.url : ''} height="15px" width="15px" alt="flag" />
+                        {languages.length > 0 ? languages[this.props.storeState.activeLanguageNumber/*this.state.activLanguageNumber*/].ISO : ''}
+                      </DropdownToggle>
+                      <DropdownMenu className="dropdownMenu">
+                        {
+                          languages.map((element, index) =>
+                            <DropdownItem className="dropdownMenu" onClick={() => { this.setLocals('userLang', index) }}>
+                              <img src={requests.serverAddress + element.icon.url} height="15px" width="15px" alt="RU" />{element.ISO}
+                            </DropdownItem>
+                          )
+                        }
+                      </DropdownMenu>
+                    </Dropdown>
 
 
                 }
-              
+
               </div>
               <div className="headerRegistration d-flex justify-content-start col-xl-1 col-lg-1 col-md-2 col-sm-1 col-1">
                 <span style={{ display: this.props.storeState.isAuthorized ? 'none' : 'block' }} onClick={this.toggleModalRegistration}>{textInfo.burgerMenu.enter}</span>

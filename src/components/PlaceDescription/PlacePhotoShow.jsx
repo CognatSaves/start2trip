@@ -9,6 +9,7 @@ export default class PlacePhotoShow extends React.Component{
     }
     render(){
         let imageArray = [];
+
         for(let i=0; i<this.props.images.length; i++){
             imageArray[i]={src: requests.serverAddress+this.props.images[i].url};
         }

@@ -174,7 +174,7 @@ class PlaceDescriptionClass extends React.Component {
                         throw data.error;
                     }
                     else {
-                        
+                        window.scroll(0, 0);
                         console.log('good');
                         console.log(data);
                         that.setState({ isRefreshExist: false, newPlace: data, couldSendRequest: true, slug: data.local.slug });
@@ -206,15 +206,17 @@ class PlaceDescriptionClass extends React.Component {
                     {
                         this.state.images !==null ?
                             <PlacePhotoShow onClose={() => this.setState({ isMaskVisible: false })}
-                                isMaskVisible={this.state.isMaskVisible} clickedImageIndex={this.state.clickedImageIndex} images={this.state.images} />
+                                isMaskVisible={this.state.isMaskVisible} clickedImageIndex={this.state.clickedImageIndex} images={this.state.newPlace.place.images} />
                             : <React.Fragment />
                     }
                     {isMobileOnly ? 
-                    <Header history={this.props.history} />
+                    <Header history={this.props.history} a={true} />
+                    
                     :
                     <React.Fragment />
                     }
                     <div className="placeDescription_background col-12 p-0" style={{ background: isMobileOnly ? smallImage : bigImage }} id={topBlockId}>
+                        
                     {!isMobileOnly ? 
                     <Header history={this.props.history} />
                     :

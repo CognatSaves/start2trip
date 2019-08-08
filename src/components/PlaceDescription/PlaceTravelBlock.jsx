@@ -22,7 +22,9 @@ class PlaceTravelBlockClass extends React.Component{
     }
     
     shouldComponentUpdate(nextProps, nextState){
+        
         return (JSON.stringify(this.props)!==JSON.stringify(nextProps)) || JSON.stringify(nextState)!==JSON.stringify(this.state);
+        
     }
     
     lookAvailable = () => {
@@ -44,9 +46,11 @@ class PlaceTravelBlockClass extends React.Component{
                 isDateHighlighted: this.state.date!=='' ? false : true
             })
         }   
+       
             
     }
     render(){
+       
         const mapStyles = {
             map: {
               position: 'relative',
@@ -61,12 +65,12 @@ class PlaceTravelBlockClass extends React.Component{
         let cities = this.state.startPoint.length>0 ? [{point: this.state.startPoint},this.state.endPlace] : [this.state.endPlace];
         
         return (
+            
             <div className="placeDescription_block d-flex flex-column" id={this.props.id} key={JSON.stringify(this.state.endPlace)}>
                 <div className="placeDescription_fragmentName">{textInfo.fragmentName}</div>
                 <div className="d-flex flex-row">
-                    <div className="d-flex flex-column col-md-6 col-12 px-md-2 px-0" style={{ marginTop: "15px" }}>
-                        
-                            <div id="placeTravelBlock_startPointId" className={"placesDescription_travelBlock_element d-flex " 
+                    <div className="d-flex flex-column col-md-6 col-12 px-md-2 px-0 pt-2">
+                            <div id="placeTravelBlock_startPointId" className={"placesDescription_travelBlock_element d-flex anidate " 
                             + (this.state.isStartHighlighted ? 'placesDescription_travelBlock_highlighted' : '')} 
                             onClick={()=>{if(this.state.isStartHighlighted){this.setState({isStartHighlighted: false})}}}>
                                 <div className="placesDescription_travelBlock_icon placesDescription_position" />
@@ -85,11 +89,11 @@ class PlaceTravelBlockClass extends React.Component{
                             <div className="placesDescription_travelBlock_element d-flex">
                                 <div className="placesDescription_travelBlock_icon placesDescription_geoIcon" />
                                 <div className="d-flex routeTravelBlock_height">
-                                    <div style={{margin: 'auto 0'}}>{this.state.endPlace.point}</div>
+                                    <div className="my-auto">{this.state.endPlace.point}</div>
                                 </div>
                             </div>
                        
-                            <div id="placeTravelBlock_datePicker" className={"placesDescription_travelBlock_element d-flex "
+                            <div id="placeTravelBlock_datePicker" className={"placesDescription_travelBlock_element d-flex anidate "
                             + (this.state.isDateHighlighted ? 'placesDescription_travelBlock_highlighted' : '')}
                             onClick={()=>{if(this.state.isDateHighlighted){this.setState({isDateHighlighted: false})}}}>
                                 <div className="placesDescription_travelBlock_icon placesDescription_calendary" />
