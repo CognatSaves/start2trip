@@ -1,0 +1,46 @@
+.LicenseAgreement {
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
+    padding: 30px 20px !important;
+    border-radius: 5px;
+    margin: 40px 10px;
+    padding-bottom: 60px !important;
+    min-height: 78.8vh;
+}
+
+.LicenseAgreement h2 {
+    font-size: 42px !important;
+    font-weight: 500;
+    color: #304269;
+    margin-bottom: 40px;
+}
+
+.LicenseAgreement h4 {
+    font-size: 21px !important;
+    font-weight: 500;
+    color: #304269;
+    margin-bottom: 10px;
+}
+
+.LicenseAgreement p {
+    font-size: 16px;
+    font-weight: 400;
+    color: #686868;
+}
+
+.LicenseAgreement p strong {
+    color: #304269;
+}
+
+@media (max-width: 420px) {
+    .LicenseAgreement {
+        padding: 20px 10px !important;
+        box-shadow: none;
+        margin-top: 20px;
+    }
+    .LicenseAgreement h2 {
+        font-size: 26px !important;
+        font-weight: 500;
+        color: #304269;
+        margin-bottom: 40px;
+    }
+}

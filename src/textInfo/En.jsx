@@ -11,6 +11,7 @@ import placeDescription from './En/En-placeDescription';
 import tourDescription from './En/En-tourDescription';
 import drivers from './En/En-drivers';
 import startTravelForm from './En/En-startTravelForm';
+import FooterPage from './En/En-FooterPage'
 export default {
     driverProfile: driverProfile,
     //driverProfileRegistration:driverProfileRegistration,
@@ -24,5 +25,6 @@ export default {
     placeDescription: placeDescription,
     tourDescription:tourDescription,
     drivers: drivers,
-    startTravelForm:startTravelForm
+    startTravelForm:startTravelForm,
+    footerPage:FooterPage,
 }

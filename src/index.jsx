@@ -57,6 +57,8 @@ const AuthModalCountry = lazy(() => import('./components/registration/AuthModalC
 const AboutService = lazy(() => import('./components/FooterPage/aboutService'));
 const affiliateProgram = lazy(() => import('./components/FooterPage/affiliateProgram'));
 const contacts = lazy(() => import('./components/FooterPage/contacts'));
+const LicenseAgreement = lazy(() => import('./components/FooterPage/LicenseAgreement'));
+
 
 const redux = require('redux');
 
@@ -413,7 +415,7 @@ ReactDOM.render(
               <Route path="/forgot-password" component={ForgotPassword} />
               <Route path="/reset-password/:code" component={ResetPassword} />
 
-              
+              <Route path="/licenseAgreement" component={LicenseAgreement} />
               <Route path="/contacts" component={contacts} />
               <Route path="/affiliate-program" component={affiliateProgram} />
               <Route path="/about-service" component={AboutService} />
