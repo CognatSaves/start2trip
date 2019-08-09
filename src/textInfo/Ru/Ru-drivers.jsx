@@ -24,7 +24,10 @@ const drivers = {
             cancel: 'Отмена',
             done: 'Готово'
         }   
-    }
+    },
+    messageEror:{
+        noElementsText: 'Мы искали даже на Марсе, но ничего не нашли.\n Попробуйте изменить условия поиска.'
+    },
 }
 
 export default drivers;

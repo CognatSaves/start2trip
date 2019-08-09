@@ -109,7 +109,11 @@ class RouteDescriptionClass extends React.Component {
                         throw data.error;
                     }
                     else {
-                        window.scroll(0,0)
+                        window.scroll({
+                            top: 0, 
+                            left: 0, 
+                            behavior: 'smooth'
+                          })
                         console.log('good');
                         console.log(data);
                         that.setState({

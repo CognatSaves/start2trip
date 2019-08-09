@@ -7,6 +7,14 @@ class ManipulatorClass extends React.Component{
     /*constructor(props){
         super(props);        
     }*/   
+    // componentDidUpdate(prevProps){
+    //     
+    //     if(prevProps.number === this.props.number && prevProps.elementsNumber === this.props.elementsNumber){
+    //         return false
+    //     }else{
+    //         return true
+    //     }
+    //   }
     render(){
         function numbersCalculation(maxNumber, page){
             let numberArray = [page-2, page-1, page, page+1, page+2];
@@ -24,6 +32,7 @@ class ManipulatorClass extends React.Component{
             }
             return result;
         }
+        
         let maxPage = Math.ceil(this.props.number/this.props.elementsNumber);
         let numberArray = numbersCalculation(maxPage, this.props.page);
         let spaceWidthSize = ["","","","","0 4%","0 2%","0 1%","0 1%"];

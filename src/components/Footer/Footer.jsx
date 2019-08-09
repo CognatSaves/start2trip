@@ -62,7 +62,7 @@ class FooterClass extends React.Component {
     return (
       <React.Fragment>
         <div className="footer d-xl-flex d-lg-flex d-md-flex d-sm-none d-none justify-content-center align-items-center  col-12 p-0">
-          <div className="footerButtonUp" onClick={() => { window.scroll(0, 0) }}><img src={upArrowIcon} width="20px" height="20px" alt="upArrowIcon" /></div>
+          <div className="footerButtonUp" onClick={() => { window.scroll({top: 0, left: 0, behavior: 'smooth'}) }}><img src={upArrowIcon} width="20px" height="20px" alt="upArrowIcon" /></div>
           <div className="footer_block d-flex  justify-content-between align-items-center col-12 p-0">
           <Link to={"/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+"/routes"} className="col-md-1 col-2 p-0 "><img src={logoTripfer} width="110px" height="18px" alt="logoWhiteIcon" /></Link>
             <div className="footerButtons d-flex justify-content-between col-xl-7 col-lg-7 col-md-9 col-sm-12 col-12">

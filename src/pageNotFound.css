@@ -1,0 +1,38 @@
+.pageNotFound {
+    background: url(./components/media/404.svg)no-repeat;
+    background-size: 60% 100%;
+    background-position: top -120px center;
+    height: 87.5vh;
+}
+
+.pageNotFound span {
+    font-size: 24px;
+    color: #304269;
+}
+
+.pageNotFound a {
+    font-size: 24px;
+    color: #356add;
+    cursor: pointer;
+    margin-bottom: 55%;
+}
+
+@media (max-width: 990px) {
+    .pageNotFound {
+        background: url(./components/media/404.svg)no-repeat;
+        background-size: 100% 100%;
+        background-position: top -120px center;
+        height: 87.5vh;
+    }
+    .pageNotFound span {
+        font-size: 18px;
+        color: #304269;
+        text-align: center;
+    }
+    .pageNotFound a {
+        font-size: 18px;
+        color: #356add;
+        cursor: pointer;
+        margin-bottom: 100%;
+    }
+}

@@ -478,7 +478,7 @@ class HeaderClass extends React.Component {
     if (jwt && jwt !== "-") {
       removeCookie(this);
     }
-    this.props.globalhistory.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/home');
+    this.props.globalhistory.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/routes');
   }
   accountRedirect = (address, number) => {
 
@@ -591,7 +591,6 @@ class HeaderClass extends React.Component {
     console.log('Header render', this.props, window, document);
     //console.log(this.state);
     //console.log(this.props);
-
     let languages = this.props.storeState.languages;
     let currencies = this.props.storeState.currencies;
     let adminLanguages = this.props.storeState.adminLanguages;
@@ -603,7 +602,7 @@ class HeaderClass extends React.Component {
     let pageTextInfo = this.props.storeState.languageTextMain.renderModalRegistration;
     let buttonMassElements = [
       {
-        to: "/",
+        to: "/routes",
         value: textInfo.menuElements[0]
       },
       {
@@ -615,6 +614,7 @@ class HeaderClass extends React.Component {
         value: textInfo.menuElements[2]
       }
     ];
+    // let flagMenu = false;
     return (
       <React.Fragment>
         <ModalRegistration modalRegistration={this.props.storeState.modalRegistration} toggle={this.toggleModalRegistration} className={this.props.className} authorization={this.authorization} />
@@ -623,18 +623,10 @@ class HeaderClass extends React.Component {
           this.state.isWaiting ?
             <DriverRefreshIndicator isRefreshExist={true} isRefreshing={true} isGoodAnswer={true} />
             : <React.Fragment />
+        }
 
-        }
-        {/*
-          this.state.isUsertypeLooking ?
-          
-          : <React.Fragment/> */
-        }
         <ModalUserType textInfo={textInfo} isOpen={this.state.isUsertypeLooking} that={this} pageTextInfo={pageTextInfo} />
-        <div className="headerMobail d-xl-none d-lg-none d-md-none d-sm-flex d-flex align-items-center justify-content-between">
-          {/* <div onClick={this.toggleModalCountry} className="headerGeoButton">
-            <span>{this.props.storeState.country}</span>
-          </div> */}
+        <div style={this.state.burgerMenu?{position:"fixed",top:"0",zIndex:"40"}:{}} className="headerMobail  d-md-none d-flex align-items-center justify-content-between">
           <Link className="" to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes"}>
             <h3 />
           </Link>
@@ -643,20 +635,15 @@ class HeaderClass extends React.Component {
           </div>
           <div className="headerSelect d-flex align-items-center justify-content-end ">
             <button className={this.state.burgerMenu ? "headerMobailButton-active" : "headerMobailButton"} onClick={() => {
-              if (this.state.burgerMenu) {
-                clearQueueScrollLocks(); enablePageScroll();
-              } else {
-                disablePageScroll()
-              }
               this.setState({ burgerMenu: !this.state.burgerMenu });
             }}></button>
             <nav className={this.state.burgerMenu ? "burgerMenu burgerMenu-active" : "burgerMenu"}>
               <div className="burgerMenuBg">
                 <div className="burgerMenuTop">
-                  <h4 className="col-11 pt-4 pb-2">Настройки</h4>
+                  <h4 className="col-11 pt-4 pb-2">{textInfo.burgerMenu.titlesName[0]}</h4>
                   <div className="burgerMenuBlock burgerMenuP d-flex flex-column justify-content-center align-items-center col-11">
                     <div className="d-flex align-items-end justify-content-between w-100 border-bottom">
-                      <label>Сменить язык</label>
+                      <label>{textInfo.burgerMenu.settingsDrop[0]}</label>
                       <DropDownMenu anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }} className="burgerMenuTopDropDown" menuStyle={{ width: "30px" }}
                         value={this.props.storeState.activeLanguageNumber/*this.state.activLanguageNumber*/} onChange={(event, index, value) => { this.setLocals('userLang', index) }}>
                         {languages.map((element, index) =>
@@ -665,7 +652,7 @@ class HeaderClass extends React.Component {
                       </DropDownMenu>
                     </div>
                     <div className="d-flex align-items-end justify-content-between w-100 ">
-                      <label>Сменить валюту</label>
+                      <label>{textInfo.burgerMenu.settingsDrop[1]}</label>
                       <DropDownMenu menuItemStyle={{ color: "#304269", fontSize: "14px", fontWeight: "400" }} selectedMenuItemStyle={{ color: "#f60" }}
                         anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }} className="burgerMenuTopDropDown" menuStyle={{ width: "30px" }}
                         value={this.props.storeState.activeCurrencyNumber/*this.state.activeCurrencyNumber*/} onChange={(event, index, value) => { this.setLocals('userCurr', index) }}>
@@ -675,43 +662,43 @@ class HeaderClass extends React.Component {
                       </DropDownMenu>
                     </div>
                   </div>
-                  <h4 className="col-11 pt-4 pb-2">Сервисы</h4>
+                  <h4 className="col-11 pt-4 pb-2">{textInfo.burgerMenu.titlesName[1]}</h4>
                   <div className="burgerMenuBlock d-flex flex-column justify-content-center align-items-start col-11">
-                  <Link to={"/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+"/routes"} className="border-bottom routes" onClick={()=>{ clearQueueScrollLocks(); enablePageScroll(); this.setState({ burgerMenu: false });}}>Маршруты</Link>
-                  <Link to={"/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+"/tours"} className="border-bottom tours" onClick={()=>{ clearQueueScrollLocks(); enablePageScroll(); this.setState({ burgerMenu: false });}}>Туры</Link>
-                  <Link to={"/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+"/places"} className="places" onClick={()=>{ clearQueueScrollLocks(); enablePageScroll(); this.setState({ burgerMenu: false });}}>Места</Link>
+                  <Link to={"/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+"/routes"} className="border-bottom routes" >{textInfo.burgerMenu.services[0]}</Link>
+                  <Link to={"/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+"/tours"} className="border-bottom tours" >{textInfo.burgerMenu.services[1]}</Link>
+                  <Link to={"/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+"/places"} className="places" >{textInfo.burgerMenu.services[2]}</Link>
                   </div>
 
-                  <h4 className="col-11 pt-4 pb-2">Профиль</h4>
+                  <h4 className="col-11 pt-4 pb-2">{textInfo.burgerMenu.titlesName[2]}</h4>
                   <div className="burgerMenuBlock d-flex flex-column justify-content-center align-items-start col-11">
                     {
                       this.props.storeState.isAuthorized ?
                         <React.Fragment>
-                          <span className="border-bottom profile" onClick={() => { clearQueueScrollLocks(); enablePageScroll(); this.setState({ burgerMenu: false }); this.accountRedirect("/profile", 1) }}>{textInfo.burgerMenu.profile}</span>
+                          <span className="border-bottom profile" onClick={() => {  this.accountRedirect("/profile", 1) }}>{textInfo.burgerMenu.profile}</span>
                           <span className="border-bottom blockedSpan timetable" onClick={() => {/* this.setState({burgerMenu: false});this.accountRedirect("/trips", 0)*/ }}>{textInfo.burgerMenu.trips}</span>
-                          <span className="border-bottom settingsGears" onClick={() => { clearQueueScrollLocks(); enablePageScroll(); this.setState({ burgerMenu: false }); this.accountRedirect("/settings", 6) }}>{textInfo.burgerMenu.settings}</span>
-                          <span className="border-bottom saveMoney" onClick={() => { clearQueueScrollLocks(); enablePageScroll(); this.setState({ burgerMenu: false }); this.accountRedirect("/referrals", 8) }}>{textInfo.burgerMenu.partnership}</span>
-                          <span className="exit" onClick={() => { clearQueueScrollLocks(); enablePageScroll(); this.setState({ burgerMenu: false }); this.logOffFunc() }}>{textInfo.burgerMenu.exit}</span>
+                          <span className="border-bottom settingsGears" onClick={() => {  this.accountRedirect("/settings", 6) }}>{textInfo.burgerMenu.settings}</span>
+                          <span className="border-bottom saveMoney" onClick={() => {  this.accountRedirect("/referrals", 8) }}>{textInfo.burgerMenu.partnership}</span>
+                          <span className="exit" onClick={() => {  this.logOffFunc() }}>{textInfo.burgerMenu.exit}</span>
                         </React.Fragment>
                         :
                         <span className="profile" onClick={this.toggleModalRegistration}>{textInfo.burgerMenu.burgerEnter}</span>
 
                     }
                   </div>
-                  <h4 className="col-11 pt-4 pb-2">Полезные ссылки</h4>
+                  <h4 className="col-11 pt-4 pb-2">{textInfo.burgerMenu.titlesName[3]}</h4>
                   <div className="burgerMenuBlock d-flex flex-column justify-content-center align-items-start col-11">
-                    <Link to="/about-service" className="border-bottom logoIcon" onClick={()=>{ clearQueueScrollLocks(); enablePageScroll(); this.setState({ burgerMenu: false });}}>О сервисе</Link>
-                    <Link to="/affiliate-program" className="border-bottom partner" onClick={()=>{ clearQueueScrollLocks(); enablePageScroll(); this.setState({ burgerMenu: false });}}>Партнерам</Link>
-                    <Link to="" className="border-bottom contract" onClick={()=>{ clearQueueScrollLocks(); enablePageScroll(); this.setState({ burgerMenu: false });}}>Лицензионное соглашение</Link>
-                    <Link to="" className="border-bottom questionMarkGray" onClick={()=>{ clearQueueScrollLocks(); enablePageScroll(); this.setState({ burgerMenu: false });}}>Помощь</Link>
-                    <Link to="/contacts"className="phoneBook " onClick={()=>{ clearQueueScrollLocks(); enablePageScroll(); this.setState({ burgerMenu: false });}}>Контакты</Link>
+                    <Link to="/about-service" className="border-bottom logoIcon" >{textInfo.burgerMenu.usefulLinks[0]}</Link>
+                    <Link to="/affiliate-program" className="border-bottom partner" >{textInfo.burgerMenu.usefulLinks[1]}</Link>
+                    <Link to="" className="border-bottom contract" >{textInfo.burgerMenu.usefulLinks[2]}</Link>
+                    <Link to="" className="border-bottom questionMarkGray" >{textInfo.burgerMenu.usefulLinks[3]}</Link>
+                    <Link to="/contacts" className="phoneBook " >{textInfo.burgerMenu.usefulLinks[4]}</Link>
                   </div>
                 </div>
               </div>
             </nav>
           </div>
         </div>
-        <div className="btUp" onClick={() => { window.scroll(0, 0) }}>
+        <div className="btUp" onClick={() => { window.scroll({top: 0, left: 0, behavior: 'smooth'}) }}>
           <span>{textInfo.toPageStart}</span>
           <i className="footerMobileIconUp" />
         </div>

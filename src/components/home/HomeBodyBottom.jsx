@@ -27,6 +27,7 @@ class HomeBodyBottomClass extends React.Component {
       selectedDirection: ""
     };
     //this.sendRequestFunc();
+    this.props.dispatch(setPage(1));
   }
   redirectFunc=(where)=> {
     this.props.history.push(where);
@@ -111,7 +112,7 @@ class HomeBodyBottomClass extends React.Component {
             }
             else{
               //если не нашли - пускаем ещё раз крутилку - если не нашли, сервер не нашёл направление-> вернул всё
-              that.props.globalReduser.history.push("/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+'/home');
+              that.props.globalReduser.history.push("/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+'/routes');
             }   
           }
           that.setState({

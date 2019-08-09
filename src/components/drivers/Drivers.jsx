@@ -7,7 +7,8 @@ import StartTravelForm from '../startTravelForm/StartTravelForm'
 import StartTravelSuccess from '../startTravelForm/StartTravelSuccess'
 import DriversProperties from './DriversBody/DriversProperties/DriversProperties';
 import DriversBlock from './DriversBody/DriversBlock/DriversBlock';
-
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 class DriversClass extends React.Component {
   constructor(props) {
@@ -58,16 +59,50 @@ class DriversClass extends React.Component {
     let newCities = [];
     let newString = cities.split('from-');
     let newArrayCities = newString[1].split("-to-");
-    for (let i = 0; i < newArrayCities.length; i++) {
-      let stringWithSpaces = newArrayCities[i].replace(/-/g, ' ');
-      stringWithSpaces = stringWithSpaces + ', ' + country;
+    
+    if(this.props.storeState.countries.length>0){
+      function findCountryNameByISO(that){
+        function findLangID(that){               
+          let langISO = cookies.get('userLang', {path: '/'});
+          //первый for - стандартный случай, остальные - фактически, обработка ошибок
+          for(let i=0; i<that.props.storeState.languages.length; i++){
+            if(that.props.storeState.languages[i].ISO===langISO){
+              return that.props.storeState.languages[i].id;
+            }
+          }
+          for(let i=0; i<that.props.storeState.languages.length; i++){
+            if(that.props.storeState.languages[i].ISO==='ENG'){
+              return that.props.storeState.languages[i].id;
+            }
+          }
+          return that.props.storeState.languages[0].id;
+        }
+        let langId = findLangID(that);
+        for(let i=0; i<that.props.storeState.countries.length;i++){
+          if(that.props.storeState.countries[i].ISO===country){
+            let locals =  that.props.storeState.countries[i].locals;
+            for(let j=0; j<locals.length; j++){
+              if(locals[j].langId===langId){
+                return locals[j].name;
+              }
+            }
+            return locals[1].name;
+          }
+        }
+      }
+      let countryName = findCountryNameByISO(this);
+      for (let i = 0; i < newArrayCities.length; i++) {
+        let stringWithSpaces = newArrayCities[i].replace(/-/g, ' ');
+        stringWithSpaces = stringWithSpaces+ ',';
 
-      stringWithSpaces = this.props.globalReduser.convertFromUrlTranslation(stringWithSpaces, langISO ? langISO : 'en');
+        stringWithSpaces = this.props.globalReduser.convertFromUrlTranslation(stringWithSpaces, langISO ? langISO : 'en');
 
-      newCities[i] = { point: stringWithSpaces, lat: "", long: "" };
+        stringWithSpaces+=countryName;
+        newCities[i] = { point: stringWithSpaces, lat: "", long: "" };
+      }
+
+      this.props.setCities(newCities)
     }
-
-    this.props.setCities(newCities)
   }
 
 
