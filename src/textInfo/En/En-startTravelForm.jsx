@@ -1,21 +1,21 @@
-const startTravelForm ={
-    headerText: 'Забронировать поездку(ENG)',
-    nameLabel: 'Имя(ENG)',
-    telInputInitial: 'Телефон(ENG)',
-    peopleNumber: 'Количество человек(ENG)',
-    secondNameLabel: 'Фамилия(ENG)',
-    timeLabel: 'Время(ENG)',
-    placeDepartureLabel: 'Место отправления(ENG)',
-    descriptionLabel: 'Комментарий(ENG)',
-    driversRouteLink: ['Я принимаю условия(ENG)', 'договора оферты(ENG)'],
-    errorContract: 'Вы должны принять условия договора(ENG)',
-    promoPlaceholder: 'Введите промо код(ENG)',
-    promoVerification: ['сбросить(ENG)', 'применить(ENG)'],
-    bookTour: 'Заказать тур(ENG)',
-    uncorrectPromocode: 'Неверный промокод(ENG)',
-    errorFieldsMessage: 'Заполните правильно все поля(ENG)',
-    startDate: "Дата отправления(ENG)"
+const startTravelForm = {
+        headerText: 'Book a trip',
+        nameLabel: 'Name',
+        telInputInitial: 'Phone',
+        peopleNumber: 'Number of people',
+        secondNameLabel: 'Last Name',
+        timeLabel: 'Time',
+        placeDepartureLabel: 'Place of Departure',
+        descriptionLabel: 'Comments',
+        driversRouteLink: ['I accept the terms', 'offer agreement'],
+        errorContract: 'You must accept the terms',
+        promoPlaceholder: 'Promo code',
+        promoVerification: ['reset', 'apply'],
+        bookTour: 'Book a trip',
+        uncorrectPromocode: 'Invalid promocode',
+        errorFieldsMessage: 'Fill in all the fields correctly',
+        startDate: "Departure Date"
+        
+    }
     
-}
-
-export default startTravelForm;
+    export default startTravelForm;

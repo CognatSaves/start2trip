@@ -1,115 +1,115 @@
 const home = {
-    lang: "ENG",
-    home:{
-        homeTextFirstLine: "Cпланируйте свой маршрут(ENG)",
-        homeTextSecondLine: "Предложения от местных гидов-водителей по вашему индивидуальному маршруту(ENG)",
-        changeBodyBlock:{
-            left: "СПИСОК(ENG)",
-            right: "КАРТА(ENG)"
-        },
-    },
-    homeBottom:{
-        homePopularPlaces: {
-            popularPlacesTitle: 'Готовые маршруты из(ENG)',
-            cancel: 'Отменить(ENG)',
-            morePics: 'ещё(ENG)'
-        },
-        homeRoutesList:{
-            noElementsText: 'We even searched on Mars, but nothing was found. \n Try changing your search terms.'
-        },
-        routeListElement: {
-            detailed: 'Подробнее(ENG)',
-            comments: 'отзывов(ENG)',
-            from: 'Из(ENG)'
-        }
-    },
-    homeBodyBottom:{
-        homeBottomHeader: 'ПУТЕШЕСТВИЯ С TRIPFER(ENG)',
-        homeBottomTitle: [
-            "Маршрут(ENG)",
-            'Дата отправления(ENG)',
-            'Предложения(ENG)',
-            'Наслаждайтесь поездкой(ENG)'
-        ],
-        homeBodyText:[
-            'Стройте свой собственный маршрут путешествия, с возможностью включить в него известные достопримечательности.(ENG)',
-            'Подбирайте удобную для Вас дату поездки.(ENG)',
-            'Выбирайте из предложенного списка местного водителя-гида, который охотно познакомит Вас со страной изнутри.(ENG)',
-            'По Вашему запросу водитель сделает остановку в любом месте для фото или видео съемки, посещения достопримечательности.(ENG)'
-        ],
-        homeBottomLinks:[
-            {
-                title:"ПОПУЛЯРНЫЕ МЕСТА(ENG)",
-                link:"ПЕРЕЙТИ К МЕСТАМ(ENG)"
-            },
-            {
-                title:"ОРГАНИЗОВАННЫЕ ТУРЫ(ENG)",
-                link:"ПЕРЕЙТИ К ТУРАМ(ENG)"
-            },
-        ],
-        homeSubscribe:{
-            newsletter:"Новостная рассылка(ENG)",
-            newsletterInfo:"Новости, скидки, распродажи, конкурсы и немного искусства:(ENG)",
-            subscribe: "ПОДПИСАТЬСЯ(ENG)",
-            subscribeInfo:[
-                "Нажимая 'Подписаться', Вы соглашаетесь с правилами(ENG)",
-                'использования сервиса(ENG)',
-                'и',
-                'обработки персональных данных.(ENG)',
-            ]
-        }
-    },
-    firstEnterModal:{
-        skipButton: "Пропустить(ENG)",
-        slides:[
-            {
-                name: "Маршрут(ENG)",
-                info:"Стройте свой собственный маршрут путешествия, с возможностью включить в него известные достопримечательности.(ENG)"
-            },
-            {
-                name:"Дата отправления(ENG)",
-                info:"Подберите удобную для Вас дату поездки.(ENG)",
-            },
-            {
-                name: "Предложения(ENG)",
-                info:"Выберите из предложенного списка местного водителя-гида, который охотно познакомит Вас со страной.(ENG)"
-            },
-            {
-                name:"Наслаждайтесь поездкой(ENG)",
-                info:"По Вашему запросу водитель сделает остановку в любом месте для фото или видео съемки, посещения достопримечательностей.(ENG)",
-            },
-        ]
-    },
-    homeBody:{
-        mobileRouteMenuTitle: "Cпланируйте свой маршрут(ENG)",
-        mobileRouteMenuText:{
-            mobileRouteMenuText: "Предложения от местных гидов-водителей(ENG)",
-            secondLine:"по вашему индивидуальному маршруту(ENG)"
-        },
-        changeMapList:{
-            first: "Список(ENG)",
-            second: "Карта(ENG)"
-        }
-    },
-    renderFourEl:{
-        from:"от(ENG)",
-        moreInfo:"Подробнее(ENG)"
-    },
-    routeMenu:{
-        locationSearchPlaceholder:{
-            first: "Куда, выберите место(ENG)",
-            second: "Откуда, выберите место(ENG)"
-        },
-        removePointText:"Удалить этот пункт назначения(ENG)",
-        addPointText:"Добавить пункт назначения(ENG)",
-        datePickerText:"Дата отправления(ENG)",
-        bookTripText:"ЗАБРОНИРОВАТЬ ПОЕЗДКУ(ENG)",
-        searchText:"ПОИСК(ENG)",
-        infoText:{
-            first:"*Возврат в точку отправления в этот же день бесплатно(ENG)",
-            second:"Стоимость окончательная. Топливо включено(ENG)"
-        }
-    }
-};
-
-export default home;
+        lang: "ENG",
+        home: {
+            homeTextFirstLine: "Plan your trip",
+            homeTextSecondLine: "Offers from local drivers for your individual route",
+            changeBodyBlock: {
+                left: "LIST",
+                right: "MAP"
+            },
+        },
+        homeBottom: {
+            homePopularPlaces: {
+                popularPlacesTitle: 'Ready trips from',
+                cancel: 'Cancel',
+                morePics: 'more'
+            },
+            homeRoutesList: {
+                noElementsText: 'We even searched on Mars, but nothing was found. \n Try to change your search '
+            },
+            routeListElement: {
+                detailed: 'More',
+                comments: 'reviews',
+                from: 'From'
+            }
+        },
+        homeBodyBottom: {
+            homeBottomHeader: 'YOUR TRIPS WITH TRIPFER',
+            homeBottomTitle: [
+                "Trip",
+                'Departure Date',
+                'Suggestions',
+                'Enjoy the Trip'
+            ],
+            homeBodyText: [
+                'Build your own trip, with the ability to include any sights or places.',
+                'Choose a date convenient for you to get trip.',
+                'Choose from the list of local driver-guides who will gladly introduce you to the country from the inside.',
+                'The driver will make a stop at any place for photo or video shooting, visiting attractions at your request.'
+            ],
+            homeBottomLinks: [
+                {
+                    title: "POPULAR PLACES",
+                    link: "GO TO PLACES"
+                },
+                {
+                    title: "ORGANIZED TOURS",
+                    link: "GO TO TOURS"
+                },
+            ],
+            homeSubscribe: {
+                newsletter: "Newsletter",
+                newsletterInfo: "News, discounts, sales, contests and some art:",
+                subscribe: "SUBSCRIBE",
+                subscribeInfo: [
+                    "By clicking 'Subscribe', you agree to the rules",
+                    'use of service',
+                    'and',
+                    'processing of personal data.',
+                ]
+            }
+        },
+        firstEnterModal: {
+            skipButton: "Skip",
+            slides: [
+                {
+                    name: "Trip",
+                    info: "Build your own trip, with the ability to include any sights or places."
+                },
+                {
+                    name: "Departure Date",
+                    info: "Choose the date of your trip convenient for you.",
+                },
+                {
+                    name: "Suggestions",
+                    info: "Choose from the list of local driver-guide who will gladly introduce you to the country."
+                },
+                {
+                    name: "Enjoy the ride",
+                    info: "The driver will make a stop at any place for photo or video shooting, visiting attractions at your request.",
+                },
+            ]
+        },
+        homeBody: {
+            mobileRouteMenuTitle: "Plan your own trip",
+            mobileRouteMenuText: {
+                mobileRouteMenuText: "Offers from local drivers",
+                secondLine: "according to your individual route"
+            },
+            changeMapList: {
+                first: "List",
+                second: "Map"
+            }
+        },
+        renderFourEl: {
+            from: "from",
+            moreInfo: "Details"
+        },
+        routeMenu: {
+            locationSearchPlaceholder: {
+                first: "To, select a place",
+                second: "From, select a place"
+            },
+            removePointText: "Delete this destination",
+            addPointText: "Add Destination",
+            datePickerText: "Departure Date",
+            bookTripText: "BOOK A TRIP",
+            searchText: "SEARCH",
+            infoText: {
+                first: "* Return to the point of departure on the same day for free",
+                second: "Final cost. Fuel included"
+            }
+        }
+    };
+    
+    export default home;

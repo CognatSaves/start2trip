@@ -1,7 +1,7 @@
 let manipulator = {
-    manupulatorShowMore: 'Показать еще(ENG)',
-    moveStart: 'в начало(ENG)',
-    moveEnd: 'в конец(ENG)'
+    manupulatorShowMore: 'Show more',
+    moveStart: 'First',
+    moveEnd: 'Last'
 }
 
 export default manipulator;
