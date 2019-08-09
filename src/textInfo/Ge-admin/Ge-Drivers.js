@@ -71,176 +71,176 @@ const driverProfileRegistration = {
     },
     DriverProfileCar: {
         profileCarBrand: {
-            floatingLabelText: "Марка автомобиля(GEO)"
+            floatingLabelText: "ავტომობილის მარკა"
         },
         profileCarYear: {
-            floatingLabelText: "Год автомобиля(GEO)"
+            floatingLabelText: "ავტომობილის (გამოშვების) წელი"
         },
         profileCarNumber: {
-            floatingLabelText: "Номер автомобиля(GEO)"
+            floatingLabelText: "ავტომობილის ნომერი"
         },
         typeCar: {
-            label: "Тип автомобиля(GEO)"
+            label: "ავტომობილის ტიპი"
         },
         carClass: {
-            label: "Класс автомобиля(GEO)"
+            label: "ავტომობილის კლასი"
         },
         typeFuel: {
-            label: "Тип топлива(GEO)"
+            label: "საწვავის ტიპი"
         },
         profileCarFuelConsumption: {
-            label: 'Потребление топлива(GEO)'
+            label: 'საწვავის ტიპი l/100km'
         },
         profileCarNumberOfSeats: {
-            label: "Количество мест(GEO)"
+            label: "ადგილების რაოდენობა"
         },
         carAddNewCarComfort: {
-            label: "Удобства(GEO)",
-            comfort1: "Климат контроль(GEO)",
-            comfort2: "Кожаный салон(GEO)",
-            comfort3: "Бесплатный Wi-Fi(GEO)",
-            comfort4: "Курение в салоне разрешено(GEO)",
-            comfort5: "Курение в салоне запрещено(GEO)"
+            label: "კომპლექტაცია",
+            comfort1: "კლიმატკონტროლი",
+            comfort2: "ტყავის სალონი",
+            comfort3: "უფასო Wi-Fi",
+            comfort4: "სალონში მოწევა ნებადართულია",
+            comfort5: "სალონში მოწევა აკრძალულია"
         },
         carAddNewCarButton: {
-            button: "Добавить Автомобиль(GEO)",
-            span: "Отмена(GEO)"
+            button: "ავტომობილის დამატება",
+            span: "გაუქმება"
         },
         filledCard: {
-            button: "Добавить Автомобиль(GEO)"
+            button: "ავტომობილის დამატება"
         },
         filledCardInformationMenu: {
-            deleteCar: "Удалить(GEO)",
-            carEdit: "Редактировать(GEO)",
-            carDeactivate: "Деактивировать(GEO)",
-            carActivate: "Активировать(GEO)"
+            deleteCar: "წაშლა",
+            carEdit: "რედაქტირება",
+            carDeactivate: "დეაქტივირება",
+            carActivate: "გააქტიურება"
         },
         cardInformation: {
-            span: "мест(а)(GEO)"
+            span: "ადგილების"
         }
     },
     DriverProfileTripSettingsTrip: {
-        titlePage: "Редактировать поездки (GEO)",
-        changeOnWorkP: "Вы можете приостановить и возобновить приём заказов(GEO)",
-        onWorkTrue: "Приостановить работу(GEO)",
-        onWorkFalse: "Возобновить работу(GEO)",
-        weekendSettings: 'Настройка нерабочих дней(GEO)',
-        chooseWeekend: "Выберите выходные дни(GEO)",
-        selectDates: "Выбрать даты(GEO)",
-        addCityTitle: "Добавьте город и радиусы, где Вы готовы принимать заказы(GEO)",
-        tripLocation: "Базовый город/радиус, км(GEO)",
+        titlePage: "საჭმლის რედაქტირება",
+        changeOnWorkP: "თქვენ შეგიძლიათ შეაჩეროთ და განაახლოთ შეკვეთების მიღება",
+        onWorkTrue: "სამუშაოს შეჩერება",
+        onWorkFalse: "სამუშაოს განახლება",
+        weekendSettings: 'არასამუშაო დღეების არჩევა',
+        chooseWeekend: "აირჩიეთ დასვენების დღეები",
+        selectDates: "აირჩიეთ თარიღები",
+        addCityTitle: "დაამატეთ ქალაქი და რადიუსი, სადაც მზად ხართ მიიღოთ შეკვეთები",
+        tripLocation: "საბაზო ქალაქი/რადიუსი, კმ",
         textField: {
-            floatingLabelText: "Радиус в км(GEO)",
-            description: "Вы будете получать заявки на перевозку толлько в радиусе базовых городов, которые Вы указали(GEO)",
-            title: "Удалить город(GEO)",
-            addCityBt: "+ Добавить город(GEO)"
+            floatingLabelText: "რადიუსი კმ-ში",
+            description: "თქვენ მიიღებთ განაცხადებს გადაზიდვაზე საბაზო ქალაქის მხოლოდ იმ რადიუსზე, რომელიც მიუთითეთ",
+            title: "ქალაქის წაშლა",
+            addCityBt: "+ ქალაქის დამატება"
         },
         maxDailyMileage: {
-            floatingLabelText: "Максимальный дневной пробег, км:(GEO)",
-            description: "Укажите максимальный километраж, как далеко Вы готовы везти пассажира по маршруту(GEO)"
+            floatingLabelText: "მაქსიმალური დღიური გარბენი",
+            description: "მიუთითეთ მგზავრის გადაყვანის მარშრუტის მაქსიმალური კილომეტრაჟი"
         },
-        tripSaveBt: "СОХРАНИТЬ ИЗМЕНЕНИЯ(GEO)"
+        tripSaveBt: "ცვლილებების შენახვა"
     },
     DriverProfileSettings: {
-        settingsBodyTitle: "Настройки профиля(GEO)",
+        settingsBodyTitle: "პროფილის პარამეტრები",
         sittingsEmail: {
-            floatingLabelText: "Email(GEO)",
-            description: "Адрес электронной почты является логином в системе и служит для уведомлений о заказах, новостях. И является средством связи со службой поддержки. Изменить нельзя(GEO)"
+            floatingLabelText: "Email",
+            description: "ელექტრონული ფოსტის მისამართი წარმოადგენს ლოგინს სისტემაში და ემსახურება შეტყობინებებს შეკვეთების შესახებ, სიახლეებს. შეცვლა არ შეიძლება"
         },
-        ContentPasswordText: "Пароль(GEO)",
+        ContentPasswordText: "პაროლი",
         sittingsCurrentPassword: {
-            floatingLabelText: "Текущий пароль(GEO)",
-            description: "Для изменения пароля или номера телефона требуется ввести Ваш текущий пароль(GEO)"
+            floatingLabelText: "მიმდინარე პაროლი",
+            description: "პაროლის ან ტელეფონის ნომრის შესაცვლელად საჭიროა თქვენი მიმდინარე პაროლის შეყვანა"
         },
         sittingsNewPassword: {
-            floatingLabelText: "Новый пароль(GEO)",
-            description: "Должен быть не менее 6 символов и содержать латинские буквы и цифры(GEO)"
+            floatingLabelText: "ახალი პაროლი",
+            description: "უნდა იყოს არანაკლებ 6 სიმბოლო და შეიცავდეს ლათინურ ასოებს და ციფრებს"
         },
         sittingsConfirmPassword: {
-            floatingLabelText: "Подтвердите пароль(GEO)",
-            description: "Введите пароль еще раз(GEO)"
+            floatingLabelText: "დაადასტურეთ პაროლი",
+            description: "შეიყვანეთ პაროლი კიდევ ერთხელ"
         },
         sittingsPhoneNumber: {
-            label: "Телефон(GEO)",
-            description: "Данный телефон никому не доступен и служит резервным средством связи с представителями Tripfer(GEO)",
-            telflag: "ru(GEO)"
+            label: "ტელეფონი",
+            description: "მოცემული ტელეფონის ნომერი არავისთვისაა ხელმისაწვდომი და წარმოადგენს Tripfer -ის წარმომადგენელთან კავშირის სარეზერვო საშუალებას ",
+            telflag: "ru"
         },
-        sittingsSaveBt: "СОХРАНИТЬ ИЗМЕНЕНИЯ(GEO)",
+        sittingsSaveBt: "ცვლილებების შენახვა",
         unsubscribeButton: {
             mailing: {
-                unsubscribe: "Отписаться от рассылки(GEO)",
-                subscribe: "Подписаться на рассылку(GEO)"
+                unsubscribe: "გამოწერა გაზეთებიდან",
+                subscribe: "გამოიწერეთ ბიულეტენი"
             },
-            message: "В результате отписки Вы больше не будете получать сообщения от Tripfer(GEO)"
+            message: "გაუქმების შემთხვევაში აღარ მიიღებთ შეტყობინებებს Tripfer-ისგან"
         }
 
 
     },
     DriverProfileAffiliateProgram: {
-        affiliateProgramsTitle: "Партнерская программа(GEO)",
-        affiliateProgramsDescription: "Постройте Ваш успешный бизнес и получайте пассивный доход в размере 14% с поездки от комиссии системы. Рассылайте приглашения со скидкой 15% на первую поездку знакомым-путешественникам, нажав на кнопку “Пригласить друга”, или отправляйте Вашу партнёрскую ссылку. Приглашайте водителей  работать в системе Tripfer, и получайте доход от выполненных ими заказов. Пишите о нас статьи, комментируйте в соцсетях, блогах и форумах, и зарабатывайте. Пожизненно. Выплаты на банковскую карту еженедельно. (GEO)",
+        affiliateProgramsTitle: "პარტნიორული პროგრამა",
+        affiliateProgramsDescription: "ააგეთ თქვენი წარმატებული ბიზნესი და მიიღეთ პასიური შემოსავალი სისტემის კომისიისაგან ყოველი გამგზავრებიდან 14%-ის ოდენობით. გაუგზავნეთ მოსაწვევები თქვენს ნაცნობ ტურისტებს პირველ მოგზაურობაზე 15%-იანი ფასდაკლებით. ამისათვის დააწკაპუნეთ ღილაკს „მეგობრის მოწვევა“ ან გააგზავნეთ შვილობილი ბმული.  მოიწვიეთ მძღოლები მოგზაურობის სისტემაში მუშაობისთვის, რათა მათ მიიღონ შემოსავალი შესრულებული შეკვეთებდან. დაწერეთ სტატიები ჩვენს შესახებ, გაუკეთეთ კომენტარი სოციალურ ქსელებში ბლოგებსა და ფორუმებზე და მიიღეთ შემოსავალი. მთელი ცხოვრება. გადახდა ხდება ყოველკვირეულად საბანკო ბარათზე",
         affiliateLinks: {
-            title: "Ваши партнёрские ссылки(GEO)",
-            registrationLink: "Ссылка на регистрацию(GEO)",
-            linkToHomePage: "Ссылка на главную страницу(GEO)",
-            spanLink: "Копировать(GEO)"
+            title: "თქვენი პარტნიორული ბმული",
+            registrationLink: "რეგისტრაციის ბმული",
+            linkToHomePage: "მთავარი გვერდის ბმული",
+            spanLink: "დაკოპირება"
         },
-        promotionalMaterials: "Промо материалы(GEO)",
-        questionicon: "Начисления никогда не заканчиваются. Чем больше у вас рефералов, и чем лучше они работают - тем больше вы получаете каждый день(GEO)",
-        peopleicon: "Всего рефералов(GEO)",
-        percenticon: "С каждой оплаты(GEO)",
-        currencyicon: "Заработанно Всего(GEO)",
-        affiliateProgramTableHeader: ["EMAIL(GEO)", "Дата регистрации(GEO)", "Источник регистрации(GEO)", "Начисления(GEO)"]
+        promotionalMaterials: "პრომო მასალა",
+        questionicon: "დარიცხვა არასოდეს მთავრდება. რაც მეტი გყავთ რეფერალები, და რაც უფრო კარგად მუშაობენ ისინი, მით მეტია თქვენი ყოველდღიური შემოსავალი",
+        peopleicon: "რეფერალების რაოდენობა სულ",
+        percenticon: "ყოველი გადახდიდან",
+        currencyicon: "სულ გამომუშავებულია",
+        affiliateProgramTableHeader: ["EMAIL", "რეგისტრაციის თარიღი", "რეგისტრაციის წყარო", "დარიცხვა"]
     },
     DriverProfileTripSettingsTour: {
-        directionsValue: "Все направления(GEO)",
-        categoriesValue: "Все категории(GEO)",
-        tagsValue: "Все теги(GEO)",
-        newTourEverydayTime: "Выберите время(GEO)",
-        newTourDatepickerTime: "Выберите время(GEO)",
-        tourContentTitle: "Добавление тура(GEO)",
+        directionsValue: "ყველა მიმართულებები",
+        categoriesValue: "ყველა კატეგორიები",
+        tagsValue: "ყველა თეგები",
+        newTourEverydayTime: "აირჩიეთ დრო",
+        newTourDatepickerTime: "აირჩიეთ დრო",
+        tourContentTitle: "ტურის დამატება",
         nameNewTour: {
-            floatingLabelText: "Название тура(GEO)",
-            description: "Введите название для Вашего тура(GEO)"
+            floatingLabelText: "ტურის დასახელება",
+            description: "შეიყვანეთ სახელწოდება თქვენი ტურისათვის"
         },
         newTourAttractions: {
-            floatingLabelText: "Место отправления(GEO)",
-            description: "Укажите место отправления тура(GEO)"
+            floatingLabelText: "გამგზავრების ადგილი",
+            description: "მიუთითეთ ტურის გაგზავნის ადგილი"
         },
         attractionsAlongTheRoute: {
-            floatingLabelText: "Достопримечательности по маршруту(GEO)",
-            description: "Выберите достопримечательности по маршруту. Это поможет клиенту полностью понять маршрут тура(GEO)"
+            floatingLabelText: "მარშრუტის ღირშესანიშნაობები",
+            description: "აირჩიეთ ღირშეესანიშნაობები ტურის მარშრუტის მიხედვით"
         },
         newTourDescription: {
-            floatingLabelText: "Описание(GEO)",
-            description: "Введите описание тура, а так же что входит в стоимость тура, какие дополнительные услуги не входят в стоимость и тд(GEO)"
+            floatingLabelText: "აღწერა",
+            description: "შეიყვანეთ ტურის აღწერა, ასევე, რა შედის ტურის ღირეულებაში, რომელი დამატებითი მომსახურება არ შედის ტურის ღირებულებაში და ა.შ"
         },
         schedule: {
-            title: "Расписание(GEO)",
-            newTourEveryday: "Ежедневно(GEO)",
-            newTourDatepicker: "По определенным дням(GEO)",
-            selectDates: "Выбрать даты(GEO)"
+            title: "განრიგი",
+            newTourEveryday: "ყოველდღიურად",
+            newTourDatepicker: "განსაზღვრულ დღეებში",
+            selectDates: "თარიღების არჩევა"
         },
         additionalInformation: {
-            title: "Дополнительная информация(GEO)",
+            title: "დამატებითი ინფორმაცია",
             newTourPrice: {
-                floatingLabelText: "Стоимость тура(GEO)"
+                floatingLabelText: "ტურის ღირებულება"
             },
             directions: {
-                floatingLabelText: "Направления(GEO)",
-                description: "Региональная принадложность тура(GEO)"
+                floatingLabelText: "მიმართულებები",
+                description: "ტურის რეგიონალური მიკუთვნება"
             },
             categories: {
-                floatingLabelText: "Категории(GEO)",
-                description: "Вид отдыха(GEO)"
+                floatingLabelText: "კატეგორიები",
+                description: "დასვენების სახე"
             },
             tags: {
-                floatingLabelText: "Теги(GEO)",
-                description: "Введите теги для пометки Вашего тура(GEO)"
+                floatingLabelText: "თეგები",
+                description: "შეიყვანეთ თეგები თქვენი ტურის ჩასანიშნად"
             },
-            newTourPeople: "Количество мест(GEO)",
-            uploadPhoto: "Загрузить фото(GEO)",
-            addTour: "Добавить тур(GEO)",
+            newTourPeople: "ადგილების რაოდენობა",
+            uploadPhoto: "ფოტოს ჩატვირთვა",
+            addTour: "ტურის დამატება",
             cancel: "Отмена(GEO)",
 
         },
