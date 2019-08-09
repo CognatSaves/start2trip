@@ -8,7 +8,7 @@ class ManipulatorClass extends React.Component{
         super(props);        
     }*/   
     // componentDidUpdate(prevProps){
-    //     debugger
+    //     
     //     if(prevProps.number === this.props.number && prevProps.elementsNumber === this.props.elementsNumber){
     //         return false
     //     }else{

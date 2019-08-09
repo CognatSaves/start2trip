@@ -9,7 +9,11 @@ const convMassISO=["en","ru"];
 
 const convMassFunc=[(value)=> {return value.toLowerCase()}, (value)=>initialState.cyrillLatinConv(value).toLowerCase()];
 
-const reConvMassFunc=[(value)=>{return capitalize(value)}, (value)=>capitalize(initialState.latinCyrillConv(value))];
+const reConvMassFunc=[(value)=>{return capitalize(value)}, (value)=>{
+    let temp = capitalize(initialState.latinCyrillConv(value));
+    
+    return temp;
+}];
 
 function capitalize(s) {
     if (typeof s !== 'string') return '';
@@ -158,7 +162,9 @@ const initialState = {
                 index=0;
             }
         }
-        return reConvMassFunc[index](value);
+        let result = reConvMassFunc[index](value);
+        
+        return result;
     },
     createDayString(value){
         let dayMass = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
@@ -201,7 +207,7 @@ const initialState = {
           var reg = new RegExp(arrru[i], "g");
           text = text.replace(reg, arren[i]);
           }
-          
+        
         return text;
     },
     latinCyrillConv(text){
@@ -209,6 +215,7 @@ const initialState = {
         var reg = new RegExp(arren[i], "g");
         text = text.replace(reg, arrru[i]);
         }
+        
         return text;
     },
     //следующая функция сравнивает первый и последний города массива

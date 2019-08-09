@@ -98,7 +98,7 @@ class AccountRedirectorClass extends React.Component{
             
         }
         //if everything is bad! If it entered here there is a problem!
-        this.props.history.push("/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+'/home');
+        this.props.history.push("/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+'/routes');
         return null;
     }
 }
