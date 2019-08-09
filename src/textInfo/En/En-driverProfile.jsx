@@ -1,32 +1,32 @@
 ﻿const driverProfile = {
-    //внимание! это driverProfileRegistration
-    lang: 'ENG',
-    createComment:{
-        yourCommentPlaceholder: "Ваш отзыв(ENG)",
-        infoText: 'Ваш комментарий станет видимым после проверки администратором.(ENG)',
-        nonFilledText: 'Заполните рейтинг и отзыв(ENG)',
-        sendText: "ОТПРАВИТЬ(ENG)",
-        nonRegisteredElement:['Чтобы оставить отзыв, (ENG)', 'войдите(ENG)',' или (ENG)','зарегистрируйтесь(ENG)']
-    },
-    driverAdaptedRoute:{
-        routeDateText: "Дата отправления(ENG)",
-        routeTimeText: "Время в пути без остановок(ENG)",
-        routeComment: "*Возврат в точку отправления в этот же день бесплатно(ENG)",
-        routeBookText: "ЗАБРОНИРОВАТЬ ПОЕЗДКУ(ENG)",
-        routeBookComment: "Стоимость окончательная. Топливо включено(ENG)" 
-    },
-    driverProfile:{
-        routeTitle: 'Маршрут(ENG)',
-        routeTimeText: ['Время в пути без остановок(ENG)','длина пути(ENG)'],
-        personNumberText: 'Количество человек(ENG)',
-        timeText: 'Время(ENG)',
-        driverRouteLink: ['Я принимаю условия(ENG)', 'договора оферты(ENG)'],
-        errorMessage: 'Вы должны принять условия договора(ENG)',
-        promoPlaceholder: 'Введите промо код(ENG)',
-        promoVerification: ["сбросить(ENG)", "применить(ENG)"],
-        bookRoute: 'Заказать поездку(ENG)',
-        fieldsError: 'Заполните правильно все поля(ENG)',      
-    },
-
-}
-export default driverProfile;
+        //Attention! this is driverProfileRegistration
+        lang: 'ENG',
+        createComment: {
+            yourCommentPlaceholder: "Your feedback",
+            infoText: 'Your review will become visible after moderation',
+            nonFilledText: 'Fill in the rating and review',
+            sendText: "Send",
+            nonRegisteredElement: ['To leave a review', 'login', 'or register']
+        },
+        driverAdaptedRoute: {
+            routeDateText: "departure date",
+            routeTimeText: "Travel time without stops",
+            routeComment: "* Return to the point of departure on the same day for free",
+            routeBookText: "BOOK A TRIP",
+            routeBookComment: "Final cost. Fuel included"
+        },
+        driverProfile: {
+            routeTitle: 'Route',
+            routeTimeText: ['Travel time non-stop', 'trip length'],
+            personNumberText: 'Number of people',
+            timeText: 'Time',
+            driverRouteLink: ['I accept the terms', 'offer agreement'],
+            errorMessage: 'You must accept the terms',
+            promoPlaceholder: 'Enter promo code',
+            promoVerification: ["reset", "apply"],
+            bookRoute: 'Book a trip',
+            fieldsError: 'Fill in all fields correctly',
+        },
+    
+    }
+    export default driverProfile;
