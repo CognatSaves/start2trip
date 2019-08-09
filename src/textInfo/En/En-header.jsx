@@ -17,6 +17,10 @@ const header = {
         exit: 'Log out',
         enter: 'Login',
         burgerEnter: "Login or create an Account",
+        titlesName:["Настройки","Сервисы","Профиль","Полезные ссылки"],
+        settingsDrop:["Сменить язык","Сменить валюту"],
+        services:["Маршруты","Туры","Места"],
+        usefulLinks:["О сервисе"," Партнерам","Лицензионное соглашение","Помощь","Контакты"],
     },
     toPageStart: 'Go to top',
     pageNotFound: {
