@@ -591,7 +591,6 @@ class HeaderClass extends React.Component {
     console.log('Header render', this.props, window, document);
     //console.log(this.state);
     //console.log(this.props);
-
     let languages = this.props.storeState.languages;
     let currencies = this.props.storeState.currencies;
     let adminLanguages = this.props.storeState.adminLanguages;
@@ -656,10 +655,10 @@ class HeaderClass extends React.Component {
             <nav className={this.state.burgerMenu ? "burgerMenu burgerMenu-active" : "burgerMenu"}>
               <div className="burgerMenuBg">
                 <div className="burgerMenuTop">
-                  <h4 className="col-11 pt-4 pb-2">Настройки</h4>
+                  <h4 className="col-11 pt-4 pb-2">{textInfo.burgerMenu.titlesName[0]}</h4>
                   <div className="burgerMenuBlock burgerMenuP d-flex flex-column justify-content-center align-items-center col-11">
                     <div className="d-flex align-items-end justify-content-between w-100 border-bottom">
-                      <label>Сменить язык</label>
+                      <label>{textInfo.burgerMenu.settingsDrop[0]}</label>
                       <DropDownMenu anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }} className="burgerMenuTopDropDown" menuStyle={{ width: "30px" }}
                         value={this.props.storeState.activeLanguageNumber/*this.state.activLanguageNumber*/} onChange={(event, index, value) => { this.setLocals('userLang', index) }}>
                         {languages.map((element, index) =>
@@ -668,7 +667,7 @@ class HeaderClass extends React.Component {
                       </DropDownMenu>
                     </div>
                     <div className="d-flex align-items-end justify-content-between w-100 ">
-                      <label>Сменить валюту</label>
+                      <label>{textInfo.burgerMenu.settingsDrop[1]}</label>
                       <DropDownMenu menuItemStyle={{ color: "#304269", fontSize: "14px", fontWeight: "400" }} selectedMenuItemStyle={{ color: "#f60" }}
                         anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }} className="burgerMenuTopDropDown" menuStyle={{ width: "30px" }}
                         value={this.props.storeState.activeCurrencyNumber/*this.state.activeCurrencyNumber*/} onChange={(event, index, value) => { this.setLocals('userCurr', index) }}>
@@ -678,14 +677,14 @@ class HeaderClass extends React.Component {
                       </DropDownMenu>
                     </div>
                   </div>
-                  <h4 className="col-11 pt-4 pb-2">Сервисы</h4>
+                  <h4 className="col-11 pt-4 pb-2">{textInfo.burgerMenu.titlesName[1]}</h4>
                   <div className="burgerMenuBlock d-flex flex-column justify-content-center align-items-start col-11">
-                  <Link to={"/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+"/routes"} className="border-bottom routes" onClick={()=>{ clearQueueScrollLocks(); enablePageScroll(); this.setState({ burgerMenu: false });}}>Маршруты</Link>
-                  <Link to={"/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+"/tours"} className="border-bottom tours" onClick={()=>{ clearQueueScrollLocks(); enablePageScroll(); this.setState({ burgerMenu: false });}}>Туры</Link>
-                  <Link to={"/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+"/places"} className="places" onClick={()=>{ clearQueueScrollLocks(); enablePageScroll(); this.setState({ burgerMenu: false });}}>Места</Link>
+                  <Link to={"/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+"/routes"} className="border-bottom routes" onClick={()=>{ clearQueueScrollLocks(); enablePageScroll(); this.setState({ burgerMenu: false });}}>{textInfo.burgerMenu.services[0]}</Link>
+                  <Link to={"/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+"/tours"} className="border-bottom tours" onClick={()=>{ clearQueueScrollLocks(); enablePageScroll(); this.setState({ burgerMenu: false });}}>{textInfo.burgerMenu.services[1]}</Link>
+                  <Link to={"/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+"/places"} className="places" onClick={()=>{ clearQueueScrollLocks(); enablePageScroll(); this.setState({ burgerMenu: false });}}>{textInfo.burgerMenu.services[2]}</Link>
                   </div>
 
-                  <h4 className="col-11 pt-4 pb-2">Профиль</h4>
+                  <h4 className="col-11 pt-4 pb-2">{textInfo.burgerMenu.titlesName[2]}</h4>
                   <div className="burgerMenuBlock d-flex flex-column justify-content-center align-items-start col-11">
                     {
                       this.props.storeState.isAuthorized ?
@@ -701,13 +700,13 @@ class HeaderClass extends React.Component {
 
                     }
                   </div>
-                  <h4 className="col-11 pt-4 pb-2">Полезные ссылки</h4>
+                  <h4 className="col-11 pt-4 pb-2">{textInfo.burgerMenu.titlesName[3]}</h4>
                   <div className="burgerMenuBlock d-flex flex-column justify-content-center align-items-start col-11">
-                    <Link to="/about-service" className="border-bottom logoIcon" onClick={()=>{ clearQueueScrollLocks(); enablePageScroll(); this.setState({ burgerMenu: false });}}>О сервисе</Link>
-                    <Link to="/affiliate-program" className="border-bottom partner" onClick={()=>{ clearQueueScrollLocks(); enablePageScroll(); this.setState({ burgerMenu: false });}}>Партнерам</Link>
-                    <Link to="" className="border-bottom contract" onClick={()=>{ clearQueueScrollLocks(); enablePageScroll(); this.setState({ burgerMenu: false });}}>Лицензионное соглашение</Link>
-                    <Link to="" className="border-bottom questionMarkGray" onClick={()=>{ clearQueueScrollLocks(); enablePageScroll(); this.setState({ burgerMenu: false });}}>Помощь</Link>
-                    <Link to="/contacts"className="phoneBook " onClick={()=>{ clearQueueScrollLocks(); enablePageScroll(); this.setState({ burgerMenu: false });}}>Контакты</Link>
+                    <Link to="/about-service" className="border-bottom logoIcon" onClick={()=>{ clearQueueScrollLocks(); enablePageScroll(); this.setState({ burgerMenu: false });}}>{textInfo.burgerMenu.usefulLinks[0]}</Link>
+                    <Link to="/affiliate-program" className="border-bottom partner" onClick={()=>{ clearQueueScrollLocks(); enablePageScroll(); this.setState({ burgerMenu: false });}}>{textInfo.burgerMenu.usefulLinks[1]}</Link>
+                    <Link to="" className="border-bottom contract" onClick={()=>{ clearQueueScrollLocks(); enablePageScroll(); this.setState({ burgerMenu: false });}}>{textInfo.burgerMenu.usefulLinks[2]}</Link>
+                    <Link to="" className="border-bottom questionMarkGray" onClick={()=>{ clearQueueScrollLocks(); enablePageScroll(); this.setState({ burgerMenu: false });}}>{textInfo.burgerMenu.usefulLinks[3]}</Link>
+                    <Link to="/contacts"className="phoneBook " onClick={()=>{ clearQueueScrollLocks(); enablePageScroll(); this.setState({ burgerMenu: false });}}>{textInfo.burgerMenu.usefulLinks[4]}</Link>
                   </div>
                 </div>
               </div>
