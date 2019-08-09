@@ -194,7 +194,7 @@ class DriversBlockClass extends React.Component {
     console.log(this.props);
     let storeState = this.props.storeState;
     let activeCurrency = storeState.currencies[storeState.activeCurrencyNumber]
-    debugger
+    
     let textInfo = this.props.storeState.languageTextMain.drivers.driversBlock;
     let basicCurrency;
     if (storeState.currencies.length > 0) {

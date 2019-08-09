@@ -42,7 +42,7 @@ export default class LocationSearchInput extends React.Component {
     geocodeByAddress(address)
       .then(results => {/*console.log('Process results from geocode');console.log(results); */location.lat = results[0].geometry.location.lat(); location.long = results[0].geometry.location.lng(); getLatLng(results[0]); })
       .then(latLng => {/*console.log('Success', latLng); console.log(address);*/ /**/ this.applySelectedValue(this.props.index, address, { location: location }) })
-      .catch(error => {/* */debugger; this.applySelectedValue(this.props.index, '', { location: location }); console.error('Error - cant found such place', error); this.setState({address: ''})});
+      .catch(error => {/* */ this.applySelectedValue(this.props.index, '', { location: location }); console.error('Error - cant found such place', error); this.setState({address: ''})});
   };
   onInputBlur = () => {
     this.setState({ inFocus: false })

@@ -127,7 +127,7 @@ class RouteMenuClass extends React.Component {
     /*else{
       dateValue = '';
     }*/
-    debugger;
+    
     let pathnameMAss = document.location.pathname.split("/");
     //случай массива ['','geo-ru','routes',''], который возникает в случае, когда мы закрыли последний слеш, тоже надо учесть - отсюда 'или' ниже
     let ares = (pathnameMAss[pathnameMAss.length-1].length>0 && pathnameMAss.length<=3);
@@ -163,7 +163,13 @@ class RouteMenuClass extends React.Component {
     
     this.props.dispatch(setCities(cities))
     let footer = document.querySelector(".footerMobile");
-    footer.classList.remove("footerMobile-activeInput")
+    if(footer && footer!==null){
+      footer.classList.remove("footerMobile-activeInput")
+    }
+/*
+    this.setState({
+      isLoaded: true
+    })*/
   }
 
   addCity = () => {
@@ -416,7 +422,7 @@ class RouteMenuClass extends React.Component {
             }
           }
         }
-        //debugger;
+        
         /*if(!answer){
           this.props.dispatch(setCities(citiesCopy));
         }*/
@@ -424,7 +430,7 @@ class RouteMenuClass extends React.Component {
       }
       console.log(this.props.match);
       console.log(window);
-      debugger;
+      
       let isEmptyBlockExist = false;
       let isFindAll = isFindAllElems(this.props.storeState.cities);
       if(this.props.storeState.cities.length>0){
@@ -432,6 +438,7 @@ class RouteMenuClass extends React.Component {
 
           this.requestFunction();     
         }
+        /*
         else{
           if( isEmptyBlockExist)//есть затёртые - ничего искать не надо, всё, шабаш
           {
@@ -439,7 +446,7 @@ class RouteMenuClass extends React.Component {
               isLoaded: true//нет городов - нечего загружать
             })
           }
-        }
+        }*/
       }
       else{
         this.setState({
