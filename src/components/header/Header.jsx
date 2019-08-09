@@ -420,11 +420,12 @@ class HeaderClass extends React.Component {
           let avatarUrl = requests.serverAddress + response.data.url;
           let userName = response.data.firstName;
           let userData = response.data.userData;
+          let isCustomer = response.data.isCustomer;
           if (avatarUrl !== this.props.storeState.avatarUrl || userName !== this.props.storeState.userName) {
             let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
             cookies.set('userName', userName, { path: '/', expires: date });
             cookies.set('avatarUrl', avatarUrl, { path: '/', expires: date });
-            this.props.dispatch(setUser(userName, avatarUrl, userData));
+            this.props.dispatch(setUser(userName, avatarUrl, userData,isCustomer));
           }
 
         })

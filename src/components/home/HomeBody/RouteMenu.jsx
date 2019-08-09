@@ -153,7 +153,7 @@ class RouteMenuClass extends React.Component {
   }
 
   changeCity = (index, value, extraData) => {
-    debugger;
+    
     let cities = this.props.storeState.cities;
     cities[index] = {
       point: value,
