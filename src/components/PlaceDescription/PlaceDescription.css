@@ -192,7 +192,7 @@ h2 {
 
 .placesDescription_travelBlock_highlighted {
     /* background: rgba(34, 157, 78, 0.49); */
-    animation: glowing 2000ms infinite;
+    animation: glowing 2s infinite;
     cursor: pointer;
 }
 

@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import Stars from '../../../stars/Stars';
-import { setPage, setMorePagesShow,setDriverCarDescription } from '../../../../redusers/ActionDrivers'
+import { setPage, setMorePagesShow, setDriverCarDescription } from '../../../../redusers/ActionDrivers'
 
 
 import requests from '../../../../config';
@@ -18,7 +18,7 @@ const cookies = new Cookies();
 class DriversBlockClass extends React.Component {
   constructor(props) {
     super(props);
-    
+
     //let url = document.URL;
     let date = props.globalReduser.findGetParameter('date');
     let langISO = props.globalReduser.findGetParameter('lang');
@@ -27,9 +27,9 @@ class DriversBlockClass extends React.Component {
       country: this.props.country,
       cities: this.props.cities,
       date: date,
-      lang: langISO!==null ? langISO : 'ENG'
+      lang: langISO !== null ? langISO : 'ENG'
     }
-    
+    this.props.dispatch(setPage(1));
   }
   setPage = (page) => {
     if (page !== "...") {
@@ -136,10 +136,10 @@ class DriversBlockClass extends React.Component {
     srcArray[1] = filledLike;
     console.log('selectedEl');
     console.log(selectedElements);*/
-    
-    
+
+
     console.log('DriversBlock render');
-    
+
     let driversArray = this.driversSort([...this.props.driversState.driversList], this.props.storeState.sortMenuValue);
     let from = (this.props.driversState.page - this.props.driversState.showPages) * this.props.storeState.pagesMenuValue;
     let number = (this.props.driversState.page) * this.props.storeState.pagesMenuValue;
@@ -186,7 +186,7 @@ class DriversBlockClass extends React.Component {
     */
     // this.setLanguagesNumbers(this, selectedElements);
     console.log('selectedEl--------------------------------');
-    
+
     console.log(selectedElements);
     console.log(this.props.storeState.languages, "this.props.storeState.languagess");
 
@@ -194,22 +194,23 @@ class DriversBlockClass extends React.Component {
     console.log(this.props);
     let storeState = this.props.storeState;
     let activeCurrency = storeState.currencies[storeState.activeCurrencyNumber]
+    debugger
     let textInfo = this.props.storeState.languageTextMain.drivers.driversBlock;
     let basicCurrency;
-    if(storeState.currencies.length>0){
-      for(let i=0; i<storeState.currencies.length; i++){
-        if(storeState.currencies[i].costToDefault===1){
-          basicCurrency=storeState.currencies[i];
+    if (storeState.currencies.length > 0) {
+      for (let i = 0; i < storeState.currencies.length; i++) {
+        if (storeState.currencies[i].costToDefault === 1) {
+          basicCurrency = storeState.currencies[i];
         }
       }
     }
     return (
       <div className="drivers_block d-flex flex-wrap">
         {
-          selectedElements.map((element, index) =>{
-            
-            let linkAddress = "/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+`/driverProfile/${element.id}-${element.carId}-${this.state.cities}?date=`+this.state.date;
-            return(
+          selectedElements.map((element, index) => {
+
+            let linkAddress = "/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + `/driverProfile/${element.id}-${element.carId}-${this.state.cities}?date=` + this.state.date;
+            return (
               <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 p-2 py-1">
                 <div className="driversBlock_driverCard d-flex flex-column ">
                   <div className="driversBlock_carImage" style={{ background: "url(" + requests.serverAddress + element.carImage + ") no-repeat", backgroundSize: "cover" }}>
@@ -234,54 +235,57 @@ class DriversBlockClass extends React.Component {
                       <div className="driversBlock_driverCard_photo" style={{ background: "url(" + requests.serverAddress + element.avatar + ") no-repeat" }} />
                       <div className="d-flex  driversBlock_driverCard_driverInfo">
                         <Link to={linkAddress} className="driversBlock_driversInfo_name">{element.name}</Link>
-                       
+
                       </div>
-					   <div className="langi">
-                      
-                      {
-                        element.language.map((langElement, index) =>
-                          <div className="driversBlock_languages_flag" style={{ background: "url(" + (this.props.storeState.languages.length > 0 ? requests.serverAddress + this.props.storeState.languages[langElement].icon.url : '') + ")", backgroundSize: "15px 15px" }} />
-                        )
-                      }
+                      <div className="langi">
+
+                        {
+                          element.language.map((langElement, index) =>
+                            <div className="driversBlock_languages_flag" style={{ background: "url(" + (this.props.storeState.languages.length > 0 ? requests.serverAddress + this.props.storeState.languages[langElement].icon.url : '') + ")", backgroundSize: "15px 15px" }} />
+                          )
+                        }
+                      </div>
                     </div>
+                    <div class="starsd"><Stars key={element.rating} value={element.rating} commentNumber={element.comments + " " + textInfo.comments} valueDisplay={true} commentNumberDisplay={true} /></div>
                   </div>
-				   <div class="starsd"><Stars key={element.rating} value={element.rating} commentNumber={element.comments + " " + textInfo.comments} valueDisplay={true} commentNumberDisplay={true} /></div>
-                    </div>
-                   
+
                   <div className="driversBlock_driverInfoBlock_element driversBlock_commentary">{textInfo.commentary}</div>
                   <button className="driversBlock_driverInfoBlock_element driversBlock_buttonStyle"
-                    onClick={() => {console.log(element);this.props.changeTravelVisibility(element.price);  ;this.props.dispatch(setDriverCarDescription(element))}}>
+                    onClick={() => { console.log(element); this.props.changeTravelVisibility(element.price);; this.props.dispatch(setDriverCarDescription(element)) }}>
                     {textInfo.book + " " + (activeCurrency.isLeft ? activeCurrency.symbol : '')
                       + Math.ceil(element.price * activeCurrency.costToDefault) +
                       (!activeCurrency.isLeft ? activeCurrency.symbol : '')}</button>
                 </div>
 
               </div>
-            )}
+            )
+          }
           )
         }
         {
           selectedElements.length === 0 ?
             <React.Fragment>
-              <div>Ничего не найдено. Попробуйте изменить условия поиска или дату отправления</div>
+              <div className="placesList_noElementsBlock">
+                  <span>{this.props.storeState.languageTextMain.drivers.messageEror.noElementsText }</span>
+              </div>
             </React.Fragment>
-            : <React.Fragment />
-        }
+              : <React.Fragment />
+              }
         <Manipulator number={driversArray.length} page={this.props.driversState.page} setPage={this.setPage}
-          elementsNumber={this.props.storeState.pagesMenuValue} showMorePages={this.showMorePages} />
+                elementsNumber={this.props.storeState.pagesMenuValue} showMorePages={this.showMorePages} />
       </div>
 
     )
-  }
-
-}
-
-const DriversBlock = connect(
+        }
+      
+      }
+      
+      const DriversBlock = connect(
   (state) => ({
-    storeState: state.AppReduser,
-    driversState: state.DriversReduser,
-    globalReduser: state.GlobalReduser
-  }),
-)(DriversBlockClass);
-
-export default DriversBlock;
+          storeState: state.AppReduser,
+        driversState: state.DriversReduser,
+        globalReduser: state.GlobalReduser
+      }),
+    )(DriversBlockClass);
+    
+    export default DriversBlock;

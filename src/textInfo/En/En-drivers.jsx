@@ -24,7 +24,10 @@ const drivers = {
             cancel: 'Cancel',
             done: 'Done'
         } 
-    }
+    },
+    messageEror:{
+        noElementsText: 'We even searched on Mars, but found nothing.\n Try changing your search terms.'
+    },
 }
 
 export default drivers;

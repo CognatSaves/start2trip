@@ -261,7 +261,11 @@ class RouteMenuClass extends React.Component {
           if (canMove) {
             let index = that.props.storeState.activeLanguageNumber;
             that.props.globalhistory.history.push('/'+this.props.storeState.country+`-`+that.props.storeState.languages[index].isoAutocomplete+`/drivers/${newStringCities}?date=`+dateString/*+`&lang=`+languageISO*/);
-            window.scroll(0, 500);
+            window.scroll({
+              top: 500, 
+              left: 0, 
+              behavior: 'smooth'
+            });
           }
         }
       );

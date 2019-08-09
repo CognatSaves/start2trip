@@ -20,6 +20,7 @@ import AccountRedirector from './components/registration/AccountRedirector';
 import TripConfirmation from './components/driverProfile/TripConfirmation';
 import DriverConfirmation from './components/driverProfile/DriverConfirmation';
 // import DriverProfile from './components/driverProfile/DriverProfile';
+import pageNotFound from './pageNotFound'
 import axios from 'axios';
 import requests from './config';
 // import { hydrate } from "react-dom"
@@ -413,6 +414,7 @@ ReactDOM.render(
               <Route path="/forgot-password" component={ForgotPassword} />
               <Route path="/reset-password/:code" component={ResetPassword} />
 
+              <Route path="*" component={pageNotFound} />
               <Route path="/contacts" component={contacts} />
               <Route path="/affiliate-program" component={affiliateProgram} />
               <Route path="/about-service" component={AboutService} />

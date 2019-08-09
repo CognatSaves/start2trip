@@ -16,7 +16,10 @@ let places = {
         territory: 'территория(ENG)',
         population: 'население(ENG)',
         capital: 'столица(ENG)'
-    }
+    },
+    messageEror:{
+        noElementsText: 'We even searched on Mars, but found nothing.\n Try changing your search terms.'
+    },
 }
 
 export default places;

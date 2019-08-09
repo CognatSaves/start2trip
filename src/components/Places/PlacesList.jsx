@@ -113,7 +113,7 @@ class PlacesListClass extends React.Component {
                     selectedPlaces.length===0 ?
                     <React.Fragment>
                         <div className="placesList_noElementsBlock">
-                            <span>Мы искали даже на Марсе, но ничего не найдено. Попробуйте изменить условия поиска.</span>
+                            <span>Мы искали даже на Марсе, но ничего не нашли. Попробуйте изменить условия поиска.</span>
                         </div>
                     </React.Fragment>
                     :<React.Fragment/>

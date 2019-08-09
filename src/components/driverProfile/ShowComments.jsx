@@ -64,7 +64,7 @@ class ShowCommentsClass extends React.Component {
 
                             return (
                                 <div className="col-lg-3 col-md-6 col-12 pl-0">
-                                    <div className="commentBlock_comments  commentBlock_element" key={element + "/" + index} >
+                                    <div className="commentBlock_comments  commentBlock_element" key={element + "/" + index} onClick={(e) => { if(!isMobileOnly){this.setState({ element: element, date: date,openModal:true })} }} >
                                         <div className="commentBlock_valueBlock d-flex flex-column">
                                             <div className="commentBlock_picture d-flex pb-2">
                                                 <img src={requests.serverAddress + element.avatar.url} width="auto" height="100%" alt=""></img>
@@ -78,7 +78,7 @@ class ShowCommentsClass extends React.Component {
                                             </div>
                                             <input className="put" id={"put" + element + index} type="checkbox"></input>
                                             <div className="news">
-                                                <label onClick={(e) => { if(!isMobileOnly){this.setState({ element: element, date: date,openModal:true })} }} htmlFor={"put" + element + index}>{element.value}</label>
+                                                <label  htmlFor={"put" + element + index}>{element.value}</label>
                                             </div>
                                         </div>
                                     </div>

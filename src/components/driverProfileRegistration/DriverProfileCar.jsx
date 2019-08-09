@@ -251,9 +251,17 @@ class DriverProfileCarClass extends React.Component {
             comfort: [...element.conveniences], carImg: carImg, imgFiles:imgFiles, car:element }));
         }
         if (isMobileOnly) {
-            window.scroll(0, 300);
+            window.scroll({
+                top: 300, 
+                left: 0, 
+                behavior: 'smooth'
+              });
         } else {
-            window.scroll(0, 322);
+            window.scroll({
+                top: 322, 
+                left: 0, 
+                behavior: 'smooth'
+              });
         }
     }
     changeActive=(element)=>{

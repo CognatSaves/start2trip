@@ -615,6 +615,7 @@ class HeaderClass extends React.Component {
         value: textInfo.menuElements[2]
       }
     ];
+    // let flagMenu = false;
     return (
       <React.Fragment>
         <ModalRegistration modalRegistration={this.props.storeState.modalRegistration} toggle={this.toggleModalRegistration} className={this.props.className} authorization={this.authorization} />
@@ -631,7 +632,7 @@ class HeaderClass extends React.Component {
           : <React.Fragment/> */
         }
         <ModalUserType textInfo={textInfo} isOpen={this.state.isUsertypeLooking} that={this} pageTextInfo={pageTextInfo} />
-        <div className="headerMobail d-xl-none d-lg-none d-md-none d-sm-flex d-flex align-items-center justify-content-between">
+        <div style={this.state.burgerMenu?{position:"fixed",top:"0",zIndex:"40"}:{}} className="headerMobail  d-md-none d-flex align-items-center justify-content-between">
           {/* <div onClick={this.toggleModalCountry} className="headerGeoButton">
             <span>{this.props.storeState.country}</span>
           </div> */}
@@ -643,11 +644,13 @@ class HeaderClass extends React.Component {
           </div>
           <div className="headerSelect d-flex align-items-center justify-content-end ">
             <button className={this.state.burgerMenu ? "headerMobailButton-active" : "headerMobailButton"} onClick={() => {
-              if (this.state.burgerMenu) {
-                clearQueueScrollLocks(); enablePageScroll();
-              } else {
-                disablePageScroll()
-              }
+              // if (this.state.burgerMenu) {
+              //   // clearQueueScrollLocks(); enablePageScroll();
+              //   flagMenu = false
+              // } else {
+              //   // disablePageScroll()
+              //   flagMenu = true
+              // }
               this.setState({ burgerMenu: !this.state.burgerMenu });
             }}></button>
             <nav className={this.state.burgerMenu ? "burgerMenu burgerMenu-active" : "burgerMenu"}>
@@ -711,7 +714,7 @@ class HeaderClass extends React.Component {
             </nav>
           </div>
         </div>
-        <div className="btUp" onClick={() => { window.scroll(0, 0) }}>
+        <div className="btUp" onClick={() => { window.scroll({top: 0, left: 0, behavior: 'smooth'}) }}>
           <span>{textInfo.toPageStart}</span>
           <i className="footerMobileIconUp" />
         </div>

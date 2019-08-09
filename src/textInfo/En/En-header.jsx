@@ -18,7 +18,13 @@ const header = {
         enter: 'Войти(ENG)',
         burgerEnter:"Войти или создать профиль(ENG)",
     },
-    toPageStart: 'В начало страницы(ENG)'
+    toPageStart: 'В начало страницы(ENG)',
+    pageNotFound:{
+        title:"Page not found",
+        text1:"We even searched on Mars,",
+        text2:"but didn’t find anything.",
+        link:"Return to Homepage"
+    }
 }
 
 export default header;

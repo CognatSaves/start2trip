@@ -27,6 +27,7 @@ class HomeBodyBottomClass extends React.Component {
       selectedDirection: ""
     };
     //this.sendRequestFunc();
+    this.props.dispatch(setPage(1));
   }
   redirectFunc=(where)=> {
     this.props.history.push(where);

@@ -34,17 +34,19 @@
     position: relative;
     /* height: 15%; */
     width: 100%;
+    min-width: 250px;
+    min-height: 150px;
     padding: 25px 15px;
     padding-bottom: 10px;
     border-bottom: 1px solid #cccccc;
 }
 
-.commentBlock_noCommentsText{
+.commentBlock_noCommentsText {
     position: relative;
     /* height: 15%; */
     width: 100%;
     padding: 10px 5px;
-    text-align:center;
+    text-align: center;
     border-bottom: 1px solid #cccccc;
 }
 

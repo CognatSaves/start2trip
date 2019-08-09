@@ -145,6 +145,16 @@ body {
     padding-top: 1rem!important;
 }
 
+.pt-4,
+.py-4 {
+    padding-top: 1.5rem!important;
+}
+
+.pb-2,
+.py-2 {
+    padding-bottom: .5rem!important;
+}
+
 .p-1 {
     padding: .25rem!important;
 }

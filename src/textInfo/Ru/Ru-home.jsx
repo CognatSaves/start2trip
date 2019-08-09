@@ -15,7 +15,7 @@ const home = {
             morePics: 'ещё'
         },
         homeRoutesList:{
-            noElementsText: 'Мы искали даже на Марсе, но ничего не найдено.\n Попробуйте изменить условия поиска.'
+            noElementsText: 'Мы искали даже на Марсе, но ничего не нашли.\n Попробуйте изменить условия поиска.'
         },
         routeListElement: {
             detailed: 'Подробнее',

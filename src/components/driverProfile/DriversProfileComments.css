@@ -67,13 +67,15 @@
     transition: all 0.3s;
 }
 
-.commentBlock_comments {
+.commentBlock_comments.commentBlock_element {
     position: relative;
     width: 100%;
+    cursor: pointer;
     box-shadow: 0 0 1px 1px rgba(221, 221, 221, 1);
     /* padding: 12px 23px 0 23px; */
     margin-bottom: 12px;
     border-radius: 5px;
+    min-height: 250px;
 }
 
 
@@ -181,7 +183,7 @@
     right: 10px;
     width: 15px;
     height: 15px;
-    background: url(../media/close.svg)no-repeat;
+    background: url(../media/closeGray.svg)no-repeat;
     background-size: 100% 100%;
 }
 
@@ -199,8 +201,8 @@
 }
 
 .news {
-    height: 40px;
-    line-height: 20px;
+    max-height: 145px;
+    line-height: 21px;
     overflow: hidden;
     /* Обрезаем все, что не помещается в область */
     background: transparent;
@@ -210,7 +212,8 @@
     width: 100%;
 }
 
-.news::after {
+
+/* .news::after {
     content: '...';
     position: absolute;
     bottom: 0;
@@ -225,7 +228,7 @@
     pointer-events: none;
     background: #fff;
     color: #304269;
-}
+} */
 
 label {
     cursor: pointer;
@@ -254,7 +257,7 @@ label {
         background: #fff;
         z-index: 10;
     }
-    .valueBlock_commentary{
+    .valueBlock_commentary {
         max-height: none;
     }
 }

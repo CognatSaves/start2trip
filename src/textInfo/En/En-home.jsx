@@ -15,7 +15,7 @@ const home = {
             morePics: 'ещё(ENG)'
         },
         homeRoutesList:{
-            noElementsText: 'We even searched on Mars, but nothing was found. \n Try changing your search terms.'
+            noElementsText: 'We even searched on Mars, but found nothing.\n Try changing your search terms.'
         },
         routeListElement: {
             detailed: 'Подробнее(ENG)',

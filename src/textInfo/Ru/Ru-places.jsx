@@ -16,7 +16,10 @@ let places = {
         territory: 'территория',
         population: 'население',
         capital: 'столица'
-    }
+    },
+    messageEror:{
+        noElementsText: 'Мы искали даже на Марсе, но ничего не нашли.\n Попробуйте изменить условия поиска.'
+    },
 }
 
 export default places;

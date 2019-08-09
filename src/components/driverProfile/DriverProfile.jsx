@@ -305,7 +305,11 @@ class DriverProfileClass extends React.Component {
         }
     }
     render() {
-        window.scroll(0, 0);
+        window.scroll({
+            top: 0, 
+            left: 0, 
+            behavior: 'smooth'
+          });
         console.log('DriverProfile render');
         console.log(this.props);
 
