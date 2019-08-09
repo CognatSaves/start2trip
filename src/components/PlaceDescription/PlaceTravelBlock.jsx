@@ -12,7 +12,7 @@ class PlaceTravelBlockClass extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            startPoint:''/*  this.props.place.capital+', '+this.props.place.country*/,
+            startPlace:{point:'',lat: '', long: ''},/*  this.props.place.capital+', '+this.props.place.country*/
             //endPoint: this.props.place.point.place,//this.props.place.location, //произошло переподключение
             endPlace: this.props.place.endPlace,
             date:'' /*new Date()*/,
@@ -30,8 +30,8 @@ class PlaceTravelBlockClass extends React.Component{
     lookAvailable = () => {
         
         console.log('look available');
-        if(this.state.startPoint.length>0 && this.state.date!==''){
-            let routeDate = this.props.globalhistory.getRoute([{point:this.state.startPoint}, {point:this.state.endPoint}], this.props.storeState.languages[this.props.storeState.activeLanguageNumber].isoAutocomplete);//this.getRoute(this.props.storeState.cities);
+        if(this.state.startPlace.point.length>0 && this.state.date!==''){
+            let routeDate = this.props.globalhistory.getRoute([this.state.startPlace, this.state.endPlace], this.props.storeState.languages[this.props.storeState.activeLanguageNumber].isoAutocomplete);//this.getRoute(this.props.storeState.cities);
         
             let newStringCities = routeDate.route;
             let country = routeDate.country;
@@ -62,7 +62,7 @@ class PlaceTravelBlockClass extends React.Component{
         
         let place = this.props.place;
         let textInfo = this.props.storeState.languageTextMain.placeDescription.placeTravelBlock;
-        let cities = this.state.startPoint.length>0 ? [{point: this.state.startPoint},this.state.endPlace] : [this.state.endPlace];
+        let cities = this.state.startPlace.point.length>0 ? [this.state.startPlace,this.state.endPlace] : [this.state.endPlace];
         
         return (
             
@@ -74,7 +74,7 @@ class PlaceTravelBlockClass extends React.Component{
                             + (this.state.isStartHighlighted ? 'placesDescription_travelBlock_highlighted' : '')} 
                             onClick={()=>{if(this.state.isStartHighlighted){this.setState({isStartHighlighted: false})}}}>
                                 <div className="placesDescription_travelBlock_icon placesDescription_position" />
-                                <LocationSearchInput address={this.state.startPoint} changeCity={(index, value,extraData)=>this.setState({startPoint: value})}
+                                <LocationSearchInput address={this.state.startPlace.point} changeCity={(index, value,extraData)=>{debugger; this.setState({startPlace: {point:value,lat: extraData.location.lat, long: extraData.location.long}})}}
                                   classDropdown="searchElement_style" classInput={"travelBlockSearch"} placeholder={textInfo.startPointPlaceholder}
                                   isoCountryMap={this.props.storeState.isoCountryMap}/>   
                             </div>
