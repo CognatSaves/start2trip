@@ -68,7 +68,7 @@ class FooterClass extends React.Component {
             <div className="footerButtons d-flex justify-content-between col-xl-7 col-lg-7 col-md-9 col-sm-12 col-12">
               <Link to="/about-service" className="footerButtons_button">{textInfo.footerButtons[0]}</Link>
               <Link to="/affiliate-program" className="footerButtons_button">{textInfo.footerButtons[1]}</Link>
-              <Link to="" className="footerButtons_button">{textInfo.footerButtons[2]}</Link>
+              <Link to="/licenseAgreement" className="footerButtons_button">{textInfo.footerButtons[2]}</Link>
               <Link to="" className="footerButtons_button">{textInfo.footerButtons[3]}</Link>
               <Link to="/contacts" className="footerButtons_button">{textInfo.footerButtons[4]}</Link>
               <div className="footerButtonsIcon d-flex">

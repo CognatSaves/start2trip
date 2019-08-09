@@ -353,7 +353,7 @@ class HeaderClass extends React.Component {
               let namePage = that.props.globalhistory.history.location.pathname.split("/");
               namePage = namePage.splice(2)
               namePage = namePage.join('/')
-              that.props.history.push("/" + that.props.storeState.country + "-" + that.props.storeState.languages[index].isoAutocomplete + "/" + (namePage === "" ? "route" : namePage))
+              that.props.history.push("/" + that.props.storeState.country + "-" + that.props.storeState.languages[index].isoAutocomplete + "/" + (namePage === "" ? "routes" : namePage))
             }
           });
         }
