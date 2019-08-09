@@ -107,6 +107,7 @@ const initialState = {
     isoLanguage: '',
     avatarUrl: "",
     userName: "",
+    //isCustomer:true,
     userData: {},
     isAuthorized: false,
     openFilter: false,
@@ -189,10 +190,12 @@ export const AppReduser = (state = initialState, action) => {
             }
         case SET_USER:
             {
+                
                 let newStateSU = {...state };
                 newStateSU.avatarUrl = action.avatarUrl;
                 newStateSU.userName = action.userName;
                 newStateSU.userData = action.userData;
+                //newStateSU.isCustomer = action.isCustomer;
                 if (action.avatarUrl.length === 0 && action.userName.length === 0) {
                     newStateSU.isAuthorized = false;
                 } else {

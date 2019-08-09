@@ -97,12 +97,13 @@ const setLocals = function(languages, adminLanguages, currencies, countries) {
     }
 }
 
-const setUser = function(userName, avatarUrl, userData) {
+const setUser = function(userName, avatarUrl, userData,isCustomer) {
     return {
         type: 'SET_USER',
         userName: userName,
         avatarUrl: avatarUrl,
-        userData: userData
+        userData: userData,
+        //isCustomer:isCustomer
     }
 }
 const set_state = function(cities, date) {

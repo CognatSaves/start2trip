@@ -1,23 +1,23 @@
 let placeDescription = {
-    placePhotos:{
-        more: 'Ещё(ENG)'
-    },
-    placeProgramm:{
-        monthArray: ["января(ENG)","февраля(ENG)","марта(ENG)",
-        "апреля(ENG)","мая(ENG)","июня(ENG)","июля(ENG)",
-        "августа(ENG)","сентября(ENG)","октября(ENG)",
-        "ноября(ENG)","декабря(ENG)"],
-        comments: 'отзывов(ENG)'
-    },
-    placeTravelBlock:{
-        fragmentName: 'Как добраться(ENG)',
-        startPointPlaceholder: 'Введите место отправления(ENG)',
-        startDate:"Дата отправления(ENG)",
-        lookAvailable: 'СМОТРЕТЬ ПРЕДЛОЖЕНИЯ(ENG)'
-    },
-    placeDescription:{
-        variantsArray:["Описание(ENG)","Фотографии(ENG)","Как добраться(ENG)","Вас может заинтересовать(ENG)","Отзывы(ENG)"]
-    }
+     placePhotos: {
+         more: 'More'
+     },
+     placeProgramm: {
+         monthArray: ["January", "February", "March",
+         "April", "May", "June", "July",
+         "August", "September", "October",
+         "November", "December"],
+         comments: 'reviews'
+     },
+     placeTravelBlock: {
+         fragmentName: 'How to get there',
+         startPointPlaceholder: 'Enter Departure Point',
+         startDate: "Departure Date",
+         lookAvailable: 'SEE OFFERS'
+     },
+     placeDescription: {
+         variantsArray: ["Description", "Photos", "How to get there", "You may be interested in", "Reviews"]
+     }
 }
 
 export default placeDescription

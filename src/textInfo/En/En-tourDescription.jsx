@@ -1,8 +1,8 @@
 const tourDescription = {
     commentBlock:{
-        comments: 'Отзывы(ENG)',
-        noCommentsText: 'На данный момент комментариев нет(ENG)',
-        createCommentString: "Оцените данное место(ENG)"
+        comments: 'Reviews',
+        noCommentsText: 'There are currently no reviews',
+        createCommentString: "Rate this place"
     }
 }
 
