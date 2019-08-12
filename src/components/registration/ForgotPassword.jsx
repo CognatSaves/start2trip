@@ -86,9 +86,8 @@ class ForgotPassword extends React.Component {
                 <div className="forgotPasswordBody d-flex flex-column align-items-center">
                     <Header driver={false} history={this.props.history} />
                     <Helmet>
-                        <title>Tripfer forgot password</title>
+                        <title>{'Восстановление пароля'}</title>
                         <meta name="description" content="Tripfer in header" />
-                        <link rel="icon" sizes="any" type="image/svg+xml" href="favicon.svg" />
                     </Helmet>
                     {this.state.isGood ?
                         <div className="forgotPasswordSuccess forgotPasswordContent d-flex flex-column align-items-center col-md-7 col-11">

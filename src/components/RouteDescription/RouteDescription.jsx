@@ -135,11 +135,18 @@ class RouteDescriptionClass extends React.Component {
         let simularPlaceBlockId = topBlockId+'4';
         return (
             <React.Fragment>
-                <Helmet>
-                    <title>Tripfer in routeDescription</title>
-                    <meta name="description" content="Tripfer in header" />
-                    <link rel="icon" sizes="any" type="image/svg+xml" href="favicon.svg" />
-                </Helmet>
+                {
+                    this.state.newRoute.local ? 
+                    <Helmet>
+                        <title>{this.state.newRoute.local.name+', описание, оценки, отзывы'}</title>
+                        <meta name="description" content="Tripfer in header" />
+                        </Helmet> :
+                    <Helmet>
+                        <title>{"Ожидаем загрузку маршрута"}</title>
+                        <meta name="description" content="Tripfer in header" />
+                    </Helmet>
+                }
+                
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist}
                     isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
 

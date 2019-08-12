@@ -56,9 +56,8 @@ class TripConfirmationClass extends React.Component{
         return(
             <React.Fragment>
                 <Helmet>
-                <title>Tripfer in tripConfirmation</title>
-                <meta name="description" content="Tripfer in header" />
-                <link rel="icon" sizes="any" type="image/svg+xml" href="favicon.svg" />
+                    <title>{"Подтверждение заказа"}</title>
+                    <meta name="description" content="Tripfer in header" />
                 </Helmet>
                 {
                     this.state.isRefreshExist ?

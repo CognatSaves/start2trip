@@ -40,9 +40,8 @@ class aboutServiceClass extends React.Component {
             <React.Fragment>
                 <Header driver={true} history={this.props.history} />
                 <Helmet>
-                    <title>Tripfer in aboutService</title>
+                    <title>{'О сервисе'}</title>
                     <meta name="description" content="Tripfer in header" />
-                    <link rel="icon" sizes="any" type="image/svg+xml" href="favicon.svg" />
                 </Helmet>
                 <div className="wrapper">
                     <div className="aboutService d-flex" >

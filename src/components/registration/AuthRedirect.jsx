@@ -61,9 +61,8 @@ class AuthRedirectClass extends React.Component {
         return (
             <React.Fragment>
                 <Helmet>
-                <title>Tripfer in login</title>
-                <meta name="description" content="Tripfer in header" />
-                <link rel="icon" sizes="any" type="image/svg+xml" href="favicon.svg" />
+                    <title>{'Авторизация'}</title>
+                    <meta name="description" content="Tripfer in header" />
                 </Helmet>
                 <div className="home_window" style={{ minHeight: "95vh" }}>
                     <Header history={this.props.history} />

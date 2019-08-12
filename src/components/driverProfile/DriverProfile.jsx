@@ -516,9 +516,8 @@ class DriverProfileClass extends React.Component {
                                 {
                                     this.props.driversState.driverCarDescription.id ? 
                                     <Helmet>
-                                        <title>Tripfer in drivercar description</title>
+                                        <title>{"Карточка водителя и его авто, стоимость Вашей поездки"}</title>
                                         <meta name="description" content="Tripfer in header" />
-                                        <link rel="icon" sizes="any" type="image/svg+xml" href="favicon.svg" />
                                     </Helmet> : <React.Fragment/>
 
                                 }

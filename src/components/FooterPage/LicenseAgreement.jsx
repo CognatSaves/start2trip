@@ -25,9 +25,8 @@ class LicenseAgreementClass extends React.Component {
         return (
             <React.Fragment>
                 <Helmet>
-                    <title>Tripfer license</title>
+                    <title>{'Лицензионное соглашение'}</title>
                     <meta name="description" content="Tripfer in header" />
-                    <link rel="icon" sizes="any" type="image/svg+xml" href="favicon.svg" />
                 </Helmet>
                 <Header driver={true} history={this.props.history} />
                 <div className="wrapper">

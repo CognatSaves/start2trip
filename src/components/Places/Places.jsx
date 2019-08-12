@@ -122,7 +122,16 @@ class PlacesClass extends React.Component {
     }
   }
   render() {
-    
+    function findSelectedDirectionName(directions, selectedDirection){          
+      for(let i=0; i<directions.length; i++){
+          //for(let j=0; j<directions[i].loc.length; j++){
+            if(directions[i].loc.slug===selectedDirection){
+              return directions[i].loc.name;
+            }
+          //}      
+      }
+      return '';     
+    }
     
     console.log("Places render",this.props.placesState);   
     
@@ -136,25 +145,37 @@ class PlacesClass extends React.Component {
     if(!selectedDirection){//защита от undefined
       selectedDirection='';
     }
+    let countryName = this.props.storeState.countries.length>0 ?
+     this.props.globalReduser.findCountryNameByISO(this,cookies.get('country', {path: '/'}),cookies.get('userLang', {path: '/'}))
+     : '';
+    if(countryName.length>0){
+      debugger;
+    }
+    let name = findSelectedDirectionName(this.props.placesState.directions, selectedDirection);
     return (
       <React.Fragment>
         <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={/*this.state.isRefreshing*/true} isGoodAnswer={/*this.state.isGoodAnswer*/true}/>
-
         <Helmet>
-          <title>Tripfer in places</title>
+          <title>{"Tripfer, достопримечательности, оценки"}</title>
           <meta name="description" content="Tripfer in header" />
-          <link rel="icon" sizes="any" type="image/svg+xml" href="favicon.svg" />
         </Helmet>
-        <div>
-          {
-            selectedDirection.length>0 ?
+        {
+          countryName.length>0 ? 
+          (  
+            this.props.placesState.directions.length>0 && selectedDirection.length>0 ?     
             <Helmet>
-              <title>Tripfer in places with description</title>
+              <title>{findSelectedDirectionName(this.props.placesState.directions, selectedDirection)+', достопримечательности, оценки'}</title>
               <meta name="description" content="Tripfer in header" />
-              <link rel="icon" sizes="any" type="image/svg+xml" href="favicon.svg" />
-            </Helmet> : <React.Fragment/>
-          }
-        </div>
+            </Helmet> : 
+            <Helmet>
+              <title>{countryName+', достопримечательности, оценки'}</title>
+              <meta name="description" content="Tripfer in header" />
+            </Helmet>
+          )
+          : <React.Fragment/>
+          
+        }
+
         <div className="drivers_top_background col-12 p-0">
         <Header history={this.props.history}/>
         <div className="wrapper d-flex flex-column">            

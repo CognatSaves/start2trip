@@ -56,9 +56,8 @@ class AuthModalCountryClass extends React.Component {
                 <div className="home_window" style={{ minHeight: "95vh" }}>
                     <Header history={this.props.history} />
                     <Helmet>
-                        <title>Tripfer in countrySelect</title>
+                        <title>{"Выберите интересующий Вас регион"}</title>
                         <meta name="description" content="Tripfer in header" />
-                        <link rel="icon" sizes="any" type="image/svg+xml" href="favicon.svg" />
                     </Helmet>
                     <Modal isOpen={true}>
                         <ModalBody>
