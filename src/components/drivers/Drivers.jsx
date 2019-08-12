@@ -159,22 +159,24 @@ class DriversClass extends React.Component {
     let activeCurrency = storeState.currencies[storeState.activeCurrencyNumber];
     let route = createTitleString(cities);
     debugger;
+    let textInfo = this.props.storeState.languageTextMain.drivers.mainPage;
+        
     return (
       <React.Fragment>
         {
           countryName.length>0 ?
           (this.props.storeState.languages.length>0 ? 
           <Helmet>
-            <title>{'Маршрут '+route+' , предложения водителей'}</title>
+            <title>{textInfo.routeText[0]+' '+route+textInfo.routeText[1]}</title>
             <meta name="description" content="Tripfer in drivers" />
           </Helmet> :
           <Helmet>
-            <title>{countryName+', предложения водителей'}</title>
+            <title>{countryName+textInfo.countryText}</title>
             <meta name="description" content="Tripfer in drivers" />
           </Helmet>)
           :
           <Helmet>
-            <title>{'Ожидайте загрузки предложений водителей'}</title>
+            <title>{textInfo.loadingText}</title>
             <meta name="description" content="Tripfer in drivers" />
           </Helmet>
         }

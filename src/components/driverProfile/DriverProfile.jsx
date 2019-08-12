@@ -516,7 +516,7 @@ class DriverProfileClass extends React.Component {
                                 {
                                     this.props.driversState.driverCarDescription.id ? 
                                     <Helmet>
-                                        <title>{"Карточка водителя и его авто, стоимость Вашей поездки"}</title>
+                                        <title>{textInfo.title}</title>
                                         <meta name="description" content="Tripfer in header" />
                                     </Helmet> : <React.Fragment/>
 
@@ -527,9 +527,9 @@ class DriverProfileClass extends React.Component {
                                     <div className="d-flex flex-column routeTravelBlock_pointPart col-md-6 col-12 p-md-2 p-0">
                                         <div style={{paddingTop: '10px'}}>
                                             <div className="route_time_text col-12">
-                                                <div class="marsh">Ваш маршрут:</div>
-                                                <div class="param">Время в пути: <span>{this.props.driversState.travelTime}</span></div>
-                                                <div class="param par">Длина пути: <span>{this.props.driversState.travelLength}</span></div>
+                                                <div class="marsh">{textInfo.tripParams.routeText+':'}</div>
+                                                <div class="param">{textInfo.tripParams.timeParam+': '}<span>{this.props.driversState.travelTime}</span></div>
+                                                <div class="param par">{textInfo.tripParams.lengthParam+': '}<span>{this.props.driversState.travelLength}</span></div>
                                             </div>
                                         </div>
                                             <div className=" col-12 p-0 d-flex flex-wrap" >
