@@ -153,15 +153,12 @@ class DriversClass extends React.Component {
 
     return (
       <React.Fragment>
-      {
-        /*
+
         <Helmet>
           <title>Tripfer in drivers</title>
           <meta name="description" content="Tripfer in drivers" />
         </Helmet>
 
-        */
-      }
         
         <div className="wrapper d-flex flex-column">
           <div className="drivers_bottom_background d-flex flex-column" >

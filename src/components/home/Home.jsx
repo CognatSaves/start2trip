@@ -48,16 +48,13 @@ class HomeClass extends React.Component {
     let selectedDirection=this.props.match.params.direction;
     return (
       <React.Fragment>
-      {
-        /*
+
         <Helmet>
           <title>Tripfer in home</title>
           <meta name="description" content="Tripfer in header" />
           <link rel="icon" sizes="any" type="image/svg+xml" href="favicon.svg" />
         </Helmet>
 
-        */
-      }
         
         <main className="d-flex flex-column container-fluid p-0">
           {
