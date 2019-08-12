@@ -31,6 +31,25 @@
     color: #304269;
 }
 
+span.LicenseAgreementPanel {
+    padding: 5px 20px;
+    background: #fff;
+    cursor: pointer;
+    color: #304269;
+    font-size: 18px;
+    font-weight: 400;
+    border: 1px solid #ccc;
+    transition: 0.3s;
+}
+
+span.LicenseAgreementPanel :hover {
+    background: #ccc;
+}
+
+span.LicenseAgreementPanel-active {
+    background: #ccc;
+}
+
 @media (max-width: 420px) {
     .LicenseAgreement {
         padding: 20px 10px !important;

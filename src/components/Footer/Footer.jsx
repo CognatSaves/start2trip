@@ -68,7 +68,7 @@ class FooterClass extends React.Component {
             <div className="footerButtons d-flex justify-content-between col-xl-7 col-lg-7 col-md-9 col-sm-12 col-12">
               <Link to="/about-service" className="footerButtons_button">{textInfo.footerButtons[0]}</Link>
               <Link to="/affiliate-program" className="footerButtons_button">{textInfo.footerButtons[1]}</Link>
-              <Link to="/licenseAgreement" className="footerButtons_button">{textInfo.footerButtons[2]}</Link>
+              <Link to="/terms" className="footerButtons_button">{textInfo.footerButtons[2]}</Link>
               <Link to="" className="footerButtons_button">{textInfo.footerButtons[3]}</Link>
               <Link to="/contacts" className="footerButtons_button">{textInfo.footerButtons[4]}</Link>
               <div className="footerButtonsIcon d-flex">
@@ -83,7 +83,7 @@ class FooterClass extends React.Component {
           {
             mobileElemArray.map((element, index)=>
             <Link to={element.pathname} className="col-3 d-flex align-items-end">
-              <div className={ (element.pathnamesInner.indexOf(pathname)!==-1 ? "foterMobaileItem_active":" " )+ " d-flex flex-column align-items-center justify-content-end col-12 foterMobaileItem "} >
+              <div className={ (element.pathnamesInner.indexOf(pathname)!==-1 ? "foterMobaileItem_active":" " )+ " d-flex flex-column align-items-center justify-content-end col-12 p-md-2 p-0 foterMobaileItem "} >
                 <div className={element.pathnamesInner.indexOf(pathname)!==-1 ? element.iconClasses[0]:element.iconClasses[1] } />
                 <div className={element.classValue}>{element.value}</div>
               </div>

@@ -415,7 +415,7 @@ ReactDOM.render(
               <Route path="/forgot-password" component={ForgotPassword} />
               <Route path="/reset-password/:code" component={ResetPassword} />
 
-              <Route path="/licenseAgreement" component={LicenseAgreement} />
+              <Route path="/terms" component={LicenseAgreement} />
               <Route path="/contacts" component={contacts} />
               <Route path="/affiliate-program" component={affiliateProgram} />
               <Route path="/about-service" component={AboutService} />

@@ -89,6 +89,10 @@
     border-radius: 30px;
 }
 
+.createComment_picture img {
+    object-fit: cover;
+}
+
 .createComment-text {
     font-size: 14px;
     font-weight: 500;

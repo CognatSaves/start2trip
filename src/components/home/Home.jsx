@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import './Home.css';
 import './text.css';
 import georgiaImg from '../media/georgia.png'
@@ -12,9 +12,9 @@ import requests from '../../config'
 import Header from '../header/Header';
 import HomeBody from './HomeBody/HomeBody.jsx'
 import { isMobileOnly } from 'react-device-detect';
-import FirstEnterModal from './FirstEnterModal';
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
+const FirstEnterModal = lazy(() => import('./FirstEnterModal'));
 
 
 class HomeClass extends React.Component {
@@ -48,11 +48,12 @@ class HomeClass extends React.Component {
     return (
       <React.Fragment>
         <main className="d-flex flex-column container-fluid p-0">
+        <Suspense fallback={<div>Загрузка...</div>}>
           {
             this.state.firstEnter ?
             <FirstEnterModal whatRender="user"/> : <React.Fragment/>
           }
-          
+          </Suspense>
 
           <div className="home_window">
             <Header history={this.props.history} />

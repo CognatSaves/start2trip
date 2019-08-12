@@ -14,18 +14,18 @@ class aboutServiceClass extends React.Component {
             arrayEl: [
                 {
                     img: illustrationUser,
-                    title: "Индивидуальный подбор маршрута",
-                    text: "Планируйте собственный маршрут путешествия,\n с возможностью включить в него любое количество\n пунктов, совершая остановки в интересных местах."
+                    title: props.storeState.languageTextMain.footerPage.aboutService.firstEl.title,
+                    text: props.storeState.languageTextMain.footerPage.aboutService.firstEl.text
                 },
                 {
                     img: illustrationCar,
-                    title: "Свобода выбора",
-                    text: "Выбирайте автомобиль с водителем, исходя \n из заданных критериев. Местный водитель-гид \n познакомит Вас с историей и культурой страны."
+                    title: props.storeState.languageTextMain.footerPage.aboutService.secondEl.title,
+                    text: props.storeState.languageTextMain.footerPage.aboutService.secondEl.text
                 },
                 {
                     img: illustrationPhone,
-                    title: "Гибкая система оплаты",
-                    text: "Стоимость поездки расчитывается в зависимости \n от расстояния, типа транспорта и типа топлива.\n Оплата производится по окончанию поездки \n удобным для Вас спосоом."
+                    title: props.storeState.languageTextMain.footerPage.aboutService.thirdEl.title,
+                    text: props.storeState.languageTextMain.footerPage.aboutService.thirdEl.text
                 },
             ]
 
@@ -35,18 +35,15 @@ class aboutServiceClass extends React.Component {
     }
 
     render() {
+        let text = this.props.storeState.languageTextMain.footerPage.aboutService
         return (
             <React.Fragment>
                 <Header driver={true} history={this.props.history} />
                 <div className="wrapper">
                     <div className="aboutService d-flex" >
                         <div className="aboutService_Title col-12 p-0">
-                            <h2>О сервисе</h2>
-                            <p className="col-md-9 col-12">Сервис <strong>tripfer.com</strong> позволяет взаимодействовать с местными водителями и турагентами
-                            туристам, которые хотят получить услугу трнсфера. Таким образом, формируется масса предложеий, из которых
-                            Вы можете выбрать что-то особенное и индивидуально подходящее. Наша цель-создание качественных информационных продуктов
-                            для данного сектора услуг.
-                        Ключивыми особенностями сервиса являются:</p>
+                            <h2>{text.h2}</h2>
+                            <p className="col-md-9 col-12">{text.description}</p>
                             <div className="aboutService_content d-flex flex-column col-md-8 col-12 p-0">
                                 {
                                     this.state.arrayEl.map((element, index) =>

@@ -18,35 +18,35 @@ class affiliateProgramClass extends React.Component {
             arrayEl: [
                 {
                     img: invite,
-                    title: "Приглашайте",
-                    text: "Рассылайте приглашения со скидкой 15% \n на первую поездку знакомым-путешественникам,\n нажав на кнопку 'Пригласить друга',\n или отправляйте Вашу партнёрскую ссылку."
+                    title: props.storeState.languageTextMain.footerPage.affiliateProgram.arrayEl.firstEl.title,
+                    text: props.storeState.languageTextMain.footerPage.affiliateProgram.arrayEl.firstEl.text
                 },
                 {
                     img: income,
-                    title: "Получайте доход",
-                    text: "Приглашайте водителей работать в системе Tripfer, \n и получайте доход от выполненных ими заказов."
+                    title: props.storeState.languageTextMain.footerPage.affiliateProgram.arrayEl.secondEl.title,
+                    text: props.storeState.languageTextMain.footerPage.affiliateProgram.arrayEl.secondEl.text
                 },
                 {
                     img: share,
-                    title: "Делитесь",
-                    text: "Пишите о нас статьи, коментируйте в соц.сетях,\n блогах и форумах, и зарабатывайте. Пожизненно.\n Выплаты на банковскую карту еженедельно."
+                    title: props.storeState.languageTextMain.footerPage.affiliateProgram.arrayEl.thirdEl.title,
+                    text: props.storeState.languageTextMain.footerPage.affiliateProgram.arrayEl.thirdEl.text
                 },
             ],
             arrayFooterEl: [
                 {
                     img: IT_link,
-                    title: "Ссылка",
-                    text: "Когда пользователь переходит по Вашей \n ссылке, мы помечаем его устройство \n специальной меткой сроком на 1 год, чтобы \n понять, что он пришел по Вашей рекомендации."
+                    title: props.storeState.languageTextMain.footerPage.affiliateProgram.arrayFooterEl.firstEl.title,
+                    text: props.storeState.languageTextMain.footerPage.affiliateProgram.arrayFooterEl.firstEl.text
                 },
                 {
                     img: fn_stock,
-                    title: "Водитель / Партнер",
-                    text: "Зарегистрировавшись в системе как водитель или \n партнер, пользователь начнет приносить\n Вам пассивный доход со своей прибыли. \n Чем лучше он работает и чем больше привлекает \n в систему, тем больше Вы получаете."
+                    title: props.storeState.languageTextMain.footerPage.affiliateProgram.arrayFooterEl.secondEl.title,
+                    text: props.storeState.languageTextMain.footerPage.affiliateProgram.arrayFooterEl.secondEl.text
                 },
                 {
                     img: fn_moneybox,
-                    title: "Путешественник",
-                    text: "Зарегистрировавшись как путешественник,\n пользователь приносит Вам доход с каждой \n поездки. Если в течение 1 года был сделан\n заказ без регистрации, Вы также получите\n отчисления на Ваш счёт."
+                    title: props.storeState.languageTextMain.footerPage.affiliateProgram.arrayFooterEl.thirdEl.title,
+                    text: props.storeState.languageTextMain.footerPage.affiliateProgram.arrayFooterEl.thirdEl.text
                 },
             ]
 
@@ -56,15 +56,16 @@ class affiliateProgramClass extends React.Component {
     }
 
     render() {
+        let text = this.props.storeState.languageTextMain.footerPage.affiliateProgram
         return (
             <React.Fragment>
                 <Header driver={true} history={this.props.history} />
                 <div className="wrapper">
                     <div className="affiliateProgram" >
                         <div className="affiliateProgram_Title col-12 p-0">
-                            <h2>Партнёрская программа</h2>
+                            <h2>{text.h2}</h2>
                             <p className="col-md-6 col-12 p-0">
-                                Постройте Ваш успешный бизнес и получайте пассивный доход <br /> в размере 14% с поездки от комиссии системы.
+                            {text.description1} <br /> {text.description2}
                             </p>
                             <div className="affiliateProgram_content d-flex flex-column col-md-8 col-12 p-0">
                                 {
@@ -81,7 +82,7 @@ class affiliateProgramClass extends React.Component {
                             </div>
                         </div>
                         <div className="affiliateProgram_Footer">
-                            <h3>Как это работает?</h3>
+                            <h3>{text.h3}</h3>
                             <div className="d-flex flex-md-row flex-column">
                                 {this.state.arrayFooterEl.map((element, index) =>
                                     <div className="col-md-4 col-12 mb-md-2 mb-5">

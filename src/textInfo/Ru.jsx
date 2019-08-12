@@ -11,6 +11,8 @@ import placeDescription from './Ru/Ru-placeDescription';
 import tourDescription from './Ru/Ru-tourDescription';
 import drivers from './Ru/Ru-drivers';
 import startTravelForm from './Ru/Ru-startTravelForm';
+import termsUser from './Ru/Ru-termsUser'
+import termsDriver from './Ru/Ru-termsDriver';
 import FooterPage from './Ru/Ru-FooterPage'
 export default {
     driverProfile: driverProfile,
@@ -26,5 +28,7 @@ export default {
     tourDescription:tourDescription,
     drivers: drivers,
     startTravelForm:startTravelForm,
+    termsUser:termsUser,
+    termsDriver:termsDriver,
     footerPage:FooterPage,
 }
