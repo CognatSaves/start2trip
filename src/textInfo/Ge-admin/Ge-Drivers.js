@@ -241,66 +241,66 @@ const driverProfileRegistration = {
             newTourPeople: "ადგილების რაოდენობა",
             uploadPhoto: "ფოტოს ჩატვირთვა",
             addTour: "ტურის დამატება",
-            cancel: "Отмена(GEO)",
+            cancel: "გაუქმება",
 
         },
         filledCardInformationMenu: {
-            deleteTour: "Удалить(GEO)",
-            tourEdit: "Редактировать(GEO)",
-            tourDeactivate: "Деактивировать(GEO)",
-            tourActivate: "Активировать(GEO)"
+            deleteTour: "წაშლა",
+            tourEdit: "რედაქტირება",
+            tourDeactivate: "დეაქტივირება",
+            tourActivate: "გააქტივება"
         },
         cardInformation: {
-            emptySeats: "Свободных мест(GEO)"
+            emptySeats: "თავისუფალი ადგილების"
         }
 
     },
     DriverProfileTrevelHistory: {
-        customer: "Клиент(GEO)",
-        venue: "Место встречи(GEO)",
-        costOfTravel: "Стоимость поездки(GEO)",
-        comment: "Комментарий(GEO)",
+        customer: "კლიენტი",
+        venue: "შეხვედრის ადგილი",
+        costOfTravel: "მოგზაურობის ღირებულება",
+        comment: "კომენტარი",
     },
     DriverProfileHistory: {
-        upcoming: "Предстоящие(GEO)",
-        story: "История(GEO)",
+        upcoming: "მოსალოდნელი",
+        story: "ისტორია",
     },
     DriverProfileBilling: {
         currentBalance: {
-            currentBalanceText: 'Текущий баланс(GEO)',
-            personalAccount: 'Лицевой счёт(GEO)',
-            cardPayments: 'Оплачено картами(GEO)',
-            partnerPayments: 'Партнёрские начисления(GEO)',
-            withdrawnTotal: 'Всего снято(GEO)',
-            accountTotal: 'Всего на счету(GEO)',
-            fundsWithdrawal: 'Вывод средств(GEO)',
-            receivedByCash: 'Получено наличными за все время(GEO)'
+            currentBalanceText: 'მიმდინარე ბალანსი',
+            personalAccount: 'პირადი ანგარიში',
+            cardPayments: 'გადახდილია ბარათებით',
+            partnerPayments: 'პარტნიორული დარიცხვები',
+            withdrawnTotal: 'სულ მოხსნილია',
+            accountTotal: 'სულ ანგარიშზე',
+            fundsWithdrawal: 'თანხის განაღდება',
+            receivedByCash: 'მიღებულია ნაღდი ანგარიშით'
         },
         systemPayments: {
-            systemPaymentsText: 'Оплата за пользование системой (всё время)(GEO)',
-            cardCommission: 'Комиссия с карт(GEO)',
-            cashCommission: 'Комиссия с наличных(GEO)',
-            payedPart: 'Оплачено(GEO)',
-            systemPaymentsTotal: 'Итого(GEO)',
-            payButtonText: 'Оплатить(GEO)',
-            systemPaymentInfo: 'Для поддержания работоспособности сервиса с каждой поездки взимается комиссия. Для продолжения пользования системой, Вам необходимо оплатить счет до 5 числа каждого месяца.(GEO)'
+            systemPaymentsText: 'სისტემით სარგებლობის ფასის გადახდა',
+            cardCommission: 'ბარათების კომისია',
+            cashCommission: 'ნაღდი ფულის კომისია',
+            payedPart: 'გადახდილია',
+            systemPaymentsTotal: 'სულ',
+            payButtonText: 'გადახდა',
+            systemPaymentInfo: 'სერვისის შრომისუნარიანობის ხელშესაწყობად ყოველი მოგზაურობიდან ამოიღება საკომისიო. სისტემით სარგებლობის გასაგრძელებლად აუცილებელია გადაიხადოთ ანგარიში ყოველი თვის 5 რიცხვამდე'
         },
         accountOperations: {
-            accountOperationsText: 'Операции по счёту(GEO)',
-            forPeriod: 'За период(GEO)',
-            searchButton: 'Просмотреть(GEO)',
+            accountOperationsText: 'ანგარიშის ოპერაციები',
+            forPeriod: 'პერიოდში',
+            searchButton: 'ნახვა',
             infoTableText: {
-                payedByCash: 'Оплачено картами(GEO)',
-                payedByCard: 'Оплата по картам(GEO)',
-                payedByPartners: 'Партнёрские начисления(GEO)',
-                payedForPeriod: 'Всего за период(GEO)'
+                payedByCash: 'გადახდილია ბარათებით',
+                payedByCard: ',გადახდა ბარათებით',
+                payedByPartners: ',პარტნიორული დარიცხვები',
+                payedForPeriod: 'სულ პერიოდში'
             },
             valueTableText: [
-                'ID транзакции(GEO)',
-                'Тип оплаты(GEO)',
-                'Сумма(GEO)',
-                'Дата платежа(GEO)',
-                'ID поездки(GEO)'
+                'გარიგების ID',
+                'გადახდის ტიპი',
+                'თანხა',
+                'გადახდის თარიღი',
+                'ID მოგზაურობები'
             ]
         }
     }

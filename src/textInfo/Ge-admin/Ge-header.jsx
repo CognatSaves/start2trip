@@ -1,28 +1,28 @@
 const header = {
     lang: "GEO",
     modalUserType:{
-        selectAccountTypeText: 'Выберите тип вашего аккаунта(GEO)',       
+        selectAccountTypeText: 'აირჩიეთ თქვენი აკაუნტის ტიპი',       
     },
     modalCountrySelect:{
-        selectCountryText: 'ВЫБЕРИТЕ ВАШУ СТРАНУ(GEO)'
+        selectCountryText: 'აირჩიეთ თქვენი ქვეყანა'
     },
     menuElements:[
-        "Маршруты(GEO)","Места(GEO)","Туры(GEO)"
+        "მარშრუტები","ადგილები","ტურები"
     ],
     burgerMenu:{
-        profile: 'Профиль(GEO)',
-        trips: 'Мои поездки(GEO)',
-        settings: 'Настройки(GEO)',
-        partnership: 'Партнерская программа(GEO)',
-        exit: 'Выйти(GEO)',
-        enter: 'Войти(GEO)',
-        burgerEnter:"Войти или создать профиль(GEO)",
-        titlesName:["Настройки","Сервисы","Профиль","Полезные ссылки"],
-        settingsDrop:["Сменить язык","Сменить валюту"],
-        services:["Маршруты","Туры","Места"],
-        usefulLinks:["О сервисе"," Партнерам","Лицензионное соглашение","Помощь","Контакты"],
+        profile: 'პროფილი',
+        trips: 'ჩემი მოგზაურობები',
+        settings: 'პარამეტრები',
+        partnership: 'პარტნიორული პროგრამა',
+        exit: 'გამოსვლა',
+        enter: 'შესვლა',
+        burgerEnter:"შესვლა ან პროფილის შექმნა",
+        titlesName:["პარამეტრები","მომსახურება","ანგარიში","სასარგებლო ბმულები"],
+        settingsDrop:["ენის შეცვლა","ვალუტის შეცვლა"],
+        services:["მარშრუტები","ტურები","ადგილები"],
+        usefulLinks:["მომსახურების შესახებ"," პარტნიორებისთვის","სალიცენზიო ხელშეკრულება","დახმარება","საკონტაქტო ინფორმაცია"],
     },
-    toPageStart: 'В начало страницы(GEO)'
+    toPageStart: 'გვერდის დასაწყისში'
 }
 
 export default header;
