@@ -9,6 +9,7 @@ import DriverProfileRegistration from '../driverProfileRegistration/DriverProfil
 import UserProfileRegistration from '../UserProfile/UserProfileRegistration';
 import AgencyProfile from '../AgencyProfile/AgencyProfile';
 import Cookies from 'universal-cookie';
+import {Helmet} from 'react-helmet';
 const cookies = new Cookies();
 
 class AccountRedirectorClass extends React.Component{
@@ -74,7 +75,15 @@ class AccountRedirectorClass extends React.Component{
         
         if(!profile.email){
             return(
-                <DriverRefreshIndicator isRefreshExist={true} isRefreshing={true} isGoodAnswer={true}/>
+                <React.Fragment>
+                    <Helmet>
+                        <title>Tripfer in adminka</title>
+                        <meta name="description" content="Tripfer in header" />
+                        <link rel="icon" sizes="any" type="image/svg+xml" href="favicon.svg" />
+                     </Helmet>
+                
+                    <DriverRefreshIndicator isRefreshExist={true} isRefreshing={true} isGoodAnswer={true}/>
+                </React.Fragment>
             )
         }
         else{
@@ -84,6 +93,12 @@ class AccountRedirectorClass extends React.Component{
             if(parseLocationPathnameResult){
                 return (
                     <React.Fragment>
+                        <Helmet>
+                            <title>Tripfer in adminka</title>
+                            <meta name="description" content="Tripfer in header" />
+                            <link rel="icon" sizes="any" type="image/svg+xml" href="favicon.svg" />
+                        </Helmet>
+
                         <Route path="/account/driver" component={DriverProfileRegistration} />
                         <Route path="/account/user" component={UserProfileRegistration} />
                         <Route path="/account/agency" component={AgencyProfile}/>

@@ -3,7 +3,7 @@ import Header from '../header/Header';
 import './ForgotPassword.css'
 import requests from '../../config';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
-
+import {Helmet} from 'react-helmet';
 class ForgotPassword extends React.Component {
     constructor(props) {
         super(props);
@@ -85,6 +85,11 @@ class ForgotPassword extends React.Component {
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={true} isGoodAnswer={true} />
                 <div className="forgotPasswordBody d-flex flex-column align-items-center">
                     <Header driver={false} history={this.props.history} />
+                    <Helmet>
+                        <title>Tripfer forgot password</title>
+                        <meta name="description" content="Tripfer in header" />
+                        <link rel="icon" sizes="any" type="image/svg+xml" href="favicon.svg" />
+                    </Helmet>
                     {this.state.isGood ?
                         <div className="forgotPasswordSuccess forgotPasswordContent d-flex flex-column align-items-center col-md-7 col-11">
                             <span>Спасибо! Информация для смены пароля выслана на Ваш email.</span>

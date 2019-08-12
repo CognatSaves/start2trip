@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../header/Header';
 import requests from '../../config';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
-
+import {Helmet} from 'react-helmet';
 class ResetPassword extends React.Component {
     constructor(props) {
         super(props);
@@ -119,7 +119,11 @@ class ResetPassword extends React.Component {
         console.log(this.state);
         return (
             <React.Fragment>
-
+                <Helmet>
+                    <title>Tripfer reset password</title>
+                    <meta name="description" content="Tripfer in header" />
+                    <link rel="icon" sizes="any" type="image/svg+xml" href="favicon.svg" />
+                </Helmet>
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={true} />
                 <div className="forgotPasswordBody d-flex flex-column align-items-center">
                     <Header driver={true} history={this.props.history} />

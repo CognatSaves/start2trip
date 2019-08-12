@@ -17,6 +17,7 @@ import CommentBlock from '../TourDescription/CommentBlock.jsx';
 import TourPanel from '../TourDescription/TourPanel.jsx';
 import Cookies from 'universal-cookie';
 import { isMobileOnly } from 'react-device-detect';
+import {Helmet} from 'react-helmet';
 const cookies = new Cookies();
 
 class RouteDescriptionClass extends React.Component {
@@ -134,6 +135,11 @@ class RouteDescriptionClass extends React.Component {
         let simularPlaceBlockId = topBlockId+'4';
         return (
             <React.Fragment>
+                <Helmet>
+                    <title>Tripfer in routeDescription</title>
+                    <meta name="description" content="Tripfer in header" />
+                    <link rel="icon" sizes="any" type="image/svg+xml" href="favicon.svg" />
+                </Helmet>
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist}
                     isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
 

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import requests from '../../config';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 import Header from '../header/Header';
+import {Helmet} from 'react-helmet';
 class DriverConfirmationClass extends React.Component {
     constructor(props) {
         super(props);
@@ -86,6 +87,11 @@ class DriverConfirmationClass extends React.Component {
 
         return (
             <React.Fragment>
+                <Helmet>
+                    <title>Tripfer in DriverConfirmation</title>
+                    <meta name="description" content="Tripfer in header" />
+                    <link rel="icon" sizes="any" type="image/svg+xml" href="favicon.svg" />
+                </Helmet>
                 {
                     this.state.isRefreshExist ?
                         <DriverRefreshIndicator isRefreshExist={true} isRefreshing={true} isGoodAnswer={true} />

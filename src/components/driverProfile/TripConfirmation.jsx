@@ -4,6 +4,7 @@ import requests from '../../config';
 import '../registration/ForgotPassword.css'
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 import Header from '../header/Header';
+import {Helmet} from 'react-helmet';
 class TripConfirmationClass extends React.Component{
     constructor(props){
         super(props);
@@ -54,6 +55,11 @@ class TripConfirmationClass extends React.Component{
         console.log(this.state);
         return(
             <React.Fragment>
+                <Helmet>
+                <title>Tripfer in tripConfirmation</title>
+                <meta name="description" content="Tripfer in header" />
+                <link rel="icon" sizes="any" type="image/svg+xml" href="favicon.svg" />
+                </Helmet>
                 {
                     this.state.isRefreshExist ?
                     <DriverRefreshIndicator isRefreshExist={true} isRefreshing={true} isGoodAnswer={true}/>

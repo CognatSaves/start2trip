@@ -3,7 +3,7 @@ import RenderModalRegistration from '../header/RenderModalRegistration';
 import { Modal, ModalBody } from 'reactstrap';
 import { connect } from 'react-redux';
 import Header from '../header/Header'
-
+import {Helmet} from 'react-helmet';
 
 import './AuthRedirect.css';
 import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
@@ -60,6 +60,11 @@ class AuthRedirectClass extends React.Component {
     render() {
         return (
             <React.Fragment>
+                <Helmet>
+                <title>Tripfer in login</title>
+                <meta name="description" content="Tripfer in header" />
+                <link rel="icon" sizes="any" type="image/svg+xml" href="favicon.svg" />
+                </Helmet>
                 <div className="home_window" style={{ minHeight: "95vh" }}>
                     <Header history={this.props.history} />
                     <ModalRegistration modalRegistration={/*this.state.modalRegistration*/true} toggle={this.toggle} className={'authRedirect_background'} authorization={this.authorization} />

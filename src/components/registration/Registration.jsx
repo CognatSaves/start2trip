@@ -2,6 +2,7 @@ import React from 'react';
 import requests from '../../config';
 import axios from 'axios';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+import {Helmet} from 'react-helmet';
 class Registration extends React.Component{
     constructor(props){
         super(props);
@@ -252,6 +253,11 @@ class Registration extends React.Component{
     render(){
         return(
             <div className="d-flex" style={{zIndex: '100', position: 'absolute', width: '100%', height: '100%', backgroundColor: "#ffffff"}}>
+                <Helmet>
+                    <title>Tripfer in registration</title>
+                    <meta name="description" content="Tripfer in header" />
+                    <link rel="icon" sizes="any" type="image/svg+xml" href="favicon.svg" />
+                </Helmet>
                 <div style={{margin: 'auto'}}>
                 <DriverRefreshIndicator isRefreshExist={true} isRefreshing={true} isGoodAnswer={true} />
                 </div>

@@ -15,6 +15,7 @@ import HomePlacesPanel from './HomeBottom/HomePlacesPanel';
 import Manipulator from '../manipulator/Manipulator';
 import { setPage, setMorePagesShow } from '../../redusers/ActionPlaces';
 import Cookies from 'universal-cookie';
+import {Helmet} from 'react-helmet';
 const cookies = new Cookies();
 
 class HomeBodyBottomClass extends React.Component {
@@ -105,15 +106,20 @@ class HomeBodyBottomClass extends React.Component {
           console.log('good');
           console.log(data);
           that.props.dispatch(setRoutesList(data.routes, data.directions, data.country));
-          if (selectedDirection){
+          debugger;
+          if (selectedDirection.length>0){
             let id = findSelectedDirectionId( data.directions, selectedDirection);
             if(id!==0){
               that.props.dispatch(setSelectedDirection(id));
             }
             else{
               //если не нашли - пускаем ещё раз крутилку - если не нашли, сервер не нашёл направление-> вернул всё
+              
               that.props.globalReduser.history.push("/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+'/routes');
             }   
+          }
+          else{
+            that.props.dispatch(setSelectedDirection(''));
           }
           that.setState({
             isRefreshExist: false
@@ -133,10 +139,21 @@ class HomeBodyBottomClass extends React.Component {
     console.log('HomeBodyBottom render state=', this.state, 'props=', this.props);
     
     this.sendRequestFunc();
+    let selectedDirection=this.props.match.params.direction;
+    if(!selectedDirection){//защита от undefined
+      selectedDirection="";
+    }
     return(
       <React.Fragment>
         <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={true} isGoodAnswer={true}/>
-        
+        {
+          selectedDirection.length>0 ? 
+          <Helmet>
+            <title>Tripfer in routes with direction</title>
+            <meta name="description" content="Tripfer in header" />
+            <link rel="icon" sizes="any" type="image/svg+xml" href="favicon.svg" />
+          </Helmet> : <React.Fragment/>
+        }
         <div className="home_block col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
           <HomePopularPlaces/>
           <HomePlacesPanel/>

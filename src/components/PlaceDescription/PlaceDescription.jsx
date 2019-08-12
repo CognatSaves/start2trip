@@ -22,6 +22,7 @@ import PlacePhotoShow from './PlacePhotoShow.jsx';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 import { isMobileOnly } from 'react-device-detect'
 import Cookies from 'universal-cookie';
+import {Helmet} from 'react-helmet';
 const cookies = new Cookies();
 
 class PlaceDescriptionClass extends React.Component {
@@ -207,6 +208,11 @@ class PlaceDescriptionClass extends React.Component {
             requests.serverAddress + this.state.newPlace.place.blockListImage.url : '') + ') no-repeat';
         return (
             <React.Fragment>
+                <Helmet>
+                    <title>Tripfer in placeDescription</title>
+                    <meta name="description" content="Tripfer in header" />
+                    <link rel="icon" sizes="any" type="image/svg+xml" href="favicon.svg" />
+                </Helmet>
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
 
                 <div style={{ position: 'relative' }}>

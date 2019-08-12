@@ -395,7 +395,7 @@ ReactDOM.render(
         <MuiThemeProvider muiTheme={muiTheme}>
           <Suspense fallback={<div>Загрузка...</div>}>
             <Switch>
-              <Route path={"/"+config.routeMap+"/routes/:slug"} component={RouteDescription} />
+              <Route path={"/"+config.routeMap+"/routes/:slug"} component={RouteDescription}/>
               <Route path={"/"+config.routeMap+"/routes-:direction"} component={Home} />
               <Route path={"/"+config.routeMap+"/routes"} component={Home} />
               
@@ -419,6 +419,7 @@ ReactDOM.render(
               <Route path="/contacts" component={contacts} />
               <Route path="/affiliate-program" component={affiliateProgram} />
               <Route path="/about-service" component={AboutService} />
+              
               <Route path="/driverConfirmation/:id-:carrierId-:confirmation" component={DriverConfirmation} />
               <Route path="/tripConfirmation/:id-:userId" component={TripConfirmation} />
               <Route path="/(register|start)/" component={PartnerRegister} />

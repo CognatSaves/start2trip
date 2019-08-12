@@ -130,7 +130,7 @@ class PopularPlacesClass extends React.Component {
                                 return (
                                     <a href = {requests.frontendAddress+address}
                                      className={"col-md-2 col-7 d-flex flex-column popularPlacesEl "+(isDirSelected(element.id, this.props.placesState.selectedDirection) ? 'popularPlacesEl_selected' : '')}
-                                     onClick={(e)=>{e.preventDefault(); this.onDirClickCleared(address)}}>
+                                     onClick={(e)=>{ e.preventDefault(); this.onDirClickCleared(address)}}>
                                         <span className="popularPlacesElMes">Отменить</span>
                                         <div>
                                             <img src={element.image ? requests.serverAddress + element.image.url : ''} alt="img" />

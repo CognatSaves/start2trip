@@ -11,50 +11,19 @@ import { connect } from 'react-redux';
 import Manipulator from '../manipulator/Manipulator';
 import { setPage, setMorePagesShow,setSelectedDirection } from '../../redusers/ActionPlaces';
 
-// import Tbilisy from './pictures/tbilisi_desk.jpg'
-// import Batumi from './pictures/Batumi.-Podorozh-do-sertsya-Gruziyi-700x420.jpg'
-// import kytaisy from './pictures/Kolhidskiy-fontan.-Kutaisi.jpg'
-// import Rustavi from './pictures/Rustavi_Museum_(A._Muhranoff,_2011).jpg'
-// import samegrello from './pictures/thumb_536_1370_437_0_0_auto.jpg'
-// import Andshi from './pictures/Вид_на_деревушку_Адиши,_Грузия.jpg'
-
-
 import axios from 'axios';
 import { setPlacesList } from '../../redusers/ActionPlaces';
 import requests from '../../config';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 
 import Cookies from 'universal-cookie';
+import {Helmet} from 'react-helmet';
 const cookies = new Cookies();
 
 class PlacesClass extends React.Component {
   constructor(props) {
     super(props);
     this.state={
-      /*
-      popularPlaseArrayRender : [
-        { title: "Tbilisy", img: Tbilisy },
-        { title: "Batumi", img: Batumi },
-        { title: "kytaisy", img: kytaisy },
-        { title: "Rustavi", img: Rustavi },
-        { title: "samegrello", img: samegrello },
-        { title: "Tbilisy", img: Tbilisy },
-        { title: "Rustavi", img: Rustavi },
-        { title: "samegrello", img: samegrello },
-        { title: "Tbilisy", img: Tbilisy },
-        { title: "Andshi", img: Andshi },
-        { title: "Batumi", img: Batumi },
-        { title: "kytaisy", img: kytaisy },
-        { title: "Rustavi", img: Rustavi },
-        { title: "samegrello", img: samegrello },
-        { title: "Tbilisy", img: Tbilisy },
-        { title: "Rustavi", img: Rustavi },
-        { title: "samegrello", img: samegrello },
-        { title: "Tbilisy", img: Tbilisy },
-        { title: "Andshi", img: Andshi },
-
-      ],
-      */
       country: "",
       language: "",
       isRefreshExist: false,
@@ -127,8 +96,8 @@ class PlacesClass extends React.Component {
             //следующие строки проверяют, смогли ли мы воспользоваться slug направления, если он, конечно, был
             
             
-            if (that.state.selectedDirection && that.state.selectedDirection.length>0){
-              let id = findSelectedDirectionId( data.directions, that.state.selectedDirection);
+            if (selectedDirection.length>0){
+              let id = findSelectedDirectionId( data.directions, selectedDirection);
               if(id!==0){
                 that.props.dispatch(setSelectedDirection(id));
               }
@@ -137,7 +106,9 @@ class PlacesClass extends React.Component {
                 that.props.globalReduser.history.push("/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+'/places');
               }   
             }
-            
+            else{
+              that.props.dispatch(setSelectedDirection(''));
+            }
             that.setState({
               isRefreshExist: false
             });
@@ -161,10 +132,29 @@ class PlacesClass extends React.Component {
     console.log(this.state);
     console.log(document);
     console.log(window);*/
+    let selectedDirection=this.props.match.params.direction;
+    if(!selectedDirection){//защита от undefined
+      selectedDirection='';
+    }
     return (
       <React.Fragment>
         <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={/*this.state.isRefreshing*/true} isGoodAnswer={/*this.state.isGoodAnswer*/true}/>
-            
+
+        <Helmet>
+          <title>Tripfer in places</title>
+          <meta name="description" content="Tripfer in header" />
+          <link rel="icon" sizes="any" type="image/svg+xml" href="favicon.svg" />
+        </Helmet>
+        <div>
+          {
+            selectedDirection.length>0 ?
+            <Helmet>
+              <title>Tripfer in places with description</title>
+              <meta name="description" content="Tripfer in header" />
+              <link rel="icon" sizes="any" type="image/svg+xml" href="favicon.svg" />
+            </Helmet> : <React.Fragment/>
+          }
+        </div>
         <div className="drivers_top_background col-12 p-0">
         <Header history={this.props.history}/>
         <div className="wrapper d-flex flex-column">            

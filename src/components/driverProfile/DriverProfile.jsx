@@ -17,6 +17,7 @@ import StartTravelForm from '../startTravelForm/StartTravelForm';
 import StartTravelSuccess from '../startTravelForm/StartTravelSuccess';
 import LocationSearchInput from '../home/HomeBody/Search';
 import Cookies from 'universal-cookie';
+import {Helmet} from 'react-helmet';
 const cookies = new Cookies();
 
 class DriverProfileClass extends React.Component {
@@ -512,7 +513,15 @@ class DriverProfileClass extends React.Component {
                         /*this.props.driversState.driverCarDescription.id*/true /*this.props.storeState.languages.length>0*/ ? 
                         <div className="wrapper d-flex flex-column"/* style={{background: this.props.driversState.driverCarDescription.id ? 'transpatent' : '#fff'}}*/>
                             <div className="drivers_top_block d-flex flex-column" style={{visibility: this.props.driversState.driverCarDescription.id ? 'visible' : 'hidden'}}>
+                                {
+                                    this.props.driversState.driverCarDescription.id ? 
+                                    <Helmet>
+                                        <title>Tripfer in drivercar description</title>
+                                        <meta name="description" content="Tripfer in header" />
+                                        <link rel="icon" sizes="any" type="image/svg+xml" href="favicon.svg" />
+                                    </Helmet> : <React.Fragment/>
 
+                                }
                                 <DriverInfo element={driver} />
                                 
                                 <div className="drivers_route col-12 d-flex " >

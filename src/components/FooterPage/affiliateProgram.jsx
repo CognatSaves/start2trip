@@ -9,7 +9,7 @@ import IT_link from '../media/IT_link.svg'
 import fn_stock from '../media/fn_stock.svg'
 
 import Header from '../header/Header';
-
+import {Helmet} from 'react-helmet';
 
 class affiliateProgramClass extends React.Component {
     constructor(props) {
@@ -59,6 +59,11 @@ class affiliateProgramClass extends React.Component {
         return (
             <React.Fragment>
                 <Header driver={true} history={this.props.history} />
+                <Helmet>
+                    <title>Tripfer affiliateProgram</title>
+                    <meta name="description" content="Tripfer in header" />
+                    <link rel="icon" sizes="any" type="image/svg+xml" href="favicon.svg" />
+                </Helmet>
                 <div className="wrapper">
                     <div className="affiliateProgram" >
                         <div className="affiliateProgram_Title col-12 p-0">

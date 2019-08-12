@@ -50,7 +50,7 @@ class HomeClass extends React.Component {
       <React.Fragment>
 
         <Helmet>
-          <title>Tripfer in home</title>
+          <title>Tripfer in routes</title>
           <meta name="description" content="Tripfer in header" />
           <link rel="icon" sizes="any" type="image/svg+xml" href="favicon.svg" />
         </Helmet>

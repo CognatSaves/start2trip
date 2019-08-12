@@ -7,7 +7,7 @@ import crossIconModal from '../media/closeGray.svg'
 import './AuthRedirect.css';
 import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 import RenderModalCountry from '../header/RenderModalCountry'
-
+import {Helmet} from 'react-helmet';
 class AuthModalCountryClass extends React.Component {
     constructor(props) {
         super(props);
@@ -55,6 +55,11 @@ class AuthModalCountryClass extends React.Component {
             <React.Fragment>
                 <div className="home_window" style={{ minHeight: "95vh" }}>
                     <Header history={this.props.history} />
+                    <Helmet>
+                        <title>Tripfer in countrySelect</title>
+                        <meta name="description" content="Tripfer in header" />
+                        <link rel="icon" sizes="any" type="image/svg+xml" href="favicon.svg" />
+                    </Helmet>
                     <Modal isOpen={true}>
                         <ModalBody>
                             <div className="d-flex flex-column col-12">

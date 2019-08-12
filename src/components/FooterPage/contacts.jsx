@@ -7,7 +7,7 @@ import placeholderSvg from '../media/placeholder.svg'
 import webSvg from '../media/web.svg'
 import Header from '../header/Header';
 import { isMobileOnly } from 'react-device-detect';
-
+import {Helmet} from 'react-helmet';
 
 class contactsClass extends React.Component {
     constructor(props) {
@@ -24,6 +24,11 @@ class contactsClass extends React.Component {
     render() {
         return (
             <React.Fragment>
+                <Helmet>
+                    <title>Tripfer in contacts</title>
+                    <meta name="description" content="Tripfer in header" />
+                    <link rel="icon" sizes="any" type="image/svg+xml" href="favicon.svg" />
+                </Helmet>
                 <Header driver={true} history={this.props.history} />
                 <div className="wrapper">
                     <div className="contacts d-flex" >
