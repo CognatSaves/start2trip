@@ -3,21 +3,13 @@ import { connect } from 'react-redux';
 import Header from '../header/Header'
 import {Route} from 'react-router-dom';
 import AgencyProfileNavigation from './AgencyProfileNavigation';
-// import AgencyProfileBasicInformation from './AgencyProfileBasicInformation';
-// import AgencyProfileAffiliateProgramm from './AgencyProfileAffiliateProgramm';
-//  import AgencyProfileHistory from './AgencyProfileHistory';
-// import AgencyProfileDrivers from './AgencyProfileDrivers';
-// import AgencyProfileSettings from './AgencyProfileSettings';
-// import AgencyProfileTour from './AgencyProfileTour';
-// import AgencyProfileFeedback from './AgencyProfileFeedback';
-// import AgencyProfileBilling from './AgencyProfileBilling';
 
 import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 import requests from '../../config';
 import getUserData from '../driverProfileRegistration/DriverProfileRequest';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 import {changeLanguagePart} from '../../redusers/Action';
-import FirstEnterModal from '../home/FirstEnterModal';
+
 
 //import css
 import '../driverProfileRegistration/DriverProfileRegistration.css';
@@ -44,6 +36,7 @@ const AgencyProfileSettings = lazy(()=> import('./AgencyProfileSettings'));
 const AgencyProfileTour = lazy(()=> import('./AgencyProfileTour'));
 const AgencyProfileFeedback = lazy(()=> import('./AgencyProfileFeedback'));
 const AgencyProfileBilling = lazy(()=> import('./AgencyProfileBilling'));
+const FirstEnterModal = lazy(()=> import('../home/FirstEnterModal'));
 
 class AgencyProfileClass extends React.Component{
     constructor(props){
@@ -63,10 +56,12 @@ class AgencyProfileClass extends React.Component{
         if(this.props.globalReduser.profile.isAgency){
             return(
                 <React.Fragment>
+                    <Suspense fallback={<div>Загрузка...</div>}>
                 {
                     this.state.accountEnter ?
                     <FirstEnterModal whatRender="agency"/> : <React.Fragment/>
                 }
+                </Suspense>
                 <Header driver={true} history={this.props.history} />
                 <AgencyProfileNavigation/>
                 <div className="registrationWrapper d-flex flex-column col-12 p-0">

@@ -9,14 +9,19 @@ class LicenseAgreementClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            changeTerms: true,
         }
-
-
+        window.scroll({
+            top: 0, 
+            left: 0, 
+            behavior: 'smooth'
+          });
     }
 
     render() {
-        let text = this.props.storeState.languageTextMain.footerPage
+        let textUser = this.props.storeState.languageTextMain.termsUser
+        let textDriver = this.props.storeState.languageTextMain.termsDriver
+        let text = this.props.storeState.languageTextMain.footerPage.LicenseAgreement
         return (
             <React.Fragment>
                 <Helmet>
@@ -26,8 +31,13 @@ class LicenseAgreementClass extends React.Component {
                 </Helmet>
                 <Header driver={true} history={this.props.history} />
                 <div className="wrapper">
-                    <div className="LicenseAgreement d-flex" >
-                       {text()}
+                    
+                    <div className="LicenseAgreement d-flex flex-column" >
+                    <div className="d-flex justify-content-end pb-4 col-12">
+                        <span className={this.state.changeTerms ? "LicenseAgreementPanel-active LicenseAgreementPanel":"LicenseAgreementPanel"} onClick={() => { this.setState({ changeTerms: !this.state.changeTerms }) }}>{text.users}</span>
+                        <span className={!this.state.changeTerms ? "LicenseAgreementPanel-active LicenseAgreementPanel":"LicenseAgreementPanel"} onClick={() => { this.setState({ changeTerms: !this.state.changeTerms }) }}>{text.partners}</span>
+                    </div>
+                        {this.state.changeTerms ? textUser() : textDriver()}
                     </div>
                 </div>
             </React.Fragment>

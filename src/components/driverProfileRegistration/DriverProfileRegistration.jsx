@@ -27,7 +27,7 @@ import requests from '../../config';
 import getUserData from './DriverProfileRequest';
 import DriverRefreshIndicator from './DriverRefreshIndicator';
 import {changeLanguagePart} from '../../redusers/Action';
-import FirstEnterModal from '../home/FirstEnterModal';
+// import FirstEnterModal from '../home/FirstEnterModal';
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
@@ -39,7 +39,7 @@ const DriverProfileFeedback = lazy(()=> import('./DriverProfileFeedback'));
 const DriverProfileSettings = lazy(()=> import('./DriverProfileSettings'));
 const DriverProfileBilling = lazy(()=> import('./DriverProfileBilling'));
 const DriverProfileAffiliateProgram = lazy(()=> import('./DriverProfileAffiliateProgram'));
-
+const FirstEnterModal = lazy(()=> import('../home/FirstEnterModal'));
 
 class DriverProfileRegistrationClass extends React.Component {
   constructor(props) {
@@ -63,10 +63,12 @@ class DriverProfileRegistrationClass extends React.Component {
     if(this.props.globalReduser.profile.isDriver){
       return(
         <React.Fragment>
+            <Suspense fallback={<div>Загрузка...</div>}>
         {
           this.state.accountEnter ?
           <FirstEnterModal whatRender="driver"/> : <React.Fragment/>
         }
+        </Suspense>
         <Header driver={true} history={this.props.history} />
         <DriverProfileNavigation />
         <div className="registrationWrapper d-flex flex-column col-12 p-0">

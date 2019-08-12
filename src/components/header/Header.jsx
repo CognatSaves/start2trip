@@ -696,7 +696,7 @@ class HeaderClass extends React.Component {
                   <div className="burgerMenuBlock d-flex flex-column justify-content-center align-items-start col-11">
                     <Link to="/about-service" className="border-bottom logoIcon" >{textInfo.burgerMenu.usefulLinks[0]}</Link>
                     <Link to="/affiliate-program" className="border-bottom partner" >{textInfo.burgerMenu.usefulLinks[1]}</Link>
-                    <Link to="" className="border-bottom contract" >{textInfo.burgerMenu.usefulLinks[2]}</Link>
+                    <Link to="/terms" className="border-bottom contract" >{textInfo.burgerMenu.usefulLinks[2]}</Link>
                     <Link to="" className="border-bottom questionMarkGray" >{textInfo.burgerMenu.usefulLinks[3]}</Link>
                     <Link to="/contacts" className="phoneBook " >{textInfo.burgerMenu.usefulLinks[4]}</Link>
                   </div>
