@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import './header_css.css'
 
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
-import RenderModalCountry from './RenderModalCountry'
+// import RenderModalCountry from './RenderModalCountry'
 import RenderModalRegistration from './RenderModalRegistration'
 import mapWorldIcon from '../media/mapWorld.svg'
 import { connect } from 'react-redux';
@@ -14,7 +14,7 @@ import { Modal, ModalBody } from 'reactstrap';
 import requests from '../../config';
 import axios from 'axios';
 import { setUser, setActiveCurr, setActiveLang, setModalRegister, setActiveLangAdmin, modalCountryDispatch } from '../../redusers/Action';
-import { disablePageScroll, clearQueueScrollLocks, enablePageScroll } from 'scroll-lock';
+// import { disablePageScroll, clearQueueScrollLocks, enablePageScroll } from 'scroll-lock';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 import { whichPageRenderHistory, whichPageRender } from "../../redusers/ActionGlobal"
@@ -30,6 +30,7 @@ import dealIcon from '../media/deal.svg'
 import wheelIcon from '../media/wheel.svg'
 
 const cookies = new Cookies();
+const RenderModalCountry = lazy(() => import('./RenderModalCountry'));
 
 const ModalRegistration = (props) => {
   let { modalRegistration, toggle, className, authorization } = props;
@@ -202,7 +203,9 @@ const CountrySelect = (props) => {
           </div>
           <div className="modalCountry d-flex flex-column align-items-center mb-5">
             <span className="mb-4">{textInfo.modalCountrySelect.selectCountryText}</span>
+            <Suspense fallback={<div>Загрузка...</div>}>
             <RenderModalCountry close={toggleModalCountry} />
+            </Suspense>
           </div>
         </div>
       </ModalBody>
