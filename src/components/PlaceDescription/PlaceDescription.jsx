@@ -164,12 +164,12 @@ class PlaceDescriptionClass extends React.Component {
             let that = this;
             axios.get(requests.showPlace + "?slug=" + (slug ? slug : '')+"&country="+cookies.get('country',{path: '/'})/*+"&lang="+this.props.storeState.languages[this.props.storeState.activeLanguageNumber].id*/)
                 .then(response => {
-                    debugger;
+                    
                     console.log(response);
                     return response.data;
                 })
                 .then(data => {
-                    debugger;
+                    
                     if (data.error) {
                         console.log("bad");
                         throw data.error;
@@ -189,7 +189,7 @@ class PlaceDescriptionClass extends React.Component {
                     }
                 })
                 .catch(error => {
-                    debugger;
+                    
                     console.log('get wasted answer');
                     that.props.globalReduser.history.push('/404');
                 });

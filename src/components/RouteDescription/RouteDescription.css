@@ -86,7 +86,14 @@
     padding: 5px!important;
     cursor: not-allowed;
 }
-
+.routeTravelBlock_change {
+    color: #304269;
+}
+.routeTravelBlock_change:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    color: #ff6600;
+}
 @media (max-width: 900) {}
 
 @media (max-width: 560px) {

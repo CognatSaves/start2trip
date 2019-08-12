@@ -434,7 +434,8 @@ class RouteMenuClass extends React.Component {
       let isEmptyBlockExist = false;
       let isFindAll = isFindAllElems(this.props.storeState.cities);
       if(this.props.storeState.cities.length>0){
-        if( isFindAll && !isEmptyBlockExist){//нашил все города без затёртых - всё корректно
+        
+        if( isFindAll && !isEmptyBlockExist && this.state.date){//нашил все города без затёртых - всё корректно
 
           this.requestFunction();     
         }
@@ -447,6 +448,13 @@ class RouteMenuClass extends React.Component {
             })
           }
         }*/
+        else{
+          if(isFindAll && !isEmptyBlockExist){//всё на месте, кроме даты - пускать нельзя
+            this.setState({
+              isLoaded: true
+            })
+          }
+        }
       }
       else{
         this.setState({

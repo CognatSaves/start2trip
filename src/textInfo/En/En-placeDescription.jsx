@@ -13,7 +13,8 @@ let placeDescription = {
          fragmentName: 'How to get there',
          startPointPlaceholder: 'Enter Departure Point',
          startDate: "Departure Date",
-         lookAvailable: 'SEE OFFERS'
+         lookAvailable: 'SEE OFFERS',
+         goToEdit: 'Go to edit'
      },
      placeDescription: {
          variantsArray: ["Description", "Photos", "How to get there", "You may be interested in", "Reviews"]

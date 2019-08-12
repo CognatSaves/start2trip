@@ -28,6 +28,7 @@ import { isMobileOnly, isMobile } from 'react-device-detect';
 import backpackIcon from '../media/backpack.svg'
 import dealIcon from '../media/deal.svg'
 import wheelIcon from '../media/wheel.svg'
+
 const cookies = new Cookies();
 
 const ModalRegistration = (props) => {
@@ -618,6 +619,11 @@ class HeaderClass extends React.Component {
     // let flagMenu = false;
     return (
       <React.Fragment>
+        
+
+
+        
+
         <ModalRegistration modalRegistration={this.props.storeState.modalRegistration} toggle={this.toggleModalRegistration} className={this.props.className} authorization={this.authorization} />
         <CountrySelect textInfo={textInfo} modalCountry={this.state.modalCountry} toggleModalCountry={this.toggleModalCountry} className={this.props.className} />
         {

@@ -42,7 +42,7 @@ class PlaceTravelBlockClass extends React.Component{
         }
         else{
             this.setState({
-                isStartHighlighted: this.state.startPoint.length>0 ? false : true,
+                isStartHighlighted: this.state.startPlace.point.length>0 ? false : true,
                 isDateHighlighted: this.state.date!=='' ? false : true
             })
         }   
@@ -74,7 +74,7 @@ class PlaceTravelBlockClass extends React.Component{
                             + (this.state.isStartHighlighted ? 'placesDescription_travelBlock_highlighted' : '')} 
                             onClick={()=>{if(this.state.isStartHighlighted){this.setState({isStartHighlighted: false})}}}>
                                 <div className="placesDescription_travelBlock_icon placesDescription_position" />
-                                <LocationSearchInput address={this.state.startPlace.point} changeCity={(index, value,extraData)=>{debugger; this.setState({startPlace: {point:value,lat: extraData.location.lat, long: extraData.location.long}})}}
+                                <LocationSearchInput address={this.state.startPlace.point} changeCity={(index, value,extraData)=>{ this.setState({startPlace: {point:value,lat: extraData.location.lat, long: extraData.location.long}})}}
                                   classDropdown="searchElement_style" classInput={"travelBlockSearch"} placeholder={textInfo.startPointPlaceholder}
                                   isoCountryMap={this.props.storeState.isoCountryMap}/>   
                             </div>

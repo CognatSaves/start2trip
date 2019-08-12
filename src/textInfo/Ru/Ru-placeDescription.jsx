@@ -12,7 +12,8 @@ let placeDescription = {
         fragmentName: 'Как добраться',
         startPointPlaceholder: 'Введите место отправления',
         startDate:"Дата отправления",
-        lookAvailable: 'СМОТРЕТЬ ПРЕДЛОЖЕНИЯ'
+        lookAvailable: 'СМОТРЕТЬ ПРЕДЛОЖЕНИЯ',
+        goToEdit: 'Перейти к редактированию'
     },
     placeDescription:{
         variantsArray:["Описание","Фотографии","Как добраться","Вас может заинтересовать","Отзывы"]

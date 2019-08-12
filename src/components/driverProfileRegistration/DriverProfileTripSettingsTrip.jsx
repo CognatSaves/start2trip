@@ -138,6 +138,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                 console.log('body before json');
                 console.log(value);
                 let body = JSON.stringify(value);
+                
                 fetch(requests.travelsettingsUpdateRequest, {
                     method: 'PUT', body: body,
                     headers: { 'content-type': 'application/json', Authorization: `Bearer ${jwt}` }
@@ -153,7 +154,17 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                         else {
                             console.log("good");
                             console.log(data);
-                            that.getProfileData();
+                            
+
+                            let profile = that.props.globalReduser.profile;
+                            profile.travelsetting = data.travelsetting;
+                            profile.onWork=data.onWork;
+                            that.props.dispatch(setProfileData(profile));
+                            /*that.setState({
+                                onWork: data.travelsetting.onWork
+                            });*/
+                            that.thenFunc();
+                            //that.getProfileData();
                             //document.location.reload(true);
                             //that.state.sendResultLocal(true, {jwt:data.jwt, user: data.user});
                         }
@@ -161,9 +172,9 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                     .catch(function (error) {
                         console.log("bad");
                         console.log('An error occurred:', error);
-                        that.setState({
+                        /*that.setState({
                             onWork: that.props.globalReduser.profile.onWork
-                        });
+                        });*/
                         that.catchFunc();
                         //that.state.sendResultLocal(false,{error: error});
                     });

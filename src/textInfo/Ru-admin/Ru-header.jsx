@@ -4,7 +4,7 @@ const header = {
         selectAccountTypeText: 'Выберите тип вашего аккаунта',       
     },
     modalCountrySelect:{
-        selectCountryText: 'ВЫБЕРИТЕ ВАШУ СТРАНУ'
+        selectCountryText: 'ВЫБЕРИТЕ СТРАНУ ДЛЯ ПОИСКА ВОДИТЕЛЕЙ'
     },
     menuElements:[
         "Маршруты","Места","Туры"
@@ -15,10 +15,22 @@ const header = {
         settings: 'Настройки',
         partnership: 'Партнерская программа',
         exit: 'Выйти',
-        enter: 'Войти ',
+        enter: 'Войти',
         burgerEnter:"Войти или создать профиль",
+        titlesName:["Настройки","Сервисы","Профиль","Полезные ссылки"],
+        settingsDrop:["Сменить язык","Сменить валюту"],
+        services:["Маршруты","Туры","Места"],
+        usefulLinks:["О сервисе"," Партнерам","Лицензионное соглашение","Помощь","Контакты"],
+
+        
     },
-    toPageStart: 'В начало страницы'
+    toPageStart: 'В начало страницы',
+    pageNotFound:{
+        title:"Страница не найдена",
+        text1:"Мы искали даже на Марсе,",
+        text2:"но ничего не нашли.",
+        link:"Вернуться на главную."
+    }
 }
 
 export default header;

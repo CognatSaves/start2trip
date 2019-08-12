@@ -8,6 +8,7 @@ import StartTravelSuccess from '../startTravelForm/StartTravelSuccess'
 import DriversProperties from './DriversBody/DriversProperties/DriversProperties';
 import DriversBlock from './DriversBody/DriversBlock/DriversBlock';
 import Cookies from 'universal-cookie';
+import {Helmet} from 'react-helmet';
 const cookies = new Cookies();
 
 class DriversClass extends React.Component {
@@ -152,6 +153,16 @@ class DriversClass extends React.Component {
 
     return (
       <React.Fragment>
+      {
+        /*
+        <Helmet>
+          <title>Tripfer in drivers</title>
+          <meta name="description" content="Tripfer in drivers" />
+        </Helmet>
+
+        */
+      }
+        
         <div className="wrapper d-flex flex-column">
           <div className="drivers_bottom_background d-flex flex-column" >
           <div className="left_body_part col-12 d-flex flex-column p-0">

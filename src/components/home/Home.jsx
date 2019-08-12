@@ -14,6 +14,7 @@ import HomeBody from './HomeBody/HomeBody.jsx'
 import { isMobileOnly } from 'react-device-detect';
 import FirstEnterModal from './FirstEnterModal';
 import Cookies from 'universal-cookie';
+import {Helmet} from 'react-helmet';
 const cookies = new Cookies();
 
 
@@ -47,6 +48,17 @@ class HomeClass extends React.Component {
     let selectedDirection=this.props.match.params.direction;
     return (
       <React.Fragment>
+      {
+        /*
+        <Helmet>
+          <title>Tripfer in home</title>
+          <meta name="description" content="Tripfer in header" />
+          <link rel="icon" sizes="any" type="image/svg+xml" href="favicon.svg" />
+        </Helmet>
+
+        */
+      }
+        
         <main className="d-flex flex-column container-fluid p-0">
           {
             this.state.firstEnter ?

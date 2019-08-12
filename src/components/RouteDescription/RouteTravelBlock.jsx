@@ -19,20 +19,29 @@ class RouteTravelBlockClass extends React.Component{
     shouldComponentUpdate(nextProps, nextState){
         return JSON.stringify(this.props)!==JSON.stringify(nextProps) || JSON.stringify(this.state)!==JSON.stringify(nextState);
     }
-    lookAvailable = () =>{
+    lookAvailable = (additionalParams) =>{
         console.log('look available');
-        if(this.state.date!==''){
-            let routeDate = this.props.globalhistory.getRoute(this.props.points, this.props.storeState.languages[this.props.storeState.activeLanguageNumber].isoAutocomplete);//this.getRoute(this.props.storeState.cities);
-            let newStringCities = routeDate.route;
-            let country = routeDate.country;
-            let langISO = routeDate.langISO;
-            let dateString = this.props.globalhistory.createDateTimeString(this.state.date, true);
-            this.props.globalhistory.history.push("/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+`/drivers/${newStringCities}?date=`+dateString/*+(langISO!=='en' ? `&lang=`+langISO : ``)*/);        }
-        else{
-            this.setState({
-                isDateHighlighted: true
-            })
+        
+        let routeDate = this.props.globalhistory.getRoute(this.props.points, this.props.storeState.languages[this.props.storeState.activeLanguageNumber].isoAutocomplete);//this.getRoute(this.props.storeState.cities);
+        let newStringCities = routeDate.route;
+        let country = routeDate.country;
+        let langISO = routeDate.langISO;
+        if(additionalParams && additionalParams.noDate){
+            this.props.globalhistory.history.push("/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+`/drivers/${newStringCities}`);
         }
+        else{
+            if(this.state.date!==''){
+                let dateString = this.props.globalhistory.createDateTimeString(this.state.date, true);
+                this.props.globalhistory.history.push("/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+`/drivers/${newStringCities}?date=`+dateString);        
+            }
+            else{
+                this.setState({
+                    isDateHighlighted: true
+                })
+            }
+        }
+        
+        
     }
     setLengthTime = (travelLength, travelTime) => {
         function getLengthString(travelLength) {
@@ -125,6 +134,9 @@ class RouteTravelBlockClass extends React.Component{
                                  onClick={()=>this.lookAvailable()}>
                                     <text style={{ margin: "auto", fontSize: '16px' }} >{textInfo.lookAvailable}</text>
                                 </button>
+                            </div>
+                            <div className="d-flex col-12 " >
+                                <text className="routeTravelBlock_change" onClick={()=>this.lookAvailable({noDate: true})}>{textInfo.goToEdit}</text>
                             </div>
                         </div>
                     </div>     
