@@ -121,7 +121,12 @@ class ResetPassword extends React.Component {
             <React.Fragment>
                 <Helmet>
                     <title>{'Введите новый пароль'}</title>
-                    <meta name="description" content="Tripfer in header" />
+                    <meta name="description" content={'Введите новый пароль'} />
+                    <meta property="og:site_name" content="Tripfer" />
+                    <meta property="og:type" content="website" />
+                    <meta property="og:url" content="https://tripfer.com/" />
+                    <meta property="og:title" content={'Введите новый пароль'} />
+                    <meta property="og:description" content={'Введите новый пароль'} /> 
                 </Helmet>
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={true} />
                 <div className="forgotPasswordBody d-flex flex-column align-items-center">

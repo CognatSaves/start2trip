@@ -89,7 +89,12 @@ class DriverConfirmationClass extends React.Component {
             <React.Fragment>
                 <Helmet>
                     <title>{"Подтверждение поездки"}</title>
-                    <meta name="description" content="Tripfer in header" />
+                    <meta name="description" content="Подтверждение поездки" />
+                    <meta property="og:site_name" content="Tripfer" />
+                    <meta property="og:type" content="website" />
+                    <meta property="og:url" content="https://tripfer.com/" />
+                    <meta property="og:title" content="Подтверждение поездки" />
+                    <meta property="og:description" content="Подтверждение поездки на сайте tripfer.com" />            
                 </Helmet>
                 {
                     this.state.isRefreshExist ?

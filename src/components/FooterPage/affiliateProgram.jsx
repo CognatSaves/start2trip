@@ -62,7 +62,12 @@ class affiliateProgramClass extends React.Component {
                 <Header driver={true} history={this.props.history} />
                 <Helmet>
                     <title>{'Нашим партнёрам'}</title>
-                    <meta name="description" content="Tripfer in header" />
+                    <meta name="description" content="Нашим партнёрам" />
+                    <meta property="og:site_name" content="Tripfer" />
+                    <meta property="og:type" content="website" />
+                    <meta property="og:url" content="https://tripfer.com/affiliate-program" />
+                    <meta property="og:title" content="Нашим партнёрам" />
+                    <meta property="og:description" content="Рекомендации партнёрам сервиса tripfer.com" /> 
                 </Helmet>
                 <div className="wrapper">
                     <div className="affiliateProgram" >

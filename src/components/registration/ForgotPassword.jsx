@@ -87,7 +87,12 @@ class ForgotPassword extends React.Component {
                     <Header driver={false} history={this.props.history} />
                     <Helmet>
                         <title>{'Восстановление пароля'}</title>
-                        <meta name="description" content="Tripfer in header" />
+                        <meta name="description" content={'Восстановление пароля'} />
+                        <meta property="og:site_name" content="Tripfer" />
+                        <meta property="og:type" content="website" />
+                        <meta property="og:url" content="https://tripfer.com/" />
+                        <meta property="og:title" content={'Восстановление пароля'} />
+                        <meta property="og:description" content={'Восстановление пароля'} /> 
                     </Helmet>
                     {this.state.isGood ?
                         <div className="forgotPasswordSuccess forgotPasswordContent d-flex flex-column align-items-center col-md-7 col-11">

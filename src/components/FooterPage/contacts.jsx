@@ -27,7 +27,12 @@ class contactsClass extends React.Component {
             <React.Fragment>
                 <Helmet>
                     <title>{'Наши контакты'}</title>
-                    <meta name="description" content="Tripfer in header" />
+                    <meta name="description" content="Наши контакты" />
+                    <meta property="og:site_name" content="Tripfer" />
+                    <meta property="og:type" content="website" />
+                    <meta property="og:url" content="https://tripfer.com/contacts" />
+                    <meta property="og:title" content="Наши контакты" />
+                    <meta property="og:description" content="Наши контакты" /> 
                 </Helmet>
                 <Header driver={true} history={this.props.history} />
                 <div className="wrapper">

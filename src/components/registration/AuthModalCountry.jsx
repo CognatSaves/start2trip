@@ -60,7 +60,12 @@ class AuthModalCountryClass extends React.Component {
                     <Header history={this.props.history} />
                     <Helmet>
                         <title>{"Выберите интересующий Вас регион"}</title>
-                        <meta name="description" content="Tripfer in header" />
+                        <meta name="description" content={"Выберите интересующий Вас регион"} />
+                        <meta property="og:site_name" content="Tripfer" />
+                        <meta property="og:type" content="website" />
+                        <meta property="og:url" content="https://tripfer.com/countrySelection" />
+                        <meta property="og:title" content={"Выберите интересующий Вас регион"} />
+                        <meta property="og:description" content={"Выберите интересующий Вас регион"} /> 
                     </Helmet>
                     <Modal isOpen={true}>
                         <ModalBody>

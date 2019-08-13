@@ -212,11 +212,21 @@ class PlaceDescriptionClass extends React.Component {
                     this.state.newPlace.local ?
                     <Helmet>
                         <title>{this.state.newPlace.local.name+', описание, оценки, отзывы'}</title>
-                        <meta name="description" content="Tripfer in header" />
+                        <meta name="description" content={this.state.newPlace.local.name+', описание, оценки, отзывы'} />
+                        <meta property="og:site_name" content="Tripfer" />
+                        <meta property="og:type" content="website" />
+                        <meta property="og:url" content="https://tripfer.com/blr-en/places/slug" /*Здесь нужно нормальный slug подключить */ />
+                        <meta property="og:title" content={this.state.newPlace.local.name+', описание, оценки, отзывы'} />
+                        <meta property="og:description" content={this.state.newPlace.local.name+', описание, оценки, отзывы'} /> 
                     </Helmet> : 
                     <Helmet>
                         <title>{"Ожидаем загрузку достопримечательности"}</title>
-                        <meta name="description" content="Tripfer in header" />
+                        <meta name="description" content={"Ожидаем загрузку достопримечательности"} />
+                        <meta property="og:site_name" content="Tripfer" />
+                        <meta property="og:type" content="website" />
+                        <meta property="og:url" content="https://tripfer.com/blr-en/places" />
+                        <meta property="og:title" content={"Ожидаем загрузку достопримечательности"} />
+                        <meta property="og:description" content={"Ожидаем загрузку достопримечательности"} /> 
                     </Helmet>
                 }
                 

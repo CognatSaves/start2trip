@@ -162,7 +162,12 @@ class HomeBodyBottomClass extends React.Component {
           selectedDirection.length>0 && name.length>0? 
           <Helmet>
             <title>{name+", маршруты, отзывы, оценки"}</title>
-            <meta name="description" content="Tripfer in header" />
+            <meta name="description" content={name+", маршруты, отзывы, оценки"} />
+            <meta property="og:site_name" content="Tripfer" />
+            <meta property="og:type" content="website" />
+            <meta property="og:url" content="https://tripfer.com/blr-en/routes" /*тут должно быть с направлением (direction) */ />
+            <meta property="og:title" content={name+", маршруты, отзывы, оценки"} />
+            <meta property="og:description" content={name+", маршруты, отзывы, оценки"} /> 
           </Helmet> : <React.Fragment/>
         }
         <div className="home_block col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0">

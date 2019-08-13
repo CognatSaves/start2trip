@@ -157,7 +157,12 @@ class PlacesClass extends React.Component {
         <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={/*this.state.isRefreshing*/true} isGoodAnswer={/*this.state.isGoodAnswer*/true}/>
         <Helmet>
           <title>{"Tripfer, достопримечательности, оценки"}</title>
-          <meta name="description" content="Tripfer in header" />
+          <meta name="description" content={"Tripfer, достопримечательности, оценки"} />
+          <meta property="og:site_name" content="Tripfer" />
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content="https://tripfer.com/blr-en/places" />
+          <meta property="og:title" content={"Tripfer, достопримечательности, оценки"} />
+          <meta property="og:description" content={"Tripfer, достопримечательности, оценки"} /> 
         </Helmet>
         {
           countryName.length>0 ? 
@@ -165,11 +170,21 @@ class PlacesClass extends React.Component {
             this.props.placesState.directions.length>0 && selectedDirection.length>0 ?     
             <Helmet>
               <title>{findSelectedDirectionName(this.props.placesState.directions, selectedDirection)+', достопримечательности, оценки'}</title>
-              <meta name="description" content="Tripfer in header" />
+              <meta name="description" content={findSelectedDirectionName(this.props.placesState.directions, selectedDirection)+', достопримечательности, оценки'} />
+              <meta property="og:site_name" content="Tripfer" />
+              <meta property="og:type" content="website" />
+              <meta property="og:url" content="https://tripfer.com/blr-en/places" /*тут нужно добавить direction *//>
+              <meta property="og:title" content={findSelectedDirectionName(this.props.placesState.directions, selectedDirection)+', достопримечательности, оценки'} />
+              <meta property="og:description" content={findSelectedDirectionName(this.props.placesState.directions, selectedDirection)+', достопримечательности, оценки'} /> 
             </Helmet> : 
             <Helmet>
               <title>{countryName+', достопримечательности, оценки'}</title>
-              <meta name="description" content="Tripfer in header" />
+              <meta name="description" content={countryName+', достопримечательности, оценки'} />
+              <meta property="og:site_name" content="Tripfer" />
+              <meta property="og:type" content="website" />
+              <meta property="og:url" content="https://tripfer.com/blr-en/places" />
+              <meta property="og:title" content={countryName+', достопримечательности, оценки'} />
+              <meta property="og:description" content={countryName+', достопримечательности, оценки'} /> 
             </Helmet>
           )
           : <React.Fragment/>

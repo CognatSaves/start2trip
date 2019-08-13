@@ -57,7 +57,12 @@ class TripConfirmationClass extends React.Component{
             <React.Fragment>
                 <Helmet>
                     <title>{"Подтверждение заказа"}</title>
-                    <meta name="description" content="Tripfer in header" />
+                    <meta name="description" content="Подтверждение заказа" />
+                    <meta property="og:site_name" content="Tripfer" />
+                    <meta property="og:type" content="website" />
+                    <meta property="og:url" content="https://tripfer.com/" />
+                    <meta property="og:title" content="Подтверждение заказа" />
+                    <meta property="og:description" content="Подтверждение заказа на сайте tripfer.com" /> 
                 </Helmet>
                 {
                     this.state.isRefreshExist ?
