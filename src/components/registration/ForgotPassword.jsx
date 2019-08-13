@@ -100,7 +100,7 @@ class ForgotPassword extends React.Component {
                                 <span>Восстановление пароля</span>
                             </div>
                             <div className="d-flex flex-md-row flex-column align-items-center col-md-8 col-12">
-                                <input className={this.state.falde ? "forgotPasswordInput-error col-md-7 col-12" : "col-md-7 col-12"} value={this.state.email} placeholder="Введите адрес Вашей почты" pattern="" onChange={(e) => { this.emailonchange(e.target.value); this.setState({ falde: false, isSended: false }) }}></input>
+                                <input className={this.state.falde ? "forgotPasswordInput-error col-md-7 col-12" : "col-md-7 col-12"} value={this.state.email} placeholder="Введите адрес Вашей почты" pattern="^([A-Za-z0-9_-]+\.)*[A-Za-z0-9_-]+@[A-Za-z0-9_-]+(\.[A-Za-z0-9_-]+)*\.[A-Za-z]{6,}$" onChange={(e) => { this.emailonchange(e.target.value); this.setState({ falde: false, isSended: false }) }}></input>
                                
                                
                                     <div className="forgotPasswordBt d-flex justify-content-center align-items-center col-md-5 col-12" onClick={() => this.sendRequest()}><span>Отправить</span></div>

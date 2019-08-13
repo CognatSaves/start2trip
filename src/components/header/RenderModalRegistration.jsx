@@ -8,16 +8,18 @@ import eyeIcon from '../media/eye.svg'
 import eyeOrange from '../media/eyeOrange.svg';
 import logoBlue from '../media/logo_tripfer_blue.svg'
 import logoWhite from '../media/logo_tripfer_white.svg'
+import './RenderModalCountry.css'
 import axios from 'axios';
 import requests from '../../config.js';
-import ReactDOM from 'react-dom';
 //import pageTextInfo from '../../textInfo/RenderModalRegistration';
 import Cookies from 'universal-cookie';
 import backpackIcon from '../media/backpack.svg'
 import dealIcon from '../media/deal.svg'
 import wheelIcon from '../media/wheel.svg'
+import Checkbox from '@material-ui/core/Checkbox';
 import { isMobileOnly } from 'react-device-detect'
 import { setModalRegister, setActiveLang } from '../../redusers/Action';
+import * as EmailValidator from 'email-validator';
 const cookies = new Cookies();
 const windowProps = "width=420,height=400,resizable=yes,scrollbars=yes,status=yes";
 
@@ -66,7 +68,7 @@ class RenderModalRegistrationClass extends React.Component {
             console.log('sendResult');
             let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
             if (type) {
-                
+
                 cookies.set("jwt", data.jwt, { path: '/', expires: date });
                 cookies.set("jwtstatus", "correct", { path: '/', expires: date });
 
@@ -135,6 +137,7 @@ class RenderModalRegistrationClass extends React.Component {
                     return response.json();
                 })
                 .then(function (data) {
+                    debugger
                     if (data.error) {
                         console.log("bad");
                         throw data.error;
@@ -146,6 +149,7 @@ class RenderModalRegistrationClass extends React.Component {
                     }
                 })
                 .catch(function (error) {
+                    debugger
                     console.log('An error occurred:', error);
                     that.state.sendResultLocal(false, { error: error });
                 });
@@ -215,7 +219,7 @@ class RenderModalRegistrationClass extends React.Component {
             sendResultLocal: sendResultLocal,
             regAnswerStatus: false,
             regProcessStatus: false,
-            isError:false,
+            isError: false,
             selectedRegistrationAnswer: 3,
             regWindowType: 0,
             nonSelectedTypeVisibility: false,//если true, то делает видимым блок (Выберите тип аккаунта)
@@ -225,7 +229,9 @@ class RenderModalRegistrationClass extends React.Component {
             socialWindow: "",
             agency: agency,
             email: "",
-            password: ""
+            password: "",
+            emailValid:true,
+            agreement:false,
         };
         let urlParams = new URLSearchParams(window.location.search);
         let token = urlParams.get('access_token');
@@ -296,9 +302,9 @@ class RenderModalRegistrationClass extends React.Component {
         })
     }
     sendRegistrationRequest(type) {
-        
+
         let partner = cookies.get('partner');
-        
+
         let email = this.state.email;
         let password = this.state.password;
         if (!type) {//в случае регистрации
@@ -308,7 +314,7 @@ class RenderModalRegistrationClass extends React.Component {
                 regProcessStatus: true
             });
             console.log("Send Request");
-            let userLang = cookies.get('userLang',{path:"/"})
+            let userLang = cookies.get('userLang', { path: "/" })
 
             let body = JSON.stringify({
                 username: email,
@@ -320,7 +326,7 @@ class RenderModalRegistrationClass extends React.Component {
                 provider: 'local',
                 partner: this.state.agency.length > 0 ? "" : partner,
                 agency: this.state.agency,
-                userLangCookies:userLang
+                userLangCookies: userLang
             });
             console.log(body);
             this.state.socialWebRegistrationRequest(body);
@@ -344,13 +350,13 @@ class RenderModalRegistrationClass extends React.Component {
             that.setState({
                 cookie: document.cookie
             });
-            
+
             window.localStorage.setItem('type', that.state.sitingIn ? "Authorization" : "Registration");
             window.localStorage.setItem('userType', that.state.sitingIn ? 0 : that.state.userType);
             window.localStorage.setItem('agency', that.state.agency);
-            window.localStorage.setItem('userLangCookies',cookies.get('userLang',{path:"/"}));
-            window.localStorage.setItem('correctAddress', address );
-            
+            window.localStorage.setItem('userLangCookies', cookies.get('userLang', { path: "/" }));
+            window.localStorage.setItem('correctAddress', address);
+
             let newWin = window.open(address, that.state.sitingIn ? "Authorization" : "Registration", windowProps);
             //newWin.localStorage.setItem('type', that.state.sitingIn ? "Authorization" : "Registration");
             //newWin.localStorage.setItem('userType', that.state.sitingIn ? 0 : that.state.userType);
@@ -367,7 +373,7 @@ class RenderModalRegistrationClass extends React.Component {
         //console.log(pageTextInfo);
         //console.log(pageTextInfo.registrationDarkBackgroundText.mobailText[lang]);
         //console.log(pageTextInfo.sitingInLightBackgroundText.mobailText[lang]);
-        
+
 
         let textInfo = this.props.storeState.languageTextMain.renderModalRegistration;
         let selectedRegistrationAnswer = this.state.selectedRegistrationAnswer;
@@ -378,198 +384,225 @@ class RenderModalRegistrationClass extends React.Component {
         return (
             <React.Fragment>
 
-                    <div className="d-md-none d-flex">
-                        <img className="registrationBodyLogoIcon" src={logoBlue} alt="logo" width="100px" height="20px" />
-                        <div className="registrationBodyLanguageBlock d-flex" >
-                            {
-                                this.props.storeState.languages.map((element, index) =>
-                                    <div className={
-                                        index === this.props.storeState.activeLanguageNumber ? "registrationBodyLanguageBlock_element_dark registrationBodyLanguageBlock_element_selected" : "registrationBodyLanguageBlock_element_dark"
-                                    } onClick={() => this.props.dispatch(setActiveLang(index))} key={element.ISO + "/" + index}>
-                                        {element.ISO}
-                                    </div>
-                                )
-                            }
-                        </div>
-                        <div className="mobailsitingInLight d-flex flex-column justify-content-center align-items-center ">
-                            <h3>{this.state.sitingIn ? textInfo.sitingInLightBackgroundText.titleSitingIn : textInfo.registrationLightBackgroundText.registrationTitle}</h3>
-                            <div style={{ display: this.state.sitingIn || this.state.regWindowType === 1 ? 'block' : 'none' }}>
-                                <p className="mb-0" style={{ textAlign: "center" }}>{textInfo.sitingInLightBackgroundText.sitingInFirstText}</p>
-                                <div className="iconBlok d-flex align-content-center">
-                                    <div /*target="windowName"*/ className="socialIcon facebookIcon" style={{ marginLeft: "auto" }}
-                                        onClick={() => {
-                                            
-                                            console.log("REQUEST ADDRESS, "+requests.facebookRequest);
-                                            //console.log("REQUEST ADDRESS");
-                                            //console.log(requests.facebookRequest);
-                                            sendRequestFunc(this, requests.facebookRequest);
-                                        }}
-                                    />
-                                    <div /*target="windowName"*/ className="socialIcon googleIcon" style={{ marginRight: "auto" }}
-                                        onClick={() => {
-                                            
-                                            console.log("REQUEST ADDRESS, "+requests.googleRequest);
-                                            //console.log("REQUEST ADDRESS");
-                                            //console.log(requests.googleRequest);
-                                            sendRequestFunc(this, requests.googleRequest);
-                                        }}
-                                    />
-                                    {
-                                        /*
-                                            <div className="socialIcon twitterIcon" style={{marginRight: "auto"}}></div>  
-                                        */
-                                    }
+                <div className="d-md-none d-flex">
+                    <img className="registrationBodyLogoIcon" src={logoBlue} alt="logo" width="100px" height="20px" />
+                    <div className="registrationBodyLanguageBlock d-flex" >
+                        {
+                            this.props.storeState.languages.map((element, index) =>
+                                <div className={
+                                    index === this.props.storeState.activeLanguageNumber ? "registrationBodyLanguageBlock_element_dark registrationBodyLanguageBlock_element_selected" : "registrationBodyLanguageBlock_element_dark"
+                                } onClick={() => this.props.dispatch(setActiveLang(index))} key={element.ISO + "/" + index}>
+                                    {element.ISO}
                                 </div>
-                                <p className="mb-1" >{this.state.sitingIn ? textInfo.sitingInLightBackgroundText.sitingInSecondText : textInfo.registrationLightBackgroundText.registrationSecondText}</p>
-                                <form id="regForm" onSubmit={(e) => {   e.preventDefault(); this.sendRegistrationRequest(this.state.sitingIn) }}>
-                                    <div className="inputIcon">
-                                        <img className="emailIcon" src={emailIcon} alt="emailIcon" width='13px' height='12px' />
-                                        <input onFocus={() => { this.setState({ regAnswerStatus: false, regProcessStatus: false }) }} className="mobailsitingInLightInput"
-                                        type="email" pattern="^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,100}$"
+                            )
+                        }
+                    </div>
+                    <div className="mobailsitingInLight d-flex flex-column justify-content-center align-items-center ">
+                        <h3>{this.state.sitingIn ? textInfo.sitingInLightBackgroundText.titleSitingIn : textInfo.registrationLightBackgroundText.registrationTitle}</h3>
+                        <div style={{ display: this.state.sitingIn || this.state.regWindowType === 1 ? 'block' : 'none' }}>
+                            <p className="mb-0" style={{ textAlign: "center" }}>{textInfo.sitingInLightBackgroundText.sitingInFirstText}</p>
+                            <div className="iconBlok d-flex align-content-center">
+                                <div /*target="windowName"*/ className="socialIcon facebookIcon" style={{ marginLeft: "auto" }}
+                                    onClick={() => {
+
+                                        console.log("REQUEST ADDRESS, " + requests.facebookRequest);
+                                        //console.log("REQUEST ADDRESS");
+                                        //console.log(requests.facebookRequest);
+                                        sendRequestFunc(this, requests.facebookRequest);
+                                    }}
+                                />
+                                <div /*target="windowName"*/ className="socialIcon googleIcon" style={{ marginRight: "auto" }}
+                                    onClick={() => {
+
+                                        console.log("REQUEST ADDRESS, " + requests.googleRequest);
+                                        //console.log("REQUEST ADDRESS");
+                                        //console.log(requests.googleRequest);
+                                        sendRequestFunc(this, requests.googleRequest);
+                                    }}
+                                />
+                                {
+                                    /*
+                                        <div className="socialIcon twitterIcon" style={{marginRight: "auto"}}></div>  
+                                    */
+                                }
+                            </div>
+                            <p className="mb-1" >{this.state.sitingIn ? textInfo.sitingInLightBackgroundText.sitingInSecondText : textInfo.registrationLightBackgroundText.registrationSecondText}</p>
+                            <form id="regForm" onSubmit={(e) => {
+                                e.preventDefault();
+                                if (EmailValidator.validate(this.state.email)) {
+                                    this.setState({emailValid:true})
+                                    this.sendRegistrationRequest(this.state.sitingIn)
+                                }else{
+                                    this.setState({emailValid:false})
+                                }
+                            }}>
+                                <div className="inputIcon">
+                                    <img className="emailIcon" src={emailIcon} alt="emailIcon" width='13px' height='12px' />
+                                    <input onFocus={() => { this.setState({ regAnswerStatus: false, regProcessStatus: false, emailValid:true }) }} className={this.state.emailValid?"mobailsitingInLightInput":"mobailsitingInLightInput mobailsitingInLightInput-error"}
+                                        type="email"
                                         placeholder={textInfo.sitingInLightBackgroundText.secondInputPlaceholderText} required
-                                        value = {this.state.email} onChange={(e)=>this.setState({email: e.target.value})} />
-                                    </div>
-                                    <div className="inputIcon">
-                                        <img className="lockIcon" src={lockIcon} alt="lockIcon" width='12px' height='12px' />
-                                        <input onFocus={() => { this.setState({  regAnswerStatus: false, regProcessStatus: false }) }} className="mobailsitingInLightInput"
+                                        value={this.state.email} onChange={(e) => this.setState({ email: e.target.value })} />
+                                </div>
+                                <div className="inputIcon">
+                                    <img className="lockIcon" src={lockIcon} alt="lockIcon" width='12px' height='12px' />
+                                    <input onFocus={() => { this.setState({ regAnswerStatus: false, regProcessStatus: false }) }} className="mobailsitingInLightInput"
                                         type={this.state.passwordType ? "password" : "text"} placeholder={textInfo.registrationLightBackgroundText.thirdInputPlaceholderText}
-                                        required  value = {this.state.password} onChange={(e)=>this.setState({password: e.target.value})}/>
-                                        <img className="eyeIcon" src={this.state.passwordType ? eyeIcon : eyeOrange} alt="eyeIcon" width='15px' height='15px' onClick={()=>this.setState({passwordType: !this.state.passwordType})}/>
-                                    </div>
-                                    <div className="registrationAnswerText" style={{ visibility: regAnswerVisibility ? 'visible' : 'hidden', color: regAnswerColor ? 'red' : 'green' }}>{regAnswerValue}</div>
+                                        required value={this.state.password} onChange={(e) => this.setState({ password: e.target.value })} />
+                                    <img className="eyeIcon" src={this.state.passwordType ? eyeIcon : eyeOrange} alt="eyeIcon" width='15px' height='15px' onClick={() => this.setState({ passwordType: !this.state.passwordType })} />
+                                </div>
+                                <div className="d-flex">
+                                    <Checkbox id="agreement" color="#fff" checked={true} />
+                                    <label htmlFor="agreement">Принимаю условия соглашения</label>
+                                </div>
+                                <div className="registrationAnswerText" style={{ visibility: regAnswerVisibility ? 'visible' : 'hidden', color: regAnswerColor ? 'red' : 'green' }}>{regAnswerValue}</div>
 
-                                    <Link onClick={()=>this.props.dispatch(setModalRegister(false))} className="forgotPasswordLink"
-                                     style={{ display: this.state.sitingIn ? "block" : "none" }} to="/forgot-password">{textInfo.sitingInLightBackgroundText.linkText}</Link>
+                                <Link onClick={() => this.props.dispatch(setModalRegister(false))} className="forgotPasswordLink"
+                                    style={{ display: this.state.sitingIn ? "block" : "none" }} to="/forgot-password">{textInfo.sitingInLightBackgroundText.linkText}</Link>
 
-                                    <div className="d-flex justify-content-center align-items-center">
-                                        <div className="returnButton" style={{ display: !this.state.sitingIn ? 'block' : 'none' }} onClick={() => this.setState({ regWindowType: 0 })}>{textInfo.registrationUserType.buttonReturn}</div>
-                                        <button disabled={this.state.regProcessStatus || this.state.regAnswerStatus} type="submit" htmlFor="regForm">{this.state.sitingIn ? textInfo.sitingInLightBackgroundText.buttonText : textInfo.registrationDarkBackgroundText.buttonText}</button>
-                                    </div>
-                                    <div className="d-flex justify-content-center align-items-center registrationCheckMenuBt">
-                                    <p>{this.state.sitingIn ? textInfo.registrationDarkBackgroundText.mobailText:textInfo.sitingInLightBackgroundText.mobailText}</p>
-                                 <span onClick={() => {  this.setState({
-                                        sitingIn: !this.state.sitingIn,
-                                        logoIconActive: !this.state.logoIconActive,
-                                        languageTextActive: !this.state.languageTextActive,
-                                    }) }}>{this.state.sitingIn ? textInfo.registrationDarkBackgroundText.mobailbuttonText : textInfo.sitingInLightBackgroundText.mobailbuttonText}</span>
-                                    
-                            </div>
-                                </form>
-                            </div>
-                            <div className=" flex-column" style={{ display: !this.state.sitingIn && this.state.regWindowType === 0 ? 'flex' : 'none' }}>
-                                <p style={{ textAlign: "center" }}>{textInfo.registrationUserType.userTypeText}</p>
-                                <p style={{ textAlign: "center",color:"#e81123" }}>{this.state.isError?textInfo.registrationUserType.userTypeTextError:""}</p>
-                                {
-                                    textInfo.registrationUserType.userTypes.map((element, index) =>
-
-                                        <div className={index ? "selectTypeBlockLine selectTypeBlock d-flex align-items-center" : "selectTypeBlock d-flex align-items-center "} style={{ visibility: (this.state.agency.length === 0 || index === 1) ? 'visible' : 'hidden' }}>
-                                            <i style={{ background: "url(" + massIcon[index] + ") no-repeat" }} />
-                                            <label className="typeCheckLabel" for={"typeCheckbox" + (index + 4)}>{element.userText}</label>
-                                            <input disabled={!(this.state.agency.length === 0 || index === 1)} className="typeCheckButton" id={"typeCheckbox" + (index + 4)} type="radio" name="raz" onClick={() => this.setState({ userType: index + 1 , isError: false})} />
-                                        </div>
-                                    )
-                                }
-                                <button onClick={() => this.state.userType === 0 ? this.setState({ isError: true}) : this.setState({ regWindowType: 1 , isError: true})}>{textInfo.registrationUserType.buttonNext}</button>
+                                <div className="d-flex justify-content-center align-items-center">
+                                    <div className="returnButton" style={{ display: !this.state.sitingIn ? 'block' : 'none' }} onClick={() => this.setState({ regWindowType: 0 })}>{textInfo.registrationUserType.buttonReturn}</div>
+                                    <button disabled={this.state.regProcessStatus || this.state.regAnswerStatus} type="submit" htmlFor="regForm">{this.state.sitingIn ? textInfo.sitingInLightBackgroundText.buttonText : textInfo.registrationDarkBackgroundText.buttonText}</button>
+                                </div>
                                 <div className="d-flex justify-content-center align-items-center registrationCheckMenuBt">
-                                <p>{this.state.sitingIn ? textInfo.registrationDarkBackgroundText.mobailText:textInfo.sitingInLightBackgroundText.mobailText}</p>
-                                 <span onClick={() => {  this.setState({
-                                        sitingIn: !this.state.sitingIn,
-                                        logoIconActive: !this.state.logoIconActive,
-                                        languageTextActive: !this.state.languageTextActive,
-                                    }) }}>{this.state.sitingIn ? textInfo.registrationDarkBackgroundText.mobailbuttonText : textInfo.sitingInLightBackgroundText.mobailbuttonText}</span>
-                                    
-                            </div>
-                            </div>
+                                    <p>{this.state.sitingIn ? textInfo.registrationDarkBackgroundText.mobailText : textInfo.sitingInLightBackgroundText.mobailText}</p>
+                                    <span onClick={() => {
+                                        this.setState({
+                                            sitingIn: !this.state.sitingIn,
+                                            logoIconActive: !this.state.logoIconActive,
+                                            languageTextActive: !this.state.languageTextActive,
+                                        })
+                                    }}>{this.state.sitingIn ? textInfo.registrationDarkBackgroundText.mobailbuttonText : textInfo.sitingInLightBackgroundText.mobailbuttonText}</span>
+
+                                </div>
+                            </form>
                         </div>
-                    </div>
-
-
-
-
-                    <div className="registrationBody d-md-flex d-none">
-                        <img className="registrationBodyLogoIcon" src={this.state.logoIconActive ? logoBlue : logoWhite} alt="logo" width="100px" height="20px" />
-                        <div className="registrationBodyLanguageBlock d-flex" >
+                        <div className=" flex-column" style={{ display: !this.state.sitingIn && this.state.regWindowType === 0 ? 'flex' : 'none' }}>
+                            <p style={{ textAlign: "center" }}>{textInfo.registrationUserType.userTypeText}</p>
+                            <p style={{ textAlign: "center", color: "#e81123" }}>{this.state.isError ? textInfo.registrationUserType.userTypeTextError : ""}</p>
                             {
-                                this.state.languageVariants.map((element, index) =>
-                                    <div className={
-                                        (this.state.languageTextActive ?
-                                            (index === this.props.storeState.activeLanguageNumber ? "registrationBodyLanguageBlock_element_light registrationBodyLanguageBlock_element_selected" : "registrationBodyLanguageBlock_element_light") :
-                                            (index === this.props.storeState.activeLanguageNumber ? "registrationBodyLanguageBlock_element_dark registrationBodyLanguageBlock_element_selected" : "registrationBodyLanguageBlock_element_dark")
-                                        )} onClick={() => this.props.dispatch(setActiveLang(index))} key={element + "/" + index}>
-                                        {element}
+                                textInfo.registrationUserType.userTypes.map((element, index) =>
+
+                                    <div className={index ? "selectTypeBlockLine selectTypeBlock d-flex align-items-center" : "selectTypeBlock d-flex align-items-center "} style={{ visibility: (this.state.agency.length === 0 || index === 1) ? 'visible' : 'hidden' }}>
+                                        <i style={{ background: "url(" + massIcon[index] + ") no-repeat" }} />
+                                        <label className="typeCheckLabel" for={"typeCheckbox" + (index + 4)}>{element.userText}</label>
+                                        <input disabled={!(this.state.agency.length === 0 || index === 1)} className="typeCheckButton" id={"typeCheckbox" + (index + 4)} type="radio" name="raz" onClick={() => this.setState({ userType: index + 1, isError: false })} />
                                     </div>
                                 )
                             }
-                        </div>
-                        <div className={"sitingInLight d-flex flex-column justify-content-center align-items-center " + this.state.sitingInLightAnimation}>
-                            <h3>{this.state.sitingIn ? textInfo.sitingInLightBackgroundText.titleSitingIn : textInfo.registrationLightBackgroundText.registrationTitle}</h3>
-                            <div style={{ display: this.state.sitingIn || this.state.regWindowType === 1 ? 'block' : 'none' }}>
-                                <p className="mb-0" style={{ textAlign: "center" }}>{textInfo.sitingInLightBackgroundText.sitingInFirstText}</p>
-                                <div className="iconBlok d-flex align-content-center">
-                                    <div /*target="windowName"*/ className="socialIcon facebookIcon" style={{ marginLeft: "auto" }}
-                                        onClick={() => {
-                                            
-                                            console.log("REQUEST ADDRESS");
-                                            console.log(requests.facebookRequest);
-                                            sendRequestFunc(this, requests.facebookRequest);
-                                        }}
-                                    />
-                                    <div /*target="windowName"*/ className="socialIcon googleIcon" style={{ marginRight: "auto" }}
-                                        onClick={() => {
-                                            
-                                            console.log("REQUEST ADDRESS");
-                                            console.log(requests.googleRequest);
-                                            sendRequestFunc(this, requests.googleRequest);
-                                        }}
-                                    />
-                                </div>
-                                <p className="mb-1" >{this.state.sitingIn ? textInfo.sitingInLightBackgroundText.sitingInSecondText : textInfo.registrationLightBackgroundText.registrationSecondText}</p>
-                                <form id="regForm" onSubmit={(e) => { e.preventDefault(); this.sendRegistrationRequest(this.state.sitingIn) }}>
-                                    <div className="inputIcon">
-                                        <img className="emailIcon" src={emailIcon} alt="emailIcon" width='13px' height='12px' />
-                                        <input onFocus={() => { this.setState({ regAnswerStatus: false, regProcessStatus: false }) }} className="sitingInLightInput"
-                                        type="email" pattern="^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,100}$"
-                                        placeholder={textInfo.sitingInLightBackgroundText.secondInputPlaceholderText}
-                                        required  value = {this.state.email} onChange={(e)=>this.setState({email: e.target.value})}/>
-                                    </div>
-                                    <div className="inputIcon">
-                                        <img className="lockIcon" src={lockIcon} alt="lockIcon" width='12px' height='12px' />
-                                        <input onFocus={() => { this.setState({ regAnswerStatus: false, regProcessStatus: false }) }} className="sitingInLightInput" 
-                                        type={this.state.passwordType ? "password" : "text"} placeholder={textInfo.registrationLightBackgroundText.thirdInputPlaceholderText}
-                                        required value = {this.state.password} onChange={(e)=>this.setState({password: e.target.value})}/>
-                                        <img className="eyeIcon" src={this.state.passwordType ? eyeIcon : eyeOrange} alt="eyeIcon" width='15px' height='15px' onClick={()=>this.setState({passwordType: !this.state.passwordType})}/>
-                                    </div>
-                                    <div className="registrationAnswerText" style={{ visibility: regAnswerVisibility ? 'visible' : 'hidden', color: regAnswerColor ? 'red' : 'green' }}>{regAnswerValue}</div>
-                                    <Link onClick={()=>this.props.dispatch(setModalRegister(false))} className="forgotPasswordLink" style={{ display: this.state.sitingIn ? "block" : "none" }} to="/forgot-password">{textInfo.sitingInLightBackgroundText.linkText}</Link>
-                                    <div className="d-flex justify-content-center align-items-end">
-                                        <div className="returnButton pr-5" style={{ display: !this.state.sitingIn ? 'block' : 'none' }} onClick={() => this.setState({ regWindowType: 0 })}>{textInfo.registrationUserType.buttonReturn}</div>
-                                        <button disabled={this.state.regProcessStatus || this.state.regAnswerStatus} type="submit" htmlFor="regForm">{this.state.sitingIn ? textInfo.sitingInLightBackgroundText.buttonText : textInfo.registrationDarkBackgroundText.buttonText}</button>
-                                    </div>
-                                </form>
-                            </div>
-                            <div className="justify-content-center flex-column" style={{ display: !this.state.sitingIn && this.state.regWindowType === 0 ? 'flex' : 'none' }}>
-                                <p style={{ textAlign: "center" }}>{textInfo.registrationUserType.userTypeText}</p>
-                                {
-                                    textInfo.registrationUserType.userTypes.map((element, index) =>
+                            <button onClick={() => this.state.userType === 0 ? this.setState({ isError: true }) : this.setState({ regWindowType: 1, isError: true })}>{textInfo.registrationUserType.buttonNext}</button>
+                            <div className="d-flex justify-content-center align-items-center registrationCheckMenuBt">
+                                <p>{this.state.sitingIn ? textInfo.registrationDarkBackgroundText.mobailText : textInfo.sitingInLightBackgroundText.mobailText}</p>
+                                <span onClick={() => {
+                                    this.setState({
+                                        sitingIn: !this.state.sitingIn,
+                                        logoIconActive: !this.state.logoIconActive,
+                                        languageTextActive: !this.state.languageTextActive,
+                                    })
+                                }}>{this.state.sitingIn ? textInfo.registrationDarkBackgroundText.mobailbuttonText : textInfo.sitingInLightBackgroundText.mobailbuttonText}</span>
 
-                                        <div className={index ? "selectTypeBlockLine selectTypeBlock d-flex align-items-center" : "selectTypeBlock d-flex align-items-center "} style={{ visibility: (this.state.agency.length === 0 || index === 1) ? 'visible' : 'hidden' }}>
-                                            <i style={{ background: "url(" + massIcon[index] + ") no-repeat" }} />
-                                            <label className="typeCheckLabel" for={"typeCheckbox" + (index + 1)}>{element.userText}</label>
-                                            <input disabled={!(this.state.agency.length === 0 || index === 1)} className="typeCheckButton" id={"typeCheckbox" + (index + 1)} type="radio" name="raz" onClick={() => this.setState({ userType: index + 1, nonSelectedTypeVisibility:false })} />
-                                        </div>
-                                    )
-                                }
-                                <div style={{visibility: this.state.nonSelectedTypeVisibility ? 'visible' : 'hidden', color: "#304269"}}>Выберите тип аккаунта</div>
-                                <button style={{marginTop: '10px'}} onClick={() => this.state.userType === 0 ? this.setState({nonSelectedTypeVisibility: true}) : this.setState({ nonSelectedTypeVisibility:false, regWindowType: 1 })}>{textInfo.registrationUserType.buttonNext}</button>
                             </div>
-                        </div>
-                        <div className={"registrationDark d-flex flex-column justify-content-center align-items-center " + this.state.registrationDarkAnimation}>
-                            <h3>{this.state.sitingIn ? textInfo.registrationDarkBackgroundText.registrationTitle : textInfo.sitingInDarkBackgroundText.titleSitingIn}</h3>
-                            <p className="mb-0">{this.state.sitingIn ? textInfo.registrationDarkBackgroundText.registrationFirstText : textInfo.sitingInDarkBackgroundText.sitingInFirstText}</p>
-                            <p>{this.state.sitingIn ? textInfo.registrationDarkBackgroundText.registrationSecondText : textInfo.sitingInDarkBackgroundText.sitingInSecondText}</p>
-                            <button onClick={() => { this.changeAnimation() }}>{this.state.sitingIn ? textInfo.registrationDarkBackgroundText.buttonText : textInfo.sitingInDarkBackgroundText.buttonText}</button>
                         </div>
                     </div>
+                </div>
+
+
+
+
+                <div className="registrationBody d-md-flex d-none">
+                    <img className="registrationBodyLogoIcon" src={this.state.logoIconActive ? logoBlue : logoWhite} alt="logo" width="100px" height="20px" />
+                    <div className="registrationBodyLanguageBlock d-flex" >
+                        {
+                            this.state.languageVariants.map((element, index) =>
+                                <div className={
+                                    (this.state.languageTextActive ?
+                                        (index === this.props.storeState.activeLanguageNumber ? "registrationBodyLanguageBlock_element_light registrationBodyLanguageBlock_element_selected" : "registrationBodyLanguageBlock_element_light") :
+                                        (index === this.props.storeState.activeLanguageNumber ? "registrationBodyLanguageBlock_element_dark registrationBodyLanguageBlock_element_selected" : "registrationBodyLanguageBlock_element_dark")
+                                    )} onClick={() => this.props.dispatch(setActiveLang(index))} key={element + "/" + index}>
+                                    {element}
+                                </div>
+                            )
+                        }
+                    </div>
+                    <div className={"sitingInLight d-flex flex-column justify-content-center align-items-center " + this.state.sitingInLightAnimation}>
+                        <h3>{this.state.sitingIn ? textInfo.sitingInLightBackgroundText.titleSitingIn : textInfo.registrationLightBackgroundText.registrationTitle}</h3>
+                        <div style={{ display: this.state.sitingIn || this.state.regWindowType === 1 ? 'block' : 'none' }}>
+                            <p className="mb-0" style={{ textAlign: "center" }}>{textInfo.sitingInLightBackgroundText.sitingInFirstText}</p>
+                            <div className="iconBlok d-flex align-content-center">
+                                <div /*target="windowName"*/ className="socialIcon facebookIcon" style={{ marginLeft: "auto" }}
+                                    onClick={() => {
+
+                                        console.log("REQUEST ADDRESS");
+                                        console.log(requests.facebookRequest);
+                                        sendRequestFunc(this, requests.facebookRequest);
+                                    }}
+                                />
+                                <div /*target="windowName"*/ className="socialIcon googleIcon" style={{ marginRight: "auto" }}
+                                    onClick={() => {
+
+                                        console.log("REQUEST ADDRESS");
+                                        console.log(requests.googleRequest);
+                                        sendRequestFunc(this, requests.googleRequest);
+                                    }}
+                                />
+                            </div>
+                            <p className="mb-1" >{this.state.sitingIn ? textInfo.sitingInLightBackgroundText.sitingInSecondText : textInfo.registrationLightBackgroundText.registrationSecondText}</p>
+                            <form id="regForm" onSubmit={(e) => {
+                                e.preventDefault();
+                                if (EmailValidator.validate(this.state.email)) {
+                                    this.sendRegistrationRequest(this.state.sitingIn)
+                                }else{
+                                    this.setState({emailValid:false})
+                                }
+                            }}>
+                                <div className="inputIcon">
+                                    <img className="emailIcon" src={emailIcon} alt="emailIcon" width='13px' height='12px' />
+                                    <input onFocus={() => { this.setState({ regAnswerStatus: false, regProcessStatus: false, emailValid:true  }) }} className={this.state.emailValid?"sitingInLightInput":"sitingInLightInput sitingInLightInput-error"}
+                                        type="email"
+                                        placeholder={textInfo.sitingInLightBackgroundText.secondInputPlaceholderText}
+                                        required value={this.state.email} onChange={(e) => this.setState({ email: e.target.value })} />
+                                </div>
+                                <div className="inputIcon">
+                                    <img className="lockIcon" src={lockIcon} alt="lockIcon" width='12px' height='12px' />
+                                    <input onFocus={() => { this.setState({ regAnswerStatus: false, regProcessStatus: false }) }} className="sitingInLightInput"
+                                        type={this.state.passwordType ? "password" : "text"} placeholder={textInfo.registrationLightBackgroundText.thirdInputPlaceholderText}
+                                        required value={this.state.password} onChange={(e) => this.setState({ password: e.target.value })} />
+                                    <img className="eyeIcon" src={this.state.passwordType ? eyeIcon : eyeOrange} alt="eyeIcon" width='15px' height='15px' onClick={() => this.setState({ passwordType: !this.state.passwordType })} />
+                                </div>
+                                <div className=" align-items-center agreement" style={{ display: !this.state.sitingIn  ?  'flex':'none' }}>
+                                    <Checkbox id="agreement" onClick={()=>{this.setState({agreement:!this.state.agreement})}} color="#fff" checked={this.state.agreement} />
+                                    <label htmlFor="agreement" onClick={()=>{this.setState({agreement:!this.state.agreement})}}>Принимаю условия соглашения</label>
+                                </div>
+                                <div className="registrationAnswerText" style={{ visibility: regAnswerVisibility ? 'visible' : 'hidden', color: regAnswerColor ? 'red' : 'green' }}>{regAnswerValue}</div>
+                                <Link onClick={() => this.props.dispatch(setModalRegister(false))} className="forgotPasswordLink" style={{ display: this.state.sitingIn ? "block" : "none" }} to="/forgot-password">{textInfo.sitingInLightBackgroundText.linkText}</Link>
+                                <div className="d-flex justify-content-center align-items-end">
+                                    <div className="returnButton pr-5" style={{ display: !this.state.sitingIn ? 'block' : 'none' }} onClick={() => this.setState({ regWindowType: 0 })}>{textInfo.registrationUserType.buttonReturn}</div>
+                                    <button disabled={this.state.regProcessStatus || this.state.regAnswerStatus || !this.state.agreement} type="submit" htmlFor="regForm">{this.state.sitingIn ? textInfo.sitingInLightBackgroundText.buttonText : textInfo.registrationDarkBackgroundText.buttonText}</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div className="justify-content-center flex-column" style={{ display: !this.state.sitingIn && this.state.regWindowType === 0 ? 'flex' : 'none' }}>
+                            <p style={{ textAlign: "center" }}>{textInfo.registrationUserType.userTypeText}</p>
+                            {
+                                textInfo.registrationUserType.userTypes.map((element, index) =>
+
+                                    <div className={index ? "selectTypeBlockLine selectTypeBlock d-flex align-items-center" : "selectTypeBlock d-flex align-items-center "} style={{ visibility: (this.state.agency.length === 0 || index === 1) ? 'visible' : 'hidden' }}>
+                                        <i style={{ background: "url(" + massIcon[index] + ") no-repeat" }} />
+                                        <label className="typeCheckLabel" for={"typeCheckbox" + (index + 1)}>{element.userText}</label>
+                                        <input disabled={!(this.state.agency.length === 0 || index === 1)} className="typeCheckButton" id={"typeCheckbox" + (index + 1)} type="radio" name="raz" onClick={() => this.setState({ userType: index + 1, nonSelectedTypeVisibility: false })} />
+                                    </div>
+                                )
+                            }
+                            <div style={{ visibility: this.state.nonSelectedTypeVisibility ? 'visible' : 'hidden', color: "#304269" }}>Выберите тип аккаунта</div>
+                            <button style={{ marginTop: '10px' }} onClick={() => this.state.userType === 0 ? this.setState({ nonSelectedTypeVisibility: true }) : this.setState({ nonSelectedTypeVisibility: false, regWindowType: 1 })}>{textInfo.registrationUserType.buttonNext}</button>
+                        </div>
+                    </div>
+                    <div className={"registrationDark d-flex flex-column justify-content-center align-items-center " + this.state.registrationDarkAnimation}>
+                        <h3>{this.state.sitingIn ? textInfo.registrationDarkBackgroundText.registrationTitle : textInfo.sitingInDarkBackgroundText.titleSitingIn}</h3>
+                        <p className="mb-0">{this.state.sitingIn ? textInfo.registrationDarkBackgroundText.registrationFirstText : textInfo.sitingInDarkBackgroundText.sitingInFirstText}</p>
+                        <p>{this.state.sitingIn ? textInfo.registrationDarkBackgroundText.registrationSecondText : textInfo.sitingInDarkBackgroundText.sitingInSecondText}</p>
+                        <button onClick={() => { this.changeAnimation() }}>{this.state.sitingIn ? textInfo.registrationDarkBackgroundText.buttonText : textInfo.sitingInDarkBackgroundText.buttonText}</button>
+                    </div>
+                </div>
             </React.Fragment>
         )
     }

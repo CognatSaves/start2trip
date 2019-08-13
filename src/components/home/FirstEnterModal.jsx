@@ -28,7 +28,7 @@ class FirstEnterModalClass extends React.Component {
         super(props);
         this.state = {
             inputChecked: [true, false, false, false],
-            openModalStart: true,
+            openModalStart: false,
             changeBtClose: false,
             renderContent: [],
             renderContentUser: [
@@ -52,10 +52,19 @@ class FirstEnterModalClass extends React.Component {
             ],
             activeWindow: 0,
         }
-
-    }
-    ChangeinputChecked = (indexEl) => {    
+        if (/HeadlessChrome/.test(window.navigator.userAgent)||/prerendercloud/.test(window.navigator.userAgent)) {
+            console.log("Chrome headless detected");
+        }else{
+            let firstEnter = cookies.get('firstEnter', { path: '/' });
+            let accountFirstEnter = cookies.get('accountFirstEnter', { path: '/' });
+            if (firstEnter === undefined || accountFirstEnter === undefined) {
+                this.state.openModalStart = true;
+            }
+        }
         
+    }
+    ChangeinputChecked = (indexEl) => {
+
         console.log(this.state.activeWindow)
         let div = document.querySelector(".modalStartInformationContent");
         if (!div) {
@@ -63,19 +72,19 @@ class FirstEnterModalClass extends React.Component {
         }
         let widthOneWindow = div.scrollWidth / this.state.renderContent.length - 2.5;
         if (indexEl || indexEl === 0) {
-            div.scrollLeft=widthOneWindow*indexEl;
+            div.scrollLeft = widthOneWindow * indexEl;
         } else {
-            div.scrollLeft = widthOneWindow*(this.state.activeWindow+1);
+            div.scrollLeft = widthOneWindow * (this.state.activeWindow + 1);
         }
 
     }
     handleClose = () => {
-        
+
         let date = new Date(Date.now() + 1000 * 3600 * 24 * 60 * 500);
-        if(this.props.whatRender==='user'){
+        if (this.props.whatRender === 'user') {
             cookies.set('firstEnter', 'no', { path: '/', expires: date });
         }
-        else{
+        else {
             cookies.set('accountFirstEnter', 'no', { path: '/', expires: date });
         }
         this.setState({
@@ -88,20 +97,20 @@ class FirstEnterModalClass extends React.Component {
         let marginLeft = e.currentTarget.scrollLeft;
         let firstOn = widthOneWindow;
         let second = widthOneWindow * 2;
-        let third = (widthOneWindow * 3)-10;
-        let fourth = (widthOneWindow * 4)-10;
+        let third = (widthOneWindow * 3) - 10;
+        let fourth = (widthOneWindow * 4) - 10;
         if (0 <= marginLeft) {
             this.setState({ activeWindow: 0 })
         }
-        if (firstOn < marginLeft&&second >= marginLeft){
+        if (firstOn < marginLeft && second >= marginLeft) {
             this.setState({ activeWindow: 1 })
             // e.currentTarget.scrollLeft = widthOneWindow;
         }
-        if (second < marginLeft&&third >= marginLeft){
-            this.setState({ activeWindow: 2 })      
+        if (second < marginLeft && third >= marginLeft) {
+            this.setState({ activeWindow: 2 })
             // e.currentTarget.scrollLeft = widthOneWindow*2;
         }
-        if (third < marginLeft&&fourth >= marginLeft){
+        if (third < marginLeft && fourth >= marginLeft) {
             this.setState({ activeWindow: 3 })
             // e.currentTarget.scrollLeft = widthOneWindow*3;
         }
@@ -111,11 +120,11 @@ class FirstEnterModalClass extends React.Component {
         }
     }
     render() {
-        if (this.state.renderContent==0) {
+        if (this.state.renderContent == 0) {
             let whatRender;
             switch (this.props.whatRender) {
                 case "user": {
-                    whatRender = this.state.renderContentUser;             
+                    whatRender = this.state.renderContentUser;
                     break;
                 }
                 case "driver": {
@@ -132,72 +141,78 @@ class FirstEnterModalClass extends React.Component {
 
         return (
             <React.Fragment>
-                {isMobileOnly ?
-                    <React.Fragment>
-                        {/* //Модалка для мобильной версии стартовая */}
-                        <div className="modalStartInformation " style={{ display: this.state.openModalStart ? "block" : "none" }} >
-                            <div className="d-flex align-items-center justify-content-end col-11 mt-3 mx-auto">
-                                <div className="modalStartInformation_logo" />
-                                <span className="modalStartInformationSkip" onClick={this.handleClose}>Пропустить</span>
-                            </div>
+                {
+                    this.state.openModalStart ?
+                        <React.Fragment>
 
-                            <div className="modalStartInformationContent d-flex align-items-start pt-4 col-12 " onScroll={(e) => { this.scrollDiv(e) }}>
-                                {this.state.renderContent.map((element, index) =>
-                                    <div className="modalStartInformationContentText d-flex flex-column align-items-center justify-content-start px-4" >
-                                        <i className="iconImg" style={{ background: "url(" + element.Icon + ")" }} />
-                                        <span>{element.textTitle}</span>
-                                        <p>{element.textP}</p>
+                            {isMobileOnly ?
+                                <React.Fragment>
+                                    {/* //Модалка для мобильной версии стартовая */}
+                                    <div className="modalStartInformation " style={{ display: this.state.openModalStart ? "block" : "none" }} >
+                                        <div className="d-flex align-items-center justify-content-end col-11 mt-3 mx-auto">
+                                            <div className="modalStartInformation_logo" />
+                                            <span className="modalStartInformationSkip" onClick={this.handleClose}>Пропустить</span>
+                                        </div>
+
+                                        <div className="modalStartInformationContent d-flex align-items-start pt-4 col-12 " onScroll={(e) => { this.scrollDiv(e) }}>
+                                            {this.state.renderContent.map((element, index) =>
+                                                <div className="modalStartInformationContentText d-flex flex-column align-items-center justify-content-start px-4" >
+                                                    <i className="iconImg" style={{ background: "url(" + element.Icon + ")" }} />
+                                                    <span>{element.textTitle}</span>
+                                                    <p>{element.textP}</p>
+                                                </div>
+                                            )}
+
+                                        </div>
+                                        <div className="d-flex justify-content-center buttonChenge mt-2 pt-2 mb-1">
+                                            {this.state.renderContent.map((element, index) =>
+                                                <span className={this.state.activeWindow == index ? "activeBtChenge" : ""} onClick={() => { this.ChangeinputChecked(index) }}></span>
+                                            )}
+                                        </div>
+                                        <div className="modalStartInformationDivNext d-flex align-items-center justify-content-center col-11 " onClick={() => { this.state.activeWindow == this.state.renderContent.length - 1 ? this.handleClose() : this.ChangeinputChecked() }}>
+                                            <span className="modalStartInformationNext">{this.state.activeWindow == this.state.renderContent.length - 1 ? "Закрыть" : "Далее"}</span>
+                                        </div>
                                     </div>
-                                )}
+                                </React.Fragment>
+                                :
+                                <Dialog
+                                    modal={this.state.openModalStart}
+                                    open={this.state.openModalStart}
+                                >
+                                    {/* // Модалка для мобильной версии стартовая */}
+                                    <div className="col-12 " >
+                                        <div className="d-flex align-items-center justify-content-end col-11 mt-3"/*  */ style={{ margin: '0 auto' }}>
+                                            <div className="modalStartInformation_logo" />
+                                            <span className="modalStartInformationSkip" onClick={this.handleClose}>Пропустить</span>
+                                        </div>
 
-                            </div>
-                            <div className="d-flex justify-content-center buttonChenge mt-2 pt-2 mb-1">
-                                {this.state.renderContent.map((element, index) =>
-                                    <span className={this.state.activeWindow == index ? "activeBtChenge" : ""} onClick={() => { this.ChangeinputChecked(index) }}></span>
-                                )}
-                            </div>
-                            <div className="modalStartInformationDivNext d-flex align-items-center justify-content-center col-11 " onClick={() => { this.state.activeWindow == this.state.renderContent.length - 1 ? this.handleClose() : this.ChangeinputChecked() }}>
-                                <span className="modalStartInformationNext">{this.state.activeWindow == this.state.renderContent.length - 1 ? "Закрыть" : "Далее"}</span>
-                            </div>
-                        </div>
-                    </React.Fragment>
-                    :
-                    <Dialog
-                        modal={this.state.openModalStart}
-                        open={this.state.openModalStart}
-                    >
-                        {/* // Модалка для мобильной версии стартовая */}
-                        <div className="col-12 " >
-                            <div className="d-flex align-items-center justify-content-end col-11 mt-3"/*  */ style={{ margin: '0 auto' }}>
-                                <div className="modalStartInformation_logo" />
-                                <span className="modalStartInformationSkip" onClick={this.handleClose}>Пропустить</span>
-                            </div>
+                                        <div className="modalStartInformationContentmodal d-flex align-items-center col-12 " onScroll={(e) => { this.scrollDiv(e) }}>
+                                            {this.state.renderContent.map((element, index) =>
+                                                <div className="modalStartInformationContentText d-flex flex-column align-items-center justify-content-start px-4" >
+                                                    <i className="iconImg" style={{ background: "url(" + element.Icon + ")" }} />
+                                                    <span>{element.textTitle}</span>
+                                                    <p>{element.textP}</p>
+                                                </div>
+                                            )}
 
-                            <div className="modalStartInformationContentmodal d-flex align-items-center col-12 " onScroll={(e) => { this.scrollDiv(e) }}>
-                                {this.state.renderContent.map((element, index) =>
-                                    <div className="modalStartInformationContentText d-flex flex-column align-items-center justify-content-start px-4" >
-                                        <i className="iconImg" style={{ background: "url(" + element.Icon + ")" }} />
-                                        <span>{element.textTitle}</span>
-                                        <p>{element.textP}</p>
+                                        </div>
+                                        <div className="d-flex justify-content-center buttonChenge mt-5 mb-4">
+                                            {this.state.renderContent.map((element, index) =>
+                                                <span className={this.state.activeWindow == index ? "activeBtChenge" : ""} onClick={() => { this.ChangeinputChecked(index) }}></span>
+                                            )}
+                                        </div>
+                                        <div className="modalStartInformationDivNext d-flex align-items-center justify-content-center col-6 " onClick={() => { this.state.activeWindow == this.state.renderContent.length - 1 ? this.handleClose() : this.ChangeinputChecked() }}>
+                                            <span className="modalStartInformationNext">{this.state.activeWindow == this.state.renderContent.length - 1 ? "Закрыть" : "Далее"}</span>
+                                        </div>
                                     </div>
-                                )}
 
-                            </div>
-                            <div className="d-flex justify-content-center buttonChenge mt-5 mb-4">
-                                {this.state.renderContent.map((element, index) =>
-                                    <span className={this.state.activeWindow == index ? "activeBtChenge" : ""} onClick={() => { this.ChangeinputChecked(index) }}></span>
-                                )}
-                            </div>
-                            <div className="modalStartInformationDivNext d-flex align-items-center justify-content-center col-6 " onClick={() => { this.state.activeWindow == this.state.renderContent.length - 1 ? this.handleClose() : this.ChangeinputChecked() }}>
-                                <span className="modalStartInformationNext">{this.state.activeWindow == this.state.renderContent.length - 1 ? "Закрыть" : "Далее"}</span>
-                            </div>
-                        </div>
+                                </Dialog>
 
-                    </Dialog>
-
+                            }
+                        </React.Fragment>
+                        :
+                        <React.Fragment />
                 }
-
-
 
             </React.Fragment>
         )
@@ -211,4 +226,4 @@ const FirstEnterModal = connect(
     }),
 )(FirstEnterModalClass);
 
-export default FirstEnterModalClass;
+export default FirstEnterModal;

@@ -150,10 +150,17 @@
     font-size: 12px;
     color: #666;
     padding-left: 35px;
+    transition: all 0.3s;
 }
 
 .inputIcon {
     position: relative;
+}
+
+.agreement label {
+    margin-bottom: 0;
+    color: #666;
+    font-size: 12px;
 }
 
 .peopleIcon {
@@ -195,6 +202,13 @@
     font-weight: 300;
     font-size: 12px;
     color: #666;
+}
+
+.sitingInLightInput-error,
+.mobailsitingInLightInput-error {
+    background: #e81123;
+    color: #fff;
+    font-weight: 500;
 }
 
 .mobailsitingInLight p,
