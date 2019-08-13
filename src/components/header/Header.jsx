@@ -193,9 +193,9 @@ const ModalUserType = (props) => {
 }
 const CountrySelect = (props) => {
   let { modalCountry, toggleModalCountry, className, textInfo } = props;
-//   if (/HeadlessChrome/.test(window.navigator.userAgent)||/prerendercloud/.test(window.navigator.userAgent)) {
-//     console.log("Chrome headless detected");
-// }else{
+  if (/HeadlessChrome/.test(window.navigator.userAgent)||/prerendercloud/.test(window.navigator.userAgent)) {
+    console.log("Chrome headless detected");
+}else{
   return (
     <Modal isOpen={modalCountry} toggle={toggleModalCountry} className={className}>
       <ModalBody>
@@ -216,7 +216,7 @@ const CountrySelect = (props) => {
   )
 }
   
-// }
+}
 
 class HeaderClass extends React.Component {
   constructor(props) {
