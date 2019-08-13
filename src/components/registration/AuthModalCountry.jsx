@@ -6,10 +6,10 @@ import mapWorldIcon from '../media/mapWorld.svg'
 import crossIconModal from '../media/closeGray.svg'
 import './AuthRedirect.css';
 import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
-// import RenderModalCountry from '../header/RenderModalCountry'
+import RenderModalCountry from '../header/RenderModalCountry'
 import { Helmet } from 'react-helmet';
 
-const RenderModalCountry = lazy(() => import('../header/RenderModalCountry'));
+// const RenderModalCountry = lazy(() => import('../header/RenderModalCountry'));
 
 class AuthModalCountryClass extends React.Component {
     constructor(props) {
@@ -71,9 +71,9 @@ class AuthModalCountryClass extends React.Component {
                                 </div>
                                 <div className="modalCountry d-flex flex-column align-items-center mb-5">
                                     <h4 className="mb-4">{"Выберите вашу страну"}</h4>
-                                    <Suspense fallback={<div>Загрузка...</div>}>
+                                    
                                         <RenderModalCountry close={() => { }} />
-                                    </Suspense>
+                                    
                                 </div>
                             </div>
                         </ModalBody>

@@ -52,15 +52,15 @@ class FirstEnterModalClass extends React.Component {
             ],
             activeWindow: 0,
         }
-        if (/HeadlessChrome/.test(window.navigator.userAgent)||/prerendercloud/.test(window.navigator.userAgent)) {
-            console.log("Chrome headless detected");
-        }else{
+        // if (/HeadlessChrome/.test(window.navigator.userAgent)||/prerendercloud/.test(window.navigator.userAgent)) {
+        //     console.log("Chrome headless detected");
+        // }else{
             let firstEnter = cookies.get('firstEnter', { path: '/' });
             let accountFirstEnter = cookies.get('accountFirstEnter', { path: '/' });
             if (firstEnter === undefined || accountFirstEnter === undefined) {
                 this.state.openModalStart = true;
             }
-        }
+        // }
         
     }
     ChangeinputChecked = (indexEl) => {
