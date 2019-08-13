@@ -61,7 +61,7 @@ class RenderModalCountryClass extends React.Component {
             <div className="countryBody d-flex flex-column flex-wrap">
                 {this.props.storeState.countries.map((element, index) =>
                     <div className="d-flex align-items-center justify-content-start p-0">
-                        <img src={element.image.url ? requests.serverAddress + element.image.url : ''} alt={element.ISO} width="15px" height="15px"/>
+                        <img src={element.image.url ? requests.serverAddressImg + element.image.url : ''} alt={element.ISO} width="15px" height="15px"/>
                         <p className="m-0 p-1" onClick={()=>{this.onSelect(element)}}>{element.defaultName}</p>
                     </div>
                 )}

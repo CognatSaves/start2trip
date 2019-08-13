@@ -36,7 +36,7 @@ class Registration extends React.Component{
                 window.opener.localStorage.setItem('errorId', 0);
                 window.opener.document.cookie=jwtstring;
                 window.opener.document.cookie=jwtstatus;
-                let avatarString="avatarUrl="+requests.serverAddress+data.user.avatarUrl+"; expires="+date.toString()+"; path=/;";
+                let avatarString="avatarUrl="+requests.serverAddressImg+data.user.avatarUrl+"; expires="+date.toString()+"; path=/;";
                 let usernameString = "userName="+data.user.userName+"; expires="+date.toString()+"; path=/;";
                 let usertypeString = "userType="+data.user.userType+"; expires="+date.toString()+"; path=/;";
                 window.opener.document.cookie=avatarString;

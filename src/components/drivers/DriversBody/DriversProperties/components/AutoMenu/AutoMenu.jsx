@@ -105,7 +105,7 @@ class AutoMenuClass extends React.Component {
                                 <Checkbox color="#fff" checked={this.state.carValue.indexOf(index) > -1} />
                                 <ListItemText primary={getCorrectTypeName(element,language)} />
                                 <div className="autoMenu_element_picture">
-                                    <img src={requests.serverAddress+element.carTypeImage} width="80%" height="80%" alt={"auto_" + index}></img>
+                                    <img src={requests.serverAddressImg+element.carTypeImage} width="80%" height="80%" alt={"auto_" + index}></img>
                                 </div>
                             </MenuItem>
                         ))}

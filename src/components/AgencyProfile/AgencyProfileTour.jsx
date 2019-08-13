@@ -244,7 +244,7 @@ class AgencyProfileTourClass extends React.Component{
             let image = [];
             let imageFiles = [];
             for(let i=0; i<element.image.length; i++){
-                image[i]=requests.serverAddress+element.image[i].url;
+                image[i]=requests.serverAddressImg+element.image[i].url;
                 imageFiles[i]=new File([""],'old');
             }
             let calendary = [];

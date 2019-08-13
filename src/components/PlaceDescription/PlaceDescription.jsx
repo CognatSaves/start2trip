@@ -203,9 +203,9 @@ class PlaceDescriptionClass extends React.Component {
         let simularPlaceBlockId = topBlockId+'4';
         let textInfo = this.props.storeState.languageTextMain.placeDescription;
         let bigImage = 'url(' + (this.state.newPlace.place && this.state.newPlace.place.mainImage ?
-            requests.serverAddress + this.state.newPlace.place.mainImage.url : '') + ') no-repeat';
+            requests.serverAddressImg + this.state.newPlace.place.mainImage.url : '') + ') no-repeat';
         let smallImage = 'url(' + (this.state.newPlace.place && this.state.newPlace.place.blockListImage ?
-            requests.serverAddress + this.state.newPlace.place.blockListImage.url : '') + ') no-repeat';
+            requests.serverAddressImg + this.state.newPlace.place.blockListImage.url : '') + ') no-repeat';
         return (
             <React.Fragment>
                 {

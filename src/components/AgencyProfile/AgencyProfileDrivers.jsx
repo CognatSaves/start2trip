@@ -169,7 +169,7 @@ class AgencyProfileDriversClass extends React.Component{
                                 <TableRow>
                                     <TableRowColumn style={{width: this.state.headerWidth[0]}}>
                                     <div className="d-flex agencyDriverImage">
-                                        <img src={requests.serverAddress+element.avatar.url} alt={element.name} />
+                                        <img src={requests.serverAddressImg+element.avatar.url} alt={element.name} />
                                         <div className="d-flex flex-column ">
                                             <div>{element.firstName + " "+element.lastName}</div>
                                             <div>{element.email}</div>
