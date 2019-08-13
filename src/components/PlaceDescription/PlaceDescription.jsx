@@ -208,11 +208,18 @@ class PlaceDescriptionClass extends React.Component {
             requests.serverAddress + this.state.newPlace.place.blockListImage.url : '') + ') no-repeat';
         return (
             <React.Fragment>
-                <Helmet>
-                    <title>Tripfer in placeDescription</title>
-                    <meta name="description" content="Tripfer in header" />
-                    <link rel="icon" sizes="any" type="image/svg+xml" href="favicon.svg" />
-                </Helmet>
+                {
+                    this.state.newPlace.local ?
+                    <Helmet>
+                        <title>{this.state.newPlace.local.name+', описание, оценки, отзывы'}</title>
+                        <meta name="description" content="Tripfer in header" />
+                    </Helmet> : 
+                    <Helmet>
+                        <title>{"Ожидаем загрузку достопримечательности"}</title>
+                        <meta name="description" content="Tripfer in header" />
+                    </Helmet>
+                }
+                
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
 
                 <div style={{ position: 'relative' }}>

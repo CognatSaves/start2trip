@@ -1,7 +1,18 @@
 const drivers = {
         lang: 'ENG',
+        mainPage: {
+            routeText: ['Маршрут(ENG)',', предложения водителей(ENG)'],
+            countryText: ', предложения водителей(ENG)',
+            loadingText: 'Ожидайте загрузки предложений водителей(ENG)'
+        },
         driversBlock: {
-            detailed: 'More',
+            title: "Карточка водителя и его авто, стоимость Вашей поездки(ENG)",
+            tripParams:{
+                routeText: 'Ваш маршрут(ENG)',
+                timeParam: 'Время в пути(ENG)',
+                lengthParam: 'Длина пути(ENG)'
+            },
+            detailed: 'More',
             languages: 'Languages ​',
             carCapacity: 'places',
             comments: 'review (s)',

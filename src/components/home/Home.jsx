@@ -33,6 +33,7 @@ class HomeClass extends React.Component {
 
   }
   render() {
+    
     //console.log(isMobileOnly , "isMobileOnly")
     //console.log(isTablet , "isTablet")
     console.log('Home render');
@@ -44,16 +45,26 @@ class HomeClass extends React.Component {
     
     
     let textInfo = this.props.storeState.languageTextMain.home.home;
-    
+    //let country = cookies.get('country', {path: '/'});
     let selectedDirection=this.props.match.params.direction;
+    
+    let countryName = this.props.storeState.countries.length>0 ?
+     this.props.globalReduser.findCountryNameByISO(this,cookies.get('country', {path: '/'}),cookies.get('userLang', {path: '/'}))
+     : '';
     return (
       <React.Fragment>
-
-        <Helmet>
-          <title>Tripfer in routes</title>
-          <meta name="description" content="Tripfer in header" />
-          <link rel="icon" sizes="any" type="image/svg+xml" href="favicon.svg" />
-        </Helmet>
+        {
+          this.props.storeState.countries.length>0 ?
+          <Helmet>
+            <title>{countryName+", построение маршрутов"}</title>
+            <meta name="description" content="Tripfer in header" />
+          </Helmet> :
+          <Helmet>
+            <title>{"Tripfer, построение маршрутов"}</title>
+            <meta name="description" content="Tripfer in header" />
+          </Helmet>
+        }
+        
 
         
         <main className="d-flex flex-column container-fluid p-0">

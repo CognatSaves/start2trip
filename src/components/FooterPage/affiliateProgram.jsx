@@ -61,9 +61,8 @@ class affiliateProgramClass extends React.Component {
             <React.Fragment>
                 <Header driver={true} history={this.props.history} />
                 <Helmet>
-                    <title>Tripfer affiliateProgram</title>
+                    <title>{'Нашим партнёрам'}</title>
                     <meta name="description" content="Tripfer in header" />
-                    <link rel="icon" sizes="any" type="image/svg+xml" href="favicon.svg" />
                 </Helmet>
                 <div className="wrapper">
                     <div className="affiliateProgram" >

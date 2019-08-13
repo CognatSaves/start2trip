@@ -77,10 +77,9 @@ class AccountRedirectorClass extends React.Component{
             return(
                 <React.Fragment>
                     <Helmet>
-                        <title>Tripfer in adminka</title>
+                        <title>{"Загрузка Вашего аккаунта на Tripfer"}</title>
                         <meta name="description" content="Tripfer in header" />
-                        <link rel="icon" sizes="any" type="image/svg+xml" href="favicon.svg" />
-                     </Helmet>
+                    </Helmet>
                 
                     <DriverRefreshIndicator isRefreshExist={true} isRefreshing={true} isGoodAnswer={true}/>
                 </React.Fragment>
@@ -94,9 +93,8 @@ class AccountRedirectorClass extends React.Component{
                 return (
                     <React.Fragment>
                         <Helmet>
-                            <title>Tripfer in adminka</title>
+                            <title>{"Ваш аккаунт на Tripfer"}</title>
                             <meta name="description" content="Tripfer in header" />
-                            <link rel="icon" sizes="any" type="image/svg+xml" href="favicon.svg" />
                         </Helmet>
 
                         <Route path="/account/driver" component={DriverProfileRegistration} />

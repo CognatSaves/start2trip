@@ -108,6 +108,10 @@ class DriversClass extends React.Component {
 
 
   render() {
+    function createTitleString(string){
+      let temp = string.replace('from-','');
+      return temp.replace('-to-','-');
+    }
     let cities;
     let country;
     if (this.props.match) {
@@ -147,17 +151,36 @@ class DriversClass extends React.Component {
         cities = route;
       }
     }
-
+    
+    let countryName = this.props.storeState.countries.length>0 ?
+     this.props.globalReduser.findCountryNameByISO(this,cookies.get('country', {path: '/'}),cookies.get('userLang', {path: '/'}))
+     : '';
     let storeState = this.props.storeState;
     let activeCurrency = storeState.currencies[storeState.activeCurrencyNumber];
-
+    let route = createTitleString(cities);
+    debugger;
+    let textInfo = this.props.storeState.languageTextMain.drivers.mainPage;
+        
     return (
       <React.Fragment>
-
-        <Helmet>
-          <title>Tripfer in drivers</title>
-          <meta name="description" content="Tripfer in drivers" />
-        </Helmet>
+        {
+          countryName.length>0 ?
+          (this.props.storeState.languages.length>0 ? 
+          <Helmet>
+            <title>{textInfo.routeText[0]+' '+route+textInfo.routeText[1]}</title>
+            <meta name="description" content="Tripfer in drivers" />
+          </Helmet> :
+          <Helmet>
+            <title>{countryName+textInfo.countryText}</title>
+            <meta name="description" content="Tripfer in drivers" />
+          </Helmet>)
+          :
+          <Helmet>
+            <title>{textInfo.loadingText}</title>
+            <meta name="description" content="Tripfer in drivers" />
+          </Helmet>
+        }
+        
 
         
         <div className="wrapper d-flex flex-column">

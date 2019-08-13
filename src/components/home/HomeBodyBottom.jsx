@@ -106,7 +106,7 @@ class HomeBodyBottomClass extends React.Component {
           console.log('good');
           console.log(data);
           that.props.dispatch(setRoutesList(data.routes, data.directions, data.country));
-          debugger;
+          
           if (selectedDirection.length>0){
             let id = findSelectedDirectionId( data.directions, selectedDirection);
             if(id!==0){
@@ -135,7 +135,16 @@ class HomeBodyBottomClass extends React.Component {
     }
   }
   render() {
-
+    function findSelectedDirectionName(directions, selectedDirection){          
+      for(let i=0; i<directions.length; i++){
+          for(let j=0; j<directions[i].loc.length; j++){
+            if(directions[i].loc[j].slug===selectedDirection){
+              return directions[i].loc[j].name;
+            }
+          }      
+      }
+      return '';     
+    }
     console.log('HomeBodyBottom render state=', this.state, 'props=', this.props);
     
     this.sendRequestFunc();
@@ -143,15 +152,17 @@ class HomeBodyBottomClass extends React.Component {
     if(!selectedDirection){//защита от undefined
       selectedDirection="";
     }
+    debugger;
+    let name = findSelectedDirectionName(this.props.placesState.directions, selectedDirection);
+    console.log('a');
     return(
       <React.Fragment>
         <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={true} isGoodAnswer={true}/>
         {
-          selectedDirection.length>0 ? 
+          selectedDirection.length>0 && name.length>0? 
           <Helmet>
-            <title>Tripfer in routes with direction</title>
+            <title>{name+", маршруты, отзывы, оценки"}</title>
             <meta name="description" content="Tripfer in header" />
-            <link rel="icon" sizes="any" type="image/svg+xml" href="favicon.svg" />
           </Helmet> : <React.Fragment/>
         }
         <div className="home_block col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0">

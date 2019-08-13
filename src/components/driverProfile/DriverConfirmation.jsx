@@ -88,9 +88,8 @@ class DriverConfirmationClass extends React.Component {
         return (
             <React.Fragment>
                 <Helmet>
-                    <title>Tripfer in DriverConfirmation</title>
+                    <title>{"Подтверждение поездки"}</title>
                     <meta name="description" content="Tripfer in header" />
-                    <link rel="icon" sizes="any" type="image/svg+xml" href="favicon.svg" />
                 </Helmet>
                 {
                     this.state.isRefreshExist ?
