@@ -128,7 +128,7 @@ class AgencyProfileNavigationClass extends React.Component{
                                                             
                             if(request.readyState === XMLHttpRequest.DONE && request.status === 200){ 
                                 let responseText = JSON.parse(request.responseText);
-                                let avatar = requests.serverAddress+responseText.avatar;
+                                let avatar = requests.serverAddressImg+responseText.avatar;
                                 let date = new Date(Date.now()+1000*3600*24*60); 
                                 cookies.set("avatarUrl",avatar, {path: '/', expires: date});
                                 that.props.dispatch(setUser(that.props.AppReduser.userName, avatar));

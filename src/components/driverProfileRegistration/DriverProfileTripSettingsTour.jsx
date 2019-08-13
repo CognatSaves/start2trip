@@ -248,7 +248,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
             let image = [];
             let imageFiles = [];
             for(let i=0; i<element.image.length; i++){
-                image[i]=requests.serverAddress+element.image[i].url;
+                image[i]=requests.serverAddressImg+element.image[i].url;
                 imageFiles[i]=new File([""],'old');
             }
             let calendary = [];
@@ -737,7 +737,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                             <div className="languageTourTop d-flex flex-wrap col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
                                 {this.state.languageTour.map((element, index) =>
                                     <div className={{ [index]: "languageTourTitleActive", }[this.state.languageTourOpen] + " languageTourTitle"} onClick={() => { this.setState({ languageTourOpen: index }) }}>
-                                        <span style={{ backgroundImage: "url(" + requests.serverAddress+element.icon.url + ")" }}>{element.ISO}</span>
+                                        <span style={{ backgroundImage: "url(" + requests.serverAddressImg+element.icon.url + ")" }}>{element.ISO}</span>
                                     </div>
                                 )}
                             </div>
@@ -1105,7 +1105,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                         </div>
                                     </div>
                                     <div className="filledCardImg">
-                                        <img src={element.image && element.image[0] && element.image[0].url ? requests.serverAddress+element.image[0].url : ''} className="img-fluid" alt="imgCar" width="100%" height="100%" />
+                                        <img src={element.image && element.image[0] && element.image[0].url ? requests.serverAddressImg+element.image[0].url : ''} className="img-fluid" alt="imgCar" width="100%" height="100%" />
                                     </div>
                                     <div className="cardInformationType d-flex flex-column">
                                         <p> {this.selectTourName(element)}</p>

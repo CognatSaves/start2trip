@@ -111,7 +111,7 @@ class CreateCommentClass extends React.Component {
                 <div className="commentBlock_createComment d-flex flex-column">
                     <div className="createComment_element d-flex">
                         <div className="createComment_picture">
-                            <img  style={{borderRadius: '30px'}} src={requests.serverAddress+'/uploads/user.svg'} width="100%" height="100%" alt=""></img>
+                            <img  style={{borderRadius: '30px'}} src={requests.serverAddressImg+'/uploads/user.svg'} width="100%" height="100%" alt=""></img>
                         </div>
                         <div className="d-flex flex-column pl-2 align-items-start justify-content-center">
                             <div className="d-flex flex-row flex-wrap">

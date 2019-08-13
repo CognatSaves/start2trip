@@ -169,7 +169,7 @@ class RouteDescriptionClass extends React.Component {
                             : <React.Fragment />
 
                     }
-                    <div className="placeDescription_background col-12 p-0" style={{ background: "url(" + (this.state.newRoute.local && this.state.newRoute.route.mainImage ? (isMobileOnly ? requests.serverAddress + this.state.newRoute.route.blockListImage.url:requests.serverAddress + this.state.newRoute.route.mainImage.url)  : '') + ") no-repeat" }} id={topBlockId}>
+                    <div className="placeDescription_background col-12 p-0" style={{ background: "url(" + (this.state.newRoute.local && this.state.newRoute.route.mainImage ? (isMobileOnly ? requests.serverAddressImg + this.state.newRoute.route.blockListImage.url:requests.serverAddressImg + this.state.newRoute.route.mainImage.url)  : '') + ") no-repeat" }} id={topBlockId}>
                     <Header history={this.props.history} a={true} />
 
                         {

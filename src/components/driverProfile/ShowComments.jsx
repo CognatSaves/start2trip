@@ -38,7 +38,7 @@ class ShowCommentsClass extends React.Component {
                                 <i className="commentBlock_elementIconCross" onClick={()=>{this.setState({ openModal: !this.state.openModal })}}/>
                             <div className="commentBlock_valueBlock d-flex flex-column">
                                 <div className="commentBlock_picture d-flex pb-2">
-                                    <img src={requests.serverAddress + this.state.element.avatar.url} width="auto" height="100%" alt=""></img>
+                                    <img src={requests.serverAddressImg + this.state.element.avatar.url} width="auto" height="100%" alt=""></img>
                                     <div className="d-flex flex-column justify-content-center col pr-0">
                                         <div className="valueBlock_firstElement_name">{this.state.element.name}</div>
                                         <Stars value={this.state.element.rating} valueDisplay={true} commentNumberDisplay={false} />
@@ -67,7 +67,7 @@ class ShowCommentsClass extends React.Component {
                                     <div className="commentBlock_comments  commentBlock_element" key={element + "/" + index} onClick={(e) => { if(!isMobileOnly){this.setState({ element: element, date: date,openModal:true })} }} >
                                         <div className="commentBlock_valueBlock d-flex flex-column">
                                             <div className="commentBlock_picture d-flex pb-2">
-                                                <img src={requests.serverAddress + element.avatar.url} width="auto" height="100%" alt=""></img>
+                                                <img src={requests.serverAddressImg + element.avatar.url} width="auto" height="100%" alt=""></img>
                                                 <div className="d-flex flex-column justify-content-center col pr-0">
                                                     <div className="valueBlock_firstElement_name">{element.name}</div>                                                
                                                         

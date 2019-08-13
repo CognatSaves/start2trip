@@ -241,7 +241,7 @@ class DriverProfileCarClass extends React.Component {
         else{
             let carImg = [];let imgFiles=[];
             for(let i=0; i<element.image.length; i++){
-                carImg[i]=requests.serverAddress+element.image[i].url;
+                carImg[i]=requests.serverAddressImg+element.image[i].url;
                 imgFiles[i]=new File([""], "filename");
             }
             this.setState(state => ({ collapse: true, imagePreviewUrl: carImg[0] ? carImg[0] : '',
@@ -801,7 +801,7 @@ class DriverProfileCarClass extends React.Component {
                                     </div>
                                 </div>
                                 <div className="filledCardImg" onClick={()=>this.toggle(element)}>
-                                    <img src={element.image[0] ? config.serverAddress+element.image[0].url : ""} className="img-fluid" alt="imgCar" width="100%" height="100%" />
+                                    <img src={element.image[0] ? config.serverAddressImg+element.image[0].url : ""} className="img-fluid" alt="imgCar" width="100%" height="100%" />
                                 </div>
                                 <div className="cardInformationType d-flex flex-column">
                                     <p>{element.carBrand}</p>

@@ -190,7 +190,7 @@ class AgencyProfileTravelHistoryClass extends React.Component {
                             <div className="d-flex flex-column historyBodyElement ">
                             <h5>Водитель и автомобиль</h5>
                                 <div className="historyBodyElementDriver d-flex align-items-center">
-                                    <img src={requests.serverAddress+element.carrier.image} alt={''} />
+                                    <img src={requests.serverAddressImg+element.carrier.image} alt={''} />
                                     <div className="d-flex flex-column ml-1">
                                     <span>{element.carrier.firstName}</span>
                                     <Stars value={element.carrier.rating} commentNumber={element.carrier.comments +" отзыва"} valueDisplay={true} commentNumberDisplay={true} />
@@ -206,7 +206,7 @@ class AgencyProfileTravelHistoryClass extends React.Component {
                                 
                                 <span>{element.carrier.email}</span>
                                 <div className="historyBodyElementDriver d-flex align-items-center">
-                                    <img src={requests.serverAddress+element.car.image} alt={''} />
+                                    <img src={requests.serverAddressImg+element.car.image} alt={''} />
                                     <div className="d-flex flex-column ml-1">
                                     <span>{element.car.carBrand}</span>
                                     </div>                           

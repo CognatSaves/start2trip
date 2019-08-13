@@ -1,5 +1,6 @@
 import serverAddress from './serverAddress';
-const frontendAddress = 'http://localhost:3000'; //'http://tripfer.com'; //
+import serverAddressImg from './serverAddressImg';
+const frontendAddress = 'http://tripfer.com'; //'http://localhost:3000'; //
 
 const serverRegistrationRequest = serverAddress + '/auth/local/register';
 const serverAuthorizationRequest = serverAddress + '/auth/local';
@@ -52,6 +53,7 @@ const profileCheck = serverAddress + "/users/me/profileCheck";
 export default {
     frontendAddress: frontendAddress,
     serverAddress: serverAddress,
+    serverAddressImg: serverAddressImg,
     serverRegistrationRequest: serverRegistrationRequest,
     facebookRequest: facebookRequest,
     googleRequest: googleRequest,

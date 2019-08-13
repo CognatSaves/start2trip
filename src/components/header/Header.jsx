@@ -193,9 +193,9 @@ const ModalUserType = (props) => {
 }
 const CountrySelect = (props) => {
   let { modalCountry, toggleModalCountry, className, textInfo } = props;
-  if (/HeadlessChrome/.test(window.navigator.userAgent)||/prerendercloud/.test(window.navigator.userAgent)) {
+  /*if (/HeadlessChrome/.test(window.navigator.userAgent)||/prerendercloud/.test(window.navigator.userAgent)) {
     console.log("Chrome headless detected");
-}else{
+}else{ */
   return (
     <Modal isOpen={modalCountry} toggle={toggleModalCountry} className={className}>
       <ModalBody>
@@ -216,7 +216,7 @@ const CountrySelect = (props) => {
   )
 }
   
-}
+//}
 
 class HeaderClass extends React.Component {
   constructor(props) {
@@ -426,7 +426,7 @@ class HeaderClass extends React.Component {
           // Handle success.
           //console.log('Data: ');
           // console.log(response.data);
-          let avatarUrl = requests.serverAddress + response.data.url;
+          let avatarUrl = requests.serverAddressImg + response.data.url;
           let userName = response.data.firstName;
           let userData = response.data.userData;
           let isCustomer = response.data.isCustomer;
@@ -662,7 +662,7 @@ class HeaderClass extends React.Component {
                       <DropDownMenu anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }} className="burgerMenuTopDropDown" menuStyle={{ width: "30px" }}
                         value={this.props.storeState.activeLanguageNumber/*this.state.activLanguageNumber*/} onChange={(event, index, value) => { this.setLocals('userLang', index) }}>
                         {languages.map((element, index) =>
-                          <MenuItem value={index} primaryText={<React.Fragment><img className="mb-1" src={requests.serverAddress + element.icon.url} width="15px" height="15px" alt={element.ISO} /><span className="burgerMenuTopDropDownSpan">{element.ISO}</span></React.Fragment>} ></MenuItem>
+                          <MenuItem value={index} primaryText={<React.Fragment><img className="mb-1" src={requests.serverAddressImg + element.icon.url} width="15px" height="15px" alt={element.ISO} /><span className="burgerMenuTopDropDownSpan">{element.ISO}</span></React.Fragment>} ></MenuItem>
                         )}
                       </DropDownMenu>
                     </div>
@@ -759,14 +759,14 @@ class HeaderClass extends React.Component {
 
                     <Dropdown setActiveFromChild="true" isOpen={this.state.dropdownLanguageOpen} toggle={this.toggleLanguage} className={adminLanguages.length > 0 ? "selectGeneral" : "selectGeneral preloadHiddenBlock"}>
                       <DropdownToggle className="selectGeneralButton" caret size="sm">
-                        <img src={adminLanguages.length > 0 ? requests.serverAddress + adminLanguages[this.props.storeState.activeLanguageNumberAdmin/*this.state.activLanguageNumber*/].icon.url : ''} height="15px" width="15px" alt="flag" />
+                        <img src={adminLanguages.length > 0 ? requests.serverAddressImg + adminLanguages[this.props.storeState.activeLanguageNumberAdmin/*this.state.activLanguageNumber*/].icon.url : ''} height="15px" width="15px" alt="flag" />
                         {adminLanguages.length > 0 ? adminLanguages[this.props.storeState.activeLanguageNumberAdmin/*this.state.activLanguageNumber*/].ISO : ''}
                       </DropdownToggle>
                       <DropdownMenu className="dropdownMenu">
                         {
                           adminLanguages.map((element, index) =>
                             <DropdownItem className="dropdownMenu" onClick={() => { this.setLocals('adminLang', index) }}>
-                              <img src={requests.serverAddress + element.icon.url} height="15px" width="15px" alt="RU" />{element.ISO}
+                              <img src={requests.serverAddressImg + element.icon.url} height="15px" width="15px" alt="RU" />{element.ISO}
                             </DropdownItem>
                           )
                         }
@@ -779,14 +779,14 @@ class HeaderClass extends React.Component {
 
                     <Dropdown setActiveFromChild="true" isOpen={this.state.dropdownLanguageOpen} toggle={this.toggleLanguage} className={languages.length > 0 ? "selectGeneral" : "selectGeneral preloadHiddenBlock"}>
                       <DropdownToggle className="selectGeneralButton" caret size="sm">
-                        <img src={languages.length > 0 ? requests.serverAddress + languages[this.props.storeState.activeLanguageNumber/*this.state.activLanguageNumber*/].icon.url : ''} height="15px" width="15px" alt="flag" />
+                        <img src={languages.length > 0 ? requests.serverAddressImg + languages[this.props.storeState.activeLanguageNumber/*this.state.activLanguageNumber*/].icon.url : ''} height="15px" width="15px" alt="flag" />
                         {languages.length > 0 ? languages[this.props.storeState.activeLanguageNumber/*this.state.activLanguageNumber*/].ISO : ''}
                       </DropdownToggle>
                       <DropdownMenu className="dropdownMenu">
                         {
                           languages.map((element, index) =>
                             <DropdownItem className="dropdownMenu" onClick={() => { this.setLocals('userLang', index) }}>
-                              <img src={requests.serverAddress + element.icon.url} height="15px" width="15px" alt="RU" />{element.ISO}
+                              <img src={requests.serverAddressImg + element.icon.url} height="15px" width="15px" alt="RU" />{element.ISO}
                             </DropdownItem>
                           )
                         }
