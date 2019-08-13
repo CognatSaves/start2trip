@@ -11,7 +11,7 @@ export default class PlacePhotoShow extends React.Component{
         let imageArray = [];
 
         for(let i=0; i<this.props.images.length; i++){
-            imageArray[i]={src: requests.serverAddress+this.props.images[i].url};
+            imageArray[i]={src: requests.serverAddressImg+this.props.images[i].url};
         }
         let modalIsOpen  = this.props.isMaskVisible;
         return(

@@ -95,7 +95,7 @@ class LanguageMenuClass extends React.Component {
                                 <Checkbox color="#fff" checked={this.state.languageName.indexOf(element.languageName) > -1} />
                                 <ListItemText primary={element.languageName} />
                                 <div className="autoMenu_element_picture">
-                                    <img src={requests.serverAddress + element.icon.url} width="50%" height="50%" alt={"auto_" + index}></img>
+                                    <img src={requests.serverAddressImg + element.icon.url} width="50%" height="50%" alt={"auto_" + index}></img>
                                 </div>
                             </MenuItem>
                         ))}

@@ -64,7 +64,7 @@ class DriverInfoClass extends React.Component{
             <div className="block_element_left d-flex flex-column col-lg-6 col-12 ">
                 <div className="driverInfo_left_line">
                     <div className="driverInfo_photo">
-                        <img src={requests.serverAddress+element.avatar} alt={"photo " + element.name} />
+                        <img src={requests.serverAddressImg+element.avatar} alt={"photo " + element.name} />
                     </div>
                     <div className="block_element_infoBlock">
                         <div style={{paddingBottom: "2px"}} key={element.rating}>
@@ -78,7 +78,7 @@ class DriverInfoClass extends React.Component{
 
                                 {
                                     languageIdsArray.map((langElement,index)=>
-                                    <div className="driversBlock_languages_flag" style={{background: "url("+requests.serverAddress+this.props.storeState.languages[langElement].icon.url+") no-repeat", backgroundSize: "15px 15px", margin: "auto 5px auto 0"}}/>              
+                                    <div className="driversBlock_languages_flag" style={{background: "url("+requests.serverAddressImg+this.props.storeState.languages[langElement].icon.url+") no-repeat", backgroundSize: "15px 15px", margin: "auto 5px auto 0"}}/>              
                                     )
                                 }
                                 </div>

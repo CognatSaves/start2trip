@@ -213,7 +213,7 @@ class DriversBlockClass extends React.Component {
             return (
               <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 p-2 py-1">
                 <div className="driversBlock_driverCard d-flex flex-column ">
-                  <div className="driversBlock_carImage" style={{ background: "url(" + requests.serverAddress + element.carImage + ") no-repeat", backgroundSize: "cover" }}>
+                  <div className="driversBlock_carImage" style={{ background: "url(" + requests.serverAddressImg + element.carImage + ") no-repeat", backgroundSize: "cover" }}>
                     <Link to={linkAddress} className="driversBlock_carBlackout">
                       <div className="driversBlock_carBlackout_detailed">{textInfo.detailed}</div>
                     </Link>
@@ -223,7 +223,7 @@ class DriversBlockClass extends React.Component {
 
                     <Link to={linkAddress} className="driversBlock_driverInfoBlock_element driversBlock_carName">{element.carBrand}</Link>
                     <div className="driverBlock_carInfoLine d-flex">
-                      <div className="driversBlock_driverCard_carIcon" style={{ background: "url(" + requests.serverAddress + this.props.driversState.carTypes[element.carType].carTypeImage + ") no-repeat", backgroundSize: "42px 30px", backgroundPosition: "-5px 0px" }} />
+                      <div className="driversBlock_driverCard_carIcon" style={{ background: "url(" + requests.serverAddressImg + this.props.driversState.carTypes[element.carType].carTypeImage + ") no-repeat", backgroundSize: "42px 30px", backgroundPosition: "-5px 0px" }} />
                       <div className="driversBlock_carInfoLine_value">
                         {
                           fingCorrectCartypeName(this.props.driversState.carTypes[element.carType], storeState.languages[storeState.activeLanguageNumber].ISO)
@@ -232,7 +232,7 @@ class DriversBlockClass extends React.Component {
                       </div>
                     </div>
                     <div className="driversBlock_driverInfoBlock_element d-flex">
-                      <div className="driversBlock_driverCard_photo" style={{ background: "url(" + requests.serverAddress + element.avatar + ") no-repeat" }} />
+                      <div className="driversBlock_driverCard_photo" style={{ background: "url(" + requests.serverAddressImg + element.avatar + ") no-repeat" }} />
                       <div className="d-flex  driversBlock_driverCard_driverInfo">
                         <Link to={linkAddress} className="driversBlock_driversInfo_name">{element.name}</Link>
 
@@ -241,7 +241,7 @@ class DriversBlockClass extends React.Component {
 
                         {
                           element.language.map((langElement, index) =>
-                            <div className="driversBlock_languages_flag" style={{ background: "url(" + (this.props.storeState.languages.length > 0 ? requests.serverAddress + this.props.storeState.languages[langElement].icon.url : '') + ")", backgroundSize: "15px 15px" }} />
+                            <div className="driversBlock_languages_flag" style={{ background: "url(" + (this.props.storeState.languages.length > 0 ? requests.serverAddressImg + this.props.storeState.languages[langElement].icon.url : '') + ")", backgroundSize: "15px 15px" }} />
                           )
                         }
                       </div>

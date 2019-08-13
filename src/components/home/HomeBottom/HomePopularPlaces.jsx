@@ -156,7 +156,7 @@ class PopularPlacesClass extends React.Component {
                                                 <div className="col-md-2 col-7 d-flex flex-column popularPlacesEl popularPlacesMore"
                                                 onClick={() => { this.setState({ howMuchRender: this.state.howMuchRender + 6 }) }}>
                                                     <span>{textInfo.morePics}</span>
-                                                    <img src={arrayRender[arrayRender.length-1].image ? requests.serverAddress + arrayRender[arrayRender.length-1].image.url : ''} alt="img" />
+                                                    <img src={arrayRender[arrayRender.length-1].image ? requests.serverAddressImg + arrayRender[arrayRender.length-1].image.url : ''} alt="img" />
                                                 </div>
                                             )
                                         }
@@ -169,7 +169,7 @@ class PopularPlacesClass extends React.Component {
                                                 onClick={(e)=>{ e.preventDefault(); this.onDirClickCleared(address)}}>
                                                 <span className="popularPlacesElMes">{textInfo.cancel}</span>
                                                 <div>
-                                                    <img src={element.image ? requests.serverAddress + element.image.url : ''} alt="img" />
+                                                    <img src={element.image ? requests.serverAddressImg + element.image.url : ''} alt="img" />
                                                 </div>
                                                 <div className="mt-2 routeName">
                                                     <span>{getDirectionName(element,this)}</span>

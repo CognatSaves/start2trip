@@ -52,7 +52,7 @@ class FirstEnterModalClass extends React.Component {
             ],
             activeWindow: 0,
         }
-        if (/HeadlessChrome/.test(window.navigator.userAgent)||/prerendercloud/.test(window.navigator.userAgent)) {
+        if (/prerendercloud/.test(window.navigator.userAgent)) {
             console.log("Chrome headless detected");
         }else{
             let firstEnter = cookies.get('firstEnter', { path: '/' });
