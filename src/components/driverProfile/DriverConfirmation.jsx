@@ -7,35 +7,46 @@ import {Helmet} from 'react-helmet';
 class DriverConfirmationClass extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            text: 'Ожидаем ответа',
-            isRefreshExist: true,
-            heAgrees: null,
-            id:this.props.match.params.id,
-            carrierId:this.props.match.params.carrierId,
-            confirmation:this.props.match.params.confirmation,
-        }
+        let id = props.match.params.id;
+        let carrierId = props.match.params.carrierId;
+        let confirmation = JSON.parse(props.match.params.confirmation);
+        
 
-         let id = this.props.match.params.id;
-         let carrierId = this.props.match.params.carrierId;
-         let confirmation = this.props.match.params.confirmation;
+         
          
         debugger;
         if(confirmation){
             console.log("-------------------------------")
             console.log(confirmation)
+            this.state = {
+                isRefreshExist: true,
+                heAgrees: null,
+                id:id,
+                carrierId:carrierId,
+                confirmation:confirmation,
+            }
             this.sendRequest(id,carrierId,confirmation);
         }else{
             console.log("-------------------------------")
             console.log(confirmation)
-            this.setState({
-                heAgrees: this.props.match.params.confirmation,
-            })
+            /*this.setState({
+                isRefreshExist: false,
+                heAgrees: props.match.params.confirmation,
+            })*/
+            this.state = {
+                isRefreshExist: false,
+                heAgrees: confirmation,
+                id:id,
+                carrierId:carrierId,
+                confirmation:confirmation,
+            }
+
+            
         }
     }
     //TODO 
     sendRequest=(id,carrierId,confirmation)=>{
-        
+        debugger;
         let body = JSON.stringify({
             id: id,
             carrierId: carrierId,
@@ -51,6 +62,7 @@ class DriverConfirmationClass extends React.Component {
                 return response.json();
             })
             .then(function (data) {
+                debugger;
                 if (data.error) {
                     console.log("bad");
                     throw data.error;
@@ -58,15 +70,7 @@ class DriverConfirmationClass extends React.Component {
                 else {
                     console.log('good');
                     console.log(data);
-                    let text = "";
-                    if (data.confirmation) {
-                        text = "Всё прекрасно, вы подтвердили поездку"
-                    }
-                    else {
-                        text = "Всё прекрасно, вы лишили человека поездки. Теперь вам приятно?"
-                    }
                     that.setState({
-                        text: text,
                         heAgrees: data.confirmation,
                         isRefreshExist: false
                     })
@@ -75,7 +79,6 @@ class DriverConfirmationClass extends React.Component {
             .catch(function (error) {
                 console.log('bad');
                 that.setState({
-                    text: 'Всё плохо',
                     isRefreshExist: false
                 })
                 console.log('An error occurred:', error);
@@ -84,7 +87,7 @@ class DriverConfirmationClass extends React.Component {
 
     render() {
         console.log('DriverConfirmation render');
-
+        let textInfo = this.props.storeState.languageTextMain.drivers.driverConfirmation;
         return (
             <React.Fragment>
                 <Helmet>
@@ -105,31 +108,45 @@ class DriverConfirmationClass extends React.Component {
                             {this.state.heAgrees ? <React.Fragment>
                                 <div className="forgotPasswordContent forgotPasswordContent d-flex flex-column align-items-center col-md-7 col-11">
                                     <div className="d-flex flex-column justify-content-center align-items-center">
-                                        <span className="pt-2 pb-1">Вы подтвердили заказ!</span>
-                                        <span1>{"Всё прекрасно, вы подтвердили поездку"}<br/>
-                                        За неявку на подтвержденный заказ Вы получаете сразу 3 штрафных балла.</span1>
+                                        <span className="pt-2 pb-1">{textInfo.good.header}</span>
+                                        <span1>
+                                            {textInfo.good.header2[0]}
+                                            <br/>
+                                            {textInfo.good.header2[1]}
+                                        </span1>
                                     </div>
                                     <div className="d-flex flex-md-row flex-column justify-content-center align-items-center col-md-8 col-12">
-                                        <div className="forgotPasswordBt d-flex justify-content-center align-items-center col-md-5 col-12" onClick={() => { this.props.history.push("/") }}><span>На главную</span></div>
+                                        <div className="forgotPasswordBt d-flex justify-content-center align-items-center col-md-5 col-12" onClick={() => { this.props.history.push("/") }}><span>{textInfo.good.toStart}</span></div>
                                     </div>
                                     <div className="d-flex flex-column justify-content-center align-items-center col-md-5 col-12">
-                                        <p>* По достижении 5 баллов Вы будете навсегда отключены из системы.</p>
+                                        <p>{'* '+textInfo.infoBlock}</p>
                                     </div>
                                 </div>
                             </React.Fragment> : <React.Fragment>
                             <div className="forgotPasswordContent forgotPasswordContent d-flex flex-column align-items-center py-md-4 py-2 mb-0 mb-5 col-md-9 col-11">
                                     <div className="d-flex flex-column justify-content-center align-items-center">
-                                        <span className="pt-2 pb-1">Вы действительно хотите отказаться от заказа?</span>
-                                        <span1>В случае Вашего отказа от поездки Вам будет начислен 1 штрафной балл из 5 возможных.<br />
-                                        За неявку на подтвержденный заказ Вы получаете сразу 3 штрафных балла.
+                                        <span className="pt-2 pb-1">{textInfo.bad.header}</span>
+                                        <span1>
+                                            {textInfo.bad.header2[0]}
+                                            <br />
+                                            {textInfo.bad.header2[1]}
                                         </span1>
                                     </div>
                                     <div className="d-flex flex-md-row flex-column justify-content-center align-items-center col-md-8 col-12">
-                                        <div className="forgotPasswordBt d-flex justify-content-center align-items-center col-md-5 col-12" style={{background:"#686868"}} onClick={() => { this.setState({confirmation:false}); this.sendRequest(this.state.id,this.state.carrierId,this.state.confirmation); this.props.history.push("/") }}><span>Да</span></div>
-                                        <div className="forgotPasswordBt d-flex justify-content-center align-items-center col-md-5 col-12" onClick={() => { this.setState({confirmation:true, heAgrees: true });this.sendRequest(this.state.id,this.state.carrierId,this.state.confirmation);}}><span>Нет</span></div>
+                                        <div className="forgotPasswordBt d-flex justify-content-center align-items-center col-md-5 col-12" style={{background:"#686868"}}
+                                        onClick={() => { this.setState({confirmation:false});
+                                        this.sendRequest(this.state.id,this.state.carrierId,false);
+                                        this.props.history.push("/") }}>
+                                            <span>{textInfo.bad.variants[0]}</span>
+                                        </div>
+                                        <div className="forgotPasswordBt d-flex justify-content-center align-items-center col-md-5 col-12"
+                                        onClick={() => { this.setState({confirmation:true, heAgrees: true });
+                                        this.sendRequest(this.state.id,this.state.carrierId,true);}}>
+                                            <span>{textInfo.bad.variants[1]}</span>
+                                        </div>
                                     </div>
                                     <div className="d-flex flex-column justify-content-center align-items-center col-md-5 col-12">
-                                        <p>* По достижении 5 баллов Вы будете навсегда отключены из системы.</p>
+                                        <p>{'* '+textInfo.infoBlock}</p>
                                     </div>
                                 </div>
                                 </React.Fragment>}
