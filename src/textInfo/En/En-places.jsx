@@ -1,6 +1,8 @@
 let places = {
          popularPlaces: {
-             popularPlacesTitle: 'Popular Regions'
+            popularPlacesTitle: 'Popular Regions',
+            more: 'More',
+            cancel: 'Cancel'
          },
          placesTagList: {
              placesTagListTitle: 'Tags',

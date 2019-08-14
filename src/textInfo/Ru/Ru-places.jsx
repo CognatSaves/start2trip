@@ -1,6 +1,8 @@
 let places = {
     popularPlaces:{
-        popularPlacesTitle: 'Популярные направления'
+        popularPlacesTitle: 'Популярные направления',
+        more: 'Ещё',
+        cancel: 'Отменить'
     },
     placesTagList:{
         placesTagListTitle: 'Категории',
@@ -16,10 +18,7 @@ let places = {
         territory: 'территория',
         population: 'население',
         capital: 'столица'
-    },
-    messageEror:{
-        noElementsText: 'Мы искали даже на Марсе, но ничего не нашли.\n Попробуйте изменить условия поиска.'
-    },
+    }
 }
 
 export default places;

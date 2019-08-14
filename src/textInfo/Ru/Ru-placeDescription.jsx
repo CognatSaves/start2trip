@@ -13,7 +13,10 @@ let placeDescription = {
         startPointPlaceholder: 'Введите место отправления',
         startDate:"Дата отправления",
         lookAvailable: 'СМОТРЕТЬ ПРЕДЛОЖЕНИЯ',
-        goToEdit: 'Перейти к редактированию'
+        goToEdit: 'Перейти к редактированию',
+        route: 'Ваш маршрут',
+        time: 'Время в пути',
+        length: 'Длина пути'
     },
     placeDescription:{
         variantsArray:["Описание","Фотографии","Как добраться","Вас может заинтересовать","Отзывы"]

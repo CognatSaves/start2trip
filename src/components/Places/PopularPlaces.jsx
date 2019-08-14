@@ -104,14 +104,14 @@ class PopularPlacesClass extends React.Component {
         } else {
             placeRender = arrayRender;
         }
-        let textInfo = this.props.storeState.languageTextMain.places;
+        let textInfo = this.props.storeState.languageTextMain.places.popularPlaces;
         /*let directions = arrayRender;
         */
         return (
             <React.Fragment>
                 <div className={placeRender.length>0 ? "popularPlacesBody pt-4" : 'd-none'} >
                     <div className="popularPlacesTitle">
-                        <h2>{textInfo.popularPlaces.popularPlacesTitle}</h2>
+                        <h2>{textInfo.popularPlacesTitle}</h2>
                     </div>
                     <div className="d-flex col-12 p-0">
                         <div className="d-flex col-12 flex-md-wrap flex-nowrap p-0 py-1 popularPlacesRender">
@@ -121,7 +121,7 @@ class PopularPlacesClass extends React.Component {
                                     if (placeRender.length - 1 == index) {
                                         return (
                                             <div className="col-md-2 col-7 d-flex flex-column align-items-center popularPlacesEl popularPlacesMore" onClick={() => { this.setState({ howMuchRender: this.state.howMuchRender + 6 }) }}>
-                                                <span>{"more"}</span>
+                                                <span>{textInfo.more}</span>
                                                 <img src={arrayRender[arrayRender.length-1].image ? requests.serverAddressImg+ arrayRender[arrayRender.length-1].image.url : ''} alt="img" />
                                             </div>
                                         )
@@ -131,7 +131,7 @@ class PopularPlacesClass extends React.Component {
                                     <a href = {requests.frontendAddress+address}
                                      className={"col-md-2 col-7 d-flex flex-column popularPlacesEl "+(isDirSelected(element.id, this.props.placesState.selectedDirection) ? 'popularPlacesEl_selected' : '')}
                                      onClick={(e)=>{ e.preventDefault(); this.onDirClickCleared(address)}}>
-                                        <span className="popularPlacesElMes">Отменить</span>
+                                        <span className="popularPlacesElMes">{textInfo.cancel}</span>
                                         <div>
                                             <img src={element.image ? requests.serverAddressImg + element.image.url : ''} alt="img" />
                                         </div>

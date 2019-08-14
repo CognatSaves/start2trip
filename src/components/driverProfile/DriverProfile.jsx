@@ -559,7 +559,7 @@ class DriverProfileClass extends React.Component {
                                                     <div className={"routeTravelBlock_pointValue anidate d-flex flex-row "}
                                                     onClick={()=>{if(this.state.isDateHighlighted){this.setState({isDateHighlighted: false})}}}>
                                                         <div className="placesDescription_travelBlock_icon placesDescription_calendary" />
-                                                        <DatePicker defaultDate={this.state.date} shouldDisableDate={(day) => { /*debugger*/  }} hintText={textInfo.startDate} minDate={new Date()} onChange={(e, date) => { this.setState({date: date});  }} className="routeDescrDate" />
+                                                        <DatePicker defaultDate={this.state.date} shouldDisableDate={(day) => {  }} hintText={textInfo.startDate} minDate={new Date()} onChange={(e, date) => { this.setState({date: date});  }} className="routeDescrDate" />
                                                     </div>
                                                 </div>
                                                 {

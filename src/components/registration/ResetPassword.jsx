@@ -3,7 +3,8 @@ import Header from '../header/Header';
 import requests from '../../config';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 import {Helmet} from 'react-helmet';
-class ResetPassword extends React.Component {
+import { connect } from 'react-redux'
+class ResetPasswordClass extends React.Component {
     constructor(props) {
         super(props);
         let code = this.props.match.params.code;
@@ -117,6 +118,7 @@ class ResetPassword extends React.Component {
     render() {
         console.log('Reset password render');
         console.log(this.state);
+        let textInfo = this.props.storeState.languageTextMain.registration.resetPassword;
         return (
             <React.Fragment>
                 <Helmet>
@@ -133,30 +135,34 @@ class ResetPassword extends React.Component {
                     <Header driver={true} history={this.props.history} />
                     <div className="forgotPasswordContent d-flex flex-column align-items-center col-md-8 col-11">
                         <div className="d-flex justify-content-center align-items-center">
-                            <span>Новый пароль</span>
+                            <span>{textInfo.newPasswordText}</span>
                         </div>
                         <div className={this.state.isChangePasswordType?"resetPasswordInput resetPasswordInput-active col-md-5 col-12":"resetPasswordInput col-md-5 col-12"}>
                             <input className={this.state.falde ? "forgotPasswordInput-error" : ""}
-                            placeholder="Введите новый пароль" type={this.state.isChangePasswordType?"text":"password"} value={this.state.passwords[0]} onChange={(e) => {this.passwordonchange(e.target.value, 0); this.setState({ falde: false, isSended: false, noChange:false, })}} />
-                            <i  onClick={()=>{this.setState({isChangePasswordType: !this.state.isChangePasswordType})}}/>
+                            placeholder={textInfo.firstPlaceholder} type={this.state.isChangePasswordType?"text":"password"}
+                            value={this.state.passwords[0]} onChange={(e) => {this.passwordonchange(e.target.value, 0);
+                            this.setState({ falde: false, isSended: false, noChange:false, })}} />
+                            <i onClick={()=>{this.setState({isChangePasswordType: !this.state.isChangePasswordType})}}/>
                         </div>
                         <div className={this.state.isChangePasswordType2?"resetPasswordInput resetPasswordInput-active col-md-5 col-12":"resetPasswordInput col-md-5 col-12"}>
                             <input className={this.state.falde ? "forgotPasswordInput-error" : ""}
-                            placeholder="Повторите пароль" type={this.state.isChangePasswordType2?"text":"password"} value={this.state.passwords[1]} onChange={(e) => {this.passwordonchange(e.target.value, 1);this.setState({ falde: false, isSended: false, noChange:false, })}} />
+                            placeholder={textInfo.secondPlaceholder} type={this.state.isChangePasswordType2?"text":"password"}
+                            value={this.state.passwords[1]} onChange={(e) => {this.passwordonchange(e.target.value, 1);
+                            this.setState({ falde: false, isSended: false, noChange:false, })}} />
                             <i onClick={()=>{this.setState({isChangePasswordType2: !this.state.isChangePasswordType2})}}/>
                         </div>
                         {
                             this.state.isSended ?
                                 <div className={this.state.isGood ? "forgotPasswordContent-active" 
-                                : "forgotPasswordContent-error"}>{this.state.isGood ? 'Пароль вашего аккаунта перезаписан' : 'Пароль вашего аккаунта перезаписать не удалось'}</div> :
+                                : "forgotPasswordContent-error"}>{this.state.isGood ? textInfo.passwordChangeGood : textInfo.passwordChangeBad}</div> :
                                 <React.Fragment />
                         }
                         {
                             this.state.noChange ?
-                                <div className="forgotPasswordContent-error">{this.state.isMatchUp ? 'Нет изменений' : 'Не совпадают пароли'}</div> :
+                                <div className="forgotPasswordContent-error">{this.state.isMatchUp ? textInfo.errorLazy : textInfo.errorMatch}</div> :
                                 <React.Fragment />
                         }
-                        <div className="forgotPasswordBt mt-3 mb-5" onClick={() => this.sendRequest()}><span>Отправить</span></div>
+                        <div className="forgotPasswordBt mt-3 mb-5" onClick={() => this.sendRequest()}><span>{textInfo.sendRequest}</span></div>
                        
                     </div>
 
@@ -167,4 +173,9 @@ class ResetPassword extends React.Component {
         )
     }
 }
+const ResetPassword = connect(
+    (state) => ({
+        storeState: state.AppReduser
+    }),
+)(ResetPasswordClass)
 export default ResetPassword;

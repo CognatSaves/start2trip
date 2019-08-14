@@ -31,7 +31,7 @@ class PlaceListElementClass extends React.Component{
                     </Link>
                     
                     <div className="placesList_stars">
-                        <Stars key={index+"/"+element.rating} value={Math.ceil(element.rating*10)/10} commentNumber={element.comments+" отзывов"} valueDisplay={element.rating>0 ? true : false} commentNumberDisplay={true}/>
+                        <Stars key={index+"/"+element.rating} value={Math.ceil(element.rating*10)/10} commentNumber={element.comments+" "+textInfo.comments} valueDisplay={element.rating>0 ? true : false} commentNumberDisplay={true}/>
                     </div>
                     <div className="d-flex align-items-center placesList_info_position placesList_info_position_tags">
                         <img src={tagBlue} height="12px" width="12px" alt="tagBlue"/>

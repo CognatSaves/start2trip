@@ -98,6 +98,7 @@ class PlacesListClass extends React.Component {
         this.props.placesState.page*this.props.placesState.pagesMenuValue);
 
         console.log('selectedPlaces',selectedPlaces);
+        let textInfo = this.props.storeState.languageTextMain.home.homeBottom.homeRoutesList;
         return(
             
             <React.Fragment>
@@ -113,7 +114,7 @@ class PlacesListClass extends React.Component {
                     selectedPlaces.length===0 ?
                     <React.Fragment>
                         <div className="placesList_noElementsBlock">
-                            <span>Мы искали даже на Марсе, но ничего не нашли. Попробуйте изменить условия поиска.</span>
+                            <span>{textInfo.noElementsText}</span>
                         </div>
                     </React.Fragment>
                     :<React.Fragment/>

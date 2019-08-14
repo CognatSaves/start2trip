@@ -103,9 +103,9 @@ class RouteTravelBlockClass extends React.Component{
                         <div className="d-flex flex-wrap routeTravelBlock_pointBlock" >
                             <div style={{paddingBottom: '10px'}}>
                                 <div className="route_time_text col-12">
-                                    <div class="marsh">Ваш маршрут:</div>
-                                    <div class="param">Время в пути: <span>{this.props.driversState.travelTime}</span></div>
-                                    <div class="param par">Длина пути: <span>{this.props.driversState.travelLength}</span></div>
+                                    <div class="marsh">{textInfo.route+':'}</div>
+                                    <div class="param">{textInfo.time+':'}<span>{this.props.driversState.travelTime}</span></div>
+                                    <div class="param par">{textInfo.length+':'}<span>{this.props.driversState.travelLength}</span></div>
                                 </div>
                             </div>
                             {   

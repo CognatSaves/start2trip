@@ -3,7 +3,6 @@ import driverProfile from './En/En-driverProfile';
 import home from './En/En-home';
 import registration from './En/En-registration';
 import renderModalRegistration from './En/En-renderModalRegistration';
-import header from './En/En-header';
 import footer from './En/En-footer';
 import places from './En/En-places';
 import manipulator from './En/En-manipulator';
@@ -14,13 +13,17 @@ import startTravelForm from './En/En-startTravelForm';
 import termsUser from './En/En-termsUser'
 import termsDriver from './En/En-termsDriver'
 import FooterPage from './En/En-FooterPage'
+//import routeDescription from './En/En-routeDescription';
+
+import headerAdmin from './En-admin/En-header';
 export default {
     driverProfile: driverProfile,
+    //routeDescription: routeDescription,
     //driverProfileRegistration:driverProfileRegistration,
     home:home,
     registration:registration,
     renderModalRegistration:renderModalRegistration,
-    header: header,
+    header: headerAdmin,
     footer: footer,
     places:places,
     manipulator:manipulator,

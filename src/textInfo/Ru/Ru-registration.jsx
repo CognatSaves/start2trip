@@ -2,8 +2,13 @@ const registration = {
     lang: 'RUS',
     forgotPassword: {
         success: "Спасибо! Информация для смены пароля выслана на Ваш email.",
+        passwordRepair: 'Восстановление пароля',
+        placeholder: 'Введите адрес Вашей почты',
         forgotPasswordText: "Здесь вы можете восстановить ваш пароль",
-        sendEmail: "Отправить на почту"
+        sendEmail: "Отправить на почту",
+        goodAnswer: 'Отправлено, проверьте почту',
+        wrongAnswer: 'Неверная почта',
+        preSendText: 'На Вашу почту будет выслана ссылка для восстановления пароля.'
     },
     resetPassword:{
         newPasswordText: "Введите новый пароль для вашего аккаунта",

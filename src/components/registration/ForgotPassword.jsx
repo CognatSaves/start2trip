@@ -4,7 +4,9 @@ import './ForgotPassword.css'
 import requests from '../../config';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 import {Helmet} from 'react-helmet';
-class ForgotPassword extends React.Component {
+import { connect } from 'react-redux';
+
+class ForgotPasswordClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -79,6 +81,9 @@ class ForgotPassword extends React.Component {
     render() {
         console.log('Forgot password render');
         console.log(this.state);
+        let textInfo = this.props.storeState.languageTextMain.registration.forgotPassword;
+        debugger;
+        console.log('EEE');
         return (
             <React.Fragment>
 
@@ -96,26 +101,32 @@ class ForgotPassword extends React.Component {
                     </Helmet>
                     {this.state.isGood ?
                         <div className="forgotPasswordSuccess forgotPasswordContent d-flex flex-column align-items-center col-md-7 col-11">
-                            <span>Спасибо! Информация для смены пароля выслана на Ваш email.</span>
+                            <span>{textInfo.success}</span>
                         </div>
                         :
                         <div className="forgotPasswordContent d-flex flex-column align-items-center col-md-8 col-11">
                             <div className="d-flex justify-content-center align-items-center">
-                                <span>Восстановление пароля</span>
+                                <span>{textInfo.passwordRepair}</span>
                             </div>
                             <div className="d-flex flex-md-row flex-column align-items-center col-md-8 col-12">
-                                <input className={this.state.falde ? "forgotPasswordInput-error col-md-7 col-12" : "col-md-7 col-12"} value={this.state.email} placeholder="Введите адрес Вашей почты" pattern="^([A-Za-z0-9_-]+\.)*[A-Za-z0-9_-]+@[A-Za-z0-9_-]+(\.[A-Za-z0-9_-]+)*\.[A-Za-z]{6,}$" onChange={(e) => { this.emailonchange(e.target.value); this.setState({ falde: false, isSended: false }) }}></input>
-                               
-                               
-                                    <div className="forgotPasswordBt d-flex justify-content-center align-items-center col-md-5 col-12" onClick={() => this.sendRequest()}><span>Отправить</span></div>
+                                <input className={this.state.falde ? "forgotPasswordInput-error col-md-7 col-12" : "col-md-7 col-12"}
+                                value={this.state.email} placeholder={textInfo.placeholder} 
+                                pattern="^([A-Za-z0-9_-]+\.)*[A-Za-z0-9_-]+@[A-Za-z0-9_-]+(\.[A-Za-z0-9_-]+)*\.[A-Za-z]{6,}$" 
+                                onChange={(e) => { this.emailonchange(e.target.value);
+                                this.setState({ falde: false, isSended: false }) }}></input>
+                                <div className="forgotPasswordBt d-flex justify-content-center align-items-center col-md-5 col-12" onClick={() => this.sendRequest()}>
+                                    <span>{textInfo.sendEmail}</span>
+                                </div>
                                 
                             </div>
                             {
-                                    this.state.isSended ?
-                                        <div className={this.state.isGood ? "forgotPasswordContent-active" : "forgotPasswordContent-error"}>{this.state.isGood ? 'Отправлено,проверьте почту' : 'Неверная почта'}</div>
-                                        :
-                                        <span className="forgotPasswordContentSpanText">На Вашу почту будет выслана ссылка для восстановления пароля.</span>
-                                }
+                                this.state.isSended ?
+                                    <div className={this.state.isGood ? "forgotPasswordContent-active" : "forgotPasswordContent-error"}>
+                                        {this.state.isGood ? textInfo.goodAnswer : textInfo.wrongAnswer}
+                                    </div>
+                                    :
+                                    <span className="forgotPasswordContentSpanText">{textInfo.preSendText}</span>
+                            }
 
                         </div>
 
@@ -126,5 +137,11 @@ class ForgotPassword extends React.Component {
         )
     }
 }
+
+const ForgotPassword = connect(
+    (state) => ({
+        storeState: state.AppReduser
+    })
+)(ForgotPasswordClass);
 
 export default ForgotPassword;

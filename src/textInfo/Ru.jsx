@@ -3,7 +3,6 @@ import driverProfile from './Ru/Ru-driverProfile';
 import home from './Ru/Ru-home';
 import registration from './Ru/Ru-registration';
 import renderModalRegistration from './Ru/Ru-renderModalRegistration';
-import header from './Ru/Ru-header';
 import footer from './Ru/Ru-footer';
 import places from './Ru/Ru-places';
 import manipulator from './Ru/Ru-manipulator';
@@ -13,14 +12,18 @@ import drivers from './Ru/Ru-drivers';
 import startTravelForm from './Ru/Ru-startTravelForm';
 import termsUser from './Ru/Ru-termsUser'
 import termsDriver from './Ru/Ru-termsDriver';
-import FooterPage from './Ru/Ru-FooterPage'
+import FooterPage from './Ru/Ru-FooterPage';
+//import routeDescription from './Ru/Ru-routeDescription';
+
+import headerAdmin from './Ru-admin/Ru-header';
 export default {
     driverProfile: driverProfile,
+    //routeDescription: routeDescription,
     //driverProfileRegistration:driverProfileRegistration,
     home:home,
     registration:registration,
     renderModalRegistration:renderModalRegistration,
-    header:header,
+    header:headerAdmin,
     places:places,
     footer:footer,
     manipulator:manipulator,
