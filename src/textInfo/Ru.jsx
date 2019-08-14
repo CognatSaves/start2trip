@@ -14,7 +14,7 @@ import termsUser from './Ru/Ru-termsUser'
 import termsDriver from './Ru/Ru-termsDriver';
 import FooterPage from './Ru/Ru-FooterPage';
 //import routeDescription from './Ru/Ru-routeDescription';
-
+import firstEnterModal from './Ru/Ru-firstEnterModal'
 import headerAdmin from './Ru-admin/Ru-header';
 export default {
     driverProfile: driverProfile,
@@ -34,4 +34,5 @@ export default {
     termsUser:termsUser,
     termsDriver:termsDriver,
     footerPage:FooterPage,
+    firstEnterModal:firstEnterModal,
 }

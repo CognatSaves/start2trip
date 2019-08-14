@@ -74,7 +74,7 @@ class RenderModalRegistrationClass extends React.Component {
 
                 window.localStorage.setItem('errorId', 0);
 
-                cookies.set("avatarUrl", requests.serverAddressImg + data.user.avatarUrl, { path: '/', expires: date });
+                cookies.set("avatarUrl", requests.serverAddress + data.user.avatarUrl, { path: '/', expires: date });
                 cookies.set("userName", data.user.userName, { path: '/', expires: date });
                 cookies.set("userType", data.user.userType, { path: '/', expires: date })
                 setAnswerResult('good', { jwt: data.jwt });
@@ -230,8 +230,9 @@ class RenderModalRegistrationClass extends React.Component {
             agency: agency,
             email: "",
             password: "",
-            emailValid:true,
-            agreement:false,
+            emailValid: true,
+            agreement: false,
+            checkedAgreement:true,
         };
         let urlParams = new URLSearchParams(window.location.search);
         let token = urlParams.get('access_token');
@@ -430,15 +431,15 @@ class RenderModalRegistrationClass extends React.Component {
                             <form id="regForm" onSubmit={(e) => {
                                 e.preventDefault();
                                 if (EmailValidator.validate(this.state.email)) {
-                                    this.setState({emailValid:true})
+                                    this.setState({ emailValid: true })
                                     this.sendRegistrationRequest(this.state.sitingIn)
-                                }else{
-                                    this.setState({emailValid:false})
+                                } else {
+                                    this.setState({ emailValid: false,checkedAgreement :this.state.agreement  })
                                 }
                             }}>
                                 <div className="inputIcon">
                                     <img className="emailIcon" src={emailIcon} alt="emailIcon" width='13px' height='12px' />
-                                    <input onFocus={() => { this.setState({ regAnswerStatus: false, regProcessStatus: false, emailValid:true }) }} className={this.state.emailValid?"mobailsitingInLightInput":"mobailsitingInLightInput mobailsitingInLightInput-error"}
+                                    <input onFocus={() => { this.setState({ regAnswerStatus: false, regProcessStatus: false, emailValid: true }) }} className={this.state.emailValid ? "mobailsitingInLightInput" : "mobailsitingInLightInput mobailsitingInLightInput-error"}
                                         type="email"
                                         placeholder={textInfo.sitingInLightBackgroundText.secondInputPlaceholderText} required
                                         value={this.state.email} onChange={(e) => this.setState({ email: e.target.value })} />
@@ -450,9 +451,9 @@ class RenderModalRegistrationClass extends React.Component {
                                         required value={this.state.password} onChange={(e) => this.setState({ password: e.target.value })} />
                                     <img className="eyeIcon" src={this.state.passwordType ? eyeIcon : eyeOrange} alt="eyeIcon" width='15px' height='15px' onClick={() => this.setState({ passwordType: !this.state.passwordType })} />
                                 </div>
-                                <div className="d-flex">
-                                    <Checkbox id="agreement" color="#fff" checked={true} />
-                                    <label htmlFor="agreement">Принимаю условия соглашения</label>
+                                <div className={this.state.checkedAgreement?"align-items-center agreement ":"align-items-center agreement-error"} style={{ display: !this.state.sitingIn ? 'flex' : 'none' }}>
+                                    <Checkbox id="agreement" onClick={() => { this.setState({ agreement: !this.state.agreement ,checkedAgreement :!this.state.agreement}) }} color="#fff" checked={this.state.agreement} />
+                                    <label htmlFor="agreement" onClick={() => { this.setState({ agreement: !this.state.agreement,checkedAgreement :!this.state.agreement }) }}>Принимаю условия соглашения</label>
                                 </div>
                                 <div className="registrationAnswerText" style={{ visibility: regAnswerVisibility ? 'visible' : 'hidden', color: regAnswerColor ? 'red' : 'green' }}>{regAnswerValue}</div>
 
@@ -550,13 +551,13 @@ class RenderModalRegistrationClass extends React.Component {
                                 e.preventDefault();
                                 if (EmailValidator.validate(this.state.email)) {
                                     this.sendRegistrationRequest(this.state.sitingIn)
-                                }else{
-                                    this.setState({emailValid:false})
+                                } else {
+                                    this.setState({ emailValid: false ,checkedAgreement :this.state.agreement })
                                 }
                             }}>
                                 <div className="inputIcon">
                                     <img className="emailIcon" src={emailIcon} alt="emailIcon" width='13px' height='12px' />
-                                    <input onFocus={() => { this.setState({ regAnswerStatus: false, regProcessStatus: false, emailValid:true  }) }} className={this.state.emailValid?"sitingInLightInput":"sitingInLightInput sitingInLightInput-error"}
+                                    <input onFocus={() => { this.setState({ regAnswerStatus: false, regProcessStatus: false, emailValid: true }) }} className={this.state.emailValid ? "sitingInLightInput" : "sitingInLightInput sitingInLightInput-error"}
                                         type="email"
                                         placeholder={textInfo.sitingInLightBackgroundText.secondInputPlaceholderText}
                                         required value={this.state.email} onChange={(e) => this.setState({ email: e.target.value })} />
@@ -568,15 +569,15 @@ class RenderModalRegistrationClass extends React.Component {
                                         required value={this.state.password} onChange={(e) => this.setState({ password: e.target.value })} />
                                     <img className="eyeIcon" src={this.state.passwordType ? eyeIcon : eyeOrange} alt="eyeIcon" width='15px' height='15px' onClick={() => this.setState({ passwordType: !this.state.passwordType })} />
                                 </div>
-                                <div className=" align-items-center agreement" style={{ display: !this.state.sitingIn  ?  'flex':'none' }}>
-                                    <Checkbox id="agreement" onClick={()=>{this.setState({agreement:!this.state.agreement})}} color="#fff" checked={this.state.agreement} />
-                                    <label htmlFor="agreement" onClick={()=>{this.setState({agreement:!this.state.agreement})}}>Принимаю условия соглашения</label>
+                                <div className={this.state.checkedAgreement?"align-items-center agreement ":"align-items-center agreement-error"} style={{ display: !this.state.sitingIn ? 'flex' : 'none' }}>
+                                    <Checkbox id="agreement" onClick={() => { this.setState({ agreement: !this.state.agreement ,checkedAgreement :!this.state.agreement}) }} color="#fff" checked={this.state.agreement} />
+                                    <label htmlFor="agreement" onClick={() => { this.setState({ agreement: !this.state.agreement,checkedAgreement :!this.state.agreement }) }}>Принимаю условия соглашения</label>
                                 </div>
                                 <div className="registrationAnswerText" style={{ visibility: regAnswerVisibility ? 'visible' : 'hidden', color: regAnswerColor ? 'red' : 'green' }}>{regAnswerValue}</div>
                                 <Link onClick={() => this.props.dispatch(setModalRegister(false))} className="forgotPasswordLink" style={{ display: this.state.sitingIn ? "block" : "none" }} to="/forgot-password">{textInfo.sitingInLightBackgroundText.linkText}</Link>
                                 <div className="d-flex justify-content-center align-items-end">
                                     <div className="returnButton pr-5" style={{ display: !this.state.sitingIn ? 'block' : 'none' }} onClick={() => this.setState({ regWindowType: 0 })}>{textInfo.registrationUserType.buttonReturn}</div>
-                                    <button disabled={this.state.regProcessStatus || this.state.regAnswerStatus || !this.state.agreement} type="submit" htmlFor="regForm">{this.state.sitingIn ? textInfo.sitingInLightBackgroundText.buttonText : textInfo.registrationDarkBackgroundText.buttonText}</button>
+                                    <button disabled={this.state.regProcessStatus || this.state.regAnswerStatus} type="submit" htmlFor="regForm">{this.state.sitingIn ? textInfo.sitingInLightBackgroundText.buttonText : textInfo.registrationDarkBackgroundText.buttonText}</button>
                                 </div>
                             </form>
                         </div>
