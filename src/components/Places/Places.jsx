@@ -149,7 +149,7 @@ class PlacesClass extends React.Component {
      this.props.globalReduser.findCountryNameByISO(this,cookies.get('country', {path: '/'}),cookies.get('userLang', {path: '/'}))
      : '';
     if(countryName.length>0){
-      debugger;
+      
     }
     let name = findSelectedDirectionName(this.props.placesState.directions, selectedDirection);
     return (

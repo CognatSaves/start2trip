@@ -559,7 +559,22 @@ class DriverProfileClass extends React.Component {
                                                     <div className={"routeTravelBlock_pointValue anidate d-flex flex-row "}
                                                     onClick={()=>{if(this.state.isDateHighlighted){this.setState({isDateHighlighted: false})}}}>
                                                         <div className="placesDescription_travelBlock_icon placesDescription_calendary" />
-                                                        <DatePicker defaultDate={this.state.date} shouldDisableDate={(day) => { /*debugger*/  }} hintText={textInfo.startDate} minDate={new Date()} onChange={(e, date) => { this.setState({date: date});  }} className="routeDescrDate" />
+                                                        <DatePicker defaultDate={this.state.date} shouldDisableDate={(date) => { 
+                                                        let flag = false
+                                                        for(let i = 0; i<this.props.driversState.driverCarDescription.weekend.length; i++){
+                                                            let newDate =  new Date(this.props.driversState.driverCarDescription.weekend[i])
+                                                            let newDay =newDate.getUTCDate();
+                                                            let newMonth = newDate.getUTCMonth();
+                                                            let newYear = newDate.getUTCFullYear();
+                                                            let day=date.getUTCDate();
+                                                            let month = date.getUTCMonth();
+                                                            let year = date.getUTCFullYear()
+                                                            if(newDay===day&&newMonth===month&&newYear===year){
+                                                                flag =  true
+                                                        }
+                                                         }
+                                                         return flag
+                                                         }} hintText={textInfo.startDate} minDate={new Date()} onChange={(e, date) => { this.setState({date: date});  }} className="routeDescrDate" />
                                                     </div>
                                                 </div>
                                                 {

@@ -158,7 +158,7 @@ class DriversClass extends React.Component {
     let storeState = this.props.storeState;
     let activeCurrency = storeState.currencies[storeState.activeCurrencyNumber];
     let route = createTitleString(cities);
-    debugger;
+    
     let textInfo = this.props.storeState.languageTextMain.drivers.mainPage;
         
     return (

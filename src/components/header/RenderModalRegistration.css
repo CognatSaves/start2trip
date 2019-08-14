@@ -163,6 +163,16 @@
     font-size: 12px;
 }
 
+.agreement-error label{
+    margin-bottom: 0;
+    color: #e81123;
+    font-size: 12px;
+}
+
+.agreement-error span{
+    color: #e81123;
+}
+
 .peopleIcon {
     position: absolute;
     z-index: 3;

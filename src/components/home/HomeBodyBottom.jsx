@@ -152,7 +152,7 @@ class HomeBodyBottomClass extends React.Component {
     if(!selectedDirection){//защита от undefined
       selectedDirection="";
     }
-    debugger;
+    
     let name = findSelectedDirectionName(this.props.placesState.directions, selectedDirection);
     console.log('a');
     return(

@@ -14,6 +14,7 @@ import startTravelForm from './En/En-startTravelForm';
 import termsUser from './En/En-termsUser'
 import termsDriver from './En/En-termsDriver'
 import FooterPage from './En/En-FooterPage'
+import firstEnterModal from './En/En-firstEnterModal'
 export default {
     driverProfile: driverProfile,
     //driverProfileRegistration:driverProfileRegistration,
@@ -31,4 +32,5 @@ export default {
     termsUser:termsUser,
     termsDriver:termsDriver,
     footerPage:FooterPage,
+    firstEnterModal:firstEnterModal,
 }
