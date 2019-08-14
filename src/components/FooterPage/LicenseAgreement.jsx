@@ -26,7 +26,12 @@ class LicenseAgreementClass extends React.Component {
             <React.Fragment>
                 <Helmet>
                     <title>{'Лицензионное соглашение'}</title>
-                    <meta name="description" content="Tripfer in header" />
+                    <meta name="description" content="Лицензионное соглашение" />
+                    <meta property="og:site_name" content="Tripfer" />
+                    <meta property="og:type" content="website" />
+                    <meta property="og:url" content="https://tripfer.com/terms" />
+                    <meta property="og:title" content="Лицензионное соглашение" />
+                    <meta property="og:description" content="Лицензионное соглашение сервиса tripfer.com" /> 
                 </Helmet>
                 <Header driver={true} history={this.props.history} />
                 <div className="wrapper">

@@ -78,7 +78,12 @@ class AccountRedirectorClass extends React.Component{
                 <React.Fragment>
                     <Helmet>
                         <title>{"Загрузка Вашего аккаунта на Tripfer"}</title>
-                        <meta name="description" content="Tripfer in header" />
+                        <meta name="description" content={"Загрузка Вашего аккаунта на Tripfer"} />
+                        <meta property="og:site_name" content="Tripfer" />
+                        <meta property="og:type" content="website" />
+                        <meta property="og:url" content="https://tripfer.com/" />
+                        <meta property="og:title" content={"Загрузка Вашего аккаунта на Tripfer"} />
+                        <meta property="og:description" content="Подтверждение поездки на сайте tripfer.com" /> 
                     </Helmet>
                 
                     <DriverRefreshIndicator isRefreshExist={true} isRefreshing={true} isGoodAnswer={true}/>
@@ -94,7 +99,12 @@ class AccountRedirectorClass extends React.Component{
                     <React.Fragment>
                         <Helmet>
                             <title>{"Ваш аккаунт на Tripfer"}</title>
-                            <meta name="description" content="Tripfer in header" />
+                            <meta name="description" content={"Ваш аккаунт на Tripfer"} />
+                            <meta property="og:site_name" content="Tripfer" />
+                            <meta property="og:type" content="website" />
+                            <meta property="og:url" content="https://tripfer.com/" /* тут надо подумать, может вообще перенксти это внутрь каждого типа *//>
+                            <meta property="og:title" content={"Ваш аккаунт на Tripfer"} />
+                            <meta property="og:description" content={"Ваш аккаунт на Tripfer"} /> 
                         </Helmet>
 
                         <Route path="/account/driver" component={DriverProfileRegistration} />

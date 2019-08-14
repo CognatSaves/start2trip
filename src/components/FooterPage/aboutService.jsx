@@ -41,7 +41,12 @@ class aboutServiceClass extends React.Component {
                 <Header driver={true} history={this.props.history} />
                 <Helmet>
                     <title>{'О сервисе'}</title>
-                    <meta name="description" content="Tripfer in header" />
+                    <meta name="description" content="О сервисе tripfer.com" />
+                    <meta property="og:site_name" content="Tripfer" />
+                    <meta property="og:type" content="website" />
+                    <meta property="og:url" content="https://tripfer.com/about-service" />
+                    <meta property="og:title" content="О сервисе" />
+                    <meta property="og:description" content="Описание сервиса tripfer.com" /> 
                 </Helmet>
                 <div className="wrapper">
                     <div className="aboutService d-flex" >

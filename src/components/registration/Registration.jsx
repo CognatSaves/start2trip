@@ -255,7 +255,12 @@ class Registration extends React.Component{
             <div className="d-flex" style={{zIndex: '100', position: 'absolute', width: '100%', height: '100%', backgroundColor: "#ffffff"}}>
                 <Helmet>
                     <title>{'Регистрация'}</title>
-                    <meta name="description" content="Tripfer in header" />
+                    <meta name="description" content={'Регистрация'} />
+                    <meta property="og:site_name" content="Tripfer" />
+                    <meta property="og:type" content="website" />
+                    <meta property="og:url" content="https://tripfer.com/registration" />
+                    <meta property="og:title" content={'Регистрация'} />
+                    <meta property="og:description" content={'Регистрация'} /> 
                    </Helmet>
                 <div style={{margin: 'auto'}}>
                 <DriverRefreshIndicator isRefreshExist={true} isRefreshing={true} isGoodAnswer={true} />

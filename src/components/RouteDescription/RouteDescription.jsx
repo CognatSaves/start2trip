@@ -139,11 +139,21 @@ class RouteDescriptionClass extends React.Component {
                     this.state.newRoute.local ? 
                     <Helmet>
                         <title>{this.state.newRoute.local.name+', описание, оценки, отзывы'}</title>
-                        <meta name="description" content="Tripfer in header" />
+                        <meta name="description" content={this.state.newRoute.local.name+', описание, оценки, отзывы'} />
+                        <meta property="og:site_name" content="Tripfer" />
+                        <meta property="og:type" content="website" />
+                        <meta property="og:url" content="https://tripfer.com/blr-en/routes/slug" /*тут нужна подгрузка корректного слага *//>
+                        <meta property="og:title" content={this.state.newRoute.local.name+', описание, оценки, отзывы'} />
+                        <meta property="og:description" content={this.state.newRoute.local.name+', описание, оценки, отзывы'} /> 
                         </Helmet> :
                     <Helmet>
                         <title>{"Ожидаем загрузку маршрута"}</title>
-                        <meta name="description" content="Tripfer in header" />
+                        <meta name="description" content={"Ожидаем загрузку маршрута"} />
+                        <meta property="og:site_name" content="Tripfer" />
+                        <meta property="og:type" content="website" />
+                        <meta property="og:url" content="https://tripfer.com/" />
+                        <meta property="og:title" content={"Ожидаем загрузку маршрута"} />
+                        <meta property="og:description" content={"Ожидаем загрузку маршрута"} /> 
                     </Helmet>
                 }
                 

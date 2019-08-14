@@ -57,11 +57,21 @@ class HomeClass extends React.Component {
           this.props.storeState.countries.length>0 ?
           <Helmet>
             <title>{countryName+", построение маршрутов"}</title>
-            <meta name="description" content="Tripfer in header" />
+            <meta name="description" content="Построение маршрутов на сайте tripfer.com" />
+            <meta property="og:site_name" content="Tripfer" />
+            <meta property="og:type" content="website" />
+            <meta property="og:url" content="https://tripfer.com/blr-en/routes" />
+            <meta property="og:title" content="Построение маршрутов" />
+            <meta property="og:description" content="Построение маршрутов на сайте tripfer.com" /> 
           </Helmet> :
           <Helmet>
             <title>{"Tripfer, построение маршрутов"}</title>
-            <meta name="description" content="Tripfer in header" />
+            <meta name="description" content="Tripfer, построение маршрутов" />
+            <meta property="og:site_name" content="Tripfer" />
+            <meta property="og:type" content="website" />
+            <meta property="og:url" content="https://tripfer.com/blr-en/routes" />
+            <meta property="og:title" content="Построение маршрутов" />
+            <meta property="og:description" content="Tripfer, построение маршрутов" /> 
           </Helmet>
         }
         
