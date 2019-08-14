@@ -29,7 +29,7 @@ class LicenseAgreementClass extends React.Component {
                     <meta name="description" content="Лицензионное соглашение" />
                     <meta property="og:site_name" content="Tripfer" />
                     <meta property="og:type" content="website" />
-                    <meta property="og:url" content="https://tripfer.com/terms" />
+                    <meta property="og:url" content={document.URL} />
                     <meta property="og:title" content="Лицензионное соглашение" />
                     <meta property="og:description" content="Лицензионное соглашение сервиса tripfer.com" /> 
                 </Helmet>

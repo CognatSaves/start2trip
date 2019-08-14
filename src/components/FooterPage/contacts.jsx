@@ -30,7 +30,7 @@ class contactsClass extends React.Component {
                     <meta name="description" content="Наши контакты" />
                     <meta property="og:site_name" content="Tripfer" />
                     <meta property="og:type" content="website" />
-                    <meta property="og:url" content="https://tripfer.com/contacts" />
+                    <meta property="og:url" content={document.URL} />
                     <meta property="og:title" content="Наши контакты" />
                     <meta property="og:description" content="Наши контакты" /> 
                 </Helmet>

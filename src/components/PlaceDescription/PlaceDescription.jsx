@@ -215,7 +215,7 @@ class PlaceDescriptionClass extends React.Component {
                         <meta name="description" content={this.state.newPlace.local.name+', описание, оценки, отзывы'} />
                         <meta property="og:site_name" content="Tripfer" />
                         <meta property="og:type" content="website" />
-                        <meta property="og:url" content="https://tripfer.com/blr-en/places/slug" /*Здесь нужно нормальный slug подключить */ />
+                        <meta property="og:url" content={document.URL} /*Здесь нужно нормальный slug подключить */ />
                         <meta property="og:title" content={this.state.newPlace.local.name+', описание, оценки, отзывы'} />
                         <meta property="og:description" content={this.state.newPlace.local.name+', описание, оценки, отзывы'} /> 
                     </Helmet> : 
@@ -224,7 +224,7 @@ class PlaceDescriptionClass extends React.Component {
                         <meta name="description" content={"Ожидаем загрузку достопримечательности"} />
                         <meta property="og:site_name" content="Tripfer" />
                         <meta property="og:type" content="website" />
-                        <meta property="og:url" content="https://tripfer.com/blr-en/places" />
+                        <meta property="og:url" content={document.URL} />
                         <meta property="og:title" content={"Ожидаем загрузку достопримечательности"} />
                         <meta property="og:description" content={"Ожидаем загрузку достопримечательности"} /> 
                     </Helmet>

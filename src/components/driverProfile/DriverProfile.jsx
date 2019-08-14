@@ -517,7 +517,12 @@ class DriverProfileClass extends React.Component {
                                     this.props.driversState.driverCarDescription.id ? 
                                     <Helmet>
                                         <title>{textInfo.title}</title>
-                                        <meta name="description" content="Tripfer in header" />
+                                        <meta name="description" content="Tripfer driverProfile" />
+                                        <meta property="og:site_name" content="Tripfer" />
+                                        <meta property="og:type" content="website" />
+                                        <meta property="og:url" content={document.URL} />
+                                        <meta property="og:title" content="Tripfer driverProfile" />
+                                        <meta property="og:description" content="Tripfer driverProfile on tripfer.com" />
                                     </Helmet> : <React.Fragment/>
 
                                 }

@@ -126,7 +126,7 @@ class ResetPasswordClass extends React.Component {
                     <meta name="description" content={'Введите новый пароль'} />
                     <meta property="og:site_name" content="Tripfer" />
                     <meta property="og:type" content="website" />
-                    <meta property="og:url" content="https://tripfer.com/" />
+                    <meta property="og:url" content={document.URL} />
                     <meta property="og:title" content={'Введите новый пароль'} />
                     <meta property="og:description" content={'Введите новый пароль'} /> 
                 </Helmet>

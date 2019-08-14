@@ -63,7 +63,7 @@ class AuthModalCountryClass extends React.Component {
                         <meta name="description" content={"Выберите интересующий Вас регион"} />
                         <meta property="og:site_name" content="Tripfer" />
                         <meta property="og:type" content="website" />
-                        <meta property="og:url" content="https://tripfer.com/countrySelection" />
+                        <meta property="og:url" content={document.URL} />
                         <meta property="og:title" content={"Выберите интересующий Вас регион"} />
                         <meta property="og:description" content={"Выберите интересующий Вас регион"} /> 
                     </Helmet>

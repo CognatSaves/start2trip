@@ -39,6 +39,9 @@ const drivers = {
     messageEror:{
         noElementsText: 'Мы искали даже на Марсе, но ничего не нашли.\n Попробуйте изменить условия поиска.'
     },
+    driverConfirmation:{
+        
+    }
 }
 
 export default drivers;

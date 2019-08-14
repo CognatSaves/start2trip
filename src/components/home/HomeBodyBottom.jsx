@@ -165,7 +165,7 @@ class HomeBodyBottomClass extends React.Component {
             <meta name="description" content={name+", маршруты, отзывы, оценки"} />
             <meta property="og:site_name" content="Tripfer" />
             <meta property="og:type" content="website" />
-            <meta property="og:url" content="https://tripfer.com/blr-en/routes" /*тут должно быть с направлением (direction) */ />
+            <meta property="og:url" content={document.URL} /*тут должно быть с направлением (direction) */ />
             <meta property="og:title" content={name+", маршруты, отзывы, оценки"} />
             <meta property="og:description" content={name+", маршруты, отзывы, оценки"} /> 
           </Helmet> : <React.Fragment/>

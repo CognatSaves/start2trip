@@ -142,7 +142,7 @@ class RouteDescriptionClass extends React.Component {
                         <meta name="description" content={this.state.newRoute.local.name+', описание, оценки, отзывы'} />
                         <meta property="og:site_name" content="Tripfer" />
                         <meta property="og:type" content="website" />
-                        <meta property="og:url" content="https://tripfer.com/blr-en/routes/slug" /*тут нужна подгрузка корректного слага *//>
+                        <meta property="og:url" content={document.URL} /*тут нужна подгрузка корректного слага *//>
                         <meta property="og:title" content={this.state.newRoute.local.name+', описание, оценки, отзывы'} />
                         <meta property="og:description" content={this.state.newRoute.local.name+', описание, оценки, отзывы'} /> 
                         </Helmet> :
@@ -151,7 +151,7 @@ class RouteDescriptionClass extends React.Component {
                         <meta name="description" content={"Ожидаем загрузку маршрута"} />
                         <meta property="og:site_name" content="Tripfer" />
                         <meta property="og:type" content="website" />
-                        <meta property="og:url" content="https://tripfer.com/" />
+                        <meta property="og:url" content={document.URL} />
                         <meta property="og:title" content={"Ожидаем загрузку маршрута"} />
                         <meta property="og:description" content={"Ожидаем загрузку маршрута"} /> 
                     </Helmet>

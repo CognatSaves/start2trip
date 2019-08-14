@@ -65,7 +65,7 @@ class AuthRedirectClass extends React.Component {
                     <meta name="description" content={'Авторизация'} />
                     <meta property="og:site_name" content="Tripfer" />
                     <meta property="og:type" content="website" />
-                    <meta property="og:url" content="https://tripfer.com/login" />
+                    <meta property="og:url" content={document.URL} />
                     <meta property="og:title" content={'Авторизация'} />
                     <meta property="og:description" content={'Авторизация'} /> 
                 </Helmet>

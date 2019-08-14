@@ -20,14 +20,14 @@ class DriverConfirmationClass extends React.Component {
          let carrierId = this.props.match.params.carrierId;
          let confirmation = this.props.match.params.confirmation;
          
-        
+        debugger;
         if(confirmation){
             console.log("-------------------------------")
-         console.log(confirmation)
+            console.log(confirmation)
             this.sendRequest(id,carrierId,confirmation);
         }else{
             console.log("-------------------------------")
-         console.log(confirmation)
+            console.log(confirmation)
             this.setState({
                 heAgrees: this.props.match.params.confirmation,
             })
@@ -92,7 +92,7 @@ class DriverConfirmationClass extends React.Component {
                     <meta name="description" content="Подтверждение поездки" />
                     <meta property="og:site_name" content="Tripfer" />
                     <meta property="og:type" content="website" />
-                    <meta property="og:url" content="https://tripfer.com/" />
+                    <meta property="og:url" content={document.URL} />
                     <meta property="og:title" content="Подтверждение поездки" />
                     <meta property="og:description" content="Подтверждение поездки на сайте tripfer.com" />            
                 </Helmet>
@@ -106,7 +106,7 @@ class DriverConfirmationClass extends React.Component {
                                 <div className="forgotPasswordContent forgotPasswordContent d-flex flex-column align-items-center col-md-7 col-11">
                                     <div className="d-flex flex-column justify-content-center align-items-center">
                                         <span className="pt-2 pb-1">Вы подтвердили заказ!</span>
-                                        <span1>{this.state.text}<br/>
+                                        <span1>{"Всё прекрасно, вы подтвердили поездку"}<br/>
                                         За неявку на подтвержденный заказ Вы получаете сразу 3 штрафных балла.</span1>
                                     </div>
                                     <div className="d-flex flex-md-row flex-column justify-content-center align-items-center col-md-8 col-12">

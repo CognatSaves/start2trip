@@ -160,7 +160,8 @@ class DriversClass extends React.Component {
     let route = createTitleString(cities);
     
     let textInfo = this.props.storeState.languageTextMain.drivers.mainPage;
-        
+    debugger;
+    console.log(window);   
     return (
       <React.Fragment>
         {
@@ -170,29 +171,29 @@ class DriversClass extends React.Component {
             <title>{textInfo.routeText[0]+' '+route+textInfo.routeText[1]}</title>
             <meta name="description" content="Tripfer in drivers" />
             <meta property="og:site_name" content="Tripfer" />
-                    <meta property="og:type" content="website" />
-                    <meta property="og:url" content="https://tripfer.com/blr-en/drivers" />
-                    <meta property="og:title" content={textInfo.routeText[0]+' '+route+textInfo.routeText[1]} />
-                    <meta property="og:description" content="Предложения водителей на сайте tripfer.com" /> 
+            <meta property="og:type" content="website" />
+            <meta property="og:url" content={document.URL} />
+            <meta property="og:title" content={textInfo.routeText[0]+' '+route+textInfo.routeText[1]} />
+            <meta property="og:description" content="Предложения водителей на сайте tripfer.com" /> 
           </Helmet> :
           <Helmet>
             <title>{countryName+textInfo.countryText}</title>
             <meta name="description" content="Tripfer in drivers" />
             <meta property="og:site_name" content="Tripfer" />
-                    <meta property="og:type" content="website" />
-                    <meta property="og:url" content="https://tripfer.com/blr-en/drivers" />
-                    <meta property="og:title" content={countryName+textInfo.countryText} />
-                    <meta property="og:description" content="Предложения водителей на сайте tripfer.com" /> 
+            <meta property="og:type" content="website" />
+            <meta property="og:url" content={document.URL} />
+            <meta property="og:title" content={countryName+textInfo.countryText} />
+            <meta property="og:description" content="Предложения водителей на сайте tripfer.com" /> 
           </Helmet>)
           :
           <Helmet>
             <title>{textInfo.loadingText}</title>
             <meta name="description" content="Tripfer in drivers" />
             <meta property="og:site_name" content="Tripfer" />
-                    <meta property="og:type" content="website" />
-                    <meta property="og:url" content="https://tripfer.com/blr-en/drivers" />
-                    <meta property="og:title" content="Предложения водителей на сайте tripfer.com" />
-                    <meta property="og:description" content="Предложения водителей на сайте tripfer.com" /> 
+            <meta property="og:type" content="website" />
+            <meta property="og:url" content={document.URL} />
+            <meta property="og:title" content="Предложения водителей на сайте tripfer.com" />
+            <meta property="og:description" content="Предложения водителей на сайте tripfer.com" /> 
           </Helmet>
         }
         

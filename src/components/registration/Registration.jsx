@@ -258,7 +258,7 @@ class Registration extends React.Component{
                     <meta name="description" content={'Регистрация'} />
                     <meta property="og:site_name" content="Tripfer" />
                     <meta property="og:type" content="website" />
-                    <meta property="og:url" content="https://tripfer.com/registration" />
+                    <meta property="og:url" content={document.URL} />
                     <meta property="og:title" content={'Регистрация'} />
                     <meta property="og:description" content={'Регистрация'} /> 
                    </Helmet>

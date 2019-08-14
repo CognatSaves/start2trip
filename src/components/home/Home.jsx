@@ -60,7 +60,7 @@ class HomeClass extends React.Component {
             <meta name="description" content="Построение маршрутов на сайте tripfer.com" />
             <meta property="og:site_name" content="Tripfer" />
             <meta property="og:type" content="website" />
-            <meta property="og:url" content="https://tripfer.com/blr-en/routes" />
+            <meta property="og:url" content={document.URL} />
             <meta property="og:title" content="Построение маршрутов" />
             <meta property="og:description" content="Построение маршрутов на сайте tripfer.com" /> 
           </Helmet> :
@@ -69,7 +69,7 @@ class HomeClass extends React.Component {
             <meta name="description" content="Tripfer, построение маршрутов" />
             <meta property="og:site_name" content="Tripfer" />
             <meta property="og:type" content="website" />
-            <meta property="og:url" content="https://tripfer.com/blr-en/routes" />
+            <meta property="og:url" content={document.URL} />
             <meta property="og:title" content="Построение маршрутов" />
             <meta property="og:description" content="Tripfer, построение маршрутов" /> 
           </Helmet>

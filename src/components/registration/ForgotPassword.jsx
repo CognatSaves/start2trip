@@ -95,7 +95,7 @@ class ForgotPasswordClass extends React.Component {
                         <meta name="description" content={'Восстановление пароля'} />
                         <meta property="og:site_name" content="Tripfer" />
                         <meta property="og:type" content="website" />
-                        <meta property="og:url" content="https://tripfer.com/" />
+                        <meta property="og:url" content={document.URL} />
                         <meta property="og:title" content={'Восстановление пароля'} />
                         <meta property="og:description" content={'Восстановление пароля'} /> 
                     </Helmet>
