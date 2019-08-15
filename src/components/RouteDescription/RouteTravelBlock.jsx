@@ -15,6 +15,7 @@ class RouteTravelBlockClass extends React.Component{
             date: '',
             isDateHighlighted: false
         }
+        
     }
     shouldComponentUpdate(nextProps, nextState){
         return JSON.stringify(this.props)!==JSON.stringify(nextProps) || JSON.stringify(this.state)!==JSON.stringify(nextState);
@@ -44,6 +45,7 @@ class RouteTravelBlockClass extends React.Component{
         
     }
     setLengthTime = (travelLength, travelTime) => {
+        //alert('setLengthTime');
         function getLengthString(travelLength) {
             let length = travelLength;
             length = Math.ceil(length / 1000);
@@ -67,11 +69,11 @@ class RouteTravelBlockClass extends React.Component{
             }
             return timeString;
         }
-        
-        if ((this.props.driversState.travelLength.length===0 || this.props.driversState.travelLength === "-") &&
-         (this.props.driversState.travelTime.length===0 || this.props.driversState.travelTime === "-")) {
-            let lengthString = getLengthString(travelLength);
-            let timeString = getTimeString(travelTime);
+        let lengthString = getLengthString(travelLength);
+        let timeString = getTimeString(travelTime);
+        if (/*(this.props.driversState.travelLength.length===0 || this.props.driversState.travelLength === "-" ) &&
+         (this.props.driversState.travelTime.length===0 || this.props.driversState.travelTime === "-")*/
+            this.props.driversState.travelLength!==lengthString || this.props.driversState.travelTime!==timeString) {          
             this.props.dispatch(setLengthTime(timeString, lengthString));
         }
 
