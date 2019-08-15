@@ -16,6 +16,7 @@ import FooterPage from './Ru/Ru-FooterPage';
 //import routeDescription from './Ru/Ru-routeDescription';
 import firstEnterModal from './Ru/Ru-firstEnterModal'
 import headerAdmin from './Ru-admin/Ru-header';
+import helmets from './Ru/Ru-helmets';
 export default {
     driverProfile: driverProfile,
     //routeDescription: routeDescription,
@@ -35,4 +36,5 @@ export default {
     termsDriver:termsDriver,
     footerPage:FooterPage,
     firstEnterModal:firstEnterModal,
+    helmets:helmets
 }

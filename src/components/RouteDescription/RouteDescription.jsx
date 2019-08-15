@@ -133,27 +133,29 @@ class RouteDescriptionClass extends React.Component {
         }
         let textInfo = this.props.storeState.languageTextMain.placeDescription;
         let simularPlaceBlockId = topBlockId+'4';
+        let helmet = this.props.storeState.languageTextMain.helmets.routeDescription;
+    
         return (
             <React.Fragment>
                 {
                     this.state.newRoute.local ? 
                     <Helmet>
-                        <title>{this.state.newRoute.local.name+', описание, оценки, отзывы'}</title>
-                        <meta name="description" content={this.state.newRoute.local.name+', описание, оценки, отзывы'} />
+                        <title>{this.state.newRoute.local.name+helmet.basic.title}</title>
+                        <meta name="description" content={this.state.newRoute.local.name+helmet.basic.description} />
                         <meta property="og:site_name" content="Tripfer" />
                         <meta property="og:type" content="website" />
-                        <meta property="og:url" content="https://tripfer.com/blr-en/routes/slug" /*тут нужна подгрузка корректного слага *//>
-                        <meta property="og:title" content={this.state.newRoute.local.name+', описание, оценки, отзывы'} />
-                        <meta property="og:description" content={this.state.newRoute.local.name+', описание, оценки, отзывы'} /> 
+                        <meta property="og:url" content={document.URL} /*тут нужна подгрузка корректного слага *//>
+                        <meta property="og:title" content={this.state.newRoute.local.name+helmet.basic.title} />
+                        <meta property="og:description" content={this.state.newRoute.local.name+helmet.basic.description} /> 
                         </Helmet> :
                     <Helmet>
-                        <title>{"Ожидаем загрузку маршрута"}</title>
-                        <meta name="description" content={"Ожидаем загрузку маршрута"} />
+                        <title>{helmet.loading.title}</title>
+                        <meta name="description" content={helmet.loading.description} />
                         <meta property="og:site_name" content="Tripfer" />
                         <meta property="og:type" content="website" />
-                        <meta property="og:url" content="https://tripfer.com/" />
-                        <meta property="og:title" content={"Ожидаем загрузку маршрута"} />
-                        <meta property="og:description" content={"Ожидаем загрузку маршрута"} /> 
+                        <meta property="og:url" content={document.URL} />
+                        <meta property="og:title" content={helmet.loading.title} />
+                        <meta property="og:description" content={helmet.loading.description} /> 
                     </Helmet>
                 }
                 

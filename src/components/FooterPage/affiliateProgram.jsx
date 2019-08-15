@@ -56,18 +56,20 @@ class affiliateProgramClass extends React.Component {
     }
 
     render() {
-        let text = this.props.storeState.languageTextMain.footerPage.affiliateProgram
+        let text = this.props.storeState.languageTextMain.footerPage.affiliateProgram;
+        let helmet = this.props.storeState.languageTextMain.helmets.affiliateProgram;
+    
         return (
             <React.Fragment>
                 <Header driver={true} history={this.props.history} />
                 <Helmet>
-                    <title>{'Нашим партнёрам'}</title>
-                    <meta name="description" content="Нашим партнёрам" />
+                    <title>{helmet.basic.title}</title>
+                    <meta name="description" content={helmet.basic.description} />
                     <meta property="og:site_name" content="Tripfer" />
                     <meta property="og:type" content="website" />
-                    <meta property="og:url" content="https://tripfer.com/affiliate-program" />
-                    <meta property="og:title" content="Нашим партнёрам" />
-                    <meta property="og:description" content="Рекомендации партнёрам сервиса tripfer.com" /> 
+                    <meta property="og:url" content={document.URL} />
+                    <meta property="og:title" content={helmet.basic.title} />
+                    <meta property="og:description" content={helmet.basic.description} /> 
                 </Helmet>
                 <div className="wrapper">
                     <div className="affiliateProgram" >

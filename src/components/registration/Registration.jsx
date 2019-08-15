@@ -251,16 +251,18 @@ class Registration extends React.Component{
        // console.log(requests);
     }
     render(){
+        let helmet = this.props.storeState.languageTextMain.helmets.registration;
+    
         return(
             <div className="d-flex" style={{zIndex: '100', position: 'absolute', width: '100%', height: '100%', backgroundColor: "#ffffff"}}>
                 <Helmet>
-                    <title>{'Регистрация'}</title>
-                    <meta name="description" content={'Регистрация'} />
+                    <title>{helmet.basic.title}</title>
+                    <meta name="description" content={helmet.basic.description} />
                     <meta property="og:site_name" content="Tripfer" />
                     <meta property="og:type" content="website" />
-                    <meta property="og:url" content="https://tripfer.com/registration" />
-                    <meta property="og:title" content={'Регистрация'} />
-                    <meta property="og:description" content={'Регистрация'} /> 
+                    <meta property="og:url" content={document.URL} />
+                    <meta property="og:title" content={helmet.basic.title} />
+                    <meta property="og:description" content={helmet.basic.description} /> 
                    </Helmet>
                 <div style={{margin: 'auto'}}>
                 <DriverRefreshIndicator isRefreshExist={true} isRefreshing={true} isGoodAnswer={true} />

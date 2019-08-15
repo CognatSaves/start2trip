@@ -22,17 +22,19 @@ class contactsClass extends React.Component {
 
     }
     render() {
-        let text = this.props.storeState.languageTextMain.footerPage.contacts
+        let text = this.props.storeState.languageTextMain.footerPage.contacts;
+        let helmet = this.props.storeState.languageTextMain.helmets.contacts;
+    
         return (
             <React.Fragment>
                 <Helmet>
-                    <title>{'Наши контакты'}</title>
-                    <meta name="description" content="Наши контакты" />
+                    <title>{helmet.basic.title}</title>
+                    <meta name="description" content={helmet.basic.description} />
                     <meta property="og:site_name" content="Tripfer" />
                     <meta property="og:type" content="website" />
-                    <meta property="og:url" content="https://tripfer.com/contacts" />
-                    <meta property="og:title" content="Наши контакты" />
-                    <meta property="og:description" content="Наши контакты" /> 
+                    <meta property="og:url" content={document.URL} />
+                    <meta property="og:title" content={helmet.basic.title} />
+                    <meta property="og:description" content={helmet.basic.description} /> 
                 </Helmet>
                 <Header driver={true} history={this.props.history} />
                 <div className="wrapper">

@@ -53,16 +53,18 @@ class TripConfirmationClass extends React.Component{
         console.log('TripConfirmation render');
         
         console.log(this.state);
+        let helmet = this.props.storeState.languageTextMain.helmets.tripConfirmation;
+        
         return(
             <React.Fragment>
                 <Helmet>
-                    <title>{"Подтверждение заказа"}</title>
-                    <meta name="description" content="Подтверждение заказа" />
+                    <title>{helmet.basic.title}</title>
+                    <meta name="description" content={helmet.basic.description} />
                     <meta property="og:site_name" content="Tripfer" />
                     <meta property="og:type" content="website" />
-                    <meta property="og:url" content="https://tripfer.com/" />
-                    <meta property="og:title" content="Подтверждение заказа" />
-                    <meta property="og:description" content="Подтверждение заказа на сайте tripfer.com" /> 
+                    <meta property="og:url" content={document.URL} />
+                    <meta property="og:title" content={helmet.basic.title} />
+                    <meta property="og:description" content={helmet.basic.description} /> 
                 </Helmet>
                 {
                     this.state.isRefreshExist ?

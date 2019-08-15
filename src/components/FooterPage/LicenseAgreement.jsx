@@ -22,7 +22,7 @@ class LicenseAgreementClass extends React.Component {
         let textUser = this.props.storeState.languageTextMain.termsUser
         let textDriver = this.props.storeState.languageTextMain.termsDriver
         let text = this.props.storeState.languageTextMain.footerPage.LicenseAgreement
-        
+        let helmet = this.props.storeState.languageTextMain.helmets.licenseAgreement;
         if(this.props.match.params.userType === "2" || this.props.match.params.userType === "3"){
             if(this.state.changeTerms !== false){
                 this.setState({changeTerms:false})
@@ -31,13 +31,13 @@ class LicenseAgreementClass extends React.Component {
         return (
             <React.Fragment>
                 <Helmet>
-                    <title>{'Лицензионное соглашение'}</title>
-                    <meta name="description" content="Лицензионное соглашение" />
+                    <title>{helmet.basic.title}</title>
+                    <meta name="description" content={helmet.basic.description} />
                     <meta property="og:site_name" content="Tripfer" />
                     <meta property="og:type" content="website" />
-                    <meta property="og:url" content="https://tripfer.com/terms" />
-                    <meta property="og:title" content="Лицензионное соглашение" />
-                    <meta property="og:description" content="Лицензионное соглашение сервиса tripfer.com" /> 
+                    <meta property="og:url" content={document.URL} />
+                    <meta property="og:title" content={helmet.basic.title} />
+                    <meta property="og:description" content={helmet.basic.description} /> 
                 </Helmet>
                 <Header driver={true} history={this.props.history} />
                 <div className="wrapper">

@@ -58,16 +58,18 @@ class AuthRedirectClass extends React.Component {
         }
     }
     render() {
+        let helmet = this.props.storeState.languageTextMain.helmets.authRedirect;
+    
         return (
             <React.Fragment>
                 <Helmet>
-                    <title>{'Авторизация'}</title>
-                    <meta name="description" content={'Авторизация'} />
+                    <title>{helmet.basic.title}</title>
+                    <meta name="description" content={helmet.basic.description} />
                     <meta property="og:site_name" content="Tripfer" />
                     <meta property="og:type" content="website" />
-                    <meta property="og:url" content="https://tripfer.com/login" />
-                    <meta property="og:title" content={'Авторизация'} />
-                    <meta property="og:description" content={'Авторизация'} /> 
+                    <meta property="og:url" content={document.URL} />
+                    <meta property="og:title" content={helmet.basic.title} />
+                    <meta property="og:description" content={helmet.basic.description} /> 
                 </Helmet>
                 <div className="home_window" style={{ minHeight: "95vh" }}>
                     <Header history={this.props.history} />
