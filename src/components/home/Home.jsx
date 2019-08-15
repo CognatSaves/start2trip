@@ -58,7 +58,7 @@ class HomeClass extends React.Component {
         {
           this.props.storeState.countries.length>0 ?
           <Helmet>
-            <title>{countryName+helmet.country.title}</title>
+            <title>{helmet.country.title[0]+countryName+helmet.country.title[1]}</title>
             <meta name="description" content={helmet.country.description} />
             <meta property="og:site_name" content="Tripfer" />
             <meta property="og:type" content="website" />
@@ -67,7 +67,7 @@ class HomeClass extends React.Component {
             <meta property="og:description" content={helmet.country.description} /> 
           </Helmet> :
           <Helmet>
-            <title>{helmet.basic.title}</title>
+            <title>{helmet.basic.title[0]+countryName+helmet.basic.title[1]}</title>
             <meta name="description" content={helmet.basic.description} />
             <meta property="og:site_name" content="Tripfer" />
             <meta property="og:type" content="website" />
