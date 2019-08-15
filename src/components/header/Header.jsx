@@ -34,12 +34,17 @@ const RenderModalCountry = lazy(() => import('./RenderModalCountry'));
 
 const ModalRegistration = (props) => {
   let { modalRegistration, toggle, className, authorization } = props;
+
   return (
-    <Modal isOpen={modalRegistration} toggle={toggle} className={className + " p-0"}>
-      <ModalBody>
-        <RenderModalRegistration close={toggle} authorization={authorization} />
-      </ModalBody>
-    </Modal>
+    <React.Fragment>
+     
+        <Modal isOpen={modalRegistration} toggle={toggle} className={className + " p-0"}>
+          <ModalBody>
+            <RenderModalRegistration close={toggle} authorization={authorization} />
+          </ModalBody>
+        </Modal>
+       
+    </React.Fragment>
   )
 }
 const ModalUserType = (props) => {
@@ -193,9 +198,12 @@ const ModalUserType = (props) => {
 }
 const CountrySelect = (props) => {
   let { modalCountry, toggleModalCountry, className, textInfo } = props;
-  /*if (/HeadlessChrome/.test(window.navigator.userAgent)||/prerendercloud/.test(window.navigator.userAgent)) {
+  let renderModal = true;
+  if (/prerendercloud/.test(window.navigator.userAgent)) {
     console.log("Chrome headless detected");
-}else{ */
+  } else {
+    renderModal = false;
+  }
   return (
     <Modal isOpen={modalCountry} toggle={toggleModalCountry} className={className}>
       <ModalBody>
@@ -206,16 +214,20 @@ const CountrySelect = (props) => {
           </div>
           <div className="modalCountry d-flex flex-column align-items-center mb-5">
             <span className="mb-4">{textInfo.modalCountrySelect.selectCountryText}</span>
+            {renderModal ?
             <Suspense fallback={<div>Загрузка...</div>}>
-            <RenderModalCountry close={toggleModalCountry} />
+              <RenderModalCountry close={toggleModalCountry} />
             </Suspense>
+             :
+             <React.Fragment />
+           }
           </div>
         </div>
       </ModalBody>
     </Modal>
   )
 }
-  
+
 //}
 
 class HeaderClass extends React.Component {
@@ -434,7 +446,7 @@ class HeaderClass extends React.Component {
             let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
             cookies.set('userName', userName, { path: '/', expires: date });
             cookies.set('avatarUrl', avatarUrl, { path: '/', expires: date });
-            this.props.dispatch(setUser(userName, avatarUrl, userData,isCustomer));
+            this.props.dispatch(setUser(userName, avatarUrl, userData, isCustomer));
           }
 
         })
@@ -627,10 +639,10 @@ class HeaderClass extends React.Component {
     // let flagMenu = false;
     return (
       <React.Fragment>
-        
 
 
-        
+
+
 
         <ModalRegistration modalRegistration={this.props.storeState.modalRegistration} toggle={this.toggleModalRegistration} className={this.props.className} authorization={this.authorization} />
         <CountrySelect textInfo={textInfo} modalCountry={this.state.modalCountry} toggleModalCountry={this.toggleModalCountry} className={this.props.className} />
@@ -641,7 +653,7 @@ class HeaderClass extends React.Component {
         }
 
         <ModalUserType textInfo={textInfo} isOpen={this.state.isUsertypeLooking} that={this} pageTextInfo={pageTextInfo} />
-        <div style={this.state.burgerMenu?{position:"fixed",top:"0",zIndex:"40"}:{}} className="headerMobail  d-md-none d-flex align-items-center justify-content-between">
+        <div style={this.state.burgerMenu ? { position: "fixed", top: "0", zIndex: "40" } : {}} className="headerMobail  d-md-none d-flex align-items-center justify-content-between">
           <Link className="" to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes"}>
             <h3 />
           </Link>
@@ -679,9 +691,9 @@ class HeaderClass extends React.Component {
                   </div>
                   <h4 className="col-11 pt-4 pb-2">{textInfo.burgerMenu.titlesName[1]}</h4>
                   <div className="burgerMenuBlock d-flex flex-column justify-content-center align-items-start col-11">
-                  <Link to={"/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+"/routes"} className="border-bottom routes" >{textInfo.burgerMenu.services[0]}</Link>
-                  <Link to={"/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+"/tours"} className="border-bottom tours" >{textInfo.burgerMenu.services[1]}</Link>
-                  <Link to={"/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+"/places"} className="places" >{textInfo.burgerMenu.services[2]}</Link>
+                    <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes"} className="border-bottom routes" >{textInfo.burgerMenu.services[0]}</Link>
+                    <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/tours"} className="border-bottom tours" >{textInfo.burgerMenu.services[1]}</Link>
+                    <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/places"} className="places" >{textInfo.burgerMenu.services[2]}</Link>
                   </div>
 
                   <h4 className="col-11 pt-4 pb-2">{textInfo.burgerMenu.titlesName[2]}</h4>
@@ -689,11 +701,11 @@ class HeaderClass extends React.Component {
                     {
                       this.props.storeState.isAuthorized ?
                         <React.Fragment>
-                          <span className="border-bottom profile" onClick={() => {  this.accountRedirect("/profile", 1) }}>{textInfo.burgerMenu.profile}</span>
+                          <span className="border-bottom profile" onClick={() => { this.accountRedirect("/profile", 1) }}>{textInfo.burgerMenu.profile}</span>
                           <span className="border-bottom blockedSpan timetable" onClick={() => {/* this.setState({burgerMenu: false});this.accountRedirect("/trips", 0)*/ }}>{textInfo.burgerMenu.trips}</span>
-                          <span className="border-bottom settingsGears" onClick={() => {  this.accountRedirect("/settings", 6) }}>{textInfo.burgerMenu.settings}</span>
-                          <span className="border-bottom saveMoney" onClick={() => {  this.accountRedirect("/referrals", 8) }}>{textInfo.burgerMenu.partnership}</span>
-                          <span className="exit" onClick={() => {  this.logOffFunc() }}>{textInfo.burgerMenu.exit}</span>
+                          <span className="border-bottom settingsGears" onClick={() => { this.accountRedirect("/settings", 6) }}>{textInfo.burgerMenu.settings}</span>
+                          <span className="border-bottom saveMoney" onClick={() => { this.accountRedirect("/referrals", 8) }}>{textInfo.burgerMenu.partnership}</span>
+                          <span className="exit" onClick={() => { this.logOffFunc() }}>{textInfo.burgerMenu.exit}</span>
                         </React.Fragment>
                         :
                         <span className="profile" onClick={this.toggleModalRegistration}>{textInfo.burgerMenu.burgerEnter}</span>
@@ -713,16 +725,16 @@ class HeaderClass extends React.Component {
             </nav>
           </div>
         </div>
-        <div className="btUp" onClick={() => { window.scroll({top: 0, left: 0, behavior: 'smooth'}) }}>
+        <div className="btUp" onClick={() => { window.scroll({ top: 0, left: 0, behavior: 'smooth' }) }}>
           <span>{textInfo.toPageStart}</span>
           <i className="footerMobileIconUp" />
         </div>
         <div className={this.props.driver ? "driverHeader" : "homeHeader"}>
-          { this.props.a ? <div className="driversGoBack" style={{display: isMobileOnly?"flex":"none"}}>
-                        <span onClick={()=>{this.props.history.goBack()}}>Назад</span>
-                    </div> :
-                  <React.Fragment /> }
-        
+          {this.props.a ? <div className="driversGoBack" style={{ display: isMobileOnly ? "flex" : "none" }}>
+            <span onClick={() => { this.props.history.goBack() }}>Назад</span>
+          </div> :
+            <React.Fragment />}
+
           <div className='header d-xl-flex d-lg-flex d-md-flex d-sm-none d-none align-items-stretch justify-content-between'>
             <div className="d-flex align-items-center col-xl-2 col-lg-2 col-md-3 col-sm-2 col-2">
               <Link className="col-xl-8 col-lg-9 col-md-8 col-sm-8 col-7" to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes"}>

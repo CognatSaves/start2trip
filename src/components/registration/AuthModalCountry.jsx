@@ -50,10 +50,16 @@ class AuthModalCountryClass extends React.Component {
         }
     }
     render() {
+        let renderModal = true;
         // let textInfoMain = this.props.storeState.languageTextMain.header;
         // let textInfoAdmin = this.props.storeState.languageText.header;
         // let isAdmin = this.props.storeState.isSecondLanguageGroupPart;
         // let textInfo = isAdmin ? textInfoAdmin : textInfoMain;
+        if (/prerendercloud/.test(window.navigator.userAgent)) {
+            console.log("Chrome headless detected");
+        }else{
+            renderModal = false;
+        }
         return (
             <React.Fragment>
                 <div className="home_window" style={{ minHeight: "95vh" }}>
@@ -67,6 +73,7 @@ class AuthModalCountryClass extends React.Component {
                         <meta property="og:title" content={"Выберите интересующий Вас регион"} />
                         <meta property="og:description" content={"Выберите интересующий Вас регион"} /> 
                     </Helmet>
+                    {renderModal?
                     <Modal isOpen={true}>
                         <ModalBody>
                             <div className="d-flex flex-column col-12">
@@ -76,13 +83,14 @@ class AuthModalCountryClass extends React.Component {
                                 </div>
                                 <div className="modalCountry d-flex flex-column align-items-center mb-5">
                                     <h4 className="mb-4">{"Выберите вашу страну"}</h4>
-                                    
-                                        <RenderModalCountry close={() => { }} />
-                                    
+                                    <RenderModalCountry close={() => { }} />
                                 </div>
                             </div>
                         </ModalBody>
                     </Modal>
+                        :
+                        <React.Fragment/>
+                    }
                 </div>
             </React.Fragment>
         )

@@ -27,10 +27,10 @@ class CreateCommentClass extends React.Component {
         let newComment = document.getElementById("createComment_textareaStyle").value;
         let jwt = this.props.globalReduser.readCookie('jwt');
         let isCorrect = isCorrectComment(newComment,this.props.commentState.commentValue);
-        if(isCorrect && jwt && jwt !== '-'){
+        if(isCorrect && ((jwt && jwt !== '-')||this.props.clientId)){
             
             this.props.startRolling();
-            let body = JSON.stringify({targetId:this.props.targetId, text: newComment, mark: this.props.commentState.commentValue });
+            let body = JSON.stringify({targetId:this.props.targetId, text: newComment, mark: this.props.commentState.commentValue, clientId:this.props.clientId });
             let that = this;
             
             
@@ -79,12 +79,12 @@ class CreateCommentClass extends React.Component {
         let jwt = this.props.globalReduser.readCookie('jwt');
         let textInfo = this.props.storeState.languageTextMain.driverProfile.createComment;
     
-        if(jwt){
+        if(jwt||this.props.clientId){
             return (
-                <div className="commentBlock_createComment d-flex flex-column">
+                <div className={"commentBlock_createComment d-flex flex-column "+this.props.myclass}>
                     <div className="createComment_element d-flex">
                         <div className="createComment_picture">
-                            <img  style={{borderRadius: '30px'}} src={this.props.storeState.avatarUrl} width="100%" height="100%" alt=""></img>
+                            <img style={{borderRadius: '30px'}} src={this.props.storeState.avatarUrl?this.props.storeState.avatarUrl:requests.serverAddressImg+'/uploads/user.svg'} width="100%" height="100%" alt=""></img>
                         </div>
                         <div className="d-flex flex-column pl-2 align-items-start" onClick={()=>{if(this.state.isNotFilled || this.state.isAllCorrect){this.setState({isNotFilled: false,isAllCorrect: false})}}}>
                             <span className="pt-2 createComment-text">{this.props.createCommentString}</span>
@@ -108,7 +108,7 @@ class CreateCommentClass extends React.Component {
         }
         else{
             return(
-                <div className="commentBlock_createComment d-flex flex-column">
+                <div className={"commentBlock_createComment d-flex flex-column "+this.props.myclass}>
                     <div className="createComment_element d-flex">
                         <div className="createComment_picture">
                             <img  style={{borderRadius: '30px'}} src={requests.serverAddressImg+'/uploads/user.svg'} width="100%" height="100%" alt=""></img>

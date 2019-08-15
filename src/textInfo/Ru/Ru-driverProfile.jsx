@@ -3,6 +3,7 @@ const driverProfile = {
     lang: 'RUS',
     createComment:{
         yourCommentPlaceholder: "Ваш отзыв",
+        createCommentString:"Оставьте Ваш отзыв",
         infoText: 'Ваш комментарий станет видимым после проверки администратором.',
         nonFilledText: 'Заполните рейтинг и отзыв',
         sendText: "ОТПРАВИТЬ",

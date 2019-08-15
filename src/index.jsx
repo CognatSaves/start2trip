@@ -59,7 +59,7 @@ const AboutService = lazy(() => import('./components/FooterPage/aboutService'));
 const affiliateProgram = lazy(() => import('./components/FooterPage/affiliateProgram'));
 const contacts = lazy(() => import('./components/FooterPage/contacts'));
 const LicenseAgreement = lazy(() => import('./components/FooterPage/LicenseAgreement'));
-
+const feedback = lazy(() => import('./components/registration/feedback'));
 
 const redux = require('redux');
 
@@ -325,6 +325,7 @@ ReactDOM.render(
               <Route path="/forgot-password" component={ForgotPassword} />
               <Route path="/reset-password/:code" component={ResetPassword} />
 
+              <Route path="/terms-:userType" component={LicenseAgreement} />
               <Route path="/terms" component={LicenseAgreement} />
               <Route path="/contacts" component={contacts} />
               <Route path="/affiliate-program" component={affiliateProgram} />
@@ -336,6 +337,7 @@ ReactDOM.render(
               <Route path="/registration" component={Registration} />
               <Route path="/login" component={AuthRedirect} />
               <Route path="/countrySelection" component={AuthModalCountry} />
+              <Route path="/feedback-:id-:clientId" component={feedback} />
               {window.location.pathname === "/"?
               <Redirect from="/" to={"/"+(redirectPage==="undefined-undefined"?"countrySelection":redirectPage+"/routes")} />
               :

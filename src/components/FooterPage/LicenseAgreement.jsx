@@ -22,6 +22,12 @@ class LicenseAgreementClass extends React.Component {
         let textUser = this.props.storeState.languageTextMain.termsUser
         let textDriver = this.props.storeState.languageTextMain.termsDriver
         let text = this.props.storeState.languageTextMain.footerPage.LicenseAgreement
+        
+        if(this.props.match.params.userType === "2" || this.props.match.params.userType === "3"){
+            if(this.state.changeTerms !== false){
+                this.setState({changeTerms:false})
+            }
+        }
         return (
             <React.Fragment>
                 <Helmet>

@@ -15,7 +15,9 @@ const pageTextInfo = {
         linkText: "Забыли пароль?", 
         buttonText: "ВОЙТИ",
         mobailbuttonText: "Войти",
-        mobailText:"Уже есть аккаунт?"
+        mobailText:"Уже есть аккаунт?",
+        agreementLabel:"Принимаю условия ",
+        agreementLink:" соглашения",
     },
 
     registrationDarkBackgroundText: { 

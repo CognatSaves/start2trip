@@ -82,7 +82,7 @@ class ForgotPasswordClass extends React.Component {
         console.log('Forgot password render');
         console.log(this.state);
         let textInfo = this.props.storeState.languageTextMain.registration.forgotPassword;
-        debugger;
+        
         console.log('EEE');
         return (
             <React.Fragment>
