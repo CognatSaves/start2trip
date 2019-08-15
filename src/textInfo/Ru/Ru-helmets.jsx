@@ -143,3 +143,4 @@ const helmets /*helmetStorage - aka armory */ = {
         }
     },
 }
+export default helmets;
