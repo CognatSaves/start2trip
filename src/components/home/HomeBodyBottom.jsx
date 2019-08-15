@@ -163,7 +163,7 @@ class HomeBodyBottomClass extends React.Component {
         {
           selectedDirection.length>0 && name.length>0? 
           <Helmet>
-            <title>{name+helmet.basic.title}</title>
+            <title>{helmet.basic.title[0]+name+helmet.basic.title[1]}</title>
             <meta name="description" content={name+helmet.basic.description} />
             <meta property="og:site_name" content="Tripfer" />
             <meta property="og:type" content="website" />
