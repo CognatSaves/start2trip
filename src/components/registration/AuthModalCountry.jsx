@@ -54,18 +54,20 @@ class AuthModalCountryClass extends React.Component {
         // let textInfoAdmin = this.props.storeState.languageText.header;
         // let isAdmin = this.props.storeState.isSecondLanguageGroupPart;
         // let textInfo = isAdmin ? textInfoAdmin : textInfoMain;
+        let helmet = this.props.storeState.languageTextMain.helmets.authModalCountry;
+    
         return (
             <React.Fragment>
                 <div className="home_window" style={{ minHeight: "95vh" }}>
                     <Header history={this.props.history} />
                     <Helmet>
-                        <title>{"Выберите интересующий Вас регион"}</title>
-                        <meta name="description" content={"Выберите интересующий Вас регион"} />
+                        <title>{helmet.basic.title}</title>
+                        <meta name="description" content={helmet.basic.description} />
                         <meta property="og:site_name" content="Tripfer" />
                         <meta property="og:type" content="website" />
                         <meta property="og:url" content={document.URL} />
-                        <meta property="og:title" content={"Выберите интересующий Вас регион"} />
-                        <meta property="og:description" content={"Выберите интересующий Вас регион"} /> 
+                        <meta property="og:title" content={helmet.basic.title} />
+                        <meta property="og:description" content={helmet.basic.description} /> 
                     </Helmet>
                     <Modal isOpen={true}>
                         <ModalBody>

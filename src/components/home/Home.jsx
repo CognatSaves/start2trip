@@ -51,27 +51,29 @@ class HomeClass extends React.Component {
     let countryName = this.props.storeState.countries.length>0 ?
      this.props.globalReduser.findCountryNameByISO(this,cookies.get('country', {path: '/'}),cookies.get('userLang', {path: '/'}))
      : '';
+    let helmet = this.props.storeState.languageTextMain.helmets.home;
+    
     return (
       <React.Fragment>
         {
           this.props.storeState.countries.length>0 ?
           <Helmet>
-            <title>{countryName+", построение маршрутов"}</title>
-            <meta name="description" content="Построение маршрутов на сайте tripfer.com" />
+            <title>{countryName+helmet.country.title}</title>
+            <meta name="description" content={helmet.country.description} />
             <meta property="og:site_name" content="Tripfer" />
             <meta property="og:type" content="website" />
             <meta property="og:url" content={document.URL} />
-            <meta property="og:title" content="Построение маршрутов" />
-            <meta property="og:description" content="Построение маршрутов на сайте tripfer.com" /> 
+            <meta property="og:title" content={countryName+helmet.country.title} />
+            <meta property="og:description" content={helmet.country.description} /> 
           </Helmet> :
           <Helmet>
-            <title>{"Tripfer, построение маршрутов"}</title>
-            <meta name="description" content="Tripfer, построение маршрутов" />
+            <title>{helmet.basic.title}</title>
+            <meta name="description" content={helmet.basic.description} />
             <meta property="og:site_name" content="Tripfer" />
             <meta property="og:type" content="website" />
             <meta property="og:url" content={document.URL} />
-            <meta property="og:title" content="Построение маршрутов" />
-            <meta property="og:description" content="Tripfer, построение маршрутов" /> 
+            <meta property="og:title" content={helmet.basic.title} />
+            <meta property="og:description" content={helmet.basic.description} /> 
           </Helmet>
         }
         

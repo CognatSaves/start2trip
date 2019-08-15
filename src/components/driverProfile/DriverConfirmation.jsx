@@ -88,16 +88,17 @@ class DriverConfirmationClass extends React.Component {
     render() {
         console.log('DriverConfirmation render');
         let textInfo = this.props.storeState.languageTextMain.drivers.driverConfirmation;
+        let helmet = this.props.storeState.languageTextMain.helmets.driverConfirmation;
         return (
             <React.Fragment>
                 <Helmet>
-                    <title>{"Подтверждение поездки"}</title>
-                    <meta name="description" content="Подтверждение поездки" />
+                    <title>{helmet.basic.title}</title>
+                    <meta name="description" content={helmet.basic.description} />
                     <meta property="og:site_name" content="Tripfer" />
                     <meta property="og:type" content="website" />
                     <meta property="og:url" content={document.URL} />
-                    <meta property="og:title" content="Подтверждение поездки" />
-                    <meta property="og:description" content="Подтверждение поездки на сайте tripfer.com" />            
+                    <meta property="og:title" content={helmet.basic.title} />
+                    <meta property="og:description" content={helmet.basic.description}/>            
                 </Helmet>
                 {
                     this.state.isRefreshExist ?

@@ -119,16 +119,18 @@ class ResetPasswordClass extends React.Component {
         console.log('Reset password render');
         console.log(this.state);
         let textInfo = this.props.storeState.languageTextMain.registration.resetPassword;
+        let helmet = this.props.storeState.languageTextMain.helmets.resetPassword;
+    
         return (
             <React.Fragment>
                 <Helmet>
-                    <title>{'Введите новый пароль'}</title>
-                    <meta name="description" content={'Введите новый пароль'} />
+                    <title>{helmet.basic.title}</title>
+                    <meta name="description" content={helmet.basic.description} />
                     <meta property="og:site_name" content="Tripfer" />
                     <meta property="og:type" content="website" />
                     <meta property="og:url" content={document.URL} />
-                    <meta property="og:title" content={'Введите новый пароль'} />
-                    <meta property="og:description" content={'Введите новый пароль'} /> 
+                    <meta property="og:title" content={helmet.basic.title} />
+                    <meta property="og:description" content={helmet.basic.description} /> 
                 </Helmet>
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={true} />
                 <div className="forgotPasswordBody d-flex flex-column align-items-center">

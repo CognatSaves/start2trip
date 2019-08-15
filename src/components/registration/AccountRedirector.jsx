@@ -35,6 +35,8 @@ class AccountRedirectorClass extends React.Component{
         }
     }
     render(){
+        let helmet = this.props.storeState.languageTextMain.helmets.accountRedirector;
+    
         function parseLocationPathname(pathname,profile){
             let splitedString = pathname.split('/');
             
@@ -77,13 +79,13 @@ class AccountRedirectorClass extends React.Component{
             return(
                 <React.Fragment>
                     <Helmet>
-                        <title>{"Загрузка Вашего аккаунта на Tripfer"}</title>
-                        <meta name="description" content={"Загрузка Вашего аккаунта на Tripfer"} />
+                        <title>{helmet.loading.title}</title>
+                        <meta name="description" content={helmet.loading.description} />
                         <meta property="og:site_name" content="Tripfer" />
                         <meta property="og:type" content="website" />
                         <meta property="og:url" content={document.URL} />
-                        <meta property="og:title" content={"Загрузка Вашего аккаунта на Tripfer"} />
-                        <meta property="og:description" content="Подтверждение поездки на сайте tripfer.com" /> 
+                        <meta property="og:title" content={helmet.loading.title} />
+                        <meta property="og:description" content={helmet.loading.description} /> 
                     </Helmet>
                 
                     <DriverRefreshIndicator isRefreshExist={true} isRefreshing={true} isGoodAnswer={true}/>
@@ -98,13 +100,13 @@ class AccountRedirectorClass extends React.Component{
                 return (
                     <React.Fragment>
                         <Helmet>
-                            <title>{"Ваш аккаунт на Tripfer"}</title>
-                            <meta name="description" content={"Ваш аккаунт на Tripfer"} />
+                            <title>{helmet.object.title}</title>
+                            <meta name="description" content={helmet.object.description} />
                             <meta property="og:site_name" content="Tripfer" />
                             <meta property="og:type" content="website" />
                             <meta property="og:url" content={document.URL} /* тут надо подумать, может вообще перенксти это внутрь каждого типа *//>
-                            <meta property="og:title" content={"Ваш аккаунт на Tripfer"} />
-                            <meta property="og:description" content={"Ваш аккаунт на Tripfer"} /> 
+                            <meta property="og:title" content={helmet.object.title} />
+                            <meta property="og:description" content={helmet.object.description} /> 
                         </Helmet>
 
                         <Route path="/account/driver" component={DriverProfileRegistration} />

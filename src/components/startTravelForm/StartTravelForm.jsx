@@ -19,7 +19,8 @@ import axios from 'axios';
 import requests from '../../config';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 import { thisExpression } from '@babel/types';
-
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 const Content = (that, flagAllOk, carCapacityArray, activeCurrency, textInfo, changeSuccessVisibility) => {
     let isCurrencyLoaded = activeCurrency && activeCurrency.symbol;
 
@@ -413,7 +414,8 @@ export default class StartTravelForm extends React.Component {
                 carId: this.props.match === undefined ? this.props.driversState.driverCarDescription.carId :this.props.match.params.carId,
                 frontendAddress: requests.frontendAddress,
                 travelLength: this.props.driversState.travelLength,
-                travelTime: this.props.driversState.travelTime
+                travelTime: this.props.driversState.travelTime,
+                userLangCookies: (cookies.get('userLang', {path: '/'})).toUpperCase()
             };
             this.sendTripRequest(JSON.stringify(body));
         }

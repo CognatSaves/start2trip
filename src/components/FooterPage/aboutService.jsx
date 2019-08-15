@@ -35,18 +35,20 @@ class aboutServiceClass extends React.Component {
     }
 
     render() {
-        let text = this.props.storeState.languageTextMain.footerPage.aboutService
+        let text = this.props.storeState.languageTextMain.footerPage.aboutService;
+        let helmet = this.props.storeState.languageTextMain.helmets.aboutService;
+    
         return (
             <React.Fragment>
                 <Header driver={true} history={this.props.history} />
                 <Helmet>
-                    <title>{'О сервисе'}</title>
-                    <meta name="description" content="О сервисе tripfer.com" />
+                    <title>{helmet.basic.title}</title>
+                    <meta name="description" content={helmet.basic.description} />
                     <meta property="og:site_name" content="Tripfer" />
                     <meta property="og:type" content="website" />
                     <meta property="og:url" content={document.URL}/>
-                    <meta property="og:title" content="О сервисе" />
-                    <meta property="og:description" content="Описание сервиса tripfer.com" /> 
+                    <meta property="og:title" content={helmet.basic.title} />
+                    <meta property="og:description" content={helmet.basic.description} /> 
                 </Helmet>
                 <div className="wrapper">
                     <div className="aboutService d-flex" >

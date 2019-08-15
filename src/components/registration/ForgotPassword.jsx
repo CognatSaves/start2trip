@@ -84,6 +84,8 @@ class ForgotPasswordClass extends React.Component {
         let textInfo = this.props.storeState.languageTextMain.registration.forgotPassword;
         debugger;
         console.log('EEE');
+        let helmet = this.props.storeState.languageTextMain.helmets.forgotPassword;
+    
         return (
             <React.Fragment>
 
@@ -91,13 +93,13 @@ class ForgotPasswordClass extends React.Component {
                 <div className="forgotPasswordBody d-flex flex-column align-items-center">
                     <Header driver={false} history={this.props.history} />
                     <Helmet>
-                        <title>{'Восстановление пароля'}</title>
-                        <meta name="description" content={'Восстановление пароля'} />
+                        <title>{helmet.basic.title}</title>
+                        <meta name="description" content={helmet.basic.description} />
                         <meta property="og:site_name" content="Tripfer" />
                         <meta property="og:type" content="website" />
                         <meta property="og:url" content={document.URL} />
-                        <meta property="og:title" content={'Восстановление пароля'} />
-                        <meta property="og:description" content={'Восстановление пароля'} /> 
+                        <meta property="og:title" content={helmet.basic.title} />
+                        <meta property="og:description" content={helmet.basic.description} /> 
                     </Helmet>
                     {this.state.isGood ?
                         <div className="forgotPasswordSuccess forgotPasswordContent d-flex flex-column align-items-center col-md-7 col-11">

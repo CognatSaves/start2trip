@@ -260,7 +260,7 @@ class DriverProfileClass extends React.Component {
 
 
     }
-
+    /*
     sendTripRequest = (body) => {
         if (body) {
             let that = this;
@@ -285,12 +285,6 @@ class DriverProfileClass extends React.Component {
                     else {
                         console.log('good');
                         console.log(data);
-                        /*that.setState({
-                            isRefreshExist: true,
-                            isRefreshing: false,
-                            isGoodAnswer:true
-                        });
-                        setTimeout(() => { that.setState({ isRefreshExist: false }) }, 1000);*/
                     }
                 })
                 .catch(function (error) {
@@ -305,6 +299,7 @@ class DriverProfileClass extends React.Component {
                 });
         }
     }
+    */
     render() {
         window.scroll({
             top: 0, 
@@ -502,6 +497,8 @@ class DriverProfileClass extends React.Component {
         let textInfo = this.props.storeState.languageTextMain.drivers.driversBlock;
         let defaultPrice = this.props.driversState.driverCarDescription.price * (100 - this.state.discount) / 100;
         let isCurrencyLoaded = activeCurrency && activeCurrency.symbol;
+        let helmet = this.props.storeState.languageTextMain.helmets.driverProfile;
+        
         return (
             <React.Fragment>
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
@@ -516,13 +513,13 @@ class DriverProfileClass extends React.Component {
                                 {
                                     this.props.driversState.driverCarDescription.id ? 
                                     <Helmet>
-                                        <title>{textInfo.title}</title>
-                                        <meta name="description" content="Tripfer driverProfile" />
+                                        <title>{helmet.basic.title}</title>
+                                        <meta name="description" content={helmet.basic.description}/>
                                         <meta property="og:site_name" content="Tripfer" />
                                         <meta property="og:type" content="website" />
                                         <meta property="og:url" content={document.URL} />
-                                        <meta property="og:title" content="Tripfer driverProfile" />
-                                        <meta property="og:description" content="Tripfer driverProfile on tripfer.com" />
+                                        <meta property="og:title" content={helmet.basic.title} />
+                                        <meta property="og:description" content={helmet.basic.description} />
                                     </Helmet> : <React.Fragment/>
 
                                 }

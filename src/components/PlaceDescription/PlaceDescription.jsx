@@ -206,27 +206,29 @@ class PlaceDescriptionClass extends React.Component {
             requests.serverAddressImg + this.state.newPlace.place.mainImage.url : '') + ') no-repeat';
         let smallImage = 'url(' + (this.state.newPlace.place && this.state.newPlace.place.blockListImage ?
             requests.serverAddressImg + this.state.newPlace.place.blockListImage.url : '') + ') no-repeat';
+        let helmet = this.props.storeState.languageTextMain.helmets.placeDescription;
+    
         return (
             <React.Fragment>
                 {
                     this.state.newPlace.local ?
                     <Helmet>
-                        <title>{this.state.newPlace.local.name+', описание, оценки, отзывы'}</title>
-                        <meta name="description" content={this.state.newPlace.local.name+', описание, оценки, отзывы'} />
+                        <title>{this.state.newPlace.local.name+helmet.object.title}</title>
+                        <meta name="description" content={this.state.newPlace.local.name+helmet.object.description} />
                         <meta property="og:site_name" content="Tripfer" />
                         <meta property="og:type" content="website" />
                         <meta property="og:url" content={document.URL} /*Здесь нужно нормальный slug подключить */ />
-                        <meta property="og:title" content={this.state.newPlace.local.name+', описание, оценки, отзывы'} />
-                        <meta property="og:description" content={this.state.newPlace.local.name+', описание, оценки, отзывы'} /> 
+                        <meta property="og:title" content={this.state.newPlace.local.name+helmet.object.title} />
+                        <meta property="og:description" content={this.state.newPlace.local.name+helmet.object.description} /> 
                     </Helmet> : 
                     <Helmet>
-                        <title>{"Ожидаем загрузку достопримечательности"}</title>
-                        <meta name="description" content={"Ожидаем загрузку достопримечательности"} />
+                        <title>{helmet.loading.title}</title>
+                        <meta name="description" content={helmet.loading.description} />
                         <meta property="og:site_name" content="Tripfer" />
                         <meta property="og:type" content="website" />
                         <meta property="og:url" content={document.URL} />
-                        <meta property="og:title" content={"Ожидаем загрузку достопримечательности"} />
-                        <meta property="og:description" content={"Ожидаем загрузку достопримечательности"} /> 
+                        <meta property="og:title" content={helmet.loading.title} />
+                        <meta property="og:description" content={helmet.loading.description} /> 
                     </Helmet>
                 }
                 
