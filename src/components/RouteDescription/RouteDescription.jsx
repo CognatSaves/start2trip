@@ -148,15 +148,7 @@ class RouteDescriptionClass extends React.Component {
                             <meta property="og:title" content={this.state.newRoute.local.name + helmet.basic.title} />
                             <meta property="og:description" content={this.state.newRoute.local.name + helmet.basic.description} />
                         </Helmet> :
-                        <Helmet>
-                            <title>{helmet.loading.title}</title>
-                            <meta name="description" content={helmet.loading.description} />
-                            <meta property="og:site_name" content="Tripfer" />
-                            <meta property="og:type" content="website" />
-                            <meta property="og:url" content={document.URL} />
-                            <meta property="og:title" content={helmet.loading.title} />
-                            <meta property="og:description" content={helmet.loading.description} />
-                        </Helmet>
+                        <React.Fragment/>
                 }
 
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist}

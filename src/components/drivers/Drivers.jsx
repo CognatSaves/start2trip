@@ -187,15 +187,7 @@ class DriversClass extends React.Component {
                 <meta property="og:description" content={helmet.country.description} />
               </Helmet>)
             :
-            <Helmet>
-              <title>{helmet.loading.title}</title>
-              <meta name="description" content={helmet.loading.description} />
-              <meta property="og:site_name" content="Tripfer" />
-              <meta property="og:type" content="website" />
-              <meta property="og:url" content={document.URL} />
-              <meta property="og:title" content={helmet.loading.title} />
-              <meta property="og:description" content={helmet.loading.description} />
-            </Helmet>
+            <React.Fragment/>
         }
 
 
@@ -208,7 +200,7 @@ class DriversClass extends React.Component {
             </div>
           </div>
         </div>
-        <StartTravelForm changeTravelVisibility={this.changeTravelVisibility} driversState={this.props.driversState}
+        <StartTravelForm {...this.props} changeTravelVisibility={this.changeTravelVisibility} driversState={this.props.driversState}
           travelVisibility={this.state.travelVisibility} isoCountryMap={this.props.storeState.isoCountryMap} storeState={this.props.storeState}
           elementPrice={this.state.elementPrice} activeCurrency={activeCurrency} textInfo={this.props.storeState.languageTextMain.startTravelForm} changeSuccessVisibility={this.changeSuccessVisibility} />
         <StartTravelSuccess successVisibility={this.state.successVisibility} changeSuccessVisibility={this.changeSuccessVisibility} />

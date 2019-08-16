@@ -81,16 +81,6 @@ class AccountRedirectorClass extends React.Component {
         if (!profile.email) {
             return (
                 <React.Fragment>
-                    <Helmet>
-                        <title>{helmet.loading.title}</title>
-                        <meta name="description" content={helmet.loading.description} />
-                        <meta property="og:site_name" content="Tripfer" />
-                        <meta property="og:type" content="website" />
-                        <meta property="og:url" content={document.URL} />
-                        <meta property="og:title" content={helmet.loading.title} />
-                        <meta property="og:description" content={helmet.loading.description} />
-                    </Helmet>
-
                     <DriverRefreshIndicator isRefreshExist={true} isRefreshing={true} isGoodAnswer={true} />
                 </React.Fragment>
             )

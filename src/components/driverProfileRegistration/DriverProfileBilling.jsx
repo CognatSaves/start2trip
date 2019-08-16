@@ -315,7 +315,7 @@ class DriverProfileBillingClass extends React.Component {
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-row flex-column align-items-md-end align-items-sm-center align-items-center  justify-content-between">
                                 <div className="billingText col-md-12 col-12 p-0">
                                     <div className="billingTextTitle col-md-12 col-10 p-0 mx-auto">
-                                        <span>{textPage.currentBalance.currentBalanceText + ' (' + textPage.currentBalance.personalAccount + ' №' + '20456787' + ')'}</span>
+                                        <span>{textPage.currentBalance.currentBalanceText + ' (' + textPage.currentBalance.personalAccount + ' №' + profile.billing.billingId + ')'}</span>
                                     </div>
                                     <div className="border-bottom mb-2 d-flex align-items-center justify-content-between">
                                         <span className="col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0 py-2">{textPage.currentBalance.cardPayments + ':'}</span>
@@ -385,7 +385,7 @@ class DriverProfileBillingClass extends React.Component {
                     <div className="d-flex flex-md-row flex-sm-column flex-column justify-content-between col-12 p-0">
 
                         <div className="d-flex flex-column">
-                            <span className="blillingHeaderTitle">{textPage.accountOperations.accountOperationsText + ' №' + '20456787'}</span>
+                            <span className="blillingHeaderTitle">{textPage.accountOperations.accountOperationsText + ' № ' + profile.billing.billingId}</span>
                             <div className=" billingText d-flex flex-md-row flex-sm-column flex-column align-items-center mt-3">
                                 <span className="pr-2">{textPage.accountOperations.forPeriod}</span>
                                 <div className="d-flex flex-wrap">
