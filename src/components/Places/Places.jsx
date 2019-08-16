@@ -151,30 +151,30 @@ class PlacesClass extends React.Component {
         <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={/*this.state.isRefreshing*/true} isGoodAnswer={/*this.state.isGoodAnswer*/true} />
 
         {
-          countryName.length > 0 ?
-            (
-              this.props.placesState.directions.length > 0 && selectedDirection.length > 0 ?
-                <Helmet>
-                  <title>{findSelectedDirectionName(this.props.placesState.directions, selectedDirection) + helmet.direction.title}</title>
-                  <meta name="description" content={findSelectedDirectionName(this.props.placesState.directions, selectedDirection) + helmet.direction.description} />
-                  <meta property="og:site_name" content="Tripfer" />
-                  <meta property="og:type" content="website" />
-                  <meta property="og:url" content={document.URL} /*тут нужно добавить direction */ />
-                  <meta property="og:title" content={findSelectedDirectionName(this.props.placesState.directions, selectedDirection) + helmet.direction.title} />
-                  <meta property="og:description" content={findSelectedDirectionName(this.props.placesState.directions, selectedDirection) + helmet.direction.description} />
-                </Helmet> :
-                <Helmet>
-                  <title>{countryName + helmet.country.title}</title>
-                  <meta name="description" content={countryName + helmet.country.description} />
-                  <meta property="og:site_name" content="Tripfer" />
-                  <meta property="og:type" content="website" />
-                  <meta property="og:url" content={document.URL} />
-                  <meta property="og:title" content={countryName + helmet.country.title} />
-                  <meta property="og:description" content={countryName + helmet.country.description} />
-                </Helmet>
-            )
-            : <React.Fragment />
-
+          countryName.length>0 ? 
+          (  
+            this.props.placesState.directions.length>0 && selectedDirection.length>0 ?     
+            <Helmet>
+              <title>{helmet.direction.title[0]+findSelectedDirectionName(this.props.placesState.directions, selectedDirection)+helmet.direction.title[1]}</title>
+              <meta name="description" content={findSelectedDirectionName(this.props.placesState.directions, selectedDirection)+helmet.direction.description} />
+              <meta property="og:site_name" content="Tripfer" />
+              <meta property="og:type" content="website" />
+              <meta property="og:url" content={document.URL} /*тут нужно добавить direction *//>
+              <meta property="og:title" content={findSelectedDirectionName(this.props.placesState.directions, selectedDirection)+helmet.direction.title} />
+              <meta property="og:description" content={findSelectedDirectionName(this.props.placesState.directions, selectedDirection)+helmet.direction.description} /> 
+            </Helmet> : 
+            <Helmet>
+              <title>{helmet.country.title[0]+countryName+helmet.country.title[1]}</title>
+              <meta name="description" content={helmet.country.description[0]+countryName+helmet.country.description[1]+countryName+helmet.country.description[2]} />
+              <meta property="og:site_name" content="Tripfer" />
+              <meta property="og:type" content="website" />
+              <meta property="og:url" content={document.URL} />
+              <meta property="og:title" content={countryName+helmet.country.title} />
+              <meta property="og:description" content={countryName+helmet.country.description} /> 
+            </Helmet>
+          )
+          : <React.Fragment/>
+          
         }
 
         <div className="drivers_top_background col-12 p-0">
