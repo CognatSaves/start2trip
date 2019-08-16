@@ -45,13 +45,8 @@ class DriverConfirmationClass extends React.Component {
         }
     }
     //TODO 
-<<<<<<< HEAD
-    sendRequest = (id, carrierId, confirmation) => {
-        debugger;
-=======
     sendRequest=(id,carrierId,confirmation)=>{
         
->>>>>>> 56a83ce7fda20e57133f1a304e07623e0507e60a
         let body = JSON.stringify({
             id: id,
             carrierId: carrierId,
