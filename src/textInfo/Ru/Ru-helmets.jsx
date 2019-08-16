@@ -59,6 +59,7 @@ const helmets /*helmetStorage - aka armory */ = {
             description: "Построение маршрутов на сайте tripfer.com"
         }
         /*,
+        это как loading, но по другому называется
         basic: {
             title: ['Экскурсии из ', ' | Трансферы от местных жителей к достопримечательностям'],
             description: "Tripfer, построение маршрутов"
