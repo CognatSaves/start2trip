@@ -160,7 +160,7 @@ class DriversClass extends React.Component {
     let route = createTitleString(cities);
     
     let textInfo = this.props.storeState.languageTextMain.drivers.mainPage;
-    debugger;
+    
     console.log(window); 
     let helmet = this.props.storeState.languageTextMain.helmets.drivers;
           

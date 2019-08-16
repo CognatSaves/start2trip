@@ -99,7 +99,7 @@ class AuthModalCountryClass extends React.Component {
 }
 const AuthModalCountry = connect(
     (state) => ({
-        //storeState: state.AppReduser,
+        storeState: state.AppReduser,
         globalReduser: state.GlobalReduser,
         //globalReduser: state.GlobalReduser,*/
     }),

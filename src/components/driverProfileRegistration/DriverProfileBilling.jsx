@@ -121,7 +121,7 @@ class DriverProfileBillingClass extends React.Component {
                     return response.json();
                 })
                 .then(function (data) {
-
+                    debugger;
                     if (data.error) {
                         console.log("bad");
                         throw data.error;

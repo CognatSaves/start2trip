@@ -14,7 +14,7 @@ class DriverConfirmationClass extends React.Component {
 
          
          
-        debugger;
+        
         if(confirmation){
             console.log("-------------------------------")
             console.log(confirmation)
@@ -46,7 +46,7 @@ class DriverConfirmationClass extends React.Component {
     }
     //TODO 
     sendRequest=(id,carrierId,confirmation)=>{
-        debugger;
+        
         let body = JSON.stringify({
             id: id,
             carrierId: carrierId,
@@ -62,7 +62,7 @@ class DriverConfirmationClass extends React.Component {
                 return response.json();
             })
             .then(function (data) {
-                debugger;
+                
                 if (data.error) {
                     console.log("bad");
                     throw data.error;

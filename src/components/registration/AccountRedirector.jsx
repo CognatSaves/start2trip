@@ -130,6 +130,7 @@ class AccountRedirectorClass extends React.Component{
 
 const AccountRedirector = connect(
     (state) => ({
+        storeState: state.AppReduser,
         globalReduser: state.GlobalReduser,
     }),
 )(AccountRedirectorClass);
