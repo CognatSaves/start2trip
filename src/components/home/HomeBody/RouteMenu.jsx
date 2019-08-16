@@ -130,15 +130,19 @@ class RouteMenuClass extends React.Component {
 
     let pathnameMAss = document.location.pathname.split("/");
     //случай массива ['','geo-ru','routes',''], который возникает в случае, когда мы закрыли последний слеш, тоже надо учесть - отсюда 'или' ниже
-    let ares = (pathnameMAss[pathnameMAss.length - 1].length > 0 && pathnameMAss.length <= 3);
-    let bres = (pathnameMAss.length <= 4)
-    let resultpathname = (ares || bres) ? true : false;
+    let ares = (pathnameMAss[pathnameMAss.length-1].length>0 && pathnameMAss.length>3);/*>3 - "","geo", "drivers", ещё что-tо */
+    let bres = (pathnameMAss.length>4)//после ещё чего-то ещё слеш
+    let resultpathname =( ares || bres) ? true : false;
     //вышестоящее условие звучит следующим образом - если в адресной строке больше или равно 4 элементов,
     //то мы находимся не в /geo/(drivers|route) просто,а в /geo/(drivers|route)/что-то там, что
     //означает, что можно попробовать построить маршрут
     // так как проверка идёт а-ля - загружено ли(и мы считаем, что загружено, если грузить не надо), то сравнение наоборот
-    if (!resultpathname) {//т.е. есть города в адресе
+    if(resultpathname){//т.е. есть города в адресе
+      if(!dateValue){
+        dateValue = new Date(Date.now())
+      }
       setCitiesFromUrl(pathnameMAss[ares ? 3 : 4]);
+      
     }
 
     this.state = {
@@ -147,7 +151,7 @@ class RouteMenuClass extends React.Component {
       isRefreshing: true,
       isGoodAnswer: true,
       date: /*this.props.storeState.date*/dateValue,
-      isLoaded: !resultpathname//переменная для загрузки 1 раза водителей.
+      isLoaded: !resultpathname//переменная для загрузки 1 раза водителей - если есть города, то не загружено пока.
       //language: this.props.storeState.activeLanguageNumber
     }
   }

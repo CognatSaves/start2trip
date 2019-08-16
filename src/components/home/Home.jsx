@@ -54,25 +54,25 @@ class HomeClass extends React.Component {
     return (
       <React.Fragment>
         {
-          this.props.storeState.countries.length > 0 ?
-            <Helmet>
-              <title>{countryName + helmet.country.title}</title>
-              <meta name="description" content={helmet.country.description} />
-              <meta property="og:site_name" content="Tripfer" />
-              <meta property="og:type" content="website" />
-              <meta property="og:url" content={document.URL} />
-              <meta property="og:title" content={countryName + helmet.country.title} />
-              <meta property="og:description" content={helmet.country.description} />
-            </Helmet> :
-            <Helmet>
-              <title>{helmet.basic.title}</title>
-              <meta name="description" content={helmet.basic.description} />
-              <meta property="og:site_name" content="Tripfer" />
-              <meta property="og:type" content="website" />
-              <meta property="og:url" content={document.URL} />
-              <meta property="og:title" content={helmet.basic.title} />
-              <meta property="og:description" content={helmet.basic.description} />
-            </Helmet>
+          this.props.storeState.countries.length>0 ?
+          <Helmet>
+            <title>{helmet.country.title[0]+countryName+helmet.country.title[1]}</title>
+            <meta name="description" content={helmet.country.description} />
+            <meta property="og:site_name" content="Tripfer" />
+            <meta property="og:type" content="website" />
+            <meta property="og:url" content={document.URL} />
+            <meta property="og:title" content={countryName+helmet.country.title} />
+            <meta property="og:description" content={helmet.country.description} /> 
+          </Helmet> :
+          <Helmet>
+            <title>{helmet.basic.title[0]+countryName+helmet.basic.title[1]}</title>
+            <meta name="description" content={helmet.basic.description} />
+            <meta property="og:site_name" content="Tripfer" />
+            <meta property="og:type" content="website" />
+            <meta property="og:url" content={document.URL} />
+            <meta property="og:title" content={helmet.basic.title} />
+            <meta property="og:description" content={helmet.basic.description} /> 
+          </Helmet>
         }
 
 

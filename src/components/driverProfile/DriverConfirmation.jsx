@@ -14,7 +14,8 @@ class DriverConfirmationClass extends React.Component {
         let carrierId = props.match.params.carrierId;
         let confirmation = JSON.parse(props.match.params.confirmation);
 
-        if (confirmation) {
+         
+        if(confirmation){
             console.log("-------------------------------")
             console.log(confirmation)
             this.state = {
@@ -44,8 +45,13 @@ class DriverConfirmationClass extends React.Component {
         }
     }
     //TODO 
+<<<<<<< HEAD
     sendRequest = (id, carrierId, confirmation) => {
         debugger;
+=======
+    sendRequest=(id,carrierId,confirmation)=>{
+        
+>>>>>>> 56a83ce7fda20e57133f1a304e07623e0507e60a
         let body = JSON.stringify({
             id: id,
             carrierId: carrierId,
@@ -61,7 +67,7 @@ class DriverConfirmationClass extends React.Component {
                 return response.json();
             })
             .then(function (data) {
-                debugger;
+                
                 if (data.error) {
                     console.log("bad");
                     throw data.error;

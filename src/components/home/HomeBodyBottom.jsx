@@ -161,16 +161,16 @@ class HomeBodyBottomClass extends React.Component {
       <React.Fragment>
         <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={true} isGoodAnswer={true} />
         {
-          selectedDirection.length > 0 && name.length > 0 ?
-            <Helmet>
-              <title>{name + helmet.basic.title}</title>
-              <meta name="description" content={name + helmet.basic.description} />
-              <meta property="og:site_name" content="Tripfer" />
-              <meta property="og:type" content="website" />
-              <meta property="og:url" content={document.URL} /*тут должно быть с направлением (direction) */ />
-              <meta property="og:title" content={name + helmet.basic.title} />
-              <meta property="og:description" content={name + helmet.basic.description} />
-            </Helmet> : <React.Fragment />
+          selectedDirection.length>0 && name.length>0? 
+          <Helmet>
+            <title>{helmet.basic.title[0]+name+helmet.basic.title[1]}</title>
+            <meta name="description" content={name+helmet.basic.description} />
+            <meta property="og:site_name" content="Tripfer" />
+            <meta property="og:type" content="website" />
+            <meta property="og:url" content={document.URL} /*тут должно быть с направлением (direction) */ />
+            <meta property="og:title" content={name+helmet.basic.title} />
+            <meta property="og:description" content={name+helmet.basic.description} /> 
+          </Helmet> : <React.Fragment/>
         }
         <div className="home_block col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
           <HomePopularPlaces />
