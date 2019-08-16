@@ -171,7 +171,7 @@ class PlacesClass extends React.Component {
           (  
             this.props.placesState.directions.length>0 && selectedDirection.length>0 ?     
             <Helmet>
-              <title>{findSelectedDirectionName(this.props.placesState.directions, selectedDirection)+helmet.direction.title}</title>
+              <title>{helmet.direction.title[0]+findSelectedDirectionName(this.props.placesState.directions, selectedDirection)+helmet.direction.title[1]}</title>
               <meta name="description" content={findSelectedDirectionName(this.props.placesState.directions, selectedDirection)+helmet.direction.description} />
               <meta property="og:site_name" content="Tripfer" />
               <meta property="og:type" content="website" />
@@ -180,8 +180,8 @@ class PlacesClass extends React.Component {
               <meta property="og:description" content={findSelectedDirectionName(this.props.placesState.directions, selectedDirection)+helmet.direction.description} /> 
             </Helmet> : 
             <Helmet>
-              <title>{countryName+helmet.country.title}</title>
-              <meta name="description" content={countryName+helmet.country.description} />
+              <title>{helmet.country.title[0]+countryName+helmet.country.title[1]}</title>
+              <meta name="description" content={helmet.country.description[0]+countryName+helmet.country.description[1]+countryName+helmet.country.description[2]} />
               <meta property="og:site_name" content="Tripfer" />
               <meta property="og:type" content="website" />
               <meta property="og:url" content={document.URL} />
