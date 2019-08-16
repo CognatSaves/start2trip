@@ -2,24 +2,28 @@ import React from 'react';
 import './StartTravelForm.css';
 import './StartTravelBlockStyles.css';
 import { Link } from 'react-router-dom';
+import { isMobileOnly } from 'react-device-detect';
+import axios from 'axios';
+import requests from '../../config';
+
 import grayCross from '../media/close_gray.svg';
+import flags from '../media/flags.png'
+
 import Dialog from '@material-ui/core/Dialog';
 import TextField from '@material-ui/core/TextField';
-import DatePicker from 'material-ui/DatePicker';
 import ReactTelInput from 'react-telephone-input'
-import flags from '../media/flags.png'
-import { isMobileOnly } from 'react-device-detect';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import Checkbox from '@material-ui/core/Checkbox';
-import axios from 'axios';
-import requests from '../../config';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
-import { thisExpression } from '@babel/types';
 import Cookies from 'universal-cookie';
+
+// import DatePicker from 'material-ui/DatePicker';
+// import { thisExpression } from '@babel/types';
+
 const cookies = new Cookies();
 const Content = (that, flagAllOk, carCapacityArray, activeCurrency, textInfo, changeSuccessVisibility) => {
     let isCurrencyLoaded = activeCurrency && activeCurrency.symbol;
@@ -161,7 +165,7 @@ const Content = (that, flagAllOk, carCapacityArray, activeCurrency, textInfo, ch
                                 <input placeholder={textInfo.promoPlaceholder} readOnly={that.state.promoCode} value={that.state.promoCod} onChange={(event) => { that.setState({ promoCod: event.target.value, promoCodIsOk: true }) }} type="text" />
                                 <span onClick={() => {
                                     that.state.promoCode ? (that.setState({ promoCod: "", promoCode: "", discount: 0 })) :
-                                    (that.promocodeVerification())
+                                        (that.promocodeVerification())
                                 }}>{that.state.promoCode ? textInfo.promoVerification[0] : textInfo.promoVerification[1]}</span>
                             </div>
                             <div className="d-flex justify-content-start errorMes">
@@ -196,10 +200,7 @@ const Content = (that, flagAllOk, carCapacityArray, activeCurrency, textInfo, ch
                     <div className="d-flex justify-content-end errorMes">
                         {that.state.errorMes ? <error>{textInfo.errorFieldsMessage}</error> : <div />}
                     </div>
-
                 </div>
-
-
 
             </div>
         </React.Fragment>
@@ -217,13 +218,12 @@ export default class StartTravelForm extends React.Component {
             // mapRwanda:true,
             showPages: 1,
             showPanelVariant: 0,
-
             //Form value Begin
             firstName: props.storeState.userData ? props.storeState.userData.firstName : "",
             lastName: props.storeState.userData ? props.storeState.userData.lastName : "",
             telNumber: props.storeState.userData ? props.storeState.userData.workPhone : "",
             email: props.storeState.userData ? props.storeState.userData.email : "",
-            date: props.storeState.date.length>0 ? new Date(props.storeState.date) : new Date(),
+            date: props.storeState.date.length > 0 ? new Date(props.storeState.date) : new Date(),
             departureTime: "",
             numberOfPeople: "",
             placeDeparture: "",
@@ -240,32 +240,32 @@ export default class StartTravelForm extends React.Component {
             isRefreshing: false,
             isGoodAnswer: false,
             promoCodIsOk: true,
-            time: [
-                "00:00", "00:15", "00:30", "00:45",
-                "01:00", "01:15", "01:30", "01:45",
-                "02:00", "02:15", "02:30", "02:45",
-                "03:00", "03:15", "03:30", "03:45",
-                "04:00", "04:15", "04:30", "04:45",
-                "05:00", "05:15", "05:30", "05:45",
-                "06:00", "06:15", "06:30", "06:45",
-                "07:00", "07:15", "07:30", "07:45",
-                "08:00", "08:15", "08:30", "08:45",
-                "09:00", "09:15", "09:30", "09:45",
-                "10:00", "10:15", "10:30", "10:45",
-                "11:00", "11:15", "11:30", "11:45",
-                "12:00", "12:15", "12:30", "12:45",
-                "13:00", "13:15", "13:30", "13:45",
-                "14:00", "14:15", "14:30", "14:45",
-                "15:00", "15:15", "15:30", "15:45",
-                "16:00", "16:15", "16:30", "16:45",
-                "17:00", "17:15", "17:30", "17:45",
-                "18:00", "18:15", "18:30", "18:45",
-                "19:00", "19:15", "19:30", "19:45",
-                "20:00", "20:15", "20:30", "20:45",
-                "21:00", "21:15", "21:30", "21:45",
-                "22:00", "22:15", "22:30", "22:45",
-                "23:00", "23:15", "23:30", "23:45",
-            ],
+            // time: [
+            //     "00:00", "00:15", "00:30", "00:45",
+            //     "01:00", "01:15", "01:30", "01:45",
+            //     "02:00", "02:15", "02:30", "02:45",
+            //     "03:00", "03:15", "03:30", "03:45",
+            //     "04:00", "04:15", "04:30", "04:45",
+            //     "05:00", "05:15", "05:30", "05:45",
+            //     "06:00", "06:15", "06:30", "06:45",
+            //     "07:00", "07:15", "07:30", "07:45",
+            //     "08:00", "08:15", "08:30", "08:45",
+            //     "09:00", "09:15", "09:30", "09:45",
+            //     "10:00", "10:15", "10:30", "10:45",
+            //     "11:00", "11:15", "11:30", "11:45",
+            //     "12:00", "12:15", "12:30", "12:45",
+            //     "13:00", "13:15", "13:30", "13:45",
+            //     "14:00", "14:15", "14:30", "14:45",
+            //     "15:00", "15:15", "15:30", "15:45",
+            //     "16:00", "16:15", "16:30", "16:45",
+            //     "17:00", "17:15", "17:30", "17:45",
+            //     "18:00", "18:15", "18:30", "18:45",
+            //     "19:00", "19:15", "19:30", "19:45",
+            //     "20:00", "20:15", "20:30", "20:45",
+            //     "21:00", "21:15", "21:30", "21:45",
+            //     "22:00", "22:15", "22:30", "22:45",
+            //     "23:00", "23:15", "23:30", "23:45",
+            // ],
 
 
 
@@ -392,7 +392,7 @@ export default class StartTravelForm extends React.Component {
         this.setState({ errorMes: true, emailValid: emailValid })
 
         if (isAllGood) {
-            
+
             let date = this.state.date;
             let year = date.getUTCFullYear(); let month = date.getUTCMonth() + 1; let day = date.getUTCDate();
             let body = {
@@ -404,18 +404,18 @@ export default class StartTravelForm extends React.Component {
                 startPlace: this.state.placeDeparture,
                 price: this.props.driversState.driverCarDescription.price,
                 tripCommentary: this.state.description,
-                carrier: this.props.match === undefined ? this.props.driversState.driverCarDescription.id :this.props.match.params.id,
+                carrier: this.props.match === undefined ? this.props.driversState.driverCarDescription.id : this.props.match.params.id,
                 currencyType: this.props.storeState.currencies.length > 0 ? this.props.storeState.currencies[this.props.storeState.activeCurrencyNumber].id : undefined,
                 tripType: 'Trip',
                 newPhone: this.state.telNumber,
                 passengerNumber: this.state.numberOfPeople,
                 promocode: this.state.promoCode,
                 clientEmail: this.state.email,
-                carId: this.props.match === undefined ? this.props.driversState.driverCarDescription.carId :this.props.match.params.carId,
+                carId: this.props.match === undefined ? this.props.driversState.driverCarDescription.carId : this.props.match.params.carId,
                 frontendAddress: requests.frontendAddress,
                 travelLength: this.props.driversState.travelLength,
                 travelTime: this.props.driversState.travelTime,
-                userLangCookies: (cookies.get('userLang', {path: '/'})).toUpperCase()
+                userLangCookies: (cookies.get('userLang', { path: '/' })).toUpperCase()
             };
             this.sendTripRequest(JSON.stringify(body));
         }

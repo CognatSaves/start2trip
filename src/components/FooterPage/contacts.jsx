@@ -1,30 +1,27 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import './contacts.css'
+import { connect } from 'react-redux';
+import { isMobileOnly } from 'react-device-detect';
+import { Helmet } from 'react-helmet';
+
 import mailSvg from '../media/mail.svg'
 import phone_callSvg from '../media/phone-call.svg'
 import placeholderSvg from '../media/placeholder.svg'
 import webSvg from '../media/web.svg'
 import Header from '../header/Header';
-import { isMobileOnly } from 'react-device-detect';
-import {Helmet} from 'react-helmet';
 
 class contactsClass extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-
-        }
-
-
+        this.state = {}
     }
-    sendMessage=()=>{
-
+    sendMessage = () => {
+        //TODO sendMessege
     }
     render() {
         let text = this.props.storeState.languageTextMain.footerPage.contacts;
         let helmet = this.props.storeState.languageTextMain.helmets.contacts;
-    
+
         return (
             <React.Fragment>
                 <Helmet>
@@ -34,7 +31,7 @@ class contactsClass extends React.Component {
                     <meta property="og:type" content="website" />
                     <meta property="og:url" content={document.URL} />
                     <meta property="og:title" content={helmet.basic.title} />
-                    <meta property="og:description" content={helmet.basic.description} /> 
+                    <meta property="og:description" content={helmet.basic.description} />
                 </Helmet>
                 <Header driver={true} history={this.props.history} />
                 <div className="wrapper">
@@ -62,22 +59,22 @@ class contactsClass extends React.Component {
                                         <div className="contacts_content_rightMiddle d-flex flex-column">
                                             <h5>{text.h5}</h5>
                                             <div className="d-flex">
-                                                <label style={{background:"url("+phone_callSvg+")no-repeat"}} className="col-md-2 col-3 p-0" htmlFor="tel">{text.labelPhone}</label>
+                                                <label style={{ background: "url(" + phone_callSvg + ")no-repeat" }} className="col-md-2 col-3 p-0" htmlFor="tel">{text.labelPhone}</label>
                                                 <span id="tel">+1 347-771-1833</span>
                                             </div>
                                             <div className="d-flex">
-                                                <label style={{background:"url("+mailSvg+")no-repeat"}} className="col-md-2 col-3 p-0" htmlFor="email">Email:</label>
+                                                <label style={{ background: "url(" + mailSvg + ")no-repeat" }} className="col-md-2 col-3 p-0" htmlFor="email">Email:</label>
                                                 <span id="email">support@tripfer.com</span>
                                             </div>
                                             <div className="d-flex align-items-start">
-                                                <label style={{background:"url("+webSvg+")no-repeat"}} className="col-md-2 col-3 p-0">{text.labelSocialNetwork}</label>
+                                                <label style={{ background: "url(" + webSvg + ")no-repeat" }} className="col-md-2 col-3 p-0">{text.labelSocialNetwork}</label>
                                                 <a href="" className="instagram" />
                                                 <a href="" className="facebook" />
                                             </div>
                                         </div>
                                         <div className="contacts_content_rightFooter d-flex">
-                                            <label style={{background:"url("+placeholderSvg+")no-repeat"}} className="col-md-2 col-3 p-0" htmlFor="adress">{text.labelAddress}</label>
-                                            <span id="adress">{text.addressText1}{isMobileOnly ? <React.Fragment></React.Fragment> : <br/>} {text.addressText2}</span>
+                                            <label style={{ background: "url(" + placeholderSvg + ")no-repeat" }} className="col-md-2 col-3 p-0" htmlFor="adress">{text.labelAddress}</label>
+                                            <span id="adress">{text.addressText1}{isMobileOnly ? <React.Fragment></React.Fragment> : <br />} {text.addressText2}</span>
                                         </div>
                                     </div>
 

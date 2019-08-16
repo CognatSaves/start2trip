@@ -7,14 +7,14 @@ var showdown = require('showdown');
 var converter = new showdown.Converter();
 */
 
+// TODO find out if he is needed and what he does
 
-
-class PlaceProgrammClass extends React.Component{
+class PlaceProgrammClass extends React.Component {
     /*constructor(props){
         super(props);
     }*/
-    shouldComponentUpdate(nextProps){
-        return !(JSON.stringify(this.props)===JSON.stringify(nextProps));
+    shouldComponentUpdate(nextProps) {
+        return !(JSON.stringify(this.props) === JSON.stringify(nextProps));
     }
     /*
     render(){
@@ -38,10 +38,10 @@ class PlaceProgrammClass extends React.Component{
     }
 */
     render() {
-        return(
-		    <Markdown markup={ this.props.place.info } />
+        return (
+            <Markdown markup={this.props.place.info} />
         )
-	}
+    }
 }
 
 /*

@@ -5,7 +5,7 @@ import illustrationUser from '../media/illustration_user_1.svg'
 import illustrationCar from '../media/illustration_user_2.svg'
 import illustrationPhone from '../media/illustration_user_4.svg'
 import Header from '../header/Header';
-import {Helmet} from 'react-helmet';
+import { Helmet } from 'react-helmet';
 
 class aboutServiceClass extends React.Component {
     constructor(props) {
@@ -37,7 +37,7 @@ class aboutServiceClass extends React.Component {
     render() {
         let text = this.props.storeState.languageTextMain.footerPage.aboutService;
         let helmet = this.props.storeState.languageTextMain.helmets.aboutService;
-    
+
         return (
             <React.Fragment>
                 <Header driver={true} history={this.props.history} />
@@ -46,9 +46,9 @@ class aboutServiceClass extends React.Component {
                     <meta name="description" content={helmet.basic.description} />
                     <meta property="og:site_name" content="Tripfer" />
                     <meta property="og:type" content="website" />
-                    <meta property="og:url" content={document.URL}/>
+                    <meta property="og:url" content={document.URL} />
                     <meta property="og:title" content={helmet.basic.title} />
-                    <meta property="og:description" content={helmet.basic.description} /> 
+                    <meta property="og:description" content={helmet.basic.description} />
                 </Helmet>
                 <div className="wrapper">
                     <div className="aboutService d-flex" >

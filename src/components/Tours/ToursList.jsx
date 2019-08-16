@@ -2,11 +2,12 @@ import React from 'react';
 import './ToursList.css';
 import '../Places/PlacesList.css';
 import { connect } from 'react-redux';
+import { setToursPage, setToursMorePagesShow } from '../../redusers/ActionTours';
 
 import bookmarkEmpty from '../media/bookmark_contour.svg';
 import bookmarkFilled from '../media/bookmark_blue.svg';
 import bookmarkSelected from '../media/bookmark_orange.svg';
-import { setToursPage, setToursMorePagesShow } from '../../redusers/ActionTours';
+
 import ToursListBlock from './ToursListBlock';
 
 class ToursListClass extends React.Component {
@@ -14,15 +15,15 @@ class ToursListClass extends React.Component {
     //     super(props);
 
     // }
-    setPage=(page)=> {
+    setPage = (page) => {
         if (page !== "...") {
             this.props.dispatch(setToursPage(page));
         }
     }
-    showMorePages=()=> {
+    showMorePages = () => {
         this.props.dispatch(setToursMorePagesShow());
     }
-    toursSort=(array, type)=> {
+    toursSort = (array, type) => {
         function sortPrice(a, b) {
             if (a.price > b.price) return 1;
             if (a.price < b.price) return -1;
@@ -56,7 +57,7 @@ class ToursListClass extends React.Component {
         }
     }
     render() {
-        
+
 
         function createNames(tourArray) {
             let res = [];
@@ -86,7 +87,7 @@ class ToursListClass extends React.Component {
         return (
             <ToursListBlock selectedTours={selectedTours} namesArray={namesArray} srcArray={srcArray}
                 manipulatorNumber={this.props.toursState.tours[0].tours.length} manipulatorElementsNumber={this.props.storeState.pagesMenuValue}
-                manipulatorPage={this.props.toursState.toursPage} manipulatorSetPage={this.setPage} 
+                manipulatorPage={this.props.toursState.toursPage} manipulatorSetPage={this.setPage}
                 manipulatorShowMorePage={this.showMorePages}
             />
         )

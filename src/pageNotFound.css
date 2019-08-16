@@ -24,11 +24,13 @@
         background-position: top -120px center;
         height: 87.5vh;
     }
+
     .pageNotFound span {
         font-size: 18px;
         color: #304269;
         text-align: center;
     }
+
     .pageNotFound a {
         font-size: 18px;
         color: #356add;

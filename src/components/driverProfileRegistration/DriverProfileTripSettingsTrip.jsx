@@ -1,12 +1,6 @@
 import React from 'react';
-
 import { connect } from 'react-redux';
-import LocationSearchInput from '../home/HomeBody/Search'
-import TextField from 'material-ui/TextField';
 import { isMobile } from 'react-device-detect';
-import FlatButton from 'material-ui/FlatButton';
-import Dialog from 'material-ui/Dialog';
-import Chip from 'material-ui/Chip';
 import InfiniteCalendar, {
     Calendar,
     defaultMultipleDateInterpolation,
@@ -16,14 +10,20 @@ import '../../../node_modules/react-infinite-calendar/styles.css'
 import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 import getUserData from './DriverProfileRequest';
 import requests from '../../config';
-import RefreshIndicator from 'material-ui/RefreshIndicator';
 
+import TextField from 'material-ui/TextField';
+import FlatButton from 'material-ui/FlatButton';
+import Dialog from 'material-ui/Dialog';
+import Chip from 'material-ui/Chip';
+
+import RefreshIndicator from 'material-ui/RefreshIndicator';
+import LocationSearchInput from '../home/HomeBody/Search'
 import DriverRefreshIndicator from './DriverRefreshIndicator';
 
 class DriverProfileTripSettingsTripClass extends React.Component {
     constructor(props) {
         super(props);
-        
+
         let travelsetting = this.props.globalReduser.profile.travelsetting;
         let calend = eval(travelsetting.calendary);
         let dateTour = [];
@@ -38,8 +38,8 @@ class DriverProfileTripSettingsTripClass extends React.Component {
             cityRadius = [...travelsetting.settings.points];
             distance = travelsetting.settings.distance;
         }
-        if(cityRadius.length===0){
-            cityRadius[0]={
+        if (cityRadius.length === 0) {
+            cityRadius[0] = {
                 point: '',
                 lat: '',
                 long: ''
@@ -51,38 +51,38 @@ class DriverProfileTripSettingsTripClass extends React.Component {
             newDate: false,
             dateTour: dateTour,
             calendarModal: false,
-            isRefreshExist:false,
+            isRefreshExist: false,
             isRefreshing: true,
             isGoodAnswer: true,
         }
     }
-    getProfileData=()=>{
+    getProfileData = () => {
         console.log('getProfileData');
         let that = this;
         let jwt = this.props.globalReduser.readCookie('jwt');
-        if(jwt && jwt !== '-'){
+        if (jwt && jwt !== '-') {
             let requestValues = {
                 readCookie: this.props.globalReduser.readCookie,
-                setProfileData: function(data){
-                that.props.dispatch(setProfileData(data))
+                setProfileData: function (data) {
+                    that.props.dispatch(setProfileData(data))
                 },
                 requestAddress: requests.profileRequest
             }
-            getUserData(requestValues,that.thenFunc,that.catchFunc);
+            getUserData(requestValues, that.thenFunc, that.catchFunc);
         }
-        else{
+        else {
             this.props.dispatch(setUrlAddress(window.location.pathname));
             this.props.history.push('/login');
             //return null;
         }
     }
-    startRefresher=()=>{
+    startRefresher = () => {
         this.setState({
             isRefreshExist: true,
             isRefreshing: true
         });
-    }   
-    thenFunc=()=>{
+    }
+    thenFunc = () => {
         console.log('thenFunc');
         console.log(this.props.globalReduser);
         this.setState({
@@ -96,7 +96,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
             })
         }, 1000);
     }
-    catchFunc=()=>{
+    catchFunc = () => {
         console.log('catchFunc');
         this.setState({
             isRefreshExist: true,
@@ -109,17 +109,17 @@ class DriverProfileTripSettingsTripClass extends React.Component {
             })
         }, 2000);
     }
-    applyChanges=(props)=> {
-        
+    applyChanges = (props) => {
+
         let jwt = this.props.globalReduser.readCookie('jwt');
-        let a = this.state.cityRadius[0].point.length===0;
-        let b =!(Number.isInteger(eval(this.state.distance)));
-        if(a || b){
+        let a = this.state.cityRadius[0].point.length === 0;
+        let b = !(Number.isInteger(eval(this.state.distance)));
+        if (a || b) {
             return false;
         }
-        else{
+        else {
             if (jwt && jwt !== "-") {
-                let that = this; 
+                let that = this;
                 this.startRefresher();
                 let value = {
                     travelsetting: {
@@ -131,14 +131,14 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                         calendary: this.state.dateTour
                     }
                 }
-                
-                if(props){
+
+                if (props) {
                     value.onWork = props.onWork;
                 }
                 console.log('body before json');
                 console.log(value);
                 let body = JSON.stringify(value);
-                
+
                 fetch(requests.travelsettingsUpdateRequest, {
                     method: 'PUT', body: body,
                     headers: { 'content-type': 'application/json', Authorization: `Bearer ${jwt}` }
@@ -154,11 +154,11 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                         else {
                             console.log("good");
                             console.log(data);
-                            
+
 
                             let profile = that.props.globalReduser.profile;
                             profile.travelsetting = data.travelsetting;
-                            profile.onWork=data.onWork;
+                            profile.onWork = data.onWork;
                             that.props.dispatch(setProfileData(profile));
                             /*that.setState({
                                 onWork: data.travelsetting.onWork
@@ -178,21 +178,21 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                         that.catchFunc();
                         //that.state.sendResultLocal(false,{error: error});
                     });
-                    
+
             }
-            else{
+            else {
                 this.props.dispatch(setUrlAddress(window.location.pathname));
                 this.props.history.push('/login');
                 //return null;
             }
         }
     }
-    formSubmit=(event)=> {
+    formSubmit = (event) => {
         this.applyChanges();
         event.preventDefault();
     }
 
-    addCityRadius=()=> {
+    addCityRadius = () => {
         let newArrayCity = this.state.cityRadius;
         newArrayCity.push({ point: "", radius: "", lat: '', long: '' });
         this.setState({
@@ -200,7 +200,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
         })
     }
 
-    deleteCityRadius=(index)=> {
+    deleteCityRadius = (index) => {
         let newArrayCity = this.state.cityRadius;
         newArrayCity.splice(index, 1);
         this.setState({
@@ -208,7 +208,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
         })
         console.log(this.state.cityRadius)
     }
-    inputChange=(value, variable, index = 0)=> {
+    inputChange = (value, variable, index = 0) => {
         switch (variable) {
             case 'radius': {
                 let cityRadius = this.state.cityRadius;
@@ -346,14 +346,14 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                         onSelect={this.addDate}
                     />
                 </Dialog>
-                <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer}/>
+                <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
                 <div className="tripSettingsBody">
-                <div className="basicInformationBodyBottomHeader d-xl-block d-lg-block d-md-block d-sm-none d-none">
+                    <div className="basicInformationBodyBottomHeader d-xl-block d-lg-block d-md-block d-sm-none d-none">
                         <p>{textPage.titlePage}</p>
                     </div>
-                    <form onSubmit={(event)=>this.formSubmit(event)} id="tripForm" className="">
-                        <div className="tripSettingsContent">                        
-                            
+                    <form onSubmit={(event) => this.formSubmit(event)} id="tripForm" className="">
+                        <div className="tripSettingsContent">
+
                             <div className="tripSettingsContentTitle d-flex align-items-center tripname">
                                 {textPage.addCityTitle}
                             </div>
@@ -376,7 +376,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                                                 onChange={(e) => this.inputChange(e.target.value, 'radius', index)}
                                             />
                                         </div>
-                                         <span style={{ display: index ? "block" : "none" }} className="tripSettingsContentDeletButton " title={textPage.textField.title} onClick={() => { this.deleteCityRadius(index) }} /> 
+                                        <span style={{ display: index ? "block" : "none" }} className="tripSettingsContentDeletButton " title={textPage.textField.title} onClick={() => { this.deleteCityRadius(index) }} />
                                         {/* <p className={index ? "d-none" : "d-xl-block d-lg-block d-md-block d-sm-none d-none pl-2"}>{textPage.textField.description}</p> */}
                                     </div>
                                 </React.Fragment>
@@ -387,11 +387,11 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
                                 <label htmlFor="maxDailyMileage" className="col-xl-2 col-lg-2 col-md-2 col-sm-11 col-12 p-0 dailymile">{textPage.maxDailyMileage.floatingLabelText}</label>
                                 <div className="d-md-block d-sm-none d-none">
-                                <input id="maxDailyMileage" className="col-md-5 col-12 " type="text" value={this.state.distance}
-                                    onChange={(e) => this.inputChange(e.target.value, 'distance')}
-                                />
+                                    <input id="maxDailyMileage" className="col-md-5 col-12 " type="text" value={this.state.distance}
+                                        onChange={(e) => this.inputChange(e.target.value, 'distance')}
+                                    />
                                 </div>
-                                
+
                                 <TextField
                                     floatingLabelText={textPage.maxDailyMileage.floatingLabelText}
                                     className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
@@ -442,7 +442,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                     <div className="tripSettingsContent d-flex justify-content-center">
                         <div className="tripSettingsContentP d-flex flex-column col-md-8 col-12 py-3 pt-4 px-0">
                             <p className="">{textPage.changeOnWorkP}</p>
-                            <span onClick = {()=>{this.applyChanges({onWork:!this.props.globalReduser.profile.onWork});}}>{this.props.globalReduser.profile.onWork ? textPage.onWorkTrue : textPage.onWorkFalse}</span>
+                            <span onClick={() => { this.applyChanges({ onWork: !this.props.globalReduser.profile.onWork }); }}>{this.props.globalReduser.profile.onWork ? textPage.onWorkTrue : textPage.onWorkFalse}</span>
                         </div>
                     </div>
                 </div>

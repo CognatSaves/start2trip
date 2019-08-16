@@ -48,14 +48,17 @@
     .aboutService_Title {
         background: none;
     }
+
     .aboutService_Title h2 {
         text-align: center;
     }
+
     .aboutService_Title span,
     .aboutService_Title p {
         width: 100%;
         text-align: start;
     }
+
     .aboutService {
         margin-bottom: 80px;
     }
@@ -67,6 +70,7 @@
         box-shadow: none;
         margin-top: 20px;
     }
+
     .aboutService_content i {
         width: 300px;
         min-height: 200px;

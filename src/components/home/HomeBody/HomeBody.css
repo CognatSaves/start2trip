@@ -111,6 +111,7 @@
 }
 
 @media (max-width: 600px) {
+
     .mobailRoutMenuTitle,
     .mobailRoutMenuText {
         text-align: center;

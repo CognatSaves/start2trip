@@ -1,8 +1,8 @@
 import React from 'react';
 import './ValueMenu.css'
-// import Slider from './Slider';
 import { connect } from 'react-redux';
 import { setPricePart, setTempPricePart } from '../../../../../../redusers/Action';
+
 import Slider from '@material-ui/core/Slider';
 
 class ValueMenuClass extends React.Component {
@@ -39,7 +39,7 @@ class ValueMenuClass extends React.Component {
                     <Slider
                         defaultValue={this.props.storeState.pricePart}
                         value={this.state.price}
-                        onChange={(e,value)=>{this.setState({price:value})}}
+                        onChange={(e, value) => { this.setState({ price: value }) }}
                         getAriaValueText={this.valuetext}
                         aria-labelledby="discrete-slider"
                         valueLabelDisplay="auto"

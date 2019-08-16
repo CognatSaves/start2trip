@@ -4,6 +4,7 @@ const driverProfile = {
     createComment:{
         yourCommentPlaceholder: "Ваш отзыв",
         createCommentString:"Оставьте Ваш отзыв",
+        createCommentLinkHome:"Перейти на главную",
         infoText: 'Ваш комментарий станет видимым после проверки администратором.',
         nonFilledText: 'Заполните рейтинг и отзыв',
         sendText: "ОТПРАВИТЬ",

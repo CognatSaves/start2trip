@@ -5,7 +5,7 @@
     padding: 20px;
 }
 
- :nth-child(2).billingBody {
+:nth-child(2).billingBody {
     margin-bottom: 80px;
 }
 
@@ -264,22 +264,27 @@
     .billingContentLeft {
         border: none;
     }
+
     .billingContentRight,
     .billingContentLeft {
         width: 100%;
         border-bottom: 1px solid #ccc;
         padding-right: 0px;
     }
+
     .billingTextTitle {
         text-align: center;
     }
+
     .billingContentRight {
         margin-top: 20px;
         padding-left: 0px;
     }
+
     .billingCalendar {
         margin: 10px 2px !important;
     }
+
     .billingButton {
         padding-bottom: 20px;
     }

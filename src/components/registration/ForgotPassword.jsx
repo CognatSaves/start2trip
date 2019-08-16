@@ -1,10 +1,12 @@
 import React from 'react';
-import Header from '../header/Header';
+
 import './ForgotPassword.css'
-import requests from '../../config';
-import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
-import {Helmet} from 'react-helmet';
+import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
+import requests from '../../config';
+
+import Header from '../header/Header';
+import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 
 class ForgotPasswordClass extends React.Component {
     constructor(props) {
@@ -82,10 +84,10 @@ class ForgotPasswordClass extends React.Component {
         console.log('Forgot password render');
         console.log(this.state);
         let textInfo = this.props.storeState.languageTextMain.registration.forgotPassword;
-        
+
         console.log('EEE');
         let helmet = this.props.storeState.languageTextMain.helmets.forgotPassword;
-    
+
         return (
             <React.Fragment>
 
@@ -99,7 +101,7 @@ class ForgotPasswordClass extends React.Component {
                         <meta property="og:type" content="website" />
                         <meta property="og:url" content={document.URL} />
                         <meta property="og:title" content={helmet.basic.title} />
-                        <meta property="og:description" content={helmet.basic.description} /> 
+                        <meta property="og:description" content={helmet.basic.description} />
                     </Helmet>
                     {this.state.isGood ?
                         <div className="forgotPasswordSuccess forgotPasswordContent d-flex flex-column align-items-center col-md-7 col-11">
@@ -112,14 +114,16 @@ class ForgotPasswordClass extends React.Component {
                             </div>
                             <div className="d-flex flex-md-row flex-column align-items-center col-md-8 col-12">
                                 <input className={this.state.falde ? "forgotPasswordInput-error col-md-7 col-12" : "col-md-7 col-12"}
-                                value={this.state.email} placeholder={textInfo.placeholder} 
-                                pattern="^([A-Za-z0-9_-]+\.)*[A-Za-z0-9_-]+@[A-Za-z0-9_-]+(\.[A-Za-z0-9_-]+)*\.[A-Za-z]{6,}$" 
-                                onChange={(e) => { this.emailonchange(e.target.value);
-                                this.setState({ falde: false, isSended: false }) }}></input>
+                                    value={this.state.email} placeholder={textInfo.placeholder}
+                                    pattern="^([A-Za-z0-9_-]+\.)*[A-Za-z0-9_-]+@[A-Za-z0-9_-]+(\.[A-Za-z0-9_-]+)*\.[A-Za-z]{6,}$"
+                                    onChange={(e) => {
+                                        this.emailonchange(e.target.value);
+                                        this.setState({ falde: false, isSended: false })
+                                    }}></input>
                                 <div className="forgotPasswordBt d-flex justify-content-center align-items-center col-md-5 col-12" onClick={() => this.sendRequest()}>
                                     <span>{textInfo.sendEmail}</span>
                                 </div>
-                                
+
                             </div>
                             {
                                 this.state.isSended ?

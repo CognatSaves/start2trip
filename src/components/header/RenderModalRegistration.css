@@ -72,6 +72,7 @@
     from {
         left: 0px;
     }
+
     to {
         left: 310px;
     }
@@ -88,6 +89,7 @@
     from {
         left: 310px;
     }
+
     to {
         left: 0px;
     }
@@ -163,13 +165,13 @@
     font-size: 12px;
 }
 
-.agreement-error label{
+.agreement-error label {
     margin-bottom: 0;
     color: #e81123;
     font-size: 12px;
 }
 
-.agreement-error span{
+.agreement-error span {
     color: #e81123;
 }
 
@@ -299,9 +301,11 @@
         left: 0px;
         min-width: 310px;
     }
+
     50% {
         min-width: 410px;
     }
+
     to {
         left: -410px;
         min-width: 310px;
@@ -320,9 +324,11 @@
         left: -410px;
         min-width: 310px;
     }
+
     40% {
         min-width: 380px;
     }
+
     to {
         left: 0px;
         min-width: 310px;

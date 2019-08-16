@@ -1,3 +1,2 @@
-const serverAddress = 'http://localhost:1337'; //'https://tripfer.com:41337'; //
-const serverAddressImg = 'http://localhost'; //'https://tripfer.com:41337'; //
+const serverAddress = 'https://tripfer.com:41337'; //'http://localhost:1337'; //
 export default serverAddress;

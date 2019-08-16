@@ -1,28 +1,27 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { changePlacesFixedClass, setPlacesPanelSelectedElement } from '../../redusers/ActionPlaces';
+import { isMobileOnly } from 'react-device-detect'
+import { Helmet } from 'react-helmet';
+import axios from 'axios';
+import requests from '../../config';
+
+// import DriversCommercial from '../drivers/DriversBody/DriversCommercial/DriversCommercial';
+// import georgiaImg from '../media/georgia.png';
 
 import Header from '../header/Header';
 import PlaceInfo from './PlaceInfo.jsx';
-// import DriversCommercial from '../drivers/DriversBody/DriversCommercial/DriversCommercial';
-
-import { connect } from 'react-redux';
-
-
-import georgiaImg from '../media/georgia.png';
-
 import PlaceProgramm from './PlaceProgramm.jsx';
 import PlacePhotos from './PlacePhotos.jsx';
 import PlaceTravelBlock from './PlaceTravelBlock.jsx';
 import CommentBlock from '../TourDescription/CommentBlock.jsx';
 import TourPanel from '../TourDescription/TourPanel.jsx';
-import { changePlacesFixedClass, setPlacesPanelSelectedElement } from '../../redusers/ActionPlaces';
-import axios from 'axios';
-import requests from '../../config';
 import SimularPlaceBlock from './SimularPlaceBlock';
 import PlacePhotoShow from './PlacePhotoShow.jsx';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
-import { isMobileOnly } from 'react-device-detect'
+
 import Cookies from 'universal-cookie';
-import {Helmet} from 'react-helmet';
+
 const cookies = new Cookies();
 
 class PlaceDescriptionClass extends React.Component {
@@ -49,7 +48,7 @@ class PlaceDescriptionClass extends React.Component {
             isGoodAnswer: true,
             //photoArray: [ippodrom, ippodrom4, ippodrom2, ippodrom3, ippodrom, ippodrom4, ippodrom2, ippodrom3, ippodrom, ippodrom4, ippodrom2, ippodrom3, ippodrom, ippodrom4, ippodrom2, ippodrom3, ippodrom, ippodrom4, ippodrom2, ippodrom3],
             selectedLanguage: -1,
-            images:null,
+            images: null,
             //isMobile: false,
             //topBlockImage:''
         };
@@ -87,7 +86,7 @@ class PlaceDescriptionClass extends React.Component {
         return result;
     }
     */
-    selectPhoto=(photoIndex)=> {
+    selectPhoto = (photoIndex) => {
         function calculatePhotoSlice(photoIndex, length, OldPhotoIndex, OldPhotoSlice) {
             let photoSlice = 0;
             if (OldPhotoIndex < photoIndex) {
@@ -116,13 +115,13 @@ class PlaceDescriptionClass extends React.Component {
         })
 
     }
-    showMorePages=()=> {
+    showMorePages = () => {
         this.setState({
             page: this.state.page + 1,
             showPages: this.state.showPages + 1
         })
     }
-    setPage=(page)=> {
+    setPage = (page) => {
         if (page !== "...") {
             this.setState(
                 {
@@ -133,26 +132,26 @@ class PlaceDescriptionClass extends React.Component {
         }
     }
     render() {
-        
+
         console.log('Place description render', this.state, this.props);
-        
+
         ///let countryId = this.props.match.params.country;
         //let placeId = this.props.match.params.id;
         //let comments = [...this.props.commentState.comments].reverse();
         //let place = this.props.placesState.places[/*countryId*/0].places[/*placeId*/0];
         let slug = this.props.match.params.slug;
         if (this.props.storeState.languages.length > 0 && this.state.newPlace.local && this.state.selectedLanguage !== this.props.storeState.activeLanguageNumber) {
-            
+
             let slugArray = this.state.newPlace.local.slugArray;
             for (let i = 0; i < slugArray.length; i++) {
                 if (this.props.storeState.languages[this.props.storeState.activeLanguageNumber].id === slugArray[i].language) {
                     this.setState({
                         selectedLanguage: this.props.storeState.activeLanguageNumber
                     });
-                    this.props.globalReduser.history.push("/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+'/places/' + slugArray[i].slug);
+                    this.props.globalReduser.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/places/' + slugArray[i].slug);
                 }
             }
-            //надо что-то сделать, если не нашли          
+            // TODO надо что-то сделать, если не нашли          
         }
 
         if (this.state.couldSendRequest && (!this.state.newPlace.local || this.state.slug !== slug) && this.props.storeState.languages.length > 0) {
@@ -163,25 +162,25 @@ class PlaceDescriptionClass extends React.Component {
                 selectedLanguage: this.props.storeState.activeLanguageNumber
             })
             let that = this;
-            axios.get(requests.showPlace + "?slug=" + (slug ? slug : '')+"&country="+cookies.get('country',{path: '/'})/*+"&lang="+this.props.storeState.languages[this.props.storeState.activeLanguageNumber].id*/)
+            axios.get(requests.showPlace + "?slug=" + (slug ? slug : '') + "&country=" + cookies.get('country', { path: '/' })/*+"&lang="+this.props.storeState.languages[this.props.storeState.activeLanguageNumber].id*/)
                 .then(response => {
-                    
+
                     console.log(response);
                     return response.data;
                 })
                 .then(data => {
-                    
+
                     if (data.error) {
                         console.log("bad");
                         throw data.error;
                     }
                     else {
                         window.scroll({
-                            top: 0, 
-                            left: 0, 
+                            top: 0,
+                            left: 0,
                             behavior: 'smooth'
-                          });
-                    
+                        });
+
                         console.log('good');
                         console.log(data);
                         that.setState({ isRefreshExist: false, newPlace: data, couldSendRequest: true, slug: data.local.slug });
@@ -190,7 +189,7 @@ class PlaceDescriptionClass extends React.Component {
                     }
                 })
                 .catch(error => {
-                    
+
                     console.log('get wasted answer');
                     that.props.globalReduser.history.push('/404');
                 });
@@ -200,60 +199,60 @@ class PlaceDescriptionClass extends React.Component {
         }
 
         let topBlockId = "placeDescriptionId";
-        let simularPlaceBlockId = topBlockId+'4';
+        let simularPlaceBlockId = topBlockId + '4';
         let textInfo = this.props.storeState.languageTextMain.placeDescription;
         let bigImage = 'url(' + (this.state.newPlace.place && this.state.newPlace.place.mainImage ?
             requests.serverAddressImg + this.state.newPlace.place.mainImage.url : '') + ') no-repeat';
         let smallImage = 'url(' + (this.state.newPlace.place && this.state.newPlace.place.blockListImage ?
             requests.serverAddressImg + this.state.newPlace.place.blockListImage.url : '') + ') no-repeat';
         let helmet = this.props.storeState.languageTextMain.helmets.placeDescription;
-    
+
         return (
             <React.Fragment>
                 {
                     this.state.newPlace.local ?
-                    <Helmet>
-                        <title>{this.state.newPlace.local.name+helmet.object.title}</title>
-                        <meta name="description" content={this.state.newPlace.local.name+helmet.object.description} />
-                        <meta property="og:site_name" content="Tripfer" />
-                        <meta property="og:type" content="website" />
-                        <meta property="og:url" content={document.URL} /*Здесь нужно нормальный slug подключить */ />
-                        <meta property="og:title" content={this.state.newPlace.local.name+helmet.object.title} />
-                        <meta property="og:description" content={this.state.newPlace.local.name+helmet.object.description} /> 
-                    </Helmet> : 
-                    <Helmet>
-                        <title>{helmet.loading.title}</title>
-                        <meta name="description" content={helmet.loading.description} />
-                        <meta property="og:site_name" content="Tripfer" />
-                        <meta property="og:type" content="website" />
-                        <meta property="og:url" content={document.URL} />
-                        <meta property="og:title" content={helmet.loading.title} />
-                        <meta property="og:description" content={helmet.loading.description} /> 
-                    </Helmet>
+                        <Helmet>
+                            <title>{this.state.newPlace.local.name + helmet.object.title}</title>
+                            <meta name="description" content={this.state.newPlace.local.name + helmet.object.description} />
+                            <meta property="og:site_name" content="Tripfer" />
+                            <meta property="og:type" content="website" />
+                            <meta property="og:url" content={document.URL} /*Здесь нужно нормальный slug подключить */ />
+                            <meta property="og:title" content={this.state.newPlace.local.name + helmet.object.title} />
+                            <meta property="og:description" content={this.state.newPlace.local.name + helmet.object.description} />
+                        </Helmet> :
+                        <Helmet>
+                            <title>{helmet.loading.title}</title>
+                            <meta name="description" content={helmet.loading.description} />
+                            <meta property="og:site_name" content="Tripfer" />
+                            <meta property="og:type" content="website" />
+                            <meta property="og:url" content={document.URL} />
+                            <meta property="og:title" content={helmet.loading.title} />
+                            <meta property="og:description" content={helmet.loading.description} />
+                        </Helmet>
                 }
-                
+
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
 
                 <div style={{ position: 'relative' }}>
                     {
-                        this.state.images !==null ?
+                        this.state.images !== null ?
                             <PlacePhotoShow onClose={() => this.setState({ isMaskVisible: false })}
                                 isMaskVisible={this.state.isMaskVisible} clickedImageIndex={this.state.clickedImageIndex} images={this.state.newPlace.place.images} />
                             : <React.Fragment />
                     }
-                    {isMobileOnly ? 
-                    <Header history={this.props.history} a={true} />
-                    
-                    :
-                    <React.Fragment />
+                    {isMobileOnly ?
+                        <Header history={this.props.history} a={true} />
+
+                        :
+                        <React.Fragment />
                     }
                     <div className="placeDescription_background col-12 p-0" style={{ background: isMobileOnly ? smallImage : bigImage }} id={topBlockId}>
-                        
-                    {!isMobileOnly ? 
-                    <Header history={this.props.history} />
-                    :
-                    <React.Fragment />
-                    }
+
+                        {!isMobileOnly ?
+                            <Header history={this.props.history} />
+                            :
+                            <React.Fragment />
+                        }
                         {
                             this.state.newPlace.local ?
                                 <div className="placeDescription_topImageMask">
@@ -264,8 +263,8 @@ class PlaceDescriptionClass extends React.Component {
                                     /*place={{...this.state.newPlace.local}}*/ />
                                     </div>
                                 </div>
-
-                                : <React.Fragment />
+                                :
+                                 <React.Fragment />
                         }
 
                     </div>
@@ -278,7 +277,7 @@ class PlaceDescriptionClass extends React.Component {
                                             <TourPanel topBlockId={topBlockId} descriptionId={topBlockId} variantsArray={textInfo.placeDescription.variantsArray}
                                                 setPanelStateFunc={changePlacesFixedClass} panelFixedClass={this.props.placesState.placePanelFixedClass}
                                                 panelSelectedElement={this.props.placesState.placePanelSelectedElement} setPanelSelectedElement={setPlacesPanelSelectedElement}
-                                                removeElements={this.state.newPlace.additionalPlaces.length===0 ? [simularPlaceBlockId] : []}/>
+                                                removeElements={this.state.newPlace.additionalPlaces.length === 0 ? [simularPlaceBlockId] : []} />
 
                                             <div className="placeDescription_block d-flex flex-column p-0" id={topBlockId + "1"}>
                                                 <div className="placeDescription_fragmentName" style={{ marginBottom: "15px" }} >{textInfo.placeDescription.variantsArray[0]}</div>
@@ -288,7 +287,7 @@ class PlaceDescriptionClass extends React.Component {
                                             <div className="placeDescription_block d-flex flex-column" id={topBlockId + "2"}>
                                                 <div className="placeDescription_fragmentName" style={{ marginBottom: "15px" }} >{textInfo.placeDescription.variantsArray[1]}</div>
                                                 <PlacePhotos photoArray={/*this.state.photoArray*/this.state.newPlace.place.images}
-                                                    showMask={(clickedImageIndex,images) => { this.setState({ isMaskVisible: true, clickedImageIndex: clickedImageIndex, images:images }) }}/*width={this.state.width} height={this.state.height} number={this.state.n}*/ />
+                                                    showMask={(clickedImageIndex, images) => { this.setState({ isMaskVisible: true, clickedImageIndex: clickedImageIndex, images: images }) }}/*width={this.state.width} height={this.state.height} number={this.state.n}*/ />
                                             </div>
 
                                             <PlaceTravelBlock id={topBlockId + "3"} place={{ ...this.state.newPlace.local, country: this.state.newPlace.country, capital: this.state.newPlace.capital }} />
@@ -298,8 +297,7 @@ class PlaceDescriptionClass extends React.Component {
                                                 */
                                             }
 
-
-                                            <div className="placeDescription_block flex-column" id={simularPlaceBlockId} style={{display: this.state.newPlace.additionalPlaces.length>0 ? 'flex' : 'none'}}>
+                                            <div className="placeDescription_block flex-column" id={simularPlaceBlockId} style={{ display: this.state.newPlace.additionalPlaces.length > 0 ? 'flex' : 'none' }}>
                                                 {
                                                     /*
                                                         <SimularToursBlock tours={this.state.popularPlaces} fragmentName={"Вас может заинтересовать"} priseDisplay={"none"}/>
@@ -323,9 +321,9 @@ class PlaceDescriptionClass extends React.Component {
 
                                 </div>
                             </div>
-                            : <React.Fragment />
+                            : 
+                            <React.Fragment />
                     }
-
                 </div>
             </React.Fragment>
         )

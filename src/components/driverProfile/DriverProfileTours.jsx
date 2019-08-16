@@ -1,25 +1,26 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { setToursPage, setToursMorePagesShow } from '../../redusers/ActionTours';
+
 import ToursListBlock from '../Tours/ToursListBlock';
 import bookmarkEmpty from '../media/bookmark_contour.svg';
 import bookmarkFilled from '../media/bookmark_blue.svg';
 import bookmarkSelected from '../media/bookmark_orange.svg';
-import { setToursPage, setToursMorePagesShow } from '../../redusers/ActionTours';
 
-class DriverProfileToursClass extends React.Component{
+class DriverProfileToursClass extends React.Component {
     // constructor(props){
     //     super(props);
 
     // }
-    setPage=(page)=> {
+    setPage = (page) => {
         if (page !== "...") {
             this.props.dispatch(setToursPage(page));
         }
     }
-    showMorePages=()=> {
+    showMorePages = () => {
         this.props.dispatch(setToursMorePagesShow());
     }
-    render(){
+    render() {
         function createNames(tourArray) {
             let res = [];
             for (let i = 0; i < tourArray.length; i++) {
@@ -31,18 +32,18 @@ class DriverProfileToursClass extends React.Component{
             return res;
         }
         let sortedArray = [...this.props.toursState.tours[0].tours];
-        let selectedTours = sortedArray.slice(0,5);
+        let selectedTours = sortedArray.slice(0, 5);
         let srcArray = Array(selectedTours.length).fill(bookmarkEmpty);
 
         srcArray[0] = bookmarkSelected;
         srcArray[1] = bookmarkFilled;
-        
+
         let namesArray = createNames(selectedTours);
 
-        return(
+        return (
             <ToursListBlock selectedTours={selectedTours} namesArray={namesArray} srcArray={srcArray}
                 manipulatorNumber={this.props.toursState.tours[0].tours.length} manipulatorElementsNumber={this.props.storeState.pagesMenuValue}
-                manipulatorPage={this.props.toursState.toursPage} manipulatorSetPage={this.setPage} 
+                manipulatorPage={this.props.toursState.toursPage} manipulatorSetPage={this.setPage}
                 manipulatorShowMorePage={this.showMorePages}
             />
         )

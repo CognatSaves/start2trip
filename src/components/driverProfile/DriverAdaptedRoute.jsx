@@ -9,11 +9,11 @@ export default class DriverAdaptedRoute extends React.Component {
         const { element, date, cities, travelLength, travelTime, goToDrivers, changeTravelVisibility } = this.props;
         let isVisibleArray = Array(cities.length).fill("visible");
         isVisibleArray[isVisibleArray.length - 1] = "hidden";
-        let textInfoMain = this.props.storeState.languageTextMain.driverProfile.driverAdaptedRoute; 
+        let textInfoMain = this.props.storeState.languageTextMain.driverProfile.driverAdaptedRoute;
         return (
             <div className="drivers_route col-12 p-0 d-flex flex-column" >
                 <div className="d-flex col-12">
-                    <div className="route_date_text">{textInfoMain.routeDateText+":"}{date}</div>
+                    <div className="route_date_text">{textInfoMain.routeDateText + ":"}{date}</div>
                 </div>
                 <div className="d-flex flex-md-row flex-column justify-content-md-between justify-content-start align-items-center col-12" >
                     <div className="col-12">
@@ -28,8 +28,8 @@ export default class DriverAdaptedRoute extends React.Component {
 
                         <div className="col-12 p-0 d-flex flex-md-row flex-column-reverse justify-content-between align-items-md-center align-items-end">
                             <div className="route_bottomBlock driverAdaptedRoute_bottomBlock col-md-6 col-12">
-                                <div className="route_time_text">{textInfoMain.routeTimeText+':'}
-                            <p1>{travelTime}</p1><p2>{travelLength}</p2>
+                                <div className="route_time_text">{textInfoMain.routeTimeText + ':'}
+                                    <p1>{travelTime}</p1><p2>{travelLength}</p2>
                                 </div>
                                 <div className="route_comment">{textInfoMain.routeComment}</div>
                             </div>

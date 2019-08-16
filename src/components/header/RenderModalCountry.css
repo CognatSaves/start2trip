@@ -33,9 +33,11 @@
         width: 100% !important;
         margin: 10% 0 !important;
     }
+
     .modal-content {
         width: 100% !important;
     }
+
     .modalCountry .countryBody {
         min-width: 250px !important;
         max-width: none !important;

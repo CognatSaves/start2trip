@@ -1,6 +1,8 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import './affiliateProgram.css'
+import { connect } from 'react-redux';
+import { Helmet } from 'react-helmet';
+
 import income from '../media/income.svg'
 import share from '../media/share.svg'
 import invite from '../media/invite.svg'
@@ -9,7 +11,6 @@ import IT_link from '../media/IT_link.svg'
 import fn_stock from '../media/fn_stock.svg'
 
 import Header from '../header/Header';
-import {Helmet} from 'react-helmet';
 
 class affiliateProgramClass extends React.Component {
     constructor(props) {
@@ -58,7 +59,7 @@ class affiliateProgramClass extends React.Component {
     render() {
         let text = this.props.storeState.languageTextMain.footerPage.affiliateProgram;
         let helmet = this.props.storeState.languageTextMain.helmets.affiliateProgram;
-    
+
         return (
             <React.Fragment>
                 <Header driver={true} history={this.props.history} />
@@ -69,14 +70,14 @@ class affiliateProgramClass extends React.Component {
                     <meta property="og:type" content="website" />
                     <meta property="og:url" content={document.URL} />
                     <meta property="og:title" content={helmet.basic.title} />
-                    <meta property="og:description" content={helmet.basic.description} /> 
+                    <meta property="og:description" content={helmet.basic.description} />
                 </Helmet>
                 <div className="wrapper">
                     <div className="affiliateProgram" >
                         <div className="affiliateProgram_Title col-12 p-0">
                             <h2>{text.h2}</h2>
                             <p className="col-md-6 col-12 p-0">
-                            {text.description1} <br /> {text.description2}
+                                {text.description1} <br /> {text.description2}
                             </p>
                             <div className="affiliateProgram_content d-flex flex-column col-md-8 col-12 p-0">
                                 {

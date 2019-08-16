@@ -1,9 +1,11 @@
 import React from 'react';
 import '../Places/PlacesCountryInfo.css';
 import './ToursCountryInfo.css';
+
 import calendar from '../media/calendar.svg';
 import geoIcon from '../media/geo_icon.svg';
 
+// TODO Static data
 export default class ToursCountryInfo extends React.Component {
   render() {
     return (

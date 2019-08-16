@@ -150,22 +150,27 @@
     .contacts_Title {
         background: none;
     }
+
     .contacts_Title h2 {
         text-align: center;
     }
+
     .contacts_Title span,
     .contacts_Title p {
         width: 100%;
         text-align: start;
     }
+
     .contacts {
         margin-bottom: 80px;
     }
+
     .contacts_content_right {
         border-left: none;
         border-top: 1px solid #dadada;
         padding: 10px 0;
     }
+
     .contacts_content_rightFooter label {
         background-size: 15px 15px !important;
         background-position: top left !important;
@@ -179,6 +184,7 @@
         box-shadow: none;
         margin-top: 20px;
     }
+
     .contacts_content_rightFooter label {
         background-size: 15px 15px !important;
         background-position: top left !important;
