@@ -135,12 +135,14 @@ p.driverProfileSettingsContentPasswordText {
     .driverProfilesettingsBody {
         box-shadow: none;
     }
+
     .driverProfileSettingsContent input,
     .driverProfileSettingsContent select {
         border: none;
         border-radius: 0px;
         border-bottom: 1px solid #ccc;
     }
+
     .driverProfileSettingsContent select:hover,
     .driverProfileSettingsContent select:focus,
     .driverProfileSettingsContent input:hover,
@@ -151,16 +153,20 @@ p.driverProfileSettingsContentPasswordText {
         outline: #304269;
         border-radius: 0px;
     }
+
     .driverProfileSettingsContentPasswordEyeIcon {
         top: 35px;
         right: 15px;
     }
+
     .sittingsTextField input {
         margin-top: 13px !important;
     }
+
     .driverProfileSettingsContentUnsubscribe p {
         font-size: 14px;
     }
+
     .driverProfileSettingsContentUnsubscribe .driverProfileSettingsContentUnsubscribeButton {
         font-size: 16px;
     }

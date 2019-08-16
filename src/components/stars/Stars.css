@@ -16,7 +16,7 @@
 }
 
 .placeCreateCommentStars {
-    font-size: 24px!important;
+    font-size: 24px !important;
 }
 
 .infoBlock_starsBlock_stars {
@@ -79,11 +79,13 @@
     .infoBlock_starsBlock_stars {
         font-size: 16px;
     }
+
     .infoBlock_starsBlock_number {
         font-size: 14px;
     }
+
     .placesList_info_position_textStyle {
-        line-height: 16px!important;
+        line-height: 16px !important;
         color: rgb(104, 104, 104);
         font-size: 14px;
     }

@@ -117,6 +117,23 @@
     padding: 5px;
 }
 
+a.createComment_Link {
+    text-decoration: none;
+    color: #fff;
+    white-space: nowrap;
+    background: #304269;
+    line-height: 42px;
+    padding: 0 5px;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+a.createComment_Link:hover {
+    text-decoration: none;
+    color: #fff;
+    background: #f60;
+}
+
 .createComment_textareaStyle::placeholder {
     color: #cccccc;
 }
@@ -250,9 +267,11 @@ label {
     input:checked+.news {
         height: auto;
     }
+
     input:checked+.news::after {
         content: none;
     }
+
     .driverProfileComments_panel {
         margin: 10px 0;
         padding: 5px 0;
@@ -261,6 +280,7 @@ label {
         background: #fff;
         z-index: 10;
     }
+
     .valueBlock_commentary {
         max-height: none;
     }

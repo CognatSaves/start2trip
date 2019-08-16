@@ -1,64 +1,62 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
+import requests from '../../config';
+import getUserData from '../driverProfileRegistration/DriverProfileRequest';
+
 import LocationSearchInput from '../home/HomeBody/Search'
 import TextField from 'material-ui/TextField';
 import DatePicker from 'material-ui/DatePicker';
-import requests from '../../config';
-import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
-import getUserData from '../driverProfileRegistration/DriverProfileRequest';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
-
-
-
 
 class UserProfileBasicInformationClass extends React.Component {
     constructor(props) {
         super(props);
         let profile = this.props.globalReduser.profile;
-        let birthday; 
+        let birthday;
 
         birthday = new Date(profile.birthday);
         this.state = {
             value: this.props.storeState.languageText.driverProfileRegistration.DriverProfileBasicInformation.MenuItem.value,
-            isRefreshExist:false,
+            isRefreshExist: false,
             isRefreshing: true,
             isGoodAnswer: true,
             profileData: {
                 firstName: profile.firstName,
                 lastName: profile.lastName,
                 birthday: birthday,
-                city: profile.hometown.length!==0 ?  (profile.hometown+ ', ' + profile.homecountry) : "",
+                city: profile.hometown.length !== 0 ? (profile.hometown + ', ' + profile.homecountry) : "",
             }
         }
-    
+
     }
-    getProfileData=()=>{
+    getProfileData = () => {
         console.log('getProfileData');
         let that = this;
         let jwt = this.props.globalReduser.readCookie('jwt');
-        if(jwt && jwt !== '-'){
+        if (jwt && jwt !== '-') {
             let requestValues = {
                 readCookie: this.props.globalReduser.readCookie,
-                setProfileData: function(data){
-                that.props.dispatch(setProfileData(data))
+                setProfileData: function (data) {
+                    that.props.dispatch(setProfileData(data))
                 },
                 requestAddress: requests.profileRequest
             }
-            getUserData(requestValues,that.thenFunc,that.catchFunc);
+            getUserData(requestValues, that.thenFunc, that.catchFunc);
         }
-        else{
+        else {
             this.props.dispatch(setUrlAddress(window.location.pathname));
             this.props.history.push('/login');
             //return null;
         }
     }
-    startRefresher=()=>{
+    startRefresher = () => {
         this.setState({
             isRefreshExist: true,
             isRefreshing: true
         });
-    }  
-    thenFunc=()=>{
+    }
+    thenFunc = () => {
         console.log('thenFunc');
         this.setState({
             isRefreshExist: true,
@@ -71,7 +69,7 @@ class UserProfileBasicInformationClass extends React.Component {
             })
         }, 1000);
     }
-    catchFunc=()=>{
+    catchFunc = () => {
         console.log('catchFunc');
         this.setState({
             isRefreshExist: true,
@@ -84,7 +82,7 @@ class UserProfileBasicInformationClass extends React.Component {
             })
         }, 2000);
     }
-    applyChanges=()=>{
+    applyChanges = () => {
         let jwt = this.props.globalReduser.readCookie('jwt');
         if (jwt && jwt !== "-") {
             let that = this;
@@ -107,7 +105,7 @@ class UserProfileBasicInformationClass extends React.Component {
             value.homecountry = pcity.homecountry;
             value.city = undefined;
             let body = JSON.stringify(value);
-            
+
             fetch(requests.profileUpdateRequest, {
                 method: 'PUT', body: body,
                 headers: { 'content-type': 'application/json', Authorization: `Bearer ${jwt}` }
@@ -120,7 +118,7 @@ class UserProfileBasicInformationClass extends React.Component {
                         console.log("bad");
                         throw data.error;
                     }
-                    else {                 
+                    else {
                         console.log("good");
                         that.getProfileData();
                     }
@@ -131,13 +129,13 @@ class UserProfileBasicInformationClass extends React.Component {
                     that.catchFunc();
                 });
         }
-        else{
-            
-            this.props.dispatch(setUrlAddress(window.location.pathname));            
-            this.props.globalReduser.history.push('/login');            
+        else {
+
+            this.props.dispatch(setUrlAddress(window.location.pathname));
+            this.props.globalReduser.history.push('/login');
         }
     }
-    inputChange=(value, variable)=>{
+    inputChange = (value, variable) => {
         let profileData = this.state.profileData;
         switch (variable) {
             case 'firstName': {
@@ -174,7 +172,7 @@ class UserProfileBasicInformationClass extends React.Component {
             profileData: profileData
         })
     }
-    formSubmit=(event)=>{
+    formSubmit = (event) => {
         event.preventDefault();
         this.applyChanges();
     }
@@ -210,7 +208,7 @@ class UserProfileBasicInformationClass extends React.Component {
         let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileBasicInformation;
         return (
             <div className="basicInformationBody d-flex flex-column">
-                <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer}/>
+                <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
                 <div className="basicInformationBodyBottom d-flex flex-column mb-5 p-0">
                     <div className="basicInformationBodyBottomHeader d-xl-block d-lg-block d-md-block d-sm-none d-none">
                         <p>{textPage.titlePage}</p>
@@ -258,7 +256,7 @@ class UserProfileBasicInformationClass extends React.Component {
                             <div className="bottomContentNote d-flex align-items-center">
                                 <label htmlFor="basicInfoLocation" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">{textPage.basicInfoLocation.label}:</label>
                                 <div className="d-flex col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">
-                                    <LocationSearchInput placeholder={"Введите город"} address={this.state.profileData.city} changeCity={this.changeCity} classInput="searchInputDriverInformation" id="basicInfoLocation" classDropdown="searchDropdownDriverInformation" classDiv="p-0 classDivDriverHomeCity"/>
+                                    <LocationSearchInput placeholder={"Введите город"} address={this.state.profileData.city} changeCity={this.changeCity} classInput="searchInputDriverInformation" id="basicInfoLocation" classDropdown="searchDropdownDriverInformation" classDiv="p-0 classDivDriverHomeCity" />
                                 </div>
                                 <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">{textPage.basicInfoLocation.description}</p>
                             </div>

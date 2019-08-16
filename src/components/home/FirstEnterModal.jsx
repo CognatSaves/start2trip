@@ -1,7 +1,8 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import './FirstEnterModal.css';
-import Cookies from 'universal-cookie';
+import { connect } from 'react-redux';
+import { isMobileOnly } from 'react-device-detect';
+
 import IconUser1 from './img/user/1_user.svg'
 import IconUser2 from './img/user/2_user.svg'
 import IconUser3 from './img/user/3_user.svg'
@@ -18,9 +19,9 @@ import IconAgency2 from './img/agency/illustration_agency_2.svg'
 import IconAgency3 from './img/agency/illustration_agency_3.svg'
 import IconAgency4 from './img/agency/illustration_agency_4.svg'
 
-
-import { isMobileOnly } from 'react-device-detect';
 import Dialog from 'material-ui/Dialog';
+import Cookies from 'universal-cookie';
+
 const cookies = new Cookies();
 
 class FirstEnterModalClass extends React.Component {
@@ -32,36 +33,36 @@ class FirstEnterModalClass extends React.Component {
             changeBtClose: false,
             renderContent: [],
             renderContentUser: [
-                { Icon: IconUser1, textTitle:  props.storeState.languageTextMain.firstEnterModal.renderContentUser.user1.textTitle, textP: props.storeState.languageTextMain.firstEnterModal.renderContentUser.user1.textP, },
-                { Icon: IconUser2, textTitle:  props.storeState.languageTextMain.firstEnterModal.renderContentUser.user2.textTitle, textP: props.storeState.languageTextMain.firstEnterModal.renderContentUser.user2.textP, },
-                { Icon: IconUser3, textTitle:  props.storeState.languageTextMain.firstEnterModal.renderContentUser.user3.textTitle, textP: props.storeState.languageTextMain.firstEnterModal.renderContentUser.user3.textP, },
-                { Icon: IconUser4, textTitle:  props.storeState.languageTextMain.firstEnterModal.renderContentUser.user4.textTitle, textP: props.storeState.languageTextMain.firstEnterModal.renderContentUser.user4.textP, },
+                { Icon: IconUser1, textTitle: props.storeState.languageTextMain.firstEnterModal.renderContentUser.user1.textTitle, textP: props.storeState.languageTextMain.firstEnterModal.renderContentUser.user1.textP, },
+                { Icon: IconUser2, textTitle: props.storeState.languageTextMain.firstEnterModal.renderContentUser.user2.textTitle, textP: props.storeState.languageTextMain.firstEnterModal.renderContentUser.user2.textP, },
+                { Icon: IconUser3, textTitle: props.storeState.languageTextMain.firstEnterModal.renderContentUser.user3.textTitle, textP: props.storeState.languageTextMain.firstEnterModal.renderContentUser.user3.textP, },
+                { Icon: IconUser4, textTitle: props.storeState.languageTextMain.firstEnterModal.renderContentUser.user4.textTitle, textP: props.storeState.languageTextMain.firstEnterModal.renderContentUser.user4.textP, },
             ],
             renderContentDriver: [
-                { Icon: IconDriver1, textTitle:  props.storeState.languageTextMain.firstEnterModal.renderContentDriver.driver1.textTitle, textP: props.storeState.languageTextMain.firstEnterModal.renderContentDriver.driver1.textP,},
-                { Icon: IconDriver2, textTitle:  props.storeState.languageTextMain.firstEnterModal.renderContentDriver.driver2.textTitle, textP: props.storeState.languageTextMain.firstEnterModal.renderContentDriver.driver2.textP, },
-                { Icon: IconDriver3, textTitle:  props.storeState.languageTextMain.firstEnterModal.renderContentDriver.driver3.textTitle, textP: props.storeState.languageTextMain.firstEnterModal.renderContentDriver.driver3.textP,},
-                { Icon: IconDriver4, textTitle:  props.storeState.languageTextMain.firstEnterModal.renderContentDriver.driver4.textTitle, textP: props.storeState.languageTextMain.firstEnterModal.renderContentDriver.driver4.textP,},
-                { Icon: IconDriver5, textTitle:  props.storeState.languageTextMain.firstEnterModal.renderContentDriver.driver5.textTitle, textP: props.storeState.languageTextMain.firstEnterModal.renderContentDriver.driver5.textP, },
+                { Icon: IconDriver1, textTitle: props.storeState.languageTextMain.firstEnterModal.renderContentDriver.driver1.textTitle, textP: props.storeState.languageTextMain.firstEnterModal.renderContentDriver.driver1.textP, },
+                { Icon: IconDriver2, textTitle: props.storeState.languageTextMain.firstEnterModal.renderContentDriver.driver2.textTitle, textP: props.storeState.languageTextMain.firstEnterModal.renderContentDriver.driver2.textP, },
+                { Icon: IconDriver3, textTitle: props.storeState.languageTextMain.firstEnterModal.renderContentDriver.driver3.textTitle, textP: props.storeState.languageTextMain.firstEnterModal.renderContentDriver.driver3.textP, },
+                { Icon: IconDriver4, textTitle: props.storeState.languageTextMain.firstEnterModal.renderContentDriver.driver4.textTitle, textP: props.storeState.languageTextMain.firstEnterModal.renderContentDriver.driver4.textP, },
+                { Icon: IconDriver5, textTitle: props.storeState.languageTextMain.firstEnterModal.renderContentDriver.driver5.textTitle, textP: props.storeState.languageTextMain.firstEnterModal.renderContentDriver.driver5.textP, },
             ],
             renderContentAgency: [
-                { Icon: IconAgency1, textTitle:  props.storeState.languageTextMain.firstEnterModal.renderContentAgency.agency1.textTitle, textP: props.storeState.languageTextMain.firstEnterModal.renderContentAgency.agency1.textP,},
-                { Icon: IconAgency2, textTitle:  props.storeState.languageTextMain.firstEnterModal.renderContentAgency.agency2.textTitle, textP: props.storeState.languageTextMain.firstEnterModal.renderContentAgency.agency2.textP, },
-                { Icon: IconAgency3, textTitle:  props.storeState.languageTextMain.firstEnterModal.renderContentAgency.agency3.textTitle, textP: props.storeState.languageTextMain.firstEnterModal.renderContentAgency.agency3.textP, },
-                { Icon: IconAgency4, textTitle:  props.storeState.languageTextMain.firstEnterModal.renderContentAgency.agency4.textTitle, textP: props.storeState.languageTextMain.firstEnterModal.renderContentAgency.agency4.textP,},
+                { Icon: IconAgency1, textTitle: props.storeState.languageTextMain.firstEnterModal.renderContentAgency.agency1.textTitle, textP: props.storeState.languageTextMain.firstEnterModal.renderContentAgency.agency1.textP, },
+                { Icon: IconAgency2, textTitle: props.storeState.languageTextMain.firstEnterModal.renderContentAgency.agency2.textTitle, textP: props.storeState.languageTextMain.firstEnterModal.renderContentAgency.agency2.textP, },
+                { Icon: IconAgency3, textTitle: props.storeState.languageTextMain.firstEnterModal.renderContentAgency.agency3.textTitle, textP: props.storeState.languageTextMain.firstEnterModal.renderContentAgency.agency3.textP, },
+                { Icon: IconAgency4, textTitle: props.storeState.languageTextMain.firstEnterModal.renderContentAgency.agency4.textTitle, textP: props.storeState.languageTextMain.firstEnterModal.renderContentAgency.agency4.textP, },
             ],
             activeWindow: 0,
         }
         if (/prerendercloud/.test(window.navigator.userAgent)) {
             console.log("Chrome headless detected");
-        }else{
+        } else {
             let firstEnter = cookies.get('firstEnter', { path: '/' });
             let accountFirstEnter = cookies.get('accountFirstEnter', { path: '/' });
             if (firstEnter === undefined || accountFirstEnter === undefined) {
                 this.state.openModalStart = true;
             }
         }
-        
+
     }
     ChangeinputChecked = (indexEl) => {
 

@@ -127,7 +127,7 @@
 .iconImg {
     width: 295px;
     height: 305px;
-    background-size: 100% 100%!important;
+    background-size: 100% 100% !important;
     object-fit: cover !important;
     background-repeat: no-repeat !important;
     margin-bottom: 20px;
@@ -137,7 +137,7 @@
     .iconImg {
         width: 295px;
         height: 200px;
-        background-size: 100% 100%!important;
+        background-size: 100% 100% !important;
         object-fit: cover !important;
         background-repeat: no-repeat !important;
         margin-bottom: 20px;

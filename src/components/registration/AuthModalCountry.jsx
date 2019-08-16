@@ -1,13 +1,15 @@
 import React, { Suspense, lazy } from 'react';
+import './AuthRedirect.css';
 import { connect } from 'react-redux';
-import Header from '../header/Header'
 import { Modal, ModalBody } from 'reactstrap';
+import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
+import { Helmet } from 'react-helmet';
+
 import mapWorldIcon from '../media/mapWorld.svg'
 import crossIconModal from '../media/closeGray.svg'
-import './AuthRedirect.css';
-import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
+
 import RenderModalCountry from '../header/RenderModalCountry'
-import { Helmet } from 'react-helmet';
+import Header from '../header/Header'
 
 // const RenderModalCountry = lazy(() => import('../header/RenderModalCountry'));
 
@@ -58,7 +60,7 @@ class AuthModalCountryClass extends React.Component {
         let helmet = this.props.storeState.languageTextMain.helmets.authModalCountry;
         if (/prerendercloud/.test(window.navigator.userAgent)) {
             console.log("Chrome headless detected");
-        }else{
+        } else {
             renderModal = false;
         }
         return (
@@ -72,25 +74,25 @@ class AuthModalCountryClass extends React.Component {
                         <meta property="og:type" content="website" />
                         <meta property="og:url" content={document.URL} />
                         <meta property="og:title" content={helmet.basic.title} />
-                        <meta property="og:description" content={helmet.basic.description} /> 
+                        <meta property="og:description" content={helmet.basic.description} />
                     </Helmet>
-                    {renderModal?
-                    <Modal isOpen={true}>
-                        <ModalBody>
-                            <div className="d-flex flex-column col-12">
-                                <div className="d-flex  justify-content-center col-12 p-4">
-                                    <img src={mapWorldIcon} height="150px" alt="mapWorldIcon" />
-                                    <button className="modalCountryButtton"><img src={crossIconModal} width="20px" height="20px" alt="crossIconModal" /></button>
+                    {renderModal ?
+                        <Modal isOpen={true}>
+                            <ModalBody>
+                                <div className="d-flex flex-column col-12">
+                                    <div className="d-flex  justify-content-center col-12 p-4">
+                                        <img src={mapWorldIcon} height="150px" alt="mapWorldIcon" />
+                                        <button className="modalCountryButtton"><img src={crossIconModal} width="20px" height="20px" alt="crossIconModal" /></button>
+                                    </div>
+                                    <div className="modalCountry d-flex flex-column align-items-center mb-5">
+                                        <h4 className="mb-4">{"Выберите вашу страну"}</h4>
+                                        <RenderModalCountry close={() => { }} />
+                                    </div>
                                 </div>
-                                <div className="modalCountry d-flex flex-column align-items-center mb-5">
-                                    <h4 className="mb-4">{"Выберите вашу страну"}</h4>
-                                    <RenderModalCountry close={() => { }} />
-                                </div>
-                            </div>
-                        </ModalBody>
-                    </Modal>
+                            </ModalBody>
+                        </Modal>
                         :
-                        <React.Fragment/>
+                        <React.Fragment />
                     }
                 </div>
             </React.Fragment>

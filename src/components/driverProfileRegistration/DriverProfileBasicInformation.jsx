@@ -1,17 +1,19 @@
 import React from 'react';
-
 import { connect } from 'react-redux'
-import LocationSearchInput from '../home/HomeBody/Search'
+import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
+import getUserData from './DriverProfileRequest';
+import requests from '../../config';
+
+import flags from '../media/flags.png'
+
 import TextField from 'material-ui/TextField';
 import DatePicker from 'material-ui/DatePicker';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 import Chip from 'material-ui/Chip';
-import flags from '../media/flags.png'
 import ReactTelInput from 'react-telephone-input'
-import requests from '../../config';
-import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
-import getUserData from './DriverProfileRequest';
+
+import LocationSearchInput from '../home/HomeBody/Search'
 import DriverRefreshIndicator from './DriverRefreshIndicator';
 
 class DriverProfileBasicInformationClass extends React.Component {
@@ -40,13 +42,13 @@ class DriverProfileBasicInformationClass extends React.Component {
 
         birthday = new Date(profile.birthday);
         passportDate = new Date(profile.passportDate);
-        
+
         let languageArrays = languageArraysConstr(profile.language, profile.frontLanguages);
         this.state = {
             value: this.props.storeState.languageText.driverProfileRegistration.DriverProfileBasicInformation.MenuItem.value,
             chipData: languageArrays.chipData,
             language: languageArrays.langList,
-            isRefreshExist:false,
+            isRefreshExist: false,
             isRefreshing: true,
             isGoodAnswer: true,
             profileData: {
@@ -55,40 +57,40 @@ class DriverProfileBasicInformationClass extends React.Component {
                 birthday: birthday,
                 passportNumber: profile.passportNumber,
                 passportDate: passportDate,
-                city: profile.hometown.length!==0 ?  (profile.hometown+ ', ' + profile.homecountry) : "",
+                city: profile.hometown.length !== 0 ? (profile.hometown + ', ' + profile.homecountry) : "",
                 workPhone: profile.workPhone,
                 dataAbout: profile.dataAbout
             }
         }
 
     }
-    getProfileData=()=>{
+    getProfileData = () => {
         console.log('getProfileData');
         let that = this;
         let jwt = this.props.globalReduser.readCookie('jwt');
-        if(jwt && jwt !== '-'){
+        if (jwt && jwt !== '-') {
             let requestValues = {
                 readCookie: this.props.globalReduser.readCookie,
-                setProfileData: function(data){
-                that.props.dispatch(setProfileData(data))
+                setProfileData: function (data) {
+                    that.props.dispatch(setProfileData(data))
                 },
                 requestAddress: requests.profileRequest
             }
-            getUserData(requestValues,that.thenFunc,that.catchFunc);
+            getUserData(requestValues, that.thenFunc, that.catchFunc);
         }
-        else{
+        else {
             this.props.dispatch(setUrlAddress(window.location.pathname));
             this.props.history.push('/login');
             //return null;
         }
     }
-    startRefresher=()=>{
+    startRefresher = () => {
         this.setState({
             isRefreshExist: true,
             isRefreshing: true
         });
-    }  
-    thenFunc=()=>{
+    }
+    thenFunc = () => {
         console.log('thenFunc');
         this.setState({
             isRefreshExist: true,
@@ -101,7 +103,7 @@ class DriverProfileBasicInformationClass extends React.Component {
             })
         }, 1000);
     }
-    catchFunc=()=>{
+    catchFunc = () => {
         console.log('catchFunc');
         this.setState({
             isRefreshExist: true,
@@ -114,7 +116,7 @@ class DriverProfileBasicInformationClass extends React.Component {
             })
         }, 2000);
     }
-    applyChanges=()=> {
+    applyChanges = () => {
         let jwt = this.props.globalReduser.readCookie('jwt');
         if (jwt && jwt !== "-") {
             let that = this;
@@ -137,7 +139,7 @@ class DriverProfileBasicInformationClass extends React.Component {
             value.homecountry = pcity.homecountry;
             value.city = undefined;
             let body = JSON.stringify(value);
-            
+
             fetch(requests.profileUpdateRequest, {
                 method: 'PUT', body: body,
                 headers: { 'content-type': 'application/json', Authorization: `Bearer ${jwt}` }
@@ -150,7 +152,7 @@ class DriverProfileBasicInformationClass extends React.Component {
                         console.log("bad");
                         throw data.error;
                     }
-                    else {                 
+                    else {
                         console.log("good");
                         that.getProfileData();
                     }
@@ -161,12 +163,12 @@ class DriverProfileBasicInformationClass extends React.Component {
                     that.catchFunc();
                 });
         }
-        else{
-            this.props.dispatch(setUrlAddress(window.location.pathname));            
-            this.props.globalReduser.history.push('/login');            
+        else {
+            this.props.dispatch(setUrlAddress(window.location.pathname));
+            this.props.globalReduser.history.push('/login');
         }
     }
-    inputChange=(value, variable)=> {
+    inputChange = (value, variable) => {
         let profileData = this.state.profileData;
         switch (variable) {
             case 'firstName': {
@@ -203,7 +205,7 @@ class DriverProfileBasicInformationClass extends React.Component {
             profileData: profileData
         })
     }
-    formSubmit=(event)=> {
+    formSubmit = (event) => {
         event.preventDefault();
         this.applyChanges();
     }
@@ -238,7 +240,7 @@ class DriverProfileBasicInformationClass extends React.Component {
         let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileBasicInformation;
         return (
             <div className="basicInformationBody d-flex flex-column">
-                <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer}/>
+                <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
                 <div className="basicInformationBodyBottom d-flex flex-column mb-5 p-0">
                     <div className="basicInformationBodyBottomHeader d-xl-block d-lg-block d-md-block d-sm-none d-none">
                         <p>{textPage.titlePage}</p>
@@ -309,7 +311,7 @@ class DriverProfileBasicInformationClass extends React.Component {
                             <div className="bottomContentNote d-flex align-items-center">
                                 <label htmlFor="basicInfoLocation" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">{textPage.basicInfoLocation.label}:</label>
                                 <div className="d-flex col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">
-                                    <LocationSearchInput placeholder={"Введите город"} address={this.state.profileData.city} changeCity={this.changeCity} classInput="searchInputDriverInformation" id="basicInfoLocation" classDropdown="searchDropdownDriverInformation" classDiv="p-0 classDivDriverHomeCity"/>
+                                    <LocationSearchInput placeholder={"Введите город"} address={this.state.profileData.city} changeCity={this.changeCity} classInput="searchInputDriverInformation" id="basicInfoLocation" classDropdown="searchDropdownDriverInformation" classDiv="p-0 classDivDriverHomeCity" />
                                 </div>
                                 <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">{textPage.basicInfoLocation.description}</p>
                             </div>

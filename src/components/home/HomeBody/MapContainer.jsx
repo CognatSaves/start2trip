@@ -7,31 +7,31 @@ const mapStyles = {
     width: '100%',
     height: '100%',
     borderRadius: '5px',
-	zoom: 1,
-  scaleControl: true,
+    zoom: 1,
+    scaleControl: true,
 
   }
 };
 export default class MapContainer extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state={
+    this.state = {
       cities: this.props.cities.slice(0),
-      mapUpdate:true,
+      mapUpdate: true,
     }
   }
 
-  componentWillReceiveProps(nextProps){
-    
-    if(JSON.stringify(nextProps.cities) === JSON.stringify(this.props.cities)) {
-      this.setState({mapUpdate:false});
-    }else{
-      this.setState({mapUpdate:true});
+  componentWillReceiveProps(nextProps) {
+
+    if (JSON.stringify(nextProps.cities) === JSON.stringify(this.props.cities)) {
+      this.setState({ mapUpdate: false });
+    } else {
+      this.setState({ mapUpdate: true });
     }
-  return true
+    return true
   }
   render() {
-    
+
     console.log('map data');
     console.log(this.props.cities);
     console.log(this.props.setLengthTime);
@@ -44,8 +44,8 @@ export default class MapContainer extends Component {
         cities={this.props.cities}
         setLengthTime={this.props.setLengthTime}
         mapUpdate={this.state.mapUpdate}
-        mapStyles={this.props.newMapStyles?this.props.newMapStyles:mapStyles}
-      >                
+        mapStyles={this.props.newMapStyles ? this.props.newMapStyles : mapStyles}
+      >
       </CurrentLocation>
     );
   }

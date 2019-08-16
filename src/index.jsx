@@ -20,7 +20,7 @@ import AccountRedirector from './components/registration/AccountRedirector';
 import TripConfirmation from './components/driverProfile/TripConfirmation';
 import DriverConfirmation from './components/driverProfile/DriverConfirmation';
 // import DriverProfile from './components/driverProfile/DriverProfile';
-import AuthModalCountry from'./components/registration/AuthModalCountry';
+import AuthModalCountry from './components/registration/AuthModalCountry';
 import pageNotFound from './pageNotFound'
 import axios from 'axios';
 import requests from './config';
@@ -40,7 +40,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 //require('require-context/register');
 import Cookies from 'universal-cookie';
 import { setLocals, modalCountryDispatch } from './redusers/Action';
-import {  setActiveCurr, setActiveLang, setActiveLangAdmin, setActiveLangISO } from './redusers/Action';
+import { setActiveCurr, setActiveLang, setActiveLangAdmin, setActiveLangISO } from './redusers/Action';
 import { setCarTypes } from './redusers/ActionDrivers';
 import config from './config.js'
 
@@ -70,7 +70,7 @@ const reducers = redux.combineReducers({
 
 const store = redux.createStore(reducers);
 
-const redirectPage = cookies.get('country', { path: '/' })+"-"+cookies.get('userLangISO', { path: '/' });
+const redirectPage = cookies.get('country', { path: '/' }) + "-" + cookies.get('userLangISO', { path: '/' });
 
 const muiTheme = getMuiTheme({
   palette: {
@@ -90,42 +90,42 @@ const muiTheme = getMuiTheme({
 function getLocals() {
   let redusers = store.getState();
   let props = {};
-  
-  let adminLang = cookies.get('adminLang',{path: '/'});
-  let userLang = cookies.get('userLang', {path: '/'});
+
+  let adminLang = cookies.get('adminLang', { path: '/' });
+  let userLang = cookies.get('userLang', { path: '/' });
   let cookiesLangISO = cookies.get('userLangISO', { path: '/' })
   let userBrowserLanguage = window.navigator.language;
-  let userBrowserLanguageISO = userBrowserLanguage.substr(0,2);
-  if(!adminLang || !userLang || !cookiesLangISO){
-    let langSelector = 'ENG';let smallLangSelector='en';
-    let date = new Date(Date.now()+1000*3600*24*60); 
-    if(userBrowserLanguageISO==='ru'){
-      langSelector='RUS';
-      smallLangSelector='ru'
+  let userBrowserLanguageISO = userBrowserLanguage.substr(0, 2);
+  if (!adminLang || !userLang || !cookiesLangISO) {
+    let langSelector = 'ENG'; let smallLangSelector = 'en';
+    let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
+    if (userBrowserLanguageISO === 'ru') {
+      langSelector = 'RUS';
+      smallLangSelector = 'ru'
     }
-    if(!adminLang){
-      cookies.set('adminLang', langSelector, {path: '/',expires: date});
-      adminLang=langSelector;
+    if (!adminLang) {
+      cookies.set('adminLang', langSelector, { path: '/', expires: date });
+      adminLang = langSelector;
     }
-    if(!userLang){
-      cookies.set('userLang', langSelector, {path: '/',expires: date}); 
-      userLang=langSelector;
+    if (!userLang) {
+      cookies.set('userLang', langSelector, { path: '/', expires: date });
+      userLang = langSelector;
     }
-    if(!cookiesLangISO){
+    if (!cookiesLangISO) {
       cookies.set('userLangISO', smallLangSelector, { path: '/', expires: date });
-      cookiesLangISO=smallLangSelector;
-    }   
+      cookiesLangISO = smallLangSelector;
+    }
   }
 
-  store.dispatch(setActiveLangISO(userLang,adminLang));
-  
-  
-  
+  store.dispatch(setActiveLangISO(userLang, adminLang));
+
+
+
   //console.log(window.navigator);
 
   axios.get(requests.getLocals, props)
     .then(response => {
-      
+
       let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
       let languages = response.data.languages;
       let currencies = response.data.currencies;
@@ -139,9 +139,9 @@ function getLocals() {
       let lang = redusers.GlobalReduser.readCookie('userLang');
       let curr = redusers.GlobalReduser.readCookie('userCurr');
       let country = redusers.GlobalReduser.readCookie('country');
-      
+
       if (!lang) {
-        
+
         for (let i = 0; i < languages.length; i++) {
           if (languages[i].ISO === 'ENG') {
             cookies.set('userLang', languages[i].ISO, { path: '/', expires: date });
@@ -182,7 +182,7 @@ function getLocals() {
             store.dispatch(setActiveCurr(i));
           }
         }
-        curr =  redusers.GlobalReduser.readCookie('userCurr');
+        curr = redusers.GlobalReduser.readCookie('userCurr');
         if (!curr) {
           cookies.set('userCurr', currencies[0].ISO, { path: '/', expires: date });
           store.dispatch(setActiveCurr(0));
@@ -303,23 +303,24 @@ ReactDOM.render(
     <BrowserRouter >
       <React.Fragment>
         <MuiThemeProvider muiTheme={muiTheme}>
+          {/* TODO Загрузка... */}
           <Suspense fallback={<div>Загрузка...</div>}>
             <Switch>
-              <Route path={"/"+config.routeMap+"/routes/:slug"} component={RouteDescription}/>
-              <Route path={"/"+config.routeMap+"/routes-:direction"} component={Home} />
-              <Route path={"/"+config.routeMap+"/routes"} component={Home} />
-              
-              <Route path={"/"+config.routeMap+"/drivers/"} component={Home} />
-              <Route path={"/"+config.routeMap+"/driverProfile/:id-:carId-:cities"} component={DriverProfile} />
-              
-              <Route path={"/"+config.routeMap+"/places/:slug"} component={PlaceDescription} />
-              <Route path={"/"+config.routeMap+"/places-:direction"} component={Places} />
-              <Route path={"/"+config.routeMap+"/places"} component={Places} />
-              
-              
+              <Route path={"/" + config.routeMap + "/routes/:slug"} component={RouteDescription} />
+              <Route path={"/" + config.routeMap + "/routes-:direction"} component={Home} />
+              <Route path={"/" + config.routeMap + "/routes"} component={Home} />
 
-              <Route path={"/"+config.routeMap+"/tours"} component={Tours} />
-              <Route path={"/"+config.routeMap+"/tour/:country,:id"} component={TourDescription} />
+              <Route path={"/" + config.routeMap + "/drivers/"} component={Home} />
+              <Route path={"/" + config.routeMap + "/driverProfile/:id-:carId-:cities"} component={DriverProfile} />
+
+              <Route path={"/" + config.routeMap + "/places/:slug"} component={PlaceDescription} />
+              <Route path={"/" + config.routeMap + "/places-:direction"} component={Places} />
+              <Route path={"/" + config.routeMap + "/places"} component={Places} />
+
+
+
+              <Route path={"/" + config.routeMap + "/tours"} component={Tours} />
+              <Route path={"/" + config.routeMap + "/tour/:country,:id"} component={TourDescription} />
 
               <Route path="/account" component={AccountRedirector} />
               <Route path="/forgot-password" component={ForgotPassword} />
@@ -330,7 +331,7 @@ ReactDOM.render(
               <Route path="/contacts" component={contacts} />
               <Route path="/affiliate-program" component={affiliateProgram} />
               <Route path="/about-service" component={AboutService} />
-              
+
               <Route path="/driverConfirmation/:id-:carrierId-:confirmation" component={DriverConfirmation} />
               <Route path="/tripConfirmation/:id-:userId" component={TripConfirmation} />
               <Route path="/(register|start)/" component={PartnerRegister} />
@@ -338,14 +339,14 @@ ReactDOM.render(
               <Route path="/login" component={AuthRedirect} />
               <Route path="/countrySelection" component={AuthModalCountry} />
               <Route path="/feedback-:id-:clientId" component={feedback} />
-              {window.location.pathname === "/"?
-              <Redirect from="/" to={"/"+(redirectPage==="undefined-undefined"?"countrySelection":redirectPage+"/routes")} />
-              :
-              <Route path="*" component={pageNotFound} status={404}/>
+              {window.location.pathname === "/" ?
+                <Redirect from="/" to={"/" + (redirectPage === "undefined-undefined" ? "countrySelection" : redirectPage + "/routes")} />
+                :
+                <Route path="*" component={pageNotFound} status={404} />
               }
-              
-              
-              
+
+
+
             </Switch>
           </Suspense>
           <Footer />

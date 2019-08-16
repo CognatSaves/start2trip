@@ -165,16 +165,19 @@
         padding: 20px 10px;
         padding-bottom: 0px;
     }
+
     .driverInfo_photo {
         width: 105px;
         height: 105px;
         padding: 5px;
     }
+
     .driverInfo_photo img {
         width: 105px;
         height: 105px;
         border-radius: 10%;
     }
+
     .driverInfo_left_line {
         margin-bottom: 30px;
     }

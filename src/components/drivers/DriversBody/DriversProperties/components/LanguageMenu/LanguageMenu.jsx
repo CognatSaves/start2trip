@@ -2,16 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { languageValueChooseDispatch, languageMenuIsVisibal } from "../../../../../../redusers/Action"
 import './LanguageMenu.css'
+import requests from '../../../../../../config';
+
 import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import ListItemText from '@material-ui/core/ListItemText';
 import Select from '@material-ui/core/Select';
 import Checkbox from '@material-ui/core/Checkbox';
-import requests from '../../../../../../config';
-import { number } from 'prop-types';
 
+// import InputLabel from '@material-ui/core/InputLabel';
 
 const MenuProps = {
     PaperProps: {
@@ -30,7 +30,7 @@ const MenuProps = {
 class LanguageMenuClass extends React.Component {
     constructor(props) {
         super(props);
-        
+
         this.state = {
             languageName: [],
             LanguageValue: [],
@@ -44,7 +44,7 @@ class LanguageMenuClass extends React.Component {
         if (e.target.value.length === 0) {
             e.target.value.splice(0, 1, textInfoMain.anyLanguage);
         }*/
-        
+
         let newArrayVariants = this.state.LanguageValue;
         let newEl = newArrayVariants.indexOf(Number(value.key))
         if (newEl === -1) {
@@ -53,15 +53,15 @@ class LanguageMenuClass extends React.Component {
             newArrayVariants.splice(newEl, 1)
         }
         let languageName = e.target.value;
-        if(languageName.length>newArrayVariants.length){//значит спереди стоит слово - любой язык
-            languageName.splice(0,1);
+        if (languageName.length > newArrayVariants.length) {//значит спереди стоит слово - любой язык
+            languageName.splice(0, 1);
         }
         this.setState({ languageName: languageName, LanguageValue: newArrayVariants })
         this.languageValueChoose(newArrayVariants)
     }
     languageValueChoose(value) {
         this.props.dispatch(languageValueChooseDispatch(value));
-      }
+    }
     render() {
         let textInfoMain = this.props.storeState.languageTextMain.drivers.driversProperties;
         if (this.props.isVisible) {
@@ -81,7 +81,7 @@ class LanguageMenuClass extends React.Component {
                     {/* <InputLabel htmlFor="select-multiple-checkbox">Любой автомобиль</InputLabel>  */}
                     <Select
                         multiple
-                        value={this.state.languageName.length>0 ? this.state.languageName : [textInfoMain.anyLanguage]/*this.state.languageName*/}
+                        value={this.state.languageName.length > 0 ? this.state.languageName : [textInfoMain.anyLanguage]/*this.state.languageName*/}
 
                         //this.state.languageName.length>0 ? this.state.languageName : ['Тут никого нет']
                         onChange={this.handleChange}

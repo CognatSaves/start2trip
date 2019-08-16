@@ -1,22 +1,20 @@
 import React, { Suspense, lazy } from 'react';
 import './Home.css';
 import './text.css';
-import georgiaImg from '../media/georgia.png'
-import Drivers from '../drivers/Drivers'
-import HomeBodyBottom from './HomeBodyBottom'
+import { isMobileOnly } from 'react-device-detect';
 import { connect } from 'react-redux';
-import {Route} from 'react-router-dom';
+import { Route } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import requests from '../../config'
 
-//import HomeHeader from './HomeHeader/HomeHeader.jsx'
+import Drivers from '../drivers/Drivers'
+import HomeBodyBottom from './HomeBodyBottom'
 import Header from '../header/Header';
 import HomeBody from './HomeBody/HomeBody.jsx'
-import { isMobileOnly } from 'react-device-detect';
 import Cookies from 'universal-cookie';
-import {Helmet} from 'react-helmet';
+
 const cookies = new Cookies();
 const FirstEnterModal = lazy(() => import('./FirstEnterModal'));
-
 
 class HomeClass extends React.Component {
   constructor(props) {
@@ -24,16 +22,16 @@ class HomeClass extends React.Component {
     let firstEnterCookie = this.props.globalReduser.readCookie('firstEnter');
     this.state = {
       firstEnter: firstEnterCookie ? false : true,
-      
+
     };
   }
-  redirectFunc=(where)=> {
-    
+  redirectFunc = (where) => {
+
     this.props.history.push(where);
 
   }
   render() {
-    
+
     //console.log(isMobileOnly , "isMobileOnly")
     //console.log(isTablet , "isTablet")
     console.log('Home render');
@@ -41,50 +39,50 @@ class HomeClass extends React.Component {
     console.log(this.props);
     console.log('this.state');
     console.log(this.state);
-    
-    
-    
+
+
+
     let textInfo = this.props.storeState.languageTextMain.home.home;
     //let country = cookies.get('country', {path: '/'});
-    let selectedDirection=this.props.match.params.direction;
-    
-    let countryName = this.props.storeState.countries.length>0 ?
-     this.props.globalReduser.findCountryNameByISO(this,cookies.get('country', {path: '/'}),cookies.get('userLang', {path: '/'}))
-     : '';
+    let selectedDirection = this.props.match.params.direction;
+
+    let countryName = this.props.storeState.countries.length > 0 ?
+      this.props.globalReduser.findCountryNameByISO(this, cookies.get('country', { path: '/' }), cookies.get('userLang', { path: '/' }))
+      : '';
     let helmet = this.props.storeState.languageTextMain.helmets.home;
-    
+
     return (
       <React.Fragment>
         {
-          this.props.storeState.countries.length>0 ?
-          <Helmet>
-            <title>{countryName+helmet.country.title}</title>
-            <meta name="description" content={helmet.country.description} />
-            <meta property="og:site_name" content="Tripfer" />
-            <meta property="og:type" content="website" />
-            <meta property="og:url" content={document.URL} />
-            <meta property="og:title" content={countryName+helmet.country.title} />
-            <meta property="og:description" content={helmet.country.description} /> 
-          </Helmet> :
-          <Helmet>
-            <title>{helmet.basic.title}</title>
-            <meta name="description" content={helmet.basic.description} />
-            <meta property="og:site_name" content="Tripfer" />
-            <meta property="og:type" content="website" />
-            <meta property="og:url" content={document.URL} />
-            <meta property="og:title" content={helmet.basic.title} />
-            <meta property="og:description" content={helmet.basic.description} /> 
-          </Helmet>
+          this.props.storeState.countries.length > 0 ?
+            <Helmet>
+              <title>{countryName + helmet.country.title}</title>
+              <meta name="description" content={helmet.country.description} />
+              <meta property="og:site_name" content="Tripfer" />
+              <meta property="og:type" content="website" />
+              <meta property="og:url" content={document.URL} />
+              <meta property="og:title" content={countryName + helmet.country.title} />
+              <meta property="og:description" content={helmet.country.description} />
+            </Helmet> :
+            <Helmet>
+              <title>{helmet.basic.title}</title>
+              <meta name="description" content={helmet.basic.description} />
+              <meta property="og:site_name" content="Tripfer" />
+              <meta property="og:type" content="website" />
+              <meta property="og:url" content={document.URL} />
+              <meta property="og:title" content={helmet.basic.title} />
+              <meta property="og:description" content={helmet.basic.description} />
+            </Helmet>
         }
-        
 
-        
+
         <main className="d-flex flex-column container-fluid p-0">
-        <Suspense fallback={<div>Загрузка...</div>}>
-          {
-            this.state.firstEnter ?
-            <FirstEnterModal whatRender="user"/> : <React.Fragment/>
-          }
+          {/* TODO Загрузка... */}
+          <Suspense fallback={<div>Загрузка...</div>}>
+            {
+              this.state.firstEnter ?
+                <FirstEnterModal whatRender="user" /> : <React.Fragment />
+            }
           </Suspense>
 
           <div className="home_window">
@@ -103,19 +101,19 @@ class HomeClass extends React.Component {
                 :
                 <div />}
               <div className="home_body d-flex justify-content-center col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
-                <HomeBody redirectToDrivers={() => this.redirectFunc('/'+requests.routeMap+"-"+cookies.get('userLangISO',{path:"/"})+'/drivers')} />
+                <HomeBody redirectToDrivers={() => this.redirectFunc('/' + requests.routeMap + "-" + cookies.get('userLangISO', { path: "/" }) + '/drivers')} />
               </div>
             </div>
 
           </div>
-          
+
           {
-            selectedDirection ? 
-              <Route path={'/'+requests.routeMap+"/routes-:direction"} component={HomeBodyBottom} />
-            :
-              <Route path={'/'+requests.routeMap+"/routes"} component={HomeBodyBottom} />
-          }          
-          <Route path={'/'+requests.routeMap+"/drivers/:cities"} component={Drivers} />
+            selectedDirection ?
+              <Route path={'/' + requests.routeMap + "/routes-:direction"} component={HomeBodyBottom} />
+              :
+              <Route path={'/' + requests.routeMap + "/routes"} component={HomeBodyBottom} />
+          }
+          <Route path={'/' + requests.routeMap + "/drivers/:cities"} component={Drivers} />
         </main>
 
       </React.Fragment>

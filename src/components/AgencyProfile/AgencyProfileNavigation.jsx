@@ -1,6 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Stars from '../stars/Stars'
+import { setUser } from '../../redusers/Action';
+import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
+import requests from '../../config';
+import getUserData from '../driverProfileRegistration/DriverProfileRequest';
+
 
 import calendarBG from '../media/illustrations_calendar.svg'
 import carBg from '../media/illustrations_nastroiki-01.svg'
@@ -12,17 +16,16 @@ import feedbackBG from '../media/illustrations_otzivi.svg'
 import preHistoryBG from '../media/illustrations_predstoishie.svg'
 
 import { readAndCompressImage } from 'browser-image-resizer';
-import requests from '../../config';
-import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
-import getUserData from '../driverProfileRegistration/DriverProfileRequest';
+import Stars from '../stars/Stars'
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
-import { setUser } from '../../redusers/Action';
 import Cookies from 'universal-cookie';
+
 const cookies = new Cookies();
-class AgencyProfileNavigationClass extends React.Component{
-    constructor(props){
+class AgencyProfileNavigationClass extends React.Component {
+    constructor(props) {
         super(props);
         this.state = {
+            //TODO Static data
             navigationText: ["Мои поездки", "Профиль", "Водители", "Туры", "Отзывы", "Настройки", "Биллинг", "Партнерская программа"],
             //profile: this.props.globalReduser.profile,
             route: [
@@ -35,40 +38,40 @@ class AgencyProfileNavigationClass extends React.Component{
                 "/account/agency/billing",
                 "/account/agency/referrals",
             ],
-            isRefreshExist:false,
+            isRefreshExist: false,
             isRefreshing: true,
-            isGoodAnswer: true, 
+            isGoodAnswer: true,
             index: -1
         }
 
     }
-    getProfileData=(thenFunc,catchFunc)=>{
+    getProfileData = (thenFunc, catchFunc) => {
         console.log('getProfileData');
         let that = this;
         let jwt = this.props.globalReduser.readCookie('jwt');
-        if(jwt && jwt !== '-'){
+        if (jwt && jwt !== '-') {
             let requestValues = {
                 readCookie: this.props.globalReduser.readCookie,
-                setProfileData: function(data){
-                that.props.dispatch(setProfileData(data))
+                setProfileData: function (data) {
+                    that.props.dispatch(setProfileData(data))
                 },
                 requestAddress: requests.profileRequest
             };
-            getUserData(requestValues,thenFunc,catchFunc);
+            getUserData(requestValues, thenFunc, catchFunc);
         }
-        else{
+        else {
             this.props.dispatch(setUrlAddress(window.location.pathname));
             this.props.history.push('/login');
             //return null;
         }
     }
-    startRefresher=()=>{
+    startRefresher = () => {
         this.setState({
             isRefreshExist: true,
             isRefreshing: true
         });
-    }   
-    thenFunc=()=>{
+    }
+    thenFunc = () => {
         console.log('thenFunc');
         console.log(this.props.profileReduser);
         this.setState({
@@ -82,7 +85,7 @@ class AgencyProfileNavigationClass extends React.Component{
             })
         }, 1000);
     }
-    catchFunc=()=>{
+    catchFunc = () => {
         console.log('catchFunc');
         this.setState({
             isRefreshExist: true,
@@ -105,62 +108,60 @@ class AgencyProfileNavigationClass extends React.Component{
         let file = e.target.files[0];
 
         if (file && file.type.match('image')) {
-            let that = this; 
+            let that = this;
             this.startRefresher();
 
             readAndCompressImage(file, this.props.globalReduser.compressConfig)
-            .then(resizedImage => {
-            let sizFile = new File([resizedImage], file.name);
-            return sizFile;
-            })
-            .then(sizFile => {
-                let reader = new FileReader();
-                reader.onloadend = () => {
-                    let jwt = this.props.globalReduser.readCookie('jwt');
-                    if(jwt && jwt!=="-"){
-                        var img = reader.result;                      
-                        var carForm = new FormData();
-                        carForm.append('avatar', sizFile);
-                        const request = new XMLHttpRequest();
-                        request.open('PUT', requests.userAvatarChangeRequest);
-                        request.setRequestHeader('Authorization',`Bearer ${jwt}`);
-                        request.onreadystatechange = function(){
-                                                            
-                            if(request.readyState === XMLHttpRequest.DONE && request.status === 200){ 
-                                let responseText = JSON.parse(request.responseText);
-                                let avatar = requests.serverAddressImg+responseText.avatar;
-                                let date = new Date(Date.now()+1000*3600*24*60); 
-                                cookies.set("avatarUrl",avatar, {path: '/', expires: date});
-                                that.props.dispatch(setUser(that.props.AppReduser.userName, avatar));
-                                that.thenFunc();                                                                                                                      
+                .then(resizedImage => {
+                    let sizFile = new File([resizedImage], file.name);
+                    return sizFile;
+                })
+                .then(sizFile => {
+                    let reader = new FileReader();
+                    reader.onloadend = () => {
+                        let jwt = this.props.globalReduser.readCookie('jwt');
+                        if (jwt && jwt !== "-") {
+                            var img = reader.result;
+                            var carForm = new FormData();
+                            carForm.append('avatar', sizFile);
+                            const request = new XMLHttpRequest();
+                            request.open('PUT', requests.userAvatarChangeRequest);
+                            request.setRequestHeader('Authorization', `Bearer ${jwt}`);
+                            request.onreadystatechange = function () {
+
+                                if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
+                                    let responseText = JSON.parse(request.responseText);
+                                    let avatar = requests.serverAddressImg + responseText.avatar;
+                                    let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
+                                    cookies.set("avatarUrl", avatar, { path: '/', expires: date });
+                                    that.props.dispatch(setUser(that.props.AppReduser.userName, avatar));
+                                    that.thenFunc();
+                                }
+                                if (request.readyState === XMLHttpRequest.DONE && request.status === 0) {
+                                    that.catchFunc();
+                                }
                             }
-                            if(request.readyState === XMLHttpRequest.DONE && request.status === 0){
-                                that.catchFunc();
-                            }                      
-                           
-                           
+                            request.send(carForm);
                         }
-                        request.send(carForm);
+                        else {
+                            this.props.dispatch(setUrlAddress(window.location.pathname));
+                            this.props.history.push('/login');
+                            //return null;
+                        }
                     }
-                    else{
-                        this.props.dispatch(setUrlAddress(window.location.pathname));
-                        this.props.history.push('/login');
-                        //return null;
-                    }
-                }
-                reader.readAsDataURL(sizFile)
-            });
+                    reader.readAsDataURL(sizFile)
+                });
         }
     }
-    render(){
+    render() {
         console.log('agency profile navigation render');
         console.log(this.props);
         console.log(this.state);
         let profile = this.props.globalReduser.profile;
 
-        return(
+        return (
             <React.Fragment>
-                <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer}/> 
+                <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
                 <div className="registrationWrapper driverBG col-12 p-0" style={{
                     "/account/agency/trips": { backgroundImage: "url(" + preHistoryBG + ")" },
                     // 1: { backgroundImage: "url(" + historyBG + ")" },
@@ -181,13 +182,13 @@ class AgencyProfileNavigationClass extends React.Component{
                         </div>
                         <div className="bodyTopDriverInfo col-8">
                             <div className="bodyTopDriverInfoName d-flex flex-column align-items-start" >
-                                <p className="mb-0 mr-2">{profile.organizationName.length!==0 ? profile.organizationName : profile.email}</p>
-                                <div style={{display: profile.comments.length>0 ? 'block':'none'}}>
+                                <p className="mb-0 mr-2">{profile.organizationName.length !== 0 ? profile.organizationName : profile.email}</p>
+                                <div style={{ display: profile.comments.length > 0 ? 'block' : 'none' }}>
                                     <Stars value={profile.rating} valueDisplay={true} commentNumberDisplay={true} commentNumber={profile.comments.length + " отзывов"} />
-                                </div>              
+                                </div>
                             </div>
                             <div className="bodyTopDriverInfoPlace">
-                                <p>{profile.legalAddress.length!==0 ? (profile.legalAddress) : ""}</p>
+                                <p>{profile.legalAddress.length !== 0 ? (profile.legalAddress) : ""}</p>
                             </div>
                             <div className="bodyTopDriverInfoRide p-0 d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column">
                                 <div className="d-xl-flex d-lg-flex d-md-flex d-sm-none d-none align-items-center col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 p-0">
@@ -218,13 +219,14 @@ class AgencyProfileNavigationClass extends React.Component{
                     <div className="navigationBody d-flex align-items-center">
                         {this.state.navigationText.map((element, index) =>
 
-                            <span className={{ [this.state.route[index]]: "navigationBodyActive", }[this.props.globalhistory.history.location.pathname] + " navigationButton mb-0 " + (this.state.route[index].length===0 ? "blockedSpan" : "")}
-                            onClick={(event) => { if(this.state.route[index].length>0) {
-                                this.setState({index: index});
-                                this.shiftLeft(event);
-                                this.props.globalhistory.history.push(this.state.route[index])
-                            }
-                            }}>{element}</span>
+                            <span className={{ [this.state.route[index]]: "navigationBodyActive", }[this.props.globalhistory.history.location.pathname] + " navigationButton mb-0 " + (this.state.route[index].length === 0 ? "blockedSpan" : "")}
+                                onClick={(event) => {
+                                    if (this.state.route[index].length > 0) {
+                                        this.setState({ index: index });
+                                        this.shiftLeft(event);
+                                        this.props.globalhistory.history.push(this.state.route[index])
+                                    }
+                                }}>{element}</span>
                         )}
                     </div>
                 </div>

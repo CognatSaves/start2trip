@@ -1,12 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
 import RouteListElement from '../home/HomeBottom/RouteListElement';
+
 class SimularRouteBlockClass extends React.Component{
     shouldComponentUpdate(nextProps){ 
         return !(JSON.stringify(this.props)===JSON.stringify(nextProps));
     }
     render(){
-        let outerBlock = document.getElementById(this.props.outerBlock);
+        // let outerBlock = document.getElementById(this.props.outerBlock);
         //console.log('outerBlock',outerBlock ? outerBlock.offsetWidth : 0);
         
         return ( 

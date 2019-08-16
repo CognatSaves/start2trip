@@ -1,7 +1,5 @@
 import React from 'react';
-import {connect} from 'react-redux';
-
-// import copy from '../media/copy.svg';
+import { connect } from 'react-redux';
 import {
     Table,
     TableBody,
@@ -11,32 +9,36 @@ import {
     TableRowColumn,
 } from 'material-ui/Table';
 import requests from '../../config';
+
 import messengerIcon from '../media/messenger.svg'
 import whatsappIcon from '../media/whatsapp.svg'
 import viberIcon from '../media/viber.svg'
 import telegramIcon from '../media/telegram.svg'
+
 import RenderShareLink from '../driverProfileRegistration/RenderShareLink';
-class AgencyProfileAffiliateProgrammClass extends React.Component{
-    constructor(props){
+
+class AgencyProfileAffiliateProgrammClass extends React.Component {
+    constructor(props) {
         super(props);
-        this.state={
+        // TODO static data
+        this.state = {
             iconsArray: [messengerIcon, whatsappIcon, viberIcon, telegramIcon, messengerIcon, whatsappIcon, viberIcon, telegramIcon, messengerIcon, whatsappIcon, viberIcon, telegramIcon],
             howMuchRender: 4,
         }
     }
-    copyValue = (id) =>{
+    copyValue = (id) => {
         let selectedInput = document.getElementById(id);
         selectedInput.select();
         document.execCommand("copy");
     }
-    render(){
-        function paymentsCalculation(partners){
+    render() {
+        function paymentsCalculation(partners) {
             let res = 0;
-            
-            for(let i=0; i<partners.length; i++){
+
+            for (let i = 0; i < partners.length; i++) {
                 res = res + partners[i].payments;
             }
-            res = Math.round(res*100)/100;
+            res = Math.round(res * 100) / 100;
             return res;
         }
         var allPayments = paymentsCalculation(this.props.globalReduser.profile.partners ? this.props.globalReduser.profile.partners : []);
@@ -68,18 +70,18 @@ class AgencyProfileAffiliateProgrammClass extends React.Component{
                         </div>   */}
                         <div className="d-flex flex-lg-row flex-column align-items-center col-md-8 col-12">
                             {/* <div>{textPage.affiliateLinks.title}</div> */}
-                            <RenderShareLink classNameDiv={"col-lg-6 col-12"} idInput={"partnerRegistrationLink"} valueInput={requests.frontendAddress+'/register/'+this.props.globalReduser.profile._id} iconsArray={this.state.iconsArray} textTitle={"Ссылка на регистрацию"} buttonCopyText={"Копировать"} />
-                            <RenderShareLink classNameDiv={"col-lg-6 col-12"} idInput={"partnerMainPageLink"} valueInput={requests.frontendAddress+'/start/'+this.props.globalReduser.profile._id} iconsArray={this.state.iconsArray} textTitle={"Ссылка на главную"} buttonCopyText={"Копировать"} />
-                        </div>                      
+                            <RenderShareLink classNameDiv={"col-lg-6 col-12"} idInput={"partnerRegistrationLink"} valueInput={requests.frontendAddress + '/register/' + this.props.globalReduser.profile._id} iconsArray={this.state.iconsArray} textTitle={"Ссылка на регистрацию"} buttonCopyText={"Копировать"} />
+                            <RenderShareLink classNameDiv={"col-lg-6 col-12"} idInput={"partnerMainPageLink"} valueInput={requests.frontendAddress + '/start/' + this.props.globalReduser.profile._id} iconsArray={this.state.iconsArray} textTitle={"Ссылка на главную"} buttonCopyText={"Копировать"} />
+                        </div>
                         <div className="d-flex flex-sm-row flex-column">
-                        {
-                            /*
-                                <span>Партнерские ссылки</span>
-                                <span>Пригласить друга</span>
-                            */
-                           <span>Промо материалы</span>
-                        }
-                              
+                            {
+                                /*
+                                    <span>Партнерские ссылки</span>
+                                    <span>Пригласить друга</span>
+                                */
+                                <span>Промо материалы</span>
+                            }
+
                         </div>
                     </div>
                 </div>
@@ -107,7 +109,7 @@ class AgencyProfileAffiliateProgrammClass extends React.Component{
                             <div className="col-sm-4 col-12 ">
                                 <div className="affilitaProgramEl d-flex flex-column align-items-center justify-content-center">
                                     <i className="currencyicon"></i>
-                                    <span>{allPayments+'$'}</span>
+                                    <span>{allPayments + '$'}</span>
                                     <span>Заработанно Всего</span>
                                 </div>
                             </div>
@@ -115,10 +117,10 @@ class AgencyProfileAffiliateProgrammClass extends React.Component{
                     </div>
                     <div className="affiliateProgramTableBody">
                         <Table className="affiliateProgramTable">
-                            <TableHeader 
-                            className="affiliateProgramTableHeader"
-                            displaySelectAll={false} 
-                            adjustForCheckbox={false}>
+                            <TableHeader
+                                className="affiliateProgramTableHeader"
+                                displaySelectAll={false}
+                                adjustForCheckbox={false}>
                                 <TableRow >
                                     <TableHeaderColumn>EMAIL</TableHeaderColumn>
                                     <TableHeaderColumn>Дата регистрации</TableHeaderColumn>
@@ -128,44 +130,44 @@ class AgencyProfileAffiliateProgrammClass extends React.Component{
                             </TableHeader>
                             <TableBody
                                 className="affiliateProgramTable"
-                                stripedRows={true} 
+                                stripedRows={true}
                                 displayRowCheckbox={false}>
-                                {partners.map((element, index)=>{
-                                    function dateConverter(value){
+                                {partners.map((element, index) => {
+                                    function dateConverter(value) {
                                         let day = value.getDate();
-                                        let month = value.getMonth()+1;
+                                        let month = value.getMonth() + 1;
                                         let year = value.getFullYear();
-                                        if(day<10){
-                                            day='0'+day;
+                                        if (day < 10) {
+                                            day = '0' + day;
                                         }
-                                        if(month<10){
-                                            month='0'+month;
+                                        if (month < 10) {
+                                            month = '0' + month;
                                         }
-                                        return day+'.'+month+'.'+year;
+                                        return day + '.' + month + '.' + year;
                                     }
-                                    function typeCreator(element){
+                                    function typeCreator(element) {
                                         let type = 'Not selected';
-                                        if(element.isDriver){
-                                            type='Driver';
+                                        if (element.isDriver) {
+                                            type = 'Driver';
                                         }
-                                        if(element.isCustomer){
-                                            type='Customer';
+                                        if (element.isCustomer) {
+                                            type = 'Customer';
                                         }
-                                        if(element.isAgency){
-                                            type='Agency';
+                                        if (element.isAgency) {
+                                            type = 'Agency';
                                         }
                                         return type;
                                     }
                                     let type = typeCreator(element);
                                     let dayString = dateConverter(new Date(element.registrationDate));
-                                    return(
-                                    <TableRow>
-                                        <TableRowColumn>{element.email}</TableRowColumn>
-                                        <TableRowColumn>{dayString}</TableRowColumn>
-                                        <TableRowColumn>{type}</TableRowColumn>
-                                        <TableRowColumn>{element.payments+'$'}</TableRowColumn>
-                                    </TableRow>)
-                                }                                   
+                                    return (
+                                        <TableRow>
+                                            <TableRowColumn>{element.email}</TableRowColumn>
+                                            <TableRowColumn>{dayString}</TableRowColumn>
+                                            <TableRowColumn>{type}</TableRowColumn>
+                                            <TableRowColumn>{element.payments + '$'}</TableRowColumn>
+                                        </TableRow>)
+                                }
                                 )}
                             </TableBody>
                         </Table>

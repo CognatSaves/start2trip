@@ -1,17 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { setProfileData, setUrlAddress, whichPageRender } from "../../redusers/ActionGlobal"
+import { readAndCompressImage } from 'browser-image-resizer';
+import { setUser } from '../../redusers/Action';
+import requests from '../../config';
+import getUserData from '../driverProfileRegistration/DriverProfileRequest';
 
 import billingBG from '../media/illustrations_billing.svg'
 import referralsBG from '../media/illustrations_partners.svg'
 import historyBG from '../media/history.svg'
 import sittingsBG from '../media/user_settings.svg'
 import preHistoryBG from '../media/user_predstoiashie.svg'
-import { setProfileData, setUrlAddress, whichPageRender } from "../../redusers/ActionGlobal"
-import requests from '../../config';
-import getUserData from '../driverProfileRegistration/DriverProfileRequest';
-import { readAndCompressImage } from 'browser-image-resizer';
-import { setUser } from '../../redusers/Action';
+
 import Cookies from 'universal-cookie';
+
 const cookies = new Cookies();
 
 class UserProfileNavigationClass extends React.Component {
@@ -151,7 +153,7 @@ class UserProfileNavigationClass extends React.Component {
         //     let img = requests.serverAddressImg + this.state.profile.avatar.url
         //     this.setState({ avatar: img })
         // }
-        
+
         let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileNavigation;
         let profile = this.props.globalReduser.profile;
         return (

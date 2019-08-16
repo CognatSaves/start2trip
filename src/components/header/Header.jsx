@@ -1,33 +1,35 @@
 import React, { Suspense, lazy } from 'react';
 import './header_css.css'
-
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
-// import RenderModalCountry from './RenderModalCountry'
-import RenderModalRegistration from './RenderModalRegistration'
-import mapWorldIcon from '../media/mapWorld.svg'
 import { connect } from 'react-redux';
-import crossIconModal from '../media/closeGray.svg'
-
 import { Link } from 'react-router-dom';
-
-import { Modal, ModalBody } from 'reactstrap';
-import requests from '../../config';
-import axios from 'axios';
-import { setUser, setActiveCurr, setActiveLang, setModalRegister, setActiveLangAdmin, modalCountryDispatch } from '../../redusers/Action';
-// import { disablePageScroll, clearQueueScrollLocks, enablePageScroll } from 'scroll-lock';
-import DropDownMenu from 'material-ui/DropDownMenu';
-import MenuItem from 'material-ui/MenuItem';
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import { whichPageRenderHistory, whichPageRender } from "../../redusers/ActionGlobal"
 import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
-import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
-import Cookies from 'universal-cookie';
+import {
+  setUser, setActiveCurr, setActiveLang, setModalRegister,
+  setActiveLangAdmin, modalCountryDispatch
+} from '../../redusers/Action';
+import { Modal, ModalBody } from 'reactstrap';
+import { isMobileOnly, isMobile } from 'react-device-detect';
+import requests from '../../config';
+import axios from 'axios';
+
+// import RenderModalCountry from './RenderModalCountry'
+// import { disablePageScroll, clearQueueScrollLocks, enablePageScroll } from 'scroll-lock';
 //import pageTextInfo from '../../textInfo/RenderModalRegistration';
 
-import Dialog from 'material-ui/Dialog';
-import { isMobileOnly, isMobile } from 'react-device-detect';
+import mapWorldIcon from '../media/mapWorld.svg'
+import crossIconModal from '../media/closeGray.svg'
 import backpackIcon from '../media/backpack.svg'
 import dealIcon from '../media/deal.svg'
 import wheelIcon from '../media/wheel.svg'
+
+import DropDownMenu from 'material-ui/DropDownMenu';
+import MenuItem from 'material-ui/MenuItem';
+import RenderModalRegistration from './RenderModalRegistration'
+import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+import Dialog from 'material-ui/Dialog';
+import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
 const RenderModalCountry = lazy(() => import('./RenderModalCountry'));
@@ -37,13 +39,13 @@ const ModalRegistration = (props) => {
 
   return (
     <React.Fragment>
-     
-        <Modal isOpen={modalRegistration} toggle={toggle} className={className + " p-0"}>
-          <ModalBody>
-            <RenderModalRegistration close={toggle} authorization={authorization} />
-          </ModalBody>
-        </Modal>
-       
+
+      <Modal isOpen={modalRegistration} toggle={toggle} className={className + " p-0"}>
+        <ModalBody>
+          <RenderModalRegistration close={toggle} authorization={authorization} />
+        </ModalBody>
+      </Modal>
+
     </React.Fragment>
   )
 }
@@ -214,13 +216,14 @@ const CountrySelect = (props) => {
           </div>
           <div className="modalCountry d-flex flex-column align-items-center mb-5">
             <span className="mb-4">{textInfo.modalCountrySelect.selectCountryText}</span>
+            {/* TODO Загрузка... */}
             {renderModal ?
-            <Suspense fallback={<div>Загрузка...</div>}>
-              <RenderModalCountry close={toggleModalCountry} />
-            </Suspense>
-             :
-             <React.Fragment />
-           }
+              <Suspense fallback={<div>Загрузка...</div>}>
+                <RenderModalCountry close={toggleModalCountry} />
+              </Suspense>
+              :
+              <React.Fragment />
+            }
           </div>
         </div>
       </ModalBody>
@@ -312,7 +315,7 @@ class HeaderClass extends React.Component {
       //modalRegistration: false,
 
 
-      menuItems: ["Профиль", "Автомобиль", "Настройки поездок", "Туры", "Отзывы", "Настройки", "Биллинг", "Партнерская программа", "Выход"],
+      // menuItems: ["Профиль", "Автомобиль", "Настройки поездок", "Туры", "Отзывы", "Настройки", "Биллинг", "Партнерская программа", "Выход"],
       history: props.history,
       isWaiting: false,
       isUsertypeLooking: false,
@@ -434,7 +437,6 @@ class HeaderClass extends React.Component {
         }
       })
         .then(response => {
-
           // Handle success.
           //console.log('Data: ');
           // console.log(response.data);
@@ -457,10 +459,8 @@ class HeaderClass extends React.Component {
         });
     }
     else {
-
       //this.props.dispatch(setUrlAddress(window.location.pathname));
       //this.props.history.push('/login');
-
 
       //нет тела - авторизованного пользователя -> нет дела - отрисовки профиля в шапке
     }
@@ -574,8 +574,6 @@ class HeaderClass extends React.Component {
       this.props.history.push('/login');
       //return null;
     }
-
-
   }
 
   checkBtUp = (e) => {
@@ -639,10 +637,6 @@ class HeaderClass extends React.Component {
     // let flagMenu = false;
     return (
       <React.Fragment>
-
-
-
-
 
         <ModalRegistration modalRegistration={this.props.storeState.modalRegistration} toggle={this.toggleModalRegistration} className={this.props.className} authorization={this.authorization} />
         <CountrySelect textInfo={textInfo} modalCountry={this.state.modalCountry} toggleModalCountry={this.toggleModalCountry} className={this.props.className} />
@@ -709,7 +703,6 @@ class HeaderClass extends React.Component {
                         </React.Fragment>
                         :
                         <span className="profile" onClick={this.toggleModalRegistration}>{textInfo.burgerMenu.burgerEnter}</span>
-
                     }
                   </div>
                   <h4 className="col-11 pt-4 pb-2">{textInfo.burgerMenu.titlesName[3]}</h4>
@@ -768,7 +761,6 @@ class HeaderClass extends React.Component {
                 {
                   this.props.storeState.isSecondLanguageGroupPart ?
 
-
                     <Dropdown setActiveFromChild="true" isOpen={this.state.dropdownLanguageOpen} toggle={this.toggleLanguage} className={adminLanguages.length > 0 ? "selectGeneral" : "selectGeneral preloadHiddenBlock"}>
                       <DropdownToggle className="selectGeneralButton" caret size="sm">
                         <img src={adminLanguages.length > 0 ? requests.serverAddressImg + adminLanguages[this.props.storeState.activeLanguageNumberAdmin/*this.state.activLanguageNumber*/].icon.url : ''} height="15px" width="15px" alt="flag" />
@@ -784,11 +776,7 @@ class HeaderClass extends React.Component {
                         }
                       </DropdownMenu>
                     </Dropdown>
-
-
                     :
-
-
                     <Dropdown setActiveFromChild="true" isOpen={this.state.dropdownLanguageOpen} toggle={this.toggleLanguage} className={languages.length > 0 ? "selectGeneral" : "selectGeneral preloadHiddenBlock"}>
                       <DropdownToggle className="selectGeneralButton" caret size="sm">
                         <img src={languages.length > 0 ? requests.serverAddressImg + languages[this.props.storeState.activeLanguageNumber/*this.state.activLanguageNumber*/].icon.url : ''} height="15px" width="15px" alt="flag" />
@@ -804,8 +792,6 @@ class HeaderClass extends React.Component {
                         }
                       </DropdownMenu>
                     </Dropdown>
-
-
                 }
 
               </div>

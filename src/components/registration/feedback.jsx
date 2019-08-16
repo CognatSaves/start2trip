@@ -1,13 +1,11 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import Header from '../header/Header'
 import './feedback.css';
-import CreateComment from '../driverProfile/CreateComment';
-import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 
-
-
+import Header from '../header/Header'
+import CreateComment from '../driverProfile/CreateComment';
+import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 
 class feedbackClass extends React.Component {
     constructor(props) {
@@ -19,14 +17,14 @@ class feedbackClass extends React.Component {
         };
     }
     startRolling = () => {
-        
+
         this.setState({
             isRefreshExist: true,
-            isRefreshing:true
+            isRefreshing: true
         });
     }
     endRolling = (result) => {
-        
+
         let that = this;
         this.setState({
             isRefreshing: false,
@@ -38,7 +36,6 @@ class feedbackClass extends React.Component {
             }, 2000
         )
     }
-
 
 
     render() {
@@ -61,8 +58,8 @@ class feedbackClass extends React.Component {
                     </Helmet>
                     <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
                     <div className="col-md-6 col-12">
-                        <CreateComment targetType={"driver"} myclass={"feedbackbackground"} clientId={clientId} targetId={id} createCommentString={textInfo.createCommentString} 
-                        startRolling={()=>this.startRolling() } endRolling={(result)=>this.endRolling(result)}/>
+                        <CreateComment targetType={"driver"} myclass={"feedbackbackground"} clientId={clientId} targetId={id} createCommentString={textInfo.createCommentString}
+                            startRolling={() => this.startRolling()} endRolling={(result) => this.endRolling(result)} />
                     </div>
 
                 </div>

@@ -1,21 +1,19 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
+import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
+import getUserData from '../driverProfileRegistration/DriverProfileRequest';
+import requests from '../../config';
 
-// import LocationSearchInput from '../home/HomeBody/Search'
 import TextField from 'material-ui/TextField';
-// import DatePicker from 'material-ui/DatePicker';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 import Chip from 'material-ui/Chip';
 import flags from '../media/flags.png'
 import ReactTelInput from 'react-telephone-input'
-import requests from '../../config';
-import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
-import getUserData from '../driverProfileRegistration/DriverProfileRequest';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 
-class AgencyProfileBasicInformationClass extends React.Component{
-    constructor(props){
+class AgencyProfileBasicInformationClass extends React.Component {
+    constructor(props) {
         super(props);
         function languageArraysConstr(language, allLanguages) {
             let langList = [];
@@ -36,7 +34,8 @@ class AgencyProfileBasicInformationClass extends React.Component{
         }
         let profile = this.props.globalReduser.profile;
         //console.log('profile');
-        let birthday; let passportDate;
+        let birthday;
+        let passportDate;
 
         birthday = new Date(profile.birthday);
         passportDate = new Date(profile.passportDate);
@@ -45,13 +44,13 @@ class AgencyProfileBasicInformationClass extends React.Component{
             value: "Выберите языки",
             chipData: languageArrays.chipData,
             language: languageArrays.langList,
-            isRefreshExist:false,
+            isRefreshExist: false,
             isRefreshing: true,
             isGoodAnswer: true,
             profileData: {
                 firstName: profile.firstName,
                 lastName: profile.lastName,
-                city: profile.hometown.length!==0 ?  (profile.hometown+ ', ' + profile.homecountry) : "",
+                city: profile.hometown.length !== 0 ? (profile.hometown + ', ' + profile.homecountry) : "",
                 workPhone: profile.workPhone,
                 dataAbout: profile.dataAbout,
 
@@ -60,40 +59,40 @@ class AgencyProfileBasicInformationClass extends React.Component{
                 bankCode: profile.bankCode,
                 legalAddress: profile.legalAddress,
                 organizationName: profile.organizationName,
-                registrationNumber: profile.registrationNumber    
+                registrationNumber: profile.registrationNumber
             }
         }
 
     }
-    
-    getProfileData=()=>{
+
+    getProfileData = () => {
         console.log('getProfileData');
         let that = this;
         let jwt = this.props.globalReduser.readCookie('jwt');
-        if(jwt && jwt !== '-'){
+        if (jwt && jwt !== '-') {
             let requestValues = {
                 readCookie: this.props.globalReduser.readCookie,
-                setProfileData: function(data){
-                that.props.dispatch(setProfileData(data))
+                setProfileData: function (data) {
+                    that.props.dispatch(setProfileData(data))
                 },
                 requestAddress: requests.profileRequest
             }
-            getUserData(requestValues,that.thenFunc,that.catchFunc);
+            getUserData(requestValues, that.thenFunc, that.catchFunc);
         }
-        else{
-            
+        else {
+
             this.props.dispatch(setUrlAddress(window.location.pathname));
             this.props.history.push('/login');
             //return null;
         }
     }
-    startRefresher=()=>{
+    startRefresher = () => {
         this.setState({
             isRefreshExist: true,
             isRefreshing: true
         });
-    }  
-    thenFunc=()=>{
+    }
+    thenFunc = () => {
         console.log('thenFunc');
         this.setState({
             isRefreshExist: true,
@@ -106,7 +105,7 @@ class AgencyProfileBasicInformationClass extends React.Component{
             })
         }, 1000);
     }
-    catchFunc=()=>{
+    catchFunc = () => {
         console.log('catchFunc');
         this.setState({
             isRefreshExist: true,
@@ -119,9 +118,9 @@ class AgencyProfileBasicInformationClass extends React.Component{
             })
         }, 2000);
     }
-    applyChanges=()=> {
+    applyChanges = () => {
         let jwt = this.props.globalReduser.readCookie('jwt');
-        
+
         if (jwt && jwt !== "-") {
             let that = this;
             that.startRefresher();
@@ -143,7 +142,7 @@ class AgencyProfileBasicInformationClass extends React.Component{
             value.homecountry = pcity.homecountry;
             value.city = undefined;
             let body = JSON.stringify(value);
-            
+
             fetch(requests.profileUpdateRequest, {
                 method: 'PUT', body: body,
                 headers: { 'content-type': 'application/json', Authorization: `Bearer ${jwt}` }
@@ -156,7 +155,7 @@ class AgencyProfileBasicInformationClass extends React.Component{
                         console.log("bad");
                         throw data.error;
                     }
-                    else {                 
+                    else {
                         console.log("good");
                         that.getProfileData();
                     }
@@ -167,37 +166,37 @@ class AgencyProfileBasicInformationClass extends React.Component{
                     that.catchFunc();
                 });
         }
-        else{
-            
-            this.props.dispatch(setUrlAddress(window.location.pathname));            
+        else {
+
+            this.props.dispatch(setUrlAddress(window.location.pathname));
             this.props.globalReduser.history.push('/login');
-                        
+
         }
     }
-    agencyDataChange=(value, variable)=>{
+    agencyDataChange = (value, variable) => {
         let profileData = this.state.profileData;
         switch (variable) {
             case 'bankAccount': {
                 profileData.bankAccount = value;
                 break;
             }
-            case 'bankAddress':{
+            case 'bankAddress': {
                 profileData.bankAddress = value;
                 break;
             }
-            case 'bankCode':{
+            case 'bankCode': {
                 profileData.bankCode = value;
                 break;
             }
-            case 'legalAddress':{
+            case 'legalAddress': {
                 profileData.legalAddress = value;
                 break;
             }
-            case 'organizationName':{
+            case 'organizationName': {
                 profileData.organizationName = value;
                 break;
             }
-            case 'registrationNumber':{
+            case 'registrationNumber': {
                 profileData.registrationNumber = value;
                 break;
             }
@@ -207,7 +206,7 @@ class AgencyProfileBasicInformationClass extends React.Component{
             profileData: profileData
         });
     }
-    inputChange=(value, variable)=> {
+    inputChange = (value, variable) => {
         let profileData = this.state.profileData;
         switch (variable) {
             case 'firstName': {
@@ -244,7 +243,7 @@ class AgencyProfileBasicInformationClass extends React.Component{
             profileData: profileData
         });
     }
-    formSubmit=(event)=> {
+    formSubmit = (event) => {
         event.preventDefault();
         this.applyChanges();
     }
@@ -274,10 +273,10 @@ class AgencyProfileBasicInformationClass extends React.Component{
             profileData: { ...this.state.profileData, city: value }
         })
     }
-    render(){
+    render() {
         return (
             <div className="basicInformationBody d-flex flex-column">
-                <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer}/>
+                <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
                 <div className="basicInformationBodyBottom d-flex flex-column mb-5 p-0">
                     <div className="basicInformationBodyBottomHeader d-xl-block d-lg-block d-md-block d-sm-none d-none">
                         <p>Редактировать профиль</p>
@@ -398,12 +397,6 @@ class AgencyProfileBasicInformationClass extends React.Component{
                                     onChange={(e) => { let profileData = this.state.profileData; profileData.dataAbout = e.target.value; this.setState({ profileData: profileData }) }}></textarea>
                                 <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
                             </div>
-                            
-
-
-
-
-
 
 
                             <p>Данные контактного лица</p>
@@ -438,7 +431,7 @@ class AgencyProfileBasicInformationClass extends React.Component{
                                     onChange={(e) => { this.inputChange(e.target.value, 'lastName'); }}
                                 />
                             </div>
-                            
+
                             <div className="bottomContentNote d-flex align-items-center">
                                 <label htmlFor="basicInfoNumber" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Рабочий телефон:</label>
                                 <ReactTelInput

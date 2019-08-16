@@ -249,9 +249,11 @@
     .affiliateProgramTableBody div :nth-child(2) {
         overflow: initial !important;
     }
+
     .shareLink {
         margin: 5px 0;
     }
+
     .affiliateProgramButton span {
         margin-top: 5px;
     }
@@ -264,15 +266,18 @@
         border-radius: none;
         max-height: none;
     }
+
     .affiliateProgramInput input {
         border: 1px solid #ccc;
         border-radius: 5px;
         min-width: 250px;
     }
+
     .affiliateProgramInput spanlink {
         border: 1px solid #f60;
         border-radius: 5px;
     }
+
     .affiliateProgramIconsMass {
         padding-top: 5px;
         width: 100%;

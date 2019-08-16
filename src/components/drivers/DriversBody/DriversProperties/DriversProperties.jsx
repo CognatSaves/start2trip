@@ -1,22 +1,23 @@
 import React from 'react';
 import './DriversProperties.css'
+import { openFilterShow } from "../../../../redusers/ActionDrivers"
+import { connect } from 'react-redux';
+import { isMobileOnly } from 'react-device-detect';
+import {
+  setTempPricePart, setSortMenuVisible, changePersonsNumberDispatch,
+  changePersonsNumberDispatchOld, peopleMenuCall
+} from "../../../../redusers/Action"
+
+import userBlueIcon from '../../../media/userWhite.svg'
+
+//import { setPages } from '../../../../redusers/Action'
+//import PagesMenu from './components/PagesMenu/PagesMenu.jsx'
+
 import LanguageMenu from './components/LanguageMenu/LanguageMenu.jsx'
 import PeopleMenu from './components/PeopleMenu/PeopleMenu.jsx'
 import SortMenu from './components/SortMenu/SortMenu.jsx'
-//import PagesMenu from './components/PagesMenu/PagesMenu.jsx'
 import ValueMenu from './components/ValueMenu/ValueMenu.jsx'
 import AutoMenu from './components/AutoMenu/AutoMenu.jsx'
-import userBlueIcon from '../../../media/userWhite.svg'
-import { openFilterShow } from "../../../../redusers/ActionDrivers"
-import { connect } from 'react-redux';
-import {
-  /*setPagesVisible,*/ setTempPricePart,/* languageMenuIsVisibal, */setSortMenuVisible,
-  changePersonsNumberDispatch, changePersonsNumberDispatchOld, peopleMenuCall/*, autoMenuCall*/
-} from "../../../../redusers/Action"
-//import { setPages } from '../../../../redusers/Action'
-import { isMobileOnly } from 'react-device-detect';
-
-
 
 class DriversPropertiesClass extends React.Component {
   constructor(props) {
@@ -53,11 +54,11 @@ class DriversPropertiesClass extends React.Component {
       else {
         resultString = result + " человек";
       }*/
-      resultString = result + " "+textInfo.person;
+      resultString = result + " " + textInfo.person;
       return resultString;
     }
     let textInfo = this.props.storeState.languageTextMain.drivers.driversProperties;
-    
+
     let personsNumberString = personsCalculation(this.props.storeState.persons);
 
     let valueText = valueTextGenerator(this.props.storeState.pricePart, this.props.storeState.maxPrice);
@@ -69,7 +70,7 @@ class DriversPropertiesClass extends React.Component {
       <div className="drivers_properties d-flex flex-wrap justify-content-md-between justify-content-sm-center justify-content-center col-12" >
         <div className="properties_rightBlock d-flex align-items-center">
           <div className="properties_rightButton d-flex" onClick={() => this.props.dispatch(setSortMenuVisible(!this.props.storeState.sortMenu))}>
-            <div className="properties_rightButton_characteristic d-sm-block d-none">{textInfo.characteristic+':'}</div>
+            <div className="properties_rightButton_characteristic d-sm-block d-none">{textInfo.characteristic + ':'}</div>
             {isMobileOnly ?
               <React.Fragment>
                 <span className="mobailSortIcon" onClick={() => { this.setState({ sortIsVisible: !this.state.sortIsVisible }) }}>{textInfo.sortText}</span>

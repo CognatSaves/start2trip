@@ -518,12 +518,14 @@ img.carPhotoMini {
         /*box-shadow: none;*/
         margin-left: 0px;
     }
+
     .carAddNewCarInformation input,
     .carAddNewCarInformation select {
         border: none;
         border-bottom: 1px solid #ccc;
         border-radius: 0px;
     }
+
     .carAddNewCarInformation select:hover,
     .carAddNewCarInformation select:focus,
     .carAddNewCarInformation input:hover,
@@ -534,9 +536,11 @@ img.carPhotoMini {
         outline: #304269;
         border-radius: 0px;
     }
+
     .carAddNewCar {
         margin-top: 0px;
     }
+
     .carAddNewCarPhotoCar {
         margin-top: 0px;
         margin-right: 0px;

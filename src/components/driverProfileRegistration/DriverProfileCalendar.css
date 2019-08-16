@@ -134,29 +134,34 @@
         max-height: none !important;
         border: none !important;
     }
+
     .calendarModal input {
         background-position: top 42px left 0px;
         max-height: none !important;
         padding-left: 0px !important;
         padding-top: 26px !important;
         font-size: 16px !important;
-        border: none!important;
+        border: none !important;
         margin: 0 !important;
     }
+
     .inputClass hr,
     .dropdownClass hr,
     .calendarModal hr {
         display: block;
         border-color: #ccc !important;
     }
+
     .calendarModal label {
         display: block;
         font-size: 18px !important;
         /* padding-left: 18px; */
     }
+
     .calendarModal div {
         max-height: none !important;
     }
+
     .dropdownClass {
         min-height: 72px !important;
         border: none !important;
@@ -164,18 +169,22 @@
         border-radius: 0px !important;
         font-size: 16px !important;
     }
+
     .dropdownClass div {
         max-height: none !important;
         padding: 0 !important;
         top: 18px !important;
     }
+
     .dropdownClass button {
         padding: 0 !important;
         top: 18px !important;
     }
+
     .myPhoneInput {
         margin-top: 30px;
     }
+
     .myPhoneInput input {
         border: none !important;
         border-bottom: 1px solid !important;
@@ -183,6 +192,7 @@
         border-radius: 0px !important;
         box-shadow: none !important;
     }
+
     .myPhoneInput input:focus {
         border: none !important;
         border-bottom: 1px solid !important;

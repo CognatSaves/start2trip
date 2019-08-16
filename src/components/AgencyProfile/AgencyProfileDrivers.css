@@ -1,4 +1,4 @@
-.agencyDriverImage img{
+.agencyDriverImage img {
     cursor: pointer;
     z-index: 10;
     width: 40px;
@@ -12,7 +12,8 @@
 .agencyDriverImage img:hover {
     transform: scale(2);
 }
-.applyButton{
+
+.applyButton {
     max-width: 250px;
     max-height: 40px;
     text-align: center;
@@ -24,6 +25,7 @@
     transition: all 0.3s;
     margin: 10px 0;
 }
+
 .applyButton:hover {
     background: #f60;
 }

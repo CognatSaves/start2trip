@@ -205,12 +205,15 @@ h2.homeBottomTitle {
     .home_block {
         padding: 0 !important;
     }
+
     .homeSubscribe {
         background: none;
     }
+
     .homeSubscribe p {
         text-align: center;
     }
+
     .homeSubscribe {
         min-height: 400px;
     }
@@ -220,29 +223,36 @@ h2.homeBottomTitle {
     .home_window {
         background: none;
     }
+
     .home_block {
         padding: 0 !important;
     }
+
     .homeBottomText {
         text-align: center;
     }
+
     .homeSubscribe span {
         text-align: center;
     }
+
     .homeSubscribe h2 {
         color: #333;
         font-weight: 500;
         font-size: 34px;
         text-align: center;
     }
+
     .homeSubscribeInput {
         width: 100%;
         margin-bottom: 10px;
         border-radius: 5px;
     }
+
     .homeSubscribeInput::placeholder {
         text-align: center;
     }
+
     .homeSubscribeButton {
         border-radius: 5px;
     }

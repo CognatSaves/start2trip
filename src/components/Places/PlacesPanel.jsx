@@ -1,9 +1,11 @@
 import React from 'react';
 import './PlacesPanel.css';
 import { connect } from 'react-redux';
-import { setPagesVisible } from '../../redusers/Action';
-import PagesMenu from '../drivers/DriversBody/DriversProperties/components/PagesMenu/PagesMenu';
-import { setPagesMenuValue, setSortMenuValue } from '../../redusers/ActionPlaces';
+import { setSortMenuValue } from '../../redusers/ActionPlaces';
+
+// import { setPagesVisible } from '../../redusers/Action';
+// import PagesMenu from '../drivers/DriversBody/DriversProperties/components/PagesMenu/PagesMenu';
+
 class PlacesPanelClass extends React.Component {
   render() {
     console.log("PlacesPanel render");
