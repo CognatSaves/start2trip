@@ -157,15 +157,7 @@ class AgencyProfileTravelHistoryClass extends React.Component {
             routeString += ' (' + length + ', ' + time + ")";
             return routeString;
         }
-        /*
-        function createDateTimeString(start){
-            let date = new Date(start);
-            let month = date.getUTCMonth(); let day = date.getUTCDate(); let hours = date.getUTCHours(); let minutes = date.getMinutes();
-            let res = date.getUTCFullYear()+"-"+(month>=10 ? month : '0'+month)+"-"+(day>=10 ? day : '0'+day)+'; '+
-            (hours>=10 ? hours : '0'+hours)+":"+(minutes>=10 ? minutes : '0'+minutes);
-            return res;
-        }
-        */
+
         let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileTrevelHistory;
 
         let that = this;
@@ -194,7 +186,7 @@ class AgencyProfileTravelHistoryClass extends React.Component {
                                     <img src={requests.serverAddressImg + element.carrier.image} alt={''} />
                                     <div className="d-flex flex-column ml-1">
                                         <span>{element.carrier.firstName}</span>
-                                        <Stars value={element.carrier.rating} commentNumber={element.carrier.comments + " отзыва"} valueDisplay={true} commentNumberDisplay={true} />
+                                        <Stars value={element.carrier.rating} commentNumber={element.carrier.comments + " отзывов"} valueDisplay={true} commentNumberDisplay={true} />
                                     </div>
 
                                 </div>
@@ -220,7 +212,7 @@ class AgencyProfileTravelHistoryClass extends React.Component {
 
                             </div>
                             <div className="d-flex flex-column historyBodyElement ">
-                                <h5>{textPage.customer}</h5>
+                                <h5>{"Клиент"}</h5>
                                 <span>{element.client.firstName}</span>
                                 <span>{element.client.phone}</span>
                                 <span>{element.client.email}</span>
@@ -241,7 +233,7 @@ class AgencyProfileTravelHistoryClass extends React.Component {
                             }
 
                             <div className="d-flex flex-column historyBodyElement">
-                                <h5>{textPage.costOfTravel}</h5>
+                                <h5>{"Стоимость поездки"}</h5>
                                 <span>{this.props.globalReduser.profile.currencies ? this.props.globalReduser.profile.currencies[findCurrencyEl(that, element.currencyType)].symbol + element.price : ''}</span>
                             </div>
                             {

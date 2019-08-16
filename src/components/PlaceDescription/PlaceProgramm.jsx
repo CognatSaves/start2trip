@@ -7,7 +7,7 @@ var showdown = require('showdown');
 var converter = new showdown.Converter();
 */
 
-// TODO find out if he is needed and what he does
+// TODO Этот блок нужен - он расшифровавает ересь, что приходит с сервера. Но почистить его не мешало бы
 
 class PlaceProgrammClass extends React.Component {
     /*constructor(props){
