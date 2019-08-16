@@ -1,15 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import Stars from '../stars/Stars';
-import requests from '../../config';
-import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
-
 import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
+import requests from '../../config';
 import getUserData from '../driverProfileRegistration/DriverProfileRequest';
+
+import Stars from '../stars/Stars';
+import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 
 class DriverProfileTrevelHistoryClass extends React.Component {
     constructor(props) {
         super(props);
+        //TODO static data
         this.state={
             isRefreshExist:false,
             isRefreshing: true,

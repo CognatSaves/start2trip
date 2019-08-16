@@ -1,10 +1,12 @@
 import React from 'react';
+import './Search.css';
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from 'react-places-autocomplete';
-import './Search.css';
 import { isMobileOnly } from 'react-device-detect';
+
+
 
 
 export default class LocationSearchInput extends React.Component {
@@ -15,8 +17,8 @@ export default class LocationSearchInput extends React.Component {
       inFocus: this.props.address ? true : false,
       inFocusOnly: false,
     }
-    
-    if(props.address.length>0){
+
+    if (props.address.length > 0) {
       this.handleSelect(props.address);
     }
   }
@@ -34,7 +36,7 @@ export default class LocationSearchInput extends React.Component {
     })
   }
   handleSelect = address => {
-    
+
     let location = {
       lat: "",
       long: ""
@@ -42,7 +44,7 @@ export default class LocationSearchInput extends React.Component {
     geocodeByAddress(address)
       .then(results => {/*console.log('Process results from geocode');console.log(results); */location.lat = results[0].geometry.location.lat(); location.long = results[0].geometry.location.lng(); getLatLng(results[0]); })
       .then(latLng => {/*console.log('Success', latLng); console.log(address);*/ /**/ this.applySelectedValue(this.props.index, address, { location: location }) })
-      .catch(error => {/* */ this.applySelectedValue(this.props.index, '', { location: location }); console.error('Error - cant found such place', error); this.setState({address: ''})});
+      .catch(error => {/* */ this.applySelectedValue(this.props.index, '', { location: location }); console.error('Error - cant found such place', error); this.setState({ address: '' }) });
   };
   onInputBlur = () => {
     this.setState({ inFocus: false })
@@ -67,7 +69,7 @@ export default class LocationSearchInput extends React.Component {
           // ['establishment'||'(cities)']
           types: [],
           componentRestrictions: { country: this.props.isoCountryMap, },
-          language: '0' 
+          language: '0'
         }}
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) =>

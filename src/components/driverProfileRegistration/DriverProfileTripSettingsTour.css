@@ -523,6 +523,7 @@ img.tourPhotoMini {
     .tourSettingsBody {
         box-shadow: none;
     }
+
     .tourContent textarea,
     .tourContent input,
     .tourContent select {
@@ -530,6 +531,7 @@ img.tourPhotoMini {
         border-radius: 0px;
         border-bottom: 1px solid #ccc;
     }
+
     .tourContent textarea:hover,
     .tourContent textarea:focus,
     .tourContent select:hover,
@@ -542,13 +544,16 @@ img.tourPhotoMini {
         outline: #304269;
         border-radius: 0px;
     }
+
     .tripSettingsContentDeletButton {
         text-align: right;
     }
+
     .tourContent .tripSettingsContentDeletButton {
         position: relative;
         left: 0;
     }
+
     span.tourContentOtherSpan {
         top: -6px;
     }
@@ -560,6 +565,7 @@ img.tourPhotoMini {
         width: 43px !important;
         margin-left: -20px !important;
     }
+
     .newTourCalendarStyle .Cal__Day__selection span {
         font-size: 14px !important;
     }

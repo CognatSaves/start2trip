@@ -1,13 +1,6 @@
 import React from 'react';
-
 import { connect } from 'react-redux';
-import DatePicker from 'material-ui/DatePicker';
-import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
-import DropDownMenu from 'material-ui/DropDownMenu';
-import MenuItem from 'material-ui/MenuItem';
-import TextField from '@material-ui/core/TextField';
-
+import { setTransactionData, setUrlAddress } from "../../redusers/ActionGlobal"
 import { isMobileOnly } from 'react-device-detect'
 import {
     Table,
@@ -17,8 +10,15 @@ import {
     TableRow,
     TableRowColumn,
 } from 'material-ui/Table';
-import { setTransactionData, setUrlAddress } from "../../redusers/ActionGlobal"
 import requests from '../../config';
+
+import DatePicker from 'material-ui/DatePicker';
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
+import DropDownMenu from 'material-ui/DropDownMenu';
+import MenuItem from 'material-ui/MenuItem';
+import TextField from '@material-ui/core/TextField';
+
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 
 class DriverProfileBillingClass extends React.Component {
@@ -197,7 +197,7 @@ class DriverProfileBillingClass extends React.Component {
                     modal={false}
                     open={this.state.withdrawalOfFundsModal}
                     onRequestClose={() => { this.handleClose('withdrawal') }}
-                >   
+                >
                     <div className="billingModalHeder">
                         <span>Доступно к выводу:{accountTotal}$</span>
                     </div>
@@ -278,6 +278,7 @@ class DriverProfileBillingClass extends React.Component {
                                 required value={this.state.paymentValue} onChange={(e) => this.changePaymentValue(e.target.value)} /> */}
                         </div>
                         <div className="billingModalContentText d-flex align-items-center mt-1">
+                            {/* TODO static data */}
                             Оплата осуществляется с помощью банковской карты. После ввода суммы и подтверждения вы будете переадресованы в специализированный сервис.
                         </div>
                         {
@@ -314,7 +315,7 @@ class DriverProfileBillingClass extends React.Component {
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-row flex-column align-items-md-end align-items-sm-center align-items-center  justify-content-between">
                                 <div className="billingText col-md-12 col-12 p-0">
                                     <div className="billingTextTitle col-md-12 col-10 p-0 mx-auto">
-                                        <span>{textPage.currentBalance.currentBalanceText + ' (' + textPage.currentBalance.personalAccount + ' №' + '20456787' + ')'}</span>
+                                        <span>{textPage.currentBalance.currentBalanceText + ' (' + textPage.currentBalance.personalAccount + ' №' + profile.billing.billingId + ')'}</span>
                                     </div>
                                     <div className="border-bottom mb-2 d-flex align-items-center justify-content-between">
                                         <span className="col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0 py-2">{textPage.currentBalance.cardPayments + ':'}</span>
@@ -333,11 +334,11 @@ class DriverProfileBillingClass extends React.Component {
                                         <span className="specialText">{accountTotal}</span>
                                     </div>
                                 </div>
-                                
+
                             </div>
                             <div className="billingButton d-flex justify-content-center  align-items-end">
-                                    <span onClick={() => { this.handleClose('withdrawal') }}>{textPage.currentBalance.fundsWithdrawal}</span>
-                                </div>
+                                <span onClick={() => { this.handleClose('withdrawal') }}>{textPage.currentBalance.fundsWithdrawal}</span>
+                            </div>
                             <div className="col-md-12 col-12 mt-5 p-0">
                                 <div className="billingText border-bottom d-flex align-items-center justify-content-between">
                                     <span className="">{textPage.currentBalance.receivedByCash + ':'}</span>
@@ -368,12 +369,12 @@ class DriverProfileBillingClass extends React.Component {
                                         <span className="specialText">{systemPayingsTotal}</span>
                                     </div>
                                 </div>
-                                
+
 
                             </div>
                             <div className="billingButton d-flex justify-content-center align-items-end">
-                                    <span onClick={() => { this.handleClose('toPay') }}>{textPage.systemPayments.payButtonText}</span>
-                                </div>
+                                <span onClick={() => { this.handleClose('toPay') }}>{textPage.systemPayments.payButtonText}</span>
+                            </div>
                             <div className="billingText col-12 p-0 mt-5">
                                 <p>{textPage.systemPayments.systemPaymentInfo}</p>
                             </div>
@@ -382,21 +383,23 @@ class DriverProfileBillingClass extends React.Component {
                 </div>
                 <div className="billingBody">
                     <div className="d-flex flex-md-row flex-sm-column flex-column justify-content-between col-12 p-0">
+
                         <div className="d-flex flex-column">
-                            <span className="blillingHeaderTitle">{textPage.accountOperations.accountOperationsText + ' №' + '20456787'}</span>
+                            <span className="blillingHeaderTitle">{textPage.accountOperations.accountOperationsText + ' № ' + profile.billing.billingId}</span>
                             <div className=" billingText d-flex flex-md-row flex-sm-column flex-column align-items-center mt-3">
                                 <span className="pr-2">{textPage.accountOperations.forPeriod}</span>
                                 <div className="d-flex flex-wrap">
                                     <DatePicker onChange={(nul, date) => { this.setState({ tableStartDate: date }); }} floatingspanText="Дата начала" className="billingCalendar" value={this.state.tableStartDate} />
                                     <span className="align-md-self-end align-self-center mx-md-2 mx-0 mt-2">&#175;</span>
                                     <DatePicker onChange={(nul, date) => { this.setState({ tableEndDate: date }); }} floatingspanText="Дата конца" className="billingCalendar" value={this.state.tableEndDate} />
-                                    
+
                                 </div>
                                 <div className="billingButton mx-md-0 mx-auto my-md-0 my-2" onClick={() => this.getTransactionTable()}>
-                                        <span style={{ color: "#fff" }}>{textPage.accountOperations.searchButton}</span>
-                                    </div>
+                                    <span style={{ color: "#fff" }}>{textPage.accountOperations.searchButton}</span>
+                                </div>
                             </div>
                         </div>
+
                         <div className=" col-md-4 col-sm-12 col-12 p-0 blillingHeader d-flex align-items-end justify-content-between">
                             <div className="col-12">
                                 <div className="billingText border-bottom d-flex align-items-center justify-content-between py-2">
@@ -420,6 +423,7 @@ class DriverProfileBillingClass extends React.Component {
                                 </div>
                             </div>
                         </div>
+
                     </div>
 
                     <div className="billingTableBody">
@@ -445,7 +449,6 @@ class DriverProfileBillingClass extends React.Component {
                                             <TableRowColumn>{element.transactionComission}</TableRowColumn>
                                             */
                                         }
-
                                         <TableRowColumn style={{ width: this.state.headerWidth[3], textAlign: 'center' }}>{dateStringConversion(element.paymentDate)}</TableRowColumn>
                                         <TableRowColumn style={{ width: this.state.headerWidth[4], textAlign: 'center' }}>{element.tripId}</TableRowColumn>
                                         {
@@ -454,7 +457,6 @@ class DriverProfileBillingClass extends React.Component {
                                             <TableRowColumn>{element.client}</TableRowColumn>
                                             */
                                         }
-
                                     </TableRow>
                                 ) : <React.Fragment />}
                             </TableBody>

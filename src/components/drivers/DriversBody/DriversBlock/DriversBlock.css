@@ -11,9 +11,8 @@
     text-overflow: ellipsis;
 }
 
-.driversBlock_driverCard .driversBlock_buttonStyle
-{
-    height: 50px!important;
+.driversBlock_driverCard .driversBlock_buttonStyle {
+    height: 50px !important;
 }
 
 .infoString {
@@ -71,6 +70,7 @@
     .infoString {
         font-size: 11pt
     }
+
     .visibleString {
         font-size: 11pt
     }
@@ -216,7 +216,7 @@
 
 .driversBlock_buttonStyle {
     padding: 0;
-    height: 60px!important;
+    height: 60px !important;
     background: #304269;
     color: #fff;
     border: none;
@@ -343,27 +343,33 @@
     .driversBlock_driverInfoBlock_element {
         font-size: 14px;
     }
+
     .driversBlock_carInfoLine_value {
         font-size: 14px;
     }
+
     .driversBlock_carName {
         font-size: 20px;
         padding-bottom: 10px;
     }
+
     .driversBlock_commentary {
         font-size: 12px;
         padding-top: 10px;
     }
+
     .driversBlock_buttonStyle {
         font-size: 18px;
         padding-top: 0px;
     }
+
     .driversBlock_driverCard_carIcon {
         width: 35px;
         height: 30px;
         margin-right: 5px;
         color: #686868;
     }
+
     .driversBlock_languages_flag {
         margin-right: 5px;
         width: 18px;
@@ -371,9 +377,11 @@
         border-radius: 7px;
         margin-top: 2px;
     }
+
     .driverBlock_carInfoLine {
         padding: 0px;
     }
+
     .driverInfo_background .block_element_left,
     .driverInfo_background .driverInfo_element {
         border-radius: 5px;
@@ -381,6 +389,7 @@
         margin-bottom: 20px;
         /* padding: 5px !important; */
     }
+
     .drivers_block_element:hover {
         transform: none;
         box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);

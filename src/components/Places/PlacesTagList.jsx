@@ -1,8 +1,7 @@
 import React from 'react';
 import './PopularPlaces.css';
 import { connect } from 'react-redux';
-// import requests from '../../config';
-import { setSelectedTag } from '../../redusers/ActionPlaces';
+import { setPage, setSelectedTag } from '../../redusers/ActionPlaces';
 
 class PlacesTagListClass extends React.Component {
     constructor(props) {
@@ -14,6 +13,7 @@ class PlacesTagListClass extends React.Component {
     onTagClick = (id) => {
         console.log('onTagClick', id);
         this.props.dispatch(setSelectedTag(id));
+        this.props.dispatch(setPage(1));
     }
     render() {
         function isTagSelected(tagId, selectedTags) {
@@ -33,7 +33,7 @@ class PlacesTagListClass extends React.Component {
 
         console.log(this.props.placesState.tags);
         return (
-            <div className={(this.props.placesState.tags.length>0 ? "popularPlacesBody d-flex flex-md-row flex-column col-12 py-md-4 py-2" : 'd-none')} >
+            <div className={(this.props.placesState.tags.length > 0 ? "popularPlacesBody d-flex flex-md-row flex-column col-12 py-md-4 py-2" : 'd-none')} >
                 <div className="d-flex align-items-center justify-md-content-start justify-content-center mr-md-5 mr-0">
                     <span className="popularPlacesTitleTagList">{textInfo.placesTagList.placesTagListTitle + ':'}</span>
                 </div>

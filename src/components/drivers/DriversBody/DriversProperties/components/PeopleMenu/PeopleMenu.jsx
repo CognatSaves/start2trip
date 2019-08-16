@@ -1,33 +1,33 @@
 import React from 'react';
 import './PeopleMenu.css'
 import { connect } from 'react-redux';
-import {changePersonsNumberDispatch,peopleMenuCall} from "../../../../../../redusers/Action"
+import { changePersonsNumberDispatch, peopleMenuCall } from "../../../../../../redusers/Action"
 
 class PeopleMenuClass extends React.Component {
     /*constructor(props) {
         super(props);
     }*/
-    changePersonsNumber(index, value){
+    changePersonsNumber(index, value) {
         let persons = this.props.storeState.persons.slice();
-        persons[index]+=value;
-        if(persons[0]>=1 && persons[1]>=0){
+        persons[index] += value;
+        if (persons[0] >= 1 && persons[1] >= 0) {
             this.props.dispatch(changePersonsNumberDispatch(persons));
         }
     }
-    peopleMenuCall(clear){
-        if(clear){
+    peopleMenuCall(clear) {
+        if (clear) {
             this.props.dispatch(changePersonsNumberDispatch(this.props.storeState.personsOld));
         }
         this.props.dispatch(peopleMenuCall(!this.props.storeState.peopleMenu));
-      }
+    }
 
     render() {
-        let peopleDisabledMinus = true ;
-        let peopleDisabledPlus = false ;
-        let childrenDisabledMinus = true ;
-        let childrenDisabledPlus = false ;
+        let peopleDisabledMinus = true;
+        let peopleDisabledPlus = false;
+        let childrenDisabledMinus = true;
+        let childrenDisabledPlus = false;
         let textInfo = this.props.storeState.languageTextMain.drivers.driversProperties.peopleMenu;
-        
+
         if (this.props.isVisible) {
             if (this.props.storeState.persons[0] === 1) {//заменил 2е на 3е равенства
                 peopleDisabledMinus = true;
@@ -65,7 +65,7 @@ class PeopleMenuClass extends React.Component {
                         </div>
                         <div className="peopleMenu_element_stateBlock">
                             <button className="peopleMenu_stateBlock_cancelButton" onClick={() => { this.peopleMenuCall(true) }}>{textInfo.cancel}</button>
-                            <button className="peopleMenu_stateBlock_applyButton" onClick={()=>this.peopleMenuCall(false)}>{textInfo.done}</button>
+                            <button className="peopleMenu_stateBlock_applyButton" onClick={() => this.peopleMenuCall(false)}>{textInfo.done}</button>
                         </div>
                     </div>
                 </div>
@@ -81,8 +81,8 @@ class PeopleMenuClass extends React.Component {
 
 const PeopleMenu = connect(
     (state) => ({
-      storeState: state.AppReduser,
+        storeState: state.AppReduser,
     }),
-  )(PeopleMenuClass);
-  
-  export default PeopleMenu;
+)(PeopleMenuClass);
+
+export default PeopleMenu;

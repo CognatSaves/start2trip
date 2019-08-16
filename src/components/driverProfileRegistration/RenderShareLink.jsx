@@ -2,9 +2,6 @@ import React from 'react';
 import './DriverProfileAffiliateProgram.css'
 import { connect } from 'react-redux';
 
-
-
-
 class RenderShareLinkClass extends React.Component {
     constructor(props) {
         super(props);
@@ -15,7 +12,7 @@ class RenderShareLinkClass extends React.Component {
 
 
     }
-    copyValue = (id) =>{
+    copyValue = (id) => {
         let selectedInput = document.getElementById(id);
         selectedInput.select();
         document.execCommand("copy");

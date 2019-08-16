@@ -2,17 +2,16 @@ import React from 'react';
 import './DriversBlock.css'
 import './InfoBlock.css'
 import './TripBlock.css'
-import Manipulator from '../../../manipulator/Manipulator';
-import { connect } from 'react-redux';
 
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { setPage, setMorePagesShow, setDriverCarDescription } from '../../../../redusers/ActionDrivers'
+import requests from '../../../../config';
 
 import Stars from '../../../stars/Stars';
-import { setPage, setMorePagesShow, setDriverCarDescription } from '../../../../redusers/ActionDrivers'
-
-
-import requests from '../../../../config';
+import Manipulator from '../../../manipulator/Manipulator';
 import Cookies from 'universal-cookie';
+
 const cookies = new Cookies();
 
 class DriversBlockClass extends React.Component {
@@ -194,7 +193,7 @@ class DriversBlockClass extends React.Component {
     console.log(this.props);
     let storeState = this.props.storeState;
     let activeCurrency = storeState.currencies[storeState.activeCurrencyNumber]
-    
+
     let textInfo = this.props.storeState.languageTextMain.drivers.driversBlock;
     let basicCurrency;
     if (storeState.currencies.length > 0) {
@@ -266,26 +265,26 @@ class DriversBlockClass extends React.Component {
           selectedElements.length === 0 ?
             <React.Fragment>
               <div className="placesList_noElementsBlock">
-                  <span>{this.props.storeState.languageTextMain.drivers.messageEror.noElementsText }</span>
+                <span>{this.props.storeState.languageTextMain.drivers.messageEror.noElementsText}</span>
               </div>
             </React.Fragment>
-              : <React.Fragment />
-              }
+            : <React.Fragment />
+        }
         <Manipulator number={driversArray.length} page={this.props.driversState.page} setPage={this.setPage}
-                elementsNumber={this.props.storeState.pagesMenuValue} showMorePages={this.showMorePages} />
+          elementsNumber={this.props.storeState.pagesMenuValue} showMorePages={this.showMorePages} />
       </div>
 
     )
-        }
-      
-      }
-      
-      const DriversBlock = connect(
+  }
+
+}
+
+const DriversBlock = connect(
   (state) => ({
-          storeState: state.AppReduser,
-        driversState: state.DriversReduser,
-        globalReduser: state.GlobalReduser
-      }),
-    )(DriversBlockClass);
-    
-    export default DriversBlock;
+    storeState: state.AppReduser,
+    driversState: state.DriversReduser,
+    globalReduser: state.GlobalReduser
+  }),
+)(DriversBlockClass);
+
+export default DriversBlock;

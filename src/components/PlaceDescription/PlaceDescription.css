@@ -6,9 +6,11 @@
     0% {
         background: rgba(34, 157, 78, .49);
     }
+
     50% {
         background: #fff;
     }
+
     100% {
         background: rgba(34, 157, 78, .49);
     }
@@ -22,7 +24,7 @@
 
 .h2,
 h2 {
-    font-size: 20px!important;
+    font-size: 20px !important;
 }
 
 .placeinfo_vertical {
@@ -107,11 +109,11 @@ h2 {
 }
 
 .placeDescription_description_commentTextStyle {
-    color: #ffffff!important;
+    color: #ffffff !important;
 }
 
 .placeDescription_topImageMask .infoBlock_starsBlock_value {
-    color: #ffffff!important;
+    color: #ffffff !important;
 }
 
 .placeDescription_description_info {
@@ -323,8 +325,9 @@ h2 {
 }
 
 .placeDescription_fragmentName_mapBlock {
-    width: /*870px;*/
-    100%;
+    width:
+        /*870px;*/
+        100%;
     height: 400px;
     /*background-color: red;*/
 }
@@ -420,15 +423,18 @@ h2 {
         max-height: 210px;
         height: 210px;
     }
+
     .placeDescription_block ol {
         padding-left: 15px;
     }
+
     .placeDescription_block ul {
         padding-left: 15px;
     }
+
     .placePhotos_elementBlock {
         margin: 0px 0;
         position: relative;
-        padding: 0 3px!important;
+        padding: 0 3px !important;
     }
 }

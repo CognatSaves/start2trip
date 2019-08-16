@@ -36,8 +36,8 @@ div.tripSettingsContentTitle {
     font-size: 16px;
     color: #304269;
     margin-bottom: 0px;
-    padding-bottom: 20px!important;
-    padding-top: 15px!important;
+    padding-bottom: 20px !important;
+    padding-top: 15px !important;
 }
 
 .tripSettingsContentP p {
@@ -156,10 +156,10 @@ div.tripSettingsContentAddCity p:hover {
 }
 
 .closetext {
-    font-weight: 400!important;
-    font-size: 14px!important;
-    color: #686868!important;
-    margin-bottom: 0px!important;
+    font-weight: 400 !important;
+    font-size: 14px !important;
+    color: #686868 !important;
+    margin-bottom: 0px !important;
 }
 
 
@@ -172,6 +172,7 @@ div.tripSettingsContentAddCity p:hover {
     .tripSettingsBody {
         box-shadow: none;
     }
+
     .tripSettingsContent input,
     .tripSettingsContent select {
         border: none;
@@ -179,6 +180,7 @@ div.tripSettingsContentAddCity p:hover {
         border-bottom: 1px solid #ccc;
         margin: 5px;
     }
+
     .tripSettingsContent select:hover,
     .tripSettingsContent select:focus,
     .tripSettingsContent input:hover,
@@ -189,13 +191,16 @@ div.tripSettingsContentAddCity p:hover {
         outline: #304269;
         border-radius: 0px;
     }
+
     .tripSettingsContentDeletButton {
         width: 100%;
         background-position: top 0px right 10px;
     }
+
     .tripSettingsContentDeletButton:hover {
         background-position: top 0px right 10px;
     }
+
     .tripSettingsContent button {
         margin-left: 0px;
     }
@@ -206,21 +211,27 @@ div.tripSettingsContentAddCity p:hover {
         padding: 5px 0px 0px 0px;
         transition: all 0.3s;
     }
+
     .tripSettingsContent input {
         min-height: 0;
     }
+
     .triplabel {
-        padding-top: 20px!important;
+        padding-top: 20px !important;
     }
+
     .tripSettingsContentTitle {
         text-align: center;
     }
+
     .dailymile {
         display: none;
     }
+
     .tripname {
-        padding-bottom: 0px!important;
+        padding-bottom: 0px !important;
     }
+
     .tripSettingsContentP {
         padding-bottom: 20px;
     }

@@ -68,7 +68,7 @@
 }
 
 .popularPlacesEl_selected .routeName span {
-    color: #ff6600!important;
+    color: #ff6600 !important;
     font-weight: 500;
 }
 
@@ -146,14 +146,17 @@
         text-align: center;
         padding: 5px 0;
     }
+
     .popularPlacesEl img {
         height: 120px;
     }
+
     .popularPlacesRender {
         overflow: scroll;
         overflow-y: hidden;
         scroll-behavior: smooth;
     }
+
     .popularPlacesEl span {
         text-align: center;
     }

@@ -2,16 +2,7 @@ import React from 'react';
 import './MobileFilter.css'
 import { connect } from 'react-redux';
 import { Collapse } from 'reactstrap'
-// import Slider from '../components/ValueMenu/Slider';
 import { openFilterShow } from "../../../../../redusers/ActionDrivers"
-import sedan from '../../../../media/sedan.svg';
-import jeep from '../../../../media/jeep.svg';
-import microbus from '../../../../media/microbus.svg';
-import minivan from '../../../../media/minivan.svg';
-// import languageWhite from '../../../../media/languageWhite.svg';
-import Slider from '@material-ui/core/Slider';
-import Checkbox from '@material-ui/core/Checkbox';
-
 import {
   setPricePart,
   setTempPricePart,
@@ -21,6 +12,15 @@ import {
   languageMenuIsVisibal,
   setAuto,
 } from '../../../../../redusers/Action';
+
+import sedan from '../../../../media/sedan.svg';
+import jeep from '../../../../media/jeep.svg';
+import microbus from '../../../../media/microbus.svg';
+import minivan from '../../../../media/minivan.svg';
+// import languageWhite from '../../../../media/languageWhite.svg';
+
+import Slider from '@material-ui/core/Slider';
+import Checkbox from '@material-ui/core/Checkbox';
 
 class MobileFilterClass extends React.Component {
   constructor(props) {
@@ -124,7 +124,7 @@ class MobileFilterClass extends React.Component {
 
             <div className="mobileFilterModalHeader d-flex justify-content-between">
               <span className="mobileFilterModalBack" onClick={() => { this.props.dispatch(openFilterShow(false)) }}>Фильтры</span>
-              <span className="mobileFilterModalClear" onClick={() => { this.setState({ autoVariants: [], languagesVariants: [], price: this.props.storeState.maxPrice });  this.peopleMenuCall(true); this.props.dispatch(setAuto([])); this.props.dispatch(languageValueChooseDispatch([]));this.props.dispatch(setPricePart(this.props.storeState.maxPrice, false)); }}>Сбросить</span>
+              <span className="mobileFilterModalClear" onClick={() => { this.setState({ autoVariants: [], languagesVariants: [], price: this.props.storeState.maxPrice }); this.peopleMenuCall(true); this.props.dispatch(setAuto([])); this.props.dispatch(languageValueChooseDispatch([])); this.props.dispatch(setPricePart(this.props.storeState.maxPrice, false)); }}>Сбросить</span>
             </div>
 
             <div className="mobileFilterModalBody">
@@ -138,7 +138,7 @@ class MobileFilterClass extends React.Component {
                   defaultValue={this.props.storeState.maxPrice}
                   getAriaValueText={this.changeTempPrice}
                   value={this.state.price}
-                  onChange={(e,value)=>{this.setState({price:value})}}
+                  onChange={(e, value) => { this.setState({ price: value }) }}
                   aria-labelledby="discrete-slider"
                   valueLabelDisplay="auto"
                   step={this.props.storeState.maxPrice / 25}

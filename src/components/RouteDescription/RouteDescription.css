@@ -17,13 +17,13 @@
 }
 
 .routeTravelBlock_pointElement_left {
-    padding-left: 10px!important;
-    padding-right: 5px!important;
+    padding-left: 10px !important;
+    padding-right: 5px !important;
 }
 
 .routeTravelBlock_pointElement_right {
-    padding-left: 5px!important;
-    padding-right: 10px!important;
+    padding-left: 5px !important;
+    padding-right: 10px !important;
 }
 
 .routeTravelBlock_pointValue {
@@ -42,9 +42,11 @@
     0% {
         background: rgba(34, 157, 78, .49);
     }
+
     50% {
         background: #fff;
     }
+
     100% {
         background: rgba(34, 157, 78, .49);
     }
@@ -83,17 +85,20 @@
 }
 
 .routeTravelBlock_element {
-    padding: 5px!important;
+    padding: 5px !important;
     cursor: not-allowed;
 }
+
 .routeTravelBlock_change {
     color: #304269;
 }
+
 .routeTravelBlock_change:hover {
     cursor: pointer;
     text-decoration: underline;
     color: #ff6600;
 }
+
 @media (max-width: 900) {}
 
 @media (max-width: 560px) {

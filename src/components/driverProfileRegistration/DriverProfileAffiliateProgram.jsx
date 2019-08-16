@@ -1,6 +1,4 @@
 import React from 'react';
-
-// import copy from '../media/copy.svg';
 import { connect } from 'react-redux';
 import {
     Table,
@@ -11,13 +9,15 @@ import {
     TableRowColumn,
 } from 'material-ui/Table';
 import requests from '../../config';
+
+// import copy from '../media/copy.svg';
+
 import messengerIcon from '../media/messenger.svg'
 import whatsappIcon from '../media/whatsapp.svg'
 import viberIcon from '../media/viber.svg'
 import telegramIcon from '../media/telegram.svg'
+
 import RenderShareLink from './RenderShareLink';
-
-
 
 class DriverProfileAffiliateProgramClass extends React.Component {
     constructor(props) {
@@ -74,7 +74,6 @@ class DriverProfileAffiliateProgramClass extends React.Component {
                             {/* <div>{textPage.affiliateLinks.title}</div> */}
                             <RenderShareLink classNameDiv={"col-lg-6 col-12"} idInput={"partnerRegistrationLink"} valueInput={requests.frontendAddress + '/register/' + this.props.globalReduser.profile._id} iconsArray={this.state.iconsArray} textTitle={textPage.affiliateLinks.registrationLink} buttonCopyText={textPage.affiliateLinks.spanLink} />
                             <RenderShareLink classNameDiv={"col-lg-6 col-12"} idInput={"partnerMainPageLink"} valueInput={requests.frontendAddress + '/start/' + this.props.globalReduser.profile._id} iconsArray={this.state.iconsArray} textTitle={textPage.affiliateLinks.linkToHomePage} buttonCopyText={textPage.affiliateLinks.spanLink} />
-
                         </div>
                         <div className="d-flex justify-content-center col mb-3">
                             {
@@ -84,7 +83,6 @@ class DriverProfileAffiliateProgramClass extends React.Component {
                                 */
                                 <span>{textPage.promotionalMaterials}</span>
                             }
-
                         </div>
                     </div>
                 </div>

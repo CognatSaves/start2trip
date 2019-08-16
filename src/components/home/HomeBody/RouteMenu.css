@@ -51,9 +51,11 @@
         background: rgba(37, 165, 154, 0.911);
         border: 1px solid rgba(255, 255, 255, 0.3);
     }
+
     50% {
         background: none;
     }
+
     100% {
         background: rgba(37, 165, 154, 0.911);
         border: 1px solid rgba(255, 255, 255, 0.3);
@@ -319,7 +321,7 @@
 .startCity-error {
     /* outline: 2px solid #a5252580 !important;
     outline-offset: -1px !important; */
-    background: #a52525c7!important;
+    background: #a52525c7 !important;
 }
 
 .startCity-error i {
@@ -488,20 +490,25 @@ p.routemenu_search_text {
     .routemenu_parameters p {
         line-height: normal;
     }
+
     .city_input {
         color: #304269;
     }
+
     .classDivMobail span,
     .routemenu_city_add_text,
     .city_input {
         font-size: 16px;
     }
+
     .city_input::placeholder {
         color: #fff;
     }
+
     .startCity {
         margin-bottom: 5px;
     }
+
     .routemenu_date div {
         font-size: 16px !important;
         text-align: center;
@@ -516,6 +523,7 @@ p.routemenu_search_text {
         align-items: center;
         /* margin: 0 2px; */
     }
+
     .crossToolTip {
         display: flex;
         justify-content: center;
@@ -523,33 +531,41 @@ p.routemenu_search_text {
         margin-left: 0px;
         margin-right: 0px;
     }
+
     .crossIcon {
         min-width: 20px;
         background-size: 15px 15px !important;
         background-position: center center !important;
     }
+
     .autocomplete-dropdown-container span {
         font-size: 16px;
     }
+
     .addCities,
     .routemenu_footer {
         margin: 0 2px;
     }
+
     .addCitiesLocationDropDown {
         margin: 2px 0;
     }
+
     .city_input::placeholder {
         color: #686868;
     }
+
     @keyframes glowing {
         0% {
             background: rgba(37, 165, 154, 0.911);
             border: 1px solid rgba(255, 255, 255, 0.3);
         }
+
         50% {
             background: #304269;
             border: 1px solid rgba(255, 255, 255, 0.3);
         }
+
         100% {
             background: rgba(37, 165, 154, 0.911);
             border: 1px solid rgba(255, 255, 255, 0.3);

@@ -107,14 +107,17 @@
     .affiliateProgram_Title {
         background: none;
     }
+
     .affiliateProgram_Title span,
     .affiliateProgram_Title h2 {
         text-align: center;
     }
+
     .affiliateProgram_Title p {
         width: 100%;
         text-align: start;
     }
+
     .affiliateProgram {
         margin-bottom: 80px;
     }
@@ -126,15 +129,18 @@
         box-shadow: none;
         margin-top: 20px;
     }
+
     .affiliateProgram_content i {
         width: 80px;
         min-height: 80px;
         background-position: center !important;
         margin: 10px 0;
     }
+
     .affiliateProgram_content {
         margin-top: 30px;
     }
+
     .affiliateProgram_Title h2,
     .affiliateProgram_Footer h3 {
         font-size: 32px !important;

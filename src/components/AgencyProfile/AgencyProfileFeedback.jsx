@@ -1,28 +1,26 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 import ShowComments from '../driverProfile/ShowComments';
 
-class AgencyProfileFeedbackClass extends React.Component{
-    constructor(props){
+class AgencyProfileFeedbackClass extends React.Component {
+    constructor(props) {
         super(props);
         let profile = this.props.globalReduser.profile;
-        this.state={
+        this.state = {
             comments: profile.comments
         }
-
-        
     }
 
-    render(){
+    render() {
 
         // TODO добавить кнопку показать еще и пагинацию
-        return(
+        return (
             <div className="d-flex flex-wrap">
                 <ShowComments selectedComments={this.state.comments} />
-            </div>             
+            </div>
         )
-     }
+    }
 }
 const AgencyProfileFeedback = connect(
     (state) => ({

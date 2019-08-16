@@ -165,9 +165,11 @@
     .basicInformationBodyBottom {
         box-shadow: none;
     }
+
     .basicInformationBodyBottomContent input {
         font-size: 16px;
     }
+
     .basicInformationBodyBottomContent input,
     .basicInformationBodyBottomContent select,
     .basicInformationBodyBottomContent textarea {
@@ -175,6 +177,7 @@
         border-radius: 0px;
         border-bottom: 1px solid #ccc;
     }
+
     .basicInformationBodyBottomContent textarea:hover,
     .basicInformationBodyBottomContent textarea:focus,
     .basicInformationBodyBottomContent select:hover,

@@ -1,11 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import DatePicker from 'material-ui/DatePicker';
-import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
-import DropDownMenu from 'material-ui/DropDownMenu';
-import MenuItem from 'material-ui/MenuItem';
-import TextField from '@material-ui/core/TextField';
 import { isMobileOnly } from 'react-device-detect'
 import {
     Table,
@@ -16,9 +10,16 @@ import {
     TableRowColumn,
 } from 'material-ui/Table';
 
+import DatePicker from 'material-ui/DatePicker';
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
+import DropDownMenu from 'material-ui/DropDownMenu';
+import MenuItem from 'material-ui/MenuItem';
+import TextField from '@material-ui/core/TextField';
+
+// TODO Static data
 class UserProfileBillingClass extends React.Component {
-    constructor(props)
-    {
+    constructor(props) {
         super(props);
         this.state = {
             hederTitle: ["id Транзакции", "Тип оплаты", "Сумма", "Дата платежа", "ID поездки", "Маршрут", "Водитель",],
@@ -48,9 +49,9 @@ class UserProfileBillingClass extends React.Component {
                 this.setState({ typeCardValue: value });
                 break
         }
-    
+
     };
-    
+
     render() {
         let profile = this.props.globalReduser.profile;
         function findCurrencyEl(that, iso) {
@@ -89,7 +90,7 @@ class UserProfileBillingClass extends React.Component {
         // systemPayingsTotal = Math.round(systemPayingsTotal * 100);
         // systemPayingsTotal = profile.currencies[findCurrencyEl(that, profile.payments.currencyType)].symbol + systemPayingsTotal / 100;
         // let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileBilling;
-    
+        let billing = this.props.globalReduser.profile.billing;
         return (
             <React.Fragment>
                 <Dialog
@@ -100,7 +101,7 @@ class UserProfileBillingClass extends React.Component {
                     modal={false}
                     open={this.state.withdrawalOfFundsModal}
                     onRequestClose={() => { this.handleClose('withdrawal') }}
-                >   
+                >
                     <div className="billingModalHeder">
                         <span>Доступно к выводу:{/*accountTotal*/}$</span>
                     </div>
@@ -166,27 +167,27 @@ class UserProfileBillingClass extends React.Component {
                                     </div>
                                     <div className="specialBorder mb-2 d-flex align-items-center justify-content-between">
                                         <span className="col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0 py-2">Партнерские начисления:</span>
-                                        <span>$120</span>
+                                        <span>{'$'+billing.partnersProfit}</span>
+                                    </div>
+                                    <div className="specialBorder mb-2 d-flex align-items-center justify-content-between">
+                                        <span className="col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0 py-2">Выведено всего:</span>
+                                        <span>{'$'+billing.payedprofit}</span>
                                     </div>
                                     <div className="d-flex align-items-center justify-content-between">
                                         <span className="specialText col-xl-7 col-lg-7 col-md-8 col-sm-9 col-8 p-0 py-2">Всего на счету:</span>
-                                        <span className="specialText">$480</span>
+                                        <span className="specialText">{'$'+(billing.partnersProfit-billing.payedprofit)}</span>
                                     </div>
                                 </div>
                                 <div className="billingButton d-flex justify-content-end  align-items-end">
                                     <span onClick={() => { this.handleClose('withdrawal') }}>Вывод средств</span>
                                 </div>
                             </div>
-                            <div className="col-md-10 col-12 mt-5 p-0">
-                                <div className="billingText border-bottom d-flex align-items-center justify-content-between">
-                                    <span className="">Заработано за все время:</span>
-                                    <span>$1480</span>
-                                </div>
-                            </div>
                         </div>
-                        
+
                     </div>
                 </div>
+                {
+                    /*
                 <div className="billingBody">
                     <div className="d-flex flex-md-row flex-sm-column flex-column justify-content-between col-12 p-0">
                         <div className="d-flex flex-column">
@@ -195,11 +196,11 @@ class UserProfileBillingClass extends React.Component {
                                 <DatePicker onChange={(nul, date) => { this.setState({ tableStartDate: date }); }} floatingspanText="Дата начала" className="billingCalendar" value={this.state.tableStartDate} />
                                 <span className="align-md-self-end align-self-center mx-md-2 mx-0 mt-2">&#175;</span>
                                 <DatePicker onChange={(nul, date) => { this.setState({ tableEndDate: date }); }} floatingspanText="Дата конца" className="billingCalendar" value={this.state.tableEndDate} />
-                                
+
                             </div>
                             <div className="billingButton mx-md-0 mx-auto my-md-0 my-2" onClick={() => this.getTransactionTable()}>
-                                    <span style={{ color: "#fff" }}>Показать</span>
-                                </div>
+                                <span style={{ color: "#fff" }}>Показать</span>
+                            </div>
                         </div>
                         <div className=" col-md-4 col-12 p-0 blillingHeader d-flex align-items-end justify-content-between">
                             <div className="col-12">
@@ -218,7 +219,7 @@ class UserProfileBillingClass extends React.Component {
                             </div>
                         </div>
                     </div>
-    
+
                     <div className="billingTableBody">
                         <Table className="billingTable">
                             <TableHeader className="billingTableHeader" displaySelectAll={false} adjustForCheckbox={false}>
@@ -245,20 +246,24 @@ class UserProfileBillingClass extends React.Component {
                                 )}
                             </TableBody>
                         </Table>
-    
+
                     </div>
                 </div>
-            </React.Fragment>
+           
+
+                */
+                }
+                 </React.Fragment>
         );
     }
 }
 
-    
+
 const UserProfileBilling = connect(
     (state) => ({
         storeState: state.AppReduser,
         globalReduser: state.GlobalReduser
     }),
-    )(UserProfileBillingClass);
-    
-    export default UserProfileBilling;
+)(UserProfileBillingClass);
+
+export default UserProfileBilling;

@@ -1,23 +1,22 @@
 import React from 'react';
-
 import { connect } from 'react-redux'
-import Header from '../header/Header';
 import { setDriversRouteChange, setDriverCarDescription, setCarTypes } from '../../redusers/ActionDrivers';
-import DriverInfo from './DriverInfo.jsx';
-import requests from '../../config';
 import { setCities } from '../../redusers/Action'
+import { setLengthTime } from '../../redusers/ActionDrivers'
+import { Helmet } from 'react-helmet';
+import requests from '../../config';
+
+import Header from '../header/Header';
+import DriverInfo from './DriverInfo.jsx';
 import DatePicker from 'material-ui/DatePicker';
 import MapContainer from '../home/HomeBody/MapContainer';
-import { setLengthTime } from '../../redusers/ActionDrivers'
-// import axios from 'axios';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
-import { isMobileOnly } from 'react-device-detect';
 import CommentBlock from '../TourDescription/CommentBlock';
 import StartTravelForm from '../startTravelForm/StartTravelForm';
 import StartTravelSuccess from '../startTravelForm/StartTravelSuccess';
 import LocationSearchInput from '../home/HomeBody/Search';
 import Cookies from 'universal-cookie';
-import { Helmet } from 'react-helmet';
+
 const cookies = new Cookies();
 
 class DriverProfileClass extends React.Component {
@@ -56,32 +55,32 @@ class DriverProfileClass extends React.Component {
             promoCodIsOk: true,
             elementPrice: 0,
             comments: [],
-            time: [
-                "00:00", "00:15", "00:30", "00:45",
-                "01:00", "01:15", "01:30", "01:45",
-                "02:00", "02:15", "02:30", "02:45",
-                "03:00", "03:15", "03:30", "03:45",
-                "04:00", "04:15", "04:30", "04:45",
-                "05:00", "05:15", "05:30", "05:45",
-                "06:00", "06:15", "06:30", "06:45",
-                "07:00", "07:15", "07:30", "07:45",
-                "08:00", "08:15", "08:30", "08:45",
-                "09:00", "09:15", "09:30", "09:45",
-                "10:00", "10:15", "10:30", "10:45",
-                "11:00", "11:15", "11:30", "11:45",
-                "12:00", "12:15", "12:30", "12:45",
-                "13:00", "13:15", "13:30", "13:45",
-                "14:00", "14:15", "14:30", "14:45",
-                "15:00", "15:15", "15:30", "15:45",
-                "16:00", "16:15", "16:30", "16:45",
-                "17:00", "17:15", "17:30", "17:45",
-                "18:00", "18:15", "18:30", "18:45",
-                "19:00", "19:15", "19:30", "19:45",
-                "20:00", "20:15", "20:30", "20:45",
-                "21:00", "21:15", "21:30", "21:45",
-                "22:00", "22:15", "22:30", "22:45",
-                "23:00", "23:15", "23:30", "23:45",
-            ],
+            // time: [
+            //     "00:00", "00:15", "00:30", "00:45",
+            //     "01:00", "01:15", "01:30", "01:45",
+            //     "02:00", "02:15", "02:30", "02:45",
+            //     "03:00", "03:15", "03:30", "03:45",
+            //     "04:00", "04:15", "04:30", "04:45",
+            //     "05:00", "05:15", "05:30", "05:45",
+            //     "06:00", "06:15", "06:30", "06:45",
+            //     "07:00", "07:15", "07:30", "07:45",
+            //     "08:00", "08:15", "08:30", "08:45",
+            //     "09:00", "09:15", "09:30", "09:45",
+            //     "10:00", "10:15", "10:30", "10:45",
+            //     "11:00", "11:15", "11:30", "11:45",
+            //     "12:00", "12:15", "12:30", "12:45",
+            //     "13:00", "13:15", "13:30", "13:45",
+            //     "14:00", "14:15", "14:30", "14:45",
+            //     "15:00", "15:15", "15:30", "15:45",
+            //     "16:00", "16:15", "16:30", "16:45",
+            //     "17:00", "17:15", "17:30", "17:45",
+            //     "18:00", "18:15", "18:30", "18:45",
+            //     "19:00", "19:15", "19:30", "19:45",
+            //     "20:00", "20:15", "20:30", "20:45",
+            //     "21:00", "21:15", "21:30", "21:45",
+            //     "22:00", "22:15", "22:30", "22:45",
+            //     "23:00", "23:15", "23:30", "23:45",
+            // ],
             isLoaded: false
         }
         this.state = { ...this.state, "mapRwanda": true }
@@ -498,7 +497,7 @@ class DriverProfileClass extends React.Component {
         let defaultPrice = this.props.driversState.driverCarDescription.price * (100 - this.state.discount) / 100;
         let isCurrencyLoaded = activeCurrency && activeCurrency.symbol;
         let helmet = this.props.storeState.languageTextMain.helmets.driverProfile;
-        
+
         return (
             <React.Fragment>
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
@@ -510,19 +509,19 @@ class DriverProfileClass extends React.Component {
                         /*this.props.driversState.driverCarDescription.id*/true /*this.props.storeState.languages.length>0*/ ?
                             <div className="wrapper d-flex flex-column"/* style={{background: this.props.driversState.driverCarDescription.id ? 'transpatent' : '#fff'}}*/>
                                 <div className="drivers_top_block d-flex flex-column" style={{ visibility: this.props.driversState.driverCarDescription.id ? 'visible' : 'hidden' }}>
-                                {
-                                    this.props.driversState.driverCarDescription.id ? 
-                                    <Helmet>
-                                        <title>{helmet.basic.title}</title>
-                                        <meta name="description" content={helmet.basic.description}/>
-                                        <meta property="og:site_name" content="Tripfer" />
-                                        <meta property="og:type" content="website" />
-                                        <meta property="og:url" content={document.URL} />
-                                        <meta property="og:title" content={helmet.basic.title} />
-                                        <meta property="og:description" content={helmet.basic.description} />
-                                    </Helmet> : <React.Fragment/>
+                                    {
+                                        this.props.driversState.driverCarDescription.id ?
+                                            <Helmet>
+                                                <title>{helmet.basic.title}</title>
+                                                <meta name="description" content={helmet.basic.description} />
+                                                <meta property="og:site_name" content="Tripfer" />
+                                                <meta property="og:type" content="website" />
+                                                <meta property="og:url" content={document.URL} />
+                                                <meta property="og:title" content={helmet.basic.title} />
+                                                <meta property="og:description" content={helmet.basic.description} />
+                                            </Helmet> : <React.Fragment />
 
-                                }
+                                    }
                                     <DriverInfo element={driver} />
 
                                     <div className="drivers_route col-12 d-flex " >

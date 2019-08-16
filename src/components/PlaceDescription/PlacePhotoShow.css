@@ -1,13 +1,13 @@
-.react-images__blanket{
-    z-index: 70!important;
+.react-images__blanket {
+    z-index: 70 !important;
 }
 
-.react-images__positioner{
-    z-index: 100!important;
+.react-images__positioner {
+    z-index: 100 !important;
 }
 
-.react-images__header{
-    opacity: 1!important;
-    transform: translateY(0px)!important;
-    -webkit-transform: translateY(0px)!important;
+.react-images__header {
+    opacity: 1 !important;
+    transform: translateY(0px) !important;
+    -webkit-transform: translateY(0px) !important;
 }

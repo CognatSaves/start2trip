@@ -181,27 +181,34 @@
         height: auto;
         padding-bottom: 15px;
     }
+
     .placesList_info_position_loc .placesList_info_position_textStyle {
         max-height: 50px;
     }
+
     .placesTagList_tagLine {
         width: 100%;
     }
+
     .placesTagList_tagBlock {
         padding: 5px 17px;
     }
+
     .placesTagList_tagBlock_selected {
         background-size: 10px 10px;
         background-position: right 5px center;
     }
+
     .placesList_placeName {
         font-size: 18px;
         line-height: 20px;
         font-weight: 500;
     }
+
     .placesList_info_position_loc .placesList_info_position_textStyle {
         width: 100%;
     }
+
     .placesList_noElementsBlock span {
         height: max-content;
         width: 95%;

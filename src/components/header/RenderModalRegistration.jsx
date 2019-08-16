@@ -1,25 +1,29 @@
 import React from 'react';
+import './RenderModalRegistration.css'
+import './RenderModalCountry.css'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import './RenderModalRegistration.css'
+import { setModalRegister, setActiveLang } from '../../redusers/Action';
+import requests from '../../config.js';
+
 import emailIcon from '../media/email.svg'
 import lockIcon from '../media/lock.svg'
 import eyeIcon from '../media/eye.svg'
 import eyeOrange from '../media/eyeOrange.svg';
 import logoBlue from '../media/logo_tripfer_blue.svg'
 import logoWhite from '../media/logo_tripfer_white.svg'
-import './RenderModalCountry.css'
-import axios from 'axios';
-import requests from '../../config.js';
-//import pageTextInfo from '../../textInfo/RenderModalRegistration';
-import Cookies from 'universal-cookie';
 import backpackIcon from '../media/backpack.svg'
 import dealIcon from '../media/deal.svg'
 import wheelIcon from '../media/wheel.svg'
+
+// import axios from 'axios';
+//import pageTextInfo from '../../textInfo/RenderModalRegistration';
+// import { isMobileOnly } from 'react-device-detect'
+
+import Cookies from 'universal-cookie';
 import Checkbox from '@material-ui/core/Checkbox';
-import { isMobileOnly } from 'react-device-detect'
-import { setModalRegister, setActiveLang } from '../../redusers/Action';
 import * as EmailValidator from 'email-validator';
+
 const cookies = new Cookies();
 const windowProps = "width=420,height=400,resizable=yes,scrollbars=yes,status=yes";
 
@@ -137,7 +141,7 @@ class RenderModalRegistrationClass extends React.Component {
                     return response.json();
                 })
                 .then(function (data) {
-                    
+
                     if (data.error) {
                         console.log("bad");
                         throw data.error;
@@ -149,7 +153,7 @@ class RenderModalRegistrationClass extends React.Component {
                     }
                 })
                 .catch(function (error) {
-                    
+
                     console.log('An error occurred:', error);
                     that.state.sendResultLocal(false, { error: error });
                 });
@@ -232,7 +236,7 @@ class RenderModalRegistrationClass extends React.Component {
             password: "",
             emailValid: true,
             agreement: false,
-            checkedAgreement:true,
+            checkedAgreement: true,
         };
         let urlParams = new URLSearchParams(window.location.search);
         let token = urlParams.get('access_token');
@@ -434,7 +438,7 @@ class RenderModalRegistrationClass extends React.Component {
                                     this.setState({ emailValid: true })
                                     this.sendRegistrationRequest(this.state.sitingIn)
                                 } else {
-                                    this.setState({ emailValid: false,checkedAgreement :this.state.agreement  })
+                                    this.setState({ emailValid: false, checkedAgreement: this.state.agreement })
                                 }
                             }}>
                                 <div className="inputIcon">
@@ -451,9 +455,9 @@ class RenderModalRegistrationClass extends React.Component {
                                         required value={this.state.password} onChange={(e) => this.setState({ password: e.target.value })} />
                                     <img className="eyeIcon" src={this.state.passwordType ? eyeIcon : eyeOrange} alt="eyeIcon" width='15px' height='15px' onClick={() => this.setState({ passwordType: !this.state.passwordType })} />
                                 </div>
-                                <div className={this.state.checkedAgreement?"align-items-center agreement ":"align-items-center agreement-error"} style={{ display: !this.state.sitingIn ? 'flex' : 'none' }}>
-                                    <Checkbox id="agreement" onClick={() => { this.setState({ agreement: !this.state.agreement ,checkedAgreement :!this.state.agreement}) }} color="#fff" checked={this.state.agreement} />
-                                    <label htmlFor="agreement" onClick={() => { this.setState({ agreement: !this.state.agreement,checkedAgreement :!this.state.agreement }) }}>{textInfo.sitingInLightBackgroundText.agreementLabel}<Link to={"/terms-"+this.state.userType} target="_blank" >{textInfo.sitingInLightBackgroundText.agreementLink}</Link></label>
+                                <div className={this.state.checkedAgreement ? "align-items-center agreement " : "align-items-center agreement-error"} style={{ display: !this.state.sitingIn ? 'flex' : 'none' }}>
+                                    <Checkbox id="agreement" onClick={() => { this.setState({ agreement: !this.state.agreement, checkedAgreement: !this.state.agreement }) }} color="#fff" checked={this.state.agreement} />
+                                    <label htmlFor="agreement" onClick={() => { this.setState({ agreement: !this.state.agreement, checkedAgreement: !this.state.agreement }) }}>{textInfo.sitingInLightBackgroundText.agreementLabel}<Link to={"/terms-" + this.state.userType} target="_blank" >{textInfo.sitingInLightBackgroundText.agreementLink}</Link></label>
                                 </div>
                                 <div className="registrationAnswerText" style={{ visibility: regAnswerVisibility ? 'visible' : 'hidden', color: regAnswerColor ? 'red' : 'green' }}>{regAnswerValue}</div>
 
@@ -507,8 +511,6 @@ class RenderModalRegistrationClass extends React.Component {
                 </div>
 
 
-
-
                 <div className="registrationBody d-md-flex d-none">
                     <img className="registrationBodyLogoIcon" src={this.state.logoIconActive ? logoBlue : logoWhite} alt="logo" width="100px" height="20px" />
                     <div className="registrationBodyLanguageBlock d-flex" >
@@ -552,7 +554,7 @@ class RenderModalRegistrationClass extends React.Component {
                                 if (EmailValidator.validate(this.state.email)) {
                                     this.sendRegistrationRequest(this.state.sitingIn)
                                 } else {
-                                    this.setState({ emailValid: false ,checkedAgreement :this.state.agreement })
+                                    this.setState({ emailValid: false, checkedAgreement: this.state.agreement })
                                 }
                             }}>
                                 <div className="inputIcon">
@@ -569,9 +571,9 @@ class RenderModalRegistrationClass extends React.Component {
                                         required value={this.state.password} onChange={(e) => this.setState({ password: e.target.value })} />
                                     <img className="eyeIcon" src={this.state.passwordType ? eyeIcon : eyeOrange} alt="eyeIcon" width='15px' height='15px' onClick={() => this.setState({ passwordType: !this.state.passwordType })} />
                                 </div>
-                                <div className={this.state.checkedAgreement?"align-items-center agreement ":"align-items-center agreement-error"} style={{ display: !this.state.sitingIn ? 'flex' : 'none' }}>
-                                    <Checkbox  onClick={() => { this.setState({ agreement: !this.state.agreement ,checkedAgreement :!this.state.agreement}) }} color="#fff" checked={this.state.agreement} />
-                                    <label  onClick={() => { this.setState({ agreement: !this.state.agreement,checkedAgreement :!this.state.agreement }) }}>{textInfo.sitingInLightBackgroundText.agreementLabel}<Link to={"/terms-"+this.state.userType} target="_blank" >{textInfo.sitingInLightBackgroundText.agreementLink}</Link></label>
+                                <div className={this.state.checkedAgreement ? "align-items-center agreement " : "align-items-center agreement-error"} style={{ display: !this.state.sitingIn ? 'flex' : 'none' }}>
+                                    <Checkbox onClick={() => { this.setState({ agreement: !this.state.agreement, checkedAgreement: !this.state.agreement }) }} color="#fff" checked={this.state.agreement} />
+                                    <label onClick={() => { this.setState({ agreement: !this.state.agreement, checkedAgreement: !this.state.agreement }) }}>{textInfo.sitingInLightBackgroundText.agreementLabel}<Link to={"/terms-" + this.state.userType} target="_blank" >{textInfo.sitingInLightBackgroundText.agreementLink}</Link></label>
                                 </div>
                                 <div className="registrationAnswerText" style={{ visibility: regAnswerVisibility ? 'visible' : 'hidden', color: regAnswerColor ? 'red' : 'green' }}>{regAnswerValue}</div>
                                 <Link onClick={() => this.props.dispatch(setModalRegister(false))} className="forgotPasswordLink" style={{ display: this.state.sitingIn ? "block" : "none" }} to="/forgot-password">{textInfo.sitingInLightBackgroundText.linkText}</Link>

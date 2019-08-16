@@ -1,7 +1,11 @@
 import React from 'react';
 import './DriverProfileNavigation.css'
 import { connect } from 'react-redux';
-import Stars from '../stars/Stars'
+import { readAndCompressImage } from 'browser-image-resizer';
+import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
+import { setUser } from '../../redusers/Action';
+import requests from '../../config';
+import getUserData from './DriverProfileRequest';
 
 import calendarBG from '../media/illustrations_calendar.svg'
 import carBg from '../media/illustrations_nastroiki-01.svg'
@@ -10,14 +14,13 @@ import referralsBG from '../media/illustrations_partners.svg'
 import sittingsBG from '../media/illustrations_nastroiki-04.svg'
 import feedbackBG from '../media/illustrations_otzivi.svg'
 import preHistoryBG from '../media/illustrations_predstoishie.svg'
-import { readAndCompressImage } from 'browser-image-resizer';
-import requests from '../../config';
-import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
-import getUserData from './DriverProfileRequest';
+
+import Stars from '../stars/Stars'
 import DriverRefreshIndicator from './DriverRefreshIndicator';
-import { setUser } from '../../redusers/Action';
 import Cookies from 'universal-cookie';
+
 const cookies = new Cookies();
+
 class DriverProfileNavigationClass extends React.Component {
     constructor(props) {
         super(props);
@@ -41,7 +44,7 @@ class DriverProfileNavigationClass extends React.Component {
             isRefreshExist: false,
             isRefreshing: true,
             isGoodAnswer: true,
-            index:this.props.globalReduser.pageRender,
+            index: this.props.globalReduser.pageRender,
         };
     }
     getProfileData = (thenFunc, catchFunc) => {
@@ -104,7 +107,6 @@ class DriverProfileNavigationClass extends React.Component {
     _handleImageChange = (e) => {
         e.preventDefault();
 
-
         let file = e.target.files[0];
 
         if (file && file.type.match('image')) {
@@ -140,7 +142,6 @@ class DriverProfileNavigationClass extends React.Component {
                                 if (request.readyState === XMLHttpRequest.DONE && request.status === 0) {
                                     that.catchFunc();
                                 }
-
 
                             }
                             request.send(carForm);
@@ -199,7 +200,7 @@ class DriverProfileNavigationClass extends React.Component {
                                         <p>{textPage.totalTrips.last}</p>
                                     </div>
                                 </div>
-                                
+
                                 <div className="d-md-flex d-none align-items-center col-lg-3 col-md-4 col-6 p-0">
                                     <span>{profile.futureTrips.length}</span>
                                     <div className="d-flex flex-column ">
@@ -212,7 +213,7 @@ class DriverProfileNavigationClass extends React.Component {
                                     <span className="pl-1">{profile.futureTrips.length}</span>
                                 </div>
                                 <div className=" d-md-flex d-none align-items-center col-lg-3 col-md-4 col-6 p-0">
-                                    <span>{profile.penalty!==null ? profile.penalty : 0}</span>
+                                    <span>{profile.penalty !== null ? profile.penalty : 0}</span>
                                     <div className="d-flex flex-column">
                                         <p>{textPage.penalty.first}</p>
                                         <p>{textPage.penalty.last}</p>
@@ -220,7 +221,7 @@ class DriverProfileNavigationClass extends React.Component {
                                 </div>
                                 <div className="bodyTopDriverInfoRideMobail  d-md-none d-flex align-items-center justify-content-between col-md-3 col-sm-5 col-12 p-0">
                                     <p>{textPage.penalty.full + ':'}</p>
-                                    <span className="pl-1">{profile.penalty!==null ? profile.penalty : 0}</span>
+                                    <span className="pl-1">{profile.penalty !== null ? profile.penalty : 0}</span>
                                 </div>
                             </div>
                         </div>
@@ -232,12 +233,11 @@ class DriverProfileNavigationClass extends React.Component {
                             <span key={this.state.route[index]} className={{ [this.state.route[index]]: "navigationBodyActive", }[this.props.globalhistory.history.location.pathname] + " navigationButton mb-0 " + (this.state.route[index].length === 0 ? "blockedSpan" : "")}
                                 onClick={(event) => {
                                     if (this.state.route[index].length > 0) {
-                                        this.setState({index: index});
+                                        this.setState({ index: index });
                                         this.shiftLeft(event);
                                         this.props.globalhistory.history.push(this.state.route[index])
                                     }
                                 }}>{element}</span>
-
                         )}
                     </div>
                 </div>

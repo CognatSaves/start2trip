@@ -2,8 +2,9 @@ import React from "react";
 import './StartTravelForm.css';
 import './StartTravelSuccess.css';
 import './StartTravelBlockStyles.css';
-import successImage from '../media/success.svg'
 
+import successImage from '../media/success.svg'
+// TODO Static data
 export default class StartTravelSuccess extends React.Component {
     render() {
         return (

@@ -1,15 +1,15 @@
 import React from 'react';
 import '../Places/Places.css';
+import { connect } from 'react-redux';
+import { setPage, setMorePagesShow } from '../../redusers/ActionPlaces';
+
 import Header from '../header/Header';
 import ToursCountryInfo from './ToursCountryInfo';
 import DriversProperties from '../drivers/DriversBody/DriversProperties/DriversProperties';
 import DriversCommercial from '../drivers/DriversBody/DriversCommercial/DriversCommercial';
 import ToursList from './ToursList';
-import { connect } from 'react-redux';
-import { setPage, setMorePagesShow } from '../../redusers/ActionPlaces';
 
-
-
+// TODO dispatch old
 class ToursClass extends React.Component {
   constructor(props) {
     function maxPriceCalc(array) {
@@ -30,12 +30,12 @@ class ToursClass extends React.Component {
   componentWillMount() {
     this.props.setMaxPrice(this.state.maxPrice);
   }
-  setPageFunc=(page)=> {
+  setPageFunc = (page) => {
     if (page !== "...") {
       this.props.dispatch(setPage(page));
     }
   }
-  showMorePages=()=> {
+  showMorePages = () => {
     this.props.dispatch(setMorePagesShow());
   }
   render() {
@@ -43,7 +43,7 @@ class ToursClass extends React.Component {
       <React.Fragment>
         <div className="drivers_top_background col-12">
           <div className="wrapper d-flex flex-column">
-            <Header history={this.props.history}/>
+            <Header history={this.props.history} />
             <ToursCountryInfo />
           </div>
         </div>

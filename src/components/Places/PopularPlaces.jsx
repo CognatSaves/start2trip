@@ -2,8 +2,11 @@ import React from 'react';
 import './PopularPlaces.css';
 import { connect } from 'react-redux';
 import requests from '../../config';
-import { setSelectedDirection } from '../../redusers/ActionPlaces';
+
+// import { setSelectedDirection } from '../../redusers/ActionPlaces';
+
 import Cookies from 'universal-cookie';
+
 const cookies = new Cookies();
 
 class PopularPlacesClass extends React.Component {
@@ -14,85 +17,56 @@ class PopularPlacesClass extends React.Component {
             howMuchRender: 6,
         }
     }
-    /*
-    onDirClick=(id)=>{
-       
-        function findSelectedDirectionName(directions, id, storeState){
-            
-            for(let i=0; i<directions.length; i++){
-                if(directions[i].id===id){
+
+    directionHrefCreator = (id) => {
+        function findSelectedDirectionName(directions, id, storeState) {
+
+            for (let i = 0; i < directions.length; i++) {
+                if (directions[i].id === id) {
                     return directions[i].loc.slug;
                 }
-                
-            }
-            return false;
-        }
-        console.log('onTagClick', id);
-        
-        let selectedDirection = this.props.placesState.selectedDirection;
-        let slug = findSelectedDirectionName(this.props.placesState.directions, id,this.props.storeState);
-        if(selectedDirection!==id && slug){
-            this.props.dispatch(setSelectedDirection(id));
-            this.props.globalReduser.history.push("/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+'/places/'+slug);
-            
-        }
-        else{
-            this.props.dispatch(setSelectedDirection(''));
-            this.props.globalReduser.history.push("/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+'/places');
-        }
 
-
-    }
-    */
-    directionHrefCreator = (id)=>{
-        function findSelectedDirectionName(directions, id, storeState){
-            
-            for(let i=0; i<directions.length; i++){
-                if(directions[i].id===id){
-                    return directions[i].loc.slug;
-                }
-                
             }
             return false;
         }
         let selectedDirection = this.props.placesState.selectedDirection;
-        let slug = findSelectedDirectionName(this.props.placesState.directions, id,this.props.storeState);
-        if(selectedDirection!==id && slug){
-            return "/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+'/places-'+slug;
+        let slug = findSelectedDirectionName(this.props.placesState.directions, id, this.props.storeState);
+        if (selectedDirection !== id && slug) {
+            return "/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/places-' + slug;
         }
-        else{
-            return "/"+this.props.storeState.country+"-"+cookies.get('userLangISO',{path:"/"})+'/places';
+        else {
+            return "/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/places';
         }
     }
-    onDirClickCleared = (address) =>{
-        
+    onDirClickCleared = (address) => {
+
         this.props.globalReduser.history.push(address);
     }
     render() {
-        
-        function isDirSelected(directionId, selectedDirection){
+
+        function isDirSelected(directionId, selectedDirection) {
             /*for(let i=0; i<selectedDirections.length; i++){
                 if(selectedDirections[i]===directionId){
                     return true;
                 }
             }
             return false;*/
-            return selectedDirection===directionId;
+            return selectedDirection === directionId;
         }
 
-        
+
         let placeRender = [];
         let arrayRender = [...this.props.placesState.directions];
-        arrayRender.sort((a,b)=>{
-            if(a.zIndex!==b.zIndex){
-                return b.zIndex-a.zIndex; 
+        arrayRender.sort((a, b) => {
+            if (a.zIndex !== b.zIndex) {
+                return b.zIndex - a.zIndex;
             }
-            else{
-                return b.placesNumber-a.placesNumber;
+            else {
+                return b.placesNumber - a.placesNumber;
             }
         })
-        if(arrayRender.length>0){
-            
+        if (arrayRender.length > 0) {
+
         }
         if (arrayRender.length > this.state.howMuchRender) {
 
@@ -109,7 +83,7 @@ class PopularPlacesClass extends React.Component {
         */
         return (
             <React.Fragment>
-                <div className={placeRender.length>0 ? "popularPlacesBody pt-4" : 'd-none'} >
+                <div className={placeRender.length > 0 ? "popularPlacesBody pt-4" : 'd-none'} >
                     <div className="popularPlacesTitle">
                         <h2>{textInfo.popularPlacesTitle}</h2>
                     </div>
@@ -122,15 +96,15 @@ class PopularPlacesClass extends React.Component {
                                         return (
                                             <div className="col-md-2 col-7 d-flex flex-column align-items-center popularPlacesEl popularPlacesMore" onClick={() => { this.setState({ howMuchRender: this.state.howMuchRender + 6 }) }}>
                                                 <span>{textInfo.more}</span>
-                                                <img src={arrayRender[arrayRender.length-1].image ? requests.serverAddressImg+ arrayRender[arrayRender.length-1].image.url : ''} alt="img" />
+                                                <img src={arrayRender[arrayRender.length - 1].image ? requests.serverAddressImg + arrayRender[arrayRender.length - 1].image.url : ''} alt="img" />
                                             </div>
                                         )
                                     }
                                 }
                                 return (
-                                    <a href = {requests.frontendAddress+address}
-                                     className={"col-md-2 col-7 d-flex flex-column popularPlacesEl "+(isDirSelected(element.id, this.props.placesState.selectedDirection) ? 'popularPlacesEl_selected' : '')}
-                                     onClick={(e)=>{ e.preventDefault(); this.onDirClickCleared(address)}}>
+                                    <a href={requests.frontendAddress + address}
+                                        className={"col-md-2 col-7 d-flex flex-column popularPlacesEl " + (isDirSelected(element.id, this.props.placesState.selectedDirection) ? 'popularPlacesEl_selected' : '')}
+                                        onClick={(e) => { e.preventDefault(); this.onDirClickCleared(address) }}>
                                         <span className="popularPlacesElMes">{textInfo.cancel}</span>
                                         <div>
                                             <img src={element.image ? requests.serverAddressImg + element.image.url : ''} alt="img" />

@@ -1,11 +1,5 @@
 import React from 'react';
-import {connect} from 'react-redux';
-
-import DatePicker from 'material-ui/DatePicker';
-import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
-import DropDownMenu from 'material-ui/DropDownMenu';
-import MenuItem from 'material-ui/MenuItem';
+import { connect } from 'react-redux';
 import { isMobileOnly } from 'react-device-detect'
 import {
     Table,
@@ -16,7 +10,14 @@ import {
     TableRowColumn,
 } from 'material-ui/Table';
 
-class AgencyProfileBillingClass extends React.Component{
+import DatePicker from 'material-ui/DatePicker';
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
+import DropDownMenu from 'material-ui/DropDownMenu';
+import MenuItem from 'material-ui/MenuItem';
+
+
+class AgencyProfileBillingClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -27,6 +28,7 @@ class AgencyProfileBillingClass extends React.Component{
             typeCardArray: ["visa", "mastercard"],
             toPayPersonalAccountValue: true,
             toPayCardValue: false,
+            //TODO Static data
             bodyTable: [
                 { idTransaction: "1", paymentType: "payPal", sum: "$155", commission: "12%", paymentDate: "20.03.2019", idTrip: "5", route: "Кутаиси-Тбилиси-Гори-Мцхета", client: "Bob" },
                 { idTransaction: "1", paymentType: "payPal", sum: "$155", commission: "12%", paymentDate: "20.03.2019", idTrip: "5", route: "Кутаиси-Тбилиси-Гори-Мцхета", client: "Gibson" },
@@ -52,8 +54,6 @@ class AgencyProfileBillingClass extends React.Component{
         }
 
     };
-
-
 
     render() {
 
@@ -120,13 +120,13 @@ class AgencyProfileBillingClass extends React.Component{
                         <div className="d-flex align-items-center">
                             <input id="toPayPersonalAccount" type="radio"
                                 checked={this.state.toPayPersonalAccountValue}
-                                onClick={()=>{ this.setState({toPayPersonalAccountValue: true ,toPayCardValue: false})}} />
+                                onClick={() => { this.setState({ toPayPersonalAccountValue: true, toPayCardValue: false }) }} />
                             <label htmlFor="toPayPersonalAccount" className="col-md-6 col-sm-9">С лецевого счета</label>
                         </div>
                         <div className="d-flex align-items-center">
-                            <input id="toPayCard" type="radio" 
+                            <input id="toPayCard" type="radio"
                                 checked={this.state.toPayCardValue}
-                                onClick={()=>{this.setState({toPayPersonalAccountValue: false ,toPayCardValue: true})}} />
+                                onClick={() => { this.setState({ toPayPersonalAccountValue: false, toPayCardValue: true }) }} />
                             <label htmlFor="toPayCard" className="col-md-6 col-sm-9">с банковской карты</label>
                         </div>
                         <div className="d-flex justify-content-end mt-2">

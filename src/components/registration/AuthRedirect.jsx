@@ -1,12 +1,13 @@
 import React from 'react';
-import RenderModalRegistration from '../header/RenderModalRegistration';
+import './AuthRedirect.css';
 import { Modal, ModalBody } from 'reactstrap';
 import { connect } from 'react-redux';
-import Header from '../header/Header'
-import {Helmet} from 'react-helmet';
-
-import './AuthRedirect.css';
 import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
+import { Helmet } from 'react-helmet';
+
+import Header from '../header/Header'
+import RenderModalRegistration from '../header/RenderModalRegistration';
+
 const ModalRegistration = (props) => {
     let { modalRegistration, toggle, className, authorization } = props;
     return (
@@ -27,25 +28,25 @@ class AuthRedirectClass extends React.Component {
         };
         this.props.dispatch(setProfileData({}));
     }
-    authorization=()=> {
+    authorization = () => {
         return 0;
     }
-    toggle=()=> {//функция завершения работы
+    toggle = () => {//функция завершения работы
         //this.props.globalhistory.history.pop();
-        
-        
+
+
         let address = this.props.globalReduser.previousUrl;
         let jwt = this.props.globalReduser.readCookie('jwt');
         if (jwt && jwt !== "-") {
-            
-            if(address.length===0){
+
+            if (address.length === 0) {
                 this.props.history.push('/');
             }
-            else{
-                
+            else {
+
                 //let urlAddress = new Url(address);
                 this.props.dispatch(setUrlAddress(""));
-                
+
 
                 this.props.history.push(address);
             };
@@ -59,7 +60,7 @@ class AuthRedirectClass extends React.Component {
     }
     render() {
         let helmet = this.props.storeState.languageTextMain.helmets.authRedirect;
-    
+
         return (
             <React.Fragment>
                 <Helmet>
@@ -69,7 +70,7 @@ class AuthRedirectClass extends React.Component {
                     <meta property="og:type" content="website" />
                     <meta property="og:url" content={document.URL} />
                     <meta property="og:title" content={helmet.basic.title} />
-                    <meta property="og:description" content={helmet.basic.description} /> 
+                    <meta property="og:description" content={helmet.basic.description} />
                 </Helmet>
                 <div className="home_window" style={{ minHeight: "95vh" }}>
                     <Header history={this.props.history} />

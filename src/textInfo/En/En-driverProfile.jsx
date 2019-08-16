@@ -4,6 +4,7 @@
         createComment: {
             yourCommentPlaceholder: "Your feedback",
             createCommentString:"Leave your review",
+            createCommentLinkHome:"Go to Main page",
             infoText: 'Your review will become visible after moderation',
             nonFilledText: 'Fill in the rating and review',
             sendText: "Send",
