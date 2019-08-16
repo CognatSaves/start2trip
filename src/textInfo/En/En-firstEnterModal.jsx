@@ -1,62 +1,62 @@
 const firstEnterModal = {
-    renderContentUser: {
-        user1: {
-            textTitle: "Построй свой маршрут (ENG)",
-            textP: "Наш сервис позволяет построить маршрут с любым количеством остановок на выбранную дату.",
-        },
-        user2: {
-            textTitle: "Выбирайте и бронируйте (ENG)",
-            textP: "Выберите автомобиль с водителем исходя из Ваших критериев.",
-        },
-        user3: {
-            textTitle: "Остановки по маршруту (ENG)",
-            textP: "Вы можете сделать остановки в интересных местах для фото, видео съёмки и посещения достопримечательностей.",
-        },
-        user4: {
-            textTitle: "Оплата за поездку (ENG)",
-            textP: "Оплата производится по окончанию  поездки удобным для Вас способом. Возврат в точку отправления в этот же день - бесплатно."
-        }
-    },
-    renderContentDriver: {
-        driver1: {
-            textTitle: "Заполнение профиля (ENG)",
-            textP: "Заполните Ваш профиль и добавьте автомобили на которых собираетесь работать.",
-        },
-        driver2: {
-            textTitle: "Настройки поездок (ENG)",
-            textP: "На странице 'настройки поездок' укажите место и радиус, где Вы готовы принимать заказы.",
-        },
-        driver3: {
-            textTitle: "График работы (ENG)",
-            textP: "Заранее выбирайте выходные дни, таким образом планируйте свой график.",
-        },
-        driver4: {
-            textTitle: "Учет финансов (ENG)",
-            textP: "Получайте оплату за выполненные заказы и ведите учет на своей странице биллинга.",
-        },
-        driver5: {
-            textTitle: "Партнерская программа (ENG)",
-            textP: "Участвуйте в нашей партнерской программе, приглашайте коллег и путешественников и получайте за это стабильный доход.",
-        }
-    },
-    renderContentAgency: {
-        agency1: {
-            textTitle: "Заполнение профиля (ENG)",
-            textP: "Заполните профиль и укажите реквизиты Вашей организации.",
-        },
-        agency2: {
-            textTitle: "Постройте свой бизнес (ENG)",
-            textP: "Подключайте водителей в систему, добавляте организованные туры и зарабатывайте на этом деньги.",
-        },
-        agency3: {
-            textTitle: "Учет финансов (ENG)",
-            textP: "Ведите учет о выполненных заказах, просматривайте финансовую статистику на странице биллинга.",
-        },
-        agency4: {
-            textTitle: "Партнерская программа (ENG)",
-            textP: "Участвуйте в нашей партнерской программе, приглашайте Ваших партнеров и получайте за это стабильный доход.",
-        }
+        renderContentUser: {
+            user1: {
+                textTitle: "Build your own trip",
+                textP: "Our service allows you to build a trip with any number of stops for the selected date.",
+            },
+            user2: {
+                textTitle: "Choose and book",
+                textP: "Choose a car with a driver based on your criteria.",
+            },
+            user3: {
+                textTitle: "Trip stops",
+                textP: "You can make stops in interesting places for photos, videos and sightseeing.",
+            },
+            user4: {
+                textTitle: "Trip Fee",
+                textP: "Payment is made at the end of the trip in a convenient way for you. Return to the point of departure on the same day - for free."
+            }
+        },
+        renderContentDriver: {
+            driver1: {
+                textTitle: "Profile Fill",
+                textP: "Fill out your profile and add the cars you intend to work on.",
+            },
+            driver2: {
+                textTitle: "Travel Settings",
+                textP: "On the 'travel settings' page, specify the place and radius where you are ready to take orders.",
+            },
+            driver3: {
+                textTitle: "Schedule",
+                textP: "Choose your days off in advance, so plan your schedule.",
+            },
+            driver4: {
+                textTitle: "Accounting for Finance",
+                textP: "Get paid for completed orders and keep records on your billing page.",
+            },
+            driver5: {
+                textTitle: "Affiliate Program",
+                textP: "Participate in our affiliate program, invite colleagues and travelers and get a steady income for this.",
+            }
+        },
+        renderContentAgency: {
+            agency1: {
+                textTitle: "Profile Fill",
+                textP: "Fill out the profile and enter the details of your organization.",
+            },
+            agency2: {
+                textTitle: "Build your business",
+                textP: "Connect drivers to the system, add organized tours and earn money on it.",
+            },
+            agency3: {
+                textTitle: "Accounting for Finance",
+                textP: "Keep records of completed orders, view financial statistics on the billing page.",
+            },
+            agency4: {
+                textTitle: "Affiliate Program",
+                textP: "Participate in our affiliate program, invite your partners and get a stable income for this.",
+            }
+        }
     }
-}
-
-export default firstEnterModal;
+    
+    export default firstEnterModal;

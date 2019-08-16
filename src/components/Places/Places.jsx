@@ -156,7 +156,7 @@ class PlacesClass extends React.Component {
             this.props.placesState.directions.length>0 && selectedDirection.length>0 ?     
             <Helmet>
               <title>{helmet.direction.title[0]+findSelectedDirectionName(this.props.placesState.directions, selectedDirection)+helmet.direction.title[1]}</title>
-              <meta name="description" content={findSelectedDirectionName(this.props.placesState.directions, selectedDirection)+helmet.direction.description} />
+              <meta name="description" content={helmet.direction.description[0]+findSelectedDirectionName(this.props.placesState.directions, selectedDirection)+helmet.direction.description[1]+findSelectedDirectionName(this.props.placesState.directions, selectedDirection)+helmet.direction.description[2]} />
               <meta property="og:site_name" content="Tripfer" />
               <meta property="og:type" content="website" />
               <meta property="og:url" content={document.URL} /*тут нужно добавить direction *//>
