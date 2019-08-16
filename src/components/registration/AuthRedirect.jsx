@@ -81,7 +81,7 @@ class AuthRedirectClass extends React.Component {
 }
 const AuthRedirect = connect(
     (state) => ({
-        //storeState: state.AppReduser,
+        storeState: state.AppReduser,
         globalReduser: state.GlobalReduser,
         //globalReduser: state.GlobalReduser,*/
     }),
