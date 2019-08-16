@@ -27,10 +27,6 @@ const helmets /*helmetStorage - aka armory */ = {
         country: {//выбрана только страна
             title: ', предложения водителей',
             description: "Tripfer in drivers"
-        },
-        loading: {
-            title: 'Ожидайте загрузки предложений водителей',
-            description: "Tripfer in drivers"
         }
     },
     aboutService: {
@@ -61,11 +57,12 @@ const helmets /*helmetStorage - aka armory */ = {
         country: {//когда страна загрузилась
             title: ['Экскурсии, идеи маршрутов по ', ' | Трансферы по Вашему индивидаульному маршруту'],
             description: "Построение маршрутов на сайте tripfer.com"
-        },
+        }
+        /*,
         basic: {
             title: ['Экскурсии из ', ' | Трансферы от местных жителей к достопримечательностям'],
             description: "Tripfer, построение маршрутов"
-        }
+        }*/
     },
     homeBodyBottom: {
         basic: {
@@ -77,17 +74,9 @@ const helmets /*helmetStorage - aka armory */ = {
         object: {//когда загружено
             title: ', как добраться | Режим работы, стоимость билетов | Отзывы туристов',
             description:', описание, оценки, отзывы'
-        },
-        loading: {//когда загружается
-            title: "Ожидаем загрузку достопримечательности",
-            description: "Ожидаем загрузку достопримечательности"
-        },
+        }
     },
     places: {
-        loading: {//когда загружается - до getLocals
-            title: ": достопримечательности | Интересные места и отзывы туристов | Заказ трансферов онлайн",
-            description: "Tripfer, достопримечательности, оценки"
-        },
         direction: {//когда выбрано направление
             title: ': достопримечательности | Интересные места и отзывы туристов | Заказ трансферов онлайн',
             description: ', достопримечательности, оценки'
@@ -101,11 +90,7 @@ const helmets /*helmetStorage - aka armory */ = {
         object: {//когда загружено акк
             title: "Ваш аккаунт на Tripfer",
             description: "Ваш аккаунт на Tripfer"
-        },
-        loading: {//когда загружается акк
-            title: "Загрузка Вашего аккаунта на Tripfer",
-            description: "Загрузка Вашего аккаунта на Tripfer"
-        },
+        }
     },
     authModalCountry: {
         basic: {
@@ -141,10 +126,6 @@ const helmets /*helmetStorage - aka armory */ = {
         basic: {//загружено
             title: ' | Заказать трансфер онлайн, описание и отзывы туристов',
             description: ', описание, оценки, отзывы'
-        },
-        loading: {//Ожидаем загрузку маршрута
-            title: "Ожидаем загрузку маршрута",
-            description: "Ожидаем загрузку маршрута"
         }
     },
 }

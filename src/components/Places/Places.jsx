@@ -149,15 +149,7 @@ class PlacesClass extends React.Component {
     return (
       <React.Fragment>
         <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={/*this.state.isRefreshing*/true} isGoodAnswer={/*this.state.isGoodAnswer*/true} />
-        <Helmet>
-          <title>{helmet.loading.title}</title>
-          <meta name="description" content={helmet.loading.description} />
-          <meta property="og:site_name" content="Tripfer" />
-          <meta property="og:type" content="website" />
-          <meta property="og:url" content={document.URL} />
-          <meta property="og:title" content={helmet.loading.title} />
-          <meta property="og:description" content={helmet.loading.description} />
-        </Helmet>
+
         {
           countryName.length > 0 ?
             (

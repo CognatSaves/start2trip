@@ -90,7 +90,7 @@ class UserProfileBillingClass extends React.Component {
         // systemPayingsTotal = Math.round(systemPayingsTotal * 100);
         // systemPayingsTotal = profile.currencies[findCurrencyEl(that, profile.payments.currencyType)].symbol + systemPayingsTotal / 100;
         // let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileBilling;
-
+        let billing = this.props.globalReduser.profile.billing;
         return (
             <React.Fragment>
                 <Dialog
@@ -167,27 +167,27 @@ class UserProfileBillingClass extends React.Component {
                                     </div>
                                     <div className="specialBorder mb-2 d-flex align-items-center justify-content-between">
                                         <span className="col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0 py-2">Партнерские начисления:</span>
-                                        <span>$120</span>
+                                        <span>{'$'+billing.partnersProfit}</span>
+                                    </div>
+                                    <div className="specialBorder mb-2 d-flex align-items-center justify-content-between">
+                                        <span className="col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0 py-2">Выведено всего:</span>
+                                        <span>{'$'+billing.payedprofit}</span>
                                     </div>
                                     <div className="d-flex align-items-center justify-content-between">
                                         <span className="specialText col-xl-7 col-lg-7 col-md-8 col-sm-9 col-8 p-0 py-2">Всего на счету:</span>
-                                        <span className="specialText">$480</span>
+                                        <span className="specialText">{'$'+(billing.partnersProfit-billing.payedprofit)}</span>
                                     </div>
                                 </div>
                                 <div className="billingButton d-flex justify-content-end  align-items-end">
                                     <span onClick={() => { this.handleClose('withdrawal') }}>Вывод средств</span>
                                 </div>
                             </div>
-                            <div className="col-md-10 col-12 mt-5 p-0">
-                                <div className="billingText border-bottom d-flex align-items-center justify-content-between">
-                                    <span className="">Заработано за все время:</span>
-                                    <span>$1480</span>
-                                </div>
-                            </div>
                         </div>
 
                     </div>
                 </div>
+                {
+                    /*
                 <div className="billingBody">
                     <div className="d-flex flex-md-row flex-sm-column flex-column justify-content-between col-12 p-0">
                         <div className="d-flex flex-column">
@@ -249,7 +249,11 @@ class UserProfileBillingClass extends React.Component {
 
                     </div>
                 </div>
-            </React.Fragment>
+           
+
+                */
+                }
+                 </React.Fragment>
         );
     }
 }

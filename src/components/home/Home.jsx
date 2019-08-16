@@ -63,8 +63,13 @@ class HomeClass extends React.Component {
             <meta property="og:url" content={document.URL} />
             <meta property="og:title" content={countryName+helmet.country.title} />
             <meta property="og:description" content={helmet.country.description} /> 
-          </Helmet> :
-          <Helmet>
+          </Helmet> : <React.Fragment/>
+          
+          
+        }
+        {
+            /*
+            <Helmet>
             <title>{helmet.basic.title[0]+countryName+helmet.basic.title[1]}</title>
             <meta name="description" content={helmet.basic.description} />
             <meta property="og:site_name" content="Tripfer" />
@@ -73,8 +78,8 @@ class HomeClass extends React.Component {
             <meta property="og:title" content={helmet.basic.title} />
             <meta property="og:description" content={helmet.basic.description} /> 
           </Helmet>
-        }
-
+            */
+          }
 
         <main className="d-flex flex-column container-fluid p-0">
           {/* TODO Загрузка... */}

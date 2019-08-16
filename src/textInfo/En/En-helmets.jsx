@@ -26,10 +26,6 @@ const helmets /*helmetStorage - aka armory */ = {
         country: {//выбрана только страна
             title: ', предложения водителей(ENG)',
             description: "Tripfer in drivers(ENG)"
-        },
-        loading: {
-            title: 'Ожидайте загрузки предложений водителей(ENG)',
-            description: "Tripfer in drivers(ENG)"
         }
     },
     aboutService: {
@@ -60,11 +56,12 @@ const helmets /*helmetStorage - aka armory */ = {
         country: {//когда страна загрузилась
             title: ", построение маршрутов(ENG)",
             description: "Построение маршрутов на сайте tripfer.com(ENG)"
-        },
+        }
+        /*,
         basic: {
             title: "Tripfer, построение маршрутов(ENG)",
             description: "Tripfer, построение маршрутов(ENG)"
-        }
+        }*/
     },
     homeBodyBottom: {
         basic: {
@@ -76,17 +73,9 @@ const helmets /*helmetStorage - aka armory */ = {
         object: {//когда загружено
             title: ', описание, оценки, отзывы(ENG)',
             description:', описание, оценки, отзывы(ENG)'
-        },
-        loading: {//когда загружается
-            title: "Ожидаем загрузку достопримечательности(ENG)",
-            description: "Ожидаем загрузку достопримечательности(ENG)"
-        },
+        }
     },
     places: {
-        loading: {//когда загружается - до getLocals
-            title: "Tripfer, достопримечательности, оценки(ENG)",
-            description: "Tripfer, достопримечательности, оценки(ENG)"
-        },
         direction: {//когда выбрано направление
             title: ', достопримечательности, оценки(ENG)',
             description: ', достопримечательности, оценки(ENG)'
@@ -100,11 +89,7 @@ const helmets /*helmetStorage - aka armory */ = {
         object: {//когда загружено акк
             title: "Ваш аккаунт на Tripfer(ENG)",
             description: "Ваш аккаунт на Tripfer(ENG)"
-        },
-        loading: {//когда загружается акк
-            title: "Загрузка Вашего аккаунта на Tripfer(ENG)",
-            description: "Загрузка Вашего аккаунта на Tripfer(ENG)"
-        },
+        }
     },
     authModalCountry: {
         basic: {
@@ -140,10 +125,6 @@ const helmets /*helmetStorage - aka armory */ = {
         basic: {//загружено
             title: ', описание, оценки, отзывы(ENG)',
             description: ', описание, оценки, отзывы(ENG)'
-        },
-        loading: {//Ожидаем загрузку маршрута
-            title: "Ожидаем загрузку маршрута(ENG)",
-            description: "Ожидаем загрузку маршрута(ENG)"
         }
     },
 }
