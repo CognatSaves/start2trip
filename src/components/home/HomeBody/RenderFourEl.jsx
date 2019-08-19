@@ -20,11 +20,11 @@ class RenderFourElClass extends React.Component {
                 {this.props.tours.map((element, index) =>
                     <div className="tourCard col-xl-3 col-lg-3 col-md-6 col-sm-6 col-11 mb-4 p-0">
                         <Card className="tourBody">
-                            <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + element.link}>
+                            <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + element.link+"/"}>
                                 <CardImg top width="100%" src={element.img} alt="Card image cap" />
                             </Link>
                             <CardBody>
-                                <Link className="tourTitle" to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + element.link}>
+                                <Link className="tourTitle" to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + element.link+"/"}>
                                     <CardTitle className="tourTitle mb-0"  >{element.title}</CardTitle>
                                     <div className="mb-2">
                                         <Stars commentNumberDisplay={true} valueDisplay={false} commentNumber={element.reviews} />
@@ -33,7 +33,7 @@ class RenderFourElClass extends React.Component {
                                 <CardText className="tourText">{element.text}</CardText>
                                 <div className="d-flex  justify-content-end align-items-end col-12" style={{ padding: "0" }}>
                                     <p className="tourPrise col-9 mb-0" style={{ display: this.props.priseDisplay }}>от <span>{element.prise}</span></p>
-                                    <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + element.link} className="tourLink">Подробнее</Link>
+                                    <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + element.link+"/"} className="tourLink">Подробнее</Link>
                                 </div>
                             </CardBody>
                         </Card>

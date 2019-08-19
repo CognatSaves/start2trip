@@ -621,16 +621,16 @@ class HeaderClass extends React.Component {
     let pageTextInfo = this.props.storeState.languageTextMain.renderModalRegistration;
     let buttonMassElements = [
       {
-        to: "/routes",
+        to: "/routes/",
         value: textInfo.menuElements[0]
       },
       {
-        to: "/places",
+        to: "/places/",
         value: textInfo.menuElements[1]
       }
       /*,
       {
-        to: "/tours",
+        to: "/tours/",
         value: textInfo.menuElements[2]
       }*/
     ];
@@ -648,7 +648,7 @@ class HeaderClass extends React.Component {
 
         <ModalUserType textInfo={textInfo} isOpen={this.state.isUsertypeLooking} that={this} pageTextInfo={pageTextInfo} />
         <div style={this.state.burgerMenu ? { position: "fixed", top: "0", zIndex: "40" } : {}} className="headerMobail  d-md-none d-flex align-items-center justify-content-between">
-          <Link className="" to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes"}>
+          <Link className="" to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes/"}>
             <h3 />
           </Link>
           <div onClick={this.toggleModalCountry} style={{ visibility: this.props.storeState.countries.length > 0 ? 'visible' : 'hidden' }} className="headerGeoButton col-lg-5 col-md-4 col-6">
@@ -685,9 +685,9 @@ class HeaderClass extends React.Component {
                   </div>
                   <h4 className="col-11 pt-4 pb-2">{textInfo.burgerMenu.titlesName[1]}</h4>
                   <div className="burgerMenuBlock d-flex flex-column justify-content-center align-items-start col-11">
-                    <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes"} className="border-bottom routes" >{textInfo.burgerMenu.services[0]}</Link>
-                    <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/tours"} className="border-bottom tours" >{textInfo.burgerMenu.services[1]}</Link>
-                    <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/places"} className="places" >{textInfo.burgerMenu.services[2]}</Link>
+                    <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes/"} className="border-bottom routes" >{textInfo.burgerMenu.services[0]}</Link>
+                    <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/tours/"} className="border-bottom tours" >{textInfo.burgerMenu.services[1]}</Link>
+                    <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/places/"} className="places" >{textInfo.burgerMenu.services[2]}</Link>
                   </div>
 
                   <h4 className="col-11 pt-4 pb-2">{textInfo.burgerMenu.titlesName[2]}</h4>
@@ -707,11 +707,11 @@ class HeaderClass extends React.Component {
                   </div>
                   <h4 className="col-11 pt-4 pb-2">{textInfo.burgerMenu.titlesName[3]}</h4>
                   <div className="burgerMenuBlock d-flex flex-column justify-content-center align-items-start col-11">
-                    <Link to="/about-service" className="border-bottom logoIcon" >{textInfo.burgerMenu.usefulLinks[0]}</Link>
-                    <Link to="/affiliate-program" className="border-bottom partner" >{textInfo.burgerMenu.usefulLinks[1]}</Link>
-                    <Link to="/terms" className="border-bottom contract" >{textInfo.burgerMenu.usefulLinks[2]}</Link>
+                    <Link to="/about-service/" className="border-bottom logoIcon" >{textInfo.burgerMenu.usefulLinks[0]}</Link>
+                    <Link to="/affiliate-program/" className="border-bottom partner" >{textInfo.burgerMenu.usefulLinks[1]}</Link>
+                    <Link to="/terms/" className="border-bottom contract" >{textInfo.burgerMenu.usefulLinks[2]}</Link>
                     <Link to="" className="border-bottom questionMarkGray" >{textInfo.burgerMenu.usefulLinks[3]}</Link>
-                    <Link to="/contacts" className="phoneBook " >{textInfo.burgerMenu.usefulLinks[4]}</Link>
+                    <Link to="/contacts/" className="phoneBook " >{textInfo.burgerMenu.usefulLinks[4]}</Link>
                   </div>
                 </div>
               </div>
@@ -730,7 +730,7 @@ class HeaderClass extends React.Component {
 
           <div className='header d-xl-flex d-lg-flex d-md-flex d-sm-none d-none align-items-stretch justify-content-between'>
             <div className="d-flex align-items-center col-xl-2 col-lg-2 col-md-3 col-sm-2 col-2">
-              <Link className="col-xl-8 col-lg-9 col-md-8 col-sm-8 col-7" to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes"}>
+              <Link className="col-xl-8 col-lg-9 col-md-8 col-sm-8 col-7" to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes/"}>
                 <h3 />
               </Link>
               <div onClick={this.toggleModalCountry} style={{ visibility: this.props.storeState.countries.length > 0 ? 'visible' : 'hidden' }} className="headerGeoButton col-xl-5 col-lg-5 col-md-4 col-sm-5 col-5">

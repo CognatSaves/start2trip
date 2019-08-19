@@ -462,7 +462,7 @@ class RenderModalRegistrationClass extends React.Component {
                                 <div className="registrationAnswerText" style={{ visibility: regAnswerVisibility ? 'visible' : 'hidden', color: regAnswerColor ? 'red' : 'green' }}>{regAnswerValue}</div>
 
                                 <Link onClick={() => this.props.dispatch(setModalRegister(false))} className="forgotPasswordLink"
-                                    style={{ display: this.state.sitingIn ? "block" : "none" }} to="/forgot-password">{textInfo.sitingInLightBackgroundText.linkText}</Link>
+                                    style={{ display: this.state.sitingIn ? "block" : "none" }} to="/forgot-password/">{textInfo.sitingInLightBackgroundText.linkText}</Link>
 
                                 <div className="d-flex justify-content-center align-items-center">
                                     <div className="returnButton" style={{ display: !this.state.sitingIn ? 'block' : 'none' }} onClick={() => this.setState({ regWindowType: 0 })}>{textInfo.registrationUserType.buttonReturn}</div>
@@ -576,7 +576,7 @@ class RenderModalRegistrationClass extends React.Component {
                                     <label onClick={() => { this.setState({ agreement: !this.state.agreement, checkedAgreement: !this.state.agreement }) }}>{textInfo.sitingInLightBackgroundText.agreementLabel}<Link to={"/terms-" + this.state.userType} target="_blank" >{textInfo.sitingInLightBackgroundText.agreementLink}</Link></label>
                                 </div>
                                 <div className="registrationAnswerText" style={{ visibility: regAnswerVisibility ? 'visible' : 'hidden', color: regAnswerColor ? 'red' : 'green' }}>{regAnswerValue}</div>
-                                <Link onClick={() => this.props.dispatch(setModalRegister(false))} className="forgotPasswordLink" style={{ display: this.state.sitingIn ? "block" : "none" }} to="/forgot-password">{textInfo.sitingInLightBackgroundText.linkText}</Link>
+                                <Link onClick={() => this.props.dispatch(setModalRegister(false))} className="forgotPasswordLink" style={{ display: this.state.sitingIn ? "block" : "none" }} to="/forgot-password/">{textInfo.sitingInLightBackgroundText.linkText}</Link>
                                 <div className="d-flex justify-content-center align-items-end">
                                     <div className="returnButton pr-5" style={{ display: !this.state.sitingIn ? 'block' : 'none' }} onClick={() => this.setState({ regWindowType: 0 })}>{textInfo.registrationUserType.buttonReturn}</div>
                                     <button disabled={this.state.regProcessStatus || this.state.regAnswerStatus} type="submit" htmlFor="regForm">{this.state.sitingIn ? textInfo.sitingInLightBackgroundText.buttonText : textInfo.registrationDarkBackgroundText.buttonText}</button>
