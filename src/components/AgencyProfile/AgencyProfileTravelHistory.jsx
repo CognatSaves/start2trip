@@ -11,7 +11,6 @@ class AgencyProfileTravelHistoryClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            //TODO Static data
             isRefreshExist: false,
             isRefreshing: true,
             isGoodAnswer: true,

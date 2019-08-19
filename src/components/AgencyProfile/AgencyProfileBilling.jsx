@@ -28,7 +28,7 @@ class AgencyProfileBillingClass extends React.Component {
             typeCardArray: ["visa", "mastercard"],
             toPayPersonalAccountValue: true,
             toPayCardValue: false,
-            //TODO Static data
+            //TODO Static data - необходимо загрузить данные с сервера
             bodyTable: [
                 { idTransaction: "1", paymentType: "payPal", sum: "$155", commission: "12%", paymentDate: "20.03.2019", idTrip: "5", route: "Кутаиси-Тбилиси-Гори-Мцхета", client: "Bob" },
                 { idTransaction: "1", paymentType: "payPal", sum: "$155", commission: "12%", paymentDate: "20.03.2019", idTrip: "5", route: "Кутаиси-Тбилиси-Гори-Мцхета", client: "Gibson" },

@@ -71,7 +71,9 @@
 
 .countryData_element_text text {}
 
-.countryData_textStyle {}
+.countryData_textStyle {
+    
+}
 
 @media (max-width: 768px) {
     .placesCountryInfo_countryName {
