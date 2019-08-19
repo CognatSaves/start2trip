@@ -82,8 +82,7 @@ class HomeClass extends React.Component {
           }
 
         <main className="d-flex flex-column container-fluid p-0">
-          {/* TODO Загрузка... */}
-          <Suspense fallback={<div>Загрузка...</div>}>
+          <Suspense fallback={<div>{textInfo.loading+'...'}</div>}>
             {
               this.state.firstEnter ?
                 <FirstEnterModal whatRender="user" /> : <React.Fragment />

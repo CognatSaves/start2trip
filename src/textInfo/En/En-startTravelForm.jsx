@@ -14,7 +14,13 @@ const startTravelForm = {
         bookTour: 'Book a trip',
         uncorrectPromocode: 'Invalid promocode',
         errorFieldsMessage: 'Fill in all the fields correctly',
-        startDate: "Departure Date"
+        startDate: "Departure Date",
+
+
+        thanks: 'СПАСИБО(ENG)',
+        textLine: ['На вашу электронную почту было отправлено(ENG)',
+         'письмо для подтверждения заказа.(ENG)'],
+        successButton: 'ГОТОВО(ENG)'
         
     }
     

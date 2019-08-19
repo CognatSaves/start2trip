@@ -257,16 +257,37 @@ const driverProfileRegistration = {
 
     },
     DriverProfileTrevelHistory: {
+        tripId: 'ID поездки',
         customer: "Клиент",
         venue: "Место встречи",
         costOfTravel: "Стоимость поездки",
         comment: "Комментарий",
+        tripStart: 'Начало поездки',
+        noStart: 'Поездка не была начата',
+        tripEnd: 'Окончание поездки',
+        noEnd: 'Поездка не была закончена',
+        stateVariants: ['Закончить поездку','Начать поездку']
     },
     DriverProfileHistory: {
         upcoming: "Предстоящие",
         story: "История",
     },
     DriverProfileBilling: {
+        billingModalA:{
+            header: 'Доступно к выводу',
+            summ: 'Сумма USD',
+            cardNumber: 'Номер карты',
+            cardType: 'Тип карты',
+            cancel: 'Отмена',
+            submit: 'Вывод средств'
+        },
+        billingModalB:{
+            header: 'Сумма к оплате',
+            summ: 'Сумма USD',
+            description: 'Оплата осуществляется с помощью банковской карты. После ввода суммы и подтверждения вы будете переадресованы в специализированный сервис.',
+            cancel: 'Отмена',
+            submit: 'Оплатить'
+        },
         currentBalance: {
             currentBalanceText: 'Текущий баланс',
             personalAccount: 'Лицевой счёт',
@@ -297,13 +318,16 @@ const driverProfileRegistration = {
                 payedForPeriod: 'Всего за период'
             },
             valueTableText: [
-                'ID транзакции(ENG)',
-                'Тип оплаты(ENG)',
-                'Сумма(ENG)',
-                'Дата платежа(ENG)',
-                'ID поездки(ENG)'
+                'ID транзакции',
+                'Тип оплаты',
+                'Сумма',
+                'Дата платежа',
+                'ID поездки'
             ]
         }
+    },
+    DriverProfileRegistration:{
+        loading: 'Загрузка'
     }
 }
 

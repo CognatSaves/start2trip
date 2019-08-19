@@ -11,7 +11,7 @@ class TripConfirmationClass extends React.Component {
     constructor(props) {
         super(props);
 
-        //TODO static data
+        //TODO обработка отказа (Trello)
         console.log(this.props);
         let id = this.props.match.params.id;
         let userId = this.props.match.params.userId;
@@ -57,7 +57,7 @@ class TripConfirmationClass extends React.Component {
 
         console.log(this.state);
         let helmet = this.props.storeState.languageTextMain.helmets.tripConfirmation;
-
+        let textInfo = this.props.storeState.languageTextMain.drivers.tripConfirmation;
         return (
             <React.Fragment>
                 <Helmet>
@@ -77,14 +77,24 @@ class TripConfirmationClass extends React.Component {
                             <Header driver={true} history={this.props.history} />
                             <div className="forgotPasswordContent d-flex flex-column align-items-center col-md-8 col-12 mx-auto">
                                 <div className="d-flex flex-column justify-content-center align-items-center">
-                                    <span className="pt-2 pb-1">Ваш заказ подтверждён!</span>
-                                    <span1>{this.state.text}</span1>
+                                    <span className="pt-2 pb-1">{textInfo.good.title}</span>
+                                    {
+                                        /*
+                                        Объект this.state.text содержит информацию по поводу того, как обработался
+                                        запрос. Но выводить его на экран не нужно, надо добавить отрисовку неудачи
+                                        <span1>{this.state.text}</span1>
+                                        */
+                                    }
+                                    
                                 </div>
                                 <div className="d-flex flex-md-row flex-column justify-content-center align-items-center col-md-8 col-12">
-                                    <div className="forgotPasswordBt d-flex justify-content-center align-items-center col-md-5 col-12" onClick={() => { this.props.history.push("/") }}><span>На главную</span></div>
+                                    <div className="forgotPasswordBt d-flex justify-content-center align-items-center col-md-5 col-12"
+                                     onClick={() => { this.props.history.push("/") }}>
+                                     <span>{textInfo.good.buttonText}</span>
+                                    </div>
                                 </div>
                                 <div className="d-flex flex-column justify-content-center align-items-center col-md-5 col-12">
-                                    <p>Вы можете посмотреть информацию о поездке в Вашем личном кабинете на нашем сайте.</p>
+                                    <p>{textInfo.good.info}</p>
                                 </div>
                             </div>
                         </div>

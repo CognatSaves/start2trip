@@ -245,7 +245,7 @@ class PlacesClass extends React.Component {
           </div>
         </div>
         <div className="wrapper d-flex flex-column">
-          <div className="drivers_bottom_background d-flex flex-column" onClick={()=>{debugger; let a = this}}>
+          <div className="drivers_bottom_background d-flex flex-column" onClick={()=>{ let a = this}}>
             <div className="drivers_body d-flex">
               <div id="placesMainBlock" className="left_body_part col-12 p-0">
                 <PopularPlaces />

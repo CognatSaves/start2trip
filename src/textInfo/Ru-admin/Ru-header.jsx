@@ -30,7 +30,8 @@ const header = {
         text1:"Мы искали даже на Марсе,",
         text2:"но ничего не нашли.",
         link:"Вернуться на главную."
-    }
+    },
+    loading: 'Загрузка'
 }
 
 export default header;

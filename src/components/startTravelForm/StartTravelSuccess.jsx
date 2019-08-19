@@ -4,7 +4,6 @@ import './StartTravelSuccess.css';
 import './StartTravelBlockStyles.css';
 
 import successImage from '../media/success.svg'
-// TODO Static data
 export default class StartTravelSuccess extends React.Component {
     render() {
         return (
@@ -16,19 +15,19 @@ export default class StartTravelSuccess extends React.Component {
                             <img src={successImage} width="100%" height="100%" alt="SUCCESS"></img>
                         </div>
                         <div className="successThanks">
-                            <div className="successThanks_value">СПАСИБО</div>
+                            <div className="successThanks_value">{this.props.textInfo.thanks}</div>
                         </div>
                         <div className="success_blueLine" />
                         <div className="success_driverInfo">
                             <div className="success_driverInfo_textLine">
-                                На вашу электронную почту было отправлено
+                                {this.props.textInfo.textLine[0]}
                             </div>
                             <div className="success_driverInfo_textLine" style={{}}>
-                                письмо для подтверждения заказа.
+                                {this.props.textInfo.textLine[1]}
                             </div>
                         </div>
                         <button className="success_continueButton" onClick={() => this.props.changeSuccessVisibility('none')}>
-                            <div className="success_continueButton_value">ГОТОВО</div>
+                            <div className="success_continueButton_value">{this.props.textInfo.successButton}</div>
                         </button>
                     </div>
                 </div>

@@ -10,7 +10,6 @@ import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIn
 class DriverProfileTrevelHistoryClass extends React.Component {
     constructor(props) {
         super(props);
-        //TODO static data
         this.state={
             isRefreshExist:false,
             isRefreshing: true,
@@ -185,7 +184,7 @@ class DriverProfileTrevelHistoryClass extends React.Component {
                                 <hr/>
                             </div>
                             <div className="d-flex flex-column historyBodyElement ">
-                                <h5>ID поездки</h5>
+                                <h5>{textPage.tripId}</h5>
                                 <span>{element.id}</span>
                             </div>
                             <div className="d-flex flex-column historyBodyElement ">
@@ -211,17 +210,17 @@ class DriverProfileTrevelHistoryClass extends React.Component {
                                 this.props.isHistory ?
                                 <React.Fragment>
                                     <div className="d-flex flex-column historyBodyElement">
-                                        <h5>Начало поездки</h5>
-                                        <span>{element.startFact ? this.props.globalReduser.createDateTimeString(element.startFact) : 'Поездка не была начата'}</span>
+                                        <h5>{textPage.tripStart}</h5>
+                                        <span>{element.startFact ? this.props.globalReduser.createDateTimeString(element.startFact) : textPage.noStart}</span>
                                     </div>
                                     <div className="d-flex flex-column historyBodyElement">
-                                        <h5>Окончание поездки</h5>
-                                        <span>{element.endFact ? this.props.globalReduser.createDateTimeString(element.endFact) : 'Поездка не была закончена'}</span>
+                                        <h5>{textPage.tripEnd}</h5>
+                                        <span>{element.endFact ? this.props.globalReduser.createDateTimeString(element.endFact) : textPage.noEnd}</span>
                                     </div>
                                 </React.Fragment>
                                 :<React.Fragment>
                                     <div className="d-flex flex-column historyBodyElement">
-                                        <button onClick={()=>this.stateButtonClicked(element)}>{element.startFact ? 'Закончить поездку' : 'Начать поездку'}</button>
+                                        <button onClick={()=>this.stateButtonClicked(element)}>{element.startFact ? textPage.stateVariants[0] : textPage.stateVariants[1]}</button>
                                     </div>
                                 </React.Fragment>
                             }

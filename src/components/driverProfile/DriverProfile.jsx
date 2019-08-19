@@ -623,7 +623,8 @@ class DriverProfileClass extends React.Component {
                                 travelVisibility={this.state.travelVisibility} isoCountryMap={this.props.storeState.isoCountryMap} storeState={this.props.storeState}
                                 elementPrice={defaultPrice} activeCurrency={activeCurrency} textInfo={this.props.storeState.languageTextMain.startTravelForm} />
 
-                            <StartTravelSuccess successVisibility={this.state.successVisibility} changeSuccessVisibility={this.changeSuccessVisibility} />
+                            <StartTravelSuccess successVisibility={this.state.successVisibility} changeSuccessVisibility={this.changeSuccessVisibility}
+                             textInfo={this.props.storeState.languageTextMain.startTravelForm} />
                         </React.Fragment>
                         : <React.Fragment />
                 }

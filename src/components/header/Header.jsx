@@ -215,9 +215,8 @@ const CountrySelect = (props) => {
           </div>
           <div className="modalCountry d-flex flex-column align-items-center mb-5">
             <span className="mb-4">{textInfo.modalCountrySelect.selectCountryText}</span>
-            {/* TODO Загрузка... */}
             {renderModal ?
-              <Suspense fallback={<div>Загрузка...</div>}>
+              <Suspense fallback={<div>{textInfo.loading+'...'}</div>}>
                 <RenderModalCountry close={toggleModalCountry} />
               </Suspense>
               :
@@ -617,7 +616,7 @@ class HeaderClass extends React.Component {
     let textInfoAdmin = this.props.storeState.languageText.header;
     let isAdmin = this.props.storeState.isSecondLanguageGroupPart;
     let textInfo = isAdmin ? textInfoAdmin : textInfoMain;
-
+    debugger;
     let pageTextInfo = this.props.storeState.languageTextMain.renderModalRegistration;
     let buttonMassElements = [
       {
@@ -639,7 +638,7 @@ class HeaderClass extends React.Component {
       <React.Fragment>
 
         <ModalRegistration modalRegistration={this.props.storeState.modalRegistration} toggle={this.toggleModalRegistration} className={this.props.className} authorization={this.authorization} />
-        <CountrySelect textInfo={textInfo} modalCountry={this.state.modalCountry} toggleModalCountry={this.toggleModalCountry} className={this.props.className} />
+        <CountrySelect textInfo={textInfo} modalCountry={this.state.modalCountry} toggleModalCountry={this.toggleModalCountry} className={this.props.className}/>
         {
           this.state.isWaiting ?
             <DriverRefreshIndicator isRefreshExist={true} isRefreshing={true} isGoodAnswer={true} />

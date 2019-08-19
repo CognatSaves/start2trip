@@ -60,12 +60,11 @@ class DriverProfileRegistrationClass extends React.Component {
     let profile = this.props.globalReduser.profile;
     let userType = this.props.globalReduser.readCookie('userType');
     let that = this;
-
+    let textInfo = this.props.storeState.languageText.driverProfileRegistration.DriverProfileRegistration;
     if (this.props.globalReduser.profile.isDriver) {
       return (
         <React.Fragment>
-          {/* TODO Загрузка... */}
-          <Suspense fallback={<div>Загрузка...</div>}>
+          <Suspense fallback={<div>{textInfo.loading+'...'}</div>}>
             {
               this.state.accountEnter ?
                 <FirstEnterModal whatRender="driver" /> : <React.Fragment />
@@ -76,7 +75,7 @@ class DriverProfileRegistrationClass extends React.Component {
           <div className="registrationWrapper d-flex flex-column col-12 p-0">
             <div className="d-flex contentHeight col-12 p-0">
               <div className="d-flex flex-column justify-content-start col-12 p-0 ">
-                <Suspense fallback={<div>Загрузка...</div>}>
+                <Suspense fallback={<div>{textInfo.loading+'...'}</div>}>
                   <Route path="/account/driver/trips" component={DriverProfileHistory} />
                   <Route path="/account/driver/profile" component={DriverProfileBasicInformation} />
                   <Route path="/account/driver/cars" component={DriverProfileCar} />
