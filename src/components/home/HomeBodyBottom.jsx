@@ -165,11 +165,11 @@ class HomeBodyBottomClass extends React.Component {
           <Helmet>
             <title>{helmet.basic.title[0]+name+helmet.basic.title[1]}</title>
             <meta name="description" content={helmet.basic.description[0]+name+helmet.basic.description[1]} />
-            <meta property="og:site_name" content="Tripfer" />
+            <meta property="og:site_name" content="Tripfer.com" />
             <meta property="og:type" content="website" />
             <meta property="og:url" content={document.URL} /*тут должно быть с направлением (direction) */ />
-            <meta property="og:title" content={name+helmet.basic.title} />
-            <meta property="og:description" content={name+helmet.basic.description} /> 
+            <meta property="og:title" content={helmet.basic.title[0]+name+helmet.basic.title[1]} />
+            <meta property="og:description" content={helmet.basic.description[0]+name+helmet.basic.description[1]} /> 
           </Helmet> : <React.Fragment/>
         }
         <div className="home_block col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
