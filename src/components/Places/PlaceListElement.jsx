@@ -19,7 +19,7 @@ class PlaceListElementClass extends React.Component {
         let element = this.props.element;
         let index = this.props.index;
         return (
-            <div className={this.props.placeListElementClass ? this.props.placeListElementClass : "col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 p-2 pb-3"} >
+            <div className={this.props.placeListElementClass ? this.props.placeListElementClass : "col-lg-3 col-md-4 col-sm-6 col-12 p-2 pb-3"} >
                 <div className={"drivers_block_element d-flex p-0 flex-column"} id={index}>
                     <div className="driversBlock_carImage" style={{ background: "url(" + (element.image ? (requests.serverAddressImg + element.image) : '') + ") no-repeat", backgroundSize: "cover", width: '100%' }}>
                         <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + `/places/${element.placelocalization.slug}`} className="driversBlock_carBlackout">

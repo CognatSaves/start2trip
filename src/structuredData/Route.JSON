@@ -1,0 +1,26 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Place",
+  "url": "https://tripfer.com",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "3.5",
+    "reviewCount": "11"
+  },
+  "name":"Mtirala National Park",
+  "description":"Mtirala National Park was established in 2007 on the territory of the mountain range of the same name. The total area of its territory is 15, 7 thousand hectares. Today it is a unique nature reserve, where you can see a lot of relict subtropical vegetation. A walk along its winding paths will open all the beauty of the wild mountain nature to the tourists.",
+  "address":[
+  {
+   "@type": "PostalAddress",
+   "addressCountry":"GEO",
+   "addressRegion":["tbilisi","kakheti"]
+   } 
+  ],
+   "publicAccess": true,
+  "photo":[
+  {
+  "@type": "ImageObject",
+  "thumbnail":["https://tripfer.com/uploads/bf77b09a0d3d4564b6c7eb9eb2f4a51d.jpg","https://tripfer.com/uploads/bf77b09a0d3d456556c7eb9eb2f4a51d.jpg","https://tripfer.com/uploads/bf77b09a0d3ss564b6c7eb9eb2f4a51d.jpg","https://tripfer.com/uploads/bf77b09a0d3d4564b6c7eb9eb2f4a51d.jpg"]
+  }
+  ]
+}
