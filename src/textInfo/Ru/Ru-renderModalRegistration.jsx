@@ -75,6 +75,6 @@ const pageTextInfo = {
     ],
     registrationProcess:[
         "Запрос отправляется"
-    ]
+    ],
 }
 export default pageTextInfo;

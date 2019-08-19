@@ -28,7 +28,8 @@ const header = {
         text1: "We even searched on Mars,",
         text2: "but didn’t find anything.",
         link: "Return to Homepage"
-    }
+    },
+    loading: 'Загрузка(ENG)'
 }
 
 export default header;

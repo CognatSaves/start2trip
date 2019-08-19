@@ -256,16 +256,37 @@ const driverProfileRegistration = {
 
     },
     DriverProfileTrevelHistory: {
+        tripId: 'ID поездки(GEO)',
         customer: "კლიენტი",
         venue: "შეხვედრის ადგილი",
         costOfTravel: "მოგზაურობის ღირებულება",
         comment: "კომენტარი",
+        tripStart: 'Начало поездки(GEO)',
+        noStart: 'Поездка не была начата(GEO)',
+        tripEnd: 'Окончание поездки(GEO)',
+        noEnd: 'Поездка не была закончена(GEO)',
+        stateVariants: ['Закончить поездку(GEO)','Начать поездку(GEO)']
     },
     DriverProfileHistory: {
         upcoming: "მოსალოდნელი",
         story: "ისტორია",
     },
     DriverProfileBilling: {
+        billingModalA:{
+            header: 'Доступно к выводу(GEO)',
+            summ: 'Сумма USD(GEO)',
+            cardNumber: 'Номер карты(GEO)',
+            cardType: 'Тип карты(GEO)',
+            cancel: 'Отмена(GEO)',
+            submit: 'Вывод средств(GEO)'
+        },
+        billingModalB:{
+            header: 'Сумма к оплате(GEO)',
+            summ: 'Сумма USD(GEO)',
+            description: '(GEO)Оплата осуществляется с помощью банковской карты. После ввода суммы и подтверждения вы будете переадресованы в специализированный сервис.',
+            cancel: 'Отмена(GEO)',
+            submit: 'Оплатить(GEO)'
+        },
         currentBalance: {
             currentBalanceText: 'მიმდინარე ბალანსი',
             personalAccount: 'პირადი ანგარიში',
@@ -303,7 +324,11 @@ const driverProfileRegistration = {
                 'ID მოგზაურობები'
             ]
         }
+    },
+    DriverProfileRegistration:{
+        loading: 'Загрузка(GEO)'
     }
+
 }
 
 export default driverProfileRegistration

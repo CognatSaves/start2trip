@@ -320,8 +320,7 @@ ReactDOM.render(
     <BrowserRouter >
       <React.Fragment>
         <MuiThemeProvider muiTheme={muiTheme}>
-          {/* TODO Загрузка... */}
-          <Suspense fallback={<div>Загрузка...</div>}>
+          <Suspense fallback={<div>{store.getState().AppReduser.languageTextMain.home.loading+"..."}</div>}>
             <Switch>
               <Route path={"/" + config.routeMap + "/routes/:slug/"} component={RouteDescription} />
               <Route path={"/" + config.routeMap + "/routes-:direction/"} component={Home} />
@@ -361,8 +360,6 @@ ReactDOM.render(
                 :
                 <Route path="*" component={pageNotFound} status={404} />
               }
-
-
 
             </Switch>
           </Suspense>

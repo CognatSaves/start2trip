@@ -72,9 +72,19 @@
 .countryData_element_text text {}
 
 .countryData_textStyle {
-    
+    text-align: center;
+    width: 100%;
+    font-family: "Roboto"
 }
 
+.countryData_smallText{
+    font-weight: 300;
+    font-size: 12px;
+}
+.countryData_bigText{
+    font-weight: 400;
+    font-size: 14px;
+}
 @media (max-width: 768px) {
     .placesCountryInfo_countryName {
         font-size: 27px;

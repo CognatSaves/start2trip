@@ -6,8 +6,6 @@ import territoryIcon from '../media/georgia_Монтажная область 1.
 import peopleIcon from '../media/people_Монтажная область 1.svg';
 import capitalIcon from '../media/building_Монтажная область 1.svg';
 
-// TODO style inline
-
 class PlacesCountryInfoClass extends React.Component {
   render() {
     function findFillingText(that, textInfo) {
@@ -65,10 +63,10 @@ class PlacesCountryInfoClass extends React.Component {
                     <img src={territoryIcon} width="100%" height="15%" alt=" " />
                   </div>
                   <div className="countryData_element_text">
-                    <text style={{ textAlign: "center", width: "100%", fontFamily: "Roboto", }}>
-                      <text style={{ fontWeight: "300", fontSize: "12px" }}>{textInfo.placesCountryInfo.territory} </text>
+                    <text className="countryData_textStyle">
+                      <text className="countryData_smallText">{textInfo.placesCountryInfo.territory} </text>
                       <br />
-                      <text style={{ fontWeight: "400", fontSize: "14px" }}>{this.props.placesState.country.local ? this.props.placesState.country.local.propTerritory : ''}</text>
+                      <text className="countryData_bigText">{this.props.placesState.country.local ? this.props.placesState.country.local.propTerritory : ''}</text>
                     </text>
 
                   </div>
@@ -78,10 +76,10 @@ class PlacesCountryInfoClass extends React.Component {
                     <img src={peopleIcon} width="100%" height="15%" alt=" " />
                   </div>
                   <div className="countryData_element_text">
-                    <text style={{ textAlign: "center", width: "100%", fontFamily: "Roboto", }}>
-                      <text style={{ fontWeight: "300", fontSize: "12px" }}>{textInfo.placesCountryInfo.population} </text>
+                    <text className="countryData_textStyle">
+                      <text className="countryData_smallText">{textInfo.placesCountryInfo.population} </text>
                       <br />
-                      <text style={{ fontWeight: "400", fontSize: "14px" }}>{(this.props.placesState.country.propPopulation ? this.props.placesState.country.propPopulation + " чел." : '')}</text>
+                      <text className="countryData_bigText">{(this.props.placesState.country.propPopulation ? this.props.placesState.country.propPopulation + " чел." : '')}</text>
                     </text>
                   </div>
                 </div>
@@ -90,10 +88,10 @@ class PlacesCountryInfoClass extends React.Component {
                     <img src={capitalIcon} width="100%" height="15%" alt=" " />
                   </div>
                   <div className="countryData_element_text">
-                    <text style={{ textAlign: "center", width: "100%", fontFamily: "Roboto", }}>
-                      <text style={{ fontWeight: "300", fontSize: "12px" }}>{textInfo.placesCountryInfo.capital} </text>
+                    <text className="countryData_textStyle">
+                      <text className="countryData_smallText">{textInfo.placesCountryInfo.capital} </text>
                       <br />
-                      <text style={{ fontWeight: "400", fontSize: "14px" }}>{this.props.placesState.country.local ? this.props.placesState.country.local.propCapital : ''}</text>
+                      <text className="countryData_bigText">{this.props.placesState.country.local ? this.props.placesState.country.local.propCapital : ''}</text>
                     </text>
                   </div>
                 </div>

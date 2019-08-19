@@ -121,7 +121,7 @@ class DriverProfileBillingClass extends React.Component {
                     return response.json();
                 })
                 .then(function (data) {
-                    debugger;
+                    
                     if (data.error) {
                         console.log("bad");
                         throw data.error;
@@ -199,12 +199,12 @@ class DriverProfileBillingClass extends React.Component {
                     onRequestClose={() => { this.handleClose('withdrawal') }}
                 >
                     <div className="billingModalHeder">
-                        <span>Доступно к выводу:{accountTotal}$</span>
+                        <span>{textPage.billingModalA.header+": "+accountTotal+"$"}</span>
                     </div>
                     <form action="" className="billingModalContent">
                         <div className="d-flex align-items-center mt-1">
                             <TextField
-                                label={"Сумма USD"}
+                                label={textPage.billingModalA.summ}
                                 value={this.state.summ}
                                 onChange={(e) => this.setState({ summ: e.target.value })}
                                 className="textField validate w-100"
@@ -216,7 +216,7 @@ class DriverProfileBillingClass extends React.Component {
                         </div>
                         <div className="d-flex align-items-center mt-1">
                             <TextField
-                                label={"Номер карты"}
+                                label={textPage.billingModalA.cardNumber}
                                 value={this.state.cardNumber}
                                 onChange={(e) => this.setState({ cardNumber: e.target.value })}
                                 className="textField validate w-100"
@@ -236,7 +236,8 @@ class DriverProfileBillingClass extends React.Component {
                             autoWidth={false}
                             selectedMenuItemStyle={{ color: "#f60" }}
                         >
-                            <MenuItem value="Тип карты" disabled={true} primaryText="Тип карты" />
+                            <MenuItem value={textPage.billingModalA.cardType} disabled={true}
+                             primaryText={textPage.billingModalA.cardType} />
                             {this.state.typeCardArray.map((element, index) =>
                                 <MenuItem value={element} primaryText={element} />
                             )}
@@ -244,11 +245,11 @@ class DriverProfileBillingClass extends React.Component {
 
                         <div className="billingModalFooter d-flex justify-content-end mt-2">
                             <FlatButton
-                                label="Отмена"
+                                label={textPage.billingModalA.cancel}
                                 primary={true}
                                 onClick={() => { this.handleClose('withdrawal') }}
                             />
-                            <button className="billingBtSubmit" type="submit">Вывод средств</button>
+                            <button className="billingBtSubmit" type="submit">{textPage.billingModalA.submit}</button>
                         </div>
 
                     </form>
@@ -261,12 +262,12 @@ class DriverProfileBillingClass extends React.Component {
                     onRequestClose={() => { this.handleClose('toPay') }}
                 >
                     <div className="billingModalHeder">
-                        <span>Сумма к оплате:{systemPayingsTotal}$</span>
+                        <span>{textPage.billingModalB.header+': '+systemPayingsTotal+'$'}</span>
                     </div>
                     <form onSubmit={this.formSubmit} className="billingModalContent">
                         <div className="d-flex align-items-center mt-1">
                             <TextField
-                                label={"Сумма USD"}
+                                label={textPage.billingModalB.summ}
                                 value={this.state.paymentValue}
                                 onChange={(e) => this.changePaymentValue(e.target.value)}
                                 className="textField validate w-100"
@@ -278,8 +279,7 @@ class DriverProfileBillingClass extends React.Component {
                                 required value={this.state.paymentValue} onChange={(e) => this.changePaymentValue(e.target.value)} /> */}
                         </div>
                         <div className="billingModalContentText d-flex align-items-center mt-1">
-                            {/* TODO static data */}
-                            Оплата осуществляется с помощью банковской карты. После ввода суммы и подтверждения вы будете переадресованы в специализированный сервис.
+                            {textPage.billingModalB.description}
                         </div>
                         {
                             /*
@@ -300,11 +300,11 @@ class DriverProfileBillingClass extends React.Component {
 
                         <div className="billingModalFooter d-flex justify-content-end mt-2">
                             <FlatButton
-                                label="Отмена"
+                                label={textPage.billingModalB.cancel}
                                 primary={true}
                                 onClick={() => { this.handleClose('toPay') }}
                             />
-                            <button className="billingBtSubmit" type="submit">Оплатить</button>
+                            <button className="billingBtSubmit" type="submit">{textPage.billingModalB.submit}</button>
                         </div>
 
                     </form>
@@ -389,9 +389,11 @@ class DriverProfileBillingClass extends React.Component {
                             <div className=" billingText d-flex flex-md-row flex-sm-column flex-column align-items-center mt-3">
                                 <span className="pr-2">{textPage.accountOperations.forPeriod}</span>
                                 <div className="d-flex flex-wrap">
-                                    <DatePicker onChange={(nul, date) => { this.setState({ tableStartDate: date }); }} floatingspanText="Дата начала" className="billingCalendar" value={this.state.tableStartDate} />
+                                    <DatePicker onChange={(nul, date) => { this.setState({ tableStartDate: this.props.globalReduser.convertDateToUTC(date) }); }}
+                                    floatingspanText="Дата начала" className="billingCalendar" value={this.state.tableStartDate} />
                                     <span className="align-md-self-end align-self-center mx-md-2 mx-0 mt-2">&#175;</span>
-                                    <DatePicker onChange={(nul, date) => { this.setState({ tableEndDate: date }); }} floatingspanText="Дата конца" className="billingCalendar" value={this.state.tableEndDate} />
+                                    <DatePicker onChange={(nul, date) => { this.setState({ tableEndDate: this.props.globalReduser.convertDateToUTC(date) }); }}
+                                    floatingspanText="Дата конца" className="billingCalendar" value={this.state.tableEndDate} />
 
                                 </div>
                                 <div className="billingButton mx-md-0 mx-auto my-md-0 my-2" onClick={() => this.getTransactionTable()}>

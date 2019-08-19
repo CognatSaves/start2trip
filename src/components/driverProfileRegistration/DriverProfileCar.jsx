@@ -445,7 +445,6 @@ class DriverProfileCarClass extends React.Component {
         console.log('state', this.state);
         //console.log();
         console.log('props', this.props);
-        // TODO выдаёт значения строго на русском - впоследствие будет переделана
         let carTypes = findCarTypeNames(cars, this.props.globalReduser.profile.carTypes, this.props.storeState);
 
         let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileCar;
