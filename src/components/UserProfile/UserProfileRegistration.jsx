@@ -22,6 +22,7 @@ import Header from '../header/Header'
 import UserProfileNavigation from './UserProfileNavigation'
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 import Cookies from 'universal-cookie';
+import { changeLanguagePart } from '../../redusers/Action';
 
 const cookies = new Cookies();
 
@@ -40,8 +41,11 @@ class UserProfileRegistrationClass extends React.Component {
     this.state = {
       accountEnter: accountEnterCookie ? false : true
     }
+    props.dispatch(changeLanguagePart(false, true)); //эта ересь сообщает шапке, что мы в админке за водителя/агенство, т.е. нужна 2 партия языков
   }
-
+  componentWillUnmount() {
+    this.props.dispatch(changeLanguagePart(false, false))//эта ересь сообщает шапке, что мы валим из админки водителя/агенства, т.е. нужна стандартная партия языков
+  }
 
   render() {
     console.log('UserProfileRegistration render');

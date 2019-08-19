@@ -47,10 +47,10 @@ class AgencyProfileClass extends React.Component {
         this.state = {
             accountEnter: accountEnterCookie ? false : true
         }
-        props.dispatch(changeLanguagePart(true)); //эта ересь сообщает шапке, что мы в админке за водителя/агенство, т.е. нужна 2 партия языков
+        props.dispatch(changeLanguagePart(true, true)); //эта ересь сообщает шапке, что мы в админке за водителя/агенство, т.е. нужна 2 партия языков
     }
     componentWillUnmount() {
-        this.props.dispatch(changeLanguagePart(false))//эта ересь сообщает шапке, что мы валим из админки водителя/агенства, т.е. нужна стандартная партия языков
+        this.props.dispatch(changeLanguagePart(false, false))//эта ересь сообщает шапке, что мы валим из админки водителя/агенства, т.е. нужна стандартная партия языков
     }
     render() {
         //console.log('Здесь работает AgencyProfile!');

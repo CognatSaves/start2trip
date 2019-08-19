@@ -350,7 +350,7 @@ class HeaderClass extends React.Component {
     }
   }
 
-  setLocals = (type, index) => {
+  setLocals = (type, index, isAdmin) => {
 
     let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
     switch (type) {
@@ -375,7 +375,10 @@ class HeaderClass extends React.Component {
               let namePage = that.props.globalhistory.history.location.pathname.split("/");
               namePage = namePage.splice(2)
               namePage = namePage.join('/')
-              that.props.history.push("/" + that.props.storeState.country + "-" + that.props.storeState.languages[index].isoAutocomplete + "/" + (namePage === "" ? "routes/" : namePage))
+              if(!isAdmin){
+                that.props.history.push("/" + that.props.storeState.country + "-" + that.props.storeState.languages[index].isoAutocomplete + "/" + (namePage === "" ? "routes/" : namePage))
+              }
+              
             }
           });
         }
@@ -784,7 +787,7 @@ class HeaderClass extends React.Component {
                       <DropdownMenu className="dropdownMenu">
                         {
                           languages.map((element, index) =>
-                            <DropdownItem className="dropdownMenu" onClick={() => { this.setLocals('userLang', index) }}>
+                            <DropdownItem className="dropdownMenu" onClick={() => { this.setLocals('userLang', index, this.props.storeState.isAdminLanguageType) }}>
                               <img src={requests.serverAddressImg + element.icon.url} height="15px" width="15px" alt="RU" />{element.ISO}
                             </DropdownItem>
                           )

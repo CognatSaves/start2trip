@@ -72,7 +72,7 @@ const initialState = {
     activeLanguageNumberAdmin: 0,
 
     isSecondLanguageGroupPart: false,
-
+    isAdminLanguageType: false,
 
     currencies: [],
     countries: [],
@@ -121,6 +121,7 @@ export const AppReduser = (state = initialState, action) => {
             {
                 let newState = {...state };
                 newState.isSecondLanguageGroupPart = action.isSecondLanguageGroupPart;
+                newState.isAdminLanguageType = action.isAdminLanguageType;
                 return newState;
             }
         case SET_MODAL_REGISTER:
