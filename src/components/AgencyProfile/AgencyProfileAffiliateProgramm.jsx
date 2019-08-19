@@ -20,7 +20,6 @@ import RenderShareLink from '../driverProfileRegistration/RenderShareLink';
 class AgencyProfileAffiliateProgrammClass extends React.Component {
     constructor(props) {
         super(props);
-        // TODO static data
         this.state = {
             iconsArray: [messengerIcon, whatsappIcon, viberIcon, telegramIcon, messengerIcon, whatsappIcon, viberIcon, telegramIcon, messengerIcon, whatsappIcon, viberIcon, telegramIcon],
             howMuchRender: 4,
@@ -43,12 +42,13 @@ class AgencyProfileAffiliateProgrammClass extends React.Component {
         }
         var allPayments = paymentsCalculation(this.props.globalReduser.profile.partners ? this.props.globalReduser.profile.partners : []);
         let partners = this.props.globalReduser.profile.partners ? this.props.globalReduser.profile.partners : [];
+        let textInfo = this.props.storeState.languageText.agencyProfile.agencyProfileAffiliateProgramm;
         return (
             <div className="affiliateProgramBody">
                 <div className="d-flex flex-column ">
                     <div className="d-flex flex-column align-items-center">
-                        <h3>Партнерская программа</h3>
-                        <p className="col-xl-8 col-lg-8 col-md-9 col-sm-10 col-10">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae impedit odio aspernatur veniam obcaecati veritatis fugit id voluptate excepturi nam aliquam architecto quam laboriosam suscipit deserunt neque, ab dolorem alias?</p>
+                        <h3>{textInfo.affiliateProgramsTitle}</h3>
+                        <p className="col-xl-8 col-lg-8 col-md-9 col-sm-10 col-10">{textInfo.affiliateProgramsDescription}</p>
                     </div>
                     <div className="affiliateProgramButton d-flex flex-sm-row flex-column justify-content-between align-items-center">
                         {/* <div>
@@ -70,8 +70,8 @@ class AgencyProfileAffiliateProgrammClass extends React.Component {
                         </div>   */}
                         <div className="d-flex flex-lg-row flex-column align-items-center col-md-8 col-12">
                             {/* <div>{textPage.affiliateLinks.title}</div> */}
-                            <RenderShareLink classNameDiv={"col-lg-6 col-12"} idInput={"partnerRegistrationLink"} valueInput={requests.frontendAddress + '/register/' + this.props.globalReduser.profile._id} iconsArray={this.state.iconsArray} textTitle={"Ссылка на регистрацию"} buttonCopyText={"Копировать"} />
-                            <RenderShareLink classNameDiv={"col-lg-6 col-12"} idInput={"partnerMainPageLink"} valueInput={requests.frontendAddress + '/start/' + this.props.globalReduser.profile._id} iconsArray={this.state.iconsArray} textTitle={"Ссылка на главную"} buttonCopyText={"Копировать"} />
+                            <RenderShareLink classNameDiv={"col-lg-6 col-12"} idInput={"partnerRegistrationLink"} valueInput={requests.frontendAddress + '/register/' + this.props.globalReduser.profile._id} iconsArray={this.state.iconsArray} textTitle={textInfo.affiliateLinks.registrationLink} buttonCopyText={textInfo.affiliateLinks.spanLink} />
+                            <RenderShareLink classNameDiv={"col-lg-6 col-12"} idInput={"partnerMainPageLink"} valueInput={requests.frontendAddress + '/start/' + this.props.globalReduser.profile._id} iconsArray={this.state.iconsArray} textTitle={textInfo.affiliateLinks.linkToHomePage}  buttonCopyText={textInfo.affiliateLinks.spanLink} />
                         </div>
                         <div className="d-flex flex-sm-row flex-column">
                             {
@@ -79,7 +79,7 @@ class AgencyProfileAffiliateProgrammClass extends React.Component {
                                     <span>Партнерские ссылки</span>
                                     <span>Пригласить друга</span>
                                 */
-                                <span>Промо материалы</span>
+                                <span>{textInfo.promotionalMaterials}</span>
                             }
 
                         </div>
@@ -89,28 +89,28 @@ class AgencyProfileAffiliateProgrammClass extends React.Component {
                     <div className="affiliateProgramContent col-12">
                         <div className="affiliateProgramTitle d-flex">
                             <i className="questionicon"></i>
-                            <span>Начисления никогда не заканчиваются. Чем больше у вас рефералов, и чем лучше они работают - тем больше вы получаете каждый день</span>
+                            <span>{textInfo.questionicon}</span>
                         </div>
                         <div className="affiliateProgramAllEl d-flex flex-sm-row flex-column justify-content-around">
                             <div className="col-sm-4 col-12 ">
                                 <div className="affilitaProgramEl d-flex flex-column align-items-center justify-content-center">
                                     <i className="peopleicon"></i>
                                     <span>{this.props.globalReduser.profile.partners ? this.props.globalReduser.profile.partners.length : 0}</span>
-                                    <span>Всего рефералов</span>
+                                    <span>{textInfo.peopleicon}</span>
                                 </div>
                             </div>
                             <div className="col-sm-4 col-12">
                                 <div className="affilitaProgramEl d-flex flex-column align-items-center justify-content-center">
                                     <i className="percenticon"></i>
                                     <span>14%</span>
-                                    <span>С каждой оплаты</span>
+                                    <span>{textInfo.percenticon}</span>
                                 </div>
                             </div>
                             <div className="col-sm-4 col-12 ">
                                 <div className="affilitaProgramEl d-flex flex-column align-items-center justify-content-center">
                                     <i className="currencyicon"></i>
                                     <span>{allPayments + '$'}</span>
-                                    <span>Заработанно Всего</span>
+                                    <span>{textInfo.currencyicon}</span>
                                 </div>
                             </div>
                         </div>
@@ -122,10 +122,10 @@ class AgencyProfileAffiliateProgrammClass extends React.Component {
                                 displaySelectAll={false}
                                 adjustForCheckbox={false}>
                                 <TableRow >
-                                    <TableHeaderColumn>EMAIL</TableHeaderColumn>
-                                    <TableHeaderColumn>Дата регистрации</TableHeaderColumn>
-                                    <TableHeaderColumn>Тип пользователя</TableHeaderColumn>
-                                    <TableHeaderColumn>Начисления</TableHeaderColumn>
+                                    <TableHeaderColumn>{textInfo.affiliateProgramTableHeader[0]}</TableHeaderColumn>
+                                    <TableHeaderColumn>{textInfo.affiliateProgramTableHeader[1]}</TableHeaderColumn>
+                                    <TableHeaderColumn>{textInfo.affiliateProgramTableHeader[2]}</TableHeaderColumn>
+                                    <TableHeaderColumn>{textInfo.affiliateProgramTableHeader[3]}</TableHeaderColumn>
                                 </TableRow>
                             </TableHeader>
                             <TableBody

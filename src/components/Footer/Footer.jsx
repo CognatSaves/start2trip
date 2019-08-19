@@ -8,7 +8,10 @@ import facebookIcon from "../media/facebook-letter-logo.svg"
 import instagramIcon from "../media/instagram.svg"
 import logoTripfer from "../media/logo_tripfer_white.svg"
 import upArrowIcon from "../media/up-arrow.svg"
-
+import ecommpay_logo from "../media/ecommpay-logo.svg"
+import logo_square from "../media/logo-square.svg"
+import mastercard from "../media/mastercard.svg"
+import visa from "../media/visa.svg"
 
 import MobileFilter from '../drivers/DriversBody/DriversProperties/MobileFilter/MobileFilter'
 import Cookies from 'universal-cookie';
@@ -66,16 +69,27 @@ class FooterClass extends React.Component {
           <div className="footerButtonUp" onClick={() => { window.scroll({ top: 0, left: 0, behavior: 'smooth' }) }}><img src={upArrowIcon} width="20px" height="20px" alt="upArrowIcon" /></div>
           <div className="footer_block d-flex  justify-content-between align-items-center col-12 p-0">
             <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes"} className="col-md-1 col-2 p-0 "><img src={logoTripfer} width="110px" height="18px" alt="logoWhiteIcon" /></Link>
-            <div className="footerButtons d-flex justify-content-between col-xl-7 col-lg-7 col-md-9 col-sm-12 col-12">
+            <div className="footerButtons d-flex justify-content-between col-md-8 col-sm-12 col-12">
               <Link to="/about-service" className="footerButtons_button">{textInfo.footerButtons[0]}</Link>
               <Link to="/affiliate-program" className="footerButtons_button">{textInfo.footerButtons[1]}</Link>
               <Link to="/terms" className="footerButtons_button">{textInfo.footerButtons[2]}</Link>
               <Link to="" className="footerButtons_button">{textInfo.footerButtons[3]}</Link>
               <Link to="/contacts" className="footerButtons_button">{textInfo.footerButtons[4]}</Link>
-              <div className="footerButtonsIcon d-flex">
-                <img src={facebookIcon} width="16px" height="16px" alt="facebookIcon" />
-                <img src={instagramIcon} width="17px" height="17px" alt="instagramIcon" />
+              <div className="d-flex">
+                <div className="d-flex flex-column justify-content-center">
+                <i style={{background:"url("+ecommpay_logo+")no-repeat", backgroundSize:"100% 100%", width:"70px", height:"24px"}} />
+                <i style={{background:"url("+mastercard+")no-repeat", backgroundSize:"100% 100%", width:"70px", height:"25px"}} />
+                </div>
+                <div className="d-flex flex-column justify-content-center">
+                <i style={{background:"url("+logo_square+")no-repeat", backgroundSize:"100% 100%", width:"70px", height:"21px"}} />
+                <i style={{background:"url("+visa+")no-repeat", backgroundSize:"100% 100%", width:"60px", height:"24px"}} />
+                </div>
+                <div className="footerButtonsIcon d-flex align-items-center">
+                <i style={{background:"url("+facebookIcon+")no-repeat", backgroundSize:"100% 100%", width:"30px", height:"20px"}} />
+                <i style={{background:"url("+instagramIcon+")no-repeat", backgroundSize:"100% 100%", width:"28px", height:"20px"}} />
               </div>
+              </div>
+              
             </div>
           </div>
         </div>

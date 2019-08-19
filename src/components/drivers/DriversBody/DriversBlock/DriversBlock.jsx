@@ -210,7 +210,7 @@ class DriversBlockClass extends React.Component {
 
             let linkAddress = "/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + `/driverProfile/${element.id}-${element.carId}-${this.state.cities}?date=` + this.state.date;
             return (
-              <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 p-2 py-1">
+              <div className="col-lg-3 col-md-4 col-sm-6 col-12 p-2 pb-3">
                 <div className="driversBlock_driverCard d-flex flex-column ">
                   <div className="driversBlock_carImage" style={{ background: "url(" + requests.serverAddressImg + element.carImage + ") no-repeat", backgroundSize: "cover" }}>
                     <Link to={linkAddress} className="driversBlock_carBlackout">

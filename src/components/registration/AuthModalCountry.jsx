@@ -60,9 +60,8 @@ class AuthModalCountryClass extends React.Component {
         let helmet = this.props.storeState.languageTextMain.helmets.authModalCountry;
         if (/prerendercloud/.test(window.navigator.userAgent)) {
             console.log("Chrome headless detected");
-        } else {
             renderModal = false;
-        }
+        } 
         return (
             <React.Fragment>
                 <div className="home_window" style={{ minHeight: "95vh" }}>

@@ -4,7 +4,7 @@ html {
 
 .footer {
     position: relative;
-    height: 50px;
+    height: 60px;
     bottom: 0px;
     background-color: #304269;
 }
@@ -22,6 +22,7 @@ html {
     font-family: "Roboto";
     font-weight: 400;
     font-size: 14px;
+    line-height: 50px;
     cursor: pointer;
 }
 
@@ -30,8 +31,8 @@ html {
     text-decoration: none;
 }
 
-.footerButtonsIcon img {
-    margin-left: 10px;
+.footerButtonsIcon i {
+    /* margin-left: 10px; */
     cursor: pointer;
 }
 

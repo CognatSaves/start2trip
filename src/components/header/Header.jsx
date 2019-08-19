@@ -203,9 +203,8 @@ const CountrySelect = (props) => {
   let renderModal = true;
   if (/prerendercloud/.test(window.navigator.userAgent)) {
     console.log("Chrome headless detected");
-  } else {
     renderModal = false;
-  }
+  } 
   return (
     <Modal isOpen={modalCountry} toggle={toggleModalCountry} className={className}>
       <ModalBody>
@@ -628,11 +627,12 @@ class HeaderClass extends React.Component {
       {
         to: "/places",
         value: textInfo.menuElements[1]
-      },
+      }
+      /*,
       {
         to: "/tours",
         value: textInfo.menuElements[2]
-      }
+      }*/
     ];
     // let flagMenu = false;
     return (
