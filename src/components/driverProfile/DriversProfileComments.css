@@ -186,7 +186,7 @@ a.createComment_Link:hover {
 
 .valueBlock_commentary {
     width: 100%;
-    max-height: 80px;
+    /*max-height: 80px;*/
     overflow: hidden;
     text-overflow: ellipsis;
     font-weight: 400;

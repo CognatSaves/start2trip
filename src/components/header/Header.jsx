@@ -609,6 +609,7 @@ class HeaderClass extends React.Component {
     console.log('Header render', this.props, window, document);
     //console.log(this.state);
     //console.log(this.props);
+    
     let languages = this.props.storeState.languages;
     let currencies = this.props.storeState.currencies;
     let adminLanguages = this.props.storeState.adminLanguages;
@@ -616,7 +617,6 @@ class HeaderClass extends React.Component {
     let textInfoAdmin = this.props.storeState.languageText.header;
     let isAdmin = this.props.storeState.isSecondLanguageGroupPart;
     let textInfo = isAdmin ? textInfoAdmin : textInfoMain;
-    debugger;
     let pageTextInfo = this.props.storeState.languageTextMain.renderModalRegistration;
     let buttonMassElements = [
       {

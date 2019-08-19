@@ -84,7 +84,7 @@ const Content = (that, flagAllOk, carCapacityArray, activeCurrency, textInfo, ch
                             />
                         </div>
                         {/* <div className="col-sm-6 col-12 order-6">
-                            <DatePicker disabled={true} onChange={(nul, date) => { that.setState({ date: date }); document.querySelector(".route_dateCalendarModal").classList.remove("driver_route-error") }}
+                            <DatePicker disabled={true} onChange={(nul, date) => { that.setState({ date: внимание - тут надо редусер this.props.globalReduser.convertDateToUTC(date) }); document.querySelector(".route_dateCalendarModal").classList.remove("driver_route-error") }}
                                 shouldDisableDate={(day) => { let a = day }} defaultDate={that.state.date} minDate={new Date()} disableYearSelection={true}
                                 floatingLabelText={textInfo.startDate + '*'} className="route_dateCalendarModal" />
                         </div> */}

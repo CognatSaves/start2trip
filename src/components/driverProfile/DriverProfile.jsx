@@ -575,7 +575,7 @@ class DriverProfileClass extends React.Component {
                                                                     }
                                                                 }
                                                                 return flag
-                                                            }} hintText={textInfo.startDate} minDate={new Date()} onChange={(e, date) => { this.setState({ date: date }); }} className="routeDescrDate" />
+                                                            }} hintText={textInfo.startDate} minDate={new Date()} onChange={(e, date) => { this.setState({ date: this.props.globalReduser.convertDateToUTC(date) }); }} className="routeDescrDate" />
                                                         </div>
                                                     </div>
                                                     {

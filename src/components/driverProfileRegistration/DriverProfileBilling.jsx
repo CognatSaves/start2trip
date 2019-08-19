@@ -389,9 +389,11 @@ class DriverProfileBillingClass extends React.Component {
                             <div className=" billingText d-flex flex-md-row flex-sm-column flex-column align-items-center mt-3">
                                 <span className="pr-2">{textPage.accountOperations.forPeriod}</span>
                                 <div className="d-flex flex-wrap">
-                                    <DatePicker onChange={(nul, date) => { this.setState({ tableStartDate: date }); }} floatingspanText="Дата начала" className="billingCalendar" value={this.state.tableStartDate} />
+                                    <DatePicker onChange={(nul, date) => { this.setState({ tableStartDate: this.props.globalReduser.convertDateToUTC(date) }); }}
+                                    floatingspanText="Дата начала" className="billingCalendar" value={this.state.tableStartDate} />
                                     <span className="align-md-self-end align-self-center mx-md-2 mx-0 mt-2">&#175;</span>
-                                    <DatePicker onChange={(nul, date) => { this.setState({ tableEndDate: date }); }} floatingspanText="Дата конца" className="billingCalendar" value={this.state.tableEndDate} />
+                                    <DatePicker onChange={(nul, date) => { this.setState({ tableEndDate: this.props.globalReduser.convertDateToUTC(date) }); }}
+                                    floatingspanText="Дата конца" className="billingCalendar" value={this.state.tableEndDate} />
 
                                 </div>
                                 <div className="billingButton mx-md-0 mx-auto my-md-0 my-2" onClick={() => this.getTransactionTable()}>

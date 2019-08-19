@@ -216,7 +216,10 @@ class RouteMenuClass extends React.Component {
 
 
   chooseDate = (value) => {
-    let resultString = value.toISOString();
+    
+    debugger;
+    let resultString = this.props.globalhistory.convertDateToUTC(value).toUTCString();
+    
     this.props.dispatch(set_state(this.props.storeState.cities, resultString))
     this.setState({
       date: resultString,
@@ -510,7 +513,9 @@ class RouteMenuClass extends React.Component {
 
           <div className="routemenu_setDate">
             <div className="col-sm-6 col-12 p-0 pr-1">
-              <DatePicker defaultDate={this.state.date} hintText={textInfo.datePickerText} minDate={new Date()} onChange={(e, date) => { this.chooseDate(date); let datePicker = document.querySelector(".routemenu_date"); datePicker.classList.remove("routemenu_date-Check") }} className="routemenu_date" />
+              <DatePicker defaultDate={this.state.date} hintText={textInfo.datePickerText} minDate={new Date()}
+               onChange={(e, date) => {  /*UTC conv inside chooseDate */ this.chooseDate(date); let datePicker = document.querySelector(".routemenu_date");
+               datePicker.classList.remove("routemenu_date-Check") }} className="routemenu_date" />
             </div>
 
             {this.props.showBtPrice ?
