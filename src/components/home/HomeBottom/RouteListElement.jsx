@@ -43,7 +43,7 @@ class RouteListElementClass extends React.Component {
         let element = this.props.element;
         let index = this.props.index;
         let linkString = "/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) +
-            `/routes/${element.placelocalization.slug}`;
+            `/routes/${element.placelocalization.slug}/`;
         return (
             <div className={this.props.routeListElementClass ? this.props.routeListElementClass : "col-lg-3 col-md-4 col-sm-6 col-12 p-2 pb-3 "}>
                 <div className={"drivers_block_element d-flex p-0 flex-column"} id={index}>

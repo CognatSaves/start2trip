@@ -23,7 +23,7 @@ class pageNotFoundClass extends React.Component {
                     <span style={isMobileOnly ? { paddingTop: "12%" } : { paddingTop: "8%" }}>{textInfoMain.pageNotFound.title}</span>
                     <div className="d-flex flex-column justify-content-center align-items-center">
                         <span>{textInfoMain.pageNotFound.text1}{isMobileOnly ? <br /> : <React.Fragment />}{textInfoMain.pageNotFound.text2}</span>
-                        <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes"}>{textInfoMain.pageNotFound.link}</Link>
+                        <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes/"}>{textInfoMain.pageNotFound.link}</Link>
                     </div>
 
                 </div>

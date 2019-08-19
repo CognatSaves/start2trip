@@ -31,7 +31,7 @@ class RouteTravelBlockClass extends React.Component {
         let country = routeDate.country;
         let langISO = routeDate.langISO;
         if (additionalParams && additionalParams.noDate) {
-            this.props.globalhistory.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + `/drivers/${newStringCities}`);
+            this.props.globalhistory.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + `/drivers/${newStringCities}/`);
         }
         else {
             if (this.state.date !== '') {

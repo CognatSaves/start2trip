@@ -86,7 +86,7 @@ class RouteDescriptionClass extends React.Component {
                         selectedLanguage: this.props.storeState.activeLanguageNumber,
 
                     });
-                    this.props.globalReduser.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/routes/' + slugArray[i].slug);
+                    this.props.globalReduser.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/routes/' + slugArray[i].slug+'/');
                 }
             }
             //надо что-то сделать, если не нашли          
@@ -142,7 +142,7 @@ class RouteDescriptionClass extends React.Component {
                         <Helmet>
                             <title>{this.state.newRoute.local.name + helmet.basic.title}</title>
                             <meta name="description" content={this.state.newRoute.local.name + helmet.basic.description} />
-                            <meta property="og:site_name" content="Tripfer" />
+                            <meta property="og:site_name" content="Tripfer.com" />
                             <meta property="og:type" content="website" />
                             <meta property="og:url" content={document.URL} /*тут нужна подгрузка корректного слага */ />
                             <meta property="og:title" content={this.state.newRoute.local.name + helmet.basic.title} />

@@ -196,7 +196,7 @@ class DriverProfileClass extends React.Component {
     }
     goToDrivers = () => {
         this.props.dispatch(setDriversRouteChange(true));
-        this.props.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/drivers');
+        this.props.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/drivers/');
     }
     changePanelVariant = (value) => {
         this.setState({

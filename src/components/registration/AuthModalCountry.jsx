@@ -48,7 +48,7 @@ class AuthModalCountryClass extends React.Component {
         }
         else {
             console.log('Ошибка! JWT не установлен!');
-            this.props.history.push('/login');
+            this.props.history.push('/login/');
         }
     }
     render() {
@@ -61,7 +61,7 @@ class AuthModalCountryClass extends React.Component {
         if (/prerendercloud/.test(window.navigator.userAgent)) {
             console.log("Chrome headless detected");
             renderModal = false;
-        } 
+        }
         return (
             <React.Fragment>
                 <div className="home_window" style={{ minHeight: "95vh" }}>

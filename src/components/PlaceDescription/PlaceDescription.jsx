@@ -149,14 +149,14 @@ class PlaceDescriptionClass extends React.Component {
                     this.setState({
                         selectedLanguage: this.props.storeState.activeLanguageNumber
                     });
-                    this.props.globalReduser.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/places/' + slugArray[number].slug);
+                    this.props.globalReduser.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/places/' + slugArray[number].slug+'/');
                     break;
                 }
             }
             if(number===slugArray.length){
                 //происходит, если прошли по всему массиву slug и не нашли нужный, т.е., скорее всего, он был написан вручную
                 //в таком случае выходим на уровень выше, сделать ничего нельзя
-                this.props.globalReduser.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/places');
+                this.props.globalReduser.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/places/');
             }
        
         }
@@ -198,7 +198,7 @@ class PlaceDescriptionClass extends React.Component {
                 .catch(error => {
 
                     console.log('get wasted answer');
-                    that.props.globalReduser.history.push('/404');
+                    that.props.globalReduser.history.push('/404/');
                 });
 
 
@@ -221,7 +221,7 @@ class PlaceDescriptionClass extends React.Component {
                         <Helmet>
                             <title>{this.state.newPlace.local.name + helmet.object.title}</title>
                             <meta name="description" content={this.state.newPlace.local.name + helmet.object.description} />
-                            <meta property="og:site_name" content="Tripfer" />
+                            <meta property="og:site_name" content="Tripfer.com" />
                             <meta property="og:type" content="website" />
                             <meta property="og:url" content={document.URL} /*Здесь нужно нормальный slug подключить */ />
                             <meta property="og:title" content={this.state.newPlace.local.name + helmet.object.title} />

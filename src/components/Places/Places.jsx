@@ -94,7 +94,7 @@ class PlacesClass extends React.Component {
               }
               else {
                 //если не нашли - пускаем ещё раз крутилку - если не нашли, сервер не нашёл направление-> вернул всё
-                that.props.globalReduser.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/places');
+                that.props.globalReduser.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/places/');
               }
             }
             else {
@@ -173,10 +173,10 @@ class PlacesClass extends React.Component {
                 <Helmet>
                   <title>{helmet.direction.title[0] + findSelectedDirectionName(this.props.placesState.directions, selectedDirection) + helmet.direction.title[1]}</title>
                   <meta name="description" content={findSelectedDirectionName(this.props.placesState.directions, selectedDirection) + helmet.direction.description} />
-                  <meta property="og:site_name" content="Tripfer" />
+                  <meta property="og:site_name" content="Tripfer.com" />
                   <meta property="og:type" content="website" />
                   <meta property="og:url" content={document.URL} /*тут нужно добавить direction */ />
-                  <meta property="og:title" content={findSelectedDirectionName(this.props.placesState.directions, selectedDirection) + helmet.direction.title} />
+                  <meta property="og:title" content={helmet.direction.title[0] + findSelectedDirectionName(this.props.placesState.directions, selectedDirection) + helmet.direction.title[1]} />
                   <meta property="og:description" content={findSelectedDirectionName(this.props.placesState.directions, selectedDirection) + helmet.direction.description} />
                   
                   <script type="application/ld+json">
@@ -205,11 +205,11 @@ class PlacesClass extends React.Component {
                 <Helmet>
                   <title>{helmet.country.title[0] + countryName + helmet.country.title[1]}</title>
                   <meta name="description" content={helmet.country.description[0] + countryName + helmet.country.description[1] + countryName + helmet.country.description[2]} />
-                  <meta property="og:site_name" content="Tripfer" />
+                  <meta property="og:site_name" content="Tripfer.com" />
                   <meta property="og:type" content="website" />
                   <meta property="og:url" content={document.URL} />
-                  <meta property="og:title" content={countryName + helmet.country.title} />
-                  <meta property="og:description" content={countryName + helmet.country.description} />
+                  <meta property="og:title" content={helmet.country.title[0] + countryName + helmet.country.title[1]} />
+                  <meta property="og:description" content={helmet.country.description[0] + countryName + helmet.country.description[1] + countryName + helmet.country.description[2]} />
                   <script type="application/ld+json">
                     {`
                       {
