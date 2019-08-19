@@ -58,11 +58,11 @@ class HomeClass extends React.Component {
           <Helmet>
             <title>{helmet.country.title[0]+countryName+helmet.country.title[1]}</title>
             <meta name="description" content={helmet.country.description[0]+countryName+helmet.country.description[1]} />
-            <meta property="og:site_name" content="Tripfer" />
+            <meta property="og:site_name" content="Tripfer.com" />
             <meta property="og:type" content="website" />
             <meta property="og:url" content={document.URL} />
-            <meta property="og:title" content={countryName+helmet.country.title} />
-            <meta property="og:description" content={helmet.country.description} /> 
+            <meta property="og:title" content={helmet.country.title[0]+countryName+helmet.country.title[1]} />
+            <meta property="og:description" content={helmet.country.description[0]+countryName+helmet.country.description[1]} /> 
           </Helmet> : <React.Fragment/>
           
           

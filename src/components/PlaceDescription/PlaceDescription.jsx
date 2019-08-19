@@ -214,7 +214,7 @@ class PlaceDescriptionClass extends React.Component {
                         <Helmet>
                             <title>{this.state.newPlace.local.name + helmet.object.title}</title>
                             <meta name="description" content={this.state.newPlace.local.name + helmet.object.description} />
-                            <meta property="og:site_name" content="Tripfer" />
+                            <meta property="og:site_name" content="Tripfer.com" />
                             <meta property="og:type" content="website" />
                             <meta property="og:url" content={document.URL} /*Здесь нужно нормальный slug подключить */ />
                             <meta property="og:title" content={this.state.newPlace.local.name + helmet.object.title} />
