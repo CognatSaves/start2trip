@@ -153,12 +153,12 @@ class PlacesClass extends React.Component {
       for(let i =0; i<this.props.placesState.directions.length; i++){
         directions.push(this.props.placesState.directions[i].loc.slug)
       }
-      countryISO = this.state.country;
+      countryISO = JSON.stringify(this.state.country);
     }
     if(this.props.placesState.directions.length > 0 && selectedDirection.length > 0){
-      directionName = findSelectedDirectionName(this.props.placesState.directions, selectedDirection);
+      directionName = JSON.stringify(findSelectedDirectionName(this.props.placesState.directions, selectedDirection));
     }
-    
+    directions = JSON.stringify(directions)
      
     return (
       <React.Fragment>
