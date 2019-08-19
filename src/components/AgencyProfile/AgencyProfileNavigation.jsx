@@ -25,8 +25,8 @@ class AgencyProfileNavigationClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            //TODO Static data
-            navigationText: ["Мои поездки", "Профиль", "Водители", "Туры", "Отзывы", "Настройки", "Биллинг", "Партнерская программа"],
+            navigationText: ["Мои поездки", "Профиль", "Водители", "Туры", "Отзывы", "Настройки",
+             "Биллинг", "Партнерская программа"],//используется для размерности, блоки - из переводов
             //profile: this.props.globalReduser.profile,
             route: [
                 "/account/agency/trips",
@@ -158,7 +158,7 @@ class AgencyProfileNavigationClass extends React.Component {
         console.log(this.props);
         console.log(this.state);
         let profile = this.props.globalReduser.profile;
-
+        let textInfo = this.props.AppReduser.languageText.agencyProfile.agencyProfileNavigation;
         return (
             <React.Fragment>
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
@@ -176,7 +176,7 @@ class AgencyProfileNavigationClass extends React.Component {
                 }[this.props.globalhistory.history.location.pathname]}>
                     <div className="basicInformationBodyTop d-flex align-items-center ">
                         <div className="basicInformationBodyTopImgHover">
-                            <label className="basicInformationBodyTopImg" htmlFor="addFile">Обновить фотографию</label>
+                            <label className="basicInformationBodyTopImg" htmlFor="addFile">{textInfo.updatePhoto}</label>
                             <img src={this.props.AppReduser.avatarUrl} alt="imgPerson" />
                             <input type="file" id="addFile" style={{ display: "none" }} onChange={this._handleImageChange} />
                         </div>
@@ -184,7 +184,7 @@ class AgencyProfileNavigationClass extends React.Component {
                             <div className="bodyTopDriverInfoName d-flex flex-column align-items-start" >
                                 <p className="mb-0 mr-2">{profile.organizationName.length !== 0 ? profile.organizationName : profile.email}</p>
                                 <div style={{ display: profile.comments.length > 0 ? 'block' : 'none' }}>
-                                    <Stars value={profile.rating} valueDisplay={true} commentNumberDisplay={true} commentNumber={profile.comments.length + " отзывов"} />
+                                    <Stars value={profile.rating} valueDisplay={true} commentNumberDisplay={true} commentNumber={profile.comments.length + " "+textInfo.starsReviews} />
                                 </div>
                             </div>
                             <div className="bodyTopDriverInfoPlace">
@@ -194,23 +194,23 @@ class AgencyProfileNavigationClass extends React.Component {
                                 <div className="d-xl-flex d-lg-flex d-md-flex d-sm-none d-none align-items-center col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 p-0">
                                     <span>{profile.futureTrips.length + profile.historyTrips.length}</span>
                                     <div className="d-flex flex-column">
-                                        <p>ВСЕГО </p>
-                                        <p>ПОЕЗДОК</p>
+                                        <p>{textInfo.totalTrips.first}</p>
+                                        <p>{textInfo.totalTrips.last}</p>
                                     </div>
                                 </div>
                                 <div className="bodyTopDriverInfoRideMobail d-xl-none d-lg-none d-md-none d-sm-flex d-flex align-items-center col-xl-3 col-lg-3 col-md-3 col-sm-5 col-9 p-0">
-                                    <p>ВСЕГО ПОЕЗДОК:</p>
+                                    <p>{textInfo.totalTrips.full+':'}</p>
                                     <span className="pl-1">{profile.futureTrips.length + profile.historyTrips.length}</span>
                                 </div>
                                 <div className="d-xl-flex d-lg-flex d-md-flex d-sm-none d-none align-items-center col-xl-2 col-lg-2 col-md-2 col-sm-6 col-6 p-0">
                                     <span>{profile.agencyWorkers.length}</span>
                                     <div className="d-flex flex-column ">
-                                        <p>ВСЕГО</p>
-                                        <p>ВОДИТЕЛЕЙ</p>
+                                        <p>{textInfo.totalDrivers.first}</p>
+                                        <p>{textInfo.totalDrivers.last}</p>
                                     </div>
                                 </div>
                                 <div className="bodyTopDriverInfoRideMobail d-xl-none d-lg-none d-md-none d-sm-flex d-flex align-items-center col-xl-3 col-lg-3 col-md-3 col-sm-5 col-12 p-0">
-                                    <p>ВСЕГО ВОДИТЕЛЕЙ:</p>
+                                    <p>{textInfo.totalDrivers.full+':'}</p>
                                     <span className="pl-1">{profile.agencyWorkers.length}</span>
                                 </div>
                             </div>
@@ -226,7 +226,7 @@ class AgencyProfileNavigationClass extends React.Component {
                                         this.shiftLeft(event);
                                         this.props.globalhistory.history.push(this.state.route[index])
                                     }
-                                }}>{element}</span>
+                                }}>{textInfo.navigationText[index]}</span>
                         )}
                     </div>
                 </div>

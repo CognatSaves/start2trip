@@ -17,6 +17,7 @@ import FooterPage from './En/En-FooterPage'
 import firstEnterModal from './En/En-firstEnterModal'
 import headerAdmin from './En-admin/En-header';
 import helmets from './En/En-helmets';
+
 export default {
     driverProfile: driverProfile,
     //routeDescription: routeDescription,
@@ -36,5 +37,6 @@ export default {
     termsDriver:termsDriver,
     footerPage:FooterPage,
     firstEnterModal:firstEnterModal,
-    helmets:helmets
+    helmets:helmets,
+    
 }

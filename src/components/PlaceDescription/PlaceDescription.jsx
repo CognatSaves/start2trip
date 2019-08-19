@@ -143,15 +143,22 @@ class PlaceDescriptionClass extends React.Component {
         if (this.props.storeState.languages.length > 0 && this.state.newPlace.local && this.state.selectedLanguage !== this.props.storeState.activeLanguageNumber) {
 
             let slugArray = this.state.newPlace.local.slugArray;
-            for (let i = 0; i < slugArray.length; i++) {
-                if (this.props.storeState.languages[this.props.storeState.activeLanguageNumber].id === slugArray[i].language) {
+            let number = 0;
+            for (; number < slugArray.length; number++) {
+                if (this.props.storeState.languages[this.props.storeState.activeLanguageNumber].id === slugArray[number].language) {
                     this.setState({
                         selectedLanguage: this.props.storeState.activeLanguageNumber
                     });
-                    this.props.globalReduser.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/places/' + slugArray[i].slug);
+                    this.props.globalReduser.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/places/' + slugArray[number].slug);
+                    break;
                 }
             }
-            // TODO надо что-то сделать, если не нашли          
+            if(number===slugArray.length){
+                //происходит, если прошли по всему массиву slug и не нашли нужный, т.е., скорее всего, он был написан вручную
+                //в таком случае выходим на уровень выше, сделать ничего нельзя
+                this.props.globalReduser.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/places');
+            }
+       
         }
 
         if (this.state.couldSendRequest && (!this.state.newPlace.local || this.state.slug !== slug) && this.props.storeState.languages.length > 0) {

@@ -53,12 +53,12 @@ class AgencyProfileClass extends React.Component {
         this.props.dispatch(changeLanguagePart(false))//эта ересь сообщает шапке, что мы валим из админки водителя/агенства, т.е. нужна стандартная партия языков
     }
     render() {
-        console.log('Здесь работает AgencyProfile!');
+        //console.log('Здесь работает AgencyProfile!');
+        let textInfo = this.props.storeState.languageText.agencyProfile.agencyProfile;
         if (this.props.globalReduser.profile.isAgency) {
             return (
                 <React.Fragment>
-                    {/* TODO Загрузка... */}
-                    <Suspense fallback={<div>Загрузка...</div>}>
+                    <Suspense fallback={<div>{textInfo.loading+'...'}</div>}>
                         {
                             this.state.accountEnter ?
                                 <FirstEnterModal whatRender="agency" /> : <React.Fragment />
@@ -69,7 +69,7 @@ class AgencyProfileClass extends React.Component {
                     <div className="registrationWrapper d-flex flex-column col-12 p-0">
                         <div className="d-flex contentHeight col-12 p-0">
                             <div className="d-flex flex-column justify-content-start col-12 p-0">
-                                <Suspense fallback={<div>Загрузка...</div>}>
+                                <Suspense fallback={<div>{textInfo.loading+'...'}</div>}>
                                     <Route path="/account/agency/profile" component={AgencyProfileBasicInformation} />
                                     <Route path="/account/agency/referrals" component={AgencyProfileAffiliateProgramm} />
                                     <Route path="/account/agency/trips" component={AgencyProfileHistory} />

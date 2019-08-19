@@ -189,7 +189,7 @@ const driverProfileRegistration = {
         questionicon: "Начисления никогда не заканчиваются. Чем больше у вас рефералов, и чем лучше они работают - тем больше вы получаете каждый день",
         peopleicon: "Всего рефералов",
         percenticon: "С каждой оплаты",
-        currencyicon: "Заработанно Всего",
+        currencyicon: "Заработано Всего",
         affiliateProgramTableHeader: ["EMAIL", "Дата регистрации", "Источник регистрации", "Начисления"]
     },
     DriverProfileTripSettingsTour: {

@@ -24,8 +24,9 @@ class AgencyProfileDriversClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            //TODO Static data
-            headerTable: ["Водитель", "Автомобили", "Число поездок", "Рейтинг", "Штрафные баллы", "Действия"],
+            headerTable: ["Водитель", "Автомобили", "Число поездок",
+             "Рейтинг", "Штрафные баллы", "Действия"],//этот блок будет использоваться
+             // для размера, сами значения будут браться из переводов
             headerWidth: ["30%", "16%", "12%", "12%", "12%", "18%"],
             isRefreshExist: false,
             isRefreshing: true,
@@ -133,33 +134,27 @@ class AgencyProfileDriversClass extends React.Component {
         }
     }
     render() {
+        let textInfo = this.props.storeState.languageText.agencyProfile.agencyProfileDrivers;
         return (
             <div className="billingBody">
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
 
                 <div className="basicInformationBodyBottomHeader d-xl-block d-lg-block d-md-block d-sm-none d-none">
-                    <p>Подключённые водители</p>
+                    <p>{textInfo.driversText}</p>
                 </div>
                 <div className="d-flex flex-lg-row flex-column col-12">
-                    <RenderShareLink classNameDiv={"col-lg-5 col-12 affiliateProgramButton mx-0"} idInput={"partnerMainPageLink"} valueInput={requests.frontendAddress + '/login?agency=' + this.props.globalReduser.profile._id} iconsArray={this.state.iconsArray} textTitle={"Ваша ссылка на регистрацию нового водителя в автопарк"} buttonCopyText={"Копировать"} />
+                    <RenderShareLink classNameDiv={"col-lg-5 col-12 affiliateProgramButton mx-0"}
+                    idInput={"partnerMainPageLink"} valueInput={requests.frontendAddress + '/login?agency=' + this.props.globalReduser.profile._id}
+                    iconsArray={this.state.iconsArray}
+                    textTitle={textInfo.linkTitle}
+                    buttonCopyText={textInfo.linkButton} />
                 </div>
-
-
-                {/* <p>Ваша ссылка на регистрацию нового водителя в автопарк</p>
-                <div className="affiliateProgramButton d-flex flex-sm-row flex-column justify-content-between align-items-center">
-                    <div>
-                        <div className="d-flex flex-row">
-                            <input id="registerDriverInput" placeholder="Регистрация людей в автопарке" style={{width: '400px'}} value={requests.frontendAddress+'/login?agency='+this.props.globalReduser.profile._id}/>
-                            <div onClick = {()=>this.copyValue("registerDriverInput")} style={{background: 'url('+copy+') no-repeat center'}} className="copyElement"/>
-                        </div>
-                    </div>
-                </div> */}
                 <div className="billingTableBody">
                     <Table className="billingTable">
                         <TableHeader className="billingTableHeader" displaySelectAll={false} adjustForCheckbox={false}>
                             <TableRow>
                                 {this.state.headerTable.map((element, index) =>
-                                    <TableHeaderColumn style={{ width: this.state.headerWidth[index] }}>{element}</TableHeaderColumn>
+                                    <TableHeaderColumn style={{ width: this.state.headerWidth[index] }}>{textInfo.headerTable[index]}</TableHeaderColumn>
                                 )}
                             </TableRow>
                         </TableHeader>

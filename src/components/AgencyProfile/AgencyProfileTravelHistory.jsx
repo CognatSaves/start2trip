@@ -11,7 +11,6 @@ class AgencyProfileTravelHistoryClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            //TODO Static data
             isRefreshExist: false,
             isRefreshing: true,
             isGoodAnswer: true,
@@ -157,17 +156,9 @@ class AgencyProfileTravelHistoryClass extends React.Component {
             routeString += ' (' + length + ', ' + time + ")";
             return routeString;
         }
-        /*
-        function createDateTimeString(start){
-            let date = new Date(start);
-            let month = date.getUTCMonth(); let day = date.getUTCDate(); let hours = date.getUTCHours(); let minutes = date.getMinutes();
-            let res = date.getUTCFullYear()+"-"+(month>=10 ? month : '0'+month)+"-"+(day>=10 ? day : '0'+day)+'; '+
-            (hours>=10 ? hours : '0'+hours)+":"+(minutes>=10 ? minutes : '0'+minutes);
-            return res;
-        }
-        */
-        let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileTrevelHistory;
 
+        let textInfo = this.props.storeState.languageText.agencyProfile.agencyProfileTrevelHistory;
+        
         let that = this;
         return (
             <div className="d-flex flex-wrap justify-content-center">
@@ -185,16 +176,16 @@ class AgencyProfileTravelHistoryClass extends React.Component {
                                 <hr />
                             </div>
                             <div className="d-flex flex-column historyBodyElement ">
-                                <h5>ID поездки</h5>
+                                <h5>{textInfo.tripId}</h5>
                                 <span>{element.id}</span>
                             </div>
                             <div className="d-flex flex-column historyBodyElement ">
-                                <h5>Водитель и автомобиль</h5>
+                                <h5>{textInfo.drivercar}</h5>
                                 <div className="historyBodyElementDriver d-flex align-items-center">
                                     <img src={requests.serverAddressImg + element.carrier.image} alt={''} />
                                     <div className="d-flex flex-column ml-1">
                                         <span>{element.carrier.firstName}</span>
-                                        <Stars value={element.carrier.rating} commentNumber={element.carrier.comments + " отзыва"} valueDisplay={true} commentNumberDisplay={true} />
+                                        <Stars value={element.carrier.rating} commentNumber={element.carrier.comments + " "+textInfo.comments} valueDisplay={true} commentNumberDisplay={true} />
                                     </div>
 
                                 </div>
@@ -220,7 +211,7 @@ class AgencyProfileTravelHistoryClass extends React.Component {
 
                             </div>
                             <div className="d-flex flex-column historyBodyElement ">
-                                <h5>{textPage.customer}</h5>
+                                <h5>{textInfo.client}</h5>
                                 <span>{element.client.firstName}</span>
                                 <span>{element.client.phone}</span>
                                 <span>{element.client.email}</span>
@@ -241,19 +232,19 @@ class AgencyProfileTravelHistoryClass extends React.Component {
                             }
 
                             <div className="d-flex flex-column historyBodyElement">
-                                <h5>{textPage.costOfTravel}</h5>
+                                <h5>{textInfo.costOfTravel}</h5>
                                 <span>{this.props.globalReduser.profile.currencies ? this.props.globalReduser.profile.currencies[findCurrencyEl(that, element.currencyType)].symbol + element.price : ''}</span>
                             </div>
                             {
                                 this.props.isHistory ?
                                     <React.Fragment>
                                         <div className="d-flex flex-column historyBodyElement">
-                                            <h5>Начало поездки</h5>
-                                            <span>{element.startFact ? this.props.globalReduser.createDateTimeString(element.startFact) : 'Поездка не была начата'}</span>
+                                            <h5>{textInfo.tripStart}</h5>
+                                            <span>{element.startFact ? this.props.globalReduser.createDateTimeString(element.startFact) : textInfo.notStarted}</span>
                                         </div>
                                         <div className="d-flex flex-column historyBodyElement">
-                                            <h5>Окончание поездки</h5>
-                                            <span>{element.endFact ? this.props.globalReduser.createDateTimeString(element.endFact) : 'Поездка не была закончена'}</span>
+                                            <h5>{textInfo.tripEnd}</h5>
+                                            <span>{element.endFact ? this.props.globalReduser.createDateTimeString(element.endFact) : textInfo.notEnded}</span>
                                         </div>
                                     </React.Fragment>
                                     : <React.Fragment>
