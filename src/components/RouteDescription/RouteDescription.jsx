@@ -134,7 +134,7 @@ class RouteDescriptionClass extends React.Component {
         let textInfo = this.props.storeState.languageTextMain.placeDescription;
         let simularPlaceBlockId = topBlockId + '4';
         let helmet = this.props.storeState.languageTextMain.helmets.routeDescription;
-
+        debugger
         return (
             <React.Fragment>
                 {
@@ -147,6 +147,36 @@ class RouteDescriptionClass extends React.Component {
                             <meta property="og:url" content={document.URL} /*тут нужна подгрузка корректного слага */ />
                             <meta property="og:title" content={this.state.newRoute.local.name + helmet.basic.title} />
                             <meta property="og:description" content={this.state.newRoute.local.name + helmet.basic.description} />
+                        <script type="application/ld+json">
+                    {`
+                      {
+                        "@context": "https://schema.org",
+                        "@type": "Place",
+                        "url": `+JSON.stringify(document.URL)+`,
+                        "aggregateRating": {
+                          "@type": "AggregateRating",
+                          "ratingValue": `+JSON.stringify(this.state.newRoute.route.rating)+`,
+                          "reviewCount": `+JSON.stringify(this.state.newRoute.route.commentNumber)+`
+                        },
+                        "name":`+JSON.stringify(this.state.newRoute.local.name)+`,
+                        "description":`+JSON.stringify(this.state.newRoute.local.info)+`,
+                        "address":[
+                        {
+                         "@type": "PostalAddress",
+                         "addressCountry":`+JSON.stringify(this.props.storeState.country)+`,
+                         "addressRegion":["tbilisi","kakheti"]
+                         } 
+                        ],
+                         "publicAccess": true,
+                        "photo":[
+                        {
+                        "@type": "ImageObject",blockListImage
+                        "thumbnail":"https://tripfer.com/uploads/`+this.state.newRoute.route.blockListImage.url+`"
+                        }
+                        ]
+                      }
+                  `}
+              </script>
                         </Helmet> :
                         <React.Fragment/>
                 }

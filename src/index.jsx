@@ -91,18 +91,30 @@ function getLocals() {
   let redusers = store.getState();
   let props = {};
 
+  let urlLang = "null";
+  let documentUrl = window.document.URL.split("/");
+  documentUrl = documentUrl[3].split("-");
+  if(documentUrl[0] !== ""){
+    urlLang = documentUrl[1]
+  }
+
   let adminLang = cookies.get('adminLang', { path: '/' });
   let userLang = cookies.get('userLang', { path: '/' });
   let cookiesLangISO = cookies.get('userLangISO', { path: '/' })
   let userBrowserLanguage = window.navigator.language;
-  let userBrowserLanguageISO = userBrowserLanguage.substr(0, 2);
+  let userBrowserLanguageISO = urlLang.length === 2 ? urlLang : userBrowserLanguage.substr(0, 2);
+  let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
+
   if (!adminLang || !userLang || !cookiesLangISO) {
+
     let langSelector = 'ENG'; let smallLangSelector = 'en';
-    let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
+    
+
     if (userBrowserLanguageISO === 'ru') {
       langSelector = 'RUS';
       smallLangSelector = 'ru'
     }
+
     if (!adminLang) {
       cookies.set('adminLang', langSelector, { path: '/', expires: date });
       adminLang = langSelector;
@@ -116,6 +128,11 @@ function getLocals() {
       cookiesLangISO = smallLangSelector;
     }
   }
+
+  if(userLang !== urlLang && urlLang.length === 2 ){
+    cookies.set('userLang', urlLang, { path: '/', expires: date });
+  }
+  
 
   store.dispatch(setActiveLangISO(userLang, adminLang));
 
@@ -340,7 +357,7 @@ ReactDOM.render(
               <Route path="/countrySelection/" component={AuthModalCountry} />
               <Route path="/feedback-:id-:clientId/" component={feedback} />
               {window.location.pathname === "/" ?
-                <Redirect from="/" to={"/" + (redirectPage === "undefined-undefined" ? "countrySelection/" : redirectPage + "/routes/")} />
+                <Redirect from="/" to={"/" + (redirectPage === "undefined-undefined"||redirectPage === "undefined-en"||redirectPage === "undefined-ru" ? "countrySelection/" : redirectPage + "/routes/")} />
                 :
                 <Route path="*" component={pageNotFound} status={404} />
               }

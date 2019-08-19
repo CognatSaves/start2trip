@@ -184,7 +184,7 @@ class PlacesClass extends React.Component {
                       {
                       "@context": "https://schema.org",
                     "@type": "Place",
-                    "url": `+document.URL+`,
+                    "url": `+JSON.stringify(document.URL)+`,
                     "address":[
                     {
                       "@type": "PostalAddress",
@@ -215,7 +215,7 @@ class PlacesClass extends React.Component {
                       {
                       "@context": "https://schema.org",
                     "@type": "Place",
-                    "url": `+document.URL+`,
+                    "url": `+JSON.stringify(document.URL)+`,
                     "address":[
                     {
                       "@type": "PostalAddress",

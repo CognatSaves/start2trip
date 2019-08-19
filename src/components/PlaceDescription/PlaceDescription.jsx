@@ -213,7 +213,7 @@ class PlaceDescriptionClass extends React.Component {
         let smallImage = 'url(' + (this.state.newPlace.place && this.state.newPlace.place.blockListImage ?
             requests.serverAddressImg + this.state.newPlace.place.blockListImage.url : '') + ') no-repeat';
         let helmet = this.props.storeState.languageTextMain.helmets.placeDescription;
-
+            debugger;
         return (
             <React.Fragment>
                 {
@@ -226,6 +226,42 @@ class PlaceDescriptionClass extends React.Component {
                             <meta property="og:url" content={document.URL} /*Здесь нужно нормальный slug подключить */ />
                             <meta property="og:title" content={this.state.newPlace.local.name + helmet.object.title} />
                             <meta property="og:description" content={this.state.newPlace.local.name + helmet.object.description} />
+                            <script type="application/ld+json">
+                    {`
+                      {
+                        "@context": "https://schema.org",
+                        "@type": "Place",
+                        "url": `+JSON.stringify(document.URL)+`,
+                        "aggregateRating": {
+                          "@type": "AggregateRating",
+                          "ratingValue": `+JSON.stringify(this.state.newPlace.place.rating)+`,
+                          "reviewCount": `+JSON.stringify(this.state.newPlace.place.commentNumber)+`
+                        },
+                        "name":`+JSON.stringify(this.state.newPlace.local.name)+`,
+                        "description":`+JSON.stringify(this.state.newPlace.local.info)+`,
+                        "address":[
+                        {
+                         "@type": "PostalAddress",
+                         "addressCountry":`+JSON.stringify(this.props.storeState.country)+`,
+                         "addressRegion":["tbilisi","kakheti"]
+                         } 
+                        ],
+                        "geo": {
+                          "@type": "GeoCoordinates",
+                          "latitude": `+JSON.stringify(this.state.newPlace.local.endPlace.lat)+`,
+                          "longitude": `+JSON.stringify(this.state.newPlace.local.endPlace.lat)+`
+                        },
+                        "hasMap":"https://www.google.com/maps/place/@`+this.state.newPlace.local.endPlace.lat+`,`+this.state.newPlace.local.endPlace.lat+`,15z",
+                         "publicAccess": true,
+                        "photo":[
+                        {
+                        "@type": "ImageObject",
+                        "thumbnail":`+JSON.stringify("https://tripfer.com/uploads/"+this.state.newPlace.place.blockListImage.url)+`
+                        }
+                        ]
+                      }
+                  `}
+              </script>
                         </Helmet> :
                         <React.Fragment/>
                 }

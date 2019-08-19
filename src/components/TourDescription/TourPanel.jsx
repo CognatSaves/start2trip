@@ -74,7 +74,7 @@ class TourPanelClass extends React.Component {
                             }
                             return (indexOfRemovedElement === -1 ?
                                 <a className={this.props.panelSelectedElement === index ? "descriptionPanel_element tourPanel_element tourPanelSelected" :
-                                    "descriptionPanel_element tourPanel_element"} href={"#" + elementId}>{element}</a>
+                                    "descriptionPanel_element tourPanel_element"} href={"#" + elementId+"/"}>{element}</a>
                                 :
                                 <React.Fragment />)
 
