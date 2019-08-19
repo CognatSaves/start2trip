@@ -149,14 +149,14 @@ class PlaceDescriptionClass extends React.Component {
                     this.setState({
                         selectedLanguage: this.props.storeState.activeLanguageNumber
                     });
-                    this.props.globalReduser.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/places/' + slugArray[number].slug);
+                    this.props.globalReduser.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/places/' + slugArray[number].slug+'/');
                     break;
                 }
             }
             if(number===slugArray.length){
                 //происходит, если прошли по всему массиву slug и не нашли нужный, т.е., скорее всего, он был написан вручную
                 //в таком случае выходим на уровень выше, сделать ничего нельзя
-                this.props.globalReduser.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/places');
+                this.props.globalReduser.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/places/');
             }
        
         }
@@ -198,7 +198,7 @@ class PlaceDescriptionClass extends React.Component {
                 .catch(error => {
 
                     console.log('get wasted answer');
-                    that.props.globalReduser.history.push('/404');
+                    that.props.globalReduser.history.push('/404/');
                 });
 
 

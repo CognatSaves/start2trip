@@ -106,7 +106,7 @@ class HomeClass extends React.Component {
                 :
                 <div />}
               <div className="home_body d-flex justify-content-center col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
-                <HomeBody redirectToDrivers={() => this.redirectFunc('/' + requests.routeMap + "-" + cookies.get('userLangISO', { path: "/" }) + '/drivers')} />
+                <HomeBody redirectToDrivers={() => this.redirectFunc('/' + requests.routeMap + "-" + cookies.get('userLangISO', { path: "/" }) + '/drivers/')} />
               </div>
             </div>
 

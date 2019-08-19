@@ -216,7 +216,7 @@ class DriverProfileCarClass extends React.Component {
             }
             else {
                 this.props.dispatch(setUrlAddress(window.location.pathname));
-                this.props.history.push('/login');
+                this.props.history.push('/login/');
                 //return null;
             }
         }
@@ -297,7 +297,7 @@ class DriverProfileCarClass extends React.Component {
         }
         else {
             this.props.dispatch(setUrlAddress(window.location.pathname));
-            this.props.history.push('/login');
+            this.props.history.push('/login/');
             //return null;
         }
     }
@@ -324,7 +324,7 @@ class DriverProfileCarClass extends React.Component {
         }
         else {
             this.props.dispatch(setUrlAddress(window.location.pathname));
-            this.props.history.push('/login');
+            this.props.history.push('/login/');
             //return null;
         }
     }

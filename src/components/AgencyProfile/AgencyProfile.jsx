@@ -87,7 +87,7 @@ class AgencyProfileClass extends React.Component {
         }
         else {
             if (this.props.globalReduser.profile.email) {
-                this.props.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/routes');
+                this.props.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/routes/');
                 return null;
             }
             else {
@@ -109,7 +109,7 @@ class AgencyProfileClass extends React.Component {
                 }
                 else {
                     this.props.dispatch(setUrlAddress(window.location.pathname));
-                    this.props.history.push('/login');
+                    this.props.history.push('/login/');
                     return null;
                 }
             }

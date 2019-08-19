@@ -84,7 +84,7 @@ const ModalUserType = (props) => {
     }
     else {
       this.props.dispatch(setUrlAddress(window.location.pathname));
-      this.props.history.push('/login');
+      this.props.history.push('/login/');
       //return null;
     }
   }
@@ -376,7 +376,7 @@ class HeaderClass extends React.Component {
               let namePage = that.props.globalhistory.history.location.pathname.split("/");
               namePage = namePage.splice(2)
               namePage = namePage.join('/')
-              that.props.history.push("/" + that.props.storeState.country + "-" + that.props.storeState.languages[index].isoAutocomplete + "/" + (namePage === "" ? "routes" : namePage))
+              that.props.history.push("/" + that.props.storeState.country + "-" + that.props.storeState.languages[index].isoAutocomplete + "/" + (namePage === "" ? "routes/" : namePage))
             }
           });
         }
@@ -499,7 +499,7 @@ class HeaderClass extends React.Component {
     if (jwt && jwt !== "-") {
       removeCookie(this);
     }
-    this.props.globalhistory.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/routes');
+    this.props.globalhistory.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/routes/');
   }
   accountRedirect = (address, number) => {
 
@@ -570,7 +570,7 @@ class HeaderClass extends React.Component {
     }
     else {
       this.props.dispatch(setUrlAddress(window.location.pathname));
-      this.props.history.push('/login');
+      this.props.history.push('/login/');
       //return null;
     }
   }
