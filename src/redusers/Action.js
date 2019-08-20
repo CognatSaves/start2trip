@@ -48,10 +48,11 @@ const CHANGE_LANGUAGE_PART = 'CHANGE_LANGUAGE_PART';
 
 const SET_ACTIVE_LANG_ISO = 'SET_ACTIVE_LANG_ISO';
 
-const changeLanguagePart = function(isSecondLanguageGroupPart) {
+const changeLanguagePart = function(isSecondLanguageGroupPart,isAdminLanguageType) {
     return {
         type: CHANGE_LANGUAGE_PART,
-        isSecondLanguageGroupPart: isSecondLanguageGroupPart
+        isSecondLanguageGroupPart: isSecondLanguageGroupPart,
+        isAdminLanguageType:isAdminLanguageType
     }
 }
 const setActiveLangAdmin = function(activeLanguageNumberAdmin) {

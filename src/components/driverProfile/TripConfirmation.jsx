@@ -18,6 +18,7 @@ class TripConfirmationClass extends React.Component {
         let body = JSON.stringify({ id: id, userId: userId, frontendAddress: requests.frontendAddress });
         let that = this;
         this.state = {
+            isServerGood: true,
             text: 'Ожидайте ответа',
             isRefreshExist: true
         }
@@ -38,7 +39,8 @@ class TripConfirmationClass extends React.Component {
                     console.log(data);
                     that.setState({
                         text: 'Всё прекрасно',
-                        isRefreshExist: false
+                        isRefreshExist: false,
+                        
                     })
                 }
             })
@@ -46,7 +48,8 @@ class TripConfirmationClass extends React.Component {
                 console.log('bad');
                 that.setState({
                     text: 'Всё плохо',
-                    isRefreshExist: false
+                    isRefreshExist: false,
+                    isServerGood: false
                 })
                 console.log('An error occurred:', error);
             });
@@ -73,31 +76,43 @@ class TripConfirmationClass extends React.Component {
                     this.state.isRefreshExist ?
                         <DriverRefreshIndicator isRefreshExist={true} isRefreshing={true} isGoodAnswer={true} />
                         :
-                        <div className="home_window" style={{ minHeight: "95vh" }}>
-                            <Header driver={true} history={this.props.history} />
-                            <div className="forgotPasswordContent d-flex flex-column align-items-center col-md-8 col-12 mx-auto">
-                                <div className="d-flex flex-column justify-content-center align-items-center">
-                                    <span className="pt-2 pb-1">{textInfo.good.title}</span>
-                                    {
-                                        /*
-                                        Объект this.state.text содержит информацию по поводу того, как обработался
-                                        запрос. Но выводить его на экран не нужно, надо добавить отрисовку неудачи
-                                        <span1>{this.state.text}</span1>
-                                        */
-                                    }
-                                    
-                                </div>
-                                <div className="d-flex flex-md-row flex-column justify-content-center align-items-center col-md-8 col-12">
-                                    <div className="forgotPasswordBt d-flex justify-content-center align-items-center col-md-5 col-12"
-                                     onClick={() => { this.props.history.push("/") }}>
-                                     <span>{textInfo.good.buttonText}</span>
+                        (
+                            this.state.isServerGood ?
+                            <div className="home_window" style={{ minHeight: "95vh" }}>
+                                <Header driver={true} history={this.props.history} />
+                                <div className="forgotPasswordContent d-flex flex-column align-items-center col-md-8 col-12 mx-auto">
+                                    <div className="d-flex flex-column justify-content-center align-items-center">
+                                        <span className="pt-2 pb-1">{textInfo.good.title}</span>
+                                        {
+                                            /*
+                                            Объект this.state.text содержит информацию по поводу того, как обработался
+                                            запрос. Но выводить его на экран не нужно, надо добавить отрисовку неудачи
+                                            <span1>{this.state.text}</span1>
+                                            */
+                                        }
+                                        
+                                    </div>
+                                    <div className="d-flex flex-md-row flex-column justify-content-center align-items-center col-md-8 col-12">
+                                        <div className="forgotPasswordBt d-flex justify-content-center align-items-center col-md-5 col-12"
+                                        onClick={() => { this.props.history.push("/") }}>
+                                        <span>{textInfo.good.buttonText}</span>
+                                        </div>
+                                    </div>
+                                    <div className="d-flex flex-column justify-content-center align-items-center col-md-5 col-12">
+                                        <p>{textInfo.good.info}</p>
                                     </div>
                                 </div>
-                                <div className="d-flex flex-column justify-content-center align-items-center col-md-5 col-12">
-                                    <p>{textInfo.good.info}</p>
+                            </div> : 
+                            <div className="home_window" style={{ minHeight: "95vh" }}>
+                                <Header driver={true} history={this.props.history} />
+                                <div className="forgotPasswordContent d-flex flex-column align-items-center col-md-8 col-12 mx-auto">
+                                    <div className="d-flex flex-column justify-content-center align-items-center">
+                                        <span className="pt-2 pb-1">Возникли проблемы</span>
+                                    </div>
+                                    
                                 </div>
                             </div>
-                        </div>
+                        )
                 }
 
 

@@ -51,10 +51,10 @@ class DriverProfileRegistrationClass extends React.Component {
       accountEnter: accountEnterCookie ? false : true
     }
 
-    props.dispatch(changeLanguagePart(true)); //эта ересь сообщает шапке, что мы в админке за водителя/агенство, т.е. нужна 2 партия языков
+    props.dispatch(changeLanguagePart(true, true)); //эта ересь сообщает шапке, что мы в админке за водителя/агенство, т.е. нужна 2 партия языков
   }
   componentWillUnmount() {
-    this.props.dispatch(changeLanguagePart(false))//эта ересь сообщает шапке, что мы валим из админки водителя/агенства, т.е. нужна стандартная партия языков
+    this.props.dispatch(changeLanguagePart(false, false))//эта ересь сообщает шапке, что мы валим из админки водителя/агенства, т.е. нужна стандартная партия языков
   }
   render() {
     let profile = this.props.globalReduser.profile;

@@ -88,49 +88,86 @@ const muiTheme = getMuiTheme({
 });
 
 function getLocals() {
+  //эта функция подгружает языки и прочее с сервера, попутно устанавливает
+  //кое-какие значения, например языки
   let redusers = store.getState();
   let props = {};
 
+  //этот блок проверяет, находимся ли мы на страницах вида /geo-ru/... ,
+  //откуда может взять язык
   let urlLang = "null";
   let documentUrl = window.document.URL.split("/");
   documentUrl = documentUrl[3].split("-");
   if(documentUrl[0] !== ""){
     urlLang = documentUrl[1]
   }
-
+  //*****//
+  //этот блок считывает языковые куки
   let adminLang = cookies.get('adminLang', { path: '/' });
   let userLang = cookies.get('userLang', { path: '/' });
   let cookiesLangISO = cookies.get('userLangISO', { path: '/' })
   let userBrowserLanguage = window.navigator.language;
-  let userBrowserLanguageISO = urlLang.length === 2 ? urlLang : userBrowserLanguage.substr(0, 2);
+  //здесь выбираем приоритетное значение - если выше мы смогли взять язык из адреса,
+  //то используем его, если нет, то будем, в случае отсутствия кук, записывать туда
+  //значения браузера
+  debugger;
+  let userBrowserLanguageISO = ((urlLang && urlLang.length === 2) ? urlLang : userBrowserLanguage.substr(0, 2));
   let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
-
+  //*****//
+  //здесь проверка - заходим, если какой-то (хоть какой) из кук нет
   if (!adminLang || !userLang || !cookiesLangISO) {
 
     let langSelector = 'ENG'; let smallLangSelector = 'en';
     
-
+    //если у нас язык браузера пользователя русский, то будем подставлять ему
+    //в куки русский, иначе английский
     if (userBrowserLanguageISO === 'ru') {
       langSelector = 'RUS';
       smallLangSelector = 'ru'
     }
-
+    //проверки по очереди -если надо, устанавливаем куки и в переменную, куда 
+    //считывали, ставим установленное значение, так как она нам понадобится
     if (!adminLang) {
       cookies.set('adminLang', langSelector, { path: '/', expires: date });
       adminLang = langSelector;
     }
-    if (!userLang) {
+    if (!userLang || !cookiesLangISO) {
       cookies.set('userLang', langSelector, { path: '/', expires: date });
       userLang = langSelector;
-    }
-    if (!cookiesLangISO) {
       cookies.set('userLangISO', smallLangSelector, { path: '/', expires: date });
       cookiesLangISO = smallLangSelector;
     }
   }
 
-  if(userLang !== urlLang && urlLang.length === 2 ){
-    cookies.set('userLang', urlLang, { path: '/', expires: date });
+  
+
+
+  let langSelector = 'ENG'; let smallLangSelector = 'en';
+  if (userBrowserLanguageISO === 'ru') {
+    langSelector = 'RUS';
+    smallLangSelector = 'ru';
+  }
+  //если значение в куке не совпадает с языком в адресной строке, то мы
+  //используем язык из адресной строки, он имеет более высокий приоритет
+  if(userLang !== langSelector/* && urlLang.length === 2 - эта проверка выполнена раньше*/ ){
+    //если происходит несовпадение, то нужно заполнить валидным значением
+    //сейчас(19.08.19) у нас 2 языка, делаем как и выше - если у нас русский('ru'),
+    //то ставим его, иначе английский
+    //если вообще не то, то редирект на 404 - так как надо ставить 3хбукв на основе
+    //2хбукв, то придётся ставить однозначные соответствия
+    
+    
+    
+    //если у нас язык браузера пользователя русский, то будем подставлять ему
+    //в куки русский, иначе английский
+    //если не русский и не английский, то значит, англйский)))
+    //потому что всё равно выкинет на 404
+    //впоследствии надо будет разместить где-то массив пар 2хбкв и 3хбкв
+    
+    cookies.set('userLang', langSelector, { path: '/', expires: date });
+    userLang = langSelector;
+    cookies.set('userLangISO', smallLangSelector, { path: '/', expires: date });
+    cookiesLangISO = smallLangSelector;
   }
   
 
