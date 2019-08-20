@@ -223,8 +223,9 @@ class AgencyProfileSettingsClass extends React.Component {
                 position: 'relative',
             },
         };
-
-        let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileSettings;
+        //данный компонент используется также в админке пользователя. К сожалению, у него там другое подключение к языкам (всё остальнок вроде также)
+        //поэтому он будет высылать textInfo сам
+        let textPage = this.props.textInfo ? this.props.textInfo : this.props.storeState.languageText.driverProfileRegistration.DriverProfileSettings;
         let profile = this.props.globalReduser.profile;
 
         return (

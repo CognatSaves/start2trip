@@ -251,7 +251,7 @@ class PlacesClass extends React.Component {
                 <PopularPlaces />
                 <PlacesTagList />
                 <PlacesPanel />
-                <PlacesList />
+                <PlacesList isStaying={!this.state.isRefreshExist}/>
               </div>
               {/* <div className="right_body_part col-3">
                 <DriversCommercial />

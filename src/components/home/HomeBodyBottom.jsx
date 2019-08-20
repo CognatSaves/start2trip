@@ -16,7 +16,7 @@ import HomeRoutesList from './HomeBottom/HomeRoutesList';
 import HomePlacesPanel from './HomeBottom/HomePlacesPanel';
 import Manipulator from '../manipulator/Manipulator';
 import Cookies from 'universal-cookie';
-
+import { set_state } from '../../redusers/Action'
 const cookies = new Cookies();
 
 class HomeBodyBottomClass extends React.Component {
@@ -29,7 +29,8 @@ class HomeBodyBottomClass extends React.Component {
       selectedDirection: ""
     };
     //this.sendRequestFunc();
-    this.props.dispatch(setPage(1));
+    props.dispatch(set_state([{point: '', lat: '', long: ''},{point: '', lat: '', long: ''}],''));
+    props.dispatch(setPage(1));
   }
   redirectFunc = (where) => {
     this.props.history.push(where);
@@ -175,7 +176,8 @@ class HomeBodyBottomClass extends React.Component {
         <div className="home_block col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
           <HomePopularPlaces />
           <HomePlacesPanel />
-          <HomeRoutesList />
+          <HomeRoutesList isStaying={!this.state.isRefreshExist} /*isStaying - переменная, показывающая, что на данный момент мы отправили запрос, и отображать картинку, что мы ничего
+          не нашли, не нужно *//>
           <Manipulator number={this.props.placesState.routesList.length} page={this.props.placesState.page} setPage={this.setPageFunc}
             elementsNumber={this.props.placesState.pagesMenuValue} showMorePages={this.showMorePages}
           />

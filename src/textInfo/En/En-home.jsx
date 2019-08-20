@@ -15,9 +15,6 @@ const home = {
                 cancel: 'Cancel',
                 morePics: 'more'
             },
-            homeRoutesList: {
-                noElementsText: 'We even searched on Mars, but nothing was found. \n Try to change your search '
-            },
             routeListElement: {
                 detailed: 'More',
                 comments: 'reviews',
@@ -110,7 +107,14 @@ const home = {
                 first: "* Return to the point of departure on the same day for free",
                 second: "Final cost. Fuel included"
             }
-        }
+        },
+    pageNotFound: {
+        title: "Page not found",
+        text1: "We even searched on Mars,",
+        text2: "but didn’t find anything.",
+        text3: 'Try to change your search',
+        link: "Return to Homepage"
+    },
     };
     
     export default home;

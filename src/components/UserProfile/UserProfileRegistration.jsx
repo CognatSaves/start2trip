@@ -41,15 +41,15 @@ class UserProfileRegistrationClass extends React.Component {
     this.state = {
       accountEnter: accountEnterCookie ? false : true
     }
-    props.dispatch(changeLanguagePart(false, true)); //эта ересь сообщает шапке, что мы в админке за водителя/агенство, т.е. нужна 2 партия языков
+    props.dispatch(changeLanguagePart(false, true)); //эта ересь сообщает шапке, что мы в админке за пользователя, т.е. работает 1я партия языков, но ломать адрес не надо
   }
   componentWillUnmount() {
-    this.props.dispatch(changeLanguagePart(false, false))//эта ересь сообщает шапке, что мы валим из админки водителя/агенства, т.е. нужна стандартная партия языков
+    this.props.dispatch(changeLanguagePart(false, false))//эта ересь сообщает шапке, что мы валим из пользователя, т.е. работает 1я партия языков, но ломать адрес не надо
   }
 
   render() {
     console.log('UserProfileRegistration render');
-    let textInfo = this.props.storeState.languageText.userProfile.userProfileRegistration;;
+    let textInfo = this.props.storeState.languageTextMain.userProfile.userProfileRegistration;
     if (this.props.globalReduser.profile.isCustomer) {
       return (
         <React.Fragment>

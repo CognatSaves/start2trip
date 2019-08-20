@@ -23,7 +23,7 @@ class UserProfileTrevelHistoryClass extends React.Component {
             }
         }
         let that = this;
-        let textInfo = this.props.storeState.languageText.userProfile.userProfileTravelHistory;
+        let textInfo = this.props.storeState.languageTextMain.userProfile.userProfileTravelHistory;
         return (
             <div className="d-flex flex-wrap justify-content-center">
                 {this.props.trevelHistory.map((element, index) =>

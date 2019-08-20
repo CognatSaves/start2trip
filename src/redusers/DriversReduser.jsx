@@ -1,4 +1,4 @@
-import {SET_DRIVER_CAR_DESCR,SET_DRIVERS_ROUTE_CHANGE, SET_PAGE, SET_MORE_PAGES_SHOW,SET_DRIVERS_LIST,SET_CAR_TYPES,SET_LENGTH_TIME} from './ActionDrivers';
+import {SET_DRIVER_CAR_DESCR,SET_DRIVERS_ROUTE_CHANGE, SET_PAGE, SET_MORE_PAGES_SHOW,SET_DRIVERS_LIST,SET_CAR_TYPES,SET_LENGTH_TIME,SET_WAITING_DRIVER_REQUEST} from './ActionDrivers';
 
 const initialState = {
     travelTime: '',
@@ -8,11 +8,21 @@ const initialState = {
     showPages: 1,
     driversList: [],
     carTypes: [],
-    driverCarDescription:{}
+    driverCarDescription:{},
+    waitingDriverRequest: false,//эта и след. переменные - флаги для картинки на /drivers
+    isFirstSave: true
 }
 
 export const DriversReduser = (state=initialState, action)=>{
     switch(action.type){
+        case SET_WAITING_DRIVER_REQUEST:{
+            let newState = {...state};
+            newState.waitingDriverRequest = action.waitingDriverRequest;
+            if(action.waitingDriverRequest){
+                newState.isFirstSave=false;
+            }
+            return newState;
+        }
         case SET_LENGTH_TIME:{
             let newStateLT = {...state};
             newStateLT.travelTime=action.travelTime;

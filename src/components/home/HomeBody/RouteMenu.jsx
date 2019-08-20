@@ -3,7 +3,7 @@ import './RouteMenu.css'
 import { connect } from 'react-redux';
 import { setCities, set_state } from '../../../redusers/Action'
 import { isMobileOnly } from 'react-device-detect'
-import { setDriversList, setCarTypes } from '../../../redusers/ActionDrivers';
+import { setDriversList, setCarTypes, setWaitingDriverRequest } from '../../../redusers/ActionDrivers';
 import { AppReduser } from '../../../redusers/AppReduser';
 import requests from '../../../config';
 
@@ -118,7 +118,6 @@ class RouteMenuClass extends React.Component {
     console.log(document);
 
     let result = props.globalhistory.findGetParameter("date");
-
     let dateValue;
     if (result) {
       dateValue = props.globalhistory.getDateFromDateString(result);
@@ -127,7 +126,7 @@ class RouteMenuClass extends React.Component {
     /*else{
       dateValue = '';
     }*/
-
+    
     let pathnameMAss = document.location.pathname.split("/");
     //случай массива ['','geo-ru','routes',''], который возникает в случае, когда мы закрыли последний слеш, тоже надо учесть - отсюда 'или' ниже
     let ares = (pathnameMAss[pathnameMAss.length-1].length>0 && pathnameMAss.length>3);/*>3 - "","geo", "drivers", ещё что-tо */
@@ -217,14 +216,15 @@ class RouteMenuClass extends React.Component {
 
   chooseDate = (value) => {
     
-    debugger;
+   
     let resultString = this.props.globalhistory.convertDateToUTC(value).toUTCString();
-    
-    this.props.dispatch(set_state(this.props.storeState.cities, resultString))
-    this.setState({
-      date: resultString,
-      correctDate: value.toUTCString()
-    });
+    if(this.state.date!==resultString){
+      this.props.dispatch(set_state(this.props.storeState.cities, resultString))
+      this.setState({
+        date: resultString,
+        correctDate: value.toUTCString()
+      });
+    }
   }
 
   validationInput = (massCities) => {
@@ -290,7 +290,7 @@ class RouteMenuClass extends React.Component {
   requestFunction = (allGoodAfterfunc) => {
 
     this.setState({ isWaiting: true, isRefreshing: true, isGoodAnswer: true, isLoaded: true });
-
+    this.props.dispatch(setWaitingDriverRequest(true));
     let that = this;
 
 
@@ -356,6 +356,7 @@ class RouteMenuClass extends React.Component {
         distance: routeProps.distance,
         duration: routeProps.duration
       });
+      
       fetch(requests.getDrivers, {
         method: 'PUT', body: body,
         headers: { 'content-type': 'application/json' }
@@ -383,6 +384,7 @@ class RouteMenuClass extends React.Component {
             that.props.dispatch(setDriversList(data.drivers));
 
             that.setState({ isWaiting: false });
+            that.props.dispatch(setWaitingDriverRequest(false));
             if (allGoodAfterfunc) {
               allGoodAfterfunc(that, cities, date, langISO);
             }
@@ -391,6 +393,7 @@ class RouteMenuClass extends React.Component {
         .catch(function (error) {
           console.log("bad");
           console.log('An error occurred:', error);
+          that.props.dispatch(setWaitingDriverRequest(false));
         });
     })
   }
@@ -473,6 +476,19 @@ class RouteMenuClass extends React.Component {
     }
     let textInfo = this.props.storeState.languageTextMain.home.routeMenu;
     console.log('Route Menu render, lang=', this.props.storeState.activeLanguageNumber);
+
+    let result = this.props.globalhistory.findGetParameter("date");
+    let dateValue;
+    if (result) {
+      dateValue = this.props.globalhistory.getDateFromDateString(result);
+      dateValue = new Date(dateValue);
+    }
+    if(!dateValue){
+       debugger;
+      dateValue = new Date(Date.now())
+    }
+    this.chooseDate(dateValue);//функция имеет внутри себя проверку на то, чтобы не было зацикливания, а именно
+    // если в редусере лежит то же, что мы туда кладём, то ничего класть мы не будем
     return (
       <React.Fragment>
         <div className="routemenu_container d-flex flex-column col-12">
@@ -513,7 +529,7 @@ class RouteMenuClass extends React.Component {
 
           <div className="routemenu_setDate">
             <div className="col-sm-6 col-12 p-0 pr-1">
-              <DatePicker defaultDate={this.state.date} hintText={textInfo.datePickerText} minDate={new Date()}
+              <DatePicker defaultDate={dateValue} hintText={textInfo.datePickerText} minDate={new Date()}
                onChange={(e, date) => {  /*UTC conv inside chooseDate */ this.chooseDate(date); let datePicker = document.querySelector(".routemenu_date");
                datePicker.classList.remove("routemenu_date-Check") }} className="routemenu_date" />
             </div>

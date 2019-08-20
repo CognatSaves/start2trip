@@ -154,7 +154,7 @@ class UserProfileNavigationClass extends React.Component {
         //     this.setState({ avatar: img })
         // }
 
-        let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileNavigation;
+        let textPage = this.props.storeState.languageTextMain.userProfile.userProfileNavigation;
         let profile = this.props.globalReduser.profile;
         return (
             <div className="registrationWrapper driverBG col-12 p-0" style={{

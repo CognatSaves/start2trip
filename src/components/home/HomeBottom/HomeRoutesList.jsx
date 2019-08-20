@@ -39,6 +39,7 @@ class HomeRoutesListClass extends React.Component {
 
         console.log('selectedRoutes', selectedRoutes);
         let textInfo = this.props.storeState.languageTextMain.home.homeBottom.homeRoutesList;
+        let pageNotFound = this.props.storeState.languageTextMain.home.pageNotFound;
         return (
 
             <React.Fragment>
@@ -49,13 +50,22 @@ class HomeRoutesListClass extends React.Component {
                         </React.Fragment>
                     )}
                     {
-                        selectedRoutes.length === 0 ?
+                        (selectedRoutes.length === 0 && this.props.isStaying) ?
                             <React.Fragment>
                                 <div className="placesList_noElementsBlock">
-                                    <span>{textInfo.noElementsText}</span>
+                                    <span>{pageNotFound.text1+" "+pageNotFound.text2}<br/>{pageNotFound.text3}</span>
                                 </div>
                             </React.Fragment>
                             : <React.Fragment />
+                    }
+                    {
+                        (selectedRoutes.length === 0 && !this.props.isStaying) ?
+                        <React.Fragment>
+                            <div className="placesList_noElementsBlock">
+                                <span>{'Загружаемся!'}</span>
+                            </div>
+                        </React.Fragment>
+                        : <React.Fragment />
                     }
                 </div>
             </React.Fragment>

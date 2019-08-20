@@ -131,7 +131,7 @@ class RouteTravelBlockClass extends React.Component {
                                     onClick={() => { if (this.state.isDateHighlighted) { this.setState({ isDateHighlighted: false }) } }}>
                                     <div className="placesDescription_travelBlock_icon placesDescription_calendary" />
                                     <DatePicker hintText={textInfo.startDate} minDate={new Date()}
-                                    onChange={(e, date) => { this.setState({ date: this.props.globalReduser.convertDateToUTC(date) }); }} className="routeDescrDate" />
+                                    onChange={(e, date) => { this.setState({ date: this.props.globalhistory.convertDateToUTC(date) }); }} className="routeDescrDate" />
                                 </div>
                             </div>
                             <div className={"routeTravelBlock_element d-flex " + ((points.length + 1) % 2 === 0 ? 'col-12' : 'col-md-6 col-12')}>

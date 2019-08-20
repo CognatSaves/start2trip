@@ -36,9 +36,7 @@ const drivers = {
                 done: 'Done'
             }
         },
-        messageEror:{
-            noElementsText: 'Мы искали даже на Марсе, но ничего не нашли.\n Попробуйте изменить условия поиска.'
-        },
+
         driverConfirmation:{
             good:{
                 header: 'Вы подтвердили заказ!(ENG)',
@@ -53,6 +51,18 @@ const drivers = {
                 variants: ['Да(ENG)','Нет(ENG)']
             },
             infoBlock: 'По достижении 5 баллов Вы будете навсегда отключены из системы.(ENG)'
+        },
+        tripConfirmation: {
+            good: {
+                title: 'Ваш заказ подтверждён!(ENG)',
+                buttonText: 'На главную(ENG)',
+                info: 'Вы можете посмотреть информацию о поездке в Вашем личном кабинете на нашем сайте.(ENG)'
+            },
+            bad: {
+                title: 'Возникли проблемы!(ENG)',
+                info: "Заказ уже подтверждён или не существует(ENG)",
+                buttonText: 'На главную(ENG)'
+            }
         }
     }
     

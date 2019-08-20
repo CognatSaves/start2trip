@@ -15,15 +15,15 @@ class pageNotFoundClass extends React.Component {
     // }
 
     render() {
-        let textInfoMain = this.props.storeState.languageTextMain.header;
+        let pageNotFound = this.props.storeState.languageTextMain.home.pageNotFound;
         return (
             <React.Fragment>
                 <Header history={this.props.history} />
                 <div className="pageNotFound d-flex flex-column justify-content-between align-items-center" >
-                    <span style={isMobileOnly ? { paddingTop: "12%" } : { paddingTop: "8%" }}>{textInfoMain.pageNotFound.title}</span>
+                    <span style={isMobileOnly ? { paddingTop: "12%" } : { paddingTop: "8%" }}>{pageNotFound.title}</span>
                     <div className="d-flex flex-column justify-content-center align-items-center">
-                        <span>{textInfoMain.pageNotFound.text1}{isMobileOnly ? <br /> : <React.Fragment />}{textInfoMain.pageNotFound.text2}</span>
-                        <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes/"}>{textInfoMain.pageNotFound.link}</Link>
+                        <span>{pageNotFound.text1}{isMobileOnly ? <br /> : <React.Fragment />}{pageNotFound.text2}</span>
+                        <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes/"}>{pageNotFound.link}</Link>
                     </div>
 
                 </div>

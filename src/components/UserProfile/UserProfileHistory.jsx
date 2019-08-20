@@ -13,7 +13,7 @@ class UserProfileHistoryClass extends React.Component {
   }
 
   render() {
-
+    //TODO Добавить динамические переводы
     return (
       <React.Fragment>
         <div className="driverProfileHistory">

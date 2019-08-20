@@ -14,6 +14,13 @@ const SET_DRIVER_CAR_DESCR = 'SET_DRIVER_CAR_DESCR';
 
 const SET_LENGTH_TIME = 'SET_LENGTH_TIME';
 
+const SET_WAITING_DRIVER_REQUEST = 'SET_WAITING_DRIVER_REQUEST';
+const setWaitingDriverRequest = function(waitingDriverRequest){
+    return{
+        type: SET_WAITING_DRIVER_REQUEST,
+        waitingDriverRequest:waitingDriverRequest
+    }
+}
 const setDriverCarDescription = function(driverCarDescription){
     return{
         type: SET_DRIVER_CAR_DESCR,
@@ -77,4 +84,5 @@ export {
     SET_CAR_TYPES,setCarTypes,
     SET_DRIVER_CAR_DESCR,setDriverCarDescription,
     SET_LENGTH_TIME,setLengthTime,
+    SET_WAITING_DRIVER_REQUEST,setWaitingDriverRequest
 }

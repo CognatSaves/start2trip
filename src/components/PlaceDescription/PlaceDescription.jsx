@@ -140,8 +140,10 @@ class PlaceDescriptionClass extends React.Component {
         //let comments = [...this.props.commentState.comments].reverse();
         //let place = this.props.placesState.places[/*countryId*/0].places[/*placeId*/0];
         let slug = this.props.match.params.slug;
+       
         if (this.props.storeState.languages.length > 0 && this.state.newPlace.local && this.state.selectedLanguage !== this.props.storeState.activeLanguageNumber) {
-
+            //если языки на месте и данные на месте и выбранный язык не совпадает с языком, что выбрал пользователь, то нужно отправить запрос с другим слагом
+            
             let slugArray = this.state.newPlace.local.slugArray;
             let number = 0;
             for (; number < slugArray.length; number++) {
@@ -162,7 +164,8 @@ class PlaceDescriptionClass extends React.Component {
         }
 
         if (this.state.couldSendRequest && (!this.state.newPlace.local || this.state.slug !== slug) && this.props.storeState.languages.length > 0) {
-
+            //если можем сделать запрос (проверка на ожидание ответа) и (нет данных локально или slug не совпадает с сохранённым) и языки на месте, то отправляем запрос
+            
             this.setState({
                 couldSendRequest: false,
                 isRefreshExist: true,
@@ -190,7 +193,7 @@ class PlaceDescriptionClass extends React.Component {
 
                         console.log('good');
                         console.log(data);
-                        that.setState({ isRefreshExist: false, newPlace: data, couldSendRequest: true, slug: data.local.slug });
+                        that.setState({ isRefreshExist: false, newPlace: data, couldSendRequest: true, slug: data.local.slug, selectedLanguage: this.props.storeState.activeLanguageNumber });
                         that.props.match.params.slug = data.local.slug;
                         //this.props.dispatch(setPlacesList(data.places, data.tags, data.directions,data.country));
                     }
@@ -213,7 +216,6 @@ class PlaceDescriptionClass extends React.Component {
         let smallImage = 'url(' + (this.state.newPlace.place && this.state.newPlace.place.blockListImage ?
             requests.serverAddressImg + this.state.newPlace.place.blockListImage.url : '') + ') no-repeat';
         let helmet = this.props.storeState.languageTextMain.helmets.placeDescription;
-            debugger;
         return (
             <React.Fragment>
                 {
