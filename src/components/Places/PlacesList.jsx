@@ -90,6 +90,8 @@ class PlacesListClass extends React.Component {
         console.log('selectedPlaces', selectedPlaces);
         let textInfo = this.props.storeState.languageTextMain.home.homeBottom.homeRoutesList;
         let pageNotFound = this.props.storeState.languageTextMain.home.pageNotFound;
+        let isEmpty = (selectedPlaces.length === 0 && this.props.isStaying);
+        let isLoading = (selectedPlaces.length === 0 && !this.props.isStaying);
         return (
 
             <React.Fragment>
@@ -102,24 +104,19 @@ class PlacesListClass extends React.Component {
                         </React.Fragment>
                     )}
                     {
-                        (selectedPlaces.length === 0 && this.props.isStaying) ?
-                            <React.Fragment>
-                                <div className="placesList_noElementsBlock">
-                                    <span>{pageNotFound.text1+" "+pageNotFound.text2}<br/>{pageNotFound.text3}</span>
-                                </div>
-                            </React.Fragment>
-                            : <React.Fragment />
-                    }
-                    {
-                        (selectedPlaces.length === 0 && !this.props.isStaying) ?
+                        isLoading || isEmpty ?
                         <React.Fragment>
                             <div className="placesList_noElementsBlock">
-                                <span>{'Загружаемся!'}</span>
+                            {
+                                isLoading ?
+                                <span>{'Загружаемся!'}</span> :
+                                <span>{pageNotFound.text1+" "+pageNotFound.text2}<br/>{pageNotFound.text3}</span>
+                            }
+                                
                             </div>
                         </React.Fragment>
                         : <React.Fragment />
                     }
-
                 </div>
                 <Manipulator number={sortedArray.length} page={this.props.placesState.page} setPage={this.setPageFunc}
                     elementsNumber={this.props.placesState.pagesMenuValue} showMorePages={this.showMorePages}

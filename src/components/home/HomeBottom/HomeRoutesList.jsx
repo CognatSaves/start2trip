@@ -40,6 +40,8 @@ class HomeRoutesListClass extends React.Component {
         console.log('selectedRoutes', selectedRoutes);
         let textInfo = this.props.storeState.languageTextMain.home.homeBottom.homeRoutesList;
         let pageNotFound = this.props.storeState.languageTextMain.home.pageNotFound;
+        let isLoading = (selectedRoutes.length === 0 && !this.props.isStaying);
+        let isEmpty = (selectedRoutes.length === 0 && this.props.isStaying);
         return (
 
             <React.Fragment>
@@ -50,22 +52,18 @@ class HomeRoutesListClass extends React.Component {
                         </React.Fragment>
                     )}
                     {
-                        (selectedRoutes.length === 0 && this.props.isStaying) ?
-                            <React.Fragment>
-                                <div className="placesList_noElementsBlock">
-                                    <span>{pageNotFound.text1+" "+pageNotFound.text2}<br/>{pageNotFound.text3}</span>
-                                </div>
-                            </React.Fragment>
-                            : <React.Fragment />
-                    }
-                    {
-                        (selectedRoutes.length === 0 && !this.props.isStaying) ?
+                        isLoading || isEmpty ?
                         <React.Fragment>
                             <div className="placesList_noElementsBlock">
-                                <span>{'Загружаемся!'}</span>
+                            {
+                                isLoading ? 
+                                <span>{'Загружаемся!'}</span> :
+                                <span>{pageNotFound.text1+" "+pageNotFound.text2}<br/>{pageNotFound.text3}</span>
+                            }
+                                
                             </div>
                         </React.Fragment>
-                        : <React.Fragment />
+                        : <React.Fragment /> 
                     }
                 </div>
             </React.Fragment>

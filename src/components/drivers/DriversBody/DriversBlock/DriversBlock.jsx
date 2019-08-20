@@ -204,6 +204,8 @@ class DriversBlockClass extends React.Component {
       }
     }
     let pageNotFound = this.props.storeState.languageTextMain.home.pageNotFound;
+    let isLoading = (selectedElements.length === 0 && (this.props.driversState.waitingDriverRequest));
+    let isEmpty = (selectedElements.length === 0 && !(this.props.driversState.waitingDriverRequest) && !(this.props.driversState.isFirstSave));
     return (
       <div className="drivers_block d-flex flex-wrap">
         {
@@ -263,20 +265,16 @@ class DriversBlockClass extends React.Component {
           )
         }
         {
-          (selectedElements.length === 0 && !(this.props.driversState.waitingDriverRequest) && !(this.props.driversState.isFirstSave)) ?
-            <React.Fragment>
+          isLoading || isEmpty ?
+          <React.Fragment>
               <div className="placesList_noElementsBlock">
+              {
+                isLoading ?
+                <span>{'Загружаемся!'}</span> :
+                <span>{pageNotFound.text1+" "+pageNotFound.text2}<br/>{pageNotFound.text3}</span>
+              }
                 <span>{pageNotFound.text1+" "+pageNotFound.text2}<br/>{pageNotFound.text3}</span>
               </div>
-            </React.Fragment>
-            : <React.Fragment />
-        }
-        {
-            (selectedElements.length === 0 && (this.props.driversState.waitingDriverRequest)) ?
-            <React.Fragment>
-                <div className="placesList_noElementsBlock">
-                    <span>{'Загружаемся!'}</span>
-                </div>
             </React.Fragment>
             : <React.Fragment />
         }

@@ -172,7 +172,7 @@ class PlaceDescriptionClass extends React.Component {
                 selectedLanguage: this.props.storeState.activeLanguageNumber
             })
             let that = this;
-            axios.get(requests.showPlace + "?slug=" + (slug ? slug : '') + "&country=" + cookies.get('country', { path: '/' })/*+"&lang="+this.props.storeState.languages[this.props.storeState.activeLanguageNumber].id*/)
+            axios.get(requests.showPlace + "?slug=" + (slug ? slug : '') /*+ "&country=" + cookies.get('country', { path: '/' })*/ /*+"&lang="+this.props.storeState.languages[this.props.storeState.activeLanguageNumber].id*/)
                 .then(response => {
 
                     console.log(response);
