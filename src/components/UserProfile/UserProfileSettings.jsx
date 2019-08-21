@@ -7,7 +7,7 @@ class UserProfileSettingsClass extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <AgencyProfileSettings />
+                <AgencyProfileSettings textInfo = {this.props.storeState.languageTextMain.userProfile.userProfileSettings}/>
             </React.Fragment>
         )
     }

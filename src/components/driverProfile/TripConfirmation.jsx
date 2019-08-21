@@ -6,7 +6,7 @@ import requests from '../../config';
 
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 import Header from '../header/Header';
-
+import { changeLanguagePart } from '../../redusers/Action';
 class TripConfirmationClass extends React.Component {
     constructor(props) {
         super(props);
@@ -53,8 +53,12 @@ class TripConfirmationClass extends React.Component {
                 })
                 console.log('An error occurred:', error);
             });
-
+        props.dispatch(changeLanguagePart(false, true)); //эта ересь сообщает шапке, что мы в админке за пользователя, т.е. работает 1я партия языков, но ломать адрес не надо
     }
+    componentWillUnmount() {
+        this.props.dispatch(changeLanguagePart(false, false))//эта ересь сообщает шапке, что мы валим из пользователя, т.е. работает 1я партия языков, но ломать адрес не надо
+    }
+    
     render() {
         console.log('TripConfirmation render');
 
@@ -107,9 +111,17 @@ class TripConfirmationClass extends React.Component {
                                 <Header driver={true} history={this.props.history} />
                                 <div className="forgotPasswordContent d-flex flex-column align-items-center col-md-8 col-12 mx-auto">
                                     <div className="d-flex flex-column justify-content-center align-items-center">
-                                        <span className="pt-2 pb-1">Возникли проблемы</span>
+                                        <span className="pt-2 pb-1">{textInfo.bad.title}</span>
                                     </div>
-                                    
+                                    <div className="d-flex flex-column justify-content-center align-items-center col-md-5 col-12">
+                                        <p>{textInfo.bad.info}</p>
+                                    </div>
+                                    <div className="d-flex flex-md-row flex-column justify-content-center align-items-center col-md-8 col-12">
+                                        <div className="forgotPasswordBt d-flex justify-content-center align-items-center col-md-5 col-12"
+                                        onClick={() => { this.props.history.push("/") }}>
+                                        <span>{textInfo.bad.buttonText}</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         )

@@ -23,7 +23,7 @@ const driverProfileRegistration = {
         }
     },
     DriverProfileBasicInformation: {
-        telflag: "ru",
+        telflag: "en",
         titlePage: "Edit Profile",
         firstName: {
             floatingLabelText: "Name",

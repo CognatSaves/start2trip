@@ -74,7 +74,7 @@ class UserProfileBillingClass extends React.Component {
         console.log('DriverProfileBilling render');
         console.log(this.state);
         
-        let textInfo = this.props.storeState.languageText.userProfile.userProfileBilling;
+        let textInfo = this.props.storeState.languageTextMain.userProfile.userProfileBilling;
         let billing = this.props.globalReduser.profile.billing;
         return (
             <React.Fragment>
@@ -152,7 +152,7 @@ class UserProfileBillingClass extends React.Component {
                                         <span>{textInfo.billingBody.title+"20456787"+")"}</span>
                                     </div>
                                     <div className="specialBorder mb-2 d-flex align-items-center justify-content-between">
-                                        <span className="col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0 py-2">{textInfo.billingBody.partnersProfit+":"}></span>
+                                        <span className="col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0 py-2">{textInfo.billingBody.partnersProfit+":"}</span>
                                         <span>{'$'+billing.partnersProfit}</span>
                                     </div>
                                     <div className="specialBorder mb-2 d-flex align-items-center justify-content-between">

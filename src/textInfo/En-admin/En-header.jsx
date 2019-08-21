@@ -23,12 +23,6 @@ const header = {
         usefulLinks:["О сервисе"," Партнерам","Лицензионное соглашение","Помощь","Контакты"],
     },
     toPageStart: 'Go to top',
-    pageNotFound: {
-        title: "Page not found",
-        text1: "We even searched on Mars,",
-        text2: "but didn’t find anything.",
-        link: "Return to Homepage"
-    },
     loading: 'Загрузка(ENG)'
 }
 

@@ -24,6 +24,7 @@ class HomeClass extends React.Component {
       firstEnter: firstEnterCookie ? false : true,
 
     };
+    
   }
   redirectFunc = (where) => {
 

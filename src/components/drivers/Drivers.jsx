@@ -22,6 +22,7 @@ class DriversClass extends React.Component {
       maxPrice: maxPrice,
       elementPrice: 0,
     }
+    props.setCities([{point: '', lat: '', long: ''}, {point: '', lat: '', long: ''}])
   }
   maxPriceCalc = (array) => {
     let maxValue = 0;
@@ -196,7 +197,7 @@ class DriversClass extends React.Component {
           <div className="drivers_bottom_background d-flex flex-column" >
             <div className="left_body_part col-12 d-flex flex-column p-0">
               <DriversProperties />
-              <DriversBlock changeTravelVisibility={this.changeTravelVisibility} country={country} cities={cities} />
+              <DriversBlock changeTravelVisibility={this.changeTravelVisibility} country={country} cities={cities}/>
             </div>
           </div>
         </div>

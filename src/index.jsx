@@ -110,7 +110,7 @@ function getLocals() {
   //здесь выбираем приоритетное значение - если выше мы смогли взять язык из адреса,
   //то используем его, если нет, то будем, в случае отсутствия кук, записывать туда
   //значения браузера
-  debugger;
+  
   let userBrowserLanguageISO = ((urlLang && urlLang.length === 2) ? urlLang : userBrowserLanguage.substr(0, 2));
   let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
   //*****//

@@ -205,7 +205,8 @@ class UserProfileBasicInformationClass extends React.Component {
 
 
     render() {
-        let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileBasicInformation;
+        
+        let textPage = this.props.storeState.languageTextMain.userProfile.userProfileBasicInformation;
         return (
             <div className="basicInformationBody d-flex flex-column">
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
