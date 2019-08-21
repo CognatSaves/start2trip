@@ -54,6 +54,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
             isRefreshExist: false,
             isRefreshing: true,
             isGoodAnswer: true,
+            firstDate: null,
         }
     }
     getProfileData = () => {
@@ -241,7 +242,20 @@ class DriverProfileTripSettingsTripClass extends React.Component {
     }
 
     calendarModalShow = () => {
-        this.setState({ calendarModal: !this.state.calendarModal, newDate: false });
+        if (this.state.firstDate !== null) {
+            // на случай если ввели только одно первое число 
+            let newDate = this.state.dateTour;
+            newDate.push(this.state.firstDate);
+            this.setState({
+                calendarModal: !this.state.calendarModal,
+                newDate: false,
+                dateTour: newDate,
+                firstDate: null
+            });
+        } else {
+            this.setState({ calendarModal: !this.state.calendarModal, newDate: false });
+        }
+
     };
 
     addDate = (dates) => {
@@ -258,16 +272,43 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                 }
             };
             if (needAddDate) {
+                if (this.state.firstDate !== null) {
+                    // при добавлении второго числа добавляет первое
+                    newDate.push(this.state.firstDate);
+                }
                 newDate.push(dates);
-                this.setState({ dateTour: newDate })
+                this.setState({ dateTour: newDate, firstDate: null })
             }
+        } else {
+            // Сохраняется в отдельную переменную иначе не отображается первая дата
+            let newDate = this.state.dateTour;
+            var needAddDate = true;
+            if(newDate.length>0 || this.state.firstDate !== null){
+                for (let i = 0; i < newDate.length; i++) {
+                    if (dates.getDate() == newDate[i].getDate() && dates.getMonth() == newDate[i].getMonth() && dates.getFullYear() == newDate[i].getFullYear()) {
+                        newDate.splice(i, 1);
+                        this.setState({ dateTour: newDate })
+                        needAddDate = false;
+                        break;
+                    }
+                };
+                if (needAddDate) {
+                    this.setState({ firstDate: dates })
+                }else{
+                    this.setState({ dateTour: newDate, firstDate: null })
+                }
+            }else{
+                this.setState({ firstDate: dates })
+            }
+           
+            
         }
         this.setState({ newDate: true })
     }
 
-    handleRequestDelete = (element) => {
+    handleRequestDelete = (element) => { 
         this.dateTour = this.state.dateTour;
-        const dateTourToDelete = this.dateTour.map((chip) => chip.key).indexOf(element.key);
+        const dateTourToDelete = this.dateTour.map((chip) => chip).indexOf(element);
         this.dateTour.splice(dateTourToDelete, 1);
         this.setState({ dateTour: this.dateTour });
 

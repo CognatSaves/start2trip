@@ -232,6 +232,7 @@ class PlacesClass extends React.Component {
                   }
                   `}
               </script>
+              {/* TODO img */}
                 </Helmet>
             )
             : <React.Fragment />

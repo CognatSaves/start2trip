@@ -134,7 +134,11 @@ class RouteDescriptionClass extends React.Component {
         let textInfo = this.props.storeState.languageTextMain.placeDescription;
         let simularPlaceBlockId = topBlockId + '4';
         let helmet = this.props.storeState.languageTextMain.helmets.routeDescription;
-        debugger
+        let info = null;
+        if(document.querySelector("#routeDescriptionId1")){
+            info = document.querySelector("#routeDescriptionId1").textContent;
+        }
+       
         return (
             <React.Fragment>
                 {
@@ -159,7 +163,7 @@ class RouteDescriptionClass extends React.Component {
                           "reviewCount": `+JSON.stringify(this.state.newRoute.route.commentNumber)+`
                         },
                         "name":`+JSON.stringify(this.state.newRoute.local.name)+`,
-                        "description":`+JSON.stringify(this.state.newRoute.local.info)+`,
+                        "description":`+JSON.stringify(info)+`,
                         "address":[
                         {
                          "@type": "PostalAddress",
@@ -170,13 +174,14 @@ class RouteDescriptionClass extends React.Component {
                          "publicAccess": true,
                         "photo":[
                         {
-                        "@type": "ImageObject",blockListImage
+                        "@type": "ImageObject",
                         "thumbnail":"https://tripfer.com/uploads/`+this.state.newRoute.route.blockListImage.url+`"
                         }
                         ]
                       }
                   `}
               </script>
+              {/* TODO  */}
                         </Helmet> :
                         <React.Fragment/>
                 }
