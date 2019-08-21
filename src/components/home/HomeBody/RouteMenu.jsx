@@ -484,7 +484,7 @@ class RouteMenuClass extends React.Component {
       dateValue = new Date(dateValue);
     }
     if(!dateValue){
-       debugger;
+       
       dateValue = new Date(Date.now())
     }
     this.chooseDate(dateValue);//функция имеет внутри себя проверку на то, чтобы не было зацикливания, а именно

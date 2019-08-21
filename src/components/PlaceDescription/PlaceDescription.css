@@ -439,4 +439,17 @@ h2 {
         position: relative;
         padding: 0 3px !important;
     }
+    @keyframes glowing {
+        0% {
+            background: rgba(34, 157, 78, .49);
+        }
+    
+        50% {
+            background: #fff;
+        }
+    
+        100% {
+            background: rgba(34, 157, 78, .49);
+        }
+    }
 }

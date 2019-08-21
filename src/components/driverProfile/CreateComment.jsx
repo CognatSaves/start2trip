@@ -123,7 +123,7 @@ class CreateCommentClass extends React.Component {
                 <div className={"commentBlock_createComment d-flex flex-column " + this.props.myclass}>
                     <div className="createComment_element d-flex">
                         <div className="createComment_picture">
-                            <img style={{ borderRadius: '30px' }} src={this.props.storeState.avatarUrl ? this.props.storeState.avatarUrl : requests.serverAddressImg + '/uploads/user.svg'} width="100%" height="100%" alt=""></img>
+                            <img style={{ borderRadius: '50%' }} src={this.props.storeState.avatarUrl ? this.props.storeState.avatarUrl : requests.serverAddressImg + '/uploads/user.svg'} width="100%" height="100%" alt=""></img>
                         </div>
                         <div className="d-flex flex-column pl-2 align-items-start" onClick={() => { if (this.state.isNotFilled || this.state.isAllCorrect) { this.setState({ isNotFilled: false, isAllCorrect: false }) } }}>
                             <span className="pt-2 createComment-text">{this.props.createCommentString}</span>
@@ -154,17 +154,15 @@ class CreateCommentClass extends React.Component {
                 <div className={"commentBlock_createComment d-flex flex-column " + this.props.myclass}>
                     <div className="createComment_element d-flex">
                         <div className="createComment_picture">
-                            <img style={{ borderRadius: '30px' }} src={requests.serverAddressImg + '/uploads/user.svg'} width="100%" height="100%" alt=""></img>
+                            <img src={requests.serverAddressImg + '/uploads/user.svg'} width="100%" height="100%" alt=""></img>
                         </div>
-                        <div className="d-flex flex-column pl-2 align-items-start justify-content-center">
-                            <div className="d-flex flex-row flex-wrap">
+                            <div className="d-flex align-items-center flex-row flex-wrap mx-2">
                                 <div className="commentTextStyle" >{textInfo.nonRegisteredElement[0]}</div>
                                 <div className="commentLinkStyle" onClick={() => this.props.dispatch(setModalRegister(!this.props.storeState.modalRegistration))}>{textInfo.nonRegisteredElement[1]}</div>
                                 <div className="commentTextStyle" >{textInfo.nonRegisteredElement[2]}</div>
                                 <div className="commentLinkStyle" onClick={() => this.props.dispatch(setModalRegister(!this.props.storeState.modalRegistration))}>{textInfo.nonRegisteredElement[3]}</div>
                                 <div className="commentTextStyle" >.</div>
                             </div>
-                        </div>
                     </div>
                 </div>
             )

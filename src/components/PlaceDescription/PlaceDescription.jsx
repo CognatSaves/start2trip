@@ -284,7 +284,7 @@ class PlaceDescriptionClass extends React.Component {
                             : <React.Fragment />
                     }
                     {isMobileOnly ?
-                        <Header history={this.props.history} a={true} />
+                        <Header history={this.props.history} showBtnBack={true} />
 
                         :
                         <React.Fragment />

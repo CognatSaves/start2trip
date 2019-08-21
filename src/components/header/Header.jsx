@@ -725,7 +725,7 @@ class HeaderClass extends React.Component {
           <i className="footerMobileIconUp" />
         </div>
         <div className={this.props.driver ? "driverHeader" : "homeHeader"}>
-          {this.props.a ? <div className="driversGoBack" style={{ display: isMobileOnly ? "flex" : "none" }}>
+          {this.props.showBtnBack ? <div className="driversGoBack" style={{ display: isMobileOnly ? "flex" : "none" }}>
             <span onClick={() => { this.props.history.goBack() }}>Назад</span>
           </div> :
             <React.Fragment />}

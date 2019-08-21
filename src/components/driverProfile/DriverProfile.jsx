@@ -503,7 +503,7 @@ class DriverProfileClass extends React.Component {
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
 
                 <div className="drivers_top_background">
-                    <Header history={this.props.history} a={true} />
+                    <Header history={this.props.history} showBtnBack={true} />
 
                     {
                         /*this.props.driversState.driverCarDescription.id*/true /*this.props.storeState.languages.length>0*/ ?

@@ -102,7 +102,7 @@ class PlaceTravelBlockClass extends React.Component {
                             <div className="placesDescription_travelBlock_icon placesDescription_calendary" />
                             <div className="">
                                 <DatePicker hintText={textInfo.startDate} minDate={new Date()} 
-                                onChange={(e, date) => { this.setState({ date: this.props.globalReduser.convertDateToUTC(date) }); }} className="routeDescrDate"/*"routemenu_date"*/ />
+                                onChange={(e, date) => { this.setState({ date: this.props.globalhistory.convertDateToUTC(date) }); }} className="routeDescrDate"/*"routemenu_date"*/ />
                             </div>
                         </div>
                         <button className="placesDescription_travelBlock_element placesDescription_travelBlock_applyButton d-flex"

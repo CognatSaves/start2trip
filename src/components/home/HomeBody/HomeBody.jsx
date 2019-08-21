@@ -32,7 +32,7 @@ const ConstructorButtonsBlock = (props) => {
   return (
     <React.Fragment>
       {
-        <div className="d-flex mb-2">
+        <div className="d-flex justify-content-center mb-2 w-50">
           <span className={that.state.changeMapList ? buttonClasses[0] : buttonClasses[1]} onClick={() => {
             that.setState(
               {
@@ -139,7 +139,7 @@ class HomeBodyClass extends React.Component {
           <React.Fragment>
             <div className="w-100">
               <div className="mobailRoutMenu">
-                <div className="d-flex flex-column align-items-center ">
+                <div className="d-flex flex-column align-items-center">
                   <div className="mobailRoutMenuTitle">{textInfo.mobileRouteMenuTitle}</div>
                   <span className="mobailRoutMenuText">{textInfo.mobileRouteMenuText.mobileRouteMenuText}<br />{textInfo.mobileRouteMenuText.secondLine}</span>
                   <ConstructorButtonsBlock that={this} textInfo={textInfo}
