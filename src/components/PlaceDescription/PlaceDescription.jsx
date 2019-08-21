@@ -264,7 +264,7 @@ class PlaceDescriptionClass extends React.Component {
                         "photo":[
                         {
                         "@type": "ImageObject",
-                        "thumbnail":`+JSON.stringify("https://tripfer.com/uploads/"+this.state.newPlace.place.blockListImage.url)+`
+                        "thumbnail":`+JSON.stringify("https://tripfer.com"+this.state.newPlace.place.blockListImage.url)+`
                         }
                         ]
                       }

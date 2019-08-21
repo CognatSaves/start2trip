@@ -2,10 +2,14 @@ import React from 'react';
 import './feedback.css';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
+import requests from '../../config'
 
 import Header from '../header/Header'
 import CreateComment from '../driverProfile/CreateComment';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 class feedbackClass extends React.Component {
     constructor(props) {
@@ -42,10 +46,23 @@ class feedbackClass extends React.Component {
         let id = this.props.match.params.id;
         let clientId = this.props.match.params.clientId;
         let textInfo = this.props.storeState.languageTextMain.driverProfile.createComment;
+        let windowImg = null
+        if (this.props.storeState.languages.length > 0) {
+            debugger
+            let coockisIso = cookies.get('country', { path: '/' })
+            let j;
+            for (let i = 0; i < this.props.storeState.countries.length; i++) {
+                if (this.props.storeState.countries[i].ISO === coockisIso) {
+                    j = i
+                    break;
+                }
+            }
+            windowImg = requests.serverAddressImg + this.props.storeState.countries[j].windowImg.url
+        }
         return (
             <React.Fragment>
                 <Header history={this.props.history} />
-                <div className="home_window d-flex justify-content-center align-items-center" style={{ minHeight: "87.5vh" }}>
+                <div className="home_window d-flex justify-content-center align-items-center" style={{ background: "url(" + windowImg + ")no-repeat", minHeight: "87.5vh" }} >
 
                     <Helmet>
                         <title>{"Оставте отзыв о Вашей поездке"}</title>

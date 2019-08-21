@@ -497,12 +497,26 @@ class DriverProfileClass extends React.Component {
         let defaultPrice = this.props.driversState.driverCarDescription.price * (100 - this.state.discount) / 100;
         let isCurrencyLoaded = activeCurrency && activeCurrency.symbol;
         let helmet = this.props.storeState.languageTextMain.helmets.driverProfile;
+        
+        let windowImg = null
+        if (this.props.storeState.languages.length > 0) {
+            debugger
+            let coockisIso = cookies.get('country', { path: '/' })
+            let j;
+            for (let i = 0; i < this.props.storeState.countries.length; i++) {
+                if (this.props.storeState.countries[i].ISO === coockisIso) {
+                    j = i
+                    break;
+                }
+            }
+            windowImg = requests.serverAddressImg + this.props.storeState.countries[j].windowImg.url
+        }
 
         return (
             <React.Fragment>
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
 
-                <div className="drivers_top_background">
+                <div className="drivers_top_background" style={ {background:"url("+windowImg+")no-repeat"}}>
                     <Header history={this.props.history} showBtnBack={true} />
 
                     {
@@ -624,7 +638,7 @@ class DriverProfileClass extends React.Component {
                                 elementPrice={defaultPrice} activeCurrency={activeCurrency} textInfo={this.props.storeState.languageTextMain.startTravelForm} />
 
                             <StartTravelSuccess successVisibility={this.state.successVisibility} changeSuccessVisibility={this.changeSuccessVisibility}
-                             textInfo={this.props.storeState.languageTextMain.startTravelForm} />
+                                textInfo={this.props.storeState.languageTextMain.startTravelForm} />
                         </React.Fragment>
                         : <React.Fragment />
                 }

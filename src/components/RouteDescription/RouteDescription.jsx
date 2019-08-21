@@ -175,7 +175,7 @@ class RouteDescriptionClass extends React.Component {
                         "photo":[
                         {
                         "@type": "ImageObject",
-                        "thumbnail":"https://tripfer.com/uploads/`+this.state.newRoute.route.blockListImage.url+`"
+                        "thumbnail":"https://tripfer.com`+this.state.newRoute.route.blockListImage.url+`"
                         }
                         ]
                       }

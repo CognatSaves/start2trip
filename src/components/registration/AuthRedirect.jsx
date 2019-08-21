@@ -4,10 +4,13 @@ import { Modal, ModalBody } from 'reactstrap';
 import { connect } from 'react-redux';
 import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 import { Helmet } from 'react-helmet';
+import requests from '../../config'
 
 import Header from '../header/Header'
 import RenderModalRegistration from '../header/RenderModalRegistration';
+import Cookies from 'universal-cookie';
 
+const cookies = new Cookies();
 const ModalRegistration = (props) => {
     let { modalRegistration, toggle, className, authorization } = props;
     return (
@@ -60,7 +63,19 @@ class AuthRedirectClass extends React.Component {
     }
     render() {
         let helmet = this.props.storeState.languageTextMain.helmets.authRedirect;
-
+        let windowImg = null
+        if (this.props.storeState.languages.length > 0) {
+            debugger
+            let coockisIso = cookies.get('country', { path: '/' })
+            let j;
+            for (let i = 0; i < this.props.storeState.countries.length; i++) {
+                if (this.props.storeState.countries[i].ISO === coockisIso) {
+                    j = i
+                    break;
+                }
+            }
+            windowImg = requests.serverAddressImg + this.props.storeState.countries[j].windowImg.url
+        }
         return (
             <React.Fragment>
                 <Helmet>
@@ -72,7 +87,7 @@ class AuthRedirectClass extends React.Component {
                     <meta property="og:title" content={helmet.basic.title} />
                     <meta property="og:description" content={helmet.basic.description} />
                 </Helmet>
-                <div className="home_window" style={{ minHeight: "95vh" }}>
+                <div className="home_window" style={{ background: "url(" + windowImg + ")no-repeat", minHeight: "95vh" }}>
                     <Header history={this.props.history} />
                     <ModalRegistration modalRegistration={/*this.state.modalRegistration*/true} toggle={this.toggle} className={'authRedirect_background'} authorization={this.authorization} />
                 </div>

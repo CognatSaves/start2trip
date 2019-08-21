@@ -4,13 +4,16 @@ import { connect } from 'react-redux';
 import { Modal, ModalBody } from 'reactstrap';
 import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 import { Helmet } from 'react-helmet';
+import requests from '../../config'
 
 import mapWorldIcon from '../media/mapWorld.svg'
 import crossIconModal from '../media/closeGray.svg'
 
 import RenderModalCountry from '../header/RenderModalCountry'
 import Header from '../header/Header'
+import Cookies from 'universal-cookie';
 
+const cookies = new Cookies();
 // const RenderModalCountry = lazy(() => import('../header/RenderModalCountry'));
 
 class AuthModalCountryClass extends React.Component {
@@ -51,6 +54,7 @@ class AuthModalCountryClass extends React.Component {
             this.props.history.push('/login/');
         }
     }
+
     render() {
         let renderModal = true;
         // let textInfoMain = this.props.storeState.languageTextMain.header;
@@ -62,9 +66,22 @@ class AuthModalCountryClass extends React.Component {
             console.log("Chrome headless detected");
             renderModal = false;
         }
+        let windowImg = null
+        if (this.props.storeState.languages.length > 0) {
+            debugger
+            let coockisIso = cookies.get('country', { path: '/' })
+            let j;
+            for (let i = 0; i < this.props.storeState.countries.length; i++) {
+                if (this.props.storeState.countries[i].ISO === coockisIso) {
+                    j = i
+                    break;
+                }
+            }
+            windowImg = requests.serverAddressImg + this.props.storeState.countries[j].windowImg.url
+        }
         return (
             <React.Fragment>
-                <div className="home_window" style={{ minHeight: "95vh" }}>
+                <div className="home_window" style={{ background: "url(" + windowImg + ")no-repeat", minHeight: "95vh" }} >
                     <Header history={this.props.history} />
                     <Helmet>
                         <title>{helmet.basic.title}</title>

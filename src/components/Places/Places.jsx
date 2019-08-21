@@ -159,6 +159,19 @@ class PlacesClass extends React.Component {
       directionName = JSON.stringify(findSelectedDirectionName(this.props.placesState.directions, selectedDirection));
     }
     directions = JSON.stringify(directions)
+    let windowImg = null
+        if (this.props.storeState.languages.length > 0) {
+            debugger
+            let coockisIso = cookies.get('country', { path: '/' })
+            let j;
+            for (let i = 0; i < this.props.storeState.countries.length; i++) {
+                if (this.props.storeState.countries[i].ISO === coockisIso) {
+                    j = i
+                    break;
+                }
+            }
+            windowImg = requests.serverAddressImg + this.props.storeState.countries[j].windowImg.url
+        }
      
     return (
       <React.Fragment>
@@ -239,7 +252,7 @@ class PlacesClass extends React.Component {
 
         }
 
-        <div className="drivers_top_background col-12 p-0">
+        <div className="drivers_top_background col-12 p-0" style={ {background:"url("+windowImg+")no-repeat"}}>
           <Header history={this.props.history} />
           <div className="wrapper d-flex flex-column">
             <PlacesCountryInfo />

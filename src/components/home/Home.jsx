@@ -52,6 +52,19 @@ class HomeClass extends React.Component {
       : '';
     let helmet = this.props.storeState.languageTextMain.helmets.home;
 
+    let windowImg = null
+    if(this.props.storeState.languages.length >0 ){
+      debugger
+      let coockisIso = cookies.get('country', { path: '/' })
+      let j ;
+      for(let i =0; i<this.props.storeState.countries.length;i++){
+       if( this.props.storeState.countries[i].ISO === coockisIso){
+        j=i
+        break;
+       }
+      }
+       windowImg =requests.serverAddressImg+this.props.storeState.countries[j].windowImg.url
+    }
     return (
       <React.Fragment>
         {
@@ -90,7 +103,7 @@ class HomeClass extends React.Component {
             }
           </Suspense>
 
-          <div className="home_window">
+          <div className="home_window" style={ {background:"url("+windowImg+")no-repeat"}}>
             <Header history={this.props.history} />
 
             <div className="home_block col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
