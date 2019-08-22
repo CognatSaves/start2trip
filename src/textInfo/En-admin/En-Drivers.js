@@ -255,79 +255,79 @@ carAddNewCarComfort: {
                 }
         
     },
-    DriverProfileTrevelHistory: {
-        tripId: 'ID поездки(ENG)',
-        customer: "Customer",
-        venue: "Meeting Point",
-        costOfTravel: "Trip Cost",
-        comment: "Comment",
-        tripStart: 'Начало поездки(ENG)',
-        noStart: 'Поездка не была начата(ENG)',
-        tripEnd: 'Окончание поездки(ENG)',
-        noEnd: 'Поездка не была закончена(ENG)',
-        stateVariants: ['Закончить поездку(ENG)','Начать поездку(ENG)']
-    },
-    DriverProfileHistory: {
-        upcoming: "Upcoming",
-        story: "History",
-    },
-    DriverProfileBilling: {
-        billingModalA:{
-            header: 'Доступно к выводу(ENG)',
-            summ: 'Сумма USD(ENG)',
-            cardNumber: 'Номер карты(ENG)',
-            cardType: 'Тип карты(ENG)',
-            cancel: 'Отмена(ENG)',
-            submit: 'Вывод средств(ENG)'
-        },
-        billingModalB:{
-            header: 'Сумма к оплате(ENG)',
-            summ: 'Сумма USD(ENG)',
-            description: '(ENG)Оплата осуществляется с помощью банковской карты. После ввода суммы и подтверждения вы будете переадресованы в специализированный сервис.',
-            cancel: 'Отмена(ENG)',
-            submit: 'Оплатить(ENG)'
-        },
-        currentBalance: {
-            currentBalanceText: 'Current balance',
-            personalAccount: 'Personal Account',
-            cardPayments: 'Paid by cards',
-            partnerPayments: 'Affiliate charges',
-            withdrawnTotal: 'Total get',
-            accountTotal: 'Total Account',
-            fundsWithdrawal: 'Withdraw funds',
-            receivedByCash: 'Received Cash All Time'
-        },
-        systemPayments: {
-            systemPaymentsText: 'Payment for using the system (all the time)',
-            cardCommission: 'Licence fee from cards',
-            cashCommission: 'Licence fee from Cash',
-            payedPart: 'Paid',
-            systemPaymentsTotal: 'Total',
-            payButtonText: 'Make Payment',
-            systemPaymentInfo: 'To maintain the Tripfer service, a fee is charged from each trip. To continue using the system, you need to pay the bill by the 5th day of each month. '
-        },
-        accountOperations: {
-            accountOperationsText: 'Account Transactions',
-            forPeriod: 'Over the period',
-            searchButton: 'View',
-            infoTableText: {
-                payedByCash: 'Paid with cards',
-                payedByCard: 'Card payment',
-                payedByPartners: 'Licence fee charges',
-                payedForPeriod: 'Total for the period'
-            },
-            valueTableText: [
-                'Transaction ID',
-                'Type of payment',
-                'Amount',
-                'Payment Date',
-                'Trip ID'
-            ]
-        }
-    },
-    DriverProfileRegistration:{
-        loading: 'Загрузка(ENG)'
+DriverProfileTrevelHistory: {
+            tripId: 'trip ID',
+    customer: "Customer",
+    venue: "Meeting Point",
+    costOfTravel: "Trip Cost",
+    comment: "Comment",
+            tripStart: 'Trip Start',
+            noStart: 'The trip has not been started',
+            tripEnd: 'End of Trip',
+            noEnd: 'The trip was not finished',
+            stateVariants: ['End the trip', 'Start the trip']
+    },
+    DriverProfileHistory: {
+    upcoming: "Upcoming",
+    story: "History",
+    },
+    DriverProfileBilling: {
+            billingModalA: {
+                header: 'Withdraw funds available',
+                summ: 'Amount USD',
+                cardNumber: 'Card number',
+                cardType: 'Card Type',
+                cancel: 'Cancel',
+                submit: 'Withdraw funds'
+            },
+            billingModalB: {
+                header: 'Amount to be paid',
+                summ: 'Amount USD',
+                description: '(ENG) Payment is by credit card. After entering the amount and confirmation, you will be redirected to a specialized service. ',
+                cancel: 'Cancel',
+                submit: 'Pay'
+            },
+    currentBalance: {
+    currentBalanceText: 'Current balance',
+    personalAccount: 'Personal Account',
+    cardPayments: 'Paid by cards',
+    partnerPayments: 'Affiliate charges',
+    withdrawnTotal: 'Total get',
+    accountTotal: 'Total Account',
+    fundsWithdrawal: 'Withdraw funds',
+    receivedByCash: 'Received Cash All Time'
+    },
+    systemPayments: {
+    systemPaymentsText: 'Payment for using the system (all the time)',
+    cardCommission: 'License fee from cards',
+    cashCommission: 'License fee from Cash',
+    payedPart: 'Paid',
+    systemPaymentsTotal: 'Total',
+    payButtonText: 'Make Payment',
+    systemPaymentInfo: 'To maintain the Tripfer service, a fee is charged from each trip. To continue using the system, you need to pay the bill by the 5th day of each month.'
+    },
+    accountOperations: {
+    accountOperationsText: 'Account Transactions',
+    forPeriod: 'Over the period',
+    searchButton: 'View',
+    infoTableText: {
+    payedByCash: 'Paid with cards',
+    payedByCard: 'Card payment',
+    payedByPartners: 'License fee charges',
+    payedForPeriod: 'Total for the period'
+    },
+    valueTableText: [
+    'Transaction ID',
+    'Type of payment',
+    'Amount',
+    'Payment Date',
+    'Trip ID'
+    ]
     }
-}
-                
-export default driverProfileRegistration
+    },
+        DriverProfileRegistration: {
+            loading: 'Loading'
+        }
+    }
+                    
+    export default driverProfileRegistration

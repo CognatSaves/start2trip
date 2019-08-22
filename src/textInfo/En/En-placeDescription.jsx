@@ -15,9 +15,9 @@ let placeDescription = {
          startDate: "Departure Date",
          lookAvailable: 'SEE OFFERS',
          goToEdit: 'Go to edit',
-         route: 'Ваш маршрут(ENG)',
-         time: 'Время в пути(ENG)',
-         length: 'Длина пути(ENG)'
+         route: 'Your trip',
+         time: 'Trip time',
+         length: 'Trip length'
      },
      placeDescription: {
          variantsArray: ["Description", "Photos", "How to get there", "You may be interested in", "Reviews"]
