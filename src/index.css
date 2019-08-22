@@ -15,6 +15,11 @@ body {
     margin-left: -10px !important;
     margin-right: -10px !important;
 }
+#omni_widget_iframe_3112-5mvjsjtu{
+    right: 20px !important;
+    bottom: 100px !important;
+    z-index: 30 !important; 
+}
 
 .col,
 .col-1,
@@ -270,6 +275,12 @@ body {
     }
 }
 
+@media (max-width: 450px) {
+#omni_widget_iframe_3112-5mvjsjtu{
+    right: 8px !important;
+    bottom: 63px !important;
+}
+}
 
 /*
 code {

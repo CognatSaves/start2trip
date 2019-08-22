@@ -650,9 +650,7 @@ class HeaderClass extends React.Component {
 
         <ModalUserType textInfo={textInfo} isOpen={this.state.isUsertypeLooking} that={this} pageTextInfo={pageTextInfo} />
         <div style={this.state.burgerMenu ? { position: "fixed", top: "0", zIndex: "40" } : {}} className="headerMobail  d-md-none d-flex align-items-center justify-content-between">
-          <Link className="" to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes/"}>
-            <h3 />
-          </Link>
+          <Link className="logoSite" to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes/"} />
           <div onClick={this.toggleModalCountry} style={{ visibility: this.props.storeState.countries.length > 0 ? 'visible' : 'hidden' }} className="headerGeoButton col-lg-5 col-md-4 col-6">
             <span>{this.props.storeState.country}</span>
           </div>
@@ -663,7 +661,7 @@ class HeaderClass extends React.Component {
             <nav className={this.state.burgerMenu ? "burgerMenu burgerMenu-active" : "burgerMenu"}>
               <div className="burgerMenuBg">
                 <div className="burgerMenuTop">
-                  <h4 className="col-11 pt-4 pb-2">{textInfo.burgerMenu.titlesName[0]}</h4>
+                  <text className="col-11 pt-4 pb-2">{textInfo.burgerMenu.titlesName[0]}</text>
                   <div className="burgerMenuBlock burgerMenuP d-flex flex-column justify-content-center align-items-center col-11">
                     <div className="d-flex align-items-end justify-content-between w-100 border-bottom">
                       <label>{textInfo.burgerMenu.settingsDrop[0]}</label>
@@ -685,14 +683,14 @@ class HeaderClass extends React.Component {
                       </DropDownMenu>
                     </div>
                   </div>
-                  <h4 className="col-11 pt-4 pb-2">{textInfo.burgerMenu.titlesName[1]}</h4>
+                  <text className="col-11 pt-4 pb-2">{textInfo.burgerMenu.titlesName[1]}</text>
                   <div className="burgerMenuBlock d-flex flex-column justify-content-center align-items-start col-11">
                     <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes/"} className="border-bottom routes" >{textInfo.burgerMenu.services[0]}</Link>
                     <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/tours/"} className="border-bottom tours" >{textInfo.burgerMenu.services[1]}</Link>
                     <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/places/"} className="places" >{textInfo.burgerMenu.services[2]}</Link>
                   </div>
 
-                  <h4 className="col-11 pt-4 pb-2">{textInfo.burgerMenu.titlesName[2]}</h4>
+                  <text className="col-11 pt-4 pb-2">{textInfo.burgerMenu.titlesName[2]}</text>
                   <div className="burgerMenuBlock d-flex flex-column justify-content-center align-items-start col-11">
                     {
                       this.props.storeState.isAuthorized ?
@@ -707,7 +705,7 @@ class HeaderClass extends React.Component {
                         <span className="profile" onClick={this.toggleModalRegistration}>{textInfo.burgerMenu.burgerEnter}</span>
                     }
                   </div>
-                  <h4 className="col-11 pt-4 pb-2">{textInfo.burgerMenu.titlesName[3]}</h4>
+                  <text className="col-11 pt-4 pb-2">{textInfo.burgerMenu.titlesName[3]}</text>
                   <div className="burgerMenuBlock d-flex flex-column justify-content-center align-items-start col-11">
                     <Link to="/about-service/" className="border-bottom logoIcon" >{textInfo.burgerMenu.usefulLinks[0]}</Link>
                     <Link to="/affiliate-program/" className="border-bottom partner" >{textInfo.burgerMenu.usefulLinks[1]}</Link>
@@ -732,9 +730,7 @@ class HeaderClass extends React.Component {
 
           <div className='header d-xl-flex d-lg-flex d-md-flex d-sm-none d-none align-items-stretch justify-content-between'>
             <div className="d-flex align-items-center col-xl-2 col-lg-2 col-md-3 col-sm-2 col-2">
-              <Link className="col-xl-8 col-lg-9 col-md-8 col-sm-8 col-7" to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes/"}>
-                <h3 />
-              </Link>
+              <Link className="logoSite col-xl-8 col-lg-9 col-md-8 col-sm-8 col-7" to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes/"}/>
               <div onClick={this.toggleModalCountry} style={{ visibility: this.props.storeState.countries.length > 0 ? 'visible' : 'hidden' }} className="headerGeoButton col-xl-5 col-lg-5 col-md-4 col-sm-5 col-5">
                 <span>{this.props.storeState.country}</span>
               </div>

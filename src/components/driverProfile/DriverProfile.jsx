@@ -500,7 +500,7 @@ class DriverProfileClass extends React.Component {
         
         let windowImg = null
         if (this.props.storeState.languages.length > 0) {
-            debugger
+            
             let coockisIso = cookies.get('country', { path: '/' })
             let j;
             for (let i = 0; i < this.props.storeState.countries.length; i++) {

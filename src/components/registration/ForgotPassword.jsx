@@ -7,6 +7,9 @@ import requests from '../../config';
 
 import Header from '../header/Header';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 class ForgotPasswordClass extends React.Component {
     constructor(props) {
@@ -87,12 +90,25 @@ class ForgotPasswordClass extends React.Component {
 
         console.log('EEE');
         let helmet = this.props.storeState.languageTextMain.helmets.forgotPassword;
-
+        
+        let windowImg = null
+        if(this.props.storeState.languages.length >0 ){
+          
+          let coockisIso = cookies.get('country', { path: '/' })
+          let j ;
+          for(let i =0; i<this.props.storeState.countries.length;i++){
+           if( this.props.storeState.countries[i].ISO === coockisIso){
+            j=i
+            break;
+           }
+          }
+           windowImg =requests.serverAddressImg+this.props.storeState.countries[j].windowImg.url
+        }
         return (
             <React.Fragment>
 
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={true} isGoodAnswer={true} />
-                <div className="forgotPasswordBody d-flex flex-column align-items-center">
+                <div className="forgotPasswordBody d-flex flex-column align-items-center" style={ {background:"url("+windowImg+")no-repeat"}}>
                     <Header driver={false} history={this.props.history} />
                     <Helmet>
                         <title>{helmet.basic.title}</title>
