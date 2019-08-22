@@ -211,6 +211,7 @@ export default class StartTravelForm extends React.Component {
 
     constructor(props) {
         super(props);
+        debugger;
         this.state = {
             travelVisibility: false,
             // successVisibility: 'none',
@@ -223,7 +224,7 @@ export default class StartTravelForm extends React.Component {
             lastName: props.storeState.userData ? props.storeState.userData.lastName : "",
             telNumber: props.storeState.userData ? props.storeState.userData.workPhone : "",
             email: props.storeState.userData ? props.storeState.userData.email : "",
-            date: props.storeState.date.length > 0 ? new Date(props.storeState.date) : new Date(),
+            //date: props.storeState.date.length > 0 ? new Date(props.storeState.date) : new Date(),
             departureTime: "",
             numberOfPeople: "",
             placeDeparture: "",
@@ -404,8 +405,8 @@ export default class StartTravelForm extends React.Component {
         this.setState({ errorMes: !isAllGood, emailValid: emailValid })
 
         if (isAllGood) {
-
-            let date = this.state.date;
+            debugger;
+            let date = new Date(this.props.storeState.date);
             let year = date.getUTCFullYear(); let month = date.getUTCMonth() + 1; let day = date.getUTCDate();
             let body = {
                 newFirstName: this.state.firstName,

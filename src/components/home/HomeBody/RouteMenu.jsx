@@ -143,16 +143,20 @@ class RouteMenuClass extends React.Component {
       setCitiesFromUrl(pathnameMAss[ares ? 3 : 4]);
       
     }
-
+    
+    /**/
+    
+    
     this.state = {
       correctDate: "",
       isWaiting: false,
       isRefreshing: true,
       isGoodAnswer: true,
-      date: /*this.props.storeState.date*/dateValue,
+      date: /*this.props.storeState.date*/'',
       isLoaded: !resultpathname//переменная для загрузки 1 раза водителей - если есть города, то не загружено пока.
       //language: this.props.storeState.activeLanguageNumber
     }
+
   }
 
   changeCity = (index, value, extraData) => {
@@ -216,13 +220,13 @@ class RouteMenuClass extends React.Component {
 
   chooseDate = (value) => {
     
-   
+    debugger;
     let resultString = this.props.globalhistory.convertDateToUTC(value).toUTCString();
     if(this.state.date!==resultString){
       this.props.dispatch(set_state(this.props.storeState.cities, resultString))
       this.setState({
         date: resultString,
-        correctDate: value.toUTCString()
+        correctDate: value
       });
     }
   }
@@ -474,20 +478,30 @@ class RouteMenuClass extends React.Component {
         }
       }*/
     }
+    debugger;
     let textInfo = this.props.storeState.languageTextMain.home.routeMenu;
     console.log('Route Menu render, lang=', this.props.storeState.activeLanguageNumber);
-
+    
     let result = this.props.globalhistory.findGetParameter("date");
-    let dateValue;
-    if (result) {
-      dateValue = this.props.globalhistory.getDateFromDateString(result);
-      dateValue = new Date(dateValue);
+    debugger;
+    //данный кусок кода выставляет первичное значение даты. Очень хотелось воспользоваться 
+    //функцией, которая не желает быть вызванной в конструкторе.
+    //но в результате данный клок будет отрабатывать только один раз - в самом начале   
+    if(this.state.date.length===0){
+      let dateValue;
+      if (result) {
+        dateValue = this.props.globalhistory.getDateFromDateString(result);
+        dateValue = new Date(dateValue);
+      }
+      if(!dateValue){
+        
+        dateValue = new Date(Date.now())
+      }
+      debugger;
+      this.chooseDate(dateValue);
     }
-    if(!dateValue){
-       
-      dateValue = new Date(Date.now())
-    }
-    this.chooseDate(dateValue);//функция имеет внутри себя проверку на то, чтобы не было зацикливания, а именно
+    
+    //функция имеет внутри себя проверку на то, чтобы не было зацикливания, а именно
     // если в редусере лежит то же, что мы туда кладём, то ничего класть мы не будем
     return (
       <React.Fragment>
@@ -528,11 +542,17 @@ class RouteMenuClass extends React.Component {
           }
 
           <div className="routemenu_setDate">
+          {
+            this.state.date.length>0 ? //это выражение ожидает установки даты - пока в this.state.correctDate не установится значение, мы не можем назначить defaultDate.
+            //просто все дальнейшие изменения даты будут вызваны DatePicker-ом
             <div className="col-sm-6 col-12 p-0 pr-1">
-              <DatePicker defaultDate={dateValue} hintText={textInfo.datePickerText} minDate={new Date()}
+              <DatePicker defaultDate={this.state.correctDate} hintText={textInfo.datePickerText} minDate={new Date()}
                onChange={(e, date) => {  /*UTC conv inside chooseDate */ this.chooseDate(date); let datePicker = document.querySelector(".routemenu_date");
                datePicker.classList.remove("routemenu_date-Check") }} className="routemenu_date" />
-            </div>
+            </div> :
+            <React.Fragment/>
+          }
+            
 
             {this.props.showBtPrice ?
               <React.Fragment>

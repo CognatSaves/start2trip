@@ -273,7 +273,6 @@ class DriversBlockClass extends React.Component {
                 <span>{'Загружаемся!'}</span> :
                 <span>{pageNotFound.text1+" "+pageNotFound.text2}<br/>{pageNotFound.text3}</span>
               }
-                <span>{pageNotFound.text1+" "+pageNotFound.text2}<br/>{pageNotFound.text3}</span>
               </div>
             </React.Fragment>
             : <React.Fragment />

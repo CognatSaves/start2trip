@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { setDriversRouteChange, setDriverCarDescription, setCarTypes } from '../../redusers/ActionDrivers';
-import { setCities } from '../../redusers/Action'
+import { setCities,set_state } from '../../redusers/Action'
 import { setLengthTime } from '../../redusers/ActionDrivers'
 import { Helmet } from 'react-helmet';
 import requests from '../../config';
@@ -22,7 +22,18 @@ const cookies = new Cookies();
 class DriverProfileClass extends React.Component {
     constructor(props) {
         super(props);
-
+        debugger;
+        let getdate = props.globalReduser.findGetParameter("date");
+        let dateValue;
+        if(getdate){
+            dateValue = props.globalReduser.getDateFromDateString(getdate);
+            dateValue =props.globalReduser.convertDateToUTC(new Date(dateValue));
+            let resultString = dateValue.toUTCString();
+            props.dispatch(set_state(props.storeState.cities, resultString));
+        }
+        else{
+            dateValue =  props.globalReduser.convertDateToUTC(new Date(Date.now()));
+        }
         this.state = {
             travelVisibility: false,
             successVisibility: 'none',
@@ -36,7 +47,7 @@ class DriverProfileClass extends React.Component {
             lastName: props.storeState.userData ? props.storeState.userData.lastName : "",
             telNumber: props.storeState.userData ? props.storeState.userData.workPhone : "",
             email: props.storeState.userData ? props.storeState.userData.email : "",
-            date: props.storeState.date.length > 0 ? new Date(props.storeState.date) : new Date(),
+            date: dateValue,
             departureTime: "",
             numberOfPeople: "",
             placeDeparture: "",
@@ -259,6 +270,17 @@ class DriverProfileClass extends React.Component {
 
 
     }
+    chooseDate = (value) => {//это не такой же chooseDate, как в RouteMenu, attention please
+    
+        debugger;
+        let resultString = this.props.globalReduser.convertDateToUTC(value).toUTCString();
+        if(this.state.date!==resultString){
+          this.props.dispatch(set_state(this.props.storeState.cities, resultString))
+          this.setState({
+            date: value
+          });
+        }
+      }
     /*
     sendTripRequest = (body) => {
         if (body) {
@@ -375,7 +397,7 @@ class DriverProfileClass extends React.Component {
             let that = this;
             //let cityNamesArray = this.parseStringToArray(cities, country);
 
-            let date = this.props.globalReduser.findGetParameter('date');
+            let date = this.state.date;
 
 
 
@@ -589,7 +611,7 @@ class DriverProfileClass extends React.Component {
                                                                     }
                                                                 }
                                                                 return flag
-                                                            }} hintText={textInfo.startDate} minDate={new Date()} onChange={(e, date) => { this.setState({ date: this.props.globalReduser.convertDateToUTC(date) }); }} className="routeDescrDate" />
+                                                            }} hintText={textInfo.startDate} minDate={new Date()} onChange={(e, date) => { this.chooseDate(date); }} className="routeDescrDate" />
                                                         </div>
                                                     </div>
                                                     {
