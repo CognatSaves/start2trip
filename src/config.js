@@ -1,6 +1,6 @@
 import serverAddress from './serverAddress';
 import serverAddressImg from './serverAddressImg';
-const frontendAddress = 'http://localhost:3000'; //'http://tripfer.com'; //
+const frontendAddress = 'http://localhost:3000'; //'https://tripfer.com'; //
 
 const serverRegistrationRequest = serverAddress + '/auth/local/register';
 const serverAuthorizationRequest = serverAddress + '/auth/local';

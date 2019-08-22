@@ -19,7 +19,7 @@ class PopularPlacesClass extends React.Component {
     }
 
     onDirClickCleared = (address) => {
-        this.props.globalReduser.history.push(address);
+        this.props.globalReduser.history.push(address+"/");
     }
     directionHrefCreator = (id) => {
         function findSelectedDirectionName(directions, id, storeState) {

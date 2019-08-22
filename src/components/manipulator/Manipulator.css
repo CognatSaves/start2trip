@@ -46,9 +46,10 @@
 .driversBlockManipulator_pageNumbers {
     display: flex;
     flex-direction: row;
+    justify-content: center;
     /*height: 20px;*/
     padding-bottom: 10px;
-    margin: 0 auto;
+    /* margin: 0 auto; */
 }
 
 .pageNumbers_arrow {

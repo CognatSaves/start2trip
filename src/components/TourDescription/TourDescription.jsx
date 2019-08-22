@@ -2,6 +2,7 @@ import React from 'react';
 import './TourDescription.css';
 import { connect } from 'react-redux';
 import { changePanelFixedClass, setTourPanelSelectedElement } from '../../redusers/ActionTours';
+import requests from '../../config'
 
 import carthage from '../media/bachground.jpg';
 import antioch from '../media/bachground.jpg';
@@ -20,6 +21,9 @@ import PlacePhotos from '../PlaceDescription/PlacePhotos';
 import TourMapBlock from './TourMapBlock.jsx';
 import SimularToursBlock from './SimularToursBlock.jsx';
 import CommentBlock from './CommentBlock.jsx';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 class TourDescriptionClass extends React.Component {
     constructor(props) {
@@ -96,9 +100,23 @@ class TourDescriptionClass extends React.Component {
 
         let topBlockId = "tourDescriptionId";
 
+        let windowImg = null
+        if (this.props.storeState.languages.length > 0) {
+            debugger
+            let coockisIso = cookies.get('country', { path: '/' })
+            let j;
+            for (let i = 0; i < this.props.storeState.countries.length; i++) {
+                if (this.props.storeState.countries[i].ISO === coockisIso) {
+                    j = i
+                    break;
+                }
+            }
+            windowImg = requests.serverAddressImg + this.props.storeState.countries[j].windowImg.url
+        }
+
         return (
             <React.Fragment>
-                <div className="drivers_top_background placeDescription_background col-12" id={topBlockId}>
+                <div className="drivers_top_background placeDescription_background col-12" id={topBlockId} style={ {background:"url("+windowImg+")no-repeat"}}>
                     <img src={carthage} width="100%" height="100%" style={{ position: "absolute" }} alt="noImage" />
                     <div style={{ position: "absolute", width: "100%", height: "100%", backgroundColor: "rgba(0,0,0,0.5)" }} />
                     <div className="wrapper d-flex flex-column">
@@ -138,6 +156,7 @@ class TourDescriptionClass extends React.Component {
 }
 const TourDescription = connect(
     (state) => ({
+        storeState: state.AppReduser,
         toursState: state.ToursReduser,
         commentState: state.CommentReduser
     }),

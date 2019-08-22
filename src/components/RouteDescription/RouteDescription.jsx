@@ -134,7 +134,11 @@ class RouteDescriptionClass extends React.Component {
         let textInfo = this.props.storeState.languageTextMain.placeDescription;
         let simularPlaceBlockId = topBlockId + '4';
         let helmet = this.props.storeState.languageTextMain.helmets.routeDescription;
-        debugger
+        let info = null;
+        if(document.querySelector("#routeDescriptionId1")){
+            info = document.querySelector("#routeDescriptionId1").textContent;
+        }
+       
         return (
             <React.Fragment>
                 {
@@ -159,7 +163,7 @@ class RouteDescriptionClass extends React.Component {
                           "reviewCount": `+JSON.stringify(this.state.newRoute.route.commentNumber)+`
                         },
                         "name":`+JSON.stringify(this.state.newRoute.local.name)+`,
-                        "description":`+JSON.stringify(this.state.newRoute.local.info)+`,
+                        "description":`+JSON.stringify(info)+`,
                         "address":[
                         {
                          "@type": "PostalAddress",
@@ -170,13 +174,14 @@ class RouteDescriptionClass extends React.Component {
                          "publicAccess": true,
                         "photo":[
                         {
-                        "@type": "ImageObject",blockListImage
-                        "thumbnail":"https://tripfer.com/uploads/`+this.state.newRoute.route.blockListImage.url+`"
+                        "@type": "ImageObject",
+                        "thumbnail":"https://tripfer.com`+this.state.newRoute.route.blockListImage.url+`"
                         }
                         ]
                       }
                   `}
               </script>
+              {/* TODO  */}
                         </Helmet> :
                         <React.Fragment/>
                 }
@@ -193,8 +198,19 @@ class RouteDescriptionClass extends React.Component {
                             : <React.Fragment />
 
                     }
+                     {isMobileOnly ?
+                        <Header history={this.props.history} showBtnBack={true} />
+
+                        :
+                        <React.Fragment />
+                    }
+
                     <div className="placeDescription_background col-12 p-0" style={{ background: "url(" + (this.state.newRoute.local && this.state.newRoute.route.mainImage ? (isMobileOnly ? requests.serverAddressImg + this.state.newRoute.route.blockListImage.url : requests.serverAddressImg + this.state.newRoute.route.mainImage.url) : '') + ") no-repeat" }} id={topBlockId}>
-                        <Header history={this.props.history} a={true} />
+                        {!isMobileOnly ?
+                            <Header history={this.props.history} />
+                            :
+                            <React.Fragment />
+                        }
 
                         {
                             this.state.newRoute.local ?

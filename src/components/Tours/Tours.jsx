@@ -2,12 +2,16 @@ import React from 'react';
 import '../Places/Places.css';
 import { connect } from 'react-redux';
 import { setPage, setMorePagesShow } from '../../redusers/ActionPlaces';
+import requests from '../../config'
 
 import Header from '../header/Header';
 import ToursCountryInfo from './ToursCountryInfo';
 import DriversProperties from '../drivers/DriversBody/DriversProperties/DriversProperties';
 import DriversCommercial from '../drivers/DriversBody/DriversCommercial/DriversCommercial';
 import ToursList from './ToursList';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 // TODO dispatch old
 class ToursClass extends React.Component {
@@ -39,9 +43,22 @@ class ToursClass extends React.Component {
     this.props.dispatch(setMorePagesShow());
   }
   render() {
+    let windowImg = null
+        if (this.props.storeState.languages.length > 0) {
+            debugger
+            let coockisIso = cookies.get('country', { path: '/' })
+            let j;
+            for (let i = 0; i < this.props.storeState.countries.length; i++) {
+                if (this.props.storeState.countries[i].ISO === coockisIso) {
+                    j = i
+                    break;
+                }
+            }
+            windowImg = requests.serverAddressImg + this.props.storeState.countries[j].windowImg.url
+        }
     return (
       <React.Fragment>
-        <div className="drivers_top_background col-12">
+        <div className="drivers_top_background col-12" style={ {background:"url("+windowImg+")no-repeat"}}>
           <div className="wrapper d-flex flex-column">
             <Header history={this.props.history} />
             <ToursCountryInfo />

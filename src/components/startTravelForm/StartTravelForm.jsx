@@ -260,6 +260,39 @@ export default class StartTravelForm extends React.Component {
         return true
     }
     sendTripRequest = (body) => {
+        function returnToStartData(that){
+            that.setState({
+                travelVisibility: false,
+                // successVisibility: 'none',
+                page: 1,
+                // mapRwanda:true,
+                showPages: 1,
+                showPanelVariant: 0,
+                //Form value Begin
+                firstName: that.props.storeState.userData ? that.props.storeState.userData.firstName : "",
+                lastName: that.props.storeState.userData ? that.props.storeState.userData.lastName : "",
+                telNumber: that.props.storeState.userData ? that.props.storeState.userData.workPhone : "",
+                email: that.props.storeState.userData ? that.props.storeState.userData.email : "",
+                date: that.props.storeState.date.length > 0 ? new Date(that.props.storeState.date) : new Date(),
+                departureTime: "",
+                numberOfPeople: "",
+                placeDeparture: "",
+                description: "",
+                promoCode: "",
+                discount: 0,
+                checkBoxes: false,
+                emailValid: false,
+                //Form value end
+                errorMes: false,
+                flagAllOk: false,
+                promoCod: "",
+                isRefreshExist: false,
+                isRefreshing: false,
+                isGoodAnswer: false,
+                promoCodIsOk: true,
+                time: that.props.globalReduser.time,
+            })
+        }
         if (body) {
 
             let that = this;
@@ -292,7 +325,8 @@ export default class StartTravelForm extends React.Component {
 
                             that.props.changeTravelVisibility();
                             that.props.changeSuccessVisibility('block', false);
-                            that.setState({ isRefreshExist: false });
+                            //уборка - откат к старым данным
+                            returnToStartData(that);
                         }, 1000);
 
                     }
@@ -303,9 +337,12 @@ export default class StartTravelForm extends React.Component {
                     that.setState({
                         isRefreshExist: true,
                         isRefreshing: false,
-                        isGoodAnswer: true
+                        isGoodAnswer: false
                     });
-                    setTimeout(() => { that.setState({ isRefreshExist: false }) }, 1000);
+                    setTimeout(() => { 
+                        //уборка - откат к старым данным
+                        returnToStartData(that);
+                     }, 1000);
                 });
         }
     }
@@ -364,7 +401,7 @@ export default class StartTravelForm extends React.Component {
         //     isAllGood = false;
         // }
 
-        this.setState({ errorMes: true, emailValid: emailValid })
+        this.setState({ errorMes: !isAllGood, emailValid: emailValid })
 
         if (isAllGood) {
 
@@ -393,6 +430,7 @@ export default class StartTravelForm extends React.Component {
                 userLangCookies: (cookies.get('userLang', { path: '/' })).toUpperCase()
             };
             this.sendTripRequest(JSON.stringify(body));
+            
         }
     }
     promocodeVerification = () => {

@@ -108,4 +108,18 @@
     }
 }
 
-@media (max-width: 430px) {}
+@media (max-width: 430px) {
+    @keyframes glowing {
+        0% {
+            background: rgba(34, 157, 78, .49);
+        }
+    
+        50% {
+            background: #fff;
+        }
+    
+        100% {
+            background: rgba(34, 157, 78, .49);
+        }
+    }
+}

@@ -65,7 +65,8 @@ class ManipulatorClass extends React.Component {
                     }
                     {
                         isEnoughPages ?
-                            <div className="driversBlockManipulator_pageNumbers" style={{ margin: this.props.page !== maxPage ? '0 auto' : 'auto' }}>
+                            <div className="driversBlockManipulator_pageNumbers" >
+                                <div className="d-flex col-3">
                                 <button className="pageNumbers_arrow" onClick={() => { if (this.props.page > 1) { this.props.setPage(this.props.page - 1) } }}>
                                     <img src={leftArrow} width="100%" height="100%" alt="leftA" style={{ borderRadius: "5px" }}></img>
                                 </button>
@@ -86,6 +87,8 @@ class ManipulatorClass extends React.Component {
                                 <button className="pageNumbers_arrow" onClick={() => { if (this.props.page < maxPage) { this.props.setPage(this.props.page + 1) } }}>
                                     <img src={rightArrow} width="100%" height="auto" alt="rightA" style={{ borderRadius: "5px" }}></img>
                                 </button>
+                                </div>
+                                
                             </div>
                             :
                             <React.Fragment />

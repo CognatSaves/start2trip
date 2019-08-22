@@ -33,8 +33,10 @@
     padding-bottom: 25px;
 }
 
-.mobailRoutMenuBtList {
-    padding: 10px 22px;
+ .mobailRoutMenuBtList{
+    padding: 10px 0px;
+    width: 50%;
+    text-align: center;
     border: 1px solid #fff;
     border-radius: 50px 0 0 50px;
     border-right: none;
@@ -45,7 +47,9 @@
 }
 
 .mobailRoutMenuBtMap {
-    padding: 10px 30px;
+    padding: 10px 0px;
+    width: 50%;
+    text-align: center;
     border: 1px solid #fff;
     border-radius: 0 50px 50px 0;
     border-left: none;
@@ -69,7 +73,9 @@
 
 .routMenuBtList {
     cursor: pointer;
-    padding: 10px 25px;
+    padding: 10px 0px;
+    width: 25%;
+    text-align: center;
     border: 1px solid #fff;
     border-radius: 5px 0 0 5px;
     border-right: none;
@@ -81,7 +87,9 @@
 
 .routMenuBtMap {
     cursor: pointer;
-    padding: 10px 30px;
+    padding: 10px 0px;
+    width: 25%;
+    text-align: center;
     border: 1px solid #fff;
     border-radius: 0 5px 5px 0;
     border-left: none;
@@ -115,5 +123,7 @@
     .mobailRoutMenuTitle,
     .mobailRoutMenuText {
         text-align: center;
+        margin-top: 5px;
+        margin-bottom: 0px;
     }
 }

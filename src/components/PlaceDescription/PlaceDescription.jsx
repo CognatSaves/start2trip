@@ -216,6 +216,12 @@ class PlaceDescriptionClass extends React.Component {
         let smallImage = 'url(' + (this.state.newPlace.place && this.state.newPlace.place.blockListImage ?
             requests.serverAddressImg + this.state.newPlace.place.blockListImage.url : '') + ') no-repeat';
         let helmet = this.props.storeState.languageTextMain.helmets.placeDescription;
+        let info = null;
+        if(document.querySelector("#placeDescriptionId1")){
+            info = document.querySelector("#placeDescriptionId1").textContent;
+        }
+       
+            
         return (
             <React.Fragment>
                 {
@@ -240,7 +246,7 @@ class PlaceDescriptionClass extends React.Component {
                           "reviewCount": `+JSON.stringify(this.state.newPlace.place.commentNumber)+`
                         },
                         "name":`+JSON.stringify(this.state.newPlace.local.name)+`,
-                        "description":`+JSON.stringify(this.state.newPlace.local.info)+`,
+                        "description":`+JSON.stringify(info)+`,
                         "address":[
                         {
                          "@type": "PostalAddress",
@@ -258,7 +264,7 @@ class PlaceDescriptionClass extends React.Component {
                         "photo":[
                         {
                         "@type": "ImageObject",
-                        "thumbnail":`+JSON.stringify("https://tripfer.com/uploads/"+this.state.newPlace.place.blockListImage.url)+`
+                        "thumbnail":`+JSON.stringify("https://tripfer.com"+this.state.newPlace.place.blockListImage.url)+`
                         }
                         ]
                       }
@@ -278,7 +284,7 @@ class PlaceDescriptionClass extends React.Component {
                             : <React.Fragment />
                     }
                     {isMobileOnly ?
-                        <Header history={this.props.history} a={true} />
+                        <Header history={this.props.history} showBtnBack={true} />
 
                         :
                         <React.Fragment />
