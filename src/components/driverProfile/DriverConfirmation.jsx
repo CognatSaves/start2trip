@@ -16,13 +16,13 @@ class DriverConfirmationClass extends React.Component {
         let carrierId = props.match.params.carrierId;
         let confirmation = JSON.parse(props.match.params.confirmation);
 
-         
+         debugger;
         if(confirmation){
             console.log("-------------------------------")
             console.log(confirmation)
             this.state = {
                 isRefreshExist: true,
-                heAgrees: null,
+                heAgrees: confirmation,
                 id: id,
                 carrierId: carrierId,
                 confirmation: confirmation,

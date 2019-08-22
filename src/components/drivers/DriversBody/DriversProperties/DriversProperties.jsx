@@ -33,9 +33,12 @@ class DriversPropertiesClass extends React.Component {
   }
 
   render() {
-    function valueTextGenerator(pricePart, maxPrice) {
+    function valueTextGenerator(pricePart, maxPrice,activeCurrency) {
+      //TODO переводы!
       if (pricePart !== maxPrice) {
-        return "до " + pricePart;
+        return "до " + (activeCurrency.isLeft ? activeCurrency.symbol : '')
+        + Math.ceil(pricePart * activeCurrency.costToDefault) +
+        (!activeCurrency.isLeft ? activeCurrency.symbol : '');
       }
       else {
         return "Цена";
@@ -60,8 +63,9 @@ class DriversPropertiesClass extends React.Component {
     let textInfo = this.props.storeState.languageTextMain.drivers.driversProperties;
 
     let personsNumberString = personsCalculation(this.props.storeState.persons);
-
-    let valueText = valueTextGenerator(this.props.storeState.pricePart, this.props.storeState.maxPrice);
+    let storeState = this.props.storeState;
+    let activeCurrency = storeState.currencies[storeState.activeCurrencyNumber]
+    let valueText = valueTextGenerator(this.props.storeState.pricePart, this.props.storeState.maxPrice, activeCurrency);
 
     console.log("driversProperties render");
     console.log(this.props.storeState.maxPrice);
