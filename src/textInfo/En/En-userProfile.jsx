@@ -69,37 +69,37 @@ let userProfile = {
         }
 
     },
-    userProfileBilling: {
-        billingModalHeader: 'Доступно к выводу(ENG)',
-        billingModalContent:{
-            summLabel: 'Сумма USD(ENG)',
-            cardNumber: 'Номер карты(ENG)',
-            cardType: 'Тип карты(ENG)',
-            cancel: 'Отмена(ENG)',
-            submit: 'Вывод средств(ENG)'
-        },
-        billingBody:{
-            title: 'Текущий баланс (Лицевой счет № (ENG)',
-            partnersProfit: 'Партнерские начисления(ENG)',
-            payedprofit: 'Выведено всего(ENG)',
-            summary: 'Всего на счету(ENG)',
-            submit: 'Вывод средств(ENG)'
-        },       
-    },
-    userProfileRegistration: {
-        loading: 'Загрузка(ENG)'
-    },
-    userProfileTravelHistory: {
-        drivercar: 'Водитель и автомобиль(ENG)',
-        comments: 'отзывов(ENG)',
-        passengerNumber: 'Количество человек(ENG)',
-        startPlace: 'Место встречи(ENG)',
-        price: 'Стоимость поездки(ENG)',
-        startFact: 'Начало поездки(ENG)',
-        notStart: 'Поездка не была начата(ENG)',
-        endFact: 'Окончание поездки(ENG)',
-        notEnd: 'Поездка не была закончена(ENG)'
-    },
+userProfileBilling: {
+            billingModalHeader: 'Withdraw funds available',
+            billingModalContent: {
+                summLabel: 'Amount USD',
+                cardNumber: 'Card number',
+                cardType: 'Card Type',
+                cancel: 'Cancel',
+                submit: 'Withdraw funds'
+            },
+            billingBody: {
+                title: 'Current balance (Personal account No.',
+                partnersProfit: 'Affiliate Charges',
+                payedprofit: 'Withdrawn total',
+                summary: 'Total Account',
+                submit: 'Withdraw funds'
+            },
+        },
+        userProfileRegistration: {
+            loading: 'Download'
+        },
+        userProfileTravelHistory: {
+            drivercar: 'Driver and car',
+            comments: 'reviews',
+            passengerNumber: 'Number of people',
+            startPlace: 'Meeting Point',
+            price: 'Cost of travel',
+            startFact: 'Start Trip',
+            notStart: 'Trip was not started',
+            endFact: 'End of Trip',
+            notEnd: 'The trip was not finished'
+        },
     userProfileSettings: {
         settingsBodyTitle: "Profile Settings",
         sittingsEmail: {

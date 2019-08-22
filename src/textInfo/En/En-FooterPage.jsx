@@ -1,78 +1,78 @@
 const FooterPage = {
-    aboutService: {
-        h2: "О сервисе(ENG)",
-        description: `Сервис tripfer.com позволяет взаимодействовать с местными водителями и турагентами
-        туристам, которые хотят получить услугу трнсфера. Таким образом, формируется масса предложеий, из которых
-        Вы можете выбрать что-то особенное и индивидуально подходящее. Наша цель-создание качественных информационных продуктов
-        для данного сектора услуг.
-    Ключевыми особенностями сервиса являются:`,
-        firstEl: {
-            title: "Индивидуальный подбор маршрута",
-            text: "Планируйте собственный маршрут путешествия,\n с возможностью включить в него любое количество\n пунктов, совершая остановки в интересных местах."
-        },
-        secondEl: {
-            title: "Свобода выбора",
-            text: "Выбирайте автомобиль с водителем, исходя \n из заданных критериев. Местный водитель-гид \n познакомит Вас с историей и культурой страны."
-        },
-        thirdEl: {
-            title: "Гибкая система оплаты",
-            text: "Стоимость поездки расчитывается в зависимости \n от расстояния, типа транспорта и типа топлива.\n Оплата производится по окончанию поездки \n удобным для Вас спосоом."
-        }
-
-    },
-    affiliateProgram: {
-        h2: "Партнёрская программа(ENG)",
-        description1: "Постройте Ваш успешный бизнес и получайте пассивный доход",
-        description2: "в размере 14% с поездки от комиссии системы.",
-        h3: "Как это работает?",
-        arrayEl: {
-            firstEl: {
-                title: "Приглашайте",
-                text: "Рассылайте приглашения со скидкой 15% \n на первую поездку знакомым-путешественникам,\n нажав на кнопку 'Пригласить друга',\n или отправляйте Вашу партнёрскую ссылку."
-            },
-            secondEl: {
-                title: "Получайте доход",
-                text: "Приглашайте водителей работать в системе Tripfer, \n и получайте доход от выполненных ими заказов."
-            },
-            thirdEl: {
-                title: "Делитесь",
-                text: "Пишите о нас статьи, коментируйте в соц.сетях,\n блогах и форумах, и зарабатывайте. Пожизненно.\n Выплаты на банковскую карту еженедельно."
-            }
-        },
-        arrayFooterEl: {
-            firstEl: {
-                title: "Ссылка",
-                text: "Когда пользователь переходит по Вашей \n ссылке, мы помечаем его устройство \n специальной меткой сроком на 1 год, чтобы \n понять, что он пришел по Вашей рекомендации."
-            },
-            secondEl: {
-                title: "Водитель / Партнер",
-                text: "Зарегистрировавшись в системе как водитель или \n партнер, пользователь начнет приносить\n Вам пассивный доход со своей прибыли. \n Чем лучше он работает и чем больше привлекает \n в систему, тем больше Вы получаете."
-            },
-            thirdEl: {
-                title: "Путешественник",
-                text: "Зарегистрировавшись как путешественник,\n пользователь приносит Вам доход с каждой \n поездки. Если в течение 1 года был сделан\n заказ без регистрации, Вы также получите\n отчисления на Ваш счёт."
-            }
-        }
-    },
-    LicenseAgreement:{
-        users:"Users",
-        partners:"Partners"
-    },
-    contacts:{
-        h2:"Контакты(ENG)",
-        h4:"Обратная связь",
-        text:"Оставьте свое сообщение в этой форме, и мы получим его на email и обязательно ответим!",
-        firstNamePlaceholder:"Имя",
-        messege:"Ваше сообщение",
-        buttonSubmit:"Отправить сообщение",
-        nameFirm:'ООО "Трипферком", УНП 193278785',
-        h5:"Контакты",
-        labelPhone:"Тел:",
-        labelSocialNetwork:"Соц.Сети:",
-        labelAddress:"Адрес:",
-        addressText1:"220015, г.Минск, ул.Янки Мавра,",
-        addressText2:"д. 41, офис.410"
+        aboutService: {
+            h2: "About the service",
+            description: `tripfer.com allows you to interact with local drivers and travel agents.
+            Tourists who want to receive the service of transport. Thus, a mass of proposals is formed, of which
+            You can choose something special and individually suitable. Our goal is to create quality information products
+            for this sector of services.
+        Key features of the service are: `,
+            firstEl: {
+                title: "Individual route selection",
+                text: "Plan your own travel route, \n with the ability to include any number of \n points in it, making stops in interesting places."
+            },
+            secondEl: {
+                title: "Freedom of Choice",
+                text: "Choose a car with a driver based on \n from the given criteria. The local driver-guide \n will introduce you to the history and culture of the country."
+            },
+            thirdEl: {
+                title: "Flexible payment system",
+                text: "The cost of the trip is calculated according to \n the distance, type of transport and type of fuel. \n Payment is made at the end of the trip \n in a way convenient for you."
+            }
+    
+        },
+        affiliateProgram: {
+            h2: "Affiliate Program",
+            description1: "Build your successful business and earn money",
+            description2: "in the amount of 14% of the trip from the commission of the system.",
+            h3: "How does it work?",
+            arrayEl: {
+                firstEl: {
+                    title: "Invite",
+                    text: "Send invitations with a 15% discount \n on your first trip to familiar travelers, \n by clicking on the 'Invite a Friend' button, \n or send your affiliate link."
+                },
+                secondEl: {
+                    title: "Get paid,",
+                    text: "Invite drivers to work in Tripfer, \n and get income from their orders."
+                },
+                thirdEl: {
+                    title: "Share",
+                    text: "Write articles about us, comment on social networks, \n blogs and forums, and earn money. For life. \n Payments to a bank card weekly."
+                }
+            },
+            arrayFooterEl: {
+                firstEl: {
+                    title: "Link",
+                    text: "When a user follow your \n link, we mark his device \n with a special label for a period of 1 year to \n understand that he came by your recommendation."
+                },
+                secondEl: {
+                    title: "Driver / Partner",
+                    text: "By registering as a driver or \n partner in the system, the user will begin to generate passive income \n to you from his profit. \n The better it works and the more it attracts \n to the system, the more you get."
+                },
+                thirdEl: {
+                    title: "Traveler",
+                    text: "By registering as a traveler, \n the user brings you income from each \n trip. If within 1 year \n an order was made without registration, you will also receive \n deductions to your account."
+                }
+            }
+        },
+        LicenseAgreement: {
+            users: "Users",
+            partners: "Partners"
+        },
+        contacts: {
+            h2: "Contacts",
+            h4: "Feedback",
+            text: "Leave your message in this form, and we will receive it by email and will definitely reply!",
+            firstNamePlaceholder: "Name",
+            messege: "your message",
+            buttonSubmit: "Send message",
+            nameFirm: 'Tripfercom LLC, Reg 193278785',
+            h5: "Contacts",
+            labelPhone: "Tel:",
+            labelSocialNetwork: "Social Networks:",
+            labelAddress: "Address:",
+            addressText1: "220015, Minsk, Yanki Mavra St.,",
+            addressText2: "41, office 410"
+        }
     }
-}
-
-export default FooterPage;
+    
+    export default FooterPage;

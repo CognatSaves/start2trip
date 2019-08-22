@@ -17,13 +17,13 @@ const header = {
         exit: 'Log out',
         enter: 'Login',
         burgerEnter: "Login or create an Account",
-        titlesName:["Настройки","Сервисы","Профиль","Полезные ссылки"],
-        settingsDrop:["Сменить язык","Сменить валюту"],
-        services:["Маршруты","Туры","Места"],
-        usefulLinks:["О сервисе"," Партнерам","Лицензионное соглашение","Помощь","Контакты"],
+        titlesName: ["Settings", "Services", "Profile", "Useful links"],
+         settingsDrop: ["Change language", "Change currency"],
+         services: ["Trips", "Tours", "Places"],
+         usefulLinks: ["About Service", "Affiliate program", "License Agreement", "Help", "Contacts"],
     },
     toPageStart: 'Go to top',
-    loading: 'Загрузка(ENG)'
+    loading: 'Loading'
 }
 
 export default header;
