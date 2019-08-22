@@ -54,7 +54,7 @@ class HomeClass extends React.Component {
 
     let windowImg = null
     if(this.props.storeState.languages.length >0 ){
-      debugger
+      
       let coockisIso = cookies.get('country', { path: '/' })
       let j ;
       for(let i =0; i<this.props.storeState.countries.length;i++){
@@ -109,7 +109,7 @@ class HomeClass extends React.Component {
             <div className="home_block col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
               {!isMobileOnly ?
                 <div className="home_text col-xl-10 col-lg-10 col-md-12 col-sm-11 col-11 p-0">
-                  <div className="text_firstLine">{textInfo.homeTextFirstLine}</div>
+                  <h1 className="text_firstLine">{textInfo.homeTextFirstLine}</h1>
                   <div className="text_secondLine">{textInfo.homeTextSecondLine}</div>
                   <div className="text_changeBodyBlock">
                     <div className="text_changeBodyBlock_element changeBody_element_select changeBodyBlock_element_left">{textInfo.changeBodyBlock.left}</div>

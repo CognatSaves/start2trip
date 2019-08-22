@@ -14,7 +14,7 @@
     top: -10%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 3;
+    z-index: 50;
     width: max-content;
     height: 30px;
     background: #fff;
@@ -59,7 +59,7 @@
     width: 100%;
 }
 
-.headerMobail h3 {
+.headerMobail .logoSite {
     width: 100px;
     height: 40px;
     margin: 0;
@@ -138,7 +138,7 @@
 
 /* Header Begin */
 
-.header h3 {
+.header .logoSite {
     width: 100px;
     height: 30px;
     margin: 0;
@@ -378,7 +378,7 @@
     background-position: center right 15px;
 }
 
-.burgerMenuTop h4 {
+.burgerMenuTop text {
     font-size: 18px;
     font-weight: 400;
     color: #304269;

@@ -2,11 +2,15 @@ import React from 'react';
 import '../registration/ForgotPassword.css'
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
+import { changeLanguagePart } from '../../redusers/Action';
 import requests from '../../config';
 
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 import Header from '../header/Header';
-import { changeLanguagePart } from '../../redusers/Action';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
+
 class TripConfirmationClass extends React.Component {
     constructor(props) {
         super(props);
@@ -98,7 +102,7 @@ class TripConfirmationClass extends React.Component {
                                     </div>
                                     <div className="d-flex flex-md-row flex-column justify-content-center align-items-center col-md-8 col-12">
                                         <div className="forgotPasswordBt d-flex justify-content-center align-items-center col-md-5 col-12"
-                                        onClick={() => { this.props.history.push("/") }}>
+                                        onClick={() => { this.props.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/routes/') }}>
                                         <span>{textInfo.good.buttonText}</span>
                                         </div>
                                     </div>
@@ -118,7 +122,7 @@ class TripConfirmationClass extends React.Component {
                                     </div>
                                     <div className="d-flex flex-md-row flex-column justify-content-center align-items-center col-md-8 col-12">
                                         <div className="forgotPasswordBt d-flex justify-content-center align-items-center col-md-5 col-12"
-                                        onClick={() => { this.props.history.push("/") }}>
+                                        onClick={() => { this.props.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/routes/') }}>
                                         <span>{textInfo.bad.buttonText}</span>
                                         </div>
                                     </div>

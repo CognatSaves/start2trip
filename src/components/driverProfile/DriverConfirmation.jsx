@@ -5,7 +5,9 @@ import requests from '../../config';
 
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 import Header from '../header/Header';
+import Cookies from 'universal-cookie';
 
+const cookies = new Cookies();
 
 class DriverConfirmationClass extends React.Component {
     constructor(props) {
@@ -117,7 +119,7 @@ class DriverConfirmationClass extends React.Component {
                                         </span1>
                                     </div>
                                     <div className="d-flex flex-md-row flex-column justify-content-center align-items-center col-md-8 col-12">
-                                        <div className="forgotPasswordBt d-flex justify-content-center align-items-center col-md-5 col-12" onClick={() => { this.props.history.push("/") }}><span>{textInfo.good.toStart}</span></div>
+                                        <div className="forgotPasswordBt d-flex justify-content-center align-items-center col-md-5 col-12" onClick={() => { this.props.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/routes/') }}><span>{textInfo.good.toStart}</span></div>
                                     </div>
                                     <div className="d-flex flex-column justify-content-center align-items-center col-md-5 col-12">
                                         <p>{'* ' + textInfo.infoBlock}</p>
@@ -140,7 +142,7 @@ class DriverConfirmationClass extends React.Component {
                                                 onClick={() => {
                                                     this.setState({ confirmation: false });
                                                     this.sendRequest(this.state.id, this.state.carrierId, false);
-                                                    this.props.history.push("/")
+                                                    this.props.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/routes/')
                                                 }}>
                                                 <span>{textInfo.bad.variants[0]}</span>
                                             </div>

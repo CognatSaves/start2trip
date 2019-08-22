@@ -68,7 +68,7 @@ class AuthModalCountryClass extends React.Component {
         }
         let windowImg = null
         if (this.props.storeState.languages.length > 0) {
-            debugger
+            
             let coockisIso = cookies.get('country', { path: '/' })
             let j;
             for (let i = 0; i < this.props.storeState.countries.length; i++) {
@@ -76,6 +76,10 @@ class AuthModalCountryClass extends React.Component {
                     j = i
                     break;
                 }
+            }
+            
+            if(coockisIso === undefined ){
+                j = 1
             }
             windowImg = requests.serverAddressImg + this.props.storeState.countries[j].windowImg.url
         }

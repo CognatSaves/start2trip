@@ -179,7 +179,7 @@ function getLocals() {
 
   axios.get(requests.getLocals, props)
     .then(response => {
-      debugger
+      
       let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
       let languages = response.data.languages;
       let currencies = response.data.currencies;
@@ -386,7 +386,7 @@ ReactDOM.render(
               <Route path="/about-service/" component={AboutService} />
 
               <Route path="/driverConfirmation/:id-:carrierId-:confirmation/" component={DriverConfirmation} />
-              <Route path="/tripConfirmation/:id-:userId/" component={TripConfirmation} />
+              <Route path="/tripConfirmation/:id-:userId" component={TripConfirmation} />
               <Route path="/(register|start)/" component={PartnerRegister} />
               <Route path="/registration/" component={Registration} />
               <Route path="/login/" component={AuthRedirect} />
