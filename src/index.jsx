@@ -60,6 +60,7 @@ const affiliateProgram = lazy(() => import('./components/FooterPage/affiliatePro
 const contacts = lazy(() => import('./components/FooterPage/contacts'));
 const LicenseAgreement = lazy(() => import('./components/FooterPage/LicenseAgreement'));
 const feedback = lazy(() => import('./components/registration/feedback'));
+const customerCancel = lazy(() => import('./components/registration/customerCancel'));
 
 const redux = require('redux');
 
@@ -392,6 +393,8 @@ ReactDOM.render(
               <Route path="/login/" component={AuthRedirect} />
               <Route path="/countrySelection/" component={AuthModalCountry} />
               <Route path="/feedback-:id-:clientId/" component={feedback} />
+              <Route path="/customer-cancel-:id-:clientId/" component={customerCancel} />
+              
               {window.location.pathname === "/" ?
                 <Redirect from="/" to={"/" + (redirectPage === "undefined-undefined"||redirectPage === "undefined-en"||redirectPage === "undefined-ru" ? "countrySelection/" : redirectPage + "/routes/")} />
                 :

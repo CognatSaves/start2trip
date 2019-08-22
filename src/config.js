@@ -30,6 +30,7 @@ const getDriverData = serverAddress + "/users/getDriverData"; //запрос д�
 const checkPromocode = serverAddress + "/checkPromocode/"; //запрос на проверку промокода
 const createNewTrip = serverAddress + "/createNewTrip"; //запрос на создание новой поездки (без подтверждений)
 const customerConfirmation = serverAddress + '/customerConfirmation'; //запрос на подтверждение заказа пользователем
+const customerCancel = serverAddress +'/customerCancel'; //запрос на отмену поездки пользователем
 const carrierConfirmation = serverAddress + "/carrierConfirmation"; //запрос на подтверждение водителем поездки
 const tripStart = serverAddress + "/tripStart"; //функция начала поездки водителем
 
@@ -85,6 +86,7 @@ export default {
     checkPromocode: checkPromocode,
     createNewTrip: createNewTrip,
     customerConfirmation: customerConfirmation,
+    customerCancel:customerCancel,
     carrierConfirmation: carrierConfirmation,
     tripStart: tripStart,
 
