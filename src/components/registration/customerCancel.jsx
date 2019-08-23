@@ -8,6 +8,7 @@ import Header from '../header/Header'
 import CreateComment from '../driverProfile/CreateComment';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 import Cookies from 'universal-cookie';
+import { Link } from 'react-router-dom';
 
 const cookies = new Cookies();
 
@@ -15,16 +16,17 @@ class customerCancelClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isSended:false,
+            isSended: false,
             isRefreshExist: false,
             isRefreshing: false,
             isGoodAnswer: false,
-            falde:null,
+            falde: null,
+            onClickSpan: false,
         };
-        
+
     }
 
-    
+
     startRolling = () => {
 
         this.setState({
@@ -46,8 +48,7 @@ class customerCancelClass extends React.Component {
         )
     }
 
-    sendMessege=()=>{
-        debugger
+    sendMessege = () => {
         let body = JSON.stringify({
             id: this.props.match.params.id,
             clientId: this.props.match.params.clientId
@@ -70,7 +71,7 @@ class customerCancelClass extends React.Component {
                 if (data.message) {
                     if (data.message === "Too many attempts, please try again in a minute.") {
                         //throw Error('не кликой. подумой! а то я сейчас кликну!');
-                       
+
                     }
                 }
                 that.setState({
@@ -94,12 +95,11 @@ class customerCancelClass extends React.Component {
 
 
     render() {
-        debugger
         let textInfo = this.props.storeState.languageTextMain.registration.customerCancel;
-        
+
         let windowImg = null
         if (this.props.storeState.languages.length > 0) {
-            
+
             let coockisIso = cookies.get('country', { path: '/' })
             let j;
             for (let i = 0; i < this.props.storeState.countries.length; i++) {
@@ -108,16 +108,16 @@ class customerCancelClass extends React.Component {
                     break;
                 }
             }
-            if(coockisIso === undefined ){
+            if (coockisIso === undefined) {
                 j = 1
             }
             windowImg = requests.serverAddressImg + this.props.storeState.countries[j].windowImg.url
         }
         return (
             <React.Fragment>
-                
-                <div className="home_window d-flex flex-column " style={{ background: "url(" + windowImg + ")no-repeat",minHeight: "93.5vh"}} >
-                <Header history={this.props.history} />
+
+                <div className="home_window d-flex flex-column " style={{ background: "url(" + windowImg + ")no-repeat", minHeight: "93.5vh" }} >
+                    <Header history={this.props.history} />
                     <Helmet>
                         <title>{"Оставте отзыв о Вашей поездке"}</title>
                         <meta name="description" content={"Оставте отзыв о Вашей поездке"} />
@@ -129,17 +129,21 @@ class customerCancelClass extends React.Component {
                     </Helmet>
                     <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
 
-                    <div className="customerCancelForm d-flex flex-column align-items-center align-self-center justify-content-center my-auto col-6" >
+                    <div className="customerCancelForm d-flex flex-column align-items-center align-self-center justify-content-center my-auto col-md-6 col-12" >
                         <h2>{textInfo.headerText}</h2>
-                        <div className="d-flex justify-content-between align-items-center col-7">
-                            <span onClick={this.sendMessege}>{textInfo.ok}</span>
-                            <span>{textInfo.cancel}</span>
-                        </div>
-                        <text style={this.state.falde?{color:"red"}:{color:"green"}}>{this.state.falde === null ?"":this.state.falde ? textInfo.error:textInfo.success}</text>
+                        {this.state.falde !== null || this.state.onClickSpan ?
+                            <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes/"}>{textInfo.goHome}</Link>
+                            :
+                            <div className="d-flex justify-content-between align-items-center col-md-7 col-12">
+                                <span onClick={() => { this.sendMessege(); this.setState({ onClickSpan: true }) }}>{textInfo.ok}</span>
+                                <span onClick={() => { this.setState({ onClickSpan: true }) }}>{textInfo.cancel}</span>
+                            </div>
+                        }
+                        <text className="col-md-9 col-12 p-0" style={this.state.falde ? { color: "red" } : { color: "green" }}>{this.state.falde === null ? "" : this.state.falde ? textInfo.error : textInfo.success}</text>
                     </div>
-                    
-                    
-                    
+
+
+
 
                 </div>
             </React.Fragment>

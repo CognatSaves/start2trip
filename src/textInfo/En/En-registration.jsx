@@ -21,11 +21,12 @@ const registration = {
                 sendRequest: 'Send data'
         },
         customerCancel: {
-                headerText: "Вы точно уверены что хотите отменить заказ?",
-                ok: "Да",
-                cancel: "Нет",
-                error: "Произошла ошибка поездка уже была отменена или поездка не была создана. \n Попробуйте ещё раз или свяжитесь с нами.",
-                success: "Вы успешно отменили поездку!"
+                headerText: "Are you sure you want to cancel the order?",
+                ok: "Yes",
+                cancel: "No",
+                error: "An error occurred, the trip was already canceled or the trip was not created. \n Try again or contact us.",
+                success: "You have successfully canceled the trip!",
+                goHome:"Go to Home page"
         }
 }
 export default registration;

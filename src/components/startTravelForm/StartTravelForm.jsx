@@ -211,7 +211,7 @@ export default class StartTravelForm extends React.Component {
 
     constructor(props) {
         super(props);
-        debugger;
+        
         this.state = {
             travelVisibility: false,
             // successVisibility: 'none',
@@ -405,7 +405,7 @@ export default class StartTravelForm extends React.Component {
         this.setState({ errorMes: !isAllGood, emailValid: emailValid })
 
         if (isAllGood) {
-            debugger;
+            
             let date = new Date(this.props.storeState.date);
             let year = date.getUTCFullYear(); let month = date.getUTCMonth() + 1; let day = date.getUTCDate();
             let body = {
