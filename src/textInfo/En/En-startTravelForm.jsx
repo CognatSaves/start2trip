@@ -17,10 +17,10 @@ const startTravelForm = {
         startDate: "Departure Date",
 
 
-        thanks: 'СПАСИБО(ENG)',
-        textLine: ['На вашу электронную почту было отправлено(ENG)',
-         'письмо для подтверждения заказа.(ENG)'],
-        successButton: 'ГОТОВО(ENG)'
+        thanks: 'Thanks for your Order',
+        textLine: ['Order confirmation letter was sent to your email ',
+          'Please, confirm your Order'],
+         successButton: 'DONE'
         
     }
     

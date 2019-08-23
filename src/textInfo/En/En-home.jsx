@@ -1,6 +1,6 @@
 const home = {
         lang: "ENG",
-        loading: 'Загрузка(ENG)',
+        loading: 'Loading',
         home: {
             homeTextFirstLine: "Plan your trip",
             homeTextSecondLine: "Offers from local drivers for your individual route",
