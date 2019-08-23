@@ -19,6 +19,13 @@ const registration = {
         errorLazy: 'Нет изменений',
         errorMatch: "Не совпадают пароли",
         sendRequest: 'Отправить данные'
-    }   
+    },
+    customerCancel:{
+        headerText:"Вы точно уверены что хотите отменить заказ?",
+        ok:"Да",
+        cancel:"Нет",
+        error:"Произошла ошибка поездка уже была отменена или поездка не была создана. \n Попробуйте ещё раз или свяжитесь с нами.",
+        success:"Вы успешно отменили поездку!"
+    } 
 }
 export default registration;

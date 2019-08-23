@@ -19,17 +19,44 @@ class customerCancelClass extends React.Component {
             isRefreshExist: false,
             isRefreshing: false,
             isGoodAnswer: false,
-            falde:false,
+            falde:null,
         };
+        
+    }
 
+    
+    startRolling = () => {
+
+        this.setState({
+            isRefreshExist: true,
+            isRefreshing: true
+        });
+    }
+    endRolling = (result) => {
+
+        let that = this;
+        this.setState({
+            isRefreshing: false,
+            isGoodAnswer: result
+        });
+        setTimeout(
+            function () {
+                that.setState({ isRefreshExist: false, isRefreshing: true })
+            }, 2000
+        )
+    }
+
+    sendMessege=()=>{
+        debugger
         let body = JSON.stringify({
-            id: props.match.params.id,
-            clientId: props.match.params.clientId
+            id: this.props.match.params.id,
+            clientId: this.props.match.params.clientId
         });
         let that = this;
 
         fetch(requests.customerCancel, {
-            method: 'POST', body: body
+            method: 'POST', body: body,
+            headers: { 'content-type': 'application/json' }
         })
             .then(response => {
                 return response.json();
@@ -65,32 +92,11 @@ class customerCancelClass extends React.Component {
             })
     }
 
-    
-    startRolling = () => {
-
-        this.setState({
-            isRefreshExist: true,
-            isRefreshing: true
-        });
-    }
-    endRolling = (result) => {
-
-        let that = this;
-        this.setState({
-            isRefreshing: false,
-            isGoodAnswer: result
-        });
-        setTimeout(
-            function () {
-                that.setState({ isRefreshExist: false, isRefreshing: true })
-            }, 2000
-        )
-    }
-
 
     render() {
-
-        let textInfo = this.props.storeState.languageTextMain.driverProfile.createComment;
+        debugger
+        let textInfo = this.props.storeState.languageTextMain.registration.customerCancel;
+        
         let windowImg = null
         if (this.props.storeState.languages.length > 0) {
             
@@ -102,13 +108,16 @@ class customerCancelClass extends React.Component {
                     break;
                 }
             }
+            if(coockisIso === undefined ){
+                j = 1
+            }
             windowImg = requests.serverAddressImg + this.props.storeState.countries[j].windowImg.url
         }
         return (
             <React.Fragment>
+                
+                <div className="home_window d-flex flex-column " style={{ background: "url(" + windowImg + ")no-repeat",minHeight: "93.5vh"}} >
                 <Header history={this.props.history} />
-                <div className="home_window d-flex justify-content-center align-items-center" style={{ background: "url(" + windowImg + ")no-repeat", minHeight: "87.5vh" }} >
-
                     <Helmet>
                         <title>{"Оставте отзыв о Вашей поездке"}</title>
                         <meta name="description" content={"Оставте отзыв о Вашей поездке"} />
@@ -119,9 +128,18 @@ class customerCancelClass extends React.Component {
                         <meta property="og:description" content={"Оставте отзыв о Вашей поездке"} />
                     </Helmet>
                     <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
-                    <div className="col-md-6 col-12">
-                       
+
+                    <div className="customerCancelForm d-flex flex-column align-items-center align-self-center justify-content-center my-auto col-6" >
+                        <h2>{textInfo.headerText}</h2>
+                        <div className="d-flex justify-content-between align-items-center col-7">
+                            <span onClick={this.sendMessege}>{textInfo.ok}</span>
+                            <span>{textInfo.cancel}</span>
+                        </div>
+                        <text style={this.state.falde?{color:"red"}:{color:"green"}}>{this.state.falde === null ?"":this.state.falde ? textInfo.error:textInfo.success}</text>
                     </div>
+                    
+                    
+                    
 
                 </div>
             </React.Fragment>

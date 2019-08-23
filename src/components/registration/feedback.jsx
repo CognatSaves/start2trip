@@ -57,6 +57,9 @@ class feedbackClass extends React.Component {
                     break;
                 }
             }
+            if(coockisIso === undefined ){
+                j = 1
+            }
             windowImg = requests.serverAddressImg + this.props.storeState.countries[j].windowImg.url
         }
         return (
