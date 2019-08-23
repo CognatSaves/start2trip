@@ -20,7 +20,8 @@ export default class PartnerRegister extends React.Component {
                 break;
             }
             case 'start': {
-                this.props.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/routes/');
+                this.props.history.push('/countrySelection/');
+                //this.props.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/routes/');
                 break;
             }
             default:

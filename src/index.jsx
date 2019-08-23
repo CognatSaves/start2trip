@@ -372,8 +372,7 @@ ReactDOM.render(
 
 
 
-              <Route path={"/" + config.routeMap + "/tours/"} component={Tours} />
-              <Route path={"/" + config.routeMap + "/tour/:country,:id/"} component={TourDescription} />
+              
 
               <Route path="/account/" component={AccountRedirector} />
               <Route path="/forgot-password/" component={ForgotPassword} />
@@ -411,4 +410,6 @@ ReactDOM.render(
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: http://bit.ly/CRA-PWA
+// <Route path={"/" + config.routeMap + "/tours/"} component={Tours} />
+// <Route path={"/" + config.routeMap + "/tour/:country,:id/"} component={TourDescription} />
 serviceWorker.unregister();
