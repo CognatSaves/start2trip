@@ -1,7 +1,7 @@
 import React from 'react';
 import './RouteMenu.css'
 import { connect } from 'react-redux';
-import { setCities, set_state } from '../../../redusers/Action'
+import { setCities, set_state,clearFilters } from '../../../redusers/Action'
 import { isMobileOnly } from 'react-device-detect'
 import { setDriversList, setCarTypes, setWaitingDriverRequest } from '../../../redusers/ActionDrivers';
 import { AppReduser } from '../../../redusers/AppReduser';
@@ -156,7 +156,7 @@ class RouteMenuClass extends React.Component {
       isLoaded: !resultpathname//переменная для загрузки 1 раза водителей - если есть города, то не загружено пока.
       //language: this.props.storeState.activeLanguageNumber
     }
-
+    props.dispatch(clearFilters());
   }
 
   changeCity = (index, value, extraData) => {

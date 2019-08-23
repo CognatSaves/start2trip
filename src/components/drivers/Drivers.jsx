@@ -44,7 +44,7 @@ class DriversClass extends React.Component {
     return true;
   }
   changeTravelVisibility = (elementPrice) => {
-
+    debugger
     this.setState({
       travelVisibility: !this.state.travelVisibility,
       elementPrice: elementPrice

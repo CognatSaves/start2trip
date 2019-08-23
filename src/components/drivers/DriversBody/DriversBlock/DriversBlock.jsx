@@ -253,7 +253,7 @@ class DriversBlockClass extends React.Component {
 
                   <div className="driversBlock_driverInfoBlock_element driversBlock_commentary">{textInfo.commentary}</div>
                   <button className="driversBlock_driverInfoBlock_element driversBlock_buttonStyle"
-                    onClick={() => { console.log(element); this.props.changeTravelVisibility(element.price);; this.props.dispatch(setDriverCarDescription(element)) }}>
+                    onClick={() => { debugger; console.log(element); this.props.changeTravelVisibility(element.price);; this.props.dispatch(setDriverCarDescription(element)) }}>
                     {textInfo.book + " " + (activeCurrency.isLeft ? activeCurrency.symbol : '')
                       + Math.ceil(element.price * activeCurrency.costToDefault) +
                       (!activeCurrency.isLeft ? activeCurrency.symbol : '')}</button>

@@ -48,6 +48,8 @@ const CHANGE_LANGUAGE_PART = 'CHANGE_LANGUAGE_PART';
 
 const SET_ACTIVE_LANG_ISO = 'SET_ACTIVE_LANG_ISO';
 
+const CLEAR_FILTERS = 'CLEAR_FILTERS'
+
 const changeLanguagePart = function(isSecondLanguageGroupPart,isAdminLanguageType) {
     return {
         type: CHANGE_LANGUAGE_PART,
@@ -232,6 +234,12 @@ const modalCountryDispatch = function(country, iso) {
     };
 }
 
+const clearFilters = function(){
+    return{
+        type: CLEAR_FILTERS,
+    }
+}
+
 
 export {
     set_state,
@@ -283,5 +291,7 @@ export {
     CHANGE_LANGUAGE_PART,
     changeLanguagePart,
     SET_ACTIVE_LANG_ISO,
-    setActiveLangISO
+    setActiveLangISO,
+    CLEAR_FILTERS,
+    clearFilters
 }

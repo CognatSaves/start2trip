@@ -22,6 +22,7 @@ const setWaitingDriverRequest = function(waitingDriverRequest){
     }
 }
 const setDriverCarDescription = function(driverCarDescription){
+    debugger
     return{
         type: SET_DRIVER_CAR_DESCR,
         driverCarDescription: driverCarDescription

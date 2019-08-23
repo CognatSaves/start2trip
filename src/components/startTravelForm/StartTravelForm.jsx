@@ -261,6 +261,7 @@ export default class StartTravelForm extends React.Component {
         return true
     }
     sendTripRequest = (body) => {
+        debugger
         function returnToStartData(that){
             that.setState({
                 travelVisibility: false,
@@ -309,11 +310,14 @@ export default class StartTravelForm extends React.Component {
                     return response.json();
                 })
                 .then(function (data) {
+                    debugger
                     if (data.error) {
+                        debugger
                         console.log("bad");
                         throw data.error;
                     }
                     else {
+                        debugger
                         console.log('good');
                         console.log(data);
                         that.setState({
@@ -333,6 +337,7 @@ export default class StartTravelForm extends React.Component {
                     }
                 })
                 .catch(function (error) {
+                    debugger
                     console.log('bad');
                     console.log('An error occurred:', error);
                     that.setState({
@@ -348,6 +353,7 @@ export default class StartTravelForm extends React.Component {
         }
     }
     validate = () => {
+        debugger
         let massValidate = document.querySelectorAll(".validate");
         let phoneInput = document.querySelector(".route_datePhoneInput");
         let departureTime = document.querySelector(".departureTime");
@@ -405,7 +411,7 @@ export default class StartTravelForm extends React.Component {
         this.setState({ errorMes: !isAllGood, emailValid: emailValid })
 
         if (isAllGood) {
-            
+            debugger
             let date = new Date(this.props.storeState.date);
             let year = date.getUTCFullYear(); let month = date.getUTCMonth() + 1; let day = date.getUTCDate();
             let body = {
@@ -417,20 +423,24 @@ export default class StartTravelForm extends React.Component {
                 startPlace: this.state.placeDeparture,
                 price: this.props.driversState.driverCarDescription.price,
                 tripCommentary: this.state.description,
-                carrier: this.props.match === undefined ? this.props.driversState.driverCarDescription.id : this.props.match.params.id,
+                carrier: this.props.match === undefined || this.props.match.params.id === undefined ? this.props.driversState.driverCarDescription.id : this.props.match.params.id,
                 currencyType: this.props.storeState.currencies.length > 0 ? this.props.storeState.currencies[this.props.storeState.activeCurrencyNumber].id : undefined,
                 tripType: 'Trip',
                 newPhone: this.state.telNumber,
                 passengerNumber: this.state.numberOfPeople,
                 promocode: this.state.promoCode,
                 clientEmail: this.state.email,
-                carId: this.props.match === undefined ? this.props.driversState.driverCarDescription.carId : this.props.match.params.carId,
+                carId: this.props.match === undefined || this.props.match.params.carId === undefined ? this.props.driversState.driverCarDescription.carId : this.props.match.params.carId,
                 frontendAddress: requests.frontendAddress,
                 travelLength: this.props.driversState.travelLength,
                 travelTime: this.props.driversState.travelTime,
                 userLangCookies: (cookies.get('userLang', { path: '/' })).toUpperCase()
             };
+            console.log("--------------------------------")
+            console.log(body);
+            console.log("--------------------------------")
             this.sendTripRequest(JSON.stringify(body));
+            
             
         }
     }
