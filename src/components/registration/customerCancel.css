@@ -1,0 +1,83 @@
+.customerCancelForm{
+    background: rgba(255, 255, 255, 0.8);
+    padding: 30px 20px !important;
+    margin-bottom: 35% !important;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
+}
+
+.customerCancelForm h2{
+    margin-bottom: 25px;
+    font-size: 26px !important;
+    font-weight: 400;
+    color: #304269;
+}
+
+.customerCancelForm text{
+    margin-top: 25px;
+    font-size: 13px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.customerCancelForm a {
+    background: #304269;
+    padding: 10px 40px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 16px ;
+    font-weight: 400;
+    color: #fff;
+}
+
+.customerCancelForm a:hover{
+    background: #f60;
+    text-decoration: none;
+}
+
+.customerCancelForm span{
+    background: #304269;
+    padding: 10px 40px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 16px ;
+    font-weight: 400;
+    color: #fff;
+}
+.customerCancelForm span:first-child{
+    background: #686868;
+    padding: 10px 40px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 16px ;
+    font-weight: 400;
+    color: #fff;
+}
+.customerCancelForm span:hover{
+    background: #f60;
+}
+
+.customerCancelForm span:first-child:hover {
+    background: rgb(201, 82, 3);
+}
+
+@media(max-width: 500px){
+    .customerCancelForm{
+        padding: 30px 10px !important;
+        margin-bottom: 55% !important;
+    }
+    .customerCancelForm h2{
+        margin-bottom: 25px;
+        font-size: 20px !important;
+        text-align: center;
+    }
+    .customerCancelForm span{
+        padding: 10px 30px;
+    }
+    .customerCancelForm span:first-child{
+        padding: 10px 30px;
+    }
+}

@@ -220,7 +220,7 @@ class RouteMenuClass extends React.Component {
 
   chooseDate = (value) => {
     
-    debugger;
+    
     let resultString = this.props.globalhistory.convertDateToUTC(value).toUTCString();
     if(this.state.date!==resultString){
       this.props.dispatch(set_state(this.props.storeState.cities, resultString))
@@ -478,12 +478,12 @@ class RouteMenuClass extends React.Component {
         }
       }*/
     }
-    debugger;
+    
     let textInfo = this.props.storeState.languageTextMain.home.routeMenu;
     console.log('Route Menu render, lang=', this.props.storeState.activeLanguageNumber);
     
     let result = this.props.globalhistory.findGetParameter("date");
-    debugger;
+    
     //данный кусок кода выставляет первичное значение даты. Очень хотелось воспользоваться 
     //функцией, которая не желает быть вызванной в конструкторе.
     //но в результате данный клок будет отрабатывать только один раз - в самом начале   
@@ -497,7 +497,7 @@ class RouteMenuClass extends React.Component {
         
         dateValue = new Date(Date.now())
       }
-      debugger;
+      
       this.chooseDate(dateValue);
     }
     

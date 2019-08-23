@@ -22,7 +22,7 @@ const cookies = new Cookies();
 class DriverProfileClass extends React.Component {
     constructor(props) {
         super(props);
-        debugger;
+        
         let getdate = props.globalReduser.findGetParameter("date");
         let dateValue;
         if(getdate){
@@ -272,7 +272,7 @@ class DriverProfileClass extends React.Component {
     }
     chooseDate = (value) => {//это не такой же chooseDate, как в RouteMenu, attention please
     
-        debugger;
+        
         let resultString = this.props.globalReduser.convertDateToUTC(value).toUTCString();
         if(this.state.date!==resultString){
           this.props.dispatch(set_state(this.props.storeState.cities, resultString))
@@ -531,8 +531,12 @@ class DriverProfileClass extends React.Component {
                     break;
                 }
             }
+            if(coockisIso === undefined ){
+                j = 1
+            }
             windowImg = requests.serverAddressImg + this.props.storeState.countries[j].windowImg.url
         }
+        
 
         return (
             <React.Fragment>
