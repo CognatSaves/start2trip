@@ -3,9 +3,10 @@ import { Helmet } from 'react-helmet';
 import requests from '../../config';
 import axios from 'axios';
 
-import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 
-class Registration extends React.Component {
+import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+import { connect } from 'react-redux';
+class RegistrationClass extends React.Component {
     constructor(props) {
         super(props);
         let that = this;
@@ -277,4 +278,11 @@ class Registration extends React.Component {
         )
     }
 }
+const Registration = connect(
+    (state) => ({
+      storeState: state.AppReduser,
+      globalReduser: state.GlobalReduser,
+    }),
+  )(RegistrationClass);
+  
 export default Registration;
