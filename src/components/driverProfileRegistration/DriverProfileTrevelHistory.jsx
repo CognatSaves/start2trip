@@ -192,11 +192,15 @@ class DriverProfileTrevelHistoryClass extends React.Component {
                                 <span>{element.client.firstName}</span>
                                 <span>{element.client.phone}</span>
                                 <span>{element.client.email}</span>
-                                <span>{element.passengerNumber+" чел."}</span>
+                                {/* <span>{element.passengerNumber+" чел."}</span> */}
                             </div>
                             <div className="d-flex flex-column historyBodyElement">
                                 <h5>{textPage.venue}</h5>
                                 <span>{element.startPlace}</span>
+                            </div>
+                            <div className="d-flex flex-column historyBodyElement">
+                                <h5>{textPage.car}</h5>
+                                <span>{element.car}</span>
                             </div>
                             <div className="d-flex flex-column historyBodyElement">
                                 <h5>{textPage.costOfTravel}</h5>

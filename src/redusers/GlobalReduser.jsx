@@ -178,7 +178,7 @@ const initialState = {
         let date = new Date(start);
         let month = date.getUTCMonth()+1; let day = date.getUTCDate(); let hours = date.getUTCHours(); let minutes = date.getMinutes();
         let res = date.getUTCFullYear()+"-"+(month>=10 ? month : '0'+month)+"-"+(day>=10 ? day : '0'+day)+
-        (isOnlyDayString ? '' : +'; '+(hours>=10 ? hours : '0'+hours)+":"+(minutes>=10 ? minutes : '0'+minutes));
+        (isOnlyDayString ? '' : '; '+(hours>=10 ? hours : '0'+hours)+":"+(minutes>=10 ? minutes : '0'+minutes));
         return res;
     },
     findGetParameter(parameterName) {

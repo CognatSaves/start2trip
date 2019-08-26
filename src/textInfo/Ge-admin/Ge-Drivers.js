@@ -261,18 +261,19 @@ const driverProfileRegistration = {
         venue: "შეხვედრის ადგილი",
         costOfTravel: "მოგზაურობის ღირებულება",
         comment: "კომენტარი",
+        car: "მანქანა",
         tripStart: 'Начало поездки(GEO)',
         noStart: 'Поездка не была начата(GEO)',
         tripEnd: 'Окончание поездки(GEO)',
         noEnd: 'Поездка не была закончена(GEO)',
-        stateVariants: ['Закончить поездку(GEO)','Начать поездку(GEO)']
+        stateVariants: ['Закончить поездку(GEO)', 'Начать поездку(GEO)']
     },
     DriverProfileHistory: {
         upcoming: "მოსალოდნელი",
         story: "ისტორია",
     },
     DriverProfileBilling: {
-        billingModalA:{
+        billingModalA: {
             header: 'Доступно к выводу(GEO)',
             summ: 'Сумма USD(GEO)',
             cardNumber: 'Номер карты(GEO)',
@@ -280,7 +281,7 @@ const driverProfileRegistration = {
             cancel: 'Отмена(GEO)',
             submit: 'Вывод средств(GEO)'
         },
-        billingModalB:{
+        billingModalB: {
             header: 'Сумма к оплате(GEO)',
             summ: 'Сумма USD(GEO)',
             description: '(GEO)Оплата осуществляется с помощью банковской карты. После ввода суммы и подтверждения вы будете переадресованы в специализированный сервис.',
@@ -325,7 +326,7 @@ const driverProfileRegistration = {
             ]
         }
     },
-    DriverProfileRegistration:{
+    DriverProfileRegistration: {
         loading: 'Загрузка(GEO)'
     }
 

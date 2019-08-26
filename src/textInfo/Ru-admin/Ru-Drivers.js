@@ -262,6 +262,7 @@ const driverProfileRegistration = {
         venue: "Место встречи",
         costOfTravel: "Стоимость поездки",
         comment: "Комментарий",
+        car:"Автомобиль",
         tripStart: 'Начало поездки',
         noStart: 'Поездка не была начата',
         tripEnd: 'Окончание поездки',

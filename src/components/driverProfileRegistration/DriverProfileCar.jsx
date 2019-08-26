@@ -126,6 +126,7 @@ class DriverProfileCarClass extends React.Component {
 
             //let fuelConsumption =  Number(newCarCard.fuelConsumption);
             //let b = (fuelConsumption<=0);
+            debugger
             if (newCarCard.fuelConsumption.length === 0 || isNaN(newCarCard.fuelConsumption) || Number(newCarCard.fuelConsumption) <= 0) {
                 obj = document.getElementById('profileCarFuelConsumption');
                 obj.classList.add("errorColor");
@@ -238,7 +239,7 @@ class DriverProfileCarClass extends React.Component {
         if (!element) {
             this.setState(state => ({
                 collapse: !state.collapse, imagePreviewUrl: '',
-                newCarCard: { nameCar: "", yearCar: "", plateNumberCar: "", typeCar: "", fuelType: "", numberOfSeats: "", carClass: "" },
+                newCarCard: { nameCar: "", yearCar: "", plateNumberCar: "", typeCar: "", fuelType: "", fuelConsumption: "", carClass: "", onWork: true, numberOfSeats: "" },
                 comfort: [false, false, false, false], carImg: [], imgFiles: [], car: {}
             }));
         }
@@ -659,7 +660,7 @@ class DriverProfileCarClass extends React.Component {
                                         })
                                     }} type="text" />
                                     <TextField
-                                        value={this.state.newCarCard.numberOfSeats}
+                                        value={this.state.newCarCard.fuelConsumption}
                                         onChange={(e) => {
                                             let obj = document.getElementById('profileCarFuelConsumption');
                                             obj.classList.remove("errorColor");
@@ -740,7 +741,7 @@ class DriverProfileCarClass extends React.Component {
                             </div>
 
                         </form>
-                        <div className="carAddNewCarButton d-flex col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 pt-3 align-items-center justify-content-sm-start justify-content-center mb-5">
+                        <div className="carAddNewCarButton d-flex col-md-8 col-12 pt-3 align-items-center justify-content-sm-start justify-content-center mb-5">
                             <span className="d-xl-block d-lg-block d-md-block d-sm-block d-none col-4 p-0" />
                             <button htmlFor="newCar" type="submit" onClick={(e) => this.formSubmit(e)}>{textPage.carAddNewCarButton.button}</button>
                             <span className="ml-3" onClick={() => this.toggle()}>{textPage.carAddNewCarButton.span}</span>
@@ -755,7 +756,7 @@ class DriverProfileCarClass extends React.Component {
                 </div>
                     */
                 }
-                <div className="filledCardBody p-0 d-flex justify-content-xl-start justify-content-lg-start justify-content-md-start justify-content-sm-center justify-content-center flex-wrap col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 " >
+                <div className="filledCardBody p-0 d-flex justify-content-md-start justify-content-center flex-wrap col-12 " >
                     <div onClick={() => this.toggle()} className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-11 p-2" style={{ display: this.state.collapse ? "none" : "block" }}>
 
                         <div className="filledCardImgAdd" >

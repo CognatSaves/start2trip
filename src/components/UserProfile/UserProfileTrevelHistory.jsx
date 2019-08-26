@@ -55,7 +55,7 @@ class UserProfileTrevelHistoryClass extends React.Component {
                                         <span>{element.car.carBrand}</span>
                                     </div>
                                 </div>
-                                <span>{textInfo.passengerNumber+': ' + element.passengerNumber}</span>
+                                {/* <span>{textInfo.passengerNumber+': ' + element.passengerNumber}</span> */}
                             </div>
                             <div className="d-flex flex-column historyBodyElement">
                                 <h5>{textInfo.startPlace}</h5>
