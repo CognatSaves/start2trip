@@ -707,11 +707,11 @@ class HeaderClass extends React.Component {
                   </div>
                   <text className="col-11 pt-4 pb-2">{textInfo.burgerMenu.titlesName[3]}</text>
                   <div className="burgerMenuBlock d-flex flex-column justify-content-center align-items-start col-11">
-                    <Link to="/about-service/" className="border-bottom logoIcon" >{textInfo.burgerMenu.usefulLinks[0]}</Link>
-                    <Link to="/affiliate-program/" className="border-bottom partner" >{textInfo.burgerMenu.usefulLinks[1]}</Link>
-                    <Link to="/terms/" className="border-bottom contract" >{textInfo.burgerMenu.usefulLinks[2]}</Link>
+                    <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) +"/about-service/"} className="border-bottom logoIcon" >{textInfo.burgerMenu.usefulLinks[0]}</Link>
+                    <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) +"/affiliate-program/"} className="border-bottom partner" >{textInfo.burgerMenu.usefulLinks[1]}</Link>
+                    <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) +"/terms/"} className="border-bottom contract" >{textInfo.burgerMenu.usefulLinks[2]}</Link>
                     <Link to="" className="border-bottom questionMarkGray" >{textInfo.burgerMenu.usefulLinks[3]}</Link>
-                    <Link to="/contacts/" className="phoneBook " >{textInfo.burgerMenu.usefulLinks[4]}</Link>
+                    <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) +"/contacts/"} className="phoneBook " >{textInfo.burgerMenu.usefulLinks[4]}</Link>
                   </div>
                 </div>
               </div>

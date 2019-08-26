@@ -391,7 +391,7 @@ class RenderModalRegistrationClass extends React.Component {
 
                 <div className="d-md-none d-flex">
                     <img className="registrationBodyLogoIcon" src={logoBlue} alt="logo" width="100px" height="20px" />
-                    <div className="registrationBodyLanguageBlock d-flex" >
+                    <div className="registrationBodyLanguageBlock d-flex " >
                         {
                             this.props.storeState.languages.map((element, index) =>
                                 <div className={
@@ -401,6 +401,7 @@ class RenderModalRegistrationClass extends React.Component {
                                 </div>
                             )
                         }
+                        <i className="ml-3" onClick={()=>{if(this.props.globalReduser.history.location.pathname === "/login/"){this.props.globalReduser.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/routes/')}else{this.props.close()}}} />
                     </div>
                     <div className="mobailsitingInLight d-flex flex-column justify-content-center align-items-center ">
                         <h3>{this.state.sitingIn ? textInfo.sitingInLightBackgroundText.titleSitingIn : textInfo.registrationLightBackgroundText.registrationTitle}</h3>
@@ -457,7 +458,7 @@ class RenderModalRegistrationClass extends React.Component {
                                 </div>
                                 <div className={this.state.checkedAgreement ? "align-items-center agreement " : "align-items-center agreement-error"} style={{ display: !this.state.sitingIn ? 'flex' : 'none' }}>
                                     <Checkbox id="agreement" onClick={() => { this.setState({ agreement: !this.state.agreement, checkedAgreement: !this.state.agreement }) }} color="#fff" checked={this.state.agreement} />
-                                    <label htmlFor="agreement" onClick={() => { this.setState({ agreement: !this.state.agreement, checkedAgreement: !this.state.agreement }) }}>{textInfo.sitingInLightBackgroundText.agreementLabel}<Link to={"/terms-" + this.state.userType+'/'} target="_blank" >{textInfo.sitingInLightBackgroundText.agreementLink}</Link></label>
+                                    <label htmlFor="agreement" onClick={() => { this.setState({ agreement: !this.state.agreement, checkedAgreement: !this.state.agreement }) }}>{textInfo.sitingInLightBackgroundText.agreementLabel}<Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/terms-" + this.state.userType+'/'} target="_blank" >{textInfo.sitingInLightBackgroundText.agreementLink}</Link></label>
                                 </div>
                                 <div className="registrationAnswerText" style={{ visibility: regAnswerVisibility ? 'visible' : 'hidden', color: regAnswerColor ? 'red' : 'green' }}>{regAnswerValue}</div>
 
@@ -573,7 +574,7 @@ class RenderModalRegistrationClass extends React.Component {
                                 </div>
                                 <div className={this.state.checkedAgreement ? "align-items-center agreement " : "align-items-center agreement-error"} style={{ display: !this.state.sitingIn ? 'flex' : 'none' }}>
                                     <Checkbox onClick={() => { this.setState({ agreement: !this.state.agreement, checkedAgreement: !this.state.agreement }) }} color="#fff" checked={this.state.agreement} />
-                                    <label onClick={() => { this.setState({ agreement: !this.state.agreement, checkedAgreement: !this.state.agreement }) }}>{textInfo.sitingInLightBackgroundText.agreementLabel}<Link to={"/terms-" + this.state.userType+'/'} target="_blank" >{textInfo.sitingInLightBackgroundText.agreementLink}</Link></label>
+                                    <label onClick={() => { this.setState({ agreement: !this.state.agreement, checkedAgreement: !this.state.agreement }) }}>{textInfo.sitingInLightBackgroundText.agreementLabel}<Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) +"/terms-" + this.state.userType+'/'} target="_blank" >{textInfo.sitingInLightBackgroundText.agreementLink}</Link></label>
                                 </div>
                                 <div className="registrationAnswerText" style={{ visibility: regAnswerVisibility ? 'visible' : 'hidden', color: regAnswerColor ? 'red' : 'green' }}>{regAnswerValue}</div>
                                 <Link onClick={() => this.props.dispatch(setModalRegister(false))} className="forgotPasswordLink" style={{ display: this.state.sitingIn ? "block" : "none" }} to="/forgot-password/">{textInfo.sitingInLightBackgroundText.linkText}</Link>

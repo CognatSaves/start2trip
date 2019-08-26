@@ -17,6 +17,13 @@
     right: 15px;
 }
 
+.registrationBodyLanguageBlock i{
+    width: 12px;
+    height: 12px;
+    background: url(../media/closeGray.svg) no-repeat;
+    background-size: 100% 100%;
+}
+
 .registrationAnswerText {
     width: 280px;
     font-size: 12px;

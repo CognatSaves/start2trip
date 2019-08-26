@@ -69,6 +69,22 @@ class TripConfirmationClass extends React.Component {
         console.log(this.state);
         let helmet = this.props.storeState.languageTextMain.helmets.tripConfirmation;
         let textInfo = this.props.storeState.languageTextMain.drivers.tripConfirmation;
+        let windowImg = null
+        if (this.props.storeState.languages.length > 0) {
+            
+            let coockisIso = cookies.get('country', { path: '/' })
+            let j;
+            for (let i = 0; i < this.props.storeState.countries.length; i++) {
+                if (this.props.storeState.countries[i].ISO === coockisIso) {
+                    j = i
+                    break;
+                }
+            }
+            if(coockisIso === undefined ){
+                j = 1
+            }
+            windowImg = requests.serverAddressImg + this.props.storeState.countries[j].windowImg.url
+        }
         return (
             <React.Fragment>
                 <Helmet>
@@ -86,7 +102,7 @@ class TripConfirmationClass extends React.Component {
                         :
                         (
                             this.state.isServerGood ?
-                            <div className="home_window" style={{ minHeight: "95vh" }}>
+                            <div className="home_window" style={{ background: "url(" + windowImg + ")no-repeat", minHeight: "93.5vh" }}>
                                 <Header driver={true} history={this.props.history} />
                                 <div className="forgotPasswordContent d-flex flex-column align-items-center col-md-8 col-12 mx-auto">
                                     <div className="d-flex flex-column justify-content-center align-items-center">
@@ -111,7 +127,7 @@ class TripConfirmationClass extends React.Component {
                                     </div>
                                 </div>
                             </div> : 
-                            <div className="home_window" style={{ minHeight: "95vh" }}>
+                            <div className="home_window" style={{ background: "url(" + windowImg + ")no-repeat", minHeight: "93.5vh" }}>
                                 <Header driver={true} history={this.props.history} />
                                 <div className="forgotPasswordContent d-flex flex-column align-items-center col-md-8 col-12 mx-auto">
                                     <div className="d-flex flex-column justify-content-center align-items-center">

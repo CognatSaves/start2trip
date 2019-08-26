@@ -70,11 +70,11 @@ class FooterClass extends React.Component {
           <div className="footer_block d-flex  justify-content-between align-items-center col-12 p-0">
             <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes"} className="col-md-1 col-2 p-0 "><img src={logoTripfer} width="110px" height="18px" alt="logoWhiteIcon" /></Link>
             <div className="footerButtons d-flex justify-content-between col-md-8 col-sm-12 col-12">
-              <Link to="/about-service/" className="footerButtons_button">{textInfo.footerButtons[0]}</Link>
-              <Link to="/affiliate-program/" className="footerButtons_button">{textInfo.footerButtons[1]}</Link>
-              <Link to="/terms/" className="footerButtons_button">{textInfo.footerButtons[2]}</Link>
+              <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/about-service/"} className="footerButtons_button">{textInfo.footerButtons[0]}</Link>
+              <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/affiliate-program/"} className="footerButtons_button">{textInfo.footerButtons[1]}</Link>
+              <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/terms/"} className="footerButtons_button">{textInfo.footerButtons[2]}</Link>
               <Link to="" className="footerButtons_button">{textInfo.footerButtons[3]}</Link>
-              <Link to="/contacts/" className="footerButtons_button">{textInfo.footerButtons[4]}</Link>
+              <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/contacts/"} className="footerButtons_button">{textInfo.footerButtons[4]}</Link>
               <div className="d-flex">
                 <div className="d-flex flex-column justify-content-center">
                 <i style={{background:"url("+ecommpay_logo+")no-repeat", backgroundSize:"100% 100%", width:"70px", height:"24px"}} />
