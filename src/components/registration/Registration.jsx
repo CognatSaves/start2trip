@@ -146,7 +146,7 @@ class RegistrationClass extends React.Component {
 
         let userType = Number.parseInt(window.opener.localStorage.getItem('userType'));
         let partner = getFarCookie('partner');
-        if (window.location.pathname === "/registration/facebook") {
+        if (window.location.pathname === "/registration/facebook/") {
             // alert('token');
             //console.log('token');
             // console.log(token);
@@ -204,7 +204,7 @@ class RegistrationClass extends React.Component {
                 }
             }
         }
-        if (window.location.pathname === "/registration/google") {
+        if (window.location.pathname === "/registration/google/") {
             if (token) {
                 let id_token = urlParams.get('raw[id_token]');
                 if (type === "Registration") {
