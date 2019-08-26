@@ -3,9 +3,10 @@ import { Helmet } from 'react-helmet';
 import requests from '../../config';
 import axios from 'axios';
 
-import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 
-class Registration extends React.Component {
+import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+import { connect } from 'react-redux';
+class RegistrationClass extends React.Component {
     constructor(props) {
         super(props);
         let that = this;
@@ -145,7 +146,7 @@ class Registration extends React.Component {
 
         let userType = Number.parseInt(window.opener.localStorage.getItem('userType'));
         let partner = getFarCookie('partner');
-        if (window.location.pathname === "/registration/facebook") {
+        if (window.location.pathname === "/registration/facebook/") {
             // alert('token');
             //console.log('token');
             // console.log(token);
@@ -203,7 +204,7 @@ class Registration extends React.Component {
                 }
             }
         }
-        if (window.location.pathname === "/registration/google") {
+        if (window.location.pathname === "/registration/google/") {
             if (token) {
                 let id_token = urlParams.get('raw[id_token]');
                 if (type === "Registration") {
@@ -277,4 +278,11 @@ class Registration extends React.Component {
         )
     }
 }
+const Registration = connect(
+    (state) => ({
+      storeState: state.AppReduser,
+      globalReduser: state.GlobalReduser,
+    }),
+  )(RegistrationClass);
+  
 export default Registration;
