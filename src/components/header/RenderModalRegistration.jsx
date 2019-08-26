@@ -435,11 +435,20 @@ class RenderModalRegistrationClass extends React.Component {
                             <p className="mb-1" >{this.state.sitingIn ? textInfo.sitingInLightBackgroundText.sitingInSecondText : textInfo.registrationLightBackgroundText.registrationSecondText}</p>
                             <form id="regForm" onSubmit={(e) => {
                                 e.preventDefault();
-                                if (EmailValidator.validate(this.state.email)) {
-                                    this.setState({ emailValid: true })
+                                let isGood = true;
+                                if(!(EmailValidator.validate(this.state.email))){
+                                    this.setState({
+                                       emailValid: false
+                                    });
+                                    isGood=false;
+                                }
+                                if(!(this.state.sitingIn ? true : this.state.agreement)){
+                                    this.setState({ checkedAgreement: this.state.agreement })
+                                    isGood=false;
+                                }
+                                if(isGood){
+                                    this.setState({ emailValid: true, checkedAgreement: this.state.agreement })
                                     this.sendRegistrationRequest(this.state.sitingIn)
-                                } else {
-                                    this.setState({ emailValid: false, checkedAgreement: this.state.agreement })
                                 }
                             }}>
                                 <div className="inputIcon">
@@ -552,10 +561,20 @@ class RenderModalRegistrationClass extends React.Component {
                             <p className="mb-1" >{this.state.sitingIn ? textInfo.sitingInLightBackgroundText.sitingInSecondText : textInfo.registrationLightBackgroundText.registrationSecondText}</p>
                             <form id="regForm" onSubmit={(e) => {
                                 e.preventDefault();
-                                if (EmailValidator.validate(this.state.email)) {
+                                let isGood = true;
+                                if(!(EmailValidator.validate(this.state.email))){
+                                    this.setState({
+                                       emailValid: false
+                                    });
+                                    isGood=false;
+                                }
+                                if(!(this.state.sitingIn ? true : this.state.agreement)){
+                                    this.setState({ checkedAgreement: this.state.agreement })
+                                    isGood=false;
+                                }
+                                if(isGood){
+                                    this.setState({ emailValid: true, checkedAgreement: this.state.agreement })
                                     this.sendRegistrationRequest(this.state.sitingIn)
-                                } else {
-                                    this.setState({ emailValid: false, checkedAgreement: this.state.agreement })
                                 }
                             }}>
                                 <div className="inputIcon">
