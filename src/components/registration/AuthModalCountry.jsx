@@ -104,6 +104,9 @@ class AuthModalCountryClass extends React.Component {
                                         <img src={mapWorldIcon} height="150px" alt="mapWorldIcon" />
                                         <button className="modalCountryButtton"><img src={crossIconModal} width="20px" height="20px" alt="crossIconModal" /></button>
                                     </div>
+                                    {
+                                        //TODO перевод
+                                    }
                                     <div className="modalCountry d-flex flex-column align-items-center mb-5">
                                         <h4 className="mb-4">{"Выберите вашу страну"}</h4>
                                         <RenderModalCountry close={() => { }} />

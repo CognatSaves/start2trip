@@ -125,6 +125,7 @@ userProfileBilling: {
             telflag: "ru"
         },
         sittingsSaveBt: "SAVE CHANGES",
+        infoText: 'Пароль будет проверяться и сохраняться только в случае заполнения всех трёх полей.(ENG)',
         unsubscribeButton: {
             mailing: {
                 unsubscribe: "Unsubscribe from the newsletter",

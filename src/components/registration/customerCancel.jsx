@@ -9,7 +9,7 @@ import CreateComment from '../driverProfile/CreateComment';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 import Cookies from 'universal-cookie';
 import { Link } from 'react-router-dom';
-
+import { changeLanguagePart } from '../../redusers/Action';
 const cookies = new Cookies();
 
 class customerCancelClass extends React.Component {
@@ -23,9 +23,11 @@ class customerCancelClass extends React.Component {
             falde: null,
             onClickSpan: false,
         };
-
+        props.dispatch(changeLanguagePart(false, true)); //эта ересь сообщает шапке, что мы в админке за пользователя, т.е. работает 1я партия языков, но ломать адрес не надо
     }
-
+    componentWillUnmount() {
+        this.props.dispatch(changeLanguagePart(false, false))//эта ересь сообщает шапке, что мы валим из пользователя, т.е. работает 1я партия языков, но ломать адрес не надо
+    }
 
     startRolling = () => {
 

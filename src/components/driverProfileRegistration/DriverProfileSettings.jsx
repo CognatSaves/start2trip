@@ -88,6 +88,7 @@ class DriverProfileSettingsClass extends React.Component {
         }, 2000);
     }
     applyChanges = (sendedData) => {
+        debugger;
         let jwt = this.props.globalReduser.readCookie('jwt');
         if (jwt && jwt !== "-") {
             function checkPasswords(values) {
@@ -314,7 +315,13 @@ class DriverProfileSettingsClass extends React.Component {
                     </div>
                     <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-center py-3">
                         <label className="col-2" />
-                        <button htmlFor="profileSettings" type="submit">{textPage.sittingsSaveBt}</button>
+                        <div className="d-flex flex-column driverProfileSettingsContentUnsubscribe">
+                            <p style={{paddingBottom: '5px'}}>{textPage.infoText}</p>
+                            <div>
+                                <button htmlFor="profileSettings" type="submit">{textPage.sittingsSaveBt}</button>
+                            </div>
+                        </div>
+
                     </div>
                 </form>
                 <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start pb-3">

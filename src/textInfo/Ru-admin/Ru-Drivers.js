@@ -166,6 +166,7 @@ const driverProfileRegistration = {
             telflag: "ru"
         },
         sittingsSaveBt: "СОХРАНИТЬ ИЗМЕНЕНИЯ",
+        infoText: 'Пароль будет проверяться и сохраняться только в случае заполнения всех трёх полей.',
         unsubscribeButton: {
             mailing: {
                 unsubscribe: "Отписаться от рассылки",
