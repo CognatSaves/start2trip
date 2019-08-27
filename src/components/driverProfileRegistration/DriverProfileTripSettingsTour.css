@@ -26,7 +26,9 @@
     outline-color: #a5252580 !important;
     border-color: #a5252580 !important;
 }
-
+.errorColor hr{
+    border-color: #a5252580 !important;
+}
 .tourContent .imageLabelError {
     color: #e81123;
 }

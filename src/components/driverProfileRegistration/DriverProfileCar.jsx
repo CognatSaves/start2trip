@@ -110,9 +110,13 @@ class DriverProfileCarClass extends React.Component {
                 obj[2].classList.add("errorColor");
                 result = false;
             }
-            if (newCarCard.typeCar.length === 0) {
-                obj = document.querySelectorAll('.dropdownClass');
-                obj[0].classList.add("errorColor");
+            
+            if (newCarCard.fuelConsumption.length === 0 || isNaN(newCarCard.fuelConsumption) || Number(newCarCard.fuelConsumption) <= 0) {
+                obj = document.getElementById('profileCarFuelConsumption');
+                obj.classList.add("errorColor");
+
+                obj = document.querySelectorAll('.inputClass');
+                obj[3].classList.add("errorColor");
                 result = false;
             }
             if (newCarCard.numberOfSeats.length === 0 || isNaN(newCarCard.numberOfSeats) || Number(newCarCard.numberOfSeats) <= 0) {
@@ -127,12 +131,9 @@ class DriverProfileCarClass extends React.Component {
             //let fuelConsumption =  Number(newCarCard.fuelConsumption);
             //let b = (fuelConsumption<=0);
             debugger
-            if (newCarCard.fuelConsumption.length === 0 || isNaN(newCarCard.fuelConsumption) || Number(newCarCard.fuelConsumption) <= 0) {
-                obj = document.getElementById('profileCarFuelConsumption');
-                obj.classList.add("errorColor");
-
-                obj = document.querySelectorAll('.inputClass');
-                obj[3].classList.add("errorColor");
+            if (newCarCard.typeCar.length === 0) {
+                obj = document.querySelectorAll('.dropdownClass');
+                obj[0].classList.add("errorColor");
                 result = false;
             }
             if (newCarCard.fuelType.length === 0) {

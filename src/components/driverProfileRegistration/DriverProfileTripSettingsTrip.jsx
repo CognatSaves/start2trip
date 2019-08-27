@@ -55,6 +55,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
             isRefreshing: true,
             isGoodAnswer: true,
             firstDate: null,
+            badRequestTextVisibility: false
         }
     }
     getProfileData = () => {
@@ -110,12 +111,42 @@ class DriverProfileTripSettingsTripClass extends React.Component {
             })
         }, 2000);
     }
-    applyChanges = (props) => {
+    validate = () =>{
+        debugger;
+        let res = true;
+        if((!(Number.isInteger(eval(this.state.distance))))){
+            let inputBlocks = document.getElementsByClassName('maxDailyMileage');
+            inputBlocks[0].classList.add("errorColor");
+            inputBlocks[1].classList.add("errorColor");
+            res = false;
+        }
+        for(let i=0; i<this.state.cityRadius.length;i++){
+            if(this.state.cityRadius[i].point.length===0){
+                let inputs = document.getElementsByClassName('searchInputDriverInformation');
+                inputs[i].classList.add("errorColor");
+                res = false;
+                
+            }
+            if(!Number.isInteger(eval(this.state.cityRadius[i].radius))){
+                res= false;
+                let inputs = document.getElementsByClassName('itemRadius');
+                inputs[i*2].classList.add("errorColor");
+                inputs[i*2+1].classList.add("errorColor");
+            }
+            
+        }
 
+        return res;
+    }
+    applyChanges = (props) => {
+        
         let jwt = this.props.globalReduser.readCookie('jwt');
-        let a = this.state.cityRadius[0].point.length === 0;
-        let b = !(Number.isInteger(eval(this.state.distance)));
-        if (a || b) {
+        let isValid = this.validate();
+        debugger;
+        if (!isValid) {//какие-то косяки - открываем текст под кнопкой
+            this.setState({
+                badRequestTextVisibility: true
+            })
             return false;
         }
         else {
@@ -214,14 +245,24 @@ class DriverProfileTripSettingsTripClass extends React.Component {
             case 'radius': {
                 let cityRadius = this.state.cityRadius;
                 cityRadius[index].radius = value;
+
+                let inputs = document.getElementsByClassName('itemRadius');
+                inputs[index*2].classList.remove("errorColor");
+                inputs[index*2+1].classList.remove("errorColor");
+
                 this.setState({
-                    cityRadius: cityRadius
+                    cityRadius: cityRadius,
+                    badRequestTextVisibility: false
                 });
                 break;
             }
             case 'distance': {
+                let inputBlocks = document.getElementsByClassName('maxDailyMileage');
+                inputBlocks[0].classList.remove("errorColor");
+                inputBlocks[1].classList.remove("errorColor");
                 this.setState({
-                    distance: value
+                    distance: value,
+                    badRequestTextVisibility: false
                 })
             }
             default:
@@ -236,8 +277,12 @@ class DriverProfileTripSettingsTripClass extends React.Component {
         cityRadius[index].point = value;
         cityRadius[index].lat = extraData.location.lat;
         cityRadius[index].long = extraData.location.long;
+        let inputs = document.getElementsByClassName('searchInputDriverInformation');
+        inputs[index].classList.remove("errorColor");
+    
         this.setState({
-            cityRadius: cityRadius
+            cityRadius: cityRadius,
+            badRequestTextVisibility: false
         })
     }
 
@@ -402,15 +447,17 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                                 <React.Fragment>
                                     <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
                                         <label htmlFor={"tripLocation" + index} className="col-xl-2 col-lg-2 col-md-2 col-sm-11 col-11 p-0 triplabel">{textPage.tripLocation}:</label>
-                                        <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column col-md-6 col-sm-12 col-12 p-0">
+                                        <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column col-md-6 col-sm-12 col-12 p-0" >
                                             <LocationSearchInput address={element.point} changeCity={this.changeCity} classDiv="col-md-8 col-12 p-0" classInput="searchInputDriverInformation" index={index} classDropdown="searchDropdownDriverInformation" />
-                                            <input className="col-md-2 col-12 ml-1 d-xl-block d-lg-block d-md-block d-sm-none d-none" type="text" id="itemRadiu" value={element.radius}
+                                            <input className="col-md-2 col-12 ml-1 d-xl-block d-lg-block d-md-block d-sm-none d-none itemRadius"/*класс itemRadius добавил ради класса errorColor - отображения некорректоности заполнения */
+                                             type="number" id="itemRadiu" value={element.radius} 
                                                 onChange={(e) => this.inputChange(e.target.value, 'radius', index)}
                                             />
                                             <TextField
                                                 floatingLabelText={textPage.textField.floatingLabelText}
-                                                className="inputClass d-md-none d-sm-block d-block "
-                                                fullWidth="100%"
+                                                className="inputClass d-md-none d-sm-block d-block itemRadius"/*класс itemRadius добавил ради класса errorColor - отображения некорректоности заполнения */
+                                                fullWidth="100%" 
+                                                type="number"
                                                 floatingLabelFocusStyle={{ color: "#304269" }}
                                                 underlineFocusStyle={{ borderColor: "#304269" }}
                                                 value={element.radius}
@@ -428,19 +475,19 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
                                 <label htmlFor="maxDailyMileage" className="col-xl-2 col-lg-2 col-md-2 col-sm-11 col-12 p-0 dailymile">{textPage.maxDailyMileage.floatingLabelText}</label>
                                 <div className="d-md-block d-sm-none d-none">
-                                    <input id="maxDailyMileage" className="col-md-5 col-12 " type="text" value={this.state.distance}
-                                        onChange={(e) => this.inputChange(e.target.value, 'distance')}
+                                    <input  className="col-md-5 col-12 maxDailyMileage" type="number" value={this.state.distance}
+                                     onChange={(e) => this.inputChange(e.target.value, 'distance')}
                                     />
                                 </div>
 
                                 <TextField
                                     floatingLabelText={textPage.maxDailyMileage.floatingLabelText}
-                                    className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
+                                    className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass maxDailyMileage"
                                     fullWidth="100%"
                                     floatingLabelFocusStyle={{ color: "#304269" }}
                                     underlineFocusStyle={{ borderColor: "#304269" }}
                                     value={this.state.distance}
-                                    onChange={(e) => this.inputChange(e.target.value, 'distance')}
+                                    onChange={(e) => {this.inputChange(e.target.value, 'distance')}}
                                 />
                                 {/* <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none pl-2">{textPage.maxDailyMileage.description}</p> */}
                             </div>
@@ -476,9 +523,15 @@ class DriverProfileTripSettingsTripClass extends React.Component {
 
                         <div className="tripSettingsContent d-flex justify-content-md-start justify-content-sm-center justify-content-center py-0">
                             <p className="col-2 p-0  d-md-block d-sm-none d-none"></p>
-                            <button htmlFor="tripForm" type="submit">{textPage.tripSaveBt}</button>
+                            <div className="d-flex flex-column">
+                                <button htmlFor="tripForm" type="submit">{textPage.tripSaveBt}</button>
+                                {
+                                    //TODO переводы
+                                }
+                                <text style={{color: 'red', display: this.state.badRequestTextVisibility ? 'block' : 'none'}}>Вы допустили ошибки. Поправьте их перед сохранением</text>
+                            </div>
                         </div>
-
+                        
                     </form>
                     <div className="tripSettingsContent d-flex justify-content-center">
                         <div className="tripSettingsContentP d-flex flex-column col-md-8 col-12 py-3 pt-4 px-0">
