@@ -166,6 +166,7 @@ const driverProfileRegistration = {
             telflag: "ru"
         },
         sittingsSaveBt: "ცვლილებების შენახვა",
+        infoText: 'Пароль будет проверяться и сохраняться только в случае заполнения всех трёх полей.(ENG)',
         unsubscribeButton: {
             mailing: {
                 unsubscribe: "გამოწერა გაზეთებიდან",

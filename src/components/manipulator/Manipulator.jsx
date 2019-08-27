@@ -82,7 +82,7 @@ class ManipulatorClass extends React.Component {
                                     )}
                                 </div>
                                 <div className="pageNumbers_text" onClick={() => this.props.setPage(maxPage)}>
-                                    <div classNmae="pageNumbers_text_value">{textInfo.moveEnd}</div>
+                                    <div className="pageNumbers_text_value">{textInfo.moveEnd}</div>
                                 </div>
                                 <button className="pageNumbers_arrow" onClick={() => { if (this.props.page < maxPage) { this.props.setPage(this.props.page + 1) } }}>
                                     <img src={rightArrow} width="100%" height="auto" alt="rightA" style={{ borderRadius: "5px" }}></img>

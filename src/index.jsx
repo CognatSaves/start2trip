@@ -383,7 +383,7 @@ ReactDOM.render(
               <Route path={"/" + config.routeMap +"/terms/"} component={LicenseAgreement} />
               <Route path={"/" + config.routeMap +"/contacts/"} component={contacts} />
               <Route path={"/" + config.routeMap +"/affiliate-program/"} component={affiliateProgram} />
-              <Route path={"/" + config.routeMap +"/about-service/" }component={AboutService} />
+              <Route path={"/" + config.routeMap +"/about-service/" } component={AboutService} />
 
               <Route path="/driverConfirmation/:id-:carrierId-:confirmation/" component={DriverConfirmation} />
               <Route path="/tripConfirmation/:id-:userId" component={TripConfirmation} />

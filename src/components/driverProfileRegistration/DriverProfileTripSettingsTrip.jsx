@@ -112,7 +112,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
         }, 2000);
     }
     validate = () =>{
-        debugger;
+        
         let res = true;
         if((!(Number.isInteger(eval(this.state.distance))))){
             let inputBlocks = document.getElementsByClassName('maxDailyMileage');
@@ -142,7 +142,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
         
         let jwt = this.props.globalReduser.readCookie('jwt');
         let isValid = this.validate();
-        debugger;
+        
         if (!isValid) {//какие-то косяки - открываем текст под кнопкой
             this.setState({
                 badRequestTextVisibility: true

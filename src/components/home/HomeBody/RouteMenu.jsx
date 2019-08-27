@@ -260,7 +260,7 @@ class RouteMenuClass extends React.Component {
   }
 
   goToNextPage = () => {
-
+    debugger;
     let massCities = this.props.storeState.cities;
     let flagCities;
 
@@ -292,7 +292,7 @@ class RouteMenuClass extends React.Component {
     }
   }
   requestFunction = (allGoodAfterfunc) => {
-
+    debugger;
     this.setState({ isWaiting: true, isRefreshing: true, isGoodAnswer: true, isLoaded: true });
     this.props.dispatch(setWaitingDriverRequest(true));
     let that = this;
@@ -360,17 +360,17 @@ class RouteMenuClass extends React.Component {
         distance: routeProps.distance,
         duration: routeProps.duration
       });
-      
+      debugger;
       fetch(requests.getDrivers, {
         method: 'PUT', body: body,
         headers: { 'content-type': 'application/json' }
       })
         .then(response => {
-
+          debugger;
           return response.json();
         })
         .then(function (data) {
-
+          debugger;
           if (data.error) {
             console.log("bad");
             that.setState({ isRefreshing: false, isGoodAnswer: false });

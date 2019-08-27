@@ -8,7 +8,7 @@ import Header from '../header/Header'
 import CreateComment from '../driverProfile/CreateComment';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 import Cookies from 'universal-cookie';
-
+import { changeLanguagePart } from '../../redusers/Action';
 const cookies = new Cookies();
 
 class feedbackClass extends React.Component {
@@ -19,6 +19,10 @@ class feedbackClass extends React.Component {
             isRefreshing: false,
             isGoodAnswer: false,
         };
+        props.dispatch(changeLanguagePart(false, true)); //эта ересь сообщает шапке, что мы в админке за пользователя, т.е. работает 1я партия языков, но ломать адрес не надо
+    }
+    componentWillUnmount() {
+        this.props.dispatch(changeLanguagePart(false, false))//эта ересь сообщает шапке, что мы валим из пользователя, т.е. работает 1я партия языков, но ломать адрес не надо
     }
     startRolling = () => {
 
