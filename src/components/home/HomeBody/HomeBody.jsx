@@ -3,7 +3,7 @@ import './HomeBody.css'
 import './calendary.css';
 import { connect } from 'react-redux'
 import { isMobileOnly } from 'react-device-detect'
-// import { setLengthTime } from '../../../redusers/ActionDrivers'
+import { setLengthTime } from '../../../redusers/ActionDrivers'
 
 import RouteMenu from './RouteMenu.jsx'
 import MapContainer from './MapContainer.jsx'
@@ -14,7 +14,7 @@ const ChangeMapListBlock = (props) => {
     <React.Fragment>
       {
         that.state.changeMapList ?
-          <div className={mapContainerClass}>
+          <div className={mapContainerClass} style={{display: that.state.changeMapList ? 'block' : 'none'}}>
             <MapContainer cities={that.props.storeState.cities} setLengthTime={that.setLengthTime} mapUpdate={true} />
           </div>
           :
@@ -102,12 +102,12 @@ class HomeBodyClass extends React.Component {
       }
       return timeString;
     }
-
+    
     if ((this.props.driversState.travelLength === "-" && this.props.driversState.travelTime === "-") ||
       (this.props.driversState.travelLength.length === 0 || this.props.driversState.travelLength.length === 0)) {
       let lengthString = getLengthString(travelLength);
       let timeString = getTimeString(travelTime);
-      this.props.setLengthTime(timeString, lengthString);
+      this.props.dispatch(setLengthTime(timeString, lengthString));
     }
   }
   validationInput = (massCities) => {

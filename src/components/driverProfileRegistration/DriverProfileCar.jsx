@@ -130,7 +130,7 @@ class DriverProfileCarClass extends React.Component {
 
             //let fuelConsumption =  Number(newCarCard.fuelConsumption);
             //let b = (fuelConsumption<=0);
-            debugger
+            
             if (newCarCard.typeCar.length === 0) {
                 obj = document.querySelectorAll('.dropdownClass');
                 obj[0].classList.add("errorColor");

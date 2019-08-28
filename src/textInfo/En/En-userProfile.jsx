@@ -69,7 +69,7 @@ let userProfile = {
         }
 
     },
-userProfileBilling: {
+    userProfileBilling: {
             billingModalHeader: 'Withdraw funds available',
             billingModalContent: {
                 summLabel: 'Amount USD',
@@ -85,21 +85,21 @@ userProfileBilling: {
                 summary: 'Total Account',
                 submit: 'Withdraw funds'
             },
-        },
-        userProfileRegistration: {
-            loading: 'Download'
-        },
-        userProfileTravelHistory: {
-            drivercar: 'Driver and car',
-            comments: 'reviews',
-            passengerNumber: 'Number of people',
-            startPlace: 'Meeting Point',
-            price: 'Cost of travel',
-            startFact: 'Start Trip',
-            notStart: 'Trip was not started',
-            endFact: 'End of Trip',
-            notEnd: 'The trip was not finished'
-        },
+    },
+    userProfileRegistration: {
+        loading: 'Download'
+    },
+    userProfileTravelHistory: {
+        drivercar: 'Driver and car',
+        comments: 'reviews',
+        passengerNumber: 'Number of people',
+        startPlace: 'Meeting Point',
+        price: 'Cost of travel',
+        startFact: 'Start Trip',
+        notStart: 'Trip was not started',
+        endFact: 'End of Trip',
+        notEnd: 'The trip was not finished'
+    },
     userProfileSettings: {
         settingsBodyTitle: "Profile Settings",
         sittingsEmail: {
@@ -149,7 +149,11 @@ userProfileBilling: {
         percenticon: "From every payment",
         currencyicon: "Total Earned",
         affiliateProgramTableHeader: ["EMAIL", "Registration Date", "Registration Source", "Charges"]
-    }
+    },
+    userProfileHistory: {
+        upcoming: "Upcoming",
+        story: "History",
+    }
 }
 
 export default userProfile;

@@ -242,10 +242,9 @@ export default class StartTravelForm extends React.Component {
             isGoodAnswer: false,
             promoCodIsOk: true,
             time: props.globalReduser.time,
-
-
-
         }
+
+
     }
     componentDidUpdate(prevProps, prevState) {
 
@@ -261,7 +260,7 @@ export default class StartTravelForm extends React.Component {
         return true
     }
     sendTripRequest = (body) => {
-        debugger
+        
         function returnToStartData(that){
             that.setState({
                 travelVisibility: false,
@@ -310,14 +309,14 @@ export default class StartTravelForm extends React.Component {
                     return response.json();
                 })
                 .then(function (data) {
-                    debugger
+                    
                     if (data.error) {
-                        debugger
+                        
                         console.log("bad");
                         throw data.error;
                     }
                     else {
-                        debugger
+                        
                         console.log('good');
                         console.log(data);
                         that.setState({
@@ -337,7 +336,7 @@ export default class StartTravelForm extends React.Component {
                     }
                 })
                 .catch(function (error) {
-                    debugger
+                    
                     console.log('bad');
                     console.log('An error occurred:', error);
                     that.setState({
@@ -353,7 +352,7 @@ export default class StartTravelForm extends React.Component {
         }
     }
     validate = () => {
-        debugger
+        
         let massValidate = document.querySelectorAll(".validate");
         let phoneInput = document.querySelector(".route_datePhoneInput");
         let departureTime = document.querySelector(".departureTime");
@@ -411,7 +410,7 @@ export default class StartTravelForm extends React.Component {
         this.setState({ errorMes: !isAllGood, emailValid: emailValid })
 
         if (isAllGood) {
-            debugger
+            
             let date = new Date(this.props.storeState.date);
             let year = date.getUTCFullYear(); let month = date.getUTCMonth() + 1; let day = date.getUTCDate();
             let body = {
