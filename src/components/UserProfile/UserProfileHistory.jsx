@@ -13,16 +13,16 @@ class UserProfileHistoryClass extends React.Component {
   }
 
   render() {
-    //TODO Добавить динамические переводы
+    let textPage = this.props.AppReduser.languageTextMain.userProfile.userProfileHistory;
     return (
       <React.Fragment>
         <div className="driverProfileHistory">
           <div className="driverProfileHistoryTop d-flex">
             <div className={this.state.isPreHistory ? "d-flex align-items-center driverProfileHistoryTop-active" : " d-flex align-items-center"} onClick={() => { this.setState({ isPreHistory: true }) }}>
-              <span>Предстоящие</span>
+              <span>{textPage.upcoming}</span>
             </div>
             <div className={this.state.isPreHistory ? "d-flex align-items-center" : "driverProfileHistoryTop-active d-flex align-items-center"} onClick={() => { this.setState({ isPreHistory: false }) }}>
-              <span>История</span>
+              <span>{textPage.story}</span>
             </div>
           </div>
           {{
@@ -37,7 +37,8 @@ class UserProfileHistoryClass extends React.Component {
 
 const UserProfileHistory = connect(
   (state) => ({
-    globalReduser: state.GlobalReduser
+    globalReduser: state.GlobalReduser,
+    AppReduser: state.AppReduser
   }),
 )(UserProfileHistoryClass);
 

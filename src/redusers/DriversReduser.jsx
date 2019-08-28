@@ -31,7 +31,7 @@ export const DriversReduser = (state=initialState, action)=>{
         }
         case SET_DRIVER_CAR_DESCR:{
             let newState = {...state};
-            debugger
+            
             newState.driverCarDescription=action.driverCarDescription;
             return newState;
         }

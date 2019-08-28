@@ -6,7 +6,7 @@ import { isMobileOnly } from 'react-device-detect'
 import { setDriversList, setCarTypes, setWaitingDriverRequest } from '../../../redusers/ActionDrivers';
 import { AppReduser } from '../../../redusers/AppReduser';
 import requests from '../../../config';
-
+import { setLengthTime } from '../../../redusers/ActionDrivers'
 import addIcon from '../../media/addWhite.svg'
 // import crossIcon from './pictures/close.svg'
 
@@ -260,7 +260,7 @@ class RouteMenuClass extends React.Component {
   }
 
   goToNextPage = () => {
-    debugger;
+    
     let massCities = this.props.storeState.cities;
     let flagCities;
 
@@ -292,7 +292,7 @@ class RouteMenuClass extends React.Component {
     }
   }
   requestFunction = (allGoodAfterfunc) => {
-    debugger;
+    
     this.setState({ isWaiting: true, isRefreshing: true, isGoodAnswer: true, isLoaded: true });
     this.props.dispatch(setWaitingDriverRequest(true));
     let that = this;
@@ -347,12 +347,44 @@ class RouteMenuClass extends React.Component {
         res.duration = res.duration / 60;//конверсия в минуты
         return res;
       }
-
+      function setLengthTimeFunc (that,travelLength, travelTime) {
+        function getLengthString(travelLength) {//дистанция в км
+            let length = travelLength;
+            length = Math.ceil(length);
+            let lengthString = length + " км";
+            return lengthString;
+        }
+        function getTimeString(travelTime) {//время в минутах
+          //TODO переводы
+            let hours = travelTime / 60 ^ 0;
+            let minutes = (travelTime - hours * 60) ^ 0;
+            let days = hours / 24 ^ 0;
+            hours = hours - days * 24;
+            let timeString = "";
+            if (days !== 0) {
+                timeString += days + " дн. " + hours + " ч.";
+            }
+            else {
+                if (hours !== 0) {
+                    timeString += hours + " ч. ";
+                }
+                timeString += minutes + " мин.";
+            }
+            return timeString;
+        }
+        debugger;
+        let lengthString = getLengthString(travelLength);
+        let timeString = getTimeString(travelTime);
+        that.props.dispatch(setLengthTime(timeString, lengthString));
+      }
       console.log(response);
       console.log(status);
+      
       let routeProps = lengthTimeCalc(response);
-
-
+      debugger;
+      setLengthTimeFunc(that,routeProps.distance,routeProps.duration);
+      
+      
       let body = JSON.stringify({
         cities: filteredCities,
         country: country,
@@ -360,17 +392,17 @@ class RouteMenuClass extends React.Component {
         distance: routeProps.distance,
         duration: routeProps.duration
       });
-      debugger;
+      
       fetch(requests.getDrivers, {
         method: 'PUT', body: body,
         headers: { 'content-type': 'application/json' }
       })
         .then(response => {
-          debugger;
+          
           return response.json();
         })
         .then(function (data) {
-          debugger;
+          
           if (data.error) {
             console.log("bad");
             that.setState({ isRefreshing: false, isGoodAnswer: false });

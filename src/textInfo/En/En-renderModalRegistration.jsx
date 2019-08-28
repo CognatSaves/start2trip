@@ -46,32 +46,32 @@ const pageTextInfo = {
                 {
                     userText: "Driver"
                 },
-                {
+                /*{
                     userText: "Car park/Agency   "
-                }
+                }*/
             ]
         },
         registrationAnswer: [
             "Success",
             "Email is already registered",
-            "", // imposible to find the root role
+            "Аккаунт имеет неопознанный статус(ENG)", // imposible to find the root role
             "Sending request",
-            "", // refused confirmation
-            "",
-            "6 answer new",
-            "7 answer new",
-            "",
-            "",//social network
-            "",
-            "", //?
-            "", //?
-            "",
-            "", // password is always created
-            "", //?
-            "",
-            "", // refused confirmation
-            "", // cannot be sent without password
-            "", // cannot be sent without mail
+            "Подтвердите ваш аккаунт(ENG)", // refused confirmation
+            "Регистрация временно запрещена(ENG)",
+            "Аккаунта с такой почтой не существует(ENG)",
+            "По этой почте аккаунт уже создан(ENG)",
+            "Токен подтверждения некорректен(ENG)",
+            "Данный оператор сейчас не доступен(ENG)",//social network
+            "Пароль некорректен(ENG)",
+            "Предоставлены некорректные параметры(ENG)", //?
+            "Предоставлен некорректный код(ENG)", //?
+            "Почта или пароль некорректны(ENG)",
+            "Локальный пароль не создан. Авторизуйтесь через соцсеть(ENG)", // password is always created
+            "Вы не администратор(ENG)", //?
+            "Аккаунт заблокирован(ENG)",
+            "Подтвердите ваш аккаунт(ENG)", // refused confirmation
+            "Вставьте пароль(ENG)", // cannot be sent without password
+            "Вставьте почту(ENG)", // cannot be sent without mail
         ],
         registrationProcess: [
             "Registration is in progress"

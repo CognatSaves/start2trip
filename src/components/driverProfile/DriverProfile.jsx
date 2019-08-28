@@ -25,6 +25,7 @@ class DriverProfileClass extends React.Component {
         
         let getdate = props.globalReduser.findGetParameter("date");
         let dateValue;
+        
         if(getdate){
             dateValue = props.globalReduser.getDateFromDateString(getdate);
             dateValue =props.globalReduser.convertDateToUTC(new Date(dateValue));
@@ -322,6 +323,16 @@ class DriverProfileClass extends React.Component {
     }
     */
     render() {
+        function isPointsLoaded(cities){
+            for(let i=0; i<cities.length; i++){
+                let a = Number.isFinite(cities[i].lat);
+                let b= Number.isFinite(cities[i].long);
+                if(!a || !b){
+                    return false;
+                }
+            }
+            return true;
+        }
         window.scroll({
             top: 0,
             left: 0,
@@ -341,13 +352,17 @@ class DriverProfileClass extends React.Component {
         //обработка захода по url - тогда в storeState не будет точек - следовательно, их надо взять из адреса
         //или быть выкинутым на страницу drivers (скорее всего туда, хотя можно выкинуть на home)
 
-        if (this.props.storeState.cities.length === 0 || this.props.storeState.cities[0].point === "") {
-
+        if ((this.props.storeState.cities.length === 0 || this.props.storeState.cities[0].point === "") && this.props.storeState.countries.length > 0) {
+            
+            
             if (this.props.match.params && this.props.match.params.cities) {
-                let urlCities = this.props.match.params.cities;
+                let langISO=  cookies.get('userLang', { path: "/" });
                 let urlCountry = this.props.match.params[0];
                 urlCountry = urlCountry.split("-")
-                let cityNamesArray = this.parseStringToArray(urlCities, urlCountry[0], urlCountry[1]);
+                let countryName = this.props.globalReduser.findCountryNameByISO(this, urlCountry[0],langISO);
+                let urlCities = this.props.match.params.cities;
+                
+                let cityNamesArray = this.parseStringToArray(urlCities,countryName, urlCountry[1]);
 
                 this.props.dispatch(setCities(cityNamesArray));
             }
@@ -624,6 +639,9 @@ class DriverProfileClass extends React.Component {
                                                                 <button className='driversBlock_buttonStyle' /*"placesDescription_travelBlock_applyButton p-0 "*/
                                                                     style={{/*marginBottom: '15px',*/ width: '100%', border: 'none', borderRadius: '5px', height: '100%' }}
                                                                     onClick={() => { this.changeTravelVisibility(defaultPrice); this.props.dispatch(setDriverCarDescription(this.props.driversState.driverCarDescription)) }}>
+                                                                    {
+                                                                        //TODO переводы
+                                                                    }
                                                                     <text style={{ margin: "auto", fontSize: '16px' }} >
                                                                         {"ЗАБРОНИРОВАТЬ " + (isCurrencyLoaded ? ((activeCurrency.isLeft ? activeCurrency.symbol : '')
                                                                             + Math.ceil(defaultPrice * activeCurrency.costToDefault)
@@ -636,7 +654,12 @@ class DriverProfileClass extends React.Component {
                                             </div>
                                         </div>
                                         <div className="col-6 d-md-block d-none " style={{ height: '400px' }}>
-                                            <MapContainer cities={this.props.storeState.cities} setLengthTime={this.setLengthTime} mapUpdate={true} />
+                                        {
+                                            this.props.storeState.cities && isPointsLoaded(this.props.storeState.cities) ?
+                                                <MapContainer cities={this.props.storeState.cities} setLengthTime={this.setLengthTime} mapUpdate={true} />
+                                            : <React.Fragment/>
+                                        }
+
                                         </div>
                                     </div>
 

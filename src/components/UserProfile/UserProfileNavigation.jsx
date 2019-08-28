@@ -218,7 +218,7 @@ class UserProfileNavigationClass extends React.Component {
                                 }
                                 this.setState({ activePage: this.state.route[index] })
                             }
-                            }>{element}</span>
+                            }>{textPage.navigationText[index]}</span>
                     )}
                 </div>
             </div>

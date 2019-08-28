@@ -150,6 +150,10 @@ let userProfile = {
         currencyicon: "Заработано Всего",
         affiliateProgramTableHeader: ["EMAIL", "Дата регистрации", "Источник регистрации", "Начисления"]
     },
+    userProfileHistory: {
+        upcoming: "Предстоящие",
+        story: "История",
+    }
 }
 
 export default userProfile;

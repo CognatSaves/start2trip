@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import requests from '../../config';
 import getUserData from '../driverProfileRegistration/DriverProfileRequest';
 
@@ -105,6 +105,7 @@ class AccountRedirectorClass extends React.Component {
                         <Route path="/account/driver" component={DriverProfileRegistration} />
                         <Route path="/account/user" component={UserProfileRegistration} />
                         <Route path="/account/agency" component={AgencyProfile} />
+                        
                     </React.Fragment>
                 )
             }

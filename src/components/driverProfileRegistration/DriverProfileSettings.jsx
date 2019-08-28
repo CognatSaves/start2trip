@@ -88,7 +88,7 @@ class DriverProfileSettingsClass extends React.Component {
         }, 2000);
     }
     applyChanges = (sendedData) => {
-        debugger;
+        
         let jwt = this.props.globalReduser.readCookie('jwt');
         if (jwt && jwt !== "-") {
             function checkPasswords(values) {

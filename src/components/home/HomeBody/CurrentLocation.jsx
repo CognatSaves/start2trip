@@ -22,7 +22,7 @@ export class CurrentLocation extends React.Component {
   }
 
   componentWillUpdate(nextProps, nextState) {
-
+    
     if (nextProps.google !== window.google) {
       this.loadMap();
     }
