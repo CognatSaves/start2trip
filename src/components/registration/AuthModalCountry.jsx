@@ -61,6 +61,7 @@ class AuthModalCountryClass extends React.Component {
         // let textInfoAdmin = this.props.storeState.languageText.header;
         // let isAdmin = this.props.storeState.isSecondLanguageGroupPart;
         // let textInfo = isAdmin ? textInfoAdmin : textInfoMain;
+        let textInfo = this.props.storeState.languageTextMain.header;
         let helmet = this.props.storeState.languageTextMain.helmets.authModalCountry;
         if (/prerendercloud/.test(window.navigator.userAgent)) {
             console.log("Chrome headless detected");
@@ -108,7 +109,7 @@ class AuthModalCountryClass extends React.Component {
                                         //TODO перевод
                                     }
                                     <div className="modalCountry d-flex flex-column align-items-center mb-5">
-                                        <h4 className="mb-4">{"Выберите вашу страну"}</h4>
+                                        <h4 className="mb-4">{textInfo.modalCountrySelect.selectCountryText}</h4>
                                         <RenderModalCountry close={() => { }} />
                                     </div>
                                 </div>

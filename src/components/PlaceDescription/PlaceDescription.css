@@ -267,6 +267,7 @@ h2 {
     font-weight: 400 !important;
     font-size: 16px !important;
     max-height: 41px;
+    margin-top: 6px;
 }
 
 .routeDescrDate hr,

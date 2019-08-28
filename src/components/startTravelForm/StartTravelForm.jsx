@@ -155,7 +155,7 @@ const Content = (that, flagAllOk, carCapacityArray, activeCurrency, textInfo, ch
                                 className="checkboxStyle"
                                 onChange={(event) => { that.setState({ checkBoxes: !that.state.checkBoxes }) }}
                             />
-                            <span className="drivers_route_Link">{textInfo.driversRouteLink[0] + ' '}<Link to={"/" + that.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/terms/"} target="_blank">{textInfo.driversRouteLink[1]}</Link></span>
+                            <span className="drivers_route_Link">{textInfo.driversRouteLink[0] + ' '}<Link to={"/terms/"} target="_blank">{textInfo.driversRouteLink[1]}</Link></span>
                         </div>
                         <span className="errorMes col-12" style={{ display: !that.state.checkBoxes && that.state.errorMes ? "block" : "none" }}>{textInfo.errorContract}</span>
                     </div>
@@ -434,7 +434,8 @@ export default class StartTravelForm extends React.Component {
                 frontendAddress: requests.frontendAddress,
                 travelLength: this.props.driversState.travelLength,
                 travelTime: this.props.driversState.travelTime,
-                userLangCookies: (cookies.get('userLang', { path: '/' })).toUpperCase()
+                userLangCookies: (cookies.get('userLang', { path: '/' })).toUpperCase(),
+                country:cookies.get('country', { path: '/' })
             };
             console.log("--------------------------------")
             console.log(body);

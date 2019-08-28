@@ -379,11 +379,11 @@ ReactDOM.render(
               <Route path="/forgot-password/" component={ForgotPassword} />
               <Route path="/reset-password/:code/" component={ResetPassword} />
 
-              <Route path={"/" + config.routeMap +"/terms-:userType/"} component={LicenseAgreement} />
-              <Route path={"/" + config.routeMap +"/terms/"} component={LicenseAgreement} />
-              <Route path={"/" + config.routeMap +"/contacts/"} component={contacts} />
-              <Route path={"/" + config.routeMap +"/affiliate-program/"} component={affiliateProgram} />
-              <Route path={"/" + config.routeMap +"/about-service/" } component={AboutService} />
+              <Route path={"/terms-:userType/"} component={LicenseAgreement} />
+              <Route path={"/terms/"} component={LicenseAgreement} />
+              <Route path={"/contacts/"} component={contacts} />
+              <Route path={"/affiliate-program/"} component={affiliateProgram} />
+              <Route path={"/about-service/" } component={AboutService} />
 
               <Route path="/driverConfirmation/:id-:carrierId-:confirmation/" component={DriverConfirmation} />
               <Route path="/tripConfirmation/:id-:userId" component={TripConfirmation} />

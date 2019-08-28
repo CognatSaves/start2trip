@@ -47,7 +47,7 @@ const drivers = {
                 header: 'Do you really want to cancel the order?',
                 header2: ['In case of your refusal to travel, you will be awarded 1 penalty point out of 5 possible.',
                 'For failure to appear on the confirmed order, you will immediately receive 3 penalty points.'],
-                options: ['Yes', 'No']
+                variants: ['Yes', 'No']
             },
             notFound:{
                 header: 'Have some troubles!',
