@@ -293,7 +293,7 @@ const driverProfileRegistration = {
         currentBalance: {
             currentBalanceText: 'Текущий баланс',
             personalAccount: 'Лицевой счёт',
-            cardPayments: 'Оплачено картами',
+            cardPayments: 'Оплачено наличными',
             partnerPayments: 'Партнёрские начисления',
             withdrawnTotal: 'Всего снято',
             accountTotal: 'Всего на счету',
@@ -314,7 +314,7 @@ const driverProfileRegistration = {
             forPeriod: 'За период',
             searchButton: 'Просмотреть',
             infoTableText: {
-                payedByCash: 'Оплачено картами',
+                payedByCash: 'Оплачено наличными',
                 payedByCard: 'Оплата по картам',
                 payedByPartners: 'Партнёрские начисления',
                 payedForPeriod: 'Всего за период'

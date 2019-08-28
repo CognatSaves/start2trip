@@ -313,7 +313,7 @@ const driverProfileRegistration = {
             forPeriod: 'Over the period',
             searchButton: 'View',
             infoTableText: {
-                payedByCash: 'Paid with cards',
+                payedByCash: 'Paid in cash',
                 payedByCard: 'Card payment',
                 payedByPartners: 'License fee charges',
                 payedForPeriod: 'Total for the period'

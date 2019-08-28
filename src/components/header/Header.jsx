@@ -732,7 +732,7 @@ class HeaderClass extends React.Component {
         </div>
         <div className={this.props.driver ? "driverHeader" : "homeHeader"}>
           {this.props.showBtnBack ? <div className="driversGoBack" style={{ display: isMobileOnly ? "flex" : "none" }}>
-            <span onClick={() => { this.props.history.goBack() }}>Назад</span>
+            <span onClick={() => {if(this.props.history.length > 2){this.props.history.goBack()}else{this.props.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/routes/')};  }}>Назад</span>
           </div> :
             <React.Fragment />}
 
