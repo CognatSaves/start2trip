@@ -113,6 +113,7 @@ class DriverProfileClass extends React.Component {
         let body = JSON.stringify({
             id: this.props.match.params.id,
             carId: this.props.match.params.carId,
+            date: this.state.date
         });
 
         /*
@@ -129,7 +130,7 @@ class DriverProfileClass extends React.Component {
                 return response.json();
             })
             .then(function (data) {
-
+                debugger;
                 if (data.error) {
                     console.log("bad");
                     throw data.error;
@@ -152,6 +153,7 @@ class DriverProfileClass extends React.Component {
 
             })
             .catch(function (error) {
+                debugger;
                 console.log('bad');
                 console.log('An error occurred:', error);
                 that.setState({
@@ -159,7 +161,7 @@ class DriverProfileClass extends React.Component {
                     isRefreshing: false,
                     isGoodAnswer: false
                 })
-                setTimeout(() => { that.props.history.push('/') }, 1000);
+                setTimeout(() => { that.props.history.push('/'+that.props.storeState.country + "-" + that.props.storeState.languages[that.props.storeState.activeLanguageNumber].isoAutocomplete+'/routes') }, 1000);
 
             });
     }
@@ -482,6 +484,7 @@ class DriverProfileClass extends React.Component {
 
                     })
                     .catch(function (error) {
+                        debugger;
                         console.log('bad');
                         console.log('An error occurred:', error);
                         that.setState({
@@ -489,7 +492,7 @@ class DriverProfileClass extends React.Component {
                             isRefreshing: false,
                             isGoodAnswer: false
                         })
-                        setTimeout(() => { that.props.history.push('/') }, 1000);
+                        setTimeout(() => { that.props.history.push('/'+/*that.props.storeState.country*/undefined + "-" + /*that.props.storeState.languages[that.props.storeState.activeLanguageNumber].isoAutocomplete*/undefined+'/routes') }, 1000);
                     });
             });
             this.setState({ isLoaded: true });
@@ -616,16 +619,19 @@ class DriverProfileClass extends React.Component {
                                                             onClick={() => { if (this.state.isDateHighlighted) { this.setState({ isDateHighlighted: false }) } }}>
                                                             <div className="placesDescription_travelBlock_icon placesDescription_calendary" />
                                                             <DatePicker defaultDate={this.state.date} shouldDisableDate={(date) => {
-                                                                let flag = false
+                                                                let flag = false;
+                                                                debugger;
                                                                 for (let i = 0; i < this.props.driversState.driverCarDescription.weekend.length; i++) {
-                                                                    let newDate = new Date(this.props.driversState.driverCarDescription.weekend[i])
-                                                                    let newDay = newDate.getUTCDate();
-                                                                    let newMonth = newDate.getUTCMonth();
-                                                                    let newYear = newDate.getUTCFullYear();
-                                                                    let day = date.getUTCDate();
-                                                                    let month = date.getUTCMonth();
-                                                                    let year = date.getUTCFullYear()
+                                                                    
+                                                                    let newDate = new Date(this.props.driversState.driverCarDescription.weekend[i].substr(0,10))
+                                                                    let newDay = newDate.getDate();
+                                                                    let newMonth = newDate.getMonth();
+                                                                    let newYear = newDate.getFullYear();
+                                                                    let day = date.getDate();
+                                                                    let month = date.getMonth();
+                                                                    let year = date.getFullYear()
                                                                     if (newDay === day && newMonth === month && newYear === year) {
+                                                                        
                                                                         flag = true
                                                                     }
                                                                 }
