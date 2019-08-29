@@ -93,14 +93,19 @@ function getLocals() {
   //кое-какие значения, например языки
   let redusers = store.getState();
   let props = {};
-
+  debugger
   //этот блок проверяет, находимся ли мы на страницах вида /geo-ru/... ,
   //откуда может взять язык
   let urlLang = "null";
   let documentUrl = window.document.URL.split("/");
   documentUrl = documentUrl[3].split("-");
   if(documentUrl[0] !== ""){
-    urlLang = documentUrl[1]
+    if(documentUrl.length===1){
+      urlLang = documentUrl[0]
+    }else{
+      urlLang = documentUrl[1]
+    }
+    
   }
   //*****//
   //этот блок считывает языковые куки
@@ -378,18 +383,18 @@ ReactDOM.render(
               <Route path="/account/" component={AccountRedirector} />
               <Route path="/forgot-password/" component={ForgotPassword} />
               <Route path="/reset-password/:code/" component={ResetPassword} />
-
-              <Route path={"/terms-:userType/"} component={LicenseAgreement} />
-              <Route path={"/terms/"} component={LicenseAgreement} />
-              <Route path={"/contacts/"} component={contacts} />
-              <Route path={"/affiliate-program/"} component={affiliateProgram} />
-              <Route path={"/about-service/" } component={AboutService} />
+              
+              <Route path={"/(ru|en)/terms-:userType/"} component={LicenseAgreement} />
+              <Route path={"/(ru|en)/terms/"} component={LicenseAgreement} />
+              <Route path={"/(ru|en)/contacts/"} component={contacts} />
+              <Route path={"/(ru|en)/affiliate-program/"} component={affiliateProgram} />
+              <Route path={"/(ru|en)/about-service/" } component={AboutService} />
 
               <Route path="/driverConfirmation/:id-:carrierId-:confirmation/" component={DriverConfirmation} />
               <Route path="/tripConfirmation/:id-:userId" component={TripConfirmation} />
-              <Route path="/(register|start)/" component={PartnerRegister} />
-              <Route path="/registration/" component={Registration} />
-              <Route path="/login/" component={AuthRedirect} />
+              <Route path={"/(register|start)/"} component={PartnerRegister} />
+              <Route path={"/registration/"} component={Registration} />
+              <Route path={"/(ru|en)/login/"} component={AuthRedirect} />
               <Route path="/countrySelection/" component={AuthModalCountry} />
               <Route path="/feedback-:id-:clientId/" component={feedback} />
               <Route path="/customer-cancel-:id-:clientId/" component={customerCancel} />

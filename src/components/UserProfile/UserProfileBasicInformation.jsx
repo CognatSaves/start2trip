@@ -8,6 +8,9 @@ import LocationSearchInput from '../home/HomeBody/Search'
 import TextField from 'material-ui/TextField';
 import DatePicker from 'material-ui/DatePicker';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 class UserProfileBasicInformationClass extends React.Component {
     constructor(props) {
@@ -46,7 +49,7 @@ class UserProfileBasicInformationClass extends React.Component {
         }
         else {
             this.props.dispatch(setUrlAddress(window.location.pathname));
-            this.props.history.push('/login/');
+            this.props.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
             //return null;
         }
     }

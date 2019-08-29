@@ -33,7 +33,7 @@ class AccountRedirectorClass extends React.Component {
         }
         else {
             this.props.dispatch(setUrlAddress(window.location.pathname));
-            this.props.history.push('/login/');
+            this.props.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
             //return null;
         }
     }

@@ -2,10 +2,7 @@ const FooterPage = {
         aboutService: {
             h2: "About the service",
             description: `tripfer.com allows you to interact with local drivers and travel agents.
-            Tourists who want to receive the service of transport. Thus, a mass of proposals is formed, of which
-            You can choose something special and individually suitable. Our goal is to create quality information products
-            for this sector of services.
-        Key features of the service are: `,
+    Tourists who want to receive the service of transport. Thus, a mass of proposals is formed, of which You can choose something special and individually suitable. Our goal is to create quality information products for this sector of services.Key features of the service are: `,
             firstEl: {
                 title: "Individual route selection",
                 text: "Plan your own travel route, \n with the ability to include any number of \n points in it, making stops in interesting places."

@@ -19,6 +19,9 @@ import messengerIcon from '../media/messenger.svg'
 import whatsappIcon from '../media/whatsapp.svg'
 import viberIcon from '../media/viber.svg'
 import telegramIcon from '../media/telegram.svg'
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 class AgencyProfileDriversClass extends React.Component {
     constructor(props) {
@@ -57,7 +60,7 @@ class AgencyProfileDriversClass extends React.Component {
         }
         else {
             this.props.dispatch(setUrlAddress(window.location.pathname));
-            this.props.history.push('/login/');
+            this.props.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
             //return null;
         }
     }
@@ -129,7 +132,7 @@ class AgencyProfileDriversClass extends React.Component {
         }
         else {
             this.props.dispatch(setUrlAddress(window.location.pathname));
-            this.props.history.push('/login/');
+            this.props.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
             //return null;
         }
     }

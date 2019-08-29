@@ -16,7 +16,7 @@ export default class PartnerRegister extends React.Component {
         cookies.set('partner', cookieValue, { path: '/', expires: date });
         switch (values[1]) {
             case 'register': {
-                this.props.history.push('/login/');
+                this.props.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
                 break;
             }
             case 'start': {

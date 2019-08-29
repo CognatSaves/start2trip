@@ -9,6 +9,9 @@ import ReactTelInput from 'react-telephone-input'
 import TextField from 'material-ui/TextField';
 import getUserData from '../driverProfileRegistration/DriverProfileRequest';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 class AgencyProfileSettingsClass extends React.Component {
     constructor(props) {
@@ -50,7 +53,7 @@ class AgencyProfileSettingsClass extends React.Component {
         }
         else {
             this.props.dispatch(setUrlAddress(window.location.pathname));
-            this.props.history.push('/login/');
+            this.props.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
             //return null;
         }
     }
@@ -164,7 +167,7 @@ class AgencyProfileSettingsClass extends React.Component {
         }
         else {
             this.props.dispatch(setUrlAddress(window.location.pathname));
-            this.props.history.push('/login/');
+            this.props.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
             //return null;
         }
     }

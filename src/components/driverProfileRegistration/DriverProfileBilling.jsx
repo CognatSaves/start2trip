@@ -20,6 +20,9 @@ import MenuItem from 'material-ui/MenuItem';
 import TextField from '@material-ui/core/TextField';
 
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 class DriverProfileBillingClass extends React.Component {
     constructor(props) {
@@ -142,7 +145,7 @@ class DriverProfileBillingClass extends React.Component {
         }
         else {
             this.props.dispatch(setUrlAddress(window.location.pathname));
-            this.props.history.push('/login/');
+            this.props.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
             return null;
         }
         console.log(this);

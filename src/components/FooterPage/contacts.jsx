@@ -34,7 +34,7 @@ class contactsClass extends React.Component {
                     <meta property="og:description" content={helmet.basic.description} />
                 </Helmet>
                 <Header driver={true} history={this.props.history} />
-                <div className="wrapper">
+                <div className="wrapper" style={{minHeight:"79vh"}}>
                     <div className="contacts d-flex" >
                         <div className="contacts_Title col-12 p-0">
                             <h2>{text.h2}</h2>

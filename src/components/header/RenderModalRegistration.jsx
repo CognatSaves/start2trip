@@ -306,6 +306,26 @@ class RenderModalRegistrationClass extends React.Component {
             userData: userData
         })
     }
+    changeLangCookies=(index)=>{
+        let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
+        cookies.set('userLang', this.props.storeState.languages[index].ISO, { path: '/', expires: date });
+        cookies.set('userLangISO', this.props.storeState.languages[index].isoAutocomplete, { path: '/', expires: date });
+        let flag = true
+        let namePage = this.props.globalhistory.history.location.pathname.split("/");
+        if (namePage[1].length === 6) {
+            namePage = namePage.splice(2)
+            namePage = namePage.join('/')
+        } else {
+            if (namePage[1] === "en") {
+                namePage = "ru/" + namePage[2]
+            } else {
+                namePage = "en/" + namePage[2]
+            }
+            flag = false
+        }
+        this.props.globalhistory.history.push((flag ? ("/" + this.props.storeState.country + "-" + this.props.storeState.languages[index].isoAutocomplete + "/") : '/') + (namePage === "" ? "routes/" : (namePage + (flag ? "" : "/"))))
+        this.props.dispatch(setActiveLang(index))
+    }
     sendRegistrationRequest(type) {
 
         let partner = cookies.get('partner');
@@ -320,7 +340,7 @@ class RenderModalRegistrationClass extends React.Component {
             });
             console.log("Send Request");
             let userLang = (cookies.get('userLang', { path: "/" })).toUpperCase()
-            
+
             let body = JSON.stringify({
                 username: email,
                 email: email,
@@ -401,7 +421,7 @@ class RenderModalRegistrationClass extends React.Component {
                                 </div>
                             )
                         }
-                        <i className="ml-3" onClick={()=>{if(this.props.globalReduser.history.location.pathname === "/login/"){this.props.globalReduser.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/routes/')}else{this.props.close()}}} />
+                        <i className="ml-3" onClick={() => { if (this.props.globalReduser.history.location.pathname === ('/'+ cookies.get('userLangISO', { path: "/" }) +"/login/")) { this.props.globalReduser.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/routes/') } else { this.props.close() } }} />
                     </div>
                     <div className="mobailsitingInLight d-flex flex-column justify-content-center align-items-center ">
                         <h3>{this.state.sitingIn ? textInfo.sitingInLightBackgroundText.titleSitingIn : textInfo.registrationLightBackgroundText.registrationTitle}</h3>
@@ -436,17 +456,17 @@ class RenderModalRegistrationClass extends React.Component {
                             <form id="regForm" onSubmit={(e) => {
                                 e.preventDefault();
                                 let isGood = true;
-                                if(!(EmailValidator.validate(this.state.email))){
+                                if (!(EmailValidator.validate(this.state.email))) {
                                     this.setState({
-                                       emailValid: false
+                                        emailValid: false
                                     });
-                                    isGood=false;
+                                    isGood = false;
                                 }
-                                if(!(this.state.sitingIn ? true : this.state.agreement)){
+                                if (!(this.state.sitingIn ? true : this.state.agreement)) {
                                     this.setState({ checkedAgreement: this.state.agreement })
-                                    isGood=false;
+                                    isGood = false;
                                 }
-                                if(isGood){
+                                if (isGood) {
                                     this.setState({ emailValid: true, checkedAgreement: this.state.agreement })
                                     this.sendRegistrationRequest(this.state.sitingIn)
                                 }
@@ -467,7 +487,7 @@ class RenderModalRegistrationClass extends React.Component {
                                 </div>
                                 <div className={this.state.checkedAgreement ? "align-items-center agreement " : "align-items-center agreement-error"} style={{ display: !this.state.sitingIn ? 'flex' : 'none' }}>
                                     <Checkbox id="agreement" onClick={() => { this.setState({ agreement: !this.state.agreement, checkedAgreement: !this.state.agreement }) }} color="#fff" checked={this.state.agreement} />
-                                    <label htmlFor="agreement" onClick={() => { this.setState({ agreement: !this.state.agreement, checkedAgreement: !this.state.agreement }) }}>{textInfo.sitingInLightBackgroundText.agreementLabel}<Link to={"/terms-" + this.state.userType+'/'} target="_blank" >{textInfo.sitingInLightBackgroundText.agreementLink}</Link></label>
+                                    <label htmlFor="agreement" onClick={() => { this.setState({ agreement: !this.state.agreement, checkedAgreement: !this.state.agreement }) }}>{textInfo.sitingInLightBackgroundText.agreementLabel}<Link to={"/" + cookies.get('userLangISO', { path: "/" }) + "/terms-" + this.state.userType + '/'} target="_blank" >{textInfo.sitingInLightBackgroundText.agreementLink}</Link></label>
                                 </div>
                                 <div className="registrationAnswerText" style={{ visibility: regAnswerVisibility ? 'visible' : 'hidden', color: regAnswerColor ? 'red' : 'green' }}>{regAnswerValue}</div>
 
@@ -530,7 +550,7 @@ class RenderModalRegistrationClass extends React.Component {
                                     (this.state.languageTextActive ?
                                         (index === this.props.storeState.activeLanguageNumber ? "registrationBodyLanguageBlock_element_light registrationBodyLanguageBlock_element_selected" : "registrationBodyLanguageBlock_element_light") :
                                         (index === this.props.storeState.activeLanguageNumber ? "registrationBodyLanguageBlock_element_dark registrationBodyLanguageBlock_element_selected" : "registrationBodyLanguageBlock_element_dark")
-                                    )} onClick={() => this.props.dispatch(setActiveLang(index))} key={element + "/" + index}>
+                                    )} onClick={() => { this.changeLangCookies(index)}} key={element + "/" + index}>
                                     {element}
                                 </div>
                             )
@@ -562,17 +582,17 @@ class RenderModalRegistrationClass extends React.Component {
                             <form id="regForm" onSubmit={(e) => {
                                 e.preventDefault();
                                 let isGood = true;
-                                if(!(EmailValidator.validate(this.state.email))){
+                                if (!(EmailValidator.validate(this.state.email))) {
                                     this.setState({
-                                       emailValid: false
+                                        emailValid: false
                                     });
-                                    isGood=false;
+                                    isGood = false;
                                 }
-                                if(!(this.state.sitingIn ? true : this.state.agreement)){
+                                if (!(this.state.sitingIn ? true : this.state.agreement)) {
                                     this.setState({ checkedAgreement: this.state.agreement })
-                                    isGood=false;
+                                    isGood = false;
                                 }
-                                if(isGood){
+                                if (isGood) {
                                     this.setState({ emailValid: true, checkedAgreement: this.state.agreement })
                                     this.sendRegistrationRequest(this.state.sitingIn)
                                 }
@@ -593,7 +613,7 @@ class RenderModalRegistrationClass extends React.Component {
                                 </div>
                                 <div className={this.state.checkedAgreement ? "align-items-center agreement " : "align-items-center agreement-error"} style={{ display: !this.state.sitingIn ? 'flex' : 'none' }}>
                                     <Checkbox onClick={() => { this.setState({ agreement: !this.state.agreement, checkedAgreement: !this.state.agreement }) }} color="#fff" checked={this.state.agreement} />
-                                    <label onClick={() => { this.setState({ agreement: !this.state.agreement, checkedAgreement: !this.state.agreement }) }}>{textInfo.sitingInLightBackgroundText.agreementLabel}<Link to={"/terms-" + this.state.userType+'/'} target="_blank" >{textInfo.sitingInLightBackgroundText.agreementLink}</Link></label>
+                                    <label onClick={() => { this.setState({ agreement: !this.state.agreement, checkedAgreement: !this.state.agreement }) }}>{textInfo.sitingInLightBackgroundText.agreementLabel}<Link to={"/" + cookies.get('userLangISO', { path: "/" }) + "/terms-" + this.state.userType + '/'} target="_blank" >{textInfo.sitingInLightBackgroundText.agreementLink}</Link></label>
                                 </div>
                                 <div className="registrationAnswerText" style={{ visibility: regAnswerVisibility ? 'visible' : 'hidden', color: regAnswerColor ? 'red' : 'green' }}>{regAnswerValue}</div>
                                 <Link onClick={() => this.props.dispatch(setModalRegister(false))} className="forgotPasswordLink" style={{ display: this.state.sitingIn ? "block" : "none" }} to="/forgot-password/">{textInfo.sitingInLightBackgroundText.linkText}</Link>
@@ -635,6 +655,7 @@ class RenderModalRegistrationClass extends React.Component {
 const RenderModalRegistration = connect(
     (state) => ({
         globalReduser: state.GlobalReduser,
+        globalhistory: state.GlobalReduser,
         storeState: state.AppReduser,
     }),
 )(RenderModalRegistrationClass);

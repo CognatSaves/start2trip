@@ -15,6 +15,9 @@ import getUserData from '../driverProfileRegistration/DriverProfileRequest';
 // import Dialog from 'material-ui/Dialog';
 
 import FlatButton from 'material-ui/FlatButton';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 class AgencyProfileTourClass extends React.Component {
     constructor(props) {
@@ -104,7 +107,7 @@ class AgencyProfileTourClass extends React.Component {
         }
         else {
             this.props.dispatch(setUrlAddress(window.location.pathname));
-            this.props.history.push('/login/');
+            this.props.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
             //return null;
         }
     }
@@ -294,7 +297,7 @@ class AgencyProfileTourClass extends React.Component {
         }
         else {
             this.props.dispatch(setUrlAddress(window.location.pathname));
-            this.props.history.push('/login/');
+            this.props.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
             //return null;
         }
     }
@@ -319,7 +322,7 @@ class AgencyProfileTourClass extends React.Component {
         }
         else {
             this.props.dispatch(setUrlAddress(window.location.pathname));
-            this.props.history.push('/login/');
+            this.props.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
             //return null;
         }
     }
@@ -423,7 +426,7 @@ class AgencyProfileTourClass extends React.Component {
             }
             else {
                 this.props.dispatch(setUrlAddress(window.location.pathname));
-                this.props.history.push('/login/');
+                this.props.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
                 return null;
             }
         }

@@ -16,6 +16,9 @@ import { readAndCompressImage } from 'browser-image-resizer';
 // import RefreshIndicator from 'material-ui/RefreshIndicator';
 
 import DriverRefreshIndicator from './DriverRefreshIndicator';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 class DriverProfileCarClass extends React.Component {
     constructor(props) {
@@ -218,7 +221,7 @@ class DriverProfileCarClass extends React.Component {
             }
             else {
                 this.props.dispatch(setUrlAddress(window.location.pathname));
-                this.props.history.push('/login/');
+                this.props.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
                 //return null;
             }
         }
@@ -299,7 +302,7 @@ class DriverProfileCarClass extends React.Component {
         }
         else {
             this.props.dispatch(setUrlAddress(window.location.pathname));
-            this.props.history.push('/login/');
+            this.props.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
             //return null;
         }
     }
@@ -326,7 +329,7 @@ class DriverProfileCarClass extends React.Component {
         }
         else {
             this.props.dispatch(setUrlAddress(window.location.pathname));
-            this.props.history.push('/login/');
+            this.props.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
             //return null;
         }
     }

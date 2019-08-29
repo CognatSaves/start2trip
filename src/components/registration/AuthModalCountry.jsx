@@ -51,7 +51,7 @@ class AuthModalCountryClass extends React.Component {
         }
         else {
             console.log('Ошибка! JWT не установлен!');
-            this.props.history.push('/login/');
+            this.props.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
         }
     }
 

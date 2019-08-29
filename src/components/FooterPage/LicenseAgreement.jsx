@@ -41,7 +41,7 @@ class LicenseAgreementClass extends React.Component {
                     <meta property="og:description" content={helmet.basic.description} />
                 </Helmet>
                 <Header driver={true} history={this.props.history} />
-                <div className="wrapper">
+                <div className="wrapper" style={{minHeight:"79vh"}}>
 
                     <div className="LicenseAgreement d-flex flex-column" >
                         <div className="d-flex justify-content-end pb-4 col-12">

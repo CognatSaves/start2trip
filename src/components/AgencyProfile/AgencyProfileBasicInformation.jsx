@@ -11,6 +11,9 @@ import Chip from 'material-ui/Chip';
 import flags from '../media/flags.png'
 import ReactTelInput from 'react-telephone-input'
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 class AgencyProfileBasicInformationClass extends React.Component {
     constructor(props) {
@@ -82,7 +85,7 @@ class AgencyProfileBasicInformationClass extends React.Component {
         else {
 
             this.props.dispatch(setUrlAddress(window.location.pathname));
-            this.props.history.push('/login/');
+            this.props.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
             //return null;
         }
     }
@@ -169,7 +172,7 @@ class AgencyProfileBasicInformationClass extends React.Component {
         else {
 
             this.props.dispatch(setUrlAddress(window.location.pathname));
-            this.props.globalReduser.history.push('/login/');
+            this.props.globalReduser.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
 
         }
     }

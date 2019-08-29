@@ -6,6 +6,9 @@ import getUserData from '../driverProfileRegistration/DriverProfileRequest';
 
 import Stars from '../stars/Stars';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 class DriverProfileTrevelHistoryClass extends React.Component {
     constructor(props) {
@@ -65,7 +68,7 @@ class DriverProfileTrevelHistoryClass extends React.Component {
         else{
             
             this.props.dispatch(setUrlAddress(window.location.pathname));
-            this.props.history.push('/login/');
+            this.props.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
             //return null;
         }
     }
@@ -135,7 +138,7 @@ class DriverProfileTrevelHistoryClass extends React.Component {
         }
         else{
             this.props.dispatch(setUrlAddress(window.location.pathname));
-            this.props.history.push('/login/');
+            this.props.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
             return null;
         }
     }

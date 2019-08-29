@@ -19,6 +19,9 @@ import Chip from 'material-ui/Chip';
 import RefreshIndicator from 'material-ui/RefreshIndicator';
 import LocationSearchInput from '../home/HomeBody/Search'
 import DriverRefreshIndicator from './DriverRefreshIndicator';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 class DriverProfileTripSettingsTripClass extends React.Component {
     constructor(props) {
@@ -74,7 +77,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
         }
         else {
             this.props.dispatch(setUrlAddress(window.location.pathname));
-            this.props.history.push('/login/');
+            this.props.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
             //return null;
         }
     }
@@ -214,7 +217,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
             }
             else {
                 this.props.dispatch(setUrlAddress(window.location.pathname));
-                this.props.history.push('/login/');
+                this.props.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
                 //return null;
             }
         }

@@ -84,7 +84,7 @@ const ModalUserType = (props) => {
     }
     else {
       this.props.dispatch(setUrlAddress(window.location.pathname));
-      this.props.history.push('/login/');
+      this.props.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
       //return null;
     }
   }
@@ -379,7 +379,11 @@ class HeaderClass extends React.Component {
                 namePage = namePage.splice(2)
                 namePage = namePage.join('/')
               }else{
-                namePage = namePage[1]
+                if(namePage[1] === "en"){
+                  namePage = "ru/" + namePage[2]
+                }else{
+                  namePage = "en/" + namePage[2]
+                }
                 flag = false
               }
               
@@ -580,7 +584,7 @@ class HeaderClass extends React.Component {
     }
     else {
       this.props.dispatch(setUrlAddress(window.location.pathname));
-      this.props.history.push('/login/');
+      this.props.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
       //return null;
     }
   }
@@ -715,11 +719,11 @@ class HeaderClass extends React.Component {
                   </div>
                   <text className="col-11 pt-4 pb-2">{textInfo.burgerMenu.titlesName[3]}</text>
                   <div className="burgerMenuBlock d-flex flex-column justify-content-center align-items-start col-11">
-                    <Link to={"/about-service/"} className="border-bottom logoIcon" >{textInfo.burgerMenu.usefulLinks[0]}</Link>
-                    <Link to={"/affiliate-program/"} className="border-bottom partner" >{textInfo.burgerMenu.usefulLinks[1]}</Link>
-                    <Link to={"/terms/"} className="border-bottom contract" >{textInfo.burgerMenu.usefulLinks[2]}</Link>
+                    <Link to={"/"+ cookies.get('userLangISO', { path: "/" }) + "/about-service/"} className="border-bottom logoIcon" >{textInfo.burgerMenu.usefulLinks[0]}</Link>
+                    <Link to={"/"+ cookies.get('userLangISO', { path: "/" }) + "/affiliate-program/"} className="border-bottom partner" >{textInfo.burgerMenu.usefulLinks[1]}</Link>
+                    <Link to={"/"+ cookies.get('userLangISO', { path: "/" }) + "/terms/"} className="border-bottom contract" >{textInfo.burgerMenu.usefulLinks[2]}</Link>
                     <Link to="" className="border-bottom questionMarkGray" >{textInfo.burgerMenu.usefulLinks[3]}</Link>
-                    <Link to={"/contacts/"} className="phoneBook " >{textInfo.burgerMenu.usefulLinks[4]}</Link>
+                    <Link to={"/"+ cookies.get('userLangISO', { path: "/" }) + "/contacts/"} className="phoneBook " >{textInfo.burgerMenu.usefulLinks[4]}</Link>
                   </div>
                 </div>
               </div>

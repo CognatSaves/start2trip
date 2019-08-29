@@ -11,6 +11,9 @@ import ReactTelInput from 'react-telephone-input'
 import DriverRefreshIndicator from './DriverRefreshIndicator';
 
 // import RefreshIndicator from 'material-ui/RefreshIndicator';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 class DriverProfileSettingsClass extends React.Component {
     constructor(props) {
@@ -50,7 +53,7 @@ class DriverProfileSettingsClass extends React.Component {
         }
         else {
             this.props.dispatch(setUrlAddress(window.location.pathname));
-            this.props.history.push('/login/');
+            this.props.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
             //return null;
         }
     }
@@ -161,7 +164,7 @@ class DriverProfileSettingsClass extends React.Component {
         }
         else {
             this.props.dispatch(setUrlAddress(window.location.pathname));
-            this.props.history.push('/login/');
+            this.props.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
             //return null;
         }
     }
