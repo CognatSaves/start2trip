@@ -114,7 +114,7 @@ const Content = (that, flagAllOk, carCapacityArray, activeCurrency, textInfo, ch
                                     input={<Input id="select-multiple" variant="outlined" />}
                                     onChange={(event) => { 
                                      that.setState({ departureTime: event.target.value });
-                                     debugger;
+                                     
                                      let obj = document.querySelector(".departureTime");
                                      document.querySelector(".departureTime").classList.remove("draver_route-error") }}
                                 >
@@ -283,8 +283,8 @@ export default class StartTravelForm extends React.Component {
                 date: that.props.storeState.date.length > 0 ? new Date(that.props.storeState.date) : new Date(),
                 departureTime: "",
                 numberOfPeople: "",
-                placeDeparture: "",
-                description: "",
+                /*placeDeparture: "",
+                description: "",*/
                 promoCode: "",
                 discount: 0,
                 checkBoxes: false,

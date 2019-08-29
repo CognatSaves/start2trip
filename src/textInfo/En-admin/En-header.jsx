@@ -23,7 +23,8 @@ const header = {
          usefulLinks: ["About Service", "Affiliate program", "License Agreement", "Help", "Contacts"],
     },
     toPageStart: 'Go to top',
-    loading: 'Loading'
+    loading: 'Loading',
+    noCommentsText: 'There are currently no reviews'
 }
 
 export default header;

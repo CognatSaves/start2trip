@@ -22,7 +22,7 @@ export default class MapContainer extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    /*debugger
+    /*
     if (JSON.stringify(nextProps.cities) === JSON.stringify(this.props.cities)) {
       this.setState({ mapUpdate: false });
     } else {

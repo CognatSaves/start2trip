@@ -25,7 +25,8 @@ const header = {
         
     },
     toPageStart: 'В начало страницы',
-    loading: 'Загрузка'
+    loading: 'Загрузка',
+    noCommentsText: 'На данный момент комментариев нет',
 }
 
 export default header;

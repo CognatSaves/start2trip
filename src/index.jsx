@@ -93,7 +93,7 @@ function getLocals() {
   //кое-какие значения, например языки
   let redusers = store.getState();
   let props = {};
-  debugger
+  
   //этот блок проверяет, находимся ли мы на страницах вида /geo-ru/... ,
   //откуда может взять язык
   let urlLang = "null";

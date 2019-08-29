@@ -7,7 +7,8 @@ let placeDescription = {
          "April", "May", "June", "July",
          "August", "September", "October",
          "November", "December"],
-         comments: 'reviews'
+         comments: 'reviews',
+        
      },
      placeTravelBlock: {
          fragmentName: 'How to get there',

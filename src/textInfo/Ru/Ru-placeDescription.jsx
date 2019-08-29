@@ -6,7 +6,8 @@ let placeDescription = {
         monthArray: ["января","февраля","марта",
         "апреля","мая","июня","июля","августа",
         "сентября","октября","ноября","декабря"],
-        comments: 'отзывов'
+        comments: 'отзывов',
+        
     },
     placeTravelBlock:{
         fragmentName: 'Как добраться',

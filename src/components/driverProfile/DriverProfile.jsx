@@ -25,14 +25,18 @@ class DriverProfileClass extends React.Component {
         
         let getdate = props.globalReduser.findGetParameter("date");
         let dateValue;
-        debugger;
+        
         if(getdate){
             dateValue = props.globalReduser.getDateFromDateString(getdate);
             let now = new Date(Date.now());
             if(dateValue<now){
-                dateValue=now;
-                let address = document.location.origin+document.location.pathname;
-                document.location.replace(address);
+                let day = dateValue.getDate();let month = dateValue.getMonth(); let year = dateValue.getFullYear();
+                let daynow = now.getDate();let monthnow = now.getMonth(); let yearnow = now.getFullYear();
+                if(day!==daynow || month!==monthnow || year!==yearnow){
+                    dateValue=now;
+                    let address = document.location.origin+document.location.pathname;
+                    document.location.replace(address);
+                }
             }
             dateValue =props.globalReduser.convertDateToUTC(new Date(dateValue));
             
@@ -40,7 +44,7 @@ class DriverProfileClass extends React.Component {
         else{
             dateValue =  props.globalReduser.convertDateToUTC(new Date(Date.now()));
         }
-        
+
         let resultString = dateValue.toUTCString();
         props.dispatch(set_state(props.storeState.cities, resultString));
 
@@ -139,7 +143,7 @@ class DriverProfileClass extends React.Component {
                 return response.json();
             })
             .then(function (data) {
-                debugger;
+                
                 if (data.error) {
                     console.log("bad");
                     throw data.error;
@@ -162,7 +166,7 @@ class DriverProfileClass extends React.Component {
 
             })
             .catch(function (error) {
-                debugger;
+                
                 console.log('bad');
                 console.log('An error occurred:', error);
                 that.setState({
@@ -493,7 +497,7 @@ class DriverProfileClass extends React.Component {
 
                     })
                     .catch(function (error) {
-                        debugger;
+                        
                         console.log('bad');
                         console.log('An error occurred:', error);
                         that.setState({
@@ -629,9 +633,8 @@ class DriverProfileClass extends React.Component {
                                                             <div className="placesDescription_travelBlock_icon placesDescription_calendary" />
                                                             <DatePicker defaultDate={this.state.date} shouldDisableDate={(date) => {
                                                                 let flag = false;
-                                                                debugger;
+                                                                
                                                                 for (let i = 0; i < this.props.driversState.driverCarDescription.weekend.length; i++) {
-                                                                    
                                                                     let newDate = new Date(this.props.driversState.driverCarDescription.weekend[i].substr(0,10))
                                                                     let newDay = newDate.getDate();
                                                                     let newMonth = newDate.getMonth();

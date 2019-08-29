@@ -372,7 +372,7 @@ class HeaderClass extends React.Component {
               that.props.dispatch(setActiveLang(index));
               cookies.set('userLang', that.props.storeState.languages[index].ISO, { path: '/', expires: date });
               cookies.set('userLangISO', that.props.storeState.languages[index].isoAutocomplete, { path: '/', expires: date });
-              debugger
+              
               let flag = true
               let namePage = that.props.globalhistory.history.location.pathname.split("/");
               if(namePage[1].length === 6){
@@ -621,6 +621,58 @@ class HeaderClass extends React.Component {
 
   }
   render() {
+    function currencyFilter(storeState){
+      //эта функция отсекает из массива только те валюты, которые либо являются национальными для страны,
+      //либо базовая для системы - на данный момент $
+      let res = [];
+      if(storeState.currencies.length===0){
+        return res;
+      }
+      
+      let nationalCurrency='';
+      for(let i=0; i<storeState.countries.length;i++){
+        if(storeState.countries[i].ISO===storeState.country){
+          nationalCurrency=storeState.countries[i].nationalCurrency;
+        }
+      }
+      for(let i=0; i<storeState.currencies.length;i++){
+        if(storeState.currencies[i].id===nationalCurrency){
+          res.push(storeState.currencies[i])
+        }
+        if(storeState.currencies[i].costToDefault===1 && storeState.currencies[i].id!==nationalCurrency){
+          res.push(storeState.currencies[i]);
+        }
+      }
+      return res;
+    }
+    function changeActiveCurrency(that,availableCurrencies, value){
+      //эта функция устанавливает activeCurrencyNumber в соответствие с общим массивом
+      //т.е. по номеру в доступных находит номер в общих
+      
+      let currId = availableCurrencies[value].id;
+      let selectedId = that.props.storeState.activeCurrencyNumber;
+      for(let i=0;i<that.props.storeState.currencies.length;i++){
+        if(currId===that.props.storeState.currencies[i].id){
+          selectedId=i;
+          break;
+        }
+      }
+      that.setLocals('userCurr', selectedId)
+    }
+    function findSelectedCurrency(that,availableCurrencies){
+      //по номеру в общих находит номер в доступных валютах
+      if(that.props.storeState.currencies.length>0){
+        let currId = that.props.storeState.currencies[that.props.storeState.activeCurrencyNumber].id;
+        for(let i=0; i<availableCurrencies.length;i++){
+          if(availableCurrencies[i].id===currId){
+            return i;
+          }
+        }
+      }
+      else{
+        return 0;
+      }
+    }
     console.log('Header render', this.props, window, document);
     //console.log(this.state);
     //console.log(this.props);
@@ -649,6 +701,9 @@ class HeaderClass extends React.Component {
       }*/
     ];
     // let flagMenu = false;
+    
+    let availableCurrencies = currencyFilter(this.props.storeState);
+    let selectedCurrNumber = findSelectedCurrency(this,availableCurrencies);
     return (
       <React.Fragment>
 
@@ -688,8 +743,8 @@ class HeaderClass extends React.Component {
                       <label>{textInfo.burgerMenu.settingsDrop[1]}</label>
                       <DropDownMenu menuItemStyle={{ color: "#304269", fontSize: "14px", fontWeight: "400" }} selectedMenuItemStyle={{ color: "#f60" }}
                         anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }} className="burgerMenuTopDropDown" menuStyle={{ width: "30px" }}
-                        value={this.props.storeState.activeCurrencyNumber/*this.state.activeCurrencyNumber*/} onChange={(event, index, value) => { this.setLocals('userCurr', index) }}>
-                        {currencies.map((element, index) =>
+                        value={/*this.props.storeState.activeCurrencyNumber*/selectedCurrNumber} onChange={(event, index, value) => { changeActiveCurrency(this,availableCurrencies,index)/*this.setLocals('userCurr', index)*/ }}>
+                        {availableCurrencies.map((element, index) =>
                           <MenuItem value={index} primaryText={<span className="pl-2">{element.symbol + " " + element.ISO}</span>} />
                         )}
                       </DropDownMenu>
@@ -756,14 +811,16 @@ class HeaderClass extends React.Component {
                 }
               </div>
               <div className="headerSelect d-flex align-items-center justify-content-end col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
-                <Dropdown setActiveFromChild="true" isOpen={this.state.dropdownOpen} toggle={this.toggleDropdownOpen} className={currencies.length > 0 ? "selectGeneral" : "selectGeneral preloadHiddenBlock"}>
+                <Dropdown setActiveFromChild="true" isOpen={this.state.dropdownOpen} toggle={this.toggleDropdownOpen} className={availableCurrencies.length > 0 ? "selectGeneral" : "selectGeneral preloadHiddenBlock"}>
                   <DropdownToggle className="selectGeneralButton" caret size="sm">
-                    {/*this.state.activeCurrency[this.state.activeCurrencyNumber]*/ currencies.length > 0 ? currencies[this.props.storeState.activeCurrencyNumber/*this.state.activeCurrencyNumber*/].symbol + " " + currencies[this.props.storeState.activeCurrencyNumber/*this.state.activeCurrencyNumber*/].ISO : ''}
+                    {/*this.state.activeCurrency[this.state.activeCurrencyNumber]*/ availableCurrencies.length > 0 ?
+                    /*далее я оставил просто currencies, т.к. они и availableCurrencies должны быть взаимосвязаны */
+                     currencies[this.props.storeState.activeCurrencyNumber].symbol + " " + currencies[this.props.storeState.activeCurrencyNumber].ISO : ''}
                   </DropdownToggle>
                   <DropdownMenu className="dropdownMenu currenty" >
                     {
-                      currencies.map((element, index) =>
-                        <DropdownItem className="dropdownMenu" onClick={() => { this.setLocals('userCurr', index) }}>{element.symbol + " " + element.ISO}</DropdownItem>
+                      availableCurrencies.map((element, index) =>
+                        <DropdownItem className="dropdownMenu" onClick={() => { changeActiveCurrency(this,availableCurrencies,index)}}>{element.symbol + " " + element.ISO}</DropdownItem>
                       )
                     }
                   </DropdownMenu>

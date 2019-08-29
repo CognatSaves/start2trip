@@ -28,7 +28,7 @@ class CommentBlockClass extends React.Component {
                             startRolling={this.props.startRolling ? () => this.props.startRolling() : () => { }} endRolling={this.props.endRolling ? (result) => this.props.endRolling(result) : () => { }} />
                     </React.Fragment> : <React.Fragment></React.Fragment>}
 
-                    <ShowComments selectedComments={selectedComments} noCommentsText={textInfo.noCommentsText} />
+                    <ShowComments selectedComments={selectedComments} />
 
                 </div>
                 {

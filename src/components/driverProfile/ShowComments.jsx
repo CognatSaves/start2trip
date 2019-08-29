@@ -20,10 +20,12 @@ class ShowCommentsClass extends React.Component {
 
     render() {
         let textInfo = this.props.storeState.languageTextMain.placeDescription.placeProgramm;
+        let textInfoComment = this.props.storeState.languageText.header
         function getMonthName(number) {
             let monthArray = textInfo.monthArray;
             return monthArray[number];
         }
+        
         if (this.props.selectedComments.length > 0) {
             return (
                 <React.Fragment>
@@ -90,8 +92,7 @@ class ShowCommentsClass extends React.Component {
                         {
                             this.props.selectedComments.length === 0 ?
                                 <React.Fragment>
-                                    {/* TODO Need same better  */}
-                                    <div>Ничего не найдено</div>
+                                    <div>{textInfoComment.noCommentsText}</div>
                                 </React.Fragment>
                                 : <React.Fragment />
                         }
@@ -103,7 +104,7 @@ class ShowCommentsClass extends React.Component {
             return (
                 <div className="commentBlock_comments d-flex flex-column">
                     <div className="commentBlock_noCommentsText d-flex">
-                        {this.props.noCommentsText}
+                        {textInfoComment.noCommentsText}
                     </div>
                 </div>
             )

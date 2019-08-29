@@ -28,7 +28,7 @@ class DriversProfileCommentsClass extends React.Component {
         return (
             <React.Fragment>
                 <div className="driverProfileComments_commentBlock d-flex flex-column">
-                    <ShowComments selectedComments={selectedComments} />
+                    <ShowComments selectedComments={selectedComments}/>
                 </div>
             </React.Fragment>
         )

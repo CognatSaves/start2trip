@@ -112,14 +112,14 @@ class RouteMenuClass extends React.Component {
 
     }
     super(props);
-
+    debugger;
     console.log(window);
     console.log(props.match);
     console.log(document);
 
     let result = props.globalhistory.findGetParameter("date");
     let dateValue;
-    debugger;
+    
     if (result) {
       dateValue = props.globalhistory.getDateFromDateString(result);
       dateValue = new Date(dateValue);
@@ -129,7 +129,7 @@ class RouteMenuClass extends React.Component {
         
         let day = dateValue.getDate();let month = dateValue.getMonth(); let year = dateValue.getFullYear();
         let daynow = now.getDate();let monthnow = now.getMonth(); let yearnow = now.getFullYear();
-        debugger;
+        
         if(day!==daynow || month!==monthnow || year!==yearnow){
           //если равен, то значит человек заказывает сегодня на сегодня, это норм
           //всё одно у нас есть время создания заказа
@@ -162,8 +162,9 @@ class RouteMenuClass extends React.Component {
       dateValue = new Date(Date.now())
     }
     /**/
-    debugger;
-    let resultString = props.globalhistory.convertDateToUTC(dateValue).toUTCString();
+    
+    let resultString = (props.globalhistory.convertDateToUTC(dateValue)).toUTCString();
+    console.log(resultString);
     this.state = {
       correctDate:dateValue,
       isWaiting: false,
@@ -173,6 +174,7 @@ class RouteMenuClass extends React.Component {
       isLoaded: !resultpathname//переменная для загрузки 1 раза водителей - если есть города, то не загружено пока.
       //language: this.props.storeState.activeLanguageNumber
     }
+    debugger;
     props.dispatch(set_state(props.storeState.cities, resultString))
     props.dispatch(clearFilters());
     this.chooseDate(dateValue)
@@ -391,7 +393,7 @@ class RouteMenuClass extends React.Component {
             }
             return timeString;
         }
-        debugger;
+        
         let lengthString = getLengthString(travelLength);
         let timeString = getTimeString(travelTime);
         that.props.dispatch(setLengthTime(timeString, lengthString));
@@ -400,7 +402,7 @@ class RouteMenuClass extends React.Component {
       console.log(status);
       
       let routeProps = lengthTimeCalc(response);
-      debugger;
+      
       setLengthTimeFunc(that,routeProps.distance,routeProps.duration);
       
       

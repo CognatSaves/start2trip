@@ -6,6 +6,8 @@ import './TripBlock.css'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setPage, setMorePagesShow, setDriverCarDescription } from '../../../../redusers/ActionDrivers'
+import { set_state } from '../../../../redusers/Action'
+
 import requests from '../../../../config';
 
 import Stars from '../../../stars/Stars';
@@ -24,11 +26,14 @@ class DriversBlockClass extends React.Component {
     this.state = {
       openModal: false,
       country: this.props.country,
-      cities: this.props.cities,
-      date: date,
       lang: langISO !== null ? langISO : 'ENG'
     }
-    this.props.dispatch(setPage(1));
+    props.dispatch(setPage(1));
+    if(!date){
+      date= new Date(Date.now());
+    }
+    props.dispatch(set_state(props.storeState.cities, date))
+    
   }
   setPage = (page) => {
     if (page !== "...") {
@@ -210,8 +215,7 @@ class DriversBlockClass extends React.Component {
       <div className="drivers_block d-flex flex-wrap">
         {
           selectedElements.map((element, index) => {
-
-            let linkAddress = "/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + `/driverProfile/${element.id}-${element.carId}-${this.state.cities}?date=` + this.state.date;
+            let linkAddress = "/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + `/driverProfile/${element.id}-${element.carId}-${this.props.cities}?date=` + this.props.dateString;
             return (
               <div className="col-lg-3 col-md-4 col-sm-6 col-12 p-2 pb-3">
                 <div className="driversBlock_driverCard d-flex flex-column ">

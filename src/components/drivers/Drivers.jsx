@@ -114,6 +114,7 @@ class DriversClass extends React.Component {
     }
     let cities;
     let country;
+    let dateString;
     if (this.props.match) {
 
       if (this.props.storeState.cities[0].point === "") {
@@ -125,30 +126,10 @@ class DriversClass extends React.Component {
         country = country.split("-")
         this.parseStringToArray(cities, country[0], country[1]);
       } else {
-        let route = "";
-        for (let i = 0; i < this.props.storeState.cities.length; i++) {
-          let arrayAddress = this.props.storeState.cities[i].point.split(',');
-          country = arrayAddress[arrayAddress.length - 1].slice(1);
-
-
-          let stringWithoutCountry = "";
-          if (arrayAddress.length !== 1) {
-            for (let k = 0; k < arrayAddress.length - 1; k++) {
-              stringWithoutCountry += arrayAddress[k]
-            }
-          } else {
-            stringWithoutCountry += arrayAddress[0];
-          }
-          let stringWithoutSpaces = stringWithoutCountry.replace(/ /g, '-');
-          stringWithoutSpaces = stringWithoutSpaces.replace(/[/]/g, '');
-          if (i == 0) {
-            route = "from-" + stringWithoutSpaces;
-          } else {
-            route += "-to-" + stringWithoutSpaces;
-          }
-        }
-
-        cities = route;
+        let routeFuncResult = this.props.globalReduser.getRoute(this.props.storeState.cities,
+           this.props.storeState.languages[this.props.storeState.activeLanguageNumber].isoAutocomplete);
+        cities = routeFuncResult.route;
+        dateString = this.props.globalReduser.createDateTimeString(this.props.storeState.date, true);
       }
     }
 
@@ -197,7 +178,7 @@ class DriversClass extends React.Component {
           <div className="drivers_bottom_background d-flex flex-column" >
             <div className="left_body_part col-12 d-flex flex-column p-0">
               <DriversProperties />
-              <DriversBlock changeTravelVisibility={this.changeTravelVisibility} country={country} cities={cities}/>
+              <DriversBlock changeTravelVisibility={this.changeTravelVisibility} country={country} cities={cities} dateString={dateString}/>
             </div>
           </div>
         </div>

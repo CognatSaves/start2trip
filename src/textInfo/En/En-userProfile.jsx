@@ -1,8 +1,7 @@
 let userProfile = {
     lang: 'ENG',
     userProfileNavigation: {
-        navigationText: ["My trips", "Profile", "My Cars", "Travel settings", // "Tours",
-            "Reviews", "Settings", "Billing", "Affiliate program"
+        navigationText: ["My trips", "Profile",  "Settings", "Billing", "Affiliate program"
         ],
         updatePhoto: "Upload Photo",
         totalTrips: {
