@@ -332,8 +332,9 @@ class PlaceDescriptionClass extends React.Component {
                                                 <PlacePhotos photoArray={/*this.state.photoArray*/this.state.newPlace.place.images}
                                                     showMask={(clickedImageIndex, images) => { this.setState({ isMaskVisible: true, clickedImageIndex: clickedImageIndex, images: images }) }}/*width={this.state.width} height={this.state.height} number={this.state.n}*/ />
                                             </div>
-
-                                            <PlaceTravelBlock id={topBlockId + "3"} place={{ ...this.state.newPlace.local, country: this.state.newPlace.country, capital: this.state.newPlace.capital }} />
+                                            <div key={JSON.stringify(this.state.newPlace.local.endPlace)}>
+                                                <PlaceTravelBlock id={topBlockId + "3"} place={{ ...this.state.newPlace.local, country: this.state.newPlace.country, capital: this.state.newPlace.capital }} />
+                                            </div>
                                             {
                                                 /*
                                                     <PlaceMapBlock />

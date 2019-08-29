@@ -41,9 +41,16 @@ class AuthRedirectClass extends React.Component {
         let address = this.props.globalReduser.previousUrl;
         let jwt = this.props.globalReduser.readCookie('jwt');
         if (jwt && jwt !== "-") {
-
+            debugger;
             if (address.length === 0) {
-                this.props.history.push('/');
+                let country = cookies.get('country',{path: '/'});
+                let lang = cookies.get('userLangISO', {path: '/'});
+                if(country && lang){
+                    this.props.history.push('/'+country+'-'+lang+'/routes/');
+                }
+                else{
+                    this.props.history.push('/countrySelection/');
+                }
             }
             else {
 

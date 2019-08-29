@@ -68,7 +68,9 @@ const Content = (that, flagAllOk, carCapacityArray, activeCurrency, textInfo, ch
                                 classNames="route_datePhoneInput w-100"
                                 flagsImagePath={flags}
                                 value={that.state.telNumber}
-                                onChange={(telNumber, selectedCountry) => { that.setState({ telNumber: telNumber }); document.querySelector(".route_datePhoneInput").children[1].classList.remove("driver_route-error") }}
+                                onChange={(telNumber, selectedCountry) => 
+                                { that.setState({ telNumber: telNumber });
+                                 document.querySelector(".route_datePhoneInput").children[1].classList.remove("driver_route-error") }}
                                 onBlur={(value) => { console.log(value) }}
                                 initialValue={textInfo.telInputInitial}
                             />
@@ -110,7 +112,11 @@ const Content = (that, flagAllOk, carCapacityArray, activeCurrency, textInfo, ch
                                 <Select
                                     value={that.state.departureTime}
                                     input={<Input id="select-multiple" variant="outlined" />}
-                                    onChange={(event) => { that.setState({ departureTime: event.target.value }); document.querySelector(".departureTime").classList.remove("driver_route-error") }}
+                                    onChange={(event) => { 
+                                     that.setState({ departureTime: event.target.value });
+                                     debugger;
+                                     let obj = document.querySelector(".departureTime");
+                                     document.querySelector(".departureTime").classList.remove("draver_route-error") }}
                                 >
                                     {that.state.time.map(name => (
                                         <MenuItem key={name} value={name}>
@@ -126,7 +132,7 @@ const Content = (that, flagAllOk, carCapacityArray, activeCurrency, textInfo, ch
                                 multiline
                                 rowsMax="4"
                                 defaultValue={that.state.placeDeparture}
-                                onChange={(event) => { that.setState({ placeDeparture: event.target.value }); event.target.previousSibling.classList.remove("driver_route-error") }}
+                                onChange={(event) => { that.setState({ placeDeparture: event.target.value }); event.target.previousSibling.classList.remove("draver_route-error") }}
                                 className="textField placeDeparture w-100"
                                 margin="normal"
                                 variant="outlined"
@@ -140,7 +146,7 @@ const Content = (that, flagAllOk, carCapacityArray, activeCurrency, textInfo, ch
                             rows="2"
                             rowsMax="2"
                             defaultValue={that.state.description}
-                            onChange={(event) => { that.setState({ description: event.target.value }); event.target.previousSibling.classList.remove("driver_route-error") }}
+                            onChange={(event) => { that.setState({ description: event.target.value }); event.target.previousSibling.classList.remove("draver_route-error") }}
                             className="textField w-100 description"
                             margin="normal"
                             variant="outlined"

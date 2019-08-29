@@ -119,9 +119,26 @@ class RouteMenuClass extends React.Component {
 
     let result = props.globalhistory.findGetParameter("date");
     let dateValue;
+    debugger;
     if (result) {
       dateValue = props.globalhistory.getDateFromDateString(result);
       dateValue = new Date(dateValue);
+      let now = new Date(Date.now());
+      if(dateValue<now){
+        //dateValue = new Date(Date.now())
+        
+        let day = dateValue.getDate();let month = dateValue.getMonth(); let year = dateValue.getFullYear();
+        let daynow = now.getDate();let monthnow = now.getMonth(); let yearnow = now.getFullYear();
+        debugger;
+        if(day!==daynow || month!==monthnow || year!==yearnow){
+          //если равен, то значит человек заказывает сегодня на сегодня, это норм
+          //всё одно у нас есть время создания заказа
+          //проверку оставлю на бек
+          let address = document.location.pathname;
+          dateValue = now;
+          props.globalhistory.history.push(address);
+        }
+      }
     }
     /*else{
       dateValue = '';
@@ -137,26 +154,28 @@ class RouteMenuClass extends React.Component {
     //означает, что можно попробовать построить маршрут
     // так как проверка идёт а-ля - загружено ли(и мы считаем, что загружено, если грузить не надо), то сравнение наоборот
     if(resultpathname){//т.е. есть города в адресе
-      if(!dateValue){
-        dateValue = new Date(Date.now())
-      }
+      
       setCitiesFromUrl(pathnameMAss[ares ? pathnameMAss.length-1 : pathnameMAss.length-2]);
       
     }
-    
+    if(!dateValue){
+      dateValue = new Date(Date.now())
+    }
     /**/
-    
-    
+    debugger;
+    let resultString = props.globalhistory.convertDateToUTC(dateValue).toUTCString();
     this.state = {
-      correctDate: "",
+      correctDate:dateValue,
       isWaiting: false,
       isRefreshing: true,
       isGoodAnswer: true,
-      date: /*this.props.storeState.date*/'',
+      date: resultString,
       isLoaded: !resultpathname//переменная для загрузки 1 раза водителей - если есть города, то не загружено пока.
       //language: this.props.storeState.activeLanguageNumber
     }
+    props.dispatch(set_state(props.storeState.cities, resultString))
     props.dispatch(clearFilters());
+    this.chooseDate(dateValue)
   }
 
   changeCity = (index, value, extraData) => {
@@ -578,7 +597,7 @@ class RouteMenuClass extends React.Component {
             this.state.date.length>0 ? //это выражение ожидает установки даты - пока в this.state.correctDate не установится значение, мы не можем назначить defaultDate.
             //просто все дальнейшие изменения даты будут вызваны DatePicker-ом
             <div className="col-sm-6 col-12 p-0 pr-1">
-              <DatePicker defaultDate={this.state.correctDate} hintText={textInfo.datePickerText} minDate={new Date()}
+              <DatePicker defaultDate={this.state.correctDate} hintText={textInfo.datePickerText} minDate={new Date(Date.now()-100000)}
                onChange={(e, date) => {  /*UTC conv inside chooseDate */ this.chooseDate(date); let datePicker = document.querySelector(".routemenu_date");
                datePicker.classList.remove("routemenu_date-Check") }} className="routemenu_date" />
             </div> :
