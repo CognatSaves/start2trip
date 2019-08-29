@@ -25,16 +25,25 @@ class DriverProfileClass extends React.Component {
         
         let getdate = props.globalReduser.findGetParameter("date");
         let dateValue;
-        
+        debugger;
         if(getdate){
             dateValue = props.globalReduser.getDateFromDateString(getdate);
+            let now = new Date(Date.now());
+            if(dateValue<now){
+                dateValue=now;
+                let address = document.location.origin+document.location.pathname;
+                document.location.replace(address);
+            }
             dateValue =props.globalReduser.convertDateToUTC(new Date(dateValue));
-            let resultString = dateValue.toUTCString();
-            props.dispatch(set_state(props.storeState.cities, resultString));
+            
         }
         else{
             dateValue =  props.globalReduser.convertDateToUTC(new Date(Date.now()));
         }
+        
+        let resultString = dateValue.toUTCString();
+        props.dispatch(set_state(props.storeState.cities, resultString));
+
         this.state = {
             travelVisibility: false,
             successVisibility: 'none',

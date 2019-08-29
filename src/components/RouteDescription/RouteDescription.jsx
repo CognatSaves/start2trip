@@ -127,7 +127,7 @@ class RouteDescriptionClass extends React.Component {
                 })
                 .catch(error => {
                     console.log('get wasted answer');
-                    //that.props.globalReduser.history.push('/');
+                    that.props.globalReduser.history.push('/404/');
                 });
 
         }

@@ -53,7 +53,6 @@ class PlaceTravelBlockClass extends React.Component {
 
     }
     render() {
-
         const mapStyles = {
             map: {
                 position: 'relative',
@@ -69,7 +68,7 @@ class PlaceTravelBlockClass extends React.Component {
 
         return (
 
-            <div className="placeDescription_block d-flex flex-column" id={this.props.id} key={JSON.stringify(this.state.endPlace)}>
+            <div className="placeDescription_block d-flex flex-column" id={this.props.id} /*key={JSON.stringify(this.state.endPlace)}*/>
                 <div className="placeDescription_fragmentName">{textInfo.fragmentName}</div>
                 <div className="d-flex flex-row">
                     <div className="d-flex flex-column col-md-6 col-12 px-md-2 px-0 pt-2">
