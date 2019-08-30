@@ -50,6 +50,7 @@ const showRoute = serverAddress + "/showRoute";
 const getDriverInfo = serverAddress + "/users/getDriverInfo";
 const getDriverDescription = serverAddress + "/users/getDriverDescription";
 const profileCheck = serverAddress + "/users/me/profileCheck";
+const isCommentedTrip = serverAddress + '/isCommentedTrip';
 
 export default {
     frontendAddress: frontendAddress,
@@ -104,4 +105,5 @@ export default {
 
     profileCheck: profileCheck,
     routeMap: routeMap,
+    isCommentedTrip:isCommentedTrip
 };

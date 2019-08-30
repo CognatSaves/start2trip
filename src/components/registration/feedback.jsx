@@ -9,17 +9,38 @@ import CreateComment from '../driverProfile/CreateComment';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 import Cookies from 'universal-cookie';
 import { changeLanguagePart } from '../../redusers/Action';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 const cookies = new Cookies();
 
 class feedbackClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isRefreshExist: false,
-            isRefreshing: false,
-            isGoodAnswer: false,
+            isRefreshExist: true,
+            isRefreshing: true,
+            isGoodAnswer: true,
+            isCommented: false
         };
         props.dispatch(changeLanguagePart(false, true)); //эта ересь сообщает шапке, что мы в админке за пользователя, т.е. работает 1я партия языков, но ломать адрес не надо
+        debugger;
+        let address= requests.isCommentedTrip+'/?id='+this.props.match.params.id+"&clientId="+this.props.match.params.clientId;
+        axios.get(address)
+        .then(response =>{
+            //console.log(response);
+            return response.data;
+        })
+        .then(data => {
+            debugger;
+            console.log(data.isCommented);
+            this.setState({
+                isCommented: data.isCommented,
+                isRefreshExist: false
+            });
+        })
+        .catch(error=>{
+            console.log('Error happened');
+        });
     }
     componentWillUnmount() {
         this.props.dispatch(changeLanguagePart(false, false))//эта ересь сообщает шапке, что мы валим из пользователя, т.е. работает 1я партия языков, но ломать адрес не надо
@@ -72,19 +93,33 @@ class feedbackClass extends React.Component {
                 <div className="home_window d-flex justify-content-center align-items-center" style={{ background: "url(" + windowImg + ")no-repeat", minHeight: "87.5vh" }} >
 
                     <Helmet>
-                        <title>{"Оставте отзыв о Вашей поездке"}</title>
-                        <meta name="description" content={"Оставте отзыв о Вашей поездке"} />
+                        <title>{"Оставьте отзыв о Вашей поездке"}</title>
+                        <meta name="description" content={"Оставьте отзыв о Вашей поездке"} />
                         <meta property="og:site_name" content="Tripfer" />
                         <meta property="og:type" content="website" />
                         <meta property="og:url" content="https://tripfer.com/feedback" />
-                        <meta property="og:title" content={"Оставте отзыв о Вашей поездке"} />
-                        <meta property="og:description" content={"Оставте отзыв о Вашей поездке"} />
+                        <meta property="og:title" content={"Оставьте отзыв о Вашей поездке"} />
+                        <meta property="og:description" content={"Оставьте отзыв о Вашей поездке"} />
                     </Helmet>
                     <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
-                    <div className="col-md-6 col-12">
-                        <CreateComment targetType={"driver"} myclass={"feedbackbackground"} clientId={clientId} targetId={id} createCommentString={textInfo.createCommentString}
-                            startRolling={() => this.startRolling()} endRolling={(result) => this.endRolling(result)} />
-                    </div>
+                    {
+                        //TODO переводы
+                        this.state.isCommented ?
+                            <div className="col-md-6 col-12">
+                                <div className="commentBlock_createComment d-flex flex-column feedbackbackground align-items-center">
+                                    <text style={{marginBottom: '10px'}}>Эта поездка уже прокомментирована и отправить комментарий по ней ещё раз нельзя</text>
+                                    <button className="driversAdaptedRoute_sendRequest feedback_returnButton">
+                                        <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes/"}>{'На главную'}</Link>
+                                    </button>
+                                </div>
+                            </div>
+                        :
+                        <div className="col-md-6 col-12">
+                            <CreateComment targetType={"driver"} myclass={"feedbackbackground"} clientId={clientId} targetId={id} createCommentString={textInfo.createCommentString}
+                                startRolling={() => this.startRolling()} endRolling={(result) => this.endRolling(result)} />
+                        </div>
+                    }
+                    
 
                 </div>
             </React.Fragment>

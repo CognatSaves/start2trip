@@ -3,3 +3,12 @@
     padding: 20px;
     margin-bottom: 30%;
 }
+.feedback_returnButton{
+    width: 205px;
+}
+.feedback_returnButton a{
+    color: #fff;
+}
+.feedback_returnButton a:hover{
+    color: #fff;
+}
