@@ -34,7 +34,9 @@ const drivers = {
                 childrenProps: 'from 2 to 12 years',
                 cancel: 'Cancel',
                 done: 'Done'
-            }
+            },
+            from: 'from',
+            price: 'price'
         },
         driverConfirmation: {
             good: {

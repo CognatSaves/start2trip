@@ -17,7 +17,8 @@ let places = {
     placesCountryInfo: {
         territory: 'территория',
         population: 'население',
-        capital: 'столица'
+        capital: 'столица',
+        namePart: 'Достопримечательности'
     }
 }
 

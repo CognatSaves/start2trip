@@ -28,7 +28,6 @@ class PlacesCountryInfoClass extends React.Component {
         }
       }
       let dirNumber = fingDirectionById(placesState.directions, placesState.selectedDirection);
-      //TODO не подключен перевод этой функции, как погляжу
       if (placesState.selectedDirection.length === 0 || dirNumber === -1) {//не выбрано направление (direction)
         return {
           name: placesState.country.local.name,
@@ -37,7 +36,7 @@ class PlacesCountryInfoClass extends React.Component {
       }
       else {
         return {
-          name: "Достопримечательности" + " " + placesState.directions[dirNumber].loc.name,
+          name: textInfo.placesCountryInfo.namePart + " " + placesState.directions[dirNumber].loc.name,
           description: placesState.directions[dirNumber].loc.description
         }
       }

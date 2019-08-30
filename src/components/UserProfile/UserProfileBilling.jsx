@@ -1,40 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { isMobileOnly } from 'react-device-detect'
-import {
-    Table,
-    TableBody,
-    TableHeader,
-    TableHeaderColumn,
-    TableRow,
-    TableRowColumn,
-} from 'material-ui/Table';
-
-import DatePicker from 'material-ui/DatePicker';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 import TextField from '@material-ui/core/TextField';
 
-// TODO Необходимо подгрузить данные с сервера
 class UserProfileBillingClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            hederTitle: ["id Транзакции", "Тип оплаты", "Сумма", "Дата платежа", "ID поездки", "Маршрут", "Водитель",],
             withdrawalOfFundsModal: false,
             toPayModal: false,
             typeCardValue: "Выберите тип",
             typeCardArray: ["visa", "mastercard"],
             toPayPersonalAccountValue: true,
             toPayCardValue: false,
-            bodyTable: [
-                { idTransaction: "1", paymentType: "visa", sum: "$155", paymentDate: "20.03.2019", idTrip: "5", route: "Кутаиси-Тбилиси-Гори-Мцхета", client: "Bob" },
-                { idTransaction: "1", paymentType: "visa", sum: "$155", paymentDate: "20.03.2019", idTrip: "5", route: "Кутаиси-Тбилиси-Гори-Мцхета", client: "Gibson" },
-                { idTransaction: "75", paymentType: "visa", sum: "$155", paymentDate: "20.03.2019", idTrip: "56", route: "Кутаиси-Тбилиси-Гори-Мцхета", client: "dev.by" },
-                { idTransaction: "5", paymentType: "visa", sum: "$95", paymentDate: "20.03.2019", idTrip: "52", route: "Кутаиси-Тбилиси-Гори-Мцхета", client: "Same" }
-            ],
         };
     }
     handleClose = (name, value) => {
@@ -48,6 +30,7 @@ class UserProfileBillingClass extends React.Component {
             case 'typeCard':
                 this.setState({ typeCardValue: value });
                 break
+            default:
         }
 
     };

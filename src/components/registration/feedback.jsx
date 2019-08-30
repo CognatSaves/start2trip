@@ -103,13 +103,12 @@ class feedbackClass extends React.Component {
                     </Helmet>
                     <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
                     {
-                        //TODO переводы
                         this.state.isCommented ?
                             <div className="col-md-6 col-12">
                                 <div className="commentBlock_createComment d-flex flex-column feedbackbackground align-items-center">
-                                    <text style={{marginBottom: '10px'}}>Эта поездка уже прокомментирована и отправить комментарий по ней ещё раз нельзя</text>
+                                    <text style={{marginBottom: '10px'}}>{textInfo.alreadyCommented}</text>
                                     <button className="driversAdaptedRoute_sendRequest feedback_returnButton">
-                                        <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes/"}>{'На главную'}</Link>
+                                        <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes/"}>{textInfo.toMain}</Link>
                                     </button>
                                 </div>
                             </div>

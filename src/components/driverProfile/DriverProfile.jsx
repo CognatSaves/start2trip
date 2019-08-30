@@ -657,11 +657,8 @@ class DriverProfileClass extends React.Component {
                                                                 <button className='driversBlock_buttonStyle' /*"placesDescription_travelBlock_applyButton p-0 "*/
                                                                     style={{/*marginBottom: '15px',*/ width: '100%', border: 'none', borderRadius: '5px', height: '100%' }}
                                                                     onClick={() => { this.changeTravelVisibility(defaultPrice); this.props.dispatch(setDriverCarDescription(this.props.driversState.driverCarDescription)) }}>
-                                                                    {
-                                                                        //TODO переводы
-                                                                    }
                                                                     <text style={{ margin: "auto", fontSize: '16px' }} >
-                                                                        {"ЗАБРОНИРОВАТЬ " + (isCurrencyLoaded ? ((activeCurrency.isLeft ? activeCurrency.symbol : '')
+                                                                        {textInfo.book + (isCurrencyLoaded ? ((activeCurrency.isLeft ? activeCurrency.symbol : '')
                                                                             + Math.ceil(defaultPrice * activeCurrency.costToDefault)
                                                                             + (!activeCurrency.isLeft ? activeCurrency.symbol : '')) : '')}</text>
                                                                 </button>

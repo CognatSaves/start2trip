@@ -181,7 +181,7 @@ class RouteDescriptionClass extends React.Component {
                       }
                   `}
               </script>
-              {/* TODO  */}
+              {/* TODO  "addressRegion":["tbilisi","kakheti"] статика*/}
                         </Helmet> :
                         <React.Fragment/>
                 }
