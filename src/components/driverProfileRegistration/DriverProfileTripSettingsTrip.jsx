@@ -6,7 +6,7 @@ import InfiniteCalendar, {
     defaultMultipleDateInterpolation,
     withMultipleDates,
 } from 'react-infinite-calendar';
-import MultipleDatePicker from 'react-multiple-datepicker'
+
 import '../../../node_modules/react-infinite-calendar/styles.css'
 import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 import getUserData from './DriverProfileRequest';
@@ -424,9 +424,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                     open={this.state.calendarModal}
                     onRequestClose={this.calendarModalShow}
                 >
-                     <MultipleDatePicker
-    onSubmit={dates => console.log('selected date', dates)}
-  />
+
                     {/* <InfiniteCalendar
                         Component={MultipleDatesCalendar}
                         width={100 + "%"}
