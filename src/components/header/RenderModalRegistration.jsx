@@ -332,14 +332,14 @@ class RenderModalRegistrationClass extends React.Component {
 
         let email = this.state.email;
         let password = this.state.password;
+        let userLang = (cookies.get('userLang', { path: "/" })).toUpperCase()
         if (!type) {//в случае регистрации
-
             this.setState({
                 regAnswerStatus: false,
                 regProcessStatus: true
             });
             console.log("Send Request");
-            let userLang = (cookies.get('userLang', { path: "/" })).toUpperCase()
+            
 
             let body = JSON.stringify({
                 username: email,
@@ -363,6 +363,7 @@ class RenderModalRegistrationClass extends React.Component {
             let body = JSON.stringify({
                 identifier: email,
                 password: password,
+                userLangCookies: userLang
             });
             this.state.socialWebAuthorizationRequest(body);
         }
