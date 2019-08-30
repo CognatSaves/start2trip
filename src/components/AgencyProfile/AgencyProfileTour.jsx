@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { isMobileOnly } from 'react-device-detect';
 import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
-import { Calendar, withMultipleDates } from 'react-infinite-calendar';
+// import { Calendar, withMultipleDates } from 'react-infinite-calendar';
 import { readAndCompressImage } from 'browser-image-resizer';
 import requests from '../../config';
 import getUserData from '../driverProfileRegistration/DriverProfileRequest';
@@ -656,7 +656,7 @@ class AgencyProfileTourClass extends React.Component {
             $imagePreview = (<img src={imagePreviewUrl} className="carAddNewCarPhotoCarImg" alt="add_car" />);
         }
 
-        const MultipleDatesCalendar = withMultipleDates(Calendar);
+        // const MultipleDatesCalendar = withMultipleDates(Calendar);
         var today = new Date();
         const actions = [
             <FlatButton

@@ -1,14 +1,10 @@
 import React from 'react';
 import './DriverProfileTripSettingsTour.css'
-import 'react-infinite-calendar/styles.css'; // only needs to be imported once
 import { connect } from 'react-redux';
 import { Collapse } from 'reactstrap';
 import { isMobileOnly, isMobile } from 'react-device-detect';
-import InfiniteCalendar, {
-    Calendar,
-    defaultMultipleDateInterpolation,
-    withMultipleDates,
-} from 'react-infinite-calendar';
+import DayPicker, { DateUtils } from 'react-day-picker';
+import 'react-day-picker/lib/style.css';
 
 import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 import { readAndCompressImage } from 'browser-image-resizer';
@@ -27,6 +23,9 @@ import Dialog from 'material-ui/Dialog';
 
 import RefreshIndicator from 'material-ui/RefreshIndicator';
 import DriverRefreshIndicator from './DriverRefreshIndicator';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 class DriverProfileTripSettingsTourClass extends React.Component {
     constructor(props) {
@@ -654,6 +653,20 @@ class DriverProfileTripSettingsTourClass extends React.Component {
         return name;
     }
 
+    handleDayClick = (day, { selected }) => {
+        const { tourSave } = this.state;
+        let calendary = tourSave.calendary
+        if (selected) {
+            const selectedIndex = calendary.findIndex(calendary =>
+                DateUtils.isSameDay(calendary, day)
+            );
+            calendary.splice(selectedIndex, 1);
+        } else {
+            calendary.push(day);
+        }
+        this.setState({ tourSave:{...tourSave,calendary:calendary}});
+    }
+
     render() {
         console.log('Trip Tour render');
         console.log(this.state);
@@ -663,7 +676,6 @@ class DriverProfileTripSettingsTourClass extends React.Component {
             $imagePreview = (<img src={imagePreviewUrl} className="carAddNewCarPhotoCarImg" alt="add_car" />);
         }
 
-        const MultipleDatesCalendar = withMultipleDates(Calendar);
         var today = new Date();
         const actions = [
             <FlatButton
@@ -673,41 +685,12 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                 onClick={this.calendarModalShow}
             />,
         ];
-        const style = {
-            refresh: {
-                display: 'inline-block',
-                position: 'relative',
-            },
-        };
-        const themeCalendar = {
-            accentColor: '#f60',
-            floatingNav: {
-                background: 'rgba(56, 87, 138, 0.94)',
-                chevron: '#304269',
-                color: '#FFF',
-            },
-            headerColor: '#304269',
-            selectionColor: '#304269',
-            textColor: {
-                active: '#FFF',
-                default: '#333',
-            },
-            todayColor: '#f60',
-            weekdayColor: '#304269',
-        }
+
         const customContentStyle = {
             width: '100%',
             maxWidth: 'none',
         };
-        const locale = {
-            blank: 'Select a date...',
-            headerFormat: 'ddd, MMM Do',
-            todayLabel: {
-                long: 'Today',
-            },
-            weekdays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-            weekStartsOn: 0,
-        };
+
         let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileTripSettingsTour;
         return (
             <React.Fragment>
@@ -720,7 +703,10 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                     open={this.state.calendarModal}
                     onRequestClose={this.calendarModalShow}
                 >
-
+                    <DayPicker
+                        selectedDays={this.state.tourSave.calendary}
+                        onDayClick={this.handleDayClick}
+                    />
                     {/* <InfiniteCalendar
                         Component={MultipleDatesCalendar}
                         width={100 + "%"}

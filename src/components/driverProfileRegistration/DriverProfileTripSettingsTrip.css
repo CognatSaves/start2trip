@@ -168,6 +168,27 @@ div.tripSettingsContentAddCity p:hover {
 
 /* Content End */
 
+/* date picer */
+
+.DayPicker{
+    width: 100%;
+    height: 100%;
+    font-size: 20px !important;
+    color: #686868;
+}
+.DayPicker .DayPicker-Day{
+    padding: 0.75em 0.95em ;
+}
+.DayPicker .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside){
+    background: #304269;
+    color: #fff;
+    width: 50%;
+}
+.DayPicker .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside):hover{
+    background: #f60;
+}
+/* date picer */
+
 @media (max-width: 768px) {
     .tripSettingsBody {
         box-shadow: none;
@@ -208,7 +229,7 @@ div.tripSettingsContentAddCity p:hover {
 
 @media (max-width: 768px) {
     .tripSettingsContent {
-        padding: 5px 0px 0px 0px;
+        padding: 10px ;
         transition: all 0.3s;
     }
 
@@ -234,5 +255,9 @@ div.tripSettingsContentAddCity p:hover {
 
     .tripSettingsContentP {
         padding-bottom: 20px;
+    }
+    .DayPicker{
+        font-size: 15px !important;
+        color: #686868;
     }
 }

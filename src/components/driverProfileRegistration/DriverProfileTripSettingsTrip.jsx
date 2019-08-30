@@ -1,13 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { isMobile } from 'react-device-detect';
-import InfiniteCalendar, {
-    Calendar,
-    defaultMultipleDateInterpolation,
-    withMultipleDates,
-} from 'react-infinite-calendar';
-
-import '../../../node_modules/react-infinite-calendar/styles.css'
+import DayPicker, { DateUtils } from 'react-day-picker';
+import 'react-day-picker/lib/style.css';
 import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 import getUserData from './DriverProfileRequest';
 import requests from '../../config';
@@ -17,7 +12,6 @@ import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
 import Chip from 'material-ui/Chip';
 
-import RefreshIndicator from 'material-ui/RefreshIndicator';
 import LocationSearchInput from '../home/HomeBody/Search'
 import DriverRefreshIndicator from './DriverRefreshIndicator';
 import Cookies from 'universal-cookie';
@@ -59,7 +53,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
             isRefreshing: true,
             isGoodAnswer: true,
             firstDate: null,
-            badRequestTextVisibility: false
+            badRequestTextVisibility: false,
         }
     }
     getProfileData = () => {
@@ -78,7 +72,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
         }
         else {
             this.props.dispatch(setUrlAddress(window.location.pathname));
-            this.props.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
+            this.props.history.push('/' + cookies.get('userLangISO', { path: "/" }) + '/login/');
             //return null;
         }
     }
@@ -115,38 +109,38 @@ class DriverProfileTripSettingsTripClass extends React.Component {
             })
         }, 2000);
     }
-    validate = () =>{
-        
+    validate = () => {
+
         let res = true;
-        if((!(Number.isInteger(eval(this.state.distance))))){
+        if ((!(Number.isInteger(eval(this.state.distance))))) {
             let inputBlocks = document.getElementsByClassName('maxDailyMileage');
             inputBlocks[0].classList.add("errorColor");
             inputBlocks[1].classList.add("errorColor");
             res = false;
         }
-        for(let i=0; i<this.state.cityRadius.length;i++){
-            if(this.state.cityRadius[i].point.length===0){
+        for (let i = 0; i < this.state.cityRadius.length; i++) {
+            if (this.state.cityRadius[i].point.length === 0) {
                 let inputs = document.getElementsByClassName('searchInputDriverInformation');
                 inputs[i].classList.add("errorColor");
                 res = false;
-                
+
             }
-            if(!Number.isInteger(eval(this.state.cityRadius[i].radius))){
-                res= false;
+            if (!Number.isInteger(eval(this.state.cityRadius[i].radius))) {
+                res = false;
                 let inputs = document.getElementsByClassName('itemRadius');
-                inputs[i*2].classList.add("errorColor");
-                inputs[i*2+1].classList.add("errorColor");
+                inputs[i * 2].classList.add("errorColor");
+                inputs[i * 2 + 1].classList.add("errorColor");
             }
-            
+
         }
 
         return res;
     }
     applyChanges = (props) => {
-        
+
         let jwt = this.props.globalReduser.readCookie('jwt');
         let isValid = this.validate();
-        
+
         if (!isValid) {//какие-то косяки - открываем текст под кнопкой
             this.setState({
                 badRequestTextVisibility: true
@@ -218,7 +212,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
             }
             else {
                 this.props.dispatch(setUrlAddress(window.location.pathname));
-                this.props.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
+                this.props.history.push('/' + cookies.get('userLangISO', { path: "/" }) + '/login/');
                 //return null;
             }
         }
@@ -251,8 +245,8 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                 cityRadius[index].radius = value;
 
                 let inputs = document.getElementsByClassName('itemRadius');
-                inputs[index*2].classList.remove("errorColor");
-                inputs[index*2+1].classList.remove("errorColor");
+                inputs[index * 2].classList.remove("errorColor");
+                inputs[index * 2 + 1].classList.remove("errorColor");
 
                 this.setState({
                     cityRadius: cityRadius,
@@ -283,7 +277,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
         cityRadius[index].long = extraData.location.long;
         let inputs = document.getElementsByClassName('searchInputDriverInformation');
         inputs[index].classList.remove("errorColor");
-    
+
         this.setState({
             cityRadius: cityRadius,
             badRequestTextVisibility: false
@@ -307,55 +301,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
 
     };
 
-    addDate = (dates) => {
-        let newDate = this.state.dateTour;
-        if (this.state.newDate) {
-            var needAddDate = true;
-
-            for (let i = 0; i < newDate.length; i++) {
-                if (dates.getDate() == newDate[i].getDate() && dates.getMonth() == newDate[i].getMonth() && dates.getFullYear() == newDate[i].getFullYear()) {
-                    newDate.splice(i, 1);
-                    this.setState({ dateTour: newDate })
-                    needAddDate = false;
-                    break;
-                }
-            };
-            if (needAddDate) {
-                if (this.state.firstDate !== null) {
-                    // при добавлении второго числа добавляет первое
-                    newDate.push(this.state.firstDate);
-                }
-                newDate.push(dates);
-                this.setState({ dateTour: newDate, firstDate: null })
-            }
-        } else {
-            // Сохраняется в отдельную переменную иначе не отображается первая дата
-            let newDate = this.state.dateTour;
-            var needAddDate = true;
-            if(newDate.length>0 || this.state.firstDate !== null){
-                for (let i = 0; i < newDate.length; i++) {
-                    if (dates.getDate() == newDate[i].getDate() && dates.getMonth() == newDate[i].getMonth() && dates.getFullYear() == newDate[i].getFullYear()) {
-                        newDate.splice(i, 1);
-                        this.setState({ dateTour: newDate })
-                        needAddDate = false;
-                        break;
-                    }
-                };
-                if (needAddDate) {
-                    this.setState({ firstDate: dates })
-                }else{
-                    this.setState({ dateTour: newDate, firstDate: null })
-                }
-            }else{
-                this.setState({ firstDate: dates })
-            }
-           
-            
-        }
-        this.setState({ newDate: true })
-    }
-
-    handleRequestDelete = (element) => { 
+    handleRequestDelete = (element) => {
         this.dateTour = this.state.dateTour;
         const dateTourToDelete = this.dateTour.map((chip) => chip).indexOf(element);
         this.dateTour.splice(dateTourToDelete, 1);
@@ -363,11 +309,22 @@ class DriverProfileTripSettingsTripClass extends React.Component {
 
     }
 
+    handleDayClick = (day, { selected }) => {
+        const { dateTour } = this.state;
+        if (selected) {
+            const selectedIndex = dateTour.findIndex(dateTour =>
+                DateUtils.isSameDay(dateTour, day)
+            );
+            dateTour.splice(selectedIndex, 1);
+        } else {
+            dateTour.push(day);
+        }
+        this.setState({ dateTour });
+    }
+
     render() {
         console.log("Double RIP render");
         console.log(this.state);
-        const MultipleDatesCalendar = withMultipleDates(Calendar);
-        var today = new Date();
         const actions = [
             <FlatButton
                 label="Ok"
@@ -376,41 +333,11 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                 onClick={this.calendarModalShow}
             />,
         ];
-        const themeCalendar = {
-            accentColor: '#f60',
-            floatingNav: {
-                background: 'rgba(56, 87, 138, 0.94)',
-                chevron: '#304269',
-                color: '#FFF',
-            },
-            headerColor: '#304269',
-            selectionColor: '#304269',
-            textColor: {
-                active: '#FFF',
-                default: '#333',
-            },
-            todayColor: '#f60',
-            weekdayColor: '#304269',
-        }
         const customContentStyle = {
             width: '100%',
             maxWidth: 'none',
         };
-        const locale = {
-            blank: 'Select a date...',
-            headerFormat: 'ddd, MMM Do',
-            todayLabel: {
-                long: 'Today',
-            },
-            weekdays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-            weekStartsOn: 0,
-        };
-        const style = {
-            refresh: {
-                display: 'inline-block',
-                position: 'relative',
-            },
-        };
+
 
         let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileTripSettingsTrip;
         return (
@@ -424,18 +351,11 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                     open={this.state.calendarModal}
                     onRequestClose={this.calendarModalShow}
                 >
+                    <DayPicker
+                        selectedDays={this.state.dateTour}
+                        onDayClick={this.handleDayClick}
+                    />
 
-                    {/* <InfiniteCalendar
-                        Component={MultipleDatesCalendar}
-                        width={100 + "%"}
-                        minDate={today}
-                        theme={themeCalendar}
-                        locale={locale}
-                        className="newTourCalendarStyle"
-                        interpolateSelection={defaultMultipleDateInterpolation}
-                        selected={this.state.dateTour}
-                        onSelect={this.addDate}
-                    /> */}
                 </Dialog>
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
                 <div className="tripSettingsBody">
@@ -455,13 +375,13 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                                         <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column col-md-6 col-sm-12 col-12 p-0" >
                                             <LocationSearchInput address={element.point} changeCity={this.changeCity} classDiv="col-md-8 col-12 p-0" classInput="searchInputDriverInformation" index={index} classDropdown="searchDropdownDriverInformation" />
                                             <input className="col-md-2 col-12 ml-1 d-xl-block d-lg-block d-md-block d-sm-none d-none itemRadius"/*класс itemRadius добавил ради класса errorColor - отображения некорректоности заполнения */
-                                             type="number" id="itemRadiu" value={element.radius} 
+                                                type="number" id="itemRadiu" value={element.radius}
                                                 onChange={(e) => this.inputChange(e.target.value, 'radius', index)}
                                             />
                                             <TextField
                                                 floatingLabelText={textPage.textField.floatingLabelText}
                                                 className="inputClass d-md-none d-sm-block d-block itemRadius"/*класс itemRadius добавил ради класса errorColor - отображения некорректоности заполнения */
-                                                fullWidth="100%" 
+                                                fullWidth="100%"
                                                 type="number"
                                                 floatingLabelFocusStyle={{ color: "#304269" }}
                                                 underlineFocusStyle={{ borderColor: "#304269" }}
@@ -480,8 +400,8 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
                                 <label htmlFor="maxDailyMileage" className="col-xl-2 col-lg-2 col-md-2 col-sm-11 col-12 p-0 dailymile">{textPage.maxDailyMileage.floatingLabelText}</label>
                                 <div className="d-md-block d-sm-none d-none">
-                                    <input  className="col-md-5 col-12 maxDailyMileage" type="number" value={this.state.distance}
-                                     onChange={(e) => this.inputChange(e.target.value, 'distance')}
+                                    <input className="col-md-5 col-12 maxDailyMileage" type="number" value={this.state.distance}
+                                        onChange={(e) => this.inputChange(e.target.value, 'distance')}
                                     />
                                 </div>
 
@@ -492,7 +412,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                                     floatingLabelFocusStyle={{ color: "#304269" }}
                                     underlineFocusStyle={{ borderColor: "#304269" }}
                                     value={this.state.distance}
-                                    onChange={(e) => {this.inputChange(e.target.value, 'distance')}}
+                                    onChange={(e) => { this.inputChange(e.target.value, 'distance') }}
                                 />
                                 {/* <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none pl-2">{textPage.maxDailyMileage.description}</p> */}
                             </div>
@@ -505,8 +425,8 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                                 <div className="d-flex flex-wrap flex-row align-items-start col-md-8 col-6 p-0 my-2">
 
                                     {this.state.dateTour.map((element, index) => {
-                                        let day = element.getDate();
-                                        let month = element.getMonth();
+                                        let day = element.getDate() < 10 ? "0" + element.getDate() : element.getDate();
+                                        let month = element.getMonth() + 1 < 10 ? "0" + (element.getMonth() + 1) : element.getMonth() + 1;
                                         let year = element.getFullYear();
                                         let newDate = day + "." + month + "." + year;
                                         return (
@@ -533,10 +453,10 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                                 {
                                     //TODO переводы
                                 }
-                                <text style={{color: 'red', display: this.state.badRequestTextVisibility ? 'block' : 'none'}}>Вы допустили ошибки. Поправьте их перед сохранением</text>
+                                <text style={{ color: 'red', display: this.state.badRequestTextVisibility ? 'block' : 'none' }}>Вы допустили ошибки. Поправьте их перед сохранением</text>
                             </div>
                         </div>
-                        
+
                     </form>
                     <div className="tripSettingsContent d-flex justify-content-center">
                         <div className="tripSettingsContentP d-flex flex-column col-md-8 col-12 py-3 pt-4 px-0">
