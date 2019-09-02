@@ -716,7 +716,7 @@ class DriverProfileCarClass extends React.Component {
 
                                         obj = document.querySelectorAll('.inputClass');
                                         obj[4].classList.remove("errorColor");
-                                        debugger;
+                                        
                                         this.setState({
                                             newCarCard: { ...this.state.newCarCard, numberOfSeats: e.currentTarget.value},
                                             badDataTextVisibility: false
@@ -728,7 +728,7 @@ class DriverProfileCarClass extends React.Component {
                                         onChange={(e) => {
                                             let obj = document.getElementById('profileCarNumberOfSeats');
                                             obj.classList.remove("errorColor");
-                                            debugger;
+                                            
                                             obj = document.querySelectorAll('.inputClass');
                                             obj[3].classList.remove("errorColor");
                                             this.setState({

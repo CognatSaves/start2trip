@@ -79,6 +79,7 @@ class HomeBodyClass extends React.Component {
     this.props.redirectToDrivers();
   }
   setLengthTime = (travelLength, travelTime) => {
+    //TODO переводы
     function getLengthString(travelLength) {
       let length = travelLength;
       length = Math.ceil(length / 1000);
@@ -102,12 +103,12 @@ class HomeBodyClass extends React.Component {
       }
       return timeString;
     }
-    
+    debugger;
     if ((this.props.driversState.travelLength === "-" && this.props.driversState.travelTime === "-") ||
       (this.props.driversState.travelLength.length === 0 || this.props.driversState.travelLength.length === 0)) {
       let lengthString = getLengthString(travelLength);
       let timeString = getTimeString(travelTime);
-      this.props.dispatch(setLengthTime(timeString, lengthString));
+      this.props.setLengthTime(timeString, lengthString);
     }
   }
   validationInput = (massCities) => {
