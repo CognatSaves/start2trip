@@ -220,7 +220,8 @@ class RegistrationClass extends React.Component {
                                 isAgency: userType === 3 ? true : false,
                                 provider: 'google',
                                 partner: partner && (!agency || agency.length === 0) ? partner : '',
-                                agency: agency ? agency : ''
+                                agency: agency ? agency : '',
+                                userLangCookies: userLangCookies
                             });
                             this.state.socialWebRegistrationRequest(body);
                         })
@@ -244,7 +245,8 @@ class RegistrationClass extends React.Component {
                                 isDriver: false,
                                 isAgency: false,
                                 partner: partner && (!agency || agency.length === 0) ? partner : '',
-                                agency: agency ? agency : ''
+                                agency: agency ? agency : '',
+                                userLangCookies: userLangCookies
                             });
                             this.state.socialWebAuthorizationRequest(body);
                         })

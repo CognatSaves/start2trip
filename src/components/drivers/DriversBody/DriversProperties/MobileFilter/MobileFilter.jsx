@@ -116,6 +116,7 @@ class MobileFilterClass extends React.Component {
     }
 
     let pictureArray = [sedan, jeep, minivan, microbus];
+    let textInfo = this.props.storeState.languageTextMain.mobileFilter;
 
     return (
       <React.Fragment>
@@ -123,16 +124,16 @@ class MobileFilterClass extends React.Component {
           <div className="mobileFilterModal" style={{ left: this.props.storeState.openFilter ? "0px" : "100%" }}>
 
             <div className="mobileFilterModalHeader d-flex justify-content-between">
-              <span className="mobileFilterModalBack" onClick={() => { this.props.dispatch(openFilterShow(false)) }}>Фильтры</span>
-              <span className="mobileFilterModalClear" onClick={() => { this.setState({ autoVariants: [], languagesVariants: [], price: this.props.storeState.maxPrice }); this.peopleMenuCall(true); this.props.dispatch(setAuto([])); this.props.dispatch(languageValueChooseDispatch([])); this.props.dispatch(setPricePart(this.props.storeState.maxPrice, false)); }}>Сбросить</span>
+              <span className="mobileFilterModalBack" onClick={() => { this.props.dispatch(openFilterShow(false)) }}>{textInfo.filter}</span>
+              <span className="mobileFilterModalClear" onClick={() => { this.setState({ autoVariants: [], languagesVariants: [], price: this.props.storeState.maxPrice }); this.peopleMenuCall(true); this.props.dispatch(setAuto([])); this.props.dispatch(languageValueChooseDispatch([])); this.props.dispatch(setPricePart(this.props.storeState.maxPrice, false)); }}>{textInfo.throwOff}</span>
             </div>
 
             <div className="mobileFilterModalBody">
 
               <div className="mobileFilterModalBodyElement d-flex flex-column justify-content-center">
                 <div className="mobileFilterModalContent d-flex justify-content-between align-items-center">
-                  <span>Цена</span>
-                  <p>{"До $" + this.state.price}</p>
+                  <span>{textInfo.price}</span>
+                  <p>{textInfo.before + "$" + this.state.price}</p>
                 </div>
                 <Slider
                   defaultValue={this.props.storeState.maxPrice}
@@ -151,14 +152,14 @@ class MobileFilterClass extends React.Component {
 
               <div className="mobileFilterModalBodyElement">
                 <div className="mobileFilterCollapseBt">
-                  <span onClick={() => { this.setState({ collapsePeople: !this.state.collapsePeople }) }}>Количество человек</span>
+                  <span onClick={() => { this.setState({ collapsePeople: !this.state.collapsePeople }) }}>{textInfo.numberOfPersons}</span>
                 </div>
 
                 <Collapse isOpen={this.state.collapsePeople}>
                   <div className="">
                     <div className="modalBodyElementPeople">
                       <div className="peopleMenu_element_part">
-                        <p>Взрослые</p>
+                        <p>{textInfo.adults}</p>
                         <div className="element_part_valueBlock">
                           <button className="valueBlock_button minus" disabled={peopleDisabledMinus} onClick={() => this.changePersonsNumber(0, -1)}>&#8211;</button>
                           <div className="valueBlock_value_text">{this.props.storeState.persons[0]}</div>
@@ -167,8 +168,8 @@ class MobileFilterClass extends React.Component {
                       </div>
                       <div className="peopleMenu_element_part">
                         <div className="element_part_children">
-                          <p>Дети</p>
-                          <p className="cildren">от 2 до 12 лет</p>
+                          <p>{textInfo.children}</p>
+                          <p className="cildren">{textInfo.children2}</p>
                         </div>
                         <div className="element_part_valueBlock">
                           <button className="valueBlock_button minus" disabled={childrenDisabledMinus} onClick={() => this.changePersonsNumber(1, -1)}>&#8211;</button>
@@ -184,7 +185,7 @@ class MobileFilterClass extends React.Component {
 
               <div className="mobileFilterModalBodyElement">
                 <div className="mobileFilterCollapseBt">
-                  <span onClick={() => { this.setState({ collapseAuto: !this.state.collapseAuto }) }}>Тип авто</span>
+                  <span onClick={() => { this.setState({ collapseAuto: !this.state.collapseAuto }) }}>{textInfo.typeAuto}</span>
                 </div>
 
                 <Collapse isOpen={this.state.collapseAuto}>
@@ -213,7 +214,7 @@ class MobileFilterClass extends React.Component {
 
               <div className="mobileFilterModalBodyElement">
                 <div className="mobileFilterCollapseBt">
-                  <span onClick={() => { this.setState({ collapseLanguageMenu: !this.state.collapseLanguageMenu }) }}>Язык</span>
+                  <span onClick={() => { this.setState({ collapseLanguageMenu: !this.state.collapseLanguageMenu }) }}>{textInfo.languages}</span>
                 </div>
 
                 <Collapse isOpen={this.state.collapseLanguageMenu}>
@@ -241,7 +242,7 @@ class MobileFilterClass extends React.Component {
             </div>
 
             <div className="mobileFilterModalFooterComplete">
-              <span onClick={() => { this.peopleMenuCall(false); this.props.dispatch(setAuto(this.state.autoVariants)); this.props.dispatch(languageValueChooseDispatch(this.state.languagesVariants)); this.props.dispatch(openFilterShow(false)); this.setPrice(); }} >Показать результаты</span>
+              <span onClick={() => { this.peopleMenuCall(false); this.props.dispatch(setAuto(this.state.autoVariants)); this.props.dispatch(languageValueChooseDispatch(this.state.languagesVariants)); this.props.dispatch(openFilterShow(false)); this.setPrice(); }} >{textInfo.showResults}</span>
             </div>
           </div>
         </React.Fragment>}

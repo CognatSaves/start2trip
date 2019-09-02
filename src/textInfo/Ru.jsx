@@ -18,6 +18,7 @@ import firstEnterModal from './Ru/Ru-firstEnterModal'
 import headerAdmin from './Ru-admin/Ru-header';
 import helmets from './Ru/Ru-helmets';
 import userProfile from './Ru/Ru-userProfile';
+import mobileFilter from './Ru/Ru-mobileFilter'
 export default {
     driverProfile: driverProfile,
     //routeDescription: routeDescription,
@@ -38,5 +39,6 @@ export default {
     footerPage:FooterPage,
     firstEnterModal:firstEnterModal,
     helmets:helmets,
-    userProfile:userProfile
+    userProfile:userProfile,
+    mobileFilter:mobileFilter,
 }

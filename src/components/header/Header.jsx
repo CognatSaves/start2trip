@@ -732,7 +732,7 @@ class HeaderClass extends React.Component {
                   <div className="burgerMenuBlock burgerMenuP d-flex flex-column justify-content-center align-items-center col-11">
                     <div className="d-flex align-items-end justify-content-between w-100 border-bottom">
                       <label>{textInfo.burgerMenu.settingsDrop[0]}</label>
-                      <DropDownMenu anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }} className="burgerMenuTopDropDown" menuStyle={{ width: "30px" }}
+                      <DropDownMenu anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }} className="burgerMenuTopDropDown" menuStyle={{ maxWidth:"93px",overflow:"hidden"}}
                         value={this.props.storeState.activeLanguageNumber/*this.state.activLanguageNumber*/} onChange={(event, index, value) => { this.setLocals('userLang', index) }}>
                         {languages.map((element, index) =>
                           <MenuItem value={index} primaryText={<React.Fragment><img className="mb-1" src={requests.serverAddressImg + element.icon.url} width="15px" height="15px" alt={element.ISO} /><span className="burgerMenuTopDropDownSpan">{element.ISO}</span></React.Fragment>} ></MenuItem>
@@ -742,7 +742,7 @@ class HeaderClass extends React.Component {
                     <div className="d-flex align-items-end justify-content-between w-100 ">
                       <label>{textInfo.burgerMenu.settingsDrop[1]}</label>
                       <DropDownMenu menuItemStyle={{ color: "#304269", fontSize: "14px", fontWeight: "400" }} selectedMenuItemStyle={{ color: "#f60" }}
-                        anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }} className="burgerMenuTopDropDown" menuStyle={{ width: "30px" }}
+                        anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }} className="burgerMenuTopDropDown" menuStyle={{ maxWidth:"96px",overflow:"hidden"}}
                         value={/*this.props.storeState.activeCurrencyNumber*/selectedCurrNumber} onChange={(event, index, value) => { changeActiveCurrency(this,availableCurrencies,index)/*this.setLocals('userCurr', index)*/ }}>
                         {availableCurrencies.map((element, index) =>
                           <MenuItem value={index} primaryText={<span className="pl-2">{element.symbol + " " + element.ISO}</span>} />
