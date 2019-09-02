@@ -118,7 +118,7 @@ const driverProfileRegistration = {
         cardInformation: {
             span: "locations"
         },
-        noPhotoText: 'Существует крайняя нужда в фото вашего автомобиля(ENG)',
+        noPhotoText: 'Вставьте фото вашего автомобиля.(ENG)',
         badDataText: 'Заполните корректно выделенные поля!(ENG)'
     },
     DriverProfileTripSettingsTrip: {

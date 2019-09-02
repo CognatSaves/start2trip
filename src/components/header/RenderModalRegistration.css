@@ -400,7 +400,8 @@
 }
 
 .typeCheckLabel {
-    margin-left: 10px;
+    /*margin-left: 10px;*/
+    padding: 0 10px;
     margin-right: auto;
     margin-bottom: 0;
     font-size: 16px;
