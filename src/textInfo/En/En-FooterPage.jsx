@@ -25,7 +25,7 @@ const FooterPage = {
             arrayEl: {
                 firstEl: {
                     title: "Invite",
-                    text: "Send invitations with a 15% discount \n on your first trip to familiar travelers, \n by clicking on the 'Invite a Friend' button, \n or send your affiliate link."
+                    text: "Send invitations with a 10% discount \n on your first trip to familiar travelers, \n by clicking on the 'Invite a Friend' button, \n or send your affiliate link."
                 },
                 secondEl: {
                     title: "Get paid,",

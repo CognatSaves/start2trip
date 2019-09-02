@@ -346,6 +346,7 @@ class DriverProfileCarClass extends React.Component {
     }
 
     _handleImageChange = (e) => {
+        //debugger;
         e.preventDefault();
 
         let obj = document.getElementById('labelCarEmpty');
