@@ -597,7 +597,7 @@ class DriverProfileClass extends React.Component {
 
                                     <div className="drivers_route col-12 d-flex " >
                                         <div className="d-flex flex-column routeTravelBlock_pointPart col-md-6 col-12 p-md-2 p-0">
-                                            <div style={{ paddingTop: '10px' }} className="col-12">
+                                            <div style={{ paddingTop: '10px' }}>
                                                 <div className="route_time_text col-12">
                                                     <div class="marsh">{textInfo.tripParams.routeText + ':'}</div>
                                                     <div class="param">{textInfo.tripParams.timeParam + ': '}<span>{this.props.driversState.travelTime}</span></div>
