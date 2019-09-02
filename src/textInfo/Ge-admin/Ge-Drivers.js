@@ -169,7 +169,7 @@ const driverProfileRegistration = {
             telflag: "ru"
         },
         sittingsSaveBt: "ცვლილებების შენახვა",
-        infoText: 'Пароль будет проверяться и сохраняться только в случае заполнения всех трёх полей.(ENG)',
+        infoText: 'Пароль будет проверяться и сохраняться только в случае заполнения всех трёх полей.(GEO)',
         unsubscribeButton: {
             mailing: {
                 unsubscribe: "გამოწერა გაზეთებიდან",
@@ -177,8 +177,6 @@ const driverProfileRegistration = {
             },
             message: "გაუქმების შემთხვევაში აღარ მიიღებთ შეტყობინებებს Tripfer-ისგან"
         }
-
-
     },
     DriverProfileAffiliateProgram: {
         affiliateProgramsTitle: "პარტნიორული პროგრამა",

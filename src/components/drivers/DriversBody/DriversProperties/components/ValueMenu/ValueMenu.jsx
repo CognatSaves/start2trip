@@ -45,9 +45,12 @@ class ValueMenuClass extends React.Component {
         if (this.props.isVisible) {
             return (
                 <div id={containerId} className="drivers_properties_valueMenu">
-                    <div className="valueMenu_borderElement"><p>{"До " + (activeCurrency.isLeft ? activeCurrency.symbol : '')
+                {
+                    //TODO переводы
+                }
+                    <div className="valueMenu_borderElement"><p>{"До"+' ' + (activeCurrency.isLeft ? activeCurrency.symbol+' ' : '')
                       + Math.ceil(this.state.price * activeCurrency.costToDefault) +
-                      (!activeCurrency.isLeft ? activeCurrency.symbol : '')}</p></div>
+                      (!activeCurrency.isLeft ? ' '+activeCurrency.symbol : '')}</p></div>
                     <Slider
                         defaultValue={this.props.storeState.pricePart}
                         value={this.state.price}

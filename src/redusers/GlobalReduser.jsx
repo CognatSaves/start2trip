@@ -139,8 +139,8 @@ const initialState = {
           let convId;
           if(conv){  
                
-            stringWithoutSpaces=convertionFunc(stringWithoutSpaces,conv);
-            country= convertionFunc(country,conv); 
+            stringWithoutSpaces=convertionFunc(stringWithoutSpaces,'ru'/*conv*/);
+            country= convertionFunc(country,'ru'/*conv*/); 
             //convId = convMassISO.indexOf(conv);
             //stringWithoutSpaces=convMassFunc[convId](stringWithoutSpaces);
             //country=convMassFunc[convId](country);

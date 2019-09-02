@@ -97,7 +97,7 @@ class AccountRedirectorClass extends React.Component {
                             <meta name="description" content={helmet.object.description} />
                             <meta property="og:site_name" content="Tripfer" />
                             <meta property="og:type" content="website" />
-                            <meta property="og:url" content={document.URL} /* тут надо подумать, может вообще перенксти это внутрь каждого типа */ />
+                            <meta property="og:url" content={document.URL} /* тут надо подумать, может вообще перенести это внутрь каждого типа */ />
                             <meta property="og:title" content={helmet.object.title} />
                             <meta property="og:description" content={helmet.object.description} />
                         </Helmet>

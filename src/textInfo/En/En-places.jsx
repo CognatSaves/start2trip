@@ -18,7 +18,7 @@ let places = {
              territory: 'territory',
              population: 'population ',
              capital: 'capital',
-             namePart: 'Достопримечательности(ENG)'
+             namePart: 'Sights of'
          }
     }
     
