@@ -4,20 +4,24 @@
     margin-bottom: 50px;
 }
 
+.filledCardHover{
+    transition: all 0.3s;
+}
+.filledCardHover:hover {
+    transform: scale(1.04);
+}
+
 .filledCard {
     width: 100%;
-    -webkit-box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
-    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
+    height: 100%;
     border-radius: 5px;
-    -webkit-transition: all 0.3s;
-    -o-transition: all 0.3s;
     transition: all 0.3s;
     cursor: pointer;
-    height: 100%;
+    -webkit-box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
 }
 
 .filledCard:hover {
-    transform: scale(1.04);
     -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
@@ -110,10 +114,12 @@
     min-height: 45px;
     padding-right: 0px;
     background: none;
+    width: 95%;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 5px 5px 0 0;
 }
 
 .cardInformationNameCarIcon {
-    margin-right: 20px;
     width: 40px;
     height: 45px;
     background: url(../media/moreWhite.svg) no-repeat;
@@ -206,7 +212,7 @@ p.filledCardInformationNameCarEdit {
 
 p.filledCardInformationDeleteCar:hover,
 p.filledCardInformationNameCarEdit:hover {
-    background: #f4f5f6;
+    background: #dfdfdf;
 }
 
 .filledCardInformationNameCar input {
@@ -517,6 +523,9 @@ img.carPhotoMini {
         /*-webkit-box-shadow: none;*/
         /*box-shadow: none;*/
         margin-left: 0px;
+    }
+    .filledCardHover:hover {
+        transform: scale(1);
     }
 
     .carAddNewCarInformation input,

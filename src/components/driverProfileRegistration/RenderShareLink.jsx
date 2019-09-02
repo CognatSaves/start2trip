@@ -132,7 +132,7 @@ class RenderShareLinkClass extends React.Component {
                         <div className="networkLink">
                             <PinterestShareButton
                                 url={String(window.location)}
-                                media={`${String(window.location)}/${exampleImage}`}
+                                media={String("https://tripfer.com"+exampleImage)}
                                 windowWidth={1000}
                                 windowHeight={730}
                                 className="networkLink__share-button">
@@ -144,7 +144,7 @@ class RenderShareLinkClass extends React.Component {
                         <div className="networkLink">
                             <VKShareButton
                                 url={shareUrl}
-                                image={`${String(window.location)}/${exampleImage}`}
+                                image={String("https://tripfer.com"+exampleImage)}
                                 windowWidth={660}
                                 windowHeight={460}
                                 className="networkLink__share-button">
@@ -159,7 +159,7 @@ class RenderShareLinkClass extends React.Component {
                         <div className="networkLink">
                             <OKShareButton
                                 url={shareUrl}
-                                image={`${String(window.location)}/${exampleImage}`}
+                                image={String("https://tripfer.com"+exampleImage)}
                                 className="networkLink__share-button">
                                 <OKIcon
                                     size={32}
@@ -265,7 +265,7 @@ class RenderShareLinkClass extends React.Component {
                             <WeiboShareButton
                                 url={shareUrl}
                                 title={title}
-                                image={`${String(window.location)}/${exampleImage}`}
+                                image={String("https://tripfer.com"+exampleImage)}
                                 className="networkLink__share-button">
                                 <img className="networkLink__custom-icon" width="31px" height="31px" src="http://icons.iconarchive.com/icons/martz90/circle-addon2/512/weibo-icon.png" alt="Weibo share button" />
                             </WeiboShareButton>

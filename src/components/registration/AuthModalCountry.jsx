@@ -103,7 +103,7 @@ class AuthModalCountryClass extends React.Component {
                                 <div className="d-flex flex-column col-12">
                                     <div className="d-flex  justify-content-center col-12 p-4">
                                         <img src={mapWorldIcon} height="150px" alt="mapWorldIcon" />
-                                        <button className="modalCountryButtton"><img src={crossIconModal} width="20px" height="20px" alt="crossIconModal" /></button>
+                                        {/* <button className="modalCountryButtton"><img src={crossIconModal} width="20px" height="20px" alt="crossIconModal" /></button> */}
                                     </div>
                                     {
                                         //TODO тут стояла лычка "перевод", но я не понял, что переводить

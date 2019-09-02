@@ -406,7 +406,7 @@ class PlaceDescriptionClass extends React.Component {
                                                 <div className="networkLink">
                                                     <VKShareButton
                                                         url={shareUrl}
-                                                        image={`${String(window.location)}/${exampleImage}`}
+                                                        image={String("https://tripfer.com"+exampleImage)}
                                                         windowWidth={660}
                                                         windowHeight={460}
                                                         className="networkLink__share-button">
@@ -418,7 +418,7 @@ class PlaceDescriptionClass extends React.Component {
                                                 <div className="networkLink">
                                                     <PinterestShareButton
                                                         url={String(shareUrl)}
-                                                        media={String(window.location+exampleImage)}
+                                                        media={String("https://tripfer.com"+exampleImage)}
                                                         windowWidth={1000}
                                                         windowHeight={730}
                                                         className="networkLink__share-button">
