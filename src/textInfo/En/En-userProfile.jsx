@@ -124,7 +124,7 @@ let userProfile = {
             telflag: "ru"
         },
         sittingsSaveBt: "SAVE CHANGES",
-        infoText: 'Пароль будет проверяться и сохраняться только в случае заполнения всех трёх полей.(ENG)',
+        infoText: 'Password will be checked and saved only if all three fields are filled.',
         unsubscribeButton: {
             mailing: {
                 unsubscribe: "Unsubscribe from the newsletter",

@@ -243,16 +243,6 @@ class HeaderClass extends React.Component {
     let userName = this.props.globalReduser.readCookie('userName');
     let jwt = this.props.globalReduser.readCookie('jwt');
 
-    /*
-    if (jwt && jwt !== "-" && (this.props.storeState.avatarUrl !== avatarUrl || this.props.storeState.userName !== userName)) {
-      if(avatarUrl===null || userName===null){
-        cookies.remove('jwt',{path: '/'});
-      }
-      else{
-        this.props.dispatch(setUser(userName, avatarUrl));
-      }    
-    }
-    */
     let activeLanguageNumber = 0;
     let activeCurrencyNumber = 0;
     if (this.props.storeState.languages.length > 0) {
@@ -495,7 +485,7 @@ class HeaderClass extends React.Component {
         cookies.remove('userType', { path: '/' });
 
 
-        that.props.dispatch(setUser("", ""));
+        that.props.dispatch(setUser("", "",{}));
         that.props.dispatch(setProfileData({}));
         let newJwt = that.props.globalReduser.readCookie('jwt');
         let tempJWT = cookies.get('jwt', { path: '/' });

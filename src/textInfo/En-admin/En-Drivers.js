@@ -118,8 +118,8 @@ const driverProfileRegistration = {
         cardInformation: {
             span: "locations"
         },
-        noPhotoText: 'Вставьте фото вашего автомобиля.(ENG)',
-        badDataText: 'Заполните корректно выделенные поля!(ENG)'
+        noPhotoText: 'Insert the photo of your car.',
+        badDataText: 'Fill in the selected fields correctly.'
     },
     DriverProfileTripSettingsTrip: {
         titlePage: "Edit Trips",
@@ -142,7 +142,7 @@ const driverProfileRegistration = {
             description: "Enter the maximum mileage, how far are you willing to make trips"
         },
         tripSaveBt: "SAVE CHANGES",
-        badRequestText: 'Вы допустили ошибки. Поправьте их перед сохранением!(ENG)'
+        badRequestText: 'You made the mistakes. Correct them before saving!'
     },
     DriverProfileSettings: {
         settingsBodyTitle: "Profile Settings",
@@ -169,7 +169,7 @@ const driverProfileRegistration = {
             telflag: "ru"
         },
         sittingsSaveBt: "SAVE CHANGES",
-        infoText: 'Пароль будет проверяться и сохраняться только в случае заполнения всех трёх полей.(ENG)',
+        infoText: 'The password will be checked and saved only if all three fields are filled.',
         unsubscribeButton: {
             mailing: {
                 unsubscribe: "Unsubscribe from the newsletter",
@@ -288,7 +288,7 @@ const driverProfileRegistration = {
         billingModalB: {
             header: 'Amount to be paid',
             summ: 'Amount USD',
-            description: '(ENG) Payment is by credit card. After entering the amount and confirmation, you will be redirected to a specialized service. ',
+            description: 'Payment is by credit card. After entering the amount and confirmation, you will be redirected to a specialized service. ',
             cancel: 'Cancel',
             submit: 'Pay'
         },

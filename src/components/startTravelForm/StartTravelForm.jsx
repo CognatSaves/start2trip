@@ -184,15 +184,15 @@ const Content = (that, flagAllOk, carCapacityArray, activeCurrency, textInfo, ch
                                 that.state.promoCode ?
                                     <h3 className="drivers_routePrice" style={{ textDecoration: 'line-through', color: 'rgb(144,144,144)', marginRight: '5px', fontSize: '16px', lineHeight: '28px' }}>
                                         {
-                                            isCurrencyLoaded ? ((activeCurrency.isLeft ? activeCurrency.symbol : '')
+                                            isCurrencyLoaded ? ((activeCurrency.isLeft ? activeCurrency.symbol+' ' : '')
                                                 + Math.ceil(that.props.elementPrice * activeCurrency.costToDefault)
-                                                + (!activeCurrency.isLeft ? activeCurrency.symbol : '')) : ''
+                                                + (!activeCurrency.isLeft ? ' '+activeCurrency.symbol : '')) : ''
                                         }
                                     </h3> : <React.Fragment />
                             }
-                            <h3 className="drivers_routePrice">{isCurrencyLoaded ? ((activeCurrency.isLeft ? activeCurrency.symbol : '')
-                                + Math.ceil(that.props.elementPrice * (100 - that.state.discount) / 100 * activeCurrency.costToDefault)
-                                + (!activeCurrency.isLeft ? activeCurrency.symbol : '')) : ''}</h3>
+                            <h3 className="drivers_routePrice">{isCurrencyLoaded ? ((activeCurrency.isLeft ? activeCurrency.symbol + ' ' : '')
+                                +Math.ceil(that.props.elementPrice * (100 - that.state.discount) / 100 * activeCurrency.costToDefault)
+                                + (!activeCurrency.isLeft ? ' '+activeCurrency.symbol : '')) : ''}</h3>
                         </div>
                         {
                             isCurrencyLoaded ? /**пока валюты не загружены - не будет отображаться кнопка "заказать тур" */
@@ -253,7 +253,7 @@ export default class StartTravelForm extends React.Component {
 
     }
     componentDidUpdate(prevProps, prevState) {
-
+        debugger;
         if (prevProps.storeState.userData.firstName !== this.props.storeState.userData.firstName) {
 
             this.setState({

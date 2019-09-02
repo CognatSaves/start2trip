@@ -54,24 +54,24 @@ const pageTextInfo = {
         registrationAnswer: [
             "Success",
             "Email is already registered",
-            "Аккаунт имеет неопознанный статус(ENG)", // imposible to find the root role
+            "Unknown status of account", // imposible to find the root role
             "Sending request",
-            "Подтвердите ваш аккаунт(ENG)", // refused confirmation
-            "Регистрация временно запрещена(ENG)",
-            "Аккаунта с такой почтой не существует(ENG)",
-            "По этой почте аккаунт уже создан(ENG)",
-            "Токен подтверждения некорректен(ENG)",
-            "Данный оператор сейчас не доступен(ENG)",//social network
-            "Пароль некорректен(ENG)",
-            "Предоставлены некорректные параметры(ENG)", //?
-            "Предоставлен некорректный код(ENG)", //?
-            "Почта или пароль некорректны(ENG)",
-            "Локальный пароль не создан. Авторизуйтесь через соцсеть(ENG)", // password is always created
-            "Вы не администратор(ENG)", //?
-            "Аккаунт заблокирован(ENG)",
-            "Подтвердите ваш аккаунт(ENG)", // refused confirmation
-            "Вставьте пароль(ENG)", // cannot be sent without password
-            "Вставьте почту(ENG)", // cannot be sent without mail
+            "Confirm your account", // refused confirmation
+            "Registration is prohibited temporarily",
+            "There`s no an account with this email",
+            "An account has already been created by this mail",
+            "Confirmation token is incorrect",
+            "Selected social network or operator is not available temporarily",//social network
+            "Wrong password",
+            "Incorrect parameters provided", //?
+            "Incorrect code provided", //?
+            "Email or password is incorrect",
+            "Local password not created. Log in via social network.", // password is always created
+            "You`re not an administrator", //?
+            "Account blocked",
+            "Confirm your account", // refused confirmation
+            "Enter password", // cannot be sent without password
+            "Enter email", // cannot be sent without mail
         ],
         registrationProcess: [
             "Registration is in progress"

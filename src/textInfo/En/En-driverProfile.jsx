@@ -9,8 +9,8 @@
             nonFilledText: 'Fill in the rating and review',
             sendText: "Send",
             nonRegisteredElement: ['To leave a review ', 'login', ' or register'],
-            alreadyCommented: 'Эта поездка уже прокомментирована и отправить комментарий по ней ещё раз нельзя(ENG)',
-            toMain: 'На главную(ENG)'
+            alreadyCommented: 'This trip has already been commented on and you can`t post a comment on it again.',
+            toMain: 'Home'
         },
         driverAdaptedRoute: {
             routeDateText: "departure date",

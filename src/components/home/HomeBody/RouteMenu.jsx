@@ -337,6 +337,7 @@ class RouteMenuClass extends React.Component {
       };
       return request;
     }
+    debugger;
     let cities = this.props.storeState.cities;
     let filteredCities = this.props.globalhistory.firstLastCityCompare(cities);//проверка 1-го и последнего городов
 
