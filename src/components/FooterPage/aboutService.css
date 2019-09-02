@@ -6,8 +6,7 @@
 }
 
 .aboutService_Title {
-    background: url(../media/phone.png)no-repeat;
-    background-position: right 20% bottom;
+    background-position: right 20% bottom !important;
 }
 
 .aboutService_Title h2 {

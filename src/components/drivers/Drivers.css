@@ -1,7 +1,6 @@
 .drivers_top_background {
     top: 0;
     /*width: 100%;*/
-    /* background: url(pictures/tbs_4.jpg) no-repeat 100%; */
     background-size: cover !important;
     background-position: center center !important;
     /* object-fit: cover; */

@@ -22,7 +22,8 @@ let placeDescription = {
      },
      placeDescription: {
          variantsArray: ["Description", "Photos", "How to get there", "You may be interested in", "Reviews"]
-     }
+     },
+    share:"Share",
 }
 
 export default placeDescription

@@ -6,6 +6,8 @@ import illustrationCar from '../media/illustration_user_2.svg'
 import illustrationPhone from '../media/illustration_user_4.svg'
 import Header from '../header/Header';
 import { Helmet } from 'react-helmet';
+import phone_en from "../media/phone-eng.png"
+import phone_ru from "../media/phone_ru.png"
 
 class aboutServiceClass extends React.Component {
     constructor(props) {
@@ -39,6 +41,12 @@ class aboutServiceClass extends React.Component {
                 text: text.thirdEl.text
             },
         ]
+        let imgBackground =  null;
+        if(text.h2 === "О сервисе"){
+            imgBackground = phone_ru
+        }else{
+            imgBackground = phone_en
+        }
 
         return (
             <React.Fragment>
@@ -54,7 +62,7 @@ class aboutServiceClass extends React.Component {
                 </Helmet>
                 <div className="wrapper" style={{minHeight:"79vh"}}>
                     <div className="aboutService d-flex" >
-                        <div className="aboutService_Title col-12 p-0">
+                        <div className="aboutService_Title col-12 p-0" style={{background:"url("+imgBackground+")no-repeat"}}>
                             <h2>{text.h2}</h2>
                             <p className="col-md-9 col-12">{text.description}</p>
                             <div className="aboutService_content d-flex flex-column col-md-8 col-12 p-0">

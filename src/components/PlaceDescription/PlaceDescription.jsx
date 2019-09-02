@@ -19,6 +19,23 @@ import TourPanel from '../TourDescription/TourPanel.jsx';
 import SimularPlaceBlock from './SimularPlaceBlock';
 import PlacePhotoShow from './PlacePhotoShow.jsx';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+import {
+    FacebookShareButton,
+    TwitterShareButton,
+    PinterestShareButton,
+    VKShareButton,
+    TelegramShareButton,
+    WhatsappShareButton,
+    ViberShareButton,
+
+    FacebookIcon,
+    TwitterIcon,
+    PinterestIcon,
+    VKIcon,
+    TelegramIcon,
+    WhatsappIcon,
+    ViberIcon,
+} from 'react-share';
 
 import Cookies from 'universal-cookie';
 
@@ -140,10 +157,13 @@ class PlaceDescriptionClass extends React.Component {
         //let comments = [...this.props.commentState.comments].reverse();
         //let place = this.props.placesState.places[/*countryId*/0].places[/*placeId*/0];
         let slug = this.props.match.params.slug;
-       
+        
+        
+
         if (this.props.storeState.languages.length > 0 && this.state.newPlace.local && this.state.selectedLanguage !== this.props.storeState.activeLanguageNumber) {
             //если языки на месте и данные на месте и выбранный язык не совпадает с языком, что выбрал пользователь, то нужно отправить запрос с другим слагом
             
+
             let slugArray = this.state.newPlace.local.slugArray;
             let number = 0;
             for (; number < slugArray.length; number++) {
@@ -151,21 +171,22 @@ class PlaceDescriptionClass extends React.Component {
                     this.setState({
                         selectedLanguage: this.props.storeState.activeLanguageNumber
                     });
-                    this.props.globalReduser.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/places/' + slugArray[number].slug+'/');
+                    this.props.globalReduser.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/places/' + slugArray[number].slug + '/');
                     break;
                 }
             }
-            if(number===slugArray.length){
+            if (number === slugArray.length) {
                 //происходит, если прошли по всему массиву slug и не нашли нужный, т.е., скорее всего, он был написан вручную
                 //в таком случае выходим на уровень выше, сделать ничего нельзя
                 this.props.globalReduser.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/places/');
             }
-       
+           
+
         }
 
         if (this.state.couldSendRequest && (!this.state.newPlace.local || this.state.slug !== slug) && this.props.storeState.languages.length > 0) {
             //если можем сделать запрос (проверка на ожидание ответа) и (нет данных локально или slug не совпадает с сохранённым) и языки на месте, то отправляем запрос
-            
+
             this.setState({
                 couldSendRequest: false,
                 isRefreshExist: true,
@@ -217,11 +238,17 @@ class PlaceDescriptionClass extends React.Component {
             requests.serverAddressImg + this.state.newPlace.place.blockListImage.url : '') + ') no-repeat';
         let helmet = this.props.storeState.languageTextMain.helmets.placeDescription;
         let info = null;
-        if(document.querySelector("#placeDescriptionId1")){
+        if (document.querySelector("#placeDescriptionId1")) {
             info = document.querySelector("#placeDescriptionId1").textContent;
         }
-       
-            
+        
+        let shareUrl = document.URL;
+        let title = null;
+        let exampleImage = null;
+        if(this.props.storeState.languages.length > 0 && this.state.newPlace.local !== undefined){
+            title = this.state.newPlace.local.name ;
+            exampleImage = this.state.newPlace.place.blockListImage.url
+        }
         return (
             <React.Fragment>
                 {
@@ -235,43 +262,43 @@ class PlaceDescriptionClass extends React.Component {
                             <meta property="og:title" content={this.state.newPlace.local.name + helmet.object.title} />
                             <meta property="og:description" content={this.state.newPlace.local.name + helmet.object.description} />
                             <script type="application/ld+json">
-                    {`
+                                {`
                       {
                         "@context": "https://schema.org",
                         "@type": "Place",
-                        "url": `+JSON.stringify(document.URL)+`,
+                        "url": `+ JSON.stringify(document.URL) + `,
                         "aggregateRating": {
                           "@type": "AggregateRating",
-                          "ratingValue": `+JSON.stringify(this.state.newPlace.place.rating)+`,
-                          "reviewCount": `+JSON.stringify(this.state.newPlace.place.commentNumber)+`
+                          "ratingValue": `+ JSON.stringify(this.state.newPlace.place.rating) + `,
+                          "reviewCount": `+ JSON.stringify(this.state.newPlace.place.commentNumber) + `
                         },
-                        "name":`+JSON.stringify(this.state.newPlace.local.name)+`,
-                        "description":`+JSON.stringify(info)+`,
+                        "name":`+ JSON.stringify(this.state.newPlace.local.name) + `,
+                        "description":`+ JSON.stringify(info) + `,
                         "address":[
                         {
                          "@type": "PostalAddress",
-                         "addressCountry":`+JSON.stringify(this.props.storeState.country)+`,
-                         "addressRegion":["tbilisi","kakheti"]
+                         "addressCountry":`+ JSON.stringify(this.props.storeState.country) + `
                          } 
                         ],
                         "geo": {
                           "@type": "GeoCoordinates",
-                          "latitude": `+JSON.stringify(this.state.newPlace.local.endPlace.lat)+`,
-                          "longitude": `+JSON.stringify(this.state.newPlace.local.endPlace.lat)+`
+                          "latitude": `+ JSON.stringify(this.state.newPlace.local.endPlace.lat) + `,
+                          "longitude": `+ JSON.stringify(this.state.newPlace.local.endPlace.lat) + `
                         },
-                        "hasMap":"https://www.google.com/maps/place/@`+this.state.newPlace.local.endPlace.lat+`,`+this.state.newPlace.local.endPlace.lat+`,15z",
+                        "hasMap":"https://www.google.com/maps/place/@`+ this.state.newPlace.local.endPlace.lat + `,` + this.state.newPlace.local.endPlace.lat + `,15z",
                          "publicAccess": true,
                         "photo":[
                         {
                         "@type": "ImageObject",
-                        "thumbnail":`+JSON.stringify("https://tripfer.com"+this.state.newPlace.place.blockListImage.url)+`
+                        "thumbnail":`+ JSON.stringify("https://tripfer.com" + this.state.newPlace.place.blockListImage.url) + `
                         }
                         ]
                       }
                   `}
-              </script>
+                                {/* TODO  "addressRegion":["tbilisi","kakheti"] статика*/}
+                            </script>
                         </Helmet> :
-                        <React.Fragment/>
+                        <React.Fragment />
                 }
 
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
@@ -307,7 +334,7 @@ class PlaceDescriptionClass extends React.Component {
                                     </div>
                                 </div>
                                 :
-                                 <React.Fragment />
+                                <React.Fragment />
                         }
 
                     </div>
@@ -326,9 +353,84 @@ class PlaceDescriptionClass extends React.Component {
                                                 <div className="placeDescription_fragmentName" style={{ marginBottom: "15px" }} >{textInfo.placeDescription.variantsArray[0]}</div>
                                                 <PlaceProgramm tagsArray={this.state.newPlace.tags} place={/*this.state.place*/{ ...this.state.newPlace.local, tags: this.state.newPlace.place.tags, rating: this.state.newPlace.place.rating, comments: this.state.newPlace.place.commentNumber }} />
                                             </div>
-
+                                            {isMobileOnly?<React.Fragment>
+                                                <div className="placeDescription_fragmentName" style={{ marginBottom: "15px" }} >{textInfo.share}</div>
+                                            <div className="d-flex ">
+                                                <div className="networkLink">
+                                                    <TelegramShareButton
+                                                        url={shareUrl}
+                                                        title={title}
+                                                        className="networkLink__share-button">
+                                                        <TelegramIcon size={32} round />
+                                                    </TelegramShareButton>
+                                                </div>
+                                                <div className="networkLink">
+                                                    <ViberShareButton
+                                                        url={shareUrl}
+                                                        title={title}
+                                                        className="networkLink__share-button">
+                                                        <ViberIcon
+                                                            size={32}
+                                                            round />
+                                                    </ViberShareButton>
+                                                </div>
+                                                <div className="networkLink">
+                                                    <WhatsappShareButton
+                                                        url={shareUrl}
+                                                        title={title}
+                                                        separator=":: "
+                                                        className="networkLink__share-button">
+                                                        <WhatsappIcon size={32} round />
+                                                    </WhatsappShareButton>
+                                                </div>
+                                                <div className="networkLink">
+                                                    <FacebookShareButton
+                                                        url={shareUrl}
+                                                        quote={title}
+                                                        className="networkLink__share-button">
+                                                        <FacebookIcon
+                                                            size={32}
+                                                            round />
+                                                    </FacebookShareButton>
+                                                </div>
+                                                <div className="networkLink">
+                                                    <TwitterShareButton
+                                                        url={shareUrl}
+                                                        title={title}
+                                                        className="networkLink__share-button">
+                                                        <TwitterIcon
+                                                            size={32}
+                                                            round />
+                                                    </TwitterShareButton>
+                                                </div>
+                                                <div className="networkLink">
+                                                    <VKShareButton
+                                                        url={shareUrl}
+                                                        image={`${String(window.location)}/${exampleImage}`}
+                                                        windowWidth={660}
+                                                        windowHeight={460}
+                                                        className="networkLink__share-button">
+                                                        <VKIcon
+                                                            size={32}
+                                                            round />
+                                                    </VKShareButton>
+                                                </div>
+                                                <div className="networkLink">
+                                                    <PinterestShareButton
+                                                        url={String(shareUrl)}
+                                                        media={String(window.location+exampleImage)}
+                                                        windowWidth={1000}
+                                                        windowHeight={730}
+                                                        className="networkLink__share-button">
+                                                        <PinterestIcon size={32} round />
+                                                    </PinterestShareButton>
+                                                </div>
+                                            </div>
+                                            </React.Fragment>:<React.Fragment />}
+                                            
                                             <div className="placeDescription_block d-flex flex-column" id={topBlockId + "2"}>
                                                 <div className="placeDescription_fragmentName" style={{ marginBottom: "15px" }} >{textInfo.placeDescription.variantsArray[1]}</div>
+                                                
                                                 <PlacePhotos photoArray={/*this.state.photoArray*/this.state.newPlace.place.images}
                                                     showMask={(clickedImageIndex, images) => { this.setState({ isMaskVisible: true, clickedImageIndex: clickedImageIndex, images: images }) }}/*width={this.state.width} height={this.state.height} number={this.state.n}*/ />
                                             </div>
@@ -365,7 +467,7 @@ class PlaceDescriptionClass extends React.Component {
 
                                 </div>
                             </div>
-                            : 
+                            :
                             <React.Fragment />
                     }
                 </div>

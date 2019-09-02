@@ -23,6 +23,7 @@
         "react-router-dom": "^5.0.0",
         "react-router-sitemap": "^1.2.0",
         "react-scripts": "3.0.0",
+        "react-share": "^3.0.1",
         "react-showdown": "^1.6.0",
         "react-telephone-input": "^4.73.4",
         "reactstrap": "^8.0.0",

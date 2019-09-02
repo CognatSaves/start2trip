@@ -21,7 +21,8 @@ let placeDescription = {
     },
     placeDescription:{
         variantsArray:["Описание","Фотографии","Как добраться","Вас может заинтересовать","Отзывы"]
-    }
+    },
+    share:"Поделиться",
 }
 
 export default placeDescription

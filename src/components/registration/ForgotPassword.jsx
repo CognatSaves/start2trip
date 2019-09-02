@@ -92,17 +92,21 @@ class ForgotPasswordClass extends React.Component {
         let helmet = this.props.storeState.languageTextMain.helmets.forgotPassword;
         
         let windowImg = null
-        if(this.props.storeState.languages.length >0 ){
-          
-          let coockisIso = cookies.get('country', { path: '/' })
-          let j ;
-          for(let i =0; i<this.props.storeState.countries.length;i++){
-           if( this.props.storeState.countries[i].ISO === coockisIso){
-            j=i
-            break;
-           }
-          }
-           windowImg =requests.serverAddressImg+this.props.storeState.countries[j].windowImg.url
+        if (this.props.storeState.languages.length > 0) {
+            
+            let coockisIso = cookies.get('country', { path: '/' })
+            let j;
+            for (let i = 0; i < this.props.storeState.countries.length; i++) {
+                if (this.props.storeState.countries[i].ISO === coockisIso) {
+                    j = i
+                    break;
+                }
+            }
+            
+            if(coockisIso === undefined ){
+                j = 1
+            }
+            windowImg = requests.serverAddressImg + this.props.storeState.countries[j].windowImg.url
         }
         return (
             <React.Fragment>
@@ -120,11 +124,11 @@ class ForgotPasswordClass extends React.Component {
                         <meta property="og:description" content={helmet.basic.description} />
                     </Helmet>
                     {this.state.isGood ?
-                        <div className="forgotPasswordSuccess forgotPasswordContent d-flex flex-column align-items-center col-md-7 col-11">
+                        <div className="forgotPasswordSuccess forgotPasswordContent d-flex flex-column align-items-center col-md-7 col-11" style={{ background: "url(" + windowImg + ")no-repeat", minHeight: "95vh" }}>
                             <span>{textInfo.success}</span>
                         </div>
                         :
-                        <div className="forgotPasswordContent d-flex flex-column align-items-center col-md-8 col-11">
+                        <div className="forgotPasswordContent d-flex flex-column align-items-center col-md-8 col-11" style={{ background: "url(" + windowImg + ")no-repeat", minHeight: "95vh" }}>
                             <div className="d-flex justify-content-center align-items-center">
                                 <span>{textInfo.passwordRepair}</span>
                             </div>

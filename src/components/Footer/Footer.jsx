@@ -69,7 +69,7 @@ class FooterClass extends React.Component {
           <div className="footerButtonUp" onClick={() => { window.scroll({ top: 0, left: 0, behavior: 'smooth' }) }}><img src={upArrowIcon} width="20px" height="20px" alt="upArrowIcon" /></div>
           <div className="footer_block d-flex  justify-content-between align-items-center col-12 p-0">
             <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes"} className="col-md-1 col-2 p-0 "><img src={logoTripfer} width="110px" height="18px" alt="logoWhiteIcon" /></Link>
-            <div className="footerButtons d-flex justify-content-between col-md-8 col-sm-12 col-12">
+            <div className="footerButtons d-flex justify-content-between col-lg-8 col-md-10 col-sm-12 col-12">
               <Link to={"/"+ cookies.get('userLangISO', { path: "/" }) + "/about-service/"} className="footerButtons_button">{textInfo.footerButtons[0]}</Link>
               <Link to={"/"+ cookies.get('userLangISO', { path: "/" }) + "/affiliate-program/"} className="footerButtons_button">{textInfo.footerButtons[1]}</Link>
               <Link to={"/"+ cookies.get('userLangISO', { path: "/" }) + "/terms/"} className="footerButtons_button">{textInfo.footerButtons[2]}</Link>

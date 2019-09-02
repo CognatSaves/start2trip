@@ -106,7 +106,7 @@ class RouteTravelBlockClass extends React.Component {
                     <div className="d-flex col-md-6 col-12 pl-0 routeTravelBlock_pointPart ">
 
                         <div className="d-flex flex-wrap routeTravelBlock_pointBlock" >
-                            <div style={{ paddingBottom: '10px' }}>
+                            <div style={{ paddingBottom: '10px' }} className="col-12">
                                 <div className="route_time_text col-12">
                                     <div class="marsh">{textInfo.route + ':'}</div>
                                     <div class="param">{textInfo.time + ':'}<span>{this.props.driversState.travelTime}</span></div>

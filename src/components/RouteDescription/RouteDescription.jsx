@@ -16,6 +16,23 @@ import RouteTravelBlock from './RouteTravelBlock';
 import SimularRouteBlock from './SimularRouteBlock';
 import CommentBlock from '../TourDescription/CommentBlock.jsx';
 import TourPanel from '../TourDescription/TourPanel.jsx';
+import {
+    FacebookShareButton,
+    TwitterShareButton,
+    PinterestShareButton,
+    VKShareButton,
+    TelegramShareButton,
+    WhatsappShareButton,
+    ViberShareButton,
+
+    FacebookIcon,
+    TwitterIcon,
+    PinterestIcon,
+    VKIcon,
+    TelegramIcon,
+    WhatsappIcon,
+    ViberIcon,
+} from 'react-share';
 
 import Cookies from 'universal-cookie';
 
@@ -138,6 +155,13 @@ class RouteDescriptionClass extends React.Component {
         if(document.querySelector("#routeDescriptionId1")){
             info = document.querySelector("#routeDescriptionId1").textContent;
         }
+        let shareUrl = document.URL;
+        let title = null;
+        let exampleImage = null;
+        if(this.props.storeState.languages.length > 0 && this.state.newRoute.local !== undefined){
+            title = this.state.newRoute.local.name ;
+            exampleImage = this.state.newRoute.route.blockListImage.url
+        }
        
         return (
             <React.Fragment>
@@ -167,8 +191,7 @@ class RouteDescriptionClass extends React.Component {
                         "address":[
                         {
                          "@type": "PostalAddress",
-                         "addressCountry":`+JSON.stringify(this.props.storeState.country)+`,
-                         "addressRegion":["tbilisi","kakheti"]
+                         "addressCountry":`+JSON.stringify(this.props.storeState.country)+`
                          } 
                         ],
                          "publicAccess": true,
@@ -181,7 +204,7 @@ class RouteDescriptionClass extends React.Component {
                       }
                   `}
               </script>
-              {/* TODO  */}
+              {/* TODO  "addressRegion":["tbilisi","kakheti"] статика*/}
                         </Helmet> :
                         <React.Fragment/>
                 }
@@ -243,6 +266,80 @@ class RouteDescriptionClass extends React.Component {
 
                                                 <PlaceProgramm id={topBlockId + "1"} tagsArray={[]} place={{ ...this.state.newRoute.local, tags: []/*this.state.newPlace.place.tags*/, rating: this.state.newRoute.route.rating, comments: this.state.newRoute.route.commentNumber }} />
                                             </div>
+                                            {isMobileOnly?<React.Fragment>
+                                                <div className="placeDescription_fragmentName" style={{ marginBottom: "15px" }} >{textInfo.share}</div>
+                                            <div className="d-flex ">
+                                                <div className="networkLink">
+                                                    <TelegramShareButton
+                                                        url={shareUrl}
+                                                        title={title}
+                                                        className="networkLink__share-button">
+                                                        <TelegramIcon size={32} round />
+                                                    </TelegramShareButton>
+                                                </div>
+                                                <div className="networkLink">
+                                                    <ViberShareButton
+                                                        url={shareUrl}
+                                                        title={title}
+                                                        className="networkLink__share-button">
+                                                        <ViberIcon
+                                                            size={32}
+                                                            round />
+                                                    </ViberShareButton>
+                                                </div>
+                                                <div className="networkLink">
+                                                    <WhatsappShareButton
+                                                        url={shareUrl}
+                                                        title={title}
+                                                        separator=":: "
+                                                        className="networkLink__share-button">
+                                                        <WhatsappIcon size={32} round />
+                                                    </WhatsappShareButton>
+                                                </div>
+                                                <div className="networkLink">
+                                                    <FacebookShareButton
+                                                        url={shareUrl}
+                                                        quote={title}
+                                                        className="networkLink__share-button">
+                                                        <FacebookIcon
+                                                            size={32}
+                                                            round />
+                                                    </FacebookShareButton>
+                                                </div>
+                                                <div className="networkLink">
+                                                    <TwitterShareButton
+                                                        url={shareUrl}
+                                                        title={title}
+                                                        className="networkLink__share-button">
+                                                        <TwitterIcon
+                                                            size={32}
+                                                            round />
+                                                    </TwitterShareButton>
+                                                </div>
+                                                <div className="networkLink">
+                                                    <VKShareButton
+                                                        url={shareUrl}
+                                                        image={`${String(window.location)}/${exampleImage}`}
+                                                        windowWidth={660}
+                                                        windowHeight={460}
+                                                        className="networkLink__share-button">
+                                                        <VKIcon
+                                                            size={32}
+                                                            round />
+                                                    </VKShareButton>
+                                                </div>
+                                                <div className="networkLink">
+                                                    <PinterestShareButton
+                                                        url={String(shareUrl)}
+                                                        media={String(window.location+exampleImage)}
+                                                        windowWidth={1000}
+                                                        windowHeight={730}
+                                                        className="networkLink__share-button">
+                                                        <PinterestIcon size={32} round />
+                                                    </PinterestShareButton>
+                                                </div>
+                                            </div>
+                                            </React.Fragment>:<React.Fragment />}
 
                                             <div className="placeDescription_block d-flex flex-column" id={topBlockId + "2"}>
                                                 <div className="placeDescription_fragmentName" style={{ marginBottom: "15px" }} >{textInfo.placeDescription.variantsArray[1]}</div>
