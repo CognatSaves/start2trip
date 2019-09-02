@@ -8,7 +8,9 @@
             infoText: 'Your review will become visible after moderation',
             nonFilledText: 'Fill in the rating and review',
             sendText: "Send",
-            nonRegisteredElement: ['To leave a review ', 'login', ' or register']
+            nonRegisteredElement: ['To leave a review ', 'login', ' or register'],
+            alreadyCommented: 'Эта поездка уже прокомментирована и отправить комментарий по ней ещё раз нельзя(ENG)',
+            toMain: 'На главную(ENG)'
         },
         driverAdaptedRoute: {
             routeDateText: "departure date",

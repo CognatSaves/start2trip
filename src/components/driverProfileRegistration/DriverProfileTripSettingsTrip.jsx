@@ -139,9 +139,10 @@ class DriverProfileTripSettingsTripClass extends React.Component {
     applyChanges = (props) => {
 
         let jwt = this.props.globalReduser.readCookie('jwt');
-        let isValid = this.validate();
+        let isValid = this.validate() || props;
 
         if (!isValid) {//какие-то косяки - открываем текст под кнопкой
+            //если запрос на изменения статуса водителя, то пох, там только 1 поле и мы его не можем не изменить
             this.setState({
                 badRequestTextVisibility: true
             })
@@ -151,19 +152,21 @@ class DriverProfileTripSettingsTripClass extends React.Component {
             if (jwt && jwt !== "-") {
                 let that = this;
                 this.startRefresher();
-                let value = {
-                    travelsetting: {
-
-                        settings: {
-                            points: this.state.cityRadius,
-                            distance: this.state.distance
-                        },
-                        calendary: this.state.dateTour
-                    }
-                }
-
+                let value;
                 if (props) {
-                    value.onWork = props.onWork;
+                    value= {onWork: props.onWork, changeOnWork: true};
+                }
+                else{
+                    value ={
+                        travelsetting: {
+    
+                            settings: {
+                                points: this.state.cityRadius,
+                                distance: this.state.distance
+                            },
+                            calendary: this.state.dateTour
+                        }
+                    }
                 }
                 console.log('body before json');
                 console.log(value);
@@ -450,10 +453,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                             <p className="col-2 p-0  d-md-block d-sm-none d-none"></p>
                             <div className="d-flex flex-column">
                                 <button htmlFor="tripForm" type="submit">{textPage.tripSaveBt}</button>
-                                {
-                                    //TODO переводы
-                                }
-                                <text style={{ color: 'red', display: this.state.badRequestTextVisibility ? 'block' : 'none' }}>Вы допустили ошибки. Поправьте их перед сохранением</text>
+                                <text style={{ color: 'red', display: this.state.badRequestTextVisibility ? 'block' : 'none' }}>{textPage.badRequestText}</text>
                             </div>
                         </div>
 

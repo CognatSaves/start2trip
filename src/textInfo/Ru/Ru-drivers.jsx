@@ -34,7 +34,9 @@ const drivers = {
             childrenProps: 'от 2 до 12 лет',
             cancel: 'Отмена',
             done: 'Готово'
-        }   
+        },
+        from: 'от',
+        price: 'Цена'   
     },
 
     driverConfirmation:{

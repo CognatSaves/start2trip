@@ -117,7 +117,9 @@ const driverProfileRegistration = {
         },
         cardInformation: {
             span: "мест(а)"
-        }
+        },
+        noPhotoText: 'Существует крайняя нужда в фото вашего автомобиля',
+        badDataText: 'Заполните корректно выделенные поля!'
     },
     DriverProfileTripSettingsTrip: {
         titlePage: "Редактировать поездки",
@@ -139,7 +141,8 @@ const driverProfileRegistration = {
             floatingLabelText: "Максимальный дневной пробег, км:",
             description: "Укажите максимальный километраж, как далеко Вы готовы везти пассажира по маршруту"
         },
-        tripSaveBt: "СОХРАНИТЬ ИЗМЕНЕНИЯ"
+        tripSaveBt: "СОХРАНИТЬ ИЗМЕНЕНИЯ",
+        badRequestText: 'Вы допустили ошибки. Поправьте их перед сохранением!'
     },
     DriverProfileSettings: {
         settingsBodyTitle: "Настройки профиля",
@@ -329,7 +332,8 @@ const driverProfileRegistration = {
         }
     },
     DriverProfileRegistration:{
-        loading: 'Загрузка'
+        loading: 'Загрузка',
+
     }
 }
 

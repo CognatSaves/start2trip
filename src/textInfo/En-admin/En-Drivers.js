@@ -117,7 +117,9 @@ const driverProfileRegistration = {
         },
         cardInformation: {
             span: "locations"
-        }
+        },
+        noPhotoText: 'Существует крайняя нужда в фото вашего автомобиля(ENG)',
+        badDataText: 'Заполните корректно выделенные поля!(ENG)'
     },
     DriverProfileTripSettingsTrip: {
         titlePage: "Edit Trips",
@@ -139,7 +141,8 @@ const driverProfileRegistration = {
             floatingLabelText: "Maximum daily mileage, km:",
             description: "Enter the maximum mileage, how far are you willing to make trips"
         },
-        tripSaveBt: "SAVE CHANGES"
+        tripSaveBt: "SAVE CHANGES",
+        badRequestText: 'Вы допустили ошибки. Поправьте их перед сохранением!(ENG)'
     },
     DriverProfileSettings: {
         settingsBodyTitle: "Profile Settings",
@@ -328,7 +331,8 @@ const driverProfileRegistration = {
         }
     },
     DriverProfileRegistration: {
-        loading: 'Loading'
+        loading: 'Loading',
+        
     }
 }
 

@@ -36,7 +36,8 @@ class DriverProfileCarClass extends React.Component {
             car: {},
             isRefreshExist: false,
             isRefreshing: true,
-            isGoodAnswer: true
+            isGoodAnswer: true,
+            badDataTextVisibility: false
         }
     }
 
@@ -87,8 +88,13 @@ class DriverProfileCarClass extends React.Component {
     }
     applyChanges = (type) => {
         let jwt = this.props.globalReduser.readCookie('jwt');
+        if(this.state.badDataTextVisibility===true){
+            this.setState({
+                badDataTextVisibility: false
+            })
+        }
 
-        function checkCorrectData(newCarCard, imgFiles) {
+        function checkCorrectData(newCarCard, imgFiles, that) {
             let result = true;
             let obj;
 
@@ -154,10 +160,15 @@ class DriverProfileCarClass extends React.Component {
                 obj.style.visibility = 'visible';
                 result = false;
             }
+            if(!result){
+                that.setState({
+                    badDataTextVisibility: true
+                })
+            }
             return result;
         }
 
-        if (jwt && jwt !== "-" && checkCorrectData(this.state.newCarCard, this.state.imgFiles)) {
+        if (jwt && jwt !== "-" && checkCorrectData(this.state.newCarCard, this.state.imgFiles, this)) {
             let that = this;
             this.startRefresher();
             var carForm = new FormData();
@@ -383,17 +394,17 @@ class DriverProfileCarClass extends React.Component {
     handleChange = (event, index, value, key) => {
         if (key === 'fuelTypes') {
             this.setState({
-                newCarCard: { ...this.state.newCarCard, fuelType: value }
+                newCarCard: { ...this.state.newCarCard, fuelType: value, badDataTextVisibility: false }
             })
         }
         if (key === 'carTypes') {
             this.setState({
-                newCarCard: { ...this.state.newCarCard, typeCar: value }
+                newCarCard: { ...this.state.newCarCard, typeCar: value, badDataTextVisibility: false }
             })
         }
         if (key === 'carClasses') {
             this.setState({
-                newCarCard: { ...this.state.newCarCard, carClass: value }
+                newCarCard: { ...this.state.newCarCard, carClass: value, badDataTextVisibility: false }
             })
         }
     }
@@ -460,6 +471,9 @@ class DriverProfileCarClass extends React.Component {
                 <Collapse isOpen={this.state.collapse} className="col-12">
                     <div className="carAddNewCar d-flex flex-column align-items-end">
                         <div className="tourContentTitle d-flex align-items-center mb-0 col-12" >
+                        {
+                            //TODO что это за переменная carContentTitle? Её нет в списках
+                        }
                             <p style={{ marginTop: '1rem' }}>{textPage.carContentTitle}</p>
                         </div>
 
@@ -478,7 +492,7 @@ class DriverProfileCarClass extends React.Component {
                                         </div>
                                     )}
                                 </div>
-                                <div id="labelCarEmpty" className="labelCarEmpty" style={{ visibility: 'hidden' }}>Существует крайняя нужда в фото вашего автомобиля</div>
+                                <div id="labelCarEmpty" className="labelCarEmpty" style={{ visibility: 'hidden' }}>{textPage.noPhotoText}</div>
 
                             </div>
 
@@ -491,7 +505,8 @@ class DriverProfileCarClass extends React.Component {
                                         obj = document.querySelectorAll('.inputClass');
                                         obj[0].classList.remove("errorColor");
                                         this.setState({
-                                            newCarCard: { ...this.state.newCarCard, nameCar: e.currentTarget.value }
+                                            newCarCard: { ...this.state.newCarCard, nameCar: e.currentTarget.value },
+                                            badDataTextVisibility: false
                                         })
                                     }} type="text" />
                                     <TextField
@@ -502,7 +517,8 @@ class DriverProfileCarClass extends React.Component {
                                             obj = document.querySelectorAll('.inputClass');
                                             obj[0].classList.remove("errorColor");
                                             this.setState({
-                                                newCarCard: { ...this.state.newCarCard, nameCar: e.currentTarget.value }
+                                                newCarCard: { ...this.state.newCarCard, nameCar: e.currentTarget.value,},
+                                                badDataTextVisibility: false 
                                             })
                                         }}
                                         floatingLabelText={textPage.profileCarBrand.floatingLabelText}
@@ -515,24 +531,27 @@ class DriverProfileCarClass extends React.Component {
                                 </div>
                                 <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
                                     <label htmlFor="profileCarYear" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">{textPage.profileCarYear.floatingLabelText}:</label>
-                                    <input id="profileCarYear" className="d-xl-block d-lg-block d-md-block d-sm-none d-none " value={this.state.newCarCard.yearCar} onChange={(e) => {
+                                    <input type="number" id="profileCarYear" className="d-xl-block d-lg-block d-md-block d-sm-none d-none" value={this.state.newCarCard.yearCar} onChange={(e) => {
                                         let obj = document.getElementById('profileCarYear');
                                         obj.classList.remove("errorColor");
                                         obj = document.querySelectorAll('.inputClass');
                                         obj[1].classList.remove("errorColor");
                                         this.setState({
-                                            newCarCard: { ...this.state.newCarCard, yearCar: e.currentTarget.value }
+                                            newCarCard: { ...this.state.newCarCard, yearCar: e.currentTarget.value},
+                                            badDataTextVisibility: false 
                                         })
-                                    }} type="text" />
+                                    }} />
                                     <TextField
                                         value={this.state.newCarCard.yearCar}
+                                        type="number"
                                         onChange={(e) => {
                                             let obj = document.getElementById('profileCarYear');
                                             obj.classList.remove("errorColor");
                                             obj = document.querySelectorAll('.inputClass');
                                             obj[1].classList.remove("errorColor");
                                             this.setState({
-                                                newCarCard: { ...this.state.newCarCard, yearCar: e.currentTarget.value }
+                                                newCarCard: { ...this.state.newCarCard, yearCar: e.currentTarget.value},
+                                                badDataTextVisibility: false
                                             })
                                         }}
                                         floatingLabelText={textPage.profileCarYear.floatingLabelText}
@@ -551,7 +570,8 @@ class DriverProfileCarClass extends React.Component {
                                         obj = document.querySelectorAll('.inputClass');
                                         obj[2].classList.remove("errorColor");
                                         this.setState({
-                                            newCarCard: { ...this.state.newCarCard, plateNumberCar: e.currentTarget.value }
+                                            newCarCard: { ...this.state.newCarCard, plateNumberCar: e.currentTarget.value},
+                                            badDataTextVisibility: false
                                         })
                                     }} type="text" />
                                     <TextField
@@ -562,7 +582,8 @@ class DriverProfileCarClass extends React.Component {
                                             obj = document.querySelectorAll('.inputClass');
                                             obj[2].classList.remove("errorColor");
                                             this.setState({
-                                                newCarCard: { ...this.state.newCarCard, plateNumberCar: e.currentTarget.value }
+                                                newCarCard: { ...this.state.newCarCard, plateNumberCar: e.currentTarget.value},
+                                                badDataTextVisibility: false
                                             })
                                         }}
                                         floatingLabelText={textPage.profileCarNumber.floatingLabelText}
@@ -660,11 +681,13 @@ class DriverProfileCarClass extends React.Component {
                                         obj = document.querySelectorAll('.inputClass');
                                         obj[3].classList.remove("errorColor");
                                         this.setState({
-                                            newCarCard: { ...this.state.newCarCard, fuelConsumption: e.currentTarget.value }
+                                            newCarCard: { ...this.state.newCarCard, fuelConsumption: e.currentTarget.value},
+                                            badDataTextVisibility: false
                                         })
-                                    }} type="text" />
+                                    }} type="number" />
                                     <TextField
                                         value={this.state.newCarCard.fuelConsumption}
+                                        type="number"
                                         onChange={(e) => {
                                             let obj = document.getElementById('profileCarFuelConsumption');
                                             obj.classList.remove("errorColor");
@@ -672,7 +695,8 @@ class DriverProfileCarClass extends React.Component {
                                             obj = document.querySelectorAll('.inputClass');
                                             obj[3].classList.remove("errorColor");
                                             this.setState({
-                                                newCarCard: { ...this.state.newCarCard, fuelConsumption: e.currentTarget.value }
+                                                newCarCard: { ...this.state.newCarCard, fuelConsumption: e.currentTarget.value},
+                                                badDataTextVisibility: false
                                             })
                                         }}
                                         floatingLabelText={textPage.profileCarFuelConsumption.label}
@@ -692,20 +716,24 @@ class DriverProfileCarClass extends React.Component {
 
                                         obj = document.querySelectorAll('.inputClass');
                                         obj[4].classList.remove("errorColor");
+                                        debugger;
                                         this.setState({
-                                            newCarCard: { ...this.state.newCarCard, numberOfSeats: e.currentTarget.value }
+                                            newCarCard: { ...this.state.newCarCard, numberOfSeats: e.currentTarget.value},
+                                            badDataTextVisibility: false
                                         })
-                                    }} type="text" />
+                                    }} type="number" />
                                     <TextField
+                                        type="number"
                                         value={this.state.newCarCard.numberOfSeats}
                                         onChange={(e) => {
                                             let obj = document.getElementById('profileCarNumberOfSeats');
                                             obj.classList.remove("errorColor");
-
+                                            debugger;
                                             obj = document.querySelectorAll('.inputClass');
                                             obj[3].classList.remove("errorColor");
                                             this.setState({
-                                                newCarCard: { ...this.state.newCarCard, numberOfSeats: e.currentTarget.value }
+                                                newCarCard: { ...this.state.newCarCard, numberOfSeats: e.currentTarget.value},
+                                                badDataTextVisibility: false
                                             })
                                         }}
                                         floatingLabelText={textPage.profileCarNumberOfSeats.label}
@@ -746,11 +774,18 @@ class DriverProfileCarClass extends React.Component {
 
                         </form>
                         <div className="carAddNewCarButton d-flex col-md-8 col-12 pt-3 align-items-center justify-content-sm-start justify-content-center mb-5">
-                            <span className="d-xl-block d-lg-block d-md-block d-sm-block d-none col-4 p-0" />
-                            <button htmlFor="newCar" type="submit" onClick={(e) => this.formSubmit(e)}>{textPage.carAddNewCarButton.button}</button>
-                            <span className="ml-3" onClick={() => this.toggle()}>{textPage.carAddNewCarButton.span}</span>
+                            
+                        
+                    
+                                <span className="d-xl-block d-lg-block d-md-block d-sm-block d-none col-4 p-0" />
+                                <div className="d-flex flex-column">
+                                    <div className="d-flex">
+                                        <button htmlFor="newCar" type="submit" onClick={(e) => this.formSubmit(e)}>{textPage.carAddNewCarButton.button}</button>
+                                        <span className="ml-3" style={{margin: 'auto 0' }} onClick={() => this.toggle()}>{textPage.carAddNewCarButton.span}</span>
+                                    </div>                                  
+                                    <text style={{color: 'red', fontSize: '14px' , visibility: this.state.badDataTextVisibility ? 'visible' : 'hidden'}}>{textPage.badDataText}</text>
+                                </div>             
                         </div>
-
                     </div>
                 </Collapse>
                 {

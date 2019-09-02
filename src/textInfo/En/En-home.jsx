@@ -106,7 +106,11 @@ const home = {
             infoText: {
                 first: "* Return to the point of departure on the same day for free",
                 second: "Final cost. Fuel included"
-            }
+            },
+            km: 'km',
+            days: 'd.',
+            hours: 'h.',
+            minutes: 'min.'
         },
     pageNotFound: {
         title: "Page not found",

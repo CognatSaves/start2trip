@@ -15,9 +15,10 @@ let places = {
              sortMenuVariantsText: ["Popularity", "Reviews", "Name"]
          },
          placesCountryInfo: {
-             territory: 'territory (ENG)',
-             population: 'population (ENG)',
-             capital: 'capital (ENG)'
+             territory: 'territory',
+             population: 'population ',
+             capital: 'capital',
+             namePart: 'Достопримечательности(ENG)'
          }
     }
     

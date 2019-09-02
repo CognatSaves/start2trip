@@ -117,7 +117,9 @@ const driverProfileRegistration = {
         },
         cardInformation: {
             span: "ადგილების"
-        }
+        },
+        noPhotoText: 'Существует крайняя нужда в фото вашего автомобиля(GEO)',
+        badDataText: 'Заполните корректно выделенные поля!(GEO)'
     },
     DriverProfileTripSettingsTrip: {
         titlePage: "საჭმლის რედაქტირება",
@@ -139,7 +141,8 @@ const driverProfileRegistration = {
             floatingLabelText: "მაქსიმალური დღიური გარბენი",
             description: "მიუთითეთ მგზავრის გადაყვანის მარშრუტის მაქსიმალური კილომეტრაჟი"
         },
-        tripSaveBt: "ცვლილებების შენახვა"
+        tripSaveBt: "ცვლილებების შენახვა",
+        badRequestText: 'Вы допустили ошибки. Поправьте их перед сохранением!(GEO)'
     },
     DriverProfileSettings: {
         settingsBodyTitle: "პროფილის პარამეტრები",
@@ -328,7 +331,8 @@ const driverProfileRegistration = {
         }
     },
     DriverProfileRegistration: {
-        loading: 'Загрузка(GEO)'
+        loading: 'Загрузка(GEO)',
+
     }
 
 }

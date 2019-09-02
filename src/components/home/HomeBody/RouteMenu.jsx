@@ -354,6 +354,7 @@ class RouteMenuClass extends React.Component {
         //необходима обработка случая, когда не смог построить маршрут)))
         return false;
       }
+      let textInfo = that.props.storeState.languageTextMain.home.routeMenu;
       function lengthTimeCalc(response) {
 
         let res = {
@@ -368,34 +369,33 @@ class RouteMenuClass extends React.Component {
         res.duration = res.duration / 60;//конверсия в минуты
         return res;
       }
-      function setLengthTimeFunc (that,travelLength, travelTime) {
-        function getLengthString(travelLength) {//дистанция в км
+      function setLengthTimeFunc (that,travelLength, travelTime,textInfo) {
+        function getLengthString(travelLength,textInfo) {//дистанция в км
             let length = travelLength;
             length = Math.ceil(length);
-            let lengthString = length + " км";
+            let lengthString = length + " "+textInfo.km;
             return lengthString;
         }
-        function getTimeString(travelTime) {//время в минутах
-          //TODO переводы
+        function getTimeString(travelTime,textInfo) {//время в минутах
             let hours = travelTime / 60 ^ 0;
             let minutes = (travelTime - hours * 60) ^ 0;
             let days = hours / 24 ^ 0;
             hours = hours - days * 24;
             let timeString = "";
             if (days !== 0) {
-                timeString += days + " дн. " + hours + " ч.";
+                timeString += days + " "+textInfo.days+" " + hours + " "+textInfo.hours;
             }
             else {
                 if (hours !== 0) {
-                    timeString += hours + " ч. ";
+                    timeString += hours + " "+textInfo.hours + " ";
                 }
-                timeString += minutes + " мин.";
+                timeString += minutes + " "+textInfo.minutes;
             }
             return timeString;
         }
         
-        let lengthString = getLengthString(travelLength);
-        let timeString = getTimeString(travelTime);
+        let lengthString = getLengthString(travelLength,textInfo);
+        let timeString = getTimeString(travelTime,textInfo);
         that.props.dispatch(setLengthTime(timeString, lengthString));
       }
       console.log(response);
@@ -403,7 +403,7 @@ class RouteMenuClass extends React.Component {
       
       let routeProps = lengthTimeCalc(response);
       
-      setLengthTimeFunc(that,routeProps.distance,routeProps.duration);
+      setLengthTimeFunc(that,routeProps.distance,routeProps.duration,textInfo);
       
       
       let body = JSON.stringify({
