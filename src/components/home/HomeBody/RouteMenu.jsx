@@ -112,7 +112,7 @@ class RouteMenuClass extends React.Component {
 
     }
     super(props);
-    debugger;
+    
     console.log(window);
     console.log(props.match);
     console.log(document);
@@ -174,7 +174,7 @@ class RouteMenuClass extends React.Component {
       isLoaded: !resultpathname//переменная для загрузки 1 раза водителей - если есть города, то не загружено пока.
       //language: this.props.storeState.activeLanguageNumber
     }
-    debugger;
+    
     props.dispatch(set_state(props.storeState.cities, resultString))
     props.dispatch(clearFilters());
     this.chooseDate(dateValue)

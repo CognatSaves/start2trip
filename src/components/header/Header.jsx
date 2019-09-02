@@ -745,7 +745,7 @@ class HeaderClass extends React.Component {
                         anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }} className="burgerMenuTopDropDown" menuStyle={{ maxWidth:"96px",overflow:"hidden"}}
                         value={/*this.props.storeState.activeCurrencyNumber*/selectedCurrNumber} onChange={(event, index, value) => { changeActiveCurrency(this,availableCurrencies,index)/*this.setLocals('userCurr', index)*/ }}>
                         {availableCurrencies.map((element, index) =>
-                          <MenuItem value={index} primaryText={<span className="pl-2">{element.symbol + " " + element.ISO}</span>} />
+                          <MenuItem value={index} primaryText={<span className="pl-2">{element.symbol === element.ISO ? element.ISO:(element.symbol + " " + element.ISO)}</span>} />
                         )}
                       </DropDownMenu>
                     </div>
@@ -815,12 +815,12 @@ class HeaderClass extends React.Component {
                   <DropdownToggle className="selectGeneralButton" caret size="sm">
                     {/*this.state.activeCurrency[this.state.activeCurrencyNumber]*/ availableCurrencies.length > 0 ?
                     /*далее я оставил просто currencies, т.к. они и availableCurrencies должны быть взаимосвязаны */
-                     currencies[this.props.storeState.activeCurrencyNumber].symbol + " " + currencies[this.props.storeState.activeCurrencyNumber].ISO : ''}
+                    (currencies[this.props.storeState.activeCurrencyNumber].symbol === currencies[this.props.storeState.activeCurrencyNumber].ISO ? " " + currencies[this.props.storeState.activeCurrencyNumber].ISO:(currencies[this.props.storeState.activeCurrencyNumber].symbol + " " + currencies[this.props.storeState.activeCurrencyNumber].ISO)) : ''}
                   </DropdownToggle>
                   <DropdownMenu className="dropdownMenu currenty" >
                     {
                       availableCurrencies.map((element, index) =>
-                        <DropdownItem className="dropdownMenu" onClick={() => { changeActiveCurrency(this,availableCurrencies,index)}}>{element.symbol + " " + element.ISO}</DropdownItem>
+                        <DropdownItem className="dropdownMenu" onClick={() => { changeActiveCurrency(this,availableCurrencies,index)}}>{element.symbol=== element.ISO ? " " + element.ISO : (element.symbol + " " + element.ISO)}</DropdownItem>
                       )
                     }
                   </DropdownMenu>

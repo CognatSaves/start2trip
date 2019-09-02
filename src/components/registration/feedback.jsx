@@ -23,7 +23,7 @@ class feedbackClass extends React.Component {
             isCommented: false
         };
         props.dispatch(changeLanguagePart(false, true)); //эта ересь сообщает шапке, что мы в админке за пользователя, т.е. работает 1я партия языков, но ломать адрес не надо
-        debugger;
+        
         let address= requests.isCommentedTrip+'/?id='+this.props.match.params.id+"&clientId="+this.props.match.params.clientId;
         axios.get(address)
         .then(response =>{
@@ -31,7 +31,7 @@ class feedbackClass extends React.Component {
             return response.data;
         })
         .then(data => {
-            debugger;
+            
             console.log(data.isCommented);
             this.setState({
                 isCommented: data.isCommented,
