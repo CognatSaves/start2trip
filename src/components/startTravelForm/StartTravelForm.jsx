@@ -27,6 +27,22 @@ import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 const Content = (that, flagAllOk, carCapacityArray, activeCurrency, textInfo, changeSuccessVisibility) => {
     let isCurrencyLoaded = activeCurrency && activeCurrency.symbol;
+    let today = new Date()
+    let selectDate = new Date(that.props.storeState.date)
+    let newTime = [] ;
+    if(today.getDate() === selectDate.getDate() && today.getMonth() === selectDate.getMonth() && today.getFullYear() === selectDate.getFullYear()){
+       let todayHours =today.getHours()+3
+       
+       for(let i =0; i<that.state.time.length;i++){
+           let newHours =that.state.time[i].split(":")
+           newHours = newHours[0]
+           if(Number(newHours) > todayHours){
+                newTime.push(that.state.time[i])
+           } 
+       }
+    }else{
+        newTime = that.state.time
+    }
 
     return (
         <React.Fragment>
@@ -118,7 +134,7 @@ const Content = (that, flagAllOk, carCapacityArray, activeCurrency, textInfo, ch
                                      let obj = document.querySelector(".departureTime");
                                      document.querySelector(".departureTime").classList.remove("draver_route-error") }}
                                 >
-                                    {that.state.time.map(name => (
+                                    {newTime.map(name => (
                                         <MenuItem key={name} value={name}>
                                             {name}
                                         </MenuItem>
