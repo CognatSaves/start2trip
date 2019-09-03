@@ -32,7 +32,6 @@ const Content = (that, flagAllOk, carCapacityArray, activeCurrency, textInfo, ch
     let newTime = [] ;
     if(today.getDate() === selectDate.getDate() && today.getMonth() === selectDate.getMonth() && today.getFullYear() === selectDate.getFullYear()){
        let todayHours =today.getHours()+3
-       
        for(let i =0; i<that.state.time.length;i++){
            let newHours =that.state.time[i].split(":")
            newHours = newHours[0]
