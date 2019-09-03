@@ -255,6 +255,7 @@ class DriverProfileClass extends React.Component {
         return newCities;
     }
     setLengthTime = (travelLength, travelTime) => {
+        //TODO переводы
         function getLengthString(travelLength) {
             let length = travelLength;
             length = Math.ceil(length / 1000);
@@ -658,9 +659,11 @@ class DriverProfileClass extends React.Component {
                                                                     style={{/*marginBottom: '15px',*/ width: '100%', border: 'none', borderRadius: '5px', height: '100%' }}
                                                                     onClick={() => { this.changeTravelVisibility(defaultPrice); this.props.dispatch(setDriverCarDescription(this.props.driversState.driverCarDescription)) }}>
                                                                     <text style={{ margin: "auto", fontSize: '16px' }} >
-                                                                        {textInfo.book + ' '+(isCurrencyLoaded ? ((activeCurrency.isLeft+' ' ? activeCurrency.symbol : '')
+                                                                        {textInfo.book + ' '+(isCurrencyLoaded ?
+                                                                         ((activeCurrency.isLeft ? activeCurrency.symbol+' ' : '')
                                                                             + Math.ceil(defaultPrice * activeCurrency.costToDefault)
-                                                                            + (!activeCurrency.isLeft ? ' '+activeCurrency.symbol : '')) : '')}</text>
+                                                                            + (!activeCurrency.isLeft ? ' '+activeCurrency.symbol : ''))
+                                                                         : '')}</text>
                                                                 </button>
                                                             </div> : <React.Fragment />
                                                     }
