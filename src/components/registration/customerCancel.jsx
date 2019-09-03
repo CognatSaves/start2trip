@@ -114,20 +114,22 @@ class customerCancelClass extends React.Component {
                 j = 1
             }
             windowImg = requests.serverAddressImg + this.props.storeState.countries[j].windowImg.url
+        
         }
+        let helmet = this.props.storeState.languageTextMain.helmets.customerCancel;
         return (
             <React.Fragment>
 
                 <div className="home_window d-flex flex-column " style={{ background: "url(" + windowImg + ")no-repeat", minHeight: "93.5vh" }} >
                     <Header history={this.props.history} />
                     <Helmet>
-                        <title>{"Оставте отзыв о Вашей поездке"}</title>
-                        <meta name="description" content={"Оставте отзыв о Вашей поездке"} />
+                        <title>{helmet.title}</title>
+                        <meta name="description" content={helmet.description} />
                         <meta property="og:site_name" content="Tripfer" />
                         <meta property="og:type" content="website" />
                         <meta property="og:url" content="https://tripfer.com/feedback" />
-                        <meta property="og:title" content={"Оставте отзыв о Вашей поездке"} />
-                        <meta property="og:description" content={"Оставте отзыв о Вашей поездке"} />
+                        <meta property="og:title" content={helmet.title} />
+                        <meta property="og:description" content={helmet.description} />
                     </Helmet>
                     <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
 

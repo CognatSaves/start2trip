@@ -164,7 +164,9 @@ div.tripSettingsContentAddCity p:hover {
 
 
 /* .tripSettingsContentDate {} */
-
+.margin_5 {
+    margin: 5px
+}
 
 /* Content End */
 

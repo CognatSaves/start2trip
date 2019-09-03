@@ -71,10 +71,11 @@ class feedbackClass extends React.Component {
         let id = this.props.match.params.id;
         let clientId = this.props.match.params.clientId;
         let textInfo = this.props.storeState.languageTextMain.driverProfile.createComment;
-        let windowImg = null
+        let windowImg = null;
+        let coockisIso = cookies.get('country', { path: '/' })
         if (this.props.storeState.languages.length > 0) {
             
-            let coockisIso = cookies.get('country', { path: '/' })
+            
             let j;
             for (let i = 0; i < this.props.storeState.countries.length; i++) {
                 if (this.props.storeState.countries[i].ISO === coockisIso) {
@@ -87,19 +88,23 @@ class feedbackClass extends React.Component {
             }
             windowImg = requests.serverAddressImg + this.props.storeState.countries[j].windowImg.url
         }
+        let redirectAddress = coockisIso && coockisIso.length>0 ? 
+            ("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes/") :
+            ('/countrySelection');
+        let helmet = this.props.storeState.languageTextMain.helmets.feedback;
         return (
             <React.Fragment>
                 <Header history={this.props.history} />
                 <div className="home_window d-flex justify-content-center align-items-center" style={{ background: "url(" + windowImg + ")no-repeat", minHeight: "87.5vh" }} >
 
                     <Helmet>
-                        <title>{"Оставьте отзыв о Вашей поездке"}</title>
-                        <meta name="description" content={"Оставьте отзыв о Вашей поездке"} />
+                        <title>{helmet.title}</title>
+                        <meta name="description" content={helmet.description} />
                         <meta property="og:site_name" content="Tripfer" />
                         <meta property="og:type" content="website" />
                         <meta property="og:url" content="https://tripfer.com/feedback" />
-                        <meta property="og:title" content={"Оставьте отзыв о Вашей поездке"} />
-                        <meta property="og:description" content={"Оставьте отзыв о Вашей поездке"} />
+                        <meta property="og:title" content={helmet.title} />
+                        <meta property="og:description" content={helmet.description} />
                     </Helmet>
                     <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
                     {
@@ -108,7 +113,7 @@ class feedbackClass extends React.Component {
                                 <div className="commentBlock_createComment d-flex flex-column feedbackbackground align-items-center">
                                     <text style={{marginBottom: '10px'}}>{textInfo.alreadyCommented}</text>
                                     <button className="driversAdaptedRoute_sendRequest feedback_returnButton">
-                                        <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes/"}>{textInfo.toMain}</Link>
+                                        <Link to={redirectAddress}>{textInfo.toMain}</Link>
                                     </button>
                                 </div>
                             </div>

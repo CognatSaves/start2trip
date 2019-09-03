@@ -125,5 +125,13 @@ const helmets  = {
             }
         
         },
+        feedback:{
+            title: "Оставьте отзыв о Вашей поездке(ENG)",
+            description: "Оставьте отзыв о Вашей поездке(ENG)"
+        },
+        customerCancel: {
+            title: "Вы действительно хотите отказаться от поездки?(ENG)",
+            description: "Вы действительно хотите отказаться от поездки?(ENG)"
+        }
     }
     export default helmets;

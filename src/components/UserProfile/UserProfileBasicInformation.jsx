@@ -252,7 +252,7 @@ class UserProfileBasicInformationClass extends React.Component {
                             </div>
                             <div className="bottomContentNote d-flex align-items-center">
                                 <label htmlFor="basicInfoBirthday" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">{textPage.basicInfoBirthday.floatingLabelText}:</label>
-                                <DatePicker floatingLabelText="Дата рождения" id="basicInfoBirthday" className="calendarModal col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0" value={this.state.profileData.birthday}
+                                <DatePicker floatingLabelText={textPage.basicInfoBirthday.floatingLabelText} id="basicInfoBirthday" className="calendarModal col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0" value={this.state.profileData.birthday}
                                     onChange={(undefined, data) => { this.inputChange(this.props.globalReduser.convertDateToUTC(data), 'birthday'); }}
                                 />
                                 <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">{textPage.basicInfoBirthday.description}</p>
@@ -260,7 +260,7 @@ class UserProfileBasicInformationClass extends React.Component {
                             <div className="bottomContentNote d-flex align-items-center">
                                 <label htmlFor="basicInfoLocation" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">{textPage.basicInfoLocation.label}:</label>
                                 <div className="d-flex col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">
-                                    <LocationSearchInput placeholder={"Введите город"} address={this.state.profileData.city} changeCity={this.changeCity} classInput="searchInputDriverInformation" id="basicInfoLocation" classDropdown="searchDropdownDriverInformation" classDiv="p-0 classDivDriverHomeCity" />
+                                    <LocationSearchInput placeholder={textPage.basicInfoLocation.label} address={this.state.profileData.city} changeCity={this.changeCity} classInput="searchInputDriverInformation" id="basicInfoLocation" classDropdown="searchDropdownDriverInformation" classDiv="p-0 classDivDriverHomeCity" />
                                 </div>
                                 <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">{textPage.basicInfoLocation.description}</p>
                             </div>

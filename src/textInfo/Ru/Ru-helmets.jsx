@@ -125,5 +125,13 @@ const helmets /*helmetStorage - aka armory */ = {
         }
     
     },
+    feedback:{
+        title: "Оставьте отзыв о Вашей поездке",
+        description: "Оставьте отзыв о Вашей поездке"
+    },
+    customerCancel: {
+        title: "Вы действительно хотите отказаться от поездки?",
+        description: "Вы действительно хотите отказаться от поездки?"
+    }
 }
 export default helmets;
