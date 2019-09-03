@@ -37,7 +37,6 @@ const RenderModalCountry = lazy(() => import('./RenderModalCountry'));
 
 const ModalRegistration = (props) => {
   let { modalRegistration, toggle, className, authorization } = props;
-
   return (
     <React.Fragment>
 
@@ -229,7 +228,50 @@ const CountrySelect = (props) => {
     </Modal>
   )
 }
+const BurgerMenuLanguageDropDown = (props)=>{
+  let {labelValue, dropdownValue, onChange, languageArray} = props;
+  return (
+    <div className="d-flex align-items-end justify-content-between w-100 border-bottom">
+      <label>{labelValue}</label>
+      <DropDownMenu anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
+        className="burgerMenuTopDropDown" menuStyle={{ maxWidth:"93px",overflow:"hidden"}}
+        value={dropdownValue/*this.props.storeState.activeLanguageNumberAdmin*/}
+        onChange={(event, index, value) => { onChange('adminLang', index)/*this.setLocals('adminLang', index)*/ }}>
+        {/*adminLanguages*/languageArray.map((element, index) =>
+          <MenuItem value={index} primaryText={
+            <React.Fragment>
+              <img className="mb-1" src={requests.serverAddressImg + element.icon.url} width="15px" height="15px" alt={element.ISO} />
+              <span className="burgerMenuTopDropDownSpan">{element.ISO}
+              </span>
+            </React.Fragment>} >
+          </MenuItem>
+        )}
+      </DropDownMenu>
+    </div>
+  )
+}
+const BasicLanguageDropDown = (props) =>{
+  let {isOpen, toggle, languages, activeLanguageNumber, onClick} = props;
 
+  return (
+    <Dropdown setActiveFromChild="true" isOpen={/*this.state.dropdownLanguageOpen*/isOpen} toggle={/*this.toggleLanguage*/toggle}
+     className={languages.length > 0 ? "selectGeneral" : "selectGeneral preloadHiddenBlock"}>
+      <DropdownToggle className="selectGeneralButton" caret size="sm">
+        <img src={languages.length > 0 ? requests.serverAddressImg + languages[activeLanguageNumber/*this.state.activLanguageNumber*/].icon.url : ''} height="15px" width="15px" alt="flag" />
+        {languages.length > 0 ? languages[activeLanguageNumber/*this.props.storeState.activeLanguageNumberAdmin*/].ISO : ''}
+      </DropdownToggle>
+      <DropdownMenu className="dropdownMenu">
+        {
+          languages.map((element, index) =>
+            <DropdownItem className="dropdownMenu" onClick={() => { onClick(index)/*this.setLocals('adminLang', index)*/ }}>
+              <img src={requests.serverAddressImg + element.icon.url} height="15px" width="15px" alt="RU" />{element.ISO}
+            </DropdownItem>
+          )
+        }
+      </DropdownMenu>
+    </Dropdown>
+  )
+}
 //}
 
 class HeaderClass extends React.Component {
@@ -692,8 +734,21 @@ class HeaderClass extends React.Component {
                 <div className="burgerMenuTop">
                   <text className="col-11 pt-4 pb-2">{textInfo.burgerMenu.titlesName[0]}</text>
                   <div className="burgerMenuBlock burgerMenuP d-flex flex-column justify-content-center align-items-center col-11">
-
                     {
+                      this.props.storeState.isSecondLanguageGroupPart ?
+                        <BurgerMenuLanguageDropDown labelValue={textInfo.burgerMenu.settingsDrop[0]}
+                          dropdownValue={this.props.storeState.activeLanguageNumberAdmin} onChange={(a,b)=>this.setLocals(a,b)}
+                          languageArray={adminLanguages}
+                        />
+                        :
+                        <BurgerMenuLanguageDropDown labelValue={textInfo.burgerMenu.settingsDrop[0]}
+                          dropdownValue={this.props.storeState.activeLanguageNumber} onChange={(a,b)=>this.setLocals(a, b, this.props.storeState.isAdminLanguageType)}
+                          languageArray={languages}
+                        />
+                    }
+                    {
+                    /*
+                    удалю по завершению заданки по чистке header
                       this.props.storeState.isSecondLanguageGroupPart ?
                         <div className="d-flex align-items-end justify-content-between w-100 border-bottom">
                           <label>{textInfo.burgerMenu.settingsDrop[0]}</label>
@@ -714,22 +769,9 @@ class HeaderClass extends React.Component {
                             )}
                           </DropDownMenu>
                         </div>
-                    }
-                    {
-                      /*
-                      <div className="d-flex align-items-end justify-content-between w-100 border-bottom">
-                        <label>{textInfo.burgerMenu.settingsDrop[0]}</label>
-                        <DropDownMenu anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }} className="burgerMenuTopDropDown" menuStyle={{ maxWidth:"93px",overflow:"hidden"}}
-                          value={this.props.storeState.activeLanguageNumber} onChange={(event, index, value) => { this.setLocals('userLang', index) }}>
-                          {languages.map((element, index) =>
-                            <MenuItem value={index} primaryText={<React.Fragment><img className="mb-1" src={requests.serverAddressImg + element.icon.url} width="15px" height="15px" alt={element.ISO} /><span className="burgerMenuTopDropDownSpan">{element.ISO}</span></React.Fragment>} ></MenuItem>
-                          )}
-                        </DropDownMenu>
-                      </div>
-
                       */
                     }
-                    
+                   
 
 
                     <div className="d-flex align-items-end justify-content-between w-100 ">
@@ -746,7 +788,7 @@ class HeaderClass extends React.Component {
                   <text className="col-11 pt-4 pb-2">{textInfo.burgerMenu.titlesName[1]}</text>
                   <div className="burgerMenuBlock d-flex flex-column justify-content-center align-items-start col-11">
                     <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes/"} className="border-bottom routes" >{textInfo.burgerMenu.services[0]}</Link>
-                    <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/tours/"} className="border-bottom tours" >{textInfo.burgerMenu.services[1]}</Link>
+                    <Link to={/*"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/tours/"*/null} className="border-bottom tours" >{textInfo.burgerMenu.services[1]}</Link>
                     <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/places/"} className="places" >{textInfo.burgerMenu.services[2]}</Link>
                   </div>
 
@@ -819,12 +861,31 @@ class HeaderClass extends React.Component {
                   </DropdownMenu>
                 </Dropdown>
                 {
+                  this.props.storeState.isSecondLanguageGroupPart ? 
+                    <BasicLanguageDropDown isOpen={this.state.dropdownLanguageOpen}
+                      toggle={this.toggleLanguage} languages={adminLanguages}
+                      activeLanguageNumber={this.props.storeState.activeLanguageNumberAdmin}
+                      onClick={(index)=>this.setLocals('adminLang', index)}
+                      />
+                    :
+                    <BasicLanguageDropDown isOpen={this.state.dropdownLanguageOpen}
+                      toggle={this.toggleLanguage} languages={languages}
+                      activeLanguageNumber={this.props.storeState.activeLanguageNumber}
+                      onClick={(index)=>this.setLocals('userLang', index, this.props.storeState.isAdminLanguageType)}
+                      />
+                }
+                {
+                  /*
                   this.props.storeState.isSecondLanguageGroupPart ?
 
-                    <Dropdown setActiveFromChild="true" isOpen={this.state.dropdownLanguageOpen} toggle={this.toggleLanguage} className={adminLanguages.length > 0 ? "selectGeneral" : "selectGeneral preloadHiddenBlock"}>
+                    <Dropdown setActiveFromChild="true" isOpen={this.state.dropdownLanguageOpen}
+                     toggle={this.toggleLanguage} className={adminLanguages.length > 0 ? "selectGeneral" : "selectGeneral preloadHiddenBlock"}>
                       <DropdownToggle className="selectGeneralButton" caret size="sm">
-                        <img src={adminLanguages.length > 0 ? requests.serverAddressImg + adminLanguages[this.props.storeState.activeLanguageNumberAdmin/*this.state.activLanguageNumber*/].icon.url : ''} height="15px" width="15px" alt="flag" />
-                        {adminLanguages.length > 0 ? adminLanguages[this.props.storeState.activeLanguageNumberAdmin/*this.state.activLanguageNumber*/].ISO : ''}
+                        <img src={adminLanguages.length > 0 ?
+                         requests.serverAddressImg + adminLanguages[this.props.storeState.activeLanguageNumberAdmin].icon.url : ''}
+                         height="15px" width="15px" alt="flag" />
+                        {adminLanguages.length > 0 ? 
+                        adminLanguages[this.props.storeState.activeLanguageNumberAdmin].ISO : ''}
                       </DropdownToggle>
                       <DropdownMenu className="dropdownMenu">
                         {
@@ -839,8 +900,8 @@ class HeaderClass extends React.Component {
                     :
                     <Dropdown setActiveFromChild="true" isOpen={this.state.dropdownLanguageOpen} toggle={this.toggleLanguage} className={languages.length > 0 ? "selectGeneral" : "selectGeneral preloadHiddenBlock"}>
                       <DropdownToggle className="selectGeneralButton" caret size="sm">
-                        <img src={languages.length > 0 ? requests.serverAddressImg + languages[this.props.storeState.activeLanguageNumber/*this.state.activLanguageNumber*/].icon.url : ''} height="15px" width="15px" alt="flag" />
-                        {languages.length > 0 ? languages[this.props.storeState.activeLanguageNumber/*this.state.activLanguageNumber*/].ISO : ''}
+                        <img src={languages.length > 0 ? requests.serverAddressImg + languages[this.props.storeState.activeLanguageNumber].icon.url : ''} height="15px" width="15px" alt="flag" />
+                        {languages.length > 0 ? languages[this.props.storeState.activeLanguageNumber].ISO : ''}
                       </DropdownToggle>
                       <DropdownMenu className="dropdownMenu">
                         {
@@ -852,6 +913,7 @@ class HeaderClass extends React.Component {
                         }
                       </DropdownMenu>
                     </Dropdown>
+                    */
                 }
 
               </div>
