@@ -279,7 +279,10 @@ class DriverProfileTripSettingsTripClass extends React.Component {
         cityRadius[index].lat = extraData.location.lat;
         cityRadius[index].long = extraData.location.long;
         let inputs = document.getElementsByClassName('searchInputDriverInformation');
-        inputs[index].classList.remove("errorColor");
+        if(inputs[index] && inputs[index].classList){
+            inputs[index].classList.remove("errorColor");
+        }
+        
 
         this.setState({
             cityRadius: cityRadius,
@@ -383,7 +386,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                                             />
                                             <TextField
                                                 floatingLabelText={textPage.textField.floatingLabelText}
-                                                className="inputClass d-md-none d-sm-block d-block itemRadius"/*класс itemRadius добавил ради класса errorColor - отображения некорректоности заполнения */
+                                                className="inputClass d-md-none d-sm-block d-block itemRadius margin_5"/*класс itemRadius добавил ради класса errorColor - отображения некорректоности заполнения */
                                                 fullWidth="100%"
                                                 type="number"
                                                 floatingLabelFocusStyle={{ color: "#304269" }}
@@ -425,7 +428,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                                 <span className="newTourDatepickerSpan " onClick={this.calendarModalShow}>{textPage.selectDates}</span>
                             </div>
                             <div className="tripSettingsContentDate d-flex align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start justify-content-center">
-                                <div className="d-flex flex-wrap flex-row align-items-start col-md-8 col-6 p-0 my-2">
+                                <div className="d-flex flex-wrap align-items-start justify-content-md-start justify-content-center col-md-8 col-12 p-0 my-2">
 
                                     {this.state.dateTour.map((element, index) => {
                                         let day = element.getDate() < 10 ? "0" + element.getDate() : element.getDate();

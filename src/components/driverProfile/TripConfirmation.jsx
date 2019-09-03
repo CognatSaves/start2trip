@@ -69,10 +69,11 @@ class TripConfirmationClass extends React.Component {
         console.log(this.state);
         let helmet = this.props.storeState.languageTextMain.helmets.tripConfirmation;
         let textInfo = this.props.storeState.languageTextMain.drivers.tripConfirmation;
-        let windowImg = null
+        let windowImg = null;
+        let coockisIso = cookies.get('country', { path: '/' })
         if (this.props.storeState.languages.length > 0) {
             
-            let coockisIso = cookies.get('country', { path: '/' })
+            
             let j;
             for (let i = 0; i < this.props.storeState.countries.length; i++) {
                 if (this.props.storeState.countries[i].ISO === coockisIso) {
@@ -85,6 +86,10 @@ class TripConfirmationClass extends React.Component {
             }
             windowImg = requests.serverAddressImg + this.props.storeState.countries[j].windowImg.url
         }
+        let redirectAddress= coockisIso && coockisIso.length>0 ? 
+            ("/" + coockisIso + "-" + cookies.get('userLangISO', { path: "/" }) + '/routes/') :
+            ('/countrySelection');
+
         return (
             <React.Fragment>
                 <Helmet>
@@ -118,7 +123,7 @@ class TripConfirmationClass extends React.Component {
                                     </div>
                                     <div className="d-flex flex-md-row flex-column justify-content-center align-items-center col-md-8 col-12">
                                         <div className="forgotPasswordBt d-flex justify-content-center align-items-center col-md-5 col-12"
-                                        onClick={() => { this.props.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/routes/') }}>
+                                        onClick={() => { this.props.history.push(redirectAddress) }}>
                                         <span>{textInfo.good.buttonText}</span>
                                         </div>
                                     </div>
@@ -138,7 +143,7 @@ class TripConfirmationClass extends React.Component {
                                     </div>
                                     <div className="d-flex flex-md-row flex-column justify-content-center align-items-center col-md-8 col-12">
                                         <div className="forgotPasswordBt d-flex justify-content-center align-items-center col-md-5 col-12"
-                                        onClick={() => { this.props.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/routes/') }}>
+                                        onClick={() => { this.props.history.push(redirectAddress) }}>
                                         <span>{textInfo.bad.buttonText}</span>
                                         </div>
                                     </div>

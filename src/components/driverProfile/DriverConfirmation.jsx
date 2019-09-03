@@ -98,6 +98,10 @@ class DriverConfirmationClass extends React.Component {
         console.log('DriverConfirmation render');
         let textInfo = this.props.storeState.languageTextMain.drivers.driverConfirmation;
         let helmet = this.props.storeState.languageTextMain.helmets.driverConfirmation;
+        let coockisIso = cookies.get('country', { path: '/' })
+        let redirectAddress = coockisIso && coockisIso.length>0 ? 
+            ("/" + cookies.get('country', {path: '/'}) + "-" + cookies.get('userLangISO', { path: "/" }) + '/routes/') :
+            ('/countrySelection');
         return (
             <React.Fragment>
                 <Helmet>
@@ -133,7 +137,10 @@ class DriverConfirmationClass extends React.Component {
                                                 </span1>
                                             </div>
                                             <div className="d-flex flex-md-row flex-column justify-content-center align-items-center col-md-8 col-12">
-                                                <div className="forgotPasswordBt d-flex justify-content-center align-items-center col-md-5 col-12" onClick={() => { this.props.history.push("/" + cookies.get('country', {path: '/'}) + "-" + cookies.get('userLangISO', { path: "/" }) + '/routes/') }}><span>{textInfo.good.toStart}</span></div>
+                                                <div className="forgotPasswordBt d-flex justify-content-center align-items-center col-md-5 col-12"
+                                                 onClick={() => { this.props.history.push(redirectAddress) }}>
+                                                    <span>{textInfo.good.toStart}</span>
+                                                </div>
                                             </div>
                                             <div className="d-flex flex-column justify-content-center align-items-center col-md-5 col-12">
                                                 <p>{'* ' + textInfo.infoBlock}</p>
@@ -156,7 +163,7 @@ class DriverConfirmationClass extends React.Component {
                                                     onClick={() => {
                                                         this.setState({ confirmation: false });
                                                         this.sendRequest(this.state.id, this.state.carrierId, false);
-                                                        this.props.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/routes/')
+                                                        this.props.history.push(redirectAddress)
                                                     }}>
                                                     <span>{textInfo.bad.variants[0]}</span>
                                                 </div>

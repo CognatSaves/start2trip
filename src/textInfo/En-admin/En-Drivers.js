@@ -116,7 +116,7 @@ const driverProfileRegistration = {
             carActivate: "Activate"
         },
         cardInformation: {
-            span: "locations"
+            span: "seats"
         },
         noPhotoText: 'Insert the photo of your car.',
         badDataText: 'Fill in the selected fields correctly.'

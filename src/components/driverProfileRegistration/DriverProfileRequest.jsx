@@ -25,7 +25,7 @@ function getUserData(requestValues, thenFunc, catchFunc, params) {
         }
       })
       .catch(error => {
-        debugger;
+        
         if (catchFunc) {
           if (params && params.catchFunc) {
             catchFunc(params.catchFunc)

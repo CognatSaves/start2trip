@@ -103,7 +103,7 @@ class HomeBodyClass extends React.Component {
       }
       return timeString;
     }
-    debugger;
+    
     if ((this.props.driversState.travelLength === "-" && this.props.driversState.travelTime === "-") ||
       (this.props.driversState.travelLength.length === 0 || this.props.driversState.travelLength.length === 0)) {
       let lengthString = getLengthString(travelLength);
