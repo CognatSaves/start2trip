@@ -45,7 +45,7 @@
 
 @media (max-width: 800px) {
     .aboutService_Title {
-        background: none;
+        background: none !important;
     }
 
     .aboutService_Title h2 {

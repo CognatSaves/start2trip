@@ -253,7 +253,7 @@ export default class StartTravelForm extends React.Component {
 
     }
     componentDidUpdate(prevProps, prevState) {
-        debugger;
+        
         if (prevProps.storeState.userData.firstName !== this.props.storeState.userData.firstName) {
 
             this.setState({

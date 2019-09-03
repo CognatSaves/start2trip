@@ -13,6 +13,7 @@ import { Modal, ModalBody } from 'reactstrap';
 import { isMobileOnly, isMobile } from 'react-device-detect';
 import requests from '../../config';
 import axios from 'axios';
+import checkBtUp from '../../redusers/GlobalFunction'
 
 // import RenderModalCountry from './RenderModalCountry'
 // import { disablePageScroll, clearQueueScrollLocks, enablePageScroll } from 'scroll-lock';
@@ -312,7 +313,8 @@ class HeaderClass extends React.Component {
       savedNumber: 0,
       selectedUserType: 0
     };
-    window.onscroll = (e) => this.checkBtUp(e);
+    
+    window.onscroll = (e) => checkBtUp(e,this);
 
     //this.getLocals();
   }
@@ -579,37 +581,7 @@ class HeaderClass extends React.Component {
     }
   }
 
-  checkBtUp = (e) => {
-    let scrollEvent = e.currentTarget.pageYOffset;
-    if (isMobileOnly) {
-      if (this.state.previousPageYOffset > scrollEvent) {
-        if (scrollEvent > 730) {
-          document.querySelector(".btUp").classList.add("btUp-active");
-        } else {
-          if (document.querySelector(".btUp") !== null) {
-            document.querySelector(".btUp").classList.remove("btUp-active");
-          }
-        }
-      } else {
-        if (document.querySelector(".btUp") !== null) {
-          document.querySelector(".btUp").classList.remove("btUp-active");
-        }
-      }
-    } else {
-      if (this.state.previousPageYOffset > scrollEvent) {
-        if (document.querySelector(".footerButtonUp") !== null) {
-          if (scrollEvent > 400) {
-            document.querySelector(".footerButtonUp").classList.add("footerButtonUp-active");
-          }
-          else {
-            document.querySelector(".footerButtonUp").classList.remove("footerButtonUp-active");
-          }
-        }
-      }
-    }
-    this.setState({ previousPageYOffset: scrollEvent })
-
-  }
+  
   render() {
     function currencyFilter(storeState){
       //эта функция отсекает из массива только те валюты, которые либо являются национальными для страны,

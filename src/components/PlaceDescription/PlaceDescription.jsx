@@ -148,6 +148,7 @@ class PlaceDescriptionClass extends React.Component {
             )
         }
     }
+
     render() {
 
         console.log('Place description render', this.state, this.props);

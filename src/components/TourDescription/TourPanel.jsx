@@ -2,16 +2,17 @@ import React from 'react';
 import '../Places/PlacesPanel.css';
 import './TourDescription.css';
 import { connect } from 'react-redux';
+import checkBtUp from '../../redusers/GlobalFunction'
 
 //import {changePanelFixedClass} from '../../redusers/ActionTours';
 
 class TourPanelClass extends React.Component {
     constructor(props) {
         super(props);
-        /*this.state = {
-            variantsArray:this.props.variantsArray,
-        }*/
-        window.onscroll = (e) => this.checkPanelFixed(e);
+        this.state = {
+            previousPageYOffset: null,
+        }
+         window.onscroll = (e) => {this.checkPanelFixed(e);checkBtUp(e,this)};
     }
     shouldComponentUpdate(nextProps) {
         return !(JSON.stringify(this.props) === JSON.stringify(nextProps));
@@ -53,7 +54,7 @@ class TourPanelClass extends React.Component {
         }
         else {
             console.log("Функция отработки скролла завершает работу. Внимание - очищает все обработчики onscroll. Ф-ция лежит в компоненте TourPanel.");
-            window.onscroll = null;
+            // window.onscroll = null;
         }
 
     }

@@ -39,6 +39,7 @@ class TourDescriptionClass extends React.Component {
             photoSlice: 0,
             selectedPhotoIndex: 0,
             tour: tour,
+
             width: 870,
             height: 500,
             n: 7,
