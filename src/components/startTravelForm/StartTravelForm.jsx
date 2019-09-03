@@ -399,7 +399,7 @@ export default class StartTravelForm extends React.Component {
             email.children[1].children[0].classList.add("draver_route-error");
             isAllGood = false;
         }
-        if (this.state.telNumber === undefined) {
+        if (this.state.telNumber === undefined || this.state.telNumber.length<5 ) {
             phoneInput.children[1].classList.add("draver_route-error");
             isAllGood = false;
         }

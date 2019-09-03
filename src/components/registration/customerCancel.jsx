@@ -138,7 +138,7 @@ class customerCancelClass extends React.Component {
                         {this.state.falde !== null || this.state.onClickSpan ?
                             <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes/"}>{textInfo.goHome}</Link>
                             :
-                            <div className="d-flex justify-content-between align-items-center col-md-7 col-12">
+                            <div className="d-flex justify-content-between align-items-center col-md-4 col-12">
                                 <span onClick={() => { this.sendMessege(); this.setState({ onClickSpan: true }) }}>{textInfo.ok}</span>
                                 <span onClick={() => { this.setState({ onClickSpan: true }) }}>{textInfo.cancel}</span>
                             </div>
