@@ -41,8 +41,8 @@ class FooterClass extends React.Component {
         value: textInfo.footerMobileTextRoutes
       },
       {
-        pathname: "/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }),
-        pathnamesInner: ["/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/tours/"],
+        pathname:/* "/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" })*/null,
+        pathnamesInner: [/*"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/tours/"*/null],
         iconClasses: ["footerMobileIconTours_active", "footerMobileIconTours"],
         classValue: "footerMobileTextTours",
         value: textInfo.footerMobileTextTours

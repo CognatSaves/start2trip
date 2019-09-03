@@ -746,7 +746,7 @@ class HeaderClass extends React.Component {
                   <text className="col-11 pt-4 pb-2">{textInfo.burgerMenu.titlesName[1]}</text>
                   <div className="burgerMenuBlock d-flex flex-column justify-content-center align-items-start col-11">
                     <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes/"} className="border-bottom routes" >{textInfo.burgerMenu.services[0]}</Link>
-                    <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/tours/"} className="border-bottom tours" >{textInfo.burgerMenu.services[1]}</Link>
+                    <Link to={/*"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/tours/"*/null} className="border-bottom tours" >{textInfo.burgerMenu.services[1]}</Link>
                     <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/places/"} className="places" >{textInfo.burgerMenu.services[2]}</Link>
                   </div>
 
