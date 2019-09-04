@@ -1,5 +1,5 @@
 import React from 'react';
-import './PlacesList.css';
+import '../Places/PlacesList.css';
 import { connect } from 'react-redux';
 import { setPage, setMorePagesShow } from '../../redusers/ActionPlaces';
 

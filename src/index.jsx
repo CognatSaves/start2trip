@@ -376,8 +376,9 @@ ReactDOM.render(
               <Route path={"/" + config.routeMap + "/places-:direction/"} component={Places} />
               <Route path={"/" + config.routeMap + "/places/"} component={Places} />
 
+              <Route path={"/" + config.routeMap + "/tours/:slug/"} component={TourDescription} />
+              <Route path={"/" + config.routeMap + "/tours-:direction/"} component={Tours} />
               <Route path={"/" + config.routeMap + "/tours/"} component={Tours} />
-              <Route path={"/" + config.routeMap + "/tour/:slug/"} component={TourDescription} />
 
 
 

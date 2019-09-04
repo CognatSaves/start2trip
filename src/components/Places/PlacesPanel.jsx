@@ -28,8 +28,7 @@ class PlacesPanelClass extends React.Component {
 }
 const PlacesPanel = connect(
   (state) => ({
-    storeState: state.AppReduser,
-    placesState: state.PlacesReduser
+    storeState: state.AppReduser
   }),
 )(PlacesPanelClass);
 

@@ -262,16 +262,16 @@ class PlacesClass extends React.Component {
         <div className="drivers_top_background col-12 p-0" style={ {background:"url("+windowImg+")no-repeat"}}>
           <Header history={this.props.history} />
           <div className="wrapper d-flex flex-column">
-            <PlacesCountryInfo />
+            <PlacesCountryInfo  placesState={this.props.placesState}/>
           </div>
         </div>
         <div className="wrapper d-flex flex-column">
           <div className="drivers_bottom_background d-flex flex-column" onClick={()=>{ let a = this}}>
             <div className="drivers_body d-flex">
               <div id="placesMainBlock" className="left_body_part col-12 p-0">
-                <PopularPlaces />
-                <PlacesTagList />
-                <PlacesPanel />
+                <PopularPlaces placesState={this.props.placesState} where={"places"}/>
+                <PlacesTagList placesState={this.props.placesState}/>
+                <PlacesPanel placesState={this.props.placesState}/>
                 <PlacesList isStaying={!this.state.isRefreshExist}/>
               </div>
               {/* <div className="right_body_part col-3">

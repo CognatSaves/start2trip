@@ -115,7 +115,7 @@
     /*color: transparent;*/
     background-color: rgba(0, 0, 0, 0);
     border-radius: 5px 5px 0 0;
-    z-index: 20;
+    z-index: 15;
     transition: 0.3s all;
 }
 

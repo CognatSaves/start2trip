@@ -1,5 +1,5 @@
 import React from 'react';
-import './Places.css';
+import '../Places/Places.css';
 import { connect } from 'react-redux';
 import { setPage, setSelectedDirection } from '../../redusers/ActionPlaces';
 import { setPlacesList } from '../../redusers/ActionPlaces';
@@ -8,11 +8,13 @@ import axios from 'axios';
 import requests from '../../config';
 import Header from '../header/Header';
 
-import PlacesCountryInfo from './PlacesCountryInfo'
-import PlacesPanel from './PlacesPanel';
-import PopularPlaces from './PopularPlaces';
+import PlacesCountryInfo from '../Places/PlacesCountryInfo'
+// import PlacesPanel from '../Places/PlacesPanel';
+import PopularPlaces from '../Places/PopularPlaces';
 import ToursList from './ToursList';
-import PlacesTagList from './PlacesTagList';
+import TourInfo from '../TourDescription/TourInfo'
+import DriversProperties from '../drivers/DriversBody/DriversProperties/DriversProperties'
+// import PlacesTagList from '../Places/PlacesTagList';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 import Cookies from 'universal-cookie';
 
@@ -31,6 +33,29 @@ class ToursClass extends React.Component {
     this.props.dispatch(setPlacesList([], [], [], {}));
     //потом уже дело
     this.props.dispatch(setPage(1));
+
+
+    let country = cookies.get('country', { path: '/' });
+    let lang = cookies.get('userLang', { path: '/' });
+    let selectedDirection = this.props.match.params.direction;
+    axios.get(requests.getTours+ "?country=" + country + "&lang=" + lang + (selectedDirection ? "&slug=" + selectedDirection : ''))
+      .then(response => {
+        return response.json();
+      })
+      .then(function (data){
+        if(data.error){
+          console.log('bad');
+          throw data.error;
+        }
+        else{
+          console.log('good');
+          console.log('data',data);
+        }
+      })
+      .catch(function (error) {
+        console.log('bad');
+        console.log('An error occurred:', error);
+      })
   }
   sendRequestFunc = () => {
     function findSelectedDirectionId(directions, slug) {
@@ -262,16 +287,18 @@ class ToursClass extends React.Component {
         <div className="drivers_top_background col-12 p-0" style={ {background:"url("+windowImg+")no-repeat"}}>
           <Header history={this.props.history} />
           <div className="wrapper d-flex flex-column">
-            <PlacesCountryInfo />
+            <PlacesCountryInfo placesState={this.props.placesState} />
           </div>
         </div>
         <div className="wrapper d-flex flex-column">
           <div className="drivers_bottom_background d-flex flex-column" onClick={()=>{ let a = this}}>
             <div className="drivers_body d-flex">
               <div id="placesMainBlock" className="left_body_part col-12 p-0">
-                <PopularPlaces />
-                <PlacesTagList />
-                <PlacesPanel />
+                <PopularPlaces placesState={this.props.placesState} where={"tours"}/>
+                <TourInfo />
+                {/* <PlacesTagList  placesState={this.props.placesState}/> */}
+                {/* <PlacesPanel  placesState={this.props.placesState} /> */}
+                <DriversProperties />
                 <ToursList isStaying={!this.state.isRefreshExist}/>
               </div>
               {/* <div className="right_body_part col-3">

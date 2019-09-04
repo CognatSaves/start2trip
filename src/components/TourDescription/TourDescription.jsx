@@ -1,53 +1,62 @@
 import React from 'react';
-import './TourDescription.css';
 import { connect } from 'react-redux';
-import { changePanelFixedClass, setTourPanelSelectedElement } from '../../redusers/ActionTours';
-import requests from '../../config'
+import { changePlacesFixedClass, setPlacesPanelSelectedElement } from '../../redusers/ActionPlaces';
+import { isMobileOnly } from 'react-device-detect';
+import { Helmet } from 'react-helmet';
+import axios from 'axios';
+import requests from '../../config';
+import './TourDescription.css'
 
-import carthage from '../media/bachground.jpg';
-import antioch from '../media/bachground.jpg';
-import roma from '../media/bachground.jpg';
-import alexandria from '../media/bachground.jpg';
-import konstantinople from '../media/bachground.jpg';
-
-// import georgiaImg from '../media/georgia.png';
-
+import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 import Header from '../header/Header';
-import TourInfo from './TourInfo.jsx';
-import TourPanel from './TourPanel.jsx';
-import DriversCommercial from '../drivers/DriversBody/DriversCommercial/DriversCommercial';
-import TourProgram from './TourProgram.jsx';
-import PlacePhotos from '../PlaceDescription/PlacePhotos';
-import TourMapBlock from './TourMapBlock.jsx';
-import SimularToursBlock from './SimularToursBlock.jsx';
-import CommentBlock from './CommentBlock.jsx';
+import PlaceInfo from '../PlaceDescription/PlaceInfo.jsx';
+import PlacePhotoShow from '../PlaceDescription/PlacePhotoShow.jsx';
+import PlaceProgramm from '../PlaceDescription/PlaceProgramm.jsx';
+import PlacePhotos from '../PlaceDescription/PlacePhotos.jsx';
+import RouteTravelBlock from '../RouteDescription/RouteTravelBlock';
+import SimularRouteBlock from '../RouteDescription/SimularRouteBlock';
+import CommentBlock from '../TourDescription/CommentBlock.jsx';
+import TourPanel from '../TourDescription/TourPanel.jsx';
+
+import {
+    FacebookShareButton,
+    TwitterShareButton,
+    PinterestShareButton,
+    VKShareButton,
+    TelegramShareButton,
+    WhatsappShareButton,
+    ViberShareButton,
+
+    FacebookIcon,
+    TwitterIcon,
+    PinterestIcon,
+    VKIcon,
+    TelegramIcon,
+    WhatsappIcon,
+    ViberIcon,
+} from 'react-share';
+
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
 
-class TourDescriptionClass extends React.Component {
+class ToureDescriptionClass extends React.Component {
     constructor(props) {
         super(props);
-        let countryId = this.props.match.params.country;
-        let tourId = this.props.match.params.id;
-        let tour = this.props.toursState.tours[countryId].tours[tourId];
-
         this.state = {
-            userName: "Заинтересованный посетитель",
+            isRefreshExist: false,
+            isRefreshing: true,
+            isGoodAnswer: true,
+            newRoute: {},
+            couldSendRequest: true,
+            slug: '',
+            selectedLanguage: '',
+            isMaskVisible: false,
+            clickedImageIndex: 0,
             page: 1,
             showPages: 1,
-            photoSlice: 0,
-            selectedPhotoIndex: 0,
-            tour: tour,
-
-            width: 870,
-            height: 500,
-            n: 7,
-            photoArray: [carthage, antioch, roma, alexandria, konstantinople, carthage,
-                antioch, roma, alexandria, konstantinople, carthage, antioch, roma,
-                alexandria, konstantinople, carthage, antioch, roma, alexandria,
-                konstantinople],
         }
+
     }
     showMorePages = () => {
         this.setState({
@@ -65,106 +74,308 @@ class TourDescriptionClass extends React.Component {
             )
         }
     }
-    selectPhoto = (photoIndex) => {
-        function calculatePhotoSlice(photoIndex, length, OldPhotoIndex, OldPhotoSlice) {
-            let photoSlice = 0;
-            if (OldPhotoIndex < photoIndex) {
-                photoSlice = OldPhotoSlice + 1;
-            }
-            else {
-                photoSlice = OldPhotoSlice - 1;
-            }
-            if (length <= 7) {
-                return 0;
-            }
-            else {
-                while (photoSlice < 0) {
-                    photoSlice++;
-                }
-                while (length - photoSlice < 7) {
-                    photoSlice--;
-                }
-                return photoSlice;
-            }
-        }
-        let photoSlice = calculatePhotoSlice(photoIndex, this.state.photoArray.length, this.state.selectedPhotoIndex, this.state.photoSlice);
+    startRolling = () => {
         this.setState({
-            selectedPhotoIndex: photoIndex,
-            photoSlice: photoSlice
-        })
+            isRefreshExist: true
+        });
+    }
+    endRolling = (result) => {
+        let that = this;
+        this.setState({
+            isRefreshing: false,
+            isGoodAnswer: result
+        });
+        setTimeout(
+            function () {
+                that.setState({ isRefreshExist: false, isRefreshing: true })
+            }, 2000
+        )
     }
     render() {
 
+        console.log('RouteDescription render', this.state, this.props);
+        let topBlockId = "routeDescriptionId";
+        let slug = this.props.match.params.slug;
+        if (this.props.storeState.languages.length > 0 && this.state.newRoute.local && this.state.selectedLanguage !== this.props.storeState.activeLanguageNumber) {
 
+            let slugArray = this.state.newRoute.local.slugArray;
+            for (let i = 0; i < slugArray.length; i++) {
+                if (this.props.storeState.languages[this.props.storeState.activeLanguageNumber].id === slugArray[i].language) {
+                    this.setState({
+                        selectedLanguage: this.props.storeState.activeLanguageNumber,
 
-        let comments = [...this.props.commentState.comments].reverse();
-
-        let topBlockId = "tourDescriptionId";
-
-        let windowImg = null
-        if (this.props.storeState.languages.length > 0) {
-            
-            let coockisIso = cookies.get('country', { path: '/' })
-            let j;
-            for (let i = 0; i < this.props.storeState.countries.length; i++) {
-                if (this.props.storeState.countries[i].ISO === coockisIso) {
-                    j = i
-                    break;
+                    });
+                    this.props.globalReduser.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/routes/' + slugArray[i].slug+'/');
                 }
             }
-            if(coockisIso === undefined ){
-                j = 1
-            }
-            windowImg = requests.serverAddressImg + this.props.storeState.countries[j].windowImg.url
+            //надо что-то сделать, если не нашли          
         }
 
+        if (this.state.couldSendRequest && (!this.state.newRoute.local || this.state.slug !== slug) && this.props.storeState.languages.length > 0) {
+            this.setState({
+                couldSendRequest: false,
+                isRefreshExist: true,
+                selectedLanguage: this.props.storeState.activeLanguageNumber
+            });
+            let that = this;
+            axios.get(requests.showRoute + "?slug=" + (slug ? slug : ''))
+                .then(response => {
+                    console.log(response);
+                    return response.data;
+                })
+                .then(data => {
+                    if (data.error) {
+                        console.log("bad");
+                        throw data.error;
+                    }
+                    else {
+                        window.scroll({
+                            top: 0,
+                            left: 0,
+                            behavior: 'smooth'
+                        })
+                        console.log('good');
+                        console.log(data);
+                        that.setState({
+                            isRefreshExist: false,
+                            newRoute: data,
+                            couldSendRequest: true,
+                            slug: data.local.slug
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.log('get wasted answer');
+                    that.props.globalReduser.history.push('/404/');
+                });
+
+        }
+        let textInfo = this.props.storeState.languageTextMain.placeDescription;
+        let simularPlaceBlockId = topBlockId + '4';
+        let helmet = this.props.storeState.languageTextMain.helmets.routeDescription;
+        let info = null;
+        if(document.querySelector("#routeDescriptionId1")){
+            info = document.querySelector("#routeDescriptionId1").textContent;
+        }
+        let shareUrl = document.URL;
+        let title = null;
+        let exampleImage = null;
+        if(this.props.storeState.languages.length > 0 && this.state.newRoute.local !== undefined){
+            title = this.state.newRoute.local.name ;
+            exampleImage = this.state.newRoute.route.blockListImage.url
+        }
+       
         return (
             <React.Fragment>
-                <div className="drivers_top_background placeDescription_background col-12" id={topBlockId} style={ {background:"url("+windowImg+")no-repeat"}}>
-                    <img src={carthage} width="100%" height="100%" style={{ position: "absolute" }} alt="noImage" />
-                    <div style={{ position: "absolute", width: "100%", height: "100%", backgroundColor: "rgba(0,0,0,0.5)" }} />
-                    <div className="wrapper d-flex flex-column">
-                        <Header history={this.props.history} />
-                        <TourInfo tour={this.state.tour} />
-                    </div>
-                </div>
-                <div className="wrapper d-flex flex-column" key="aaa">
-                    <div className="drivers_bottom_background d-flex flex-column" >
-                        <div className="drivers_body d-flex">
-                            <div className="left_body_part col-9">
-                                <TourPanel topBlockId={topBlockId} descriptionId={"tourDescriptionId"} variantsArray={["Программа тура", "Фотографии", "Карта тура", "Похожие туры", "Отзывы"]}
-                                    setPanelStateFunc={changePanelFixedClass} panelFixedClass={this.props.toursState.tourPanelFixedClass}
-                                    panelSelectedElement={this.props.toursState.tourPanelSelectedElement} setPanelSelectedElement={setTourPanelSelectedElement} />
-                                <TourProgram tour={this.state.tour} />
-                                <div className="placeDescription_block d-flex flex-column" id="tourDescriptionId2">
-                                    <div className="placeDescription_fragmentName" style={{ marginBottom: "15px" }}>Фотографии</div>
-                                    <PlacePhotos photoArray={this.state.photoArray} width={this.state.width}
-                                        height={this.state.height} number={this.state.n} />
+                {
+                    this.state.newRoute.local ?
+                        <Helmet>
+                            <title>{this.state.newRoute.local.name + helmet.basic.title}</title>
+                            <meta name="description" content={this.state.newRoute.local.name + helmet.basic.description} />
+                            <meta property="og:site_name" content="Tripfer.com" />
+                            <meta property="og:type" content="website" />
+                            <meta property="og:url" content={document.URL} /*тут нужна подгрузка корректного слага */ />
+                            <meta property="og:title" content={this.state.newRoute.local.name + helmet.basic.title} />
+                            <meta property="og:description" content={this.state.newRoute.local.name + helmet.basic.description} />
+                        <script type="application/ld+json">
+                    {`
+                      {
+                        "@context": "https://schema.org",
+                        "@type": "Place",
+                        "url": `+JSON.stringify(document.URL)+`,
+                        "aggregateRating": {
+                          "@type": "AggregateRating",
+                          "ratingValue": `+JSON.stringify(this.state.newRoute.route.rating)+`,
+                          "reviewCount": `+JSON.stringify(this.state.newRoute.route.commentNumber)+`
+                        },
+                        "name":`+JSON.stringify(this.state.newRoute.local.name)+`,
+                        "description":`+JSON.stringify(info)+`,
+                        "address":[
+                        {
+                         "@type": "PostalAddress",
+                         "addressCountry":`+JSON.stringify(this.props.storeState.country)+`
+                         } 
+                        ],
+                         "publicAccess": true,
+                        "photo":[
+                        {
+                        "@type": "ImageObject",
+                        "thumbnail":"https://tripfer.com`+this.state.newRoute.route.blockListImage.url+`"
+                        }
+                        ]
+                      }
+                  `}
+              </script>
+              {/* TODO  "addressRegion":["tbilisi","kakheti"] статика*/}
+                        </Helmet> :
+                        <React.Fragment/>
+                }
+
+                <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist}
+                    isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
+
+                <div style={{ position: 'relative' }}>
+                    {
+
+                        this.state.newRoute.local ?
+                            <PlacePhotoShow onClose={() => { this.setState({ isMaskVisible: false }) }}
+                                isMaskVisible={this.state.isMaskVisible} clickedImageIndex={this.state.clickedImageIndex} images={this.state.newRoute.route.images} />
+                            : <React.Fragment />
+
+                    }
+                     {isMobileOnly ?
+                        <Header history={this.props.history} showBtnBack={true} />
+
+                        :
+                        <React.Fragment />
+                    }
+
+                    <div className="placeDescription_background col-12 p-0" style={{ background: "url(" + (this.state.newRoute.local && this.state.newRoute.route.mainImage ? (isMobileOnly ? requests.serverAddressImg + this.state.newRoute.route.blockListImage.url : requests.serverAddressImg + this.state.newRoute.route.mainImage.url) : '') + ") no-repeat" }} id={topBlockId}>
+                        {!isMobileOnly ?
+                            <Header history={this.props.history} />
+                            :
+                            <React.Fragment />
+                        }
+
+                        {
+                            this.state.newRoute.local ?
+                                <div className="placeDescription_topImageMask">
+                                    <div className="wrapper d-flex flex-column  ">
+                                        <PlaceInfo tagsArray={[]} date={this.state.newRoute.local.createdAt}
+                                            tags={[]} rating={this.state.newRoute.route.rating}
+                                            comments={this.state.newRoute.route.commentNumber} name={this.state.newRoute.local.name} />
+                                    </div>
                                 </div>
-                                <TourMapBlock tour={this.state.tour} cities={["Стамбул", "Антакья", "Александрия", "Картадж", "Рим"]} />
-                                <div className="placeDescription_block d-flex flex-column" id="tourDescriptionId4">
-                                    <SimularToursBlock tours={this.state.popularPlaces} fragmentName={"Похожие туры"} priseDisplay={"block"} />
-                                </div>
-                                <CommentBlock comments={comments} userName={this.state.userName} page={this.state.page}
-                                    setPage={this.setPage} showMorePages={this.showMorePages} showPages={this.state.showPages} id={"tourDescriptionId5"} />
-                            </div>
-                            <div className="right_body_part col-3">
-                                <DriversCommercial />
-                            </div>
-                        </div>
+                                : <React.Fragment />
+                        }
+
                     </div>
+                    {
+                        this.state.newRoute.local ?
+                            <div className="wrapper d-flex flex-column">
+                                <div className="drivers_bottom_background d-flex flex-column" >
+                                    <div className="drivers_body d-flex">
+                                        <div className="left_body_part col-12">
+                                            {
+                                                <TourPanel topBlockId={topBlockId} descriptionId={topBlockId} variantsArray={textInfo.placeDescription.variantsArray}
+                                                    setPanelStateFunc={changePlacesFixedClass} panelFixedClass={this.props.placesState.placePanelFixedClass}
+                                                    panelSelectedElement={this.props.placesState.placePanelSelectedElement} setPanelSelectedElement={setPlacesPanelSelectedElement}
+                                                    removeElements={this.state.newRoute.additionalRoutes.length === 0 ? [simularPlaceBlockId] : []} />
+                                            }
+
+                                            <div className="placeDescription_block d-flex flex-column p-0" id={topBlockId + "1"}>
+                                                <div className="placeDescription_fragmentName" style={{ marginBottom: "15px" }} >{textInfo.placeDescription.variantsArray[0]}</div>
+
+                                                <PlaceProgramm id={topBlockId + "1"} tagsArray={[]} place={{ ...this.state.newRoute.local, tags: []/*this.state.newPlace.place.tags*/, rating: this.state.newRoute.route.rating, comments: this.state.newRoute.route.commentNumber }} />
+                                            </div>
+                                            {isMobileOnly?<React.Fragment>
+                                                <div className="placeDescription_fragmentName" style={{ marginBottom: "15px" }} >{textInfo.share}</div>
+                                            <div className="d-flex ">
+                                                <div className="networkLink">
+                                                    <TelegramShareButton
+                                                        url={shareUrl}
+                                                        title={title}
+                                                        className="networkLink__share-button">
+                                                        <TelegramIcon size={32} round />
+                                                    </TelegramShareButton>
+                                                </div>
+                                                <div className="networkLink">
+                                                    <ViberShareButton
+                                                        url={shareUrl}
+                                                        title={title}
+                                                        className="networkLink__share-button">
+                                                        <ViberIcon
+                                                            size={32}
+                                                            round />
+                                                    </ViberShareButton>
+                                                </div>
+                                                <div className="networkLink">
+                                                    <WhatsappShareButton
+                                                        url={shareUrl}
+                                                        title={title}
+                                                        separator=":: "
+                                                        className="networkLink__share-button">
+                                                        <WhatsappIcon size={32} round />
+                                                    </WhatsappShareButton>
+                                                </div>
+                                                <div className="networkLink">
+                                                    <FacebookShareButton
+                                                        url={shareUrl}
+                                                        quote={title}
+                                                        className="networkLink__share-button">
+                                                        <FacebookIcon
+                                                            size={32}
+                                                            round />
+                                                    </FacebookShareButton>
+                                                </div>
+                                                <div className="networkLink">
+                                                    <TwitterShareButton
+                                                        url={shareUrl}
+                                                        title={title}
+                                                        className="networkLink__share-button">
+                                                        <TwitterIcon
+                                                            size={32}
+                                                            round />
+                                                    </TwitterShareButton>
+                                                </div>
+                                                <div className="networkLink">
+                                                    <VKShareButton
+                                                        url={shareUrl}
+                                                        image={`${String(window.location)}/${exampleImage}`}
+                                                        windowWidth={660}
+                                                        windowHeight={460}
+                                                        className="networkLink__share-button">
+                                                        <VKIcon
+                                                            size={32}
+                                                            round />
+                                                    </VKShareButton>
+                                                </div>
+                                                <div className="networkLink" >
+                                                    <PinterestShareButton
+                                                        url={String(shareUrl)}
+                                                        media={String("https://tripfer.com"+exampleImage)}
+                                                        windowWidth={1000}
+                                                        windowHeight={730}
+                                                        className="networkLink__share-button">
+                                                        <PinterestIcon size={32} round />
+                                                    </PinterestShareButton>
+                                                </div>
+                                            </div>
+                                            </React.Fragment>:<React.Fragment />}
+
+                                            <div className="placeDescription_block d-flex flex-column" id={topBlockId + "2"}>
+                                                <div className="placeDescription_fragmentName" style={{ marginBottom: "15px" }} >{textInfo.placeDescription.variantsArray[1]}</div>
+                                                <PlacePhotos photoArray={this.state.newRoute.route.images}
+                                                    showMask={(clickedImageIndex) => { this.setState({ isMaskVisible: true, clickedImageIndex: clickedImageIndex }) }} />
+                                            </div>
+                                            <RouteTravelBlock points={this.state.newRoute.local.points} id={topBlockId + "3"} />
+                                            <div className="placeDescription_block flex-column" id={simularPlaceBlockId} style={{ display: this.state.newRoute.additionalRoutes.length > 0 ? 'flex' : 'none' }}>
+
+                                                <SimularRouteBlock outerBlock={simularPlaceBlockId} routes={this.state.newRoute.additionalRoutes} fragmentName={textInfo.placeDescription.variantsArray[3]} priseDisplay={"none"} />
+                                            </div>
+
+                                            <CommentBlock targetType="route" comments={this.state.newRoute.comments} targetId={this.state.newRoute.route.id} page={this.state.page} setPage={this.setPage}
+                                                showMorePages={this.showMorePages} showPages={this.state.showPages} id={topBlockId + "5"} startRolling={() => this.startRolling()} endRolling={(result) => this.endRolling(result)} />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            : <React.Fragment />
+                    }
                 </div>
             </React.Fragment>
         )
     }
 }
-const TourDescription = connect(
+
+const ToureDescription = connect(
     (state) => ({
         storeState: state.AppReduser,
-        toursState: state.ToursReduser,
-        commentState: state.CommentReduser
+        globalReduser: state.GlobalReduser,
+        placesState: state.PlacesReduser
     }),
 
-)(TourDescriptionClass);
+)(ToureDescriptionClass);
 
-export default TourDescription;
+export default ToureDescription;

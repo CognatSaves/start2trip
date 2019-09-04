@@ -1,3 +1,129 @@
+.routeDescription_background {
+    height: 30vh;
+    background-size: cover !important;
+    background-position: center center !important
+}
+
+.routeTravelBlock_pointPart {
+    margin-top: 15px;
+    /* box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.25); */
+    border-radius: 5px;
+}
+
+.routeTravelBlock_pointBlock {
+    padding: 20px 0;
+    margin: 0 0 auto 0;
+    width: 100%;
+}
+
+.routeTravelBlock_pointElement_left {
+    padding-left: 10px !important;
+    padding-right: 5px !important;
+}
+
+.routeTravelBlock_pointElement_right {
+    padding-left: 5px !important;
+    padding-right: 10px !important;
+}
+
+.routeTravelBlock_pointValue {
+    width: 100%;
+    /*margin-bottom: 15px;*/
+    padding: 5px 10px;
+    border: 1px solid #ededed;
+    border-radius: 5px;
+    /* box-shadow: 0 0 6px 0px rgba(0, 0, 0, 0.25); */
+    /* box-shadow: 0px 4px 2px 1px rgba(0, 0, 0, 0.25); */
+    transition: all 0.2s;
+    background: #f7f7f7;
+}
+
+@keyframes glowing {
+    0% {
+        background: rgba(34, 157, 78, .49);
+    }
+
+    50% {
+        background: #fff;
+    }
+
+    100% {
+        background: rgba(34, 157, 78, .49);
+    }
+}
+
+
+/* .anidate  {
+    animation: glowing 2000ms infinite;
+    cursor:pointer;
+  } */
+
+.specialDate.routeTravelBlock_pointValue:hover {
+    box-shadow: 0px 4px 6px 1px rgba(0, 0, 0, 0.25);
+}
+
+.routeTravelBlock_pointValue:first-child {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.routeTravelBlock_height {
+    min-height: 41px;
+    max-height: 41px;
+    overflow: hidden;
+}
+
+.routeTravelBlock_height div {
+    color: rgba(0, 0, 0, 0.5);
+    white-space: nowrap;
+}
+
+.routeDescription_topImageMask {
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.routeTravelBlock_element {
+    padding: 5px !important;
+    cursor: not-allowed;
+}
+
+.routeTravelBlock_change {
+    color: #304269;
+}
+
+.routeTravelBlock_change:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    color: #ff6600;
+}
+
+@media (max-width: 900) {}
+
+@media (max-width: 560px) {
+    .routeTravelBlock_pointPart {
+        margin-top: 0px;
+        box-shadow: none;
+    }
+}
+
+@media (max-width: 430px) {
+    @keyframes glowing {
+        0% {
+            background: rgba(34, 157, 78, .49);
+        }
+    
+        50% {
+            background: #fff;
+        }
+    
+        100% {
+            background: rgba(34, 157, 78, .49);
+        }
+    }
+}
+
 .tourDescription_markerLine {
     position: relative;
     width: 17px;
