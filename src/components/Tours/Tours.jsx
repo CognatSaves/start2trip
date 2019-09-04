@@ -31,6 +31,29 @@ class ToursClass extends React.Component {
     this.props.dispatch(setPlacesList([], [], [], {}));
     //потом уже дело
     this.props.dispatch(setPage(1));
+
+
+    let country = cookies.get('country', { path: '/' });
+    let lang = cookies.get('userLang', { path: '/' });
+    let selectedDirection = this.props.match.params.direction;
+    axios.get(requests.getTours+ "?country=" + country + "&lang=" + lang + (selectedDirection ? "&slug=" + selectedDirection : ''))
+      .then(response => {
+        return response.json();
+      })
+      .then(function (data){
+        if(data.error){
+          console.log('bad');
+          throw data.error;
+        }
+        else{
+          console.log('good');
+          console.log('data',data);
+        }
+      })
+      .catch(function (error) {
+        console.log('bad');
+        console.log('An error occurred:', error);
+      })
   }
   sendRequestFunc = () => {
     function findSelectedDirectionId(directions, slug) {

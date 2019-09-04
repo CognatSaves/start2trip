@@ -3,7 +3,7 @@ import './PlacesList.css';
 import { connect } from 'react-redux';
 import { setPage, setMorePagesShow } from '../../redusers/ActionPlaces';
 
-import PlaceListElement from './PlaceListElement';
+import PlaceListElement from './ToursListElement';
 import Manipulator from '../manipulator/Manipulator';
 
 // import requests from '../../config';

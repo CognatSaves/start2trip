@@ -52,6 +52,7 @@ const getDriverDescription = serverAddress + "/users/getDriverDescription";
 const profileCheck = serverAddress + "/users/me/profileCheck";
 const isCommentedTrip = serverAddress + '/isCommentedTrip';
 
+const getTours = serverAddress + '/getTours';//запрос на получения массива туров
 export default {
     frontendAddress: frontendAddress,
     serverAddress: serverAddress,
@@ -105,5 +106,6 @@ export default {
 
     profileCheck: profileCheck,
     routeMap: routeMap,
-    isCommentedTrip:isCommentedTrip
+    isCommentedTrip:isCommentedTrip,
+    getTours:getTours
 };
