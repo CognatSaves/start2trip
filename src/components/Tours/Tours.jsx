@@ -11,7 +11,7 @@ import Header from '../header/Header';
 import PlacesCountryInfo from './PlacesCountryInfo'
 import PlacesPanel from './PlacesPanel';
 import PopularPlaces from './PopularPlaces';
-import PlacesList from './PlacesList';
+import ToursList from './ToursList';
 import PlacesTagList from './PlacesTagList';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 import Cookies from 'universal-cookie';
@@ -272,7 +272,7 @@ class ToursClass extends React.Component {
                 <PopularPlaces />
                 <PlacesTagList />
                 <PlacesPanel />
-                <PlacesList isStaying={!this.state.isRefreshExist}/>
+                <ToursList isStaying={!this.state.isRefreshExist}/>
               </div>
               {/* <div className="right_body_part col-3">
                 <DriversCommercial />

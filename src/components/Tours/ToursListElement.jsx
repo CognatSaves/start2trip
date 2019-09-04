@@ -12,7 +12,7 @@ import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
 
-class PlaceListElementClass extends React.Component {
+class ToursListElementClass extends React.Component {
     render() {
         let textInfo = this.props.storeState.languageTextMain.home.homeBottom.routeListElement;
 
@@ -44,16 +44,17 @@ class PlaceListElementClass extends React.Component {
 
                             <div className="placesList_info_position_textStyle">{element.placelocalization.location}</div>
                         </div>
-                    </div>
+                        <div>BOOK tours</div>
+                   </div>
                 </div>
             </div>
         )
     }
 }
-const PlaceListElement = connect(
+const ToursListElement = connect(
     (state) => ({
         storeState: state.AppReduser,
     }),
-)(PlaceListElementClass);
+)(ToursListElementClass);
 
-export default PlaceListElement;
+export default ToursListElement;
