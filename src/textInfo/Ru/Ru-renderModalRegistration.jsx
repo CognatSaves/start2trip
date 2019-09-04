@@ -46,9 +46,9 @@ const pageTextInfo = {
             {
                 userText: "Водитель"
             },
-            /*{
+            {
                 userText: "Автопарк/турагентство"
-            }*/
+            }
         ]
     },
     registrationAnswer:[

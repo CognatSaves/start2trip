@@ -250,7 +250,6 @@ class AgencyProfileBasicInformationClass extends React.Component {
         event.preventDefault();
         this.applyChanges();
     }
-
     handleChange = (event, index, value) => {
         this.chipData = this.state.chipData;
         this.chipData.push(value);
@@ -260,7 +259,6 @@ class AgencyProfileBasicInformationClass extends React.Component {
         this.language.splice(languageToDelete, 1);
         this.setState({ language: this.language });
     };
-
     handleRequestDelete = (element) => {
         this.chipData = this.state.chipData;
         const chipToDelete = this.chipData.map((chip) => chip).indexOf(element);
@@ -270,27 +268,28 @@ class AgencyProfileBasicInformationClass extends React.Component {
         this.language = this.state.language;
         this.language.push(element);
     };
-
     changeCity = (index, value) => {
         this.setState({
             profileData: { ...this.state.profileData, city: value }
         })
     }
     render() {
+        let textInfo = this.props.storeState.languageText.agencyProfile.agencyProfileBasicInformation;
+        
         return (
             <div className="basicInformationBody d-flex flex-column">
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
                 <div className="basicInformationBodyBottom d-flex flex-column mb-5 p-0">
                     <div className="basicInformationBodyBottomHeader d-xl-block d-lg-block d-md-block d-sm-none d-none">
-                        <p>Редактировать профиль</p>
+                        <p>{textInfo.header}</p>
                     </div>
                     <div className="basicInformationBodyBottomContent d-flex flex-column">
                         <form onSubmit={this.formSubmit} id="basicInformation" className="d-flex flex-column col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" >
-                            <p>Данные организации</p>
+                            <p>{textInfo.organizationData.header}</p>
                             <div className="bottomContentNote d-flex align-items-center">
-                                <label htmlFor="basicInfoName" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Название организации:</label>
+                                <label htmlFor="basicInfoName" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">{textInfo.organizationData.organizationName+":"}</label>
                                 <TextField
-                                    floatingLabelText="Название организации"
+                                    floatingLabelText={textInfo.organizationData.organizationName}
                                     className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
                                     fullWidth="100%"
                                     floatingLabelFocusStyle={{ color: "#304269" }}
@@ -301,12 +300,12 @@ class AgencyProfileBasicInformationClass extends React.Component {
                                 />
                                 <input className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " id="basicInfoName" type="text" value={this.state.profileData.organizationName}
                                     onChange={(e) => { this.agencyDataChange(e.target.value, 'organizationName'); }} />
-                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
+                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5"></p>
                             </div>
                             <div className="bottomContentNote d-flex align-items-center">
-                                <label htmlFor="basicInfoName" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Регистрационный номер:</label>
+                                <label htmlFor="basicInfoName" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">{textInfo.organizationData.registrationNumber+":"}</label>
                                 <TextField
-                                    floatingLabelText="Регистрационный номер"
+                                    floatingLabelText={textInfo.organizationData.registrationNumber}
                                     className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
                                     fullWidth="100%"
                                     floatingLabelFocusStyle={{ color: "#304269" }}
@@ -317,12 +316,12 @@ class AgencyProfileBasicInformationClass extends React.Component {
                                 />
                                 <input className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " id="basicInfoName" type="text" value={this.state.profileData.registrationNumber}
                                     onChange={(e) => { this.agencyDataChange(e.target.value, 'registrationNumber'); }} />
-                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
+                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5"></p>
                             </div>
                             <div className="bottomContentNote d-flex align-items-center">
-                                <label htmlFor="basicInfoName" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Юридический адрес:</label>
+                                <label htmlFor="basicInfoName" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">{textInfo.organizationData.legalAddress+':'}</label>
                                 <TextField
-                                    floatingLabelText="Юридический адрес"
+                                    floatingLabelText={textInfo.organizationData.legalAddress}
                                     className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
                                     fullWidth="100%"
                                     floatingLabelFocusStyle={{ color: "#304269" }}
@@ -333,12 +332,12 @@ class AgencyProfileBasicInformationClass extends React.Component {
                                 />
                                 <input className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " id="basicInfoName" type="text" value={this.state.profileData.legalAddress}
                                     onChange={(e) => { this.agencyDataChange(e.target.value, 'legalAddress'); }} />
-                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
+                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5"></p>
                             </div>
                             <div className="bottomContentNote d-flex align-items-center">
-                                <label htmlFor="basicInfoName" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Расчётный счёт:</label>
+                                <label htmlFor="basicInfoName" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">{textInfo.organizationData.bankAccount+':'}</label>
                                 <TextField
-                                    floatingLabelText="Расчётный счёт"
+                                    floatingLabelText={textInfo.organizationData.bankAccount}
                                     className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
                                     fullWidth="100%"
                                     floatingLabelFocusStyle={{ color: "#304269" }}
@@ -349,12 +348,12 @@ class AgencyProfileBasicInformationClass extends React.Component {
                                 />
                                 <input className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " id="basicInfoName" type="text" value={this.state.profileData.bankAccount}
                                     onChange={(e) => { this.agencyDataChange(e.target.value, 'bankAccount'); }} />
-                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
+                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5"></p>
                             </div>
                             <div className="bottomContentNote d-flex align-items-center">
-                                <label htmlFor="basicInfoName" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Код банка:</label>
+                                <label htmlFor="basicInfoName" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">{textInfo.organizationData.bankCode+":"}</label>
                                 <TextField
-                                    floatingLabelText="Код банка"
+                                    floatingLabelText={textInfo.organizationData.bankCode}
                                     className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
                                     fullWidth="100%"
                                     floatingLabelFocusStyle={{ color: "#304269" }}
@@ -365,12 +364,12 @@ class AgencyProfileBasicInformationClass extends React.Component {
                                 />
                                 <input className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " id="basicInfoName" type="text" value={this.state.profileData.bankCode}
                                     onChange={(e) => { this.agencyDataChange(e.target.value, 'bankCode'); }} />
-                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
+                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5"></p>
                             </div>
                             <div className="bottomContentNote d-flex align-items-center">
-                                <label htmlFor="basicInfoName" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Адрес банка:</label>
+                                <label htmlFor="basicInfoName" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">{textInfo.organizationData.bankAddress+":"}</label>
                                 <TextField
-                                    floatingLabelText="Адрес банка"
+                                    floatingLabelText={textInfo.organizationData.bankAddress}
                                     className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
                                     fullWidth="100%"
                                     floatingLabelFocusStyle={{ color: "#304269" }}
@@ -381,12 +380,12 @@ class AgencyProfileBasicInformationClass extends React.Component {
                                 />
                                 <input className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " id="basicInfoName" type="text" value={this.state.profileData.bankAddress}
                                     onChange={(e) => { this.agencyDataChange(e.target.value, 'bankAddress'); }} />
-                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
+                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5"></p>
                             </div>
                             <div className="bottomContentNote d-flex align-items-start">
-                                <label htmlFor="basicInfoMultiLine" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">О себе:</label>
+                                <label htmlFor="basicInfoMultiLine" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">{textInfo.organizationData.dataAbout+":"}</label>
                                 <TextField
-                                    floatingLabelText="О себе"
+                                    floatingLabelText={textInfo.organizationData.dataAbout}
                                     className="d-xl-none d-lg-none d-md-none d-sm-block d-block multiLineInputClass"
                                     fullWidth="100%"
                                     floatingLabelFocusStyle={{ color: "#304269" }}
@@ -398,15 +397,15 @@ class AgencyProfileBasicInformationClass extends React.Component {
                                 />
                                 <textarea className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " id="basicInfoMultiLine" name="" cols="30" rows="3" value={this.state.profileData.dataAbout}
                                     onChange={(e) => { let profileData = this.state.profileData; profileData.dataAbout = e.target.value; this.setState({ profileData: profileData }) }}></textarea>
-                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
+                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5"></p>
                             </div>
 
 
-                            <p>Данные контактного лица</p>
+                            <p>{textInfo.contactPerson.header}</p>
                             <div className="bottomContentNote d-flex align-items-center">
-                                <label htmlFor="basicInfoName" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Имя:</label>
+                                <label htmlFor="basicInfoName" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">{textInfo.contactPerson.firstName+":"}</label>
                                 <TextField
-                                    floatingLabelText="Имя"
+                                    floatingLabelText={textInfo.contactPerson.firstName}
                                     className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
                                     fullWidth="100%"
                                     floatingLabelFocusStyle={{ color: "#304269" }}
@@ -417,12 +416,12 @@ class AgencyProfileBasicInformationClass extends React.Component {
                                 />
                                 <input className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " id="basicInfoName" type="text" value={this.state.profileData.firstName}
                                     onChange={(e) => { this.inputChange(e.target.value, 'firstName'); }} />
-                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
+                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5"></p>
                             </div>
                             <div className="bottomContentNote d-flex align-items-center">
-                                <label htmlFor="basicInfoLastName" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Фамилия:</label>
+                                <label htmlFor="basicInfoLastName" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">{textInfo.contactPerson.lastName+":"}</label>
                                 <TextField
-                                    floatingLabelText="Фамилия"
+                                    floatingLabelText={textInfo.contactPerson.lastName}
                                     className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
                                     fullWidth="100%"
                                     floatingLabelFocusStyle={{ color: "#304269" }}
@@ -436,7 +435,7 @@ class AgencyProfileBasicInformationClass extends React.Component {
                             </div>
 
                             <div className="bottomContentNote d-flex align-items-center">
-                                <label htmlFor="basicInfoNumber" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Рабочий телефон:</label>
+                                <label htmlFor="basicInfoNumber" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">{textInfo.contactPerson.workPhone+":"}</label>
                                 <ReactTelInput
                                     defaultCountry={this.props.storeState.isoCountryMap}
                                     classNames="myPhoneInput"
@@ -444,10 +443,10 @@ class AgencyProfileBasicInformationClass extends React.Component {
                                     onChange={(telNumber, selectedCountry) => { this.inputChange(telNumber, 'workPhone'); }}
                                     initialValue={this.state.profileData.workPhone}
                                 />
-                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
+                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5"></p>
                             </div>
                             <div className="bottomContentNote d-flex align-items-center">
-                                <label htmlFor="basicInfoLanguage" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">Языки:</label>
+                                <label htmlFor="basicInfoLanguage" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">{textInfo.contactPerson.basicInfoLanguageText+":"}</label>
                                 <DropDownMenu
                                     value={this.state.value}
                                     anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
@@ -458,12 +457,12 @@ class AgencyProfileBasicInformationClass extends React.Component {
                                     selectedMenuItemStyle={{ color: "#f60" }}
                                     id="basicInfoLanguage"
                                 >
-                                    <MenuItem value="Выберите языки" disabled={true} primaryText="Выберите языки" />
+                                    <MenuItem value={textInfo.contactPerson.basicInfoLanguageText} disabled={true} primaryText={textInfo.contactPerson.basicInfoLanguageText} />
                                     {this.state.language.map((element, index) =>
                                         <MenuItem value={element} primaryText={element} />
                                     )}
                                 </DropDownMenu>
-                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum non quisquam temporibus ipsum doloribus enim?</p>
+                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5"></p>
                             </div>
                             <div className="d-flex align-items-center">
                                 <label style={{ display: this.state.chipData.length ? "block" : "none" }} htmlFor="basicInfoLanguage" className="col-xl-2 col-lg-2 col-md-2 col-sm-0 col-0"></label>
@@ -486,7 +485,7 @@ class AgencyProfileBasicInformationClass extends React.Component {
                             </div>
                             <div className="d-flex justify-content-xl-start justify-content-lg-start justify-content-md-start justify-content-sm-center justify-content-center ">
                                 <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2"></label>
-                                <button className="col-8 mb-5" htmlFor="basicInformation" type="submit">Сохранить Изменения</button>
+                                <button className="col-8 mb-5" htmlFor="basicInformation" type="submit">{textInfo.saveText}</button>
                             </div>
                         </form>
                     </div>
