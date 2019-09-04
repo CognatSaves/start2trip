@@ -18,7 +18,7 @@ import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
 const CityRouteTable = (props) => {
-  const { cities, changeCity, removeCity, addCity, isoCountryMap, readOnlyOn, language, textInfo, alphabet } = props;
+  const { cities, changeCity, removeCity, addCity, isoCountryMap, /*readOnlyOn,*/ language, textInfo, alphabet } = props;
   // let workCities = [...cities];
   // let tempStart = workCities.shift();
   // workCities.pop();
@@ -31,23 +31,28 @@ const CityRouteTable = (props) => {
         <div className="addCities" id={'addCities.' + language}>
           {cities.map((element, index) =>
             <div className="startCity d-flex col-12 p-0" key={'CityRouteTable' + index + cities[index].point + language} id={'CityRouteTable' + index + cities[index].point + language}>
-              <div className={readOnlyOn ? "col-12 p-0" : (index <= 1 ? "col-12 p-0" : "col-10 pl-0 pr-1")}>
+              <div className={/*readOnlyOn ? "col-12 p-0" :*/ (index <= 1 ? "col-12 p-0" : "col-10 pl-0 pr-1")}>
                 <div className="addCitiesLocationDropDown col p-0">
-                  <LocationSearchInput readOnlyOn={readOnlyOn ? true : false} address={cities[index].point} changeCity={changeCity}
+                  <LocationSearchInput readOnlyOn={/*readOnlyOn ? true : false*/false} address={cities[index].point} changeCity={changeCity}
                     index={index} classDropdown="searchElement_style" spanText={alphabet[index]}
                     placeholder={index ? textInfo.locationSearchPlaceholder.first : textInfo.locationSearchPlaceholder.second}
                     classDiv={index > 1 && !cities[index].point ? "classDivMobail  _checkDiv startCity-CheckInput col-12"
                       : "classDivMobail  _checkDiv col-12"} classInput="city_input _checkInput" isoCountryMap={isoCountryMap} />
                 </div>
               </div>
-              {readOnlyOn ?
+              {
+                /*
+                readOnlyOn ?
                 <React.Fragment />
                 :
                 <div className="crossToolTip col-2 p-0" style={{ display: index <= 1 ? "none" : "" }} onClick={() => removeCity(index)}>
                   <i className="crossIcon"></i>
                 </div>
+                */
               }
-
+              <div className="crossToolTip col-2 p-0" style={{ display: index <= 1 ? "none" : "" }} onClick={() => removeCity(index)}>
+                <i className="crossIcon"></i>
+              </div>
             </div>
           )}
 
@@ -55,11 +60,11 @@ const CityRouteTable = (props) => {
         :
         <div className="d-flex flex-wrap col-12 p-0" id={'addCities2.' + language}>
           {cities.map((element, index) =>
-            <div className={readOnlyOn ? (index % 2 == 0 && index == cities.length - 1 ? "startCity d-flex col-12 p-0" : "startCity d-flex col-6 p-0") : "startCity d-flex col-6 p-0"}
+            <div className={index % 2 == 0 && index == cities.length - 1 ? "startCity d-flex col-12 p-0" : "startCity d-flex col-6 p-0"/*readOnlyOn ? (index % 2 == 0 && index == cities.length - 1 ? "startCity d-flex col-12 p-0" : "startCity d-flex col-6 p-0") : "startCity d-flex col-6 p-0"*/}
               key={element + index + cities[index].point + language}>
-              <div className={index <= 1 ? (index % 2 ? "col-12 pl-0 pr-1" : "col-12 pl-0 pr-1") : (readOnlyOn ? "col-12 pl-0 pr-1" : "col-10 pl-0 pr-1 ")}>
+              <div className={index <= 1 ? (index % 2 ? "col-12 pl-0 pr-1" : "col-12 pl-0 pr-1") : ("col-10 pl-0 pr-1 "/*readOnlyOn ? "col-12 pl-0 pr-1" : "col-10 pl-0 pr-1 "*/)}>
                 <div className="addCitiesLocationDropDown col p-0" key={'LocationSearchInput' + index + language}>
-                  <LocationSearchInput readOnlyOn={readOnlyOn ? true : false} address={cities[index].point} changeCity={changeCity}
+                  <LocationSearchInput readOnlyOn={/*readOnlyOn ? true : false*/false} address={cities[index].point} changeCity={changeCity}
                     index={index} classDropdown="searchElement_style" spanText={alphabet[index]}
                     placeholder={index ? textInfo.locationSearchPlaceholder.first : textInfo.locationSearchPlaceholder.second}
                     classDiv={index > 1 && !cities[index].point ? "classDiv  _checkDiv startCity-CheckInput col-12"
@@ -67,6 +72,7 @@ const CityRouteTable = (props) => {
                 </div>
               </div>
               {
+                /*
                 readOnlyOn ?
                   <React.Fragment />
                   :
@@ -76,12 +82,20 @@ const CityRouteTable = (props) => {
                     <span className="crossToolTipText" style={{ display: isMobileOnly ? "none" : "block" }} >
                       {textInfo.removePointText}</span>
                   </div>
+                */
+                
               }
-
+              <div className="crossToolTip col p-0" style={{ display: index <= 1 ? "none" : "" }}
+                onClick={() => removeCity(index)}>
+                <i className="crossIcon"></i>
+                <span className="crossToolTipText" style={{ display: isMobileOnly ? "none" : "block" }} >
+                  {textInfo.removePointText}</span>
+              </div>
             </div>
           )}
 
           {
+            /*
             readOnlyOn ?
               <React.Fragment />
               :
@@ -90,8 +104,11 @@ const CityRouteTable = (props) => {
                   <div className="routemenu_city_add_text" style={{ background: "url(" + addIcon + ") no-repeat" }} >{textInfo.addPointText}</div>
                 </div>
               </React.Fragment>
+            */
           }
-
+          <div className=" d-flex routemenu_addCity col" onClick={() => { addCity() }}>
+            <div className="routemenu_city_add_text" style={{ background: "url(" + addIcon + ") no-repeat" }} >{textInfo.addPointText}</div>
+          </div>
 
         </div>
       }
@@ -570,24 +587,29 @@ class RouteMenuClass extends React.Component {
               <React.Fragment>
                 <div key={"cityRouteTable" + this.props.storeState.activeLanguageNumber} id={"idCityRouteTable." + this.props.storeState.activeLanguageNumber}>
                   <CityRouteTable textInfo={textInfo} language={this.props.storeState.activeLanguageNumber}
-                    readOnlyOn={this.props.showBtPrice} cities={this.props.storeState.cities}
+                    /*readOnlyOn={this.props.showBtPrice}*/ cities={this.props.storeState.cities}
                     changeCity={this.changeCity} removeCity={this.removeCity}
                     isoCountryMap={this.props.storeState.isoCountryMap}
                     alphabet={this.props.globalhistory.alphabet} />
                 </div>
 
-                {this.props.showBtPrice ? <React.Fragment />
+                {
+                  /*this.props.showBtPrice ? <React.Fragment />
                   :
                   <div className=" d-flex routemenu_addCity" onClick={() => { this.addCity() }}>
                     <div className="routemenu_city_add_text" style={{ background: "url(" + addIcon + ") no-repeat" }} >{textInfo.addPointText}</div>
                   </div>
+                  */
                 }
+                <div className=" d-flex routemenu_addCity" onClick={() => { this.addCity() }}>
+                  <div className="routemenu_city_add_text" style={{ background: "url(" + addIcon + ") no-repeat" }} >{textInfo.addPointText}</div>
+                </div>
               </React.Fragment>
               :
               <React.Fragment>
                 <div key={"cityRouteTable2" + this.props.storeState.activeLanguageNumber} id={"idCityRouteTable2." + this.props.storeState.activeLanguageNumber}>
                   <CityRouteTable textInfo={textInfo} language={this.props.storeState.activeLanguageNumber}
-                    readOnlyOn={this.props.showBtPrice} cities={this.props.storeState.cities} changeCity={this.changeCity}
+                    /*readOnlyOn={this.props.showBtPrice}*/ cities={this.props.storeState.cities} changeCity={this.changeCity}
                     removeCity={this.removeCity} addCity={this.addCity}
                     isoCountryMap={this.props.storeState.isoCountryMap}
                     alphabet={this.props.globalhistory.alphabet} />
@@ -608,15 +630,9 @@ class RouteMenuClass extends React.Component {
           }
             
 
-            {this.props.showBtPrice ?
+            {/*
+              this.props.showBtPrice ?
               <React.Fragment>
-                <div className="col-sm-6 col-12 p-0 pr-1">
-                  <div className="driverAdaptedBt ">
-                    {/* onClick={() => changeTravelVisibility('block')} */}
-                    <span>{textInfo.bookTripText} <span>{"$" + "20"}</span></span>
-                  </div>
-                </div>
-
               </React.Fragment>
               :
               <React.Fragment>
@@ -629,17 +645,27 @@ class RouteMenuClass extends React.Component {
                 </div>
 
               </React.Fragment>
+              */
             }
+            <div className="col-sm-6 col-12 p-0 ">
+              <div className="routemenu_search " onClick={() => { this.goToNextPage() }}>
+                <div className="routemenu_search_button " >
+                  <p className="routemenu_search_text">{textInfo.searchText}</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
         <div className="routemenu_footer  col-12 p-0">
           <div className="routemenu_comment d-flex flex-sm-row flex-column-reverse align-items-center">
             <div className="routemenu_comment_text col-sm-6 col-12 p-0">{textInfo.infoText.first}</div>
-            {this.props.showBtPrice ?
+            {/*
+              this.props.showBtPrice ?
               <div className="routemenu_comment_text col-sm-6 col-12 p-0 pb-2">{textInfo.infoText.second}</div>
               :
               <div />
+              */
             }
           </div>
         </div>
