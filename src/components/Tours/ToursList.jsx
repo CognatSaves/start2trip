@@ -1,14 +1,14 @@
 import React from 'react';
-import './PlacesList.css';
+import '../Places/PlacesList.css';
 import { connect } from 'react-redux';
 import { setPage, setMorePagesShow } from '../../redusers/ActionPlaces';
 
-import PlaceListElement from './ToursListElement';
+import ToursListElement from './ToursListElement';
 import Manipulator from '../manipulator/Manipulator';
 
 // import requests from '../../config';
 
-class PlacesListClass extends React.Component {
+class ToursListClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {}
@@ -98,7 +98,7 @@ class PlacesListClass extends React.Component {
                 <div className="drivers_block d-flex flex-wrap">
                     {selectedPlaces.map((element, index) =>
                         <React.Fragment>
-                            <PlaceListElement element={element} index={index} findTagName={(tag) => findTagName(tag, this)}
+                            <ToursListElement element={element} index={index} findTagName={(tag) => findTagName(tag, this)}
 
                             />
                         </React.Fragment>
@@ -126,12 +126,12 @@ class PlacesListClass extends React.Component {
         )
     }
 }
-const PlacesList = connect(
+const ToursList = connect(
     (state) => ({
         storeState: state.AppReduser,
         placesState: state.PlacesReduser,
         globalReduser: state.GlobalReduser
     }),
-)(PlacesListClass);
+)(ToursListClass);
 
-export default PlacesList;
+export default ToursList;

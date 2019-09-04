@@ -84,7 +84,7 @@ class DriverInfoClass extends React.Component {
                         {/* <div className="driverInfo_bookmarkElement"></div> */}
                     </div>
                     <div className="driverInfo_left_line">
-                        <div className="valueBlock_commentary pr-1">
+                        <div className="valueBlock_commentary px-3">
                             {element.dataAbout}
                         </div>
                     </div>

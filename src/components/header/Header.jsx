@@ -768,10 +768,10 @@ class HeaderClass extends React.Component {
                     {
                       this.props.storeState.isAuthorized ?
                         <React.Fragment>
-                          <span className="border-bottom profile" onClick={() => { this.accountRedirect("/profile", 1) }}>{textInfo.burgerMenu.profile}</span>
-                          <span className="border-bottom blockedSpan timetable" onClick={() => {/* this.setState({burgerMenu: false});this.accountRedirect("/trips", 0)*/ }}>{textInfo.burgerMenu.trips}</span>
-                          <span className="border-bottom settingsGears" onClick={() => { this.accountRedirect("/settings", 6) }}>{textInfo.burgerMenu.settings}</span>
-                          <span className="border-bottom saveMoney" onClick={() => { this.accountRedirect("/referrals", 8) }}>{textInfo.burgerMenu.partnership}</span>
+                          <span className="border-bottom profile" onClick={() => { this.setState({burgerMenu: false}); this.accountRedirect("/profile", 1) }}>{textInfo.burgerMenu.profile}</span>
+                          <span className="border-bottom blockedSpan timetable" onClick={() => { this.setState({burgerMenu: false});this.accountRedirect("/trips", 0) }}>{textInfo.burgerMenu.trips}</span>
+                          <span className="border-bottom settingsGears" onClick={() => { this.setState({burgerMenu: false}); this.accountRedirect("/settings", 6) }}>{textInfo.burgerMenu.settings}</span>
+                          <span className="border-bottom saveMoney" onClick={() => { this.setState({burgerMenu: false}); this.accountRedirect("/referrals", 8) }}>{textInfo.burgerMenu.partnership}</span>
                           <span className="exit" onClick={() => { this.logOffFunc() }}>{textInfo.burgerMenu.exit}</span>
                         </React.Fragment>
                         :

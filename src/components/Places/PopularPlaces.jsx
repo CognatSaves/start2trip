@@ -32,10 +32,10 @@ class PopularPlacesClass extends React.Component {
         let selectedDirection = this.props.placesState.selectedDirection;
         let slug = findSelectedDirectionName(this.props.placesState.directions, id, this.props.storeState);
         if (selectedDirection !== id && slug) {
-            return "/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/places-' + slug;
+            return "/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/'+this.props.where+'-' + slug;
         }
         else {
-            return "/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/places';
+            return "/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/'+this.props.where;
         }
     }
     onDirClickCleared = (address) => {
@@ -129,7 +129,6 @@ class PopularPlacesClass extends React.Component {
 const PopularPlaces = connect(
     (state) => ({
         storeState: state.AppReduser,
-        placesState: state.PlacesReduser,
         globalReduser: state.GlobalReduser
     }),
 )(PopularPlacesClass);

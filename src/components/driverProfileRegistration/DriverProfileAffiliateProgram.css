@@ -101,12 +101,13 @@
 .affiliateProgramIconsMass {
     padding-top: 5px;
     width: 70%;
-    overflow-x: scroll;
+    overflow-x: auto;
 }
 
 .networkLink{
     text-align: center;
     margin: 5px;
+    cursor: pointer;
 }
 
 

@@ -115,7 +115,6 @@ class PlacesTagListClass extends React.Component {
 const PlacesTagList = connect(
     (state) => ({
         storeState: state.AppReduser,
-        placesState: state.PlacesReduser
     }),
 )(PlacesTagListClass);
 

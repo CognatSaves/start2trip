@@ -105,8 +105,7 @@ class PlacesCountryInfoClass extends React.Component {
 const PlacesCountryInfo = connect(
   (state) => ({
     storeState: state.AppReduser,
-    globalReduser: state.GlobalReduser,
-    placesState: state.PlacesReduser
+    globalReduser: state.GlobalReduser
   }),
 
 )(PlacesCountryInfoClass);
