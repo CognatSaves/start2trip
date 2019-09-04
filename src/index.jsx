@@ -93,19 +93,19 @@ function getLocals() {
   //кое-какие значения, например языки
   let redusers = store.getState();
   let props = {};
-  
+
   //этот блок проверяет, находимся ли мы на страницах вида /geo-ru/... ,
   //откуда может взять язык
   let urlLang = "null";
   let documentUrl = window.document.URL.split("/");
   documentUrl = documentUrl[3].split("-");
-  if(documentUrl[0] !== ""){
-    if(documentUrl.length===1){
+  if (documentUrl[0] !== "") {
+    if (documentUrl.length === 1) {
       urlLang = documentUrl[0]
-    }else{
+    } else {
       urlLang = documentUrl[1]
     }
-    
+
   }
   //*****//
   //этот блок считывает языковые куки
@@ -116,7 +116,7 @@ function getLocals() {
   //здесь выбираем приоритетное значение - если выше мы смогли взять язык из адреса,
   //то используем его, если нет, то будем, в случае отсутствия кук, записывать туда
   //значения браузера
-  
+
   let userBrowserLanguageISO = ((urlLang && urlLang.length === 2) ? urlLang : userBrowserLanguage.substr(0, 2));
   let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
   //*****//
@@ -124,7 +124,7 @@ function getLocals() {
   if (!adminLang || !userLang || !cookiesLangISO) {
 
     let langSelector = 'ENG'; let smallLangSelector = 'en';
-    
+
     //если у нас язык браузера пользователя русский, то будем подставлять ему
     //в куки русский, иначе английский
     if (userBrowserLanguageISO === 'ru') {
@@ -145,7 +145,7 @@ function getLocals() {
     }
   }
 
-  
+
 
 
   let langSelector = 'ENG'; let smallLangSelector = 'en';
@@ -155,27 +155,27 @@ function getLocals() {
   }
   //если значение в куке не совпадает с языком в адресной строке, то мы
   //используем язык из адресной строки, он имеет более высокий приоритет
-  if(userLang !== langSelector/* && urlLang.length === 2 - эта проверка выполнена раньше*/ ){
+  if (userLang !== langSelector/* && urlLang.length === 2 - эта проверка выполнена раньше*/) {
     //если происходит несовпадение, то нужно заполнить валидным значением
     //сейчас(19.08.19) у нас 2 языка, делаем как и выше - если у нас русский('ru'),
     //то ставим его, иначе английский
     //если вообще не то, то редирект на 404 - так как надо ставить 3хбукв на основе
     //2хбукв, то придётся ставить однозначные соответствия
-    
-    
-    
+
+
+
     //если у нас язык браузера пользователя русский, то будем подставлять ему
     //в куки русский, иначе английский
     //если не русский и не английский, то значит, англйский)))
     //потому что всё равно выкинет на 404
     //впоследствии надо будет разместить где-то массив пар 2хбкв и 3хбкв
-    
+
     cookies.set('userLang', langSelector, { path: '/', expires: date });
     userLang = langSelector;
     cookies.set('userLangISO', smallLangSelector, { path: '/', expires: date });
     cookiesLangISO = smallLangSelector;
   }
-  
+
 
   store.dispatch(setActiveLangISO(userLang, adminLang));
 
@@ -185,7 +185,7 @@ function getLocals() {
 
   axios.get(requests.getLocals, props)
     .then(response => {
-      
+
       let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
       let languages = response.data.languages;
       let currencies = response.data.currencies;
@@ -363,7 +363,7 @@ ReactDOM.render(
     <BrowserRouter >
       <React.Fragment>
         <MuiThemeProvider muiTheme={muiTheme}>
-          <Suspense fallback={<div>{store.getState().AppReduser.languageTextMain.home.loading+"..."}</div>}>
+          <Suspense fallback={<div>{store.getState().AppReduser.languageTextMain.home.loading + "..."}</div>}>
             <Switch>
               <Route path={"/" + config.routeMap + "/routes/:slug/"} component={RouteDescription} />
               <Route path={"/" + config.routeMap + "/routes-:direction/"} component={Home} />
@@ -376,19 +376,21 @@ ReactDOM.render(
               <Route path={"/" + config.routeMap + "/places-:direction/"} component={Places} />
               <Route path={"/" + config.routeMap + "/places/"} component={Places} />
 
+              <Route path={"/" + config.routeMap + "/tours/"} component={Tours} />
+              <Route path={"/" + config.routeMap + "/tour/:slug/"} component={TourDescription} />
 
 
-              
+
 
               <Route path="/account/" component={AccountRedirector} />
               <Route path="/forgot-password/" component={ForgotPassword} />
               <Route path="/reset-password/:code/" component={ResetPassword} />
-              
+
               <Route path={"/(ru|en)/terms-:userType/"} component={LicenseAgreement} />
               <Route path={"/(ru|en)/terms/"} component={LicenseAgreement} />
               <Route path={"/(ru|en)/contacts/"} component={contacts} />
               <Route path={"/(ru|en)/affiliate-program/"} component={affiliateProgram} />
-              <Route path={"/(ru|en)/about-service/" } component={AboutService} />
+              <Route path={"/(ru|en)/about-service/"} component={AboutService} />
 
               <Route path="/driverConfirmation/:id-:carrierId-:confirmation/" component={DriverConfirmation} />
               <Route path="/tripConfirmation/:id-:userId" component={TripConfirmation} />
@@ -398,9 +400,9 @@ ReactDOM.render(
               <Route path="/countrySelection/" component={AuthModalCountry} />
               <Route path="/feedback-:id-:clientId/" component={feedback} />
               <Route path="/customer-cancel-:id-:clientId/" component={customerCancel} />
-              
+
               {window.location.pathname === "/" ?
-                <Redirect from="/" to={"/" + (redirectPage === "undefined-undefined"||redirectPage === "undefined-en"||redirectPage === "undefined-ru" ? "countrySelection/" : redirectPage + "/routes/")} />
+                <Redirect from="/" to={"/" + (redirectPage === "undefined-undefined" || redirectPage === "undefined-en" || redirectPage === "undefined-ru" ? "countrySelection/" : redirectPage + "/routes/")} />
                 :
                 <Route path="*" component={pageNotFound} status={404} />
               }

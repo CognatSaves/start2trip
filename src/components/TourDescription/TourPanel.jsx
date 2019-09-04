@@ -21,6 +21,7 @@ class TourPanelClass extends React.Component {
         this.checkPanelFixed();
     }
     checkPanelFixed = () => {
+        
         console.log("checkPanelFixed");
         if (document.getElementById(this.props.topBlockId)) {
             var scrolled = window.pageYOffset || document.documentElement.scrollTop;
@@ -31,6 +32,7 @@ class TourPanelClass extends React.Component {
                 }
             }
             else {
+                
                 if (this.props.panelFixedClass !== "tourPanelFixed") {
                     this.props.dispatch(this.props.setPanelStateFunc/*changePanelFixedClass*/("tourPanelFixed"));
                 }
@@ -50,6 +52,10 @@ class TourPanelClass extends React.Component {
             }
             if (/*this.state.selectedElement*/null !== selected) {
                 this.props.dispatch(this.props.setPanelSelectedElement(selected));
+                // debugger эксперементы прокрутки TODO
+                // let aasdsadsa = document.querySelector(".tourPanel_panel")
+                // console.log(aasdsadsa)
+                
             }
         }
         else {

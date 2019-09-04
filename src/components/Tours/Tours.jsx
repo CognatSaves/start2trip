@@ -1,48 +1,168 @@
 import React from 'react';
-import '../Places/Places.css';
+import './Places.css';
 import { connect } from 'react-redux';
-import { setPage, setMorePagesShow } from '../../redusers/ActionPlaces';
-import requests from '../../config'
-
+import { setPage, setSelectedDirection } from '../../redusers/ActionPlaces';
+import { setPlacesList } from '../../redusers/ActionPlaces';
+import { Helmet } from 'react-helmet';
+import axios from 'axios';
+import requests from '../../config';
 import Header from '../header/Header';
-import ToursCountryInfo from './ToursCountryInfo';
-import DriversProperties from '../drivers/DriversBody/DriversProperties/DriversProperties';
-import DriversCommercial from '../drivers/DriversBody/DriversCommercial/DriversCommercial';
-import ToursList from './ToursList';
+
+import PlacesCountryInfo from './PlacesCountryInfo'
+import PlacesPanel from './PlacesPanel';
+import PopularPlaces from './PopularPlaces';
+import PlacesList from './PlacesList';
+import PlacesTagList from './PlacesTagList';
+import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
 
-// TODO dispatch old
 class ToursClass extends React.Component {
   constructor(props) {
-    function maxPriceCalc(array) {
-      let maxValue = 0;
-      for (let i = 0; i < array.length; i++) {
-        if (array[i].price > maxValue) {
-          maxValue = array[i].price;
-        }
-      }
-      return maxValue;
-    }
     super(props);
-    let maxPrice = maxPriceCalc(this.props.toursState.tours[0].tours);
     this.state = {
-      maxPrice: maxPrice
+      country: "",
+      language: "",
+      isRefreshExist: false,
+      selectedDirection: ''
     }
+    //сначала уборка
+    this.props.dispatch(setPlacesList([], [], [], {}));
+    //потом уже дело
+    this.props.dispatch(setPage(1));
   }
-  componentWillMount() {
-    this.props.setMaxPrice(this.state.maxPrice);
-  }
-  setPageFunc = (page) => {
-    if (page !== "...") {
-      this.props.dispatch(setPage(page));
+  sendRequestFunc = () => {
+    function findSelectedDirectionId(directions, slug) {
+      for (let i = 0; i < directions.length; i++) {
+        //for(let k=0; k<directions[i].loc.length; k++){
+        if (directions[i].loc.slug === slug) {
+          return directions[i].id
+        }
+        //}
+      }
+      return 0;
     }
-  }
-  showMorePages = () => {
-    this.props.dispatch(setMorePagesShow());
+    let selectedDirection = this.props.match.params.direction;
+    if (!selectedDirection) {//защита от undefined
+      selectedDirection = '';
+    }
+    let country = cookies.get('country', { path: '/' });
+    let lang = cookies.get('userLang', { path: '/' });
+
+    let shouldSendRequest = !this.state.isRefreshExist &&
+      (
+        this.state.selectedDirection !== (selectedDirection) ||
+        this.state.country !== country ||
+        (this.state.language !== lang)
+      );
+
+    if (shouldSendRequest) {
+      
+
+      //let selectedDirection = this.props.match.params.direction;
+
+      this.setState({
+        country: country,
+        language: lang,
+        isRefreshExist: true,
+        selectedDirection: selectedDirection
+      });
+
+      //let country = cookies.get('country', { path: '/' });
+      let that = this;
+
+      axios.get(requests.getPlacesList + "?country=" + country + "&lang=" + lang + (selectedDirection ? "&slug=" + selectedDirection : ''))
+        .then(response => {
+          console.log(response);
+          return response.data;
+        })
+        .then(data => {
+
+          if (data.error) {
+            console.log("bad");
+            throw data.error;
+          }
+          else {
+
+            console.log('good');
+            console.log(data);
+            that.props.dispatch(setPlacesList(data.places, data.tags, data.directions, data.country));
+            //следующие строки проверяют, смогли ли мы воспользоваться slug направления, если он, конечно, был
+
+
+            if (selectedDirection.length > 0) {
+              let id = findSelectedDirectionId(data.directions, selectedDirection);
+              if (id !== 0) {
+                that.props.dispatch(setSelectedDirection(id));
+              }
+              else {
+                //если не нашли - пускаем ещё раз крутилку - если не нашли, сервер не нашёл направление-> вернул всё
+                that.props.globalReduser.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/places/');
+              }
+            }
+            else {
+              that.props.dispatch(setSelectedDirection(''));
+            }
+            that.setState({
+              isRefreshExist: false
+            });
+
+          }
+        })
+        .catch(error => {
+          console.log('get wasted answer');
+          this.props.globalReduser.history.push('/');
+        });
+    }
   }
   render() {
+    function findSelectedDirectionName(directions, selectedDirection) {
+      for (let i = 0; i < directions.length; i++) {
+        //for(let j=0; j<directions[i].loc.length; j++){
+        if (directions[i].loc.slug === selectedDirection) {
+          return directions[i].loc.name;
+        }
+        //}      
+      }
+      return '';
+    }
+
+    console.log("Places render", this.props.placesState);
+
+    this.sendRequestFunc();
+    /*
+    console.log(this.props);
+    console.log(this.state);
+    console.log(document);
+    console.log(window);*/
+    let selectedDirection = this.props.match.params.direction;
+    if (!selectedDirection) {//защита от undefined
+      selectedDirection = '';
+    }
+    let countryName = this.props.storeState.countries.length > 0 ?
+      this.props.globalReduser.findCountryNameByISO(this, cookies.get('country', { path: '/' }), cookies.get('userLang', { path: '/' }))
+      : '';
+    if (countryName.length > 0) {
+
+    }
+    let name = findSelectedDirectionName(this.props.placesState.directions, selectedDirection);
+    let helmet = this.props.storeState.languageTextMain.helmets.places;
+
+    let a = this.props.placesState.placesList;
+    let directions = [];
+    let directionName;
+    let countryISO ;
+    if(this.props.placesState.directions.length > 0){
+      for(let i =0; i<this.props.placesState.directions.length; i++){
+        directions.push(this.props.placesState.directions[i].loc.slug)
+      }
+      countryISO = JSON.stringify(this.state.country);
+    }
+    if(this.props.placesState.directions.length > 0 && selectedDirection.length > 0){
+      directionName = JSON.stringify(findSelectedDirectionName(this.props.placesState.directions, selectedDirection));
+    }
+    directions = JSON.stringify(directions)
     let windowImg = null
         if (this.props.storeState.languages.length > 0) {
             
@@ -59,24 +179,104 @@ class ToursClass extends React.Component {
           }
             windowImg = requests.serverAddressImg + this.props.storeState.countries[j].windowImg.url
         }
+     
     return (
       <React.Fragment>
-        <div className="drivers_top_background col-12" style={ {background:"url("+windowImg+")no-repeat"}}>
+        <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={/*this.state.isRefreshing*/true} isGoodAnswer={/*this.state.isGoodAnswer*/true} />
+
+        {
+          
+          countryName.length > 0 ?
+            (
+              this.props.placesState.directions.length > 0 && selectedDirection.length > 0 ?
+              
+                <Helmet>
+                  <title>{helmet.direction.title[0] + findSelectedDirectionName(this.props.placesState.directions, selectedDirection) + helmet.direction.title[1]}</title>
+                  <meta name="description" content={findSelectedDirectionName(this.props.placesState.directions, selectedDirection) + helmet.direction.description} />
+                  <meta property="og:site_name" content="Tripfer.com" />
+                  <meta property="og:type" content="website" />
+                  <meta property="og:url" content={document.URL} /*тут нужно добавить direction */ />
+                  <meta property="og:title" content={helmet.direction.title[0] + findSelectedDirectionName(this.props.placesState.directions, selectedDirection) + helmet.direction.title[1]} />
+                  <meta property="og:description" content={findSelectedDirectionName(this.props.placesState.directions, selectedDirection) + helmet.direction.description} />
+                  
+                  <script type="application/ld+json">
+                    {`
+                      {
+                      "@context": "https://schema.org",
+                    "@type": "Place",
+                    "url": `+JSON.stringify(document.URL)+`,
+                    "address":[
+                    {
+                      "@type": "PostalAddress",
+                    "addressCountry":`+countryISO+`,
+                    "addressRegion": `+directionName+`
+                    }
+                   ],
+                   "photo":[
+                    {
+                      "@type": "ImageObject",
+                    "thumbnail":"https://tripfer.com/uploads/bf77b09a0d3d4564b6c7eb9eb2f4a51d.jpg"
+                    }
+                    ]
+                  }
+                  `}
+              </script>
+                </Helmet> :
+                <Helmet>
+                  <title>{helmet.country.title[0] + countryName + helmet.country.title[1]}</title>
+                  <meta name="description" content={helmet.country.description[0] + countryName + helmet.country.description[1] + countryName + helmet.country.description[2]} />
+                  <meta property="og:site_name" content="Tripfer.com" />
+                  <meta property="og:type" content="website" />
+                  <meta property="og:url" content={document.URL} />
+                  <meta property="og:title" content={helmet.country.title[0] + countryName + helmet.country.title[1]} />
+                  <meta property="og:description" content={helmet.country.description[0] + countryName + helmet.country.description[1] + countryName + helmet.country.description[2]} />
+                  <script type="application/ld+json">
+                    {`
+                      {
+                      "@context": "https://schema.org",
+                    "@type": "Place",
+                    "url": `+JSON.stringify(document.URL)+`,
+                    "address":[
+                    {
+                      "@type": "PostalAddress",
+                    "addressCountry":`+countryISO+`,
+                    "addressRegion":`+directions+`
+                    }
+                   ],
+                   "photo":[
+                    {
+                      "@type": "ImageObject",
+                    "thumbnail":"https://tripfer.com/uploads/bf77b09a0d3d4564b6c7eb9eb2f4a51d.jpg"
+                    }
+                    ]
+                  }
+                  `}
+              </script>
+              {/* TODO img */}
+                </Helmet>
+            )
+            : <React.Fragment />
+
+        }
+
+        <div className="drivers_top_background col-12 p-0" style={ {background:"url("+windowImg+")no-repeat"}}>
+          <Header history={this.props.history} />
           <div className="wrapper d-flex flex-column">
-            <Header history={this.props.history} />
-            <ToursCountryInfo />
+            <PlacesCountryInfo />
           </div>
         </div>
         <div className="wrapper d-flex flex-column">
-          <div className="drivers_bottom_background d-flex flex-column" >
+          <div className="drivers_bottom_background d-flex flex-column" onClick={()=>{ let a = this}}>
             <div className="drivers_body d-flex">
-              <div className="left_body_part col-9">
-                <DriversProperties />
-                <ToursList />
+              <div id="placesMainBlock" className="left_body_part col-12 p-0">
+                <PopularPlaces />
+                <PlacesTagList />
+                <PlacesPanel />
+                <PlacesList isStaying={!this.state.isRefreshExist}/>
               </div>
-              <div className="right_body_part col-3">
+              {/* <div className="right_body_part col-3">
                 <DriversCommercial />
-              </div>
+              </div> */}
             </div>
 
           </div>
@@ -89,11 +289,10 @@ class ToursClass extends React.Component {
 const Tours = connect(
   (state) => ({
     storeState: state.AppReduser,
-    toursState: state.ToursReduser
+    globalReduser: state.GlobalReduser,
+    placesState: state.PlacesReduser
   }),
-  (dispatch) => ({
-    setMaxPrice: (maxPrice) => dispatch({ type: "SET_MAX_PRICE", maxPrice: maxPrice, pricePart: 1000 })
-  })
+
 )(ToursClass);
 
 export default Tours;
