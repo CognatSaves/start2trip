@@ -60,7 +60,7 @@ const CityRouteTable = (props) => {
         :
         <div className="d-flex flex-wrap col-12 p-0" id={'addCities2.' + language}>
           {cities.map((element, index) =>
-            <div className={index % 2 == 0 && index == cities.length - 1 ? "startCity d-flex col-12 p-0" : "startCity d-flex col-6 p-0"/*readOnlyOn ? (index % 2 == 0 && index == cities.length - 1 ? "startCity d-flex col-12 p-0" : "startCity d-flex col-6 p-0") : "startCity d-flex col-6 p-0"*/}
+            <div className={index % 2 == 0 && index == cities.length - 1 ? "startCity d-flex col-6 p-0" : "startCity d-flex col-6 p-0"/*readOnlyOn ? (index % 2 == 0 && index == cities.length - 1 ? "startCity d-flex col-12 p-0" : "startCity d-flex col-6 p-0") : "startCity d-flex col-6 p-0"*/}
               key={element + index + cities[index].point + language}>
               <div className={index <= 1 ? (index % 2 ? "col-12 pl-0 pr-1" : "col-12 pl-0 pr-1") : ("col-10 pl-0 pr-1 "/*readOnlyOn ? "col-12 pl-0 pr-1" : "col-10 pl-0 pr-1 "*/)}>
                 <div className="addCitiesLocationDropDown col p-0" key={'LocationSearchInput' + index + language}>

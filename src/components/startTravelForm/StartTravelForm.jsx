@@ -206,7 +206,7 @@ const Content = (that, flagAllOk, carCapacityArray, activeCurrency, textInfo, ch
                                     </h3> : <React.Fragment />
                             }
                             <h3 className="drivers_routePrice">{isCurrencyLoaded ? ((activeCurrency.isLeft ? activeCurrency.symbol + ' ' : '')
-                                +Math.ceil(that.props.elementPrice * (100 - that.state.discount) / 100 * activeCurrency.costToDefault)
+                                +Math.ceil(Math.ceil(that.props.elementPrice * activeCurrency.costToDefault) * (100 - that.state.discount) / 100 )
                                 + (!activeCurrency.isLeft ? ' '+activeCurrency.symbol : '')) : ''}</h3>
                         </div>
                         {
