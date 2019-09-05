@@ -9,8 +9,8 @@ const googleRequest = serverAddress + '/connect/google';
 const meRequest = serverAddress + '/users/me/auth';
 const routeMap = "(blr-en|blr-ru|rus-en|rus-ru|geo-en|geo-ru|arm-en|arm-ru|aze-en|aze-ru|tur-en|tur-ru|isr-en|isr-ru)";
 
-const profileRequest = serverAddress + '/users/me/profile';
-const profileUpdateRequest = serverAddress + "/users/me/update";
+const profileRequest = serverAddress + '/users/me/profile';//получение данных профиля в админке
+const profileUpdateRequest = serverAddress + "/users/me/update";//сохранение данных профиля(базовых данных - имя и т.д.) в админке
 const travelsettingsUpdateRequest = serverAddress + '/users/me/travelsetings'; //запрос для админки 
 const userCarsCreateRequest = serverAddress + '/users/me/car'; //запрос для админки 
 const userCarDestroyRequest = serverAddress + '/cars/me'; //запрос для админки
@@ -49,7 +49,7 @@ const getRoutes = serverAddress + "/getRoutes";
 const showRoute = serverAddress + "/showRoute";
 const getDriverInfo = serverAddress + "/users/getDriverInfo";
 const getDriverDescription = serverAddress + "/users/getDriverDescription";
-const profileCheck = serverAddress + "/users/me/profileCheck";
+const profileCheck = serverAddress + "/users/me/profileCheck";//проверка типа аккаунта при первом заходе в админку
 const isCommentedTrip = serverAddress + '/isCommentedTrip';
 
 const getTours = serverAddress + '/getTours';//запрос на получения массива туров
