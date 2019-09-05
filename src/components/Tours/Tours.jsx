@@ -293,7 +293,7 @@ class ToursClass extends React.Component {
         <div className="wrapper d-flex flex-column">
           <div className="drivers_bottom_background d-flex flex-column" onClick={()=>{ let a = this}}>
             <div className="drivers_body d-flex">
-              <div id="placesMainBlock" className="left_body_part col-12 p-0">
+              <div id="placesMainBlock" className="left_body_part col-12 p-0" >
                 <PopularPlaces placesState={this.props.placesState} where={"tours"}/>
                 <TourInfo />
                 {/* <PlacesTagList  placesState={this.props.placesState}/> */}

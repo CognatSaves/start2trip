@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
+import { isMobileOnly } from 'react-device-detect'
 import getUserData from './DriverProfileRequest';
 import requests from '../../config';
 
@@ -8,10 +9,14 @@ import flags from '../media/flags.png'
 
 import TextField from 'material-ui/TextField';
 import DatePicker from 'material-ui/DatePicker';
-import DropDownMenu from 'material-ui/DropDownMenu';
-import MenuItem from 'material-ui/MenuItem';
+// import DropDownMenu from 'material-ui/DropDownMenu';
+// import MenuItem from 'material-ui/MenuItem';
 import Chip from 'material-ui/Chip';
 import ReactTelInput from 'react-telephone-input'
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
 import LocationSearchInput from '../home/HomeBody/Search'
 import DriverRefreshIndicator from './DriverRefreshIndicator';
@@ -331,7 +336,30 @@ class DriverProfileBasicInformationClass extends React.Component {
                             </div>
                             <div className="bottomContentNote d-flex align-items-center">
                                 <label htmlFor="basicInfoLanguage" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">{textPage.basicInfoLanguage.label}:</label>
-                                <DropDownMenu
+                                <FormControl className="d-flex flex-wrap col-md-4 col-12 p-0 mt-2">
+                                        {isMobileOnly?
+                                        <InputLabel>{textPage.basicInfoLanguage.label}</InputLabel>
+                                        :<div/>}
+                                        <Select
+                                            value={this.state.value}
+                                            className="dropdownClass"
+                                            onChange={(event, index, value) => {
+                                                let obj = document.querySelectorAll('.dropdownClass');
+                                                obj[0].classList.remove("errorColor");
+                                                this.handleChange(event, index, event.target.value);
+                                            }}
+                                        >
+                                
+                                            <MenuItem value={textPage.MenuItem.value} disabled={true} >{textPage.MenuItem.value}</MenuItem>
+                                    {this.state.language.map((element, index) =>
+                                        <MenuItem value={element}>{element}</MenuItem>
+                                    )}
+
+                                        </Select>
+                                    </FormControl>
+                                
+                                
+                                {/* <DropDownMenu
                                     value={this.state.value}
                                     anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
                                     className="dropdownClass col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
@@ -345,7 +373,7 @@ class DriverProfileBasicInformationClass extends React.Component {
                                     {this.state.language.map((element, index) =>
                                         <MenuItem value={element} primaryText={element} />
                                     )}
-                                </DropDownMenu>
+                                </DropDownMenu> */}
                                 <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">{textPage.basicInfoLanguage.description}</p>
                             </div>
                             <div className="d-flex align-items-center">

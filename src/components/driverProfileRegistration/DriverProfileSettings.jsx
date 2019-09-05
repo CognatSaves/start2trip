@@ -320,14 +320,14 @@ class DriverProfileSettingsClass extends React.Component {
                         <label className="col-2" />
                         <div className="d-flex flex-column driverProfileSettingsContentUnsubscribe">
                             <p style={{paddingBottom: '5px'}}>{textPage.infoText}</p>
-                            <div>
+                            <div className="d-flex justify-content-md-start justify-content-center">
                                 <button htmlFor="profileSettings" type="submit">{textPage.sittingsSaveBt}</button>
                             </div>
                         </div>
 
                     </div>
                 </form>
-                <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start pb-3">
+                <div className="d-flex flex-md-row flex-column  align-items-md-center align-items-sm-star align-items-start pb-3 col-12">
                     <p className="col-2"></p>
                     <div className="driverProfileSettingsContentUnsubscribe d-flex flex-column">
                         <p className="driverProfileSettingsContentUnsubscribeButton" onClick={() => {

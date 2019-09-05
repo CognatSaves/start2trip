@@ -29,11 +29,11 @@ class DriversBlockClass extends React.Component {
       lang: langISO !== null ? langISO : 'ENG'
     }
     props.dispatch(setPage(1));
-    if(!date){
-      date= new Date(Date.now());
+    if (!date) {
+      date = new Date(Date.now());
     }
     props.dispatch(set_state(props.storeState.cities, date))
-    
+
   }
   setPage = (page) => {
     if (page !== "...") {
@@ -257,10 +257,10 @@ class DriversBlockClass extends React.Component {
 
                   <div className="driversBlock_driverInfoBlock_element driversBlock_commentary">{textInfo.commentary}</div>
                   <button className="driversBlock_driverInfoBlock_element driversBlock_buttonStyle"
-                    onClick={() => {  console.log(element); this.props.changeTravelVisibility(element.price);; this.props.dispatch(setDriverCarDescription(element)) }}>
-                    {textInfo.book + " " + (activeCurrency.isLeft ? activeCurrency.symbol+' ' : '')
+                    onClick={() => { console.log(element); this.props.changeTravelVisibility(element.price);; this.props.dispatch(setDriverCarDescription(element)) }}>
+                    {textInfo.book + " " + (activeCurrency.isLeft ? activeCurrency.symbol + ' ' : '')
                       + Math.ceil(element.price * activeCurrency.costToDefault) +
-                      (!activeCurrency.isLeft ? ' '+activeCurrency.symbol : '')}</button>
+                      (!activeCurrency.isLeft ? ' ' + activeCurrency.symbol : '')}</button>
                 </div>
 
               </div>
@@ -270,14 +270,15 @@ class DriversBlockClass extends React.Component {
         }
         {
           isLoading || isEmpty ?
-          <React.Fragment>
-              <div className="placesList_noElementsBlock">
-              {
-                isLoading ?
-                <span>{'Загружаемся!'}</span> :
-                <span>{pageNotFound.text1+" "+pageNotFound.text2}<br/>{pageNotFound.text3}</span>
+            <React.Fragment>
+              {isLoading ?
+                <div className="placesList_loading">
+                  <span>{'Загружаемся!'}</span>
+                </div> :
+                <div className="placesList_noElementsBlock">
+                  <span>{pageNotFound.text1 + " " + pageNotFound.text2}<br />{pageNotFound.text3}</span>
+                </div>
               }
-              </div>
             </React.Fragment>
             : <React.Fragment />
         }

@@ -105,17 +105,17 @@ class PlacesListClass extends React.Component {
                     )}
                     {
                         isLoading || isEmpty ?
-                        <React.Fragment>
-                            <div className="placesList_noElementsBlock">
-                            {
-                                isLoading ?
-                                <span>{'Загружаемся!'}</span> :
-                                <span>{pageNotFound.text1+" "+pageNotFound.text2}<br/>{pageNotFound.text3}</span>
-                            }
-                                
-                            </div>
-                        </React.Fragment>
-                        : <React.Fragment />
+                            <React.Fragment>
+                                {isLoading ?
+                                    <div className="placesList_loading">
+                                        <span>{'Загружаемся!'}</span>
+                                    </div> :
+                                    <div className="placesList_noElementsBlock">
+                                        <span>{pageNotFound.text1 + " " + pageNotFound.text2}<br />{pageNotFound.text3}</span>
+                                    </div>
+                                }
+                            </React.Fragment>
+                            : <React.Fragment />
                     }
                 </div>
                 <Manipulator number={sortedArray.length} page={this.props.placesState.page} setPage={this.setPageFunc}
