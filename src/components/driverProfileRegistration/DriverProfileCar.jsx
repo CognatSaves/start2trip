@@ -8,10 +8,13 @@ import config from '../../config';
 import requests from '../../config';
 import getUserData from './DriverProfileRequest';
 
-import DropDownMenu from 'material-ui/DropDownMenu'
-import MenuItem from 'material-ui/MenuItem'
 import TextField from 'material-ui/TextField'
 import { readAndCompressImage } from 'browser-image-resizer';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+
 
 // import RefreshIndicator from 'material-ui/RefreshIndicator';
 
@@ -88,7 +91,7 @@ class DriverProfileCarClass extends React.Component {
     }
     applyChanges = (type) => {
         let jwt = this.props.globalReduser.readCookie('jwt');
-        if(this.state.badDataTextVisibility===true){
+        if (this.state.badDataTextVisibility === true) {
             this.setState({
                 badDataTextVisibility: false
             })
@@ -119,7 +122,7 @@ class DriverProfileCarClass extends React.Component {
                 obj[2].classList.add("errorColor");
                 result = false;
             }
-            
+
             if (newCarCard.fuelConsumption.length === 0 || isNaN(newCarCard.fuelConsumption) || Number(newCarCard.fuelConsumption) <= 0) {
                 obj = document.getElementById('profileCarFuelConsumption');
                 obj.classList.add("errorColor");
@@ -139,7 +142,7 @@ class DriverProfileCarClass extends React.Component {
 
             //let fuelConsumption =  Number(newCarCard.fuelConsumption);
             //let b = (fuelConsumption<=0);
-            
+
             if (newCarCard.typeCar.length === 0) {
                 obj = document.querySelectorAll('.dropdownClass');
                 obj[0].classList.add("errorColor");
@@ -160,7 +163,7 @@ class DriverProfileCarClass extends React.Component {
                 obj.style.visibility = 'visible';
                 result = false;
             }
-            if(!result){
+            if (!result) {
                 that.setState({
                     badDataTextVisibility: true
                 })
@@ -232,7 +235,7 @@ class DriverProfileCarClass extends React.Component {
             }
             else {
                 this.props.dispatch(setUrlAddress(window.location.pathname));
-                this.props.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
+                this.props.history.push('/' + cookies.get('userLangISO', { path: "/" }) + '/login/');
                 //return null;
             }
         }
@@ -313,7 +316,7 @@ class DriverProfileCarClass extends React.Component {
         }
         else {
             this.props.dispatch(setUrlAddress(window.location.pathname));
-            this.props.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
+            this.props.history.push('/' + cookies.get('userLangISO', { path: "/" }) + '/login/');
             //return null;
         }
     }
@@ -340,7 +343,7 @@ class DriverProfileCarClass extends React.Component {
         }
         else {
             this.props.dispatch(setUrlAddress(window.location.pathname));
-            this.props.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
+            this.props.history.push('/' + cookies.get('userLangISO', { path: "/" }) + '/login/');
             //return null;
         }
     }
@@ -472,9 +475,9 @@ class DriverProfileCarClass extends React.Component {
                 <Collapse isOpen={this.state.collapse} className="col-12">
                     <div className="carAddNewCar d-flex flex-column align-items-end">
                         <div className="tourContentTitle d-flex align-items-center mb-0 col-12" >
-                        {
-                            //TODO что это за переменная carContentTitle? Её нет в списках
-                        }
+                            {
+                                //TODO что это за переменная carContentTitle? Её нет в списках
+                            }
                             <p style={{ marginTop: '1rem' }}>{textPage.carContentTitle}</p>
                         </div>
 
@@ -518,8 +521,8 @@ class DriverProfileCarClass extends React.Component {
                                             obj = document.querySelectorAll('.inputClass');
                                             obj[0].classList.remove("errorColor");
                                             this.setState({
-                                                newCarCard: { ...this.state.newCarCard, nameCar: e.currentTarget.value,},
-                                                badDataTextVisibility: false 
+                                                newCarCard: { ...this.state.newCarCard, nameCar: e.currentTarget.value, },
+                                                badDataTextVisibility: false
                                             })
                                         }}
                                         floatingLabelText={textPage.profileCarBrand.floatingLabelText}
@@ -538,8 +541,8 @@ class DriverProfileCarClass extends React.Component {
                                         obj = document.querySelectorAll('.inputClass');
                                         obj[1].classList.remove("errorColor");
                                         this.setState({
-                                            newCarCard: { ...this.state.newCarCard, yearCar: e.currentTarget.value},
-                                            badDataTextVisibility: false 
+                                            newCarCard: { ...this.state.newCarCard, yearCar: e.currentTarget.value },
+                                            badDataTextVisibility: false
                                         })
                                     }} />
                                     <TextField
@@ -551,7 +554,7 @@ class DriverProfileCarClass extends React.Component {
                                             obj = document.querySelectorAll('.inputClass');
                                             obj[1].classList.remove("errorColor");
                                             this.setState({
-                                                newCarCard: { ...this.state.newCarCard, yearCar: e.currentTarget.value},
+                                                newCarCard: { ...this.state.newCarCard, yearCar: e.currentTarget.value },
                                                 badDataTextVisibility: false
                                             })
                                         }}
@@ -571,7 +574,7 @@ class DriverProfileCarClass extends React.Component {
                                         obj = document.querySelectorAll('.inputClass');
                                         obj[2].classList.remove("errorColor");
                                         this.setState({
-                                            newCarCard: { ...this.state.newCarCard, plateNumberCar: e.currentTarget.value},
+                                            newCarCard: { ...this.state.newCarCard, plateNumberCar: e.currentTarget.value },
                                             badDataTextVisibility: false
                                         })
                                     }} type="text" />
@@ -583,7 +586,7 @@ class DriverProfileCarClass extends React.Component {
                                             obj = document.querySelectorAll('.inputClass');
                                             obj[2].classList.remove("errorColor");
                                             this.setState({
-                                                newCarCard: { ...this.state.newCarCard, plateNumberCar: e.currentTarget.value},
+                                                newCarCard: { ...this.state.newCarCard, plateNumberCar: e.currentTarget.value },
                                                 badDataTextVisibility: false
                                             })
                                         }}
@@ -595,82 +598,77 @@ class DriverProfileCarClass extends React.Component {
 
                                     />
                                 </div>
-                                <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flsex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                    <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">{textPage.typeCar.label}:</label>
-                                    <DropDownMenu
-                                        value={this.state.newCarCard.typeCar}
-                                        textColor="#fff"
-                                        anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
-                                        //className=""
-                                        onChange={(event, index, value) => {
-                                            let obj = document.querySelectorAll('.dropdownClass');
-                                            obj[0].classList.remove("errorColor");
-                                            this.handleChange(event, index, value, 'carTypes');
-                                        }
-                                        }
-                                        style={{ width: "100%" }}
-                                        className="dropdownClass"
-                                        autoWidth={false}
-                                        selectedMenuItemStyle={{ color: "#f60" }}
-                                        name="typeCar"
-                                    >
-                                        {
-                                            this.props.globalReduser.profile.carTypes.map((element, index) =>
-                                                <MenuItem value={element.id} primaryText={findOneCarProp(element.id, this.props.globalReduser.profile.carTypes, this.props.storeState)} />
-                                            )
-                                        }
-                                    </DropDownMenu>
+                                <div className="d-flex flex-md-row flsex-column align-items-md-center align-items-start">
+                                    <label className="d-md-block d-none col-md-4 col-12 p-0">{textPage.typeCar.label}:</label>
+                                    <FormControl className="d-flex flex-wrap col-md-8 col-12 p-0 mt-2">
+                                        {isMobileOnly?
+                                        <InputLabel>{textPage.typeCar.label}</InputLabel>
+                                        :<div/>}
+                                        <Select
+                                            value={this.state.newCarCard.typeCar}
+                                            className="dropdownClass"
+                                            onChange={(event, index, value) => {
+                                                let obj = document.querySelectorAll('.dropdownClass');
+                                                obj[0].classList.remove("errorColor");
+                                                this.handleChange(event, index, event.target.value, 'carTypes');
+                                            }}
+                                        >
+                                            {
+                                                this.props.globalReduser.profile.carTypes.map((element, index) =>
+                                                    <MenuItem value={element.id} >{findOneCarProp(element.id, this.props.globalReduser.profile.carTypes, this.props.storeState)} </MenuItem>
+                                                )
+                                            }
+
+                                        </Select>
+                                    </FormControl>
                                 </div>
                                 <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flsex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
                                     <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">{textPage.carClass.label}:</label>
-                                    <DropDownMenu
-                                        value={this.state.newCarCard.carClass}
-                                        textColor="#fff"
-                                        anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
-                                        //className=""
-                                        onChange={(event, index, value) => {
-                                            let obj = document.querySelectorAll('.dropdownClass');
-                                            obj[1].classList.remove("errorColor");
-                                            this.handleChange(event, index, value, 'carClasses');
-                                        }
-                                        }
-                                        style={{ width: "100%" }}
-                                        className="dropdownClass"
-                                        autoWidth={false}
-                                        selectedMenuItemStyle={{ color: "#f60" }}
-                                        name="carClass"
-                                    >
-                                        {
-                                            this.props.globalReduser.profile.carClasses.map((element, index) =>
-                                                <MenuItem value={element.id} primaryText={findOneCarProp(element.id, this.props.globalReduser.profile.carClasses, this.props.storeState)} />
-                                            )
-                                        }
-                                    </DropDownMenu>
+                                    <FormControl className="d-flex flex-wrap col-md-8 col-12 p-0 mt-2">
+                                        {isMobileOnly?
+                                        <InputLabel>{textPage.carClass.label}</InputLabel>
+                                        :<div/>}
+                                        <Select
+                                            value={this.state.newCarCard.carClass}
+                                            className="dropdownClass"
+                                            onChange={(event, index, value) => {
+                                                let obj = document.querySelectorAll('.dropdownClass');
+                                                obj[0].classList.remove("errorColor");
+                                                this.handleChange(event, index, event.target.value, 'carClasses');
+                                            }}
+                                        >
+                                            {
+                                                 this.props.globalReduser.profile.carClasses.map((element, index) =>
+                                                    <MenuItem value={element.id} >{findOneCarProp(element.id, this.props.globalReduser.profile.carClasses, this.props.storeState)}</MenuItem>
+                                                )
+                                            }
+
+                                        </Select>
+                                    </FormControl>
                                 </div>
                                 <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
                                     <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">{textPage.typeFuel.label}:</label>
-                                    <DropDownMenu
-                                        value={this.state.newCarCard.fuelType}
-                                        anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
-                                        //className=""
-                                        onChange={(event, index, value) => {
-                                            let obj = document.querySelectorAll('.dropdownClass');
-                                            obj[2].classList.remove("errorColor");
-                                            this.handleChange(event, index, value, 'fuelTypes');
-                                        }
-                                        }
-                                        style={{ width: "100%" }}
-                                        className="dropdownClass"
-                                        autoWidth={false}
-                                        selectedMenuItemStyle={{ color: "#f60" }}
-                                        name="typeFuel"
-                                    >
-                                        {
-                                            this.props.globalReduser.profile.fuelTypes.map((element, index) =>
-                                                <MenuItem value={element.id} primaryText={findOneCarProp(element.id, this.props.globalReduser.profile.fuelTypes, this.props.storeState)} />
-                                            )
-                                        }
-                                    </DropDownMenu>
+                                    <FormControl className="d-flex flex-wrap col-md-8 col-12 p-0 mt-2">
+                                        {isMobileOnly?
+                                        <InputLabel>{textPage.typeFuel.label}</InputLabel>
+                                        :<div/>}
+                                        <Select
+                                            value={this.state.newCarCard.fuelType}
+                                            className="dropdownClass"
+                                            onChange={(event, index, value) => {
+                                                let obj = document.querySelectorAll('.dropdownClass');
+                                                obj[0].classList.remove("errorColor");
+                                                this.handleChange(event, index, event.target.value, 'fuelTypes');
+                                            }}
+                                        >
+                                            {
+                                                this.props.globalReduser.profile.fuelTypes.map((element, index) =>
+                                                    <MenuItem value={element.id} >{findOneCarProp(element.id, this.props.globalReduser.profile.fuelTypes, this.props.storeState)}</MenuItem>
+                                                )
+                                            }
+
+                                        </Select>
+                                    </FormControl>
                                 </div>
 
                                 <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
@@ -682,7 +680,7 @@ class DriverProfileCarClass extends React.Component {
                                         obj = document.querySelectorAll('.inputClass');
                                         obj[3].classList.remove("errorColor");
                                         this.setState({
-                                            newCarCard: { ...this.state.newCarCard, fuelConsumption: e.currentTarget.value},
+                                            newCarCard: { ...this.state.newCarCard, fuelConsumption: e.currentTarget.value },
                                             badDataTextVisibility: false
                                         })
                                     }} type="number" />
@@ -696,7 +694,7 @@ class DriverProfileCarClass extends React.Component {
                                             obj = document.querySelectorAll('.inputClass');
                                             obj[3].classList.remove("errorColor");
                                             this.setState({
-                                                newCarCard: { ...this.state.newCarCard, fuelConsumption: e.currentTarget.value},
+                                                newCarCard: { ...this.state.newCarCard, fuelConsumption: e.currentTarget.value },
                                                 badDataTextVisibility: false
                                             })
                                         }}
@@ -717,9 +715,9 @@ class DriverProfileCarClass extends React.Component {
 
                                         obj = document.querySelectorAll('.inputClass');
                                         obj[4].classList.remove("errorColor");
-                                        
+
                                         this.setState({
-                                            newCarCard: { ...this.state.newCarCard, numberOfSeats: e.currentTarget.value},
+                                            newCarCard: { ...this.state.newCarCard, numberOfSeats: e.currentTarget.value },
                                             badDataTextVisibility: false
                                         })
                                     }} type="number" />
@@ -729,11 +727,11 @@ class DriverProfileCarClass extends React.Component {
                                         onChange={(e) => {
                                             let obj = document.getElementById('profileCarNumberOfSeats');
                                             obj.classList.remove("errorColor");
-                                            
+
                                             obj = document.querySelectorAll('.inputClass');
                                             obj[3].classList.remove("errorColor");
                                             this.setState({
-                                                newCarCard: { ...this.state.newCarCard, numberOfSeats: e.currentTarget.value},
+                                                newCarCard: { ...this.state.newCarCard, numberOfSeats: e.currentTarget.value },
                                                 badDataTextVisibility: false
                                             })
                                         }}
@@ -775,17 +773,17 @@ class DriverProfileCarClass extends React.Component {
 
                         </form>
                         <div className="carAddNewCarButton d-flex col-md-8 col-12 pt-3 align-items-center justify-content-sm-start justify-content-center mb-5">
-                            
-                        
-                    
-                                <span className="d-xl-block d-lg-block d-md-block d-sm-block d-none col-4 p-0" />
-                                <div className="d-flex flex-column">
-                                    <div className="d-flex">
-                                        <button htmlFor="newCar" type="submit" onClick={(e) => this.formSubmit(e)}>{textPage.carAddNewCarButton.button}</button>
-                                        <span className="ml-3" style={{margin: 'auto 0' }} onClick={() => this.toggle()}>{textPage.carAddNewCarButton.span}</span>
-                                    </div>                                  
-                                    <text style={{color: 'red', fontSize: '14px' , visibility: this.state.badDataTextVisibility ? 'visible' : 'hidden'}}>{textPage.badDataText}</text>
-                                </div>             
+
+
+
+                            <span className="d-xl-block d-lg-block d-md-block d-sm-block d-none col-4 p-0" />
+                            <div className="d-flex flex-column">
+                                <div className="d-flex">
+                                    <button htmlFor="newCar" type="submit" onClick={(e) => this.formSubmit(e)}>{textPage.carAddNewCarButton.button}</button>
+                                    <span className="ml-3" style={{ margin: 'auto 0' }} onClick={() => this.toggle()}>{textPage.carAddNewCarButton.span}</span>
+                                </div>
+                                <text style={{ color: 'red', fontSize: '14px', visibility: this.state.badDataTextVisibility ? 'visible' : 'hidden' }}>{textPage.badDataText}</text>
+                            </div>
                         </div>
                     </div>
                 </Collapse>

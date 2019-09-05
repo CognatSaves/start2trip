@@ -346,8 +346,8 @@ img.carPhotoMini {
 
 .carAddNewCarInformation label {
     font-weight: 400;
-    font-size: 14px;
-    color: #686868;
+    font-size: 18px;
+    color:  rgba(0, 0, 0, 0.3);
     margin-bottom: 0px;
 }
 

@@ -2,26 +2,33 @@ import React from 'react';
 import './TourInfo.css';
 import { connect } from 'react-redux'
 
+import LocationSearchInput from '../home/HomeBody/Search'
 
 
 class TourInfoClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            departurePoint:"",
         }
+    }
+    changeCity = (index, value) => {
+        this.setState({
+            departurePoint: value
+        })
     }
     render() {
        
        
         return (
-            <div className="col-12 py-5">
-                <div className="d-flex justify-content-center align-items-center">
-                    <p className="m-0">Подобрать тур:</p>
+            <div className="tourInfoBlock ">
+                <div className="d-flex justify-content-around align-items-center tourInfoContent">
+                    <p>Подобрать тур:</p>
+                    <LocationSearchInput placeholder={"Место отправления"} address={this.state.departurePoint} changeCity={this.changeCity} classInput="searchInputTourInfoContent" classDropdown="searchDropdownTourInfoContent" classDiv="" />
+
                     <input type="text"/>
                     <input type="text"/>
-                    <input type="text"/>
-                    <span>Найти</span>
+                    <span className="tourInfoContentBt">Найти</span>
                 </div>
             </div>
         )

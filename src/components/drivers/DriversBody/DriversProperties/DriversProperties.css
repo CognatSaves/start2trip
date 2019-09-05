@@ -17,6 +17,7 @@
     display: flex;
     padding: 5px;
     background: rgba(48, 66, 105, 0.6);
+    /* background: #304269; */
     border-radius: 5px;
     margin-bottom: 10px;
 }
