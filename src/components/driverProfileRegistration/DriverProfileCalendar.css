@@ -74,7 +74,8 @@
     font-size: 16px !important;
     color: #333 !important;
     margin: 0 !important;
-    padding-top: 26px !important;
+    margin-top: 30px !important;
+    height: 30px !important;
 }
 
 .multiLineInputClass label,
@@ -163,17 +164,24 @@
     }
 
     .dropdownClass {
-        min-height: 72px !important;
+        min-height: 40px !important;
         border: none !important;
         border-bottom: 1px solid #e0e0e0 !important;
         border-radius: 0px !important;
         font-size: 16px !important;
+    }
+    .MuiInput-underline:before{
+        display: none;
+    }
+    .MuiSelect-icon{
+        color: rgba(0, 0, 0, 0.3) !important;
     }
 
     .dropdownClass div {
         max-height: none !important;
         padding: 0 !important;
         top: 18px !important;
+        color: #333 !important;
     }
 
     .dropdownClass button {
