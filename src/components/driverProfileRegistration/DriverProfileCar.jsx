@@ -474,12 +474,12 @@ class DriverProfileCarClass extends React.Component {
 
                 <Collapse isOpen={this.state.collapse} className="col-12">
                     <div className="carAddNewCar d-flex flex-column align-items-end">
-                        <div className="tourContentTitle d-flex align-items-center mb-0 col-12" >
+                        {/* <div className="tourContentTitle d-flex align-items-center mb-0 col-12" >
                             {
                                 //TODO что это за переменная carContentTitle? Её нет в списках
                             }
                             <p style={{ marginTop: '1rem' }}>{textPage.carContentTitle}</p>
-                        </div>
+                        </div> */}
 
                         <form onSubmit={this.formSubmit} id="newCar" className="col-12 carAddNewCarInformation d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column-reverse flex-column-reverse align-items-xl-start align-items-lg-start align-items-md-start align-items-sm-center align-items-center">
                             <div className="carAddNewCarPhotoCar col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 pt-3">
@@ -500,10 +500,10 @@ class DriverProfileCarClass extends React.Component {
 
                             </div>
 
-                            <div className="d-flex flex-column col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 pt-3">
+                            <div className="d-flex flex-column col-md-8 col-12 ">
                                 <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mt-2">
-                                    <label htmlFor="profileCarBrand" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">{textPage.profileCarBrand.floatingLabelText}:</label>
-                                    <input id="profileCarBrand" className="d-xl-block d-lg-block d-md-block d-sm-none d-none " value={this.state.newCarCard.nameCar} onChange={(e) => {
+                                    <label htmlFor="profileCarBrand" className=" d-md-block d-none col-md-4 col-12 p-0">{textPage.profileCarBrand.floatingLabelText}:</label>
+                                    <input id="profileCarBrand" className="d-md-block d-none " value={this.state.newCarCard.nameCar} onChange={(e) => {
                                         let obj = document.getElementById('profileCarBrand');
                                         obj.classList.remove("errorColor");
                                         obj = document.querySelectorAll('.inputClass');
@@ -736,7 +736,7 @@ class DriverProfileCarClass extends React.Component {
                                             })
                                         }}
                                         floatingLabelText={textPage.profileCarNumberOfSeats.label}
-                                        className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
+                                        className="d-md-none d-block inputClass mb-3"
                                         fullWidth="100%"
                                         floatingLabelFocusStyle={{ color: "#304269" }}
                                         underlineFocusStyle={{ borderColor: "#304269" }}

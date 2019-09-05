@@ -346,9 +346,17 @@ img.carPhotoMini {
 
 .carAddNewCarInformation label {
     font-weight: 400;
-    font-size: 18px;
-    color:  rgba(0, 0, 0, 0.3);
+    font-size: 16px;
+    color:  rgba(0, 0, 0, 0.5) !important;
     margin-bottom: 0px;
+}
+
+.MuiSelect-icon{
+    color: rgba(0, 0, 0, 0.5) !important;
+}
+
+div.MuiSelect-select:focus{
+    background-color: rgba(0, 0, 0, 0) !important;
 }
 
 .labelCarEmpty {
@@ -457,9 +465,6 @@ img.carPhotoMini {
     color: #333;
     padding-left: 28px;
     padding-bottom: 5px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
     user-select: none;
 }
 
@@ -473,7 +478,7 @@ img.carPhotoMini {
 
 .carAddNewCarComfortCheckBox span {
     position: absolute;
-    top: 0;
+    top: 0px;
     left: 0;
     height: 18px;
     width: 18px;
@@ -554,6 +559,15 @@ img.carPhotoMini {
         margin-top: 0px;
         margin-right: 0px;
         margin-left: 0px;
+    }
+    .carAddNewCarInformation label {
+        font-weight: 400;
+        font-size: 18px;
+        color:  rgba(0, 0, 0, 0.5) !important;
+        margin-bottom: 0px;
+    }
+    .carAddNewCarComfortCheckBox span {
+        top: 5px;
     }
 }
 

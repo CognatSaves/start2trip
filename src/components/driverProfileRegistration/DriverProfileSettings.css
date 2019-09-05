@@ -34,7 +34,7 @@
     font-family: "Roboto";
     font-weight: 400;
     font-size: 14px;
-    color: #686868;
+    color:  rgba(0, 0, 0, 0.5) !important;
     margin-bottom: 0px;
 }
 
@@ -160,7 +160,7 @@ p.driverProfileSettingsContentPasswordText {
     }
 
     .sittingsTextField input {
-        margin-top: 13px !important;
+        margin-top: 25px !important;
     }
 
     .driverProfileSettingsContentUnsubscribe p {

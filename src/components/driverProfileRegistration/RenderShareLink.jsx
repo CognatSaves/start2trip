@@ -48,7 +48,7 @@ class RenderShareLinkClass extends React.Component {
                         <input id={this.props.idInput} placeholder="Ссылка 1" value={this.props.valueInput} />
                         <spanlink onClick={() => this.copyValue(this.props.idInput)} className="copyElement" >{this.props.buttonCopyText}</spanlink>
                     </div>
-                    <div className="d-flex  affiliateProgramIconsMass">
+                    <div className="d-flex justify-content-center  affiliateProgramIconsMass">
 
                     <div className="networkLink">
                             <ViberShareButton

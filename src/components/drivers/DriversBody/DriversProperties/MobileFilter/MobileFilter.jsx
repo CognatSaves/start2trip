@@ -117,7 +117,7 @@ class MobileFilterClass extends React.Component {
 
     let pictureArray = [sedan, jeep, minivan, microbus];
     let textInfo = this.props.storeState.languageTextMain.mobileFilter;
-
+    
     return (
       <React.Fragment>
         {this.props.storeState.maxPrice === 0 ? <React.Fragment></React.Fragment> : <React.Fragment>

@@ -77,6 +77,9 @@
     margin-top: 30px !important;
     height: 30px !important;
 }
+.MuiSelect-icon{
+    color: rgba(0, 0, 0, 0.5) !important;
+}
 
 .multiLineInputClass label,
 .inputClass label {
@@ -174,7 +177,11 @@
         display: none;
     }
     .MuiSelect-icon{
-        color: rgba(0, 0, 0, 0.3) !important;
+        color: rgba(0, 0, 0, 0.5) !important;
+    }
+
+    .dropdownClass .MuiInput-formControl div .MuiSelect-select:focus{
+        background-color: none !important;
     }
 
     .dropdownClass div {
