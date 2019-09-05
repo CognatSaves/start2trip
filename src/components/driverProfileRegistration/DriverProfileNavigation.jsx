@@ -165,6 +165,7 @@ class DriverProfileNavigationClass extends React.Component {
         let textPage = this.props.AppReduser.languageText.driverProfileRegistration.DriverProfileNavigation;
         let profile = this.props.globalReduser.profile;
         let navigationText = this.props.AppReduser.languageText.driverProfileRegistration.DriverProfileNavigation.navigationText;
+        let that = this;
         return (
             <React.Fragment>
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
@@ -228,16 +229,25 @@ class DriverProfileNavigationClass extends React.Component {
                     </div>
 
                     <div className="navigationBody d-flex align-items-center">
-                        {navigationText.map((element, index) =>
-
-                            <span key={this.state.route[index]} className={{ [this.state.route[index]]: "navigationBodyActive", }[this.props.globalhistory.history.location.pathname] + " navigationButton mb-0 " + (this.state.route[index].length === 0 ? "blockedSpan" : "")}
-                                onClick={(event) => {
-                                    if (this.state.route[index].length > 0) {
-                                        this.setState({ index: index });
-                                        this.shiftLeft(event);
-                                        this.props.globalhistory.history.push(this.state.route[index])
-                                    }
-                                }}>{element}</span>
+                        {navigationText.map(function(element, index){
+                                if(!(profile.hostagency && index===navigationText.length-1)){
+                                    //плохое ограничение, но так как у нас оно одно, то и ладно
+                                    //оно запрещает партнёрскую программу для водителя, прикреплённого к агенству
+                                    return(
+                                        <span key={that.state.route[index]} className={{ [that.state.route[index]]: "navigationBodyActive", }[that.props.globalhistory.history.location.pathname] + " navigationButton mb-0 " + (that.state.route[index].length === 0 ? "blockedSpan" : "")}
+                                        onClick={(event) => {
+                                            if (that.state.route[index].length > 0) {
+                                                that.setState({ index: index });
+                                                that.shiftLeft(event);
+                                                that.props.globalhistory.history.push(that.state.route[index])
+                                            }
+                                        }}>{element}</span>
+                                    )
+                                }
+                                else{
+                                    return <React.Fragment/>
+                                }
+                            }                          
                         )}
                     </div>
                 </div>

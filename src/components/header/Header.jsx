@@ -771,7 +771,11 @@ class HeaderClass extends React.Component {
                           <span className="border-bottom profile" onClick={() => { this.setState({burgerMenu: false}); this.accountRedirect("/profile", 1) }}>{textInfo.burgerMenu.profile}</span>
                           <span className="border-bottom blockedSpan timetable" onClick={() => { this.setState({burgerMenu: false});this.accountRedirect("/trips", 0) }}>{textInfo.burgerMenu.trips}</span>
                           <span className="border-bottom settingsGears" onClick={() => { this.setState({burgerMenu: false}); this.accountRedirect("/settings", 6) }}>{textInfo.burgerMenu.settings}</span>
-                          <span className="border-bottom saveMoney" onClick={() => { this.setState({burgerMenu: false}); this.accountRedirect("/referrals", 8) }}>{textInfo.burgerMenu.partnership}</span>
+                          {
+                            this.props.storeState.userData && this.props.storeState.userData.isAffiliatedDriver ?
+                              <React.Fragment/> :
+                              <span className="border-bottom saveMoney" onClick={() => { this.setState({burgerMenu: false}); this.accountRedirect("/referrals", 8) }}>{textInfo.burgerMenu.partnership}</span>
+                          }                
                           <span className="exit" onClick={() => { this.logOffFunc() }}>{textInfo.burgerMenu.exit}</span>
                         </React.Fragment>
                         :
@@ -812,7 +816,8 @@ class HeaderClass extends React.Component {
               <div className="headerButtonMass d-flex align-self-stretch justify-content-end col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 ">
                 {
                   buttonMassElements.map((element, index) =>
-                    <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + element.to} className="buttonMassLink align-self-stretch">{element.value}</Link>
+                    <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + element.to}
+                     className="buttonMassLink align-self-stretch">{element.value}</Link>
                   )
                 }
               </div>
@@ -851,11 +856,15 @@ class HeaderClass extends React.Component {
                 <div style={{ display: this.props.storeState.isAuthorized ? 'flex' : 'none' }} className="openMenu position-relative align-items-center">
                   <div className="avatar" style={{ background: 'url(' + this.props.storeState.avatarUrl + ') no-repeat' }}></div>
                   <i className="openDropDownMenuBt "></i>
-                  <div className="hederMenu">
+                  <div className={'hederMenu ' + ((this.props.storeState.userData && this.props.storeState.userData.isAffiliatedDriver) ? 'shortHeaderMenu' : 'longHeaderMenu')}>
                     <span onClick={() => { this.accountRedirect("/profile", 1) }}>{textInfo.burgerMenu.profile}</span>
                     <span /*className="blockedSpan"*/ onClick={() => { this.accountRedirect("/trips", 0) }}>{textInfo.burgerMenu.trips}</span>
                     <span onClick={() => { this.accountRedirect("/settings", 6) }}>{textInfo.burgerMenu.settings}</span>
-                    <span onClick={() => { this.accountRedirect("/referrals", 8) }}>{textInfo.burgerMenu.partnership}</span>
+                    {
+                      this.props.storeState.userData && this.props.storeState.userData.isAffiliatedDriver ? 
+                       <React.Fragment/> : 
+                       <span onClick={() => { this.accountRedirect("/referrals", 8) }}>{textInfo.burgerMenu.partnership}</span>
+                    }                
                     <span onClick={this.logOffFunc}>{textInfo.burgerMenu.exit}</span>
                   </div>
                 </div>

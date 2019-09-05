@@ -494,10 +494,6 @@
     cursor: pointer;
 }
 
-.openMenu:hover .hederMenu {
-    height: 205px;
-}
-
 .openDropDownMenuBt {
     cursor: pointer;
     margin-left: 10px;
@@ -524,6 +520,13 @@
     transition: all 0.3s;
     border-radius: 5px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.openMenu:hover .shortHeaderMenu{
+    height: 164px;
+}
+.openMenu:hover .longHeaderMenu{
+    height: 205px;
 }
 
 .hederMenu span {
