@@ -138,6 +138,9 @@ class AgencyProfileDriversClass extends React.Component {
     }
     render() {
         let textInfo = this.props.storeState.languageText.agencyProfile.agencyProfileDrivers;
+        debugger;
+        let userLang= cookies.get('userLangISO', {path: '/'});
+        let linkAddress = requests.frontendAddress +'/'+ (userLang ? userLang : 'en')+'/login?agency=' + this.props.globalReduser.profile._id;
         return (
             <div className="billingBody">
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
@@ -147,7 +150,7 @@ class AgencyProfileDriversClass extends React.Component {
                 </div>
                 <div className="d-flex flex-lg-row flex-column col-12">
                     <RenderShareLink classNameDiv={"col-lg-5 col-12 affiliateProgramButton mx-0"}
-                    idInput={"partnerMainPageLink"} valueInput={requests.frontendAddress + '/login?agency=' + this.props.globalReduser.profile._id}
+                    idInput={"partnerMainPageLink"} valueInput={linkAddress}
                     iconsArray={this.state.iconsArray}
                     textTitle={textInfo.linkTitle}
                     buttonCopyText={textInfo.linkButton} />

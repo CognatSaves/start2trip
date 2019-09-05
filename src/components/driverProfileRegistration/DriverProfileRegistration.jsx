@@ -81,14 +81,19 @@ class DriverProfileRegistrationClass extends React.Component {
                   <Route path="/account/driver/profile" component={DriverProfileBasicInformation} />
                   <Route path="/account/driver/cars" component={DriverProfileCar} />
                   <Route path="/account/driver/tripsSettings" component={DriverProfileTripSettingsTrip} />
-{/*                   
+              {/*                   
                     <Route path="/account/driver/tours" component={DriverProfileTripSettingsTour} />
-             */}
+              */}
 
                   <Route path="/account/driver/reviews" component={DriverProfileFeedback} />
                   <Route path="/account/driver/settings" component={DriverProfileSettings} />
                   <Route path="/account/driver/billing" component={DriverProfileBilling} />
-                  <Route path="/account/driver/referrals" component={DriverProfileAffiliateProgram} />
+                  {
+                    !(profile.hostagency) ?
+                    <Route path="/account/driver/referrals" component={DriverProfileAffiliateProgram} />
+                    : <React.Fragment/>
+                  }
+                  
                 </Suspense>
               </div>
             </div>
