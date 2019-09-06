@@ -1,6 +1,6 @@
-const serverAddress = 'https://tripfer.com:41337'; //'http://localhost:1337'; //
-const serverAddressImg = 'https://tripfer.com';//'http://localhost:1337';//
-const frontendAddress = 'https://tripfer.com'; //'http://localhost:3000'; //
+const serverAddress = 'http://localhost:1337'; //'https://tripfer.com:41337'; //
+const serverAddressImg = 'http://localhost:1337';//'https://tripfer.com';//
+const frontendAddress = 'http://localhost:3000'; //'https://tripfer.com'; //
 
 const serverRegistrationRequest = serverAddress + '/auth/local/register';
 const serverAuthorizationRequest = serverAddress + '/auth/local';
@@ -53,6 +53,7 @@ const profileCheck = serverAddress + "/users/me/profileCheck";//проверка
 const isCommentedTrip = serverAddress + '/isCommentedTrip';
 
 const getTours = serverAddress + '/getTours';//запрос на получения массива туров
+const userFeedback = serverAddress + '/users/me/userFeedback';//запрос на отправку отзыва пользователя о работе системы
 export default {
     frontendAddress: frontendAddress,
     serverAddress: serverAddress,
@@ -107,5 +108,6 @@ export default {
     profileCheck: profileCheck,
     routeMap: routeMap,
     isCommentedTrip:isCommentedTrip,
-    getTours:getTours
+    getTours:getTours,
+    userFeedback:userFeedback
 };
