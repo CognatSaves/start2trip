@@ -32,17 +32,6 @@ class contactsClass extends React.Component {
         }
     }
     sendMessage = () => {
-        debugger
-        let deviceInfo = {
-            "mobileVendor":mobileVendor,
-            "mobileModel":mobileModel,
-            "engineName":engineName,
-            "engineVersion":engineVersion,
-            "osName":osName,
-            "osVersion":osVersion,
-            "browserName":browserName,
-            "browserVersion":fullBrowserVersion
-        }
         let userLang = (cookies.get('userLang', { path: "/" })).toUpperCase()
         let country = (cookies.get('country', { path: "/" }))
         let userCurr = (cookies.get('userCurr', { path: "/" }))
@@ -64,7 +53,6 @@ class contactsClass extends React.Component {
         // Validate
 
         if(this.state.valideName && valideEmail && this.state.valideMessage ){
-            messageInfo.append('deviceInfo', deviceInfo);
             messageInfo.append('name', this.state.name);
             messageInfo.append('email', this.state.email);
             messageInfo.append('message', this.state.message);
@@ -72,6 +60,14 @@ class contactsClass extends React.Component {
             messageInfo.append('country', country);
             messageInfo.append('userCurr', userCurr);
             messageInfo.append('dateNow', today);
+            messageInfo.append('mobileVendor',mobileVendor);
+            messageInfo.append('mobileModel', mobileModel);
+            messageInfo.append('engineName', engineName);
+            messageInfo.append('engineVersion', engineVersion);
+            messageInfo.append('osName', osName);
+            messageInfo.append('osVersion', osVersion);
+            messageInfo.append('browserName', browserName);
+            messageInfo.append('browserVersion', fullBrowserVersion);
         }
 
         const request = new XMLHttpRequest();
