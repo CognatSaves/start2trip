@@ -16,7 +16,7 @@ import webSvg from '../media/web.svg'
 import Header from '../header/Header';
 import * as EmailValidator from 'email-validator';
 import Cookies from 'universal-cookie';
-
+import requests from '../../config';
 const cookies = new Cookies();
 
 class contactsClass extends React.Component {
@@ -48,7 +48,7 @@ class contactsClass extends React.Component {
         let userCurr = (cookies.get('userCurr', { path: "/" }))
         let today =new Date()
 
-        var messegeInfo = new FormData();
+        var messageInfo = new FormData();
 
         // Validate
         let valideEmail = EmailValidator.validate(this.state.email)
@@ -64,17 +64,28 @@ class contactsClass extends React.Component {
         // Validate
 
         if(this.state.valideName && valideEmail && this.state.valideMessage ){
-            messegeInfo.append('deviceInfo', deviceInfo);
-            messegeInfo.append('name', this.state.name);
-            messegeInfo.append('email', this.state.email);
-            messegeInfo.append('message', this.state.message);
-            messegeInfo.append('userLangCookies', userLang);
-            messegeInfo.append('country', country);
-            messegeInfo.append('userCurr', userCurr);
-            messegeInfo.append('dateNow', today);
+            messageInfo.append('deviceInfo', deviceInfo);
+            messageInfo.append('name', this.state.name);
+            messageInfo.append('email', this.state.email);
+            messageInfo.append('message', this.state.message);
+            messageInfo.append('userLangCookies', userLang);
+            messageInfo.append('country', country);
+            messageInfo.append('userCurr', userCurr);
+            messageInfo.append('dateNow', today);
         }
-        
-       
+
+        const request = new XMLHttpRequest();
+        request.open('PUT',requests.userFeedback);
+        request.onreadystatechange = function (){
+            if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
+                let responseText = JSON.parse(request.responseText);
+                console.log(responseText)
+            }
+            if (request.readyState === XMLHttpRequest.DONE && request.status === 0) {
+                console.log('we lose');
+            }
+        }
+        request.send(messageInfo);
         //TODO sendMessege
     }
     render() {
