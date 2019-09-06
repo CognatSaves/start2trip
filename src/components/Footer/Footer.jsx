@@ -97,7 +97,7 @@ class FooterClass extends React.Component {
         <div className="footerMobile d-xl-none d-lg-none d-md-none d-sm-flex d-flex">
           {
             mobileElemArray.map((element, index) =>
-              <Link to={element.pathname} className="col-3 d-flex align-items-end">
+              <Link to={element.pathname} className="col-3 d-flex align-items-end" /*onClick={(event, target)=>{ console.log(event, target); event.preventDefault()}}*/>
                 <div className={(element.pathnamesInner.indexOf(pathname) !== -1 ? "foterMobaileItem_active" : " ") + " d-flex flex-column align-items-center justify-content-end col-12 p-md-2 p-0 foterMobaileItem "} >
                   <div className={element.pathnamesInner.indexOf(pathname) !== -1 ? element.iconClasses[0] : element.iconClasses[1]} />
                   <div className={element.classValue}>{element.value}</div>

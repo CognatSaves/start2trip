@@ -17,6 +17,7 @@ import Header from '../header/Header';
 import * as EmailValidator from 'email-validator';
 import Cookies from 'universal-cookie';
 import requests from '../../config';
+import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 const cookies = new Cookies();
 
 class contactsClass extends React.Component {
@@ -29,10 +30,17 @@ class contactsClass extends React.Component {
             valideEmail:true,
             message:"",
             valideMessage:true,
+            isRefreshExist: false,
+            isRefreshing: false,
+            isGoodAnswer: false
         }
     }
     sendMessage = () => {
         debugger
+        this.setState({
+            isRefreshExist: true,
+            isRefreshing: true
+        })
         let deviceInfo = {
             "mobileVendor":mobileVendor,
             "mobileModel":mobileModel,
@@ -76,13 +84,34 @@ class contactsClass extends React.Component {
 
         const request = new XMLHttpRequest();
         request.open('PUT',requests.userFeedback);
+        let that = this;
         request.onreadystatechange = function (){
             if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
                 let responseText = JSON.parse(request.responseText);
                 console.log(responseText)
+                that.setState({
+                    isRefreshExist: true,
+                    isRefreshing: false,
+                    isGoodAnswer: true
+                })
+                setTimeout(()=>{
+                    that.setState({
+                        isRefreshExist: false
+                    })
+                }, 2000)
             }
             if (request.readyState === XMLHttpRequest.DONE && request.status === 0) {
                 console.log('we lose');
+                that.setState({
+                    isRefreshExist: true,
+                    isRefreshing: false,
+                    isGoodAnswer: false
+                })
+                setTimeout(()=>{
+                    that.setState({
+                        isRefreshExist: false
+                    })
+                }, 2000)
             }
         }
         request.send(messageInfo);
@@ -103,6 +132,7 @@ class contactsClass extends React.Component {
                     <meta property="og:title" content={helmet.basic.title} />
                     <meta property="og:description" content={helmet.basic.description} />
                 </Helmet>
+                <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
                 <Header driver={true} history={this.props.history} />
                 <div className="wrapper" style={{minHeight:"79vh"}}>
                     <div className="contacts d-flex" >

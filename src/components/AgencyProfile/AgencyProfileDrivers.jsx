@@ -138,7 +138,7 @@ class AgencyProfileDriversClass extends React.Component {
     }
     render() {
         let textInfo = this.props.storeState.languageText.agencyProfile.agencyProfileDrivers;
-        debugger;
+        
         let userLang= cookies.get('userLangISO', {path: '/'});
         let linkAddress = requests.frontendAddress +'/'+ (userLang ? userLang : 'en')+'/login?agency=' + this.props.globalReduser.profile._id;
         return (
