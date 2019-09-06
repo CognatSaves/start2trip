@@ -306,7 +306,7 @@ class RenderModalRegistrationClass extends React.Component {
             userData: userData
         })
     }
-    changeLangCookies=(index)=>{
+    changeLangCookies = (index) => {
         let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
         cookies.set('userLang', this.props.storeState.languages[index].ISO, { path: '/', expires: date });
         cookies.set('userLangISO', this.props.storeState.languages[index].isoAutocomplete, { path: '/', expires: date });
@@ -339,7 +339,7 @@ class RenderModalRegistrationClass extends React.Component {
                 regProcessStatus: true
             });
             console.log("Send Request");
-            
+
 
             let body = JSON.stringify({
                 username: email,
@@ -411,7 +411,14 @@ class RenderModalRegistrationClass extends React.Component {
             <React.Fragment>
 
                 <div className="d-md-none d-flex">
-                    <img className="registrationBodyLogoIcon" src={logoBlue} alt="logo" width="100px" height="20px" />
+                    <img className="registrationBodyLogoIcon" src={logoBlue} alt="logo" width="100px" height="20px" onClick={() => {
+                        let country = cookies.get('country', { path: "/" });
+                        if (country === undefined) {
+                            this.props.globalReduser.history.push("/countrySelection/")
+                        } else {
+                            this.props.globalReduser.history.push("/" + cookies.get('country', { path: "/" }) + "-" + cookies.get('userLangISO', { path: "/" }) + '/routes/')
+                        }
+                    }} />
                     <div className="registrationBodyLanguageBlock d-flex " >
                         {
                             this.props.storeState.languages.map((element, index) =>
@@ -422,13 +429,20 @@ class RenderModalRegistrationClass extends React.Component {
                                 </div>
                             )
                         }
-                        {this.props.globalReduser.history.location ===('/'+ cookies.get('userLangISO', { path: "/" }) +"/login/") ? 
-                        <React.Fragment/>
-                        :
-                        <React.Fragment> 
-                            <i className="ml-3" onClick={() => { if (this.props.globalReduser.history.location.pathname === ('/'+ cookies.get('userLangISO', { path: "/" }) +"/login/")) { this.props.globalReduser.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/routes/') } else { this.props.close() } }} />
-                        </React.Fragment> }
-                       
+                        <i className="ml-3" onClick={() => {
+                            if (this.props.globalReduser.history.location.pathname === ('/' + cookies.get('userLangISO', { path: "/" }) + "/login/")) {
+                                let country = cookies.get('country', { path: "/" });
+                                if (country === undefined) {
+                                    this.props.globalReduser.history.push("/countrySelection/")
+                                } else {
+                                    this.props.globalReduser.history.push("/" + cookies.get('country', { path: "/" }) + "-" + cookies.get('userLangISO', { path: "/" }) + '/routes/')
+                                }
+                            } else {
+                                this.props.close()
+                            }
+                        }} />
+
+
                     </div>
                     <div className="mobailsitingInLight d-flex flex-column justify-content-center align-items-center ">
                         <h3>{this.state.sitingIn ? textInfo.sitingInLightBackgroundText.titleSitingIn : textInfo.registrationLightBackgroundText.registrationTitle}</h3>
@@ -549,7 +563,14 @@ class RenderModalRegistrationClass extends React.Component {
 
 
                 <div className="registrationBody d-md-flex d-none">
-                    <img className="registrationBodyLogoIcon" src={this.state.logoIconActive ? logoBlue : logoWhite} alt="logo" width="100px" height="20px" />
+                    <img className="registrationBodyLogoIcon" src={this.state.logoIconActive ? logoBlue : logoWhite} alt="logo" width="100px" height="20px" onClick={() => {
+                        let country = cookies.get('country', { path: "/" });
+                        if (country === undefined) {
+                            this.props.globalReduser.history.push("/countrySelection/")
+                        } else {
+                            this.props.globalReduser.history.push("/" + cookies.get('country', { path: "/" }) + "-" + cookies.get('userLangISO', { path: "/" }) + '/routes/')
+                        }
+                    }} />
                     <div className="registrationBodyLanguageBlock d-flex" >
                         {
                             this.state.languageVariants.map((element, index) =>
@@ -557,7 +578,7 @@ class RenderModalRegistrationClass extends React.Component {
                                     (this.state.languageTextActive ?
                                         (index === this.props.storeState.activeLanguageNumber ? "registrationBodyLanguageBlock_element_light registrationBodyLanguageBlock_element_selected" : "registrationBodyLanguageBlock_element_light") :
                                         (index === this.props.storeState.activeLanguageNumber ? "registrationBodyLanguageBlock_element_dark registrationBodyLanguageBlock_element_selected" : "registrationBodyLanguageBlock_element_dark")
-                                    )} onClick={() => { this.changeLangCookies(index)}} key={element + "/" + index}>
+                                    )} onClick={() => { this.changeLangCookies(index) }} key={element + "/" + index}>
                                     {element}
                                 </div>
                             )

@@ -385,7 +385,7 @@ class HeaderClass extends React.Component {
   }
 
   setLocals = (type, index, isAdmin) => {
-
+    debugger
     let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
     switch (type) {
       case 'userLang': {
@@ -736,12 +736,12 @@ class HeaderClass extends React.Component {
                     {
                       this.props.storeState.isSecondLanguageGroupPart ?
                         <BurgerMenuLanguageDropDown labelValue={textInfo.burgerMenu.settingsDrop[0]}
-                          dropdownValue={this.props.storeState.activeLanguageNumberAdmin} onChange={(a,b)=>this.setLocals(a,b)}
+                          dropdownValue={this.props.storeState.activeLanguageNumberAdmin} onChange={(a,b)=>{this.setLocals('adminLang',b)}}
                           languageArray={adminLanguages}
                         />
                         :
                         <BurgerMenuLanguageDropDown labelValue={textInfo.burgerMenu.settingsDrop[0]}
-                          dropdownValue={this.props.storeState.activeLanguageNumber} onChange={(a,b)=>this.setLocals(a, b, this.props.storeState.isAdminLanguageType)}
+                          dropdownValue={this.props.storeState.activeLanguageNumber} onChange={(a,b)=>this.setLocals('userLang', b, this.props.storeState.isAdminLanguageType)}
                           languageArray={languages}
                         />
                     }
