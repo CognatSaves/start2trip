@@ -707,17 +707,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                         selectedDays={this.state.tourSave.calendary}
                         onDayClick={this.handleDayClick}
                     />
-                    {/* <InfiniteCalendar
-                        Component={MultipleDatesCalendar}
-                        width={100 + "%"}
-                        minDate={today}
-                        theme={themeCalendar}
-                        locale={locale}
-                        className="newTourCalendarStyle"
-                        interpolateSelection={defaultMultipleDateInterpolation}
-                        selected={this.state.tourSave.calendary}
-                        onSelect={this.addDate}
-                    /> */}
+                   
                 </Dialog>
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
                 <Collapse isOpen={this.state.collapse}>

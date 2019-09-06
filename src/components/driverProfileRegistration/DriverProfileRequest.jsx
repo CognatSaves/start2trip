@@ -3,9 +3,11 @@ import requests from '../../config';
 
 function getUserData(requestValues, thenFunc, catchFunc, params) {
   let jwt = requestValues.readCookie('jwt');
+  let userLang = requestValues.readCookie('userLang');
+  let country = requestValues.readCookie('country')
   if (jwt && jwt !== "-") {
-
-    axios.get(requestValues.requestAddress + '?ISO=RUS&countryISO=IRO', {
+    debugger;
+    axios.get(requestValues.requestAddress + '?ISO='+userLang+'&countryISO='+country, {
       headers: {
         Authorization: `Bearer ${jwt}`
       }
