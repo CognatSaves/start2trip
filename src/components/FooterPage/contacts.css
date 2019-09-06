@@ -145,6 +145,14 @@
     background: url(../media/facebook_orange.svg) no-repeat;
     background-size: 25px 25px;
 }
+.contacts_content_left .contacts_error{
+    background: #a52525c7;
+    color: #fff;
+}
+
+.contacts_content_left .contacts_error::placeholder{
+    color: #fff;
+}
 
 @media (max-width: 800px) {
     .contacts_Title {

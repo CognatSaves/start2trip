@@ -422,7 +422,13 @@ class RenderModalRegistrationClass extends React.Component {
                                 </div>
                             )
                         }
-                        <i className="ml-3" onClick={() => { if (this.props.globalReduser.history.location.pathname === ('/'+ cookies.get('userLangISO', { path: "/" }) +"/login/")) { this.props.globalReduser.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/routes/') } else { this.props.close() } }} />
+                        {this.props.globalReduser.history.location ===('/'+ cookies.get('userLangISO', { path: "/" }) +"/login/") ? 
+                        <React.Fragment/>
+                        :
+                        <React.Fragment> 
+                            <i className="ml-3" onClick={() => { if (this.props.globalReduser.history.location.pathname === ('/'+ cookies.get('userLangISO', { path: "/" }) +"/login/")) { this.props.globalReduser.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/routes/') } else { this.props.close() } }} />
+                        </React.Fragment> }
+                       
                     </div>
                     <div className="mobailsitingInLight d-flex flex-column justify-content-center align-items-center ">
                         <h3>{this.state.sitingIn ? textInfo.sitingInLightBackgroundText.titleSitingIn : textInfo.registrationLightBackgroundText.registrationTitle}</h3>
