@@ -440,7 +440,6 @@ class AgencyProfileTourClass extends React.Component {
         }
         event.preventDefault();
     }
-
     toggle = (element, props) => {
         this.setState(state => ({ collapse: props ? props.collapse : !state.collapse, tour: {} }));
         if (!element) {
@@ -464,11 +463,9 @@ class AgencyProfileTourClass extends React.Component {
             });
         }
     }
-
     calendarModalShow = () => {
         this.setState({ calendarModal: !this.state.calendarModal });
     };
-
     addDate = (dates) => {
 
         let newDate = this.state.tourSave.calendary;
@@ -488,7 +485,6 @@ class AgencyProfileTourClass extends React.Component {
             newDate.push(dates);
         }
     }
-
     handleChange = (value, name, params) => {
         let tourSave = this.state.tourSave;
         switch (name) {
@@ -542,7 +538,6 @@ class AgencyProfileTourClass extends React.Component {
             default:
         }
     };
-
     handleRequestDelete = (element, name, params) => {
 
         let tourSave = this.state.tourSave;
@@ -633,7 +628,6 @@ class AgencyProfileTourClass extends React.Component {
         }
 
     }
-
     selectTourName = (element) => {
         let name = '';
         if (element.local && Array.isArray(element.local)) {
@@ -646,7 +640,6 @@ class AgencyProfileTourClass extends React.Component {
         }
         return name;
     }
-
     render() {
         console.log('Trip Tour render');
         console.log(this.state);
@@ -703,11 +696,9 @@ class AgencyProfileTourClass extends React.Component {
         };
         let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileTripSettingsTour;
         return (
-            <React.Fragment>
-                {
-                    /*
+                    
                 <React.Fragment>
-        
+                {/*
                     <Dialog
                         actions={actions}
                         modal={false}
@@ -1121,12 +1112,9 @@ class AgencyProfileTourClass extends React.Component {
                             )}
                         </div>
                     </div>
-                </React.Fragment >
                 */
-
                 }
-                <React.Fragment />
-            </React.Fragment>
+                </React.Fragment >
         );
     }
 }

@@ -555,6 +555,7 @@ class HeaderClass extends React.Component {
 
       console.log(that);
       console.log(address);
+      
       let profile = that.props.globalReduser.profile;
       let fullAddress = '/account';
       if ((profile.isDriver && profile.country) || profile.isCustomer || (profile.isAgency && profile.country)) {
