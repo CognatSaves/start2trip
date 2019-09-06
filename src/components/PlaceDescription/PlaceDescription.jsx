@@ -406,7 +406,7 @@ class PlaceDescriptionClass extends React.Component {
                                                 </div>
                                                 <div className="networkLink">
                                                     <VKShareButton
-                                                        url={shareUrl}
+                                                        url={String(shareUrl)}
                                                         image={String("https://tripfer.com"+exampleImage)}
                                                         windowWidth={660}
                                                         windowHeight={460}
