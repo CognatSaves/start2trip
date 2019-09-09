@@ -6,8 +6,8 @@ function getUserData(requestValues, thenFunc, catchFunc, params) {
   let userLang = requestValues.readCookie('userLang');
   let country = requestValues.readCookie('country')
   if (jwt && jwt !== "-") {
-    debugger;
-    axios.get(requestValues.requestAddress + '?ISO='+userLang+'&countryISO='+country, {
+    
+    axios.get(requestValues.requestAddress + '?ISO='+userLang/*+'&countryISO='+country*/, {
       headers: {
         Authorization: `Bearer ${jwt}`
       }

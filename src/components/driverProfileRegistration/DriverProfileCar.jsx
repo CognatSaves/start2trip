@@ -807,8 +807,8 @@ class DriverProfileCarClass extends React.Component {
                     {cars.map((element, index) =>
                         <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-11 p-2 filledCardHover ">
                             <div className="filledCard d-flex flex-column p-0">
-                                <div className="filledCardInformation d-flex flex-column">
-                                    <div className="filledCardInformationNameCar d-flex justify-content-end align-items-center px-1">
+                                <div className="filledCardInformation d-flex flex-column" style={{position: 'relative'}}>
+                                    <div className="filledCardInformationNameCar d-flex d-flex justify-content-end w-100 align-items-center">
                                         <label className="cardInformationNameCarIcon"></label>
                                         <div className="filledCardInformationMenu">
                                             <p className="filledCardInformationDeleteCar" onClick={() => this.destroy(element)}>{textPage.filledCardInformationMenu.deleteCar}</p>

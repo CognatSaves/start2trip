@@ -681,7 +681,7 @@ class AgencyProfileTourClass extends React.Component {
             maxWidth: 'none',
         };
 
-        debugger;
+        
         let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileTripSettingsTour;
 
         return (
@@ -737,14 +737,17 @@ class AgencyProfileTourClass extends React.Component {
                                     <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
                                         <label htmlFor="newTourAttractions" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">{textPage.newTourAttractions.floatingLabelText}:</label>
                                         <div className="d-flex col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0" key={element.departurePoint}>
-                                            <LocationSearchInput address={element.departurePoint !== "" ? element.departurePoint : ''} changeCity={(id, value) => { let tourSave = this.state.tourSave; tourSave.local[index].departurePoint = value; this.setState({ tourSave: tourSave }) }} classDropdown="searchDropdownDriverTour" id="newTourAttractions" />
+                                            <LocationSearchInput address={element.departurePoint !== "" ? element.departurePoint : ''}
+                                             changeCity={(id, value) => { let tourSave = this.state.tourSave; tourSave.local[index].departurePoint = value; this.setState({ tourSave: tourSave }) }}
+                                             classDropdown="searchDropdownDriverTour" id="newTourAttractions" classInput="w-100" classDiv='w-100' />
                                         </div>
                                         <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">{textPage.newTourAttractions.description}</p>
                                     </div>
                                     <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
                                         <label htmlFor="attractionsAlongTheRoute" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">{textPage.attractionsAlongTheRoute.floatingLabelText}:</label>
                                         <div className="d-flex col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0" key={element.points.length}>
-                                            <LocationSearchInput address='' changeCity={(id, value) => { this.handleChange(value, "attractionsAlongTheRoute", { number: index }) }} classDropdown="searchDropdownDriverTour" id="attractionsAlongTheRoute" />
+                                            <LocationSearchInput address='' changeCity={(id, value) => { this.handleChange(value, "attractionsAlongTheRoute", { number: index }) }}
+                                             classDropdown="searchDropdownDriverTour" id="attractionsAlongTheRoute" classInput="w-100" classDiv='w-100'/>
                                         </div>
                                         <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">{textPage.attractionsAlongTheRoute.description}</p>
                                     </div>
@@ -830,7 +833,7 @@ class AgencyProfileTourClass extends React.Component {
                                         <div className="openMultipleDatepicker d-xl-flex d-lg-flex d-md-flex d-sm-block d-block flex-column justify-content-center ml-1 col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 mb-0 p-0">
                                             <label htmlFor="newTourDatepicker" onClick={() => { this.state.tourSave.daily = false; this.setState({ tourSave: this.state.tourSave }); }} className="mb-0 mr-2">{textPage.schedule.newTourDatepicker}</label>
                                             <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column  align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                                <span style={{ display: !this.state.tourSave.daily ? "block" : "none" }} className="newTourDatepickerSpan col-xl-6 col-lg-7 col-md-9 col-sm-12 col-12 p-0" onClick={this.calendarModalShow}>{textPage.schedule.selectDates}</span>
+                                                <span style={{ display: !this.state.tourSave.daily ? "block" : "none", maxHeight: '40px', width: '100%' }} className="newTourDatepickerSpan" onClick={this.calendarModalShow}>{textPage.schedule.selectDates}</span>
                                                 <DropDownMenu
                                                     value={this.state.tourSave.time}
                                                     anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
@@ -1067,7 +1070,7 @@ class AgencyProfileTourClass extends React.Component {
                         {this.props.globalReduser.profile.tours.map((element, index) =>
                             <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-11 p-2">
                                 <div className="filledCard d-flex flex-column p-0">
-                                    <div className="filledCardInformation d-flex flex-column">
+                                    <div className="filledCardInformation d-flex flex-column" style={{position: 'relative'}}>
                                         <div className="filledCardInformationNameCar d-flex d-flex justify-content-end w-100 align-items-center">
 
                                             <label className="cardInformationNameCarIcon"></label>
