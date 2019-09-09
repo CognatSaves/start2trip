@@ -16,22 +16,29 @@ const cookies = new Cookies();
 class ToursListElementClass extends React.Component {
     render() {
         let textInfo = this.props.storeState.languageTextMain.home.homeBottom.routeListElement;
-
+        //debugger;
         let element = this.props.element;
         let index = this.props.index;
+        let imageAddress = element.image ? (requests.serverAddressImg + element.image) : '';
+        console.log(imageAddress);
+        let slug = element.tourlocalization.slug;
+
+        slug = 'poezdka-iz-minska-v-mirskiy-i-nesvizhskiy-zamok';// стоит на время ремонта. По окончании, убрать. Схожая вещь лежит в tourDescription
+
+
         return (
             <div className={this.props.placeListElementClass ? this.props.placeListElementClass : "col-lg-3 col-md-4 col-sm-6 col-12 p-2 pb-3"} >
                 <div className={"drivers_block_element d-flex p-0 flex-column"} id={index}>
                     <div className="toursDate">27.03.2019</div>
                     <div className="driversBlock_carImage" style={{ background: "url(" + (element.image ? (requests.serverAddressImg + element.image) : '') + ") no-repeat", backgroundSize: "cover", width: '100%' }}>
-                        <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + `/tours/${element.placelocalization.slug}/`} className="driversBlock_carBlackout">
+                        <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + `/tours/${slug}/`} className="driversBlock_carBlackout">
                             <div className="driversBlock_carBlackout_detailed">{textInfo.detailed}</div>
                         </Link>
                     </div>
                     <div className="placesList_info d-flex flex-column">
-                        <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + `/tours/${element.placelocalization.slug}/`} className="placesList_placeName d-flex">
+                        <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + `/tours/${slug}/`} className="placesList_placeName d-flex">
                             <div>
-                                {element.placelocalization.name}
+                                {element.tourlocalization.name}
                             </div>
                         </Link>
 
@@ -46,7 +53,7 @@ class ToursListElementClass extends React.Component {
                             <div className="placesList_info_position_textStyle">{element.tagsArray.map((tag, tagIndex) => <text>{this.props.findTagName(tag) + (element.tagsArray.length - 1 > tagIndex ? "," : "") + " "}</text>)}</div>
                         </div>
                         <div className="d-flex placesList_info_position placesList_info_position_loc">
-                            <div className="placesList_info_position_textStyle">{element.placelocalization.location}</div>
+                            <div className="placesList_info_position_textStyle">{element.tourlocalization.location}</div>
                         </div>
                         
                    </div>

@@ -3,6 +3,7 @@ import '../Places/Places.css';
 import { connect } from 'react-redux';
 import { setPage, setSelectedDirection } from '../../redusers/ActionPlaces';
 import { setPlacesList } from '../../redusers/ActionPlaces';
+import { setToursList } from '../../redusers/ActionTours'
 import { Helmet } from 'react-helmet';
 import axios from 'axios';
 import requests from '../../config';
@@ -33,29 +34,6 @@ class ToursClass extends React.Component {
     this.props.dispatch(setPlacesList([], [], [], {}));
     //потом уже дело
     this.props.dispatch(setPage(1));
-
-
-    let country = cookies.get('country', { path: '/' });
-    let lang = cookies.get('userLang', { path: '/' });
-    let selectedDirection = this.props.match.params.direction;
-    axios.get(requests.getTours+ "?country=" + country + "&lang=" + lang + (selectedDirection ? "&slug=" + selectedDirection : ''))
-      .then(response => {
-        return response.json();
-      })
-      .then(function (data){
-        if(data.error){
-          console.log('bad');
-          throw data.error;
-        }
-        else{
-          console.log('good');
-          console.log('data',data);
-        }
-      })
-      .catch(function (error) {
-        console.log('bad');
-        console.log('An error occurred:', error);
-      })
   }
   sendRequestFunc = () => {
     function findSelectedDirectionId(directions, slug) {
@@ -139,6 +117,26 @@ class ToursClass extends React.Component {
           console.log('get wasted answer');
           this.props.globalReduser.history.push('/');
         });
+      
+      axios.get(requests.getTours+ "?country=" + country + "&lang=" + lang + (selectedDirection ? "&slug=" + selectedDirection : ''))
+        .then(response => {
+          return response.data;
+        })
+        .then(function (data){
+          if(data.error){
+            console.log('bad tour request');
+            throw data.error;
+          }
+          else{
+            console.log('tour request data',data);
+            that.props.dispatch(setToursList(data.tours,data.categories, data.tags, data.directions));
+            
+          }
+        })
+        .catch(function (error) {
+          console.log('bad');
+          console.log('An error occurred:', error);
+        })
     }
   }
   render() {
@@ -153,7 +151,7 @@ class ToursClass extends React.Component {
       return '';
     }
 
-    console.log("Places render", this.props.placesState);
+    console.log("Tours render", this.props);
 
     this.sendRequestFunc();
     /*
@@ -189,21 +187,21 @@ class ToursClass extends React.Component {
     }
     directions = JSON.stringify(directions)
     let windowImg = null
-        if (this.props.storeState.languages.length > 0) {
-            
-            let coockisIso = cookies.get('country', { path: '/' })
-            let j;
-            for (let i = 0; i < this.props.storeState.countries.length; i++) {
-                if (this.props.storeState.countries[i].ISO === coockisIso) {
-                    j = i
-                    break;
-                }
+    if (this.props.storeState.languages.length > 0) {
+        
+        let coockisIso = cookies.get('country', { path: '/' })
+        let j;
+        for (let i = 0; i < this.props.storeState.countries.length; i++) {
+            if (this.props.storeState.countries[i].ISO === coockisIso) {
+                j = i
+                break;
             }
-            if(coockisIso === undefined ){
-              j = 1
-          }
-            windowImg = requests.serverAddressImg + this.props.storeState.countries[j].windowImg.url
         }
+        if(coockisIso === undefined ){
+          j = 1
+      }
+        windowImg = requests.serverAddressImg + this.props.storeState.countries[j].windowImg.url
+    }
      
     return (
       <React.Fragment>
@@ -294,7 +292,7 @@ class ToursClass extends React.Component {
           <div className="drivers_bottom_background d-flex flex-column" onClick={()=>{ let a = this}}>
             <div className="drivers_body d-flex">
               <div id="placesMainBlock" className="left_body_part col-12 p-0" >
-                <PopularPlaces placesState={this.props.placesState} where={"tours"}/>
+                <PopularPlaces placesState={this.props.toursState} where={"tours"}/>
                 <TourInfo />
                 {/* <PlacesTagList  placesState={this.props.placesState}/> */}
                 {/* <PlacesPanel  placesState={this.props.placesState} /> */}
@@ -317,7 +315,8 @@ const Tours = connect(
   (state) => ({
     storeState: state.AppReduser,
     globalReduser: state.GlobalReduser,
-    placesState: state.PlacesReduser
+    placesState: state.PlacesReduser,
+    toursState: state.ToursReduser
   }),
 
 )(ToursClass);

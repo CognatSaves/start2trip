@@ -56,7 +56,24 @@ class ToureDescriptionClass extends React.Component {
             page: 1,
             showPages: 1,
         }
-
+        let slug='slug';
+        axios.get(requests.showTour+"?slug=" + (slug ? slug : ''))
+        .then(response =>{
+            return response.data;
+        })
+        .then(function(data){
+            if(data.error){
+                console.log('bad tour descr request');
+                throw data.error;
+            }
+            else{
+                console.log('good, data=',data);
+            }
+        })
+        .catch(function(error){
+            console.log('bad');
+            console.log('An error occurred:',error);
+        })
     }
     showMorePages = () => {
         this.setState({
@@ -97,6 +114,14 @@ class ToureDescriptionClass extends React.Component {
         let topBlockId = "routeDescriptionId";
         let slug = this.props.match.params.slug;
         if (this.props.storeState.languages.length > 0 && this.state.newRoute.local && this.state.selectedLanguage !== this.props.storeState.activeLanguageNumber) {
+            
+            
+            
+            slug='poezdka-iz-minska-v-mirskiy-i-nesvizhskiy-zamok';
+            //задал статично на время ремонта и создания запроса на получение описания места
+            //похожая вещь лежит в toursListElement
+
+
 
             let slugArray = this.state.newRoute.local.slugArray;
             for (let i = 0; i < slugArray.length; i++) {
@@ -105,7 +130,7 @@ class ToureDescriptionClass extends React.Component {
                         selectedLanguage: this.props.storeState.activeLanguageNumber,
 
                     });
-                    this.props.globalReduser.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/routes/' + slugArray[i].slug+'/');
+                    this.props.globalReduser.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/tours/' + slugArray[i].slug+'/');
                 }
             }
             //надо что-то сделать, если не нашли          

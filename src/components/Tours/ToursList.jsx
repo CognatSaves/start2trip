@@ -53,14 +53,14 @@ class ToursListClass extends React.Component {
             return res;
         }
         function findTagName(tagId, that) {
+            debugger;
+            if (that.props.toursState.tags.length > 0) {
 
-            if (that.props.placesState.tags.length > 0) {
-
-                let tags = that.props.placesState.tags;
+                let tags = that.props.toursState.tags;
                 let id = -1;
 
-                for (let i = 0; i < that.props.placesState.tags.length; i++) {
-                    if (that.props.placesState.tags[i].id === tagId) {
+                for (let i = 0; i < that.props.toursState.tags.length; i++) {
+                    if (that.props.toursState.tags[i].id === tagId) {
                         id = i;
                         break;
                     }
@@ -75,17 +75,22 @@ class ToursListClass extends React.Component {
         }
         console.log('PlacesList render');
         console.log(this.props);
-        let tagFilteredArray = tagFilterFunction([...this.props.placesState.placesList], this.props.placesState.selectedTags);
+        if(this.props.toursState.toursList.length>0){
+            
+        }
+        let tagFilteredArray = tagFilterFunction([...this.props.toursState.toursList], []/*this.props.toursState.selectedTags*/);
         console.log('tagFilteredArray', tagFilteredArray);
         let sortedArray;
         // 
         // if(tagFilteredArray.length !== 0){
 
-        sortedArray = this.placesSort(/*[...this.props.placesState.placesList]*/tagFilteredArray, this.props.placesState.sortMenuValue);
+        sortedArray = this.placesSort(/*[...this.props.placesState.placesList]*/tagFilteredArray, this.props.toursState.sortMenuValue);
         // }
 
-        let selectedPlaces = sortedArray.slice((this.props.placesState.page - this.props.placesState.showPages) * this.props.placesState.pagesMenuValue,
-            this.props.placesState.page * this.props.placesState.pagesMenuValue);
+        let selectedPlaces = sortedArray.slice((this.props.toursState.page - this.props.toursState.showPages) * this.props.toursState.pagesMenuValue,
+            this.props.toursState.page * this.props.toursState.pagesMenuValue);
+
+
 
         console.log('selectedPlaces', selectedPlaces);
         let textInfo = this.props.storeState.languageTextMain.home.homeBottom.homeRoutesList;
@@ -130,7 +135,8 @@ const ToursList = connect(
     (state) => ({
         storeState: state.AppReduser,
         placesState: state.PlacesReduser,
-        globalReduser: state.GlobalReduser
+        globalReduser: state.GlobalReduser,
+        toursState: state.ToursReduser
     }),
 )(ToursListClass);
 

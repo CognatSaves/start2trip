@@ -7,6 +7,17 @@ const CHANGE_PANEL_FIXED_CLASS = 'CHANGE_PANEL_FIXED_CLASS';
 
 const SET_TOUR_PANEL_SELECTED_ELEMENT = 'SET_TOUR_PANEL_SELECTED_ELEMENT';
 
+const SET_TOURS_LIST ='SET_TOURS_LIST';
+
+const setToursList=function(toursList, categories, tags, directions){
+  return{
+    type: SET_TOURS_LIST,
+    toursList: toursList,
+    categories: categories,
+    tags: tags,
+    directions: directions
+  }
+}
 const setToursMorePagesShow = function (){
     return{
         type: SET_TOURS_MORE_PAGES_SHOW
@@ -36,5 +47,6 @@ export {
     setToursMorePagesShow, SET_TOURS_MORE_PAGES_SHOW,
     setToursPage, SET_TOURS_PAGE,
     changePanelFixedClass, CHANGE_PANEL_FIXED_CLASS,
-    setTourPanelSelectedElement, SET_TOUR_PANEL_SELECTED_ELEMENT
+    setTourPanelSelectedElement, SET_TOUR_PANEL_SELECTED_ELEMENT,
+    setToursList,SET_TOURS_LIST
 }

@@ -30,6 +30,9 @@ class TourInfoClass extends React.Component {
 
         return (
             <div className="tourInfoBlock ">
+            {
+                //TODO переводы
+            }
                 <div className="d-flex flex-md-row flex-column justify-content-around align-items-center tourInfoContent">
                     <p>Подобрать тур:</p>
                     <LocationSearchInput placeholder={"Место отправления"} address={this.state.departurePoint} changeCity={this.changeCity} classInput="searchInputTourInfoContent col-12" classDropdown="searchDropdownTourInfoContent" classDiv="col-md-2 col-10 p-0" />
