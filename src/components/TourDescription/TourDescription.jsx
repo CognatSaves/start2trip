@@ -56,7 +56,7 @@ class ToureDescriptionClass extends React.Component {
             page: 1,
             showPages: 1,
         }
-        let slug='slug';
+        let slug='horoshiy_tur';
         axios.get(requests.showTour+"?slug=" + (slug ? slug : ''))
         .then(response =>{
             return response.data;
@@ -67,6 +67,9 @@ class ToureDescriptionClass extends React.Component {
                 throw data.error;
             }
             else{
+                console.log('&&&&&&&&&&&&&&&&&&&&&&&&&&&&&')
+                console.log('&&&&&&&&&&&&&&&&&&&&&&&&&&&&&')
+                
                 console.log('good, data=',data);
             }
         })
