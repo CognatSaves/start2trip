@@ -249,6 +249,7 @@
     position: relative;
     z-index: 5;
     width: 40px;
+    min-width: 40px;
     height: 40px;
     border-radius: 20px;
     background-size: cover !important;
@@ -261,6 +262,8 @@
     padding-left: 8px;
     padding-top: 4px;
     display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .driversBlock_driverCard_photo:hover {
@@ -273,6 +276,7 @@
     color: #304269;
     font-weight: 500;
     cursor: pointer;
+
 }
 
 .driversBlock_driversInfo_name:hover {
@@ -297,6 +301,7 @@
 
 .langi {
     padding-left: 7px;
+    min-width: 50px;
 }
 
 .driversBlock_bookmark {

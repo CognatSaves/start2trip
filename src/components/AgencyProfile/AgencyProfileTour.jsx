@@ -60,6 +60,8 @@ class AgencyProfileTourClass extends React.Component {
                 directionId: "",
                 image: [],
                 imageFiles: [],
+                mainImage:'',
+                mainImageFile:'',
                 price: "",
                 seats: "",
                 time: "",
@@ -184,6 +186,8 @@ class AgencyProfileTourClass extends React.Component {
                 directionId: "",
                 image: [],
                 imageFiles: [],
+                mainImage:'',
+                mainImageFile:'',
                 price: "",
                 seats: "",
                 time: "",
@@ -247,6 +251,8 @@ class AgencyProfileTourClass extends React.Component {
                 image[i] = requests.serverAddressImg + element.image[i].url;
                 imageFiles[i] = new File([""], 'old');
             }
+            let mainImage = (element.mainImage ? requests.serverAddressImg +element.mainImage.url : '');
+            let mainImageFile = new File([""], 'old');
             let calendary = [];
             for (let i = 0; i < element.calendary.length; i++) {
                 calendary[i] = new Date(element.calendary[i]);
@@ -261,6 +267,8 @@ class AgencyProfileTourClass extends React.Component {
                 directionId: element.directionId,
                 image: image,
                 imageFiles: imageFiles,
+                mainImage: mainImage,
+                mainImageFile: mainImageFile,
                 price: element.price,
                 seats: element.seats,
                 time: element.time,
@@ -583,9 +591,10 @@ class AgencyProfileTourClass extends React.Component {
             default:
         }
     };
-    _handleImageChange = (e) => {
+    _handleImageChange = (e, type) => {
         e.preventDefault();
         // 
+        debugger;
         let obj = document.getElementById('imageLabelError');
         obj.style.visibility = 'hidden';
         let fullfile = e.target.files;
@@ -601,6 +610,7 @@ class AgencyProfileTourClass extends React.Component {
 
             readAndCompressImage(file, this.props.globalReduser.compressConfig)
                 .then(resizedImage => {
+                    debugger;
                     let sizFile = new File([resizedImage], file.name);
                     return sizFile;
                 })
@@ -608,24 +618,45 @@ class AgencyProfileTourClass extends React.Component {
                     let reader = new FileReader();
                     reader.onloadend = () => {
                         // 
-                        var img = reader.result;
-                        let tourSave = this.state.tourSave;
-                        tourSave.image.push(img);
-                        tourSave.imageFiles.push(sizFile);
+                        debugger;
+                        if(type==='image'){
+                            var img = reader.result;
+                            let tourSave = this.state.tourSave;
+                            tourSave.image.push(img);
+                            tourSave.imageFiles.push(sizFile);
 
-                        imageCounter++;
+                            imageCounter++;
 
-                        if (imageCounter === fullfile.length) {
+                            if (imageCounter === fullfile.length) {
+                                this.setState({
+                                    isRefreshExist: false,
+                                    isRefreshing: false
+                                })
+                            }
+                            this.setState({
+                                tourSave: tourSave,
+                                file: file,
+                                imagePreviewUrl: img,
+                            });
+                        }
+                        else{
+                            if(type==='mainImage'){
+                                var img = reader.result;
+                                let tourSave = this.state.tourSave;
+                                tourSave.mainImage=img;
+                                tourSave.mainImageFiles=sizFile;
+
+                                this.setState({
+                                    tourSave: tourSave,
+                                    file: file,
+                                    imagePreviewUrl: img,
+                                });
+                            }
                             this.setState({
                                 isRefreshExist: false,
                                 isRefreshing: false
                             })
                         }
-                        this.setState({
-                            tourSave: tourSave,
-                            file: file,
-                            imagePreviewUrl: img,
-                        });
                     }
                     reader.readAsDataURL(sizFile)
                 });
@@ -1036,12 +1067,15 @@ class AgencyProfileTourClass extends React.Component {
                             <div className="paddingL10 addPhotoTour d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-start mt-3">
                                 <div className=" col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12">
                                     <label id="imageLabel" >{textPage.additionalInformation.uploadPhoto}:</label>
+                                    {
+                                        //TODO переводы
+                                    }
                                     <label id="imageLabelError" className="imageLabelError" style={{ visibility: 'hidden' }} >We need some photos here</label>
                                 </div>
                                 <div className="tourPhotoMiniContainer d-flex flex-wrap">
                                     <div className="addPhotoTourLabel">
                                         <label htmlFor="addCarFile" ></label>
-                                        <input type="file" id="addCarFile" style={{ display: "none" }} multiple onChange={this._handleImageChange} />
+                                        <input type="file" id="addCarFile" style={{ display: "none" }} multiple onChange={(e)=>{debugger;this._handleImageChange(e,'image')}} />
                                     </div>
                                     {this.state.tourSave.image.map((element, index) =>
                                         <div className="position-relative">
@@ -1051,6 +1085,36 @@ class AgencyProfileTourClass extends React.Component {
                                     )}
                                 </div>
                             </div>
+
+       
+
+                            <div className="paddingL10 addPhotoTour d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-start mt-3">
+                                <div className=" col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12">
+                                    <label id="imageLabel" >{'Это загрузка фонового фото'}:</label>
+                                    {
+                                        //TODO переводы
+                                    }
+                                    <label id="imageLabelError" className="imageLabelError" style={{ visibility: 'hidden' }} >We need some photos here</label>
+                                </div>
+                                <div className="tourPhotoMiniContainer d-flex flex-wrap">
+                                    
+                                    {this.state.tourSave.mainImage.length>0 ? 
+                                        <div className="position-relative">
+                                            <img src={this.state.tourSave.mainImage} className="tourPhotoMini" alt="add_car" onClick={() => { this.setState({ imagePreviewUrl:this.state.tourSave.mainImage }) }} />
+                                            <span onClick={() => {  this.state.tourSave.mainImage=''; this.state.tourSave.mainImageFile=""; this.setState({ tourSave: { ...this.state.tourSave }, imagePreviewUrl: '' }) }}></span>
+                                        </div>
+                                        : 
+                                        <div className="addPhotoTourLabel">
+                                            <label htmlFor="addCarFile2" ></label>
+                                            <input type="file" id="addCarFile2" style={{ display: "none" }} multiple onChange={(e)=>{debugger;this._handleImageChange(e,'mainImage')}} />
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+
+
+
+
                             <div className="paddingL10 tourContentAddButton pb-4 d-flex justify-content-xl-start justify-content-lg-start justify-content-md-start justify-content-sm-center justify-content-center mt-3">
                                 <span className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 d-xl-block d-lg-block d-md-block d-sm-none d-none" />
                                 <button htmlFor="newTourForm" type="submit" className="col-8">{textPage.additionalInformation.addTour}</button>
