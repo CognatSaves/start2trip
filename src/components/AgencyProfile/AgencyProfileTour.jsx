@@ -371,7 +371,9 @@ class AgencyProfileTourClass extends React.Component {
             var tourForm = new FormData();
             let tourSave = this.state.tourSave;
             for (let i = 0; i < tourSave.local.length; i++) {
-                tourForm.append('local', JSON.stringify(tourSave.local[i]));
+                let preSlug = that.props.globalReduser.convFunc(tourSave.local[i].name,'ru');
+                let preSlugNoSpaces = preSlug.replace(/ /g, '-');
+                tourForm.append('local', JSON.stringify({...(tourSave.local[i]), preSlug:preSlugNoSpaces }));
             }
             for (let i = 0; i < tourSave.calendary.length; i++) {
                 tourForm.append('calendary', tourSave.calendary[i]);
@@ -392,7 +394,7 @@ class AgencyProfileTourClass extends React.Component {
                 tourForm.append('image', tourSave.imageFiles[i]);
             }
             const request = new XMLHttpRequest();
-            if (this.state.tourId.length === 0) {
+            if (this.state.tourId.length === 0) {//если нет id, то это свежак
                 request.open('PUT', requests.userTourCreateRequest);
                 request.setRequestHeader('Authorization', `Bearer ${jwt}`);
             }
