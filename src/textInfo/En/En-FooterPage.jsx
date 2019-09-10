@@ -20,7 +20,7 @@ const FooterPage = {
         affiliateProgram: {
             h2: "Affiliate Program",
             description1: "Build your successful business and earn money",
-            description2: "in the amount of 14% of the trip from the commission of the system.",
+            description2: "in the amount of 20% of the trip from the commission of the system.",
             h3: "How does it work?",
             arrayEl: {
                 firstEl: {
