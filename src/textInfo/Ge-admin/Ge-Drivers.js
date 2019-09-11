@@ -254,6 +254,13 @@ const driverProfileRegistration = {
         },
         cardInformation: {
             emptySeats: "თავისუფალი ადგილების"
+        },
+        photos:{
+            imageLabelError: 'Вставьте сюда фотографии(ю)(GEO)',
+            mainImageLabel: 'Это загрузка фонового фото(GEO)',
+            mainImageInfo: 'Эта картинка будет использоваться как фон на странице Вашего тура(GEO)',
+            blockListLabel: 'Это загрузка фото для блока в списке(GEO)',
+            blockListImageInfo: 'Эта картинка будет использоваться в качестве оформления Вашего тура в списке(GEO)'
         }
 
     },
@@ -317,7 +324,9 @@ const driverProfileRegistration = {
                 payedByCash: 'ფულადი თანხის გადახდა',
                 payedByCard: ',გადახდა ბარათებით',
                 payedByPartners: ',პარტნიორული დარიცხვები',
-                payedForPeriod: 'სულ პერიოდში'
+                payedForPeriod: 'სულ პერიოდში',
+                datePickerStart: 'Дата начала(GEO)',
+                datePickerEnd: 'Дата конца(GEO)'
             },
             valueTableText: [
                 'გარიგების ID',

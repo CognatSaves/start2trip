@@ -79,11 +79,12 @@ class HomeBodyClass extends React.Component {
     this.props.redirectToDrivers();
   }
   setLengthTime = (travelLength, travelTime) => {
-    //TODO переводы
+    let translation = this.props.storeState.languageTextMain.home.routeMenu;
+        
     function getLengthString(travelLength) {
       let length = travelLength;
       length = Math.ceil(length / 1000);
-      let lengthString = length + " км";
+      let lengthString = length + " "+translation.km;
       return lengthString;
     }
     function getTimeString(travelTime) {
@@ -93,13 +94,13 @@ class HomeBodyClass extends React.Component {
       hours = hours - days * 24;
       let timeString = "";
       if (days !== 0) {
-        timeString += days + " дн. " + hours + " ч.";
+        timeString += days + " "+translation.days+" " + hours + " "+translation.hours;
       }
       else {
         if (hours !== 0) {
-          timeString += hours + " ч. ";
+          timeString += hours + " "+translation.hours+" ";
         }
-        timeString += minutes + " мин.";
+        timeString += minutes + " "+translation.minutes;
       }
       return timeString;
     }

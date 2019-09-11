@@ -53,7 +53,7 @@ class ToursListClass extends React.Component {
             return res;
         }
         function findTagName(tagId, that) {
-            debugger;
+            
             if (that.props.toursState.tags.length > 0) {
 
                 let tags = that.props.toursState.tags;

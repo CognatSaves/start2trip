@@ -402,8 +402,15 @@ ReactDOM.render(
               <Route path="/feedback-:id-:clientId/" component={feedback} />
               <Route path="/customer-cancel-:id-:clientId/" component={customerCancel} />
 
-              {window.location.pathname === "/" ?
-                <Redirect from="/" to={"/" + (redirectPage === "undefined-undefined" || redirectPage === "undefined-en" || redirectPage === "undefined-ru" ? "countrySelection/" : redirectPage + "/routes/")} />
+
+              <Redirect from='/-en' to='/countrySelection'/>
+              <Redirect from='/-ru' to='/countrySelection'/>
+              {
+                
+
+                
+                window.location.pathname === "/" ?
+                <Redirect from="/" to={"/" + (redirectPage === "undefined-undefined" || redirectPage === "undefined-en" || redirectPage === "undefined-ru" || redirectPage === "-en" || redirectPage === "-ru" ? "countrySelection/" : redirectPage + "/routes/")} />
                 :
                 <Route path="*" component={pageNotFound} status={404} />
               }

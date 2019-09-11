@@ -62,6 +62,8 @@ class AgencyProfileTourClass extends React.Component {
                 imageFiles: [],
                 mainImage:'',
                 mainImageFile:'',
+                blockListImage: '',
+                blockListImageFile:'',
                 price: "",
                 seats: "",
                 time: "",
@@ -188,6 +190,8 @@ class AgencyProfileTourClass extends React.Component {
                 imageFiles: [],
                 mainImage:'',
                 mainImageFile:'',
+                blockListImage: '',
+                blockListImageFile:'',
                 price: "",
                 seats: "",
                 time: "",
@@ -253,6 +257,8 @@ class AgencyProfileTourClass extends React.Component {
             }
             let mainImage = (element.mainImage ? requests.serverAddressImg +element.mainImage.url : '');
             let mainImageFile = new File([""], 'old');
+            let blockListImage = (element.mainImage ? requests.serverAddressImg+element.blockListImage.url : '');
+            let blockListImageFile = new File([""],'old');
             let calendary = [];
             for (let i = 0; i < element.calendary.length; i++) {
                 calendary[i] = new Date(element.calendary[i]);
@@ -269,6 +275,8 @@ class AgencyProfileTourClass extends React.Component {
                 imageFiles: imageFiles,
                 mainImage: mainImage,
                 mainImageFile: mainImageFile,
+                blockListImage: blockListImage,
+                blockListImageFile:blockListImageFile,
                 price: element.price,
                 seats: element.seats,
                 time: element.time,
@@ -370,6 +378,16 @@ class AgencyProfileTourClass extends React.Component {
                 //obj.classList.add("errorColor");
                 result = false;
             }
+            if (tourSave.mainImage.length === 0){
+                obj = document.getElementById('mainImageLabelError');
+                obj.style.visibility = 'visible';
+                result = false;
+            }
+            if(tourSave.blockListImage.length === 0){
+                obj = document.getElementById('blockListImageLabelError');
+                obj.style.visibility = 'visible';
+                result = false;
+            }
             return result;
         }
         if (jwt && jwt !== "-" && checkCorrectTour(this.state.tourSave)) {
@@ -398,9 +416,12 @@ class AgencyProfileTourClass extends React.Component {
             tourForm.append('price', tourSave.price);
             tourForm.append('seats', tourSave.seats);
             tourForm.append('time', tourSave.time);
+            debugger;
             for (let i = 0; i < tourSave.imageFiles.length; i++) {
                 tourForm.append('image', tourSave.imageFiles[i]);
             }
+            tourForm.append('mainImage', tourSave.mainImageFile);
+            tourForm.append('blockListImage',tourSave.blockListImageFile);
             const request = new XMLHttpRequest();
             if (this.state.tourId.length === 0) {//если нет id, то это свежак
                 request.open('PUT', requests.userTourCreateRequest);
@@ -595,8 +616,19 @@ class AgencyProfileTourClass extends React.Component {
         e.preventDefault();
         // 
         debugger;
-        let obj = document.getElementById('imageLabelError');
-        obj.style.visibility = 'hidden';
+        let obj;
+        if(type==='image'){
+            obj = document.getElementById('imageLabelError');
+            obj.style.visibility = 'hidden';
+        }
+        if(type==='mainImage'){
+            obj = document.getElementById('mainImageLabelError');
+            obj.style.visibility = 'hidden';
+        }
+        if(type==='blockListImage'){
+            obj = document.getElementById('blockListImageLabelError');
+            obj.style.visibility = 'hidden';
+        }
         let fullfile = e.target.files;
         let imageCounter = 0;
         for (let i = 0; i < fullfile.length; i++) {
@@ -610,7 +642,7 @@ class AgencyProfileTourClass extends React.Component {
 
             readAndCompressImage(file, this.props.globalReduser.compressConfig)
                 .then(resizedImage => {
-                    debugger;
+                    
                     let sizFile = new File([resizedImage], file.name);
                     return sizFile;
                 })
@@ -618,7 +650,7 @@ class AgencyProfileTourClass extends React.Component {
                     let reader = new FileReader();
                     reader.onloadend = () => {
                         // 
-                        debugger;
+                        
                         if(type==='image'){
                             var img = reader.result;
                             let tourSave = this.state.tourSave;
@@ -644,7 +676,19 @@ class AgencyProfileTourClass extends React.Component {
                                 var img = reader.result;
                                 let tourSave = this.state.tourSave;
                                 tourSave.mainImage=img;
-                                tourSave.mainImageFiles=sizFile;
+                                tourSave.mainImageFile=sizFile;
+
+                                this.setState({
+                                    tourSave: tourSave,
+                                    file: file,
+                                    imagePreviewUrl: img,
+                                });
+                            }
+                            if(type==='blockListImage'){
+                                var img = reader.result;
+                                let tourSave = this.state.tourSave;
+                                tourSave.blockListImage=img;
+                                tourSave.blockListImageFile=sizFile;
 
                                 this.setState({
                                     tourSave: tourSave,
@@ -1067,18 +1111,15 @@ class AgencyProfileTourClass extends React.Component {
                             <div className="paddingL10 addPhotoTour d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-start mt-3">
                                 <div className=" col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12">
                                     <label id="imageLabel" >{textPage.additionalInformation.uploadPhoto}:</label>
-                                    {
-                                        //TODO переводы
-                                    }
-                                    <label id="imageLabelError" className="imageLabelError" style={{ visibility: 'hidden' }} >We need some photos here</label>
+                                    <label id="imageLabelError" className="imageLabelError" style={{ visibility: 'hidden' }} >{textPage.photos.imageLabelError}</label>
                                 </div>
                                 <div className="tourPhotoMiniContainer d-flex flex-wrap">
                                     <div className="addPhotoTourLabel">
                                         <label htmlFor="addCarFile" ></label>
-                                        <input type="file" id="addCarFile" style={{ display: "none" }} multiple onChange={(e)=>{debugger;this._handleImageChange(e,'image')}} />
+                                        <input type="file" id="addCarFile" style={{ display: "none" }} multiple onChange={(e)=>{this._handleImageChange(e,'image')}} />
                                     </div>
                                     {this.state.tourSave.image.map((element, index) =>
-                                        <div className="position-relative">
+                                        <div className="position-relative" >
                                             <img src={element} className="tourPhotoMini" alt="add_car" onClick={() => { this.setState({ imagePreviewUrl: this.state.tourSave.image[index] }) }} />
                                             <span onClick={() => { this.state.tourSave.image.splice(index, 1); this.state.tourSave.imageFiles.splice(index, 1); this.setState({ tourSave: { ...this.state.tourSave }, imagePreviewUrl: this.state.tourSave.image[0] }) }}></span>
                                         </div>
@@ -1090,29 +1131,47 @@ class AgencyProfileTourClass extends React.Component {
 
                             <div className="paddingL10 addPhotoTour d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-start mt-3">
                                 <div className=" col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12">
-                                    <label id="imageLabel" >{'Это загрузка фонового фото'}:</label>
-                                    {
-                                        //TODO переводы
-                                    }
-                                    <label id="imageLabelError" className="imageLabelError" style={{ visibility: 'hidden' }} >We need some photos here</label>
+                                    <label id="imageLabel" >{textPage.photos.mainImageLabel}:</label>
+                                    <label id="mainImageLabelError" className="imageLabelError" style={{ visibility: 'hidden' }} >{textPage.photos.imageLabelError}</label>
                                 </div>
                                 <div className="tourPhotoMiniContainer d-flex flex-wrap">
                                     
                                     {this.state.tourSave.mainImage.length>0 ? 
-                                        <div className="position-relative">
-                                            <img src={this.state.tourSave.mainImage} className="tourPhotoMini" alt="add_car" onClick={() => { this.setState({ imagePreviewUrl:this.state.tourSave.mainImage }) }} />
+                                        <div className="position-relative" style={{width: '130px'}}>
+                                            <img src={this.state.tourSave.mainImage} className="tourPhotoMini" alt="add_mainImage" onClick={() => { this.setState({ imagePreviewUrl:this.state.tourSave.mainImage }) }} />
                                             <span onClick={() => {  this.state.tourSave.mainImage=''; this.state.tourSave.mainImageFile=""; this.setState({ tourSave: { ...this.state.tourSave }, imagePreviewUrl: '' }) }}></span>
                                         </div>
                                         : 
                                         <div className="addPhotoTourLabel">
                                             <label htmlFor="addCarFile2" ></label>
-                                            <input type="file" id="addCarFile2" style={{ display: "none" }} multiple onChange={(e)=>{debugger;this._handleImageChange(e,'mainImage')}} />
+                                            <input type="file" id="addCarFile2" style={{ display: "none" }} multiple onChange={(e)=>{this._handleImageChange(e,'mainImage')}} />
                                         </div>
                                     }
                                 </div>
+                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">{textPage.photos.mainImageInfo}</p>
                             </div>
 
-
+                            <div className="paddingL10 addPhotoTour d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-start mt-3">
+                                <div className=" col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12">
+                                    <label id="imageLabel" >{textPage.photos.blockListLabel}:</label>
+                                    <label id="blockListImageLabelError" className="imageLabelError" style={{ visibility: 'hidden' }} >{textPage.photos.imageLabelError}</label>
+                                </div>
+                                <div className="tourPhotoMiniContainer d-flex flex-wrap">
+                                    
+                                    {this.state.tourSave.blockListImage.length>0 ? 
+                                        <div className="position-relative" style={{width: '130px'}}>
+                                            <img src={this.state.tourSave.blockListImage} className="tourPhotoMini" alt="add_blockListImage" onClick={() => { this.setState({ imagePreviewUrl:this.state.tourSave.blockListImage }) }} />
+                                            <span onClick={() => {  this.state.tourSave.blockListImage=''; this.state.tourSave.blockListImageFile=""; this.setState({ tourSave: { ...this.state.tourSave }, imagePreviewUrl: '' }) }}></span>
+                                        </div>
+                                        : 
+                                        <div className="addPhotoTourLabel">
+                                            <label htmlFor="addCarFile3" ></label>
+                                            <input type="file" id="addCarFile3" style={{ display: "none" }} multiple onChange={(e)=>{this._handleImageChange(e,'blockListImage')}} />
+                                        </div>
+                                    }
+                                </div>
+                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">{textPage.photos.blockListImageInfo}</p>
+                            </div>
 
 
                             <div className="paddingL10 tourContentAddButton pb-4 d-flex justify-content-xl-start justify-content-lg-start justify-content-md-start justify-content-sm-center justify-content-center mt-3">

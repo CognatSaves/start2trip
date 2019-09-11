@@ -42,13 +42,12 @@ class ValueMenuClass extends React.Component {
                 maxPrice: this.props.storeState.maxPrice
             })
         }
+        let textInfo = this.props.storeState.languageTextMain.drivers.driversProperties.peopleMenu;
+
         if (this.props.isVisible) {
             return (
                 <div id={containerId} className="drivers_properties_valueMenu">
-                {
-                    //TODO переводы
-                }
-                    <div className="valueMenu_borderElement"><p>{"До"+' ' + (activeCurrency.isLeft ? activeCurrency.symbol+' ' : '')
+                    <div className="valueMenu_borderElement"><p>{textInfo.priceWord+' ' + (activeCurrency.isLeft ? activeCurrency.symbol+' ' : '')
                       + Math.ceil(this.state.price * activeCurrency.costToDefault) +
                       (!activeCurrency.isLeft ? ' '+activeCurrency.symbol : '')}</p></div>
                     <Slider
@@ -65,8 +64,8 @@ class ValueMenuClass extends React.Component {
                     />
                     {/* <Slider changeMaxValue={this.changeTempPrice} defaultValue={[0, this.props.storeState.tempPricePart]} /> */}
                     <div className="valueMenu_stateBlock">
-                        <button className="valueMenu_stateBlock_cancelButton" onClick={() => this.close()}>Отмена</button>
-                        <button className="valueMenu_stateBlock_applyButton" onClick={() => this.setPrice()}>Готово</button>
+                        <button className="valueMenu_stateBlock_cancelButton" onClick={() => this.close()}>{textInfo.cancel}</button>
+                        <button className="valueMenu_stateBlock_applyButton" onClick={() => this.setPrice()}>{textInfo.done}</button>
                     </div>
                 </div>
             )

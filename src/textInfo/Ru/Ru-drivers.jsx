@@ -33,7 +33,8 @@ const drivers = {
             children: 'Дети',
             childrenProps: 'от 2 до 12 лет',
             cancel: 'Отмена',
-            done: 'Готово'
+            done: 'Готово',
+            priceWord: 'До', //например, до 400$
         },
         from: 'от',
         price: 'Цена'   

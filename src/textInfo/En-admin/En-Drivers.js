@@ -256,6 +256,13 @@ const driverProfileRegistration = {
         },
         cardInformation: {
             emptySeats: "Empty Seats"
+        },
+        photos:{
+            imageLabelError: 'Вставьте сюда фотографии(ю)(ENG)',
+            mainImageLabel: 'Это загрузка фонового фото(ENG)',
+            mainImageInfo: 'Эта картинка будет использоваться как фон на странице Вашего тура(ENG)',
+            blockListLabel: 'Это загрузка фото для блока в списке(ENG)',
+            blockListImageInfo: 'Эта картинка будет использоваться в качестве оформления Вашего тура в списке(ENG)'
         }
 
     },
@@ -319,7 +326,9 @@ const driverProfileRegistration = {
                 payedByCash: 'Paid in cash',
                 payedByCard: 'Card payment',
                 payedByPartners: 'License fee charges',
-                payedForPeriod: 'Total for the period'
+                payedForPeriod: 'Total for the period',
+                datePickerStart: 'Дата начала(ENG)',
+                datePickerEnd: 'Дата конца(ENG)'
             },
             valueTableText: [
                 'Transaction ID',

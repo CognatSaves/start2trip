@@ -257,6 +257,13 @@ const driverProfileRegistration = {
         },
         cardInformation: {
             emptySeats: "Свободных мест"
+        },
+        photos:{
+            imageLabelError: 'Вставьте сюда фотографии(ю)',
+            mainImageLabel: 'Это загрузка фонового фото',
+            mainImageInfo: 'Эта картинка будет использоваться как фон на странице Вашего тура',
+            blockListLabel: 'Это загрузка фото для блока в списке',
+            blockListImageInfo: 'Эта картинка будет использоваться в качестве оформления Вашего тура в списке'
         }
 
     },
@@ -320,7 +327,9 @@ const driverProfileRegistration = {
                 payedByCash: 'Оплачено наличными',
                 payedByCard: 'Оплата по картам',
                 payedByPartners: 'Партнёрские начисления',
-                payedForPeriod: 'Всего за период'
+                payedForPeriod: 'Всего за период',
+                datePickerStart: 'Дата начала',
+                datePickerEnd: 'Дата конца'
             },
             valueTableText: [
                 'ID транзакции',

@@ -105,10 +105,6 @@ class AuthModalCountryClass extends React.Component {
                                         <img src={mapWorldIcon} height="150px" alt="mapWorldIcon" />
                                         {/* <button className="modalCountryButtton"><img src={crossIconModal} width="20px" height="20px" alt="crossIconModal" /></button> */}
                                     </div>
-                                    {
-                                        //TODO тут стояла лычка "перевод", но я не понял, что переводить
-                                        //пусть повисит, но по моему, она бесполезна
-                                    }
                                     <div className="modalCountry d-flex flex-column align-items-center mb-5">
                                         <h4 className="mb-4">{textInfo.modalCountrySelect.selectCountryText}</h4>
                                         <RenderModalCountry close={() => { }} />

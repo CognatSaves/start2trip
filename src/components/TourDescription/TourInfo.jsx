@@ -27,16 +27,13 @@ class TourInfoClass extends React.Component {
     }
     render() {
 
-
+        let textInfo = this.props.storeState.languageTextMain.tourDescription.tourInfo;
         return (
             <div className="tourInfoBlock ">
-            {
-                //TODO переводы
-            }
                 <div className="d-flex flex-md-row flex-column justify-content-around align-items-center tourInfoContent">
-                    <p>Подобрать тур:</p>
-                    <LocationSearchInput placeholder={"Место отправления"} address={this.state.departurePoint} changeCity={this.changeCity} classInput="searchInputTourInfoContent col-12" classDropdown="searchDropdownTourInfoContent" classDiv="col-md-2 col-10 p-0" />
-                    <DatePicker hintText={"Дата отправления"} id="basicInfoBirthday" className="calendarModal tourInfoContentDate col-md-2 col-10" value={this.state.departureDate}
+                    <p>{textInfo.headerText}</p>
+                    <LocationSearchInput placeholder={textInfo.searchPlaceholder} address={this.state.departurePoint} changeCity={this.changeCity} classInput="searchInputTourInfoContent col-12" classDropdown="searchDropdownTourInfoContent" classDiv="col-md-2 col-10 p-0" />
+                    <DatePicker hintText={textInfo.datePickerLabel} id="basicInfoBirthday" className="calendarModal tourInfoContentDate col-md-2 col-10" value={this.state.departureDate}
                         onChange={(undefined, data) => { this.setState({ departureDate: data }) }}
                     />
                     <FormControl className="d-flex flex-wrap col-md-2 col-10 p-0">
@@ -47,13 +44,13 @@ class TourInfoClass extends React.Component {
                                 this.setState({ toursValue: event.target.value });
                             }}
                         >
-                            <MenuItem value={"Все туры"} disabled={true} >{"Все туры"}</MenuItem>
+                            <MenuItem value={textInfo.menuItemValue} disabled={true} >{textInfo.menuItemValue}</MenuItem>
                             {this.state.tours.map((element, index) =>
                                 <MenuItem value={element}>{element}</MenuItem>
                             )}
                         </Select>
                     </FormControl>
-                    <span className="tourInfoContentBt">Найти</span>
+                    <span className="tourInfoContentBt">{textInfo.findText}</span>
                 </div>
             </div>
         )
@@ -62,6 +59,7 @@ class TourInfoClass extends React.Component {
 
 const TourInfo = connect(
     (state) => ({
+        storeState: state.AppReduser,
         globalReduser: state.GlobalReduser
     })
 )(TourInfoClass);

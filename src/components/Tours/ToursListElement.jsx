@@ -16,7 +16,6 @@ const cookies = new Cookies();
 class ToursListElementClass extends React.Component {
     render() {
         let textInfo = this.props.storeState.languageTextMain.home.homeBottom.routeListElement;
-        //debugger;
         let element = this.props.element;
         let index = this.props.index;
         let imageAddress = element.image ? (requests.serverAddressImg + element.image) : '';
