@@ -53,7 +53,7 @@ class ToursListClass extends React.Component {
             return res;
         }
         function findTagName(tagId, that) {
-            
+
             if (that.props.toursState.tags.length > 0) {
 
                 let tags = that.props.toursState.tags;
@@ -75,8 +75,8 @@ class ToursListClass extends React.Component {
         }
         console.log('PlacesList render');
         console.log(this.props);
-        if(this.props.toursState.toursList.length>0){
-            
+        if (this.props.toursState.toursList.length > 0) {
+
         }
         let tagFilteredArray = tagFilterFunction([...this.props.toursState.toursList], []/*this.props.toursState.selectedTags*/);
         console.log('tagFilteredArray', tagFilteredArray);
@@ -99,18 +99,18 @@ class ToursListClass extends React.Component {
         let isLoading = (selectedPlaces.length === 0 && !this.props.isStaying);
         return (
 
-            <React.Fragment>
+            <>
                 <div className="drivers_block d-flex flex-wrap">
                     {selectedPlaces.map((element, index) =>
-                        <React.Fragment>
+                        <>
                             <ToursListElement element={element} index={index} findTagName={(tag) => findTagName(tag, this)}
 
                             />
-                        </React.Fragment>
+                        </>
                     )}
                     {
                         isLoading || isEmpty ?
-                            <React.Fragment>
+                            <>
                                 {isLoading ?
                                     <div className="placesList_loading">
                                         <span>{'Загружаемся!'}</span>
@@ -119,14 +119,14 @@ class ToursListClass extends React.Component {
                                         <span>{pageNotFound.text1 + " " + pageNotFound.text2}<br />{pageNotFound.text3}</span>
                                     </div>
                                 }
-                            </React.Fragment>
+                            </>
                             : <React.Fragment />
                     }
                 </div>
                 <Manipulator number={sortedArray.length} page={this.props.placesState.page} setPage={this.setPageFunc}
                     elementsNumber={this.props.placesState.pagesMenuValue} showMorePages={this.showMorePages}
                 />
-            </React.Fragment>
+            </>
 
         )
     }

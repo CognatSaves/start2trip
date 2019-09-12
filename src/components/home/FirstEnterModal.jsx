@@ -141,13 +141,13 @@ class FirstEnterModalClass extends React.Component {
         }
 
         return (
-            <React.Fragment>
+            <>
                 {
                     this.state.openModalStart ?
-                        <React.Fragment>
+                        <>
 
                             {isMobileOnly ?
-                                <React.Fragment>
+                                <>
                                     {/* //Модалка для мобильной версии стартовая */}
                                     <div className="modalStartInformation " style={{ display: this.state.openModalStart ? "block" : "none" }} >
                                         <div className="d-flex align-items-center justify-content-end col-11 mt-3 mx-auto">
@@ -174,7 +174,7 @@ class FirstEnterModalClass extends React.Component {
                                             <span className="modalStartInformationNext">{this.state.activeWindow == this.state.renderContent.length - 1 ? "Закрыть" : "Далее"}</span>
                                         </div>
                                     </div>
-                                </React.Fragment>
+                                </>
                                 :
                                 <Dialog
                                     modal={this.state.openModalStart}
@@ -210,12 +210,12 @@ class FirstEnterModalClass extends React.Component {
                                 </Dialog>
 
                             }
-                        </React.Fragment>
+                        </>
                         :
                         <React.Fragment />
                 }
 
-            </React.Fragment>
+            </>
         )
     }
 }

@@ -12,7 +12,7 @@ class TourPanelClass extends React.Component {
         this.state = {
             previousPageYOffset: null,
         }
-         window.onscroll = (e) => {this.checkPanelFixed(e);checkBtUp(e,this)};
+        window.onscroll = (e) => { this.checkPanelFixed(e); checkBtUp(e, this) };
     }
     shouldComponentUpdate(nextProps) {
         return !(JSON.stringify(this.props) === JSON.stringify(nextProps));
@@ -21,7 +21,7 @@ class TourPanelClass extends React.Component {
         this.checkPanelFixed();
     }
     checkPanelFixed = () => {
-        
+
         console.log("checkPanelFixed");
         if (document.getElementById(this.props.topBlockId)) {
             var scrolled = window.pageYOffset || document.documentElement.scrollTop;
@@ -32,7 +32,7 @@ class TourPanelClass extends React.Component {
                 }
             }
             else {
-                
+
                 if (this.props.panelFixedClass !== "tourPanelFixed") {
                     this.props.dispatch(this.props.setPanelStateFunc/*changePanelFixedClass*/("tourPanelFixed"));
                 }
@@ -55,7 +55,7 @@ class TourPanelClass extends React.Component {
                 // debugger эксперементы прокрутки TODO
                 // let aasdsadsa = document.querySelector(".tourPanel_panel")
                 // console.log(aasdsadsa)
-                
+
             }
         }
         else {
@@ -67,7 +67,7 @@ class TourPanelClass extends React.Component {
     render() {
         console.log("TourPanel render");
         return (
-            <React.Fragment>
+            <>
                 <div className={"tourPanel_panel driverProfileComments_panel d-flex "}>
                     {
                         this.props.variantsArray.map((element, index) => {
@@ -89,7 +89,7 @@ class TourPanelClass extends React.Component {
                         )
                     }
                 </div>
-            </React.Fragment>
+            </>
         )
     }
 }

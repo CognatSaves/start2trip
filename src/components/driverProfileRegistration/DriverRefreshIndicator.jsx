@@ -11,9 +11,9 @@ import coffee from '../media/coffee.svg'
 export default class DriverRefreshIndicator extends React.Component {
     constructor(props) {
         super(props);
-        this.state={
-            loadings:[loupe,loading,azure,rainy,sunny,gearSet,coffee],
-            randomNumber:2
+        this.state = {
+            loadings: [loupe, loading, azure, rainy, sunny, gearSet, coffee],
+            randomNumber: 2
         }
     }
     // componentDidMount(){
@@ -28,9 +28,9 @@ export default class DriverRefreshIndicator extends React.Component {
         //         position: 'relative',
         //     },
         // };
-        
+
         return (
-            <React.Fragment>
+            <>
                 {
                     this.props.isRefreshExist ?
                         <div className="refreshIndicatorModal" >
@@ -43,12 +43,12 @@ export default class DriverRefreshIndicator extends React.Component {
                                 status="loading"
                                 style={style.refresh}
                             /> */}
-                            {this.props.isRefreshing ? <img src={this.state.loadings[this.state.randomNumber]} alt=""/>:<div />}
+                            {this.props.isRefreshing ? <img src={this.state.loadings[this.state.randomNumber]} alt="" /> : <div />}
                             <i className={this.props.isRefreshing ? "" : (this.props.isGoodAnswer ? "refreshIndicatorSuccess" : "refreshIndicatorFail")}></i>
                         </div>
                         : <React.Fragment />
                 }
-            </React.Fragment>
+            </>
         )
     }
 }

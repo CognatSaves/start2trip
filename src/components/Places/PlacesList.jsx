@@ -94,18 +94,18 @@ class PlacesListClass extends React.Component {
         let isLoading = (selectedPlaces.length === 0 && !this.props.isStaying);
         return (
 
-            <React.Fragment>
+            <>
                 <div className="drivers_block d-flex flex-wrap">
                     {selectedPlaces.map((element, index) =>
-                        <React.Fragment>
+                        <>
                             <PlaceListElement element={element} index={index} findTagName={(tag) => findTagName(tag, this)}
 
                             />
-                        </React.Fragment>
+                        </>
                     )}
                     {
                         isLoading || isEmpty ?
-                            <React.Fragment>
+                            <>
                                 {isLoading ?
                                     <div className="placesList_loading">
                                         <span>{'Загружаемся!'}</span>
@@ -114,14 +114,14 @@ class PlacesListClass extends React.Component {
                                         <span>{pageNotFound.text1 + " " + pageNotFound.text2}<br />{pageNotFound.text3}</span>
                                     </div>
                                 }
-                            </React.Fragment>
+                            </>
                             : <React.Fragment />
                     }
                 </div>
                 <Manipulator number={sortedArray.length} page={this.props.placesState.page} setPage={this.setPageFunc}
                     elementsNumber={this.props.placesState.pagesMenuValue} showMorePages={this.showMorePages}
                 />
-            </React.Fragment>
+            </>
 
         )
     }

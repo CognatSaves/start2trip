@@ -52,8 +52,8 @@ class UserProfileRegistrationClass extends React.Component {
     let textInfo = this.props.storeState.languageTextMain.userProfile.userProfileRegistration;
     if (this.props.globalReduser.profile.isCustomer) {
       return (
-        <React.Fragment>
-          <Suspense fallback={<div>{textInfo.loading+"..."}</div>}>
+        <>
+          <Suspense fallback={<div>{textInfo.loading + "..."}</div>}>
             {
               this.state.accountEnter ?
                 <FirstEnterModal whatRender="user" /> : <React.Fragment />
@@ -63,8 +63,8 @@ class UserProfileRegistrationClass extends React.Component {
           <UserProfileNavigation />
           <div className="registrationWrapper d-flex flex-column col-12 p-0">
             <div className="contentHeight d-flex col-12 p-0">
-              <div className="d-flex flex-column justify-content-start col-lx-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                <Suspense fallback={<div>{textInfo.loading+"..."}</div>}>
+              <div className="d-flex flex-column justify-content-start col-12">
+                <Suspense fallback={<div>{textInfo.loading + "..."}</div>}>
                   <Route path="/account/user/trips" component={UserProfileHistory} />
                   <Route path="/account/user/profile" component={UserProfileBasicInformation} />
                   <Route path="/account/user/settings" component={UserProfileSettings} />
@@ -81,7 +81,7 @@ class UserProfileRegistrationClass extends React.Component {
 
             </div>
           </div>
-        </React.Fragment>
+        </>
       );
     }
     else {
@@ -107,7 +107,7 @@ class UserProfileRegistrationClass extends React.Component {
         }
         else {
           this.props.dispatch(setUrlAddress(window.location.pathname));
-          this.props.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
+          this.props.history.push('/' + cookies.get('userLangISO', { path: "/" }) + '/login/');
           return null;
         }
       }

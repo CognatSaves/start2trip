@@ -13,9 +13,9 @@ class AgencyProfileHistoryClass extends React.Component {
     }
     render() {
         let textInfo = this.props.storeState.languageText.agencyProfile.agencyProfileHistory;
-        
+
         return (
-            <React.Fragment>
+            <>
                 <div className="driverProfileHistory">
                     <div className="driverProfileHistoryTop d-flex">
                         <div className={this.state.isPreHistory ? "d-flex align-items-center driverProfileHistoryTop-active" : " d-flex align-items-center"} onClick={() => { this.setState({ isPreHistory: true }) }}>
@@ -30,7 +30,7 @@ class AgencyProfileHistoryClass extends React.Component {
                         false: <AgencyProfileTravelHistory isHistory={true} trevelHistory={this.props.globalReduser.profile && this.props.globalReduser.profile.historyTrips ? this.props.globalReduser.profile.historyTrips : []} />,
                     }[this.state.isPreHistory]}
                 </div>
-            </React.Fragment>
+            </>
         )
     }
 }

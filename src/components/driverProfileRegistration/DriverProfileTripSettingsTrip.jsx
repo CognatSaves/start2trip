@@ -154,12 +154,12 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                 this.startRefresher();
                 let value;
                 if (props) {
-                    value= {onWork: props.onWork, changeOnWork: true};
+                    value = { onWork: props.onWork, changeOnWork: true };
                 }
-                else{
-                    value ={
+                else {
+                    value = {
                         travelsetting: {
-    
+
                             settings: {
                                 points: this.state.cityRadius,
                                 distance: this.state.distance
@@ -279,10 +279,10 @@ class DriverProfileTripSettingsTripClass extends React.Component {
         cityRadius[index].lat = extraData.location.lat;
         cityRadius[index].long = extraData.location.long;
         let inputs = document.getElementsByClassName('searchInputDriverInformation');
-        if(inputs[index] && inputs[index].classList){
+        if (inputs[index] && inputs[index].classList) {
             inputs[index].classList.remove("errorColor");
         }
-        
+
 
         this.setState({
             cityRadius: cityRadius,
@@ -348,7 +348,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
         let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileTripSettingsTrip;
         return (
 
-            <React.Fragment>
+            <>
                 <Dialog
                     actions={actions}
                     modal={false}
@@ -365,7 +365,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                 </Dialog>
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
                 <div className="tripSettingsBody">
-                    <div className="basicInformationBodyBottomHeader d-xl-block d-lg-block d-md-block d-sm-none d-none">
+                    <div className="basicInformationBodyBottomHeader d-md-block d-none">
                         <p>{textPage.titlePage}</p>
                     </div>
                     <form onSubmit={(event) => this.formSubmit(event)} id="tripForm" className="">
@@ -375,18 +375,18 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                                 {textPage.addCityTitle}
                             </div>
                             {this.state.cityRadius.map((element, index) =>
-                                <React.Fragment>
-                                    <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
+                                <>
+                                    <div className="d-flex flex-md-row flex-column align-items-md-center align-items-start">
                                         <label htmlFor={"tripLocation" + index} className="col-xl-2 col-lg-2 col-md-2 col-sm-11 col-11 p-0 triplabel">{textPage.tripLocation}:</label>
-                                        <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column col-md-6 col-sm-12 col-12 p-0" >
+                                        <div className="d-flex flex-md-row flex-column col-md-6 col-sm-12 col-12 p-0" >
                                             <LocationSearchInput address={element.point} changeCity={this.changeCity} classDiv="col-md-8 col-12 p-0" classInput="searchInputDriverInformation" index={index} classDropdown="searchDropdownDriverInformation" />
-                                            <input className="col-md-2 col-12 ml-1 d-xl-block d-lg-block d-md-block d-sm-none d-none itemRadius"/*класс itemRadius добавил ради класса errorColor - отображения некорректоности заполнения */
+                                            <input className="col-md-2 col-12 ml-1 d-md-block d-none itemRadius"/*класс itemRadius добавил ради класса errorColor - отображения некорректоности заполнения */
                                                 type="number" id="itemRadiu" value={element.radius}
                                                 onChange={(e) => this.inputChange(e.target.value, 'radius', index)}
                                             />
                                             <TextField
                                                 floatingLabelText={textPage.textField.floatingLabelText}
-                                                className="inputClass d-md-none d-sm-block d-block itemRadius margin_5"/*класс itemRadius добавил ради класса errorColor - отображения некорректоности заполнения */
+                                                className="inputClass d-md-none d-block itemRadius margin_5"/*класс itemRadius добавил ради класса errorColor - отображения некорректоности заполнения */
                                                 fullWidth="100%"
                                                 type="number"
                                                 floatingLabelFocusStyle={{ color: "#304269" }}
@@ -396,16 +396,16 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                                             />
                                         </div>
                                         <span style={{ display: index ? "block" : "none" }} className="tripSettingsContentDeletButton " title={textPage.textField.title} onClick={() => { this.deleteCityRadius(index) }} />
-                                        {/* <p className={index ? "d-none" : "d-xl-block d-lg-block d-md-block d-sm-none d-none pl-2"}>{textPage.textField.description}</p> */}
+                                        {/* <p className={index ? "d-none" :  d-md-block d-none pl-2"}>{textPage.textField.description}</p> */}
                                     </div>
-                                </React.Fragment>
+                                </>
                             )}
-                            <div className="tripSettingsContentAddCity d-flex align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start justify-content-center pb-2">
+                            <div className="tripSettingsContentAddCity d-flex align-items-md-center align-items-start justify-content-center pb-2">
                                 <p className="col-md-8 col-sm-12 col-12 " onClick={this.addCityRadius}>{textPage.textField.addCityBt}</p>
                             </div>
-                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
+                            <div className="d-flex flex-md-row flex-column align-items-md-center align-items-start">
                                 <label htmlFor="maxDailyMileage" className="col-xl-2 col-lg-2 col-md-2 col-sm-11 col-12 p-0 dailymile">{textPage.maxDailyMileage.floatingLabelText}</label>
-                                <div className="d-md-block d-sm-none d-none">
+                                <div className="d-md-block d-none">
                                     <input className="col-md-5 col-12 maxDailyMileage" type="number" value={this.state.distance}
                                         onChange={(e) => this.inputChange(e.target.value, 'distance')}
                                     />
@@ -413,21 +413,21 @@ class DriverProfileTripSettingsTripClass extends React.Component {
 
                                 <TextField
                                     floatingLabelText={textPage.maxDailyMileage.floatingLabelText}
-                                    className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass maxDailyMileage"
+                                    className="d-md-none d-block inputClass maxDailyMileage"
                                     fullWidth="100%"
                                     floatingLabelFocusStyle={{ color: "#304269" }}
                                     underlineFocusStyle={{ borderColor: "#304269" }}
                                     value={this.state.distance}
                                     onChange={(e) => { this.inputChange(e.target.value, 'distance') }}
                                 />
-                                {/* <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none pl-2">{textPage.maxDailyMileage.description}</p> */}
+                                {/* <p className=" d-md-block d-none pl-2">{textPage.maxDailyMileage.description}</p> */}
                             </div>
                             <div className="tripSettingsContentTitle mt-5 border-top col-12 p-0">{textPage.weekendSettings}</div>
                             <div className="tripSettingsContentP d-flex align-items-center">
                                 <p className="col-lg-2 col-md-3 col-6 p-0 closetext">{textPage.chooseWeekend}</p>
                                 <span className="newTourDatepickerSpan " onClick={this.calendarModalShow}>{textPage.selectDates}</span>
                             </div>
-                            <div className="tripSettingsContentDate d-flex align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start justify-content-center">
+                            <div className="tripSettingsContentDate d-flex align-items-md-center align-items-start justify-content-center">
                                 <div className="d-flex flex-wrap align-items-start justify-content-md-start justify-content-center col-md-8 col-12 p-0 my-2">
 
                                     {this.state.dateTour.map((element, index) => {
@@ -453,7 +453,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                         </div>
 
                         <div className="tripSettingsContent d-flex justify-content-md-start justify-content-sm-center justify-content-center py-0">
-                            <p className="col-2 p-0  d-md-block d-sm-none d-none"></p>
+                            <p className="col-2 p-0 d-md-block d-none"></p>
                             <div className="d-flex flex-column">
                                 <button htmlFor="tripForm" type="submit">{textPage.tripSaveBt}</button>
                                 <text style={{ color: 'red', display: this.state.badRequestTextVisibility ? 'block' : 'none' }}>{textPage.badRequestText}</text>
@@ -468,7 +468,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                         </div>
                     </div>
                 </div>
-            </React.Fragment>
+            </>
         );
     }
 }

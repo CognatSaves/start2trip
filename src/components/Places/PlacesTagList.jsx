@@ -89,7 +89,7 @@ class PlacesTagListClass extends React.Component {
                             }
                             else {
                                 return (
-                                    <React.Fragment>
+                                    <>
                                         <div key={index + Date.now()} id={"tagno" + index} className={"d-flex justify-content-center align-items-center placesTagList_tagBlock"
                                             + (isTagSelected(element.id, this.props.placesState.selectedTags) ? ' placesTagList_tagBlock_selected' : '')} onClick={() => this.onTagClick(element.id)}>
                                             <span>{element.tagLoc.name}</span>
@@ -102,7 +102,7 @@ class PlacesTagListClass extends React.Component {
                                                 :
                                                 <React.Fragment />
                                         }
-                                    </React.Fragment>
+                                    </>
                                 )
                             }
                         })

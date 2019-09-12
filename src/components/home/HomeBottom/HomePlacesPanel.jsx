@@ -12,7 +12,7 @@ class HomeRoutesPanelClass extends React.Component {
     buttonStyles[this.props.placesState.sortMenuValue] = "driverProfileComments_panel_selectedElement";
     let textInfo = this.props.storeState.languageTextMain.places;
     return (
-      <React.Fragment>
+      <>
         <div className={this.props.placesState.routesList.length > 0 ? "driverProfileComments_panel d-flex" : 'd-none'}>
           <div className="placesPanel_sortText d-md-block d-none">{textInfo.placesPanel.placesPanelSortText + ':'}</div>
           <div className="d-flex justify-content-between col-md-3 col-12 p-md-0">
@@ -21,7 +21,7 @@ class HomeRoutesPanelClass extends React.Component {
             )}
           </div>
         </div>
-      </React.Fragment>
+      </>
     )
   }
 }

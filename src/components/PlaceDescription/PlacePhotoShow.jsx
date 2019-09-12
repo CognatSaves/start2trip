@@ -16,7 +16,7 @@ export default class PlacePhotoShow extends React.Component {
         }
         let modalIsOpen = this.props.isMaskVisible;
         return (
-            <React.Fragment>
+            <>
                 <ModalGateway>
                     {modalIsOpen ? (
                         <Modal onClose={this.props.onClose}>
@@ -26,7 +26,7 @@ export default class PlacePhotoShow extends React.Component {
                         </Modal>
                     ) : null}
                 </ModalGateway>
-            </React.Fragment>
+            </>
         )
     }
 }

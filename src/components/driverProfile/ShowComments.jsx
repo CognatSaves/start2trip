@@ -25,17 +25,17 @@ class ShowCommentsClass extends React.Component {
             let monthArray = textInfo.monthArray;
             return monthArray[number];
         }
-        
+
         if (this.props.selectedComments.length > 0) {
             return (
-                <React.Fragment>
+                <>
                     <Dialog
                         open={this.state.openModal}
                         onClose={() => { this.setState({ openModal: !this.state.openModal }) }}
                         aria-labelledby="alert-dialog-title"
                         aria-describedby="alert-dialog-description"
                     >
-                        {this.state.openModal ? <React.Fragment>
+                        {this.state.openModal ? <>
                             <div className="commentBlock_element" >
                                 <i className="commentBlock_elementIconCross" onClick={() => { this.setState({ openModal: !this.state.openModal }) }} />
                                 <div className="commentBlock_valueBlock d-flex flex-column">
@@ -52,7 +52,7 @@ class ShowCommentsClass extends React.Component {
                                     </div>
                                 </div>
                             </div>
-                        </React.Fragment> : <React.Fragment></React.Fragment>}
+                        </> : <React.Fragment />}
 
 
 
@@ -91,13 +91,13 @@ class ShowCommentsClass extends React.Component {
                         )}
                         {
                             this.props.selectedComments.length === 0 ?
-                                <React.Fragment>
+                                <>
                                     <div>{textInfoComment.noCommentsText}</div>
-                                </React.Fragment>
+                                </>
                                 : <React.Fragment />
                         }
                     </div>
-                </React.Fragment>
+                </>
             )
         }
         else {

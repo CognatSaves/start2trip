@@ -28,8 +28,8 @@ class AgencyProfileDriversClass extends React.Component {
         super(props);
         this.state = {
             headerTable: ["Водитель", "Автомобили", "Число поездок",
-             "Рейтинг", "Штрафные баллы", "Действия"],//этот блок будет использоваться
-             // для размера, сами значения будут браться из переводов
+                "Рейтинг", "Штрафные баллы", "Действия"],//этот блок будет использоваться
+            // для размера, сами значения будут браться из переводов
             headerWidth: ["30%", "16%", "12%", "12%", "12%", "18%"],
             isRefreshExist: false,
             isRefreshing: true,
@@ -60,7 +60,7 @@ class AgencyProfileDriversClass extends React.Component {
         }
         else {
             this.props.dispatch(setUrlAddress(window.location.pathname));
-            this.props.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
+            this.props.history.push('/' + cookies.get('userLangISO', { path: "/" }) + '/login/');
             //return null;
         }
     }
@@ -132,15 +132,15 @@ class AgencyProfileDriversClass extends React.Component {
         }
         else {
             this.props.dispatch(setUrlAddress(window.location.pathname));
-            this.props.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
+            this.props.history.push('/' + cookies.get('userLangISO', { path: "/" }) + '/login/');
             //return null;
         }
     }
     render() {
         let textInfo = this.props.storeState.languageText.agencyProfile.agencyProfileDrivers;
-        
-        let userLang= cookies.get('userLangISO', {path: '/'});
-        let linkAddress = requests.frontendAddress +'/'+ (userLang ? userLang : 'en')+'/login?agency=' + this.props.globalReduser.profile._id;
+
+        let userLang = cookies.get('userLangISO', { path: '/' });
+        let linkAddress = requests.frontendAddress + '/' + (userLang ? userLang : 'en') + '/login?agency=' + this.props.globalReduser.profile._id;
         return (
             <div className="billingBody">
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
@@ -150,10 +150,10 @@ class AgencyProfileDriversClass extends React.Component {
                 </div>
                 <div className="d-flex flex-lg-row flex-column col-12">
                     <RenderShareLink classNameDiv={"col-lg-5 col-12 affiliateProgramButton mx-0"}
-                    idInput={"partnerMainPageLink"} valueInput={linkAddress}
-                    iconsArray={this.state.iconsArray}
-                    textTitle={textInfo.linkTitle}
-                    buttonCopyText={textInfo.linkButton} />
+                        idInput={"partnerMainPageLink"} valueInput={linkAddress}
+                        iconsArray={this.state.iconsArray}
+                        textTitle={textInfo.linkTitle}
+                        buttonCopyText={textInfo.linkButton} />
                 </div>
                 <div className="billingTableBody">
                     <Table className="billingTable">

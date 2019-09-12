@@ -38,7 +38,7 @@ const RenderModalCountry = lazy(() => import('./RenderModalCountry'));
 const ModalRegistration = (props) => {
   let { modalRegistration, toggle, className, authorization } = props;
   return (
-    <React.Fragment>
+    <>
 
       <Modal isOpen={modalRegistration} toggle={toggle} className={className + " p-0"}>
         <ModalBody>
@@ -46,7 +46,7 @@ const ModalRegistration = (props) => {
         </ModalBody>
       </Modal>
 
-    </React.Fragment>
+    </>
   )
 }
 const ModalUserType = (props) => {
@@ -145,7 +145,7 @@ const ModalUserType = (props) => {
       <div className='d-flex flex-column align-items-center selectTypeBody'>
         {
           selectUserTypeVisibility ?
-            <React.Fragment>
+            <>
               <span>{textInfo.modalUserType.selectAccountTypeText}</span>
               {
                 pageTextInfo.registrationUserType.userTypes.map((element, index) =>
@@ -158,11 +158,11 @@ const ModalUserType = (props) => {
                   </div>
                 )
               }
-            </React.Fragment> : <React.Fragment />
+            </> : <React.Fragment />
         }
         {
           that.state.selectedUserType > 1 ?
-            <React.Fragment>
+            <>
               <span>{"Укажите страну, в которой вы будете работать"}</span>
               <DropDownMenu
                 value={that.state.selectedUserCountry}
@@ -183,7 +183,7 @@ const ModalUserType = (props) => {
                   )
                 }
               </DropDownMenu>
-            </React.Fragment> : <React.Fragment />
+            </> : <React.Fragment />
         }
         {
           that.state.selectedUserType > 0 ?
@@ -239,11 +239,11 @@ const BurgerMenuLanguageDropDown = (props)=>{
         onChange={(event, index, value) => { onChange('adminLang', index)/*this.setLocals('adminLang', index)*/ }}>
         {/*adminLanguages*/languageArray.map((element, index) =>
           <MenuItem value={index} primaryText={
-            <React.Fragment>
+            <>
               <img className="mb-1" src={requests.serverAddressImg + element.icon.url} width="15px" height="15px" alt={element.ISO} />
               <span className="burgerMenuTopDropDownSpan">{element.ISO}
               </span>
-            </React.Fragment>} >
+            </>} >
           </MenuItem>
         )}
       </DropDownMenu>
@@ -709,7 +709,7 @@ class HeaderClass extends React.Component {
     let availableCurrencies = currencyFilter(this.props.storeState);
     let selectedCurrNumber = findSelectedCurrency(this,availableCurrencies);
     return (
-      <React.Fragment>
+      <>
 
         <ModalRegistration modalRegistration={this.props.storeState.modalRegistration} toggle={this.toggleModalRegistration} className={this.props.className} authorization={this.authorization} />
         <CountrySelect textInfo={textInfo} modalCountry={this.state.modalCountry} toggleModalCountry={this.toggleModalCountry} className={this.props.className}/>
@@ -768,7 +768,7 @@ class HeaderClass extends React.Component {
                   <div className="burgerMenuBlock d-flex flex-column justify-content-center align-items-start col-11">
                     {
                       this.props.storeState.isAuthorized ?
-                        <React.Fragment>
+                        <>
                           <span className="border-bottom profile" onClick={() => { this.setState({burgerMenu: false}); this.accountRedirect("/profile", 1) }}>{textInfo.burgerMenu.profile}</span>
                           <span className="border-bottom blockedSpan timetable" onClick={() => { this.setState({burgerMenu: false});this.accountRedirect("/trips", 0) }}>{textInfo.burgerMenu.trips}</span>
                           <span className="border-bottom settingsGears" onClick={() => { this.setState({burgerMenu: false}); this.accountRedirect("/settings", 6) }}>{textInfo.burgerMenu.settings}</span>
@@ -778,7 +778,7 @@ class HeaderClass extends React.Component {
                               <span className="border-bottom saveMoney" onClick={() => { this.setState({burgerMenu: false}); this.accountRedirect("/referrals", 8) }}>{textInfo.burgerMenu.partnership}</span>
                           }                
                           <span className="exit" onClick={() => { this.logOffFunc() }}>{textInfo.burgerMenu.exit}</span>
-                        </React.Fragment>
+                        </>
                         :
                         <span className="profile" onClick={this.toggleModalRegistration}>{textInfo.burgerMenu.burgerEnter}</span>
                     }
@@ -873,7 +873,7 @@ class HeaderClass extends React.Component {
             </div>
           </div>
         </div>
-      </React.Fragment>
+      </>
     );
   }
 }

@@ -24,7 +24,7 @@ class HomeClass extends React.Component {
       firstEnter: firstEnterCookie ? false : true,
 
     };
-    
+
   }
   redirectFunc = (where) => {
 
@@ -53,57 +53,57 @@ class HomeClass extends React.Component {
     let helmet = this.props.storeState.languageTextMain.helmets.home;
 
     let windowImg = null
-    if(this.props.storeState.languages.length >0 ){
-      
+    if (this.props.storeState.languages.length > 0) {
+
       let coockisIso = cookies.get('country', { path: '/' })
-      let j ;
-      for(let i =0; i<this.props.storeState.countries.length;i++){
-       if( this.props.storeState.countries[i].ISO === coockisIso){
-        j=i
-        break;
-       }
+      let j;
+      for (let i = 0; i < this.props.storeState.countries.length; i++) {
+        if (this.props.storeState.countries[i].ISO === coockisIso) {
+          j = i
+          break;
+        }
       }
-       windowImg =requests.serverAddressImg+this.props.storeState.countries[j].windowImg.url
+      windowImg = requests.serverAddressImg + this.props.storeState.countries[j].windowImg.url
     }
     return (
-      <React.Fragment>
+      <>
         {
-          this.props.storeState.countries.length>0 ?
-          <Helmet>
-            <title>{helmet.country.title[0]+countryName+helmet.country.title[1]}</title>
-            <meta name="description" content={helmet.country.description[0]+countryName+helmet.country.description[1]} />
-            <meta property="og:site_name" content="Tripfer.com" />
-            <meta property="og:type" content="website" />
-            <meta property="og:url" content={document.URL} />
-            <meta property="og:title" content={helmet.country.title[0]+countryName+helmet.country.title[1]} />
-            <meta property="og:description" content={helmet.country.description[0]+countryName+helmet.country.description[1]} /> 
-          </Helmet> : <React.Fragment/>
-          
-          
+          this.props.storeState.countries.length > 0 ?
+            <Helmet>
+              <title>{helmet.country.title[0] + countryName + helmet.country.title[1]}</title>
+              <meta name="description" content={helmet.country.description[0] + countryName + helmet.country.description[1]} />
+              <meta property="og:site_name" content="Tripfer.com" />
+              <meta property="og:type" content="website" />
+              <meta property="og:url" content={document.URL} />
+              <meta property="og:title" content={helmet.country.title[0] + countryName + helmet.country.title[1]} />
+              <meta property="og:description" content={helmet.country.description[0] + countryName + helmet.country.description[1]} />
+            </Helmet> : <React.Fragment />
+
+
         }
         {
-            /*
-            <Helmet>
-            <title>{helmet.basic.title[0]+countryName+helmet.basic.title[1]}</title>
-            <meta name="description" content={helmet.basic.description} />
-            <meta property="og:site_name" content="Tripfer" />
-            <meta property="og:type" content="website" />
-            <meta property="og:url" content={document.URL} />
-            <meta property="og:title" content={helmet.basic.title} />
-            <meta property="og:description" content={helmet.basic.description} /> 
-          </Helmet>
-            */
-          }
+          /*
+          <Helmet>
+          <title>{helmet.basic.title[0]+countryName+helmet.basic.title[1]}</title>
+          <meta name="description" content={helmet.basic.description} />
+          <meta property="og:site_name" content="Tripfer" />
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content={document.URL} />
+          <meta property="og:title" content={helmet.basic.title} />
+          <meta property="og:description" content={helmet.basic.description} /> 
+        </Helmet>
+          */
+        }
 
         <main className="d-flex flex-column container-fluid p-0">
-          <Suspense fallback={<div>{textInfo.loading+'...'}</div>}>
+          <Suspense fallback={<div>{textInfo.loading + '...'}</div>}>
             {
               this.state.firstEnter ?
                 <FirstEnterModal whatRender="user" /> : <React.Fragment />
             }
           </Suspense>
 
-          <div className="home_window" style={ {background:"url("+windowImg+")no-repeat"}}>
+          <div className="home_window" style={{ background: "url(" + windowImg + ")no-repeat" }}>
             <Header history={this.props.history} />
 
             <div className="home_block col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
@@ -134,7 +134,7 @@ class HomeClass extends React.Component {
           <Route path={'/' + requests.routeMap + "/drivers/:cities"} component={Drivers} />
         </main>
 
-      </React.Fragment>
+      </>
     )
   }
 }

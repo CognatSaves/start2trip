@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { setDriversRouteChange, setDriverCarDescription, setCarTypes } from '../../redusers/ActionDrivers';
-import { setCities,set_state } from '../../redusers/Action'
+import { setCities, set_state } from '../../redusers/Action'
 import { setLengthTime } from '../../redusers/ActionDrivers'
 import { Helmet } from 'react-helmet';
 import requests from '../../config';
@@ -22,27 +22,27 @@ const cookies = new Cookies();
 class DriverProfileClass extends React.Component {
     constructor(props) {
         super(props);
-        
+
         let getdate = props.globalReduser.findGetParameter("date");
         let dateValue;
-        
-        if(getdate){
+
+        if (getdate) {
             dateValue = props.globalReduser.getDateFromDateString(getdate);
             let now = new Date(Date.now());
-            if(dateValue<now){
-                let day = dateValue.getDate();let month = dateValue.getMonth(); let year = dateValue.getFullYear();
-                let daynow = now.getDate();let monthnow = now.getMonth(); let yearnow = now.getFullYear();
-                if(day!==daynow || month!==monthnow || year!==yearnow){
-                    dateValue=now;
-                    let address = document.location.origin+document.location.pathname;
+            if (dateValue < now) {
+                let day = dateValue.getDate(); let month = dateValue.getMonth(); let year = dateValue.getFullYear();
+                let daynow = now.getDate(); let monthnow = now.getMonth(); let yearnow = now.getFullYear();
+                if (day !== daynow || month !== monthnow || year !== yearnow) {
+                    dateValue = now;
+                    let address = document.location.origin + document.location.pathname;
                     document.location.replace(address);
                 }
             }
-            dateValue =props.globalReduser.convertDateToUTC(new Date(dateValue));
-            
+            dateValue = props.globalReduser.convertDateToUTC(new Date(dateValue));
+
         }
-        else{
-            dateValue =  props.globalReduser.convertDateToUTC(new Date(Date.now()));
+        else {
+            dateValue = props.globalReduser.convertDateToUTC(new Date(Date.now()));
         }
 
         let resultString = dateValue.toUTCString();
@@ -143,7 +143,7 @@ class DriverProfileClass extends React.Component {
                 return response.json();
             })
             .then(function (data) {
-                
+
                 if (data.error) {
                     console.log("bad");
                     throw data.error;
@@ -166,7 +166,7 @@ class DriverProfileClass extends React.Component {
 
             })
             .catch(function (error) {
-                
+
                 console.log('bad');
                 console.log('An error occurred:', error);
                 that.setState({
@@ -174,7 +174,7 @@ class DriverProfileClass extends React.Component {
                     isRefreshing: false,
                     isGoodAnswer: false
                 })
-                setTimeout(() => { that.props.history.push('/'+that.props.storeState.country + "-" + that.props.storeState.languages[that.props.storeState.activeLanguageNumber].isoAutocomplete+'/routes') }, 1000);
+                setTimeout(() => { that.props.history.push('/' + that.props.storeState.country + "-" + that.props.storeState.languages[that.props.storeState.activeLanguageNumber].isoAutocomplete + '/routes') }, 1000);
 
             });
     }
@@ -259,7 +259,7 @@ class DriverProfileClass extends React.Component {
         function getLengthString(travelLength) {
             let length = travelLength;
             length = Math.ceil(length / 1000);
-            let lengthString = length + " "+translation.km;
+            let lengthString = length + " " + translation.km;
             return lengthString;
         }
         function getTimeString(travelTime) {
@@ -269,13 +269,13 @@ class DriverProfileClass extends React.Component {
             hours = hours - days * 24;
             let timeString = "";
             if (days !== 0) {
-                timeString += days + " "+translation.days+" " + hours + " "+translation.hours;
+                timeString += days + " " + translation.days + " " + hours + " " + translation.hours;
             }
             else {
                 if (hours !== 0) {
-                    timeString += hours + " "+translation.hours+" ";
+                    timeString += hours + " " + translation.hours + " ";
                 }
-                timeString += minutes + " "+translation.minutes;
+                timeString += minutes + " " + translation.minutes;
             }
             return timeString;
         }
@@ -288,16 +288,16 @@ class DriverProfileClass extends React.Component {
 
     }
     chooseDate = (value) => {//это не такой же chooseDate, как в RouteMenu, attention please
-    
-        
+
+
         let resultString = this.props.globalReduser.convertDateToUTC(value).toUTCString();
-        if(this.state.date!==resultString){
-          this.props.dispatch(set_state(this.props.storeState.cities, resultString))
-          this.setState({
-            date: value
-          });
+        if (this.state.date !== resultString) {
+            this.props.dispatch(set_state(this.props.storeState.cities, resultString))
+            this.setState({
+                date: value
+            });
         }
-      }
+    }
     /*
     sendTripRequest = (body) => {
         if (body) {
@@ -339,11 +339,11 @@ class DriverProfileClass extends React.Component {
     }
     */
     render() {
-        function isPointsLoaded(cities){
-            for(let i=0; i<cities.length; i++){
+        function isPointsLoaded(cities) {
+            for (let i = 0; i < cities.length; i++) {
                 let a = Number.isFinite(cities[i].lat);
-                let b= Number.isFinite(cities[i].long);
-                if(!a || !b){
+                let b = Number.isFinite(cities[i].long);
+                if (!a || !b) {
                     return false;
                 }
             }
@@ -369,16 +369,16 @@ class DriverProfileClass extends React.Component {
         //или быть выкинутым на страницу drivers (скорее всего туда, хотя можно выкинуть на home)
 
         if ((this.props.storeState.cities.length === 0 || this.props.storeState.cities[0].point === "") && this.props.storeState.countries.length > 0) {
-            
-            
+
+
             if (this.props.match.params && this.props.match.params.cities) {
-                let langISO=  cookies.get('userLang', { path: "/" });
+                let langISO = cookies.get('userLang', { path: "/" });
                 let urlCountry = this.props.match.params[0];
                 urlCountry = urlCountry.split("-")
-                let countryName = this.props.globalReduser.findCountryNameByISO(this, urlCountry[0],langISO);
+                let countryName = this.props.globalReduser.findCountryNameByISO(this, urlCountry[0], langISO);
                 let urlCities = this.props.match.params.cities;
-                
-                let cityNamesArray = this.parseStringToArray(urlCities,countryName, urlCountry[1]);
+
+                let cityNamesArray = this.parseStringToArray(urlCities, countryName, urlCountry[1]);
 
                 this.props.dispatch(setCities(cityNamesArray));
             }
@@ -498,7 +498,7 @@ class DriverProfileClass extends React.Component {
 
                     })
                     .catch(function (error) {
-                        
+
                         console.log('bad');
                         console.log('An error occurred:', error);
                         that.setState({
@@ -506,7 +506,7 @@ class DriverProfileClass extends React.Component {
                             isRefreshing: false,
                             isGoodAnswer: false
                         })
-                        setTimeout(() => { that.props.history.push('/'+/*that.props.storeState.country*/undefined + "-" + /*that.props.storeState.languages[that.props.storeState.activeLanguageNumber].isoAutocomplete*/undefined+'/routes') }, 1000);
+                        setTimeout(() => { that.props.history.push('/' +/*that.props.storeState.country*/undefined + "-" + /*that.props.storeState.languages[that.props.storeState.activeLanguageNumber].isoAutocomplete*/undefined + '/routes') }, 1000);
                     });
             });
             this.setState({ isLoaded: true });
@@ -551,10 +551,10 @@ class DriverProfileClass extends React.Component {
         let defaultPrice = this.props.driversState.driverCarDescription.price * (100 - this.state.discount) / 100;
         let isCurrencyLoaded = activeCurrency && activeCurrency.symbol;
         let helmet = this.props.storeState.languageTextMain.helmets.driverProfile;
-        
+
         let windowImg = null
         if (this.props.storeState.languages.length > 0) {
-            
+
             let coockisIso = cookies.get('country', { path: '/' })
             let j;
             for (let i = 0; i < this.props.storeState.countries.length; i++) {
@@ -563,18 +563,18 @@ class DriverProfileClass extends React.Component {
                     break;
                 }
             }
-            if(coockisIso === undefined ){
+            if (coockisIso === undefined) {
                 j = 1
             }
             windowImg = requests.serverAddressImg + this.props.storeState.countries[j].windowImg.url
         }
-        
+
 
         return (
-            <React.Fragment>
+            <>
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
 
-                <div className="drivers_top_background" style={ {background:"url("+windowImg+")no-repeat"}}>
+                <div className="drivers_top_background" style={{ background: "url(" + windowImg + ")no-repeat" }}>
                     <Header history={this.props.history} showBtnBack={true} />
 
                     {
@@ -634,9 +634,9 @@ class DriverProfileClass extends React.Component {
                                                             <div className="placesDescription_travelBlock_icon placesDescription_calendary" />
                                                             <DatePicker defaultDate={this.state.date} shouldDisableDate={(date) => {
                                                                 let flag = false;
-                                                                
+
                                                                 for (let i = 0; i < this.props.driversState.driverCarDescription.weekend.length; i++) {
-                                                                    let newDate = new Date(this.props.driversState.driverCarDescription.weekend[i].substr(0,10))
+                                                                    let newDate = new Date(this.props.driversState.driverCarDescription.weekend[i].substr(0, 10))
                                                                     let newDay = newDate.getDate();
                                                                     let newMonth = newDate.getMonth();
                                                                     let newYear = newDate.getFullYear();
@@ -644,7 +644,7 @@ class DriverProfileClass extends React.Component {
                                                                     let month = date.getMonth();
                                                                     let year = date.getFullYear()
                                                                     if (newDay === day && newMonth === month && newYear === year) {
-                                                                        
+
                                                                         flag = true
                                                                     }
                                                                 }
@@ -659,11 +659,11 @@ class DriverProfileClass extends React.Component {
                                                                     style={{/*marginBottom: '15px',*/ width: '100%', border: 'none', borderRadius: '5px', height: '100%' }}
                                                                     onClick={() => { this.changeTravelVisibility(defaultPrice); this.props.dispatch(setDriverCarDescription(this.props.driversState.driverCarDescription)) }}>
                                                                     <text style={{ margin: "auto", fontSize: '16px' }} >
-                                                                        {textInfo.book + ' '+(isCurrencyLoaded ?
-                                                                         ((activeCurrency.isLeft ? activeCurrency.symbol+' ' : '')
-                                                                            + Math.ceil(defaultPrice * activeCurrency.costToDefault)
-                                                                            + (!activeCurrency.isLeft ? ' '+activeCurrency.symbol : ''))
-                                                                         : '')}</text>
+                                                                        {textInfo.book + ' ' + (isCurrencyLoaded ?
+                                                                            ((activeCurrency.isLeft ? activeCurrency.symbol + ' ' : '')
+                                                                                + Math.ceil(defaultPrice * activeCurrency.costToDefault)
+                                                                                + (!activeCurrency.isLeft ? ' ' + activeCurrency.symbol : ''))
+                                                                            : '')}</text>
                                                                 </button>
                                                             </div> : <React.Fragment />
                                                     }
@@ -672,11 +672,11 @@ class DriverProfileClass extends React.Component {
                                             </div>
                                         </div>
                                         <div className="col-6 d-md-block d-none " style={{ height: '400px' }}>
-                                        {
-                                            this.props.storeState.cities && isPointsLoaded(this.props.storeState.cities) ?
-                                                <MapContainer cities={this.props.storeState.cities} setLengthTime={this.setLengthTime} mapUpdate={true} />
-                                            : <React.Fragment/>
-                                        }
+                                            {
+                                                this.props.storeState.cities && isPointsLoaded(this.props.storeState.cities) ?
+                                                    <MapContainer cities={this.props.storeState.cities} setLengthTime={this.setLengthTime} mapUpdate={true} />
+                                                    : <React.Fragment />
+                                            }
 
                                         </div>
                                     </div>
@@ -688,7 +688,7 @@ class DriverProfileClass extends React.Component {
                 </div>
                 {
                     this.props.driversState.driverCarDescription.id ?
-                        <React.Fragment>
+                        <>
                             <div className="wrapper d-flex flex-column">
                                 <div className="drivers_bottom_background d-flex flex-column" >
                                     <div className="drivers_body d-flex">
@@ -706,10 +706,10 @@ class DriverProfileClass extends React.Component {
 
                             <StartTravelSuccess successVisibility={this.state.successVisibility} changeSuccessVisibility={this.changeSuccessVisibility}
                                 textInfo={this.props.storeState.languageTextMain.startTravelForm} />
-                        </React.Fragment>
+                        </>
                         : <React.Fragment />
                 }
-            </React.Fragment>
+            </>
 
         )
 

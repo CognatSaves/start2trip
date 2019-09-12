@@ -64,37 +64,37 @@ class FooterClass extends React.Component {
     ]
 
     return (
-      <React.Fragment>
-        <div className="footer d-xl-flex d-lg-flex d-md-flex d-sm-none d-none justify-content-center align-items-center  col-12 p-0">
+      <>
+        <div className="footer d-md-flex d-none justify-content-center align-items-center  col-12 p-0">
           <div className="footerButtonUp" onClick={() => { window.scroll({ top: 0, left: 0, behavior: 'smooth' }) }}><img src={upArrowIcon} width="20px" height="20px" alt="upArrowIcon" /></div>
           <div className="footer_block d-flex  justify-content-between align-items-center col-12 p-0">
             <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes"} className="col-md-1 col-2 p-0 "><img src={logoTripfer} width="110px" height="18px" alt="logoWhiteIcon" /></Link>
             <div className="footerButtons d-flex justify-content-between col-lg-8 col-md-10 col-sm-12 col-12">
-              <Link to={"/"+ cookies.get('userLangISO', { path: "/" }) + "/about-service/"} className="footerButtons_button">{textInfo.footerButtons[0]}</Link>
-              <Link to={"/"+ cookies.get('userLangISO', { path: "/" }) + "/affiliate-program/"} className="footerButtons_button">{textInfo.footerButtons[1]}</Link>
-              <Link to={"/"+ cookies.get('userLangISO', { path: "/" }) + "/terms/"} className="footerButtons_button">{textInfo.footerButtons[2]}</Link>
+              <Link to={"/" + cookies.get('userLangISO', { path: "/" }) + "/about-service/"} className="footerButtons_button">{textInfo.footerButtons[0]}</Link>
+              <Link to={"/" + cookies.get('userLangISO', { path: "/" }) + "/affiliate-program/"} className="footerButtons_button">{textInfo.footerButtons[1]}</Link>
+              <Link to={"/" + cookies.get('userLangISO', { path: "/" }) + "/terms/"} className="footerButtons_button">{textInfo.footerButtons[2]}</Link>
               <Link to="" className="footerButtons_button">{textInfo.footerButtons[3]}</Link>
-              <Link to={"/"+ cookies.get('userLangISO', { path: "/" }) + "/contacts/"} className="footerButtons_button">{textInfo.footerButtons[4]}</Link>
+              <Link to={"/" + cookies.get('userLangISO', { path: "/" }) + "/contacts/"} className="footerButtons_button">{textInfo.footerButtons[4]}</Link>
               <div className="d-flex">
                 <div className="d-flex flex-column justify-content-center">
-                <i style={{background:"url("+ecommpay_logo+")no-repeat", backgroundSize:"100% 100%", width:"70px", height:"24px"}} />
-                <i style={{background:"url("+mastercard+")no-repeat", backgroundSize:"100% 100%", width:"70px", height:"25px"}} />
+                  <i style={{ background: "url(" + ecommpay_logo + ")no-repeat", backgroundSize: "100% 100%", width: "70px", height: "24px" }} />
+                  <i style={{ background: "url(" + mastercard + ")no-repeat", backgroundSize: "100% 100%", width: "70px", height: "25px" }} />
                 </div>
                 <div className="d-flex flex-column justify-content-center">
-                <i style={{background:"url("+logo_square+")no-repeat", backgroundSize:"100% 100%", width:"70px", height:"21px"}} />
-                <i style={{background:"url("+visa+")no-repeat", backgroundSize:"100% 100%", width:"60px", height:"24px"}} />
+                  <i style={{ background: "url(" + logo_square + ")no-repeat", backgroundSize: "100% 100%", width: "70px", height: "21px" }} />
+                  <i style={{ background: "url(" + visa + ")no-repeat", backgroundSize: "100% 100%", width: "60px", height: "24px" }} />
                 </div>
                 <div className="footerButtonsIcon d-flex align-items-center">
-                <i style={{background:"url("+facebookIcon+")no-repeat", backgroundSize:"100% 100%", width:"30px", height:"20px"}} />
-                <i style={{background:"url("+instagramIcon+")no-repeat", backgroundSize:"100% 100%", width:"28px", height:"20px"}} />
+                  <i style={{ background: "url(" + facebookIcon + ")no-repeat", backgroundSize: "100% 100%", width: "30px", height: "20px" }} />
+                  <i style={{ background: "url(" + instagramIcon + ")no-repeat", backgroundSize: "100% 100%", width: "28px", height: "20px" }} />
+                </div>
               </div>
-              </div>
-              
+
             </div>
           </div>
         </div>
 
-        <div className="footerMobile d-xl-none d-lg-none d-md-none d-sm-flex d-flex">
+        <div className="footerMobile d-md-none d-flex">
           {
             mobileElemArray.map((element, index) =>
               <Link to={element.pathname} className="col-3 d-flex align-items-end" /*onClick={(event, target)=>{ console.log(event, target); event.preventDefault()}}*/>
@@ -107,7 +107,7 @@ class FooterClass extends React.Component {
           }
         </div>
         <MobileFilter />
-      </React.Fragment>
+      </>
     );
   }
 

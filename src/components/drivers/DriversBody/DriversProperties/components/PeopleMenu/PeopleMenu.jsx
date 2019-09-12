@@ -73,7 +73,7 @@ class PeopleMenuClass extends React.Component {
         }
         else {
             return (
-                <React.Fragment></React.Fragment>
+                <React.Fragment />
             )
         }
     }

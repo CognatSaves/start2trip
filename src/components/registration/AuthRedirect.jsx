@@ -41,14 +41,14 @@ class AuthRedirectClass extends React.Component {
         let address = this.props.globalReduser.previousUrl;
         let jwt = this.props.globalReduser.readCookie('jwt');
         if (jwt && jwt !== "-") {
-            
+
             if (address.length === 0) {
-                let country = cookies.get('country',{path: '/'});
-                let lang = cookies.get('userLangISO', {path: '/'});
-                if(country && lang){
-                    this.props.history.push('/'+country+'-'+lang+'/routes/');
+                let country = cookies.get('country', { path: '/' });
+                let lang = cookies.get('userLangISO', { path: '/' });
+                if (country && lang) {
+                    this.props.history.push('/' + country + '-' + lang + '/routes/');
                 }
-                else{
+                else {
                     this.props.history.push('/countrySelection/');
                 }
             }
@@ -65,14 +65,14 @@ class AuthRedirectClass extends React.Component {
         }
         else {
             console.log('Ошибка! JWT не установлен!');
-            this.props.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
+            this.props.history.push('/' + cookies.get('userLangISO', { path: "/" }) + '/login/');
         }
     }
     render() {
         let helmet = this.props.storeState.languageTextMain.helmets.authRedirect;
         let windowImg = null
         if (this.props.storeState.languages.length > 0) {
-            
+
             let coockisIso = cookies.get('country', { path: '/' })
             let j;
             for (let i = 0; i < this.props.storeState.countries.length; i++) {
@@ -81,13 +81,13 @@ class AuthRedirectClass extends React.Component {
                     break;
                 }
             }
-            if(coockisIso === undefined ){
+            if (coockisIso === undefined) {
                 j = 1
             }
             windowImg = requests.serverAddressImg + this.props.storeState.countries[j].windowImg.url
         }
         return (
-            <React.Fragment>
+            <>
                 <Helmet>
                     <title>{helmet.basic.title}</title>
                     <meta name="description" content={helmet.basic.description} />
@@ -101,7 +101,7 @@ class AuthRedirectClass extends React.Component {
                     <Header history={this.props.history} />
                     <ModalRegistration modalRegistration={/*this.state.modalRegistration*/true} toggle={this.toggle} className={'authRedirect_background'} authorization={this.authorization} />
                 </div>
-            </React.Fragment>
+            </>
         )
     }
 }

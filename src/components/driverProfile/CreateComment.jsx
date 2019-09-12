@@ -156,13 +156,13 @@ class CreateCommentClass extends React.Component {
                         <div className="createComment_picture">
                             <img src={requests.serverAddressImg + '/uploads/user.svg'} width="100%" height="100%" alt=""></img>
                         </div>
-                            <div className="d-flex align-items-center flex-row flex-wrap mx-2">
-                                <div className="commentTextStyle" >{textInfo.nonRegisteredElement[0]}</div>
-                                <div className="commentLinkStyle" onClick={() => this.props.dispatch(setModalRegister(!this.props.storeState.modalRegistration))}>{textInfo.nonRegisteredElement[1]}</div>
-                                <div className="commentTextStyle" >{textInfo.nonRegisteredElement[2]}</div>
-                                <div className="commentLinkStyle" onClick={() => this.props.dispatch(setModalRegister(!this.props.storeState.modalRegistration))}>{textInfo.nonRegisteredElement[3]}</div>
-                                <div className="commentTextStyle" >.</div>
-                            </div>
+                        <div className="d-flex align-items-center flex-row flex-wrap mx-2">
+                            <div className="commentTextStyle" >{textInfo.nonRegisteredElement[0]}</div>
+                            <div className="commentLinkStyle" onClick={() => this.props.dispatch(setModalRegister(!this.props.storeState.modalRegistration))}>{textInfo.nonRegisteredElement[1]}</div>
+                            <div className="commentTextStyle" >{textInfo.nonRegisteredElement[2]}</div>
+                            <div className="commentLinkStyle" onClick={() => this.props.dispatch(setModalRegister(!this.props.storeState.modalRegistration))}>{textInfo.nonRegisteredElement[3]}</div>
+                            <div className="commentTextStyle" >.</div>
+                        </div>
                     </div>
                 </div>
             )

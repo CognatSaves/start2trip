@@ -29,22 +29,22 @@ const Content = (that, flagAllOk, carCapacityArray, activeCurrency, textInfo, ch
     let isCurrencyLoaded = activeCurrency && activeCurrency.symbol;
     let today = new Date()
     let selectDate = new Date(that.props.storeState.date)
-    let newTime = [] ;
-    if(today.getDate() === selectDate.getDate() && today.getMonth() === selectDate.getMonth() && today.getFullYear() === selectDate.getFullYear()){
-       let todayHours =today.getHours()+3
-       for(let i =0; i<that.state.time.length;i++){
-           let newHours =that.state.time[i].split(":")
-           newHours = newHours[0]
-           if(Number(newHours) > todayHours){
+    let newTime = [];
+    if (today.getDate() === selectDate.getDate() && today.getMonth() === selectDate.getMonth() && today.getFullYear() === selectDate.getFullYear()) {
+        let todayHours = today.getHours() + 3
+        for (let i = 0; i < that.state.time.length; i++) {
+            let newHours = that.state.time[i].split(":")
+            newHours = newHours[0]
+            if (Number(newHours) > todayHours) {
                 newTime.push(that.state.time[i])
-           } 
-       }
-    }else{
+            }
+        }
+    } else {
         newTime = that.state.time
     }
 
     return (
-        <React.Fragment>
+        <>
             <DriverRefreshIndicator isRefreshExist={that.state.isRefreshExist} isRefreshing={that.state.isRefreshing} isGoodAnswer={that.state.isGoodAnswer} />
 
             <div className="startTravelForm p-3" >
@@ -83,9 +83,10 @@ const Content = (that, flagAllOk, carCapacityArray, activeCurrency, textInfo, ch
                                 classNames="route_datePhoneInput w-100"
                                 flagsImagePath={flags}
                                 value={that.state.telNumber}
-                                onChange={(telNumber, selectedCountry) => 
-                                { that.setState({ telNumber: telNumber });
-                                 document.querySelector(".route_datePhoneInput").children[1].classList.remove("driver_route-error") }}
+                                onChange={(telNumber, selectedCountry) => {
+                                    that.setState({ telNumber: telNumber });
+                                    document.querySelector(".route_datePhoneInput").children[1].classList.remove("driver_route-error")
+                                }}
                                 onBlur={(value) => { console.log(value) }}
                                 initialValue={textInfo.telInputInitial}
                             />
@@ -127,11 +128,12 @@ const Content = (that, flagAllOk, carCapacityArray, activeCurrency, textInfo, ch
                                 <Select
                                     value={that.state.departureTime}
                                     input={<Input id="select-multiple" variant="outlined" />}
-                                    onChange={(event) => { 
-                                     that.setState({ departureTime: event.target.value });
-                                     
-                                     let obj = document.querySelector(".departureTime");
-                                     document.querySelector(".departureTime").classList.remove("draver_route-error") }}
+                                    onChange={(event) => {
+                                        that.setState({ departureTime: event.target.value });
+
+                                        let obj = document.querySelector(".departureTime");
+                                        document.querySelector(".departureTime").classList.remove("draver_route-error")
+                                    }}
                                 >
                                     {newTime.map(name => (
                                         <MenuItem key={name} value={name}>
@@ -176,7 +178,7 @@ const Content = (that, flagAllOk, carCapacityArray, activeCurrency, textInfo, ch
                                 className="checkboxStyle"
                                 onChange={(event) => { that.setState({ checkBoxes: !that.state.checkBoxes }) }}
                             />
-                            <span className="drivers_route_Link">{textInfo.driversRouteLink[0] + ' '}<Link to={"/"+ cookies.get('userLangISO', { path: "/" }) + "/terms/"} target="_blank">{textInfo.driversRouteLink[1]}</Link></span>
+                            <span className="drivers_route_Link">{textInfo.driversRouteLink[0] + ' '}<Link to={"/" + cookies.get('userLangISO', { path: "/" }) + "/terms/"} target="_blank">{textInfo.driversRouteLink[1]}</Link></span>
                         </div>
                         <span className="errorMes col-12" style={{ display: !that.state.checkBoxes && that.state.errorMes ? "block" : "none" }}>{textInfo.errorContract}</span>
                     </div>
@@ -199,15 +201,15 @@ const Content = (that, flagAllOk, carCapacityArray, activeCurrency, textInfo, ch
                                 that.state.promoCode ?
                                     <h3 className="drivers_routePrice" style={{ textDecoration: 'line-through', color: 'rgb(144,144,144)', marginRight: '5px', fontSize: '16px', lineHeight: '28px' }}>
                                         {
-                                            isCurrencyLoaded ? ((activeCurrency.isLeft ? activeCurrency.symbol+' ' : '')
+                                            isCurrencyLoaded ? ((activeCurrency.isLeft ? activeCurrency.symbol + ' ' : '')
                                                 + Math.ceil(that.props.elementPrice * activeCurrency.costToDefault)
-                                                + (!activeCurrency.isLeft ? ' '+activeCurrency.symbol : '')) : ''
+                                                + (!activeCurrency.isLeft ? ' ' + activeCurrency.symbol : '')) : ''
                                         }
                                     </h3> : <React.Fragment />
                             }
                             <h3 className="drivers_routePrice">{isCurrencyLoaded ? ((activeCurrency.isLeft ? activeCurrency.symbol + ' ' : '')
-                                +Math.ceil(Math.ceil(that.props.elementPrice * activeCurrency.costToDefault) * (100 - that.state.discount) / 100 )
-                                + (!activeCurrency.isLeft ? ' '+activeCurrency.symbol : '')) : ''}</h3>
+                                + Math.ceil(Math.ceil(that.props.elementPrice * activeCurrency.costToDefault) * (100 - that.state.discount) / 100)
+                                + (!activeCurrency.isLeft ? ' ' + activeCurrency.symbol : '')) : ''}</h3>
                         </div>
                         {
                             isCurrencyLoaded ? /**пока валюты не загружены - не будет отображаться кнопка "заказать тур" */
@@ -224,7 +226,7 @@ const Content = (that, flagAllOk, carCapacityArray, activeCurrency, textInfo, ch
                 </div>
 
             </div>
-        </React.Fragment>
+        </>
     )
 }
 
@@ -232,7 +234,7 @@ export default class StartTravelForm extends React.Component {
 
     constructor(props) {
         super(props);
-        
+
         this.state = {
             travelVisibility: false,
             // successVisibility: 'none',
@@ -268,7 +270,7 @@ export default class StartTravelForm extends React.Component {
 
     }
     componentDidUpdate(prevProps, prevState) {
-        
+
         if (prevProps.storeState.userData.firstName !== this.props.storeState.userData.firstName) {
 
             this.setState({
@@ -281,8 +283,8 @@ export default class StartTravelForm extends React.Component {
         return true
     }
     sendTripRequest = (body) => {
-        
-        function returnToStartData(that){
+
+        function returnToStartData(that) {
             that.setState({
                 travelVisibility: false,
                 // successVisibility: 'none',
@@ -330,14 +332,14 @@ export default class StartTravelForm extends React.Component {
                     return response.json();
                 })
                 .then(function (data) {
-                    
+
                     if (data.error) {
-                        
+
                         console.log("bad");
                         throw data.error;
                     }
                     else {
-                        
+
                         console.log('good');
                         console.log(data);
                         that.setState({
@@ -357,7 +359,7 @@ export default class StartTravelForm extends React.Component {
                     }
                 })
                 .catch(function (error) {
-                    
+
                     console.log('bad');
                     console.log('An error occurred:', error);
                     that.setState({
@@ -365,15 +367,15 @@ export default class StartTravelForm extends React.Component {
                         isRefreshing: false,
                         isGoodAnswer: false
                     });
-                    setTimeout(() => { 
+                    setTimeout(() => {
                         //уборка - откат к старым данным
                         returnToStartData(that);
-                     }, 1000);
+                    }, 1000);
                 });
         }
     }
     validate = () => {
-        
+
         let massValidate = document.querySelectorAll(".validate");
         let phoneInput = document.querySelector(".route_datePhoneInput");
         let departureTime = document.querySelector(".departureTime");
@@ -399,7 +401,7 @@ export default class StartTravelForm extends React.Component {
             email.children[1].children[0].classList.add("draver_route-error");
             isAllGood = false;
         }
-        if (this.state.telNumber === undefined || this.state.telNumber.length<5 ) {
+        if (this.state.telNumber === undefined || this.state.telNumber.length < 5) {
             phoneInput.children[1].classList.add("draver_route-error");
             isAllGood = false;
         }
@@ -431,7 +433,7 @@ export default class StartTravelForm extends React.Component {
         this.setState({ errorMes: !isAllGood, emailValid: emailValid })
 
         if (isAllGood) {
-            
+
             let date = new Date(this.props.storeState.date);
             let year = date.getUTCFullYear(); let month = date.getUTCMonth() + 1; let day = date.getUTCDate();
             let body = {
@@ -455,14 +457,14 @@ export default class StartTravelForm extends React.Component {
                 travelLength: this.props.driversState.travelLength,
                 travelTime: this.props.driversState.travelTime,
                 userLangCookies: (cookies.get('userLang', { path: '/' })).toUpperCase(),
-                country:cookies.get('country', { path: '/' })
+                country: cookies.get('country', { path: '/' })
             };
             console.log("--------------------------------")
             console.log(body);
             console.log("--------------------------------")
             this.sendTripRequest(JSON.stringify(body));
-            
-            
+
+
         }
     }
     promocodeVerification = () => {
@@ -540,22 +542,22 @@ export default class StartTravelForm extends React.Component {
             carCapacityArray.push("1")
         }
         return (
-            <React.Fragment>
+            <>
                 {isMobileOnly ?
-                    <React.Fragment>
+                    <>
                         <Dialog fullScreen open={this.props.travelVisibility} onClose={this.props.changeTravelVisibility} >
                             {Content(this, flagAllOk, carCapacityArray, this.props.activeCurrency, this.props.textInfo, this.props.changeSuccessVisibility)}
                         </Dialog>
-                    </React.Fragment>
+                    </>
                     :
-                    <React.Fragment>
+                    <>
                         <Dialog open={this.props.travelVisibility} onClose={this.props.changeTravelVisibility} >
                             {Content(this, flagAllOk, carCapacityArray, this.props.activeCurrency, this.props.textInfo, this.props.changeSuccessVisibility)}
                         </Dialog>
-                    </React.Fragment>
+                    </>
                 }
 
-            </React.Fragment>
+            </>
         )
 
     }

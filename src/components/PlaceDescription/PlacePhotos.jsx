@@ -38,7 +38,7 @@ export default class PlacePhotos extends React.Component {
         //let textInfo = this.props.storeState.languageTextMain.placePhotos;
         let className = "col-8 col-md-6 col-lg-3 placePhotos_elementBlock";/*placePhotos_elementBlock*/
         return (
-            <React.Fragment>
+            <>
                 {
                     /*
 
@@ -69,11 +69,11 @@ export default class PlacePhotos extends React.Component {
                             */
                             if (!this.state.isShortPhotos || maxWidth === 0 || isMobile) {
                                 return (
-                                    <React.Fragment>
+                                    <>
                                         <div className={className} id={"photono" + index}>
                                             <img style={{ borderRadius: '5px' }} src={requests.serverAddressImg + element.url} width="100%" height="100%" alt={"/picture " + index} onClick={() => this.props.showMask(index)} />
                                         </div>
-                                    </React.Fragment>
+                                    </>
                                 )
                             }
                             else {
@@ -110,7 +110,7 @@ export default class PlacePhotos extends React.Component {
                         })
                     }
                 </div>
-            </React.Fragment>
+            </>
         )
     }
 }

@@ -51,7 +51,7 @@ class ManipulatorClass extends React.Component {
         let isEnoughPages = (maxPage > 1);
 
         return (
-            <React.Fragment>
+            <>
                 <div className="drivers_block_manipulator" style={{ display: this.props.page > 0 && maxPage > 0 ? 'flex' : 'none' }}>
                     {
 
@@ -67,34 +67,34 @@ class ManipulatorClass extends React.Component {
                         isEnoughPages ?
                             <div className="driversBlockManipulator_pageNumbers" >
                                 <div className="d-flex col-3">
-                                <button className="pageNumbers_arrow" onClick={() => { if (this.props.page > 1) { this.props.setPage(this.props.page - 1) } }}>
-                                    <img src={leftArrow} width="100%" height="100%" alt="leftA" style={{ borderRadius: "5px" }}></img>
-                                </button>
-                                <div className="pageNumbers_text" onClick={() => this.props.setPage(1)}>
-                                    <div className="pageNumbers_text_value">{textInfo.moveStart}</div>
-                                </div>
-                                <div className="pageNumbers_numberPosition">
-                                    {numberArray.map((element, index) =>
-                                        <div className="numberPosition_numberBlock" style={{ padding: spaceWidthSize[numberArray.length] }}>
-                                            <button className={numberStyle[index]} onClick={() => this.props.setPage(element)}>{element}</button>
-                                        </div>
+                                    <button className="pageNumbers_arrow" onClick={() => { if (this.props.page > 1) { this.props.setPage(this.props.page - 1) } }}>
+                                        <img src={leftArrow} width="100%" height="100%" alt="leftA" style={{ borderRadius: "5px" }}></img>
+                                    </button>
+                                    <div className="pageNumbers_text" onClick={() => this.props.setPage(1)}>
+                                        <div className="pageNumbers_text_value">{textInfo.moveStart}</div>
+                                    </div>
+                                    <div className="pageNumbers_numberPosition">
+                                        {numberArray.map((element, index) =>
+                                            <div className="numberPosition_numberBlock" style={{ padding: spaceWidthSize[numberArray.length] }}>
+                                                <button className={numberStyle[index]} onClick={() => this.props.setPage(element)}>{element}</button>
+                                            </div>
 
-                                    )}
+                                        )}
+                                    </div>
+                                    <div className="pageNumbers_text" onClick={() => this.props.setPage(maxPage)}>
+                                        <div className="pageNumbers_text_value">{textInfo.moveEnd}</div>
+                                    </div>
+                                    <button className="pageNumbers_arrow" onClick={() => { if (this.props.page < maxPage) { this.props.setPage(this.props.page + 1) } }}>
+                                        <img src={rightArrow} width="100%" height="auto" alt="rightA" style={{ borderRadius: "5px" }}></img>
+                                    </button>
                                 </div>
-                                <div className="pageNumbers_text" onClick={() => this.props.setPage(maxPage)}>
-                                    <div className="pageNumbers_text_value">{textInfo.moveEnd}</div>
-                                </div>
-                                <button className="pageNumbers_arrow" onClick={() => { if (this.props.page < maxPage) { this.props.setPage(this.props.page + 1) } }}>
-                                    <img src={rightArrow} width="100%" height="auto" alt="rightA" style={{ borderRadius: "5px" }}></img>
-                                </button>
-                                </div>
-                                
+
                             </div>
                             :
                             <React.Fragment />
                     }
                 </div>
-            </React.Fragment>
+            </>
         )
 
     }

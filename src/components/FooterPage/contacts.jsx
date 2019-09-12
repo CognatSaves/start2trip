@@ -1,11 +1,11 @@
 import React from 'react';
 import './contacts.css'
 import { connect } from 'react-redux';
-import { 
-    isMobileOnly,osVersion,osName,
-    fullBrowserVersion,browserName,
-    mobileVendor,mobileModel,
-    engineName,engineVersion
+import {
+    isMobileOnly, osVersion, osName,
+    fullBrowserVersion, browserName,
+    mobileVendor, mobileModel,
+    engineName, engineVersion
 } from 'react-device-detect';
 import { Helmet } from 'react-helmet';
 
@@ -24,45 +24,45 @@ class contactsClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            name:"",
-            valideName:true,
-            email:"",
-            valideEmail:true,
-            message:"",
-            valideMessage:true,
+            name: "",
+            valideName: true,
+            email: "",
+            valideEmail: true,
+            message: "",
+            valideMessage: true,
             isRefreshExist: false,
             isRefreshing: false,
             isGoodAnswer: false
         }
     }
     sendMessage = () => {
-        
+
         this.setState({
             isRefreshExist: true,
             isRefreshing: true
         })
-        
+
         let userLang = (cookies.get('userLang', { path: "/" })).toUpperCase()
         let country = (cookies.get('country', { path: "/" }))
         let userCurr = (cookies.get('userCurr', { path: "/" }))
-        let today =new Date()
+        let today = new Date()
 
         var messageInfo = new FormData();
 
         // Validate
         let valideEmail = EmailValidator.validate(this.state.email)
-        if(!valideEmail){
-            this.setState({valideEmail:valideEmail})
+        if (!valideEmail) {
+            this.setState({ valideEmail: valideEmail })
         }
-        if(this.state.name === ""){
-            this.setState({valideName:false})
+        if (this.state.name === "") {
+            this.setState({ valideName: false })
         }
-        if(this.state.message === ""){
-            this.setState({valideMessage:false})
+        if (this.state.message === "") {
+            this.setState({ valideMessage: false })
         }
         // Validate
 
-        if(this.state.valideName && valideEmail && this.state.valideMessage ){
+        if (this.state.valideName && valideEmail && this.state.valideMessage) {
             messageInfo.append('name', this.state.name);
             messageInfo.append('email', this.state.email);
             messageInfo.append('message', this.state.message);
@@ -70,7 +70,7 @@ class contactsClass extends React.Component {
             messageInfo.append('country', country);
             messageInfo.append('userCurr', userCurr);
             messageInfo.append('dateNow', today);
-            messageInfo.append('mobileVendor',mobileVendor);
+            messageInfo.append('mobileVendor', mobileVendor);
             messageInfo.append('mobileModel', mobileModel);
             messageInfo.append('engineName', engineName);
             messageInfo.append('engineVersion', engineVersion);
@@ -81,9 +81,9 @@ class contactsClass extends React.Component {
         }
 
         const request = new XMLHttpRequest();
-        request.open('PUT',requests.userFeedback);
+        request.open('PUT', requests.userFeedback);
         let that = this;
-        request.onreadystatechange = function (){
+        request.onreadystatechange = function () {
             if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
                 let responseText = JSON.parse(request.responseText);
                 console.log(responseText)
@@ -91,14 +91,14 @@ class contactsClass extends React.Component {
                     isRefreshExist: true,
                     isRefreshing: false,
                     isGoodAnswer: true,
-                    name:"",
-                    valideName:true,
-                    email:"",
-                    valideEmail:true,
-                    message:"",
-                    valideMessage:true,
+                    name: "",
+                    valideName: true,
+                    email: "",
+                    valideEmail: true,
+                    message: "",
+                    valideMessage: true,
                 })
-                setTimeout(()=>{
+                setTimeout(() => {
                     that.setState({
                         isRefreshExist: false
                     })
@@ -111,7 +111,7 @@ class contactsClass extends React.Component {
                     isRefreshing: false,
                     isGoodAnswer: false
                 })
-                setTimeout(()=>{
+                setTimeout(() => {
                     that.setState({
                         isRefreshExist: false
                     })
@@ -126,7 +126,7 @@ class contactsClass extends React.Component {
         let helmet = this.props.storeState.languageTextMain.helmets.contacts;
 
         return (
-            <React.Fragment>
+            <>
                 <Helmet>
                     <title>{helmet.basic.title}</title>
                     <meta name="description" content={helmet.basic.description} />
@@ -138,7 +138,7 @@ class contactsClass extends React.Component {
                 </Helmet>
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
                 <Header driver={true} history={this.props.history} />
-                <div className="wrapper" style={{minHeight:"79vh"}}>
+                <div className="wrapper" style={{ minHeight: "79vh" }}>
                     <div className="contacts d-flex" >
                         <div className="contacts_Title col-12 p-0">
                             <h2>{text.h2}</h2>
@@ -146,10 +146,10 @@ class contactsClass extends React.Component {
                                 <div className="col-md-6 col-12 pl-0">
                                     <h4>{text.h4}</h4>
                                     <p className="col-md-8 col-12 p-0">{text.text}</p>
-                                    <form onSubmit={(e) => { e.preventDefault() ;this.sendMessage()}} id="contactsForm" className="d-flex flex-md-wrap flex-nowrap flex-md-row flex-column mt-4">
-                                        <input className={"col mr-md-2" + (this.state.valideName?"":" contacts_error")}  placeholder={text.firstNamePlaceholder} value={this.state.name} onChange={(e)=>{this.setState({name:e.target.value,valideName:true})}} type="text" />
-                                        <input className={"col ml-md-2 mt-md-0 mt-3 " + (this.state.valideEmail?"":" contacts_error")} placeholder="Email" value={this.state.email} onChange={(e)=>{this.setState({email:e.target.value,valideEmail:true})}} type="text" />
-                                        <textarea className={"col-12 mt-3" + (this.state.valideMessage?"":" contacts_error")}  placeholder={text.messege} value={this.state.message} onChange={(e)=>{this.setState({message:e.target.value,valideMessage:true})}} rows="1"></textarea>
+                                    <form onSubmit={(e) => { e.preventDefault(); this.sendMessage() }} id="contactsForm" className="d-flex flex-md-wrap flex-nowrap flex-md-row flex-column mt-4">
+                                        <input className={"col mr-md-2" + (this.state.valideName ? "" : " contacts_error")} placeholder={text.firstNamePlaceholder} value={this.state.name} onChange={(e) => { this.setState({ name: e.target.value, valideName: true }) }} type="text" />
+                                        <input className={"col ml-md-2 mt-md-0 mt-3 " + (this.state.valideEmail ? "" : " contacts_error")} placeholder="Email" value={this.state.email} onChange={(e) => { this.setState({ email: e.target.value, valideEmail: true }) }} type="text" />
+                                        <textarea className={"col-12 mt-3" + (this.state.valideMessage ? "" : " contacts_error")} placeholder={text.messege} value={this.state.message} onChange={(e) => { this.setState({ message: e.target.value, valideMessage: true }) }} rows="1"></textarea>
                                         <div className="d-flex justify-content-end col-12 p-0 my-3">
                                             <input className="contacts_contentBt col-md-5 col-12" value={text.buttonSubmit} type="submit" />
                                         </div>
@@ -178,7 +178,7 @@ class contactsClass extends React.Component {
                                         </div>
                                         <div className="contacts_content_rightFooter d-flex">
                                             <label style={{ background: "url(" + placeholderSvg + ")no-repeat" }} className="col-md-2 col-3 mr-3" htmlFor="adress">{text.labelAddress}</label>
-                                            <span id="adress">{text.addressText1}{isMobileOnly ? <React.Fragment></React.Fragment> : <br />} {text.addressText2}</span>
+                                            <span id="adress">{text.addressText1}{isMobileOnly ? <React.Fragment /> : <br />} {text.addressText2}</span>
                                         </div>
                                     </div>
 
@@ -189,7 +189,7 @@ class contactsClass extends React.Component {
                         </div>
                     </div>
                 </div>
-            </React.Fragment>
+            </>
         )
     }
 }

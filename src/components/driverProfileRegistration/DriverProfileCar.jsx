@@ -477,12 +477,13 @@ class DriverProfileCarClass extends React.Component {
                         {/* <div className="tourContentTitle d-flex align-items-center mb-0 col-12" >
                             {
                                 //TODO что это за переменная carContentTitle? Её нет в списках
+                                // Это переменная на тот случай если у карточки опять появиться Оглавление что это добавление автомобиля
                             }
                             <p style={{ marginTop: '1rem' }}>{textPage.carContentTitle}</p>
                         </div> */}
 
-                        <form onSubmit={this.formSubmit} id="newCar" className="col-12 carAddNewCarInformation d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column-reverse flex-column-reverse align-items-xl-start align-items-lg-start align-items-md-start align-items-sm-center align-items-center">
-                            <div className="carAddNewCarPhotoCar col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 pt-3">
+                        <form onSubmit={this.formSubmit} id="newCar" className="col-12 carAddNewCarInformation d-flex flex-md-row-reverse flex-column-reverse align-items-xl-start align-items-lg-start align-items-md-start align-items-sm-center align-items-center">
+                            <div className="carAddNewCarPhotoCar col-md-4 col-12 pt-3">
                                 <div style={this.state.imagePreviewUrl ? {} : { background: "#686868", height: "300px", borderRadius: "5px" }}>
                                     {$imagePreview}
                                 </div>
@@ -501,7 +502,7 @@ class DriverProfileCarClass extends React.Component {
                             </div>
 
                             <div className="d-flex flex-column col-md-8 col-12 ">
-                                <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mt-2">
+                                <div className="d-flex flex-md-row flex-column align-items-md-center align-items-start mt-2">
                                     <label htmlFor="profileCarBrand" className=" d-md-block d-none col-md-4 col-12 p-0">{textPage.profileCarBrand.floatingLabelText}:</label>
                                     <input id="profileCarBrand" className="d-md-block d-none " value={this.state.newCarCard.nameCar} onChange={(e) => {
                                         let obj = document.getElementById('profileCarBrand');
@@ -526,16 +527,16 @@ class DriverProfileCarClass extends React.Component {
                                             })
                                         }}
                                         floatingLabelText={textPage.profileCarBrand.floatingLabelText}
-                                        className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
+                                        className=" d-md-none d-block inputClass"
                                         fullWidth="100%"
                                         floatingLabelFocusStyle={{ color: "#304269" }}
                                         underlineFocusStyle={{ borderColor: "#304269" }}
 
                                     />
                                 </div>
-                                <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                    <label htmlFor="profileCarYear" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">{textPage.profileCarYear.floatingLabelText}:</label>
-                                    <input type="number" id="profileCarYear" className="d-xl-block d-lg-block d-md-block d-sm-none d-none" value={this.state.newCarCard.yearCar} onChange={(e) => {
+                                <div className="d-flex flex-md-row flex-column align-items-md-center align-items-start">
+                                    <label htmlFor="profileCarYear" className="d-md-block d-none col-md-4 col-12 p-0">{textPage.profileCarYear.floatingLabelText}:</label>
+                                    <input type="number" id="profileCarYear" className="d-md-block d-none" value={this.state.newCarCard.yearCar} onChange={(e) => {
                                         let obj = document.getElementById('profileCarYear');
                                         obj.classList.remove("errorColor");
                                         obj = document.querySelectorAll('.inputClass');
@@ -559,16 +560,16 @@ class DriverProfileCarClass extends React.Component {
                                             })
                                         }}
                                         floatingLabelText={textPage.profileCarYear.floatingLabelText}
-                                        className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
+                                        className=" d-md-none d-block inputClass"
                                         fullWidth="100%"
                                         floatingLabelFocusStyle={{ color: "#304269" }}
                                         underlineFocusStyle={{ borderColor: "#304269" }}
 
                                     />
                                 </div>
-                                <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                    <label htmlFor="profileCarNumber" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">{textPage.profileCarNumber.floatingLabelText}:</label>
-                                    <input id="profileCarNumber" className="d-xl-block d-lg-block d-md-block d-sm-none d-none " value={this.state.newCarCard.plateNumberCar} onChange={(e) => {
+                                <div className="d-flex flex-md-row flex-column align-items-md-center align-items-start">
+                                    <label htmlFor="profileCarNumber" className="d-md-block d-none col-md-4 col-12 p-0">{textPage.profileCarNumber.floatingLabelText}:</label>
+                                    <input id="profileCarNumber" className="d-md-block d-none " value={this.state.newCarCard.plateNumberCar} onChange={(e) => {
                                         let obj = document.getElementById('profileCarNumber');
                                         obj.classList.remove("errorColor");
                                         obj = document.querySelectorAll('.inputClass');
@@ -591,7 +592,7 @@ class DriverProfileCarClass extends React.Component {
                                             })
                                         }}
                                         floatingLabelText={textPage.profileCarNumber.floatingLabelText}
-                                        className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
+                                        className=" d-md-none d-block inputClass"
                                         fullWidth="100%"
                                         floatingLabelFocusStyle={{ color: "#304269" }}
                                         underlineFocusStyle={{ borderColor: "#304269" }}
@@ -601,9 +602,9 @@ class DriverProfileCarClass extends React.Component {
                                 <div className="d-flex flex-md-row flsex-column align-items-md-center align-items-start">
                                     <label className="d-md-block d-none col-md-4 col-12 p-0">{textPage.typeCar.label}:</label>
                                     <FormControl className="d-flex flex-wrap col-md-8 col-12 p-0 mt-2">
-                                        {isMobileOnly?
-                                        <InputLabel>{textPage.typeCar.label}</InputLabel>
-                                        :<div/>}
+                                        {isMobileOnly ?
+                                            <InputLabel>{textPage.typeCar.label}</InputLabel>
+                                            : <div />}
                                         <Select
                                             value={this.state.newCarCard.typeCar}
                                             className="dropdownClass"
@@ -622,12 +623,12 @@ class DriverProfileCarClass extends React.Component {
                                         </Select>
                                     </FormControl>
                                 </div>
-                                <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flsex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                    <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">{textPage.carClass.label}:</label>
+                                <div className="d-flex flex-md-row flsex-column align-items-md-center align-items-start">
+                                    <label className="d-md-block d-sm-none d-none col-md-4 col-12 p-0">{textPage.carClass.label}:</label>
                                     <FormControl className="d-flex flex-wrap col-md-8 col-12 p-0 mt-2">
-                                        {isMobileOnly?
-                                        <InputLabel>{textPage.carClass.label}</InputLabel>
-                                        :<div/>}
+                                        {isMobileOnly ?
+                                            <InputLabel>{textPage.carClass.label}</InputLabel>
+                                            : <div />}
                                         <Select
                                             value={this.state.newCarCard.carClass}
                                             className="dropdownClass"
@@ -638,7 +639,7 @@ class DriverProfileCarClass extends React.Component {
                                             }}
                                         >
                                             {
-                                                 this.props.globalReduser.profile.carClasses.map((element, index) =>
+                                                this.props.globalReduser.profile.carClasses.map((element, index) =>
                                                     <MenuItem value={element.id} >{findOneCarProp(element.id, this.props.globalReduser.profile.carClasses, this.props.storeState)}</MenuItem>
                                                 )
                                             }
@@ -646,12 +647,12 @@ class DriverProfileCarClass extends React.Component {
                                         </Select>
                                     </FormControl>
                                 </div>
-                                <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                    <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">{textPage.typeFuel.label}:</label>
+                                <div className="d-flex flex-md-row flex-column align-items-md-center align-items-start">
+                                    <label className="d-md-block d-sm-none d-none col-md-4 col-12 p-0">{textPage.typeFuel.label}:</label>
                                     <FormControl className="d-flex flex-wrap col-md-8 col-12 p-0 mt-2">
-                                        {isMobileOnly?
-                                        <InputLabel>{textPage.typeFuel.label}</InputLabel>
-                                        :<div/>}
+                                        {isMobileOnly ?
+                                            <InputLabel>{textPage.typeFuel.label}</InputLabel>
+                                            : <div />}
                                         <Select
                                             value={this.state.newCarCard.fuelType}
                                             className="dropdownClass"
@@ -671,9 +672,9 @@ class DriverProfileCarClass extends React.Component {
                                     </FormControl>
                                 </div>
 
-                                <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                    <label htmlFor="profileCarFuelConsumption" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">{textPage.profileCarFuelConsumption.label}:</label>
-                                    <input id="profileCarFuelConsumption" className="d-xl-block d-lg-block d-md-block d-sm-none d-none " value={this.state.newCarCard.fuelConsumption} onChange={(e) => {
+                                <div className="d-flex flex-md-row flex-column align-items-md-center align-items-start">
+                                    <label htmlFor="profileCarFuelConsumption" className="d-md-block d-sm-none d-none col-md-4 col-12 p-0">{textPage.profileCarFuelConsumption.label}:</label>
+                                    <input id="profileCarFuelConsumption" className="d-md-block d-none " value={this.state.newCarCard.fuelConsumption} onChange={(e) => {
                                         let obj = document.getElementById('profileCarFuelConsumption');
                                         obj.classList.remove("errorColor");
 
@@ -699,7 +700,7 @@ class DriverProfileCarClass extends React.Component {
                                             })
                                         }}
                                         floatingLabelText={textPage.profileCarFuelConsumption.label}
-                                        className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
+                                        className=" d-md-none d-block inputClass"
                                         fullWidth="100%"
                                         floatingLabelFocusStyle={{ color: "#304269" }}
                                         underlineFocusStyle={{ borderColor: "#304269" }}
@@ -707,9 +708,9 @@ class DriverProfileCarClass extends React.Component {
                                     />
                                 </div>
 
-                                <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                    <label htmlFor="profileCarNumberOfSeats" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">{textPage.profileCarNumberOfSeats.label}:</label>
-                                    <input id="profileCarNumberOfSeats" className="d-xl-block d-lg-block d-md-block d-sm-none d-none " value={this.state.newCarCard.numberOfSeats} onChange={(e) => {
+                                <div className="d-flex flex-md-row flex-column align-items-md-center align-items-start">
+                                    <label htmlFor="profileCarNumberOfSeats" className="d-md-block d-sm-none d-none col-md-4 col-12 p-0">{textPage.profileCarNumberOfSeats.label}:</label>
+                                    <input id="profileCarNumberOfSeats" className="d-md-block d-none " value={this.state.newCarCard.numberOfSeats} onChange={(e) => {
                                         let obj = document.getElementById('profileCarNumberOfSeats');
                                         obj.classList.remove("errorColor");
 
@@ -744,8 +745,8 @@ class DriverProfileCarClass extends React.Component {
                                     />
                                 </div>
 
-                                <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-start mt-2 mb-3">
-                                    <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-4 p-0">{textPage.carAddNewCarComfort.label}:</label>
+                                <div className="d-flex flex-md-row flex-column align-items-start mt-2 mb-3">
+                                    <label className="d-md-block d-sm-none d-none col-4 p-0">{textPage.carAddNewCarComfort.label}:</label>
                                     <div className="carAddNewCarComfortCheckBox d-flex flex-column pt-1">
                                         <label htmlFor="comfort1">{textPage.carAddNewCarComfort.comfort1}
                                             <input onClick={(e) => { let comfort = this.state.comfort; comfort[0] = !comfort[0]; this.setState({ comfort: comfort }); }} type="checkbox" id="comfort1" checked={this.state.comfort[0]} />
@@ -774,9 +775,7 @@ class DriverProfileCarClass extends React.Component {
                         </form>
                         <div className="carAddNewCarButton d-flex col-md-8 col-12 pt-3 align-items-center justify-content-sm-start justify-content-center mb-5">
 
-
-
-                            <span className="d-xl-block d-lg-block d-md-block d-sm-block d-none col-4 p-0" />
+                            <span className=" d-none col-4 p-0" />
                             <div className="d-flex flex-column">
                                 <div className="d-flex">
                                     <button htmlFor="newCar" type="submit" onClick={(e) => this.formSubmit(e)}>{textPage.carAddNewCarButton.button}</button>
@@ -789,13 +788,13 @@ class DriverProfileCarClass extends React.Component {
                 </Collapse>
                 {
                     /*
-                <div className="d-none d-sm-block">
+                <div className="d-none">
                     <p className="d-block d-sm-none" style={{marginTop: '1rem', marginBottom: '0'}}>Ваши автомобили</p>
                 </div>
                     */
                 }
                 <div className="filledCardBody p-0 d-flex justify-content-md-start justify-content-center flex-wrap col-12 " >
-                    <div onClick={() => this.toggle()} className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-11 p-2" style={{ display: this.state.collapse ? "none" : "block" }}>
+                    <div onClick={() => this.toggle()} className="col-lg-3 col-md-4 col-sm-6 col-11 p-2" style={{ display: this.state.collapse ? "none" : "block" }}>
 
                         <div className="filledCardImgAdd" >
                             <div className="d-flex flex-column justify-content-center align-items-center">
@@ -805,9 +804,9 @@ class DriverProfileCarClass extends React.Component {
                         </div>
                     </div>
                     {cars.map((element, index) =>
-                        <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-11 p-2 filledCardHover ">
+                        <div className="col-lg-3 col-md-4 col-sm-6 col-11 p-2 filledCardHover ">
                             <div className="filledCard d-flex flex-column p-0">
-                                <div className="filledCardInformation d-flex flex-column" style={{position: 'relative'}}>
+                                <div className="filledCardInformation d-flex flex-column" style={{ position: 'relative' }}>
                                     <div className="filledCardInformationNameCar d-flex d-flex justify-content-end w-100 align-items-center">
                                         <label className="cardInformationNameCarIcon"></label>
                                         <div className="filledCardInformationMenu">

@@ -38,7 +38,7 @@ class SimularToursBlockClass extends React.Component {
         let outerBlock = document.getElementById(this.props.outerBlock);
         console.log('outerBlock', outerBlock ? outerBlock.offsetWidth : 0);
         return (
-            <React.Fragment>
+            <>
                 {
                     /*
                     <div className="placeDescription_fragmentName">{this.props.fragmentName}</div>
@@ -64,7 +64,7 @@ class SimularToursBlockClass extends React.Component {
                         })
                     }
                 </div>
-            </React.Fragment>
+            </>
         )
     }
 }

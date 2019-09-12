@@ -361,7 +361,7 @@ getLocals();
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter >
-      <React.Fragment>
+      <>
         <MuiThemeProvider muiTheme={muiTheme}>
           <Suspense fallback={<div>{store.getState().AppReduser.languageTextMain.home.loading + "..."}</div>}>
             <Switch>
@@ -403,23 +403,23 @@ ReactDOM.render(
               <Route path="/customer-cancel-:id-:clientId/" component={customerCancel} />
 
 
-              <Redirect from='/-en' to='/countrySelection'/>
-              <Redirect from='/-ru' to='/countrySelection'/>
+              <Redirect from='/-en' to='/countrySelection' />
+              <Redirect from='/-ru' to='/countrySelection' />
               {
-                
 
-                
+
+
                 window.location.pathname === "/" ?
-                <Redirect from="/" to={"/" + (redirectPage === "undefined-undefined" || redirectPage === "undefined-en" || redirectPage === "undefined-ru" || redirectPage === "-en" || redirectPage === "-ru" ? "countrySelection/" : redirectPage + "/routes/")} />
-                :
-                <Route path="*" component={pageNotFound} status={404} />
+                  <Redirect from="/" to={"/" + (redirectPage === "undefined-undefined" || redirectPage === "undefined-en" || redirectPage === "undefined-ru" || redirectPage === "-en" || redirectPage === "-ru" ? "countrySelection/" : redirectPage + "/routes/")} />
+                  :
+                  <Route path="*" component={pageNotFound} status={404} />
               }
 
             </Switch>
           </Suspense>
           <Footer />
         </MuiThemeProvider>
-      </React.Fragment>
+      </>
     </BrowserRouter>
   </Provider>
   , document.getElementById('root'))

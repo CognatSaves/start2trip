@@ -51,7 +51,7 @@ class AuthModalCountryClass extends React.Component {
         }
         else {
             console.log('Ошибка! JWT не установлен!');
-            this.props.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
+            this.props.history.push('/' + cookies.get('userLangISO', { path: "/" }) + '/login/');
         }
     }
 
@@ -69,7 +69,7 @@ class AuthModalCountryClass extends React.Component {
         }
         let windowImg = null
         if (this.props.storeState.languages.length > 0) {
-            
+
             let coockisIso = cookies.get('country', { path: '/' })
             let j;
             for (let i = 0; i < this.props.storeState.countries.length; i++) {
@@ -78,14 +78,14 @@ class AuthModalCountryClass extends React.Component {
                     break;
                 }
             }
-            
-            if(coockisIso === undefined ){
+
+            if (coockisIso === undefined) {
                 j = 1
             }
             windowImg = requests.serverAddressImg + this.props.storeState.countries[j].windowImg.url
         }
         return (
-            <React.Fragment>
+            <>
                 <div className="home_window" style={{ background: "url(" + windowImg + ")no-repeat", minHeight: "95vh" }} >
                     <Header history={this.props.history} />
                     <Helmet>
@@ -116,7 +116,7 @@ class AuthModalCountryClass extends React.Component {
                         <React.Fragment />
                     }
                 </div>
-            </React.Fragment>
+            </>
         )
     }
 }
