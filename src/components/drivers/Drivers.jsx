@@ -177,7 +177,7 @@ class DriversClass extends React.Component {
         <div className="wrapper d-flex flex-column">
           <div className="drivers_bottom_background d-flex flex-column" >
             <div className="left_body_part col-12 d-flex flex-column p-0">
-              <DriversProperties />
+              <DriversProperties storeState={this.props.storeState} />
               <DriversBlock changeTravelVisibility={this.changeTravelVisibility} country={country} cities={cities} dateString={dateString} />
             </div>
           </div>

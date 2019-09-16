@@ -82,9 +82,12 @@ class DriversPropertiesClass extends React.Component {
           <div className="properties_buttonStyle properties_leftButton d-flex" >
             <LanguageMenu isVisible={true} />
           </div>
-          <div className="properties_buttonStyle properties_leftButton d-flex" >
-            <AutoMenu isVisible={true} />
-          </div>
+          {!this.props.hideTypeOfTransport &&
+            <div className="properties_buttonStyle properties_leftButton d-flex" >
+              <AutoMenu isVisible={true} />
+            </div>
+          }
+
 
           <div className="d-flex align-items-center" style={{ position: "relative" }}>
             <div className="properties_buttonStyle properties_leftButton d-flex" onClick={() => {
@@ -115,7 +118,7 @@ class DriversPropertiesClass extends React.Component {
 
 const DriversProperties = connect(
   (state) => ({
-    storeState: state.AppReduser,
+    // storeState: state.AppReduser,
   }),
 )(DriversPropertiesClass);
 
