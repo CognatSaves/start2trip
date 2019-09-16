@@ -182,6 +182,7 @@ export const AppReduser = (state = initialState, action) => {
             return newState;
         }
         case SET_ACTIVE_LANG_ISO: {
+            debugger;
             let newState = {
                 ...state
             };
@@ -191,7 +192,7 @@ export const AppReduser = (state = initialState, action) => {
                     newState.languageTextMain = langArrayMassMain[isoMainIndex];
                 }
             }
-            if (action.adminISO && action.adminISO > 0) {
+            if (action.adminISO && action.adminISO.length > 0) {
                 let isoAdminIndex = langArrayMassAdminISO.indexOf(action.adminISO);
                 if (isoAdminIndex !== -1) {
                     newState.languageText = langArrayMassAdmin[isoAdminIndex];

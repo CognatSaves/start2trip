@@ -19,8 +19,79 @@ import Stars from '../stars/Stars'
 import FlatButton from 'material-ui/FlatButton';
 import Cookies from 'universal-cookie';
 import axios from 'axios';
+
+import Checkbox from '@material-ui/core/Checkbox';
 const cookies = new Cookies();
 
+const tourSeatsModalContent= (that,pseudoTableHeaderArray,tableElementsWidth,isErrorBlock) => {
+    //
+    console.log(that,pseudoTableHeaderArray,tableElementsWidth,isErrorBlock);
+    return (
+        <div className="d-flex flex-column flex-md-row" style={{maxHeight: isMobileOnly ? '500px' : '2000px'}}>
+        
+            <div className="d-flex flex-column">
+                <div>
+                    {"Тур "+(that.state.tourSeatsModalSelectedElement ? that.selectTourName(that.state.tourSeatsModalSelectedElement) : '')}
+                </div>
+                <DayPicker
+                    selectedDays={that.state.tourSeatsSelectedDays}
+                    onDayClick={that.handleTourSeatsDayClick}
+                />
+                {
+                    !isMobileOnly ? 
+                        <div>{"В этом календаре кликабельными будут только выбранные Вами в настройках тура дни, при нажатии на любые другие ничего происходить не будет. Если их число ограничено, то они будут выбраны изначально."}</div>
+                        : <React.Fragment/>
+                }
+                
+            </div>         
+            <div className="d-flex flex-column" style={{minWidth: '300px', maxHeight: '60vh', overflowY: 'auto'}}>
+                <div>Таблица количества мест в выбранные дни</div>
+
+                <table style={{textAlign: 'center'}}>
+                    <tr>
+                        {
+                        pseudoTableHeaderArray.map((element, index)=>{
+                            return(
+                                <td width={tableElementsWidth[index]}>{element}</td>
+                            )
+                        })  
+                        } 
+                    </tr>
+                    {                      
+                        that.state.tourSeatsBlocks.map((element,index)=>{
+                            
+                            //let date = this.props.globalReduser.createDateTimeString(element, true);
+                            //let seats = checkDateSeatsNumber(date, this);
+                            return(
+                                <tr style={{backgroundColor: isErrorBlock(element.id,that) ? 'red' : 'transparent'}}> 
+                                <td width={tableElementsWidth[0]} >{that.props.globalReduser.createDateTimeString(element.date, true)}</td>
+                                    <td width={tableElementsWidth[1]} >
+                                        <input style={{width: '100%'}} type="number" value={element.freeSeats}
+                                            onChange={(e)=>{  let value = e.target.value;
+                                            if(value>=0){
+                                            let tourBlocks = that.state.tourSeatsBlocks;
+                                            tourBlocks[index].freeSeats = parseInt(value,10);
+                                            that.setState({
+                                                tourSeatsBlocks: tourBlocks
+                                            })
+                                            }
+                                            
+                                            }}/>
+                                    </td>
+                                    <td width={tableElementsWidth[2]} >{element.reservedSeats}</td>
+                                </tr>
+                            )
+                        })                       
+                    }
+                </table>
+                <button onClick={()=>that.tourSeatsApplyChanges()}>ты это, сохраняй, если что</button>
+                <button onClick={()=>that.tourSeatsModalShow()}>ну вот и всё, бывай</button>
+            </div>
+                                  
+        </div>
+
+    )
+}
 class AgencyProfileTourClass extends React.Component {
     constructor(props) {
         super(props);
@@ -73,6 +144,8 @@ class AgencyProfileTourClass extends React.Component {
                 time: "",
                 tagsSelected: [],
                 tagsUnselected: tagsUnselected,
+                isPricePerPerson: false,
+                daysNumber:1
             },
             collapse: false,
             calendarModal: false,
@@ -213,6 +286,8 @@ class AgencyProfileTourClass extends React.Component {
                 time: "",
                 tagsSelected: [],
                 tagsUnselected: tagsUnselected,
+                isPricePerPerson: false,
+                daysNumber:1
             };
             this.setState({
                 tourSave: tourSave,
@@ -297,7 +372,9 @@ class AgencyProfileTourClass extends React.Component {
                 seats: element.seats,
                 time: element.time,
                 tagsSelected: tagsSelected,
-                tagsUnselected: tagsUnselected
+                tagsUnselected: tagsUnselected,
+                isPricePerPerson: element.isPricePerPerson,
+                daysNumber:element.daysNumber
             };
             this.setState({
                 tourSave: tourSave,
@@ -517,7 +594,13 @@ class AgencyProfileTourClass extends React.Component {
     };
     tourSeatsModalShow = (element)=>{
         
-        this.setState({ tourSeatsModal: !this.state.tourSeatsModal, tourSeatsModalSelectedElement:!this.state.tourSeatsModal ? element : undefined });
+        this.setState({ 
+            tourSeatsModal: !this.state.tourSeatsModal,
+            tourSeatsModalSelectedElement:!this.state.tourSeatsModal ? element : undefined,
+            tourSeatsSelectedDays: [],
+            tourSeatsBlocks:[],
+            tourSeatsErrorElementArray: []
+        });
     }
     // addDate = (dates) => {
 
@@ -760,6 +843,7 @@ class AgencyProfileTourClass extends React.Component {
     handleTourSeatsDayClick = (day, {selected})=>{
         function checkDateSeatsNumber(date, that){
             let selectedTour = that.state.tourSeatsModalSelectedElement;
+            
             if(!selectedTour){
                 return undefined;
             }
@@ -769,7 +853,19 @@ class AgencyProfileTourClass extends React.Component {
                     return {id:selectedTour.tourSeatsData[i].id ,freeSeats: selectedTour.tourSeatsData[i].seatsMax - selectedTour.tourSeatsData[i].reservedSeats, reservedSeats: selectedTour.tourSeatsData[i].reservedSeats};
                 }
             }
-            return {freeSeats: selectedTour.seats, reservedSeats: 0};
+            
+            if(selectedTour.daily){
+                return {freeSeats: selectedTour.seats, reservedSeats: 0};
+            }
+            else{
+                for(let i=0; i<selectedTour.calendary.length; i++){
+                    let dataDate = that.props.globalReduser.createDateTimeString(selectedTour.calendary[i], true);
+                    if(date===dataDate){
+                        return {freeSeats: selectedTour.seats, reservedSeats: 0};
+                    }
+                }
+            }
+            return undefined;
         }
         
 
@@ -833,7 +929,7 @@ class AgencyProfileTourClass extends React.Component {
                 }
                 else{
                     function setSelectedElementsValue(that, data){
-                        debugger;
+                        
                         let selectedDateArray = [];
                         let tourSeatsBlocks = that.state.tourSeatsBlocks;
                         for(let i=0; i<that.state.tourSeatsBlocks.length;i++){
@@ -847,7 +943,7 @@ class AgencyProfileTourClass extends React.Component {
                                 year: year
                             }
                         }
-                        debugger;
+                        
                         for(let i=0; i<data.tourSeatsData.length; i++){
                             let date = new Date(data.tourSeatsData[i].startDefault);
                             let day = date.getDate();
@@ -868,7 +964,7 @@ class AgencyProfileTourClass extends React.Component {
                     console.log('good');
                     console.log(data);
                     //запись данных в профиль
-                    debugger;
+                    
                     let profile = that.props.globalReduser.profile;
                     let index = -1;
                     for(let i=0; i<profile.tours.length;i++){
@@ -965,96 +1061,38 @@ class AgencyProfileTourClass extends React.Component {
                     />
 
                 </Dialog>
-
-                <Dialog 
-                    actions={actionTour}
-                    modal={false}
-                    bodyStyle={{ padding: 0 }}
-                    contentStyle={isMobile ? customContentStyle : ""}
-                    open={this.state.tourSeatsModal}
-                    onRequestClose={()=>{}/*this.tourSeatsModalShow*/}
-                >
-                    <div className="d-flex flex-row">
-                        <div className="d-flex flex-column">
-                            <div>
-                                {"Тур "+(this.state.tourSeatsModalSelectedElement ? this.selectTourName(this.state.tourSeatsModalSelectedElement) : '')}
-                            </div>
-                            <DayPicker
-                                selectedDays={this.state.tourSeatsSelectedDays}
-                                onDayClick={/*()=>{this.setState({...this.state})}*/this.handleTourSeatsDayClick}
-                                shouldDisableDate={(date)=>{
-                                    let flag = false;
-                                    if(this.state.tourSave.daily){//если тур ежедневный, то доступны все даты
-                                        flag=false;
-                                    }
-                                    else{//иначе надо пробежаться по календарю
-                                        for(let i=0; i<this.state.tourSave.calendary; i++){
-                                            let newDate = new Date(this.state.tourSave.calendary[i].substr(0,10));
-                                            let newDay = newDate.getDate();
-                                            let newMonth = newDate.getMonth();
-                                            let newYear = newDate.getFullYear();
-                                            let day = date.getDate();
-                                            let month = date.getMonth();
-                                            let year = date.getFullYear()
-                                            if (newDay === day && newMonth === month && newYear === year) {             
-                                                flag = false;//если объект есть в календаре, то он доступен
-                                            }
-                                            else{
-                                                flag=true;//иначе не доступен
-                                            }
-                                        }
-                                    }
-                                    return flag;
-                                }}
-                            />
-                        </div>
-                        <div className="d-flex flex-column">
-                            <div>Таблица количества мест в выбранные дни</div>
-
-                            <table style={{textAlign: 'center'}}>
-                                <tr>
-                                   {
-                                    pseudoTableHeaderArray.map((element, index)=>{
-                                        return(
-                                            <td width={tableElementsWidth[index]}>{element}</td>
-                                        )
-                                    })  
-                                   } 
-                                </tr>
-                                {                      
-                                    this.state.tourSeatsBlocks.map((element,index)=>{
-                                        
-                                        //let date = this.props.globalReduser.createDateTimeString(element, true);
-                                        //let seats = checkDateSeatsNumber(date, this);
-                                        return(
-                                            <tr style={{backgroundColor: isErrorBlock(element.id,this) ? 'red' : 'transparent'}}/*className="d-flex flex-row"*/> 
-                                                <td width={tableElementsWidth[0]} >{this.props.globalReduser.createDateTimeString(element.date, true)}</td>
-                                                <td width={tableElementsWidth[1]} >
-                                                    <input style={{width: '100%'}} type="number" value={element.freeSeats}
-                                                     onChange={(e)=>{  let value = e.target.value;
-                                                     if(value>=0){
-                                                        let tourBlocks = this.state.tourSeatsBlocks;
-                                                        tourBlocks[index].freeSeats = parseInt(value,10);
-                                                        this.setState({
-                                                            tourSeatsBlocks: tourBlocks
-                                                        })
-                                                     }
-                                                     
-                                                     }}/>
-                                                </td>
-                                                <td width={tableElementsWidth[2]} >{element.reservedSeats}</td>
-                                            </tr>
-                                        )
-                                    })                       
-                                }
-                            </table>
-                            <button onClick={()=>this.tourSeatsApplyChanges()}>ты это, сохраняй, если что</button>
-                            <button onClick={()=>this.tourSeatsModalShow()}>ну вот и всё, бывай</button>
-                        </div>
-
-                        
-                    </div>
-                </Dialog>
+                {
+                    isMobileOnly ?
+                    <>
+                        <Dialog fullScreen
+                            actions={actionTour}
+                            modal={false}
+                            bodyStyle={{ padding: 0, width: '100%' }}
+                            contentStyle={isMobile ? customContentStyle : ""}
+                            open={this.state.tourSeatsModal}
+                            onRequestClose={()=>{}/*this.tourSeatsModalShow*/}
+                        >
+                            {
+                                tourSeatsModalContent(this,pseudoTableHeaderArray,tableElementsWidth,isErrorBlock)
+                            }                  
+                        </Dialog>
+                    </> : 
+                    <>
+                        <Dialog 
+                            actions={actionTour}
+                            modal={false}
+                            bodyStyle={{ padding: 0, width: '100%' }}
+                            contentStyle={isMobile ? customContentStyle : ""}
+                            open={this.state.tourSeatsModal}
+                            onRequestClose={()=>{}/*this.tourSeatsModalShow*/}
+                        >
+                            {
+                                tourSeatsModalContent(this,pseudoTableHeaderArray,tableElementsWidth,isErrorBlock)
+                            }                  
+                        </Dialog>
+                    </>
+                }
+             
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
                 <Collapse isOpen={this.state.collapse}>
                     <div className="tourSettingsBody">
@@ -1285,7 +1323,14 @@ class AgencyProfileTourClass extends React.Component {
                                             <MenuItem value={element.id} primaryText={element.ISO} />
                                         )}
                                     </DropDownMenu>
+                                    
                                 </div>
+                            </div>
+                            <div className="paddingL10 d-flex flex-md-row flex-column align-items-md-center align-items-start">
+                                <label className="d-md-block d-none col-2 "></label>
+                                <label htmlFor={"isPricePerPersonCheckbox"} >{"Цена за место"}</label>
+                                <Checkbox checked={this.state.tourSave.isPricePerPerson} id={"isPricePerPersonCheckbox"} onChange={()=>{let tourSave = this.state.tourSave; tourSave.isPricePerPerson = !(tourSave.isPricePerPerson); this.setState({tourSave: tourSave})}}/>
+                                <p className=" d-md-block d-none m-0 col-md-6 col-5">{"Если не выбрано, то предполагается цена за весь тур."}</p>
                             </div>
                             <div className="paddingL10 d-flex flex-md-row flex-column align-items-md-center align-items-start">
                                 <label className="d-md-block d-none col-2 ">{textPage.additionalInformation.directions.floatingLabelText}:</label>
@@ -1417,7 +1462,7 @@ class AgencyProfileTourClass extends React.Component {
                                 <div className="tourPhotoMiniContainer d-flex flex-wrap">
 
                                     {this.state.tourSave.mainImage.length > 0 ?
-                                        <div className="position-relative" style={{ width: '130px' }}>
+                                        <div className="position-relative" style={{ /*width: '130px'*/ }}>
                                             <img src={this.state.tourSave.mainImage} className="tourPhotoMini" alt="add_mainImage" onClick={() => { this.setState({ imagePreviewUrl: this.state.tourSave.mainImage }) }} />
                                             <span onClick={() => { this.state.tourSave.mainImage = ''; this.state.tourSave.mainImageFile = ""; this.setState({ tourSave: { ...this.state.tourSave }, imagePreviewUrl: '' }) }}></span>
                                         </div>
@@ -1439,7 +1484,7 @@ class AgencyProfileTourClass extends React.Component {
                                 <div className="tourPhotoMiniContainer d-flex flex-wrap">
 
                                     {this.state.tourSave.blockListImage.length > 0 ?
-                                        <div className="position-relative" style={{ width: '130px' }}>
+                                        <div className="position-relative" style={{ /*width: '130px'*/ }}>
                                             <img src={this.state.tourSave.blockListImage} className="tourPhotoMini" alt="add_blockListImage" onClick={() => { this.setState({ imagePreviewUrl: this.state.tourSave.blockListImage }) }} />
                                             <span onClick={() => { this.state.tourSave.blockListImage = ''; this.state.tourSave.blockListImageFile = ""; this.setState({ tourSave: { ...this.state.tourSave }, imagePreviewUrl: '' }) }}></span>
                                         </div>
