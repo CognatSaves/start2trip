@@ -17,7 +17,7 @@ class TourInfoClass extends React.Component {
             departurePoint: "",
             departureDate: null,
             tours: ["Экскурсионный тур", "Информационно-обозревательный тур", "Оздоровление", "Активный отдых", "Горный тур", "Круизы"],
-            toursValue: "Все туры",
+            toursValue: props.storeState.languageTextMain.tourDescription.tourInfo.menuItemValue,
         }
     }
     changeCity = (index, value) => {
@@ -32,8 +32,8 @@ class TourInfoClass extends React.Component {
             <div className="tourInfoBlock ">
                 <div className="d-flex flex-md-row flex-column justify-content-around align-items-center tourInfoContent">
                     <p>{textInfo.headerText}</p>
-                    <LocationSearchInput placeholder={textInfo.searchPlaceholder} address={this.state.departurePoint} changeCity={this.changeCity} classInput="searchInputTourInfoContent col-12" classDropdown="searchDropdownTourInfoContent" classDiv="col-md-2 col-10 p-0" />
-                    <DatePicker hintText={textInfo.datePickerLabel} id="basicInfoBirthday" className="calendarModal tourInfoContentDate col-md-2 col-10" value={this.state.departureDate}
+                    <LocationSearchInput placeholder={textInfo.searchPlaceholder} address={this.state.departurePoint} changeCity={this.changeCity} classInput="searchInputTourInfoContent col-12" classDropdown="searchDropdownTourInfoContent" classDiv="col-md-2 col-10 p-0"  isoCountryMap={this.props.storeState.isoCountryMap} />
+                    <DatePicker hintText={textInfo.datePickerLabel}  minDate={new Date()} id="basicInfoBirthday" className="calendarModal tourInfoContentDate col-md-2 col-10" value={this.state.departureDate}
                         onChange={(undefined, data) => { this.setState({ departureDate: data }) }}
                     />
                     <FormControl className="d-flex flex-wrap col-md-2 col-10 p-0">

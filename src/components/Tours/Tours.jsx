@@ -296,7 +296,7 @@ class ToursClass extends React.Component {
                 <TourInfo />
                 {/* <PlacesTagList  placesState={this.props.placesState}/> */}
                 {/* <PlacesPanel  placesState={this.props.placesState} /> */}
-                <DriversProperties />
+                <DriversProperties storeState={this.props.storeState} hideTypeOfTransport={true}  />
                 <ToursList isStaying={!this.state.isRefreshExist} />
               </div>
               {/* <div className="right_body_part col-3">
