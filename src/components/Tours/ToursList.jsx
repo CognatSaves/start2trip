@@ -104,7 +104,7 @@ class ToursListClass extends React.Component {
                     {selectedPlaces.map((element, index) =>
                         <>
                             <ToursListElement element={element} index={index} findTagName={(tag) => findTagName(tag, this)}
-
+                            departureDate={this.props.departureDate}
                             />
                         </>
                     )}

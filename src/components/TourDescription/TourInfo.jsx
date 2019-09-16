@@ -15,7 +15,6 @@ class TourInfoClass extends React.Component {
         super(props);
         this.state = {
             departurePoint: "",
-            departureDate: null,
             tours: ["Экскурсионный тур", "Информационно-обозревательный тур", "Оздоровление", "Активный отдых", "Горный тур", "Круизы"],
             toursValue: props.storeState.languageTextMain.tourDescription.tourInfo.menuItemValue,
         }
@@ -32,9 +31,18 @@ class TourInfoClass extends React.Component {
             <div className="tourInfoBlock ">
                 <div className="d-flex flex-md-row flex-column justify-content-around align-items-center tourInfoContent">
                     <p>{textInfo.headerText}</p>
-                    <LocationSearchInput placeholder={textInfo.searchPlaceholder} address={this.state.departurePoint} changeCity={this.changeCity} classInput="searchInputTourInfoContent col-12" classDropdown="searchDropdownTourInfoContent" classDiv="col-md-2 col-10 p-0"  isoCountryMap={this.props.storeState.isoCountryMap} />
-                    <DatePicker hintText={textInfo.datePickerLabel}  minDate={new Date()} id="basicInfoBirthday" className="calendarModal tourInfoContentDate col-md-2 col-10" value={this.state.departureDate}
-                        onChange={(undefined, data) => { this.setState({ departureDate: data }) }}
+                    {/* <LocationSearchInput placeholder={textInfo.searchPlaceholder} address={this.state.departurePoint} changeCity={this.changeCity} classInput="searchInputTourInfoContent col-12" classDropdown="searchDropdownTourInfoContent" classDiv="col-md-2 col-10 p-0"  isoCountryMap={this.props.storeState.isoCountryMap} /> */}    
+                    <input className="searchInputTourInfoContent " placeholder={textInfo.searchPlaceholder} list="places" name="myPlaces" />
+                    <datalist id="places">
+                        <option value="Chrome" />
+                        <option value="Firefox" />
+                        <option value="Internet Explorer" />
+                        <option value="Opera" />
+                        <option value="Safari" />
+                        <option value="Microsoft Edge" />
+                    </datalist>
+                    <DatePicker hintText={textInfo.datePickerLabel} minDate={new Date()} id="basicInfoBirthday" className="calendarModal tourInfoContentDate col-md-2 col-10" value={this.props.departureDate}
+                        onChange={(undefined, data) => { this.props.departureDateChange(data) }}
                     />
                     <FormControl className="d-flex flex-wrap col-md-2 col-10 p-0">
                         <Select

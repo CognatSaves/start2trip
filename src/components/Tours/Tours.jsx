@@ -28,7 +28,8 @@ class ToursClass extends React.Component {
       country: "",
       language: "",
       isRefreshExist: false,
-      selectedDirection: ''
+      selectedDirection: '',
+      departureDate: null,
     }
     //сначала уборка
     this.props.dispatch(setPlacesList([], [], [], {}));
@@ -138,6 +139,10 @@ class ToursClass extends React.Component {
           console.log('An error occurred:', error);
         })
     }
+  }
+  departureDateChange =(data)=>{
+    this.setState({ departureDate: data })
+
   }
   render() {
     function findSelectedDirectionName(directions, selectedDirection) {
@@ -293,11 +298,11 @@ class ToursClass extends React.Component {
             <div className="drivers_body d-flex">
               <div id="placesMainBlock" className="left_body_part col-12 p-0" >
                 <PopularPlaces placesState={this.props.toursState} where={"tours"} />
-                <TourInfo />
+                <TourInfo departureDateChange={this.departureDateChange} departureDate={this.state.departureDate} />
                 {/* <PlacesTagList  placesState={this.props.placesState}/> */}
                 {/* <PlacesPanel  placesState={this.props.placesState} /> */}
                 <DriversProperties storeState={this.props.storeState} hideTypeOfTransport={true}  />
-                <ToursList isStaying={!this.state.isRefreshExist} />
+                <ToursList isStaying={!this.state.isRefreshExist} departureDate={this.state.departureDate} />
               </div>
               {/* <div className="right_body_part col-3">
                 <DriversCommercial />

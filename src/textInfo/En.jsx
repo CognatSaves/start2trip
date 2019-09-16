@@ -19,6 +19,7 @@ import headerAdmin from './En-admin/En-header';
 import helmets from './En/En-helmets';
 import userProfile from './En/En-userProfile';
 import mobileFilter from './En/En-mobileFilter'
+import tours from './En/En-tours'
 export default {
     driverProfile: driverProfile,
     //routeDescription: routeDescription,
@@ -41,4 +42,5 @@ export default {
     helmets:helmets,
     userProfile:userProfile,
     mobileFilter:mobileFilter,
+    tours:tours,
 }
