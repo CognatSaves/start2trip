@@ -460,11 +460,44 @@ class AgencyProfileTourClass extends React.Component {
                 obj[2].classList.add("errorColor");
                 result = false;
             }
+            ////////////////////
+            let value;
+            try{
+                value = parseInt(tourSave.seats,10)
+                if(value<1){
+                    throw Error();
+                }
+            }
+            catch(error){//должно быть тоже самое, что и в следующем блоке
+                obj = document.getElementById('newTourPeople');
+                obj.classList.add("errorColor");
+                result = false;
+            }
             if (tourSave.seats.length === 0 || isNaN(tourSave.seats)) {
                 obj = document.getElementById('newTourPeople');
                 obj.classList.add("errorColor");
                 result = false;
             }
+
+            //////////////////////
+            try{
+                value = parseInt(tourSave.daysNumber,10)
+                if(value<1){
+                    throw Error();
+                }
+            }
+            catch(error){//должно быть тоже самое, что и в следующем блоке
+                obj = document.getElementById('daysNumber');
+                obj.classList.add("errorColor");
+                result = false;
+            }
+            if(tourSave.daysNumber.length === 0 || isNaN(tourSave.daysNumber)){
+                obj = document.getElementById('daysNumber');
+                obj.classList.add("errorColor");
+                result = false;
+            }
+            /////////////////
+
             if (tourSave.imageFiles.length === 0) {
                 obj = document.getElementById('imageLabelError');
                 obj.style.visibility = 'visible';
@@ -481,6 +514,7 @@ class AgencyProfileTourClass extends React.Component {
                 obj.style.visibility = 'visible';
                 result = false;
             }
+            
             return result;
         }
         if (jwt && jwt !== "-" && checkCorrectTour(this.state.tourSave)) {
@@ -509,7 +543,9 @@ class AgencyProfileTourClass extends React.Component {
             tourForm.append('price', tourSave.price);
             tourForm.append('seats', tourSave.seats);
             tourForm.append('time', tourSave.time);
-            
+            tourForm.append('daysNumber',tourSave.daysNumber);
+            tourForm.append('isPricePerPerson', tourSave.isPricePerPerson);
+
             for (let i = 0; i < tourSave.imageFiles.length; i++) {
                 tourForm.append('image', tourSave.imageFiles[i]);
             }
@@ -1328,7 +1364,7 @@ class AgencyProfileTourClass extends React.Component {
                             </div>
                             <div className="paddingL10 d-flex flex-md-row flex-column align-items-md-center align-items-start">
                                 <label className="d-md-block d-none col-2 "></label>
-                                <label htmlFor={"isPricePerPersonCheckbox"} >{"Цена за место"}</label>
+                                <label htmlFor={"isPricePerPersonCheckbox"} style={{marginBottom: 0}}>{"Цена за место"}</label>
                                 <Checkbox checked={this.state.tourSave.isPricePerPerson} id={"isPricePerPersonCheckbox"} onChange={()=>{let tourSave = this.state.tourSave; tourSave.isPricePerPerson = !(tourSave.isPricePerPerson); this.setState({tourSave: tourSave})}}/>
                                 <p className=" d-md-block d-none m-0 col-md-6 col-5">{"Если не выбрано, то предполагается цена за весь тур."}</p>
                             </div>
@@ -1425,11 +1461,26 @@ class AgencyProfileTourClass extends React.Component {
 
                             <div className="paddingL10 d-flex flex-md-row flex-column align-items-md-center align-items-start">
                                 <label htmlFor="newTourPeople" className="d-md-block d-none col-2">{textPage.additionalInformation.newTourPeople}:</label>
-                                <input id="newTourPeople" className="d-md-block d-none col-md-4 col-12" type="text"
+                                <input id="newTourPeople" className="d-md-block d-none col-md-4 col-12" type="number"
                                     value={this.state.tourSave.seats} onChange={(e) => {
                                         let obj = document.getElementById('newTourPeople');
                                         obj.classList.remove("errorColor");
                                         this.setState({ tourSave: { ...this.state.tourSave, seats: e.currentTarget.value } })
+                                    }
+                                    } />
+                            </div>
+                            <div className="paddingL10 d-flex flex-md-row flex-column align-items-md-center align-items-start">
+                            {
+                                //TODO переводы
+                            }
+                                <label htmlFor="daysNumber" className="d-md-block d-none col-2">{"Количество дней"}:</label>
+                                <input id="daysNumber" className="d-md-block d-none col-md-4 col-12" type="number"
+                                    value={this.state.tourSave.daysNumber} onChange={(e) => {
+                                        let obj = document.getElementById('daysNumber');
+                                        obj.classList.remove("errorColor");
+                                        
+                                        this.setState({ tourSave: { ...this.state.tourSave, daysNumber: e.currentTarget.value }})
+                                        
                                     }
                                     } />
                             </div>
