@@ -23,7 +23,7 @@ class ValueMenuClass extends React.Component {
         this.props.dispatch(setTempPricePart(this.props.storeState.pricePart, false));
     }
     valuetext = (value) => {
-        
+
         if (value === this.state.price) {
 
         } else {
@@ -36,7 +36,7 @@ class ValueMenuClass extends React.Component {
         let containerId = "drivers_properties_valueMenu";
         let storeState = this.props.storeState;
         let activeCurrency = storeState.currencies[storeState.activeCurrencyNumber]
-        if(this.state.maxPrice!==this.props.storeState.maxPrice){
+        if (this.state.maxPrice !== this.props.storeState.maxPrice) {
             this.setState({
                 price: this.props.storeState.maxPrice,
                 maxPrice: this.props.storeState.maxPrice
@@ -47,9 +47,9 @@ class ValueMenuClass extends React.Component {
         if (this.props.isVisible) {
             return (
                 <div id={containerId} className="drivers_properties_valueMenu">
-                    <div className="valueMenu_borderElement"><p>{textInfo.priceWord+' ' + (activeCurrency.isLeft ? activeCurrency.symbol+' ' : '')
-                      + Math.ceil(this.state.price * activeCurrency.costToDefault) +
-                      (!activeCurrency.isLeft ? ' '+activeCurrency.symbol : '')}</p></div>
+                    <div className="valueMenu_borderElement"><p>{textInfo.priceWord + ' ' + (activeCurrency.isLeft ? activeCurrency.symbol + ' ' : '')
+                        + Math.ceil(this.state.price * activeCurrency.costToDefault) +
+                        (!activeCurrency.isLeft ? ' ' + activeCurrency.symbol : '')}</p></div>
                     <Slider
                         defaultValue={this.props.storeState.pricePart}
                         value={this.state.price}
@@ -72,7 +72,7 @@ class ValueMenuClass extends React.Component {
         }
         else {
             return (
-                <React.Fragment></React.Fragment>
+                <React.Fragment />
             )
         }
     }

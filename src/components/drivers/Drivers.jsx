@@ -22,7 +22,7 @@ class DriversClass extends React.Component {
       maxPrice: maxPrice,
       elementPrice: 0,
     }
-    props.setCities([{point: '', lat: '', long: ''}, {point: '', lat: '', long: ''}])
+    props.setCities([{ point: '', lat: '', long: '' }, { point: '', lat: '', long: '' }])
   }
   maxPriceCalc = (array) => {
     let maxValue = 0;
@@ -44,7 +44,7 @@ class DriversClass extends React.Component {
     return true;
   }
   changeTravelVisibility = (elementPrice) => {
-    
+
     this.setState({
       travelVisibility: !this.state.travelVisibility,
       elementPrice: elementPrice
@@ -127,7 +127,7 @@ class DriversClass extends React.Component {
         this.parseStringToArray(cities, country[0], country[1]);
       } else {
         let routeFuncResult = this.props.globalReduser.getRoute(this.props.storeState.cities,
-           this.props.storeState.languages[this.props.storeState.activeLanguageNumber].isoAutocomplete);
+          this.props.storeState.languages[this.props.storeState.activeLanguageNumber].isoAutocomplete);
         cities = routeFuncResult.route;
         dateString = this.props.globalReduser.createDateTimeString(this.props.storeState.date, true);
       }
@@ -141,12 +141,12 @@ class DriversClass extends React.Component {
     let route = createTitleString(cities);
 
     let textInfo = this.props.storeState.languageTextMain.drivers.mainPage;
-    
-    console.log(window); 
+
+    console.log(window);
     let helmet = this.props.storeState.languageTextMain.helmets.drivers;
 
     return (
-      <React.Fragment>
+      <>
         {
           countryName.length > 0 ?
             (this.props.storeState.languages.length > 0 ?
@@ -169,7 +169,7 @@ class DriversClass extends React.Component {
                 <meta property="og:description" content={helmet.country.description} />
               </Helmet>)
             :
-            <React.Fragment/>
+            <React.Fragment />
         }
 
 
@@ -178,17 +178,17 @@ class DriversClass extends React.Component {
           <div className="drivers_bottom_background d-flex flex-column" >
             <div className="left_body_part col-12 d-flex flex-column p-0">
               <DriversProperties />
-              <DriversBlock changeTravelVisibility={this.changeTravelVisibility} country={country} cities={cities} dateString={dateString}/>
+              <DriversBlock changeTravelVisibility={this.changeTravelVisibility} country={country} cities={cities} dateString={dateString} />
             </div>
           </div>
         </div>
         <StartTravelForm {...this.props} changeTravelVisibility={this.changeTravelVisibility} driversState={this.props.driversState}
           travelVisibility={this.state.travelVisibility} isoCountryMap={this.props.storeState.isoCountryMap} storeState={this.props.storeState}
           elementPrice={this.state.elementPrice} activeCurrency={activeCurrency} textInfo={this.props.storeState.languageTextMain.startTravelForm} changeSuccessVisibility={this.changeSuccessVisibility} />
-        <StartTravelSuccess successVisibility={this.state.successVisibility} changeSuccessVisibility={this.changeSuccessVisibility} 
+        <StartTravelSuccess successVisibility={this.state.successVisibility} changeSuccessVisibility={this.changeSuccessVisibility}
           textInfo={this.props.storeState.languageTextMain.startTravelForm}
         />
-      </React.Fragment>
+      </>
     );
   }
 }

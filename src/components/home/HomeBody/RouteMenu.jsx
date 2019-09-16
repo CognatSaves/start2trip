@@ -1,7 +1,7 @@
 import React from 'react';
 import './RouteMenu.css'
 import { connect } from 'react-redux';
-import { setCities, set_state,clearFilters } from '../../../redusers/Action'
+import { setCities, set_state, clearFilters } from '../../../redusers/Action'
 import { isMobileOnly } from 'react-device-detect'
 import { setDriversList, setCarTypes, setWaitingDriverRequest } from '../../../redusers/ActionDrivers';
 import { AppReduser } from '../../../redusers/AppReduser';
@@ -26,7 +26,7 @@ const CityRouteTable = (props) => {
   // console.log(workCities, "workCities");
   //
   return (
-    <React.Fragment>
+    <>
       {isMobileOnly ?
         <div className="addCities" id={'addCities.' + language}>
           {cities.map((element, index) =>
@@ -83,7 +83,7 @@ const CityRouteTable = (props) => {
                       {textInfo.removePointText}</span>
                   </div>
                 */
-                
+
               }
               <div className="crossToolTip col p-0" style={{ display: index <= 1 ? "none" : "" }}
                 onClick={() => removeCity(index)}>
@@ -99,11 +99,11 @@ const CityRouteTable = (props) => {
             readOnlyOn ?
               <React.Fragment />
               :
-              <React.Fragment>
+              <>
                 <div className=" d-flex routemenu_addCity col" onClick={() => { addCity() }}>
                   <div className="routemenu_city_add_text" style={{ background: "url(" + addIcon + ") no-repeat" }} >{textInfo.addPointText}</div>
                 </div>
-              </React.Fragment>
+              </>
             */
           }
           <div className=" d-flex routemenu_addCity col" onClick={() => { addCity() }}>
@@ -112,7 +112,7 @@ const CityRouteTable = (props) => {
 
         </div>
       }
-    </React.Fragment>
+    </>
   )
 }
 
@@ -129,25 +129,25 @@ class RouteMenuClass extends React.Component {
 
     }
     super(props);
-    
+
     console.log(window);
     console.log(props.match);
     console.log(document);
 
     let result = props.globalhistory.findGetParameter("date");
     let dateValue;
-    
+
     if (result) {
       dateValue = props.globalhistory.getDateFromDateString(result);
       dateValue = new Date(dateValue);
       let now = new Date(Date.now());
-      if(dateValue<now){
+      if (dateValue < now) {
         //dateValue = new Date(Date.now())
-        
-        let day = dateValue.getDate();let month = dateValue.getMonth(); let year = dateValue.getFullYear();
-        let daynow = now.getDate();let monthnow = now.getMonth(); let yearnow = now.getFullYear();
-        
-        if(day!==daynow || month!==monthnow || year!==yearnow){
+
+        let day = dateValue.getDate(); let month = dateValue.getMonth(); let year = dateValue.getFullYear();
+        let daynow = now.getDate(); let monthnow = now.getMonth(); let yearnow = now.getFullYear();
+
+        if (day !== daynow || month !== monthnow || year !== yearnow) {
           //если равен, то значит человек заказывает сегодня на сегодня, это норм
           //всё одно у нас есть время создания заказа
           //проверку оставлю на бек
@@ -160,30 +160,30 @@ class RouteMenuClass extends React.Component {
     /*else{
       dateValue = '';
     }*/
-    
+
     let pathnameMAss = document.location.pathname.split("/");
     //случай массива ['','geo-ru','routes',''], который возникает в случае, когда мы закрыли последний слеш, тоже надо учесть - отсюда 'или' ниже
-    let ares = (pathnameMAss[pathnameMAss.length-1].length>0 && pathnameMAss.length>3);/*>3 - "","geo", "drivers", ещё что-tо */
-    let bres = (pathnameMAss.length>4)//после ещё чего-то ещё слеш
-    let resultpathname =( ares || bres) ? true : false;
+    let ares = (pathnameMAss[pathnameMAss.length - 1].length > 0 && pathnameMAss.length > 3);/*>3 - "","geo", "drivers", ещё что-tо */
+    let bres = (pathnameMAss.length > 4)//после ещё чего-то ещё слеш
+    let resultpathname = (ares || bres) ? true : false;
     //вышестоящее условие звучит следующим образом - если в адресной строке больше или равно 4 элементов,
     //то мы находимся не в /geo/(drivers|route) просто,а в /geo/(drivers|route)/что-то там, что
     //означает, что можно попробовать построить маршрут
     // так как проверка идёт а-ля - загружено ли(и мы считаем, что загружено, если грузить не надо), то сравнение наоборот
-    if(resultpathname){//т.е. есть города в адресе
-      
-      setCitiesFromUrl(pathnameMAss[ares ? pathnameMAss.length-1 : pathnameMAss.length-2]);
-      
+    if (resultpathname) {//т.е. есть города в адресе
+
+      setCitiesFromUrl(pathnameMAss[ares ? pathnameMAss.length - 1 : pathnameMAss.length - 2]);
+
     }
-    if(!dateValue){
+    if (!dateValue) {
       dateValue = new Date(Date.now())
     }
     /**/
-    
+
     let resultString = (props.globalhistory.convertDateToUTC(dateValue)).toUTCString();
     console.log(resultString);
     this.state = {
-      correctDate:dateValue,
+      correctDate: dateValue,
       isWaiting: false,
       isRefreshing: true,
       isGoodAnswer: true,
@@ -191,7 +191,7 @@ class RouteMenuClass extends React.Component {
       isLoaded: !resultpathname//переменная для загрузки 1 раза водителей - если есть города, то не загружено пока.
       //language: this.props.storeState.activeLanguageNumber
     }
-    
+
     props.dispatch(set_state(props.storeState.cities, resultString))
     props.dispatch(clearFilters());
     this.chooseDate(dateValue)
@@ -257,10 +257,10 @@ class RouteMenuClass extends React.Component {
 
 
   chooseDate = (value) => {
-    
-    
+
+
     let resultString = this.props.globalhistory.convertDateToUTC(value).toUTCString();
-    if(this.state.date!==resultString){
+    if (this.state.date !== resultString) {
       this.props.dispatch(set_state(this.props.storeState.cities, resultString))
       this.setState({
         date: resultString,
@@ -298,7 +298,7 @@ class RouteMenuClass extends React.Component {
   }
 
   goToNextPage = () => {
-    
+
     let massCities = this.props.storeState.cities;
     let flagCities;
 
@@ -330,7 +330,7 @@ class RouteMenuClass extends React.Component {
     }
   }
   requestFunction = (allGoodAfterfunc) => {
-    
+
     this.setState({ isWaiting: true, isRefreshing: true, isGoodAnswer: true, isLoaded: true });
     this.props.dispatch(setWaitingDriverRequest(true));
     let that = this;
@@ -354,7 +354,7 @@ class RouteMenuClass extends React.Component {
       };
       return request;
     }
-    
+
     let cities = this.props.storeState.cities;
     let filteredCities = this.props.globalhistory.firstLastCityCompare(cities);//проверка 1-го и последнего городов
 
@@ -387,43 +387,43 @@ class RouteMenuClass extends React.Component {
         res.duration = res.duration / 60;//конверсия в минуты
         return res;
       }
-      function setLengthTimeFunc (that,travelLength, travelTime,textInfo) {
-        function getLengthString(travelLength,textInfo) {//дистанция в км
-            let length = travelLength;
-            length = Math.ceil(length);
-            let lengthString = length + " "+textInfo.km;
-            return lengthString;
+      function setLengthTimeFunc(that, travelLength, travelTime, textInfo) {
+        function getLengthString(travelLength, textInfo) {//дистанция в км
+          let length = travelLength;
+          length = Math.ceil(length);
+          let lengthString = length + " " + textInfo.km;
+          return lengthString;
         }
-        function getTimeString(travelTime,textInfo) {//время в минутах
-            let hours = travelTime / 60 ^ 0;
-            let minutes = (travelTime - hours * 60) ^ 0;
-            let days = hours / 24 ^ 0;
-            hours = hours - days * 24;
-            let timeString = "";
-            if (days !== 0) {
-                timeString += days + " "+textInfo.days+" " + hours + " "+textInfo.hours;
+        function getTimeString(travelTime, textInfo) {//время в минутах
+          let hours = travelTime / 60 ^ 0;
+          let minutes = (travelTime - hours * 60) ^ 0;
+          let days = hours / 24 ^ 0;
+          hours = hours - days * 24;
+          let timeString = "";
+          if (days !== 0) {
+            timeString += days + " " + textInfo.days + " " + hours + " " + textInfo.hours;
+          }
+          else {
+            if (hours !== 0) {
+              timeString += hours + " " + textInfo.hours + " ";
             }
-            else {
-                if (hours !== 0) {
-                    timeString += hours + " "+textInfo.hours + " ";
-                }
-                timeString += minutes + " "+textInfo.minutes;
-            }
-            return timeString;
+            timeString += minutes + " " + textInfo.minutes;
+          }
+          return timeString;
         }
-        
-        let lengthString = getLengthString(travelLength,textInfo);
-        let timeString = getTimeString(travelTime,textInfo);
+
+        let lengthString = getLengthString(travelLength, textInfo);
+        let timeString = getTimeString(travelTime, textInfo);
         that.props.dispatch(setLengthTime(timeString, lengthString));
       }
       console.log(response);
       console.log(status);
-      
+
       let routeProps = lengthTimeCalc(response);
-      
-      setLengthTimeFunc(that,routeProps.distance,routeProps.duration,textInfo);
-      
-      
+
+      setLengthTimeFunc(that, routeProps.distance, routeProps.duration, textInfo);
+
+
       let body = JSON.stringify({
         cities: filteredCities,
         country: country,
@@ -431,17 +431,17 @@ class RouteMenuClass extends React.Component {
         distance: routeProps.distance,
         duration: routeProps.duration
       });
-      
+
       fetch(requests.getDrivers, {
         method: 'PUT', body: body,
         headers: { 'content-type': 'application/json' }
       })
         .then(response => {
-          
+
           return response.json();
         })
         .then(function (data) {
-          
+
           if (data.error) {
             console.log("bad");
             that.setState({ isRefreshing: false, isGoodAnswer: false });
@@ -549,33 +549,33 @@ class RouteMenuClass extends React.Component {
         }
       }*/
     }
-    
+
     let textInfo = this.props.storeState.languageTextMain.home.routeMenu;
     console.log('Route Menu render, lang=', this.props.storeState.activeLanguageNumber);
-    
+
     let result = this.props.globalhistory.findGetParameter("date");
-    
+
     //данный кусок кода выставляет первичное значение даты. Очень хотелось воспользоваться 
     //функцией, которая не желает быть вызванной в конструкторе.
     //но в результате данный клок будет отрабатывать только один раз - в самом начале   
-    if(this.state.date.length===0){
+    if (this.state.date.length === 0) {
       let dateValue;
       if (result) {
         dateValue = this.props.globalhistory.getDateFromDateString(result);
         dateValue = new Date(dateValue);
       }
-      if(!dateValue){
-        
+      if (!dateValue) {
+
         dateValue = new Date(Date.now())
       }
-      
+
       this.chooseDate(dateValue);
     }
-    
+
     //функция имеет внутри себя проверку на то, чтобы не было зацикливания, а именно
     // если в редусере лежит то же, что мы туда кладём, то ничего класть мы не будем
     return (
-      <React.Fragment>
+      <>
         <div className="routemenu_container d-flex flex-column col-12">
           {
             this.state.isWaiting ?
@@ -584,7 +584,7 @@ class RouteMenuClass extends React.Component {
           }
           {
             isMobileOnly ?
-              <React.Fragment>
+              <>
                 <div key={"cityRouteTable" + this.props.storeState.activeLanguageNumber} id={"idCityRouteTable." + this.props.storeState.activeLanguageNumber}>
                   <CityRouteTable textInfo={textInfo} language={this.props.storeState.activeLanguageNumber}
                     /*readOnlyOn={this.props.showBtPrice}*/ cities={this.props.storeState.cities}
@@ -604,9 +604,9 @@ class RouteMenuClass extends React.Component {
                 <div className=" d-flex routemenu_addCity" onClick={() => { this.addCity() }}>
                   <div className="routemenu_city_add_text" style={{ background: "url(" + addIcon + ") no-repeat" }} >{textInfo.addPointText}</div>
                 </div>
-              </React.Fragment>
+              </>
               :
-              <React.Fragment>
+              <>
                 <div key={"cityRouteTable2" + this.props.storeState.activeLanguageNumber} id={"idCityRouteTable2." + this.props.storeState.activeLanguageNumber}>
                   <CityRouteTable textInfo={textInfo} language={this.props.storeState.activeLanguageNumber}
                     /*readOnlyOn={this.props.showBtPrice}*/ cities={this.props.storeState.cities} changeCity={this.changeCity}
@@ -614,28 +614,28 @@ class RouteMenuClass extends React.Component {
                     isoCountryMap={this.props.storeState.isoCountryMap}
                     alphabet={this.props.globalhistory.alphabet} />
                 </div>
-              </React.Fragment>
+              </>
           }
 
           <div className="routemenu_setDate">
-          {
-            this.state.date.length>0 ? //это выражение ожидает установки даты - пока в this.state.correctDate не установится значение, мы не можем назначить defaultDate.
-            //просто все дальнейшие изменения даты будут вызваны DatePicker-ом
-            <div className="col-sm-6 col-12 p-0 pr-1">
-              <DatePicker defaultDate={this.state.correctDate} hintText={textInfo.datePickerText} minDate={new Date(Date.now()-100000)}
-               onChange={(e, date) => {  /*UTC conv inside chooseDate */ this.chooseDate(date); let datePicker = document.querySelector(".routemenu_date");
-               datePicker.classList.remove("routemenu_date-Check") }} className="routemenu_date" />
-            </div> :
-            <React.Fragment/>
-          }
-            
+            {
+              this.state.date.length > 0 ? //это выражение ожидает установки даты - пока в this.state.correctDate не установится значение, мы не можем назначить defaultDate.
+                //просто все дальнейшие изменения даты будут вызваны DatePicker-ом
+                <div className="col-sm-6 col-12 p-0 pr-1">
+                  <DatePicker defaultDate={this.state.correctDate} hintText={textInfo.datePickerText} minDate={new Date(Date.now() - 100000)}
+                    onChange={(e, date) => {  /*UTC conv inside chooseDate */ this.chooseDate(date); let datePicker = document.querySelector(".routemenu_date");
+                      datePicker.classList.remove("routemenu_date-Check")
+                    }} className="routemenu_date" />
+                </div> :
+                <React.Fragment />
+            }
+
 
             {/*
               this.props.showBtPrice ?
-              <React.Fragment>
-              </React.Fragment>
+              <React.Fragment />
               :
-              <React.Fragment>
+              <>
                 <div className="col-sm-6 col-12 p-0 ">
                   <div className="routemenu_search " onClick={() => { this.goToNextPage() }}>
                     <div className="routemenu_search_button " >
@@ -643,8 +643,7 @@ class RouteMenuClass extends React.Component {
                     </div>
                   </div>
                 </div>
-
-              </React.Fragment>
+              </>
               */
             }
             <div className="col-sm-6 col-12 p-0 ">
@@ -670,7 +669,7 @@ class RouteMenuClass extends React.Component {
           </div>
         </div>
 
-      </React.Fragment >
+      </ >
     );
   }
 }

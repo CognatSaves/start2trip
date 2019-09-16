@@ -61,7 +61,7 @@ class ToursClass extends React.Component {
       );
 
     if (shouldSendRequest) {
-      
+
 
       //let selectedDirection = this.props.match.params.direction;
 
@@ -117,20 +117,20 @@ class ToursClass extends React.Component {
           console.log('get wasted answer');
           this.props.globalReduser.history.push('/');
         });
-      
-      axios.get(requests.getTours+ "?country=" + country + "&lang=" + lang + (selectedDirection ? "&slug=" + selectedDirection : ''))
+
+      axios.get(requests.getTours + "?country=" + country + "&lang=" + lang + (selectedDirection ? "&slug=" + selectedDirection : ''))
         .then(response => {
           return response.data;
         })
-        .then(function (data){
-          if(data.error){
+        .then(function (data) {
+          if (data.error) {
             console.log('bad tour request');
             throw data.error;
           }
-          else{
-            console.log('tour request data',data);
-            that.props.dispatch(setToursList(data.tours,data.categories, data.tags, data.directions));
-            
+          else {
+            console.log('tour request data', data);
+            that.props.dispatch(setToursList(data.tours, data.categories, data.tags, data.directions));
+
           }
         })
         .catch(function (error) {
@@ -175,44 +175,44 @@ class ToursClass extends React.Component {
     let a = this.props.placesState.placesList;
     let directions = [];
     let directionName;
-    let countryISO ;
-    if(this.props.placesState.directions.length > 0){
-      for(let i =0; i<this.props.placesState.directions.length; i++){
+    let countryISO;
+    if (this.props.placesState.directions.length > 0) {
+      for (let i = 0; i < this.props.placesState.directions.length; i++) {
         directions.push(this.props.placesState.directions[i].loc.slug)
       }
       countryISO = JSON.stringify(this.state.country);
     }
-    if(this.props.placesState.directions.length > 0 && selectedDirection.length > 0){
+    if (this.props.placesState.directions.length > 0 && selectedDirection.length > 0) {
       directionName = JSON.stringify(findSelectedDirectionName(this.props.placesState.directions, selectedDirection));
     }
     directions = JSON.stringify(directions)
     let windowImg = null
     if (this.props.storeState.languages.length > 0) {
-        
-        let coockisIso = cookies.get('country', { path: '/' })
-        let j;
-        for (let i = 0; i < this.props.storeState.countries.length; i++) {
-            if (this.props.storeState.countries[i].ISO === coockisIso) {
-                j = i
-                break;
-            }
+
+      let coockisIso = cookies.get('country', { path: '/' })
+      let j;
+      for (let i = 0; i < this.props.storeState.countries.length; i++) {
+        if (this.props.storeState.countries[i].ISO === coockisIso) {
+          j = i
+          break;
         }
-        if(coockisIso === undefined ){
-          j = 1
       }
-        windowImg = requests.serverAddressImg + this.props.storeState.countries[j].windowImg.url
+      if (coockisIso === undefined) {
+        j = 1
+      }
+      windowImg = requests.serverAddressImg + this.props.storeState.countries[j].windowImg.url
     }
-     
+
     return (
-      <React.Fragment>
+      <>
         <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={/*this.state.isRefreshing*/true} isGoodAnswer={/*this.state.isGoodAnswer*/true} />
 
         {
-          
+
           countryName.length > 0 ?
             (
               this.props.placesState.directions.length > 0 && selectedDirection.length > 0 ?
-              
+
                 <Helmet>
                   <title>{helmet.direction.title[0] + findSelectedDirectionName(this.props.placesState.directions, selectedDirection) + helmet.direction.title[1]}</title>
                   <meta name="description" content={findSelectedDirectionName(this.props.placesState.directions, selectedDirection) + helmet.direction.description} />
@@ -221,18 +221,18 @@ class ToursClass extends React.Component {
                   <meta property="og:url" content={document.URL} /*тут нужно добавить direction */ />
                   <meta property="og:title" content={helmet.direction.title[0] + findSelectedDirectionName(this.props.placesState.directions, selectedDirection) + helmet.direction.title[1]} />
                   <meta property="og:description" content={findSelectedDirectionName(this.props.placesState.directions, selectedDirection) + helmet.direction.description} />
-                  
+
                   <script type="application/ld+json">
                     {`
                       {
                       "@context": "https://schema.org",
                     "@type": "Place",
-                    "url": `+JSON.stringify(document.URL)+`,
+                    "url": `+ JSON.stringify(document.URL) + `,
                     "address":[
                     {
                       "@type": "PostalAddress",
-                    "addressCountry":`+countryISO+`,
-                    "addressRegion": `+directionName+`
+                    "addressCountry":`+ countryISO + `,
+                    "addressRegion": `+ directionName + `
                     }
                    ],
                    "photo":[
@@ -243,7 +243,7 @@ class ToursClass extends React.Component {
                     ]
                   }
                   `}
-              </script>
+                  </script>
                 </Helmet> :
                 <Helmet>
                   <title>{helmet.country.title[0] + countryName + helmet.country.title[1]}</title>
@@ -258,12 +258,12 @@ class ToursClass extends React.Component {
                       {
                       "@context": "https://schema.org",
                     "@type": "Place",
-                    "url": `+JSON.stringify(document.URL)+`,
+                    "url": `+ JSON.stringify(document.URL) + `,
                     "address":[
                     {
                       "@type": "PostalAddress",
-                    "addressCountry":`+countryISO+`,
-                    "addressRegion":`+directions+`
+                    "addressCountry":`+ countryISO + `,
+                    "addressRegion":`+ directions + `
                     }
                    ],
                    "photo":[
@@ -274,30 +274,30 @@ class ToursClass extends React.Component {
                     ]
                   }
                   `}
-              </script>
-              {/* TODO img */}
+                  </script>
+                  {/* TODO img */}
                 </Helmet>
             )
             : <React.Fragment />
 
         }
 
-        <div className="drivers_top_background col-12 p-0" style={ {background:"url("+windowImg+")no-repeat"}}>
+        <div className="drivers_top_background col-12 p-0" style={{ background: "url(" + windowImg + ")no-repeat" }}>
           <Header history={this.props.history} />
           <div className="wrapper d-flex flex-column">
             <PlacesCountryInfo placesState={this.props.placesState} />
           </div>
         </div>
         <div className="wrapper d-flex flex-column">
-          <div className="drivers_bottom_background d-flex flex-column" onClick={()=>{ let a = this}}>
+          <div className="drivers_bottom_background d-flex flex-column" onClick={() => { let a = this }}>
             <div className="drivers_body d-flex">
               <div id="placesMainBlock" className="left_body_part col-12 p-0" >
-                <PopularPlaces placesState={this.props.toursState} where={"tours"}/>
+                <PopularPlaces placesState={this.props.toursState} where={"tours"} />
                 <TourInfo />
                 {/* <PlacesTagList  placesState={this.props.placesState}/> */}
                 {/* <PlacesPanel  placesState={this.props.placesState} /> */}
                 <DriversProperties />
-                <ToursList isStaying={!this.state.isRefreshExist}/>
+                <ToursList isStaying={!this.state.isRefreshExist} />
               </div>
               {/* <div className="right_body_part col-3">
                 <DriversCommercial />
@@ -306,7 +306,7 @@ class ToursClass extends React.Component {
 
           </div>
         </div>
-      </React.Fragment>
+      </>
     )
   }
 }

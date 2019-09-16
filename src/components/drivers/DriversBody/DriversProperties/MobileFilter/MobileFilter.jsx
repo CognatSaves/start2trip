@@ -117,10 +117,10 @@ class MobileFilterClass extends React.Component {
 
     let pictureArray = [sedan, jeep, minivan, microbus];
     let textInfo = this.props.storeState.languageTextMain.mobileFilter;
-    
+
     return (
-      <React.Fragment>
-        {this.props.storeState.maxPrice === 0 ? <React.Fragment></React.Fragment> : <React.Fragment>
+      <>
+        {this.props.storeState.maxPrice === 0 ? <React.Fragment /> : <>
           <div className="mobileFilterModal" style={{ left: this.props.storeState.openFilter ? "0px" : "100%" }}>
 
             <div className="mobileFilterModalHeader d-flex justify-content-between">
@@ -245,9 +245,9 @@ class MobileFilterClass extends React.Component {
               <span onClick={() => { this.peopleMenuCall(false); this.props.dispatch(setAuto(this.state.autoVariants)); this.props.dispatch(languageValueChooseDispatch(this.state.languagesVariants)); this.props.dispatch(openFilterShow(false)); this.setPrice(); }} >{textInfo.showResults}</span>
             </div>
           </div>
-        </React.Fragment>}
+        </>}
 
-      </React.Fragment>
+      </>
     );
   }
 

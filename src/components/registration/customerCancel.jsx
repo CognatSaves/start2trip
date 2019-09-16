@@ -114,11 +114,11 @@ class customerCancelClass extends React.Component {
                 j = 1
             }
             windowImg = requests.serverAddressImg + this.props.storeState.countries[j].windowImg.url
-        
+
         }
         let helmet = this.props.storeState.languageTextMain.helmets.customerCancel;
         return (
-            <React.Fragment>
+            <>
 
                 <div className="home_window d-flex flex-column " style={{ background: "url(" + windowImg + ")no-repeat", minHeight: "93.5vh" }} >
                     <Header history={this.props.history} />
@@ -145,12 +145,8 @@ class customerCancelClass extends React.Component {
                         }
                         <text className="col-md-9 col-12 p-0" style={this.state.falde ? { color: "red" } : { color: "green" }}>{this.state.falde === null ? "" : this.state.falde ? textInfo.error : textInfo.success}</text>
                     </div>
-
-
-
-
                 </div>
-            </React.Fragment>
+            </>
         )
     }
 }

@@ -11,10 +11,10 @@ import MapContainer from './MapContainer.jsx'
 const ChangeMapListBlock = (props) => {
   let { mapContainerClass, routeMenuClass, that } = props;
   return (
-    <React.Fragment>
+    <>
       {
         that.state.changeMapList ?
-          <div className={mapContainerClass} style={{display: that.state.changeMapList ? 'block' : 'none'}}>
+          <div className={mapContainerClass} style={{ display: that.state.changeMapList ? 'block' : 'none' }}>
             <MapContainer cities={that.props.storeState.cities} setLengthTime={that.setLengthTime} mapUpdate={true} />
           </div>
           :
@@ -24,13 +24,13 @@ const ChangeMapListBlock = (props) => {
             </div>
           </div>
       }
-    </React.Fragment>
+    </>
   )
 }
 const ConstructorButtonsBlock = (props) => {
   let { that, buttonClasses, textInfo } = props;
   return (
-    <React.Fragment>
+    <>
       {
         <div className="d-flex justify-content-center mb-2 w-50">
           <span className={that.state.changeMapList ? buttonClasses[0] : buttonClasses[1]} onClick={() => {
@@ -53,7 +53,7 @@ const ConstructorButtonsBlock = (props) => {
           >{textInfo.changeMapList.second}</span>
         </div>
       }
-    </React.Fragment>
+    </>
   )
 }
 class HomeBodyClass extends React.Component {
@@ -80,11 +80,11 @@ class HomeBodyClass extends React.Component {
   }
   setLengthTime = (travelLength, travelTime) => {
     let translation = this.props.storeState.languageTextMain.home.routeMenu;
-        
+
     function getLengthString(travelLength) {
       let length = travelLength;
       length = Math.ceil(length / 1000);
-      let lengthString = length + " "+translation.km;
+      let lengthString = length + " " + translation.km;
       return lengthString;
     }
     function getTimeString(travelTime) {
@@ -94,17 +94,17 @@ class HomeBodyClass extends React.Component {
       hours = hours - days * 24;
       let timeString = "";
       if (days !== 0) {
-        timeString += days + " "+translation.days+" " + hours + " "+translation.hours;
+        timeString += days + " " + translation.days + " " + hours + " " + translation.hours;
       }
       else {
         if (hours !== 0) {
-          timeString += hours + " "+translation.hours+" ";
+          timeString += hours + " " + translation.hours + " ";
         }
-        timeString += minutes + " "+translation.minutes;
+        timeString += minutes + " " + translation.minutes;
       }
       return timeString;
     }
-    
+
     if ((this.props.driversState.travelLength === "-" && this.props.driversState.travelTime === "-") ||
       (this.props.driversState.travelLength.length === 0 || this.props.driversState.travelLength.length === 0)) {
       let lengthString = getLengthString(travelLength);
@@ -136,9 +136,9 @@ class HomeBodyClass extends React.Component {
     let textInfo = this.props.storeState.languageTextMain.home.homeBody;
     console.log(isMobileOnly, "isMobileOnlyBody")
     return (
-      <React.Fragment>
+      <>
         {isMobileOnly ?
-          <React.Fragment>
+          <>
             <div className="w-100">
               <div className="mobailRoutMenu">
                 <div className="d-flex flex-column align-items-center">
@@ -152,17 +152,17 @@ class HomeBodyClass extends React.Component {
               </div>
             </div>
 
-          </React.Fragment>
+          </>
           :
-          <React.Fragment>
-            <div className="routeContent d-flex flex-column align-items-center col-xl-10 col-lg-10 col-md-12 col-sm-11 col-11">
+          <>
+            <div className="routeContent d-flex flex-column align-items-center col-lg-10 col-md-12 col-11">
               <ConstructorButtonsBlock that={this} textInfo={textInfo}
                 buttonClasses={["routMenuBtList", "routMenuBt-active routMenuBtList",
                   "routMenuBt-active routMenuBtMap", "routMenuBtMap"]} />
               <ChangeMapListBlock that={this} mapContainerClass="sizeMap col-12 p-0" routeMenuClass="col-12 p-0" />
             </div>
-          </React.Fragment>}
-      </React.Fragment>
+          </>}
+      </>
     );
   }
 

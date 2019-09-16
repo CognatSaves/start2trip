@@ -30,7 +30,7 @@ class LicenseAgreementClass extends React.Component {
             }
         }
         return (
-            <React.Fragment>
+            <>
                 <Helmet>
                     <title>{helmet.basic.title}</title>
                     <meta name="description" content={helmet.basic.description} />
@@ -41,7 +41,7 @@ class LicenseAgreementClass extends React.Component {
                     <meta property="og:description" content={helmet.basic.description} />
                 </Helmet>
                 <Header driver={true} history={this.props.history} />
-                <div className="wrapper" style={{minHeight:"79vh"}}>
+                <div className="wrapper" style={{ minHeight: "79vh" }}>
 
                     <div className="LicenseAgreement d-flex flex-column" >
                         <div className="d-flex justify-content-end pb-4 col-12">
@@ -51,7 +51,7 @@ class LicenseAgreementClass extends React.Component {
                         {this.state.changeTerms ? textUser() : textDriver()}
                     </div>
                 </div>
-            </React.Fragment>
+            </>
         )
     }
 }

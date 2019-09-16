@@ -29,7 +29,7 @@ class SortMenuClass extends React.Component {
     render() {
         let textInfo = this.props.storeState.languageTextMain.drivers.driversProperties;
         return (
-            <React.Fragment>
+            <>
                 {isMobileOnly ?
                     <div className={this.props.isVisible ? "driver_sortMenu_mobail driver_sortMenu_mobail-active" : "driver_sortMenu_mobail"}>
                         {this.props.storeState.sortMenuVariantsMobail.map((element, index) =>
@@ -49,7 +49,7 @@ class SortMenuClass extends React.Component {
                         )}
                     </div>
                 }
-            </React.Fragment>
+            </>
         )
     }
 }

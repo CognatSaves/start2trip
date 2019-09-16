@@ -408,7 +408,7 @@ class RenderModalRegistrationClass extends React.Component {
         let regAnswerColor = (this.state.regAnswerStatus && selectedRegistrationAnswer !== 0);
         let regAnswerValue = (this.state.regAnswerStatus ? textInfo.registrationAnswer[selectedRegistrationAnswer] : textInfo.registrationProcess[0]);
         return (
-            <React.Fragment>
+            <>
 
                 <div className="d-md-none d-flex">
                     <img className="registrationBodyLogoIcon" src={logoBlue} alt="logo" width="100px" height="20px" onClick={() => {
@@ -674,7 +674,7 @@ class RenderModalRegistrationClass extends React.Component {
                         <button onClick={() => { this.changeAnimation() }}>{this.state.sitingIn ? textInfo.registrationDarkBackgroundText.buttonText : textInfo.sitingInDarkBackgroundText.buttonText}</button>
                     </div>
                 </div>
-            </React.Fragment>
+            </>
         )
     }
 

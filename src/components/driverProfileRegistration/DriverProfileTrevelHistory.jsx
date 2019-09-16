@@ -13,8 +13,8 @@ const cookies = new Cookies();
 class DriverProfileTrevelHistoryClass extends React.Component {
     constructor(props) {
         super(props);
-        this.state={
-            isRefreshExist:false,
+        this.state = {
+            isRefreshExist: false,
             isRefreshing: true,
             isGoodAnswer: true,
         };
@@ -24,7 +24,7 @@ class DriverProfileTrevelHistoryClass extends React.Component {
             isRefreshExist: true,
             isRefreshing: true
         });
-    }  
+    }
     thenFunc = () => {
         console.log('thenFunc');
         this.setState({
@@ -38,7 +38,7 @@ class DriverProfileTrevelHistoryClass extends React.Component {
             })
         }, 1000);
     }
-    catchFunc =() =>{
+    catchFunc = () => {
         console.log('catchFunc');
         this.setState({
             isRefreshExist: true,
@@ -51,113 +51,113 @@ class DriverProfileTrevelHistoryClass extends React.Component {
             })
         }, 2000);
     }
-    getProfileData =() =>{
+    getProfileData = () => {
         console.log('getProfileData');
         let that = this;
         let jwt = this.props.globalReduser.readCookie('jwt');
-        if(jwt && jwt !== '-'){
+        if (jwt && jwt !== '-') {
             let requestValues = {
                 readCookie: this.props.globalReduser.readCookie,
-                setProfileData: function(data){
-                that.props.dispatch(setProfileData(data))
+                setProfileData: function (data) {
+                    that.props.dispatch(setProfileData(data))
                 },
                 requestAddress: requests.profileRequest
             }
-            getUserData(requestValues,that.thenFunc,that.catchFunc);
+            getUserData(requestValues, that.thenFunc, that.catchFunc);
         }
-        else{
-            
+        else {
+
             this.props.dispatch(setUrlAddress(window.location.pathname));
-            this.props.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
+            this.props.history.push('/' + cookies.get('userLangISO', { path: "/" }) + '/login/');
             //return null;
         }
     }
-    stateButtonClicked = (element) =>{
+    stateButtonClicked = (element) => {
         let body = JSON.stringify({
             id: element.id
         });
-        
+
         //console.log(requests);
         let jwt = this.props.globalReduser.readCookie('jwt');
-        
-        if(jwt && jwt !== '-'){
+
+        if (jwt && jwt !== '-') {
             let that = this;
             that.startRefresher();
-            
-            if(!(element.startFact)){           
-                fetch(requests.tripStart,{
+
+            if (!(element.startFact)) {
+                fetch(requests.tripStart, {
                     method: 'POST', body: body,
-                    headers: {'content-type': 'application/json', Authorization: `Bearer ${jwt}`}
+                    headers: { 'content-type': 'application/json', Authorization: `Bearer ${jwt}` }
                 })
-                .then(response => {
-                    return response.json();
-                })
-                .then(function (data){
-                    if (data.error) {
+                    .then(response => {
+                        return response.json();
+                    })
+                    .then(function (data) {
+                        if (data.error) {
+                            console.log("bad");
+                            throw data.error;
+                        }
+                        else {
+                            console.log('good');
+                            console.log(data);
+                            that.getProfileData();
+                        }
+                    })
+                    .catch(function (error) {
                         console.log("bad");
-                        throw data.error;
-                    }
-                    else{
-                        console.log('good');
-                        console.log(data);
-                        that.getProfileData();
-                    }
-                })
-                .catch(function (error) {
-                    console.log("bad");
-                    console.log('An error occurred:', error);
-                    that.catchFunc();
-                });
+                        console.log('An error occurred:', error);
+                        that.catchFunc();
+                    });
             }
-            if(element.startFact){
-                fetch(requests.tripEnd,{
+            if (element.startFact) {
+                fetch(requests.tripEnd, {
                     method: 'POST', body: body,
-                    headers: {'content-type': 'application/json', Authorization: `Bearer ${jwt}`}
+                    headers: { 'content-type': 'application/json', Authorization: `Bearer ${jwt}` }
                 })
-                .then(response => {
-                    
-                    return response.json();
-                })
-                .then(function (data){
-                    if (data.error) {
+                    .then(response => {
+
+                        return response.json();
+                    })
+                    .then(function (data) {
+                        if (data.error) {
+                            console.log("bad");
+                            throw data.error;
+                        }
+                        else {
+                            console.log('good');
+                            console.log(data);
+                            that.getProfileData();
+                        }
+                    })
+                    .catch(function (error) {
                         console.log("bad");
-                        throw data.error;
-                    }
-                    else{
-                        console.log('good');
-                        console.log(data);
-                        that.getProfileData();
-                    }
-                })
-                .catch(function (error) {
-                    console.log("bad");
-                    console.log('An error occurred:', error);
-                    that.catchFunc();
-                });
+                        console.log('An error occurred:', error);
+                        that.catchFunc();
+                    });
             }
         }
-        else{
+        else {
             this.props.dispatch(setUrlAddress(window.location.pathname));
-            this.props.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
+            this.props.history.push('/' + cookies.get('userLangISO', { path: "/" }) + '/login/');
             return null;
         }
     }
 
     render() {
-        function findCurrencyEl(that,iso){
-            for(let i=0; i<that.props.globalReduser.profile.currencies.length;i++){
-                if(iso===that.props.globalReduser.profile.currencies[i].ISO){
+        function findCurrencyEl(that, iso) {
+            for (let i = 0; i < that.props.globalReduser.profile.currencies.length; i++) {
+                if (iso === that.props.globalReduser.profile.currencies[i].ISO) {
                     return i;
                 }
             }
         }
-        function createCorrectRoute(route, length, time){
-            let routeString=route[0].point;
-            for(let i=1; i<route.length;i++){
-                routeString+=' - '+route[i].point;
+        function createCorrectRoute(route, length, time) {
+            let routeString = route[0].point;
+            for (let i = 1; i < route.length; i++) {
+                routeString += ' - ' + route[i].point;
             }
-            routeString+=' ('+length+', '+time+")";
-            return routeString; 
+            routeString += ' (' + length + ', ' + time + ")";
+            return routeString;
         }
         /*
         function createDateTimeString(start){
@@ -169,12 +169,12 @@ class DriverProfileTrevelHistoryClass extends React.Component {
         }
         */
         let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileTrevelHistory;
-        
-        let that =  this;
+
+        let that = this;
         return (
             <div className="d-flex flex-wrap justify-content-center">
-                <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer}/>
-                
+                <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
+
                 {this.props.trevelHistory.map((element, index) =>
                     <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-11 p-2" key={element}>
                         <div className="trevelHistoryBody  d-flex flex-column">
@@ -184,7 +184,7 @@ class DriverProfileTrevelHistoryClass extends React.Component {
                                     <span className="historyBodyHeaderType">{element.tripType.type_en}</span>
                                 </div>
                                 <span className="historyBodyHeaderRoute">{createCorrectRoute(element.route, element.travelLength, element.travelTime)}</span>
-                                <hr/>
+                                <hr />
                             </div>
                             <div className="d-flex flex-column historyBodyElement ">
                                 <h5>{textPage.tripId}</h5>
@@ -207,7 +207,7 @@ class DriverProfileTrevelHistoryClass extends React.Component {
                             </div>
                             <div className="d-flex flex-column historyBodyElement">
                                 <h5>{textPage.costOfTravel}</h5>
-                                <span>{this.props.globalReduser.profile.currencies ? this.props.globalReduser.profile.currencies[findCurrencyEl(that,element.currencyType)].symbol+element.price : ''}</span>
+                                <span>{this.props.globalReduser.profile.currencies ? this.props.globalReduser.profile.currencies[findCurrencyEl(that, element.currencyType)].symbol + element.price : ''}</span>
                             </div>
                             <div className="d-flex flex-column historyBodyElement">
                                 <h5>{textPage.comment}</h5>
@@ -215,23 +215,23 @@ class DriverProfileTrevelHistoryClass extends React.Component {
                             </div>
                             {
                                 this.props.isHistory ?
-                                <React.Fragment>
-                                    <div className="d-flex flex-column historyBodyElement">
-                                        <h5>{textPage.tripStart}</h5>
-                                        <span>{element.startFact ? this.props.globalReduser.createDateTimeString(element.startFact) : textPage.noStart}</span>
-                                    </div>
-                                    <div className="d-flex flex-column historyBodyElement">
-                                        <h5>{textPage.tripEnd}</h5>
-                                        <span>{element.endFact ? this.props.globalReduser.createDateTimeString(element.endFact) : textPage.noEnd}</span>
-                                    </div>
-                                </React.Fragment>
-                                :<React.Fragment>
-                                    <div className="d-flex flex-column historyBodyElement">
-                                        <button onClick={()=>this.stateButtonClicked(element)}>{element.startFact ? textPage.stateVariants[0] : textPage.stateVariants[1]}</button>
-                                    </div>
-                                </React.Fragment>
+                                    <>
+                                        <div className="d-flex flex-column historyBodyElement">
+                                            <h5>{textPage.tripStart}</h5>
+                                            <span>{element.startFact ? this.props.globalReduser.createDateTimeString(element.startFact) : textPage.noStart}</span>
+                                        </div>
+                                        <div className="d-flex flex-column historyBodyElement">
+                                            <h5>{textPage.tripEnd}</h5>
+                                            <span>{element.endFact ? this.props.globalReduser.createDateTimeString(element.endFact) : textPage.noEnd}</span>
+                                        </div>
+                                    </>
+                                    : <>
+                                        <div className="d-flex flex-column historyBodyElement">
+                                            <button onClick={() => this.stateButtonClicked(element)}>{element.startFact ? textPage.stateVariants[0] : textPage.stateVariants[1]}</button>
+                                        </div>
+                                    </>
                             }
-                            
+
                         </div>
                     </div>
                 )}

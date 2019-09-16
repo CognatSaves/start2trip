@@ -17,7 +17,7 @@ class pageNotFoundClass extends React.Component {
     render() {
         let pageNotFound = this.props.storeState.languageTextMain.home.pageNotFound;
         return (
-            <React.Fragment>
+            <>
                 <Header history={this.props.history} />
                 <div className="pageNotFound d-flex flex-column justify-content-between align-items-center" >
                     <span style={isMobileOnly ? { paddingTop: "12%" } : { paddingTop: "8%" }}>{pageNotFound.title}</span>
@@ -27,7 +27,7 @@ class pageNotFoundClass extends React.Component {
                     </div>
 
                 </div>
-            </React.Fragment>
+            </>
         )
     }
 }

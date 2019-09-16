@@ -33,11 +33,11 @@ class DriversPropertiesClass extends React.Component {
   }
 
   render() {
-    function valueTextGenerator(pricePart, maxPrice,activeCurrency,textInfo) {
+    function valueTextGenerator(pricePart, maxPrice, activeCurrency, textInfo) {
       if (pricePart !== maxPrice) {
-        return textInfo.from+" " + (activeCurrency.isLeft ? activeCurrency.symbol+' ' : '')
-        + Math.ceil(pricePart * activeCurrency.costToDefault) +
-        (!activeCurrency.isLeft ? ' '+activeCurrency.symbol : '');
+        return textInfo.from + " " + (activeCurrency.isLeft ? activeCurrency.symbol + ' ' : '')
+          + Math.ceil(pricePart * activeCurrency.costToDefault) +
+          (!activeCurrency.isLeft ? ' ' + activeCurrency.symbol : '');
       }
       else {
         return textInfo.price;
@@ -69,10 +69,10 @@ class DriversPropertiesClass extends React.Component {
           <div className="properties_rightButton d-flex" onClick={() => this.props.dispatch(setSortMenuVisible(!this.props.storeState.sortMenu))}>
             <div className="properties_rightButton_characteristic d-sm-block d-none">{textInfo.characteristic + ':'}</div>
             {isMobileOnly ?
-              <React.Fragment>
+              <>
                 <span className="mobailSortIcon" onClick={() => { this.setState({ sortIsVisible: !this.state.sortIsVisible }) }}>{textInfo.sortText}</span>
                 <span className="footerMobileIconFilter" onClick={() => { this.props.dispatch(openFilterShow(true)) }}>{textInfo.filterText}</span>
-              </React.Fragment>
+              </>
               : <div />}
             <SortMenu isVisible={this.state.sortIsVisible} click={() => { this.setState({ sortIsVisible: false }) }} />
           </div>

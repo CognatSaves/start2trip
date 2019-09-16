@@ -39,7 +39,7 @@ class RenderShareLinkClass extends React.Component {
         const shareUrl = this.props.valueInput;
         const title = 'Tripfer.com';
         return (
-            <React.Fragment>
+            <>
                 <div className={"d-flex flex-column align-items-center shareLink " + this.props.classNameDiv}>
                     <spantext>
                         {this.props.textTitle}
@@ -50,7 +50,7 @@ class RenderShareLinkClass extends React.Component {
                     </div>
                     <div className="d-flex justify-content-center  affiliateProgramIconsMass">
 
-                    <div className="networkLink">
+                        <div className="networkLink">
                             <ViberShareButton
                                 url={shareUrl}
                                 title={title}
@@ -93,7 +93,7 @@ class RenderShareLinkClass extends React.Component {
                         <div className="networkLink">
                             <VKShareButton
                                 url={shareUrl}
-                                image={String("https://tripfer.com"+exampleImage)}
+                                image={String("https://tripfer.com" + exampleImage)}
                                 windowWidth={660}
                                 windowHeight={460}
                                 className="networkLink__share-button">
@@ -106,7 +106,7 @@ class RenderShareLinkClass extends React.Component {
                         <div className="networkLink">
                             <OKShareButton
                                 url={shareUrl}
-                                image={String("https://tripfer.com"+exampleImage)}
+                                image={String("https://tripfer.com" + exampleImage)}
                                 className="networkLink__share-button">
                                 <OKIcon
                                     size={32}
@@ -116,7 +116,7 @@ class RenderShareLinkClass extends React.Component {
 
                     </div>
                 </div>
-            </React.Fragment>
+            </>
         )
     }
 }

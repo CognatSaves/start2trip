@@ -1,5 +1,5 @@
 const serverAddress = 'http://localhost:1337'; //'https://tripfer.com:41337'; //
-const serverAddressImg = 'http://localhost:1337';//'https://tripfer.com';//
+const serverAddressImg = 'http://localhost:1337'; //'https://tripfer.com';//
 const frontendAddress = 'http://localhost:3000'; //'https://tripfer.com'; //
 
 const serverRegistrationRequest = serverAddress + '/auth/local/register';
@@ -9,8 +9,8 @@ const googleRequest = serverAddress + '/connect/google';
 const meRequest = serverAddress + '/users/me/auth';
 const routeMap = "(blr-en|blr-ru|rus-en|rus-ru|geo-en|geo-ru|arm-en|arm-ru|aze-en|aze-ru|tur-en|tur-ru|isr-en|isr-ru)";
 
-const profileRequest = serverAddress + '/users/me/profile';//получение данных профиля в админке
-const profileUpdateRequest = serverAddress + "/users/me/update";//сохранение данных профиля(базовых данных - имя и т.д.) в админке
+const profileRequest = serverAddress + '/users/me/profile'; //получение данных профиля в админке
+const profileUpdateRequest = serverAddress + "/users/me/update"; //сохранение данных профиля(базовых данных - имя и т.д.) в админке
 const travelsettingsUpdateRequest = serverAddress + '/users/me/travelsetings'; //запрос для админки 
 const userCarsCreateRequest = serverAddress + '/users/me/car'; //запрос для админки 
 const userCarDestroyRequest = serverAddress + '/cars/me'; //запрос для админки
@@ -30,7 +30,7 @@ const getDriverData = serverAddress + "/users/getDriverData"; //запрос д�
 const checkPromocode = serverAddress + "/checkPromocode/"; //запрос на проверку промокода
 const createNewTrip = serverAddress + "/createNewTrip"; //запрос на создание новой поездки (без подтверждений)
 const customerConfirmation = serverAddress + '/customerConfirmation'; //запрос на подтверждение заказа пользователем
-const customerCancel = serverAddress +'/customerCancel'; //запрос на отмену поездки пользователем
+const customerCancel = serverAddress + '/customerCancel'; //запрос на отмену поездки пользователем
 const carrierConfirmation = serverAddress + "/carrierConfirmation"; //запрос на подтверждение водителем поездки
 const tripStart = serverAddress + "/tripStart"; //функция начала поездки водителем
 
@@ -49,7 +49,7 @@ const getRoutes = serverAddress + "/getRoutes";
 const showRoute = serverAddress + "/showRoute";
 const getDriverInfo = serverAddress + "/users/getDriverInfo";
 const getDriverDescription = serverAddress + "/users/getDriverDescription";
-const profileCheck = serverAddress + "/users/me/profileCheck";//проверка типа аккаунта при первом заходе в админку
+const profileCheck = serverAddress + "/users/me/profileCheck"; //проверка типа аккаунта при первом заходе в админку
 const isCommentedTrip = serverAddress + '/isCommentedTrip';
 
 const getTours = serverAddress + '/getTours';//запрос на получения массива туров
@@ -91,7 +91,7 @@ export default {
     checkPromocode: checkPromocode,
     createNewTrip: createNewTrip,
     customerConfirmation: customerConfirmation,
-    customerCancel:customerCancel,
+    customerCancel: customerCancel,
     carrierConfirmation: carrierConfirmation,
     tripStart: tripStart,
 
@@ -109,9 +109,9 @@ export default {
 
     profileCheck: profileCheck,
     routeMap: routeMap,
-    isCommentedTrip:isCommentedTrip,
-    getTours:getTours,
-    userFeedback:userFeedback,
+    isCommentedTrip: isCommentedTrip,
+    getTours: getTours,
+    userFeedback: userFeedback,
 
     showTour:showTour,
     setTourSeatsData:setTourSeatsData

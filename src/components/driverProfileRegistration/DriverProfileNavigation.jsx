@@ -63,7 +63,7 @@ class DriverProfileNavigationClass extends React.Component {
         }
         else {
             this.props.dispatch(setUrlAddress(window.location.pathname));
-            this.props.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
+            this.props.history.push('/' + cookies.get('userLangISO', { path: "/" }) + '/login/');
             //return null;
         }
     }
@@ -148,7 +148,7 @@ class DriverProfileNavigationClass extends React.Component {
                         }
                         else {
                             this.props.dispatch(setUrlAddress(window.location.pathname));
-                            this.props.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
+                            this.props.history.push('/' + cookies.get('userLangISO', { path: "/" }) + '/login/');
                             //return null;
                         }
                     }
@@ -167,7 +167,7 @@ class DriverProfileNavigationClass extends React.Component {
         let navigationText = this.props.AppReduser.languageText.driverProfileRegistration.DriverProfileNavigation.navigationText;
         let that = this;
         return (
-            <React.Fragment>
+            <>
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
                 <div className="registrationWrapper driverBG col-12 p-0" style={{
                     "/account/driver/trips": { backgroundImage: "url(" + preHistoryBG + ")" },
@@ -229,12 +229,12 @@ class DriverProfileNavigationClass extends React.Component {
                     </div>
 
                     <div className="navigationBody d-flex align-items-center">
-                        {navigationText.map(function(element, index){
-                                if(!(profile.hostagency && index===navigationText.length-1)){
-                                    //плохое ограничение, но так как у нас оно одно, то и ладно
-                                    //оно запрещает партнёрскую программу для водителя, прикреплённого к агенству
-                                    return(
-                                        <span key={that.state.route[index]} className={{ [that.state.route[index]]: "navigationBodyActive", }[that.props.globalhistory.history.location.pathname] + " navigationButton mb-0 " + (that.state.route[index].length === 0 ? "blockedSpan" : "")}
+                        {navigationText.map(function (element, index) {
+                            if (!(profile.hostagency && index === navigationText.length - 1)) {
+                                //плохое ограничение, но так как у нас оно одно, то и ладно
+                                //оно запрещает партнёрскую программу для водителя, прикреплённого к агенству
+                                return (
+                                    <span key={that.state.route[index]} className={{ [that.state.route[index]]: "navigationBodyActive", }[that.props.globalhistory.history.location.pathname] + " navigationButton mb-0 " + (that.state.route[index].length === 0 ? "blockedSpan" : "")}
                                         onClick={(event) => {
                                             if (that.state.route[index].length > 0) {
                                                 that.setState({ index: index });
@@ -242,16 +242,16 @@ class DriverProfileNavigationClass extends React.Component {
                                                 that.props.globalhistory.history.push(that.state.route[index])
                                             }
                                         }}>{element}</span>
-                                    )
-                                }
-                                else{
-                                    return <React.Fragment/>
-                                }
-                            }                          
+                                )
+                            }
+                            else {
+                                return <React.Fragment />
+                            }
+                        }
                         )}
                     </div>
                 </div>
-            </React.Fragment>
+            </>
         );
     }
 }

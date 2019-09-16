@@ -125,7 +125,7 @@ class ResetPasswordClass extends React.Component {
         let helmet = this.props.storeState.languageTextMain.helmets.resetPassword;
 
         return (
-            <React.Fragment>
+            <>
                 <Helmet>
                     <title>{helmet.basic.title}</title>
                     <meta name="description" content={helmet.basic.description} />
@@ -176,7 +176,7 @@ class ResetPasswordClass extends React.Component {
                     </div>
                 </div>
 
-            </React.Fragment>
+            </>
         )
     }
 }

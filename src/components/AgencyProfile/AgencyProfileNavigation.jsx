@@ -26,7 +26,7 @@ class AgencyProfileNavigationClass extends React.Component {
         super(props);
         this.state = {
             navigationText: ["Мои поездки", "Профиль", "Водители", "Туры", "Отзывы", "Настройки",
-             "Биллинг", "Партнерская программа"],//используется для размерности, блоки - из переводов
+                "Биллинг", "Партнерская программа"],//используется для размерности, блоки - из переводов
             //profile: this.props.globalReduser.profile,
             route: [
                 "/account/agency/trips",
@@ -61,7 +61,7 @@ class AgencyProfileNavigationClass extends React.Component {
         }
         else {
             this.props.dispatch(setUrlAddress(window.location.pathname));
-            this.props.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
+            this.props.history.push('/' + cookies.get('userLangISO', { path: "/" }) + '/login/');
             //return null;
         }
     }
@@ -145,7 +145,7 @@ class AgencyProfileNavigationClass extends React.Component {
                         }
                         else {
                             this.props.dispatch(setUrlAddress(window.location.pathname));
-                            this.props.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
+                            this.props.history.push('/' + cookies.get('userLangISO', { path: "/" }) + '/login/');
                             //return null;
                         }
                     }
@@ -160,7 +160,7 @@ class AgencyProfileNavigationClass extends React.Component {
         let profile = this.props.globalReduser.profile;
         let textInfo = this.props.AppReduser.languageText.agencyProfile.agencyProfileNavigation;
         return (
-            <React.Fragment>
+            <>
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
                 <div className="registrationWrapper driverBG col-12 p-0" style={{
                     "/account/agency/trips": { backgroundImage: "url(" + preHistoryBG + ")" },
@@ -199,27 +199,27 @@ class AgencyProfileNavigationClass extends React.Component {
                             <div className="bodyTopDriverInfoPlace">
                                 <p>{profile.legalAddress.length !== 0 ? (profile.legalAddress) : ""}</p>
                             </div>
-                            <div className="bodyTopDriverInfoRide p-0 d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column">
-                                <div className="d-xl-flex d-lg-flex d-md-flex d-sm-none d-none align-items-center col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 p-0">
+                            <div className="bodyTopDriverInfoRide p-0 d-flex flex-md-row flex-column">
+                                <div className="d-md-flex d-none align-items-center col-lg-3 col-md-4 col-6 p-0">
                                     <span>{profile.futureTrips.length + profile.historyTrips.length}</span>
                                     <div className="d-flex flex-column">
                                         <p>{textInfo.totalTrips.first}</p>
                                         <p>{textInfo.totalTrips.last}</p>
                                     </div>
                                 </div>
-                                <div className="bodyTopDriverInfoRideMobail d-xl-none d-lg-none d-md-none d-sm-flex d-flex align-items-center col-xl-3 col-lg-3 col-md-3 col-sm-5 col-9 p-0">
-                                    <p>{textInfo.totalTrips.full+':'}</p>
+                                <div className="bodyTopDriverInfoRideMobail d-md-none d-flex align-items-center col-md-3 col-sm-5 col-9 p-0">
+                                    <p>{textInfo.totalTrips.full + ':'}</p>
                                     <span className="pl-1">{profile.futureTrips.length + profile.historyTrips.length}</span>
                                 </div>
-                                <div className="d-xl-flex d-lg-flex d-md-flex d-sm-none d-none align-items-center col-xl-2 col-lg-2 col-md-2 col-sm-6 col-6 p-0">
+                                <div className="d-md-flex d-none align-items-center col-md-2 col-6 p-0">
                                     <span>{profile.agencyWorkers.length}</span>
                                     <div className="d-flex flex-column ">
                                         <p>{textInfo.totalDrivers.first}</p>
                                         <p>{textInfo.totalDrivers.last}</p>
                                     </div>
                                 </div>
-                                <div className="bodyTopDriverInfoRideMobail d-xl-none d-lg-none d-md-none d-sm-flex d-flex align-items-center col-xl-3 col-lg-3 col-md-3 col-sm-5 col-12 p-0">
-                                    <p>{textInfo.totalDrivers.full+':'}</p>
+                                <div className="bodyTopDriverInfoRideMobail d-md-none d-flex align-items-center col-lg-3 col-md-3 col-sm-5 col-12 p-0">
+                                    <p>{textInfo.totalDrivers.full + ':'}</p>
                                     <span className="pl-1">{profile.agencyWorkers.length}</span>
                                 </div>
                             </div>
@@ -239,7 +239,7 @@ class AgencyProfileNavigationClass extends React.Component {
                         )}
                     </div>
                 </div>
-            </React.Fragment>
+            </>
         )
     }
 }

@@ -47,7 +47,7 @@ class PlacesCountryInfoClass extends React.Component {
     let data = findFillingText(this, textInfo);
     //let countryName = placesState.country.local ? (placesState.selectedDirection && dirNumber!==-1 ? placesState.directions[dirNumber].) : ''
     return (
-      <React.Fragment>
+      <>
         <div className="placesCountryInfo">
           <h1 className="placesCountryInfo_countryName">{data.name}</h1>
           <div className="placesCountryInfo_line" />
@@ -97,7 +97,7 @@ class PlacesCountryInfoClass extends React.Component {
               </div> : <React.Fragment />
           }
         </div>
-      </React.Fragment>
+      </>
     )
   }
 }

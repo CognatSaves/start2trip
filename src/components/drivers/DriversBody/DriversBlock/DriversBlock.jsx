@@ -270,7 +270,7 @@ class DriversBlockClass extends React.Component {
         }
         {
           isLoading || isEmpty ?
-            <React.Fragment>
+            <>
               {isLoading ?
                 <div className="placesList_loading">
                   <span>{'Загружаемся!'}</span>
@@ -279,7 +279,7 @@ class DriversBlockClass extends React.Component {
                   <span>{pageNotFound.text1 + " " + pageNotFound.text2}<br />{pageNotFound.text3}</span>
                 </div>
               }
-            </React.Fragment>
+            </>
             : <React.Fragment />
         }
         <Manipulator number={driversArray.length} page={this.props.driversState.page} setPage={this.setPage}

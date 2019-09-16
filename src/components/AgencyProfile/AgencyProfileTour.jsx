@@ -64,10 +64,10 @@ class AgencyProfileTourClass extends React.Component {
                 directionId: "",
                 image: [],
                 imageFiles: [],
-                mainImage:'',
-                mainImageFile:'',
+                mainImage: '',
+                mainImageFile: '',
                 blockListImage: '',
-                blockListImageFile:'',
+                blockListImageFile: '',
                 price: "",
                 seats: "",
                 time: "",
@@ -204,10 +204,10 @@ class AgencyProfileTourClass extends React.Component {
                 directionId: "",
                 image: [],
                 imageFiles: [],
-                mainImage:'',
-                mainImageFile:'',
+                mainImage: '',
+                mainImageFile: '',
                 blockListImage: '',
-                blockListImageFile:'',
+                blockListImageFile: '',
                 price: "",
                 seats: "",
                 time: "",
@@ -271,10 +271,10 @@ class AgencyProfileTourClass extends React.Component {
                 image[i] = requests.serverAddressImg + element.image[i].url;
                 imageFiles[i] = new File([""], 'old');
             }
-            let mainImage = (element.mainImage ? requests.serverAddressImg +element.mainImage.url : '');
+            let mainImage = (element.mainImage ? requests.serverAddressImg + element.mainImage.url : '');
             let mainImageFile = new File([""], 'old');
-            let blockListImage = (element.mainImage ? requests.serverAddressImg+element.blockListImage.url : '');
-            let blockListImageFile = new File([""],'old');
+            let blockListImage = (element.mainImage ? requests.serverAddressImg + element.blockListImage.url : '');
+            let blockListImageFile = new File([""], 'old');
             let calendary = [];
             for (let i = 0; i < element.calendary.length; i++) {
                 calendary[i] = new Date(element.calendary[i]);
@@ -292,7 +292,7 @@ class AgencyProfileTourClass extends React.Component {
                 mainImage: mainImage,
                 mainImageFile: mainImageFile,
                 blockListImage: blockListImage,
-                blockListImageFile:blockListImageFile,
+                blockListImageFile: blockListImageFile,
                 price: element.price,
                 seats: element.seats,
                 time: element.time,
@@ -394,12 +394,12 @@ class AgencyProfileTourClass extends React.Component {
                 //obj.classList.add("errorColor");
                 result = false;
             }
-            if (tourSave.mainImage.length === 0){
+            if (tourSave.mainImage.length === 0) {
                 obj = document.getElementById('mainImageLabelError');
                 obj.style.visibility = 'visible';
                 result = false;
             }
-            if(tourSave.blockListImage.length === 0){
+            if (tourSave.blockListImage.length === 0) {
                 obj = document.getElementById('blockListImageLabelError');
                 obj.style.visibility = 'visible';
                 result = false;
@@ -413,9 +413,9 @@ class AgencyProfileTourClass extends React.Component {
             var tourForm = new FormData();
             let tourSave = this.state.tourSave;
             for (let i = 0; i < tourSave.local.length; i++) {
-                let preSlug = that.props.globalReduser.convFunc(tourSave.local[i].name,'ru');
+                let preSlug = that.props.globalReduser.convFunc(tourSave.local[i].name, 'ru');
                 let preSlugNoSpaces = preSlug.replace(/ /g, '-');
-                tourForm.append('local', JSON.stringify({...(tourSave.local[i]), preSlug:preSlugNoSpaces }));
+                tourForm.append('local', JSON.stringify({ ...(tourSave.local[i]), preSlug: preSlugNoSpaces }));
             }
             for (let i = 0; i < tourSave.calendary.length; i++) {
                 tourForm.append('calendary', tourSave.calendary[i]);
@@ -437,7 +437,7 @@ class AgencyProfileTourClass extends React.Component {
                 tourForm.append('image', tourSave.imageFiles[i]);
             }
             tourForm.append('mainImage', tourSave.mainImageFile);
-            tourForm.append('blockListImage',tourSave.blockListImageFile);
+            tourForm.append('blockListImage', tourSave.blockListImageFile);
             const request = new XMLHttpRequest();
             if (this.state.tourId.length === 0) {//если нет id, то это свежак
                 request.open('PUT', requests.userTourCreateRequest);
@@ -642,15 +642,15 @@ class AgencyProfileTourClass extends React.Component {
         // 
         
         let obj;
-        if(type==='image'){
+        if (type === 'image') {
             obj = document.getElementById('imageLabelError');
             obj.style.visibility = 'hidden';
         }
-        if(type==='mainImage'){
+        if (type === 'mainImage') {
             obj = document.getElementById('mainImageLabelError');
             obj.style.visibility = 'hidden';
         }
-        if(type==='blockListImage'){
+        if (type === 'blockListImage') {
             obj = document.getElementById('blockListImageLabelError');
             obj.style.visibility = 'hidden';
         }
@@ -667,7 +667,7 @@ class AgencyProfileTourClass extends React.Component {
 
             readAndCompressImage(file, this.props.globalReduser.compressConfig)
                 .then(resizedImage => {
-                    
+
                     let sizFile = new File([resizedImage], file.name);
                     return sizFile;
                 })
@@ -675,8 +675,8 @@ class AgencyProfileTourClass extends React.Component {
                     let reader = new FileReader();
                     reader.onloadend = () => {
                         // 
-                        
-                        if(type==='image'){
+
+                        if (type === 'image') {
                             var img = reader.result;
                             let tourSave = this.state.tourSave;
                             tourSave.image.push(img);
@@ -696,12 +696,12 @@ class AgencyProfileTourClass extends React.Component {
                                 imagePreviewUrl: img,
                             });
                         }
-                        else{
-                            if(type==='mainImage'){
+                        else {
+                            if (type === 'mainImage') {
                                 var img = reader.result;
                                 let tourSave = this.state.tourSave;
-                                tourSave.mainImage=img;
-                                tourSave.mainImageFile=sizFile;
+                                tourSave.mainImage = img;
+                                tourSave.mainImageFile = sizFile;
 
                                 this.setState({
                                     tourSave: tourSave,
@@ -709,11 +709,11 @@ class AgencyProfileTourClass extends React.Component {
                                     imagePreviewUrl: img,
                                 });
                             }
-                            if(type==='blockListImage'){
+                            if (type === 'blockListImage') {
                                 var img = reader.result;
                                 let tourSave = this.state.tourSave;
-                                tourSave.blockListImage=img;
-                                tourSave.blockListImageFile=sizFile;
+                                tourSave.blockListImage = img;
+                                tourSave.blockListImageFile = sizFile;
 
                                 this.setState({
                                     tourSave: tourSave,
@@ -755,7 +755,7 @@ class AgencyProfileTourClass extends React.Component {
         } else {
             calendary.push(day);
         }
-        this.setState({ tourSave:{...tourSave,calendary:calendary}});
+        this.setState({ tourSave: { ...tourSave, calendary: calendary } });
     }
     handleTourSeatsDayClick = (day, {selected})=>{
         function checkDateSeatsNumber(date, that){
@@ -943,13 +943,13 @@ class AgencyProfileTourClass extends React.Component {
             maxWidth: 'none',
         };
 
-        
+
         let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileTripSettingsTour;
         let pseudoTableHeaderArray = ['День', 'Mест свободно', 'Mecт зaнятo'];
         let tableElementsWidth = ['40%','30%','30%'];
         return (
 
-            <React.Fragment>
+            <>
 
                 <Dialog
                     actions={actions}
@@ -1058,8 +1058,8 @@ class AgencyProfileTourClass extends React.Component {
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
                 <Collapse isOpen={this.state.collapse}>
                     <div className="tourSettingsBody">
-                        <form name='myForm' onSubmit={this.formSubmit} id="newTourForm" className="tourContent col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
-                            <div className="languageTourTop d-flex flex-wrap col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
+                        <form name='myForm' onSubmit={this.formSubmit} id="newTourForm" className="tourContent col-12 p-0">
+                            <div className="languageTourTop d-flex flex-wrap col-12 p-0">
                                 {this.state.languageTour.map((element, index) =>
                                     <div className={{ [index]: "languageTourTitleActive", }[this.state.languageTourOpen] + " languageTourTitle"} onClick={() => { this.setState({ languageTourOpen: index }) }}>
                                         <span style={{ backgroundImage: "url(" + requests.serverAddress + element.icon.url + ")" }}>{element.ISO}</span>
@@ -1072,24 +1072,24 @@ class AgencyProfileTourClass extends React.Component {
                                     <div className=" tourContentTitle d-flex align-items-center mb-0">
                                         <p>{textPage.tourContentTitle}</p>
                                     </div>
-                                    <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start mb-0">
-                                        <label htmlFor="nameNewTour" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">{textPage.nameNewTour.floatingLabelText}:</label>
+                                    <div className="d-flex flex-md-row flex-column align-items-md-center align-items-start mb-0">
+                                        <label htmlFor="nameNewTour" className="d-md-block d-none col-2">{textPage.nameNewTour.floatingLabelText}:</label>
                                         <TextField
                                             floatingLabelText={textPage.nameNewTour.floatingLabelText}
-                                            className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
+                                            className="d-md-none d-block inputClass"
                                             fullWidth="100%"
                                             floatingLabelFocusStyle={{ color: "#304269" }}
                                             underlineFocusStyle={{ borderColor: "#304269" }}
                                             value={element.name}
                                             onChange={(e) => { this.handleChange(e.currentTarget.value, 'name', { number: index }) }}
                                         />
-                                        <input className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " id="nameNewTour" type="text"
+                                        <input className="d-md-block d-none col-md-4 col-12 " id="nameNewTour" type="text"
                                             value={element.name} onChange={(e) => { this.handleChange(e.currentTarget.value, 'name', { number: index }) }} />
-                                        <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">{textPage.nameNewTour.description}</p>
+                                        <p className=" d-md-block d-none m-0 col-md-6 col-5">{textPage.nameNewTour.description}</p>
                                     </div>
-                                    <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                        <label htmlFor="newTourAttractions" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">{textPage.newTourAttractions.floatingLabelText}:</label>
-                                        <div className="d-flex col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0" key={element.departurePoint.point}>
+                                    <div className="d-flex flex-md-row flex-column align-items-md-center align-items-start">
+                                        <label htmlFor="newTourAttractions" className="d-md-block d-none col-2">{textPage.newTourAttractions.floatingLabelText}:</label>
+                                        <div className="d-flex col-md-4 col-12 p-0" key={element.departurePoint.point}>
                                             <LocationSearchInput address={element.departurePoint && element.departurePoint.point !== "" ? element.departurePoint.point : ''}
                                              changeCity={(id, value, extraData) => { 
                                                 let tourSave = this.state.tourSave;
@@ -1098,18 +1098,18 @@ class AgencyProfileTourClass extends React.Component {
                                              }}
                                              classDropdown="searchDropdownDriverTour" id="newTourAttractions" classInput="w-100" classDiv='w-100' />
                                         </div>
-                                        <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">{textPage.newTourAttractions.description}</p>
+                                        <p className=" d-md-block d-none m-0 col-md-6 col-5">{textPage.newTourAttractions.description}</p>
                                     </div>
-                                    <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                        <label htmlFor="attractionsAlongTheRoute" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">{textPage.attractionsAlongTheRoute.floatingLabelText}:</label>
-                                        <div className="d-flex col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0" key={element.points.length}>
+                                    <div className="d-flex flex-md-row flex-column align-items-md-center align-items-start">
+                                        <label htmlFor="attractionsAlongTheRoute" className="d-md-block d-none col-2">{textPage.attractionsAlongTheRoute.floatingLabelText}:</label>
+                                        <div className="d-flex col-md-4 col-12 p-0" key={element.points.length}>
                                             <LocationSearchInput address='' changeCity={(id, value, extraData) => { this.handleChange(value, "attractionsAlongTheRoute", { number: index, location: extraData.location }) }}
                                              classDropdown="searchDropdownDriverTour" id="attractionsAlongTheRoute" classInput="w-100" classDiv='w-100'/>
                                         </div>
-                                        <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">{textPage.attractionsAlongTheRoute.description}</p>
+                                        <p className=" d-md-block d-none m-0 col-md-6 col-5">{textPage.attractionsAlongTheRoute.description}</p>
                                     </div>
-                                    <div className="d-flex justify-content-end col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
-                                        <div className="d-flex flex-wrap col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 p-0 mb-2">
+                                    <div className="d-flex justify-content-end col-12 p-0">
+                                        <div className="d-flex flex-wrap col-md-10 col-12 p-0 mb-2">
                                             {element.points.map((element, num) =>
                                                 <Chip
                                                     key={element}
@@ -1125,12 +1125,12 @@ class AgencyProfileTourClass extends React.Component {
                                         </div>
                                     </div>
                                     <div className="d-flex align-items-start mb-2">
-                                        <label htmlFor="newTourDescription" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">{textPage.newTourDescription.floatingLabelText}:</label>
-                                        <textarea id="newTourDescription" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " name="" cols="30" rows="3"
+                                        <label htmlFor="newTourDescription" className="d-md-block d-none col-2">{textPage.newTourDescription.floatingLabelText}:</label>
+                                        <textarea id="newTourDescription" className="d-md-block d-none col-md-4 col-12 " name="" cols="30" rows="3"
                                             onChange={(e) => { this.handleChange(e.currentTarget.value, 'info', { number: index }) }} value={element.info} />
                                         <TextField
                                             floatingLabelText={textPage.newTourDescription.floatingLabelText}
-                                            className="d-xl-none d-lg-none d-md-none d-sm-block d-block multiLineInputClass"
+                                            className="d-md-none d-block multiLineInputClass"
                                             fullWidth="100%"
                                             floatingLabelFocusStyle={{ color: "#304269" }}
                                             underlineFocusStyle={{ borderColor: "#304269" }}
@@ -1139,16 +1139,16 @@ class AgencyProfileTourClass extends React.Component {
                                             value={element.info}
                                             onChange={(e) => { this.handleChange(e.currentTarget.value, 'info', { number: index }) }}
                                         />
-                                        <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">{textPage.newTourDescription.description}</p>
+                                        <p className=" d-md-block d-none m-0 col-md-6 col-5">{textPage.newTourDescription.description}</p>
                                     </div>
                                 </div>
                             )}
 
-                            <div className="paddingL10 d-flex border-top flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-start mt-3">
-                                <div className="tourContentTitle d-flex align-items-center col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 p-0">
+                            <div className="paddingL10 d-flex border-top flex-md-row flex-column align-items-start mt-3">
+                                <div className="tourContentTitle d-flex align-items-center col-2 p-0">
                                     <p className="mb-0">{textPage.schedule.title}</p>
                                 </div>
-                                <div className="d-flex flex-column col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 p-0">
+                                <div className="d-flex flex-column col-md-8 col-12 p-0">
                                     <div className="d-flex p-0">
                                         <div className="tourContentCheckbox">
                                             <label htmlFor="tourContentEveryday">
@@ -1156,7 +1156,7 @@ class AgencyProfileTourClass extends React.Component {
                                                 <span />
                                             </label>
                                         </div>
-                                        <div className="tourContentEveryday d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column  align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start col-xl-4 col-lg-4 col-md-4 col-sm-10 col-10 p-0 mb-0">
+                                        <div className="tourContentEveryday d-flex flex-md-row flex-column  align-items-md-center align-items-start col-md-4 col-10 p-0 mb-0">
                                             <label htmlFor="newTourEveryday" onClick={() => { this.state.tourSave.daily = true; this.setState({ tourSave: this.state.tourSave }); }} className="mt-xl-0 mt-lg-0 mt-md-0 mt-3 pr-2">{textPage.schedule.newTourEveryday}</label>
                                             <DropDownMenu
                                                 anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
@@ -1180,16 +1180,16 @@ class AgencyProfileTourClass extends React.Component {
                                             </DropDownMenu>
                                         </div>
                                     </div>
-                                    <div className="d-flex col-xl-8 col-lg-8 col-md-8 col-sm-10 col-10 p-0">
+                                    <div className="d-flex col-md-8 col-10 p-0">
                                         <div className="tourContentCheckbox">
                                             <label htmlFor="tourContentOther">
                                                 <input id="tourContentOther" checked={!this.state.tourSave.daily} onChange={() => { this.state.tourSave.daily = !this.state.tourSave.daily; this.setState({ tourSave: this.state.tourSave }); }} type="checkbox" />
                                                 <span className="tourContentOtherSpan" />
                                             </label>
                                         </div>
-                                        <div className="openMultipleDatepicker d-xl-flex d-lg-flex d-md-flex d-sm-block d-block flex-column justify-content-center ml-1 col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 mb-0 p-0">
+                                        <div className="openMultipleDatepicker d-md-flex d-block flex-column justify-content-center ml-1 col-md-8 col-12 mb-0 p-0">
                                             <label htmlFor="newTourDatepicker" onClick={() => { this.state.tourSave.daily = false; this.setState({ tourSave: this.state.tourSave }); }} className="mb-0 mr-2">{textPage.schedule.newTourDatepicker}</label>
-                                            <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column  align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
+                                            <div className="d-flex flex-md-row flex-column  align-items-md-center align-items-start">
                                                 <span style={{ display: !this.state.tourSave.daily ? "block" : "none", maxHeight: '40px', width: '100%' }} className="newTourDatepickerSpan" onClick={this.calendarModalShow}>{textPage.schedule.selectDates}</span>
                                                 <DropDownMenu
                                                     value={this.state.tourSave.time}
@@ -1217,8 +1217,8 @@ class AgencyProfileTourClass extends React.Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className={!this.state.tourSave.daily ? "paddingL10 d-flex justify-content-center col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" : " d-none"}>
-                                <div className="d-flex flex-wrap flex-row align-items-start col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 p-0 mb-2">
+                            <div className={!this.state.tourSave.daily ? "paddingL10 d-flex justify-content-center col-12" : " d-none"}>
+                                <div className="d-flex flex-wrap flex-row align-items-start col-md-8 col-12 p-0 mb-2">
 
                                     {this.state.tourSave.calendary.map((element, index) => {
                                         let temp = element;
@@ -1244,12 +1244,12 @@ class AgencyProfileTourClass extends React.Component {
                             <div className="paddingL10 tourContentTitle border-top d-flex align-items-center mt-3 mb-0">
                                 <p>{textPage.additionalInformation.title}</p>
                             </div>
-                            <div className="paddingL10 d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                <label htmlFor="newTourPrice" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">{textPage.additionalInformation.newTourPrice.floatingLabelText}:</label>
-                                <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0">
+                            <div className="paddingL10 d-flex flex-md-row flex-column align-items-md-center align-items-start">
+                                <label htmlFor="newTourPrice" className="d-md-block d-none col-2">{textPage.additionalInformation.newTourPrice.floatingLabelText}:</label>
+                                <div className="d-flex flex-md-row flex-column col-md-4 col-12 p-0">
                                     <TextField
                                         floatingLabelText={textPage.additionalInformation.newTourPrice.floatingLabelText}
-                                        className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
+                                        className="d-md-none d-block inputClass"
                                         fullWidth="100%"
                                         floatingLabelFocusStyle={{ color: "#304269" }}
                                         underlineFocusStyle={{ borderColor: "#304269" }}
@@ -1261,7 +1261,7 @@ class AgencyProfileTourClass extends React.Component {
                                             this.setState({ tourSave: { ...this.state.tourSave, price: e.currentTarget.value } });
                                         }}
                                     />
-                                    <input id="newTourPrice" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12 mr-1" type="text"
+                                    <input id="newTourPrice" className="d-md-block d-none col-md-8 col-12 mr-1" type="text"
                                         value={this.state.tourSave.price} onChange={(e) => {
 
                                             let obj = document.getElementById('newTourPrice');
@@ -1287,14 +1287,14 @@ class AgencyProfileTourClass extends React.Component {
                                     </DropDownMenu>
                                 </div>
                             </div>
-                            <div className="paddingL10 d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 ">{textPage.additionalInformation.directions.floatingLabelText}:</label>
+                            <div className="paddingL10 d-flex flex-md-row flex-column align-items-md-center align-items-start">
+                                <label className="d-md-block d-none col-2 ">{textPage.additionalInformation.directions.floatingLabelText}:</label>
                                 <DropDownMenu
                                     value={this.state.tourSave.directionId}
                                     anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
                                     onChange={(event, index, value) => { this.setState({ tourSave: { ...this.state.tourSave, directionId: value } }) }}
                                     style={{ width: "100%" }}
-                                    className="dropdownClass col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0"
+                                    className="dropdownClass col-md-4 col-12 p-0"
                                     autoWidth={false}
                                     selectedMenuItemStyle={{ color: "#f60" }}
                                 >
@@ -1303,17 +1303,17 @@ class AgencyProfileTourClass extends React.Component {
                                         <MenuItem value={element.id} primaryText={element.local.name} />
                                     )}
                                 </DropDownMenu>
-                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">{textPage.additionalInformation.directions.description}</p>
+                                <p className=" d-md-block d-none m-0 col-md-6 col-5">{textPage.additionalInformation.directions.description}</p>
                             </div>
 
-                            <div className="paddingL10 d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 ">{textPage.additionalInformation.categories.floatingLabelText}:</label>
+                            <div className="paddingL10 d-flex flex-md-row flex-column align-items-md-center align-items-start">
+                                <label className="d-md-block d-none col-2 ">{textPage.additionalInformation.categories.floatingLabelText}:</label>
                                 <DropDownMenu
                                     value={this.state.categoriesValue}
                                     anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
                                     onChange={(event, index, value) => { this.handleChange(value, "categories") }}
                                     style={{ width: "100%" }}
-                                    className="dropdownClass col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0"
+                                    className="dropdownClass col-md-4 col-12 p-0"
                                     autoWidth={false}
                                     selectedMenuItemStyle={{ color: "#f60" }}
                                 >
@@ -1323,10 +1323,10 @@ class AgencyProfileTourClass extends React.Component {
                                     )}
 
                                 </DropDownMenu>
-                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">{textPage.additionalInformation.categories.description}</p>
+                                <p className=" d-md-block d-none m-0 col-md-6 col-5">{textPage.additionalInformation.categories.description}</p>
                             </div>
-                            <div className="paddingL10 d-flex justify-content-end col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
-                                <div className="d-flex flex-wrap col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 p-0 mb-2">
+                            <div className="paddingL10 d-flex justify-content-end col-12 p-0">
+                                <div className="d-flex flex-wrap col-md-10 col-12 p-0 mb-2">
                                     {this.state.tourSave.categoriesSelected.map((element, index) =>
                                         <Chip
                                             key={element.key}
@@ -1342,13 +1342,13 @@ class AgencyProfileTourClass extends React.Component {
                                 </div>
                             </div>
 
-                            <div className="paddingL10 d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                <label className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 ">{textPage.additionalInformation.tags.floatingLabelText}:</label>
+                            <div className="paddingL10 d-flex flex-md-row flex-column align-items-md-center align-items-start">
+                                <label className="d-md-block d-none col-2 ">{textPage.additionalInformation.tags.floatingLabelText}:</label>
                                 <DropDownMenu
                                     anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
                                     onChange={(event, index, value) => { this.handleChange(value, "tags") }}
                                     style={{ width: "100%" }}
-                                    className="dropdownClass col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0"
+                                    className="dropdownClass col-md-4 col-12 p-0"
                                     autoWidth={false}
                                     selectedMenuItemStyle={{ color: "#f60" }}
                                 >
@@ -1358,10 +1358,10 @@ class AgencyProfileTourClass extends React.Component {
                                     )}
 
                                 </DropDownMenu>
-                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">{textPage.additionalInformation.tags.description}</p>
+                                <p className=" d-md-block d-none m-0 col-md-6 col-5">{textPage.additionalInformation.tags.description}</p>
                             </div>
-                            <div className="paddingL10 d-flex justify-content-end col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
-                                <div className="d-flex flex-wrap col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 p-0 mb-2">
+                            <div className="paddingL10 d-flex justify-content-end col-12 p-0">
+                                <div className="d-flex flex-wrap col-md-10 col-12 p-0 mb-2">
                                     {this.state.tourSave.tagsSelected.map((element, index) =>
                                         <Chip
                                             key={element}
@@ -1378,9 +1378,9 @@ class AgencyProfileTourClass extends React.Component {
                             </div>
 
 
-                            <div className="paddingL10 d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
-                                <label htmlFor="newTourPeople" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">{textPage.additionalInformation.newTourPeople}:</label>
-                                <input id="newTourPeople" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12" type="text"
+                            <div className="paddingL10 d-flex flex-md-row flex-column align-items-md-center align-items-start">
+                                <label htmlFor="newTourPeople" className="d-md-block d-none col-2">{textPage.additionalInformation.newTourPeople}:</label>
+                                <input id="newTourPeople" className="d-md-block d-none col-md-4 col-12" type="text"
                                     value={this.state.tourSave.seats} onChange={(e) => {
                                         let obj = document.getElementById('newTourPeople');
                                         obj.classList.remove("errorColor");
@@ -1388,15 +1388,15 @@ class AgencyProfileTourClass extends React.Component {
                                     }
                                     } />
                             </div>
-                            <div className="paddingL10 addPhotoTour d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-start mt-3">
-                                <div className=" col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12">
+                            <div className="paddingL10 addPhotoTour d-flex flex-md-row flex-column align-items-start mt-3">
+                                <div className=" col-xl-2 col-lg-2 col-md-2 col-12">
                                     <label id="imageLabel" >{textPage.additionalInformation.uploadPhoto}:</label>
                                     <label id="imageLabelError" className="imageLabelError" style={{ visibility: 'hidden' }} >{textPage.photos.imageLabelError}</label>
                                 </div>
                                 <div className="tourPhotoMiniContainer d-flex flex-wrap">
                                     <div className="addPhotoTourLabel">
                                         <label htmlFor="addCarFile" ></label>
-                                        <input type="file" id="addCarFile" style={{ display: "none" }} multiple onChange={(e)=>{this._handleImageChange(e,'image')}} />
+                                        <input type="file" id="addCarFile" style={{ display: "none" }} multiple onChange={(e) => { this._handleImageChange(e, 'image') }} />
                                     </div>
                                     {this.state.tourSave.image.map((element, index) =>
                                         <div className="position-relative" >
@@ -1407,55 +1407,55 @@ class AgencyProfileTourClass extends React.Component {
                                 </div>
                             </div>
 
-       
 
-                            <div className="paddingL10 addPhotoTour d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-start mt-3">
-                                <div className=" col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12">
+
+                            <div className="paddingL10 addPhotoTour d-flex flex-md-row flex-column align-items-start mt-3">
+                                <div className=" col-xl-2 col-lg-2 col-md-2 col-12">
                                     <label id="imageLabel" >{textPage.photos.mainImageLabel}:</label>
                                     <label id="mainImageLabelError" className="imageLabelError" style={{ visibility: 'hidden' }} >{textPage.photos.imageLabelError}</label>
                                 </div>
                                 <div className="tourPhotoMiniContainer d-flex flex-wrap">
-                                    
-                                    {this.state.tourSave.mainImage.length>0 ? 
-                                        <div className="position-relative" style={{width: '130px'}}>
-                                            <img src={this.state.tourSave.mainImage} className="tourPhotoMini" alt="add_mainImage" onClick={() => { this.setState({ imagePreviewUrl:this.state.tourSave.mainImage }) }} />
-                                            <span onClick={() => {  this.state.tourSave.mainImage=''; this.state.tourSave.mainImageFile=""; this.setState({ tourSave: { ...this.state.tourSave }, imagePreviewUrl: '' }) }}></span>
+
+                                    {this.state.tourSave.mainImage.length > 0 ?
+                                        <div className="position-relative" style={{ width: '130px' }}>
+                                            <img src={this.state.tourSave.mainImage} className="tourPhotoMini" alt="add_mainImage" onClick={() => { this.setState({ imagePreviewUrl: this.state.tourSave.mainImage }) }} />
+                                            <span onClick={() => { this.state.tourSave.mainImage = ''; this.state.tourSave.mainImageFile = ""; this.setState({ tourSave: { ...this.state.tourSave }, imagePreviewUrl: '' }) }}></span>
                                         </div>
-                                        : 
+                                        :
                                         <div className="addPhotoTourLabel">
                                             <label htmlFor="addCarFile2" ></label>
-                                            <input type="file" id="addCarFile2" style={{ display: "none" }} multiple onChange={(e)=>{this._handleImageChange(e,'mainImage')}} />
+                                            <input type="file" id="addCarFile2" style={{ display: "none" }} multiple onChange={(e) => { this._handleImageChange(e, 'mainImage') }} />
                                         </div>
                                     }
                                 </div>
-                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">{textPage.photos.mainImageInfo}</p>
+                                <p className=" d-md-block d-none m-0 col-md-6 col-5">{textPage.photos.mainImageInfo}</p>
                             </div>
 
-                            <div className="paddingL10 addPhotoTour d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-start mt-3">
-                                <div className=" col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12">
+                            <div className="paddingL10 addPhotoTour d-flex flex-md-row flex-column align-items-start mt-3">
+                                <div className=" col-xl-2 col-lg-2 col-md-2 col-12">
                                     <label id="imageLabel" >{textPage.photos.blockListLabel}:</label>
                                     <label id="blockListImageLabelError" className="imageLabelError" style={{ visibility: 'hidden' }} >{textPage.photos.imageLabelError}</label>
                                 </div>
                                 <div className="tourPhotoMiniContainer d-flex flex-wrap">
-                                    
-                                    {this.state.tourSave.blockListImage.length>0 ? 
-                                        <div className="position-relative" style={{width: '130px'}}>
-                                            <img src={this.state.tourSave.blockListImage} className="tourPhotoMini" alt="add_blockListImage" onClick={() => { this.setState({ imagePreviewUrl:this.state.tourSave.blockListImage }) }} />
-                                            <span onClick={() => {  this.state.tourSave.blockListImage=''; this.state.tourSave.blockListImageFile=""; this.setState({ tourSave: { ...this.state.tourSave }, imagePreviewUrl: '' }) }}></span>
+
+                                    {this.state.tourSave.blockListImage.length > 0 ?
+                                        <div className="position-relative" style={{ width: '130px' }}>
+                                            <img src={this.state.tourSave.blockListImage} className="tourPhotoMini" alt="add_blockListImage" onClick={() => { this.setState({ imagePreviewUrl: this.state.tourSave.blockListImage }) }} />
+                                            <span onClick={() => { this.state.tourSave.blockListImage = ''; this.state.tourSave.blockListImageFile = ""; this.setState({ tourSave: { ...this.state.tourSave }, imagePreviewUrl: '' }) }}></span>
                                         </div>
-                                        : 
+                                        :
                                         <div className="addPhotoTourLabel">
                                             <label htmlFor="addCarFile3" ></label>
-                                            <input type="file" id="addCarFile3" style={{ display: "none" }} multiple onChange={(e)=>{this._handleImageChange(e,'blockListImage')}} />
+                                            <input type="file" id="addCarFile3" style={{ display: "none" }} multiple onChange={(e) => { this._handleImageChange(e, 'blockListImage') }} />
                                         </div>
                                     }
                                 </div>
-                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">{textPage.photos.blockListImageInfo}</p>
+                                <p className=" d-md-block d-none m-0 col-md-6 col-5">{textPage.photos.blockListImageInfo}</p>
                             </div>
 
 
                             <div className="paddingL10 tourContentAddButton pb-4 d-flex justify-content-xl-start justify-content-lg-start justify-content-md-start justify-content-sm-center justify-content-center mt-3">
-                                <span className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 d-xl-block d-lg-block d-md-block d-sm-none d-none" />
+                                <span className="col-2 d-md-block d-none" />
                                 <button htmlFor="newTourForm" type="submit" className="col-8">{textPage.additionalInformation.addTour}</button>
                                 <span className="ml-3" onClick={() => this.toggle()}>{textPage.additionalInformation.cancel}</span>
                             </div>
@@ -1463,7 +1463,7 @@ class AgencyProfileTourClass extends React.Component {
                     </div>
                 </Collapse>
                 <div className="tourBodyElement">
-                    <div className="p-0 d-flex  justify-content-xl-start justify-content-lg-start justify-content-md-start justify-content-sm-center justify-content-center flex-wrap col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div className="p-0 d-flex  justify-content-xl-start justify-content-lg-start justify-content-md-start justify-content-sm-center justify-content-center flex-wrap col-12">
                         <div style={{ display: this.state.collapse ? "none" : "block" }} onClick={() => this.toggle()} className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-11 p-2" >
                             <div className="filledTourImgAddBg">
                                 <div className="d-flex flex-column justify-content-center align-items-center">
@@ -1475,7 +1475,7 @@ class AgencyProfileTourClass extends React.Component {
                         {this.props.globalReduser.profile.tours.map((element, index) =>
                             <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-11 p-2">
                                 <div className="filledCard d-flex flex-column p-0">
-                                    <div className="filledCardInformation d-flex flex-column" style={{position: 'relative'}}>
+                                    <div className="filledCardInformation d-flex flex-column" style={{ position: 'relative' }}>
                                         <div className="filledCardInformationNameCar d-flex d-flex justify-content-end w-100 align-items-center">
 
                                             <label className="cardInformationNameCarIcon"></label>
@@ -1512,7 +1512,7 @@ class AgencyProfileTourClass extends React.Component {
                         )}
                     </div>
                 </div>
-            </React.Fragment >
+            </ >
         );
     }
 }

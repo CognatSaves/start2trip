@@ -22,8 +22,8 @@ class affiliateProgramClass extends React.Component {
     render() {
         let text = this.props.storeState.languageTextMain.footerPage.affiliateProgram;
         let helmet = this.props.storeState.languageTextMain.helmets.affiliateProgram;
-        
-        let arrayEl= [
+
+        let arrayEl = [
             {
                 img: invite,
                 title: text.arrayEl.firstEl.title,
@@ -40,7 +40,7 @@ class affiliateProgramClass extends React.Component {
                 text: text.arrayEl.thirdEl.text
             },
         ];
-        let arrayFooterEl= [
+        let arrayFooterEl = [
             {
                 img: IT_link,
                 title: text.arrayFooterEl.firstEl.title,
@@ -59,7 +59,7 @@ class affiliateProgramClass extends React.Component {
         ]
 
         return (
-            <React.Fragment>
+            <>
                 <Header driver={true} history={this.props.history} />
                 <Helmet>
                     <title>{helmet.basic.title}</title>
@@ -70,7 +70,7 @@ class affiliateProgramClass extends React.Component {
                     <meta property="og:title" content={helmet.basic.title} />
                     <meta property="og:description" content={helmet.basic.description} />
                 </Helmet>
-                <div className="wrapper" style={{minHeight:"79vh"}}>
+                <div className="wrapper" style={{ minHeight: "79vh" }}>
                     <div className="affiliateProgram" >
                         <div className="affiliateProgram_Title col-12 p-0">
                             <h2>{text.h2}</h2>
@@ -79,14 +79,14 @@ class affiliateProgramClass extends React.Component {
                             </p>
                             <div className="affiliateProgram_content d-flex flex-column col-md-8 col-12 p-0">
                                 {arrayEl.map((element, index) =>
-                                        <div className="d-flex flex-md-row flex-column align-items-center mb-md-5 mb-3">
-                                            <i className="col-md-2 col-3 p-0" style={{ background: "url(" + element.img + ")no-repeat" }} />
-                                            <div className="d-flex flex-column align-items-md-start align-items-center col-md-6 col-sm-11 col-12 p-0">
-                                                <span>{element.title}</span>
-                                                <p>{element.text}</p>
-                                            </div>
+                                    <div className="d-flex flex-md-row flex-column align-items-center mb-md-5 mb-3">
+                                        <i className="col-md-2 col-3 p-0" style={{ background: "url(" + element.img + ")no-repeat" }} />
+                                        <div className="d-flex flex-column align-items-md-start align-items-center col-md-6 col-sm-11 col-12 p-0">
+                                            <span>{element.title}</span>
+                                            <p>{element.text}</p>
                                         </div>
-                                    )
+                                    </div>
+                                )
                                 }
                             </div>
                         </div>
@@ -110,7 +110,7 @@ class affiliateProgramClass extends React.Component {
                         </div>
                     </div>
                 </div>
-            </React.Fragment>
+            </>
         )
     }
 }

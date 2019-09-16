@@ -68,7 +68,7 @@ class AgencyProfileTravelHistoryClass extends React.Component {
         else {
 
             this.props.dispatch(setUrlAddress(window.location.pathname));
-            this.props.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
+            this.props.history.push('/' + cookies.get('userLangISO', { path: "/" }) + '/login/');
             //return null;
         }
     }
@@ -138,7 +138,7 @@ class AgencyProfileTravelHistoryClass extends React.Component {
         }
         else {
             this.props.dispatch(setUrlAddress(window.location.pathname));
-            this.props.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
+            this.props.history.push('/' + cookies.get('userLangISO', { path: "/" }) + '/login/');
             return null;
         }
     }
@@ -161,14 +161,14 @@ class AgencyProfileTravelHistoryClass extends React.Component {
         }
 
         let textInfo = this.props.storeState.languageText.agencyProfile.agencyProfileTrevelHistory;
-        
+
         let that = this;
         return (
             <div className="d-flex flex-wrap justify-content-center">
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
 
                 {this.props.trevelHistory.map((element, index) =>
-                    <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-11 p-2" key={element}>
+                    <div className="col-lg-3 col-md-4 col-sm-6 col-11 p-2" key={element}>
                         <div className="trevelHistoryBody  d-flex flex-column">
                             <div className="d-flex flex-column historyBodyHeader">
                                 <div className="d-flex justify-content-between">
@@ -188,7 +188,7 @@ class AgencyProfileTravelHistoryClass extends React.Component {
                                     <img src={requests.serverAddressImg + element.carrier.image} alt={''} />
                                     <div className="d-flex flex-column ml-1">
                                         <span>{element.carrier.firstName}</span>
-                                        <Stars value={element.carrier.rating} commentNumber={element.carrier.comments + " "+textInfo.comments} valueDisplay={true} commentNumberDisplay={true} />
+                                        <Stars value={element.carrier.rating} commentNumber={element.carrier.comments + " " + textInfo.comments} valueDisplay={true} commentNumberDisplay={true} />
                                     </div>
 
                                 </div>
@@ -240,7 +240,7 @@ class AgencyProfileTravelHistoryClass extends React.Component {
                             </div>
                             {
                                 this.props.isHistory ?
-                                    <React.Fragment>
+                                    <>
                                         <div className="d-flex flex-column historyBodyElement">
                                             <h5>{textInfo.tripStart}</h5>
                                             <span>{element.startFact ? this.props.globalReduser.createDateTimeString(element.startFact) : textInfo.notStarted}</span>
@@ -249,9 +249,8 @@ class AgencyProfileTravelHistoryClass extends React.Component {
                                             <h5>{textInfo.tripEnd}</h5>
                                             <span>{element.endFact ? this.props.globalReduser.createDateTimeString(element.endFact) : textInfo.notEnded}</span>
                                         </div>
-                                    </React.Fragment>
-                                    : <React.Fragment>
-                                    </React.Fragment>
+                                    </>
+                                    : <React.Fragment />
                             }
 
                         </div>

@@ -100,8 +100,8 @@ class PlaceTravelBlockClass extends React.Component {
                             onClick={() => { if (this.state.isDateHighlighted) { this.setState({ isDateHighlighted: false }) } }}>
                             <div className="placesDescription_travelBlock_icon placesDescription_calendary" />
                             <div className="">
-                                <DatePicker hintText={textInfo.startDate} minDate={new Date()} 
-                                onChange={(e, date) => { this.setState({ date: this.props.globalhistory.convertDateToUTC(date) }); }} className="routeDescrDate"/*"routemenu_date"*/ />
+                                <DatePicker hintText={textInfo.startDate} minDate={new Date()}
+                                    onChange={(e, date) => { this.setState({ date: this.props.globalhistory.convertDateToUTC(date) }); }} className="routeDescrDate"/*"routemenu_date"*/ />
                             </div>
                         </div>
                         <button className="placesDescription_travelBlock_element placesDescription_travelBlock_applyButton d-flex"
@@ -110,15 +110,13 @@ class PlaceTravelBlockClass extends React.Component {
                         </button>
 
                     </div>
-                    {isMobileOnly ? <React.Fragment>
-
-                    </React.Fragment>
+                    {isMobileOnly ? <React.Fragment />
                         :
-                        <React.Fragment>
+                        <>
                             <div className="placeDescription_fragmentName_mapBlock col-6" style={{ marginTop: "15px" }}>
                                 <MapContainer newMapStyles={mapStyles} cities={cities} setLengthTime={() => { console.log('setLengthTime at work') }} mapUpdate={true} />
                             </div>
-                        </React.Fragment>}
+                        </>}
                 </div>
 
             </div>

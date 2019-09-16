@@ -19,7 +19,7 @@ class PopularPlacesClass extends React.Component {
     }
 
     onDirClickCleared = (address) => {
-        this.props.globalReduser.history.push(address+"/");
+        this.props.globalReduser.history.push(address + "/");
     }
     directionHrefCreator = (id) => {
         function findSelectedDirectionName(directions, id, storeState) {
@@ -103,7 +103,7 @@ class PopularPlacesClass extends React.Component {
         console.log(placeRender);
         let textInfo = this.props.storeState.languageTextMain.home.homeBottom.homePopularPlaces;
         return (
-            <React.Fragment>
+            <>
                 <div className={placeRender.length > 0 ? "popularPlacesBody pt-4" : 'd-none'} >
 
                     <div className="popularPlacesTitle">
@@ -127,9 +127,9 @@ class PopularPlacesClass extends React.Component {
                                             }
                                         }
                                         return (
-                                            <React.Fragment>
+                                            <>
                                                 {
-                                                    <a href={requests.frontendAddress + address+"/"} className={"col-md-2 col-7 d-flex flex-column popularPlacesEl "
+                                                    <a href={requests.frontendAddress + address + "/"} className={"col-md-2 col-7 d-flex flex-column popularPlacesEl "
                                                         + (isDirSelected(element.id, this.props.placesState.selectedDirection) ? 'popularPlacesEl_selected' : '')}
                                                         onClick={(e) => { e.preventDefault(); this.onDirClickCleared(address) }}>
                                                         <span className="popularPlacesElMes">{textInfo.cancel}</span>
@@ -141,7 +141,7 @@ class PopularPlacesClass extends React.Component {
                                                         </div>
                                                     </a>
                                                 }
-                                            </React.Fragment>
+                                            </>
                                         )
                                     }
 
@@ -154,7 +154,7 @@ class PopularPlacesClass extends React.Component {
 
                 </div>
 
-            </React.Fragment>
+            </>
         )
     }
 }

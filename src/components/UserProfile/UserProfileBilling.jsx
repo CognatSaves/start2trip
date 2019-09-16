@@ -56,11 +56,11 @@ class UserProfileBillingClass extends React.Component {
         let that = this;
         console.log('DriverProfileBilling render');
         console.log(this.state);
-        
+
         let textInfo = this.props.storeState.languageTextMain.userProfile.userProfileBilling;
         let billing = this.props.globalReduser.profile.billing;
         return (
-            <React.Fragment>
+            <>
                 <Dialog
                     contentClassName='billingModal'
                     paperClassName='billingModalDiv'
@@ -71,7 +71,7 @@ class UserProfileBillingClass extends React.Component {
                     onRequestClose={() => { this.handleClose('withdrawal') }}
                 >
                     <div className="billingModalHeder">
-                        <span>{textInfo.billingModalHeader+':'}$</span>
+                        <span>{textInfo.billingModalHeader + ':'}$</span>
                     </div>
                     <form action="" className="billingModalContent">
                         <div className="d-flex align-items-center mt-1">
@@ -109,7 +109,7 @@ class UserProfileBillingClass extends React.Component {
                             selectedMenuItemStyle={{ color: "#f60" }}
                         >
                             <MenuItem value={textInfo.billingModalContent.cardType}
-                            disabled={true} primaryText={textInfo.billingModalContent.cardType} />
+                                disabled={true} primaryText={textInfo.billingModalContent.cardType} />
                             {this.state.typeCardArray.map((element, index) =>
                                 <MenuItem value={element} primaryText={element} />
                             )}
@@ -132,19 +132,19 @@ class UserProfileBillingClass extends React.Component {
                             <div className="d-flex  flex-sm-row flex-column align-items-md-end align-items-sm-center align-items-center  justify-content-between">
                                 <div className="billingText col-md-10 col-12 p-0">
                                     <div className="billingTextTitle col-12 p-0">
-                                        <span>{textInfo.billingBody.title+"20456787"+")"}</span>
+                                        <span>{textInfo.billingBody.title + "20456787" + ")"}</span>
                                     </div>
                                     <div className="specialBorder mb-2 d-flex align-items-center justify-content-between">
-                                        <span className="col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0 py-2">{textInfo.billingBody.partnersProfit+":"}</span>
-                                        <span>{'$'+billing.partnersProfit}</span>
+                                        <span className="col-lg-7 col-md-8 col-sm-9 col-9 p-0 py-2">{textInfo.billingBody.partnersProfit + ":"}</span>
+                                        <span>{'$' + billing.partnersProfit}</span>
                                     </div>
                                     <div className="specialBorder mb-2 d-flex align-items-center justify-content-between">
-                                        <span className="col-xl-7 col-lg-7 col-md-8 col-sm-9 col-9 p-0 py-2">{textInfo.billingBody.payedprofit+":"}</span>
-                                        <span>{'$'+billing.payedprofit}</span>
+                                        <span className="col-lg-7 col-md-8 col-sm-9 col-9 p-0 py-2">{textInfo.billingBody.payedprofit + ":"}</span>
+                                        <span>{'$' + billing.payedprofit}</span>
                                     </div>
                                     <div className="d-flex align-items-center justify-content-between">
-                                        <span className="specialText col-xl-7 col-lg-7 col-md-8 col-sm-9 col-8 p-0 py-2">{textInfo.billingBody.summary+":"}</span>
-                                        <span className="specialText">{'$'+(billing.partnersProfit-billing.payedprofit)}</span>
+                                        <span className="specialText col-lg-7 col-md-8 col-sm-9 col-8 p-0 py-2">{textInfo.billingBody.summary + ":"}</span>
+                                        <span className="specialText">{'$' + (billing.partnersProfit - billing.payedprofit)}</span>
                                     </div>
                                 </div>
                                 <div className="billingButton d-flex justify-content-end  align-items-end">
@@ -155,10 +155,7 @@ class UserProfileBillingClass extends React.Component {
 
                     </div>
                 </div>
-                {
-                   
-                }
-                 </React.Fragment>
+            </>
         );
     }
 }

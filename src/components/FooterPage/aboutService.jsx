@@ -13,7 +13,7 @@ class aboutServiceClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            
+
 
         }
 
@@ -41,15 +41,15 @@ class aboutServiceClass extends React.Component {
                 text: text.thirdEl.text
             },
         ]
-        let imgBackground =  null;
-        if(text.h2 === "О сервисе"){
+        let imgBackground = null;
+        if (text.h2 === "О сервисе") {
             imgBackground = phone_ru
-        }else{
+        } else {
             imgBackground = phone_en
         }
 
         return (
-            <React.Fragment>
+            <>
                 <Header driver={true} history={this.props.history} />
                 <Helmet>
                     <title>{helmet.basic.title}</title>
@@ -60,9 +60,9 @@ class aboutServiceClass extends React.Component {
                     <meta property="og:title" content={helmet.basic.title} />
                     <meta property="og:description" content={helmet.basic.description} />
                 </Helmet>
-                <div className="wrapper" style={{minHeight:"79vh"}}>
+                <div className="wrapper" style={{ minHeight: "79vh" }}>
                     <div className="aboutService d-flex" >
-                        <div className="aboutService_Title col-12 p-0" style={{background:"url("+imgBackground+")no-repeat"}}>
+                        <div className="aboutService_Title col-12 p-0" style={{ background: "url(" + imgBackground + ")no-repeat" }}>
                             <h2>{text.h2}</h2>
                             <p className="col-md-9 col-12">{text.description}</p>
                             <div className="aboutService_content d-flex flex-column col-md-8 col-12 p-0">
@@ -81,7 +81,7 @@ class aboutServiceClass extends React.Component {
                         </div>
                     </div>
                 </div>
-            </React.Fragment>
+            </>
         )
     }
 }

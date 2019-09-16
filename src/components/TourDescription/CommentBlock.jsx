@@ -23,10 +23,10 @@ class CommentBlockClass extends React.Component {
             <div className="placeDescription_block d-flex flex-column" style={{ marginBottom: '100px' }} id={this.props.id}>
                 <div className="placeDescription_fragmentName">{textInfo.comments}</div>
                 <div className="render_otherPlaces" style={{ marginTop: "15px" }}>
-                    {this.props.targetId ? <React.Fragment>
+                    {this.props.targetId ? <>
                         <CreateComment targetType={this.props.targetType} targetId={this.props.targetId} createCommentString={textInfo.createCommentString}
                             startRolling={this.props.startRolling ? () => this.props.startRolling() : () => { }} endRolling={this.props.endRolling ? (result) => this.props.endRolling(result) : () => { }} />
-                    </React.Fragment> : <React.Fragment></React.Fragment>}
+                    </> : <React.Fragment />}
 
                     <ShowComments selectedComments={selectedComments} />
 

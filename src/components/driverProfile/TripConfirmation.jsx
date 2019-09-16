@@ -44,7 +44,7 @@ class TripConfirmationClass extends React.Component {
                     that.setState({
                         text: 'Всё прекрасно',
                         isRefreshExist: false,
-                        
+
                     })
                 }
             })
@@ -62,7 +62,7 @@ class TripConfirmationClass extends React.Component {
     componentWillUnmount() {
         this.props.dispatch(changeLanguagePart(false, false))//эта ересь сообщает шапке, что мы валим из пользователя, т.е. работает 1я партия языков, но ломать адрес не надо
     }
-    
+
     render() {
         console.log('TripConfirmation render');
 
@@ -72,8 +72,8 @@ class TripConfirmationClass extends React.Component {
         let windowImg = null;
         let coockisIso = cookies.get('country', { path: '/' })
         if (this.props.storeState.languages.length > 0) {
-            
-            
+
+
             let j;
             for (let i = 0; i < this.props.storeState.countries.length; i++) {
                 if (this.props.storeState.countries[i].ISO === coockisIso) {
@@ -81,17 +81,17 @@ class TripConfirmationClass extends React.Component {
                     break;
                 }
             }
-            if(coockisIso === undefined ){
+            if (coockisIso === undefined) {
                 j = 1
             }
             windowImg = requests.serverAddressImg + this.props.storeState.countries[j].windowImg.url
         }
-        let redirectAddress= coockisIso && coockisIso.length>0 ? 
+        let redirectAddress = coockisIso && coockisIso.length > 0 ?
             ("/" + coockisIso + "-" + cookies.get('userLangISO', { path: "/" }) + '/routes/') :
             ('/countrySelection');
 
         return (
-            <React.Fragment>
+            <>
                 <Helmet>
                     <title>{helmet.basic.title}</title>
                     <meta name="description" content={helmet.basic.description} />
@@ -107,53 +107,53 @@ class TripConfirmationClass extends React.Component {
                         :
                         (
                             this.state.isServerGood ?
-                            <div className="home_window" style={{ background: "url(" + windowImg + ")no-repeat", minHeight: "93.5vh" }}>
-                                <Header driver={true} history={this.props.history} />
-                                <div className="forgotPasswordContent d-flex flex-column align-items-center col-md-8 col-12 mx-auto">
-                                    <div className="d-flex flex-column justify-content-center align-items-center">
-                                        <span className="pt-2 pb-1">{textInfo.good.title}</span>
-                                        {
-                                            /*
-                                            Объект this.state.text содержит информацию по поводу того, как обработался
-                                            запрос. Но выводить его на экран не нужно, надо добавить отрисовку неудачи
-                                            <span1>{this.state.text}</span1>
-                                            */
-                                        }
-                                        
-                                    </div>
-                                    <div className="d-flex flex-md-row flex-column justify-content-center align-items-center col-md-8 col-12">
-                                        <div className="forgotPasswordBt d-flex justify-content-center align-items-center col-md-5 col-12"
-                                        onClick={() => { this.props.history.push(redirectAddress) }}>
-                                        <span>{textInfo.good.buttonText}</span>
+                                <div className="home_window" style={{ background: "url(" + windowImg + ")no-repeat", minHeight: "93.5vh" }}>
+                                    <Header driver={true} history={this.props.history} />
+                                    <div className="forgotPasswordContent d-flex flex-column align-items-center col-md-8 col-12 mx-auto">
+                                        <div className="d-flex flex-column justify-content-center align-items-center">
+                                            <span className="pt-2 pb-1">{textInfo.good.title}</span>
+                                            {
+                                                /*
+                                                Объект this.state.text содержит информацию по поводу того, как обработался
+                                                запрос. Но выводить его на экран не нужно, надо добавить отрисовку неудачи
+                                                <span1>{this.state.text}</span1>
+                                                */
+                                            }
+
+                                        </div>
+                                        <div className="d-flex flex-md-row flex-column justify-content-center align-items-center col-md-8 col-12">
+                                            <div className="forgotPasswordBt d-flex justify-content-center align-items-center col-md-5 col-12"
+                                                onClick={() => { this.props.history.push(redirectAddress) }}>
+                                                <span>{textInfo.good.buttonText}</span>
+                                            </div>
+                                        </div>
+                                        <div className="d-flex flex-column justify-content-center align-items-center col-md-5 col-12">
+                                            <p>{textInfo.good.info}</p>
                                         </div>
                                     </div>
-                                    <div className="d-flex flex-column justify-content-center align-items-center col-md-5 col-12">
-                                        <p>{textInfo.good.info}</p>
-                                    </div>
-                                </div>
-                            </div> : 
-                            <div className="home_window" style={{ background: "url(" + windowImg + ")no-repeat", minHeight: "93.5vh" }}>
-                                <Header driver={true} history={this.props.history} />
-                                <div className="forgotPasswordContent d-flex flex-column align-items-center col-md-8 col-12 mx-auto">
-                                    <div className="d-flex flex-column justify-content-center align-items-center">
-                                        <span className="pt-2 pb-1">{textInfo.bad.title}</span>
-                                    </div>
-                                    <div className="d-flex flex-column justify-content-center align-items-center col-md-5 col-12">
-                                        <p>{textInfo.bad.info}</p>
-                                    </div>
-                                    <div className="d-flex flex-md-row flex-column justify-content-center align-items-center col-md-8 col-12">
-                                        <div className="forgotPasswordBt d-flex justify-content-center align-items-center col-md-5 col-12"
-                                        onClick={() => { this.props.history.push(redirectAddress) }}>
-                                        <span>{textInfo.bad.buttonText}</span>
+                                </div> :
+                                <div className="home_window" style={{ background: "url(" + windowImg + ")no-repeat", minHeight: "93.5vh" }}>
+                                    <Header driver={true} history={this.props.history} />
+                                    <div className="forgotPasswordContent d-flex flex-column align-items-center col-md-8 col-12 mx-auto">
+                                        <div className="d-flex flex-column justify-content-center align-items-center">
+                                            <span className="pt-2 pb-1">{textInfo.bad.title}</span>
+                                        </div>
+                                        <div className="d-flex flex-column justify-content-center align-items-center col-md-5 col-12">
+                                            <p>{textInfo.bad.info}</p>
+                                        </div>
+                                        <div className="d-flex flex-md-row flex-column justify-content-center align-items-center col-md-8 col-12">
+                                            <div className="forgotPasswordBt d-flex justify-content-center align-items-center col-md-5 col-12"
+                                                onClick={() => { this.props.history.push(redirectAddress) }}>
+                                                <span>{textInfo.bad.buttonText}</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                         )
                 }
 
 
-            </React.Fragment>
+            </>
         )
     }
 }

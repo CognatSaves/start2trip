@@ -14,7 +14,7 @@ class DriverProfileHistoryClass extends React.Component {
   render() {
     let textPage = this.props.AppReduser.languageText.driverProfileRegistration.DriverProfileHistory;
     return (
-      <React.Fragment>
+      <>
         <div className="driverProfileHistory">
           <div className="driverProfileHistoryTop d-flex">
             <div className={this.state.isPreHistory ? "d-flex align-items-center driverProfileHistoryTop-active" : " d-flex align-items-center"} onClick={() => { this.setState({ isPreHistory: true }) }}>
@@ -29,7 +29,7 @@ class DriverProfileHistoryClass extends React.Component {
             false: <DriverProfileTrevelHistory isHistory={true} trevelHistory={/*this.state.trevelHistory1*/this.props.globalReduser.profile && this.props.globalReduser.profile.historyTrips ? this.props.globalReduser.profile.historyTrips : []} />,
           }[this.state.isPreHistory]}
         </div>
-      </React.Fragment>
+      </>
     );
   }
 }

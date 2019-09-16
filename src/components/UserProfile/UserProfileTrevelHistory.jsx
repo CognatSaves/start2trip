@@ -27,7 +27,7 @@ class UserProfileTrevelHistoryClass extends React.Component {
         return (
             <div className="d-flex flex-wrap justify-content-center">
                 {this.props.trevelHistory.map((element, index) =>
-                    <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-11 p-2">
+                    <div className="col-lg-3 col-md-4 col-sm-6 col-11 p-2">
                         <div className="trevelHistoryBody  d-flex flex-column">
                             <div className="d-flex flex-column historyBodyHeader">
                                 <div className="d-flex justify-content-between">
@@ -43,7 +43,7 @@ class UserProfileTrevelHistoryClass extends React.Component {
                                     <img src={requests.serverAddressImg + element.carrier.image} alt={''} />
                                     <div className="d-flex flex-column ml-1">
                                         <span>{element.carrier.firstName}</span>
-                                        <Stars value={element.carrier.rating} commentNumber={element.carrier.comments + " "+textInfo.comments} valueDisplay={true} commentNumberDisplay={true} />
+                                        <Stars value={element.carrier.rating} commentNumber={element.carrier.comments + " " + textInfo.comments} valueDisplay={true} commentNumberDisplay={true} />
                                     </div>
 
                                 </div>
@@ -67,7 +67,7 @@ class UserProfileTrevelHistoryClass extends React.Component {
                             </div>
                             {
                                 this.props.isHistory ?
-                                    <React.Fragment>
+                                    <>
                                         <div className="d-flex flex-column historyBodyElement">
                                             <h5>{textInfo.startFact}</h5>
                                             <span>{element.startFact ? this.props.globalReduser.createDateTimeString(element.startFact) : textInfo.notStart}</span>
@@ -76,10 +76,8 @@ class UserProfileTrevelHistoryClass extends React.Component {
                                             <h5>{textInfo.endFact}</h5>
                                             <span>{element.endFact ? this.props.globalReduser.createDateTimeString(element.endFact) : textInfo.notEnd}</span>
                                         </div>
-                                    </React.Fragment>
-                                    : <React.Fragment>
-
-                                    </React.Fragment>
+                                    </>
+                                    : <React.Fragment />
                             }
                         </div>
                     </div>

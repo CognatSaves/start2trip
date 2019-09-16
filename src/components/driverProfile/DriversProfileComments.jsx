@@ -26,11 +26,11 @@ class DriversProfileCommentsClass extends React.Component {
         let selectedComments = comments.slice((this.props.page - this.props.showPages) * 5, (this.props.page) * 5);
         selectedComments = dateConversion(selectedComments);
         return (
-            <React.Fragment>
+            <>
                 <div className="driverProfileComments_commentBlock d-flex flex-column">
-                    <ShowComments selectedComments={selectedComments}/>
+                    <ShowComments selectedComments={selectedComments} />
                 </div>
-            </React.Fragment>
+            </>
         )
     }
 }

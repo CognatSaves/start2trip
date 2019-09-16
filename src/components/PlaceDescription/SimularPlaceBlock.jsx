@@ -35,7 +35,16 @@ class SimularToursBlockClass extends React.Component {
         let outerBlock = document.getElementById(this.props.outerBlock);
         console.log('outerBlock', outerBlock ? outerBlock.offsetWidth : 0);
         return (
-            <React.Fragment>
+            <>
+                {
+                    /*
+                    <div className="placeDescription_fragmentName">{this.props.fragmentName}</div>
+                    <div className="render_otherPlaces" style={{ marginTop: "15px" }}>
+                        <RenderFourEl tours={tours} priseDisplay={this.props.priseDisplay}/>
+                    </div>
+    
+                    */
+                }
                 <div className="placeDescription_fragmentName">{this.props.fragmentName}</div>
                 <div className="d-flex col-12 flex-md-wrap flex-nowrap p-0 popularPlacesRender" >
                     {
@@ -52,7 +61,7 @@ class SimularToursBlockClass extends React.Component {
                         })
                     }
                 </div>
-            </React.Fragment>
+            </>
         )
     }
 }

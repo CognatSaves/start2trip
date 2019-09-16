@@ -22,7 +22,7 @@ export class CurrentLocation extends React.Component {
   }
 
   componentWillUpdate(nextProps, nextState) {
-    
+
     if (nextProps.google !== window.google) {
       this.loadMap();
     }
@@ -189,11 +189,11 @@ export class CurrentLocation extends React.Component {
   render() {
     const style = Object.assign({}, this.props.mapStyles.map);
     return (
-      <React.Fragment>
+      <>
         <div style={style} ref="map">
           Loading...
         </div>
-      </React.Fragment>
+      </>
     );
   }
 }

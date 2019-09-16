@@ -57,8 +57,8 @@ class AgencyProfileClass extends React.Component {
         let textInfo = this.props.storeState.languageText.agencyProfile.agencyProfile;
         if (this.props.globalReduser.profile.isAgency) {
             return (
-                <React.Fragment>
-                    <Suspense fallback={<div>{textInfo.loading+'...'}</div>}>
+                <>
+                    <Suspense fallback={<div>{textInfo.loading + '...'}</div>}>
                         {
                             this.state.accountEnter ?
                                 <FirstEnterModal whatRender="agency" /> : <React.Fragment />
@@ -69,7 +69,7 @@ class AgencyProfileClass extends React.Component {
                     <div className="registrationWrapper d-flex flex-column col-12 p-0">
                         <div className="d-flex contentHeight col-12 p-0">
                             <div className="d-flex flex-column justify-content-start col-12 p-0">
-                                <Suspense fallback={<div>{textInfo.loading+'...'}</div>}>
+                                <Suspense fallback={<div>{textInfo.loading + '...'}</div>}>
                                     <Route path="/account/agency/profile" component={AgencyProfileBasicInformation} />
                                     <Route path="/account/agency/referrals" component={AgencyProfileAffiliateProgramm} />
                                     <Route path="/account/agency/trips" component={AgencyProfileHistory} />
@@ -82,7 +82,7 @@ class AgencyProfileClass extends React.Component {
                             </div>
                         </div>
                     </div>
-                </React.Fragment>
+                </>
             )
         }
         else {
@@ -109,7 +109,7 @@ class AgencyProfileClass extends React.Component {
                 }
                 else {
                     this.props.dispatch(setUrlAddress(window.location.pathname));
-                    this.props.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
+                    this.props.history.push('/' + cookies.get('userLangISO', { path: "/" }) + '/login/');
                     return null;
                 }
             }

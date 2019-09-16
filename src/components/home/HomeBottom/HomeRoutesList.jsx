@@ -44,16 +44,16 @@ class HomeRoutesListClass extends React.Component {
         let isEmpty = (selectedRoutes.length === 0 && this.props.isStaying);
         return (
 
-            <React.Fragment>
+            <>
                 <div className="drivers_block d-flex flex-wrap">
                     {selectedRoutes.map((element, index) =>
-                        <React.Fragment>
+                        <>
                             <RouteListElement element={element} index={index} /*findTagName={(tag)=>findTagName(tag,this)}*/ />
-                        </React.Fragment>
+                        </>
                     )}
                     {
                         isLoading || isEmpty ?
-                            <React.Fragment>
+                            <>
                                 {isLoading ?
                                     <div className="placesList_loading">
                                         <span>{'Загружаемся!'}</span>
@@ -62,11 +62,11 @@ class HomeRoutesListClass extends React.Component {
                                         <span>{pageNotFound.text1 + " " + pageNotFound.text2}<br />{pageNotFound.text3}</span>
                                     </div>
                                 }
-                            </React.Fragment>
+                            </>
                             : <React.Fragment />
                     }
                 </div>
-            </React.Fragment>
+            </>
 
         )
     }

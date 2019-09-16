@@ -32,15 +32,15 @@ class PopularPlacesClass extends React.Component {
         let selectedDirection = this.props.placesState.selectedDirection;
         let slug = findSelectedDirectionName(this.props.placesState.directions, id, this.props.storeState);
         if (selectedDirection !== id && slug) {
-            return "/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/'+this.props.where+'-' + slug;
+            return "/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/' + this.props.where + '-' + slug;
         }
         else {
-            return "/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/'+this.props.where;
+            return "/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/' + this.props.where;
         }
     }
     onDirClickCleared = (address) => {
 
-        this.props.globalReduser.history.push(address+"/");
+        this.props.globalReduser.history.push(address + "/");
     }
     render() {
 
@@ -82,7 +82,7 @@ class PopularPlacesClass extends React.Component {
         /*let directions = arrayRender;
         */
         return (
-            <React.Fragment>
+            <>
                 <div className={placeRender.length > 0 ? "popularPlacesBody pt-4" : 'd-none'} >
                     <div className="popularPlacesTitle">
                         <h2>{textInfo.popularPlacesTitle}</h2>
@@ -102,7 +102,7 @@ class PopularPlacesClass extends React.Component {
                                     }
                                 }
                                 return (
-                                    <a href={requests.frontendAddress + address+"/"}
+                                    <a href={requests.frontendAddress + address + "/"}
                                         className={"col-md-2 col-7 d-flex flex-column popularPlacesEl " + (isDirSelected(element.id, this.props.placesState.selectedDirection) ? 'popularPlacesEl_selected' : '')}
                                         onClick={(e) => { e.preventDefault(); this.onDirClickCleared(address) }}>
                                         <span className="popularPlacesElMes">{textInfo.cancel}</span>
@@ -122,7 +122,7 @@ class PopularPlacesClass extends React.Component {
 
                 </div>
 
-            </React.Fragment>
+            </>
         )
     }
 }

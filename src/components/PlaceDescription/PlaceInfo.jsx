@@ -23,7 +23,7 @@ class PlaceInfoClass extends React.Component {
         }
         let date = this.props.date ? new Date(this.props.date) : '';
         return (
-            <React.Fragment>
+            <>
                 <div className="col-12">
                     <div style={{ padding: '40px 0' }}>
                         {
@@ -42,23 +42,23 @@ class PlaceInfoClass extends React.Component {
 
                             {
                                 this.props.tags.length > 0 ?
-                                    <React.Fragment>
+                                    <>
                                         <div className="placeinfo_vertical" />
 
                                         <div className="d-flex" style={{ margin: 'auto 0 0 0'/* margin: "10px 5px 20px 0px" */ }} >
 
 
-                                            <React.Fragment>
+                                            <>
                                                 <div className="placeDescription_description_tagCard" />
                                                 {
                                                     this.props.tags.map((element, index) =>
                                                         <div className="placeDescription_description_tagElement">{findTagName(element, this.props.tagsArray) + (index + 1 !== this.props.tags.length ? "," : "")}</div>
                                                     )
                                                 }
-                                            </React.Fragment>
+                                            </>
 
                                         </div>
-                                    </React.Fragment>
+                                    </>
                                     :
                                     <React.Fragment />
                             }
@@ -81,7 +81,7 @@ class PlaceInfoClass extends React.Component {
                     */
                 }
 
-            </React.Fragment>
+            </>
         )
     }
 }

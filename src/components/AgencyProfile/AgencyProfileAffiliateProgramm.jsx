@@ -48,7 +48,7 @@ class AgencyProfileAffiliateProgrammClass extends React.Component {
                 <div className="d-flex flex-column ">
                     <div className="d-flex flex-column align-items-center">
                         <h3>{textInfo.affiliateProgramsTitle}</h3>
-                        <p className="col-xl-8 col-lg-8 col-md-9 col-sm-10 col-10">{textInfo.affiliateProgramsDescription}</p>
+                        <p className="col-lg-8 col-md-9 col-10">{textInfo.affiliateProgramsDescription}</p>
                     </div>
                     <div className="affiliateProgramButton d-flex flex-sm-row flex-column justify-content-between align-items-center">
                         {/* <div>
@@ -71,7 +71,7 @@ class AgencyProfileAffiliateProgrammClass extends React.Component {
                         <div className="d-flex flex-lg-row flex-column align-items-center col-md-8 col-12">
                             {/* <div>{textPage.affiliateLinks.title}</div> */}
                             <RenderShareLink classNameDiv={"col-lg-6 col-12"} idInput={"partnerRegistrationLink"} valueInput={requests.frontendAddress + '/register/' + this.props.globalReduser.profile._id} iconsArray={this.state.iconsArray} textTitle={textInfo.affiliateLinks.registrationLink} buttonCopyText={textInfo.affiliateLinks.spanLink} />
-                            <RenderShareLink classNameDiv={"col-lg-6 col-12"} idInput={"partnerMainPageLink"} valueInput={requests.frontendAddress + '/start/' + this.props.globalReduser.profile._id} iconsArray={this.state.iconsArray} textTitle={textInfo.affiliateLinks.linkToHomePage}  buttonCopyText={textInfo.affiliateLinks.spanLink} />
+                            <RenderShareLink classNameDiv={"col-lg-6 col-12"} idInput={"partnerMainPageLink"} valueInput={requests.frontendAddress + '/start/' + this.props.globalReduser.profile._id} iconsArray={this.state.iconsArray} textTitle={textInfo.affiliateLinks.linkToHomePage} buttonCopyText={textInfo.affiliateLinks.spanLink} />
                         </div>
                         <div className="d-flex flex-sm-row flex-column">
                             {

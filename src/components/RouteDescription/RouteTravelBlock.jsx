@@ -18,7 +18,7 @@ class RouteTravelBlockClass extends React.Component {
             date: '',
             isDateHighlighted: false
         }
-        
+
     }
     shouldComponentUpdate(nextProps, nextState) {
         return JSON.stringify(this.props) !== JSON.stringify(nextProps) || JSON.stringify(this.state) !== JSON.stringify(nextState);
@@ -76,7 +76,7 @@ class RouteTravelBlockClass extends React.Component {
         let timeString = getTimeString(travelTime);
         if (/*(this.props.driversState.travelLength.length===0 || this.props.driversState.travelLength === "-" ) &&
          (this.props.driversState.travelTime.length===0 || this.props.driversState.travelTime === "-")*/
-            this.props.driversState.travelLength!==lengthString || this.props.driversState.travelTime!==timeString) {          
+            this.props.driversState.travelLength !== lengthString || this.props.driversState.travelTime !== timeString) {
             this.props.dispatch(setLengthTime(timeString, lengthString));
         }
 
@@ -131,7 +131,7 @@ class RouteTravelBlockClass extends React.Component {
                                     onClick={() => { if (this.state.isDateHighlighted) { this.setState({ isDateHighlighted: false }) } }}>
                                     <div className="placesDescription_travelBlock_icon placesDescription_calendary" />
                                     <DatePicker hintText={textInfo.startDate} minDate={new Date()}
-                                    onChange={(e, date) => { this.setState({ date: this.props.globalhistory.convertDateToUTC(date) }); }} className="routeDescrDate" />
+                                        onChange={(e, date) => { this.setState({ date: this.props.globalhistory.convertDateToUTC(date) }); }} className="routeDescrDate" />
                                 </div>
                             </div>
                             <div className={"routeTravelBlock_element d-flex " + ((points.length + 1) % 2 === 0 ? 'col-12' : 'col-md-6 col-12')}>
@@ -148,11 +148,11 @@ class RouteTravelBlockClass extends React.Component {
                     </div>
                     {isMobileOnly ?
                         <React.Fragment /> :
-                        <React.Fragment>
+                        <>
                             <div className="placeDescription_fragmentName_mapBlock col-6" style={{ marginTop: "15px" }}>
                                 <MapContainer newMapStyles={mapStyles} cities={points} setLengthTime={this.setLengthTime} mapUpdate={true} />
                             </div>
-                        </React.Fragment>}
+                        </>}
 
                 </div>
 

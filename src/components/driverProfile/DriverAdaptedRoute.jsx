@@ -19,10 +19,10 @@ export default class DriverAdaptedRoute extends React.Component {
                     <div className="col-12">
                         <div className="driverAdaptedRoute d-flex flex-sm-row flex-column justify-content-center align-items-center " >
                             {cities.map((element, index) =>
-                                <React.Fragment>
+                                <>
                                     <div className="route_show_Line" style={{ display: index ? "block" : "none" }} />
                                     <span className="route_show_text" >{cities[index].point}</span>
-                                </React.Fragment>
+                                </>
                             )}
                         </div>
 

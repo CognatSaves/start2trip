@@ -74,7 +74,7 @@ export default class LocationSearchInput extends React.Component {
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) =>
           (
-            <React.Fragment>
+            <>
               <div className={"d-flex align-items-center " + this.props.classDiv/* ? this.props.classDiv: ''*/} onBlur={() => {
                 if (!this.state.address) {
                   this.setState({ inFocus: false, inFocusOnly: false })
@@ -132,7 +132,7 @@ export default class LocationSearchInput extends React.Component {
                   );
                 })}
               </div>
-            </React.Fragment>
+            </>
           )}
 
       </PlacesAutocomplete>

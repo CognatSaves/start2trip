@@ -32,7 +32,7 @@ export default class SimularToursBlock extends React.Component {
         
         console.log('outerBlock', outerBlock ? outerBlock.offsetWidth : 0);
         return (
-            <React.Fragment>
+            <>
                 <div className="placeDescription_fragmentName">{this.props.fragmentName}</div>
                 <div className="d-flex col-12 flex-md-wrap flex-nowrap p-0 popularPlacesRender" >
                     {/*
@@ -51,7 +51,7 @@ export default class SimularToursBlock extends React.Component {
                     }
                     <text>Нужно закончить работу над ToursListElement, чтобы открыть это</text>
                 </div>
-            </React.Fragment>
+            </>
         )
     }
 }
