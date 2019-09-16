@@ -55,6 +55,7 @@ const isCommentedTrip = serverAddress + '/isCommentedTrip';
 const getTours = serverAddress + '/getTours';//запрос на получения массива туров
 const userFeedback = serverAddress + '/users/me/userFeedback';//запрос на отправку отзыва пользователя о работе системы
 const showTour = serverAddress + '/showTour';//запрос на получение описания тура для tourDescription
+const setTourSeatsData = serverAddress + '/setTourSeatsData';//запрос на установку количества мест для тура по дням
 export default {
     frontendAddress: frontendAddress,
     serverAddress: serverAddress,
@@ -112,5 +113,6 @@ export default {
     getTours:getTours,
     userFeedback:userFeedback,
 
-    showTour:showTour
+    showTour:showTour,
+    setTourSeatsData:setTourSeatsData
 };

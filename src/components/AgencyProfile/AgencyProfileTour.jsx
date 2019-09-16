@@ -18,7 +18,7 @@ import Dialog from 'material-ui/Dialog';
 import Stars from '../stars/Stars'
 import FlatButton from 'material-ui/FlatButton';
 import Cookies from 'universal-cookie';
-
+import axios from 'axios';
 const cookies = new Cookies();
 
 class AgencyProfileTourClass extends React.Component {
@@ -29,7 +29,11 @@ class AgencyProfileTourClass extends React.Component {
         for (let i = 0; i < profile.allLanguages.length; i++) {
             local[i] = {
                 name: "",
-                departurePoint: "",
+                departurePoint:{
+                    point:"",
+                    lat: "",
+                    long: ""
+                },
                 points: [],
                 info: "",
                 language: profile.allLanguages[i].ISO
@@ -72,6 +76,14 @@ class AgencyProfileTourClass extends React.Component {
             },
             collapse: false,
             calendarModal: false,
+
+
+            tourSeatsModal: false,
+            tourSeatsModalSelectedElement:undefined,
+            tourSeatsSelectedDays: [],
+            tourSeatsBlocks:[],
+            tourSeatsErrorElementArray: [],
+
             currencies: [...profile.currencies],
 
             directions: [...profile.directions],
@@ -158,7 +170,11 @@ class AgencyProfileTourClass extends React.Component {
             for (let i = 0; i < profile.allLanguages.length; i++) {
                 local[i] = {
                     name: "",
-                    departurePoint: "",
+                    departurePoint: {
+                        point:"",
+                        lat: "",
+                        long: ""
+                    },
                     points: [],
                     info: "",
                     language: profile.allLanguages[i].ISO
@@ -416,7 +432,7 @@ class AgencyProfileTourClass extends React.Component {
             tourForm.append('price', tourSave.price);
             tourForm.append('seats', tourSave.seats);
             tourForm.append('time', tourSave.time);
-            debugger;
+            
             for (let i = 0; i < tourSave.imageFiles.length; i++) {
                 tourForm.append('image', tourSave.imageFiles[i]);
             }
@@ -499,6 +515,10 @@ class AgencyProfileTourClass extends React.Component {
     calendarModalShow = () => {
         this.setState({ calendarModal: !this.state.calendarModal });
     };
+    tourSeatsModalShow = (element)=>{
+        
+        this.setState({ tourSeatsModal: !this.state.tourSeatsModal, tourSeatsModalSelectedElement:!this.state.tourSeatsModal ? element : undefined });
+    }
     // addDate = (dates) => {
 
     //     let newDate = this.state.tourSave.calendary;
@@ -564,7 +584,12 @@ class AgencyProfileTourClass extends React.Component {
                 break;
             }
             case "attractionsAlongTheRoute": {
-                tourSave.local[params.number].points.push(value);
+                tourSave.local[params.number].points.push(
+                    {
+                        point:value,
+                        lat: params.location.lat,
+                        long: params.location.long
+                    });
                 this.setState({ tourSave: tourSave });
                 break;
             }
@@ -615,7 +640,7 @@ class AgencyProfileTourClass extends React.Component {
     _handleImageChange = (e, type) => {
         e.preventDefault();
         // 
-        debugger;
+        
         let obj;
         if(type==='image'){
             obj = document.getElementById('imageLabelError');
@@ -732,10 +757,168 @@ class AgencyProfileTourClass extends React.Component {
         }
         this.setState({ tourSave:{...tourSave,calendary:calendary}});
     }
+    handleTourSeatsDayClick = (day, {selected})=>{
+        function checkDateSeatsNumber(date, that){
+            let selectedTour = that.state.tourSeatsModalSelectedElement;
+            if(!selectedTour){
+                return undefined;
+            }
+            for(let i=0; i<selectedTour.tourSeatsData.length; i++){
+                let dataDate = that.props.globalReduser.createDateTimeString(selectedTour.tourSeatsData[i].startDefault, true);
+                if(date===dataDate){
+                    return {id:selectedTour.tourSeatsData[i].id ,freeSeats: selectedTour.tourSeatsData[i].seatsMax - selectedTour.tourSeatsData[i].reservedSeats, reservedSeats: selectedTour.tourSeatsData[i].reservedSeats};
+                }
+            }
+            return {freeSeats: selectedTour.seats, reservedSeats: 0};
+        }
+        
 
+        const { tourSeatsSelectedDays, tourSeatsBlocks } = this.state;
+
+        let calendary = tourSeatsSelectedDays
+        let blocks = tourSeatsBlocks;
+        if (selected) {
+            
+            const selectedIndex = calendary.findIndex(calendary =>
+                DateUtils.isSameDay(calendary, day)
+            );
+            calendary.splice(selectedIndex, 1);
+            blocks.splice(selectedIndex,1);
+            
+        } else {
+            calendary.push(day);
+            let dateElement = this.props.globalReduser.createDateTimeString(day, true);
+            let seatsNumber = checkDateSeatsNumber(dateElement, this);
+            if(seatsNumber){
+                blocks.push({
+                    date: day,
+                    freeSeats:seatsNumber.freeSeats,
+                    reservedSeats: seatsNumber.reservedSeats,
+                    id: seatsNumber.id
+                })
+            }
+            else{
+                //может и хуйня это, но получше ничего не придумал(
+                calendary.splice(calendary.length-1,1);
+            }
+            
+        }
+        
+        this.setState({ tourSeatsSelectedDays:calendary, tourSeatsBlocks: blocks});
+    }
+    tourSeatsApplyChanges = () => {
+        
+        let that = this;
+        let jwt = cookies.get('jwt', { path: '/' });
+        if(jwt){
+            
+            let body = JSON.stringify({
+                tour: that.state.tourSeatsModalSelectedElement.id,
+                tourSeatsData: that.state.tourSeatsBlocks
+            })
+            let requestAddress = requests.setTourSeatsData;
+            fetch(requestAddress,{
+                method: 'PUT', body: body,
+                headers: { 'content-type': 'application/json', Authorization: `Bearer ${jwt}` }
+            })
+            .then(response => {
+                console.log('get answer');
+                return response.json();
+            })
+            .then(data => {
+                
+                if (data.error){
+                    console.log('bad');
+                    throw data.error;
+                }
+                else{
+                    function setSelectedElementsValue(that, data){
+                        debugger;
+                        let selectedDateArray = [];
+                        let tourSeatsBlocks = that.state.tourSeatsBlocks;
+                        for(let i=0; i<that.state.tourSeatsBlocks.length;i++){
+                            let date =new Date(that.state.tourSeatsBlocks[i].date); 
+                            let day = date.getDate();
+                            let month = date.getMonth();
+                            let year = date.getFullYear();
+                            selectedDateArray[i]={
+                                day: day,
+                                month: month,
+                                year: year
+                            }
+                        }
+                        debugger;
+                        for(let i=0; i<data.tourSeatsData.length; i++){
+                            let date = new Date(data.tourSeatsData[i].startDefault);
+                            let day = date.getDate();
+                            let month = date.getMonth();
+                            let year = date.getFullYear();
+                            for(let j=0; j<selectedDateArray.length; j++){
+                                if(day===selectedDateArray[j].day && 
+                                    month===selectedDateArray[j].month && year===selectedDateArray[j].year){
+                                        tourSeatsBlocks[j].seatsMax=data.tourSeatsData[i].seatsMax;
+                                        tourSeatsBlocks[j].reservedSeats=data.tourSeatsData[i].reservedSeats;
+                                }
+                            } 
+                        }
+                        that.setState({
+                            tourSeatsBlocks:tourSeatsBlocks
+                        })
+                    }
+                    console.log('good');
+                    console.log(data);
+                    //запись данных в профиль
+                    debugger;
+                    let profile = that.props.globalReduser.profile;
+                    let index = -1;
+                    for(let i=0; i<profile.tours.length;i++){
+                        if(profile.tours[i].id===data.tourId){
+                            profile.tours[i].tourSeatsData = data.tourSeatsData;
+                            index = i;
+                            break;
+                        }
+                    }
+                    that.props.dispatch(setProfileData(profile));
+
+
+                    //запись данных в открытые элементы
+                    setSelectedElementsValue(that, data)
+                    //сохранить ошибки
+                    that.setState({
+                        tourSeatsModalSelectedElement: profile.tours[index],
+                        tourSeatsErrorElementArray: data.errorElementsArray
+                    })
+
+                    //that.tourSeatsModalShow();
+                    /*that.setState({
+                        tourSeatsModalSelectedElement:undefined,
+                        tourSeatsSelectedDays: [],
+                        tourSeatsBlocks:[],
+                    })*/
+                }
+            })
+            .catch(error=>{
+                
+                console.log('Error happened');
+            });
+            
+        }
+        else{
+            //TODO обработать отсутствие jwt
+        }
+    }
     render() {
-        console.log('Trip Tour render');
-        console.log(this.state);
+        function isErrorBlock(id, that){
+            for(let i=0; i<that.state.tourSeatsErrorElementArray.length; i++){
+                let element = that.state.tourSeatsErrorElementArray[i];
+                if(element.id===id){
+                    return true;
+                }
+            }
+            return false;
+        }
+        console.log('Trip Tour render',this.state,this.props.globalReduser);
+
         let { imagePreviewUrl } = this.state;
         let $imagePreview = null;
         if (imagePreviewUrl) {
@@ -752,7 +935,9 @@ class AgencyProfileTourClass extends React.Component {
                 onClick={this.calendarModalShow}
             />,
         ];
-
+        const actionTour = [
+            <div/>
+        ]
         const customContentStyle = {
             width: '100%',
             maxWidth: 'none',
@@ -760,7 +945,8 @@ class AgencyProfileTourClass extends React.Component {
 
         
         let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileTripSettingsTour;
-
+        let pseudoTableHeaderArray = ['День', 'Mест свободно', 'Mecт зaнятo'];
+        let tableElementsWidth = ['40%','30%','30%'];
         return (
 
             <React.Fragment>
@@ -773,11 +959,101 @@ class AgencyProfileTourClass extends React.Component {
                     open={this.state.calendarModal}
                     onRequestClose={this.calendarModalShow}
                 >
-                  <DayPicker
+                    <DayPicker
                         selectedDays={this.state.tourSave.calendary}
                         onDayClick={this.handleDayClick}
                     />
 
+                </Dialog>
+
+                <Dialog 
+                    actions={actionTour}
+                    modal={false}
+                    bodyStyle={{ padding: 0 }}
+                    contentStyle={isMobile ? customContentStyle : ""}
+                    open={this.state.tourSeatsModal}
+                    onRequestClose={()=>{}/*this.tourSeatsModalShow*/}
+                >
+                    <div className="d-flex flex-row">
+                        <div className="d-flex flex-column">
+                            <div>
+                                {"Тур "+(this.state.tourSeatsModalSelectedElement ? this.selectTourName(this.state.tourSeatsModalSelectedElement) : '')}
+                            </div>
+                            <DayPicker
+                                selectedDays={this.state.tourSeatsSelectedDays}
+                                onDayClick={/*()=>{this.setState({...this.state})}*/this.handleTourSeatsDayClick}
+                                shouldDisableDate={(date)=>{
+                                    let flag = false;
+                                    if(this.state.tourSave.daily){//если тур ежедневный, то доступны все даты
+                                        flag=false;
+                                    }
+                                    else{//иначе надо пробежаться по календарю
+                                        for(let i=0; i<this.state.tourSave.calendary; i++){
+                                            let newDate = new Date(this.state.tourSave.calendary[i].substr(0,10));
+                                            let newDay = newDate.getDate();
+                                            let newMonth = newDate.getMonth();
+                                            let newYear = newDate.getFullYear();
+                                            let day = date.getDate();
+                                            let month = date.getMonth();
+                                            let year = date.getFullYear()
+                                            if (newDay === day && newMonth === month && newYear === year) {             
+                                                flag = false;//если объект есть в календаре, то он доступен
+                                            }
+                                            else{
+                                                flag=true;//иначе не доступен
+                                            }
+                                        }
+                                    }
+                                    return flag;
+                                }}
+                            />
+                        </div>
+                        <div className="d-flex flex-column">
+                            <div>Таблица количества мест в выбранные дни</div>
+
+                            <table style={{textAlign: 'center'}}>
+                                <tr>
+                                   {
+                                    pseudoTableHeaderArray.map((element, index)=>{
+                                        return(
+                                            <td width={tableElementsWidth[index]}>{element}</td>
+                                        )
+                                    })  
+                                   } 
+                                </tr>
+                                {                      
+                                    this.state.tourSeatsBlocks.map((element,index)=>{
+                                        
+                                        //let date = this.props.globalReduser.createDateTimeString(element, true);
+                                        //let seats = checkDateSeatsNumber(date, this);
+                                        return(
+                                            <tr style={{backgroundColor: isErrorBlock(element.id,this) ? 'red' : 'transparent'}}/*className="d-flex flex-row"*/> 
+                                                <td width={tableElementsWidth[0]} >{this.props.globalReduser.createDateTimeString(element.date, true)}</td>
+                                                <td width={tableElementsWidth[1]} >
+                                                    <input style={{width: '100%'}} type="number" value={element.freeSeats}
+                                                     onChange={(e)=>{  let value = e.target.value;
+                                                     if(value>=0){
+                                                        let tourBlocks = this.state.tourSeatsBlocks;
+                                                        tourBlocks[index].freeSeats = parseInt(value,10);
+                                                        this.setState({
+                                                            tourSeatsBlocks: tourBlocks
+                                                        })
+                                                     }
+                                                     
+                                                     }}/>
+                                                </td>
+                                                <td width={tableElementsWidth[2]} >{element.reservedSeats}</td>
+                                            </tr>
+                                        )
+                                    })                       
+                                }
+                            </table>
+                            <button onClick={()=>this.tourSeatsApplyChanges()}>ты это, сохраняй, если что</button>
+                            <button onClick={()=>this.tourSeatsModalShow()}>ну вот и всё, бывай</button>
+                        </div>
+
+                        
+                    </div>
                 </Dialog>
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
                 <Collapse isOpen={this.state.collapse}>
@@ -813,9 +1089,13 @@ class AgencyProfileTourClass extends React.Component {
                                     </div>
                                     <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
                                         <label htmlFor="newTourAttractions" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">{textPage.newTourAttractions.floatingLabelText}:</label>
-                                        <div className="d-flex col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0" key={element.departurePoint}>
-                                            <LocationSearchInput address={element.departurePoint !== "" ? element.departurePoint : ''}
-                                             changeCity={(id, value) => { let tourSave = this.state.tourSave; tourSave.local[index].departurePoint = value; this.setState({ tourSave: tourSave }) }}
+                                        <div className="d-flex col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0" key={element.departurePoint.point}>
+                                            <LocationSearchInput address={element.departurePoint && element.departurePoint.point !== "" ? element.departurePoint.point : ''}
+                                             changeCity={(id, value, extraData) => { 
+                                                let tourSave = this.state.tourSave;
+                                                tourSave.local[index].departurePoint = {point: value, lat: extraData.location.lat, long: extraData.location.long};
+                                                this.setState({ tourSave: tourSave })
+                                             }}
                                              classDropdown="searchDropdownDriverTour" id="newTourAttractions" classInput="w-100" classDiv='w-100' />
                                         </div>
                                         <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">{textPage.newTourAttractions.description}</p>
@@ -823,7 +1103,7 @@ class AgencyProfileTourClass extends React.Component {
                                     <div className="d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-xl-center align-items-lg-center align-items-md-center align-items-sm-start align-items-start">
                                         <label htmlFor="attractionsAlongTheRoute" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">{textPage.attractionsAlongTheRoute.floatingLabelText}:</label>
                                         <div className="d-flex col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0" key={element.points.length}>
-                                            <LocationSearchInput address='' changeCity={(id, value) => { this.handleChange(value, "attractionsAlongTheRoute", { number: index }) }}
+                                            <LocationSearchInput address='' changeCity={(id, value, extraData) => { this.handleChange(value, "attractionsAlongTheRoute", { number: index, location: extraData.location }) }}
                                              classDropdown="searchDropdownDriverTour" id="attractionsAlongTheRoute" classInput="w-100" classDiv='w-100'/>
                                         </div>
                                         <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">{textPage.attractionsAlongTheRoute.description}</p>
@@ -839,7 +1119,7 @@ class AgencyProfileTourClass extends React.Component {
                                                     textColor="#304269"
                                                     className="chipClass"
                                                 >
-                                                    {element}
+                                                    {element.point}
                                                 </Chip>
                                             )}
                                         </div>
@@ -1199,18 +1479,25 @@ class AgencyProfileTourClass extends React.Component {
                                         <div className="filledCardInformationNameCar d-flex d-flex justify-content-end w-100 align-items-center">
 
                                             <label className="cardInformationNameCarIcon"></label>
-                                            <div className="filledCardInformationMenu">
+                                            <div className="filledCardInformationMenu" style={{height: '130px'}}>
                                                 <p className="filledCardInformationDeleteCar" onClick={() => this.destroy(element)}>{textPage.filledCardInformationMenu.deleteTour}</p>
                                                 <p className="filledCardInformationNameCarEdit" onClick={() => this.toggle(element, { collapse: true })}>{textPage.filledCardInformationMenu.tourEdit}</p>
                                                 <p className="filledCardInformationNameCarEdit" onClick={() => this.changeActive(element)}>{element.onWork ? textPage.filledCardInformationMenu.tourDeactivate : textPage.filledCardInformationMenu.tourActivate}</p>
+                                                {
+                                                    //TODO переводы
+                                                }
+                                                <p className="filledCardInformationNameCarEdit" onClick={()=>this.tourSeatsModalShow(element)}>{"Таблица мест"}</p>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="filledCardImg">
-                                        <img src={element.image && element.image[0] && element.image[0].url ? requests.serverAddress + element.image[0].url : ''} className="img-fluid" alt="imgCar" width="100%" height="100%" />
+                                        <img src={element.blockListImage && element.blockListImage.url ? requests.serverAddress + element.blockListImage.url : ''} className="img-fluid" alt="imgCar" width="100%" height="100%" />
                                     </div>
                                     <div className="cardInformationType d-flex flex-column">
                                         <p> {this.selectTourName(element)}</p>
+                                        {
+                                            //TODO переводы
+                                        }
                                         <Stars value={Math.ceil(element.rating * 10) / 10} commentNumber={element.commentNumber + " отзывов"} valueDisplay={true} commentNumberDisplay={true} />
                                         <div className="settingsTourHeader d-flex pr-1">
                                             <p>{textPage.cardInformation.emptySeats}:</p>

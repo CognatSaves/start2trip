@@ -103,7 +103,7 @@ class UserProfileAffiliateProgramClass extends React.Component {
                             <div className="col-sm-4 col-12">
                                 <div className="affilitaProgramEl d-flex flex-column align-items-center justify-content-center">
                                     <i className="percenticon"></i>
-                                    <span>14%</span>
+                                    <span>20%</span>
                                     <span>{textPage.percenticon}</span>
                                 </div>
                             </div>

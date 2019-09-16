@@ -4,7 +4,7 @@ const header = {
         selectAccountTypeText: 'Select your account type',
     },
     modalCountrySelect: {
-        selectCountryText: 'SELECT A COUNTRY FOR SEARCHING DRIVERS'
+        selectCountryText: 'SELECT A COUNTRY FOR SEARCHING DRIVERS AND GUIDES'
     },
     menuElements: [
         "Trip planner", "Sights", "Tours"

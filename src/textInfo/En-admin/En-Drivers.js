@@ -182,7 +182,7 @@ const driverProfileRegistration = {
     },
     DriverProfileAffiliateProgram: {
         affiliateProgramsTitle: "Affiliate Program",
-        affiliateProgramsDescription: "Build your successful business and get passive income of 14% from the system commission of the trip. Send out invitations with a 10% discount on the first trip to your friends. Invite drivers work in Tripfer and get income from the orders they fulfill. Write articles about us, comment on social networks, blogs and forums, and earn money. For life. Payments to a bank card weekly. ",
+        affiliateProgramsDescription: "Build your successful business and get passive income of 20% from the system commission of the trip. Send out invitations with a 10% discount on the first trip to your friends. Invite drivers work in Tripfer and get income from the orders they fulfill. Write articles about us, comment on social networks, blogs and forums, and earn money. For life. Payments to a bank card weekly. ",
         affiliateLinks: {
             title: "Your affiliate links",
             registrationLink: "Registration Link",

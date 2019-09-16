@@ -450,7 +450,7 @@ class PlaceDescriptionClass extends React.Component {
                                                         <SimularToursBlock tours={this.state.popularPlaces} fragmentName={"Вас может заинтересовать"} priseDisplay={"none"}/>
                                                     */
                                                 }
-                                                <SimularPlaceBlock outerBlock={simularPlaceBlockId} places={this.state.newPlace.additionalPlaces} tags={this.state.newPlace.tags} tours={this.state.popularPlaces} fragmentName={textInfo.placeDescription.variantsArray[3]} priseDisplay={"none"} />
+                                                <SimularPlaceBlock outerBlock={simularPlaceBlockId} places={this.state.newPlace.additionalPlaces} tags={this.state.newPlace.tags} /*tours={this.state.popularPlaces}*/ fragmentName={textInfo.placeDescription.variantsArray[3]} priseDisplay={"none"} />
                                             </div>
                                             <CommentBlock targetType="place" comments={this.state.newPlace.comments} targetId={this.state.newPlace.place.id} page={this.state.page} setPage={this.setPage}
                                                 showMorePages={this.showMorePages} showPages={this.state.showPages} id={topBlockId + '5'} startRolling={() => this.startRolling()} endRolling={(result) => this.endRolling(result)} />

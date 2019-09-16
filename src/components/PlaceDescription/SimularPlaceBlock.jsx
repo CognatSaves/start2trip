@@ -14,9 +14,7 @@ class SimularToursBlockClass extends React.Component {
     }
     render() {
         function findTagName(tagId, that) {
-
             if (that.props.tags.length > 0) {
-
                 let tags = that.props.tags;
                 let id = -1;
 
@@ -29,25 +27,15 @@ class SimularToursBlockClass extends React.Component {
                 if (id === -1) {
                     return '';
                 }
-
                 return tags[id].tagLoc.name;
             }
             return '';
         }
-        let tours = this.props.tours;
+        //let tours = this.props.tours;
         let outerBlock = document.getElementById(this.props.outerBlock);
         console.log('outerBlock', outerBlock ? outerBlock.offsetWidth : 0);
         return (
             <React.Fragment>
-                {
-                    /*
-                    <div className="placeDescription_fragmentName">{this.props.fragmentName}</div>
-                    <div className="render_otherPlaces" style={{ marginTop: "15px" }}>
-                        <RenderFourEl tours={tours} priseDisplay={this.props.priseDisplay}/>
-                    </div>
-    
-                    */
-                }
                 <div className="placeDescription_fragmentName">{this.props.fragmentName}</div>
                 <div className="d-flex col-12 flex-md-wrap flex-nowrap p-0 popularPlacesRender" >
                     {

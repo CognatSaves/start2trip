@@ -4,7 +4,7 @@ const header = {
         selectAccountTypeText: 'აირჩიეთ თქვენი აკაუნტის ტიპი',       
     },
     modalCountrySelect:{
-        selectCountryText: 'აირჩიეთ თქვენი ქვეყანა'
+        selectCountryText: 'შეარჩიეთ ქვეყანა, რომ მოძებნოთ მძღოლები და სახელმძღვანელო'
     },
     menuElements:[
         "მარშრუტები","ადგილები","ტურები"
