@@ -44,7 +44,7 @@ const pageTextInfo = {
                     userText: "Traveler"
                 },
                 {
-                    userText: "Driver"
+                    userText: "Driver/Guide"
                 },
                 {
                     userText: "Car park/Agency   "
