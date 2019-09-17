@@ -23,7 +23,7 @@ import axios from 'axios';
 import Checkbox from '@material-ui/core/Checkbox';
 const cookies = new Cookies();
 
-const tourSeatsModalContent= (that,pseudoTableHeaderArray,tableElementsWidth,isErrorBlock) => {
+const TourSeatsModalContent= (that,pseudoTableHeaderArray,tableElementsWidth,isErrorBlock) => {
     //
     console.log(that,pseudoTableHeaderArray,tableElementsWidth,isErrorBlock);
     return (
@@ -92,6 +92,89 @@ const tourSeatsModalContent= (that,pseudoTableHeaderArray,tableElementsWidth,isE
 
     )
 }
+const ExcursionIncludesBlock = (props) => {
+    function changeExcursionIncludesData(that, type){
+        debugger;
+        let tourSave = that.state.tourSave;
+        switch (type){
+            case "hotelMeeting":{
+                tourSave.excursionIncludes.hotelMeeting = !tourSave.excursionIncludes.hotelMeeting;
+                break;
+            }
+            case "hotelDelivery":{
+                tourSave.excursionIncludes.hotelDelivery = !tourSave.excursionIncludes.hotelDelivery;
+                break;
+            }
+            case "fare":{
+                tourSave.excursionIncludes.fare = !tourSave.excursionIncludes.fare;
+                break;
+            }
+            case "entryTickets":{
+                tourSave.excursionIncludes.entryTickets = !tourSave.excursionIncludes.entryTickets;
+                break;
+            }
+            case "food":{
+                tourSave.excursionIncludes.food = !tourSave.excursionIncludes.food;
+                break;
+            }
+            case "accommodation":{
+                tourSave.excursionIncludes.accommodation = !tourSave.excursionIncludes.accommodation;
+                break;
+            }
+            default:
+        }
+        that.setState({
+            tourSave: tourSave
+        })
+    }
+    //
+    let {that} = props;
+    console.log(that);
+    return (
+        <div className="paddingL10 d-flex flex-md-row flex-column align-items-start">
+            {
+                //TODO переводы
+            }
+            <label className="d-md-block d-none col-2 ">Стоимость экскурсии включает:</label>
+            <div className="d-flex flex-row col-md-6 col-12 p-0">
+                <div className="d-flex flex-column" style={{marginRight: '5px'}}>
+                    <div className="d-flex flex-row">
+                        <Checkbox id="hotelMeeting" checked={that.state.tourSave.excursionIncludes.hotelMeeting} onChange={()=>changeExcursionIncludesData(that, 'hotelMeeting')}/>
+                        <label htmlFor={"hotelMeeting"} style={{margin: 'auto 0'}}>{"Встреча в отеле"}</label>
+                        
+                    </div>
+                    <div className="d-flex flex-row">
+                        <Checkbox id="hotelDelivery" checked={that.state.tourSave.excursionIncludes.hotelDelivery} onChange={()=>changeExcursionIncludesData(that, 'hotelDelivery')}/>
+                        <label htmlFor={"hotelDelivery"} style={{margin: 'auto 0'}}>{"Доставка в отель"}</label>
+                        
+                    </div>
+                    <div className="d-flex flex-row">
+                        <Checkbox id="fareId" checked={that.state.tourSave.excursionIncludes.fare} onChange={()=>changeExcursionIncludesData(that, 'fare')}/>
+                        <label htmlFor={"fareId"} style={{margin: 'auto 0'}}>{"Транспортные расходы"}</label>
+                        
+                    </div>
+                </div>
+                <div className="d-flex flex-column">
+                    <div className="d-flex flex-row">
+                        <Checkbox id="entryTickets" checked={that.state.tourSave.excursionIncludes.entryTickets} onChange={()=>changeExcursionIncludesData(that, 'entryTickets')}/>
+                        <label htmlFor={"entryTickets"} style={{margin: 'auto 0'}}>{"Входные билеты"}</label>
+                        
+                    </div>
+                    <div className="d-flex flex-row">
+                        <Checkbox id="foodId" checked={that.state.tourSave.excursionIncludes.food} onChange={()=>changeExcursionIncludesData(that, 'food')}/>
+                        <label htmlFor={"foodId"} style={{margin: 'auto 0'}}>{"Еда и напитки"}</label>
+                        
+                    </div>
+                    <div className="d-flex flex-row">
+                        <Checkbox id="accommodation" checked={that.state.tourSave.excursionIncludes.accommodation} onChange={()=>changeExcursionIncludesData(that, 'accommodation')}/>
+                        <label htmlFor={"accommodation"} style={{margin: 'auto 0'}}>{"Проживание"}</label>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
 class AgencyProfileTourClass extends React.Component {
     constructor(props) {
         super(props);
@@ -145,12 +228,19 @@ class AgencyProfileTourClass extends React.Component {
                 tagsSelected: [],
                 tagsUnselected: tagsUnselected,
                 isPricePerPerson: false,
-                daysNumber:1
+                daysNumber:1,
+                excursionIncludes:{
+                    hotelMeeting: false,
+                    hotelDelivery: false,
+                    fare: false,//это транспортные расходы
+                    entryTickets: false,
+                    food: false,
+                    accommodation: false//предоставление проживания
+                }
             },
+
             collapse: false,
             calendarModal: false,
-
-
             tourSeatsModal: false,
             tourSeatsModalSelectedElement:undefined,
             tourSeatsSelectedDays: [],
@@ -287,7 +377,16 @@ class AgencyProfileTourClass extends React.Component {
                 tagsSelected: [],
                 tagsUnselected: tagsUnselected,
                 isPricePerPerson: false,
-                daysNumber:1
+                daysNumber:1,
+                excursionIncludes:{
+                    hotelMeeting: false,
+                    hotelDelivery: false,
+                    fare: false,//это транспортные расходы
+                    entryTickets: false,
+                    food: false,
+                    accommodation: false//предоставление проживания
+                }
+                
             };
             this.setState({
                 tourSave: tourSave,
@@ -374,7 +473,16 @@ class AgencyProfileTourClass extends React.Component {
                 tagsSelected: tagsSelected,
                 tagsUnselected: tagsUnselected,
                 isPricePerPerson: element.isPricePerPerson,
-                daysNumber:element.daysNumber
+                daysNumber:element.daysNumber,
+                excursionIncludes:{
+                    hotelMeeting: element.hotelMeeting,
+                    hotelDelivery: element.hotelDelivery,
+                    fare: element.fare,//это транспортные расходы
+                    entryTickets: element.entryTickets,
+                    food: element.food,
+                    accommodation: element.accommodation//предоставление проживания
+                }
+                
             };
             this.setState({
                 tourSave: tourSave,
@@ -545,6 +653,15 @@ class AgencyProfileTourClass extends React.Component {
             tourForm.append('time', tourSave.time);
             tourForm.append('daysNumber',tourSave.daysNumber);
             tourForm.append('isPricePerPerson', tourSave.isPricePerPerson);
+
+
+            tourForm.append('hotelMeeting', tourSave.excursionIncludes.hotelMeeting);
+            tourForm.append('hotelDelivery', tourSave.excursionIncludes.hotelDelivery);
+            tourForm.append('fare', tourSave.excursionIncludes.fare);
+            tourForm.append('entryTickets', tourSave.excursionIncludes.entryTickets);
+            tourForm.append('food', tourSave.excursionIncludes.food);
+            tourForm.append('accommodation', tourSave.excursionIncludes.accommodation);
+            
 
             for (let i = 0; i < tourSave.imageFiles.length; i++) {
                 tourForm.append('image', tourSave.imageFiles[i]);
@@ -1109,7 +1226,7 @@ class AgencyProfileTourClass extends React.Component {
                             onRequestClose={()=>{}/*this.tourSeatsModalShow*/}
                         >
                             {
-                                tourSeatsModalContent(this,pseudoTableHeaderArray,tableElementsWidth,isErrorBlock)
+                                TourSeatsModalContent(this,pseudoTableHeaderArray,tableElementsWidth,isErrorBlock)
                             }                  
                         </Dialog>
                     </> : 
@@ -1123,7 +1240,7 @@ class AgencyProfileTourClass extends React.Component {
                             onRequestClose={()=>{}/*this.tourSeatsModalShow*/}
                         >
                             {
-                                tourSeatsModalContent(this,pseudoTableHeaderArray,tableElementsWidth,isErrorBlock)
+                                TourSeatsModalContent(this,pseudoTableHeaderArray,tableElementsWidth,isErrorBlock)
                             }                  
                         </Dialog>
                     </>
@@ -1368,6 +1485,13 @@ class AgencyProfileTourClass extends React.Component {
                                 <Checkbox checked={this.state.tourSave.isPricePerPerson} id={"isPricePerPersonCheckbox"} onChange={()=>{let tourSave = this.state.tourSave; tourSave.isPricePerPerson = !(tourSave.isPricePerPerson); this.setState({tourSave: tourSave})}}/>
                                 <p className=" d-md-block d-none m-0 col-md-6 col-5">{"Если не выбрано, то предполагается цена за весь тур."}</p>
                             </div>
+                            
+                            
+                            <ExcursionIncludesBlock that={this}/>
+                            
+
+
+
                             <div className="paddingL10 d-flex flex-md-row flex-column align-items-md-center align-items-start">
                                 <label className="d-md-block d-none col-2 ">{textPage.additionalInformation.directions.floatingLabelText}:</label>
                                 <DropDownMenu
@@ -1513,7 +1637,7 @@ class AgencyProfileTourClass extends React.Component {
                                 <div className="tourPhotoMiniContainer d-flex flex-wrap">
 
                                     {this.state.tourSave.mainImage.length > 0 ?
-                                        <div className="position-relative" style={{ /*width: '130px'*/ }}>
+                                        <div className="position-relative" style={{ width: '100%' }}>
                                             <img src={this.state.tourSave.mainImage} className="tourPhotoMini" alt="add_mainImage" onClick={() => { this.setState({ imagePreviewUrl: this.state.tourSave.mainImage }) }} />
                                             <span onClick={() => { this.state.tourSave.mainImage = ''; this.state.tourSave.mainImageFile = ""; this.setState({ tourSave: { ...this.state.tourSave }, imagePreviewUrl: '' }) }}></span>
                                         </div>
@@ -1535,7 +1659,7 @@ class AgencyProfileTourClass extends React.Component {
                                 <div className="tourPhotoMiniContainer d-flex flex-wrap">
 
                                     {this.state.tourSave.blockListImage.length > 0 ?
-                                        <div className="position-relative" style={{ /*width: '130px'*/ }}>
+                                        <div className="position-relative" style={{ width: '100%' }}>
                                             <img src={this.state.tourSave.blockListImage} className="tourPhotoMini" alt="add_blockListImage" onClick={() => { this.setState({ imagePreviewUrl: this.state.tourSave.blockListImage }) }} />
                                             <span onClick={() => { this.state.tourSave.blockListImage = ''; this.state.tourSave.blockListImageFile = ""; this.setState({ tourSave: { ...this.state.tourSave }, imagePreviewUrl: '' }) }}></span>
                                         </div>
