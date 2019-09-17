@@ -25,8 +25,7 @@ class ToursListElementClass extends React.Component {
        
         let seats = element.seats
 
-        
-        slug = 'poezdka-iz-minska-v-mirskiy-i-nesvizhskiy-zamok';// стоит на время ремонта. По окончании, убрать. Схожая вещь лежит в tourDescription
+    
 
 
         return (
@@ -67,7 +66,19 @@ class ToursListElementClass extends React.Component {
                         </div>
 
                     </div>
-                    <div className="d-flex justify-content-center align-items-center col-12 toursBookBt">BOOK tours</div>
+                    <button className="driversBlock_driverInfoBlock_element driversBlock_buttonStyle"
+                        onClick={() => { 
+                            /*console.log(element);
+                            this.props.changeTravelVisibility(element.price);
+                            this.props.dispatch(setDriverCarDescription(element))*/
+                        }}>
+                        BOOK tours</button>
+                    {   
+                        /*
+                        <div className="d-flex justify-content-center align-items-center col-12 toursBookBt">BOOK tours</div>
+                        */
+                    }
+                    
                 </div>
             </div>
         )

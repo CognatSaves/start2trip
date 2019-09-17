@@ -42,6 +42,7 @@ class ToursClass extends React.Component {
     this.props.dispatch(setPage(1));
   }
   sendRequestFunc = () => {
+    
     // function findSelectedDirectionId(directions, slug) {
     //   for (let i = 0; i < directions.length; i++) {
     //     //for(let k=0; k<directions[i].loc.length; k++){
