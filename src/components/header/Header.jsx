@@ -385,7 +385,7 @@ class HeaderClass extends React.Component {
   }
 
   setLocals = (type, index, isAdmin) => {
-    debugger
+    
     let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
     switch (type) {
       case 'userLang': {

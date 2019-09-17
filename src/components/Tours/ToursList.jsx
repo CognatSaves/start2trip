@@ -35,6 +35,43 @@ class ToursListClass extends React.Component {
             this.props.dispatch(setPage(page));
         }
     }
+    sortArrayByDate=(element,departureDate)=>{
+         let calendary = element.calendary;
+         let isGood = false;
+         let daily = element.daily;
+         if(!daily){
+            if(calendary.length >0){
+                let today = this.props.departureDate === null? new Date() : new Date(this.props.departureDate)
+                let day = today.getDate();
+                let mounth = today.getMonth();
+                let year = today.getFullYear();
+                for(let i=0; i < calendary.length; i++){
+                    let calendaryDate = new Date(calendary[i])
+                    let calendaryDay = calendaryDate.getDate();
+                    let calendaryMounth = calendaryDate.getMonth();
+                    let calendaryYear = calendaryDate.getFullYear();
+                    if(year<=calendaryYear&&mounth<=calendaryMounth&&day<=calendaryDay){
+                        if(departureDate === null){
+                            departureDate = calendaryDate;
+                        }else if(departureDate.getDate()>=calendaryDay&&departureDate.getMonth()>=calendaryMounth){
+                            departureDate = calendaryDate;
+                        }
+                    }
+                }
+            }
+        }
+        
+        let date = departureDate
+        if(departureDate !== null&& !daily){
+        departureDate = departureDate.getDate()+"."+((departureDate.getMonth()+1)<10?"0"+(departureDate.getMonth()+1):(departureDate.getMonth()+1))+"."+departureDate.getFullYear();
+        isGood = true;
+        }else if(daily){
+            let today = this.props.departureDate === null? new Date() : new Date(this.props.departureDate);
+            departureDate = today.getDate()+"."+((today.getMonth()+1)<10?"0"+(today.getMonth()+1):(today.getMonth()+1))+"."+today.getFullYear();
+            isGood = true;
+        }
+        return({isGood:isGood,departureDate:departureDate,date:date,element:element});
+    }
 
     render() {
         function tagFilterFunction(placesList, selectedTags) {
@@ -89,8 +126,18 @@ class ToursListClass extends React.Component {
 
         let selectedPlaces = sortedArray.slice((this.props.toursState.page - this.props.toursState.showPages) * this.props.toursState.pagesMenuValue,
             this.props.toursState.page * this.props.toursState.pagesMenuValue);
-
-
+        let sortSelectedPlacesArray = [];
+        selectedPlaces.map((element, index) =>{
+            let departureDate = null;
+            let result = this.sortArrayByDate(element,departureDate);
+            sortSelectedPlacesArray.push(result)
+        });
+        sortSelectedPlacesArray = sortSelectedPlacesArray.sort((a,b)=>{
+            a = new Date(a.date);
+            b = new Date(b.date);
+            return a<b ? -1 : a>b ? 1 : 0;
+        })
+        console.log(sortSelectedPlacesArray)
 
         console.log('selectedPlaces', selectedPlaces);
         let textInfo = this.props.storeState.languageTextMain.home.homeBottom.homeRoutesList;
@@ -101,13 +148,16 @@ class ToursListClass extends React.Component {
 
             <>
                 <div className="drivers_block d-flex flex-wrap">
-                    {selectedPlaces.map((element, index) =>
+                    {sortSelectedPlacesArray.map((element, index) =>{
+                          if(element.isGood){
+                        return(
                         <>
-                            <ToursListElement element={element} index={index} findTagName={(tag) => findTagName(tag, this)}
-                            departureDate={this.props.departureDate}
+                            <ToursListElement element={element.element} index={index} findTagName={(tag) => findTagName(tag, this)}
+                            departureDate={element.departureDate}
                             />
                         </>
-                    )}
+                        )}
+                    })}
                     {
                         isLoading || isEmpty ?
                             <>

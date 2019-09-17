@@ -14,15 +14,9 @@ class TourInfoClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            departurePoint: "",
+            days: ["1 день", "2 дня", "3 дня", "4 дня", "5 дней", "6 дней", "7 дней"],
             tours: ["Экскурсионный тур", "Информационно-обозревательный тур", "Оздоровление", "Активный отдых", "Горный тур", "Круизы"],
-            toursValue: props.storeState.languageTextMain.tourDescription.tourInfo.menuItemValue,
         }
-    }
-    changeCity = (index, value) => {
-        this.setState({
-            departurePoint: value
-        })
     }
     render() {
 
@@ -32,7 +26,7 @@ class TourInfoClass extends React.Component {
                 <div className="d-flex flex-md-row flex-column justify-content-around align-items-center tourInfoContent">
                     <p>{textInfo.headerText}</p>
                     {/* <LocationSearchInput placeholder={textInfo.searchPlaceholder} address={this.state.departurePoint} changeCity={this.changeCity} classInput="searchInputTourInfoContent col-12" classDropdown="searchDropdownTourInfoContent" classDiv="col-md-2 col-10 p-0"  isoCountryMap={this.props.storeState.isoCountryMap} /> */}    
-                    <input className="searchInputTourInfoContent " placeholder={textInfo.searchPlaceholder} list="places" name="myPlaces" />
+                    <input className="searchInputTourInfoContent" onChange={(e)=>{this.props.departurePointChange(e.target.value)}} value={this.props.departurePoint} placeholder={textInfo.searchPlaceholder} list="places" name="myPlaces" />
                     <datalist id="places">
                         <option value="Chrome" />
                         <option value="Firefox" />
@@ -41,24 +35,35 @@ class TourInfoClass extends React.Component {
                         <option value="Safari" />
                         <option value="Microsoft Edge" />
                     </datalist>
-                    <DatePicker hintText={textInfo.datePickerLabel} minDate={new Date()} id="basicInfoBirthday" className="calendarModal tourInfoContentDate col-md-2 col-10" value={this.props.departureDate}
-                        onChange={(undefined, data) => { this.props.departureDateChange(data) }}
-                    />
-                    <FormControl className="d-flex flex-wrap col-md-2 col-10 p-0">
+                    <FormControl className="d-flex flex-wrap col-md-3 col-10">
                         <Select
-                            value={this.state.toursValue}
+                            value={this.props.duration}
                             className="dropdownClass tourInfoContentDate"
                             onChange={(event, index, value) => {
-                                this.setState({ toursValue: event.target.value });
+                                this.props.durationChange( event.target.value)
                             }}
                         >
-                            <MenuItem value={textInfo.menuItemValue} disabled={true} >{textInfo.menuItemValue}</MenuItem>
+                            <MenuItem value={textInfo.menuItemDaysValue} >{textInfo.menuItemDaysValue}</MenuItem>
+                            {this.state.days.map((element, index) =>
+                                <MenuItem value={element}>{element}</MenuItem>
+                            )}
+                        </Select>
+                    </FormControl>
+                    <FormControl className="d-flex flex-wrap col-md-2 col-10 p-0">
+                        <Select
+                            value={this.props.tourType}
+                            className="dropdownClass tourInfoContentDate"
+                            onChange={(event, index, value) => {
+                                this.props.tourTypeChange(event.target.value)
+                            }}
+                        >
+                            <MenuItem value={textInfo.menuItemValue}>{textInfo.menuItemValue}</MenuItem>
                             {this.state.tours.map((element, index) =>
                                 <MenuItem value={element}>{element}</MenuItem>
                             )}
                         </Select>
                     </FormControl>
-                    <span className="tourInfoContentBt">{textInfo.findText}</span>
+                    <span className="tourInfoContentBt" onClick={()=>{this.props.clickButtonChange();this.props.sendRequestFunc()}}>{textInfo.findText}</span>
                 </div>
             </div>
         )

@@ -28,14 +28,15 @@
 .toursDuration {
     position: absolute;
     z-index: 17;
-    left: 0;
+    right: 2px;
     bottom: 0px;
-    background: #fff;
-    color: #686868;
+    background: #304269;
+    color: #fff;
     font-weight: 400;
     padding: 2px 5px;
     font-size: 13px;
-    border-radius: 0px 5px 0px 0px;
+    border-radius: 5px 5px 0px 0px;
+    box-shadow: 0px -2px 4px 0px rgba(0, 0, 0, 0.5);
 }
 
 .toursNumberPeoples div {

@@ -9,7 +9,8 @@ const tourDescription = {
         searchPlaceholder: 'Место отправления',
         datePickerLabel: 'Дата отправления',
         menuItemValue: 'Все туры',
-        findText: 'Найти'
+        findText: 'Найти',
+        menuItemDaysValue:"Выберите продолжительность",
     }
 }
 

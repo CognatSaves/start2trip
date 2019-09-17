@@ -30,6 +30,11 @@ class ToursClass extends React.Component {
       isRefreshExist: false,
       selectedDirection: '',
       departureDate: null,
+      departurePoint:"",
+      duration:props.storeState.languageTextMain.tourDescription.tourInfo.menuItemDaysValue,
+      tourType:props.storeState.languageTextMain.tourDescription.tourInfo.menuItemValue,
+      clickButton:false,
+
     }
     //сначала уборка
     this.props.dispatch(setPlacesList([], [], [], {}));
@@ -37,16 +42,17 @@ class ToursClass extends React.Component {
     this.props.dispatch(setPage(1));
   }
   sendRequestFunc = () => {
-    function findSelectedDirectionId(directions, slug) {
-      for (let i = 0; i < directions.length; i++) {
-        //for(let k=0; k<directions[i].loc.length; k++){
-        if (directions[i].loc.slug === slug) {
-          return directions[i].id
-        }
-        //}
-      }
-      return 0;
-    }
+    debugger
+    // function findSelectedDirectionId(directions, slug) {
+    //   for (let i = 0; i < directions.length; i++) {
+    //     //for(let k=0; k<directions[i].loc.length; k++){
+    //     if (directions[i].loc.slug === slug) {
+    //       return directions[i].id
+    //     }
+    //     //}
+    //   }
+    //   return 0;
+    // }
     let selectedDirection = this.props.match.params.direction;
     if (!selectedDirection) {//защита от undefined
       selectedDirection = '';
@@ -58,7 +64,7 @@ class ToursClass extends React.Component {
       (
         this.state.selectedDirection !== (selectedDirection) ||
         this.state.country !== country ||
-        (this.state.language !== lang)
+        (this.state.language !== lang) || this.state.clickButton
       );
 
     if (shouldSendRequest) {
@@ -70,56 +76,57 @@ class ToursClass extends React.Component {
         country: country,
         language: lang,
         isRefreshExist: true,
-        selectedDirection: selectedDirection
+        selectedDirection: selectedDirection,
+        clickButton:false,
       });
 
       //let country = cookies.get('country', { path: '/' });
       let that = this;
 
-      axios.get(requests.getPlacesList + "?country=" + country + "&lang=" + lang + (selectedDirection ? "&slug=" + selectedDirection : ''))
-        .then(response => {
-          console.log(response);
-          return response.data;
-        })
-        .then(data => {
+      // axios.get(requests.getPlacesList + "?country=" + country + "&lang=" + lang + (selectedDirection ? "&slug=" + selectedDirection : ''))
+      //   .then(response => {
+      //     console.log(response);
+      //     return response.data;
+      //   })
+      //   .then(data => {
 
-          if (data.error) {
-            console.log("bad");
-            throw data.error;
-          }
-          else {
+      //     if (data.error) {
+      //       console.log("bad");
+      //       throw data.error;
+      //     }
+      //     else {
 
-            console.log('good');
-            console.log(data);
-            that.props.dispatch(setPlacesList(data.places, data.tags, data.directions, data.country));
-            //следующие строки проверяют, смогли ли мы воспользоваться slug направления, если он, конечно, был
+      //       console.log('good');
+      //       console.log(data);
+      //       that.props.dispatch(setPlacesList(data.places, data.tags, data.directions, data.country));
+      //       //следующие строки проверяют, смогли ли мы воспользоваться slug направления, если он, конечно, был
 
 
-            if (selectedDirection.length > 0) {
-              let id = findSelectedDirectionId(data.directions, selectedDirection);
-              if (id !== 0) {
-                that.props.dispatch(setSelectedDirection(id));
-              }
-              else {
-                //если не нашли - пускаем ещё раз крутилку - если не нашли, сервер не нашёл направление-> вернул всё
-                that.props.globalReduser.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/places/');
-              }
-            }
-            else {
-              that.props.dispatch(setSelectedDirection(''));
-            }
-            that.setState({
-              isRefreshExist: false
-            });
+      //       if (selectedDirection.length > 0) {
+      //         let id = findSelectedDirectionId(data.directions, selectedDirection);
+      //         if (id !== 0) {
+      //           that.props.dispatch(setSelectedDirection(id));
+      //         }
+      //         else {
+      //           //если не нашли - пускаем ещё раз крутилку - если не нашли, сервер не нашёл направление-> вернул всё
+      //           that.props.globalReduser.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/places/');
+      //         }
+      //       }
+      //       else {
+      //         that.props.dispatch(setSelectedDirection(''));
+      //       }
+      //       that.setState({
+      //         isRefreshExist: false
+      //       });
 
-          }
-        })
-        .catch(error => {
-          console.log('get wasted answer');
-          this.props.globalReduser.history.push('/');
-        });
+      //     }
+      //   })
+      //   .catch(error => {
+      //     console.log('get wasted answer');
+      //     this.props.globalReduser.history.push('/');
+      //   });
 
-      axios.get(requests.getTours + "?country=" + country + "&lang=" + lang + (selectedDirection ? "&slug=" + selectedDirection : ''))
+      axios.get(requests.getTours + "?country=" + country + "&lang=" + lang + (selectedDirection ? "&slug=" + selectedDirection : '')+"&departurePoint="+this.state.departurePoint+"&duration="+this.state.duration+"&tourType="+this.state.tourType)
         .then(response => {
           return response.data;
         })
@@ -133,17 +140,37 @@ class ToursClass extends React.Component {
             that.props.dispatch(setToursList(data.tours, data.categories, data.tags, data.directions));
 
           }
+          that.setState({
+                    isRefreshExist: false
+                 });
         })
-        .catch(function (error) {
-          console.log('bad');
-          console.log('An error occurred:', error);
-        })
+        .catch(error => {
+              console.log('get wasted answer');
+               this.props.globalReduser.history.push('/');
+        });
     }
   }
   departureDateChange =(data)=>{
     this.setState({ departureDate: data })
 
   }
+
+  departurePointChange =(point)=>{
+    this.setState({ departurePoint: point })
+  }
+
+  durationChange =(duration)=>{
+    this.setState({ duration: duration })
+  }
+
+  tourTypeChange =(type)=>{
+    this.setState({ tourType: type })
+  }
+
+  clickButtonChange=()=>{
+    this.setState({ clickButton: true })
+  }
+
   render() {
     function findSelectedDirectionName(directions, selectedDirection) {
       for (let i = 0; i < directions.length; i++) {
@@ -298,10 +325,11 @@ class ToursClass extends React.Component {
             <div className="drivers_body d-flex">
               <div id="placesMainBlock" className="left_body_part col-12 p-0" >
                 <PopularPlaces placesState={this.props.toursState} where={"tours"} />
-                <TourInfo departureDateChange={this.departureDateChange} departureDate={this.state.departureDate} />
-                {/* <PlacesTagList  placesState={this.props.placesState}/> */}
-                {/* <PlacesPanel  placesState={this.props.placesState} /> */}
-                <DriversProperties storeState={this.props.storeState} hideTypeOfTransport={true}  />
+                <TourInfo sendRequestFunc={this.sendRequestFunc} clickButtonChange={this.clickButtonChange}
+                departurePointChange={this.departurePointChange} departurePoin={this.state.departurePoint}
+                durationChange={this.durationChange} duration={this.state.duration}
+                tourTypeChange={this.tourTypeChange} tourType={this.state.tourType} />
+                <DriversProperties storeState={this.props.storeState} hideTypeOfTransport={true}  departureDateChange={this.departureDateChange} departureDate={this.state.departureDate}/>
                 <ToursList isStaying={!this.state.isRefreshExist} departureDate={this.state.departureDate} />
               </div>
               {/* <div className="right_body_part col-3">

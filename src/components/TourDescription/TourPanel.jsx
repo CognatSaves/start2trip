@@ -52,7 +52,7 @@ class TourPanelClass extends React.Component {
             }
             if (/*this.state.selectedElement*/null !== selected) {
                 this.props.dispatch(this.props.setPanelSelectedElement(selected));
-                // debugger эксперементы прокрутки TODO
+                //  эксперементы прокрутки TODO
                 // let aasdsadsa = document.querySelector(".tourPanel_panel")
                 // console.log(aasdsadsa)
 

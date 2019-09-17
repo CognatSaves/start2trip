@@ -1,4 +1,4 @@
-.tourInfoBlock{
+.tourInfoBlock {
     position: relative;
     background: rgba(48, 66, 105, 0.6);
     border-radius: 5px;
@@ -7,20 +7,21 @@
     box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
 }
 
-.tourInfoContent p{
+.tourInfoContent p {
     color: #fff;
     font-weight: 400;
     font-size: 18px;
     margin: 0px;
 }
-.tourInfoContent input{
+
+.tourInfoContent input {
     min-height: 44px;
     border-radius: 5px;
     border: none;
     background: #fff;
 }
 
-.tourInfoContent .tourInfoContentBt{
+.tourInfoContent .tourInfoContentBt {
     cursor: pointer;
     padding: 10px 60px;
     background: #304269;
@@ -32,7 +33,7 @@
     transition: all 0.3s;
 }
 
-.tourInfoContent .tourInfoContentBt:hover{
+.tourInfoContent .tourInfoContentBt:hover {
     background: #f60;
 }
 
@@ -45,13 +46,13 @@
     box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.2);
 }
 
-.searchInputTourInfoContent{
+.searchInputTourInfoContent {
     color: rgba(0, 0, 0, 0.6);
     padding: 10px !important;
     background: #fff;
 }
 
-.searchInputTourInfoContent::placeholder{
+.searchInputTourInfoContent::placeholder {
     color: rgba(0, 0, 0, 0.6);
     padding: 0px 15px !important;
     background: url(../media/geo_icon.svg) no-repeat;
@@ -66,22 +67,39 @@
 }
 
 
- .calendarModal.tourInfoContentDate{
-     max-height: 44px;
-    background-color: #fff !important;
-    line-height: 15px;
+.calendarModal.tourInfoContentDate {
+    cursor: pointer;
+    max-height: 25px;
+    background-color: transparent !important;
+    border: none !important;
+    line-height: 12px;
+    max-width: 150px !important;
 }
-.calendarModal.tourInfoContentDate input{
-    background-size: 14px 14px;
-    background-position: top 16px right 10px;
+.calendarModal.tourInfoContentDate div {
+    max-height: 25px;
+    height: 25px !important;
+    font-size: 14px !important;
+    color: #fff !important;
+    text-align: left;
+    bottom: 0px !important;
+
 }
 
-.tourInfoContentDate div{
+.calendarModal.tourInfoContentDate input {
+    padding-left: 0px !important;
+    background: url(../media/calendarWhite.svg) no-repeat;
+    background-size: 14px 14px;
+    background-position: top 4px right 10px;
+    color: #fff !important;
+    font-size: 14px !important;
+}
+
+.tourInfoContentDate div {
     color: rgba(0, 0, 0, 0.6) !important;
     padding-bottom: 2px;
 }
 
-.dropdownClass.tourInfoContentDate.MuiInputBase-root{
+.dropdownClass.tourInfoContentDate.MuiInputBase-root {
     min-height: 44px;
     border-radius: 5px !important;
     background-color: #fff !important;
@@ -90,26 +108,30 @@
 }
 
 @media (max-width: 768px) {
-    .tourInfoContent p{
+    .tourInfoContent p {
         font-size: 20px;
         margin-bottom: 10px;
     }
-    .searchInputTourInfoContent{
+
+    .searchInputTourInfoContent {
         margin-bottom: 10px;
     }
+
     .calendarModal.tourInfoContentDate {
         max-height: 44px !important;
         border: none !important;
         margin-bottom: 5px;
     }
+
     .calendarModal.tourInfoContentDate input {
         padding-top: 0px !important;
     }
 
-    .calendarModal.tourInfoContentDate hr{
+    .calendarModal.tourInfoContentDate hr {
         display: none !important;
     }
-    .dropdownClass.tourInfoContentDate.MuiInputBase-root{
+
+    .dropdownClass.tourInfoContentDate.MuiInputBase-root {
         min-height: 44px;
         padding: 0px 10px;
         max-width: 100%;

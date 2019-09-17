@@ -182,7 +182,7 @@ export const AppReduser = (state = initialState, action) => {
             return newState;
         }
         case SET_ACTIVE_LANG_ISO: {
-            debugger;
+            
             let newState = {
                 ...state
             };

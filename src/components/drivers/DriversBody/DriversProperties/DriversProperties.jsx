@@ -18,6 +18,7 @@ import PeopleMenu from './components/PeopleMenu/PeopleMenu.jsx'
 import SortMenu from './components/SortMenu/SortMenu.jsx'
 import ValueMenu from './components/ValueMenu/ValueMenu.jsx'
 import AutoMenu from './components/AutoMenu/AutoMenu.jsx'
+import DatePicker from 'material-ui/DatePicker';
 
 class DriversPropertiesClass extends React.Component {
   constructor(props) {
@@ -79,6 +80,13 @@ class DriversPropertiesClass extends React.Component {
         </div>
 
         <div className="properties_leftBlock">
+          <div className="properties_buttonStyle properties_leftButton d-flex align-items-center" >
+            {this.props.hideTypeOfTransport &&
+              <DatePicker hintText={"Дата отправления"} minDate={new Date()} id="basicInfoBirthday" className="calendarModal tourInfoContentDate" value={this.props.departureDate}
+                onChange={(undefined, data) => { this.props.departureDateChange(data) }}
+              />
+            }
+          </div>
           <div className="properties_buttonStyle properties_leftButton d-flex" >
             <LanguageMenu isVisible={true} />
           </div>
@@ -87,7 +95,6 @@ class DriversPropertiesClass extends React.Component {
               <AutoMenu isVisible={true} />
             </div>
           }
-
 
           <div className="d-flex align-items-center" style={{ position: "relative" }}>
             <div className="properties_buttonStyle properties_leftButton d-flex" onClick={() => {
