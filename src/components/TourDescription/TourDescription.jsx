@@ -14,7 +14,6 @@ import PlacePhotoShow from '../PlaceDescription/PlacePhotoShow.jsx';
 import PlaceProgramm from '../PlaceDescription/PlaceProgramm.jsx';
 import PlacePhotos from '../PlaceDescription/PlacePhotos.jsx';
 import RouteTravelBlock from '../RouteDescription/RouteTravelBlock';
-import SimularRouteBlock from '../RouteDescription/SimularRouteBlock';
 import SimularToursBlock from './SimularToursBlock.jsx';
 import CommentBlock from '../TourDescription/CommentBlock.jsx';
 import TourPanel from '../TourDescription/TourPanel.jsx';
@@ -48,7 +47,6 @@ class ToureDescriptionClass extends React.Component {
             isRefreshExist: false,
             isRefreshing: true,
             isGoodAnswer: true,
-            newRoute: {},
             newTour: {},
             couldSendRequest: true,
             slug: '',
@@ -99,19 +97,13 @@ class ToureDescriptionClass extends React.Component {
         console.log('RouteDescription render', this.state, this.props);
         let topBlockId = "routeDescriptionId";
         let slug = this.props.match.params.slug;
-        if (this.props.storeState.languages.length > 0 && this.state.newRoute.local && this.state.selectedLanguage !== this.props.storeState.activeLanguageNumber) {
+        if (this.props.storeState.languages.length > 0 && this.state.newTour.local && this.state.selectedLanguage !== this.props.storeState.activeLanguageNumber) {
 
 
 
-            slug = 'poezdka-iz-minska-v-mirskiy-i-nesvizhskiy-zamok';
-            //задал статично на время ремонта и создания запроса на получение описания места
-            //похожая вещь лежит в toursListElement
-
-
-
-            let slugArray = this.state.newRoute.local.slugArray;
+            let slugArray = this.state.newTour.local.slugArray;
             for (let i = 0; i < slugArray.length; i++) {
-                if (this.props.storeState.languages[this.props.storeState.activeLanguageNumber].id === slugArray[i].language) {
+                if (this.props.storeState.languages[this.props.storeState.activeLanguageNumber].id === slugArray[i].language && slugArray[i].slug.length>0) {
                     this.setState({
                         selectedLanguage: this.props.storeState.activeLanguageNumber,
 
@@ -121,47 +113,21 @@ class ToureDescriptionClass extends React.Component {
             }
             //надо что-то сделать, если не нашли          
         }
-
-        if (this.state.couldSendRequest && (!this.state.newRoute.local || this.state.slug !== slug) && this.props.storeState.languages.length > 0) {
+        if(!this.state.newTour.local && !this.state.isRefreshExist){
+            this.setState({
+                isRefreshExist: true,
+                isRefreshing: true,
+            });
+        }
+        if (this.state.couldSendRequest && (!this.state.newTour.local || this.state.slug !== slug) && this.props.storeState.languages.length > 0) {
             this.setState({
                 couldSendRequest: false,
                 isRefreshExist: true,
+                isRefreshing: true,
                 selectedLanguage: this.props.storeState.activeLanguageNumber
             });
-            let that = this;
-            axios.get(requests.showRoute + "?slug=" + (slug ? slug : ''))
-                .then(response => {
-                    console.log(response);
-                    return response.data;
-                })
-                .then(data => {
-                    if (data.error) {
-                        console.log("bad");
-                        throw data.error;
-                    }
-                    else {
-                        window.scroll({
-                            top: 0,
-                            left: 0,
-                            behavior: 'smooth'
-                        })
-                        console.log('good');
-                        console.log(data);
-                        that.setState({
-                            isRefreshExist: false,
-                            newRoute: data,
-                            couldSendRequest: true,
-                            slug: data.local.slug
-                        });
-                    }
-                })
-                .catch(error => {
-                    console.log('get wasted answer');
-                    that.props.globalReduser.history.push('/404/');
-                });
-
-                let tourSlug='jajajajaaaaaaaaaaaaaaaaaaaaa';
-                axios.get(requests.showTour+"?slug=" + (tourSlug ? tourSlug : ''))
+            let that = this;   
+                axios.get(requests.showTour+"?slug=" + (slug ? slug  : ''))
                     .then(response =>{
                         return response.data;
                     })
@@ -171,18 +137,19 @@ class ToureDescriptionClass extends React.Component {
                             throw data.error;
                         }
                         else{
+                            debugger;
                             console.log('good, data=',data);
                             that.setState({
-                                //isRefreshExist: false,
+                                isRefreshExist: false,
                                 newTour: data,
-                                //couldSendRequest: true,
-                                //slug: data.local.slug
+                                couldSendRequest: true,
+                                slug: data.local.slug
                             });
                         }
                     })
                     .catch(function(error){
-                        console.log('bad');
-                        console.log('An error occurred:',error);
+                        console.log('get wasted answer');
+                        that.props.globalReduser.history.push('/404/');
                     })
 
         }
@@ -196,9 +163,9 @@ class ToureDescriptionClass extends React.Component {
         let shareUrl = document.URL;
         let title = null;
         let exampleImage = null;
-        if (this.props.storeState.languages.length > 0 && this.state.newRoute.local !== undefined) {
-            title = this.state.newRoute.local.name;
-            exampleImage = this.state.newRoute.route.blockListImage.url
+        if (this.props.storeState.languages.length > 0 && this.state.newTour.local !== undefined) {
+            title = this.state.newTour.local.name;
+            exampleImage = this.state.newTour.tour.blockListImage.url
         }
         return (
             <>
@@ -251,8 +218,7 @@ class ToureDescriptionClass extends React.Component {
 
                 <div style={{ position: 'relative' }}>
                     {
-                        //TODO убрать лишнюю проверку на Route, когда тур подключится
-                        this.state.newRoute.local && this.state.newTour.local ?
+                        this.state.newTour.local ?
                             <PlacePhotoShow onClose={() => { this.setState({ isMaskVisible: false }) }}
                                 isMaskVisible={this.state.isMaskVisible} clickedImageIndex={this.state.clickedImageIndex} images={this.state.newTour.tour.images} />
                             : <React.Fragment />
@@ -273,8 +239,7 @@ class ToureDescriptionClass extends React.Component {
                         }
 
                         {
-                            //TODO убрать лишнюю проверку на Route, когда тур подключится
-                            this.state.newRoute.local && this.state.newTour.local ?
+                            this.state.newTour.local ?
                                 <div className="placeDescription_topImageMask">
                                     <div className="wrapper d-flex flex-column  ">
                                         <PlaceInfo tagsArray={[]} date={this.state.newTour.local.createdAt}
@@ -287,8 +252,7 @@ class ToureDescriptionClass extends React.Component {
 
                     </div>
                     {
-                        //TODO убрать лишнюю проверку на Route, когда тур подключится
-                        this.state.newRoute.local && this.state.newTour.local ?
+                        this.state.newTour.local ?
                             <div className="wrapper d-flex flex-column">
                                 <div className="drivers_bottom_background d-flex flex-column" >
                                     <div className="drivers_body d-flex">
@@ -297,7 +261,7 @@ class ToureDescriptionClass extends React.Component {
                                                 <TourPanel topBlockId={topBlockId} descriptionId={topBlockId} variantsArray={textInfo.placeDescription.variantsArray}
                                                     setPanelStateFunc={changePlacesFixedClass} panelFixedClass={this.props.placesState.placePanelFixedClass}
                                                     panelSelectedElement={this.props.placesState.placePanelSelectedElement} setPanelSelectedElement={setPlacesPanelSelectedElement}
-                                                    removeElements={this.state.newRoute.additionalRoutes.length === 0 ? [simularPlaceBlockId] : []} />
+                                                    removeElements={this.state.newTour.additionalTours.length === 0 ? [simularPlaceBlockId] : []} />
                                             }
 
                                             <div className="placeDescription_block d-flex flex-column p-0" id={topBlockId + "1"}>

@@ -94,7 +94,7 @@ const TourSeatsModalContent= (that,pseudoTableHeaderArray,tableElementsWidth,isE
 }
 const ExcursionIncludesBlock = (props) => {
     function changeExcursionIncludesData(that, type){
-        debugger;
+        
         let tourSave = that.state.tourSave;
         switch (type){
             case "hotelMeeting":{
