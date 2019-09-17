@@ -29,13 +29,14 @@ export default class SimularToursBlock extends React.Component {
         }
         let tours = this.props.tours;
         let outerBlock = document.getElementById(this.props.outerBlock);
-        
+        debugger;
         console.log('outerBlock', outerBlock ? outerBlock.offsetWidth : 0);
         return (
             <>
                 <div className="placeDescription_fragmentName">{this.props.fragmentName}</div>
                 <div className="d-flex col-12 flex-md-wrap flex-nowrap p-0 popularPlacesRender" >
-                    {/*
+                
+                    {   
                         tours.map((element, index) => {
                             if (index > 0) {
                                 let temp = document.getElementById("addPlace" + (index - 1));
@@ -43,13 +44,19 @@ export default class SimularToursBlock extends React.Component {
                             }
                             return (
                                 <ToursListElement element={element} index={'addPlace' + index} findTagName={(tagId) => findTagName(tagId, this)}
-                                    placeListElementClass={"col-xl-3 col-lg-3 col-md-4 col-sm-6 col-10 p-2 pb-3"}
+                                    departureDate={new Date()}
                                 />
                             )
                         })
+                        
+                    }
+                    {
+                        /*
+                        
+                        <text>Нужно закончить работу над ToursListElement, чтобы открыть это</text>
                         */
                     }
-                    <text>Нужно закончить работу над ToursListElement, чтобы открыть это</text>
+                    
                 </div>
             </>
         )
