@@ -11,6 +11,7 @@ const tourDescription = {
         menuItemValue: 'Все туры',
         findText: 'Найти',
         menuItemDaysValue:"Выберите продолжительность",
+        menuItemDays:"ден."
     }
 }
 

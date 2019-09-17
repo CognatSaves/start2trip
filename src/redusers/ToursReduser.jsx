@@ -22,6 +22,8 @@ export const ToursReduser = (state = initialState, action)=>{
             newState.categories = action.categories;
             newState.tags = action.tags;
             newState.directions = action.directions;
+            newState.daysNumber = action.daysNumber;
+            newState.departurePoint = action.departurePoint;
             return newState;
         }
         case SET_TOURS_MORE_PAGES_SHOW:{

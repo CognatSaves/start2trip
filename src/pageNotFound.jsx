@@ -20,8 +20,8 @@ class pageNotFoundClass extends React.Component {
             <>
                 <Header history={this.props.history} />
                 <div className="pageNotFound d-flex flex-column justify-content-between align-items-center" >
-                    <span style={isMobileOnly ? { paddingTop: "12%" } : { paddingTop: "8%" }}>{pageNotFound.title}</span>
-                    <div className="d-flex flex-column justify-content-center align-items-center">
+                    <span style={{height:"50%" }}>{pageNotFound.title}</span>
+                    <div className="d-flex flex-column justify-content-center align-items-center h-50">
                         <span>{pageNotFound.text1}{isMobileOnly ? <br /> : <React.Fragment />}{pageNotFound.text2}</span>
                         <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes/"}>{pageNotFound.link}</Link>
                     </div>

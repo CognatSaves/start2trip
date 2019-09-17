@@ -9,13 +9,15 @@ const SET_TOUR_PANEL_SELECTED_ELEMENT = 'SET_TOUR_PANEL_SELECTED_ELEMENT';
 
 const SET_TOURS_LIST ='SET_TOURS_LIST';
 
-const setToursList=function(toursList, categories, tags, directions){
+const setToursList=function(toursList, categories, tags, directions,daysNumber,departurePoint){
   return{
     type: SET_TOURS_LIST,
     toursList: toursList,
     categories: categories,
     tags: tags,
-    directions: directions
+    directions: directions,
+    daysNumber:daysNumber,
+    departurePoint:departurePoint
   }
 }
 const setToursMorePagesShow = function (){

@@ -42,7 +42,6 @@ class ToursClass extends React.Component {
     this.props.dispatch(setPage(1));
   }
   sendRequestFunc = () => {
-    debugger
     // function findSelectedDirectionId(directions, slug) {
     //   for (let i = 0; i < directions.length; i++) {
     //     //for(let k=0; k<directions[i].loc.length; k++){
@@ -136,8 +135,9 @@ class ToursClass extends React.Component {
             throw data.error;
           }
           else {
+            debugger
             console.log('tour request data', data);
-            that.props.dispatch(setToursList(data.tours, data.categories, data.tags, data.directions));
+            that.props.dispatch(setToursList(data.tours, data.categories, data.tags, data.directions, data.daysNumber,data.departurePoint));
 
           }
           that.setState({
