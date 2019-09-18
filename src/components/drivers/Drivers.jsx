@@ -184,7 +184,8 @@ class DriversClass extends React.Component {
         </div>
         <StartTravelForm {...this.props} changeTravelVisibility={this.changeTravelVisibility} driversState={this.props.driversState}
           travelVisibility={this.state.travelVisibility} isoCountryMap={this.props.storeState.isoCountryMap} storeState={this.props.storeState}
-          elementPrice={this.state.elementPrice} activeCurrency={activeCurrency} textInfo={this.props.storeState.languageTextMain.startTravelForm} changeSuccessVisibility={this.changeSuccessVisibility} />
+          elementPrice={this.state.elementPrice} activeCurrency={activeCurrency} textInfo={this.props.storeState.languageTextMain.startTravelForm}
+          changeSuccessVisibility={this.changeSuccessVisibility} />
         <StartTravelSuccess successVisibility={this.state.successVisibility} changeSuccessVisibility={this.changeSuccessVisibility}
           textInfo={this.props.storeState.languageTextMain.startTravelForm}
         />

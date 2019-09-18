@@ -35,7 +35,7 @@ class DriverProfileNavigationClass extends React.Component {
                 "/account/driver/profile",
                 "/account/driver/cars",
                 "/account/driver/tripsSettings",
-                //"account/driver/tours",
+                "/account/driver/tours",
                 "/account/driver/reviews",
                 "/account/driver/settings",
                 "/account/driver/billing",
@@ -237,6 +237,7 @@ class DriverProfileNavigationClass extends React.Component {
                                     <span key={that.state.route[index]} className={{ [that.state.route[index]]: "navigationBodyActive", }[that.props.globalhistory.history.location.pathname] + " navigationButton mb-0 " + (that.state.route[index].length === 0 ? "blockedSpan" : "")}
                                         onClick={(event) => {
                                             if (that.state.route[index].length > 0) {
+                                                
                                                 that.setState({ index: index });
                                                 that.shiftLeft(event);
                                                 that.props.globalhistory.history.push(that.state.route[index])

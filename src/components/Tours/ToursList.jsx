@@ -138,7 +138,7 @@ class ToursListClass extends React.Component {
         
        if(sortSelectedPlacesArray.length>0 && this.props.maxPrice === null){
            let arrayPrice = [];
-           debugger
+           
         sortSelectedPlacesArray.map((el, index) =>{
             if(el.isGood){
                 arrayPrice.push(el.element.price)
@@ -170,7 +170,7 @@ class ToursListClass extends React.Component {
                         return(
                         <>
                             <ToursListElement element={element.element} index={index} findTagName={(tag) => findTagName(tag, this)}
-                            departureDate={element.departureDate}
+                            departureDate={element.departureDate} changeTravelVisibility={this.props.changeTravelVisibility}
                             />
                         </>
                         )}

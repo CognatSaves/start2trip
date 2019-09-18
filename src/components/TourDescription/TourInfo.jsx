@@ -20,8 +20,9 @@ class TourInfoClass extends React.Component {
         }
     }
     render() {
-
+      
         if (this.props.toursState.categories.length > 0 && (this.state.tours.length === 0 || (this.state.tours[0].catLoc.name !== this.props.toursState.categories[0].catLoc.name))) {
+            
             let sortArrayDaysNumber = this.props.toursState.daysNumber.sort((a, b) => { return a < b ? -1 : 1 })
             this.setState({
                 tours: this.props.toursState.categories,

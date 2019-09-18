@@ -36,7 +36,7 @@ class DriversPropertiesClass extends React.Component {
   render() {
     function valueTextGenerator(pricePart, maxPrice, activeCurrency, textInfo) {
       if (pricePart !== maxPrice) {
-        return textInfo.from + " " + (activeCurrency.isLeft ? activeCurrency.symbol + ' ' : '')
+        return textInfo.peopleMenu.priceWord + " " + (activeCurrency.isLeft ? activeCurrency.symbol + ' ' : '')
           + Math.ceil(pricePart * activeCurrency.costToDefault) +
           (!activeCurrency.isLeft ? ' ' + activeCurrency.symbol : '');
       }

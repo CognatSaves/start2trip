@@ -174,7 +174,11 @@ class DriverProfileClass extends React.Component {
                     isRefreshing: false,
                     isGoodAnswer: false
                 })
-                setTimeout(() => { that.props.history.push('/' + that.props.storeState.country + "-" + that.props.storeState.languages[that.props.storeState.activeLanguageNumber].isoAutocomplete + '/routes') }, 1000);
+                let address = '/404'
+                if(that.props.storeState.country && that.props.storeState.languages && that.props.storeState.languages.length>0 && that.props.storeState.activeLanguageNumber){
+                    address = '/' + that.props.storeState.country + "-" + that.props.storeState.languages[that.props.storeState.activeLanguageNumber].isoAutocomplete + '/routes';
+                }
+                setTimeout(() => { that.props.history.push(address) }, 1000);
 
             });
     }

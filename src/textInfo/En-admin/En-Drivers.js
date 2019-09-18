@@ -1,7 +1,7 @@
 const driverProfileRegistration = {
 
     DriverProfileNavigation: {
-        navigationText: ["My trips", "Profile", "My Cars", "Travel settings", // "Tours",
+        navigationText: ["My trips", "Profile", "My Cars", "Travel settings", "Tours",
             "Reviews", "Settings", "Billing", "Affiliate program"
         ],
         updatePhoto: "Upload Photo",

@@ -269,15 +269,15 @@ const initialState = {
             return locals[1].name;
           }
         }
-      },
-      convertDateToUTC(date) {
-        //эта функция удаляет (должна удалять) все параметры даты, выбранной
-        //пользователем (в виде часового пояса, часов, минут и т.д.)
-        //оставляет только дату-месяц-год и сохраняет как UTC
-        return new Date(Date.UTC(date.getFullYear(),
-        date.getMonth(), date.getDate(),
-        0,0,0));
-     }
+    },
+    convertDateToUTC(date) {
+    //эта функция удаляет (должна удалять) все параметры даты, выбранной
+    //пользователем (в виде часового пояса, часов, минут и т.д.)
+    //оставляет только дату-месяц-год и сохраняет как UTC
+    return new Date(Date.UTC(date.getFullYear(),
+    date.getMonth(), date.getDate(),
+    0,0,0));
+    }
 };
 
 

@@ -70,9 +70,10 @@ class ToursListElementClass extends React.Component {
                     </div>
                     <button className="driversBlock_driverInfoBlock_element driversBlock_buttonStyle"
                         onClick={() => { 
-                            /*console.log(element);
+                            
+                            console.log(element);
                             this.props.changeTravelVisibility(element.price);
-                            this.props.dispatch(setDriverCarDescription(element))*/
+                            /*this.props.dispatch(setDriverCarDescription(element))*/
                         }}>{"BOOK tours "+ element.price }</button>
                     {   
                         /*

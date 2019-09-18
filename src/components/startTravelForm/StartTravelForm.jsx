@@ -234,7 +234,7 @@ export default class StartTravelForm extends React.Component {
 
     constructor(props) {
         super(props);
-
+        
         this.state = {
             travelVisibility: false,
             // successVisibility: 'none',
@@ -533,29 +533,50 @@ export default class StartTravelForm extends React.Component {
             }
             flagAllOk = true;
         }
+
         let carCapacityArray = [];
-        if (this.props.driversState.driverCarDescription.carCapacity) {
-            for (let i = 0; i < this.props.driversState.driverCarDescription.carCapacity; i++) {
-                carCapacityArray.push(i + 1)
+        
+        if(this.props.driversState){
+            if (this.props.driversState.driverCarDescription.carCapacity) {
+                for (let i = 0; i < this.props.driversState.driverCarDescription.carCapacity; i++) {
+                    carCapacityArray.push(i + 1)
+                }
+            } else {
+                carCapacityArray.push(1);
             }
-        } else {
-            carCapacityArray.push("1")
         }
         return (
             <>
-                {isMobileOnly ?
+                {
+                    //это на время подключения startTravelForm к турам
+                    this.props.driversState ?
                     <>
-                        <Dialog fullScreen open={this.props.travelVisibility} onClose={this.props.changeTravelVisibility} >
-                            {Content(this, flagAllOk, carCapacityArray, this.props.activeCurrency, this.props.textInfo, this.props.changeSuccessVisibility)}
-                        </Dialog>
-                    </>
-                    :
+                        {
+                            isMobileOnly ?
+                            <>
+                                <Dialog fullScreen open={this.props.travelVisibility} onClose={this.props.changeTravelVisibility} >
+                                    {Content(this, flagAllOk, carCapacityArray, this.props.activeCurrency, this.props.textInfo, this.props.changeSuccessVisibility)}
+                                </Dialog>
+                            </>
+                            :
+                            <>
+                                <Dialog open={this.props.travelVisibility} onClose={this.props.changeTravelVisibility} >
+                                    {Content(this, flagAllOk, carCapacityArray, this.props.activeCurrency, this.props.textInfo, this.props.changeSuccessVisibility)}
+                                </Dialog>
+                            </>
+                        }
+                    </> : <React.Fragment/>
+                }
+                {
+                    this.props.toursState ?
                     <>
                         <Dialog open={this.props.travelVisibility} onClose={this.props.changeTravelVisibility} >
-                            {Content(this, flagAllOk, carCapacityArray, this.props.activeCurrency, this.props.textInfo, this.props.changeSuccessVisibility)}
+                            <div>подключи туры</div>
                         </Dialog>
                     </>
+                    : <React.Fragment/>
                 }
+                
 
             </>
         )

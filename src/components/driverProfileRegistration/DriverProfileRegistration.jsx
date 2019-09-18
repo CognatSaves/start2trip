@@ -41,7 +41,7 @@ const DriverProfileSettings = lazy(() => import('./DriverProfileSettings'));
 const DriverProfileBilling = lazy(() => import('./DriverProfileBilling'));
 const DriverProfileAffiliateProgram = lazy(() => import('./DriverProfileAffiliateProgram'));
 const FirstEnterModal = lazy(() => import('../home/FirstEnterModal'));
-// const DriverProfileTripSettingsTour = lazy(() => import('./DriverProfileTripSettingsTour'));
+const DriverProfileTripSettingsTour = lazy(() => import('./DriverProfileTripSettingsTour'));
 
 class DriverProfileRegistrationClass extends React.Component {
   constructor(props) {
@@ -81,9 +81,9 @@ class DriverProfileRegistrationClass extends React.Component {
                   <Route path="/account/driver/profile" component={DriverProfileBasicInformation} />
                   <Route path="/account/driver/cars" component={DriverProfileCar} />
                   <Route path="/account/driver/tripsSettings" component={DriverProfileTripSettingsTrip} />
-                  {/*                   
-                    <Route path="/account/driver/tours" component={DriverProfileTripSettingsTour} />
-              */}
+                                   
+                  <Route path="/account/driver/tours" component={DriverProfileTripSettingsTour} />
+                  
 
                   <Route path="/account/driver/reviews" component={DriverProfileFeedback} />
                   <Route path="/account/driver/settings" component={DriverProfileSettings} />

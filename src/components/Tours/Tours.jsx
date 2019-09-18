@@ -8,7 +8,8 @@ import { Helmet } from 'react-helmet';
 import axios from 'axios';
 import requests from '../../config';
 import Header from '../header/Header';
-
+import StartTravelForm from '../startTravelForm/StartTravelForm'
+import StartTravelSuccess from '../startTravelForm/StartTravelSuccess'
 import PlacesCountryInfo from '../Places/PlacesCountryInfo'
 // import PlacesPanel from '../Places/PlacesPanel';
 import PopularPlaces from '../Places/PopularPlaces';
@@ -34,8 +35,9 @@ class ToursClass extends React.Component {
       duration:props.storeState.languageTextMain.tourDescription.tourInfo.menuItemDaysValue,
       tourType:props.storeState.languageTextMain.tourDescription.tourInfo.menuItemValue,
       clickButton:false,
-    
-
+      travelVisibility: false,
+      successVisibility: 'none',
+      elementPrice: 0
     }
     //сначала уборка
     this.props.dispatch(setPlacesList([], [], [], {}));
@@ -95,7 +97,7 @@ class ToursClass extends React.Component {
             throw data.error;
           }
           else {
-            debugger
+            
             console.log('tour request data', data);
             that.props.dispatch(setToursList(data.tours, data.categories, data.tags, data.directions, data.daysNumber,data.departurePoint));
 
@@ -129,6 +131,20 @@ class ToursClass extends React.Component {
 
   clickButtonChange=()=>{
     this.setState({ clickButton: true })
+  }
+
+  changeTravelVisibility = (elementPrice) => {
+
+    this.setState({
+      travelVisibility: !this.state.travelVisibility,
+      elementPrice: elementPrice
+    })
+  }
+
+  changeSuccessVisibility = (value) => {
+    this.setState({
+      successVisibility: value
+    })
   }
 
   render() {
@@ -194,6 +210,9 @@ class ToursClass extends React.Component {
       }
       windowImg = requests.serverAddressImg + this.props.storeState.countries[j].windowImg.url
     }
+
+    let storeState = this.props.storeState;
+    let activeCurrency = storeState.currencies[storeState.activeCurrencyNumber];
 
     return (
       <>
@@ -290,7 +309,8 @@ class ToursClass extends React.Component {
                 durationChange={this.durationChange} duration={this.state.duration}
                 tourTypeChange={this.tourTypeChange} tourType={this.state.tourType} />
                 <DriversProperties storeState={this.props.storeState} hideTypeOfTransport={true}  departureDateChange={this.departureDateChange} departureDate={this.state.departureDate}/>
-                <ToursList isStaying={!this.state.isRefreshExist} departureDate={this.state.departureDate} />
+                <ToursList isStaying={!this.state.isRefreshExist} departureDate={this.state.departureDate} 
+                  changeTravelVisibility={this.changeTravelVisibility}/>
               </div>
               {/* <div className="right_body_part col-3">
                 <DriversCommercial />
@@ -299,6 +319,16 @@ class ToursClass extends React.Component {
 
           </div>
         </div>
+        <StartTravelForm {...this.props} changeTravelVisibility={this.changeTravelVisibility}
+          changeSuccessVisibility={this.changeSuccessVisibility} travelVisibility={this.state.travelVisibility}
+          elementPrice={this.state.elementPrice} activeCurrency={activeCurrency}
+          isoCountryMap={this.props.storeState.isoCountryMap} 
+          textInfo={this.props.storeState.languageTextMain.startTravelForm}
+
+        />
+        <StartTravelSuccess successVisibility={this.state.successVisibility} changeSuccessVisibility={this.changeSuccessVisibility}
+          textInfo={this.props.storeState.languageTextMain.startTravelForm}
+        />
       </>
     )
   }
