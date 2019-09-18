@@ -3,6 +3,7 @@ const tours = {
     comments:"отзыва(ов)",
     seats:"Количество свободных мест",
     guide:"Гид водитель",
+    agency:"Агентство",
     daysNumber:"ден.",
 }
 

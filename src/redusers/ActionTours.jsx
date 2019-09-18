@@ -9,6 +9,8 @@ const SET_TOUR_PANEL_SELECTED_ELEMENT = 'SET_TOUR_PANEL_SELECTED_ELEMENT';
 
 const SET_TOURS_LIST ='SET_TOURS_LIST';
 
+const SET_MAX_PRICE ='SET_MAX_PRICE';
+
 const setToursList=function(toursList, categories, tags, directions,daysNumber,departurePoint){
   return{
     type: SET_TOURS_LIST,
@@ -45,10 +47,19 @@ const setToursPage = function(page){
       tourPanelSelectedElement: value
     }
   }
+
+  const setMaxPrice = (value)=>{
+    return{
+      type: SET_MAX_PRICE,
+      maxPrice: value
+    }
+  }
+
 export {
     setToursMorePagesShow, SET_TOURS_MORE_PAGES_SHOW,
     setToursPage, SET_TOURS_PAGE,
     changePanelFixedClass, CHANGE_PANEL_FIXED_CLASS,
     setTourPanelSelectedElement, SET_TOUR_PANEL_SELECTED_ELEMENT,
-    setToursList,SET_TOURS_LIST
+    setToursList,SET_TOURS_LIST,
+    setMaxPrice,SET_MAX_PRICE,
 }

@@ -6,6 +6,8 @@ import requests from '../../config';
 import './ToursListElement.css'
 
 import tagBlue from '../media/tag_blue.svg';
+import guideIcon from '../media/tour-guide.svg';
+import agencyIcon from '../media/agencyIcon.svg';
 // import geoIcon from '../media/geo_icon.svg';
 
 import Stars from '../stars/Stars';
@@ -54,7 +56,7 @@ class ToursListElementClass extends React.Component {
                                     <div className="placesList_info_position_textStyle">{textInfo.seats+" "+seats}</div>
                                 </div>
                             </div>
-                            <i className="placesList_info_guide my-auto col-2"><span className="placesList_info_guide-toolTip">{textInfo.guide}</span></i>
+                            <i className="placesList_info_guide my-auto col-2" style={{background:"url("+(/*element.guide */index%2 ? guideIcon:agencyIcon)+")no-repeat"}}><span className="placesList_info_guide-toolTip">{/*element.guide */index%2 ?textInfo.guide:textInfo.agency}</span></i>
                         </div>
 
                         <div className="d-flex align-items-center placesList_info_position placesList_info_position_tags mb-1">
@@ -71,8 +73,7 @@ class ToursListElementClass extends React.Component {
                             /*console.log(element);
                             this.props.changeTravelVisibility(element.price);
                             this.props.dispatch(setDriverCarDescription(element))*/
-                        }}>
-                        BOOK tours</button>
+                        }}>{"BOOK tours "+ element.price }</button>
                     {   
                         /*
                         <div className="d-flex justify-content-center align-items-center col-12 toursBookBt">BOOK tours</div>

@@ -124,10 +124,8 @@ class ToursListClass extends React.Component {
         sortedArray = this.placesSort(/*[...this.props.placesState.placesList]*/tagFilteredArray, this.props.toursState.sortMenuValue);
         // }
 
-        let selectedPlaces = sortedArray.slice((this.props.toursState.page - this.props.toursState.showPages) * this.props.toursState.pagesMenuValue,
-            this.props.toursState.page * this.props.toursState.pagesMenuValue);
         let sortSelectedPlacesArray = [];
-        selectedPlaces.map((element, index) =>{
+        sortedArray.map((element, index) =>{
             let departureDate = null;
             let result = this.sortArrayByDate(element,departureDate);
             sortSelectedPlacesArray.push(result)
@@ -137,7 +135,26 @@ class ToursListClass extends React.Component {
             b = new Date(b.date);
             return a<b ? -1 : a>b ? 1 : 0;
         })
-        console.log(sortSelectedPlacesArray)
+        
+       if(sortSelectedPlacesArray.length>0 && this.props.maxPrice === null){
+           let arrayPrice = [];
+           debugger
+        sortSelectedPlacesArray.map((el, index) =>{
+            if(el.isGood){
+                arrayPrice.push(el.element.price)
+            }
+        });
+        arrayPrice = arrayPrice.sort((a, b) => { return a > b ? -1 : 1 })
+        this.props.maxPriceChange(arrayPrice[0])
+       } 
+        
+
+        let selectedPlaces = sortSelectedPlacesArray.slice((this.props.toursState.page - this.props.toursState.showPages) * this.props.toursState.pagesMenuValue,
+            this.props.toursState.page * this.props.toursState.pagesMenuValue);
+        
+
+
+        console.log(selectedPlaces)
 
         console.log('selectedPlaces', selectedPlaces);
         let textInfo = this.props.storeState.languageTextMain.home.homeBottom.homeRoutesList;
@@ -148,7 +165,7 @@ class ToursListClass extends React.Component {
 
             <>
                 <div className="drivers_block d-flex flex-wrap">
-                    {sortSelectedPlacesArray.map((element, index) =>{
+                    {selectedPlaces.map((element, index) =>{
                           if(element.isGood){
                         return(
                         <>

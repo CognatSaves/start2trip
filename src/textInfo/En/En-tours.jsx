@@ -3,6 +3,7 @@ const tours = {
     comments:"comments",
     seats:"Number of free places",
     guide:"Driver guide",
+    agency:"Agency",
     daysNumber:"day",
 }
 

@@ -34,6 +34,7 @@ class ToursClass extends React.Component {
       duration:props.storeState.languageTextMain.tourDescription.tourInfo.menuItemDaysValue,
       tourType:props.storeState.languageTextMain.tourDescription.tourInfo.menuItemValue,
       clickButton:false,
+    
 
     }
     //сначала уборка
@@ -83,48 +84,6 @@ class ToursClass extends React.Component {
       //let country = cookies.get('country', { path: '/' });
       let that = this;
 
-      // axios.get(requests.getPlacesList + "?country=" + country + "&lang=" + lang + (selectedDirection ? "&slug=" + selectedDirection : ''))
-      //   .then(response => {
-      //     console.log(response);
-      //     return response.data;
-      //   })
-      //   .then(data => {
-
-      //     if (data.error) {
-      //       console.log("bad");
-      //       throw data.error;
-      //     }
-      //     else {
-
-      //       console.log('good');
-      //       console.log(data);
-      //       that.props.dispatch(setPlacesList(data.places, data.tags, data.directions, data.country));
-      //       //следующие строки проверяют, смогли ли мы воспользоваться slug направления, если он, конечно, был
-
-
-      //       if (selectedDirection.length > 0) {
-      //         let id = findSelectedDirectionId(data.directions, selectedDirection);
-      //         if (id !== 0) {
-      //           that.props.dispatch(setSelectedDirection(id));
-      //         }
-      //         else {
-      //           //если не нашли - пускаем ещё раз крутилку - если не нашли, сервер не нашёл направление-> вернул всё
-      //           that.props.globalReduser.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/places/');
-      //         }
-      //       }
-      //       else {
-      //         that.props.dispatch(setSelectedDirection(''));
-      //       }
-      //       that.setState({
-      //         isRefreshExist: false
-      //       });
-
-      //     }
-      //   })
-      //   .catch(error => {
-      //     console.log('get wasted answer');
-      //     this.props.globalReduser.history.push('/');
-      //   });
 
       axios.get(requests.getTours + "?country=" + country + "&lang=" + lang + (selectedDirection ? "&slug=" + selectedDirection : '')+"&departurePoint="+this.state.departurePoint+"&duration="+this.state.duration+"&tourType="+this.state.tourType)
         .then(response => {

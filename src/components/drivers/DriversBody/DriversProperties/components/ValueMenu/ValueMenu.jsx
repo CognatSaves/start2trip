@@ -79,7 +79,7 @@ class ValueMenuClass extends React.Component {
 }
 const ValueMenu = connect(
     (state) => ({
-        storeState: state.AppReduser,
+        // storeState: state.AppReduser,
     }),
 )(ValueMenuClass);
 

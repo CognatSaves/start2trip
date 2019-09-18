@@ -115,7 +115,7 @@ class DriversPropertiesClass extends React.Component {
               <div className="properties_value d-flex">{valueText}</div>
               <div className="properties_arrow"></div>
             </div>
-            <ValueMenu isVisible={this.props.storeState.valueMenu} />
+            <ValueMenu isVisible={this.props.storeState.valueMenu}  storeState={this.props.storeState}/>
           </div>
         </div>
       </div>
