@@ -1,4 +1,8 @@
-import { SET_TOURS_LIST,SET_TOUR_PANEL_SELECTED_ELEMENT, SET_TOURS_MORE_PAGES_SHOW, SET_TOURS_PAGE, CHANGE_PANEL_FIXED_CLASS} from './ActionTours';
+import { SET_TOURS_LIST,SET_TOUR_PANEL_SELECTED_ELEMENT, 
+    SET_TOURS_MORE_PAGES_SHOW, SET_TOURS_PAGE,
+     CHANGE_PANEL_FIXED_CLASS,SET_MAX_PRICE,
+     SET_TEMP_PRICE_PART_TOUR,SET_PRICE_PART_TOUR
+    } from './ActionTours';
 
 const initialState = {
     page: 1,
@@ -11,7 +15,11 @@ const initialState = {
     toursList: [],
     categories: [],
     tags: [],
-    directions: []
+    directions: [],
+    maxPrice:0,
+    pricePart:0,
+    tempPricePart:0,
+    valueMenu:0,
 }
 
 export const ToursReduser = (state = initialState, action)=>{
@@ -46,6 +54,28 @@ export const ToursReduser = (state = initialState, action)=>{
         case SET_TOUR_PANEL_SELECTED_ELEMENT: {
             let newState = {...state};
             newState.tourPanelSelectedElement=action.tourPanelSelectedElement;
+            return newState;
+        }
+        case SET_MAX_PRICE: {
+            let newState = {...state};
+            newState.maxPrice=action.maxPrice;
+            newState.tempPricePart = action.maxPrice;
+            return newState;
+        }
+        case SET_TEMP_PRICE_PART_TOUR: {
+            let newState = {
+                ...state
+            };
+            newState.tempPricePart = action.tempPricePart;
+            newState.valueMenu = action.valueMenu;
+            return newState;
+        }
+        case SET_PRICE_PART_TOUR: {
+            let newState = {
+                ...state
+            };
+            newState.pricePart = action.pricePart;
+            newState.valueMenu = action.valueMenu;
             return newState;
         }
         default: return state;

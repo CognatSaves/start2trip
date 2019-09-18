@@ -2,6 +2,7 @@ import React from 'react';
 import './ValueMenu.css'
 import { connect } from 'react-redux';
 import { setPricePart, setTempPricePart } from '../../../../../../redusers/Action';
+import { setPricePartTour,setTempPricePartTour} from '../../../../../../redusers/ActionTours';
 
 import Slider from '@material-ui/core/Slider';
 
@@ -13,14 +14,25 @@ class ValueMenuClass extends React.Component {
             maxPrice: this.props.storeState.maxPrice
         }
     }
-    changeTempPrice = (value) => {
-        this.props.dispatch(setTempPricePart(value, true));
-    }
+    // changeTempPrice = (value) => {
+    //     this.props.dispatch(setTempPricePart(value, true));
+    // }
     setPrice = () => {
-        this.props.dispatch(setPricePart(this.state.price, false));
+        if(this.props.tours){
+            this.props.dispatch(setTempPricePartTour(this.state.price, false));
+        }else{
+            this.props.dispatch(setPricePart(this.state.price, false));
+        }
+        
+        
     }
     close = () => {
-        this.props.dispatch(setTempPricePart(this.props.storeState.pricePart, false));
+        if(this.props.tours){
+            this.props.dispatch(setPricePartTour(this.props.storeState.tempPricePart, false));
+            
+        }else{
+            this.props.dispatch(setTempPricePart(this.props.storeState.pricePart, false));
+        }
     }
     valuetext = (value) => {
 
@@ -34,7 +46,7 @@ class ValueMenuClass extends React.Component {
     render() {
 
         let containerId = "drivers_properties_valueMenu";
-        let storeState = this.props.storeState;
+        let storeState = this.props.appReduser;
         let activeCurrency = storeState.currencies[storeState.activeCurrencyNumber]
         if (this.state.maxPrice !== this.props.storeState.maxPrice) {
             this.setState({
@@ -42,7 +54,7 @@ class ValueMenuClass extends React.Component {
                 maxPrice: this.props.storeState.maxPrice
             })
         }
-        let textInfo = this.props.storeState.languageTextMain.drivers.driversProperties.peopleMenu;
+        let textInfo = this.props.appReduser.languageTextMain.drivers.driversProperties.peopleMenu;
 
         if (this.props.isVisible) {
             return (
@@ -79,7 +91,7 @@ class ValueMenuClass extends React.Component {
 }
 const ValueMenu = connect(
     (state) => ({
-        // storeState: state.AppReduser,
+         appReduser: state.AppReduser,
     }),
 )(ValueMenuClass);
 

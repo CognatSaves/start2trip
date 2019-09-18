@@ -16,18 +16,52 @@ import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
 class ToursListElementClass extends React.Component {
+
+    getCurrencies = (currency, criterion) => {
+        let idIndex = null
+        switch (criterion) {
+            case "id":
+                this.props.storeState.currencies.map((item, index) => {
+                    if (item.id.indexOf(currency) === 0) { idIndex = index }
+                })
+                break;
+            case "ISO":
+                this.props.storeState.currencies.map((item, index) => {
+                    if (item.ISO.indexOf(currency) === 0) { idIndex = index }
+                })
+                break;
+        }
+        return idIndex
+    }
+
     render() {
-        
+
         let textInfo = this.props.storeState.languageTextMain.tours;
         let element = this.props.element;
         let index = this.props.index;
         let imageAddress = element.image ? (requests.serverAddressImg + element.image) : '';
         console.log(imageAddress);
         let slug = element.tourlocalization.slug;
-       
+
         let seats = element.seats
 
-    
+        let isoCurrencies = cookies.get('userCurr', { path: "/" })
+        let idIndex = this.getCurrencies(element.currency,"id")
+        let usd = element.price / this.props.storeState.currencies[idIndex].costToDefault
+        let price = null
+        if (isoCurrencies === "USD") {
+            let idIndex = this.getCurrencies("USD","ISO")
+            usd = Math.ceil(usd)
+            price = this.props.storeState.currencies[idIndex].symbol+" "+usd
+        } else {
+            let idIndex = this.getCurrencies(isoCurrencies,"ISO")
+            usd = usd *this.props.storeState.currencies[idIndex].costToDefault
+            usd = Math.ceil(usd)
+            price = this.props.storeState.currencies[idIndex].isLeft ?(this.props.storeState.currencies[idIndex].symbol+" "+usd):
+            (usd+" "+this.props.storeState.currencies[idIndex].symbol)
+        }
+
+
 
 
         return (
@@ -36,7 +70,7 @@ class ToursListElementClass extends React.Component {
 
                     <div className="driversBlock_carImage" style={{ background: "url(" + (element.image ? (requests.serverAddressImg + element.image) : '') + ") no-repeat", backgroundSize: "cover", width: '100%' }}>
                         <div className="toursDate">{this.props.departureDate}</div>
-                        <div className="toursDuration">{element.daysNumber+" "+textInfo.daysNumber}</div>
+                        <div className="toursDuration">{element.daysNumber + " " + textInfo.daysNumber}</div>
                         <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + `/tours/${slug}/`} className="driversBlock_carBlackout">
                             <div className="driversBlock_carBlackout_detailed">{textInfo.detailed}</div>
                         </Link>
@@ -53,10 +87,10 @@ class ToursListElementClass extends React.Component {
                                     <Stars key={index + "/" + element.rating} value={Math.ceil(element.rating * 10) / 10} commentNumber={element.comments + " " + textInfo.comments} valueDisplay={element.rating > 0 ? true : false} commentNumberDisplay={true} />
                                 </div>
                                 <div className="d-flex placesList_info_position toursNumberPeoples">
-                                    <div className="placesList_info_position_textStyle">{textInfo.seats+" "+seats}</div>
+                                    <div className="placesList_info_position_textStyle">{textInfo.seats + " " + seats}</div>
                                 </div>
                             </div>
-                            <i className="placesList_info_guide my-auto col-2" style={{background:"url("+(/*element.guide */index%2 ? guideIcon:agencyIcon)+")no-repeat"}}><span className="placesList_info_guide-toolTip">{/*element.guide */index%2 ?textInfo.guide:textInfo.agency}</span></i>
+                            <i className="placesList_info_guide my-auto col-2" style={{ background: "url(" + (/*element.guide */index % 2 ? guideIcon : agencyIcon) + ")no-repeat" }}><span className="placesList_info_guide-toolTip">{/*element.guide */index % 2 ? textInfo.guide : textInfo.agency}</span></i>
                         </div>
 
                         <div className="d-flex align-items-center placesList_info_position placesList_info_position_tags mb-1">
@@ -74,13 +108,13 @@ class ToursListElementClass extends React.Component {
                             console.log(element);
                             this.props.changeTravelVisibility(element.price);
                             /*this.props.dispatch(setDriverCarDescription(element))*/
-                        }}>{"BOOK tours "+ element.price }</button>
+                        }}>{"BOOK tours "+price }</button>
                     {   
                         /*
                         <div className="d-flex justify-content-center align-items-center col-12 toursBookBt">BOOK tours</div>
                         */
                     }
-                    
+
                 </div>
             </div>
         )

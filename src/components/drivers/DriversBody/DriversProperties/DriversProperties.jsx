@@ -7,6 +7,7 @@ import {
   setTempPricePart, setSortMenuVisible, changePersonsNumberDispatch,
   changePersonsNumberDispatchOld, peopleMenuCall
 } from "../../../../redusers/Action"
+import { setPricePartTour } from "../../../../redusers/ActionTours"
 
 import userBlueIcon from '../../../media/userWhite.svg'
 
@@ -30,7 +31,14 @@ class DriversPropertiesClass extends React.Component {
   }
 
   valueMenuCall = (valueMenu) => {
-    this.props.dispatch(setTempPricePart(this.props.storeState.pricePart, valueMenu));
+    let pricePart = this.props.hideTypeOfTransport ? this.props.toursState.pricePart : this.props.storeState.pricePart
+    // this.props.dispatch(setTempPricePart(this.props.storeState.pricePart, valueMenu));
+
+    if (this.props.hideTypeOfTransport) {
+      this.props.dispatch(setPricePartTour(pricePart, valueMenu));
+    } else {
+      this.props.dispatch(setTempPricePart(pricePart, valueMenu));
+    }
   }
 
   render() {
@@ -59,7 +67,7 @@ class DriversPropertiesClass extends React.Component {
     let personsNumberString = personsCalculation(this.props.storeState.persons);
     let storeState = this.props.storeState;
     let activeCurrency = storeState.currencies[storeState.activeCurrencyNumber]
-    let valueText = valueTextGenerator(this.props.storeState.pricePart, this.props.storeState.maxPrice, activeCurrency, textInfo);
+    let valueText = valueTextGenerator((this.props.hideTypeOfTransport ? this.props.toursState.tempPricePart : this.props.storeState.pricePart), (this.props.hideTypeOfTransport ? this.props.toursState.maxPrice : this.props.storeState.maxPrice), activeCurrency, textInfo);
 
     console.log("driversProperties render");
     console.log(this.props.storeState.maxPrice);
@@ -111,11 +119,11 @@ class DriversPropertiesClass extends React.Component {
             <PeopleMenu isVisible={this.props.storeState.peopleMenu} />
           </div>
           <div className="d-flex align-items-center" style={{ position: "relative" }} >
-            <div className="properties_buttonStyle properties_leftButton d-flex" onClick={() => { this.valueMenuCall(true) }}>
+            <div className="properties_buttonStyle properties_leftButton d-flex" onClick={() => { this.valueMenuCall(this.props.hideTypeOfTransport ? !this.props.toursState.valueMenu : !this.props.storeState.valueMenu) }}>
               <div className="properties_value d-flex">{valueText}</div>
               <div className="properties_arrow"></div>
             </div>
-            <ValueMenu isVisible={this.props.storeState.valueMenu}  storeState={this.props.storeState}/>
+            <ValueMenu isVisible={this.props.hideTypeOfTransport ? this.props.toursState.valueMenu : this.props.storeState.valueMenu} tours={this.props.hideTypeOfTransport} storeState={this.props.hideTypeOfTransport ? this.props.toursState : this.props.storeState} />
           </div>
         </div>
       </div>
@@ -126,6 +134,7 @@ class DriversPropertiesClass extends React.Component {
 const DriversProperties = connect(
   (state) => ({
     // storeState: state.AppReduser,
+    toursState: state.ToursReduser
   }),
 )(DriversPropertiesClass);
 
