@@ -36,13 +36,13 @@ class TourInfoClass extends React.Component {
                 <div className="d-flex flex-md-row flex-column justify-content-around align-items-center tourInfoContent">
                     <p>{textInfo.headerText}</p>
                     {/* <LocationSearchInput placeholder={textInfo.searchPlaceholder} address={this.state.departurePoint} changeCity={this.changeCity} classInput="searchInputTourInfoContent col-12" classDropdown="searchDropdownTourInfoContent" classDiv="col-md-2 col-10 p-0"  isoCountryMap={this.props.storeState.isoCountryMap} /> */}
-                    <input className="searchInputTourInfoContent" onChange={(e) => { this.props.departurePointChange(e.target.value) }} value={this.props.departurePoint} placeholder={textInfo.searchPlaceholder} list="places" name="myPlaces" />
+                    <input className="searchInputTourInfoContent col-md-2 col-10" onChange={(e) => { this.props.departurePointChange(e.target.value) }} value={this.props.departurePoint} placeholder={textInfo.searchPlaceholder} list="places" name="myPlaces" />
                     <datalist id="places">
                         {this.state.departurePoint.map((element, index) =>
                             <option value={element} />
                         )}
                     </datalist>
-                    <FormControl className="d-flex flex-wrap col-md-3 col-10">
+                    <FormControl className="d-flex col-md-3 col-10 p-md-2 p-0">
                         <Select
                             value={this.props.duration}
                             className="dropdownClass tourInfoContentDate"

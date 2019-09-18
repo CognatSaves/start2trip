@@ -11,6 +11,10 @@ const SET_TOURS_LIST ='SET_TOURS_LIST';
 
 const SET_MAX_PRICE ='SET_MAX_PRICE';
 
+const SET_TEMP_PRICE_PART_TOUR = 'SET_TEMP_PRICE_PART_TOUR';
+
+const SET_PRICE_PART_TOUR = 'SET_PRICE_PART_TOUR';
+
 const setToursList=function(toursList, categories, tags, directions,daysNumber,departurePoint){
   return{
     type: SET_TOURS_LIST,
@@ -54,6 +58,21 @@ const setToursPage = function(page){
       maxPrice: value
     }
   }
+  const setTempPricePartTour = (tempPricePart, valueMenu)=> {
+    return {
+        type: SET_TEMP_PRICE_PART_TOUR,
+        tempPricePart: tempPricePart,
+        valueMenu: valueMenu
+    }
+}
+
+const setPricePartTour = (pricePart, valueMenu)=> {
+    return {
+        type: SET_PRICE_PART_TOUR,
+        pricePart: pricePart,
+        valueMenu: valueMenu
+    }
+}
 
 export {
     setToursMorePagesShow, SET_TOURS_MORE_PAGES_SHOW,
@@ -62,4 +81,6 @@ export {
     setTourPanelSelectedElement, SET_TOUR_PANEL_SELECTED_ELEMENT,
     setToursList,SET_TOURS_LIST,
     setMaxPrice,SET_MAX_PRICE,
+    setTempPricePartTour,SET_TEMP_PRICE_PART_TOUR,
+    setPricePartTour,SET_PRICE_PART_TOUR,
 }
