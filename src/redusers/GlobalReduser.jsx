@@ -166,14 +166,15 @@ const initialState = {
         
         return result;
     },
+    /*
     createDayString(value){
-        //TODO переводы
         let dayMass = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
         let monthMass = ["января", "февраля", "марта", "апреля", "мая",
         "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
         let resultString = dayMass[value.getDay()] + ", " + value.getDate() + " " + monthMass[value.getMonth()] + " " + value.getFullYear();
         return value;
     },
+    */
     createDateTimeString(start, isOnlyDayString){
         
         let date = new Date(start);
@@ -277,6 +278,65 @@ const initialState = {
     return new Date(Date.UTC(date.getFullYear(),
     date.getMonth(), date.getDate(),
     0,0,0));
+    },
+    currencyFilter(storeState){
+        //эта функция отсекает из массива только те валюты, которые либо являются национальными для страны,
+        //либо базовая для системы - на данный момент $
+        let res = [];
+        if(storeState.currencies.length===0){
+            return res;
+        }
+        
+        let nationalCurrency='';
+        for(let i=0; i<storeState.countries.length;i++){
+            if(storeState.countries[i].ISO===storeState.country){
+            nationalCurrency=storeState.countries[i].nationalCurrency;
+            }
+        }
+        for(let i=0; i<storeState.currencies.length;i++){
+            if(storeState.currencies[i].id===nationalCurrency){
+            res.push(storeState.currencies[i])
+            }
+            if(storeState.currencies[i].costToDefault===1 && storeState.currencies[i].id!==nationalCurrency){
+            res.push(storeState.currencies[i]);
+            }
+        }
+        return res;
+    },
+    findSelectedCurrency(that,availableCurrencies, index){
+        //по номеру в общих находит номер в доступных валютах
+        //если currId пришёл, то это не выбор валюты страницы, а выбор валюты 
+        //для конструктора туров например
+        if(that.props.storeState.currencies.length>0){
+          let currId = index ? index : that.props.storeState.currencies[that.props.storeState.activeCurrencyNumber].id;
+          for(let i=0; i<availableCurrencies.length;i++){
+            if(availableCurrencies[i].id===currId){
+              return i;
+            }
+          }
+        }
+        else{
+          return 0;
+        }
+    },
+    changeActiveCurrency(that,availableCurrencies, value,cookies, setActiveCurrDispatchFunction){
+        //эта функция устанавливает activeCurrencyNumber в соответствие с общим массивом
+        //т.е. по номеру в доступных находит номер в общих
+        //нужно передать dispatch в виде закомментированной функции около setActiveCurrDispatchFunction
+        //в виде (id)=>funct(id)
+        let currId = availableCurrencies[value].id;
+        let selectedId = that.props.storeState.activeCurrencyNumber;
+        for(let i=0;i<that.props.storeState.currencies.length;i++){
+          if(currId===that.props.storeState.currencies[i].id){
+            selectedId=i;
+            break;
+          }
+        }
+        
+        let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
+        setActiveCurrDispatchFunction(selectedId);//that.props.dispatch(setActiveCurr(index));
+        cookies.set('userCurr', that.props.storeState.currencies[selectedId].ISO, { path: '/', expires: date });
+        that.setLocals('userCurr', selectedId)
     }
 };
 

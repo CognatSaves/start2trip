@@ -623,9 +623,8 @@ class HeaderClass extends React.Component {
       //return null;
     }
   }
-
-  
   render() {
+    /*
     function currencyFilter(storeState){
       //эта функция отсекает из массива только те валюты, которые либо являются национальными для страны,
       //либо базовая для системы - на данный момент $
@@ -650,6 +649,8 @@ class HeaderClass extends React.Component {
       }
       return res;
     }
+    */
+   /*
     function changeActiveCurrency(that,availableCurrencies, value){
       //эта функция устанавливает activeCurrencyNumber в соответствие с общим массивом
       //т.е. по номеру в доступных находит номер в общих
@@ -664,6 +665,8 @@ class HeaderClass extends React.Component {
       }
       that.setLocals('userCurr', selectedId)
     }
+    */
+    /*
     function findSelectedCurrency(that,availableCurrencies){
       //по номеру в общих находит номер в доступных валютах
       if(that.props.storeState.currencies.length>0){
@@ -677,7 +680,7 @@ class HeaderClass extends React.Component {
       else{
         return 0;
       }
-    }
+    }*/
     console.log('Header render', this.props, window, document);
     //console.log(this.state);
     //console.log(this.props);
@@ -706,8 +709,8 @@ class HeaderClass extends React.Component {
       }*/
     ];
     
-    let availableCurrencies = currencyFilter(this.props.storeState);
-    let selectedCurrNumber = findSelectedCurrency(this,availableCurrencies);
+    let availableCurrencies = this.props.globalReduser.currencyFilter(this.props.storeState);
+    let selectedCurrNumber = this.props.globalReduser.findSelectedCurrency(this,availableCurrencies);
     return (
       <>
 
@@ -750,7 +753,7 @@ class HeaderClass extends React.Component {
                       <label>{textInfo.burgerMenu.settingsDrop[1]}</label>
                       <DropDownMenu menuItemStyle={{ color: "#304269", fontSize: "14px", fontWeight: "400" }} selectedMenuItemStyle={{ color: "#f60" }}
                         anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }} className="burgerMenuTopDropDown" menuStyle={{ maxWidth:"96px",overflow:"hidden"}}
-                        value={selectedCurrNumber} onChange={(event, index, value) => { changeActiveCurrency(this,availableCurrencies,index)}}>
+                        value={selectedCurrNumber} onChange={(event, index, value) => { this.props.globalReduser.changeActiveCurrency(this,availableCurrencies, index, cookies, (selectedId)=>this.setLocals('userCurr', selectedId)) /*changeActiveCurrency(this,availableCurrencies,index)*/}}>
                         {availableCurrencies.map((element, index) =>
                           <MenuItem value={index} primaryText={<span className="pl-2">{element.symbol === element.ISO ? element.ISO:(element.symbol + " " + element.ISO)}</span>} />
                         )}
@@ -832,7 +835,7 @@ class HeaderClass extends React.Component {
                   <DropdownMenu className="dropdownMenu currenty" >
                     {
                       availableCurrencies.map((element, index) =>
-                        <DropdownItem className="dropdownMenu" onClick={() => { changeActiveCurrency(this,availableCurrencies,index)}}>{element.symbol=== element.ISO ? " " + element.ISO : (element.symbol + " " + element.ISO)}</DropdownItem>
+                        <DropdownItem className="dropdownMenu" onClick={() => {this.props.globalReduser.changeActiveCurrency(this,availableCurrencies, index, cookies, (selectedId)=>this.setLocals('userCurr', selectedId))/* changeActiveCurrency(this,availableCurrencies,index)*/}}>{element.symbol=== element.ISO ? " " + element.ISO : (element.symbol + " " + element.ISO)}</DropdownItem>
                       )
                     }
                   </DropdownMenu>
