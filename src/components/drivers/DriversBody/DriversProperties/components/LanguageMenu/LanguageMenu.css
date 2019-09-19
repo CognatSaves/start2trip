@@ -2,7 +2,7 @@
     position: absolute;
     top: 30px;
     right: 0px;
-    background-color: #fff;
+    background-color: #304269;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
     border-radius: 5px;
     z-index: 30;
@@ -12,8 +12,7 @@
     min-width: 120px !important;
     max-width: 120px;
     border-radius: 5px;
-    background-color: #828ca5;
-    /* background-color: #304269; */
+    background-color: #304269;
     z-index: 30;
 }
 
@@ -41,7 +40,7 @@
     align-items: center;
     padding: 0 5px;
     cursor: pointer;
-    background: rgba(48, 66, 105, 0.6);
+    background: #304269;
     transition: all 0.3s;
 }
 

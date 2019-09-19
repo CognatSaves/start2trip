@@ -10,6 +10,8 @@ let mobileFilter = {
    showResults:"Показать результаты" ,
    filter:"Фильтры",
    throwOff:"Сбросить",
+   departureDate:"Дата отправления",
+   menuItemValue: 'Все туры(ENG)',
 
 
 }

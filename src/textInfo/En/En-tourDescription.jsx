@@ -10,7 +10,7 @@ const tourDescription = {
         datePickerLabel: 'Дата отправления(ENG)',
         menuItemValue: 'Все туры(ENG)',
         findText: 'Найти(ENG)',
-        menuItemDaysValue:"Choose duration",
+        menuItemDaysValue:"Days number",
         menuItemDays:"day"
     }
 }

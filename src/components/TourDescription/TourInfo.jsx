@@ -15,17 +15,16 @@ class TourInfoClass extends React.Component {
         super(props);
         this.state = {
             days: [],
-            tours: [],
             departurePoint: [],
         }
     }
     render() {
-      
-        if (this.props.toursState.categories.length > 0 && (this.state.tours.length === 0 || (this.state.tours[0].catLoc.name !== this.props.toursState.categories[0].catLoc.name))) {
+
+        if (this.props.toursState.categories.length > 0 && (this.state.days.length === 0 )) {
             
             let sortArrayDaysNumber = this.props.toursState.daysNumber.sort((a, b) => { return a < b ? -1 : 1 })
             this.setState({
-                tours: this.props.toursState.categories,
+                
                 days: sortArrayDaysNumber,
                 departurePoint: this.props.toursState.departurePoint,
 
@@ -37,12 +36,15 @@ class TourInfoClass extends React.Component {
                 <div className="d-flex flex-md-row flex-column justify-content-around align-items-center tourInfoContent">
                     <p>{textInfo.headerText}</p>
                     {/* <LocationSearchInput placeholder={textInfo.searchPlaceholder} address={this.state.departurePoint} changeCity={this.changeCity} classInput="searchInputTourInfoContent col-12" classDropdown="searchDropdownTourInfoContent" classDiv="col-md-2 col-10 p-0"  isoCountryMap={this.props.storeState.isoCountryMap} /> */}
-                    <input className="searchInputTourInfoContent col-md-2 col-10" onChange={(e) => { this.props.departurePointChange(e.target.value) }} value={this.props.departurePoint} placeholder={textInfo.searchPlaceholder} list="places" name="myPlaces" />
+                    <input className="searchInputTourInfoContent col-md-3 col-10" onChange={(e) => { this.props.departurePointChange(e.target.value) }} value={this.props.departurePoint} placeholder={textInfo.searchPlaceholder} list="places" name="myPlaces" />
                     <datalist id="places">
                         {this.state.departurePoint.map((element, index) =>
                             <option value={element} />
                         )}
                     </datalist>
+                    <DatePicker hintText={textInfo.datePickerLabel} minDate={new Date()} id="basicInfoBirthday" className="calendarModal tourInfoContentDate col-md-4 col-10 p-md-2 p-0" value={this.props.departureDate}
+                onChange={(undefined, data) => { this.props.departureDateChange(data) }}
+              />
                     <FormControl className="d-flex col-md-3 col-10 p-md-2 p-0">
                         <Select
                             value={this.props.duration}
@@ -57,7 +59,7 @@ class TourInfoClass extends React.Component {
                             )}
                         </Select>
                     </FormControl>
-                    <FormControl className="d-flex flex-wrap col-md-2 col-10 p-0">
+                    {/* <FormControl className="d-flex flex-wrap col-md-2 col-10 p-0">
                         <Select
                             value={this.props.tourType}
                             className="dropdownClass tourInfoContentDate"
@@ -70,7 +72,7 @@ class TourInfoClass extends React.Component {
                                 <MenuItem value={element.id}>{element.catLoc.name}</MenuItem>
                             )}
                         </Select>
-                    </FormControl>
+                    </FormControl> */}
                     <span className="tourInfoContentBt" onClick={() => { this.props.clickButtonChange(); this.props.sendRequestFunc() }}>{textInfo.findText}</span>
                 </div>
             </div>

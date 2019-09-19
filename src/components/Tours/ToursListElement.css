@@ -45,6 +45,15 @@
     padding-bottom: 2px;
 }
 
+.placesList_info_tours {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 145px;
+    max-height: 175px;
+    padding: 0px 10px;
+}
+
 .placesList_info_guide {
     cursor: pointer;
     position: relative;

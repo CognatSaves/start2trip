@@ -5,6 +5,7 @@ const tours = {
     guide:"Гид водитель",
     agency:"Агентство",
     daysNumber:"ден.",
+    bookTours:"Заказать тур ",
 }
 
 export default tours;

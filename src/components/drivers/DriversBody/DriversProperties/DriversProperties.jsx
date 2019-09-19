@@ -20,6 +20,9 @@ import SortMenu from './components/SortMenu/SortMenu.jsx'
 import ValueMenu from './components/ValueMenu/ValueMenu.jsx'
 import AutoMenu from './components/AutoMenu/AutoMenu.jsx'
 import DatePicker from 'material-ui/DatePicker';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
 class DriversPropertiesClass extends React.Component {
   constructor(props) {
@@ -27,6 +30,7 @@ class DriversPropertiesClass extends React.Component {
     this.state = {
       selectedPrice: this.props.maxValue,
       sortIsVisible: false,
+      tours: [],
     }
   }
 
@@ -69,8 +73,15 @@ class DriversPropertiesClass extends React.Component {
     let activeCurrency = storeState.currencies[storeState.activeCurrencyNumber]
     let valueText = valueTextGenerator((this.props.hideTypeOfTransport ? this.props.toursState.tempPricePart : this.props.storeState.pricePart), (this.props.hideTypeOfTransport ? this.props.toursState.maxPrice : this.props.storeState.maxPrice), activeCurrency, textInfo);
 
+    if (this.props.toursState.categories.length > 0 && (this.state.tours.length === 0 || (this.state.tours[0].catLoc.name !== this.props.toursState.categories[0].catLoc.name))) {
+      this.setState({
+        tours: this.props.toursState.categories,
+    })
+    }
+
     console.log("driversProperties render");
     console.log(this.props.storeState.maxPrice);
+
     return (
 
       <div className="drivers_properties d-flex flex-wrap justify-content-md-between justify-content-sm-center justify-content-center col-12" >
@@ -89,13 +100,29 @@ class DriversPropertiesClass extends React.Component {
 
         <div className="properties_leftBlock">
           <div className="properties_buttonStyle properties_leftButton d-flex align-items-center" >
-            {this.props.hideTypeOfTransport &&
-              <DatePicker hintText={"Дата отправления"} minDate={new Date()} id="basicInfoBirthday" className="calendarModal tourInfoContentDate" value={this.props.departureDate}
+            {/* {this.props.hideTypeOfTransport &&
+              <DatePicker hintText={textInfo.departureDate} minDate={new Date()} id="basicInfoBirthday" className="calendarModal tourInfoContentDate" value={this.props.departureDate}
                 onChange={(undefined, data) => { this.props.departureDateChange(data) }}
               />
+            } */}
+            {this.props.hideTypeOfTransport &&
+              <FormControl className="d-flex ">
+                <Select
+                  value={this.props.tourType}
+                  className="tourType"
+                  onChange={(event, index, value) => {
+                    this.props.tourTypeChange(event.target.value)
+                  }}
+                >
+                  <MenuItem value={textInfo.menuItemValue}>{textInfo.menuItemValue}</MenuItem>
+                  {this.state.tours.map((element, index) =>
+                    <MenuItem value={element.id}>{element.catLoc.name}</MenuItem>
+                  )}
+                </Select>
+              </FormControl>
             }
           </div>
-          <div className="properties_buttonStyle properties_leftButton d-flex" >
+          <div className="properties_buttonStyle properties_leftButton d-flex  align-items-center" >
             <LanguageMenu isVisible={true} />
           </div>
           {!this.props.hideTypeOfTransport &&
@@ -133,7 +160,7 @@ class DriversPropertiesClass extends React.Component {
 
 const DriversProperties = connect(
   (state) => ({
-    // storeState: state.AppReduser,
+    storeState: state.AppReduser,
     toursState: state.ToursReduser
   }),
 )(DriversPropertiesClass);
