@@ -16,8 +16,7 @@
     min-width: 165px !important;
     max-width: 165px;
     border-radius: 5px;
-    background-color: #828ca5;
-    /* background-color: #304269; */
+    background-color: #304269;
     /* box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); */
     z-index: 30;
 }

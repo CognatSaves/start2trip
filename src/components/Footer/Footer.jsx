@@ -13,7 +13,7 @@ import logo_square from "../media/logo-square.svg"
 import mastercard from "../media/mastercard.svg"
 import visa from "../media/visa.svg"
 
-import MobileFilter from '../drivers/DriversBody/DriversProperties/MobileFilter/MobileFilter'
+
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
@@ -106,7 +106,7 @@ class FooterClass extends React.Component {
             )
           }
         </div>
-        <MobileFilter />
+        
       </>
     );
   }

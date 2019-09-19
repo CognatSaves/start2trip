@@ -16,8 +16,7 @@
 .properties_leftBlock {
     display: flex;
     padding: 5px;
-    background: rgba(48, 66, 105, 0.6);
-    /* background: #304269; */
+    background: #304269;
     border-radius: 5px;
     margin-bottom: 10px;
 }
@@ -122,6 +121,17 @@
     background: url(../../../media/filter.svg) no-repeat;
     background-size: 15px 15px;
     background-position: center left 25px;
+}
+
+.tourType{
+    max-width: 140px;
+    min-width: 140px;
+    color: #fff !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+}
+.tourType .MuiSelect-icon{
+    color: #fff !important;
 }
 
 @media (max-width: 1140px) {}

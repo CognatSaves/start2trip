@@ -109,11 +109,9 @@ class ToursListClass extends React.Component {
         switch (type) {
             case "Популярности": {
                 return a.element.comments > b.element.comments ? -1 : 1;
-                break;
             }
             case "Рейтингу": {
                 return a.element.rating > b.element.rating ? -1 : 1;
-                break;
             }
             case "Цене": {
                 let aIdIndex = this.getCurrencies(a.element.currency, "id")
@@ -121,19 +119,17 @@ class ToursListClass extends React.Component {
                 let bIdIndex = this.getCurrencies(b.element.currency, "id")
                 let bPrice = b.element.price / this.props.storeState.currencies[bIdIndex].costToDefault
                 if (this.props.storeState.sortMenuWay) {
-                    return aPrice > bPrice ? -1 : 1
-                } else {
                     return aPrice < bPrice ? -1 : 1
+                } else {
+                    return aPrice > bPrice ? -1 : 1
                 }
-                break;
             }
             case "Сначала дешевые": {
                 let aIdIndex = this.getCurrencies(a.element.currency, "id")
                 let aPrice = a.element.price / this.props.storeState.currencies[aIdIndex].costToDefault
                 let bIdIndex = this.getCurrencies(b.element.currency, "id")
                 let bPrice = b.element.price / this.props.storeState.currencies[bIdIndex].costToDefault
-                return aPrice > bPrice ? -1 : 1
-                break;
+                return aPrice < bPrice ? -1 : 1
             }
 
             case "Сначала дорогие": {
@@ -142,11 +138,10 @@ class ToursListClass extends React.Component {
                 let bIdIndex = this.getCurrencies(b.element.currency, "id")
                 let bPrice = b.element.price / this.props.storeState.currencies[bIdIndex].costToDefault
                 if (this.props.storeState.sortMenuWay) {
-                    return aPrice > bPrice ? -1 : 1
-                } else {
                     return aPrice < bPrice ? -1 : 1
+                } else {
+                    return aPrice > bPrice ? -1 : 1
                 }
-                break;
             }
         }
     }

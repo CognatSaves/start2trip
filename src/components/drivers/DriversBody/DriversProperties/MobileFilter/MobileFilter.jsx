@@ -12,6 +12,7 @@ import {
   languageMenuIsVisibal,
   setAuto,
 } from '../../../../../redusers/Action';
+import { setPricePartTour,setTempPricePartTour} from '../../../../../redusers/ActionTours';
 
 import sedan from '../../../../media/sedan.svg';
 import jeep from '../../../../media/jeep.svg';
@@ -21,6 +22,13 @@ import minivan from '../../../../media/minivan.svg';
 
 import Slider from '@material-ui/core/Slider';
 import Checkbox from '@material-ui/core/Checkbox';
+import DatePicker from 'material-ui/DatePicker';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 class MobileFilterClass extends React.Component {
   constructor(props) {
@@ -29,10 +37,10 @@ class MobileFilterClass extends React.Component {
       collapsePeople: false,
       collapseLanguageMenu: false,
       collapseAuto: false,
-      price: this.props.storeState.pricePart,
+      price: props.hideTypeOfTransport? props.maxPrice : props.storeState.maxPrice,
       autoVariants: [],
       languagesVariants: [],
-
+      tours: [],
     }
   }
 
@@ -47,6 +55,7 @@ class MobileFilterClass extends React.Component {
 
   setPrice = () => {
     this.props.dispatch(setPricePart(this.state.price, false));
+    this.props.dispatch(setTempPricePartTour(this.state.price, false));
   }
   //   close = () => {
   //     this.props.dispatch(setTempPricePart(this.props.storeState.pricePart, false));
@@ -95,6 +104,22 @@ class MobileFilterClass extends React.Component {
     this.setState({ languagesVariants: newArrayVariants })
 
   }
+  getCurrencies = (currency, criterion) => {
+    let idIndex = null
+    switch (criterion) {
+        case "id":
+            this.props.storeState.currencies.map((item, index) => {
+                if (item.id.indexOf(currency) === 0) { idIndex = index }
+            })
+            break;
+        case "ISO":
+            this.props.storeState.currencies.map((item, index) => {
+                if (item.ISO.indexOf(currency) === 0) { idIndex = index }
+            })
+            break;
+    }
+    return idIndex
+}
 
   render() {
     let peopleDisabledMinus = true;
@@ -115,8 +140,31 @@ class MobileFilterClass extends React.Component {
       childrenDisabledMinus = false;
     }
 
+    if (this.props.toursState.categories.length > 0 && (this.state.tours.length === 0 || (this.state.tours[0].catLoc.name !== this.props.toursState.categories[0].catLoc.name))) {
+      this.setState({
+        tours: this.props.toursState.categories,
+    })
+    }
+
     let pictureArray = [sedan, jeep, minivan, microbus];
     let textInfo = this.props.storeState.languageTextMain.mobileFilter;
+
+    let isoCurrencies = cookies.get('userCurr', { path: "/" })
+    let price = null
+    if(this.props.storeState.currencies.length>0){
+      let statePrice = this.state.price
+        if (isoCurrencies === "USD") {
+            let idIndex = this.getCurrencies("USD","ISO")
+            statePrice = Math.ceil(statePrice)
+            price = this.props.storeState.currencies[idIndex].symbol+" "+statePrice
+        } else {
+            let idIndex = this.getCurrencies(isoCurrencies,"ISO")
+            statePrice = statePrice *this.props.storeState.currencies[idIndex].costToDefault
+            statePrice = Math.ceil(statePrice)
+            price = this.props.storeState.currencies[idIndex].isLeft ?(this.props.storeState.currencies[idIndex].symbol+" "+statePrice):
+            (statePrice+" "+this.props.storeState.currencies[idIndex].symbol)
+        }
+      }
 
     return (
       <>
@@ -133,19 +181,19 @@ class MobileFilterClass extends React.Component {
               <div className="mobileFilterModalBodyElement d-flex flex-column justify-content-center">
                 <div className="mobileFilterModalContent d-flex justify-content-between align-items-center">
                   <span>{textInfo.price}</span>
-                  <p>{textInfo.before + "$" + this.state.price}</p>
+                  <p>{textInfo.before + price}</p>
                 </div>
                 <Slider
-                  defaultValue={this.props.storeState.maxPrice}
+                  defaultValue={this.props.hideTypeOfTransport?this.props.maxPrice:this.props.storeState.maxPrice}
                   getAriaValueText={this.changeTempPrice}
                   value={this.state.price}
                   onChange={(e, value) => { this.setState({ price: value }) }}
                   aria-labelledby="discrete-slider"
-                  valueLabelDisplay="auto"
-                  step={this.props.storeState.maxPrice / 25}
+                  valueLabelDisplay="off"
+                  step={(this.props.hideTypeOfTransport?this.props.maxPrice:this.props.storeState.maxPrice )/ 25}
                   marks
                   min={0}
-                  max={this.props.storeState.maxPrice}
+                  max={this.props.hideTypeOfTransport?this.props.maxPrice:this.props.storeState.maxPrice}
                 />
 
               </div>
@@ -183,40 +231,63 @@ class MobileFilterClass extends React.Component {
 
               </div>
 
+              {!this.props.hideTypeOfTransport &&
               <div className="mobileFilterModalBodyElement">
-                <div className="mobileFilterCollapseBt">
-                  <span onClick={() => { this.setState({ collapseAuto: !this.state.collapseAuto }) }}>{textInfo.typeAuto}</span>
-                </div>
-
-                <Collapse isOpen={this.state.collapseAuto}>
-                  <div className="modalBodyElementAuto" >
-                    {this.props.storeState.autoVariants.map((element, index) => {
-
-                      let checked = false
-                      for (let i = 0; i < this.state.autoVariants.length; i++) {
-                        if (this.state.autoVariants[i] === index) {
-                          checked = true;
-                        };
-                      }
-                      return (
-                        <div className="autoMenu_element">
-                          <div className="autoMenu_element_textBlock" >
-                            <label htmlFor={index + "auto"} className="autoMenu_element_text" style={{ background: "url(" + pictureArray[index] + ") no-repeat" }}>{element}</label>
-                            <Checkbox checked={checked} id={index + "auto"} onChange={() => this.checkedAuto(index)} />
-                          </div>
-                        </div>
-                      )
-                    })}
-                  </div>
-                </Collapse>
-
+              <div className="mobileFilterCollapseBt">
+                <span onClick={() => { this.setState({ collapseAuto: !this.state.collapseAuto }) }}>{textInfo.typeAuto}</span>
               </div>
+
+              <Collapse isOpen={this.state.collapseAuto}>
+                <div className="modalBodyElementAuto" >
+                  {this.props.storeState.autoVariants.map((element, index) => {
+
+                    let checked = false
+                    for (let i = 0; i < this.state.autoVariants.length; i++) {
+                      if (this.state.autoVariants[i] === index) {
+                        checked = true;
+                      };
+                    }
+                    return (
+                      <div className="autoMenu_element">
+                        <div className="autoMenu_element_textBlock" >
+                          <label htmlFor={index + "auto"} className="autoMenu_element_text" style={{ background: "url(" + pictureArray[index] + ") no-repeat" }}>{element}</label>
+                          <Checkbox checked={checked} id={index + "auto"} onChange={() => this.checkedAuto(index)} />
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+              </Collapse>
+
+            </div>
+              }
+               {/* {this.props.hideTypeOfTransport &&
+              <DatePicker hintText={textInfo.departureDate} minDate={new Date()} id="basicInfoBirthday" className="calendarModal tourInfoContentDateMobail col-12" value={this.props.departureDate}
+                onChange={(undefined, data) => { this.props.departureDateChange(data) }}
+              />
+            } */}
+             {this.props.hideTypeOfTransport &&
+              <FormControl className="d-flex ">
+                        <Select
+                            value={this.props.tourType}
+                            className="dropdownClass tourInfoContentDate"
+                            onChange={(event, index, value) => {
+                                this.props.tourTypeChange(event.target.value)
+                            }}
+                        >
+                            <MenuItem value={textInfo.menuItemValue}>{textInfo.menuItemValue}</MenuItem>
+                            {this.state.tours.map((element, index) =>
+                                <MenuItem value={element.id}>{element.catLoc.name}</MenuItem>
+                            )}
+                        </Select>
+                    </FormControl>
+             }
 
               <div className="mobileFilterModalBodyElement">
                 <div className="mobileFilterCollapseBt">
                   <span onClick={() => { this.setState({ collapseLanguageMenu: !this.state.collapseLanguageMenu }) }}>{textInfo.languages}</span>
                 </div>
-
+                
                 <Collapse isOpen={this.state.collapseLanguageMenu}>
                   <div className="modalBodyElementlanguage" >
                     {this.props.storeState.languages.map((element, index) => {
@@ -257,6 +328,7 @@ const MobileFilter = connect(
   (state) => ({
     storeState: state.AppReduser,
     globalhistory: state.GlobalReduser,
+    toursState: state.ToursReduser
   }),
 )(MobileFilterClass);
 

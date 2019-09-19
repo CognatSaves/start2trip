@@ -18,6 +18,7 @@ import TourInfo from '../TourDescription/TourInfo'
 import DriversProperties from '../drivers/DriversBody/DriversProperties/DriversProperties'
 // import PlacesTagList from '../Places/PlacesTagList';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+import MobileFilter from '../drivers/DriversBody/DriversProperties/MobileFilter/MobileFilter'
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
@@ -216,6 +217,7 @@ class ToursClass extends React.Component {
 
     return (
       <>
+       <MobileFilter maxPrice={this.props.toursState.maxPrice} hideTypeOfTransport={true} tourTypeChange={this.tourTypeChange} tourType={this.state.tourType}  /*departureDateChange={this.departureDateChange} departureDate={this.state.departureDate} */ />
         <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={/*this.state.isRefreshing*/true} isGoodAnswer={/*this.state.isGoodAnswer*/true} />
 
         {
@@ -306,9 +308,11 @@ class ToursClass extends React.Component {
                 <PopularPlaces placesState={this.props.toursState} where={"tours"} />
                 <TourInfo sendRequestFunc={this.sendRequestFunc} clickButtonChange={this.clickButtonChange}
                 departurePointChange={this.departurePointChange} departurePoin={this.state.departurePoint}
+                departureDateChange={this.departureDateChange} departureDate={this.state.departureDate}
                 durationChange={this.durationChange} duration={this.state.duration}
-                tourTypeChange={this.tourTypeChange} tourType={this.state.tourType} />
-                <DriversProperties storeState={this.props.storeState} hideTypeOfTransport={true}  departureDateChange={this.departureDateChange} departureDate={this.state.departureDate}/>
+                 />
+                <DriversProperties hideTypeOfTransport={true}   
+                tourTypeChange={this.tourTypeChange} tourType={this.state.tourType}/>
                 <ToursList isStaying={!this.state.isRefreshExist} departureDate={this.state.departureDate} 
                   changeTravelVisibility={this.changeTravelVisibility}/>
               </div>

@@ -44,11 +44,22 @@ class ToursListElementClass extends React.Component {
         let slug = element.tourlocalization.slug;
 
         let seats = element.seats
+        
+        let location = null;
 
+        location = element.tourlocalization.points.map((el,index)=>{
+            let pointName = el.point.split(" ");
+            if((element.tourlocalization.points.length-1) === index){
+                return pointName[0].slice(0,pointName[0].length-1)
+            }
+           return pointName[0]
+         })
         let isoCurrencies = cookies.get('userCurr', { path: "/" })
         let idIndex = this.getCurrencies(element.currency,"id")
-        let usd = element.price / this.props.storeState.currencies[idIndex].costToDefault
         let price = null
+        if(this.props.storeState.currencies.length>0){
+
+        let usd = element.price / this.props.storeState.currencies[idIndex].costToDefault
         if (isoCurrencies === "USD") {
             let idIndex = this.getCurrencies("USD","ISO")
             usd = Math.ceil(usd)
@@ -60,10 +71,7 @@ class ToursListElementClass extends React.Component {
             price = this.props.storeState.currencies[idIndex].isLeft ?(this.props.storeState.currencies[idIndex].symbol+" "+usd):
             (usd+" "+this.props.storeState.currencies[idIndex].symbol)
         }
-
-
-
-
+    }
         return (
             <div className={this.props.placeListElementClass ? this.props.placeListElementClass : "col-lg-3 col-md-4 col-sm-6 col-12 p-2 pb-3"} >
                 <div className="drivers_block_element d-flex p-0 flex-column" id={index}>
@@ -75,7 +83,7 @@ class ToursListElementClass extends React.Component {
                             <div className="driversBlock_carBlackout_detailed">{textInfo.detailed}</div>
                         </Link>
                     </div>
-                    <div className="placesList_info d-flex flex-column">
+                    <div className="placesList_info_tours d-flex flex-column">
                         <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + `/tours/${slug}/`} className="placesList_placeName d-flex">
                             <div>
                                 {element.tourlocalization.name}
@@ -90,15 +98,15 @@ class ToursListElementClass extends React.Component {
                                     <div className="placesList_info_position_textStyle">{textInfo.seats + " " + seats}</div>
                                 </div>
                             </div>
-                            <i className="placesList_info_guide my-auto col-2" style={{ background: "url(" + (/*element.guide */index % 2 ? guideIcon : agencyIcon) + ")no-repeat" }}><span className="placesList_info_guide-toolTip">{/*element.guide */index % 2 ? textInfo.guide : textInfo.agency}</span></i>
+                            <i className="placesList_info_guide my-auto col-2" style={{ background: "url(" + (element.isGuide  ? guideIcon : agencyIcon) + ")no-repeat" }}><span className="placesList_info_guide-toolTip">{element.isGuide  ? textInfo.guide : textInfo.agency}</span></i>
                         </div>
 
-                        <div className="d-flex align-items-center placesList_info_position placesList_info_position_tags mb-1">
+                        {/* <div className="d-flex align-items-center placesList_info_position placesList_info_position_tags mb-1">
                             <img src={tagBlue} height="12px" width="12px" alt="tagBlue" />
                             <div className="placesList_info_position_textStyle">{element.tagsArray.map((tag, tagIndex) => <text>{this.props.findTagName(tag) + (element.tagsArray.length - 1 > tagIndex ? "," : "") + " "}</text>)}</div>
-                        </div>
-                        <div className="d-flex placesList_info_position placesList_info_position_loc">
-                            <div className="placesList_info_position_textStyle">{element.tourlocalization.location}</div>
+                        </div> */}
+                        <div className="d-flex placesList_info_position placesList_info_position_loc pt-1">
+                            <div className="placesList_info_position_textStyle">{location.map((el,index)=>el)}</div>
                         </div>
 
                     </div>
@@ -108,7 +116,7 @@ class ToursListElementClass extends React.Component {
                             console.log(element);
                             this.props.changeTravelVisibility(element.price);
                             /*this.props.dispatch(setDriverCarDescription(element))*/
-                        }}>{"BOOK tours "+price }</button>
+                        }}>{textInfo.bookTours+" "+price }</button>
                     {   
                         /*
                         <div className="d-flex justify-content-center align-items-center col-12 toursBookBt">BOOK tours</div>

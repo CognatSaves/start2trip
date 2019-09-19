@@ -112,7 +112,7 @@ const initialState = {
     pagesMenuValue: 12,
     pagesMenu: false,
     sortMenuValue: "Цене",
-    sortMenuWay: false,
+    sortMenuWay: true,
     sortMenuVariants: ["Цене", "Популярности", "Рейтингу"],
     sortMenuVariantsMobail: ["Сначала дешевые", "Сначала дорогие", "Популярности", "Рейтингу"],
     sortMenu: false,

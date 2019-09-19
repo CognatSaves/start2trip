@@ -13,6 +13,7 @@ import requests from '../../../../config';
 import Stars from '../../../stars/Stars';
 import Manipulator from '../../../manipulator/Manipulator';
 import Cookies from 'universal-cookie';
+import MobileFilter from '../DriversProperties/MobileFilter/MobileFilter'
 
 const cookies = new Cookies();
 
@@ -102,11 +103,11 @@ class DriversBlockClass extends React.Component {
         }
         return sortArrayPrice
       case "Сначала дешевые":
-        let sortArrayPriceLow = tempArray.sort((a, b) => { return a.price > b.price ? -1 : 1 });
+        let sortArrayPriceLow = tempArray.sort((a, b) => { return a.price < b.price ? -1 : 1 });
         return sortArrayPriceLow
       case "Сначала дорогие":
         let sortArrayPriceHige = tempArray.sort((a, b) => { return a.price > b.price ? -1 : 1 });
-        sortArrayPriceHige.reverse()
+        // sortArrayPriceHige.reverse()
         return sortArrayPriceHige
       default: return tempArray;
     }
@@ -212,6 +213,7 @@ class DriversBlockClass extends React.Component {
     let isLoading = (selectedElements.length === 0 && (this.props.driversState.waitingDriverRequest));
     let isEmpty = (selectedElements.length === 0 && !(this.props.driversState.waitingDriverRequest) && !(this.props.driversState.isFirstSave));
     return (
+      <>
       <div className="drivers_block d-flex flex-wrap">
         {
           selectedElements.map((element, index) => {
@@ -285,7 +287,8 @@ class DriversBlockClass extends React.Component {
         <Manipulator number={driversArray.length} page={this.props.driversState.page} setPage={this.setPage}
           elementsNumber={this.props.storeState.pagesMenuValue} showMorePages={this.showMorePages} />
       </div>
-
+      <MobileFilter />
+      </>
     )
   }
 

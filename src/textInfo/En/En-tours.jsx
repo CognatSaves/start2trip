@@ -5,6 +5,7 @@ const tours = {
     guide:"Driver guide",
     agency:"Agency",
     daysNumber:"day",
+    bookTours:"BOOK tours ",
 }
 
 export default tours;
