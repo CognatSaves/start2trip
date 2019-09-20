@@ -18,6 +18,7 @@
     overflow: hidden;
     color: #304269;
     margin-top: 12px;
+    /* text-transform: capitalize; */
 }
 
 .placesList_picture {

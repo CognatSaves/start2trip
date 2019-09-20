@@ -199,7 +199,7 @@ class ToursListClass extends React.Component {
         // }
         let sortSelectedPlacesArray = [];
         let numberOfElements = 0;
-        if (sortedArray.length > 0) {
+        if (sortedArray.length > 0 && this.props.storeState.currencies.length>0) {
 
             sortedArray.map((element, index) => {
                 let departureDate = null;
