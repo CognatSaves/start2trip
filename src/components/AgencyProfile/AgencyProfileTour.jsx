@@ -1690,18 +1690,30 @@ class AgencyProfileTourClass extends React.Component {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="filledCardImg">
+                                    <div className="filledCardImg" onClick={()=> this.toggle(element, { collapse: true })}>
                                         <img src={element.blockListImage && element.blockListImage.url ? requests.serverAddress + element.blockListImage.url : ''} className="img-fluid" alt="imgCar" width="100%" height="100%" />
                                     </div>
                                     <div className="cardInformationType d-flex flex-column">
                                         <p> {this.selectTourName(element)}</p>
-                                        <Stars value={Math.ceil(element.rating * 10) / 10} commentNumber={element.commentNumber +" " + textPageAgencyProfile.comments} valueDisplay={true} commentNumberDisplay={true} />
-                                        <div className="settingsTourHeader d-flex pr-1">
-                                            <p>{textPage.cardInformation.emptySeats}:</p>
-                                            <p>{element.seats}</p>
+                                        {
+                                            /*
+                                            <Stars value={Math.ceil(element.rating * 10) / 10} commentNumber={element.commentNumber +" " + textPageAgencyProfile.comments} valueDisplay={true} commentNumberDisplay={true} />
+                                            <div className="settingsTourHeader d-flex pr-1">
+                                                <p>{textPage.cardInformation.emptySeats}:</p>
+                                                <p>{element.seats}</p>
+                                            </div>
+                                            <div className="settingsTourPlace d-flex">
+                                                <p>{element.local && element.local[0] && element.local[0].points ? element.local[0].points.points : ''}</p>
+                                            </div>
+                                            */
+                                        }
+                                        <div className="d-flex flex-row">
+                                            <div className="d-flex col-6 p-0">Тур на сайте</div>
+                                            <div className="d-flex col-6 p-0"></div>
                                         </div>
-                                        <div className="settingsTourPlace d-flex">
-                                            <p>{element.local && element.local[0] && element.local[0].points ? element.local[0].points.points : ''}</p>
+                                        <div className="d-flex flex-row">
+                                            <div className="d-flex col-6 p-0">Таблица мест</div>
+                                            <div className="d-flex col-6 p-0"></div>
                                         </div>
                                     </div>
                                     <div className="d-flex flex-row">
