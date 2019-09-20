@@ -46,7 +46,7 @@ class ToursListElementClass extends React.Component {
         let seats = element.seats
         
         let location = null;
-        debugger;
+        
         location = element.tourlocalization.points.map((el,index)=>{
             let pointName = el.point.split(" ");
             if((element.tourlocalization.points.length-1) === index){

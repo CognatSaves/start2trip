@@ -127,33 +127,33 @@ class ToureDescriptionClass extends React.Component {
                 isRefreshing: true,
                 selectedLanguage: this.props.storeState.activeLanguageNumber
             });
-            let that = this;
-            axios.get(requests.showTour + "?slug=" + (slug ? slug : ''))
-                .then(response => {
-                    return response.data;
-                })
-                .then(function (data) {
-                    if (data.error) {
-
-                        console.log('bad tour descr request');
-                        throw data.error;
-                    }
-                    else {
-
-                        console.log('good, data=', data);
-                        that.setState({
-                            isRefreshExist: false,
-                            newTour: data,
-                            couldSendRequest: true,
-                            slug: data.local.slug
-                        });
-                    }
-                })
-                .catch(function (error) {
-                    debugger;
-                    console.log('get wasted answer');
-                    that.props.globalReduser.history.push('/404/');
-                })
+            let that = this;   
+                axios.get(requests.showTour+"?slug=" + (slug ? slug  : ''))
+                    .then(response =>{
+                        return response.data;
+                    })
+                    .then(function(data){
+                        if(data.error){
+                            
+                            console.log('bad tour descr request');
+                            throw data.error;
+                        }
+                        else{
+                            
+                            console.log('good, data=',data);
+                            that.setState({
+                                isRefreshExist: false,
+                                newTour: data,
+                                couldSendRequest: true,
+                                slug: data.local.slug
+                            });
+                        }
+                    })
+                    .catch(function(error){
+                        
+                        console.log('get wasted answer');
+                        that.props.globalReduser.history.push('/404/');
+                    })
 
         }
         let textInfo = this.props.storeState.languageTextMain.placeDescription;

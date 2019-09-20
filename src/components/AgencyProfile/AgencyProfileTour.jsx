@@ -26,27 +26,40 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import calendar from '../media/calendar.svg';
 const cookies = new Cookies();
 
 const TourSeatsModalContent = (that, pseudoTableHeaderArray, tableElementsWidth, isErrorBlock, translation) => {
     //
     console.log(that, pseudoTableHeaderArray, tableElementsWidth, isErrorBlock);
     return (
-        <div className="d-flex flex-column flex-md-row" style={{ maxHeight: isMobileOnly ? '500px' : '2000px' }}>
-            <div className="d-flex flex-column">
-                <div>
+        <div className="d-flex flex-column col-12" style={{ maxHeight: isMobileOnly ? '500px' : '2000px'/*, ma*/ }}>
+            {
+                /*
+                <div className="d-flex flex-column">
+                    <div>
+                        {translation.tour + " " + (that.state.tourSeatsModalSelectedElement ? that.selectTourName(that.state.tourSeatsModalSelectedElement) : '')}
+                    </div>
+                    <DayPicker
+                        selectedDays={that.state.tourSeatsSelectedDays}
+                        onDayClick={that.handleTourSeatsDayClick}
+                    />
+                    {
+                        !isMobileOnly ?
+                            <div>{translation.calendaryInfo}</div>
+                            : <React.Fragment />
+                    }
+
+                </div>
+                */
+            }
+            <div className="d-flex flex-row">
+                <div style={{marginRight: 'auto'}}>
                     {translation.tour + " " + (that.state.tourSeatsModalSelectedElement ? that.selectTourName(that.state.tourSeatsModalSelectedElement) : '')}
                 </div>
-                <DayPicker
-                    selectedDays={that.state.tourSeatsSelectedDays}
-                    onDayClick={that.handleTourSeatsDayClick}
-                />
-                {
-                    !isMobileOnly ?
-                        <div>{translation.calendaryInfo}</div>
-                        : <React.Fragment />
-                }
-
+                <div style={{marginLeft: 'auto'}}>
+                    {that.state.selectedMonth + " " + that.state.selectedYear}
+                </div>
             </div>
             <div className="d-flex flex-column" style={{ minWidth: '300px', maxHeight: '60vh', overflowY: 'auto' }}>
                 <div>{translation.tableHeader}</div>
@@ -241,6 +254,8 @@ class AgencyProfileTourClass extends React.Component {
             calendarModal: false,
             tourSeatsModal: false,
             tourSeatsModalSelectedElement: undefined,
+            selectedMonth: 0,
+            selectedYear: 0,
             tourSeatsSelectedDays: [],
             tourSeatsBlocks: [],
             tourSeatsErrorElementArray: [],
@@ -545,9 +560,9 @@ class AgencyProfileTourClass extends React.Component {
     }
     applyChanges(type) {
         let jwt = this.props.globalReduser.readCookie('jwt');
-        debugger;
+        
         function checkCorrectTour(tourSave) {
-            debugger;
+            
             let obj = "";
             let result = true;
             if (!tourSave.time) {
@@ -585,7 +600,7 @@ class AgencyProfileTourClass extends React.Component {
                 obj.classList.add("errorColor");
                 result = false;
             }
-            debugger;
+            
             if (tourSave.daysNumber.length === 0 || isNaN(tourSave.daysNumber)) {
                 obj = document.getElementById('daysNumber');
                 obj.classList.add("errorColor");
@@ -755,8 +770,13 @@ class AgencyProfileTourClass extends React.Component {
         this.setState({ calendarModal: !this.state.calendarModal });
     };
     tourSeatsModalShow = (element) => {
-
+        debugger;
+        let now = new Date();
+        let year = now.getUTCFullYear();
+        let month = now.getUTCMonth();
         this.setState({
+            selectedMonth:month,
+            selectedYear: year,
             tourSeatsModal: !this.state.tourSeatsModal,
             tourSeatsModalSelectedElement: !this.state.tourSeatsModal ? element : undefined,
             tourSeatsSelectedDays: [],
@@ -1692,37 +1712,58 @@ class AgencyProfileTourClass extends React.Component {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="filledCardImg">
+                                    <div className="filledCardImg" onClick={()=> this.toggle(element, { collapse: true })}>
                                         <img src={element.blockListImage && element.blockListImage.url ? requests.serverAddress + element.blockListImage.url : ''} className="img-fluid" alt="imgCar" width="100%" height="100%" />
                                     </div>
-                                    <div className="cardInformationType d-flex flex-column">
+                                    <div className="cardInformationType d-flex flex-column" style={{/*paddingBottom: 0*/ borderBottom: '1px solid', borderColor: '#666666'}}>
                                         <p> {this.selectTourName(element)}</p>
-                                        <Stars value={Math.ceil(element.rating * 10) / 10} commentNumber={element.commentNumber + " " + textPageAgencyProfile.comments} valueDisplay={true} commentNumberDisplay={true} />
-                                        <div className="settingsTourHeader d-flex pr-1">
-                                            <p>{textPage.cardInformation.emptySeats}:</p>
-                                            <p>{element.seats}</p>
+                                        {
+                                            /*
+                                            <Stars value={Math.ceil(element.rating * 10) / 10} commentNumber={element.commentNumber +" " + textPageAgencyProfile.comments} valueDisplay={true} commentNumberDisplay={true} />
+                                            <div className="settingsTourHeader d-flex pr-1">
+                                                <p>{textPage.cardInformation.emptySeats}:</p>
+                                                <p>{element.seats}</p>
+                                            </div>
+                                            <div className="settingsTourPlace d-flex">
+                                                <p>{element.local && element.local[0] && element.local[0].points ? element.local[0].points.points : ''}</p>
+                                            </div>
+                                            */
+                                        }
+                                        
+                                    </div>
+                                    <div className="cardInformationType d-flex flex-column p-0" /*style={{paddingTop: 0, paddingBottom: 0}}*/>
+                                        <div className="d-flex flex-row" style={{height: '40px'}}>
+                                            <div className="d-flex col-6 cardHelpButtonBlocks agencyButtonTextStyle">Тур на сайте</div>
+                                            <div className="d-flex flex-row col-6 cardHelpButtonBlocks">
+                                            {
+                                                element.local.map((loc, index)=>{
+                                                    
+                                                    console.log(loc);
+                                                    console.log(element);
+                                                    if(loc.slug.length>0){
+                                                        //return(<button>{requests.frontendAddress+'/'+element.countryISO+'-'+loc.langISOAuto+'/tours/'+loc.slug}</button>)
+                                                        return (
+                                                            <Link style={{margin: '0 auto'}} to={'/'+element.countryISO+'-'+loc.langISOAuto+'/tours/'+loc.slug} target='_blank'>{loc.language}</Link>
+                                                        )
+                                                    }
+                                                    else{
+                                                        return(<React.Fragment/>)
+                                                    }
+                                                })
+                                            }
+                                            </div>
                                         </div>
-                                        <div className="settingsTourPlace d-flex">
-                                            <p>{element.local && element.local[0] && element.local[0].points ? element.local[0].points.points : ''}</p>
+                                        <div className="d-flex flex-row">
+                                            <div className="d-flex col-6 cardHelpButtonBlocks agencyButtonTextStyle">Таблица мест</div>
+                                            <div className="d-flex col-6 p-0 agencyButtonStyle justify-content-center ">
+                                                <button className="w-100" onClick={() => this.tourSeatsModalShow(element)}>
+                                                    <div className="agencyCalendarButton" style={{margin: '0 auto'}}></div>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                     <div className="d-flex flex-row">
-                                    {
-                                        element.local.map((loc, index)=>{
-                                            debugger;
-                                            console.log(loc);
-                                            console.log(element);
-                                            if(loc.slug.length>0){
-                                                //return(<button>{requests.frontendAddress+'/'+element.countryISO+'-'+loc.langISOAuto+'/tours/'+loc.slug}</button>)
-                                                return (
-                                                    <Link to={'/'+element.countryISO+'-'+loc.langISOAuto+'/tours/'+loc.slug} target='_blank'>{loc.language}</Link>
-                                                )
-                                            }
-                                            else{
-                                                return(<React.Fragment/>)
-                                            }
-                                        })
-                                    }
+                                    
                                     </div>
                                 </div>
                             </div>

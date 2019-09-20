@@ -33,3 +33,37 @@
 .applyButton:focus {
     outline: none;
 }
+.cardHelpButtonBlocks{
+    /*padding: 5px 0px !important*/
+    padding: 10px!important;
+    /*padding-right: 10px!important;*/
+}
+.agencyButtonStyle button {
+    text-align: center;
+    color: #fff;
+    background: #304269;
+    border-radius:  0 0 5px 0;
+    border: none;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.agencyButtonStyle button:hover {
+    background: #f60;
+}
+
+.agencyButtonStyle button:focus {
+    outline: none;
+}
+.agencyCalendarButton{
+    background: url(../media/calendar.svg) no-repeat;
+    background-size: 20px 20px;
+    max-height: 41px;
+    width: 20px;
+    height: 20px;
+}
+.agencyButtonTextStyle{
+    color: #666;
+    font-size:14px;
+}
