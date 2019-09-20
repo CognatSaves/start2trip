@@ -233,7 +233,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                             <button onClick={()=>this.guideParamsChanged()}>{textPage.saveButton}</button>
                                         </div>
                                     </div>
-                                    <div className="d-flex flex-column" style={{fontSize: '10px'}}>
+                                    <div className="d-flex flex-column" style={{fontSize: '12px'}}>
                                         <text>{textPage.info.info1}</text>
                                         <text>{textPage.info.info2}</text>
                                     </div>

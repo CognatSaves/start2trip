@@ -133,6 +133,7 @@ class ToureDescriptionClass extends React.Component {
                     })
                     .then(function(data){
                         if(data.error){
+                            
                             console.log('bad tour descr request');
                             throw data.error;
                         }
@@ -148,6 +149,7 @@ class ToureDescriptionClass extends React.Component {
                         }
                     })
                     .catch(function(error){
+                        debugger;
                         console.log('get wasted answer');
                         that.props.globalReduser.history.push('/404/');
                     })

@@ -19,6 +19,7 @@ import Stars from '../stars/Stars'
 import FlatButton from 'material-ui/FlatButton';
 import Cookies from 'universal-cookie';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 import Checkbox from '@material-ui/core/Checkbox';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -1702,6 +1703,24 @@ class AgencyProfileTourClass extends React.Component {
                                         <div className="settingsTourPlace d-flex">
                                             <p>{element.local && element.local[0] && element.local[0].points ? element.local[0].points.points : ''}</p>
                                         </div>
+                                    </div>
+                                    <div className="d-flex flex-row">
+                                    {
+                                        element.local.map((loc, index)=>{
+                                            debugger;
+                                            console.log(loc);
+                                            console.log(element);
+                                            if(loc.slug.length>0){
+                                                //return(<button>{requests.frontendAddress+'/'+element.countryISO+'-'+loc.langISOAuto+'/tours/'+loc.slug}</button>)
+                                                return (
+                                                    <Link to={'/'+element.countryISO+'-'+loc.langISOAuto+'/tours/'+loc.slug} target='_blank'>{loc.language}</Link>
+                                                )
+                                            }
+                                            else{
+                                                return(<React.Fragment/>)
+                                            }
+                                        })
+                                    }
                                     </div>
                                 </div>
                             </div>
