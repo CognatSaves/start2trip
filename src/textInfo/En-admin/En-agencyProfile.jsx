@@ -78,5 +78,29 @@ const agencyProfile = {
         tripEnd: 'End of Trip',
         notEnded: 'The trip was not finished'
     },
+    agencyProfileTour:{
+        tourSeatsModalContent: {
+            tour: 'Тур(ENG)',
+            headerArray: ['День(ENG)', 'Mест свободно(ENG)', 'Mecт зaнятo(ENG)'],
+            calendaryInfo: 'В этом календаре кликабельными будут только выбранные Вами в настройках тура дни, при нажатии на любые другие ничего происходить не будет. Если их число ограничено, то они будут выбраны изначально.(ENG)',
+            tableHeader: 'Таблица количества мест в выбранные дни(ENG)',
+            saveChangesButton: 'Сохранить(ENG)',
+            closeWindow: 'Закрыть окно(ENG)'
+        },
+        excursionIncludesBlock: {
+            label: 'Стоимость экскурсии включает(ENG)',
+            hotelMeeting: 'Встреча в отеле(ENG)',
+            hotelDelivery: 'Доставка в отель(ENG)',
+            fare: 'Транспортные расходы(ENG)',
+            entryTickets: 'Входные билеты(ENG)',
+            food: 'Еда и напитки(ENG)',
+            accommodation: 'Проживание(ENG)'
+        },
+        daysNumber: 'Количество дней(ENG)',
+        tourClassification: 'Классификация тура(ENG)',
+        imagesLabel: 'Изображения(ENG)',
+        seatsModalLabel: 'Таблица мест(ENG)',
+        comments: 'отзывов(ENG)'
+    }
 }
 export default agencyProfile;

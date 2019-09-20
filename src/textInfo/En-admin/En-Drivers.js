@@ -263,6 +263,14 @@ const driverProfileRegistration = {
             mainImageInfo: 'Эта картинка будет использоваться как фон на странице Вашего тура(ENG)',
             blockListLabel: 'Это загрузка фото для блока в списке(ENG)',
             blockListImageInfo: 'Эта картинка будет использоваться в качестве оформления Вашего тура в списке(ENG)'
+        },
+        pageLabel: 'Guide settings',
+        guideLabel: `I'm a guide`,
+        hourPrice: 'Hour payment',
+        saveButton: 'Save',
+        info: {
+            info1: 'Indicate the cost of a guide for an hour. When building an individual route, the user has 2 hours for each attraction.',
+            info2: 'The cost per hour will be added to the automatic calculation of the cost of the trip.'
         }
 
     },
