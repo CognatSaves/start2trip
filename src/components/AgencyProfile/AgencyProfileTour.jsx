@@ -26,98 +26,112 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import calendar from '../media/calendar.svg';
 const cookies = new Cookies();
 
-const TourSeatsModalContent= (that,pseudoTableHeaderArray,tableElementsWidth,isErrorBlock, translation) => {
+const TourSeatsModalContent = (that, pseudoTableHeaderArray, tableElementsWidth, isErrorBlock, translation) => {
     //
-    console.log(that,pseudoTableHeaderArray,tableElementsWidth,isErrorBlock);
+    console.log(that, pseudoTableHeaderArray, tableElementsWidth, isErrorBlock);
     return (
-        <div className="d-flex flex-column flex-md-row" style={{maxHeight: isMobileOnly ? '500px' : '2000px'}}>
-            <div className="d-flex flex-column">
-                <div>
-                    {translation.tour+" "+(that.state.tourSeatsModalSelectedElement ? that.selectTourName(that.state.tourSeatsModalSelectedElement) : '')}
+        <div className="d-flex flex-column col-12" style={{ maxHeight: isMobileOnly ? '500px' : '2000px'/*, ma*/ }}>
+            {
+                /*
+                <div className="d-flex flex-column">
+                    <div>
+                        {translation.tour + " " + (that.state.tourSeatsModalSelectedElement ? that.selectTourName(that.state.tourSeatsModalSelectedElement) : '')}
+                    </div>
+                    <DayPicker
+                        selectedDays={that.state.tourSeatsSelectedDays}
+                        onDayClick={that.handleTourSeatsDayClick}
+                    />
+                    {
+                        !isMobileOnly ?
+                            <div>{translation.calendaryInfo}</div>
+                            : <React.Fragment />
+                    }
+
                 </div>
-                <DayPicker
-                    selectedDays={that.state.tourSeatsSelectedDays}
-                    onDayClick={that.handleTourSeatsDayClick}
-                />
-                {
-                    !isMobileOnly ? 
-                        <div>{translation.calendaryInfo}</div>
-                        : <React.Fragment/>
-                }
-                
-            </div>         
-            <div className="d-flex flex-column" style={{minWidth: '300px', maxHeight: '60vh', overflowY: 'auto'}}>
+                */
+            }
+            <div className="d-flex flex-row">
+                <div style={{marginRight: 'auto'}}>
+                    {translation.tour + " " + (that.state.tourSeatsModalSelectedElement ? that.selectTourName(that.state.tourSeatsModalSelectedElement) : '')}
+                </div>
+                <div style={{marginLeft: 'auto'}}>
+                    {that.state.selectedMonth + " " + that.state.selectedYear}
+                </div>
+            </div>
+            <div className="d-flex flex-column" style={{ minWidth: '300px', maxHeight: '60vh', overflowY: 'auto' }}>
                 <div>{translation.tableHeader}</div>
 
-                <table style={{textAlign: 'center'}}>
+                <table style={{ textAlign: 'center' }}>
                     <tr>
                         {
-                        pseudoTableHeaderArray.map((element, index)=>{
-                            return(
-                                <td width={tableElementsWidth[index]}>{translation.headerArray[index]}</td>
-                            )
-                        })  
-                        } 
+                            pseudoTableHeaderArray.map((element, index) => {
+                                return (
+                                    <td width={tableElementsWidth[index]}>{translation.headerArray[index]}</td>
+                                )
+                            })
+                        }
                     </tr>
-                    {                      
-                        that.state.tourSeatsBlocks.map((element,index)=>{
-                            return(
-                                <tr style={{backgroundColor: isErrorBlock(element.id,that) ? 'red' : 'transparent'}}> 
-                                <td width={tableElementsWidth[0]} >{that.props.globalReduser.createDateTimeString(element.date, true)}</td>
+                    {
+                        that.state.tourSeatsBlocks.map((element, index) => {
+                            return (
+                                <tr style={{ backgroundColor: isErrorBlock(element.id, that) ? 'red' : 'transparent' }}>
+                                    <td width={tableElementsWidth[0]} >{that.props.globalReduser.createDateTimeString(element.date, true)}</td>
                                     <td width={tableElementsWidth[1]} >
-                                        <input style={{width: '100%'}} type="number" value={element.freeSeats}
-                                            onChange={(e)=>{  let value = e.target.value;
-                                            if(value>=0){
-                                            let tourBlocks = that.state.tourSeatsBlocks;
-                                            tourBlocks[index].freeSeats = parseInt(value,10);
-                                            that.setState({
-                                                tourSeatsBlocks: tourBlocks
-                                            })
-                                            }                                         
-                                        }}/>
+                                        <input style={{ width: '100%' }} type="number" value={element.freeSeats}
+                                            onChange={(e) => {
+                                                let value = e.target.value;
+                                                if (value >= 0) {
+                                                    let tourBlocks = that.state.tourSeatsBlocks;
+                                                    tourBlocks[index].freeSeats = parseInt(value, 10);
+                                                    that.setState({
+                                                        tourSeatsBlocks: tourBlocks
+                                                    })
+                                                }
+                                            }} />
                                     </td>
                                     <td width={tableElementsWidth[2]} >{element.reservedSeats}</td>
                                 </tr>
                             )
-                        })                       
+                        })
                     }
                 </table>
-                <button onClick={()=>that.tourSeatsApplyChanges()}>{translation.saveChangesButton}</button>
-                <button onClick={()=>that.tourSeatsModalShow()}>{translation.closeWindow}</button>
+                <button onClick={() => that.tourSeatsApplyChanges()}>{translation.saveChangesButton}</button>
+                <button onClick={() => that.tourSeatsModalShow()}>{translation.closeWindow}</button>
             </div>
-                                  
+
         </div>
 
     )
 }
 const ExcursionIncludesBlock = (props) => {
-    function changeExcursionIncludesData(that, type){
-        
+    function changeExcursionIncludesData(that, type) {
+
         let tourSave = that.state.tourSave;
-        switch (type){
-            case "hotelMeeting":{
+        switch (type) {
+            case "hotelMeeting": {
                 tourSave.excursionIncludes.hotelMeeting = !tourSave.excursionIncludes.hotelMeeting;
                 break;
             }
-            case "hotelDelivery":{
+            case "hotelDelivery": {
                 tourSave.excursionIncludes.hotelDelivery = !tourSave.excursionIncludes.hotelDelivery;
                 break;
             }
-            case "fare":{
+            case "fare": {
                 tourSave.excursionIncludes.fare = !tourSave.excursionIncludes.fare;
                 break;
             }
-            case "entryTickets":{
+            case "entryTickets": {
                 tourSave.excursionIncludes.entryTickets = !tourSave.excursionIncludes.entryTickets;
                 break;
             }
-            case "food":{
+            case "food": {
                 tourSave.excursionIncludes.food = !tourSave.excursionIncludes.food;
                 break;
             }
-            case "accommodation":{
+            case "accommodation": {
                 tourSave.excursionIncludes.accommodation = !tourSave.excursionIncludes.accommodation;
                 break;
             }
@@ -128,44 +142,44 @@ const ExcursionIncludesBlock = (props) => {
         })
     }
     //
-    let {that, translation} = props;
+    let { that, translation } = props;
     console.log(that);
     return (
         <div className="paddingL10 d-flex flex-md-row flex-column align-items-start">
-            <label className="d-md-block d-none col-2 ">{translation.label+":"}</label>
+            <label className="d-md-block d-none col-2 ">{translation.label + ":"}</label>
             <div className="d-flex flex-row col-md-6 col-12 p-0">
-                <div className="d-flex flex-column" style={{marginRight: '5px'}}>
+                <div className="d-flex flex-column" style={{ marginRight: '5px' }}>
                     <div className="d-flex flex-row">
-                        <Checkbox id="hotelMeeting" checked={that.state.tourSave.excursionIncludes.hotelMeeting} onChange={()=>changeExcursionIncludesData(that, 'hotelMeeting')}/>
-                        <label htmlFor={"hotelMeeting"} style={{margin: 'auto 0'}}>{translation.hotelMeeting}</label>
-                        
+                        <Checkbox id="hotelMeeting" checked={that.state.tourSave.excursionIncludes.hotelMeeting} onChange={() => changeExcursionIncludesData(that, 'hotelMeeting')} />
+                        <label htmlFor={"hotelMeeting"} style={{ margin: 'auto 0' }}>{translation.hotelMeeting}</label>
+
                     </div>
                     <div className="d-flex flex-row">
-                        <Checkbox id="hotelDelivery" checked={that.state.tourSave.excursionIncludes.hotelDelivery} onChange={()=>changeExcursionIncludesData(that, 'hotelDelivery')}/>
-                        <label htmlFor={"hotelDelivery"} style={{margin: 'auto 0'}}>{translation.hotelDelivery}</label>
-                        
+                        <Checkbox id="hotelDelivery" checked={that.state.tourSave.excursionIncludes.hotelDelivery} onChange={() => changeExcursionIncludesData(that, 'hotelDelivery')} />
+                        <label htmlFor={"hotelDelivery"} style={{ margin: 'auto 0' }}>{translation.hotelDelivery}</label>
+
                     </div>
                     <div className="d-flex flex-row">
-                        <Checkbox id="fareId" checked={that.state.tourSave.excursionIncludes.fare} onChange={()=>changeExcursionIncludesData(that, 'fare')}/>
-                        <label htmlFor={"fareId"} style={{margin: 'auto 0'}}>{translation.fare}</label>
-                        
+                        <Checkbox id="fareId" checked={that.state.tourSave.excursionIncludes.fare} onChange={() => changeExcursionIncludesData(that, 'fare')} />
+                        <label htmlFor={"fareId"} style={{ margin: 'auto 0' }}>{translation.fare}</label>
+
                     </div>
                 </div>
                 <div className="d-flex flex-column">
                     <div className="d-flex flex-row">
-                        <Checkbox id="entryTickets" checked={that.state.tourSave.excursionIncludes.entryTickets} onChange={()=>changeExcursionIncludesData(that, 'entryTickets')}/>
-                        <label htmlFor={"entryTickets"} style={{margin: 'auto 0'}}>{translation.entryTickets}</label>
-                        
+                        <Checkbox id="entryTickets" checked={that.state.tourSave.excursionIncludes.entryTickets} onChange={() => changeExcursionIncludesData(that, 'entryTickets')} />
+                        <label htmlFor={"entryTickets"} style={{ margin: 'auto 0' }}>{translation.entryTickets}</label>
+
                     </div>
                     <div className="d-flex flex-row">
-                        <Checkbox id="foodId" checked={that.state.tourSave.excursionIncludes.food} onChange={()=>changeExcursionIncludesData(that, 'food')}/>
-                        <label htmlFor={"foodId"} style={{margin: 'auto 0'}}>{translation.food}</label>
-                        
+                        <Checkbox id="foodId" checked={that.state.tourSave.excursionIncludes.food} onChange={() => changeExcursionIncludesData(that, 'food')} />
+                        <label htmlFor={"foodId"} style={{ margin: 'auto 0' }}>{translation.food}</label>
+
                     </div>
                     <div className="d-flex flex-row">
-                        <Checkbox id="accommodation" checked={that.state.tourSave.excursionIncludes.accommodation} onChange={()=>changeExcursionIncludesData(that, 'accommodation')}/>
-                        <label htmlFor={"accommodation"} style={{margin: 'auto 0'}}>{translation.accommodation}</label>
-                        
+                        <Checkbox id="accommodation" checked={that.state.tourSave.excursionIncludes.accommodation} onChange={() => changeExcursionIncludesData(that, 'accommodation')} />
+                        <label htmlFor={"accommodation"} style={{ margin: 'auto 0' }}>{translation.accommodation}</label>
+
                     </div>
                 </div>
             </div>
@@ -180,8 +194,8 @@ class AgencyProfileTourClass extends React.Component {
         for (let i = 0; i < profile.allLanguages.length; i++) {
             local[i] = {
                 name: "",
-                departurePoint:{
-                    point:"",
+                departurePoint: {
+                    point: "",
                     lat: "",
                     long: ""
                 },
@@ -225,8 +239,8 @@ class AgencyProfileTourClass extends React.Component {
                 tagsSelected: [],
                 tagsUnselected: tagsUnselected,
                 isPricePerPerson: false,
-                daysNumber:1,
-                excursionIncludes:{
+                daysNumber: 1,
+                excursionIncludes: {
                     hotelMeeting: false,
                     hotelDelivery: false,
                     fare: false,//это транспортные расходы
@@ -239,9 +253,11 @@ class AgencyProfileTourClass extends React.Component {
             collapse: false,
             calendarModal: false,
             tourSeatsModal: false,
-            tourSeatsModalSelectedElement:undefined,
+            tourSeatsModalSelectedElement: undefined,
+            selectedMonth: 0,
+            selectedYear: 0,
             tourSeatsSelectedDays: [],
-            tourSeatsBlocks:[],
+            tourSeatsBlocks: [],
             tourSeatsErrorElementArray: [],
 
             currencies: [...profile.currencies],
@@ -331,7 +347,7 @@ class AgencyProfileTourClass extends React.Component {
                 local[i] = {
                     name: "",
                     departurePoint: {
-                        point:"",
+                        point: "",
                         lat: "",
                         long: ""
                     },
@@ -374,8 +390,8 @@ class AgencyProfileTourClass extends React.Component {
                 tagsSelected: [],
                 tagsUnselected: tagsUnselected,
                 isPricePerPerson: false,
-                daysNumber:1,
-                excursionIncludes:{
+                daysNumber: 1,
+                excursionIncludes: {
                     hotelMeeting: false,
                     hotelDelivery: false,
                     fare: false,//это транспортные расходы
@@ -383,7 +399,7 @@ class AgencyProfileTourClass extends React.Component {
                     food: false,
                     accommodation: false//предоставление проживания
                 }
-                
+
             };
             this.setState({
                 tourSave: tourSave,
@@ -470,8 +486,8 @@ class AgencyProfileTourClass extends React.Component {
                 tagsSelected: tagsSelected,
                 tagsUnselected: tagsUnselected,
                 isPricePerPerson: element.isPricePerPerson,
-                daysNumber:element.daysNumber,
-                excursionIncludes:{
+                daysNumber: element.daysNumber,
+                excursionIncludes: {
                     hotelMeeting: element.hotelMeeting,
                     hotelDelivery: element.hotelDelivery,
                     fare: element.fare,//это транспортные расходы
@@ -479,7 +495,7 @@ class AgencyProfileTourClass extends React.Component {
                     food: element.food,
                     accommodation: element.accommodation//предоставление проживания
                 }
-                
+
             };
             this.setState({
                 tourSave: tourSave,
@@ -544,9 +560,9 @@ class AgencyProfileTourClass extends React.Component {
     }
     applyChanges(type) {
         let jwt = this.props.globalReduser.readCookie('jwt');
-        debugger;
+        
         function checkCorrectTour(tourSave) {
-            debugger;
+            
             let obj = "";
             let result = true;
             if (!tourSave.time) {
@@ -568,13 +584,13 @@ class AgencyProfileTourClass extends React.Component {
             }
             ////////////////////
             let value;
-            try{
-                value = parseInt(tourSave.seats,10)
-                if(value<1){
+            try {
+                value = parseInt(tourSave.seats, 10)
+                if (value < 1) {
                     throw Error();
                 }
             }
-            catch(error){//должно быть тоже самое, что и в следующем блоке
+            catch (error) {//должно быть тоже самое, что и в следующем блоке
                 obj = document.getElementById('newTourPeople');
                 obj.classList.add("errorColor");
                 result = false;
@@ -584,25 +600,25 @@ class AgencyProfileTourClass extends React.Component {
                 obj.classList.add("errorColor");
                 result = false;
             }
-            debugger;
-            if(tourSave.daysNumber.length === 0 || isNaN(tourSave.daysNumber)){
-                obj = document.getElementById('daysNumber');
-                obj.classList.add("errorColor");
-                result = false;                       
-            } 
-            //////////////////////
-            try{
-                value = parseInt(tourSave.daysNumber,10)
-                if(value<1){
-                    throw Error();
-                }
-            }
-            catch(error){//должно быть тоже самое, что и в следующем блоке
+            
+            if (tourSave.daysNumber.length === 0 || isNaN(tourSave.daysNumber)) {
                 obj = document.getElementById('daysNumber');
                 obj.classList.add("errorColor");
                 result = false;
             }
-            if(tourSave.daysNumber.length === 0 || isNaN(tourSave.daysNumber)){
+            //////////////////////
+            try {
+                value = parseInt(tourSave.daysNumber, 10)
+                if (value < 1) {
+                    throw Error();
+                }
+            }
+            catch (error) {//должно быть тоже самое, что и в следующем блоке
+                obj = document.getElementById('daysNumber');
+                obj.classList.add("errorColor");
+                result = false;
+            }
+            if (tourSave.daysNumber.length === 0 || isNaN(tourSave.daysNumber)) {
                 obj = document.getElementById('daysNumber');
                 obj.classList.add("errorColor");
                 result = false;
@@ -625,7 +641,7 @@ class AgencyProfileTourClass extends React.Component {
                 obj.style.visibility = 'visible';
                 result = false;
             }
-            
+
             return result;
         }
         if (jwt && jwt !== "-" && checkCorrectTour(this.state.tourSave)) {
@@ -654,7 +670,7 @@ class AgencyProfileTourClass extends React.Component {
             tourForm.append('price', tourSave.price);
             tourForm.append('seats', tourSave.seats);
             tourForm.append('time', tourSave.time);
-            tourForm.append('daysNumber',tourSave.daysNumber);
+            tourForm.append('daysNumber', tourSave.daysNumber);
             tourForm.append('isPricePerPerson', tourSave.isPricePerPerson);
 
 
@@ -664,7 +680,7 @@ class AgencyProfileTourClass extends React.Component {
             tourForm.append('entryTickets', tourSave.excursionIncludes.entryTickets);
             tourForm.append('food', tourSave.excursionIncludes.food);
             tourForm.append('accommodation', tourSave.excursionIncludes.accommodation);
-            
+
 
             for (let i = 0; i < tourSave.imageFiles.length; i++) {
                 tourForm.append('image', tourSave.imageFiles[i]);
@@ -723,10 +739,10 @@ class AgencyProfileTourClass extends React.Component {
         event.preventDefault();
     }
     toggle = (element, props) => {
-        
+
         let collapseValue = props ? props.collapse : !this.state.collapse;
         this.setState(state => ({ collapse: collapseValue, tour: {} }));
-        if(this.props.props && this.props.props.changeTourOpened){//если AgencyProfileTour является потомком Driver...Tour, то ему передаётся ещё одна ф-ция, которуд надо вызвать
+        if (this.props.props && this.props.props.changeTourOpened) {//если AgencyProfileTour является потомком Driver...Tour, то ему передаётся ещё одна ф-ция, которуд надо вызвать
             this.props.props.changeTourOpened(collapseValue);
         }
         if (!element) {
@@ -753,13 +769,18 @@ class AgencyProfileTourClass extends React.Component {
     calendarModalShow = () => {
         this.setState({ calendarModal: !this.state.calendarModal });
     };
-    tourSeatsModalShow = (element)=>{
-        
-        this.setState({ 
+    tourSeatsModalShow = (element) => {
+        debugger;
+        let now = new Date();
+        let year = now.getUTCFullYear();
+        let month = now.getUTCMonth();
+        this.setState({
+            selectedMonth:month,
+            selectedYear: year,
             tourSeatsModal: !this.state.tourSeatsModal,
-            tourSeatsModalSelectedElement:!this.state.tourSeatsModal ? element : undefined,
+            tourSeatsModalSelectedElement: !this.state.tourSeatsModal ? element : undefined,
             tourSeatsSelectedDays: [],
-            tourSeatsBlocks:[],
+            tourSeatsBlocks: [],
             tourSeatsErrorElementArray: []
         });
     }
@@ -811,7 +832,7 @@ class AgencyProfileTourClass extends React.Component {
             case "attractionsAlongTheRoute": {
                 tourSave.local[params.number].points.push(
                     {
-                        point:value,
+                        point: value,
                         lat: params.location.lat,
                         long: params.location.long
                     });
@@ -980,174 +1001,174 @@ class AgencyProfileTourClass extends React.Component {
         }
         this.setState({ tourSave: { ...tourSave, calendary: calendary } });
     }
-    handleTourSeatsDayClick = (day, {selected})=>{
-        function checkDateSeatsNumber(date, that){
+    handleTourSeatsDayClick = (day, { selected }) => {
+        function checkDateSeatsNumber(date, that) {
             let selectedTour = that.state.tourSeatsModalSelectedElement;
-            
-            if(!selectedTour){
+
+            if (!selectedTour) {
                 return undefined;
             }
-            for(let i=0; i<selectedTour.tourSeatsData.length; i++){
+            for (let i = 0; i < selectedTour.tourSeatsData.length; i++) {
                 let dataDate = that.props.globalReduser.createDateTimeString(selectedTour.tourSeatsData[i].startDefault, true);
-                if(date===dataDate){
-                    return {id:selectedTour.tourSeatsData[i].id ,freeSeats: selectedTour.tourSeatsData[i].seatsMax - selectedTour.tourSeatsData[i].reservedSeats, reservedSeats: selectedTour.tourSeatsData[i].reservedSeats};
+                if (date === dataDate) {
+                    return { id: selectedTour.tourSeatsData[i].id, freeSeats: selectedTour.tourSeatsData[i].seatsMax - selectedTour.tourSeatsData[i].reservedSeats, reservedSeats: selectedTour.tourSeatsData[i].reservedSeats };
                 }
             }
-            
-            if(selectedTour.daily){
-                return {freeSeats: selectedTour.seats, reservedSeats: 0};
+
+            if (selectedTour.daily) {
+                return { freeSeats: selectedTour.seats, reservedSeats: 0 };
             }
-            else{
-                for(let i=0; i<selectedTour.calendary.length; i++){
+            else {
+                for (let i = 0; i < selectedTour.calendary.length; i++) {
                     let dataDate = that.props.globalReduser.createDateTimeString(selectedTour.calendary[i], true);
-                    if(date===dataDate){
-                        return {freeSeats: selectedTour.seats, reservedSeats: 0};
+                    if (date === dataDate) {
+                        return { freeSeats: selectedTour.seats, reservedSeats: 0 };
                     }
                 }
             }
             return undefined;
         }
-        
+
 
         const { tourSeatsSelectedDays, tourSeatsBlocks } = this.state;
 
         let calendary = tourSeatsSelectedDays
         let blocks = tourSeatsBlocks;
         if (selected) {
-            
+
             const selectedIndex = calendary.findIndex(calendary =>
                 DateUtils.isSameDay(calendary, day)
             );
             calendary.splice(selectedIndex, 1);
-            blocks.splice(selectedIndex,1);
-            
+            blocks.splice(selectedIndex, 1);
+
         } else {
             calendary.push(day);
             let dateElement = this.props.globalReduser.createDateTimeString(day, true);
             let seatsNumber = checkDateSeatsNumber(dateElement, this);
-            if(seatsNumber){
+            if (seatsNumber) {
                 blocks.push({
                     date: day,
-                    freeSeats:seatsNumber.freeSeats,
+                    freeSeats: seatsNumber.freeSeats,
                     reservedSeats: seatsNumber.reservedSeats,
                     id: seatsNumber.id
                 })
             }
-            else{
+            else {
                 //может и хуйня это, но получше ничего не придумал(
-                calendary.splice(calendary.length-1,1);
+                calendary.splice(calendary.length - 1, 1);
             }
-            
+
         }
-        
-        this.setState({ tourSeatsSelectedDays:calendary, tourSeatsBlocks: blocks});
+
+        this.setState({ tourSeatsSelectedDays: calendary, tourSeatsBlocks: blocks });
     }
     tourSeatsApplyChanges = () => {
-        
+
         let that = this;
         let jwt = cookies.get('jwt', { path: '/' });
-        if(jwt){
-            
+        if (jwt) {
+
             let body = JSON.stringify({
                 tour: that.state.tourSeatsModalSelectedElement.id,
                 tourSeatsData: that.state.tourSeatsBlocks
             })
             let requestAddress = requests.setTourSeatsData;
-            fetch(requestAddress,{
+            fetch(requestAddress, {
                 method: 'PUT', body: body,
                 headers: { 'content-type': 'application/json', Authorization: `Bearer ${jwt}` }
             })
-            .then(response => {
-                console.log('get answer');
-                return response.json();
-            })
-            .then(data => {
-                
-                if (data.error){
-                    console.log('bad');
-                    throw data.error;
-                }
-                else{
-                    function setSelectedElementsValue(that, data){
-                        
-                        let selectedDateArray = [];
-                        let tourSeatsBlocks = that.state.tourSeatsBlocks;
-                        for(let i=0; i<that.state.tourSeatsBlocks.length;i++){
-                            let date =new Date(that.state.tourSeatsBlocks[i].date); 
-                            let day = date.getDate();
-                            let month = date.getMonth();
-                            let year = date.getFullYear();
-                            selectedDateArray[i]={
-                                day: day,
-                                month: month,
-                                year: year
+                .then(response => {
+                    console.log('get answer');
+                    return response.json();
+                })
+                .then(data => {
+
+                    if (data.error) {
+                        console.log('bad');
+                        throw data.error;
+                    }
+                    else {
+                        function setSelectedElementsValue(that, data) {
+
+                            let selectedDateArray = [];
+                            let tourSeatsBlocks = that.state.tourSeatsBlocks;
+                            for (let i = 0; i < that.state.tourSeatsBlocks.length; i++) {
+                                let date = new Date(that.state.tourSeatsBlocks[i].date);
+                                let day = date.getDate();
+                                let month = date.getMonth();
+                                let year = date.getFullYear();
+                                selectedDateArray[i] = {
+                                    day: day,
+                                    month: month,
+                                    year: year
+                                }
+                            }
+
+                            for (let i = 0; i < data.tourSeatsData.length; i++) {
+                                let date = new Date(data.tourSeatsData[i].startDefault);
+                                let day = date.getDate();
+                                let month = date.getMonth();
+                                let year = date.getFullYear();
+                                for (let j = 0; j < selectedDateArray.length; j++) {
+                                    if (day === selectedDateArray[j].day &&
+                                        month === selectedDateArray[j].month && year === selectedDateArray[j].year) {
+                                        tourSeatsBlocks[j].seatsMax = data.tourSeatsData[i].seatsMax;
+                                        tourSeatsBlocks[j].reservedSeats = data.tourSeatsData[i].reservedSeats;
+                                    }
+                                }
+                            }
+                            that.setState({
+                                tourSeatsBlocks: tourSeatsBlocks
+                            })
+                        }
+                        console.log('good');
+                        console.log(data);
+                        //запись данных в профиль
+
+                        let profile = that.props.globalReduser.profile;
+                        let index = -1;
+                        for (let i = 0; i < profile.tours.length; i++) {
+                            if (profile.tours[i].id === data.tourId) {
+                                profile.tours[i].tourSeatsData = data.tourSeatsData;
+                                index = i;
+                                break;
                             }
                         }
-                        
-                        for(let i=0; i<data.tourSeatsData.length; i++){
-                            let date = new Date(data.tourSeatsData[i].startDefault);
-                            let day = date.getDate();
-                            let month = date.getMonth();
-                            let year = date.getFullYear();
-                            for(let j=0; j<selectedDateArray.length; j++){
-                                if(day===selectedDateArray[j].day && 
-                                    month===selectedDateArray[j].month && year===selectedDateArray[j].year){
-                                        tourSeatsBlocks[j].seatsMax=data.tourSeatsData[i].seatsMax;
-                                        tourSeatsBlocks[j].reservedSeats=data.tourSeatsData[i].reservedSeats;
-                                }
-                            } 
-                        }
+                        that.props.dispatch(setProfileData(profile));
+
+
+                        //запись данных в открытые элементы
+                        setSelectedElementsValue(that, data)
+                        //сохранить ошибки
                         that.setState({
-                            tourSeatsBlocks:tourSeatsBlocks
+                            tourSeatsModalSelectedElement: profile.tours[index],
+                            tourSeatsErrorElementArray: data.errorElementsArray
                         })
+
+                        //that.tourSeatsModalShow();
+                        /*that.setState({
+                            tourSeatsModalSelectedElement:undefined,
+                            tourSeatsSelectedDays: [],
+                            tourSeatsBlocks:[],
+                        })*/
                     }
-                    console.log('good');
-                    console.log(data);
-                    //запись данных в профиль
-                    
-                    let profile = that.props.globalReduser.profile;
-                    let index = -1;
-                    for(let i=0; i<profile.tours.length;i++){
-                        if(profile.tours[i].id===data.tourId){
-                            profile.tours[i].tourSeatsData = data.tourSeatsData;
-                            index = i;
-                            break;
-                        }
-                    }
-                    that.props.dispatch(setProfileData(profile));
+                })
+                .catch(error => {
 
+                    console.log('Error happened');
+                });
 
-                    //запись данных в открытые элементы
-                    setSelectedElementsValue(that, data)
-                    //сохранить ошибки
-                    that.setState({
-                        tourSeatsModalSelectedElement: profile.tours[index],
-                        tourSeatsErrorElementArray: data.errorElementsArray
-                    })
-
-                    //that.tourSeatsModalShow();
-                    /*that.setState({
-                        tourSeatsModalSelectedElement:undefined,
-                        tourSeatsSelectedDays: [],
-                        tourSeatsBlocks:[],
-                    })*/
-                }
-            })
-            .catch(error=>{
-                
-                console.log('Error happened');
-            });
-            
         }
-        else{
+        else {
             //TODO обработать отсутствие jwt
         }
     }
     render() {
-        function isErrorBlock(id, that){
-            for(let i=0; i<that.state.tourSeatsErrorElementArray.length; i++){
+        function isErrorBlock(id, that) {
+            for (let i = 0; i < that.state.tourSeatsErrorElementArray.length; i++) {
                 let element = that.state.tourSeatsErrorElementArray[i];
-                if(element.id===id){
+                if (element.id === id) {
                     return true;
                 }
             }
@@ -1168,19 +1189,19 @@ class AgencyProfileTourClass extends React.Component {
             />,
         ];
         const actionTour = [
-            <div/>
+            <div />
         ]
         const customContentStyle = {
             width: '100%',
             maxWidth: 'none',
         };
-        
+
         let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileTripSettingsTour;
         let textPageAgencyProfile = this.props.storeState.languageText.agencyProfile.agencyProfileTour;
         let pseudoTableHeaderArray = ['День', 'Mест свободно', 'Mecт зaнятo'];//этот массив формирует размерность таблицы, не рекомендуется его удалять
-        let tableElementsWidth = ['40%','30%','30%'];
+        let tableElementsWidth = ['40%', '30%', '30%'];
         let availableCurrencies = this.props.globalReduser.currencyFilter(this.props.storeState);
-        let selectedCurrNumber = this.props.globalReduser.findSelectedCurrency(this,availableCurrencies);
+        let selectedCurrNumber = this.props.globalReduser.findSelectedCurrency(this, availableCurrencies);
         return (
 
             <>
@@ -1201,36 +1222,36 @@ class AgencyProfileTourClass extends React.Component {
                 </Dialog>
                 {
                     isMobileOnly ?
-                    <>
-                        <Dialog fullScreen
-                            actions={actionTour}
-                            modal={false}
-                            bodyStyle={{ padding: 0, width: '100%' }}
-                            contentStyle={isMobile ? customContentStyle : ""}
-                            open={this.state.tourSeatsModal}
-                            onRequestClose={()=>{}/*this.tourSeatsModalShow*/}
-                        >
-                            {
-                                TourSeatsModalContent(this,pseudoTableHeaderArray,tableElementsWidth,isErrorBlock,textPageAgencyProfile.tourSeatsModalContent)
-                            }                  
-                        </Dialog>
-                    </> : 
-                    <>
-                        <Dialog 
-                            actions={actionTour}
-                            modal={false}
-                            bodyStyle={{ padding: 0, width: '100%' }}
-                            contentStyle={isMobile ? customContentStyle : ""}
-                            open={this.state.tourSeatsModal}
-                            onRequestClose={()=>{}/*this.tourSeatsModalShow*/}
-                        >
-                            {
-                                TourSeatsModalContent(this,pseudoTableHeaderArray,tableElementsWidth,isErrorBlock,textPageAgencyProfile.tourSeatsModalContent)
-                            }                  
-                        </Dialog>
-                    </>
+                        <>
+                            <Dialog fullScreen
+                                actions={actionTour}
+                                modal={false}
+                                bodyStyle={{ padding: 0, width: '100%' }}
+                                contentStyle={isMobile ? customContentStyle : ""}
+                                open={this.state.tourSeatsModal}
+                                onRequestClose={() => { }/*this.tourSeatsModalShow*/}
+                            >
+                                {
+                                    TourSeatsModalContent(this, pseudoTableHeaderArray, tableElementsWidth, isErrorBlock, textPageAgencyProfile.tourSeatsModalContent)
+                                }
+                            </Dialog>
+                        </> :
+                        <>
+                            <Dialog
+                                actions={actionTour}
+                                modal={false}
+                                bodyStyle={{ padding: 0, width: '100%' }}
+                                contentStyle={isMobile ? customContentStyle : ""}
+                                open={this.state.tourSeatsModal}
+                                onRequestClose={() => { }/*this.tourSeatsModalShow*/}
+                            >
+                                {
+                                    TourSeatsModalContent(this, pseudoTableHeaderArray, tableElementsWidth, isErrorBlock, textPageAgencyProfile.tourSeatsModalContent)
+                                }
+                            </Dialog>
+                        </>
                 }
-             
+
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
                 <Collapse isOpen={this.state.collapse}>
                     <div className="tourSettingsBody">
@@ -1266,12 +1287,12 @@ class AgencyProfileTourClass extends React.Component {
                                         <label htmlFor="newTourAttractions" className="d-md-block d-none col-2">{textPage.newTourAttractions.floatingLabelText}:</label>
                                         <div className="d-flex col-md-4 col-12 p-0" key={element.departurePoint.point}>
                                             <LocationSearchInput address={element.departurePoint && element.departurePoint.point !== "" ? element.departurePoint.point : ''}
-                                             changeCity={(id, value, extraData) => { 
-                                                let tourSave = this.state.tourSave;
-                                                tourSave.local[index].departurePoint = {point: value, lat: extraData.location.lat, long: extraData.location.long};
-                                                this.setState({ tourSave: tourSave })
-                                             }}
-                                             classDropdown="searchDropdownDriverTour" id="newTourAttractions" classInput="w-100" classDiv='w-100' />
+                                                changeCity={(id, value, extraData) => {
+                                                    let tourSave = this.state.tourSave;
+                                                    tourSave.local[index].departurePoint = { point: value, lat: extraData.location.lat, long: extraData.location.long };
+                                                    this.setState({ tourSave: tourSave })
+                                                }}
+                                                classDropdown="searchDropdownDriverTour" id="newTourAttractions" classInput="w-100" classDiv='w-100' />
                                         </div>
                                         <p className=" d-md-block d-none m-0 col-md-6 col-5">{textPage.newTourAttractions.description}</p>
                                     </div>
@@ -1279,7 +1300,7 @@ class AgencyProfileTourClass extends React.Component {
                                         <label htmlFor="attractionsAlongTheRoute" className="d-md-block d-none col-2">{textPage.attractionsAlongTheRoute.floatingLabelText}:</label>
                                         <div className="d-flex col-md-4 col-12 p-0" key={element.points.length}>
                                             <LocationSearchInput address='' changeCity={(id, value, extraData) => { this.handleChange(value, "attractionsAlongTheRoute", { number: index, location: extraData.location }) }}
-                                             classDropdown="searchDropdownDriverTour" id="attractionsAlongTheRoute" classInput="w-100" classDiv='w-100'/>
+                                                classDropdown="searchDropdownDriverTour" id="attractionsAlongTheRoute" classInput="w-100" classDiv='w-100' />
                                         </div>
                                         <p className=" d-md-block d-none m-0 col-md-6 col-5">{textPage.attractionsAlongTheRoute.description}</p>
                                     </div>
@@ -1331,13 +1352,13 @@ class AgencyProfileTourClass extends React.Component {
                                             </label>
                                         </div>
                                         <div className="tourContentEveryday d-flex flex-md-row flex-column  align-items-md-center align-items-start col-md-4 col-10 p-0 mb-0">
-                                            <label htmlFor="newTourEveryday" onClick={() => { this.state.tourSave.daily = true; this.setState({ tourSave: this.state.tourSave }); }} className="mt-xl-0 mt-lg-0 mt-md-0 mt-3 pr-2">{textPage.schedule.newTourEveryday}</label>                                          
+                                            <label htmlFor="newTourEveryday" onClick={() => { this.state.tourSave.daily = true; this.setState({ tourSave: this.state.tourSave }); }} className="mt-xl-0 mt-lg-0 mt-md-0 mt-3 pr-2">{textPage.schedule.newTourEveryday}</label>
                                             <FormControl className="d-flex flex-wrap col-md-4 col-12 p-0 mt-2">
                                                 <Select
                                                     value={this.state.tourSave.time}
                                                     className="dropdownClass"
                                                     style={{ width: "100%", display: this.state.tourSave.daily ? "" : "none" }}
-                                                    onChange={(event, index, value)=>{
+                                                    onChange={(event, index, value) => {
                                                         let obj = document.querySelectorAll('.dropdownClass');
                                                         obj[0].classList.remove("errorColor");
                                                         obj[1].classList.remove("errorColor");
@@ -1362,13 +1383,13 @@ class AgencyProfileTourClass extends React.Component {
                                         <div className="openMultipleDatepicker d-md-flex d-block flex-column justify-content-center ml-1 col-md-8 col-12 mb-0 p-0">
                                             <label htmlFor="newTourDatepicker" onClick={() => { this.state.tourSave.daily = false; this.setState({ tourSave: this.state.tourSave }); }} className="mb-0 mr-2">{textPage.schedule.newTourDatepicker}</label>
                                             <div className="d-flex flex-md-row flex-column  align-items-md-center align-items-start">
-                                                <span style={{ display: !this.state.tourSave.daily ? "block" : "none", maxHeight: '40px', width: '100%' }} className="newTourDatepickerSpan" onClick={this.calendarModalShow}>{textPage.schedule.selectDates}</span>                                               
+                                                <span style={{ display: !this.state.tourSave.daily ? "block" : "none", maxHeight: '40px', width: '100%' }} className="newTourDatepickerSpan" onClick={this.calendarModalShow}>{textPage.schedule.selectDates}</span>
                                                 <FormControl className="d-flex flex-wrap col-md-4 col-12 p-0 mt-2">
                                                     <Select
                                                         value={this.state.tourSave.time}
                                                         className="dropdownClass"
                                                         style={{ width: "100%", display: !this.state.tourSave.daily ? "" : "none" }}
-                                                        onChange={(event, index, value)=>{
+                                                        onChange={(event, index, value) => {
                                                             let obj = document.querySelectorAll('.dropdownClass');
                                                             obj[0].classList.remove("errorColor");
                                                             obj[1].classList.remove("errorColor");
@@ -1437,17 +1458,17 @@ class AgencyProfileTourClass extends React.Component {
                                             let obj = document.getElementById('newTourPrice');
                                             obj.classList.remove("errorColor");
                                             this.setState({ tourSave: { ...this.state.tourSave, price: e.currentTarget.value } });
-                                        }} />                                  
+                                        }} />
                                     <FormControl className="d-flex flex-wrap col-md-4 col-12 p-0 mt-2">
                                         <Select
                                             value={this.state.tourSave.currency}
                                             className="dropdownClass"
-                                            onChange={(event, index, value)=>{
+                                            onChange={(event, index, value) => {
                                                 let obj = document.querySelectorAll('dropdownClass');
-                                                if(obj[2]){
+                                                if (obj[2]) {
                                                     obj[2].classList.remove("errorColor");
                                                 }
-                                                
+
                                                 this.setState({ tourSave: { ...this.state.tourSave, currency: event.target.value } })
                                             }}
                                         >
@@ -1456,16 +1477,16 @@ class AgencyProfileTourClass extends React.Component {
                                             )}
                                         </Select>
                                     </FormControl>
-                                    
+
                                 </div>
                             </div>
                             <div className="paddingL10 d-flex flex-row align-items-md-center align-items-start">
                                 <label className="d-md-block d-none col-2 "></label>
-                                <label htmlFor={"isPricePerPersonCheckbox"} style={{marginBottom: 0}}>{"Цена за место"}</label>
-                                <Checkbox checked={this.state.tourSave.isPricePerPerson} id={"isPricePerPersonCheckbox"} onChange={()=>{let tourSave = this.state.tourSave; tourSave.isPricePerPerson = !(tourSave.isPricePerPerson); this.setState({tourSave: tourSave})}}/>
+                                <label htmlFor={"isPricePerPersonCheckbox"} style={{ marginBottom: 0 }}>{"Цена за место"}</label>
+                                <Checkbox checked={this.state.tourSave.isPricePerPerson} id={"isPricePerPersonCheckbox"} onChange={() => { let tourSave = this.state.tourSave; tourSave.isPricePerPerson = !(tourSave.isPricePerPerson); this.setState({ tourSave: tourSave }) }} />
                                 <p className=" d-md-block d-none m-0 col-md-6 col-5">{"Если не выбрано, то предполагается цена за весь тур."}</p>
                             </div>
-                            
+
                             <div className="paddingL10 d-flex flex-md-row flex-column align-items-md-center align-items-start">
                                 <label htmlFor="newTourPeople" className="d-md-block d-none col-2">{textPage.additionalInformation.newTourPeople}:</label>
                                 <input id="newTourPeople" className="d-md-block d-none col-md-4 col-12" type="number"
@@ -1482,16 +1503,16 @@ class AgencyProfileTourClass extends React.Component {
                                     value={this.state.tourSave.daysNumber} onChange={(e) => {
                                         let obj = document.getElementById('daysNumber');
                                         obj.classList.remove("errorColor");
-                                        
-                                        this.setState({ tourSave: { ...this.state.tourSave, daysNumber: e.currentTarget.value }})
-                                        
+
+                                        this.setState({ tourSave: { ...this.state.tourSave, daysNumber: e.currentTarget.value } })
+
                                     }
                                     } />
                             </div>
-                            
-                            
-                            <ExcursionIncludesBlock that={this} translation={textPageAgencyProfile.excursionIncludesBlock}/>
-                            
+
+
+                            <ExcursionIncludesBlock that={this} translation={textPageAgencyProfile.excursionIncludesBlock} />
+
                             {
                                 //ниже лежат блоки с флагами - directions, categories, tags
                             }
@@ -1499,21 +1520,21 @@ class AgencyProfileTourClass extends React.Component {
                                 <div className="tourContentTitle d-flex align-items-center col-2 p-0">
                                     <p className="mb-0">{textPageAgencyProfile.tourClassification}</p>
                                 </div>
-                                <div className="d-flex flex-md-row flex-column w-100">                             
-                                    <label className="d-md-block d-none col-2 ">{textPage.additionalInformation.directions.floatingLabelText}:</label>                                   
+                                <div className="d-flex flex-md-row flex-column w-100">
+                                    <label className="d-md-block d-none col-2 ">{textPage.additionalInformation.directions.floatingLabelText}:</label>
                                     <FormControl className="col-md-4 col-12 p-0">
-                                        <Select 
+                                        <Select
                                             value={this.state.tourSave.directionId}
-                                            onChange={(event, index, value)=>{
+                                            onChange={(event, index, value) => {
                                                 this.setState({ tourSave: { ...this.state.tourSave, directionId: event.target.value } })
                                             }}
-                                            style={{width: '100%'}}
+                                            style={{ width: '100%' }}
                                             className="dropdownClass "
                                         >
-                                           <MenuItem value={textPage.directionsValue} disabled>{textPage.directionsValue}</MenuItem>
+                                            <MenuItem value={textPage.directionsValue} disabled>{textPage.directionsValue}</MenuItem>
                                             {this.state.directions.map((element, index) =>
                                                 <MenuItem value={element.id}>{element.local.name}</MenuItem>
-                                            )} 
+                                            )}
                                         </Select>
                                     </FormControl>
                                     <p className=" d-md-block d-none m-0 col-md-6 col-5">{textPage.additionalInformation.directions.description}</p>
@@ -1521,12 +1542,12 @@ class AgencyProfileTourClass extends React.Component {
                             </div>
 
                             <div className="paddingL10 d-flex flex-md-row flex-column align-items-md-center align-items-start">
-                                <label className="d-md-block d-none col-2 ">{textPage.additionalInformation.categories.floatingLabelText}:</label>                               
+                                <label className="d-md-block d-none col-2 ">{textPage.additionalInformation.categories.floatingLabelText}:</label>
                                 <FormControl className="col-md-4 col-12 p-0">
                                     <Select
                                         value={this.state.categoriesValue}
                                         onChange={(event, index, value) => { this.handleChange(event.target.value, "categories") }}
-                                        style={{width: '100%'}}
+                                        style={{ width: '100%' }}
                                         className="dropdownClass"
                                     >
                                         <MenuItem value={textPage.categoriesValue} disabled>{textPage.categoriesValue}</MenuItem>
@@ -1555,12 +1576,12 @@ class AgencyProfileTourClass extends React.Component {
                             </div>
 
                             <div className="paddingL10 d-flex flex-md-row flex-column align-items-md-center align-items-start">
-                                <label className="d-md-block d-none col-2 ">{textPage.additionalInformation.tags.floatingLabelText}:</label>                               
+                                <label className="d-md-block d-none col-2 ">{textPage.additionalInformation.tags.floatingLabelText}:</label>
                                 <FormControl className="col-md-4 col-12 p-0">
-                                    <Select 
+                                    <Select
                                         className="dropdownClass"
-                                        style={{width: '100%'}}
-                                        onChange={(event, index, value)=>{
+                                        style={{ width: '100%' }}
+                                        onChange={(event, index, value) => {
                                             this.handleChange(event.target.value, "tags")
                                         }}
                                     >
@@ -1587,7 +1608,7 @@ class AgencyProfileTourClass extends React.Component {
                                         </Chip>
                                     )}
                                 </div>
-                            </div>                        
+                            </div>
                             {
                                 //ниже лежат блоки с фотками
                             }
@@ -1597,21 +1618,21 @@ class AgencyProfileTourClass extends React.Component {
                                 </div>
                                 <div className="d-flex flex-md-row flex-column w-100">
                                     <div className=" col-xl-2 col-lg-2 col-md-2 col-12">
-                                    <label id="imageLabel" >{textPage.additionalInformation.uploadPhoto}:</label>
-                                    <label id="imageLabelError" className="imageLabelError" style={{ visibility: 'hidden' }} >{textPage.photos.imageLabelError}</label>
-                                </div>
-                                    <div className="tourPhotoMiniContainer d-flex flex-wrap">
-                                    <div className="addPhotoTourLabel">
-                                        <label htmlFor="addCarFile" ></label>
-                                        <input type="file" id="addCarFile" style={{ display: "none" }} multiple onChange={(e) => { this._handleImageChange(e, 'image') }} />
+                                        <label id="imageLabel" >{textPage.additionalInformation.uploadPhoto}:</label>
+                                        <label id="imageLabelError" className="imageLabelError" style={{ visibility: 'hidden' }} >{textPage.photos.imageLabelError}</label>
                                     </div>
-                                    {this.state.tourSave.image.map((element, index) =>
-                                        <div className="position-relative" >
-                                            <img src={element} className="tourPhotoMini" alt="add_car" onClick={() => { this.setState({ imagePreviewUrl: this.state.tourSave.image[index] }) }} />
-                                            <span onClick={() => { this.state.tourSave.image.splice(index, 1); this.state.tourSave.imageFiles.splice(index, 1); this.setState({ tourSave: { ...this.state.tourSave }, imagePreviewUrl: this.state.tourSave.image[0] }) }}></span>
+                                    <div className="tourPhotoMiniContainer d-flex flex-wrap">
+                                        <div className="addPhotoTourLabel">
+                                            <label htmlFor="addCarFile" ></label>
+                                            <input type="file" id="addCarFile" style={{ display: "none" }} multiple onChange={(e) => { this._handleImageChange(e, 'image') }} />
                                         </div>
-                                    )}
-                                </div>
+                                        {this.state.tourSave.image.map((element, index) =>
+                                            <div className="position-relative" >
+                                                <img src={element} className="tourPhotoMini" alt="add_car" onClick={() => { this.setState({ imagePreviewUrl: this.state.tourSave.image[index] }) }} />
+                                                <span onClick={() => { this.state.tourSave.image.splice(index, 1); this.state.tourSave.imageFiles.splice(index, 1); this.setState({ tourSave: { ...this.state.tourSave }, imagePreviewUrl: this.state.tourSave.image[0] }) }}></span>
+                                            </div>
+                                        )}
+                                    </div>
                                 </div>
                             </div>
                             <div className="paddingL10 addPhotoTour d-flex flex-md-row flex-column align-items-start mt-3">
@@ -1680,20 +1701,21 @@ class AgencyProfileTourClass extends React.Component {
                                 <div className="filledCard d-flex flex-column p-0">
                                     <div className="filledCardInformation d-flex flex-column" style={{ position: 'relative' }}>
                                         <div className="filledCardInformationNameCar d-flex d-flex justify-content-end w-100 align-items-center">
-
-                                            <label className="cardInformationNameCarIcon"></label>
-                                            <div className="filledCardInformationMenu" style={{height: '130px'}}>
-                                                <p className="filledCardInformationDeleteCar" onClick={() => this.destroy(element)}>{textPage.filledCardInformationMenu.deleteTour}</p>
-                                                <p className="filledCardInformationNameCarEdit" onClick={() => this.toggle(element, { collapse: true })}>{textPage.filledCardInformationMenu.tourEdit}</p>
-                                                <p className="filledCardInformationNameCarEdit" onClick={() => this.changeActive(element)}>{element.onWork ? textPage.filledCardInformationMenu.tourDeactivate : textPage.filledCardInformationMenu.tourActivate}</p>
-                                                <p className="filledCardInformationNameCarEdit" onClick={()=>this.tourSeatsModalShow(element)}>{textPageAgencyProfile.seatsModalLabel}</p>
+                                            <div className="filledCardInformationNameCarDiv">
+                                                <label className="cardInformationNameCarIcon"></label>
+                                                <div className="filledCardInformationMenu" style={{ height: '130px' }}>
+                                                    <p className="filledCardInformationDeleteCar" onClick={() => this.destroy(element)}>{textPage.filledCardInformationMenu.deleteTour}</p>
+                                                    <p className="filledCardInformationNameCarEdit" onClick={() => this.toggle(element, { collapse: true })}>{textPage.filledCardInformationMenu.tourEdit}</p>
+                                                    <p className="filledCardInformationNameCarEdit" onClick={() => this.changeActive(element)}>{element.onWork ? textPage.filledCardInformationMenu.tourDeactivate : textPage.filledCardInformationMenu.tourActivate}</p>
+                                                    <p className="filledCardInformationNameCarEdit" onClick={() => this.tourSeatsModalShow(element)}>{textPageAgencyProfile.seatsModalLabel}</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="filledCardImg" onClick={()=> this.toggle(element, { collapse: true })}>
                                         <img src={element.blockListImage && element.blockListImage.url ? requests.serverAddress + element.blockListImage.url : ''} className="img-fluid" alt="imgCar" width="100%" height="100%" />
                                     </div>
-                                    <div className="cardInformationType d-flex flex-column">
+                                    <div className="cardInformationType d-flex flex-column" style={{/*paddingBottom: 0*/ borderBottom: '1px solid', borderColor: '#666666'}}>
                                         <p> {this.selectTourName(element)}</p>
                                         {
                                             /*
@@ -1707,32 +1729,41 @@ class AgencyProfileTourClass extends React.Component {
                                             </div>
                                             */
                                         }
-                                        <div className="d-flex flex-row">
-                                            <div className="d-flex col-6 p-0">Тур на сайте</div>
-                                            <div className="d-flex col-6 p-0"></div>
+                                        
+                                    </div>
+                                    <div className="cardInformationType d-flex flex-column p-0" /*style={{paddingTop: 0, paddingBottom: 0}}*/>
+                                        <div className="d-flex flex-row" style={{height: '40px'}}>
+                                            <div className="d-flex col-6 cardHelpButtonBlocks agencyButtonTextStyle">Тур на сайте</div>
+                                            <div className="d-flex flex-row col-6 cardHelpButtonBlocks">
+                                            {
+                                                element.local.map((loc, index)=>{
+                                                    
+                                                    console.log(loc);
+                                                    console.log(element);
+                                                    if(loc.slug.length>0){
+                                                        //return(<button>{requests.frontendAddress+'/'+element.countryISO+'-'+loc.langISOAuto+'/tours/'+loc.slug}</button>)
+                                                        return (
+                                                            <Link style={{margin: '0 auto'}} to={'/'+element.countryISO+'-'+loc.langISOAuto+'/tours/'+loc.slug} target='_blank'>{loc.language}</Link>
+                                                        )
+                                                    }
+                                                    else{
+                                                        return(<React.Fragment/>)
+                                                    }
+                                                })
+                                            }
+                                            </div>
                                         </div>
                                         <div className="d-flex flex-row">
-                                            <div className="d-flex col-6 p-0">Таблица мест</div>
-                                            <div className="d-flex col-6 p-0"></div>
+                                            <div className="d-flex col-6 cardHelpButtonBlocks agencyButtonTextStyle">Таблица мест</div>
+                                            <div className="d-flex col-6 p-0 agencyButtonStyle justify-content-center ">
+                                                <button className="w-100" onClick={() => this.tourSeatsModalShow(element)}>
+                                                    <div className="agencyCalendarButton" style={{margin: '0 auto'}}></div>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                     <div className="d-flex flex-row">
-                                    {
-                                        element.local.map((loc, index)=>{
-                                            debugger;
-                                            console.log(loc);
-                                            console.log(element);
-                                            if(loc.slug.length>0){
-                                                //return(<button>{requests.frontendAddress+'/'+element.countryISO+'-'+loc.langISOAuto+'/tours/'+loc.slug}</button>)
-                                                return (
-                                                    <Link to={'/'+element.countryISO+'-'+loc.langISOAuto+'/tours/'+loc.slug} target='_blank'>{loc.language}</Link>
-                                                )
-                                            }
-                                            else{
-                                                return(<React.Fragment/>)
-                                            }
-                                        })
-                                    }
+                                    
                                     </div>
                                 </div>
                             </div>

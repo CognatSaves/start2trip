@@ -203,7 +203,13 @@ class DriverProfileTripSettingsTourClass extends React.Component {
 
                                                     let obj = document.getElementById('guideHourPrice');
                                                     obj.classList.remove("errorColor");
-                                                    this.setState({ guideHourPrice: e.currentTarget.value });
+                                                    let floatValue = parseFloat(e.currentTarget.value)
+                                                    if(floatValue>=0){
+                                                        this.setState({ guideHourPrice: floatValue });
+                                                    }
+                                                    else{
+                                                        this.setState({ guideHourPrice: 0 });
+                                                    }
                                                 }}
                                             />
                                             <input id="guideHourPrice" className="d-md-block d-none mr-1" type="number"
@@ -211,7 +217,13 @@ class DriverProfileTripSettingsTourClass extends React.Component {
 
                                                     let obj = document.getElementById('guideHourPrice');
                                                     obj.classList.remove("errorColor");
-                                                    this.setState({ guideHourPrice: e.currentTarget.value });
+                                                    let floatValue = parseFloat(e.currentTarget.value)
+                                                    if(floatValue>=0){
+                                                        this.setState({ guideHourPrice: floatValue });
+                                                    }
+                                                    else{
+                                                        this.setState({ guideHourPrice: 0 });
+                                                    }
                                                 }} />
                                             <FormControl className="" style={{minWidth: '100px'}}>
                                                 <Select 

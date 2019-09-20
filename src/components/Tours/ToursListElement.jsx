@@ -46,7 +46,7 @@ class ToursListElementClass extends React.Component {
         let seats = element.seats
         
         let location = null;
-        debugger;
+        
         location = element.tourlocalization.points.map((el,index)=>{
             let pointName = el.point.split(" ");
             if((element.tourlocalization.points.length-1) === index){
@@ -106,7 +106,7 @@ class ToursListElementClass extends React.Component {
                             <div className="placesList_info_position_textStyle">{element.tagsArray.map((tag, tagIndex) => <text>{this.props.findTagName(tag) + (element.tagsArray.length - 1 > tagIndex ? "," : "") + " "}</text>)}</div>
                         </div> */}
                         <div className="d-flex placesList_info_position placesList_info_position_loc pt-1">
-                            <div className="placesList_info_position_textStyle">{location.map((el,index)=>el)}</div>
+                            <div className="placesList_info_position_textStyle">{location.map((el,index)=>(el+" "))}</div>
                         </div>
 
                     </div>
