@@ -198,6 +198,7 @@ class ToursListClass extends React.Component {
         sortedArray = this.placesSort(/*[...this.props.placesState.placesList]*/tagFilteredArray, this.props.toursState.sortMenuValue);
         // }
         let sortSelectedPlacesArray = [];
+        let numberOfElements = 0;
         if (sortedArray.length > 0) {
 
             sortedArray.map((element, index) => {
@@ -213,8 +214,6 @@ class ToursListClass extends React.Component {
                 sortSelectedPlacesArray.push(result)
             });
 
-            // sortSelectedPlacesArray = this.sortArrayByCriterion(sortSelectedPlacesArray, this.props.storeState.sortMenuValue)
-
             sortSelectedPlacesArray = sortSelectedPlacesArray.sort((c, d) => {
             if(c.isGood&&d.isGood){
                 let a = new Date(c.date.getFullYear(),c.date.getMonth(),c.date.getDate());
@@ -228,6 +227,7 @@ class ToursListClass extends React.Component {
                 let arrayPrice = [];
                 sortSelectedPlacesArray.map((el, index) => {
                     if (el.isGood) {
+                        numberOfElements++
                         let idIndex = this.getCurrencies(el.element.currency, "id")
                         let usd = el.element.price / this.props.storeState.currencies[idIndex].costToDefault
                         usd = Math.ceil(usd)
@@ -241,6 +241,7 @@ class ToursListClass extends React.Component {
 
 
         }
+        
         let selectedPlaces = sortSelectedPlacesArray.slice((this.props.toursState.page - this.props.toursState.showPages) * this.props.toursState.pagesMenuValue,
             this.props.toursState.page * this.props.toursState.pagesMenuValue);
 
@@ -284,8 +285,8 @@ class ToursListClass extends React.Component {
                             : <React.Fragment />
                     }
                 </div>
-                <Manipulator number={sortedArray.length} page={this.props.placesState.page} setPage={this.setPageFunc}
-                    elementsNumber={this.props.placesState.pagesMenuValue} showMorePages={this.showMorePages}
+                <Manipulator number={numberOfElements} page={this.props.toursState.page} setPage={this.setPageFunc}
+                    elementsNumber={this.props.toursState.pagesMenuValue} showMorePages={this.showMorePages}
                 />
             </>
 

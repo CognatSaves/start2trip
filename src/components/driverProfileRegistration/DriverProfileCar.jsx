@@ -808,11 +808,13 @@ class DriverProfileCarClass extends React.Component {
                             <div className="filledCard d-flex flex-column p-0">
                                 <div className="filledCardInformation d-flex flex-column" style={{ position: 'relative' }}>
                                     <div className="filledCardInformationNameCar d-flex d-flex justify-content-end w-100 align-items-center">
-                                        <label className="cardInformationNameCarIcon"></label>
-                                        <div className="filledCardInformationMenu">
-                                            <p className="filledCardInformationDeleteCar" onClick={() => this.destroy(element)}>{textPage.filledCardInformationMenu.deleteCar}</p>
-                                            <p className="filledCardInformationNameCarEdit" onClick={() => this.toggle(element)}>{textPage.filledCardInformationMenu.carEdit}</p>
-                                            <p className="filledCardInformationNameCarEdit" onClick={() => this.changeActive(element)}>{element.onWork ? textPage.filledCardInformationMenu.carDeactivate : textPage.filledCardInformationMenu.carActivate}</p>
+                                        <div className="filledCardInformationNameCarDiv">
+                                            <label className="cardInformationNameCarIcon"></label>
+                                            <div className="filledCardInformationMenu">
+                                                <p className="filledCardInformationDeleteCar" onClick={() => this.destroy(element)}>{textPage.filledCardInformationMenu.deleteCar}</p>
+                                                <p className="filledCardInformationNameCarEdit" onClick={() => this.toggle(element)}>{textPage.filledCardInformationMenu.carEdit}</p>
+                                                <p className="filledCardInformationNameCarEdit" onClick={() => this.changeActive(element)}>{element.onWork ? textPage.filledCardInformationMenu.carDeactivate : textPage.filledCardInformationMenu.carActivate}</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

@@ -3,6 +3,7 @@ import { SET_TOURS_LIST,SET_TOUR_PANEL_SELECTED_ELEMENT,
      CHANGE_PANEL_FIXED_CLASS,SET_MAX_PRICE,
      SET_TEMP_PRICE_PART_TOUR,SET_PRICE_PART_TOUR
     } from './ActionTours';
+    import {SET_PAGE, SET_MORE_PAGES_SHOW,} from './ActionPlaces'
 
 const initialState = {
     page: 1,
@@ -76,6 +77,20 @@ export const ToursReduser = (state = initialState, action)=>{
             };
             newState.pricePart = action.pricePart;
             newState.valueMenu = action.valueMenu;
+            return newState;
+        }
+        case SET_PAGE: {
+            console.log("Set page placeReduser");
+            console.log(action);
+            let newState = {...state};
+            newState.page=action.page;
+            newState.showPages=1;
+            return newState;
+        }
+        case SET_MORE_PAGES_SHOW:{
+            let newState={...state};
+            newState.showPages=newState.showPages+1;
+            newState.page=newState.page+1;
             return newState;
         }
         default: return state;

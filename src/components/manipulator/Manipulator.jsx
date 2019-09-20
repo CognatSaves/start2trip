@@ -34,7 +34,7 @@ class ManipulatorClass extends React.Component {
             }
             return result;
         }
-
+        debugger
         let maxPage = Math.ceil(this.props.number / this.props.elementsNumber);
         let numberArray = numbersCalculation(maxPage, this.props.page);
         let spaceWidthSize = ["", "", "", "", "0 4%", "0 2%", "0 1%", "0 1%"];
@@ -52,7 +52,12 @@ class ManipulatorClass extends React.Component {
 
         return (
             <>
-                <div className="drivers_block_manipulator" style={{ display: this.props.page > 0 && maxPage > 0 ? 'flex' : 'none' }}>
+            {this.props.page > 0 && maxPage > 0 ? 
+            <div style={{ display: (this.props.page > 0 && maxPage > 0 ? 'none' : 'flex')}}/>
+            :
+            <div style={{ height: (this.props.page > 0 && maxPage > 0 ? '0' : '90px')}} />
+            }
+                <div className="drivers_block_manipulator" style={{ display: (this.props.page > 0 && maxPage > 0 ? 'flex' : 'none')}}>
                     {
                         this.props.page !== maxPage ?
                             <button className="driversBlockManipulator_button" onClick={() => { this.props.showMorePages(); setTimeout(() => { window.scrollBy(0, 400) }, 1) }} disabled={showMoreButtonDisabled}>
