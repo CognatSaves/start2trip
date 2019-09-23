@@ -98,7 +98,7 @@ class ToursClass extends React.Component {
             throw data.error;
           }
           else {
-            
+            debugger
             console.log('tour request data', data);
             that.props.dispatch(setToursList(data.tours, data.categories, data.tags, data.directions, data.daysNumber,data.departurePoint));
 
@@ -147,6 +147,9 @@ class ToursClass extends React.Component {
       successVisibility: value
     })
   }
+  componentDidUpdate(){
+    this.sendRequestFunc();
+  }
 
   render() {
     function findSelectedDirectionName(directions, selectedDirection) {
@@ -162,7 +165,7 @@ class ToursClass extends React.Component {
 
     console.log("Tours render", this.props);
 
-    this.sendRequestFunc();
+   
     /*
     console.log(this.props);
     console.log(this.state);
@@ -181,7 +184,7 @@ class ToursClass extends React.Component {
     let name = findSelectedDirectionName(this.props.placesState.directions, selectedDirection);
     let helmet = this.props.storeState.languageTextMain.helmets.places;
 
-    let a = this.props.placesState.placesList;
+    // let a = this.props.placesState.placesList;
     let directions = [];
     let directionName;
     let countryISO;

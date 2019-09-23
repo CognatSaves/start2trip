@@ -11,6 +11,7 @@ import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIn
 import Header from '../header/Header';
 import PlaceInfo from '../PlaceDescription/PlaceInfo.jsx';
 import PlacePhotoShow from '../PlaceDescription/PlacePhotoShow.jsx';
+import PlaceTravelBlock from '../PlaceDescription/PlaceTravelBlock';
 import PlaceProgramm from '../PlaceDescription/PlaceProgramm.jsx';
 import PlacePhotos from '../PlaceDescription/PlacePhotos.jsx';
 import RouteTravelBlock from '../RouteDescription/RouteTravelBlock';
@@ -57,7 +58,7 @@ class ToureDescriptionClass extends React.Component {
             showPages: 1,
         }
 
-        
+
     }
     showMorePages = () => {
         this.setState({
@@ -103,7 +104,7 @@ class ToureDescriptionClass extends React.Component {
 
             let slugArray = this.state.newTour.local.slugArray;
             for (let i = 0; i < slugArray.length; i++) {
-                if (this.props.storeState.languages[this.props.storeState.activeLanguageNumber].id === slugArray[i].language && slugArray[i].slug.length>0) {
+                if (this.props.storeState.languages[this.props.storeState.activeLanguageNumber].id === slugArray[i].language && slugArray[i].slug.length > 0) {
                     this.setState({
                         selectedLanguage: this.props.storeState.activeLanguageNumber,
 
@@ -113,7 +114,7 @@ class ToureDescriptionClass extends React.Component {
             }
             //надо что-то сделать, если не нашли          
         }
-        if(!this.state.newTour.local && !this.state.isRefreshExist){
+        if (!this.state.newTour.local && !this.state.isRefreshExist) {
             this.setState({
                 isRefreshExist: true,
                 isRefreshing: true,
@@ -155,7 +156,7 @@ class ToureDescriptionClass extends React.Component {
                     })
 
         }
-        let textInfo = this.props.storeState.languageTextMain.placeDescription;
+        let textInfo = this.props.storeState.languageTextMain.tourDescription;
         let simularPlaceBlockId = topBlockId + '4';
         let helmet = this.props.storeState.languageTextMain.helmets.routeDescription;
         let info = null;
@@ -165,9 +166,15 @@ class ToureDescriptionClass extends React.Component {
         let shareUrl = document.URL;
         let title = null;
         let exampleImage = null;
+        let points = null;
         if (this.props.storeState.languages.length > 0 && this.state.newTour.local !== undefined) {
             title = this.state.newTour.local.name;
             exampleImage = this.state.newTour.tour.blockListImage.url
+            points = this.state.newTour.local.points
+            if(points[0].point !== this.state.newTour.local.departurePoint.point){
+                points.unshift(this.state.newTour.local.departurePoint)
+            }
+
         }
         return (
             <>
@@ -181,19 +188,19 @@ class ToureDescriptionClass extends React.Component {
                             <meta property="og:url" content={document.URL} /*тут нужна подгрузка корректного слага */ />
                             <meta property="og:title" content={this.state.newTour.local.name + helmet.basic.title} />
                             <meta property="og:description" content={this.state.newTour.local.name + helmet.basic.description} />
-                        <script type="application/ld+json">
-                    {`
+                            <script type="application/ld+json">
+                                {`
                       {
                         "@context": "https://schema.org",
                         "@type": "Place",
                         "url": `+ JSON.stringify(document.URL) + `,
                         "aggregateRating": {
                           "@type": "AggregateRating",
-                          "ratingValue": `+JSON.stringify(this.state.newTour.tour.rating)+`,
-                          "reviewCount": `+JSON.stringify(this.state.newTour.tour.commentNumber)+`
+                          "ratingValue": `+ JSON.stringify(this.state.newTour.tour.rating) + `,
+                          "reviewCount": `+ JSON.stringify(this.state.newTour.tour.commentNumber) + `
                         },
-                        "name":`+JSON.stringify(this.state.newTour.local.name)+`,
-                        "description":`+JSON.stringify(info)+`,
+                        "name":`+ JSON.stringify(this.state.newTour.local.name) + `,
+                        "description":`+ JSON.stringify(info) + `,
                         "address":[
                         {
                          "@type": "PostalAddress",
@@ -204,7 +211,7 @@ class ToureDescriptionClass extends React.Component {
                         "photo":[
                         {
                         "@type": "ImageObject",
-                        "thumbnail":"https://tripfer.com`+this.state.newTour.tour.blockListImage.url+`"
+                        "thumbnail":"https://tripfer.com`+ this.state.newTour.tour.blockListImage.url + `"
                         }
                         ]
                       }
@@ -268,7 +275,9 @@ class ToureDescriptionClass extends React.Component {
 
                                             <div className="placeDescription_block d-flex flex-column p-0" id={topBlockId + "1"}>
                                                 <div className="placeDescription_fragmentName" style={{ marginBottom: "15px" }} >{textInfo.placeDescription.variantsArray[0]}</div>
-
+                                                {/* <div key={JSON.stringify(this.state.newTour.local.endPlace)}>
+                                                    <PlaceTravelBlock id={topBlockId + "3"} place={{ ...this.state.newTour.local, country: this.state.newTour.country, capital: this.state.newTour.capital }} />
+                                                </div> */}
                                                 <PlaceProgramm id={topBlockId + "1"} tagsArray={[]} place={{ ...this.state.newTour.local/*, tags: this.state.newTour.tour.tags, rating: this.state.newTour.tour.rating, comments: this.state.newTour.tour.commentNumber*/ }} />
                                             </div>
                                             {isMobileOnly ? <>
@@ -351,7 +360,7 @@ class ToureDescriptionClass extends React.Component {
                                                 <PlacePhotos photoArray={this.state.newTour.tour.images}
                                                     showMask={(clickedImageIndex) => { this.setState({ isMaskVisible: true, clickedImageIndex: clickedImageIndex }) }} />
                                             </div>
-                                            <RouteTravelBlock points={this.state.newTour.local.points} id={topBlockId + "3"} />
+                                            <RouteTravelBlock points={points} id={topBlockId + "3"} isTours={true}  textInfo={textInfo} daily={this.state.newTour.tour.daily} dateWork={this.state.newTour.tour.calendary}/>
                                             <div className="placeDescription_block flex-column" id={simularPlaceBlockId} style={{ display: this.state.newTour.additionalTours.length > 0 ? 'flex' : 'none' }}>
                                                 <SimularToursBlock outerBlock={simularPlaceBlockId} tours={this.state.newTour.additionalTours} tags={this.state.newTour.tags} fragmentName={textInfo.placeDescription.variantsArray[3]} priseDisplay={"none"} />
                                             </div>

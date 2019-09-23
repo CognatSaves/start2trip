@@ -12,7 +12,21 @@ const tourDescription = {
         findText: 'Найти',
         menuItemDaysValue:"Количество дней",
         menuItemDays:"ден."
-    }
+    },
+    placeTravelBlock:{
+        fragmentName: 'Как добраться',
+        startPointPlaceholder: 'Введите место отправления',
+        startDate:'Дата отправления',
+        lookAvailable: 'Заказать тур ',
+        goToEdit: 'Перейти к редактированию',
+        route: 'Ваш маршрут',
+        time: 'Время в пути',
+        length: 'Длина пути'
+    },
+    placeDescription:{
+        variantsArray:["Описание","Фотографии","Как добраться","Вас может заинтересовать","Отзывы"]
+    },
+    share:"Поделиться",
 }
 
 export default tourDescription;

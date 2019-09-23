@@ -34,7 +34,6 @@ class ManipulatorClass extends React.Component {
             }
             return result;
         }
-        debugger
         let maxPage = Math.ceil(this.props.number / this.props.elementsNumber);
         let numberArray = numbersCalculation(maxPage, this.props.page);
         let spaceWidthSize = ["", "", "", "", "0 4%", "0 2%", "0 1%", "0 1%"];

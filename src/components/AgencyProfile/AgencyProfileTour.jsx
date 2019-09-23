@@ -770,7 +770,6 @@ class AgencyProfileTourClass extends React.Component {
         this.setState({ calendarModal: !this.state.calendarModal });
     };
     tourSeatsModalShow = (element) => {
-        debugger;
         let now = new Date();
         let year = now.getUTCFullYear();
         let month = now.getUTCMonth();
