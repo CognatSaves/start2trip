@@ -96,7 +96,7 @@ class RouteTravelBlockClass extends React.Component {
         if (points.length > 0) {
 
         }
-        let textInfo = this.props.storeState.languageTextMain.placeDescription.placeTravelBlock;
+        let textInfo = this.props.textInfo.placeTravelBlock;
 
         console.log(this.props.driversState);
         return (
@@ -130,7 +130,26 @@ class RouteTravelBlockClass extends React.Component {
                                     + (this.state.isDateHighlighted ? 'placesDescription_travelBlock_highlighted' : '')}
                                     onClick={() => { if (this.state.isDateHighlighted) { this.setState({ isDateHighlighted: false }) } }}>
                                     <div className="placesDescription_travelBlock_icon placesDescription_calendary" />
-                                    <DatePicker hintText={textInfo.startDate} minDate={new Date()}
+                                    <DatePicker hintText={textInfo.startDate} minDate={new Date()} shouldDisableDate={(date) => {
+                                        let flag = true;
+                                        if(!this.props.daily && this.props.isTours){
+                                            for (let i = 0; i < this.props.dateWork.length; i++) {
+                                                let newDate = new Date(this.props.dateWork[i])
+                                                let newDay = newDate.getDate();
+                                                let newMonth = newDate.getMonth();
+                                                let newYear = newDate.getFullYear();
+                                                let day = date.getDate();
+                                                let month = date.getMonth();
+                                                let year = date.getFullYear()
+                                                if (newDay === day && newMonth === month && newYear === year) {
+                                                    flag = false
+                                                }
+                                            }
+                                        }else{
+                                         flag = false;
+                                        }
+                                        return flag
+                                    }}
                                         onChange={(e, date) => { this.setState({ date: this.props.globalhistory.convertDateToUTC(date) }); }} className="routeDescrDate" />
                                 </div>
                             </div>
@@ -141,9 +160,11 @@ class RouteTravelBlockClass extends React.Component {
                                     <text style={{ margin: "auto", fontSize: '16px' }} >{textInfo.lookAvailable}</text>
                                 </button>
                             </div>
-                            <div className="d-flex col-12 " >
-                                <text className="routeTravelBlock_change" onClick={() => this.lookAvailable({ noDate: true })}>{textInfo.goToEdit}</text>
-                            </div>
+                            {!this.props.isTours &&
+                                <div className="d-flex col-12 " >
+                                    <text className="routeTravelBlock_change" onClick={() => this.lookAvailable({ noDate: true })}>{textInfo.goToEdit}</text>
+                                </div>
+                            }
                         </div>
                     </div>
                     {isMobileOnly ?

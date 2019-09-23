@@ -156,7 +156,7 @@ class ToureDescriptionClass extends React.Component {
                     })
 
         }
-        let textInfo = this.props.storeState.languageTextMain.placeDescription;
+        let textInfo = this.props.storeState.languageTextMain.tourDescription;
         let simularPlaceBlockId = topBlockId + '4';
         let helmet = this.props.storeState.languageTextMain.helmets.routeDescription;
         let info = null;
@@ -170,7 +170,6 @@ class ToureDescriptionClass extends React.Component {
         if (this.props.storeState.languages.length > 0 && this.state.newTour.local !== undefined) {
             title = this.state.newTour.local.name;
             exampleImage = this.state.newTour.tour.blockListImage.url
-            debugger
             points = this.state.newTour.local.points
             if(points[0].point !== this.state.newTour.local.departurePoint.point){
                 points.unshift(this.state.newTour.local.departurePoint)
@@ -361,7 +360,7 @@ class ToureDescriptionClass extends React.Component {
                                                 <PlacePhotos photoArray={this.state.newTour.tour.images}
                                                     showMask={(clickedImageIndex) => { this.setState({ isMaskVisible: true, clickedImageIndex: clickedImageIndex }) }} />
                                             </div>
-                                            <RouteTravelBlock points={points} id={topBlockId + "3"} />
+                                            <RouteTravelBlock points={points} id={topBlockId + "3"} isTours={true}  textInfo={textInfo} daily={this.state.newTour.tour.daily} dateWork={this.state.newTour.tour.calendary}/>
                                             <div className="placeDescription_block flex-column" id={simularPlaceBlockId} style={{ display: this.state.newTour.additionalTours.length > 0 ? 'flex' : 'none' }}>
                                                 <SimularToursBlock outerBlock={simularPlaceBlockId} tours={this.state.newTour.additionalTours} tags={this.state.newTour.tags} fragmentName={textInfo.placeDescription.variantsArray[3]} priseDisplay={"none"} />
                                             </div>

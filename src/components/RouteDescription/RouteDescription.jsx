@@ -346,7 +346,7 @@ class RouteDescriptionClass extends React.Component {
                                                 <PlacePhotos photoArray={this.state.newRoute.route.images}
                                                     showMask={(clickedImageIndex) => { this.setState({ isMaskVisible: true, clickedImageIndex: clickedImageIndex }) }} />
                                             </div>
-                                            <RouteTravelBlock points={this.state.newRoute.local.points} id={topBlockId + "3"} />
+                                            <RouteTravelBlock points={this.state.newRoute.local.points} id={topBlockId + "3"} textInfo={textInfo} />
                                             <div className="placeDescription_block flex-column" id={simularPlaceBlockId} style={{ display: this.state.newRoute.additionalRoutes.length > 0 ? 'flex' : 'none' }}>
 
                                                 <SimularRouteBlock outerBlock={simularPlaceBlockId} routes={this.state.newRoute.additionalRoutes} fragmentName={textInfo.placeDescription.variantsArray[3]} priseDisplay={"none"} />
