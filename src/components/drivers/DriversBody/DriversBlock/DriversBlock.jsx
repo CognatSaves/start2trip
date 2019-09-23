@@ -14,7 +14,7 @@ import Stars from '../../../stars/Stars';
 import Manipulator from '../../../manipulator/Manipulator';
 import Cookies from 'universal-cookie';
 import MobileFilter from '../DriversProperties/MobileFilter/MobileFilter'
-
+import tourGuide from '../../../media/tour-guide.svg';
 const cookies = new Cookies();
 
 class DriversBlockClass extends React.Component {
@@ -239,7 +239,7 @@ class DriversBlockClass extends React.Component {
                         }
                       </div>
                     </div>
-                    <div className="driversBlock_driverInfoBlock_element d-flex">
+                    <div className="driversBlock_driverInfoBlock_element d-flex" style={{position: 'relative'}}>
                       <div className="driversBlock_driverCard_photo" style={{ background: "url(" + requests.serverAddressImg + element.avatar + ") no-repeat" }} />
                       <div className="d-flex  driversBlock_driverCard_driverInfo">
                         <Link to={linkAddress} className="driversBlock_driversInfo_name">{element.name}</Link>
@@ -253,6 +253,13 @@ class DriversBlockClass extends React.Component {
                           )
                         }
                       </div>
+                      {
+                        element.guide && 
+                        <div className="d-flex flex-column driverGuideBlock">                     
+                          <div className="driverGuideImage"/>                     
+                          <div className="driverGuideText">{textInfo.guide}</div>
+                        </div>
+                      }                     
                     </div>
                     <div class="starsd"><Stars key={element.rating} value={element.rating} commentNumber={element.comments + " " + textInfo.comments} valueDisplay={true} commentNumberDisplay={true} /></div>
                   </div>

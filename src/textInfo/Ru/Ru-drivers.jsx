@@ -17,6 +17,7 @@ const drivers = {
         carCapacity: 'мест(а)',
         comments: 'отзыва(ов)',
         commentary: 'Стоимость окончательная. Топливо включено.',
+        guide: 'Гид',
         book: 'ЗАБРОНИРОВАТЬ'
     },
     driversProperties:{
