@@ -63,7 +63,7 @@ class ToursClass extends React.Component {
     }
     let country = cookies.get('country', { path: '/' });
     let lang = cookies.get('userLang', { path: '/' });
-
+    debugger
     let shouldSendRequest = !this.state.isRefreshExist &&
       (
         this.state.selectedDirection !== (selectedDirection) ||
@@ -85,8 +85,15 @@ class ToursClass extends React.Component {
 
       //let country = cookies.get('country', { path: '/' });
       let that = this;
-      debugger
-      axios.get(requests.getTours + "?country=" + country + "&lang=" + lang + (selectedDirection ? "&slug=" + selectedDirection : '')+"&departurePoint="+this.state.departurePoint+"&duration="+this.state.duration+"&departureDate="+this.state.departureDate+"&isFirst="+isFirst)
+      let pointSelect = [];
+      if(this.props.toursState.departurePoint.length>0){
+        pointSelect = this.props.toursState.departurePoint.map(x=>x.point.indexOf(this.state.departurePoint));
+        pointSelect=this.props.toursState.departurePoint[pointSelect]
+      }else{
+        pointSelect=this.state.departurePoint
+      }
+       
+      axios.get(requests.getTours + "?country=" + country + "&lang=" + lang + (selectedDirection ? "&slug=" + selectedDirection : '')+"&departurePoint="+pointSelect+"&duration="+this.state.duration+"&departureDate="+this.state.departureDate+"&isFirst="+isFirst)
         .then(response => {
           return response.data;
         })
@@ -96,9 +103,14 @@ class ToursClass extends React.Component {
             throw data.error;
           }
           else {
-            
+            debugger
             console.log('tour request data', data);
-            that.props.dispatch(setToursList(data.tours, data.categories, data.tags, data.directions, data.daysNumber,data.departurePoint));
+            if(data.tours.length>0){
+              that.props.dispatch(setToursList(data.tours, data.categories, data.tags, data.directions, data.daysNumber,data.departurePoint));
+            }else{
+              that.props.dispatch(setToursList([], data.categories, data.tags, data.directions,[],[]));
+            }
+           
 
           }
           that.setState({
