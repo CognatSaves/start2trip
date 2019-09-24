@@ -337,7 +337,8 @@ const initialState = {
         setActiveCurrDispatchFunction(selectedId);//that.props.dispatch(setActiveCurr(index));
         cookies.set('userCurr', that.props.storeState.currencies[selectedId].ISO, { path: '/', expires: date });
         that.setLocals('userCurr', selectedId)
-    }
+    },
+
 };
 
 

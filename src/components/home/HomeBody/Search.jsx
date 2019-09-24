@@ -100,7 +100,7 @@ export default class LocationSearchInput extends React.Component {
                   defaultValue={this.props.address}
                   {...getInputProps({
                     placeholder: !this.state.inFocus ? this.props.placeholder : "",
-                    className: this.props.classInput/* ? this.props.classInput : ''*/,
+                    className: this.props.classInput /* ? this.props.classInput : ''*/,
                   })}
                   {...opts}
                 />

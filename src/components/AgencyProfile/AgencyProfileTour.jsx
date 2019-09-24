@@ -32,7 +32,6 @@ const cookies = new Cookies();
 const TourSeatsModalContent = (that, pseudoTableHeaderArray, tableElementsWidth, isErrorBlock,
      translation,selectActiveDays,textPageMonthArray) => {
     function dateLineConverter(value){
-        //debugger;
         let elems = value.split('-'); //value = year-month-day
         return elems[2]+"."+elems[1]+"."+elems[0];
     }
@@ -58,7 +57,6 @@ const TourSeatsModalContent = (that, pseudoTableHeaderArray, tableElementsWidth,
         })
     }
     console.log(that, pseudoTableHeaderArray, tableElementsWidth, isErrorBlock);
-    debugger;
     if(that.state.tourSeatsModal){
         selectActiveDays(that.state.selectedMonth, that.state.selectedYear);
     }
@@ -266,7 +264,8 @@ class AgencyProfileTourClass extends React.Component {
                     entryTickets: false,
                     food: false,
                     accommodation: false//предоставление проживания
-                }
+                },
+                tourLanguages: []
             },
 
             collapse: false,
@@ -279,7 +278,7 @@ class AgencyProfileTourClass extends React.Component {
             tourSeatsSelectedDays: [],
             tourSeatsBlocks: [],
             tourSeatsErrorElementArray: [],
-
+            unselectedTourLanguages: [],
             currencies: [...profile.currencies],
 
             directions: [...profile.directions],
@@ -418,7 +417,8 @@ class AgencyProfileTourClass extends React.Component {
                     entryTickets: false,
                     food: false,
                     accommodation: false//предоставление проживания
-                }
+                },
+                tourLanguages: []
 
             };
             this.setState({
@@ -426,7 +426,8 @@ class AgencyProfileTourClass extends React.Component {
                 languageTourOpen: 0,
                 file: '',
                 imagePreviewUrl: '',
-                tourId: ""
+                tourId: "",
+                unselectedTourLanguages: this.props.storeState.adminLanguages
             });
         }
         else {
@@ -486,6 +487,17 @@ class AgencyProfileTourClass extends React.Component {
             for (let i = 0; i < element.calendary.length; i++) {
                 calendary[i] = new Date(element.calendary[i]);
             }
+            let selectedLanguages = [];let unselectedLanguages=[];
+            for(let i=0;i<this.props.storeState.adminLanguages.length; i++){
+                let viewedLanguage = this.props.storeState.adminLanguages[i];
+                let value = element.tourLanguages.indexOf(viewedLanguage.id);
+                if(value!==-1){
+                    selectedLanguages.push(viewedLanguage);
+                }
+                else{
+                    unselectedLanguages.push(viewedLanguage);
+                }
+            }
             let tourSave = {
                 local: [...local],
                 calendary: calendary,
@@ -514,7 +526,8 @@ class AgencyProfileTourClass extends React.Component {
                     entryTickets: element.entryTickets,
                     food: element.food,
                     accommodation: element.accommodation//предоставление проживания
-                }
+                },
+                tourLanguages: selectedLanguages
 
             };
             this.setState({
@@ -522,7 +535,8 @@ class AgencyProfileTourClass extends React.Component {
                 languageTourOpen: 0,
                 file: '',
                 imagePreviewUrl: '',
-                tourId: element.id
+                tourId: element.id,
+                unselectedTourLanguages: unselectedLanguages
             });
         }
     }
@@ -647,18 +661,18 @@ class AgencyProfileTourClass extends React.Component {
 
             if (tourSave.imageFiles.length === 0) {
                 obj = document.getElementById('imageLabelError');
-                obj.style.visibility = 'visible';
+                obj.style.display = 'block';
                 //obj.classList.add("errorColor");
                 result = false;
             }
             if (tourSave.mainImage.length === 0) {
                 obj = document.getElementById('mainImageLabelError');
-                obj.style.visibility = 'visible';
+                obj.style.display = 'block';
                 result = false;
             }
             if (tourSave.blockListImage.length === 0) {
                 obj = document.getElementById('blockListImageLabelError');
-                obj.style.visibility = 'visible';
+                obj.style.display = 'block';
                 result = false;
             }
 
@@ -701,7 +715,11 @@ class AgencyProfileTourClass extends React.Component {
             tourForm.append('food', tourSave.excursionIncludes.food);
             tourForm.append('accommodation', tourSave.excursionIncludes.accommodation);
 
-
+            let selectedLanguagesIndexArray = [];
+            for(let i=0; i<tourSave.tourLanguages.length; i++){
+                //selectedLanguagesIndexArray.push(tourSave.tourLanguages[i].id);
+            }
+            
             for (let i = 0; i < tourSave.imageFiles.length; i++) {
                 tourForm.append('image', tourSave.imageFiles[i]);
             }
@@ -864,6 +882,22 @@ class AgencyProfileTourClass extends React.Component {
                 this.setState({ tourSave: tourSave });
                 break;
             }
+            case "tourLanguages":{
+                
+                console.log(this,value, name, params);
+                let selectedLanguages = tourSave.tourLanguages;
+                let unselectedLanguages = this.state.unselectedTourLanguages;
+                let valueIndex = unselectedLanguages.indexOf(value);
+                if(valueIndex!==-1){
+                    unselectedLanguages.splice(valueIndex,1);
+                }
+                selectedLanguages.push(value);
+                tourSave.tourLanguages = selectedLanguages;
+                this.setState({
+                    tourSave: tourSave,
+                    unselectedTourLanguages: unselectedLanguages
+                });               
+            }
             default:
         }
     };
@@ -891,10 +925,10 @@ class AgencyProfileTourClass extends React.Component {
                 this.setState({ tourSave: { ...tourSave, tagsUnselected: this.tagsUnselected, tagsSelected: this.tagsSelected } });
                 break;
             }
-
             case "calendary": {
+                
                 this.calendary = this.state.tourSave.calendary;
-                const calendaryToDelete = this.calendary.map((chip) => chip.key).indexOf(element.key);
+                const calendaryToDelete = this.calendary.map((chip) => chip).indexOf(element);
                 this.calendary.splice(calendaryToDelete, 1);
                 this.setState({ tourSave: { ...tourSave, calendary: this.calendary } });
                 break;
@@ -905,6 +939,22 @@ class AgencyProfileTourClass extends React.Component {
                 this.setState({ tourSave: { ...tourSave } });
                 break;
             }
+            case "tourLanguages":{
+                
+                console.log(this,element, name, params);
+                let selectedLanguages = tourSave.tourLanguages;
+                let unselectedLanguages = this.state.unselectedTourLanguages;
+                let valueIndex = selectedLanguages.indexOf(element);
+                if(valueIndex!==-1){
+                    selectedLanguages.splice(valueIndex,1);
+                }
+                unselectedLanguages.push(element);
+                tourSave.tourLanguages = selectedLanguages;
+                this.setState({
+                    tourSave: tourSave,
+                    unselectedTourLanguages: unselectedLanguages
+                }); 
+            }
             default:
         }
     };
@@ -913,15 +963,15 @@ class AgencyProfileTourClass extends React.Component {
         let obj;
         if (type === 'image') {
             obj = document.getElementById('imageLabelError');
-            obj.style.visibility = 'hidden';
+            obj.style.display = 'none';
         }
         if (type === 'mainImage') {
             obj = document.getElementById('mainImageLabelError');
-            obj.style.visibility = 'hidden';
+            obj.style.display = 'none';
         }
         if (type === 'blockListImage') {
             obj = document.getElementById('blockListImageLabelError');
-            obj.style.visibility = 'hidden';
+            obj.style.display = 'none';
         }
         let fullfile = e.target.files;
         let imageCounter = 0;
@@ -1401,21 +1451,34 @@ class AgencyProfileTourClass extends React.Component {
                                     <div className="d-flex flex-md-row flex-column align-items-md-center align-items-start">
                                         <label htmlFor="newTourAttractions" className="d-md-block d-none col-2">{textPage.newTourAttractions.floatingLabelText}:</label>
                                         <div className="d-flex col-md-4 col-12 p-0" key={element.departurePoint.point}>
-                                            <LocationSearchInput address={element.departurePoint && element.departurePoint.point !== "" ? element.departurePoint.point : ''}
+                                            
+                                            {
+                                                /*
+                                                <label className="textFieldDefaultLabelStyles">Some text</label>
+                                                */
+                                            }
+                                            {
+                                                //TODO переводы
+                                            }
+                                            
+                                            <LocationSearchInput address={element.departurePoint && element.departurePoint.point !== "" ? element.departurePoint.point : ''} placeholder={"Точка отправления"}
                                                 changeCity={(id, value, extraData) => {
                                                     let tourSave = this.state.tourSave;
                                                     tourSave.local[index].departurePoint = { point: value, lat: extraData.location.lat, long: extraData.location.long };
                                                     this.setState({ tourSave: tourSave })
                                                 }}
-                                                classDropdown="searchDropdownDriverTour" id="newTourAttractions" classInput="w-100" classDiv='w-100' />
+                                                classDropdown="searchDropdownDriverTour" id="newTourAttractions" classInput="w-100 searchInputClass" classDiv='w-100' />
                                         </div>
                                         <p className=" d-md-block d-none m-0 col-md-6 col-5">{textPage.newTourAttractions.description}</p>
                                     </div>
                                     <div className="d-flex flex-md-row flex-column align-items-md-center align-items-start">
                                         <label htmlFor="attractionsAlongTheRoute" className="d-md-block d-none col-2">{textPage.attractionsAlongTheRoute.floatingLabelText}:</label>
                                         <div className="d-flex col-md-4 col-12 p-0" key={element.points.length}>
+                                            {
+                                                //TODO переводы placeholder
+                                            }
                                             <LocationSearchInput address='' changeCity={(id, value, extraData) => { this.handleChange(value, "attractionsAlongTheRoute", { number: index, location: extraData.location }) }}
-                                                classDropdown="searchDropdownDriverTour" id="attractionsAlongTheRoute" classInput="w-100" classDiv='w-100' />
+                                                classDropdown="searchDropdownDriverTour" id="attractionsAlongTheRoute" classInput="w-100 searchInputClass" classDiv='w-100' placeholder={"Выберите точки маршрута"}/>
                                         </div>
                                         <p className=" d-md-block d-none m-0 col-md-6 col-5">{textPage.attractionsAlongTheRoute.description}</p>
                                     </div>
@@ -1517,7 +1580,6 @@ class AgencyProfileTourClass extends React.Component {
                                                         )}
                                                     </Select>
                                                 </FormControl>
-
                                             </div>
                                         </div>
                                     </div>
@@ -1527,10 +1589,9 @@ class AgencyProfileTourClass extends React.Component {
                                 <div className="d-flex flex-wrap flex-row align-items-start col-md-8 col-12 p-0 mb-2">
 
                                     {this.state.tourSave.calendary.map((element, index) => {
-                                        let temp = element;
-                                        let day = temp.getDate();
-                                        let month = temp.getMonth();
-                                        let year = temp.getFullYear();
+                                        let day = element.getDate() < 10 ? "0" + element.getDate() : element.getDate();
+                                        let month = element.getMonth() + 1 < 10 ? "0" + (element.getMonth() + 1) : element.getMonth() + 1;
+                                        let year = element.getFullYear();
                                         let newDate = day + "." + month + "." + year;
                                         return (
                                             <Chip
@@ -1575,6 +1636,13 @@ class AgencyProfileTourClass extends React.Component {
                                             this.setState({ tourSave: { ...this.state.tourSave, price: e.currentTarget.value } });
                                         }} />
                                     <FormControl className="d-flex flex-wrap col-md-4 col-12 p-0">
+                                        {
+                                            //TODO переводы
+                                        }
+
+                                        {isMobileOnly ?
+                                            <InputLabel>{/*textPage.basicInfoLanguage.label*/'Валюта'}</InputLabel>
+                                        : <div />}
                                         <Select
                                             value={this.state.tourSave.currency}
                                             className="dropdownClass"
@@ -1595,9 +1663,12 @@ class AgencyProfileTourClass extends React.Component {
 
                                 </div>
                             </div>
+                            {
+                                //TODO переводы
+                            }
                             <div className="paddingL10 d-flex flex-row align-items-md-center align-items-start">
                                 <label className="d-md-block d-none col-2 "></label>
-                                <label htmlFor={"isPricePerPersonCheckbox"} style={{ marginBottom: 0 }}>{"Цена за место"}</label>
+                                <label htmlFor={"isPricePerPersonCheckbox"} style={{ margin: 'auto 0' }}>{"Цена за место"}</label>
                                 <Checkbox checked={this.state.tourSave.isPricePerPerson} id={"isPricePerPersonCheckbox"} onChange={() => { let tourSave = this.state.tourSave; tourSave.isPricePerPerson = !(tourSave.isPricePerPerson); this.setState({ tourSave: tourSave }) }} />
                                 <p className=" d-md-block d-none m-0 col-md-6 col-5">{"Если не выбрано, то предполагается цена за весь тур."}</p>
                             </div>
@@ -1627,7 +1698,47 @@ class AgencyProfileTourClass extends React.Component {
 
 
                             <ExcursionIncludesBlock that={this} translation={textPageAgencyProfile.excursionIncludesBlock} />
-
+                            
+                            <div className="paddingL10 d-flex flex-md-row flex-column align-items-md-center align-items-start">
+                                <label className="d-md-block d-none col-2 " style={{margin: 'auto 0'}}>{/*textPage.additionalInformation.categories.floatingLabelText*/"Языки, на которых будет проходить экскурсия"}:</label>
+                                <FormControl className="col-md-4 col-12 p-0">
+                                        {
+                                            //TODO переводы
+                                        }
+                                        
+                                        <Select
+                                            value={/*this.state.tourSave.directionId*/'Языки туров'}
+                                            onChange={(event, index, value) => {
+                                                
+                                                this.handleChange(event.target.value, "tourLanguages");
+                                            }}
+                                            style={{ width: '100%' }}
+                                            className="dropdownClass "
+                                        >
+                                            <MenuItem value={textPage.directionsValue} disabled>{textPage.directionsValue}</MenuItem>
+                                            {this.state.unselectedTourLanguages.map((element, index) =>
+                                                <MenuItem value={element}>{element.languageName}</MenuItem>
+                                            )}
+                                        </Select>
+                                    </FormControl>
+                                <p className=" d-md-block d-none col-md-6 col-5" style={{margin: 'auto 0'}}>{/*textPage.additionalInformation.directions.description*/"Здесь осуществляется установка языка, на котором проходит тур."}</p>
+                            </div>
+                            <div className="paddingL10 d-flex justify-content-end col-12 p-0">
+                                <div className="d-flex flex-wrap col-md-10 col-12 p-0 mb-2">
+                                    {this.state.tourSave.tourLanguages.map((element, index) =>
+                                        <Chip
+                                            key={element}
+                                            onRequestDelete={() => { this.handleRequestDelete(element, "tourLanguages") }}
+                                            labelStyle={{ color: "#000" }}
+                                            labelColor="#f60"
+                                            textColor="#304269"
+                                            className="chipClass"
+                                        >
+                                            {element.languageName}
+                                        </Chip>
+                                    )}
+                                </div>
+                            </div>
                             {
                                 //ниже лежат блоки с флагами - directions, categories, tags
                             }
@@ -1636,8 +1747,15 @@ class AgencyProfileTourClass extends React.Component {
                                     <p className="mb-0">{textPageAgencyProfile.tourClassification}</p>
                                 </div>
                                 <div className="d-flex flex-md-row flex-column w-100">
-                                    <label className="d-md-block d-none col-2 ">{textPage.additionalInformation.directions.floatingLabelText}:</label>
+                                    <label className="d-md-block d-none col-2 " style={{margin: 'auto 0'}}>{textPage.additionalInformation.directions.floatingLabelText}:</label>
                                     <FormControl className="col-md-4 col-12 p-0">
+                                        {
+                                            //TODO переводы
+                                        }
+
+                                        {isMobileOnly ?
+                                            <InputLabel>{/*textPage.basicInfoLanguage.label*/'Направление (Регион)'}</InputLabel>
+                                        : <div />}
                                         <Select
                                             value={this.state.tourSave.directionId}
                                             onChange={(event, index, value) => {
@@ -1652,12 +1770,12 @@ class AgencyProfileTourClass extends React.Component {
                                             )}
                                         </Select>
                                     </FormControl>
-                                    <p className=" d-md-block d-none m-0 col-md-6 col-5">{textPage.additionalInformation.directions.description}</p>
+                                    <p className=" d-md-block d-none col-md-6 col-5" style={{margin: 'auto 0'}}>{textPage.additionalInformation.directions.description}</p>
                                 </div>
                             </div>
 
                             <div className="paddingL10 d-flex flex-md-row flex-column align-items-md-center align-items-start">
-                                <label className="d-md-block d-none col-2 ">{textPage.additionalInformation.categories.floatingLabelText}:</label>
+                                <label className="d-md-block d-none col-2 " style={{margin: 'auto 0'}}>{textPage.additionalInformation.categories.floatingLabelText}:</label>
                                 <FormControl className="col-md-4 col-12 p-0">
                                     <Select
                                         value={this.state.categoriesValue}
@@ -1691,16 +1809,18 @@ class AgencyProfileTourClass extends React.Component {
                             </div>
 
                             <div className="paddingL10 d-flex flex-md-row flex-column align-items-md-center align-items-start">
-                                <label className="d-md-block d-none col-2 ">{textPage.additionalInformation.tags.floatingLabelText}:</label>
+                                <label className="d-md-block d-none col-2 " style={{margin: 'auto 0'}}>{textPage.additionalInformation.tags.floatingLabelText}:</label>
                                 <FormControl className="col-md-4 col-12 p-0">
+
                                     <Select
+                                        value={this.state.tagsValue}
                                         className="dropdownClass"
                                         style={{ width: '100%' }}
                                         onChange={(event, index, value) => {
                                             this.handleChange(event.target.value, "tags")
                                         }}
-                                    >
-                                        <MenuItem value={textPage.tagsValue} disabled>{textPage.tagsValue}</MenuItem>
+                                    >                                                                     
+                                         <MenuItem value={textPage.tagsValue} disabled>{textPage.tagsValue}</MenuItem>                                      
                                         {this.state.tourSave.tagsUnselected.map((element, index) =>
                                             <MenuItem value={element.key}>{element.value}</MenuItem>
                                         )}
@@ -1724,6 +1844,9 @@ class AgencyProfileTourClass extends React.Component {
                                     )}
                                 </div>
                             </div>
+                            
+                            
+
                             {
                                 //ниже лежат блоки с фотками
                             }
@@ -1734,7 +1857,7 @@ class AgencyProfileTourClass extends React.Component {
                                 <div className="d-flex flex-md-row flex-column w-100">
                                     <div className=" col-xl-2 col-lg-2 col-md-2 col-12">
                                         <label id="imageLabel" >{textPage.additionalInformation.uploadPhoto}:</label>
-                                        <label id="imageLabelError" className="imageLabelError" style={{ visibility: 'hidden' }} >{textPage.photos.imageLabelError}</label>
+                                        <label id="imageLabelError" className="imageLabelError" style={{ display: 'none' }} >{textPage.photos.imageLabelError}</label>
                                     </div>
                                     <div className="tourPhotoMiniContainer d-flex flex-wrap">
                                         <div className="addPhotoTourLabel">
@@ -1753,7 +1876,7 @@ class AgencyProfileTourClass extends React.Component {
                             <div className="paddingL10 addPhotoTour d-flex flex-md-row flex-column align-items-start mt-3">
                                 <div className=" col-xl-2 col-lg-2 col-md-2 col-12">
                                     <label id="imageLabel" >{textPage.photos.mainImageLabel}:</label>
-                                    <label id="mainImageLabelError" className="imageLabelError" style={{ visibility: 'hidden' }} >{textPage.photos.imageLabelError}</label>
+                                    <label id="mainImageLabelError" className="imageLabelError" style={{ display: 'none' }} >{textPage.photos.imageLabelError}</label>
                                 </div>
                                 <div className="tourPhotoMiniContainer d-flex flex-wrap">
 
@@ -1774,7 +1897,7 @@ class AgencyProfileTourClass extends React.Component {
                             <div className="paddingL10 addPhotoTour d-flex flex-md-row flex-column align-items-start mt-3">
                                 <div className=" col-xl-2 col-lg-2 col-md-2 col-12">
                                     <label id="imageLabel" >{textPage.photos.blockListLabel}:</label>
-                                    <label id="blockListImageLabelError" className="imageLabelError" style={{ visibility: 'hidden' }} >{textPage.photos.imageLabelError}</label>
+                                    <label id="blockListImageLabelError" className="imageLabelError" style={{ display: 'none' }} >{textPage.photos.imageLabelError}</label>
                                 </div>
                                 <div className="tourPhotoMiniContainer d-flex flex-wrap">
 

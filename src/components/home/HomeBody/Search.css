@@ -36,6 +36,11 @@
     color: black;
 }
 
+.searchInputClass::placeholder {
+    color: #cccccc;
+    font-size: 16px;
+    font-family: 'Roboto';
+}
 @media (max-width: 768px) {
     .searchInputDriverInformation {
         padding-left: 0px !important;

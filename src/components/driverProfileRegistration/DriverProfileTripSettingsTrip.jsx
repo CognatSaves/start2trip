@@ -224,7 +224,6 @@ class DriverProfileTripSettingsTripClass extends React.Component {
         this.applyChanges();
         event.preventDefault();
     }
-
     addCityRadius = () => {
         let newArrayCity = this.state.cityRadius;
         newArrayCity.push({ point: "", radius: "", lat: '', long: '' });
@@ -232,7 +231,6 @@ class DriverProfileTripSettingsTripClass extends React.Component {
             cityRadius: newArrayCity,
         })
     }
-
     deleteCityRadius = (index) => {
         let newArrayCity = this.state.cityRadius;
         newArrayCity.splice(index, 1);
@@ -289,7 +287,6 @@ class DriverProfileTripSettingsTripClass extends React.Component {
             badRequestTextVisibility: false
         })
     }
-
     calendarModalShow = () => {
         if (this.state.firstDate !== null) {
             // на случай если ввели только одно первое число 
@@ -306,7 +303,6 @@ class DriverProfileTripSettingsTripClass extends React.Component {
         }
 
     };
-
     handleRequestDelete = (element) => {
         this.dateTour = this.state.dateTour;
         const dateTourToDelete = this.dateTour.map((chip) => chip).indexOf(element);
@@ -314,7 +310,6 @@ class DriverProfileTripSettingsTripClass extends React.Component {
         this.setState({ dateTour: this.dateTour });
 
     }
-
     handleDayClick = (day, { selected }) => {
         const { dateTour } = this.state;
         if (selected) {
@@ -327,7 +322,6 @@ class DriverProfileTripSettingsTripClass extends React.Component {
         }
         this.setState({ dateTour });
     }
-
     render() {
         console.log("Double RIP render");
         console.log(this.state);

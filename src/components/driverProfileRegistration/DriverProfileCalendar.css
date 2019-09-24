@@ -79,12 +79,12 @@
     overflow: hidden;
 }
 .multiLineInputClassAdditional{
+    height: 250px!important;
+    /*min-height: 200px!important;*/
+}
+.multiLineInputClassAdditional textarea{
     height: 200px!important;
     min-height: 200px!important;
-}
-.multiLineInputClassAdditional input{
-    height: 180px!important;
-    min-height: 180px!important;
 }
 .MuiSelect-icon{
     color: rgba(0, 0, 0, 0.5) !important;
