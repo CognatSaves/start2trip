@@ -44,6 +44,29 @@ const cookies = new Cookies();
 class ToureDescriptionClass extends React.Component {
     constructor(props) {
         super(props);
+        let getdate = props.globalReduser.findGetParameter("date");
+        let dateValue;
+
+        if (getdate) {
+            dateValue = props.globalReduser.getDateFromDateString(getdate);
+            let now = new Date(Date.now());
+            if (dateValue < now) {
+                
+                let day = dateValue.getDate(); let month = dateValue.getMonth(); let year = dateValue.getFullYear();
+                let daynow = now.getDate(); let monthnow = now.getMonth(); let yearnow = now.getFullYear();
+                if (day !== daynow || month !== monthnow || year !== yearnow) {
+                    dateValue = now;
+                    let address = document.location.origin + document.location.pathname;
+                    document.location.replace(address);
+                }
+            }
+            dateValue = props.globalReduser.convertDateToUTC(new Date(dateValue));
+
+        }
+        else {
+            dateValue = props.globalReduser.convertDateToUTC(new Date(Date.now()));
+        }
+        
         this.state = {
             isRefreshExist: false,
             isRefreshing: true,
@@ -56,6 +79,7 @@ class ToureDescriptionClass extends React.Component {
             clickedImageIndex: 0,
             page: 1,
             showPages: 1,
+            departureDate:dateValue,
         }
 
 
@@ -93,6 +117,24 @@ class ToureDescriptionClass extends React.Component {
             }, 2000
         )
     }
+    getCurrencies = (currency, criterion) => {
+        let idIndex = null
+        switch (criterion) {
+            case "id":
+                this.props.storeState.currencies.map((item, index) => {
+                    if (item.id.indexOf(currency) === 0) { idIndex = index }
+                })
+                break;
+            case "ISO":
+                this.props.storeState.currencies.map((item, index) => {
+                    if (item.ISO.indexOf(currency) === 0) { idIndex = index }
+                })
+                break;
+        }
+        return idIndex
+    }
+    
+
     render() {
 
         console.log('RouteDescription render', this.state, this.props);
@@ -176,6 +218,26 @@ class ToureDescriptionClass extends React.Component {
             }
 
         }
+        
+        let isoCurrencies = cookies.get('userCurr', { path: "/" })
+        let price = null
+        
+        if(this.props.storeState.currencies.length>0 && this.state.newTour.local !== undefined){
+        let idIndex = this.getCurrencies(this.state.newTour.tour.currency,"id")
+        let usd = this.state.newTour.tour.price / this.props.storeState.currencies[idIndex].costToDefault
+        if (isoCurrencies === "USD") {
+            let idIndex = this.getCurrencies("USD","ISO")
+            usd = Math.ceil(usd)
+            price = this.props.storeState.currencies[idIndex].symbol+" "+usd
+        } else {
+            let idIndex = this.getCurrencies(isoCurrencies,"ISO")
+            usd = usd *this.props.storeState.currencies[idIndex].costToDefault
+            usd = Math.ceil(usd)
+            price = this.props.storeState.currencies[idIndex].isLeft ?(this.props.storeState.currencies[idIndex].symbol+" "+usd):
+            (usd+" "+this.props.storeState.currencies[idIndex].symbol)
+        }
+    }
+
         return (
             <>
                 {
@@ -360,7 +422,9 @@ class ToureDescriptionClass extends React.Component {
                                                 <PlacePhotos photoArray={this.state.newTour.tour.images}
                                                     showMask={(clickedImageIndex) => { this.setState({ isMaskVisible: true, clickedImageIndex: clickedImageIndex }) }} />
                                             </div>
-                                            <RouteTravelBlock points={points} id={topBlockId + "3"} isTours={true}  textInfo={textInfo} daily={this.state.newTour.tour.daily} dateWork={this.state.newTour.tour.calendary}/>
+                                            <RouteTravelBlock points={points} id={topBlockId + "3"} isTours={true}  textInfo={textInfo} 
+                                            daily={this.state.newTour.tour.daily} departureDate={this.state.departureDate}
+                                            dateWork={this.state.newTour.tour.calendary} price={price}/>
                                             <div className="placeDescription_block flex-column" id={simularPlaceBlockId} style={{ display: this.state.newTour.additionalTours.length > 0 ? 'flex' : 'none' }}>
                                                 <SimularToursBlock outerBlock={simularPlaceBlockId} tours={this.state.newTour.additionalTours} tags={this.state.newTour.tags} fragmentName={textInfo.placeDescription.variantsArray[3]} priseDisplay={"none"} />
                                             </div>

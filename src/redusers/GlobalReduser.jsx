@@ -197,6 +197,7 @@ const initialState = {
         return result;
     },
     getDateFromDateString(dateString){
+        
         var items = dateString.split('-');
         
         let month = Number.parseInt(items[1])-1;

@@ -130,7 +130,7 @@ class RouteTravelBlockClass extends React.Component {
                                     + (this.state.isDateHighlighted ? 'placesDescription_travelBlock_highlighted' : '')}
                                     onClick={() => { if (this.state.isDateHighlighted) { this.setState({ isDateHighlighted: false }) } }}>
                                     <div className="placesDescription_travelBlock_icon placesDescription_calendary" />
-                                    <DatePicker hintText={textInfo.startDate} minDate={new Date()} shouldDisableDate={(date) => {
+                                    <DatePicker hintText={textInfo.startDate} defaultDate={this.props.isTours?new Date(this.props.departureDate) :new Date()} minDate={new Date()} shouldDisableDate={(date) => {
                                         let flag = true;
                                         if(!this.props.daily && this.props.isTours){
                                             for (let i = 0; i < this.props.dateWork.length; i++) {
@@ -156,13 +156,13 @@ class RouteTravelBlockClass extends React.Component {
                             <div className={"routeTravelBlock_element d-flex " + ((points.length + 1) % 2 === 0 ? 'col-12' : 'col-md-6 col-12')}>
                                 <button className="placesDescription_travelBlock_applyButton p-0"
                                     style={{/*marginBottom: '15px',*/ width: '100%', border: 'none', borderRadius: '5px' }}
-                                    onClick={() => this.lookAvailable()}>
-                                    <text style={{ margin: "auto", fontSize: '16px' }} >{textInfo.lookAvailable}</text>
+                                    onClick={() =>{if(!this.props.isTours){ this.lookAvailable()}}}>
+                                    <text style={{ margin: "auto", fontSize: '16px' }} >{textInfo.lookAvailable + (this.props.isTours?this.props.price:"")}</text>
                                 </button>
                             </div>
                             {!this.props.isTours &&
                                 <div className="d-flex col-12 " >
-                                    <text className="routeTravelBlock_change" onClick={() => this.lookAvailable({ noDate: true })}>{textInfo.goToEdit}</text>
+                                    <text className="routeTravelBlock_change" onClick={() =>{ this.lookAvailable({ noDate: true }) }}>{textInfo.goToEdit}</text>
                                 </div>
                             }
                         </div>

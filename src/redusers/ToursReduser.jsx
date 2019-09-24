@@ -21,6 +21,8 @@ const initialState = {
     pricePart:0,
     tempPricePart:0,
     valueMenu:0,
+    departurePoint:[],
+    daysNumber:[],
 }
 
 export const ToursReduser = (state = initialState, action)=>{
