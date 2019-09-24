@@ -37,7 +37,7 @@ const drivers = {
                 children: 'Children',
                 childrenProps: 'from 2 to 12 years',
                 cancel: 'Cancel',
-                priceWord: 'До(ENG)', //например, до 400$
+                priceWord: 'Before', //например, до 400$
                 done: 'Done'
             },
             from: 'from',

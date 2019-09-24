@@ -338,8 +338,8 @@ const driverProfileRegistration = {
                 payedByCard: 'Card payment',
                 payedByPartners: 'License fee charges',
                 payedForPeriod: 'Total for the period',
-                datePickerStart: 'Дата начала(ENG)',
-                datePickerEnd: 'Дата конца(ENG)'
+                datePickerStart: 'Start date',
+                datePickerEnd: 'End date'
             },
             valueTableText: [
                 'Transaction ID',

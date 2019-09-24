@@ -126,12 +126,12 @@ const helmets  = {
         
         },
         feedback:{
-            title: "Оставьте отзыв о Вашей поездке(ENG)",
-            description: "Оставьте отзыв о Вашей поездке(ENG)"
+            title: "Leave a review about your trip",
+            description: "Leave a review about your trip"
         },
         customerCancel: {
-            title: "Вы действительно хотите отказаться от поездки?(ENG)",
-            description: "Вы действительно хотите отказаться от поездки?(ENG)"
+            title: "Are you sure you want to cancel your trip?",
+            description: "Are you sure you want to cancel your trip?",
         }
     }
     export default helmets;

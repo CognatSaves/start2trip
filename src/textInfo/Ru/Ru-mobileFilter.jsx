@@ -11,7 +11,7 @@ let mobileFilter = {
    filter:"Фильтры",
    throwOff:"Сбросить",
    departureDate:"Дата отправления",
-   menuItemValue: 'Все туры(ENG)',
+   menuItemValue: 'Все туры',
 
 
 }

@@ -4,25 +4,25 @@ const agencyProfile = {
         loading: 'Loading'
     },
     agencyProfileBasicInformation:{
-        header: 'Редактировать профиль(ENG)',
+        header: 'Edit profile',
         organizationData: {
-            header: 'Данные организации(ENG)',
-            organizationName: 'Название организации(ENG)',
-            registrationNumber: 'Регистрационный номер(ENG)',
-            legalAddress: 'Юридический адрес(ENG)',
-            bankAccount: 'Расчётный счёт(ENG)',
-            bankCode: 'Код банка(ENG)',
-            bankAddress: 'Адрес банка(ENG)',
-            dataAbout: 'О себе(ENG)',
+            header: 'Organization Data',
+            organizationName: 'Organization Name',
+            registrationNumber: 'Registration number',
+            legalAddress: 'Legal address',
+            bankAccount: 'Payment account',
+            bankCode: 'Bank code',
+            bankAddress: 'Address of the bank',
+            dataAbout: 'About myself',
         },
         contactPerson: {
-            header: 'Данные контактного лица(ENG)',
-            firstName: 'Имя(ENG)',
-            lastName: 'Фамилия(ENG)',
-            workPhone: 'Рабочий телефон(ENG)',
-            basicInfoLanguageText: 'Выберите языки(ENG)',
+            header: 'Contact Details',
+            firstName: 'First name',
+            lastName: 'last name',
+            workPhone: 'Work phone',
+            basicInfoLanguageText: 'Choose languages',
         },
-        saveText: 'Сохранить Изменения(ENG)'
+        saveText: 'Save Changes'
     },
     agencyProfileAffiliateProgramm: {
         affiliateProgramsTitle: "Affiliate Program",
@@ -80,26 +80,26 @@ const agencyProfile = {
     },
     agencyProfileTour:{
         tourSeatsModalContent: {
-            tour: 'Тур(ENG)',
-            headerArray: ['День(ENG)', 'Mест свободно(ENG)', 'Mecт зaнятo(ENG)'],
-            calendaryInfo: 'В этом календаре кликабельными будут только выбранные Вами в настройках тура дни, при нажатии на любые другие ничего происходить не будет. Если их число ограничено, то они будут выбраны изначально.(ENG)',
-            saveChangesButton: 'Сохранить(ENG)',
-            closeWindow: 'Закрыть(ENG)'
+            tour: 'Tour',
+            headerArray: ['Day', 'Free place', 'Place Occupied'],
+            calendaryInfo: 'In this calendar, only the days selected by you in the tour settings will be clickable, nothing will happen when you click on any others. If their number is limited, they will be selected initially.',
+            saveChangesButton: 'Save',
+            closeWindow: 'Close'
         },
         excursionIncludesBlock: {
-            label: 'Стоимость экскурсии включает(ENG)',
-            hotelMeeting: 'Встреча в отеле(ENG)',
-            hotelDelivery: 'Доставка в отель(ENG)',
-            fare: 'Транспортные расходы(ENG)',
-            entryTickets: 'Входные билеты(ENG)',
-            food: 'Еда и напитки(ENG)',
-            accommodation: 'Проживание(ENG)'
+            label: 'Tour price includes',
+            hotelMeeting: 'Meeting at the hotel',
+            hotelDelivery: 'Hotel delivery',
+            fare: 'Fare',
+            entryTickets: 'Entry tickets',
+            food: 'Food and drink',
+            accommodation: 'Accommodation'
         },
-        daysNumber: 'Количество дней(ENG)',
-        tourClassification: 'Классификация тура(ENG)',
-        imagesLabel: 'Изображения(ENG)',
-        seatsModalLabel: 'Таблица мест(ENG)',
-        comments: 'отзывов(ENG)',
+        daysNumber: 'Number of days',
+        tourClassification: 'Tour classification',
+        imagesLabel: 'Images',
+        seatsModalLabel: 'Table of places',
+        comments: 'comments',
         tourOnSite: 'Tour on the site',
         seatsTable: 'Table of seats'
     }

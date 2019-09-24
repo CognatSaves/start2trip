@@ -5,11 +5,11 @@ const tourDescription = {
         createCommentString: "Rate this place"
     },
     tourInfo: {
-        headerText: 'Подобрать тур(ENG)',
-        searchPlaceholder: 'Место отправления(ENG)',
-        datePickerLabel: 'Дата отправления(ENG)',
-        menuItemValue: 'Все туры(ENG)',
-        findText: 'Найти(ENG)',
+        headerText: 'Pick up tour',
+        searchPlaceholder: 'Departure point',
+        datePickerLabel: 'Departure date',
+        menuItemValue: 'All tours',
+        findText: 'Search',
         menuItemDaysValue: "Days number",
         menuItemDays: "day"
     },
