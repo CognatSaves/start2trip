@@ -101,7 +101,15 @@ const agencyProfile = {
         seatsModalLabel: 'Таблица мест',
         comments: 'отзывов',
         tourOnSite: 'Тур на сайте',
-        seatsTable: 'Таблица мест'
+        seatsTable: 'Таблица мест',
+
+        departurePointPlaceholder: 'Точка отправления',
+        pointsPlaceholder: 'Выберите точки маршрута',
+        currencyPlaceholder: 'Валюта',
+        pricePerPersonPlaceholder: 'Цена за место',
+        pricePerPersonInfo: 'Если не выбрано, то предполагается цена за весь тур.',
+        tourLanguagesPlaceholder: 'Языки туров',
+        directionPlaceholder: 'Направление (Регион)'
     }
 }
 export default agencyProfile;
