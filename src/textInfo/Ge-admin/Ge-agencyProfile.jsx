@@ -83,9 +83,8 @@ const agencyProfile = {
             tour: 'Тур(GEO)',
             headerArray: ['День(GEO)', 'Mест свободно(GEO)', 'Mecт зaнятo(GEO)'],
             calendaryInfo: 'В этом календаре кликабельными будут только выбранные Вами в настройках тура дни, при нажатии на любые другие ничего происходить не будет. Если их число ограничено, то они будут выбраны изначально.(GEO)',
-            tableHeader: 'Таблица количества мест в выбранные дни(GEO)',
             saveChangesButton: 'Сохранить(GEO)',
-            closeWindow: 'Закрыть окно(GEO)'
+            closeWindow: 'Закрыть(GEO)'
         },
         excursionIncludesBlock: {
             label: 'Стоимость экскурсии включает(GEO)',
@@ -100,7 +99,9 @@ const agencyProfile = {
         tourClassification: 'Классификация тура(GEO)',
         imagesLabel: 'Изображения(GEO)',
         seatsModalLabel: 'Таблица мест(GEO)',
-        comments: 'отзывов(GEO)'
+        comments: 'отзывов(GEO)',
+        tourOnSite: 'ტური საიტზე',
+        seatsTable: 'ადგილების ცხრილი'
     }
 }
 export default agencyProfile;

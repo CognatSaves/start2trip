@@ -112,13 +112,13 @@ const home = {
             hours: 'h.',
             minutes: 'min.'
         },
-    pageNotFound: {
-        title: "Page not found",
-        text1: "We even searched on Mars,",
-        text2: "but didn’t find anything.",
-        text3: 'Try to change your search',
-        link: "Return to Homepage"
-    },
+        pageNotFound: {
+            title: "Page not found",
+            text1: "We even searched on Mars,",
+            text2: "but didn’t find anything.",
+            text3: 'Try to change your search',
+            link: "Return to Homepage"
+        },
     };
     
     export default home;

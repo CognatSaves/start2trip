@@ -67,3 +67,89 @@
     color: #666;
     font-size:14px;
 }
+.seatsModalMonthText{
+    color: #333;
+    font-weight: 600;
+    margin: auto 0;
+    font-size: 20px;
+}
+.seatsModalMonthMove {
+    padding: 0 10px;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.tableBlock::-webkit-scrollbar-button {
+    background-image:url('');
+    background-repeat:no-repeat;
+    width:5px;
+    height:0px
+    }
+    
+.tableBlock::-webkit-scrollbar-track {
+    background-color:rgb(240, 240, 240);
+    }
+    
+    .tableBlock::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    background-color:#ccc;
+    }
+    
+    .tableBlock::-webkit-scrollbar-thumb:hover{
+    background-color:rgb(240, 240, 240);
+    }
+    
+    .tableBlock::-webkit-resizer{
+    background-image:url('');
+    background-repeat:no-repeat;
+    width:4px;
+    height:0px
+    }
+    
+    .tableBlock::-webkit-scrollbar{
+    width: 4px;
+    }
+
+.saveButtonTourSeatsModal {
+    background-color: #f60;
+    color: #fff;
+}
+.closeButtonTourSeatsModal {
+    background-color: transparent;
+    color: #333;
+}
+.buttonTourSeatsModal{
+    border-color: transparent;
+    border-radius: 5px;
+    padding: 5px 15px;
+    margin: 0 5px;
+}
+
+.tourSeatsModalHeader{
+    border-bottom: 1px solid;
+    border-color: #ccc;
+    padding: 15px 5px; 
+}
+.buttonTourSeatsModal:focus{
+    outline: none;
+} 
+.tourSeatsModalName{
+    margin: auto 0;
+    color: #333;
+    font-weight: 500;
+    font-size: 20px;
+}
+.tourSeatsModalTable{
+    min-width: 300px;
+    max-height: 50vh;
+    overflow-y: auto;
+    margin: 15px 0;
+    color: #333;
+}
+.tourSeatsModalInput{
+    width: 70%;
+    text-align: center;
+    border-radius: 5px;
+}

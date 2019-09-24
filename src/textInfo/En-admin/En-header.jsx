@@ -24,7 +24,9 @@ const header = {
     },
     toPageStart: 'Go to top',
     loading: 'Loading',
-    noCommentsText: 'There are currently no reviews'
+    noCommentsText: 'There are currently no reviews',
+    monthArray: ['January', 'February','March','April','May','June',
+                'July','August','September','October','November','December']
 }
 
 export default header;
