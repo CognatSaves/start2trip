@@ -101,7 +101,15 @@ const agencyProfile = {
         seatsModalLabel: 'Таблица мест(ENG)',
         comments: 'отзывов(ENG)',
         tourOnSite: 'Tour on the site',
-        seatsTable: 'Table of seats'
+        seatsTable: 'Table of seats',
+
+        departurePointPlaceholder: 'Point of departure',
+        pointsPlaceholder: 'Select Waypoints',
+        currencyPlaceholder: 'Currency',
+        pricePerPersonPlaceholder: 'Price per place',
+        pricePerPersonInfo: 'If not selected, then the price for the entire tour is assumed.',
+        tourLanguagesPlaceholder: 'Tour languages',
+        directionPlaceholder: 'Destination (Region)'
     }
 }
 export default agencyProfile;

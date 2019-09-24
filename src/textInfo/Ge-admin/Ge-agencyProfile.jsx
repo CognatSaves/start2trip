@@ -101,7 +101,15 @@ const agencyProfile = {
         seatsModalLabel: 'Таблица мест(GEO)',
         comments: 'отзывов(GEO)',
         tourOnSite: 'ტური საიტზე',
-        seatsTable: 'ადგილების ცხრილი'
+        seatsTable: 'ადგილების ცხრილი',
+
+        departurePointPlaceholder: 'გამგზავრების წერტილი',
+        pointsPlaceholder: 'აირჩიეთ გზები',
+        currencyPlaceholder: 'ვალუტა',
+        pricePerPersonPlaceholder: 'ფასი ადგილზე',
+        pricePerPersonInfo: 'თუ არ არის არჩეული, მაშინ ვარაუდობენ ფასს მთელი ტურისთვის.',
+        tourLanguagesPlaceholder: 'ტურისტული ენები',
+        directionPlaceholder: 'დანიშნულება (რეგიონი)'
     }
 }
 export default agencyProfile;

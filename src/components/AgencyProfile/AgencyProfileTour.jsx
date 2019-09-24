@@ -718,6 +718,7 @@ class AgencyProfileTourClass extends React.Component {
             let selectedLanguagesIndexArray = [];
             for(let i=0; i<tourSave.tourLanguages.length; i++){
                 //selectedLanguagesIndexArray.push(tourSave.tourLanguages[i].id);
+                tourForm.append('tourLanguages', tourSave.tourLanguages[i].id);
             }
             
             for (let i = 0; i < tourSave.imageFiles.length; i++) {
@@ -1452,16 +1453,8 @@ class AgencyProfileTourClass extends React.Component {
                                         <label htmlFor="newTourAttractions" className="d-md-block d-none col-2">{textPage.newTourAttractions.floatingLabelText}:</label>
                                         <div className="d-flex col-md-4 col-12 p-0" key={element.departurePoint.point}>
                                             
-                                            {
-                                                /*
-                                                <label className="textFieldDefaultLabelStyles">Some text</label>
-                                                */
-                                            }
-                                            {
-                                                //TODO переводы
-                                            }
-                                            
-                                            <LocationSearchInput address={element.departurePoint && element.departurePoint.point !== "" ? element.departurePoint.point : ''} placeholder={"Точка отправления"}
+                                            <LocationSearchInput address={element.departurePoint &&
+                                             element.departurePoint.point !== "" ? element.departurePoint.point : ''} placeholder={textPageAgencyProfile.departurePointPlaceholder}
                                                 changeCity={(id, value, extraData) => {
                                                     let tourSave = this.state.tourSave;
                                                     tourSave.local[index].departurePoint = { point: value, lat: extraData.location.lat, long: extraData.location.long };
@@ -1474,11 +1467,9 @@ class AgencyProfileTourClass extends React.Component {
                                     <div className="d-flex flex-md-row flex-column align-items-md-center align-items-start">
                                         <label htmlFor="attractionsAlongTheRoute" className="d-md-block d-none col-2">{textPage.attractionsAlongTheRoute.floatingLabelText}:</label>
                                         <div className="d-flex col-md-4 col-12 p-0" key={element.points.length}>
-                                            {
-                                                //TODO переводы placeholder
-                                            }
                                             <LocationSearchInput address='' changeCity={(id, value, extraData) => { this.handleChange(value, "attractionsAlongTheRoute", { number: index, location: extraData.location }) }}
-                                                classDropdown="searchDropdownDriverTour" id="attractionsAlongTheRoute" classInput="w-100 searchInputClass" classDiv='w-100' placeholder={"Выберите точки маршрута"}/>
+                                                classDropdown="searchDropdownDriverTour" id="attractionsAlongTheRoute" classInput="w-100 searchInputClass" classDiv='w-100'
+                                                placeholder={textPageAgencyProfile.pointsPlaceholder}/>
                                         </div>
                                         <p className=" d-md-block d-none m-0 col-md-6 col-5">{textPage.attractionsAlongTheRoute.description}</p>
                                     </div>
@@ -1636,12 +1627,8 @@ class AgencyProfileTourClass extends React.Component {
                                             this.setState({ tourSave: { ...this.state.tourSave, price: e.currentTarget.value } });
                                         }} />
                                     <FormControl className="d-flex flex-wrap col-md-4 col-12 p-0">
-                                        {
-                                            //TODO переводы
-                                        }
-
                                         {isMobileOnly ?
-                                            <InputLabel>{/*textPage.basicInfoLanguage.label*/'Валюта'}</InputLabel>
+                                            <InputLabel>{/*textPage.basicInfoLanguage.label*/textPageAgencyProfile.currencyPlaceholder}</InputLabel>
                                         : <div />}
                                         <Select
                                             value={this.state.tourSave.currency}
@@ -1663,14 +1650,12 @@ class AgencyProfileTourClass extends React.Component {
 
                                 </div>
                             </div>
-                            {
-                                //TODO переводы
-                            }
                             <div className="paddingL10 d-flex flex-row align-items-md-center align-items-start">
                                 <label className="d-md-block d-none col-2 "></label>
-                                <label htmlFor={"isPricePerPersonCheckbox"} style={{ margin: 'auto 0' }}>{"Цена за место"}</label>
-                                <Checkbox checked={this.state.tourSave.isPricePerPerson} id={"isPricePerPersonCheckbox"} onChange={() => { let tourSave = this.state.tourSave; tourSave.isPricePerPerson = !(tourSave.isPricePerPerson); this.setState({ tourSave: tourSave }) }} />
-                                <p className=" d-md-block d-none m-0 col-md-6 col-5">{"Если не выбрано, то предполагается цена за весь тур."}</p>
+                                <label htmlFor={"isPricePerPersonCheckbox"} style={{ margin: 'auto 0' }}>{textPageAgencyProfile.pricePerPersonPlaceholder}</label>
+                                <Checkbox checked={this.state.tourSave.isPricePerPerson} id={"isPricePerPersonCheckbox"} onChange={() => { let tourSave = this.state.tourSave;
+                                tourSave.isPricePerPerson = !(tourSave.isPricePerPerson); this.setState({ tourSave: tourSave }) }} />
+                                <p className=" d-md-block d-none m-0 col-md-6 col-5">{textPageAgencyProfile.pricePerPersonInfo}</p>
                             </div>
 
                             <div className="paddingL10 d-flex flex-md-row flex-column align-items-md-center align-items-start">
@@ -1701,13 +1686,9 @@ class AgencyProfileTourClass extends React.Component {
                             
                             <div className="paddingL10 d-flex flex-md-row flex-column align-items-md-center align-items-start">
                                 <label className="d-md-block d-none col-2 " style={{margin: 'auto 0'}}>{/*textPage.additionalInformation.categories.floatingLabelText*/"Языки, на которых будет проходить экскурсия"}:</label>
-                                <FormControl className="col-md-4 col-12 p-0">
-                                        {
-                                            //TODO переводы
-                                        }
-                                        
+                                <FormControl className="col-md-4 col-12 p-0">             
                                         <Select
-                                            value={/*this.state.tourSave.directionId*/'Языки туров'}
+                                            value={/*this.state.tourSave.directionId*/textPageAgencyProfile.tourLanguagesPlaceholder}
                                             onChange={(event, index, value) => {
                                                 
                                                 this.handleChange(event.target.value, "tourLanguages");
@@ -1715,7 +1696,7 @@ class AgencyProfileTourClass extends React.Component {
                                             style={{ width: '100%' }}
                                             className="dropdownClass "
                                         >
-                                            <MenuItem value={textPage.directionsValue} disabled>{textPage.directionsValue}</MenuItem>
+                                            <MenuItem value={textPageAgencyProfile.tourLanguagesPlaceholder} disabled>{textPageAgencyProfile.tourLanguagesPlaceholder}</MenuItem>
                                             {this.state.unselectedTourLanguages.map((element, index) =>
                                                 <MenuItem value={element}>{element.languageName}</MenuItem>
                                             )}
@@ -1749,12 +1730,8 @@ class AgencyProfileTourClass extends React.Component {
                                 <div className="d-flex flex-md-row flex-column w-100">
                                     <label className="d-md-block d-none col-2 " style={{margin: 'auto 0'}}>{textPage.additionalInformation.directions.floatingLabelText}:</label>
                                     <FormControl className="col-md-4 col-12 p-0">
-                                        {
-                                            //TODO переводы
-                                        }
-
                                         {isMobileOnly ?
-                                            <InputLabel>{/*textPage.basicInfoLanguage.label*/'Направление (Регион)'}</InputLabel>
+                                            <InputLabel>{textPage.directionsValue}</InputLabel>
                                         : <div />}
                                         <Select
                                             value={this.state.tourSave.directionId}
