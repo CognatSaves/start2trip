@@ -31,7 +31,7 @@ class ToursClass extends React.Component {
       language: "",
       isRefreshExist: false,
       selectedDirection: '',
-      departureDate: null,
+      departureDate: new Date(),
       departurePoint:"",
       duration:props.storeState.languageTextMain.tourDescription.tourInfo.menuItemDaysValue,
       tourType:props.storeState.languageTextMain.tourDescription.tourInfo.menuItemValue,
@@ -45,7 +45,7 @@ class ToursClass extends React.Component {
     //потом уже дело
     this.props.dispatch(setPage(1));
   }
-  sendRequestFunc = () => {
+  sendRequestFunc = (isFirst) => {
     
     // function findSelectedDirectionId(directions, slug) {
     //   for (let i = 0; i < directions.length; i++) {
@@ -68,7 +68,7 @@ class ToursClass extends React.Component {
       (
         this.state.selectedDirection !== (selectedDirection) ||
         this.state.country !== country ||
-        (this.state.language !== lang) || this.state.clickButton
+        (this.state.language !== lang) || !isFirst
       );
 
     if (shouldSendRequest) {
@@ -81,14 +81,12 @@ class ToursClass extends React.Component {
         language: lang,
         isRefreshExist: true,
         selectedDirection: selectedDirection,
-        clickButton:false,
       });
 
       //let country = cookies.get('country', { path: '/' });
       let that = this;
-
-
-      axios.get(requests.getTours + "?country=" + country + "&lang=" + lang + (selectedDirection ? "&slug=" + selectedDirection : '')+"&departurePoint="+this.state.departurePoint+"&duration="+this.state.duration+"&tourType="+this.state.tourType)
+      debugger
+      axios.get(requests.getTours + "?country=" + country + "&lang=" + lang + (selectedDirection ? "&slug=" + selectedDirection : '')+"&departurePoint="+this.state.departurePoint+"&duration="+this.state.duration+"&departureDate="+this.state.departureDate+"&isFirst="+isFirst)
         .then(response => {
           return response.data;
         })
@@ -113,6 +111,7 @@ class ToursClass extends React.Component {
         });
     }
   }
+
   departureDateChange =(data)=>{
     this.setState({ departureDate: data })
 
@@ -130,9 +129,9 @@ class ToursClass extends React.Component {
     this.setState({ tourType: type })
   }
 
-  clickButtonChange=()=>{
-    this.setState({ clickButton: true })
-  }
+  // clickButtonChange=()=>{
+  //   this.setState({ clickButton: true })
+  // }
 
   changeTravelVisibility = (elementPrice) => {
 
@@ -147,8 +146,9 @@ class ToursClass extends React.Component {
       successVisibility: value
     })
   }
+
   componentDidUpdate(){
-    this.sendRequestFunc();
+    this.sendRequestFunc(true);
   }
 
   render() {
@@ -175,6 +175,7 @@ class ToursClass extends React.Component {
     if (!selectedDirection) {//защита от undefined
       selectedDirection = '';
     }
+    
     let countryName = this.props.storeState.countries.length > 0 ?
       this.props.globalReduser.findCountryNameByISO(this, cookies.get('country', { path: '/' }), cookies.get('userLang', { path: '/' }))
       : '';
@@ -309,7 +310,7 @@ class ToursClass extends React.Component {
             <div className="drivers_body d-flex">
               <div id="placesMainBlock" className="left_body_part col-12 p-0" >
                 <PopularPlaces placesState={this.props.toursState} where={"tours"} />
-                <TourInfo sendRequestFunc={this.sendRequestFunc} clickButtonChange={this.clickButtonChange}
+                <TourInfo sendRequestFunc={this.sendRequestFunc}
                 departurePointChange={this.departurePointChange} departurePoin={this.state.departurePoint}
                 departureDateChange={this.departureDateChange} departureDate={this.state.departureDate}
                 durationChange={this.durationChange} duration={this.state.duration}

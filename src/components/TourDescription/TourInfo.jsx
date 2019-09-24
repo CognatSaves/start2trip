@@ -73,7 +73,7 @@ class TourInfoClass extends React.Component {
                             )}
                         </Select>
                     </FormControl> */}
-                    <span className="tourInfoContentBt" onClick={() => { this.props.clickButtonChange(); this.props.sendRequestFunc() }}>{textInfo.findText}</span>
+                    <span className="tourInfoContentBt" onClick={() => {  this.props.sendRequestFunc(false) }}>{textInfo.findText}</span>
                 </div>
             </div>
         )
