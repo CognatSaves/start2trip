@@ -186,19 +186,14 @@ class ToursListClass extends React.Component {
         }
         console.log('PlacesList render');
         console.log(this.props);
-        if (this.props.toursState.toursList.length > 0) {
-
-        }
-        let tagFilteredArray = tagFilterFunction([...this.props.toursState.toursList], []/*this.props.toursState.selectedTags*/);
-        console.log('tagFilteredArray', tagFilteredArray);
-        let sortedArray;
-        // 
-        // if(tagFilteredArray.length !== 0){
-
-        sortedArray = this.placesSort(/*[...this.props.placesState.placesList]*/tagFilteredArray, this.props.toursState.sortMenuValue);
-        // }
-        let sortSelectedPlacesArray = [];
+        let tagFilteredArray=[], sortedArray=[], sortSelectedPlacesArray=[],selectedPlaces = [];
         let numberOfElements = 0;
+        
+        if (this.props.toursState.toursList.length > 0) {
+            tagFilteredArray = tagFilterFunction([...this.props.toursState.toursList], []/*this.props.toursState.selectedTags*/);
+            console.log('tagFilteredArray', tagFilteredArray);
+            sortedArray = this.placesSort(/*[...this.props.placesState.placesList]*/tagFilteredArray, this.props.toursState.sortMenuValue);
+        }       
         if (sortedArray.length > 0 && this.props.storeState.currencies.length>0) {
 
             sortedArray.map((element, index) => {
@@ -238,12 +233,13 @@ class ToursListClass extends React.Component {
                 arrayPrice = arrayPrice.sort((a, b) => { return a > b ? -1 : 1 })
                 this.props.dispatch(setMaxPrice(arrayPrice[0]))
             }
+            selectedPlaces = sortSelectedPlacesArray.slice((this.props.toursState.page - this.props.toursState.showPages) * this.props.toursState.pagesMenuValue,
+            this.props.toursState.page * this.props.toursState.pagesMenuValue);
 
 
         }
         
-        let selectedPlaces = sortSelectedPlacesArray.slice((this.props.toursState.page - this.props.toursState.showPages) * this.props.toursState.pagesMenuValue,
-            this.props.toursState.page * this.props.toursState.pagesMenuValue);
+        
 
 
 

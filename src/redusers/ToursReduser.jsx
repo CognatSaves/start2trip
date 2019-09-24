@@ -14,6 +14,7 @@ const initialState = {
     tourPanelSelectedElement: -1,
     
     toursList: [],
+    isToursListFailed: 0,
     categories: [],
     tags: [],
     directions: [],
@@ -28,8 +29,16 @@ const initialState = {
 export const ToursReduser = (state = initialState, action)=>{
     switch (action.type){
         case SET_TOURS_LIST:{
+            
             let newState={...state};
             newState.toursList = action.toursList;
+            if(action.toursList.length===0){
+                newState.isToursListFailed++;
+                //newState.toursList = [{isBreaked: true}];
+            }
+            else{
+                newState.isToursListFailed=0;
+            }
             newState.categories = action.categories;
             newState.tags = action.tags;
             newState.directions = action.directions;

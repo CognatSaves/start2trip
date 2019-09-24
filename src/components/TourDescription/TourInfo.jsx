@@ -24,9 +24,9 @@ class TourInfoClass extends React.Component {
         }
     }
     render() {
-
-        if (this.props.toursState.categories.length > 0 && (this.state.days.length === 0)) {
-
+        debugger;
+        if (this.props.toursState.categories.length > 0 && (this.state.days.length === 0) && this.props.toursState.daysNumber.length>0) {
+            //эта функция отрабатывает ровно 1 раз, но только когда пришли this.props.toursState.daysNumber. 
             let sortArrayDaysNumber = this.props.toursState.daysNumber.sort((a, b) => { return a < b ? -1 : 1 })
             this.setState({
 
@@ -70,20 +70,6 @@ class TourInfoClass extends React.Component {
                             )}
                         </Select>
                     </FormControl>
-                    {/* <FormControl className="d-flex flex-wrap col-md-2 col-10 p-0">
-                        <Select
-                            value={this.props.tourType}
-                            className="dropdownClass tourInfoContentDate"
-                            onChange={(event, index, value) => {
-                                this.props.tourTypeChange(event.target.value)
-                            }}
-                        >
-                            <MenuItem value={textInfo.menuItemValue}>{textInfo.menuItemValue}</MenuItem>
-                            {this.state.tours.map((element, index) =>
-                                <MenuItem value={element.id}>{element.catLoc.name}</MenuItem>
-                            )}
-                        </Select>
-                    </FormControl> */}
                     <span className="tourInfoContentBt" onClick={() => {
                         if (this.props.departurePoint !== this.state.departurePointOld || this.props.duration !== this.state.durationOld || (Math.abs(this.props.departureDate - this.state.departureDateOld) > 7 * 86400000)) {
                             this.props.sendRequestFunc(false);

@@ -38,7 +38,8 @@ class ToursClass extends React.Component {
       clickButton:false,
       travelVisibility: false,
       successVisibility: 'none',
-      elementPrice: 0
+      elementPrice: 0,
+      temp: 0
     }
     //сначала уборка
     this.props.dispatch(setPlacesList([], [], [], {}));
@@ -63,7 +64,7 @@ class ToursClass extends React.Component {
     }
     let country = cookies.get('country', { path: '/' });
     let lang = cookies.get('userLang', { path: '/' });
-    debugger
+    
     let shouldSendRequest = !this.state.isRefreshExist &&
       (
         this.state.selectedDirection !== (selectedDirection) ||
@@ -86,7 +87,7 @@ class ToursClass extends React.Component {
       //let country = cookies.get('country', { path: '/' });
       let that = this;
       let pointSelect = [];
-      if(this.props.toursState.departurePoint.length>0){
+      if(this.props.toursState.departurePoint && this.props.toursState.departurePoint.length>0){
         pointSelect = this.props.toursState.departurePoint.map(x=>x.point.indexOf(this.state.departurePoint));
         pointSelect=this.props.toursState.departurePoint[pointSelect]
       }else{
@@ -103,18 +104,14 @@ class ToursClass extends React.Component {
             throw data.error;
           }
           else {
-            debugger
+            
             console.log('tour request data', data);
-            if(data.tours.length>0){
-              that.props.dispatch(setToursList(data.tours, data.categories, data.tags, data.directions, data.daysNumber,data.departurePoint));
-            }else{
-              that.props.dispatch(setToursList([], data.categories, data.tags, data.directions,[],[]));
-            }
-           
-
+            that.props.dispatch(setToursList(data.tours, data.categories, data.tags, data.directions, data.daysNumber,data.departurePoint));
+            
           }
           that.setState({
-                    isRefreshExist: false
+                    isRefreshExist: false,
+                    temp: that.state.temp+1
                  });
         })
         .catch(error => {
@@ -159,9 +156,6 @@ class ToursClass extends React.Component {
     })
   }
 
-  componentDidUpdate(){
-    this.sendRequestFunc(true);
-  }
 
   render() {
     function findSelectedDirectionName(directions, selectedDirection) {
@@ -174,6 +168,8 @@ class ToursClass extends React.Component {
       }
       return '';
     }
+    
+    this.sendRequestFunc(true);
 
     console.log("Tours render", this.props);
 
@@ -321,16 +317,22 @@ class ToursClass extends React.Component {
           <div className="drivers_bottom_background d-flex flex-column" onClick={() => { let a = this }}>
             <div className="drivers_body d-flex">
               <div id="placesMainBlock" className="left_body_part col-12 p-0" >
+              
                 <PopularPlaces placesState={this.props.toursState} where={"tours"} />
-                <TourInfo sendRequestFunc={this.sendRequestFunc}
-                departurePointChange={this.departurePointChange} departurePoin={this.state.departurePoint}
-                departureDateChange={this.departureDateChange} departureDate={this.state.departureDate}
-                durationChange={this.durationChange} duration={this.state.duration}
-                 />
+
+                  <TourInfo sendRequestFunc={this.sendRequestFunc}
+                  departurePointChange={this.departurePointChange} departurePoint={this.state.departurePoint}
+                  departureDateChange={this.departureDateChange} departureDate={this.state.departureDate}
+                  durationChange={this.durationChange} duration={this.state.duration}
+                  />
+
                 <DriversProperties hideTypeOfTransport={true}   
                 tourTypeChange={this.tourTypeChange} tourType={this.state.tourType}/>
-                <ToursList isStaying={!this.state.isRefreshExist} departureDate={this.state.departureDate} 
+                
+                  <ToursList isStaying={!this.state.isRefreshExist} departureDate={this.state.departureDate} 
                   changeTravelVisibility={this.changeTravelVisibility}/>
+               
+                
               </div>
               {/* <div className="right_body_part col-3">
                 <DriversCommercial />
