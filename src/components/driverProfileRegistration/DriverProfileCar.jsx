@@ -778,7 +778,7 @@ class DriverProfileCarClass extends React.Component {
                             <span className=" d-none col-4 p-0" />
                             <div className="d-flex flex-column">
                                 <div className="d-flex">
-                                    <button htmlFor="newCar" type="submit" onClick={(e) => this.formSubmit(e)}>{textPage.carAddNewCarButton.button}</button>
+                                    <button htmlFor="newCar" type="submit" onClick={(e) => this.formSubmit(e)}>{this.state.car.id ? textPage.carAddNewCarButton.buttonUpdate : textPage.carAddNewCarButton.button}</button>
                                     <span className="ml-3" style={{ margin: 'auto 0' }} onClick={() => this.toggle()}>{textPage.carAddNewCarButton.span}</span>
                                 </div>
                                 <text style={{ color: 'red', fontSize: '14px', visibility: this.state.badDataTextVisibility ? 'visible' : 'hidden' }}>{textPage.badDataText}</text>
@@ -799,7 +799,7 @@ class DriverProfileCarClass extends React.Component {
                         <div className="filledCardImgAdd" >
                             <div className="d-flex flex-column justify-content-center align-items-center">
                                 <span />
-                                <p>{textPage.filledCard.button}</p>
+                                <p>{this.state.car.id ? textPage.filledCard.buttonUpdate : textPage.filledCard.button}</p>
                             </div>
                         </div>
                     </div>

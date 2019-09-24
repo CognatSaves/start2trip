@@ -104,10 +104,12 @@ const driverProfileRegistration = {
         },
         carAddNewCarButton: {
             button: "ავტომობილის დამატება",
+            buttonUpdate: 'შეინახეთ ცვლილებები',
             span: "გაუქმება"
         },
         filledCard: {
-            button: "ავტომობილის დამატება"
+            button: "ავტომობილის დამატება",
+            buttonUpdate: 'შეინახეთ ცვლილებები'
         },
         filledCardInformationMenu: {
             deleteCar: "წაშლა",
@@ -243,6 +245,7 @@ const driverProfileRegistration = {
             newTourPeople: "ადგილების რაოდენობა",
             uploadPhoto: "ფოტოს ჩატვირთვა",
             addTour: "ტურის დამატება",
+            editTour: 'შეინახეთ ცვლილებები',
             cancel: "გაუქმება",
 
         },

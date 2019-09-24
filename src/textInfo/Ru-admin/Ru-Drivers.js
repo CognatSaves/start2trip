@@ -104,10 +104,12 @@ const driverProfileRegistration = {
         },
         carAddNewCarButton: {
             button: "Добавить Автомобиль",
+            buttonUpdate: 'Сохранить изменения',
             span: "Отмена"
         },
         filledCard: {
-            button: "Добавить Автомобиль"
+            button: "Добавить Автомобиль",
+            buttonUpdate: 'Сохранить изменения'
         },
         filledCardInformationMenu: {
             deleteCar: "Удалить",
@@ -245,6 +247,7 @@ const driverProfileRegistration = {
             newTourPeople: "Количество мест",
             uploadPhoto: "Загрузить фото",
             addTour: "Добавить тур",
+            editTour: 'Сохранить изменения',
             cancel: "Отмена",
 
         },
