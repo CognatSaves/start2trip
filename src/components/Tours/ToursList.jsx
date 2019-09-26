@@ -84,7 +84,7 @@ class ToursListClass extends React.Component {
             isGood = true;
         } else if (daily) {
             let today = this.props.departureDate === null ? new Date() : new Date(this.props.departureDate);
-            date = new Date(today.getFullYear(),today.getMonth(),today.getDate())
+            date = new Date(today.getFullYear(), today.getMonth(), today.getDate())
             departureDate = today.getDate() + "." + ((today.getMonth() + 1) < 10 ? "0" + (today.getMonth() + 1) : (today.getMonth() + 1)) + "." + today.getFullYear();
             isGood = true;
         }
@@ -104,6 +104,19 @@ class ToursListClass extends React.Component {
             element.isGood = false
         }
         return element
+    }
+    sortArrayByTourType = (el) => {
+        if (this.props.tourType !== "default") {
+            el.isGood = false
+            for (let i = 0; i < el.element.categories.length; i++) {
+                if (el.element.categories[i].id === this.props.tourType) {
+                    el.isGood = true
+                }
+            }
+        }
+
+
+        return el
     }
     sortArrayByCriterion = (a, b, type) => {
         switch (type) {
@@ -186,15 +199,17 @@ class ToursListClass extends React.Component {
         }
         console.log('PlacesList render');
         console.log(this.props);
-        let tagFilteredArray=[], sortedArray=[], sortSelectedPlacesArray=[],selectedPlaces = [];
+        let tagFilteredArray = [], sortedArray = [], sortSelectedPlacesArray = [], selectedPlaces = [];
         let numberOfElements = 0;
-        
+        let isGoodElmentLength = 0;
+        let noGoodElement = false;
+
         if (this.props.toursState.toursList.length > 0) {
             tagFilteredArray = tagFilterFunction([...this.props.toursState.toursList], []/*this.props.toursState.selectedTags*/);
             console.log('tagFilteredArray', tagFilteredArray);
             sortedArray = this.placesSort(/*[...this.props.placesState.placesList]*/tagFilteredArray, this.props.toursState.sortMenuValue);
-        }       
-        if (sortedArray.length > 0 && this.props.storeState.currencies.length>0) {
+        }
+        if (sortedArray.length > 0 && this.props.storeState.currencies.length > 0) {
 
             sortedArray.map((element, index) => {
                 let departureDate = null;
@@ -206,16 +221,19 @@ class ToursListClass extends React.Component {
                 if ((this.props.storeState.persons[0] + this.props.storeState.persons[1]) > 1) {
                     result = this.sortArrayByPeople(result)
                 }
+
+                result = this.sortArrayByTourType(result)
+
                 sortSelectedPlacesArray.push(result)
             });
 
             sortSelectedPlacesArray = sortSelectedPlacesArray.sort((c, d) => {
-            if(c.isGood&&d.isGood){
-                let a = new Date(c.date.getFullYear(),c.date.getMonth(),c.date.getDate());
-                let b = new Date(d.date.getFullYear(),d.date.getMonth(),d.date.getDate());
-                return a < b ? -1 : a > b ? 1 : this.sortArrayByCriterion(c, d, this.props.storeState.sortMenuValue);
-            }
-               return -1
+                if (c.isGood && d.isGood) {
+                    let a = new Date(c.date.getFullYear(), c.date.getMonth(), c.date.getDate());
+                    let b = new Date(d.date.getFullYear(), d.date.getMonth(), d.date.getDate());
+                    return a < b ? -1 : a > b ? 1 : this.sortArrayByCriterion(c, d, this.props.storeState.sortMenuValue);
+                }
+                return -1
             })
 
             if (sortSelectedPlacesArray.length > 0 && this.props.toursState.maxPrice === 0) {
@@ -234,23 +252,27 @@ class ToursListClass extends React.Component {
                 this.props.dispatch(setMaxPrice(arrayPrice[0]))
             }
             selectedPlaces = sortSelectedPlacesArray.slice((this.props.toursState.page - this.props.toursState.showPages) * this.props.toursState.pagesMenuValue,
-            this.props.toursState.page * this.props.toursState.pagesMenuValue);
-
+                this.props.toursState.page * this.props.toursState.pagesMenuValue);
+                
+                for(let i =0; i<selectedPlaces.length;i++){
+                    if(!selectedPlaces[i].isGood){
+                        isGoodElmentLength++
+                    }
+                }
+                
+                if(selectedPlaces.length === isGoodElmentLength){
+                    noGoodElement = true;
+                }
 
         }
-        
-        
 
-
-
-
-        console.log(selectedPlaces)
 
         console.log('selectedPlaces', selectedPlaces);
         let textInfo = this.props.storeState.languageTextMain.home.homeBottom.homeRoutesList;
         let pageNotFound = this.props.storeState.languageTextMain.home.pageNotFound;
         let isEmpty = (selectedPlaces.length === 0 && this.props.isStaying);
         let isLoading = (selectedPlaces.length === 0 && !this.props.isStaying);
+        
         return (
 
             <>
@@ -267,7 +289,7 @@ class ToursListClass extends React.Component {
                         }
                     })}
                     {
-                        isLoading || isEmpty ?
+                        isLoading || isEmpty||noGoodElement ?
                             <>
                                 {isLoading ?
                                     <div className="placesList_loading">

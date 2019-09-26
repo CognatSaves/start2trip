@@ -33,8 +33,8 @@ class ToursClass extends React.Component {
       selectedDirection: '',
       departureDate: new Date(),
       departurePoint:"",
-      duration:props.storeState.languageTextMain.tourDescription.tourInfo.menuItemDaysValue,
-      tourType:props.storeState.languageTextMain.tourDescription.tourInfo.menuItemValue,
+      duration:"default",
+      tourType:"default",
       clickButton:false,
       travelVisibility: false,
       successVisibility: 'none',
@@ -86,15 +86,28 @@ class ToursClass extends React.Component {
 
       //let country = cookies.get('country', { path: '/' });
       let that = this;
-      let pointSelect = [];
+      let pointSelect = "";
       if(this.props.toursState.departurePoint && this.props.toursState.departurePoint.length>0){
-        pointSelect = this.props.toursState.departurePoint.map(x=>x.point.indexOf(this.state.departurePoint));
-        pointSelect=this.props.toursState.departurePoint[pointSelect]
+        let indexSelect = null
+        if(this.state.departurePoint !== ""){
+          for(let i = 0; i<this.props.toursState.departurePoint.length;i++){
+            indexSelect = this.props.toursState.departurePoint[i].point.indexOf(this.state.departurePoint);
+            if(indexSelect !== -1){
+              pointSelect=this.props.toursState.departurePoint[i]
+            }
+          }
+        }
       }else{
         pointSelect=this.state.departurePoint
       }
-       
-      axios.get(requests.getTours + "?country=" + country + "&lang=" + lang + (selectedDirection ? "&slug=" + selectedDirection : '')+"&departurePoint="+pointSelect+"&duration="+this.state.duration+"&departureDate="+this.state.departureDate+"&isFirst="+isFirst)
+      pointSelect = JSON.stringify(pointSelect)
+      let durationCorrect = null;
+      debugger
+      if(Number(this.state.duration)){
+        durationCorrect = this.state.duration
+      }
+      
+      axios.get(requests.getTours + "?country=" + country + "&lang=" + lang + (selectedDirection ? "&slug=" + selectedDirection : '')+"&departurePoint="+pointSelect+"&duration="+durationCorrect+"&departureDate="+this.state.departureDate+"&isFirst="+isFirst)
         .then(response => {
           return response.data;
         })
@@ -137,10 +150,6 @@ class ToursClass extends React.Component {
   tourTypeChange =(type)=>{
     this.setState({ tourType: type })
   }
-
-  // clickButtonChange=()=>{
-  //   this.setState({ clickButton: true })
-  // }
 
   changeTravelVisibility = (elementPrice) => {
 
@@ -326,11 +335,11 @@ class ToursClass extends React.Component {
                   durationChange={this.durationChange} duration={this.state.duration}
                   />
 
-                <DriversProperties hideTypeOfTransport={true}   
+                <DriversProperties hideTypeOfTransport={true}
                 tourTypeChange={this.tourTypeChange} tourType={this.state.tourType}/>
                 
                   <ToursList isStaying={!this.state.isRefreshExist} departureDate={this.state.departureDate} 
-                  changeTravelVisibility={this.changeTravelVisibility}/>
+                  changeTravelVisibility={this.changeTravelVisibility} tourType={this.state.tourType} />
                
                 
               </div>

@@ -23,6 +23,9 @@ import DatePicker from 'material-ui/DatePicker';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 class DriversPropertiesClass extends React.Component {
   constructor(props) {
@@ -84,7 +87,7 @@ class DriversPropertiesClass extends React.Component {
 
     return (
 
-      <div className="drivers_properties d-flex flex-wrap justify-content-md-between justify-content-sm-center justify-content-center col-12" >
+      <div className="drivers_properties d-flex flex-wrap justify-content-md-between justify-content-sm-center justify-content-center col-12"  >
         <div className="properties_rightBlock d-flex align-items-center">
           <div className="properties_rightButton d-flex" onClick={() => this.props.dispatch(setSortMenuVisible(!this.props.storeState.sortMenu))}>
             <div className="properties_rightButton_characteristic d-sm-block d-none">{textInfo.characteristic + ':'}</div>
@@ -114,7 +117,7 @@ class DriversPropertiesClass extends React.Component {
                     this.props.tourTypeChange(event.target.value)
                   }}
                 >
-                  <MenuItem value={textInfo.menuItemValue}>{textInfo.menuItemValue}</MenuItem>
+                  <MenuItem value={"default"}>{textInfo.menuItemValue}</MenuItem>
                   {this.state.tours.map((element, index) =>
                     <MenuItem value={element.id}>{element.catLoc.name}</MenuItem>
                   )}

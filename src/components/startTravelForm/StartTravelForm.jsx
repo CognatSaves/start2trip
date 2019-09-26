@@ -571,7 +571,7 @@ export default class StartTravelForm extends React.Component {
                     this.props.toursState ?
                     <>
                         <Dialog open={this.props.travelVisibility} onClose={this.props.changeTravelVisibility} >
-                            <div>подключи туры</div>
+                            <div className="col-12 py-3">В разработке</div>
                         </Dialog>
                     </>
                     : <React.Fragment/>
