@@ -58,7 +58,7 @@ class TourInfoClass extends React.Component {
                     <FormControl className="d-flex col-md-3 col-10 p-md-2 p-0">
                         <Select
                             value={this.props.duration}
-                            className="dropdownClass tourInfoContentDate"
+                            className="dropdownClass tourInfoContentDays"
                             onChange={(event, index, value) => {
                                 this.props.durationChange(event.target.value)
                             }}

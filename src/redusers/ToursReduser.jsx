@@ -3,7 +3,7 @@ import { SET_TOURS_LIST,SET_TOUR_PANEL_SELECTED_ELEMENT,
      CHANGE_PANEL_FIXED_CLASS,SET_MAX_PRICE,
      SET_TEMP_PRICE_PART_TOUR,SET_PRICE_PART_TOUR
     } from './ActionTours';
-    import {SET_PAGE, SET_MORE_PAGES_SHOW,} from './ActionPlaces'
+    import {SET_PAGE, SET_MORE_PAGES_SHOW,SET_SELECTED_DIRECTION} from './ActionPlaces'
 
 const initialState = {
     page: 1,
@@ -24,6 +24,7 @@ const initialState = {
     valueMenu:0,
     departurePoint:[],
     daysNumber:[],
+    selectedDirection:'',
 }
 
 export const ToursReduser = (state = initialState, action)=>{
@@ -44,6 +45,11 @@ export const ToursReduser = (state = initialState, action)=>{
             newState.directions = action.directions;
             newState.daysNumber = action.daysNumber;
             newState.departurePoint = action.departurePoint;
+            return newState;
+        }
+        case SET_SELECTED_DIRECTION:{
+            let newState={...state};
+            newState.selectedDirection=action.directionId;
             return newState;
         }
         case SET_TOURS_MORE_PAGES_SHOW:{

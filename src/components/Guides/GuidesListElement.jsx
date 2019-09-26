@@ -47,7 +47,6 @@ class GuidesListElementClass extends React.Component {
                             <div className="langi placesList_placeName" style={{paddingTop: '2px'}} key={"key"+element.id}>
                                 {
                                     element.language.map((langElement, index) =>{
-                                        debugger;
                                         let langObj= findLanguageByISO(langElement,this.props.storeState);
                                         return <div className="driversBlock_languages_flag" 
                                             style={{ background: "url(" + (langObj ? requests.serverAddressImg + langObj.icon.url : '') + ")",

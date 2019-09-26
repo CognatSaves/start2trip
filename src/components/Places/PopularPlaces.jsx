@@ -56,6 +56,7 @@ class PopularPlacesClass extends React.Component {
 
 
         let placeRender = [];
+        
         let arrayRender = [...this.props.placesState.directions];
         arrayRender.sort((a, b) => {
             if (a.zIndex !== b.zIndex) {
@@ -65,9 +66,9 @@ class PopularPlacesClass extends React.Component {
                 return b.placesNumber - a.placesNumber;
             }
         })
-        if (arrayRender.length > 0) {
+        // if (arrayRender.length > 0) {
 
-        }
+        // }
         if (arrayRender.length > this.state.howMuchRender) {
 
             for (let i = 0; i < this.state.howMuchRender; i++) {

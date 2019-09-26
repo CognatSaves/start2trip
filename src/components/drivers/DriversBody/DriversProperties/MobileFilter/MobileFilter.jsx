@@ -275,7 +275,7 @@ class MobileFilterClass extends React.Component {
                                 this.props.tourTypeChange(event.target.value)
                             }}
                         >
-                            <MenuItem value={textInfo.menuItemValue}>{textInfo.menuItemValue}</MenuItem>
+                            <MenuItem value={"default"}>{textInfo.menuItemValue}</MenuItem>
                             {this.state.tours.map((element, index) =>
                                 <MenuItem value={element.id}>{element.catLoc.name}</MenuItem>
                             )}

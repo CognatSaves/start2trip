@@ -111,7 +111,7 @@ class ForgotPasswordClass extends React.Component {
         return (
             <>
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={true} isGoodAnswer={true} />
-                <div className="forgotPasswordBody d-flex flex-column align-items-center" style={{ background: "url(" + windowImg + ")no-repeat" }}>
+                <div className="forgotPasswordBody d-flex flex-column align-items-center" style={{ background: "url(" + windowImg + ")no-repeat", minHeight: "95vh" }}>
                     <Header driver={false} history={this.props.history} />
                     <Helmet>
                         <title>{helmet.basic.title}</title>
@@ -123,11 +123,11 @@ class ForgotPasswordClass extends React.Component {
                         <meta property="og:description" content={helmet.basic.description} />
                     </Helmet>
                     {this.state.isGood ?
-                        <div className="forgotPasswordSuccess forgotPasswordContent d-flex flex-column align-items-center col-md-7 col-11" style={{ background: "url(" + windowImg + ")no-repeat", minHeight: "95vh" }}>
+                        <div className="forgotPasswordSuccess forgotPasswordContent d-flex flex-column align-items-center col-md-7 col-11" >
                             <span>{textInfo.success}</span>
                         </div>
                         :
-                        <div className="forgotPasswordContent d-flex flex-column align-items-center col-md-8 col-11" style={{ background: "url(" + windowImg + ")no-repeat", minHeight: "95vh" }}>
+                        <div className="forgotPasswordContent d-flex flex-column align-items-center col-md-8 col-11" >
                             <div className="d-flex justify-content-center align-items-center">
                                 <span>{textInfo.passwordRepair}</span>
                             </div>

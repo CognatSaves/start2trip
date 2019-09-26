@@ -18,6 +18,7 @@ import RouteTravelBlock from '../RouteDescription/RouteTravelBlock';
 import SimularToursBlock from './SimularToursBlock.jsx';
 import CommentBlock from '../TourDescription/CommentBlock.jsx';
 import TourPanel from '../TourDescription/TourPanel.jsx';
+import StartTravelForm from '../startTravelForm/StartTravelForm'
 
 import {
     FacebookShareButton,
@@ -51,7 +52,7 @@ class ToureDescriptionClass extends React.Component {
             dateValue = props.globalReduser.getDateFromDateString(getdate);
             let now = new Date(Date.now());
             if (dateValue < now) {
-                
+
                 let day = dateValue.getDate(); let month = dateValue.getMonth(); let year = dateValue.getFullYear();
                 let daynow = now.getDate(); let monthnow = now.getMonth(); let yearnow = now.getFullYear();
                 if (day !== daynow || month !== monthnow || year !== yearnow) {
@@ -66,7 +67,7 @@ class ToureDescriptionClass extends React.Component {
         else {
             dateValue = props.globalReduser.convertDateToUTC(new Date(Date.now()));
         }
-        
+
         this.state = {
             isRefreshExist: false,
             isRefreshing: true,
@@ -79,7 +80,10 @@ class ToureDescriptionClass extends React.Component {
             clickedImageIndex: 0,
             page: 1,
             showPages: 1,
-            departureDate:dateValue,
+            departureDate: dateValue,
+            travelVisibility: false,
+            successVisibility: 'none',
+            elementPrice: 0,
         }
 
 
@@ -133,7 +137,13 @@ class ToureDescriptionClass extends React.Component {
         }
         return idIndex
     }
-    
+    changeTravelVisibility = (elementPrice) => {
+
+        this.setState({
+          travelVisibility: !this.state.travelVisibility,
+          elementPrice: elementPrice
+        })
+      }
 
     render() {
 
@@ -169,33 +179,38 @@ class ToureDescriptionClass extends React.Component {
                 isRefreshing: true,
                 selectedLanguage: this.props.storeState.activeLanguageNumber
             });
-            let that = this;   
-                axios.get(requests.showTour+"?slug=" + (slug ? slug  : ''))
-                    .then(response =>{
-                        return response.data;
-                    })
-                    .then(function(data){
-                        if(data.error){
-                            
-                            console.log('bad tour descr request');
-                            throw data.error;
-                        }
-                        else{
-                            
-                            console.log('good, data=',data);
-                            that.setState({
-                                isRefreshExist: false,
-                                newTour: data,
-                                couldSendRequest: true,
-                                slug: data.local.slug
-                            });
-                        }
-                    })
-                    .catch(function(error){
-                        
-                        console.log('get wasted answer');
-                        that.props.globalReduser.history.push('/404/');
-                    })
+            let that = this;
+            axios.get(requests.showTour + "?slug=" + (slug ? slug : ''))
+                .then(response => {
+                    return response.data;
+                })
+                .then(function (data) {
+                    if (data.error) {
+
+                        console.log('bad tour descr request');
+                        throw data.error;
+                    }
+                    else {
+                        window.scroll({
+                            top: 0,
+                            left: 0,
+                            behavior: 'smooth'
+                        });
+
+                        console.log('good, data=', data);
+                        that.setState({
+                            isRefreshExist: false,
+                            newTour: data,
+                            couldSendRequest: true,
+                            slug: data.local.slug
+                        });
+                    }
+                })
+                .catch(function (error) {
+
+                    console.log('get wasted answer');
+                    that.props.globalReduser.history.push('/404/');
+                })
 
         }
         let textInfo = this.props.storeState.languageTextMain.tourDescription;
@@ -213,30 +228,33 @@ class ToureDescriptionClass extends React.Component {
             title = this.state.newTour.local.name;
             exampleImage = this.state.newTour.tour.blockListImage.url
             points = this.state.newTour.local.points
-            if(points[0].point !== this.state.newTour.local.departurePoint.point){
+            if (points[0].point !== this.state.newTour.local.departurePoint.point) {
                 points.unshift(this.state.newTour.local.departurePoint)
             }
 
         }
-        
+
         let isoCurrencies = cookies.get('userCurr', { path: "/" })
         let price = null
-        
-        if(this.props.storeState.currencies.length>0 && this.state.newTour.local !== undefined){
-        let idIndex = this.getCurrencies(this.state.newTour.tour.currency,"id")
-        let usd = this.state.newTour.tour.price / this.props.storeState.currencies[idIndex].costToDefault
-        if (isoCurrencies === "USD") {
-            let idIndex = this.getCurrencies("USD","ISO")
-            usd = Math.ceil(usd)
-            price = this.props.storeState.currencies[idIndex].symbol+" "+usd
-        } else {
-            let idIndex = this.getCurrencies(isoCurrencies,"ISO")
-            usd = usd *this.props.storeState.currencies[idIndex].costToDefault
-            usd = Math.ceil(usd)
-            price = this.props.storeState.currencies[idIndex].isLeft ?(this.props.storeState.currencies[idIndex].symbol+" "+usd):
-            (usd+" "+this.props.storeState.currencies[idIndex].symbol)
+
+        if (this.props.storeState.currencies.length > 0 && this.state.newTour.local !== undefined) {
+            let idIndex = this.getCurrencies(this.state.newTour.tour.currency, "id")
+            let usd = this.state.newTour.tour.price / this.props.storeState.currencies[idIndex].costToDefault
+            if (isoCurrencies === "USD") {
+                let idIndex = this.getCurrencies("USD", "ISO")
+                usd = Math.ceil(usd)
+                price = this.props.storeState.currencies[idIndex].symbol + " " + usd
+            } else {
+                let idIndex = this.getCurrencies(isoCurrencies, "ISO")
+                usd = usd * this.props.storeState.currencies[idIndex].costToDefault
+                usd = Math.ceil(usd)
+                price = this.props.storeState.currencies[idIndex].isLeft ? (this.props.storeState.currencies[idIndex].symbol + " " + usd) :
+                    (usd + " " + this.props.storeState.currencies[idIndex].symbol)
+            }
         }
-    }
+
+        let storeState = this.props.storeState;
+        let activeCurrency = storeState.currencies[storeState.activeCurrencyNumber];
 
         return (
             <>
@@ -422,12 +440,20 @@ class ToureDescriptionClass extends React.Component {
                                                 <PlacePhotos photoArray={this.state.newTour.tour.images}
                                                     showMask={(clickedImageIndex) => { this.setState({ isMaskVisible: true, clickedImageIndex: clickedImageIndex }) }} />
                                             </div>
-                                            <RouteTravelBlock points={points} id={topBlockId + "3"} isTours={true}  textInfo={textInfo} 
-                                            daily={this.state.newTour.tour.daily} departureDate={this.state.departureDate}
-                                            dateWork={this.state.newTour.tour.calendary} price={price}/>
+                                            <RouteTravelBlock points={points} id={topBlockId + "3"} isTours={true} textInfo={textInfo}
+                                                daily={this.state.newTour.tour.daily} departureDate={this.state.departureDate}
+                                                dateWork={this.state.newTour.tour.calendary} price={price} />
                                             <div className="placeDescription_block flex-column" id={simularPlaceBlockId} style={{ display: this.state.newTour.additionalTours.length > 0 ? 'flex' : 'none' }}>
-                                                <SimularToursBlock outerBlock={simularPlaceBlockId} tours={this.state.newTour.additionalTours} tags={this.state.newTour.tags} fragmentName={textInfo.placeDescription.variantsArray[3]} priseDisplay={"none"} />
+                                                <SimularToursBlock outerBlock={simularPlaceBlockId} tours={this.state.newTour.additionalTours}
+                                                    tags={this.state.newTour.tags} changeTravelVisibility={this.changeTravelVisibility}
+                                                    fragmentName={textInfo.placeDescription.variantsArray[3]} priseDisplay={"none"} />
                                             </div>
+                                            <StartTravelForm {...this.props} changeTravelVisibility={this.changeTravelVisibility}
+                                                changeSuccessVisibility={this.changeSuccessVisibility} travelVisibility={this.state.travelVisibility}
+                                                elementPrice={this.state.elementPrice} activeCurrency={activeCurrency}
+                                                isoCountryMap={this.props.storeState.isoCountryMap}
+                                                textInfo={this.props.storeState.languageTextMain.startTravelForm}
+                                            />
 
                                             <CommentBlock targetType="tour" comments={this.state.newTour.comments} targetId={this.state.newTour.tour.id} page={this.state.page} setPage={this.setPage}
                                                 showMorePages={this.showMorePages} showPages={this.state.showPages} id={topBlockId + "5"} startRolling={() => this.startRolling()} endRolling={(result) => this.endRolling(result)} />

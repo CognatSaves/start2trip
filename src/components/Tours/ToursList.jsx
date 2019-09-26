@@ -90,20 +90,20 @@ class ToursListClass extends React.Component {
         }
         return ({ isGood: isGood, departureDate: departureDate, date: date, element: element });
     }
-    sortArrayByPrice = (element) => {
-        let idIndex = this.getCurrencies(element.element.currency, "id")
-        let usd = element.element.price / this.props.storeState.currencies[idIndex].costToDefault
+    sortArrayByPrice = (el) => {
+        let idIndex = this.getCurrencies(el.element.currency, "id")
+        let usd = el.element.price / this.props.storeState.currencies[idIndex].costToDefault
         usd = Math.ceil(usd)
         if (usd > this.props.toursState.tempPricePart) {
-            element.isGood = false
+            el.isGood = false
         }
-        return element
+        return el
     }
-    sortArrayByPeople = (element) => {
-        if (element.element.seats < (this.props.storeState.persons[0] + this.props.storeState.persons[1])) {
-            element.isGood = false
+    sortArrayByPeople = (el) => {
+        if (el.element.seats < (this.props.storeState.persons[0] + this.props.storeState.persons[1])) {
+            el.isGood = false
         }
-        return element
+        return el
     }
     sortArrayByTourType = (el) => {
         if (this.props.tourType !== "default") {
@@ -114,7 +114,18 @@ class ToursListClass extends React.Component {
                 }
             }
         }
-
+        return el
+    }
+    sortArrayByLanguage = (el) => {
+        el.isGood = false
+        for (let i = 0; i < el.element.language.length; i++) {
+            for (let j = 0; j < this.props.storeState.languageValue.length; j++) {
+                if (el.element.language[i] === this.props.storeState.languages[this.props.storeState.languageValue[j]].id) {
+                    el.isGood = true
+                    return el
+                }
+            }
+        }
 
         return el
     }
@@ -222,6 +233,10 @@ class ToursListClass extends React.Component {
                     result = this.sortArrayByPeople(result)
                 }
 
+                if (this.props.storeState.languages.length > 0 && this.props.storeState.languageValue.length > 0) {
+                    result = this.sortArrayByLanguage(result)
+                }
+
                 result = this.sortArrayByTourType(result)
 
                 sortSelectedPlacesArray.push(result)
@@ -253,16 +268,16 @@ class ToursListClass extends React.Component {
             }
             selectedPlaces = sortSelectedPlacesArray.slice((this.props.toursState.page - this.props.toursState.showPages) * this.props.toursState.pagesMenuValue,
                 this.props.toursState.page * this.props.toursState.pagesMenuValue);
-                
-                for(let i =0; i<selectedPlaces.length;i++){
-                    if(!selectedPlaces[i].isGood){
-                        isGoodElmentLength++
-                    }
+
+            for (let i = 0; i < selectedPlaces.length; i++) {
+                if (!selectedPlaces[i].isGood) {
+                    isGoodElmentLength++
                 }
-                
-                if(selectedPlaces.length === isGoodElmentLength){
-                    noGoodElement = true;
-                }
+            }
+
+            if (selectedPlaces.length === isGoodElmentLength) {
+                noGoodElement = true;
+            }
 
         }
 
@@ -272,7 +287,7 @@ class ToursListClass extends React.Component {
         let pageNotFound = this.props.storeState.languageTextMain.home.pageNotFound;
         let isEmpty = (selectedPlaces.length === 0 && this.props.isStaying);
         let isLoading = (selectedPlaces.length === 0 && !this.props.isStaying);
-        
+
         return (
 
             <>
@@ -289,7 +304,7 @@ class ToursListClass extends React.Component {
                         }
                     })}
                     {
-                        isLoading || isEmpty||noGoodElement ?
+                        isLoading || isEmpty || noGoodElement ?
                             <>
                                 {isLoading ?
                                     <div className="placesList_loading">

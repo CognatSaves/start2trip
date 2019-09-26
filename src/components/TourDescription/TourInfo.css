@@ -48,7 +48,7 @@
 
 .searchInputTourInfoContent {
     color: #666;
-    font-size: 16px ;
+    font-size: 16px;
     padding: 10px !important;
     background: #fff;
     border: 1px solid #304269 !important;
@@ -87,6 +87,19 @@
     border: 1px solid #303269 !important;
 }
 
+.dropdownClass.tourInfoContentDays {
+    border: 1px solid #303269 !important;
+    border-radius: 5px !important;
+    padding: 0px 10px !important;
+    min-height: 48px !important;
+    color: #666 !important;
+    font-size: 14px !important
+}
+
+.dropdownClass.tourInfoContentDays div{
+    color: #666 !important;
+}
+
 .dropdownClass.tourInfoContentDate {
     border: 1px solid #303269 !important;
 }
@@ -101,12 +114,14 @@
     line-height: 35px !important;
     bottom: 0px !important;
 }
+
 .MuiMenuItem-root {
     color: #666 !important;
     font-weight: 400 !important;
     font-size: 14px !important;
 }
-.MuiMenuItem-root:hover{
+
+.MuiMenuItem-root:hover {
     color: #304269 !important;
     font-weight: 500 !important;
 }
@@ -174,14 +189,14 @@
         padding-left: 14px !important;
         background: url(../media/calendarGray.svg) no-repeat;
         background-size: 14px 14px;
-        background-position: top 11px left 10px;
+        background-position: top 9px left 10px;
     }
 
 
     .calendarModal.tourInfoContentDate {
         border: none !important;
         margin-bottom: 5px;
-        max-width: 250px !important;
+        max-width: 83% !important;
     }
 
     .calendarModal.tourInfoContentDate input {
@@ -192,18 +207,40 @@
         display: none !important;
     }
 
+
+
     .dropdownClass.tourInfoContentDate.MuiInputBase-root {
         min-height: 44px;
         padding: 0px 10px;
         max-width: 100%;
         margin-bottom: 10px;
+        border-radius: 0px !important;
+    }
+
+    .dropdownClass.tourInfoContentDate {
+        border: none !important;
+        border-bottom: 1px solid #ccc !important;
+        border-radius: 0px !important;
+        min-height: 64px !important;
+        
+    }
+    .dropdownClass.tourInfoContentDate div{
+        color: #304269 !important;
+        font-size: 16px !important;
+    }
+
+    .dropdownClass.tourInfoContentDate .MuiSvgIcon-root {
+        font-size: 1.9rem !important;
     }
 
     .calendarModal.tourInfoContentDate {
         max-height: 44px !important;
-        border: none !important;
-        margin-bottom: 5px;
+        border: 1px solid #303269 !important;
+        border-radius: 5px !important;
+        color: #304269 !important;
+        width: 100%;
     }
+    
 
     .calendarModal.tourInfoContentDateMobail input {
         padding: 0px !important;
@@ -225,4 +262,10 @@
         border-bottom: 1px solid #ccc !important;
         border-radius: 0px !important;
     }
+
+    .tourInfoContent .tourInfoContentBt {
+        margin-top: 5px;
+        font-size: 16px;
+    }
+
 }

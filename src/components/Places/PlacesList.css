@@ -84,6 +84,18 @@
     overflow: hidden;
     color: #686868;
 }
+.placesList_info_textCss{
+    color: #686868;
+    font-size: 12px;
+    margin: 0px;
+}
+.placesList_info_icons{
+    display: block;
+    width: 15px;
+    height: 15px;
+    margin: 0px 5px;
+    background-size: 100% 100% !important;
+}
 
 .placesList_info_position_loc .placesList_info_position_textStyle {
     color: #686868;

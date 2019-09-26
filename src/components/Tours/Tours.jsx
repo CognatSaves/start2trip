@@ -39,7 +39,8 @@ class ToursClass extends React.Component {
       travelVisibility: false,
       successVisibility: 'none',
       elementPrice: 0,
-      temp: 0
+      temp: 0,
+      countryDescription: null,
     }
     //сначала уборка
     this.props.dispatch(setPlacesList([], [], [], {}));
@@ -48,16 +49,16 @@ class ToursClass extends React.Component {
   }
   sendRequestFunc = (isFirst) => {
     
-    // function findSelectedDirectionId(directions, slug) {
-    //   for (let i = 0; i < directions.length; i++) {
-    //     //for(let k=0; k<directions[i].loc.length; k++){
-    //     if (directions[i].loc.slug === slug) {
-    //       return directions[i].id
-    //     }
-    //     //}
-    //   }
-    //   return 0;
-    // }
+    function findSelectedDirectionId(directions, slug) {
+      for (let i = 0; i < directions.length; i++) {
+        //for(let k=0; k<directions[i].loc.length; k++){
+        if (directions[i].loc.slug === slug) {
+          return directions[i].id
+        }
+        //}
+      }
+      return 0;
+    }
     let selectedDirection = this.props.match.params.direction;
     if (!selectedDirection) {//защита от undefined
       selectedDirection = '';
@@ -88,21 +89,18 @@ class ToursClass extends React.Component {
       let that = this;
       let pointSelect = "";
       if(this.props.toursState.departurePoint && this.props.toursState.departurePoint.length>0){
-        let indexSelect = null
-        if(this.state.departurePoint !== ""){
           for(let i = 0; i<this.props.toursState.departurePoint.length;i++){
-            indexSelect = this.props.toursState.departurePoint[i].point.indexOf(this.state.departurePoint);
-            if(indexSelect !== -1){
-              pointSelect=this.props.toursState.departurePoint[i]
+            if(this.props.toursState.departurePoint[i].point === this.state.departurePoint){
+              pointSelect=this.props.toursState.departurePoint[i];
+              break;
             }
           }
-        }
       }else{
         pointSelect=this.state.departurePoint
       }
       pointSelect = JSON.stringify(pointSelect)
       let durationCorrect = null;
-      debugger
+      
       if(Number(this.state.duration)){
         durationCorrect = this.state.duration
       }
@@ -117,14 +115,27 @@ class ToursClass extends React.Component {
             throw data.error;
           }
           else {
-            
             console.log('tour request data', data);
             that.props.dispatch(setToursList(data.tours, data.categories, data.tags, data.directions, data.daysNumber,data.departurePoint));
             
           }
+          if (selectedDirection.length > 0) {
+            let id = findSelectedDirectionId(data.directions, selectedDirection);
+            if (id !== 0) {
+              that.props.dispatch(setSelectedDirection(id));
+            }
+            else {
+              //если не нашли - пускаем ещё раз крутилку - если не нашли, сервер не нашёл направление-> вернул всё
+              that.props.globalReduser.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/places/');
+            }
+          }
+          else {
+            that.props.dispatch(setSelectedDirection(''));
+          }
           that.setState({
                     isRefreshExist: false,
-                    temp: that.state.temp+1
+                    temp: that.state.temp+1,
+                    countryDescription:data.country
                  });
         })
         .catch(error => {
@@ -319,7 +330,7 @@ class ToursClass extends React.Component {
         <div className="drivers_top_background col-12 p-0" style={{ background: "url(" + windowImg + ")no-repeat" }}>
           <Header history={this.props.history} />
           <div className="wrapper d-flex flex-column">
-            <PlacesCountryInfo placesState={this.props.placesState} />
+            <PlacesCountryInfo placesState={this.state.countryDescription!== null?{country:this.state.countryDescription}:{country:{}}} />
           </div>
         </div>
         <div className="wrapper d-flex flex-column">

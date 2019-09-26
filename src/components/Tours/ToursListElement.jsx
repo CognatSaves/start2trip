@@ -44,16 +44,15 @@ class ToursListElementClass extends React.Component {
         let slug = element.tourlocalization.slug;
 
         let seats = element.seats
-        
-        let location = null;
-        
-        location = element.tourlocalization.points.map((el,index)=>{
-            let pointName = el.point.split(" ");
-            if((element.tourlocalization.points.length-1) === index){
-                return pointName[0].slice(0,pointName[0].length-1)
-            }
-           return pointName[0]
+
+         let language = element.language.map((el,index)=>{
+             for(let i=0;i<this.props.storeState.languages.length;i++){
+                if(this.props.storeState.languages[i].id === el){
+                    return this.props.storeState.languages[i]
+                }
+             }
          })
+
         let isoCurrencies = cookies.get('userCurr', { path: "/" })
         let idIndex = this.getCurrencies(element.currency,"id")
         let price = null
@@ -110,15 +109,19 @@ class ToursListElementClass extends React.Component {
                             <img src={tagBlue} height="12px" width="12px" alt="tagBlue" />
                             <div className="placesList_info_position_textStyle">{element.tagsArray.map((tag, tagIndex) => <text>{this.props.findTagName(tag) + (element.tagsArray.length - 1 > tagIndex ? "," : "") + " "}</text>)}</div>
                         </div> */}
-                        {/* <div className="d-flex placesList_info_position placesList_info_position_loc pt-1">
-                            <div className="placesList_info_position_textStyle">{location.map((el,index)=>(el+" "))}</div>
-                        </div> */}
+                        <div className="d-flex pt-1">
+                            <div className="placesList_info_position_textStyle d-flex align-items-center">
+                                <p className="placesList_info_textCss">Языки тура :</p>
+                            {language.map((el,index)=>(<i className="placesList_info_icons" style={{background:"url("+requests.serverAddressImg+el.icon.url+")no-repeat"}}/>))}
+                            </div>
+                        </div>
 
                     </div>
                     <button className="driversBlock_driverInfoBlock_element driversBlock_buttonStyle"
                         onClick={() => { 
                             
                             console.log(element);
+                            
                             this.props.changeTravelVisibility(element.price);
                             /*this.props.dispatch(setDriverCarDescription(element))*/
                         }}>{textInfo.bookTours+" "+price }</button>

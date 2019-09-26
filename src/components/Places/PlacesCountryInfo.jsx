@@ -54,48 +54,6 @@ class PlacesCountryInfoClass extends React.Component {
           <div className="placesCountryInfo_countryinfo">
             {data.description}
           </div>
-          {
-            false ?
-              <div className="placesCountryInfo_countryData">
-                <div className="placesCountryInfo_countryData_element" style={{ marginLeft: "auto" }}>
-                  <div className="countryData_element_icon">
-                    <img src={territoryIcon} width="100%" height="15%" alt=" " />
-                  </div>
-                  <div className="countryData_element_text">
-                    <text className="countryData_textStyle">
-                      <text className="countryData_smallText">{textInfo.placesCountryInfo.territory} </text>
-                      <br />
-                      <text className="countryData_bigText">{this.props.placesState.country.local ? this.props.placesState.country.local.propTerritory : ''}</text>
-                    </text>
-
-                  </div>
-                </div>
-                <div className="placesCountryInfo_countryData_element">
-                  <div className="countryData_element_icon" >
-                    <img src={peopleIcon} width="100%" height="15%" alt=" " />
-                  </div>
-                  <div className="countryData_element_text">
-                    <text className="countryData_textStyle">
-                      <text className="countryData_smallText">{textInfo.placesCountryInfo.population} </text>
-                      <br />
-                      <text className="countryData_bigText">{(this.props.placesState.country.propPopulation ? this.props.placesState.country.propPopulation + " чел." : '')}</text>
-                    </text>
-                  </div>
-                </div>
-                <div className="placesCountryInfo_countryData_element" style={{ marginRight: "auto" }}>
-                  <div className="countryData_element_icon"  >
-                    <img src={capitalIcon} width="100%" height="15%" alt=" " />
-                  </div>
-                  <div className="countryData_element_text">
-                    <text className="countryData_textStyle">
-                      <text className="countryData_smallText">{textInfo.placesCountryInfo.capital} </text>
-                      <br />
-                      <text className="countryData_bigText">{this.props.placesState.country.local ? this.props.placesState.country.local.propCapital : ''}</text>
-                    </text>
-                  </div>
-                </div>
-              </div> : <React.Fragment />
-          }
         </div>
       </>
     )

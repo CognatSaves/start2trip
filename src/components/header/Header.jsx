@@ -701,12 +701,11 @@ class HeaderClass extends React.Component {
       {
         to: "/places/",
         value: textInfo.menuElements[1]
-      }
-      /*,
+      },
       {
         to: "/tours/",
         value: textInfo.menuElements[2]
-      }*/
+      }
     ];
     
     let availableCurrencies = this.props.globalReduser.currencyFilter(this.props.storeState);

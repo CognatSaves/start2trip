@@ -87,7 +87,8 @@ const initialState = {
     currencies: [],
     countries: [],
     activeCurrencyNumber: 0,
-    comfort: [{
+    comfort: [
+        {
             icon: seatIcon,
             title: "Кожаный салон"
         },
