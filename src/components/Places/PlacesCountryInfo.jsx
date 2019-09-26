@@ -41,8 +41,6 @@ class PlacesCountryInfoClass extends React.Component {
         }
       }
     }
-
-
     let textInfo = this.props.storeState.languageTextMain.places;
     let data = findFillingText(this, textInfo);
     //let countryName = placesState.country.local ? (placesState.selectedDirection && dirNumber!==-1 ? placesState.directions[dirNumber].) : ''

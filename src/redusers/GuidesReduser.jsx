@@ -12,7 +12,8 @@ const initialState = {
     placePanelSelectedElement: -1,
     country:{},
 
-    guidesList: []
+    guidesList: [],
+    departurePoints: []
 }
 
 export const GuidesReduser = (state = initialState, action) => {
@@ -21,6 +22,7 @@ export const GuidesReduser = (state = initialState, action) => {
             let newState = {...state};
             newState.guidesList = action.guidesList;
             newState.country = action.country;
+            newState.departurePoints = action.departurePoints;
             return newState;
         }
         case SET_PAGES_MENU_VALUE: {
