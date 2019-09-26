@@ -110,9 +110,9 @@ class ToursListElementClass extends React.Component {
                             <img src={tagBlue} height="12px" width="12px" alt="tagBlue" />
                             <div className="placesList_info_position_textStyle">{element.tagsArray.map((tag, tagIndex) => <text>{this.props.findTagName(tag) + (element.tagsArray.length - 1 > tagIndex ? "," : "") + " "}</text>)}</div>
                         </div> */}
-                        <div className="d-flex placesList_info_position placesList_info_position_loc pt-1">
+                        {/* <div className="d-flex placesList_info_position placesList_info_position_loc pt-1">
                             <div className="placesList_info_position_textStyle">{location.map((el,index)=>(el+" "))}</div>
-                        </div>
+                        </div> */}
 
                     </div>
                     <button className="driversBlock_driverInfoBlock_element driversBlock_buttonStyle"

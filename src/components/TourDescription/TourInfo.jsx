@@ -24,8 +24,8 @@ class TourInfoClass extends React.Component {
         }
     }
     render() {
-        debugger;
-        if (this.props.toursState.categories.length > 0 && (this.state.days.length === 0) && this.props.toursState.daysNumber.length>0) {
+
+        if (this.props.toursState.categories.length > 0 && this.state.days.length === 0 && this.props.toursState.daysNumber.length>0) {
             //эта функция отрабатывает ровно 1 раз, но только когда пришли this.props.toursState.daysNumber. 
             let sortArrayDaysNumber = this.props.toursState.daysNumber.sort((a, b) => { return a < b ? -1 : 1 })
             this.setState({
@@ -40,7 +40,6 @@ class TourInfoClass extends React.Component {
             <div className="tourInfoBlock ">
                 <div className="d-flex flex-md-row flex-column justify-content-around align-items-center tourInfoContent">
                     <p>{textInfo.headerText}</p>
-                    {/* <LocationSearchInput placeholder={textInfo.searchPlaceholder} address={this.state.departurePoint} changeCity={this.changeCity} classInput="searchInputTourInfoContent col-12" classDropdown="searchDropdownTourInfoContent" classDiv="col-md-2 col-10 p-0"  isoCountryMap={this.props.storeState.isoCountryMap} /> */}
                     <input className="searchInputTourInfoContent col-md-3 col-10" onChange={(e) => {this.props.departurePointChange(e.target.value) }} value={this.props.departurePoint} placeholder={textInfo.searchPlaceholder} list="places" name="myPlaces" />
                     <datalist id="places">
                         {this.state.departurePoint.map((element, index) =>
@@ -64,7 +63,7 @@ class TourInfoClass extends React.Component {
                                 this.props.durationChange(event.target.value)
                             }}
                         >
-                            <MenuItem value={textInfo.menuItemDaysValue} >{textInfo.menuItemDaysValue}</MenuItem>
+                            <MenuItem value={"default"} >{textInfo.menuItemDaysValue}</MenuItem>
                             {this.state.days.map((element, index) =>
                                 <MenuItem value={element}>{(element + " " + textInfo.menuItemDays)}</MenuItem>
                             )}
