@@ -18,8 +18,6 @@ const initialState = {
     country:{},
     routesList: [],
 
-    guidesList: [],
-    guidesSortMenuVariants: ["Популярности", "Отзывам"]
 }
 
 export const PlacesReduser = (state=initialState, action)=>{

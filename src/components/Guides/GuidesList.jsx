@@ -13,16 +13,17 @@ class GuidesListClass extends React.Component {
         super(props);
         this.state = {}
     }
-    placesSort = (array, type) => {
+    guidesSort = (array, type) => {
 
         switch (type) {
             case 0:
                 return array.sort((a, b) => { return a.rating > b.rating ? -1 : 1 });
             case 1:
                 return array.sort((a, b) => { return a.comments > b.comments ? -1 : 1 });
+            /*    
             case 2:
                 return array.sort((a, b) => { return a.placelocalization.name < b.placelocalization.name ? -1 : 1 });
-
+            */
             default: return array;
         }
 
@@ -35,12 +36,33 @@ class GuidesListClass extends React.Component {
             this.props.dispatch(setPage(page));
         }
     }
+    guidesLanguageFilter = (array) => {
+        let filteredArray = [];
+        let storeState= this.props.storeState;
+        if(storeState.languageValue.length===0){
+            return array;
+        }
+        array.map((element, index)=>{
+            for(let j=0; j<storeState.languageValue.length; j++){
+                for(let k=0; k<element.language.length; k++){
+                    if(storeState.languages[storeState.languageValue[j]].id === element.language[k]){
+                        filteredArray.push(element);
+                        k=element.language.length;
+                        j=storeState.languageValue.length;
+                    }
+                }
+            }
+        })
 
+        return filteredArray;
+    }
     render() {
         console.log('PlacesList render');
         console.log(this.props);
+        let filteredGuidesArray = this.guidesLanguageFilter([...this.props.guidesState.guidesList])
+
         let sortedArray;
-        sortedArray = this.placesSort(/*[...this.props.placesState.placesList]*/[...this.props.guidesState.guidesList], this.props.guidesState.sortMenuValue);
+        sortedArray = this.guidesSort(/*[...this.props.placesState.placesList]*/filteredGuidesArray, this.props.guidesState.sortMenuValue);
         // }
 
         let selectedPlaces = sortedArray.slice((this.props.guidesState.page - this.props.guidesState.showPages) * this.props.guidesState.pagesMenuValue,

@@ -12,11 +12,12 @@ const CHANGE_PLACES_FIXED_CLASS = 'CHANGE_PLACES_FIXED_CLASS';
 
 const SET_PLACES_PANEL_SELECTED_ELEMENT = 'SET_PLACES_PANEL_SELECTED_ELEMENT';
 
-const setGuidesList = function (guidesList, country){
+const setGuidesList = function (guidesList, country, departurePoints){
     return{
         type: SET_GUIDES_LIST,
         guidesList: guidesList,
-        country: country
+        country: country,
+        departurePoints:departurePoints
     }
 }
 const setPagesMenuValue = function (pagesMenuValue){

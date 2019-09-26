@@ -40,7 +40,9 @@ class TourInfoClass extends React.Component {
             <div className="tourInfoBlock ">
                 <div className="d-flex flex-md-row flex-column justify-content-around align-items-center tourInfoContent">
                     <p>{textInfo.headerText}</p>
-                    <input className="searchInputTourInfoContent col-md-3 col-10" onChange={(e) => {this.props.departurePointChange(e.target.value) }} value={this.props.departurePoint} placeholder={textInfo.searchPlaceholder} list="places" name="myPlaces" />
+                    <input className="searchInputTourInfoContent col-md-3 col-10" onChange={(e) => 
+                    {this.props.departurePointChange(e.target.value) }} value={this.props.departurePoint}
+                    placeholder={textInfo.searchPlaceholder} list="places" name="myPlaces" />
                     <datalist id="places">
                         {this.state.departurePoint.map((element, index) =>
                             <option value={element.point} >{element.point}</option>

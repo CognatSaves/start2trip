@@ -28,13 +28,16 @@ class GuidesClass extends React.Component {
       country: "",
       language: "",
       isRefreshExist: false,
+      departurePoint: ''
     }
     //сначала уборка
     this.props.dispatch(setGuidesList([], [], [], {}));
     //потом уже дело
     this.props.dispatch(setPage(1));
   }
-  
+  departurePointChange =(point)=>{
+    this.setState({ departurePoint: point })
+  }
   sendRequestFunc = () => {
 
     let country = cookies.get('country', { path: '/' });
@@ -78,7 +81,9 @@ class GuidesClass extends React.Component {
         else{
           console.log("good");
           console.log(data);
-          that.props.dispatch(setGuidesList(data.guides, data.country));
+          
+
+          that.props.dispatch(setGuidesList(data.guides, data.country, data.departurePoints));
           that.setState({
             isRefreshExist: false
           })
@@ -87,51 +92,10 @@ class GuidesClass extends React.Component {
       .catch(function(error){
         console.log('bad');
         console.log('An error occurred:', error);
+        /*that.setState({
+          isRefreshExist: false
+        })*/
       })
-      /*
-      axios.get(requests.getPlacesList + "?country=" + country + "&lang=" + lang + (selectedDirection ? "&slug=" + selectedDirection : ''))
-        .then(response => {
-          console.log(response);
-          return response.data;
-        })
-        .then(data => {
-
-          if (data.error) {
-            console.log("bad");
-            throw data.error;
-          }
-          else {
-
-            console.log('good');
-            console.log(data);
-            that.props.dispatch(setPlacesList(data.places, data.tags, data.directions, data.country));
-            //следующие строки проверяют, смогли ли мы воспользоваться slug направления, если он, конечно, был
-
-
-            if (selectedDirection.length > 0) {
-              let id = findSelectedDirectionId(data.directions, selectedDirection);
-              if (id !== 0) {
-                that.props.dispatch(setSelectedDirection(id));
-              }
-              else {
-                //если не нашли - пускаем ещё раз крутилку - если не нашли, сервер не нашёл направление-> вернул всё
-                that.props.globalReduser.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/places/');
-              }
-            }
-            else {
-              that.props.dispatch(setSelectedDirection(''));
-            }
-            that.setState({
-              isRefreshExist: false
-            });
-
-          }
-        })
-        .catch(error => {
-          console.log('get wasted answer');
-          this.props.globalReduser.history.push('/');
-        });
-        */
     }
   }
   
@@ -147,7 +111,7 @@ class GuidesClass extends React.Component {
       return '';
     }
 
-    console.log("Places render", this.props.guidesState);
+    console.log("Guides render", this.props, this.state);
 
     this.sendRequestFunc();
 
@@ -159,9 +123,6 @@ class GuidesClass extends React.Component {
     let countryName = this.props.storeState.countries.length > 0 ?
       this.props.globalReduser.findCountryNameByISO(this, cookies.get('country', { path: '/' }), cookies.get('userLang', { path: '/' }))
       : '';
-    if (countryName.length > 0) {
-
-    }
     //let name = findSelectedDirectionName(this.props.guidesState.directions, selectedDirection);
     let helmet = this.props.storeState.languageTextMain.helmets.places;
 
@@ -169,16 +130,7 @@ class GuidesClass extends React.Component {
     let directions = [];
     let directionName;
     let countryISO;
-    /*if (this.props.placesState.directions.length > 0) {
-      for (let i = 0; i < this.props.placesState.directions.length; i++) {
-        directions.push(this.props.placesState.directions[i].loc.slug)
-      }
-      countryISO = JSON.stringify(this.state.country);
-    }
-    if (this.props.placesState.directions.length > 0 && selectedDirection.length > 0) {
-      directionName = JSON.stringify(findSelectedDirectionName(this.props.placesState.directions, selectedDirection));
-    }
-    directions = JSON.stringify(directions)*/
+
     let windowImg = null
     if (this.props.storeState.languages.length > 0) {
 
@@ -198,7 +150,7 @@ class GuidesClass extends React.Component {
 
     return (
         <>
-            <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={/*this.state.isRefreshing*/true} isGoodAnswer={/*this.state.isGoodAnswer*/true} />
+            <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={true} isGoodAnswer={/*this.state.isGoodAnswer*/true} />
 
             {
 
@@ -285,8 +237,10 @@ class GuidesClass extends React.Component {
                 <div className="drivers_bottom_background d-flex flex-column" >
                     <div className="drivers_body d-flex">
                         <div id="placesMainBlock" className="left_body_part col-12 p-0">
-                            <GuidesPanel guidesState={this.props.guidesState} />
-                            <GuidesList isStaying={!this.state.isRefreshExist} />
+                            <GuidesPanel guidesState={this.props.guidesState} departurePoints={this.props.guidesState.departurePoints}
+                              departurePoint={this.state.departurePoint} departurePointChange={this.departurePointChange}
+                            />
+                            <GuidesList isStaying={!this.state.isRefreshExist} departurePoint={this.state.departurePoint}/>
                         </div>
                     </div>
                 </div>
