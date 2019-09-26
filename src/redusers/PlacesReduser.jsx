@@ -16,13 +16,16 @@ const initialState = {
     directions:[],
     selectedDirection:'',
     country:{},
-    routesList: []
+    routesList: [],
+
+    guidesList: [],
+    guidesSortMenuVariants: ["Популярности", "Отзывам"]
 }
 
 export const PlacesReduser = (state=initialState, action)=>{
     //console.log("PlacesReduser");
     //console.log(action);
-    switch(action.type){
+    switch(action.type){     
         case SET_ROUTES_LIST:{
             
             let newState={...state};

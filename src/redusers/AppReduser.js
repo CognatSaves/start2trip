@@ -251,7 +251,6 @@ export const AppReduser = (state = initialState, action) => {
             newState.cities = action.cities;
             return newState;
         }
-
         case SET_AUTO: {
             let newState = {
                 ...state
@@ -260,7 +259,6 @@ export const AppReduser = (state = initialState, action) => {
             newState.autoIcon = action.autoIcon;
             return newState;
         }
-
         case AUTO_MENU_CALL: {
             let newState = {
                 ...state
@@ -273,7 +271,6 @@ export const AppReduser = (state = initialState, action) => {
             newState.languageMenu = false;
             return newState;
         }
-
         case SET_PAGES: {
             let newState = {
                 ...state
@@ -281,7 +278,6 @@ export const AppReduser = (state = initialState, action) => {
             newState.pagesMenuValue = action.pagesMenuValue;
             return newState;
         }
-
         case SET_PAGES_VISIBLE: {
             let newState = {
                 ...state
@@ -294,7 +290,6 @@ export const AppReduser = (state = initialState, action) => {
             newState.languageMenu = false;
             return newState;
         }
-
         case SET_SORT_MENU: {
             let newState = {
                 ...state
@@ -303,7 +298,6 @@ export const AppReduser = (state = initialState, action) => {
             newState.sortMenuWay = action.sortMenuWay;
             return newState;
         }
-
         case SET_SORT_MENU_VISIBLE: {
             let newState = {
                 ...state
@@ -316,7 +310,6 @@ export const AppReduser = (state = initialState, action) => {
             newState.languageMenu = false;
             return newState;
         }
-
         case SET_MAX_PRICE: {
             let newStateSMP = {
                 ...state
@@ -326,7 +319,6 @@ export const AppReduser = (state = initialState, action) => {
             newStateSMP.maxPrice = action.maxPrice;
             return newStateSMP;
         }
-
         case SET_TEMP_PRICE_PART: {
             let newState = {
                 ...state
@@ -340,7 +332,6 @@ export const AppReduser = (state = initialState, action) => {
             newState.languageMenu = false;
             return newState;
         }
-
         case SET_PRICE_PART: {
             let newState = {
                 ...state
@@ -354,8 +345,6 @@ export const AppReduser = (state = initialState, action) => {
             newState.languageMenu = false;
             return newState;
         }
-
-
         case CHANGE_PERSONS_NUMBER: {
             let newState = {
                 ...state

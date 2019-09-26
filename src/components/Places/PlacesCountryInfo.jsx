@@ -10,7 +10,7 @@ class PlacesCountryInfoClass extends React.Component {
   render() {
     function findFillingText(that, textInfo) {
       function fingDirectionById(directions, dirId) {
-        if (dirId.length === 0) {
+        if (!dirId || dirId.length === 0) {
           return -1;
         }
         for (let i = 0; i < directions.length; i++) {
@@ -28,7 +28,7 @@ class PlacesCountryInfoClass extends React.Component {
         }
       }
       let dirNumber = fingDirectionById(placesState.directions, placesState.selectedDirection);
-      if (placesState.selectedDirection.length === 0 || dirNumber === -1) {//не выбрано направление (direction)
+      if ( dirNumber === -1 || placesState.selectedDirection.length === 0 ) {//не выбрано направление (direction)
         return {
           name: placesState.country.local.name,
           description: placesState.country.local.description

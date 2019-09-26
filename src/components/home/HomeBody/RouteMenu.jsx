@@ -444,12 +444,8 @@ class RouteMenuClass extends React.Component {
 
           if (data.error) {
             console.log("bad");
-            that.setState({ isRefreshing: false, isGoodAnswer: false });
-            setTimeout(() => {
-              that.setState({ isWaiting: false });
-              throw data.error;
-            }, 1000);
-
+            
+            throw data.error;
           }
           else {
 
@@ -468,6 +464,11 @@ class RouteMenuClass extends React.Component {
         .catch(function (error) {
           console.log("bad");
           console.log('An error occurred:', error);
+          that.setState({ isRefreshing: false, isGoodAnswer: false });
+            setTimeout(() => {
+              that.setState({ isWaiting: false });
+              
+           }, 1000);
           that.props.dispatch(setWaitingDriverRequest(false));
         });
     })

@@ -152,8 +152,12 @@
     width: 70%;
     text-align: center;
     border-radius: 5px;
+    border: 1px solid #ccc;
 }
-
+.tourSeatsModalInput:focus{
+    border: 1px solid #1a73e8;
+    outline: none;
+}
 .textFieldDefaultLabelStyles{
     position: absolute;
     line-height: 22px;

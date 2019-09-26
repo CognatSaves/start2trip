@@ -1,0 +1,8 @@
+.guidesList_info{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 130px;
+    max-height: 145px;
+    padding: 0px 10px;
+}

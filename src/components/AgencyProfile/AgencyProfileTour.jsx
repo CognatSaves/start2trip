@@ -77,41 +77,43 @@ const TourSeatsModalContent = (that, pseudoTableHeaderArray, tableElementsWidth,
             </div>
             <div className="d-flex flex-column tableBlock tourSeatsModalTable">
 
-                <table style={{ textAlign: 'center'}}>
-                    <tr>
+                <div className="d-flex flex-column" style={{textAlign: 'center'}}>
+                    <div className="d-flex flex-row">
                         {
                             pseudoTableHeaderArray.map((element, index) => {
                                 return (
-                                    <td width={tableElementsWidth[index]}>{translation.headerArray[index]}</td>
+                                    <div style={{width:tableElementsWidth[index] }}>{translation.headerArray[index]}</div>
                                 )
                             })
                         }
-                    </tr>
+                    </div>
                     {                      
                         that.state.tourSeatsBlocks.map((element, index) => {
                             return (
-                                <tr style={{ backgroundColor: isErrorBlock(element.id, that) ? 'red' : 'transparent' }}>
-                                    <td width={tableElementsWidth[0]} >{dateLineConverter(that.props.globalReduser.createDateTimeString(new Date(element.date), true))}</td>
-                                    <td width={tableElementsWidth[1]} >
-                                        <input className="tourSeatsModalInput" type="number" value={element.freeSeats}
-                                            onChange={(e) => {
-                                                let value = e.target.value;
-                                                if (value >= 0) {
-                                                    let tourBlocks = that.state.tourSeatsBlocks;
-                                                    tourBlocks[index].freeSeats = parseInt(value, 10);
-                                                    that.setState({
-                                                        tourSeatsBlocks: tourBlocks
-                                                    })
-                                                }
-                                            }} />
-                                    </td>
-                                    <td width={tableElementsWidth[2]} >{element.reservedSeats}</td>
-                                </tr>
+                                <>
+                                    <div className="d-flex flex-row" style={{ backgroundColor: isErrorBlock(element.id, that) ? 'red' : 'transparent' }}>
+                                        <div style={{width:tableElementsWidth[0] }}>{dateLineConverter(that.props.globalReduser.createDateTimeString(new Date(element.date), true))}</div>
+                                        <div style={{width:tableElementsWidth[1] }}>
+                                            <input className="tourSeatsModalInput" type="number" value={element.freeSeats}
+                                                onChange={(e) => {
+                                                    let value = e.target.value;
+                                                    if (value >= 0) {
+                                                        let tourBlocks = that.state.tourSeatsBlocks;
+                                                        tourBlocks[index].freeSeats = parseInt(value, 10);
+                                                        that.setState({
+                                                            tourSeatsBlocks: tourBlocks
+                                                        })
+                                                    }
+                                                }} />
+                                        </div>
+                                        <div style={{width:tableElementsWidth[2] }}>{element.reservedSeats}</div>
+                                    </div>
+                                </>
                             )
                         })
                         
                     }
-                </table>             
+                </div>             
             </div>
             <div className="d-flex flex-row justify-content-end">
 
@@ -1968,10 +1970,10 @@ class AgencyProfileTourClass extends React.Component {
                                             }
                                             </div>
                                         </div>
-                                        <div className="d-flex flex-row">
+                                        <div className="d-flex flex-row" onClick={() => this.tourSeatsModalShow(element)}>
                                             <div className="d-flex col-6 cardHelpButtonBlocks agencyButtonTextStyle">{textPageAgencyProfile.seatsTable}</div>
                                             <div className="d-flex col-6 p-0 agencyButtonStyle justify-content-center ">
-                                                <button className="w-100" onClick={() => this.tourSeatsModalShow(element)}>
+                                                <button className="w-100">
                                                     <div className="agencyCalendarButton" style={{margin: '0 auto'}}></div>
                                                 </button>
                                             </div>
