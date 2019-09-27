@@ -1,4 +1,4 @@
-import {SET_GUIDES_LIST,SET_PAGES_MENU_VALUE,SET_SORT_MENU_VALUE,SET_PAGE,
+import {SET_GUIDE_DATA,SET_GUIDES_LIST,SET_PAGES_MENU_VALUE,SET_SORT_MENU_VALUE,SET_PAGE,
     SET_MORE_PAGES_SHOW,CHANGE_PLACES_FIXED_CLASS,SET_PLACES_PANEL_SELECTED_ELEMENT} from './ActionGuides';
 const initialState = {
     page: 1,
@@ -13,11 +13,20 @@ const initialState = {
     country:{},
 
     guidesList: [],
-    departurePoints: []
+    departurePoints: [],
+
+    guideData: {},
+    carTypes: []
 }
 
 export const GuidesReduser = (state = initialState, action) => {
     switch (action.type){
+        case SET_GUIDE_DATA:{
+            let newState = {...state};
+            newState.guideData = action.guideData;
+            newState.carTypes = action.carTypes;
+            return newState;
+        }
         case SET_GUIDES_LIST:{
             let newState = {...state};
             newState.guidesList = action.guidesList;
