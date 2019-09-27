@@ -58,6 +58,7 @@ const showTour = serverAddress + '/showTour';//запрос на получен�
 const setTourSeatsData = serverAddress + '/setTourSeatsData';//запрос на установку количества мест для тура по дням
 
 const findGuides = serverAddress + '/users/findGuides';//запрос на получение списка гидов на странице guides
+const showGuide = serverAddress + '/users/showGuide';//запрос на получение описания гида на странице /guides/:id -> GuideDescription
 export default {
     frontendAddress: frontendAddress,
     serverAddress: serverAddress,
@@ -117,5 +118,6 @@ export default {
 
     showTour:showTour,
     setTourSeatsData:setTourSeatsData,
-    findGuides:findGuides
+    findGuides:findGuides,
+    showGuide:showGuide
 };

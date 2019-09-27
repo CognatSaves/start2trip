@@ -12,6 +12,15 @@ const CHANGE_PLACES_FIXED_CLASS = 'CHANGE_PLACES_FIXED_CLASS';
 
 const SET_PLACES_PANEL_SELECTED_ELEMENT = 'SET_PLACES_PANEL_SELECTED_ELEMENT';
 
+const SET_GUIDE_DATA = 'SET_GUIDE_DATA';
+
+const setGuideData = function(guideData,carTypes){
+  return {
+    type: SET_GUIDE_DATA,
+    guideData: guideData,
+    carTypes:carTypes
+  }
+}
 const setGuidesList = function (guidesList, country, departurePoints){
     return{
         type: SET_GUIDES_LIST,
@@ -64,5 +73,6 @@ export {
     SET_PAGE,setPage,
     SET_MORE_PAGES_SHOW,setMorePagesShow,
     CHANGE_PLACES_FIXED_CLASS,changePlacesFixedClass,
-    SET_PLACES_PANEL_SELECTED_ELEMENT,setPlacesPanelSelectedElement
+    SET_PLACES_PANEL_SELECTED_ELEMENT,setPlacesPanelSelectedElement,
+    SET_GUIDE_DATA,setGuideData
 }

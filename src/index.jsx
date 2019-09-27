@@ -15,6 +15,7 @@ import Home from './components/home/Home.jsx';
 import Places from './components/Places/Places.jsx';
 import Tours from './components/Tours/Tours.jsx';
 import Guides from './components/Guides/Guides.jsx';
+import GuideDescription from './components/GuideDescription/GuideDescription.jsx';
 import Footer from './components/Footer/Footer'
 import TourDescription from './components/TourDescription/TourDescription.jsx';
 import AccountRedirector from './components/registration/AccountRedirector';
@@ -383,8 +384,9 @@ ReactDOM.render(
               <Route path={"/" + config.routeMap + "/tours-:direction/"} component={Tours} />
               <Route path={"/" + config.routeMap + "/tours/"} component={Tours} />
 
+              <Route path={"/"+config.routeMap+'/guides/:id'} component={GuideDescription}/>
               <Route path={"/"+config.routeMap+"/guides/"} component={Guides}/>
-
+              
 
               <Route path="/account/" component={AccountRedirector} />
               <Route path="/forgot-password/" component={ForgotPassword} />

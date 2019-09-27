@@ -21,7 +21,10 @@ class CommentBlockClass extends React.Component {
 
         return (
             <div className="placeDescription_block d-flex flex-column" style={{ marginBottom: '100px' }} id={this.props.id}>
-                <div className="placeDescription_fragmentName">{textInfo.comments}</div>
+                {
+                    !this.props.noHeader &&
+                        <div className="placeDescription_fragmentName">{textInfo.comments}</div>
+                }               
                 <div className="render_otherPlaces" style={{ marginTop: "15px" }}>
                     {this.props.targetId ? <>
                         <CreateComment targetType={this.props.targetType} targetId={this.props.targetId} createCommentString={textInfo.createCommentString}

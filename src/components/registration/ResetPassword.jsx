@@ -6,7 +6,8 @@ import requests from '../../config';
 
 import Header from '../header/Header';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
-
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 class ResetPasswordClass extends React.Component {
     constructor(props) {
         super(props);
@@ -26,7 +27,7 @@ class ResetPasswordClass extends React.Component {
             isChangePasswordType2: false,
         }
         if (code.length === 0) {
-            this.props.history.push('/');
+            this.props.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/routes/');
         }
 
     }
@@ -62,6 +63,7 @@ class ResetPasswordClass extends React.Component {
                     .then(function (data) {
                         console.log('reset password server answer');
                         console.log(data);
+                        
                         if (data.error) {
                             throw Error('самшит');
                         }
@@ -88,7 +90,7 @@ class ResetPasswordClass extends React.Component {
                                 that.setState({
                                     isRefreshExist: false
                                 });
-                                that.props.history.push('/');
+                                that.props.history.push("/" + that.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/routes/');
                             }, 1000);
                         }
 

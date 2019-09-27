@@ -35,7 +35,6 @@ class ToursListElementClass extends React.Component {
     }
 
     render() {
-
         let textInfo = this.props.storeState.languageTextMain.tours;
         let element = this.props.element;
         let index = this.props.index;
