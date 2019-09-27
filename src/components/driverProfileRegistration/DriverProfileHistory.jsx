@@ -11,8 +11,31 @@ class DriverProfileHistoryClass extends React.Component {
     }
   }
 
+  sortArrayDays = (array, isReverse) => {
+    let sortArray = array.sort((c, d) => {
+      let a = new Date(c.startDefault);
+      let b = new Date(d.startDefault);
+      if (isReverse) {
+        return a > b ? -1 : a < b ? 1 : 0;
+      } else {
+        return a < b ? -1 : a > b ? 1 : 0;
+      }
+    })
+    return sortArray
+  }
+
   render() {
     let textPage = this.props.AppReduser.languageText.driverProfileRegistration.DriverProfileHistory;
+    let futureTrips;
+    let historyTrips;
+
+    if (this.props.globalReduser.profile && this.props.globalReduser.profile.futureTrips) {
+      futureTrips = this.sortArrayDays(this.props.globalReduser.profile.futureTrips, false)
+    }
+    if (this.props.globalReduser.profile && this.props.globalReduser.profile.historyTrips) {
+      historyTrips = this.sortArrayDays(this.props.globalReduser.profile.historyTrips, true);
+    }
+
     return (
       <>
         <div className="driverProfileHistory">
@@ -25,8 +48,8 @@ class DriverProfileHistoryClass extends React.Component {
             </div>
           </div>
           {{
-            true: <DriverProfileTrevelHistory isHistory={false} trevelHistory={/*this.state.trevelHistory*/this.props.globalReduser.profile && this.props.globalReduser.profile.futureTrips ? this.props.globalReduser.profile.futureTrips : []} />,
-            false: <DriverProfileTrevelHistory isHistory={true} trevelHistory={/*this.state.trevelHistory1*/this.props.globalReduser.profile && this.props.globalReduser.profile.historyTrips ? this.props.globalReduser.profile.historyTrips : []} />,
+            true: <DriverProfileTrevelHistory isHistory={false} trevelHistory={/*this.state.trevelHistory*/this.props.globalReduser.profile && this.props.globalReduser.profile.futureTrips ? futureTrips : []} />,
+            false: <DriverProfileTrevelHistory isHistory={true} trevelHistory={/*this.state.trevelHistory1*/this.props.globalReduser.profile && this.props.globalReduser.profile.historyTrips ? historyTrips : []} />,
           }[this.state.isPreHistory]}
         </div>
       </>

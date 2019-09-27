@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
+import { Collapse } from 'reactstrap'
 import requests from '../../config';
 import getUserData from '../driverProfileRegistration/DriverProfileRequest';
 
@@ -8,15 +9,18 @@ import Stars from '../stars/Stars';
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 import Cookies from 'universal-cookie';
 
+
 const cookies = new Cookies();
 
 class DriverProfileTrevelHistoryClass extends React.Component {
     constructor(props) {
         super(props);
+        let arrayCollapse = new Array(props.trevelHistory.length).fill(false)
         this.state = {
             isRefreshExist: false,
             isRefreshing: true,
             isGoodAnswer: true,
+            collapse: arrayCollapse,
         };
     }
     startRefresher = () => {
@@ -171,51 +175,33 @@ class DriverProfileTrevelHistoryClass extends React.Component {
         let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileTrevelHistory;
 
         let that = this;
+
+
+
         return (
-            <div className="d-flex flex-wrap justify-content-center">
+            <div className="d-flex flex-wrap ">
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
 
                 {this.props.trevelHistory.map((element, index) =>
-                    <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-11 p-2" key={element}>
-                        <div className="trevelHistoryBody  d-flex flex-column">
+                    <div className={this.state.collapse[index] ? " openCollapse col-md-6 col-12 p-2" : "col-lg-3 col-md-4 col-sm-6 col-11 p-2 "} key={element}>
+                        <div className={(Math.abs(new Date(element.startDefault) - new Date()) < 86400000) && !this.props.isHistory ? "trevelHistoryBody trevelHistoryBodyActiveDay  d-flex flex-column" : "trevelHistoryBody  d-flex flex-column"}>
                             <div className="d-flex flex-column historyBodyHeader">
                                 <div className="d-flex justify-content-between">
                                     <span>{element.startDefault ? this.props.globalReduser.createDateTimeString(element.startDefault) : ''}</span>
                                     <span className="historyBodyHeaderType">{element.tripType.type_en}</span>
                                 </div>
                                 <span className="historyBodyHeaderRoute">{createCorrectRoute(element.route, element.travelLength, element.travelTime)}</span>
-                                <hr />
+                                <span className="historyBodyHeaderBtn pt-2"
+                                    onClick={() => {
+                                        let array = this.state.collapse;
+                                        array[index] = !array[index];
+                                        this.setState({ collapse: array })
+                                    }}>{this.state.collapse[index] ? textPage.historyBodyHeaderBtn[0] : textPage.historyBodyHeaderBtn[1]}</span>
                             </div>
-                            <div className="d-flex flex-column historyBodyElement ">
-                                <h5>{textPage.tripId}</h5>
-                                <span>{element.id}</span>
-                            </div>
-                            <div className="d-flex flex-column historyBodyElement ">
-                                <h5>{textPage.customer}</h5>
-                                <span>{element.client.firstName}</span>
-                                <span>{element.client.phone}</span>
-                                <span>{element.client.email}</span>
-                                {/* <span>{element.passengerNumber+" чел."}</span> */}
-                            </div>
-                            <div className="d-flex flex-column historyBodyElement">
-                                <h5>{textPage.venue}</h5>
-                                <span>{element.startPlace}</span>
-                            </div>
-                            <div className="d-flex flex-column historyBodyElement">
-                                <h5>{textPage.car}</h5>
-                                <span>{element.car}</span>
-                            </div>
-                            <div className="d-flex flex-column historyBodyElement">
-                                <h5>{textPage.costOfTravel}</h5>
-                                <span>{this.props.globalReduser.profile.currencies ? this.props.globalReduser.profile.currencies[findCurrencyEl(that, element.currencyType)].symbol + element.price : ''}</span>
-                            </div>
-                            <div className="d-flex flex-column historyBodyElement">
-                                <h5>{textPage.comment}</h5>
-                                <span>{element.commentary}</span>
-                            </div>
-                            {
-                                this.props.isHistory ?
-                                    <>
+                            <Collapse isOpen={this.state.collapse[index]} className={this.state.collapse[index] ? "d-flex flex-column px-3" : ""} >
+                                {
+                                    this.props.isHistory &&
+                                    <> <div className="d-flex">
                                         <div className="d-flex flex-column historyBodyElement">
                                             <h5>{textPage.tripStart}</h5>
                                             <span>{element.startFact ? this.props.globalReduser.createDateTimeString(element.startFact) : textPage.noStart}</span>
@@ -224,15 +210,54 @@ class DriverProfileTrevelHistoryClass extends React.Component {
                                             <h5>{textPage.tripEnd}</h5>
                                             <span>{element.endFact ? this.props.globalReduser.createDateTimeString(element.endFact) : textPage.noEnd}</span>
                                         </div>
+                                    </div>
+
                                     </>
-                                    : <>
-                                        <div className="d-flex flex-column historyBodyElement">
-                                            <button onClick={() => this.stateButtonClicked(element)}>{element.startFact ? textPage.stateVariants[0] : textPage.stateVariants[1]}</button>
-                                        </div>
-                                    </>
+                                }
+                                <div className="d-flex  historyBodyElement">
+                                    <h5>{textPage.tripId + ":"}</h5>
+                                    <span>{element.id}</span>
+                                </div>
+                                <div className="d-flex  historyBodyElement">
+                                    <h5>{textPage.venue + ":"}</h5>
+                                    <span>{element.startPlace}</span>
+                                </div>
+                                <div className="d-flex  historyBodyElement">
+                                    <h5>{textPage.car + ":"}</h5>
+                                    <span>{element.car}</span>
+                                </div>
+                                <div className="d-flex  historyBodyElement">
+                                    <h5>{textPage.costOfTravel + ":"}</h5>
+                                    <span>{this.props.globalReduser.profile.currencies ? this.props.globalReduser.profile.currencies[findCurrencyEl(that, element.currencyType)].symbol + element.price : ''}</span>
+                                </div>
+                                <div className="d-flex flex-column historyBodyElement">
+                                    <h5>{textPage.customer + ":"}</h5>
+                                    <span>{element.client.firstName}</span>
+                                    <span>{element.client.phone}</span>
+                                    <span>{element.client.email}</span>
+                                    {/* <span>{element.passengerNumber+" чел."}</span> */}
+                                </div>
+                                <div className="d-flex flex-column historyBodyElement">
+                                    <h5>{textPage.comment + ":"}</h5>
+                                    <span>{element.commentary}</span>
+                                </div>
+                            </Collapse>
+
+                            {
+                                !this.props.isHistory &&
+                                <>
+                                    <div className={(Math.abs(new Date(element.startDefault) - new Date()) < 86400000) ? "d-flex flex-column historyBodyBtn" : "d-flex flex-column historyBodyBtnNotActive"}>
+                                        <button onClick={() => {
+                                            if (Math.abs(new Date(element.startDefault) - new Date()) < 86400000) {
+                                                this.stateButtonClicked(element)
+                                            }
+                                        }}>{element.startFact ? textPage.stateVariants[0] : textPage.stateVariants[1]}</button>
+                                    </div>
+                                </>
                             }
 
                         </div>
+
                     </div>
                 )}
             </div>

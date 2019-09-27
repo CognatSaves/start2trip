@@ -288,7 +288,8 @@ const driverProfileRegistration = {
         noStart: 'The trip has not been started',
         tripEnd: 'End of Trip',
         noEnd: 'The trip was not finished',
-        stateVariants: ['End the trip', 'Start the trip']
+        stateVariants: ['End the trip', 'Start the trip'],
+        historyBodyHeaderBtn:["Hide","More details"],
     },
     DriverProfileHistory: {
         upcoming: "Upcoming",

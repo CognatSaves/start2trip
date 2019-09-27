@@ -282,11 +282,12 @@ const driverProfileRegistration = {
         costOfTravel: "მოგზაურობის ღირებულება",
         comment: "კომენტარი",
         car: "მანქანა",
-        tripStart: 'Начало поездки(GEO)',
+        tripStart: 'მოგზაურობის დასაწყისი',
         noStart: 'Поездка не была начата(GEO)',
         tripEnd: 'Окончание поездки(GEO)',
         noEnd: 'Поездка не была закончена(GEO)',
-        stateVariants: ['Закончить поездку(GEO)', 'Начать поездку(GEO)']
+        stateVariants: ['დაასრულეთ მოგზაურობა', 'დაიწყეთ მოგზაურობა'],
+        historyBodyHeaderBtn:["დამალვა","დეტალები"],
     },
     DriverProfileHistory: {
         upcoming: "მოსალოდნელი",

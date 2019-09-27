@@ -3,6 +3,8 @@ import '../Places/PlacesPanel.css';
 import './TourDescription.css';
 import { connect } from 'react-redux';
 import checkBtUp from '../../redusers/GlobalFunction'
+import requests from '../../config';
+import Stars from '../stars/Stars'
 
 //import {changePanelFixedClass} from '../../redusers/ActionTours';
 
@@ -43,6 +45,7 @@ class TourPanelClass extends React.Component {
             for (let i = 0; i < this.props.variantsArray.length; i++) {
 
                 let pageElement = document.getElementById(this.props.descriptionId + (i + 1));
+                
                 let elementHeight = pageElement.offsetHeight;
 
                 if (distanceTop - scrolled < 50) {
@@ -81,13 +84,14 @@ class TourPanelClass extends React.Component {
                             }
                             return (indexOfRemovedElement === -1 ?
                                 <a className={this.props.panelSelectedElement === index ? "descriptionPanel_element tourPanel_element tourPanelSelected" :
-                                    "descriptionPanel_element tourPanel_element"} href={"#" + elementId}>{element}</a>
+                                    "descriptionPanel_element tourPanel_element"} href={"#" + elementId}>{index===2?element[this.props.isGuide?0:1]:element}</a>
                                 :
                                 <React.Fragment />)
 
                         }
                         )
                     }
+                    
                 </div>
             </>
         )

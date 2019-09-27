@@ -3,8 +3,10 @@ import MapContainer from '../home/HomeBody/MapContainer';
 import { connect } from 'react-redux';
 import { isMobileOnly } from 'react-device-detect';
 import { setLengthTime } from '../../redusers/ActionDrivers'
+import requests from '../../config';
 
 // import LocationSearchInput from '../home/HomeBody/Search';
+
 
 import DatePicker from 'material-ui/DatePicker';
 import Cookies from 'universal-cookie';
@@ -101,14 +103,17 @@ class RouteTravelBlockClass extends React.Component {
         console.log(this.props.driversState);
         return (
             <div className="placeDescription_block d-flex flex-column" id={this.props.id} key={JSON.stringify(points)}>
+
                 <div className="placeDescription_fragmentName">{textInfo.fragmentName}</div>
+
                 <div className="d-flex flex-row">
-                    <div className="d-flex col-md-6 col-12 pl-0 routeTravelBlock_pointPart ">
+                    <div className="d-flex flex-column col-md-6 col-12 pl-0 routeTravelBlock_pointPart ">
 
                         <div className="d-flex flex-wrap routeTravelBlock_pointBlock" >
+
                             <div style={{ paddingBottom: '10px' }} className="col-md-12 col">
                                 <div className="route_time_text col-12">
-                                    <div class="marsh">{textInfo.route + ':'}</div>
+                                    <div class="marsh mt-auto">{textInfo.route + ':'}</div>
                                     <div class="param">{textInfo.time + ':'}<span>{this.props.driversState.travelTime}</span></div>
                                     <div class="param par">{textInfo.length + ':'}<span>{this.props.driversState.travelLength}</span></div>
                                 </div>
@@ -130,9 +135,9 @@ class RouteTravelBlockClass extends React.Component {
                                     + (this.state.isDateHighlighted ? 'placesDescription_travelBlock_highlighted' : '')}
                                     onClick={() => { if (this.state.isDateHighlighted) { this.setState({ isDateHighlighted: false }) } }}>
                                     <div className="placesDescription_travelBlock_icon placesDescription_calendary" />
-                                    <DatePicker hintText={textInfo.startDate} defaultDate={this.props.isTours?new Date(this.props.departureDate) :new Date()} minDate={new Date()} shouldDisableDate={(date) => {
+                                    <DatePicker hintText={textInfo.startDate} defaultDate={this.props.isTours ? new Date(this.props.departureDate) : new Date()} minDate={new Date()} shouldDisableDate={(date) => {
                                         let flag = true;
-                                        if(!this.props.daily && this.props.isTours){
+                                        if (!this.props.daily && this.props.isTours) {
                                             for (let i = 0; i < this.props.dateWork.length; i++) {
                                                 let newDate = new Date(this.props.dateWork[i])
                                                 let newDay = newDate.getDate();
@@ -145,8 +150,8 @@ class RouteTravelBlockClass extends React.Component {
                                                     flag = false
                                                 }
                                             }
-                                        }else{
-                                         flag = false;
+                                        } else {
+                                            flag = false;
                                         }
                                         return flag
                                     }}
@@ -156,13 +161,13 @@ class RouteTravelBlockClass extends React.Component {
                             <div className={"routeTravelBlock_element d-flex " + ((points.length + 1) % 2 === 0 ? 'col-12' : 'col-md-6 col-12')}>
                                 <button className="placesDescription_travelBlock_applyButton p-0"
                                     style={{/*marginBottom: '15px',*/ width: '100%', border: 'none', borderRadius: '5px' }}
-                                    onClick={() =>{if(!this.props.isTours){ this.lookAvailable()}}}>
-                                    <text style={{ margin: "auto", fontSize: '16px' }} >{textInfo.lookAvailable + (this.props.isTours?this.props.price:"")}</text>
+                                    onClick={() => { if (!this.props.isTours) { this.lookAvailable() } }}>
+                                    <text style={{ margin: "auto", fontSize: '16px' }} >{textInfo.lookAvailable + (this.props.isTours ? this.props.price : "")}</text>
                                 </button>
                             </div>
                             {!this.props.isTours &&
                                 <div className="d-flex col-12 " >
-                                    <text className="routeTravelBlock_change" onClick={() =>{ this.lookAvailable({ noDate: true }) }}>{textInfo.goToEdit}</text>
+                                    <text className="routeTravelBlock_change" onClick={() => { this.lookAvailable({ noDate: true }) }}>{textInfo.goToEdit}</text>
                                 </div>
                             }
                         </div>

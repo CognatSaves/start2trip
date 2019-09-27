@@ -288,7 +288,8 @@ const driverProfileRegistration = {
         noStart: 'Поездка не была начата',
         tripEnd: 'Окончание поездки',
         noEnd: 'Поездка не была закончена',
-        stateVariants: ['Закончить поездку','Начать поездку']
+        stateVariants: ['Закончить поездку','Начать поездку'],
+        historyBodyHeaderBtn:["Скрыть","Подробнее"],
     },
     DriverProfileHistory: {
         upcoming: "Предстоящие",

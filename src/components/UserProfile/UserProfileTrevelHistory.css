@@ -1,9 +1,6 @@
 .trevelHistoryBody {
     box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
-    margin-bottom: 10px;
-    height: 100%;
-    padding: 20px;
     padding-bottom: 0px;
     transition: all 0.3s;
 }
@@ -12,9 +9,55 @@
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
+.trevelHistoryBodyActiveDay .historyBodyHeader {
+    border: 1px solid rgba(24, 153, 249);
+    border-bottom: none;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.trevelHistoryBodyActiveDay .collapse {
+    border-right: 1px solid rgba(24, 153, 249);
+    border-left: 1px solid rgba(24, 153, 249);
+}
+
 .historyBodyElement {
     margin-bottom: 15px;
+    margin-right: 20px;
+    padding: 0px 5px;
 }
+
+.historyBodyHeaderBtn {
+    cursor: pointer;
+}
+
+.historyBodyHeaderBtn:hover {
+    color: #f60;
+}
+
+.historyBodyBtn button {
+    background: #304269;
+    color: #fff;
+    outline: none;
+    border: none;
+    padding: 10px 0px;
+    border-radius: 0px 0px 5px 5px;
+    transition: all 0.3s;
+}
+
+.historyBodyBtnNotActive button {
+    background: #999;
+    color: #fff;
+    outline: none;
+    border: none;
+    padding: 10px 0px;
+    border-radius: 0px 0px 5px 5px;
+    transition: all 0.3s;
+}
+
+.historyBodyBtn button:hover {
+    background: #f60;
+}
+
 
 .trevelHistoryBody img {
     cursor: pointer;
@@ -28,8 +71,18 @@
     transition: all 0.3s;
 }
 
+.openCollapse {
+    position: relative;
+    z-index: 80;
+    background: #fff;
+}
+
 .trevelHistoryBody img:hover {
     transform: scale(2);
+}
+
+.historyBodyHeader {
+    padding: 20px;
 }
 
 .historyBodyHeader hr {
@@ -65,14 +118,14 @@
     font-size: 14px;
     font-weight: 400;
     padding-left: 0px;
-    color: #304269;
+    color: #686868;
     margin: 0;
 }
 
 .trevelHistoryBody h5 {
     font-size: 14px;
     font-weight: 400;
-    color: #2ca5e0;
+    color: rgba(24, 153, 249);
     margin: 0;
     margin-bottom: 5px;
 }
@@ -86,4 +139,15 @@
     font-weight: 400;
     color: #304269;
     margin: 0;
+}
+
+.historyBodyElement span {
+    padding-left: 5px;
+}
+
+@media (max-width: 766px) {
+    .historyBodyHeader {
+        padding-top: 20px;
+        padding: 10px;
+    }
 }

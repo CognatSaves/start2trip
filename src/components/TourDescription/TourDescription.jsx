@@ -19,7 +19,7 @@ import SimularToursBlock from './SimularToursBlock.jsx';
 import CommentBlock from '../TourDescription/CommentBlock.jsx';
 import TourPanel from '../TourDescription/TourPanel.jsx';
 import StartTravelForm from '../startTravelForm/StartTravelForm'
-
+import Stars from '../stars/Stars'
 import {
     FacebookShareButton,
     TwitterShareButton,
@@ -84,6 +84,7 @@ class ToureDescriptionClass extends React.Component {
             travelVisibility: false,
             successVisibility: 'none',
             elementPrice: 0,
+            author: null,
         }
 
 
@@ -140,10 +141,10 @@ class ToureDescriptionClass extends React.Component {
     changeTravelVisibility = (elementPrice) => {
 
         this.setState({
-          travelVisibility: !this.state.travelVisibility,
-          elementPrice: elementPrice
+            travelVisibility: !this.state.travelVisibility,
+            elementPrice: elementPrice
         })
-      }
+    }
 
     render() {
 
@@ -196,13 +197,14 @@ class ToureDescriptionClass extends React.Component {
                             left: 0,
                             behavior: 'smooth'
                         });
-
+                        debugger
                         console.log('good, data=', data);
                         that.setState({
                             isRefreshExist: false,
                             newTour: data,
                             couldSendRequest: true,
-                            slug: data.local.slug
+                            slug: data.local.slug,
+                            author: data.tour.author,
                         });
                     }
                 })
@@ -214,7 +216,7 @@ class ToureDescriptionClass extends React.Component {
 
         }
         let textInfo = this.props.storeState.languageTextMain.tourDescription;
-        let simularPlaceBlockId = topBlockId + '4';
+        let simularPlaceBlockId = topBlockId + '5';
         let helmet = this.props.storeState.languageTextMain.helmets.routeDescription;
         let info = null;
         if (document.querySelector("#routeDescriptionId1")) {
@@ -255,6 +257,18 @@ class ToureDescriptionClass extends React.Component {
 
         let storeState = this.props.storeState;
         let activeCurrency = storeState.currencies[storeState.activeCurrencyNumber];
+        let guideOrAgency = textInfo.placeDescription.variantsArray[2];
+        let language = [];
+        if (this.state.author !== null && this.state.author.language.length > 0) {
+            language = this.state.author.language.map((el, index) => {
+                for (let i = 0; i < this.props.storeState.languages.length; i++) {
+                    if (this.props.storeState.languages[i].id === el) {
+                        return this.props.storeState.languages[i]
+                    }
+                }
+            })
+        }
+
 
         return (
             <>
@@ -349,6 +363,7 @@ class ToureDescriptionClass extends React.Component {
                                             {
                                                 <TourPanel topBlockId={topBlockId} descriptionId={topBlockId} variantsArray={textInfo.placeDescription.variantsArray}
                                                     setPanelStateFunc={changePlacesFixedClass} panelFixedClass={this.props.placesState.placePanelFixedClass}
+                                                    isGuide={this.state.author.guide}
                                                     panelSelectedElement={this.props.placesState.placePanelSelectedElement} setPanelSelectedElement={setPlacesPanelSelectedElement}
                                                     removeElements={this.state.newTour.additionalTours.length === 0 ? [simularPlaceBlockId] : []} />
                                             }
@@ -440,8 +455,32 @@ class ToureDescriptionClass extends React.Component {
                                                 <PlacePhotos photoArray={this.state.newTour.tour.images}
                                                     showMask={(clickedImageIndex) => { this.setState({ isMaskVisible: true, clickedImageIndex: clickedImageIndex }) }} />
                                             </div>
-                                            <RouteTravelBlock points={points} id={topBlockId + "3"} isTours={true} textInfo={textInfo}
+                                            <div className="placeDescription_block d-flex flex-column" id={topBlockId + "3"}>
+                                                <div className="placeDescription_fragmentName" style={{ marginBottom: "15px" }} >{guideOrAgency[this.state.author.guide ? 0 : 1]}</div>
+                                                {/*  */}
+                                                <div className="placeDescription_author d-flex align-items-center justify-content-between col-12 mb-4">
+                                                    <div className="d-flex col-4">
+                                                        <div>
+                                                            <img src={requests.serverAddressImg + this.state.author.avatar.url} alt={this.state.author.firstName + " avatar"} />
+                                                        </div>
+                                                        <div className="d-flex flex-column justify-content-center pl-4">
+                                                            <h5>{this.state.author.firstName}</h5>
+                                                            <Stars value={this.state.author.rating} commentNumber={this.state.author.comments ? this.state.author.comments.length + " отзывов" : 0} valueDisplay={true} commentNumberDisplay={true} />
+                                                            <div className="d-flex align-items-center">
+                                                                <span>{"Языки: "}</span>
+                                                                {language.map((el, index) => (<i className="placesList_info_icons" style={{ background: "url(" + requests.serverAddressImg + el.icon.url + ")no-repeat" }} />))}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-6">
+                                                        <p>{this.state.author.dataAbout}</p>
+                                                    </div>
+                                                </div>
+                                                {/*  */}
+                                            </div>
+                                            <RouteTravelBlock points={points} id={topBlockId + "4"} isTours={true} textInfo={textInfo}
                                                 daily={this.state.newTour.tour.daily} departureDate={this.state.departureDate}
+                                                author={this.state.author}
                                                 dateWork={this.state.newTour.tour.calendary} price={price} />
                                             <div className="placeDescription_block flex-column" id={simularPlaceBlockId} style={{ display: this.state.newTour.additionalTours.length > 0 ? 'flex' : 'none' }}>
                                                 <SimularToursBlock outerBlock={simularPlaceBlockId} tours={this.state.newTour.additionalTours}
@@ -456,7 +495,7 @@ class ToureDescriptionClass extends React.Component {
                                             />
 
                                             <CommentBlock targetType="tour" comments={this.state.newTour.comments} targetId={this.state.newTour.tour.id} page={this.state.page} setPage={this.setPage}
-                                                showMorePages={this.showMorePages} showPages={this.state.showPages} id={topBlockId + "5"} startRolling={() => this.startRolling()} endRolling={(result) => this.endRolling(result)} />
+                                                showMorePages={this.showMorePages} showPages={this.state.showPages} id={topBlockId + "6"} startRolling={() => this.startRolling()} endRolling={(result) => this.endRolling(result)} />
 
                                         </div>
                                     </div>

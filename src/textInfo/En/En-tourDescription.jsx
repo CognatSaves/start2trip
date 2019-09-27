@@ -24,7 +24,7 @@ const tourDescription = {
         length: 'Trip length'
     },
     placeDescription: {
-        variantsArray: ["Description", "Photos", "How to get there", "You may be interested in", "Reviews"]
+        variantsArray: ["Description", "Photos",["Your guide","Agency"], "How to get there", "You may be interested in", "Reviews"]
     },
     share: "Share",
 
