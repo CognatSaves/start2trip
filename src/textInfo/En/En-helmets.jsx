@@ -13,6 +13,12 @@ const helmets  = {
                 description: "Tripfer driver rofile"
             }
         },
+        guideProfile:{
+            basic: {
+                title: ['Guide ', ', profile data, cars, list of tours.'],
+                description: ['Guide page ', ', profile, cars, list of tours']
+            }
+        },
         tripConfirmation: {
             basic: {
                 title: "Order Confirmation",
@@ -88,6 +94,12 @@ const helmets  = {
                 description: "Your Tripfer Account"
             }
         },
+        guides:{
+            country:{
+                title: ['Guides ', ', ratings, the number of tours provided.'],
+                description: ['Guides in ','. List of guides, ratings, number of reviews.']
+            }
+        },
         authModalCountry: {
             basic: {
                 title: "Choose your region of interest",

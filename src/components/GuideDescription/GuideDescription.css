@@ -1,0 +1,12 @@
+.guideCarSelectorBlock{
+    height: 100%;
+    margin-right: 15px;
+    max-width: 100px!important;
+}
+.guideCarSelectorText{
+    font-size: 12px;
+    padding-top: 4px;
+    height: 20px;
+    overflow: hidden;
+    text-align: center;
+}

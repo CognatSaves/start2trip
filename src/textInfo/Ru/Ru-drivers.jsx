@@ -76,6 +76,10 @@ const drivers = {
             info: "Заказ уже подтверждён или не существует",
             buttonText: 'На главную'
         }
+    },
+    driverInfo: {
+        seats: 'мест(а)',
+        languages: 'Языки'
     }
 }
 

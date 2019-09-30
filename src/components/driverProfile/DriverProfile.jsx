@@ -287,11 +287,6 @@ class DriverProfileClass extends React.Component {
             }
             return true;
         }
-        window.scroll({
-            top: 0,
-            left: 0,
-            behavior: 'smooth'
-        });
         console.log('DriverProfile render');
         console.log(this.props);
 
@@ -425,6 +420,11 @@ class DriverProfileClass extends React.Component {
                                 isRefreshing: false,
                                 isGoodAnswer: true
                             })
+                            window.scroll({
+                                top: 0,
+                                left: 0,
+                                behavior: 'smooth'
+                            });
                             //setTimeout(()=>{that.setState({isRefreshExist: false})}, 1000);
 
                         }

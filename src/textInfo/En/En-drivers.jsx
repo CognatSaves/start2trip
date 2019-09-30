@@ -75,7 +75,11 @@ const drivers = {
                 info: "Order has already been confirmed or does not exist",
                 buttonText: 'Home'
             }
-        }
+        },
+        driverInfo: {
+            seats: 'seats',
+            languages: 'Languages'
+        }
     }
         
         export default drivers;
