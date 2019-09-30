@@ -268,6 +268,10 @@ class ToureDescriptionClass extends React.Component {
                 }
             })
         }
+        let cars = [];
+        if (this.state.author !== null && this.state.author.cars.length > 0) {
+            cars = this.state.author.cars
+        }
 
 
         return (
@@ -363,7 +367,7 @@ class ToureDescriptionClass extends React.Component {
                                             {
                                                 <TourPanel topBlockId={topBlockId} descriptionId={topBlockId} variantsArray={textInfo.placeDescription.variantsArray}
                                                     setPanelStateFunc={changePlacesFixedClass} panelFixedClass={this.props.placesState.placePanelFixedClass}
-                                                    isGuide={this.state.author.guide}
+                                                    isGuide={this.state.author.guide} isTour={true}
                                                     panelSelectedElement={this.props.placesState.placePanelSelectedElement} setPanelSelectedElement={setPlacesPanelSelectedElement}
                                                     removeElements={this.state.newTour.additionalTours.length === 0 ? [simularPlaceBlockId] : []} />
                                             }
@@ -459,17 +463,24 @@ class ToureDescriptionClass extends React.Component {
                                                 <div className="placeDescription_fragmentName" style={{ marginBottom: "15px" }} >{guideOrAgency[this.state.author.guide ? 0 : 1]}</div>
                                                 {/*  */}
                                                 <div className="placeDescription_author d-flex flex-md-row flex-column align-items-center justify-content-between col-12 p-0 mb-4">
-                                                    <div className="d-flex col-md-4 col-12 mb-md-0 mb-3">
+                                                    <div className="d-flex col-md-6 col-12 mb-md-0 mb-3">
                                                         <div>
                                                             <img src={requests.serverAddressImg + this.state.author.avatar.url} alt={this.state.author.firstName + " avatar"} />
                                                         </div>
                                                         <div className="d-flex flex-column justify-content-center pl-4">
-                                                            <h5>{this.state.author.firstName}</h5>
+                                                            <h5>{this.state.author.firstName + " " + this.state.author.lastName}</h5>
                                                             <Stars value={this.state.author.rating} commentNumber={this.state.author.comments ? this.state.author.comments.length + " отзывов" : 0} valueDisplay={true} commentNumberDisplay={true} />
                                                             <div className="d-flex align-items-center">
-                                                                <span>{"Языки: "}</span>
+                                                                <span>{textInfo.language}</span>
                                                                 {language.map((el, index) => (<i className="placesList_info_icons" style={{ background: "url(" + requests.serverAddressImg + el.icon.url + ")no-repeat" }} />))}
                                                             </div>
+                                                            {cars.length>0 &&
+                                                                <div className="d-flex flex-wrap align-items-center">
+                                                                    <span>{textInfo.cars}</span>
+                                                                    {cars.map((el, index) => (<span>{el.carBrand + (cars.length - 1 === index ? " " : ", ")}</span>))}
+                                                                </div>
+                                                            }
+
                                                         </div>
                                                     </div>
                                                     <div className="col-md-6 col-12">

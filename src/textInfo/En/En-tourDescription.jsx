@@ -27,7 +27,8 @@ const tourDescription = {
         variantsArray: ["Description", "Photos",["Your guide","Agency"], "How to get there", "You may be interested in", "Reviews"]
     },
     share: "Share",
-
+    language:"Languages: ",
+    cars:"Cars: ",
 }
 
 export default tourDescription;

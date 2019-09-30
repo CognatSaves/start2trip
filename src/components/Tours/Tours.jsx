@@ -115,11 +115,7 @@ class ToursClass extends React.Component {
             throw data.error;
           }
           else {
-            window.scroll({
-              top: 0,
-              left: 0,
-              behavior: 'smooth'
-          });
+            
             console.log('tour request data', data);
             that.props.dispatch(setToursList(data.tours, data.categories, data.tags, data.directions, data.daysNumber,data.departurePoint));
             

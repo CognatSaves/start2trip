@@ -27,6 +27,8 @@ const tourDescription = {
         variantsArray:["Описание","Фотографии",["Ваш гид","Агентство"],"Как добраться","Вас может заинтересовать","Отзывы"]
     },
     share:"Поделиться",
+    language:"Языки: ",
+    cars:"Автомобили: ",
 }
 
 export default tourDescription;

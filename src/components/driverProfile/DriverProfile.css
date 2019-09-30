@@ -267,6 +267,15 @@ span.drivers_route_Link {
     color: #304269;
 }
 
+span.drivers_route_messege{
+    display: block;
+    font-size: 13px;
+    font-weight: 400;
+    color: #999;
+    padding: 5px 10px;
+    width: 100%;
+}
+
 .drivers_routePromo {
     border-bottom: 1px solid rgba(48, 66, 105, 0.233);
 }
@@ -303,6 +312,11 @@ span.drivers_route_Link {
     color: #304269;
     font-weight: 400;
     font-size: 24px;
+}
+
+h3.drivers_routePrice {
+    margin-right: 15px;
+    margin-bottom: 0px;
 }
 
 .drivers_routeBtn {
