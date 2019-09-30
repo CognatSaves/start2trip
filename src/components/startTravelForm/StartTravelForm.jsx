@@ -182,6 +182,7 @@ const Content = (that, flagAllOk, carCapacityArray, activeCurrency, textInfo, ch
                         </div>
                         <span className="errorMes col-12" style={{ display: !that.state.checkBoxes && that.state.errorMes ? "block" : "none" }}>{textInfo.errorContract}</span>
                     </div>
+                    <span className="drivers_route_messege">*Возврат в точку отправления в этот же день бесплатно</span>
                     <div className=" d-flex align-items-center justify-content-between flex-md-row flex-column col-12 py-md-0 py-4">
                         <div className="d-flex flex-column">
                             <div className="d-flex drivers_routePromo">
@@ -195,8 +196,7 @@ const Content = (that, flagAllOk, carCapacityArray, activeCurrency, textInfo, ch
                                 {!that.state.isGoodAnswer && !that.state.promoCodIsOk ? <error>{textInfo.uncorrectPromocode}</error> : <div />}
                             </div>
                         </div>
-
-                        <div className='d-flex'>
+                        <div className="d-flex justify-content-between align-items-center pt-md-0 pt-4">
                             {
                                 that.state.promoCode ?
                                     <h3 className="drivers_routePrice" style={{ textDecoration: 'line-through', color: 'rgb(144,144,144)', marginRight: '5px', fontSize: '16px', lineHeight: '28px' }}>
@@ -210,14 +210,15 @@ const Content = (that, flagAllOk, carCapacityArray, activeCurrency, textInfo, ch
                             <h3 className="drivers_routePrice">{isCurrencyLoaded ? ((activeCurrency.isLeft ? activeCurrency.symbol + ' ' : '')
                                 + Math.ceil(Math.ceil(that.props.elementPrice * activeCurrency.costToDefault) * (100 - that.state.discount) / 100)
                                 + (!activeCurrency.isLeft ? ' ' + activeCurrency.symbol : '')) : ''}</h3>
+
+                            {
+                                isCurrencyLoaded ? /**пока валюты не загружены - не будет отображаться кнопка "заказать тур" */
+                                    <div className={flagAllOk ? "drivers_routeBtn drivers_routeBtn-active" : "drivers_routeBtn"} onClick={() => { that.validate() }}>
+                                        <span>{textInfo.bookTour}</span>
+                                    </div>
+                                    : <React.Fragment />
+                            }
                         </div>
-                        {
-                            isCurrencyLoaded ? /**пока валюты не загружены - не будет отображаться кнопка "заказать тур" */
-                                <div className={flagAllOk ? "drivers_routeBtn drivers_routeBtn-active" : "drivers_routeBtn"} onClick={() => { that.validate() }}>
-                                    <span>{textInfo.bookTour}</span>
-                                </div>
-                                : <React.Fragment />
-                        }
                     </div>
 
                     <div className="d-flex justify-content-end errorMes">
@@ -234,7 +235,7 @@ export default class StartTravelForm extends React.Component {
 
     constructor(props) {
         super(props);
-        
+
         this.state = {
             travelVisibility: false,
             // successVisibility: 'none',
@@ -535,8 +536,8 @@ export default class StartTravelForm extends React.Component {
         }
 
         let carCapacityArray = [];
-        
-        if(this.props.driversState){
+
+        if (this.props.driversState) {
             if (this.props.driversState.driverCarDescription.carCapacity) {
                 for (let i = 0; i < this.props.driversState.driverCarDescription.carCapacity; i++) {
                     carCapacityArray.push(i + 1)
@@ -550,33 +551,33 @@ export default class StartTravelForm extends React.Component {
                 {
                     //это на время подключения startTravelForm к турам
                     this.props.driversState ?
-                    <>
-                        {
-                            isMobileOnly ?
-                            <>
-                                <Dialog fullScreen open={this.props.travelVisibility} onClose={this.props.changeTravelVisibility} >
-                                    {Content(this, flagAllOk, carCapacityArray, this.props.activeCurrency, this.props.textInfo, this.props.changeSuccessVisibility)}
-                                </Dialog>
-                            </>
-                            :
-                            <>
-                                <Dialog open={this.props.travelVisibility} onClose={this.props.changeTravelVisibility} >
-                                    {Content(this, flagAllOk, carCapacityArray, this.props.activeCurrency, this.props.textInfo, this.props.changeSuccessVisibility)}
-                                </Dialog>
-                            </>
-                        }
-                    </> : <React.Fragment/>
+                        <>
+                            {
+                                isMobileOnly ?
+                                    <>
+                                        <Dialog fullScreen open={this.props.travelVisibility} onClose={this.props.changeTravelVisibility} >
+                                            {Content(this, flagAllOk, carCapacityArray, this.props.activeCurrency, this.props.textInfo, this.props.changeSuccessVisibility)}
+                                        </Dialog>
+                                    </>
+                                    :
+                                    <>
+                                        <Dialog open={this.props.travelVisibility} onClose={this.props.changeTravelVisibility} >
+                                            {Content(this, flagAllOk, carCapacityArray, this.props.activeCurrency, this.props.textInfo, this.props.changeSuccessVisibility)}
+                                        </Dialog>
+                                    </>
+                            }
+                        </> : <React.Fragment />
                 }
                 {
                     this.props.toursState ?
-                    <>
-                        <Dialog open={this.props.travelVisibility} onClose={this.props.changeTravelVisibility} >
-                            <div className="col-12 py-3">В разработке</div>
-                        </Dialog>
-                    </>
-                    : <React.Fragment/>
+                        <>
+                            <Dialog open={this.props.travelVisibility} onClose={this.props.changeTravelVisibility} >
+                                <div className="col-12 py-3">В разработке</div>
+                            </Dialog>
+                        </>
+                        : <React.Fragment />
                 }
-                
+
 
             </>
         )
