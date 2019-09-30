@@ -28,6 +28,7 @@ class DriverInfoCar extends React.Component {
         let imageUrls = createCorrectUrls(element.carImages ? element.carImages : []);
         
         return(
+            
             <>
                 <div className="d-flex flex-md-row flex-column justify-content-between col-12">
                     <div className="block_element_infoBlock_name driversInfo_driverName d-flex" >

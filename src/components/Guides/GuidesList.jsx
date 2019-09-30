@@ -62,7 +62,7 @@ class GuidesListClass extends React.Component {
         let filteredGuidesArray = this.guidesLanguageFilter([...this.props.guidesState.guidesList])
 
         let sortedArray;
-        sortedArray = this.guidesSort(/*[...this.props.placesState.placesList]*/filteredGuidesArray, this.props.guidesState.sortMenuValue);
+        sortedArray = this.guidesSort(filteredGuidesArray, this.props.guidesState.sortMenuValue);
         // }
 
         let selectedPlaces = sortedArray.slice((this.props.guidesState.page - this.props.guidesState.showPages) * this.props.guidesState.pagesMenuValue,
