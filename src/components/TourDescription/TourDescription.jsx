@@ -458,8 +458,8 @@ class ToureDescriptionClass extends React.Component {
                                             <div className="placeDescription_block d-flex flex-column" id={topBlockId + "3"}>
                                                 <div className="placeDescription_fragmentName" style={{ marginBottom: "15px" }} >{guideOrAgency[this.state.author.guide ? 0 : 1]}</div>
                                                 {/*  */}
-                                                <div className="placeDescription_author d-flex align-items-center justify-content-between col-12 mb-4">
-                                                    <div className="d-flex col-4">
+                                                <div className="placeDescription_author d-flex flex-md-row flex-column align-items-center justify-content-between col-12 p-0 mb-4">
+                                                    <div className="d-flex col-md-4 col-12 mb-md-0 mb-3">
                                                         <div>
                                                             <img src={requests.serverAddressImg + this.state.author.avatar.url} alt={this.state.author.firstName + " avatar"} />
                                                         </div>
@@ -472,7 +472,7 @@ class ToureDescriptionClass extends React.Component {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div className="col-6">
+                                                    <div className="col-md-6 col-12">
                                                         <p>{this.state.author.dataAbout}</p>
                                                     </div>
                                                 </div>

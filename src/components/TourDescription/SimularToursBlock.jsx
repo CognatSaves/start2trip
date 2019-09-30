@@ -82,7 +82,8 @@ export default class SimularToursBlock extends React.Component {
                             }
                             return (
                                 <ToursListElement element={element} index={'addPlace' + index} findTagName={(tagId) => findTagName(tagId, this)}
-                                    departureDate={findDepartureDate(element)} changeTravelVisibility={this.props.changeTravelVisibility}
+                                    departureDate={findDepartureDate(element)} changeTravelVisibility={this.props.changeTravelVisibility} 
+                                    placeListElementClass={"col-lg-3 col-md-4 col-sm-6 col-11 p-2 pb-3"}
                                 />
                             )
                         })

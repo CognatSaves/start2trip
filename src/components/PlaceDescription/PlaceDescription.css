@@ -450,6 +450,12 @@ h2 {
 }
 
 @media (max-width: 742px) {
+    .placeDescription_author img{
+        object-fit: cover;
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+    }
     #placeDescriptionId {
         max-height: 210px;
         height: 210px;

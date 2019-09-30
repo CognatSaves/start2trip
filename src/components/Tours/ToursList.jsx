@@ -12,7 +12,9 @@ import Manipulator from '../manipulator/Manipulator';
 class ToursListClass extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            numberOfElements: 0,
+        }
     }
     placesSort = (array, type) => {
 
@@ -170,7 +172,6 @@ class ToursListClass extends React.Component {
         }
     }
 
-
     render() {
         function tagFilterFunction(placesList, selectedTags) {
             let res = [];
@@ -211,8 +212,8 @@ class ToursListClass extends React.Component {
         console.log('PlacesList render');
         console.log(this.props);
         let tagFilteredArray = [], sortedArray = [], sortSelectedPlacesArray = [], selectedPlaces = [];
-        let numberOfElements = 0;
         let isGoodElmentLength = 0;
+        let numberOfElements = 0;
         let noGoodElement = false;
 
         if (this.props.toursState.toursList.length > 0) {
@@ -225,9 +226,6 @@ class ToursListClass extends React.Component {
             sortedArray.map((element, index) => {
                 let departureDate = null;
                 let result = this.sortArrayByDate(element, departureDate);
-                if (this.props.toursState.tempPricePart !== 0) {
-                    result = this.sortArrayByPrice(result)
-                }
 
                 if ((this.props.storeState.persons[0] + this.props.storeState.persons[1]) > 1) {
                     result = this.sortArrayByPeople(result)
@@ -239,7 +237,14 @@ class ToursListClass extends React.Component {
 
                 result = this.sortArrayByTourType(result)
 
-                sortSelectedPlacesArray.push(result)
+                if (this.props.toursState.tempPricePart !== 0) {
+                    result = this.sortArrayByPrice(result)
+                }
+
+                if (result.isGood) {
+                    sortSelectedPlacesArray.push(result)
+                }
+
             });
 
             sortSelectedPlacesArray = sortSelectedPlacesArray.sort((c, d) => {
@@ -251,23 +256,27 @@ class ToursListClass extends React.Component {
                 return -1
             })
 
-            if (sortSelectedPlacesArray.length > 0 && this.props.toursState.maxPrice === 0) {
+            if (sortSelectedPlacesArray.length > 0 && (this.props.toursState.maxPrice === 0)) {
                 let arrayPrice = [];
                 sortSelectedPlacesArray.map((el, index) => {
                     if (el.isGood) {
-                        numberOfElements++
                         let idIndex = this.getCurrencies(el.element.currency, "id")
                         let usd = el.element.price / this.props.storeState.currencies[idIndex].costToDefault
                         usd = Math.ceil(usd)
                         arrayPrice.push(usd)
                     }
                 });
-
                 arrayPrice = arrayPrice.sort((a, b) => { return a > b ? -1 : 1 })
                 this.props.dispatch(setMaxPrice(arrayPrice[0]))
             }
+            for (let i = 0; i < sortSelectedPlacesArray.length; i++) {
+                if (sortSelectedPlacesArray[i].isGood) {
+                    numberOfElements++
+                }
+            }
             selectedPlaces = sortSelectedPlacesArray.slice((this.props.toursState.page - this.props.toursState.showPages) * this.props.toursState.pagesMenuValue,
                 this.props.toursState.page * this.props.toursState.pagesMenuValue);
+
 
             for (let i = 0; i < selectedPlaces.length; i++) {
                 if (!selectedPlaces[i].isGood) {
