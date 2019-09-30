@@ -69,12 +69,13 @@ class ToursListElementClass extends React.Component {
             price = this.props.storeState.currencies[idIndex].isLeft ?(this.props.storeState.currencies[idIndex].symbol+" "+usd):
             (usd+" "+this.props.storeState.currencies[idIndex].symbol)
         }
-    }
-    let validDepartureDate = null;
-    if (this.props.departureDate){
-        validDepartureDate = this.props.departureDate.split(".");
-        validDepartureDate = validDepartureDate[2]+"-"+validDepartureDate[1]+"-"+validDepartureDate[0];
-    }
+        }
+        let validDepartureDate = null;
+        if (this.props.departureDate){
+            validDepartureDate = this.props.departureDate.split(".");
+            validDepartureDate = validDepartureDate[2]+"-"+validDepartureDate[1]+"-"+validDepartureDate[0];
+        }
+        let address = "/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + `/tours/${slug}`+(validDepartureDate ? `?date=`+validDepartureDate : ``);
         return (
             <div className={this.props.placeListElementClass ? this.props.placeListElementClass : "col-lg-3 col-md-4 col-sm-6 col-12 p-2 pb-3"} >
                 <div className="drivers_block_element d-flex p-0 flex-column" id={index}>
@@ -82,12 +83,12 @@ class ToursListElementClass extends React.Component {
                     <div className="driversBlock_carImage" style={{ background: "url(" + (element.image ? (requests.serverAddressImg + element.image) : '') + ") no-repeat", backgroundSize: "cover", width: '100%' }}>
                         <div className="toursDate">{this.props.departureDate}</div>
                         <div className="toursDuration">{element.daysNumber + " " + textInfo.daysNumber}</div>
-                        <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + `/tours/${slug}?date=`+validDepartureDate} className="driversBlock_carBlackout">
+                        <Link to={address} className="driversBlock_carBlackout">
                             <div className="driversBlock_carBlackout_detailed">{textInfo.detailed}</div>
                         </Link>
                     </div>
                     <div className="placesList_info_tours d-flex flex-column">
-                        <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + `/tours/${slug}?date=`+validDepartureDate} className="placesList_placeName d-flex">
+                        <Link to={address} className="placesList_placeName d-flex">
                             <div>
                                 {element.tourlocalization.name}
                             </div>

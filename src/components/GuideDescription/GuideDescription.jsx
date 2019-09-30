@@ -434,23 +434,6 @@ class GuideDescriptionClass extends React.Component {
                     this.props.guidesReduser.guideData.id ?
                         <>                           
                             <div className="wrapper d-flex flex-column">
-                            {
-                                /*
-                                <div className="d-flex">
-                                    <button onClick={()=>{
-                                        let visibilityArray = Array(this.state.visibilityArray.length).fill(false);
-                                        visibilityArray[0]=true;
-                                        this.setState({visibilityArray: visibilityArray})
-                                        }}>A</button>
-                                    <button onClick={()=>{
-                                        let visibilityArray = Array(this.state.visibilityArray.length).fill(false); 
-                                        visibilityArray[1]=true; 
-                                        this.setState({visibilityArray: visibilityArray})
-                                        }}>B</button>
-                                </div>
-                                */
-                            }
-                                
                                 <div className="driverProfileComments_panel d-flex">
                                     <div className="d-flex col-12 p-md-0">
                                     {

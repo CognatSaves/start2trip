@@ -15,7 +15,8 @@ class GuideCarSelector extends React.Component{
                             onClick={()=>this.props.carSelection(index)}>
                             <div className="col-12 p-0" style={{background: 'url('+requests.serverAddressImg+cars[index].carImages[0]+') no-repeat',
                              backgroundSize: '100% 100%', minHeight: '70px'}}/>
-                            <text style={{fontSize: '12px', paddingTop: '4px'}}>{"--  "+cars[index].carBrand}</text>
+                            <text style={{fontSize: '12px', paddingTop: '4px', color: (this.props.selectedCar===index) ? '#f60' : '#304269', height: '20px',
+                             overflow: 'hidden'}}>{cars[index].carBrand}</text>
                         </div>
                       )
                   })  
