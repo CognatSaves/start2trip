@@ -40,7 +40,8 @@ class DriverProfileCarClass extends React.Component {
             isRefreshExist: false,
             isRefreshing: true,
             isGoodAnswer: true,
-            badDataTextVisibility: false
+            badDataTextVisibility: false,
+            indexMainPhoto: 0,
         }
     }
 
@@ -184,6 +185,7 @@ class DriverProfileCarClass extends React.Component {
             carForm.append('carclass', this.state.newCarCard.carClass);
             carForm.append('fuelConsumption', this.state.newCarCard.fuelConsumption);
             carForm.append('onWork', true);
+            carForm.append('indexMainPhoto', this.state.indexMainPhoto);
             let comfort = this.state.comfort;
             carForm.append('climatControl', comfort[0]);
             carForm.append('leatherInterior', comfort[1]);
@@ -258,7 +260,7 @@ class DriverProfileCarClass extends React.Component {
             this.setState(state => ({
                 collapse: !state.collapse, imagePreviewUrl: '',
                 newCarCard: { nameCar: "", yearCar: "", plateNumberCar: "", typeCar: "", fuelType: "", fuelConsumption: "", carClass: "", onWork: true, numberOfSeats: "" },
-                comfort: [false, false, false, false], carImg: [], imgFiles: [], car: {}
+                comfort: [false, false, false, false], carImg: [], imgFiles: [], car: {}, indexMainPhoto: 0
             }));
         }
         else {
@@ -274,7 +276,8 @@ class DriverProfileCarClass extends React.Component {
                     typeCar: element.cartype, fuelType: element.fueltype, numberOfSeats: element.seats, carClass: element.carclass,
                     fuelConsumption: element.fuelConsumption
                 },
-                comfort: [...element.conveniences], carImg: carImg, imgFiles: imgFiles, car: element
+                comfort: [...element.conveniences], carImg: carImg, imgFiles: imgFiles, car: element,
+                indexMainPhoto: element.indexMainPhoto ? element.indexMainPhoto : 0
             }));
         }
         if (isMobileOnly) {
@@ -468,6 +471,7 @@ class DriverProfileCarClass extends React.Component {
         let carTypes = findCarTypeNames(cars, this.props.globalReduser.profile.carTypes, this.props.storeState);
 
         let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileCar;
+        debugger
         return (
             <div className="_ThisTagIsNeeded">
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
@@ -491,14 +495,16 @@ class DriverProfileCarClass extends React.Component {
                                 <input type="file" id="addCarFile" style={{ display: "none" }} multiple onChange={this._handleImageChange} />
                                 <div className="carPhotoMiniContainer d-flex overflow-auto">
                                     {this.state.carImg.map((element, index) =>
-                                        <div className="position-relative">
-                                            <img src={element} className="carPhotoMini" alt="add_car" onClick={() => { this.setState({ imagePreviewUrl: this.state.carImg[index] }) }} />
-                                            <span onClick={() => { this.state.carImg.splice(index, 1); this.state.imgFiles.splice(index, 1); this.setState({ imgFiles: this.state.imgFiles, carImg: this.state.carImg, imagePreviewUrl: this.state.carImg[0] }) }}></span>
+                                        <div className="d-flex flex-column align-items-center">
+                                            <div className="position-relative">
+                                                <img src={element} className="carPhotoMini" alt="add_car" onClick={() => { this.setState({ imagePreviewUrl: this.state.carImg[index] }) }} />
+                                                <span onClick={() => { this.state.carImg.splice(index, 1); this.state.imgFiles.splice(index, 1); this.setState({ imgFiles: this.state.imgFiles, carImg: this.state.carImg, imagePreviewUrl: this.state.carImg[0] }) }}></span>
+                                            </div>
+                                            <p className={this.state.indexMainPhoto === index ? "selectedPhoto_Main" : "selectedPhoto"} onClick={() => { this.setState({ indexMainPhoto: index, imagePreviewUrl: this.state.carImg[index] }) }}>{this.state.indexMainPhoto === index ? textPage.indexMainPhoto[0] : textPage.indexMainPhoto[1]}</p>
                                         </div>
                                     )}
                                 </div>
                                 <div id="labelCarEmpty" className="labelCarEmpty" style={{ visibility: 'hidden' }}>{textPage.noPhotoText}</div>
-
                             </div>
 
                             <div className="d-flex flex-column col-md-8 col-12 ">

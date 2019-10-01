@@ -340,6 +340,17 @@ class DriverProfileTripSettingsTripClass extends React.Component {
 
 
         let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileTripSettingsTrip;
+        let dateTours = [];
+        if(this.state.dateTour.length>0){
+            dateTours = this.state.dateTour.sort((c, d) => {
+                    let a = new Date(c);
+                    let b = new Date(d);
+                    return a < b ? -1 : a > b ? 1 : 0;
+
+            })
+        }
+        
+
         return (
 
             <>
@@ -375,18 +386,19 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                                         <div className="d-flex flex-md-row flex-column col-md-6 col-sm-12 col-12 p-0" >
                                             <LocationSearchInput address={element.point} changeCity={this.changeCity} classDiv="col-md-8 col-12 p-0" classInput="searchInputDriverInformation" index={index} classDropdown="searchDropdownDriverInformation" />
                                             <input className="col-md-2 col-12 ml-1 d-md-block d-none itemRadius"/*класс itemRadius добавил ради класса errorColor - отображения некорректоности заполнения */
-                                                type="number" id="itemRadiu" value={element.radius}
-                                                onChange={(e) => this.inputChange(e.target.value, 'radius', index)}
+                                                type="number" id="itemRadiu" max="150" min="0" value={element.radius}
+                                                onChange={(e) =>{if(e.target.value>150){this.inputChange(150, 'radius', index) }else{this.inputChange(e.target.value, 'radius', index)}}}
                                             />
                                             <TextField
                                                 floatingLabelText={textPage.textField.floatingLabelText}
                                                 className="inputClass d-md-none d-block itemRadius margin_5"/*класс itemRadius добавил ради класса errorColor - отображения некорректоности заполнения */
                                                 fullWidth="100%"
                                                 type="number"
+                                                maxlength="3"
                                                 floatingLabelFocusStyle={{ color: "#304269" }}
                                                 underlineFocusStyle={{ borderColor: "#304269" }}
                                                 value={element.radius}
-                                                onChange={(e) => this.inputChange(e.target.value, 'radius', index)}
+                                                onChange={(e) => {if(e.target.value>150){this.inputChange(150, 'radius', index) }else{this.inputChange(e.target.value, 'radius', index)}}}
                                             />
                                         </div>
                                         <span style={{ display: index ? "block" : "none" }} className="tripSettingsContentDeletButton " title={textPage.textField.title} onClick={() => { this.deleteCityRadius(index) }} />
@@ -401,7 +413,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                                 <label htmlFor="maxDailyMileage" className="col-xl-2 col-lg-2 col-md-2 col-sm-11 col-12 p-0 dailymile">{textPage.maxDailyMileage.floatingLabelText}</label>
                                 <div className="d-md-block d-none">
                                     <input className="col-md-5 col-12 maxDailyMileage" type="number" value={this.state.distance}
-                                        onChange={(e) => this.inputChange(e.target.value, 'distance')}
+                                        onChange={(e) =>{if(e.target.value>1000){this.inputChange(1000, 'distance') }else{this.inputChange(e.target.value, 'distance')}}}
                                     />
                                 </div>
 
@@ -412,7 +424,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                                     floatingLabelFocusStyle={{ color: "#304269" }}
                                     underlineFocusStyle={{ borderColor: "#304269" }}
                                     value={this.state.distance}
-                                    onChange={(e) => { this.inputChange(e.target.value, 'distance') }}
+                                    onChange={(e) => {if(e.target.value>1000){this.inputChange(1000, 'distance') }else{this.inputChange(e.target.value, 'distance')}}}
                                 />
                                 {/* <p className=" d-md-block d-none pl-2">{textPage.maxDailyMileage.description}</p> */}
                             </div>
@@ -424,7 +436,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                             <div className="tripSettingsContentDate d-flex align-items-md-center align-items-start justify-content-center">
                                 <div className="d-flex flex-wrap align-items-start justify-content-md-start justify-content-center col-md-8 col-12 p-0 my-2">
 
-                                    {this.state.dateTour.map((element, index) => {
+                                    {dateTours.map((element, index) => {
                                         let day = element.getDate() < 10 ? "0" + element.getDate() : element.getDate();
                                         let month = element.getMonth() + 1 < 10 ? "0" + (element.getMonth() + 1) : element.getMonth() + 1;
                                         let year = element.getFullYear();

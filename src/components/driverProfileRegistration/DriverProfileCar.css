@@ -4,9 +4,10 @@
     margin-bottom: 50px;
 }
 
-.filledCardHover{
+.filledCardHover {
     transition: all 0.3s;
 }
+
 .filledCardHover:hover {
     transform: scale(1.04);
 }
@@ -120,7 +121,7 @@
     margin-top: 5px;
 }
 
-.filledCardInformationNameCarDiv{
+.filledCardInformationNameCarDiv {
     border-radius: 50%;
     background: rgba(0, 0, 0, 0.5);
     display: flex;
@@ -290,6 +291,7 @@ p.filledCardInformationNameCarEdit:hover {
     top: 0px;
 }
 
+
 .carPhotoMiniContainer span:hover {
     background: url(../media/error.svg) no-repeat;
     background-size: 20px 20px;
@@ -310,6 +312,7 @@ img.carPhotoMini {
     background-size: 20px 20px;
 }
 
+
 .carAddNewCarPhotoCar label {
     position: absolute;
     z-index: 5;
@@ -329,6 +332,20 @@ img.carPhotoMini {
 
 .carAddNewCarInformation {
     /*margin-top: 30px;*/
+}
+
+.selectedPhoto {
+    cursor: pointer;
+    color: #304269;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.selectedPhoto_Main {
+    cursor: pointer;
+    color: #f60;
+    font-size: 14px;
+    font-weight: 500;
 }
 
 
@@ -357,15 +374,15 @@ img.carPhotoMini {
 .carAddNewCarInformation label {
     font-weight: 400;
     font-size: 16px;
-    color:  rgba(0, 0, 0, 0.5) !important;
+    color: rgba(0, 0, 0, 0.5) !important;
     margin-bottom: 0px;
 }
 
-.MuiSelect-icon{
+.MuiSelect-icon {
     color: rgba(0, 0, 0, 0.5) !important;
 }
 
-div.MuiSelect-select:focus{
+div.MuiSelect-select:focus {
     background-color: rgba(0, 0, 0, 0) !important;
 }
 
@@ -540,6 +557,7 @@ div.MuiSelect-select:focus{
         /*box-shadow: none;*/
         margin-left: 0px;
     }
+
     .filledCardHover:hover {
         transform: scale(1);
     }
@@ -571,12 +589,14 @@ div.MuiSelect-select:focus{
         margin-right: 0px;
         margin-left: 0px;
     }
+
     .carAddNewCarInformation label {
         font-weight: 400;
         font-size: 18px;
-        color:  rgba(0, 0, 0, 0.5) !important;
+        color: rgba(0, 0, 0, 0.5) !important;
         margin-bottom: 0px;
     }
+
     .carAddNewCarComfortCheckBox span {
         top: 5px;
     }

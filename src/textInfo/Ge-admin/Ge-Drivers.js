@@ -121,7 +121,8 @@ const driverProfileRegistration = {
             span: "ადგილების"
         },
         noPhotoText: 'Вставьте фото вашего автомобиля.(GEO)',
-        badDataText: 'Заполните корректно выделенные поля!(GEO)'
+        badDataText: 'Заполните корректно выделенные поля!(GEO)',
+        indexMainPhoto:["მთავარი","მთავარზე დაყენება"],
     },
     DriverProfileTripSettingsTrip: {
         titlePage: "საჭმლის რედაქტირება",

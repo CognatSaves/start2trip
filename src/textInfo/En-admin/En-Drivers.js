@@ -121,7 +121,8 @@ const driverProfileRegistration = {
             span: "seats"
         },
         noPhotoText: 'Insert the photo of your car.',
-        badDataText: 'Fill in the selected fields correctly.'
+        badDataText: 'Fill in the selected fields correctly.',
+        indexMainPhoto:["Main","Make main"],
     },
     DriverProfileTripSettingsTrip: {
         titlePage: "Edit Trips",
