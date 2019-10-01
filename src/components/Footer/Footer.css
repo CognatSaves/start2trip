@@ -168,18 +168,18 @@ html {
 }
 
 .footerMobileTextGuides_active {
-    width: 20px;
-    height: 20px;
-    margin-bottom: 5px;
-    background: url(../media/tour-guide.svg) 100% 100% no-repeat;
+    width: 25px;
+    height: 25px;
+    margin-bottom: 2px;
+    background: url(../media/tour-guideMenuOrange.svg) 100% 100% no-repeat;
     background-size: contain;
 }
 
 .footerMobileTextGuides {
-    width: 20px;
-    height: 20px;
-    margin-bottom: 5px;
-    background: url(../media/tour-guide-Gray.svg) 100% 100% no-repeat;
+    width: 25px;
+    height: 25px;
+    margin-bottom: 2px;
+    background: url(../media/tour-guideMenuGray.svg) 100% 100% no-repeat;
     background-size: contain;
 }
 /* Footer Mobaile End */

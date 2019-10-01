@@ -714,7 +714,7 @@ class HeaderClass extends React.Component {
     
     let availableCurrencies = this.props.globalReduser.currencyFilter(this.props.storeState);
     let selectedCurrNumber = this.props.globalReduser.findSelectedCurrency(this,availableCurrencies);
-    return (
+      return (
       <>
 
         <ModalRegistration modalRegistration={this.props.storeState.modalRegistration} toggle={this.toggleModalRegistration} className={this.props.className} authorization={this.authorization} />

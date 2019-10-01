@@ -407,6 +407,7 @@ class RenderModalRegistrationClass extends React.Component {
         let regAnswerVisibility = (this.state.regAnswerStatus || this.state.regProcessStatus);
         let regAnswerColor = (this.state.regAnswerStatus && selectedRegistrationAnswer !== 0);
         let regAnswerValue = (this.state.regAnswerStatus ? textInfo.registrationAnswer[selectedRegistrationAnswer] : textInfo.registrationProcess[0]);
+        
         return (
             <>
 

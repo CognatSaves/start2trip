@@ -121,7 +121,8 @@ const driverProfileRegistration = {
             span: "мест(а)"
         },
         noPhotoText: 'Вставьте фото вашего автомобиля.',
-        badDataText: 'Заполните корректно выделенные поля!'
+        badDataText: 'Заполните корректно выделенные поля!',
+        indexMainPhoto:["Главная","Сделать главной"],
     },
     DriverProfileTripSettingsTrip: {
         titlePage: "Редактировать поездки",
