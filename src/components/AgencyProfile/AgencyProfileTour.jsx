@@ -432,10 +432,27 @@ class AgencyProfileTourClass extends React.Component {
                 unselectedTourLanguages: this.props.storeState.adminLanguages
             });
         }
-        else {
+        else {            
             let local = [];
+            for (let i = 0; i < profile.allLanguages.length; i++) {
+                local[i] = {
+                    name: "",
+                    departurePoint: {
+                        point: "",
+                        lat: "",
+                        long: ""
+                    },
+                    points: [],
+                    info: "",
+                    language: profile.allLanguages[i].ISO
+                }
+            }
             for (let i = 0; i < element.local.length; i++) {
-                local[i] = { ...element.local[i] }
+                for(let j=0; j<local.length; j++){
+                    if(element.local[i].language===local[j].language){
+                        local[j]={...local[j],...element.local[i]}
+                    }
+                }
             }
             let categoriesUnselected = [];
             let categoriesSelected = [];
@@ -747,11 +764,12 @@ class AgencyProfileTourClass extends React.Component {
                 request.setRequestHeader('Authorization', `Bearer ${jwt}`);
             }
             request.onreadystatechange = function () {
+                debugger;
                 if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
                     console.log(request.responseText);
                     that.getProfileData(that.thenFunc, that.catchFunc);
                 }
-                if (request.readyState === XMLHttpRequest.DONE && request.status === 0) {
+                if (request.readyState === XMLHttpRequest.DONE && request.status === 400) {
                     that.catchFunc();
                 }
             }
@@ -1726,7 +1744,7 @@ class AgencyProfileTourClass extends React.Component {
                                 //ниже лежат блоки с флагами - directions, categories, tags
                             }
                             <div className="paddingL10 addPhotoTour d-flex flex-column align-items-start mt-3 border-top">
-                                <div className="tourContentTitle d-flex align-items-center col-2 p-0">
+                                <div className="tourContentTitle d-flex align-items-center col-2 p-0" style={{minWidth: '300px'}}>
                                     <p className="mb-0">{textPageAgencyProfile.tourClassification}</p>
                                 </div>
                                 <div className="d-flex flex-md-row flex-column w-100">

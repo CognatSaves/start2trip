@@ -26,7 +26,7 @@ class GuidesListElementClass extends React.Component {
 
         let element = this.props.element;
         let index = this.props.index;
-        let linkAddress = "/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + `/guides/${element.id}/`;
+        let linkAddress = "/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + `/guides/${element.id},${element.userSlug}/`;
         return (
             <div className={this.props.placeListElementClass ? this.props.placeListElementClass : "col-lg-3 col-md-4 col-sm-6 col-12 p-2 pb-3"} >
                 <div className={"drivers_block_element d-flex p-0 flex-column"} id={index}>

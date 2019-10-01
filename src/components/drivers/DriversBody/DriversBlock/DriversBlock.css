@@ -96,6 +96,17 @@
     background-size: cover !important;
     background-position: center center !important;
 }
+@media (max-width: 576px){
+    .driversBlock_carImage{
+
+        height: 300px;
+    }
+}
+@media (max-width: 440px){
+    .driversBlock_carImage{
+        height: 200px;
+    } 
+}
 
 .driversBlock_carImage:hover .driversBlock_carBlackout {
     cursor: pointer;
