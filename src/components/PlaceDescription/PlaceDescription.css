@@ -92,6 +92,18 @@ h2 {
     color: rgb(0, 0, 0, 0.8);
     overflow-y: hidden;
     transition: all 0.3s;
+    
+}
+
+.placeDescription_block_btMore{
+    cursor: pointer;
+    padding-right: 1.5%;
+    color: #304269;
+    transition: all 0.3s;
+}
+
+.placeDescription_block_btMore:hover{
+    color: #f60;
 }
 
 .placeDescription_description_name {

@@ -179,7 +179,7 @@ class DriverProfileTrevelHistoryClass extends React.Component {
 
 
         return (
-            <div className="d-flex flex-wrap ">
+            <div className="d-flex flex-wrap justify-content-md-start justify-content-center">
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
 
                 {this.props.trevelHistory.map((element, index) =>

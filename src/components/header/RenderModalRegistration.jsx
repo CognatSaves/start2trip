@@ -583,6 +583,18 @@ class RenderModalRegistrationClass extends React.Component {
                                 </div>
                             )
                         }
+                         <i className="ml-3" onClick={() => {
+                            if (this.props.globalReduser.history.location.pathname === ('/' + cookies.get('userLangISO', { path: "/" }) + "/login/")) {
+                                let country = cookies.get('country', { path: "/" });
+                                if (country === undefined) {
+                                    this.props.globalReduser.history.push("/countrySelection/")
+                                } else {
+                                    this.props.globalReduser.history.push("/" + cookies.get('country', { path: "/" }) + "-" + cookies.get('userLangISO', { path: "/" }) + '/routes/')
+                                }
+                            } else {
+                                this.props.close()
+                            }
+                        }} />
                     </div>
                     <div className={"sitingInLight d-flex flex-column justify-content-center align-items-center " + this.state.sitingInLightAnimation}>
                         <h3>{this.state.sitingIn ? textInfo.sitingInLightBackgroundText.titleSitingIn : textInfo.registrationLightBackgroundText.registrationTitle}</h3>

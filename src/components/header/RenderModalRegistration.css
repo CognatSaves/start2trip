@@ -3,6 +3,9 @@
     z-index: 0;
 }
 
+.modal{
+    top:10% !important;
+}
 .registrationBodyLogoIcon {
     position: absolute;
     z-index: 4;
