@@ -379,6 +379,9 @@ class ToureDescriptionClass extends React.Component {
                                                 </div> */}
                                                 <PlaceProgramm id={topBlockId + "1"} tagsArray={[]} place={{ ...this.state.newTour.local/*, tags: this.state.newTour.tour.tags, rating: this.state.newTour.tour.rating, comments: this.state.newTour.tour.commentNumber*/ }} />
                                             </div>
+                                            <div className="d-flex justify-content-end">
+                                                <span>Подробнее</span>
+                                            </div>
                                             {isMobileOnly ? <>
                                                 <div className="placeDescription_fragmentName" style={{ marginBottom: "15px" }} >{textInfo.share}</div>
                                                 <div className="d-flex ">
