@@ -7,7 +7,7 @@ const header = {
         selectCountryText: 'SELECT A COUNTRY FOR SEARCHING DRIVERS AND GUIDES'
     },
     menuElements: [
-        "Trip planner", "Sights", "Tours"
+        "Trip planner", "Sights", "Tours", 'Guides'
     ],
     burgerMenu: {
         profile: 'Account',
@@ -18,9 +18,9 @@ const header = {
         enter: 'Login',
         burgerEnter: "Login or create an Account",
         titlesName: ["Settings", "Services", "Profile", "Useful links"],
-         settingsDrop: ["Change language", "Change currency"],
-         services: ["Trips", "Tours", "Places"],
-         usefulLinks: ["About Service", "Affiliate program", "License Agreement", "Help", "Contacts"],
+        settingsDrop: ["Change language", "Change currency"],
+        services: ["Trips", "Tours", "Places","Guides"],
+        usefulLinks: ["About Service", "Affiliate program", "License Agreement", "Help", "Contacts"],
     },
     toPageStart: 'Go to top',
     loading: 'Loading',

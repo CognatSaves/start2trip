@@ -44,10 +44,12 @@ class GuidesPanelClass extends React.Component {
     return (
       <div className={"driverProfileComments_panel d-flex"/*this.props.placesState.placesList.length > 0 ? "driverProfileComments_panel d-flex" : 'd-none'*/}>
         <div className="placesPanel_sortText d-md-block d-none">{textInfo.placesPanel.placesPanelSortText + ':'}</div>
-        <div className="d-flex justify-content-between col-md-2 col-12 p-md-0">
+        <div className="d-flex justify-content-left col-md-2 col-12 p-0 guidesSortElementsBlock">
           {this.props.guidesState.sortMenuVariants.map((element, index) =>
             <span className={"driverProfileComments_panel_element " + buttonStyles[index]} onClick={() => 
-            this.props.dispatch(setSortMenuValue(element))}>{textInfo.placesPanel.sortMenuVariantsText[index]}</span>
+            this.props.dispatch(setSortMenuValue(element))}>
+              {textInfo.placesPanel.sortMenuVariantsText[index]}
+            </span>
           )}
         </div>
         <div className="d-flex" style={{marginLeft: 'auto'}}>

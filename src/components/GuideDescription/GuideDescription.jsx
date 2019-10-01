@@ -19,6 +19,7 @@ import LocationSearchInput from '../home/HomeBody/Search';
 import GuideTours from './GuideTours';
 import GuideInfo from './GuideInfo';
 import Cookies from 'universal-cookie';
+import './GuideDescription.css';
 
 const cookies = new Cookies();
 
@@ -87,7 +88,8 @@ class GuideDescriptionClass extends React.Component {
 
             tourType:"default",
             visibilityArray: [true, false],
-            visibilityValues: ['Мои туры', "Отзывы"]
+            visibilityValues: ['Мои туры', "Отзывы"],
+            dataLang: ''//Язык, на котором загружены данные
         }
         this.state = { ...this.state, "mapRwanda": true }
 
@@ -99,69 +101,22 @@ class GuideDescriptionClass extends React.Component {
         this.props.dispatch(setGuideData({}));
     }
     componentDidMount() {
+       this.sendDataRequest(); 
+    }
+    sendDataRequest = () => {
         this.props.dispatch(setLengthTime("-", "-"));
-        // let now = new Date(Date.now());
-
-
         let that = this;
         console.log(this.props.match);
-        //let cityNamesArray = parseStringToArray(props.match.params.cities, props.match.params.country, 'ENG');
         this.props.dispatch(setDriverCarDescription({}));//зачищает старое значение
-
-        let body = JSON.stringify({
-            id: /*this.props.match.params.id*/'5cc6b6bbab3b7e111009d58e',
-            carId: /*this.props.match.params.carId*/'5ccad474270ce50d8cfc0e17',
-            date: this.state.date
-        });
-/*
-        fetch(requests.getDriverDescription, {
-            method: 'PUT', body: body,
-            headers: { 'content-type': 'application/json' }
-        })
-        .then(response => {
-            return response.json();
-        })
-        .then(function (data) {
-
-            if (data.error) {
-                console.log("bad");
-                throw data.error;
-            }
-            else {
-
-                console.log('****************************');
-                console.log('getDriverDescription answer', data);
-                that.setState({ comments: data.driverCarDescription.comments })
-                that.props.dispatch(setDriverCarDescription(data.driverCarDescription));
-
-                that.setState({
-                    isRefreshExist: false,
-                    isRefreshing: false,
-                    isGoodAnswer: true
-                })
-            }
-
-        })
-        .catch(function (error) {
-
-            console.log('bad');
-            console.log('An error occurred:', error);
-            that.setState({
-                isRefreshExist: true,
-                isRefreshing: false,
-                isGoodAnswer: false
-            })
-            let address = '/404'
-            if(that.props.storeState.country && that.props.storeState.languages && that.props.storeState.languages.length>0 && that.props.storeState.activeLanguageNumber){
-                address = '/' + that.props.storeState.country + "-" + that.props.storeState.languages[that.props.storeState.activeLanguageNumber].isoAutocomplete + '/routes';
-            }
-            setTimeout(() => { that.props.history.push(address) }, 1000);
-
-        });
-*/
+        let lang = cookies.get('userLang', {path: '/'});
         let guideBody = JSON.stringify({
             id: this.props.match.params.id,
-            lang: cookies.get('userLang', {path: '/'})
+            lang: lang
+        })
+        this.setState({
+            dataLang: lang,
+            isRefreshExist: true,
+            isRefreshing: true
         })
         fetch(requests.showGuide, {
             method: 'PUT', body: guideBody,
@@ -176,20 +131,28 @@ class GuideDescriptionClass extends React.Component {
                 console.log("bad");
                 throw data.error;
             }
-            else {
-                
+            else {               
                 console.log('good - you get a guide description');
                 console.log(data);
-                that.props.dispatch(setGuideData(data.guideData, data.carTypes));
-                that.setState({
-                    isRefreshExist: false,
-                    isRefreshing: false,
-                    isGoodAnswer: true
-                })
+                if(data.guideData.tours.length>0){
+                    //если туры у человека пришли, то отрабатываем стандартно - 
+                    //проверка на наличие локализаций на выбранном языке
+                    that.props.dispatch(setGuideData(data.guideData, data.carTypes));
+                    that.setState({
+                        isRefreshExist: false,
+                        isRefreshing: false,
+                        isGoodAnswer: true,
+                    })
+                }
+                else{
+                    //иначе делаем перенаправление на страницу гидов, пускай выбирает
+                    //тех гидов, что заполнили локализации на выбранном языке
+                    that.props.globalReduser.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/guides/');
+                }
+                
             }
         })
         .catch(function (error) {
-
             console.log('bad');
             console.log('An error occurred:', error);
             that.setState({
@@ -201,8 +164,7 @@ class GuideDescriptionClass extends React.Component {
             if(that.props.storeState.country && that.props.storeState.languages && that.props.storeState.languages.length>0 && that.props.storeState.activeLanguageNumber){
                 address = '/' + that.props.storeState.country + "-" + that.props.storeState.languages[that.props.storeState.activeLanguageNumber].isoAutocomplete + '/guides';
             }
-            setTimeout(() => { that.props.history.push(address) }, 1000);
-            
+            setTimeout(() => { that.props.history.push(address) }, 1000);       
         });
     }
     changeTravelVisibility = (elementPrice) => {
@@ -336,27 +298,23 @@ class GuideDescriptionClass extends React.Component {
             }
             return true;
         }
+        /*
         window.scroll({
             top: 0,
             left: 0,
             behavior: 'smooth'
         });
+        */
+        let lang =cookies.get('userLang', {path: '/'});
+
+        if(this.state.dataLang!==lang && !(this.state.isRefreshExist)){
+            this.sendDataRequest();
+        }
         console.log('DriverProfile render');
         console.log(this.props);
 
         console.log('cities', this.props.storeState.cities);
-
-
-        let driver = this.props.driversState.driverCarDescription;
-
-        let carCapacityArray = [];
-        if (this.props.driversState.driverCarDescription.carCapacity) {
-            for (let i = 0; i < this.props.driversState.driverCarDescription.carCapacity; i++) {
-                carCapacityArray.push(i + 1)
-            }
-        } else {
-            carCapacityArray.push("1")
-        }
+        
         let flagAllOk = false;
         if (
             this.state.firstName !== "" &&
@@ -375,12 +333,13 @@ class GuideDescriptionClass extends React.Component {
             }
             flagAllOk = true;
         }
+
         let storeState = this.props.storeState;
         let activeCurrency = storeState.currencies[storeState.activeCurrencyNumber]
         let textInfo = this.props.storeState.languageTextMain.drivers.driversBlock;
         let defaultPrice = this.props.driversState.driverCarDescription.price * (100 - this.state.discount) / 100;
         let isCurrencyLoaded = activeCurrency && activeCurrency.symbol;
-        let helmet = this.props.storeState.languageTextMain.helmets.driverProfile;
+        let helmet = this.props.storeState.languageTextMain.helmets.guideProfile;
 
         let windowImg = null
         if (this.props.storeState.languages.length > 0) {
@@ -399,7 +358,6 @@ class GuideDescriptionClass extends React.Component {
             windowImg = requests.serverAddressImg + this.props.storeState.countries[j].windowImg.url
         }
 
-
         return (
             <>
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
@@ -407,27 +365,24 @@ class GuideDescriptionClass extends React.Component {
                 <div className="drivers_top_background" style={{ background: "url(" + windowImg + ")no-repeat" }}>
                     <Header history={this.props.history} showBtnBack={true} />
 
-                    {
-                        true  ?
-                            <div className="wrapper d-flex flex-column">
-                                <div className="drivers_top_block d-flex flex-column" style={{ visibility: this.props.guidesReduser.guideData.id ? 'visible' : 'hidden' }}>
-                                    {
-                                        this.props.driversState.driverCarDescription.id ?
-                                            <Helmet>
-                                                <title>{helmet.basic.title}</title>
-                                                <meta name="description" content={helmet.basic.description} />
-                                                <meta property="og:site_name" content="Tripfer" />
-                                                <meta property="og:type" content="website" />
-                                                <meta property="og:url" content={document.URL} />
-                                                <meta property="og:title" content={helmet.basic.title} />
-                                                <meta property="og:description" content={helmet.basic.description} />
-                                            </Helmet> : <React.Fragment />
-
-                                    }
-                                    <GuideInfo guideData={this.props.guidesReduser.guideData} />                                  
-                                </div>
-                            </div> : <React.Fragment />
-                    }
+                    <div className="wrapper d-flex flex-column">
+                        <div className="drivers_top_block d-flex flex-column" style={{ visibility: this.props.guidesReduser.guideData.id ? 'visible' : 'hidden' }}>
+                            {
+                                this.props.guidesReduser.guideData.id ?
+                                <Helmet>
+                                    <title>{helmet.basic.title[0]+this.props.guidesReduser.guideData.name+helmet.basic.title[1]}</title>
+                                    <meta name="description" content={helmet.basic.description[0]+this.props.guidesReduser.guideData.name+helmet.basic.description[1]} />
+                                    <meta property="og:site_name" content="Tripfer" />
+                                    <meta property="og:type" content="website" />
+                                    <meta property="og:url" content={document.URL} />
+                                    <meta property="og:title" content={helmet.basic.title[0]+this.props.guidesReduser.guideData.name+helmet.basic.title[1]} />
+                                    <meta property="og:description" content={helmet.basic.description[0]+this.props.guidesReduser.guideData.name+helmet.basic.description[1]} />
+                                </Helmet>
+                                : <React.Fragment/>
+                            }                        
+                            <GuideInfo guideData={this.props.guidesReduser.guideData} />                                  
+                        </div>
+                    </div> 
 
                 </div>
                 {
@@ -435,19 +390,19 @@ class GuideDescriptionClass extends React.Component {
                         <>                           
                             <div className="wrapper d-flex flex-column">
                                 <div className="driverProfileComments_panel d-flex">
-                                    <div className="d-flex col-12 p-md-0">
+                                    <div className="d-flex col-12 p-md-0 guidesSortElementsBlock">
                                     {
                                         this.state.visibilityArray.map((element, index)=>{
                                             
                                             return(
-                                            <div className={"driverProfileComments_panel_element" + (this.state.visibilityArray[index] ? ' driverProfileComments_panel_selectedElement' : '')}
+                                            <span className={"driverProfileComments_panel_element" + (this.state.visibilityArray[index] ? ' driverProfileComments_panel_selectedElement' : '')}
                                             onClick={()=>{
                                             let visibilityArray = Array(this.state.visibilityArray.length).fill(false); 
                                             visibilityArray[index]=true; 
                                             this.setState({visibilityArray: visibilityArray})}}
                                             style={{margin: '0 10px'}}>
                                                 {this.state.visibilityValues[index]}
-                                            </div>
+                                            </span>
                                             )
                                         })                         
                                     }

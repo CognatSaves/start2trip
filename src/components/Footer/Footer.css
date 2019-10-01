@@ -167,5 +167,19 @@ html {
     background-size: contain;
 }
 
+.footerMobileTextGuides_active {
+    width: 20px;
+    height: 20px;
+    margin-bottom: 5px;
+    background: url(../media/tour-guide.svg) 100% 100% no-repeat;
+    background-size: contain;
+}
 
+.footerMobileTextGuides {
+    width: 20px;
+    height: 20px;
+    margin-bottom: 5px;
+    background: url(../media/tour-guide-Gray.svg) 100% 100% no-repeat;
+    background-size: contain;
+}
 /* Footer Mobaile End */

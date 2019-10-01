@@ -18,7 +18,8 @@ const home = {
             routeListElement: {
                 detailed: 'More',
                 comments: 'reviews',
-                from: 'From'
+                from: 'From',
+                excursions: 'Excursions'
             }
         },
         homeBodyBottom: {

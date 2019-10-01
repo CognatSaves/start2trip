@@ -124,7 +124,7 @@ class GuidesClass extends React.Component {
       this.props.globalReduser.findCountryNameByISO(this, cookies.get('country', { path: '/' }), cookies.get('userLang', { path: '/' }))
       : '';
     //let name = findSelectedDirectionName(this.props.guidesState.directions, selectedDirection);
-    let helmet = this.props.storeState.languageTextMain.helmets.places;
+    let helmet = this.props.storeState.languageTextMain.helmets.guides;
 
     //let a = this.props.placesState.placesList;
     let directions = [];
@@ -155,75 +155,39 @@ class GuidesClass extends React.Component {
             {
 
                 countryName.length > 0 ?
-                    (
-                        this.props.placesState.directions.length > 0 && selectedDirection.length > 0 ?
-
-                            <Helmet>
-                                <title>{helmet.direction.title[0] + findSelectedDirectionName(this.props.placesState.directions, selectedDirection) + helmet.direction.title[1]}</title>
-                                <meta name="description" content={findSelectedDirectionName(this.props.placesState.directions, selectedDirection) + helmet.direction.description} />
-                                <meta property="og:site_name" content="Tripfer.com" />
-                                <meta property="og:type" content="website" />
-                                <meta property="og:url" content={document.URL} /*тут нужно добавить direction */ />
-                                <meta property="og:title" content={helmet.direction.title[0] + findSelectedDirectionName(this.props.placesState.directions, selectedDirection) + helmet.direction.title[1]} />
-                                <meta property="og:description" content={findSelectedDirectionName(this.props.placesState.directions, selectedDirection) + helmet.direction.description} />
-
-                                <script type="application/ld+json">
-                                    {`
-                      {
-                      "@context": "https://schema.org",
-                    "@type": "Place",
-                    "url": `+ JSON.stringify(document.URL) + `,
-                    "address":[
-                    {
-                      "@type": "PostalAddress",
-                    "addressCountry":`+ countryISO + `,
-                    "addressRegion": `+ directionName + `
-                    }
-                   ],
-                   "photo":[
-                    {
-                      "@type": "ImageObject",
-                    "thumbnail":"https://tripfer.com/uploads/bf77b09a0d3d4564b6c7eb9eb2f4a51d.jpg"
-                    }
-                    ]
-                  }
-                  `}
-                                </script>
-                            </Helmet> :
-                            <Helmet>
-                                <title>{helmet.country.title[0] + countryName + helmet.country.title[1]}</title>
-                                <meta name="description" content={helmet.country.description[0] + countryName + helmet.country.description[1] + countryName + helmet.country.description[2]} />
-                                <meta property="og:site_name" content="Tripfer.com" />
-                                <meta property="og:type" content="website" />
-                                <meta property="og:url" content={document.URL} />
-                                <meta property="og:title" content={helmet.country.title[0] + countryName + helmet.country.title[1]} />
-                                <meta property="og:description" content={helmet.country.description[0] + countryName + helmet.country.description[1] + countryName + helmet.country.description[2]} />
-                                <script type="application/ld+json">
-                                    {`
-                      {
-                      "@context": "https://schema.org",
-                    "@type": "Place",
-                    "url": `+ JSON.stringify(document.URL) + `,
-                    "address":[
-                    {
-                      "@type": "PostalAddress",
-                    "addressCountry":`+ countryISO + `,
-                    "addressRegion":`+ directions + `
-                    }
-                   ],
-                   "photo":[
-                    {
-                      "@type": "ImageObject",
-                    "thumbnail":"https://tripfer.com/uploads/bf77b09a0d3d4564b6c7eb9eb2f4a51d.jpg"
-                    }
-                    ]
-                  }
-                  `}
-                                </script>
-                                {/* TODO img */}
-                            </Helmet>
-                    )
-                    : <React.Fragment />
+                  <Helmet>
+                    <title>{helmet.country.title[0] + countryName + helmet.country.title[1]}</title>
+                    <meta name="description" content={helmet.country.description[0] + countryName + helmet.country.description[1]} />
+                    <meta property="og:site_name" content="Tripfer.com" />
+                    <meta property="og:type" content="website" />
+                    <meta property="og:url" content={document.URL} />
+                    <meta property="og:title" content={helmet.country.title[0] + countryName + helmet.country.title[1]} />
+                    <meta property="og:description" content={helmet.country.description[0] + countryName + helmet.country.description[1]} />
+                    <script type="application/ld+json">
+                      {`
+                            {
+                            "@context": "https://schema.org",
+                          "@type": "Place",
+                          "url": `+ JSON.stringify(document.URL) + `,
+                          "address":[
+                          {
+                            "@type": "PostalAddress",
+                          "addressCountry":`+ countryISO + `,
+                          "addressRegion":`+ directions + `
+                          }
+                        ],
+                        "photo":[
+                          {
+                            "@type": "ImageObject",
+                          "thumbnail":"https://tripfer.com/uploads/bf77b09a0d3d4564b6c7eb9eb2f4a51d.jpg"
+                          }
+                          ]
+                        }
+                        `}
+                    </script>
+                    {/* TODO img */}
+                  </Helmet>                   
+                  : <React.Fragment />
 
             }
 

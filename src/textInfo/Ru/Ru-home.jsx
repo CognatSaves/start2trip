@@ -18,7 +18,8 @@ const home = {
         routeListElement: {
             detailed: 'Подробнее',
             comments: 'отзывов',
-            from: 'Из'
+            from: 'Из',
+            excursions: 'Экскурсий'
         }
     },
     homeBodyBottom:{

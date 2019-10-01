@@ -48,12 +48,19 @@ class FooterClass extends React.Component {
         value: textInfo.footerMobileTextTours
       },
       {
+        pathname: "/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/guides/",
+        pathnamesInner: ["/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/guides/"],
+        iconClasses: ['footerMobileTextGuides_active', 'footerMobileTextGuides'],
+        classValue: 'footerMobileTextPlaces',
+        value: textInfo.footerMobileTextGuides
+      },
+      {
         pathname: "/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/places/",
         pathnamesInner: ["/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/places/"],
         iconClasses: ['footerMobileIconPlaces_active', 'footerMobileIconPlaces'],
         classValue: 'footerMobileTextPlaces',
         value: textInfo.footerMobileTextPlaces
-      },
+      },     
       {
         pathname: "/account/",
         pathnamesInner: ["/account/user/profile/", "/account/driver/profile/", "/account/agency/profile/"],
@@ -97,7 +104,7 @@ class FooterClass extends React.Component {
         <div className="footerMobile d-md-none d-flex">
           {
             mobileElemArray.map((element, index) =>
-              <Link to={element.pathname} className="col-3 d-flex align-items-end" /*onClick={(event, target)=>{ console.log(event, target); event.preventDefault()}}*/>
+              <Link to={element.pathname} className="col d-flex align-items-end p-0" /*onClick={(event, target)=>{ console.log(event, target); event.preventDefault()}}*/>
                 <div className={(element.pathnamesInner.indexOf(pathname) !== -1 ? "foterMobaileItem_active" : " ") + " d-flex flex-column align-items-center justify-content-end col-12 p-md-2 p-0 foterMobaileItem "} >
                   <div className={element.pathnamesInner.indexOf(pathname) !== -1 ? element.iconClasses[0] : element.iconClasses[1]} />
                   <div className={element.classValue}>{element.value}</div>

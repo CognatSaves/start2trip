@@ -20,6 +20,7 @@ class DriverInfoProfile extends React.Component{
         let element = this.props.element;
         
         let languageIdsArray = getLanguageNumbers(element.language ? element.language : [], this.props.storeState.languages);
+        let textInfo = this.props.storeState.languageTextMain.drivers;
         return (
             <>
                 <div className="driverInfo_left_line">
@@ -29,15 +30,11 @@ class DriverInfoProfile extends React.Component{
                     <div className="block_element_infoBlock">
                         <div style={{ paddingBottom: "2px" }} key={element.rating}>
                             <div className="block_element_infoBlock_name driversInfo_driverName">{element.name}</div>
-                            <Stars value={element.rating} commentNumber={element.comments ? element.comments.length + " отзывов" : 0} valueDisplay={true} commentNumberDisplay={true} />
+                            <Stars value={element.rating} commentNumber={element.comments ? element.comments.length + " "+textInfo.driversBlock.comments : 0} valueDisplay={true} commentNumberDisplay={true} />
                         </div>
                         <div className="block_element_infoBlock_bot">
                             <div className="d-flex ">
-                            {
-                                //TODO переводы
-                            }
-
-                                <div className="infoString infoString_driverInfoSize">Языки:</div>
+                                <div className="infoString infoString_driverInfoSize">{textInfo.driverInfo.languages+":"}</div>
                                 <div className="d-flex">
 
                                     {
@@ -47,14 +44,8 @@ class DriverInfoProfile extends React.Component{
                                     }
                                 </div>
                             </div>
-                            {/* <div className="d-flex ">
-                            <div className="infoString infoString_driverInfoSize">За рулем:</div>
-                            <div className="visibleString">{element.drivingAge + " лет"}</div>
-                        </div> */}
                         </div>
-
                     </div>
-                    {/* <div className="driverInfo_bookmarkElement"></div> */}
                 </div>
                 <div className="driverInfo_left_line">
                     <div className="valueBlock_commentary px-3">

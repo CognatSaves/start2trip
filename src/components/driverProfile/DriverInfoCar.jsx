@@ -26,7 +26,7 @@ class DriverInfoCar extends React.Component {
         let carTypeNumber = getCarTypeNumber(element, this.props.carTypes);
         let carComfort = element.carComfort ? element.carComfort : [];
         let imageUrls = createCorrectUrls(element.carImages ? element.carImages : []);
-        
+        let textInfo = this.props.storeState.languageTextMain.drivers;
         return(
             
             <>
@@ -49,7 +49,7 @@ class DriverInfoCar extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <div className="driverInfo_carTypeValue">{carTypeNumber >= 0 ? (this.props.carTypes[carTypeNumber].name_en + ', ' + element.carCapacity + ' места') : ''}</div>
+                    <div className="driverInfo_carTypeValue">{carTypeNumber >= 0 ? (this.props.carTypes[carTypeNumber].name_en + ', ' + element.carCapacity + ' '+textInfo.driverInfo.seats) : ''}</div>
                 </div>
                 <Carousel photoArray={imageUrls} type={isMobileOnly ? "horizontal" : "vertical"} />
             </>

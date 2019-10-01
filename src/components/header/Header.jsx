@@ -705,6 +705,10 @@ class HeaderClass extends React.Component {
       {
         to: "/tours/",
         value: textInfo.menuElements[2]
+      },
+      {
+        to: '/guides/',
+        value: textInfo.menuElements[3]
       }
     ];
     
@@ -760,14 +764,15 @@ class HeaderClass extends React.Component {
                     </div>
                   </div>
                   <text className="col-11 pt-4 pb-2">{textInfo.burgerMenu.titlesName[1]}</text>
-                  <div className="burgerMenuBlock d-flex flex-column justify-content-center align-items-start col-11">
+                  <div className="burgerMenuBlock d-flex flex-column justify-content-center align-items-start col-11 p-0">
                     <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes/"} className="border-bottom routes" >{textInfo.burgerMenu.services[0]}</Link>
-                    <Link to={/*"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/tours/"*/null} className="border-bottom tours" >{textInfo.burgerMenu.services[1]}</Link>
-                    <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/places/"} className="places" >{textInfo.burgerMenu.services[2]}</Link>
+                    <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/tours/"} className="border-bottom tours" >{textInfo.burgerMenu.services[1]}</Link>
+                    <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/places/"} className="border-bottom places" >{textInfo.burgerMenu.services[2]}</Link>
+                    <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/guides/"} className="guides" >{textInfo.burgerMenu.services[3]}</Link>
                   </div>
 
                   <text className="col-11 pt-4 pb-2">{textInfo.burgerMenu.titlesName[2]}</text>
-                  <div className="burgerMenuBlock d-flex flex-column justify-content-center align-items-start col-11">
+                  <div className="burgerMenuBlock d-flex flex-column justify-content-center align-items-start col-11 p-0">
                     {
                       this.props.storeState.isAuthorized ?
                         <>
@@ -786,7 +791,7 @@ class HeaderClass extends React.Component {
                     }
                   </div>
                   <text className="col-11 pt-4 pb-2">{textInfo.burgerMenu.titlesName[3]}</text>
-                  <div className="burgerMenuBlock d-flex flex-column justify-content-center align-items-start col-11">
+                  <div className="burgerMenuBlock d-flex flex-column justify-content-center align-items-start col-11 p-0">
                     <Link to={"/"+ cookies.get('userLangISO', { path: "/" }) + "/about-service/"} className="border-bottom logoIcon" >{textInfo.burgerMenu.usefulLinks[0]}</Link>
                     <Link to={"/"+ cookies.get('userLangISO', { path: "/" }) + "/affiliate-program/"} className="border-bottom partner" >{textInfo.burgerMenu.usefulLinks[1]}</Link>
                     <Link to={"/"+ cookies.get('userLangISO', { path: "/" }) + "/terms/"} className="border-bottom contract" >{textInfo.burgerMenu.usefulLinks[2]}</Link>
@@ -815,8 +820,8 @@ class HeaderClass extends React.Component {
                 <span>{this.props.storeState.country}</span>
               </div>
             </div>
-            <div className="d-flex align-items-center justify-content-end col-xl-6 col-lg-7 col-md-8 col-sm-6 col-6">
-              <div className="headerButtonMass d-flex align-self-stretch justify-content-end col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 ">
+            <div className="d-flex align-items-center justify-content-end col-xl-7 col-lg-9 col-md-8 col-sm-6 col-6">
+              <div className="headerButtonMass d-flex align-self-stretch justify-content-end col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 p-0">
                 {
                   buttonMassElements.map((element, index) =>
                     <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + element.to}

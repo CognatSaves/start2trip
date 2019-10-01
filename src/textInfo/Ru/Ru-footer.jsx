@@ -10,6 +10,7 @@ let footer = {
     footerMobileTextRoutes:'Маршруты',
     footerMobileTextTours:'Туры',
     footerMobileTextPlaces:'Места',
+    footerMobileTextGuides: 'Гиды',
     footerMobileTextProfile:'Профиль'
 }
 

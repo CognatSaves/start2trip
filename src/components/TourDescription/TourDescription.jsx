@@ -197,7 +197,6 @@ class ToureDescriptionClass extends React.Component {
                             left: 0,
                             behavior: 'smooth'
                         });
-                        debugger
                         console.log('good, data=', data);
                         that.setState({
                             isRefreshExist: false,
