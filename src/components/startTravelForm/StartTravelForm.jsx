@@ -29,7 +29,7 @@ export default class StartTravelForm extends React.Component {
             lastName: props.storeState.userData ? props.storeState.userData.lastName : "",
             telNumber: props.storeState.userData ? props.storeState.userData.workPhone : "",
             email: props.storeState.userData ? props.storeState.userData.email : "",
-            //date: props.storeState.date.length > 0 ? new Date(props.storeState.date) : new Date(),
+            date: props.elementActive ? props.elementActive.date : new Date(),
             departureTime: "",
             numberOfPeople: "",
             placeDeparture: "",
@@ -327,6 +327,7 @@ export default class StartTravelForm extends React.Component {
                 carCapacityArray.push(1);
             }
         }
+        
         return (
             <>
                 {
@@ -353,7 +354,9 @@ export default class StartTravelForm extends React.Component {
                     this.props.toursState ?
                         <>
                             <Dialog open={this.props.travelVisibility} onClose={this.props.changeTravelVisibility} >
-                                <div className="col-12 py-3">В разработке</div>
+                                {/* <div className="d-flex justify-content-center align-items-center p-5">В Разроботке</div> */}
+                                <StartTravelContent that={this} flagAllOk={flagAllOk} carCapacityArray={carCapacityArray} activeCurrency={this.props.activeCurrency}
+                                    textInfo={this.props.textInfo} changeSuccessVisibility={this.props.changeSuccessVisibility} isTour={true} elementActive={this.props.elementActive} />
                             </Dialog>
                         </>
                         : <React.Fragment />

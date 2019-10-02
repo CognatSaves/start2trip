@@ -15,7 +15,7 @@ const startTravelForm = {
         uncorrectPromocode: 'Invalid promocode',
         errorFieldsMessage: 'Fill in all the fields correctly',
         startDate: "Departure Date",
-
+        returnToPoint:"*Return to the point of departure on the same day for free",
 
         thanks: 'Thanks for your Order',
         textLine: ['Order confirmation letter was sent to your email ',

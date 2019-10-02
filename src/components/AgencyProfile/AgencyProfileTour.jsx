@@ -210,7 +210,7 @@ class AgencyProfileTourClass extends React.Component {
         super(props);
         let profile = this.props.globalReduser.profile;
         let local = [];
-        debugger
+        
         for (let i = 0; i < this.props.storeState.untranslatedlanguages.length; i++) {
             if (this.props.storeState.untranslatedlanguages[i].isTransfer) {
                 local[i] = {
@@ -765,7 +765,7 @@ class AgencyProfileTourClass extends React.Component {
                 request.setRequestHeader('Authorization', `Bearer ${jwt}`);
             }
             request.onreadystatechange = function () {
-                debugger;
+                
                 if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
                     console.log(request.responseText);
                     that.getProfileData(that.thenFunc, that.catchFunc);
@@ -1379,7 +1379,7 @@ class AgencyProfileTourClass extends React.Component {
         let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileTripSettingsTour;
         
         let textPageAgencyProfile = this.props.storeState.languageText.agencyProfile.agencyProfileTour;
-        debugger;
+        
         console.log(textPageAgencyProfile.currencyPlaceholder);
 
         

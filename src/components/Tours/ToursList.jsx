@@ -307,6 +307,7 @@ class ToursListClass extends React.Component {
                                 <>
                                     <ToursListElement element={element.element} index={index} findTagName={(tag) => findTagName(tag, this)}
                                         departureDate={element.departureDate} changeTravelVisibility={this.props.changeTravelVisibility}
+                                        elementActive={element}
                                     />
                                 </>
                             )

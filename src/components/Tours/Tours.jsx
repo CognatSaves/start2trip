@@ -39,6 +39,7 @@ class ToursClass extends React.Component {
       travelVisibility: false,
       successVisibility: 'none',
       elementPrice: 0,
+      elementActive:null,
       temp: 0,
       countryDescription: null,
     }
@@ -166,11 +167,12 @@ class ToursClass extends React.Component {
     this.setState({ tourType: type })
   }
 
-  changeTravelVisibility = (elementPrice) => {
+  changeTravelVisibility = (elementPrice,elementActive) => {
 
     this.setState({
       travelVisibility: !this.state.travelVisibility,
-      elementPrice: elementPrice
+      elementPrice: elementPrice,
+      elementActive:elementActive,
     })
   }
 
@@ -367,8 +369,8 @@ class ToursClass extends React.Component {
         </div>
         <StartTravelForm {...this.props} changeTravelVisibility={this.changeTravelVisibility}
           changeSuccessVisibility={this.changeSuccessVisibility} travelVisibility={this.state.travelVisibility}
-          elementPrice={this.state.elementPrice} activeCurrency={activeCurrency}
-          isoCountryMap={this.props.storeState.isoCountryMap}
+          elementPrice={this.state.elementPrice} elementActive={this.state.elementActive}
+          activeCurrency={activeCurrency} isoCountryMap={this.props.storeState.isoCountryMap}
           textInfo={this.props.storeState.languageTextMain.startTravelForm}
 
         />
