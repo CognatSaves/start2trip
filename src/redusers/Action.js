@@ -89,14 +89,15 @@ const setActiveLang = function(activeLanguageNumber) {
         activeLanguageNumber: activeLanguageNumber
     }
 }
-const setLocals = function(languages, adminLanguages, currencies, countries) {
+const setLocals = function(languages, adminLanguages, currencies, countries,untranslatedlanguages) {
 
     return {
         type: 'SET_LOCALS',
         languages: languages,
         adminLanguages: adminLanguages,
         currencies: currencies,
-        countries: countries
+        countries: countries,
+        untranslatedlanguages:untranslatedlanguages,
     }
 }
 

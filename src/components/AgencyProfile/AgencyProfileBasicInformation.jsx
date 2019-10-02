@@ -42,7 +42,7 @@ class AgencyProfileBasicInformationClass extends React.Component {
 
         birthday = new Date(profile.birthday);
         passportDate = new Date(profile.passportDate);
-        let languageArrays = languageArraysConstr(profile.language, profile.allLanguages);
+        let languageArrays = languageArraysConstr(profile.language, this.props.storeState.untranslatedlanguages);
         this.state = {
             value: "Выберите языки",
             chipData: languageArrays.chipData,
