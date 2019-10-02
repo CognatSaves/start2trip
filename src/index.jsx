@@ -190,7 +190,7 @@ function getLocals() {
 
   axios.get(requests.getLocals, props)
     .then(response => {
-
+      debugger
       let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
       let languages = response.data.languages;
       let currencies = response.data.currencies;
@@ -198,7 +198,7 @@ function getLocals() {
       let adminLanguages = response.data.adminLanguages;
       let carTypes = response.data.carTypes;
 
-      store.dispatch(setLocals(languages, adminLanguages, currencies, countries));
+      store.dispatch(setLocals(languages, adminLanguages, currencies, countries,response.data.untranslatedlanguages));
       store.dispatch(setCarTypes(carTypes));
 
       let lang = redusers.GlobalReduser.readCookie('userLang');

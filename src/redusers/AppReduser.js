@@ -76,6 +76,7 @@ const initialState = {
     autoValue: [], // Участвует в фильтрации
     autoMenu: false,
     languages: [],
+    untranslatedlanguages:[],
     adminLanguages: [],
     activeLanguageNumber: 0,
 
@@ -408,6 +409,7 @@ export const AppReduser = (state = initialState, action) => {
             newState.currencies = [...action.currencies];
             newState.countries = [...action.countries];
             newState.adminLanguages = [...action.adminLanguages];
+            newState.untranslatedlanguages = [...action.untranslatedlanguages];
             return newState;
         }
         case MODAL_COUNTRY: {
