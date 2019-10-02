@@ -122,7 +122,7 @@ class ToursListElementClass extends React.Component {
                             
                             console.log(element);
                             
-                            this.props.changeTravelVisibility(element.price);
+                            this.props.changeTravelVisibility(element.price,this.props.elementActive);
                             /*this.props.dispatch(setDriverCarDescription(element))*/
                         }}>{textInfo.bookTours+" "+price }</button>
                     {   

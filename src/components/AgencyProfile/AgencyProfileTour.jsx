@@ -697,8 +697,10 @@ class AgencyProfileTourClass extends React.Component {
       
             //////////////// local validation
             for(let i=0; i<tourSave.local.length; i++){
-                checkCorrectLocal(tourSave.local[i], i);
-                console.log(result);
+                let isLocalGood = checkCorrectLocal(tourSave.local[i], i);
+                if(!isLocalGood){
+                    result = false;
+                }
             }
             //////////////// main block validation
             if (!tourSave.time) {

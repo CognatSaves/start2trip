@@ -189,7 +189,7 @@ function getLocals() {
   //console.log(window.navigator);
 
   axios.get(requests.getLocals, props)
-    .then(response => {
+    .then(response => { 
       let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
       let languages = response.data.languages;
       let currencies = response.data.currencies;

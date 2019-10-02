@@ -15,6 +15,7 @@ const startTravelForm ={
     uncorrectPromocode: 'Неверный промокод',
     errorFieldsMessage: 'Заполните правильно все поля',
     startDate: "Дата отправления",
+    returnToPoint:"*Возврат в точку отправления в этот же день бесплатно",
 
 
     thanks: 'СПАСИБО',
