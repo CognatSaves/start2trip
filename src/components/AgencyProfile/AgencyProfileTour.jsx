@@ -30,23 +30,23 @@ import calendar from '../media/calendar.svg';
 const cookies = new Cookies();
 
 const TourSeatsModalContent = (that, pseudoTableHeaderArray, tableElementsWidth, isErrorBlock,
-     translation,selectActiveDays,textPageMonthArray) => {
-    function dateLineConverter(value){
+    translation, selectActiveDays, textPageMonthArray) => {
+    function dateLineConverter(value) {
         let elems = value.split('-'); //value = year-month-day
-        return elems[2]+"."+elems[1]+"."+elems[0];
+        return elems[2] + "." + elems[1] + "." + elems[0];
     }
-    function monthMove(that,value){
+    function monthMove(that, value) {
         let month = that.state.selectedMonth;
         let year = that.state.selectedYear;
         month = month + value;
-        if(month>11){
-            while(month>11){
+        if (month > 11) {
+            while (month > 11) {
                 month = month - 11;
                 year = year + 1;
             }
         }
-        if(month<0){
-            while(month<0){
+        if (month < 0) {
+            while (month < 0) {
                 month = month + 11;
                 year = year - 1;
             }
@@ -57,43 +57,43 @@ const TourSeatsModalContent = (that, pseudoTableHeaderArray, tableElementsWidth,
         })
     }
     console.log(that, pseudoTableHeaderArray, tableElementsWidth, isErrorBlock);
-    if(that.state.tourSeatsModal){
+    if (that.state.tourSeatsModal) {
         selectActiveDays(that.state.selectedMonth, that.state.selectedYear);
     }
-    
+
     return (
         <div className="d-flex flex-column col-12" style={{ maxHeight: isMobileOnly ? '500px' : '2000px'/*, ma*/ }}>
             <div className="d-flex flex-row tourSeatsModalHeader">
                 <div className="tourSeatsModalName">
                     {/*translation.tour + " " + */(that.state.tourSeatsModalSelectedElement ? that.selectTourName(that.state.tourSeatsModalSelectedElement) : 'Error!')}
                 </div>
-                <div className="d-flex flex-row" style={{marginLeft: 'auto'}}>
-                    <text className="seatsModalMonthText seatsModalMonthMove" onClick={()=>monthMove(that,-1)}>{'<'}</text>
+                <div className="d-flex flex-row" style={{ marginLeft: 'auto' }}>
+                    <text className="seatsModalMonthText seatsModalMonthMove" onClick={() => monthMove(that, -1)}>{'<'}</text>
                     <div className="seatsModalMonthText">
                         {textPageMonthArray[that.state.selectedMonth] + " " + that.state.selectedYear}
                     </div>
-                    <text className="seatsModalMonthText seatsModalMonthMove" onClick={()=>monthMove(that,1)}>{'>'}</text>
-                </div>              
+                    <text className="seatsModalMonthText seatsModalMonthMove" onClick={() => monthMove(that, 1)}>{'>'}</text>
+                </div>
             </div>
             <div className="d-flex flex-column tableBlock tourSeatsModalTable">
 
-                <div className="d-flex flex-column" style={{textAlign: 'center'}}>
+                <div className="d-flex flex-column" style={{ textAlign: 'center' }}>
                     <div className="d-flex flex-row">
                         {
                             pseudoTableHeaderArray.map((element, index) => {
                                 return (
-                                    <div style={{width:tableElementsWidth[index] }}>{translation.headerArray[index]}</div>
+                                    <div style={{ width: tableElementsWidth[index] }}>{translation.headerArray[index]}</div>
                                 )
                             })
                         }
                     </div>
-                    {                      
+                    {
                         that.state.tourSeatsBlocks.map((element, index) => {
                             return (
                                 <>
                                     <div className="d-flex flex-row" style={{ backgroundColor: isErrorBlock(element.id, that) ? 'red' : 'transparent' }}>
-                                        <div style={{width:tableElementsWidth[0] }}>{dateLineConverter(that.props.globalReduser.createDateTimeString(new Date(element.date), true))}</div>
-                                        <div style={{width:tableElementsWidth[1] }}>
+                                        <div style={{ width: tableElementsWidth[0] }}>{dateLineConverter(that.props.globalReduser.createDateTimeString(new Date(element.date), true))}</div>
+                                        <div style={{ width: tableElementsWidth[1] }}>
                                             <input className="tourSeatsModalInput" type="number" value={element.freeSeats}
                                                 onChange={(e) => {
                                                     let value = e.target.value;
@@ -106,14 +106,14 @@ const TourSeatsModalContent = (that, pseudoTableHeaderArray, tableElementsWidth,
                                                     }
                                                 }} />
                                         </div>
-                                        <div style={{width:tableElementsWidth[2] }}>{element.reservedSeats}</div>
+                                        <div style={{ width: tableElementsWidth[2] }}>{element.reservedSeats}</div>
                                     </div>
                                 </>
                             )
                         })
-                        
+
                     }
-                </div>             
+                </div>
             </div>
             <div className="d-flex flex-row justify-content-end">
 
@@ -210,18 +210,22 @@ class AgencyProfileTourClass extends React.Component {
         super(props);
         let profile = this.props.globalReduser.profile;
         let local = [];
-        for (let i = 0; i < profile.allLanguages.length; i++) {
-            local[i] = {
-                name: "",
-                departurePoint: {
-                    point: "",
-                    lat: "",
-                    long: ""
-                },
-                points: [],
-                info: "",
-                language: profile.allLanguages[i].ISO
+        debugger
+        for (let i = 0; i < this.props.storeState.untranslatedlanguages.length; i++) {
+            if (this.props.storeState.untranslatedlanguages[i].isTransfer) {
+                local[i] = {
+                    name: "",
+                    departurePoint: {
+                        point: "",
+                        lat: "",
+                        long: ""
+                    },
+                    points: [],
+                    info: "",
+                    language: this.props.storeState.untranslatedlanguages[i].ISO
+                }
             }
+
         }
         let categoriesUnselected = [];
         for (let i = 0; i < profile.categories.length; i++) {
@@ -289,7 +293,7 @@ class AgencyProfileTourClass extends React.Component {
             categoriesValue: this.props.storeState.languageText.driverProfileRegistration.DriverProfileTripSettingsTour.categoriesValue, // not change
             tags: [...profile.tags],
             tagsValue: this.props.storeState.languageText.driverProfileRegistration.DriverProfileTripSettingsTour.tagsValue, // not change
-            languageTour: [...profile.allLanguages],
+            languageTour: [...this.props.storeState.untranslatedlanguages],
             languageTourOpen: 0,
             newTourEverydayTime: this.props.storeState.languageText.driverProfileRegistration.DriverProfileTripSettingsTour.newTourEverydayTime,
             newTourDatepickerTime: this.props.storeState.languageText.driverProfileRegistration.DriverProfileTripSettingsTour.newTourDatepickerTime,
@@ -489,14 +493,14 @@ class AgencyProfileTourClass extends React.Component {
             for (let i = 0; i < element.calendary.length; i++) {
                 calendary[i] = new Date(element.calendary[i]);
             }
-            let selectedLanguages = [];let unselectedLanguages=[];
-            for(let i=0;i<this.props.storeState.adminLanguages.length; i++){
+            let selectedLanguages = []; let unselectedLanguages = [];
+            for (let i = 0; i < this.props.storeState.adminLanguages.length; i++) {
                 let viewedLanguage = this.props.storeState.adminLanguages[i];
                 let value = element.tourLanguages.indexOf(viewedLanguage.id);
-                if(value!==-1){
+                if (value !== -1) {
                     selectedLanguages.push(viewedLanguage);
                 }
-                else{
+                else {
                     unselectedLanguages.push(viewedLanguage);
                 }
             }
@@ -596,9 +600,9 @@ class AgencyProfileTourClass extends React.Component {
     }
     applyChanges(type) {
         let jwt = this.props.globalReduser.readCookie('jwt');
-        
+
         function checkCorrectTour(tourSave) {
-            
+
             let obj = "";
             let result = true;
             if (!tourSave.time) {
@@ -636,7 +640,7 @@ class AgencyProfileTourClass extends React.Component {
                 obj.classList.add("errorColor");
                 result = false;
             }
-            
+
             if (tourSave.daysNumber.length === 0 || isNaN(tourSave.daysNumber)) {
                 obj = document.getElementById('daysNumber');
                 obj.classList.add("errorColor");
@@ -718,11 +722,11 @@ class AgencyProfileTourClass extends React.Component {
             tourForm.append('accommodation', tourSave.excursionIncludes.accommodation);
 
             let selectedLanguagesIndexArray = [];
-            for(let i=0; i<tourSave.tourLanguages.length; i++){
+            for (let i = 0; i < tourSave.tourLanguages.length; i++) {
                 //selectedLanguagesIndexArray.push(tourSave.tourLanguages[i].id);
                 tourForm.append('tourLanguages', tourSave.tourLanguages[i].id);
             }
-            
+
             for (let i = 0; i < tourSave.imageFiles.length; i++) {
                 tourForm.append('image', tourSave.imageFiles[i]);
             }
@@ -814,14 +818,14 @@ class AgencyProfileTourClass extends React.Component {
         let now = new Date();
         let year = now.getUTCFullYear();
         let month = now.getUTCMonth();
-        if(!this.state.tourSeatsModal){
+        if (!this.state.tourSeatsModal) {
             this.fillForm(element);
         }
-        else{
+        else {
             this.fillForm();
         }
         this.setState({
-            selectedMonth:month,
+            selectedMonth: month,
             selectedYear: year,
             tourSeatsModal: !this.state.tourSeatsModal,
             tourSeatsModalSelectedElement: !this.state.tourSeatsModal ? element : undefined,
@@ -885,21 +889,21 @@ class AgencyProfileTourClass extends React.Component {
                 this.setState({ tourSave: tourSave });
                 break;
             }
-            case "tourLanguages":{
-                
-                console.log(this,value, name, params);
+            case "tourLanguages": {
+
+                console.log(this, value, name, params);
                 let selectedLanguages = tourSave.tourLanguages;
                 let unselectedLanguages = this.state.unselectedTourLanguages;
                 let valueIndex = unselectedLanguages.indexOf(value);
-                if(valueIndex!==-1){
-                    unselectedLanguages.splice(valueIndex,1);
+                if (valueIndex !== -1) {
+                    unselectedLanguages.splice(valueIndex, 1);
                 }
                 selectedLanguages.push(value);
                 tourSave.tourLanguages = selectedLanguages;
                 this.setState({
                     tourSave: tourSave,
                     unselectedTourLanguages: unselectedLanguages
-                });               
+                });
             }
             default:
         }
@@ -929,7 +933,7 @@ class AgencyProfileTourClass extends React.Component {
                 break;
             }
             case "calendary": {
-                
+
                 this.calendary = this.state.tourSave.calendary;
                 const calendaryToDelete = this.calendary.map((chip) => chip).indexOf(element);
                 this.calendary.splice(calendaryToDelete, 1);
@@ -942,21 +946,21 @@ class AgencyProfileTourClass extends React.Component {
                 this.setState({ tourSave: { ...tourSave } });
                 break;
             }
-            case "tourLanguages":{
-                
-                console.log(this,element, name, params);
+            case "tourLanguages": {
+
+                console.log(this, element, name, params);
                 let selectedLanguages = tourSave.tourLanguages;
                 let unselectedLanguages = this.state.unselectedTourLanguages;
                 let valueIndex = selectedLanguages.indexOf(element);
-                if(valueIndex!==-1){
-                    selectedLanguages.splice(valueIndex,1);
+                if (valueIndex !== -1) {
+                    selectedLanguages.splice(valueIndex, 1);
                 }
                 unselectedLanguages.push(element);
                 tourSave.tourLanguages = selectedLanguages;
                 this.setState({
                     tourSave: tourSave,
                     unselectedTourLanguages: unselectedLanguages
-                }); 
+                });
             }
             default:
         }
@@ -1080,76 +1084,76 @@ class AgencyProfileTourClass extends React.Component {
         this.setState({ tourSave: { ...tourSave, calendary: calendary } });
     }
     selectActiveDays = (month, year) => {
-        function selectCalendaryDays (daily,calendary,month, year, element){
-            function addEl(value){
-                if(value<10){
-                    return '0'+value;
+        function selectCalendaryDays(daily, calendary, month, year, element) {
+            function addEl(value) {
+                if (value < 10) {
+                    return '0' + value;
                 }
-                else{
+                else {
                     return value;
                 }
             }
             let array = [];
-            if(!daily){
-                for(let i=0; i<calendary.length; i++){
+            if (!daily) {
+                for (let i = 0; i < calendary.length; i++) {
                     let clYear = calendary[i].getUTCFullYear(); let clMonth = calendary[i].getUTCMonth(); let clDate = calendary[i].getUTCDate();
-                    if(month===clMonth && clYear===year){
-                        let tempString = clYear+"-"+addEl(clMonth+1)+"-"+addEl(clDate);                  
+                    if (month === clMonth && clYear === year) {
+                        let tempString = clYear + "-" + addEl(clMonth + 1) + "-" + addEl(clDate);
                         array.push({
-                            date:tempString,
+                            date: tempString,
                             freeSeats: element.seats,
                             reservedSeats: 0
                         });
                         daysCalendary.push(tempString);
-                    }                   
+                    }
                 }
-                calendary.sort((a,b)=>{return a<b});
+                calendary.sort((a, b) => { return a < b });
             }
-            else{
+            else {
                 let daysNumber = new Date(year, month + 1, 0).getDate();//берём нулевой день в следующем месяце
-               
-                for(let i=0; i<daysNumber; i++){
-                    let value = year+'-'+addEl(month+1)+'-'+addEl(i+1);
+
+                for (let i = 0; i < daysNumber; i++) {
+                    let value = year + '-' + addEl(month + 1) + '-' + addEl(i + 1);
                     array.push({
-                        date:value,
+                        date: value,
                         freeSeats: element.seats,
                         reservedSeats: 0
                     });
                     daysCalendary.push(value);
                 }
-                
+
             }
             return array;
         }
 
-        
-        const {tourSave} = this.state;
+
+        const { tourSave } = this.state;
         let daysCalendary = [];
         let allDaysArray = selectCalendaryDays(this.state.tourSave.daily, this.state.tourSave.calendary, this.state.selectedMonth, this.state.selectedYear, this.state.tourSeatsModalSelectedElement);
         console.log(allDaysArray);
         //let resultArray = [];
-        
-        for(let i=0; i<this.state.tourSeatsModalSelectedElement.tourSeatsData.length; i++){
+
+        for (let i = 0; i < this.state.tourSeatsModalSelectedElement.tourSeatsData.length; i++) {
             let tsd = this.state.tourSeatsModalSelectedElement.tourSeatsData[i];
-            let date = tsd.startDefault.slice(0,10);
-            for(let i=0; i<allDaysArray.length; i++){
-                if(allDaysArray[i].date === date){
-                    allDaysArray[i]= {
+            let date = tsd.startDefault.slice(0, 10);
+            for (let i = 0; i < allDaysArray.length; i++) {
+                if (allDaysArray[i].date === date) {
+                    allDaysArray[i] = {
                         date: date,
                         reservedSeats: tsd.reservedSeats,
-                        freeSeats: tsd.seatsMax- tsd.reservedSeats,
+                        freeSeats: tsd.seatsMax - tsd.reservedSeats,
                         id: tsd.id
                     }
                 }
             }
-           // console.log(tsd);
+            // console.log(tsd);
         }
-        
+
         console.log(allDaysArray);
-        if(JSON.stringify(this.state.tourSeatsSelectedDays)!==JSON.stringify(daysCalendary)){
+        if (JSON.stringify(this.state.tourSeatsSelectedDays) !== JSON.stringify(daysCalendary)) {
             this.setState({ tourSeatsSelectedDays: daysCalendary, tourSeatsBlocks: allDaysArray });
         }
-       
+
     }
     handleTourSeatsDayClick = (day, { selected }) => {
         function checkDateSeatsNumber(date, that) {
@@ -1302,7 +1306,7 @@ class AgencyProfileTourClass extends React.Component {
                             isGoodAnswer: true
                         })
                         that.thenFunc();
-                        
+
                         //that.tourSeatsModalShow();
                         /*that.setState({
                             tourSeatsModalSelectedElement:undefined,
@@ -1368,7 +1372,7 @@ class AgencyProfileTourClass extends React.Component {
 
             <>
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
-                
+
                 <Dialog
                     actions={actions}
                     modal={false}
@@ -1396,8 +1400,8 @@ class AgencyProfileTourClass extends React.Component {
                             >
                                 {
                                     TourSeatsModalContent(this, pseudoTableHeaderArray, tableElementsWidth, isErrorBlock,
-                                     textPageAgencyProfile.tourSeatsModalContent,this.selectActiveDays,textPageMonthArray)
-                                
+                                        textPageAgencyProfile.tourSeatsModalContent, this.selectActiveDays, textPageMonthArray)
+
                                 }
                                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
                             </Dialog>
@@ -1413,22 +1417,28 @@ class AgencyProfileTourClass extends React.Component {
                             >
                                 {
                                     TourSeatsModalContent(this, pseudoTableHeaderArray, tableElementsWidth, isErrorBlock,
-                                     textPageAgencyProfile.tourSeatsModalContent,this.selectActiveDays,textPageMonthArray)
+                                        textPageAgencyProfile.tourSeatsModalContent, this.selectActiveDays, textPageMonthArray)
                                 }
                                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
                             </Dialog>
                         </>
                 }
 
-                
+
                 <Collapse isOpen={this.state.collapse}>
                     <div className="tourSettingsBody">
                         <form name='myForm' onSubmit={this.formSubmit} id="newTourForm" className="tourContent col-12 p-0">
                             <div className="languageTourTop d-flex flex-wrap col-12 p-0">
-                                {this.state.languageTour.map((element, index) =>
-                                    <div className={{ [index]: "languageTourTitleActive", }[this.state.languageTourOpen] + " languageTourTitle"} onClick={() => { this.setState({ languageTourOpen: index }) }}>
-                                        <span style={{ backgroundImage: "url(" + requests.serverAddress + element.icon.url + ")" }}>{element.ISO}</span>
-                                    </div>
+                                {this.state.languageTour.map((element, index) => {
+                                    if (element.isTransfer) {
+                                        return (
+                                            <div className={{ [index]: "languageTourTitleActive", }[this.state.languageTourOpen] + " languageTourTitle"} onClick={() => { this.setState({ languageTourOpen: index }) }}>
+                                                <span style={{ backgroundImage: "url(" + requests.serverAddress + element.icon.url + ")" }}>{element.ISO}</span>
+                                            </div>
+                                        )
+                                    }
+                                }
+
                                 )}
                             </div>
                             {this.state.tourSave.local.map((element, index) =>
@@ -1454,9 +1464,9 @@ class AgencyProfileTourClass extends React.Component {
                                     <div className="d-flex flex-md-row flex-column align-items-md-center align-items-start">
                                         <label htmlFor="newTourAttractions" className="d-md-block d-none col-2">{textPage.newTourAttractions.floatingLabelText}:</label>
                                         <div className="d-flex col-md-4 col-12 p-0" key={element.departurePoint.point}>
-                                            
+
                                             <LocationSearchInput address={element.departurePoint &&
-                                             element.departurePoint.point !== "" ? element.departurePoint.point : ''} placeholder={textPageAgencyProfile.departurePointPlaceholder}
+                                                element.departurePoint.point !== "" ? element.departurePoint.point : ''} placeholder={textPageAgencyProfile.departurePointPlaceholder}
                                                 changeCity={(id, value, extraData) => {
                                                     let tourSave = this.state.tourSave;
                                                     tourSave.local[index].departurePoint = { point: value, lat: extraData.location.lat, long: extraData.location.long };
@@ -1471,7 +1481,7 @@ class AgencyProfileTourClass extends React.Component {
                                         <div className="d-flex col-md-4 col-12 p-0" key={element.points.length}>
                                             <LocationSearchInput address='' changeCity={(id, value, extraData) => { this.handleChange(value, "attractionsAlongTheRoute", { number: index, location: extraData.location }) }}
                                                 classDropdown="searchDropdownDriverTour" id="attractionsAlongTheRoute" classInput="w-100 searchInputClass" classDiv='w-100'
-                                                placeholder={textPageAgencyProfile.pointsPlaceholder}/>
+                                                placeholder={textPageAgencyProfile.pointsPlaceholder} />
                                         </div>
                                         <p className=" d-md-block d-none m-0 col-md-6 col-5">{textPage.attractionsAlongTheRoute.description}</p>
                                     </div>
@@ -1631,7 +1641,7 @@ class AgencyProfileTourClass extends React.Component {
                                     <FormControl className="d-flex flex-wrap col-md-4 col-12 p-0">
                                         {isMobileOnly ?
                                             <InputLabel>{/*textPage.basicInfoLanguage.label*/textPageAgencyProfile.currencyPlaceholder}</InputLabel>
-                                        : <div />}
+                                            : <div />}
                                         <Select
                                             value={this.state.tourSave.currency}
                                             className="dropdownClass"
@@ -1655,8 +1665,10 @@ class AgencyProfileTourClass extends React.Component {
                             <div className="paddingL10 d-flex flex-row align-items-md-center align-items-start">
                                 <label className="d-md-block d-none col-2 "></label>
                                 <label htmlFor={"isPricePerPersonCheckbox"} style={{ margin: 'auto 0' }}>{textPageAgencyProfile.pricePerPersonPlaceholder}</label>
-                                <Checkbox checked={this.state.tourSave.isPricePerPerson} id={"isPricePerPersonCheckbox"} onChange={() => { let tourSave = this.state.tourSave;
-                                tourSave.isPricePerPerson = !(tourSave.isPricePerPerson); this.setState({ tourSave: tourSave }) }} />
+                                <Checkbox checked={this.state.tourSave.isPricePerPerson} id={"isPricePerPersonCheckbox"} onChange={() => {
+                                    let tourSave = this.state.tourSave;
+                                    tourSave.isPricePerPerson = !(tourSave.isPricePerPerson); this.setState({ tourSave: tourSave })
+                                }} />
                                 <p className=" d-md-block d-none m-0 col-md-6 col-5">{textPageAgencyProfile.pricePerPersonInfo}</p>
                             </div>
 
@@ -1685,26 +1697,26 @@ class AgencyProfileTourClass extends React.Component {
 
 
                             <ExcursionIncludesBlock that={this} translation={textPageAgencyProfile.excursionIncludesBlock} />
-                            
+
                             <div className="paddingL10 d-flex flex-md-row flex-column align-items-md-center align-items-start">
-                                <label className="d-md-block d-none col-2 " style={{margin: 'auto 0'}}>{/*textPage.additionalInformation.categories.floatingLabelText*/"Языки, на которых будет проходить экскурсия"}:</label>
-                                <FormControl className="col-md-4 col-12 p-0">             
-                                        <Select
-                                            value={/*this.state.tourSave.directionId*/textPageAgencyProfile.tourLanguagesPlaceholder}
-                                            onChange={(event, index, value) => {
-                                                
-                                                this.handleChange(event.target.value, "tourLanguages");
-                                            }}
-                                            style={{ width: '100%' }}
-                                            className="dropdownClass "
-                                        >
-                                            <MenuItem value={textPageAgencyProfile.tourLanguagesPlaceholder} disabled>{textPageAgencyProfile.tourLanguagesPlaceholder}</MenuItem>
-                                            {this.state.unselectedTourLanguages.map((element, index) =>
-                                                <MenuItem value={element}>{element.languageName}</MenuItem>
-                                            )}
-                                        </Select>
-                                    </FormControl>
-                                <p className=" d-md-block d-none col-md-6 col-5" style={{margin: 'auto 0'}}>{/*textPage.additionalInformation.directions.description*/"Здесь осуществляется установка языка, на котором проходит тур."}</p>
+                                <label className="d-md-block d-none col-2 " style={{ margin: 'auto 0' }}>{/*textPage.additionalInformation.categories.floatingLabelText*/"Языки, на которых будет проходить экскурсия"}:</label>
+                                <FormControl className="col-md-4 col-12 p-0">
+                                    <Select
+                                        value={/*this.state.tourSave.directionId*/textPageAgencyProfile.tourLanguagesPlaceholder}
+                                        onChange={(event, index, value) => {
+
+                                            this.handleChange(event.target.value, "tourLanguages");
+                                        }}
+                                        style={{ width: '100%' }}
+                                        className="dropdownClass "
+                                    >
+                                        <MenuItem value={textPageAgencyProfile.tourLanguagesPlaceholder} disabled>{textPageAgencyProfile.tourLanguagesPlaceholder}</MenuItem>
+                                        {this.state.unselectedTourLanguages.map((element, index) =>
+                                            <MenuItem value={element}>{element.languageName}</MenuItem>
+                                        )}
+                                    </Select>
+                                </FormControl>
+                                <p className=" d-md-block d-none col-md-6 col-5" style={{ margin: 'auto 0' }}>{/*textPage.additionalInformation.directions.description*/"Здесь осуществляется установка языка, на котором проходит тур."}</p>
                             </div>
                             <div className="paddingL10 d-flex justify-content-end col-12 p-0">
                                 <div className="d-flex flex-wrap col-md-10 col-12 p-0 mb-2">
@@ -1730,11 +1742,11 @@ class AgencyProfileTourClass extends React.Component {
                                     <p className="mb-0">{textPageAgencyProfile.tourClassification}</p>
                                 </div>
                                 <div className="d-flex flex-md-row flex-column w-100">
-                                    <label className="d-md-block d-none col-2 " style={{margin: 'auto 0'}}>{textPage.additionalInformation.directions.floatingLabelText}:</label>
+                                    <label className="d-md-block d-none col-2 " style={{ margin: 'auto 0' }}>{textPage.additionalInformation.directions.floatingLabelText}:</label>
                                     <FormControl className="col-md-4 col-12 p-0">
                                         {isMobileOnly ?
                                             <InputLabel>{textPage.directionsValue}</InputLabel>
-                                        : <div />}
+                                            : <div />}
                                         <Select
                                             value={this.state.tourSave.directionId}
                                             onChange={(event, index, value) => {
@@ -1749,12 +1761,12 @@ class AgencyProfileTourClass extends React.Component {
                                             )}
                                         </Select>
                                     </FormControl>
-                                    <p className=" d-md-block d-none col-md-6 col-5" style={{margin: 'auto 0'}}>{textPage.additionalInformation.directions.description}</p>
+                                    <p className=" d-md-block d-none col-md-6 col-5" style={{ margin: 'auto 0' }}>{textPage.additionalInformation.directions.description}</p>
                                 </div>
                             </div>
 
                             <div className="paddingL10 d-flex flex-md-row flex-column align-items-md-center align-items-start">
-                                <label className="d-md-block d-none col-2 " style={{margin: 'auto 0'}}>{textPage.additionalInformation.categories.floatingLabelText}:</label>
+                                <label className="d-md-block d-none col-2 " style={{ margin: 'auto 0' }}>{textPage.additionalInformation.categories.floatingLabelText}:</label>
                                 <FormControl className="col-md-4 col-12 p-0">
                                     <Select
                                         value={this.state.categoriesValue}
@@ -1788,7 +1800,7 @@ class AgencyProfileTourClass extends React.Component {
                             </div>
 
                             <div className="paddingL10 d-flex flex-md-row flex-column align-items-md-center align-items-start">
-                                <label className="d-md-block d-none col-2 " style={{margin: 'auto 0'}}>{textPage.additionalInformation.tags.floatingLabelText}:</label>
+                                <label className="d-md-block d-none col-2 " style={{ margin: 'auto 0' }}>{textPage.additionalInformation.tags.floatingLabelText}:</label>
                                 <FormControl className="col-md-4 col-12 p-0">
 
                                     <Select
@@ -1798,8 +1810,8 @@ class AgencyProfileTourClass extends React.Component {
                                         onChange={(event, index, value) => {
                                             this.handleChange(event.target.value, "tags")
                                         }}
-                                    >                                                                     
-                                         <MenuItem value={textPage.tagsValue} disabled>{textPage.tagsValue}</MenuItem>                                      
+                                    >
+                                        <MenuItem value={textPage.tagsValue} disabled>{textPage.tagsValue}</MenuItem>
                                         {this.state.tourSave.tagsUnselected.map((element, index) =>
                                             <MenuItem value={element.key}>{element.value}</MenuItem>
                                         )}
@@ -1823,8 +1835,8 @@ class AgencyProfileTourClass extends React.Component {
                                     )}
                                 </div>
                             </div>
-                            
-                            
+
+
 
                             {
                                 //ниже лежат блоки с фотками
@@ -1897,7 +1909,7 @@ class AgencyProfileTourClass extends React.Component {
 
                             <div className="paddingL10 tourContentAddButton pb-4 d-flex justify-content-xl-start justify-content-lg-start justify-content-md-start justify-content-sm-center justify-content-center mt-3">
                                 <span className="col-2 d-md-block d-none" />
-                                <button htmlFor="newTourForm" type="submit" className="col-8">{this.state.tourId && this.state.tourId.length>0 ? textPage.additionalInformation.editTour : textPage.additionalInformation.addTour}</button>
+                                <button htmlFor="newTourForm" type="submit" className="col-8">{this.state.tourId && this.state.tourId.length > 0 ? textPage.additionalInformation.editTour : textPage.additionalInformation.addTour}</button>
                                 <span className="ml-3" onClick={() => this.toggle()}>{textPage.additionalInformation.cancel}</span>
                             </div>
                         </form>
@@ -1909,7 +1921,7 @@ class AgencyProfileTourClass extends React.Component {
                             <div className="filledTourImgAddBg">
                                 <div className="d-flex flex-column justify-content-center align-items-center">
                                     <span />
-                                    <p>{this.state.tourId && this.state.tourId.length>0 ? textPage.additionalInformation.editTour : textPage.additionalInformation.addTour}</p>
+                                    <p>{this.state.tourId && this.state.tourId.length > 0 ? textPage.additionalInformation.editTour : textPage.additionalInformation.addTour}</p>
                                 </div>
                             </div>
                         </div>
@@ -1929,10 +1941,10 @@ class AgencyProfileTourClass extends React.Component {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="filledCardImg" onClick={()=> this.toggle(element, { collapse: true })}>
+                                    <div className="filledCardImg" onClick={() => this.toggle(element, { collapse: true })}>
                                         <img src={element.blockListImage && element.blockListImage.url ? requests.serverAddress + element.blockListImage.url : ''} className="img-fluid" alt="imgCar" width="100%" height="100%" />
                                     </div>
-                                    <div className="cardInformationType d-flex flex-column" style={{/*paddingBottom: 0*/ borderBottom: '1px solid', borderColor: '#666666'}}>
+                                    <div className="cardInformationType d-flex flex-column" style={{/*paddingBottom: 0*/ borderBottom: '1px solid', borderColor: '#666666' }}>
                                         <p> {this.selectTourName(element)}</p>
                                         {
                                             /*
@@ -1946,41 +1958,41 @@ class AgencyProfileTourClass extends React.Component {
                                             </div>
                                             */
                                         }
-                                        
+
                                     </div>
                                     <div className="cardInformationType d-flex flex-column p-0" /*style={{paddingTop: 0, paddingBottom: 0}}*/>
-                                        <div className="d-flex flex-row" style={{height: '40px'}}>
+                                        <div className="d-flex flex-row" style={{ height: '40px' }}>
                                             <div className="d-flex col-6 cardHelpButtonBlocks agencyButtonTextStyle">{textPageAgencyProfile.tourOnSite}</div>
                                             <div className="d-flex flex-row col-6 cardHelpButtonBlocks">
-                                            {
-                                                element.local.map((loc, index)=>{
-                                                    
-                                                    console.log(loc);
-                                                    console.log(element);
-                                                    if(loc.slug.length>0){
-                                                        //return(<button>{requests.frontendAddress+'/'+element.countryISO+'-'+loc.langISOAuto+'/tours/'+loc.slug}</button>)
-                                                        return (
-                                                            <Link style={{margin: '0 auto'}} to={'/'+element.countryISO+'-'+loc.langISOAuto+'/tours/'+loc.slug} target='_blank'>{loc.language}</Link>
-                                                        )
-                                                    }
-                                                    else{
-                                                        return(<React.Fragment/>)
-                                                    }
-                                                })
-                                            }
+                                                {
+                                                    element.local.map((loc, index) => {
+
+                                                        console.log(loc);
+                                                        console.log(element);
+                                                        if (loc.slug.length > 0) {
+                                                            //return(<button>{requests.frontendAddress+'/'+element.countryISO+'-'+loc.langISOAuto+'/tours/'+loc.slug}</button>)
+                                                            return (
+                                                                <Link style={{ margin: '0 auto' }} to={'/' + element.countryISO + '-' + loc.langISOAuto + '/tours/' + loc.slug} target='_blank'>{loc.language}</Link>
+                                                            )
+                                                        }
+                                                        else {
+                                                            return (<React.Fragment />)
+                                                        }
+                                                    })
+                                                }
                                             </div>
                                         </div>
                                         <div className="d-flex flex-row" onClick={() => this.tourSeatsModalShow(element)}>
                                             <div className="d-flex col-6 cardHelpButtonBlocks agencyButtonTextStyle">{textPageAgencyProfile.seatsTable}</div>
                                             <div className="d-flex col-6 p-0 agencyButtonStyle justify-content-center ">
                                                 <button className="w-100">
-                                                    <div className="agencyCalendarButton" style={{margin: '0 auto'}}></div>
+                                                    <div className="agencyCalendarButton" style={{ margin: '0 auto' }}></div>
                                                 </button>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="d-flex flex-row">
-                                    
+
                                     </div>
                                 </div>
                             </div>
