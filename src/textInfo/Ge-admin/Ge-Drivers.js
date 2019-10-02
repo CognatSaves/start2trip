@@ -223,6 +223,7 @@ const driverProfileRegistration = {
         schedule: {
             title: "განრიგი",
             newTourEveryday: "ყოველდღიურად",
+            timePlaceholder: 'დრო',
             newTourDatepicker: "განსაზღვრულ დღეებში",
             selectDates: "თარიღების არჩევა"
         },

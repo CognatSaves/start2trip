@@ -471,6 +471,7 @@ div.MuiSelect-select:focus {
     -webkit-transition: all 0.3s;
     -o-transition: all 0.3s;
     transition: all 0.3s;
+    width: 100%;
 }
 
 .carShowButton:hover,

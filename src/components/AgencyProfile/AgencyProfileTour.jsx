@@ -288,11 +288,8 @@ class AgencyProfileTourClass extends React.Component {
             currencies: [...profile.currencies],
 
             directions: [...profile.directions],
-            directionsValue: this.props.storeState.languageText.driverProfileRegistration.DriverProfileTripSettingsTour.directionsValue,
             categories: [...profile.categories],
-            categoriesValue: this.props.storeState.languageText.driverProfileRegistration.DriverProfileTripSettingsTour.categoriesValue, // not change
             tags: [...profile.tags],
-            tagsValue: this.props.storeState.languageText.driverProfileRegistration.DriverProfileTripSettingsTour.tagsValue, // not change
             languageTour: [...this.props.storeState.untranslatedlanguages],
             languageTourOpen: 0,
             newTourEverydayTime: this.props.storeState.languageText.driverProfileRegistration.DriverProfileTripSettingsTour.newTourEverydayTime,
@@ -436,10 +433,27 @@ class AgencyProfileTourClass extends React.Component {
                 unselectedTourLanguages: this.props.storeState.adminLanguages
             });
         }
-        else {
+        else {            
             let local = [];
+            for (let i = 0; i < profile.allLanguages.length; i++) {
+                local[i] = {
+                    name: "",
+                    departurePoint: {
+                        point: "",
+                        lat: "",
+                        long: ""
+                    },
+                    points: [],
+                    info: "",
+                    language: profile.allLanguages[i].ISO
+                }
+            }
             for (let i = 0; i < element.local.length; i++) {
-                local[i] = { ...element.local[i] }
+                for(let j=0; j<local.length; j++){
+                    if(element.local[i].language===local[j].language){
+                        local[j]={...local[j],...element.local[i]}
+                    }
+                }
             }
             let categoriesUnselected = [];
             let categoriesSelected = [];
@@ -606,7 +620,7 @@ class AgencyProfileTourClass extends React.Component {
             let obj = "";
             let result = true;
             if (!tourSave.time) {
-                obj = document.querySelectorAll('.dropdownClass');
+                obj = document.querySelectorAll('.dropdownTime');
                 obj[0].classList.add("errorColor");
                 //obj = document.querySelectorAll('.dropdownClass');
                 obj[1].classList.add("errorColor");
@@ -618,8 +632,8 @@ class AgencyProfileTourClass extends React.Component {
                 result = false;
             }
             if (tourSave.currency.length === 0) {
-                obj = document.querySelectorAll('.dropdownClass');
-                obj[2].classList.add("errorColor");
+                obj = document.querySelectorAll('.dropdownCurrency');             
+                obj[0].classList.add("errorColor");                            
                 result = false;
             }
             ////////////////////
@@ -751,11 +765,12 @@ class AgencyProfileTourClass extends React.Component {
                 request.setRequestHeader('Authorization', `Bearer ${jwt}`);
             }
             request.onreadystatechange = function () {
+                debugger;
                 if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
                     console.log(request.responseText);
                     that.getProfileData(that.thenFunc, that.catchFunc);
                 }
-                if (request.readyState === XMLHttpRequest.DONE && request.status === 0) {
+                if (request.readyState === XMLHttpRequest.DONE && request.status === 400) {
                     that.catchFunc();
                 }
             }
@@ -1362,7 +1377,12 @@ class AgencyProfileTourClass extends React.Component {
         }
 
         let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileTripSettingsTour;
+        
         let textPageAgencyProfile = this.props.storeState.languageText.agencyProfile.agencyProfileTour;
+        debugger;
+        console.log(textPageAgencyProfile.currencyPlaceholder);
+
+        
         let textPageMonthArray = this.props.storeState.languageText.header.monthArray;
         let pseudoTableHeaderArray = ['День', 'Mест свободно', 'Mecт зaнятo'];//этот массив формирует размерность таблицы, не рекомендуется его удалять
         let tableElementsWidth = ['40%', '30%', '30%'];
@@ -1463,8 +1483,7 @@ class AgencyProfileTourClass extends React.Component {
                                     </div>
                                     <div className="d-flex flex-md-row flex-column align-items-md-center align-items-start">
                                         <label htmlFor="newTourAttractions" className="d-md-block d-none col-2">{textPage.newTourAttractions.floatingLabelText}:</label>
-                                        <div className="d-flex col-md-4 col-12 p-0" key={element.departurePoint.point}>
-
+                                        <div className="d-flex col-md-4 col-12 p-0" key={element.departurePoint.point}>                                           
                                             <LocationSearchInput address={element.departurePoint &&
                                                 element.departurePoint.point !== "" ? element.departurePoint.point : ''} placeholder={textPageAgencyProfile.departurePointPlaceholder}
                                                 changeCity={(id, value, extraData) => {
@@ -1532,21 +1551,22 @@ class AgencyProfileTourClass extends React.Component {
                                                 <span />
                                             </label>
                                         </div>
-                                        <div className="tourContentEveryday d-flex flex-md-row flex-column  align-items-md-center align-items-start col-md-4 col-10 p-0 mb-0">
+                                        <div className="tourContentEveryday d-flex flex-md-row flex-column  align-items-md-center align-items-start col-md-5 col-10 p-0 mb-0">
                                             <label htmlFor="newTourEveryday" onClick={() => { this.state.tourSave.daily = true; this.setState({ tourSave: this.state.tourSave }); }} className="mt-xl-0 mt-lg-0 mt-md-0 mt-3 pr-2">{textPage.schedule.newTourEveryday}</label>
                                             <FormControl className="d-flex flex-wrap col-md-4 col-12 p-0 mt-2">
+
                                                 <Select
-                                                    value={this.state.tourSave.time}
-                                                    className="dropdownClass"
+                                                    value={this.state.tourSave.time && this.state.tourSave.time.length>0 ? this.state.tourSave.time : textPage.schedule.timePlaceholder}
+                                                    className="dropdownClass dropdownTime"
                                                     style={{ width: "100%", display: this.state.tourSave.daily ? "" : "none" }}
                                                     onChange={(event, index, value) => {
-                                                        let obj = document.querySelectorAll('.dropdownClass');
+                                                        let obj = document.querySelectorAll('.dropdownTime');
                                                         obj[0].classList.remove("errorColor");
                                                         obj[1].classList.remove("errorColor");
                                                         this.state.tourSave.time = event.target.value; this.setState({ tourSave: this.state.tourSave });
                                                     }}
                                                 >
-                                                    <MenuItem value={textPage.newTourEverydayTime} disabled={true} >{textPage.newTourEverydayTime}</MenuItem>
+                                                    <MenuItem value={textPage.schedule.timePlaceholder} disabled >{textPage.schedule.timePlaceholder}</MenuItem>
                                                     {this.props.globalReduser.time.map((element, index) =>
                                                         <MenuItem value={element}>{element}</MenuItem>
                                                     )}
@@ -1565,19 +1585,19 @@ class AgencyProfileTourClass extends React.Component {
                                             <label htmlFor="newTourDatepicker" onClick={() => { this.state.tourSave.daily = false; this.setState({ tourSave: this.state.tourSave }); }} className="mb-0 mr-2">{textPage.schedule.newTourDatepicker}</label>
                                             <div className="d-flex flex-md-row flex-column  align-items-md-center align-items-start">
                                                 <span style={{ display: !this.state.tourSave.daily ? "block" : "none", maxHeight: '40px', width: '100%' }} className="newTourDatepickerSpan" onClick={this.calendarModalShow}>{textPage.schedule.selectDates}</span>
-                                                <FormControl className="d-flex flex-wrap col-md-4 col-12 p-0 mt-2">
+                                                <FormControl className="d-flex flex-wrap col-md-4 col-12 p-0">
                                                     <Select
-                                                        value={this.state.tourSave.time}
-                                                        className="dropdownClass"
+                                                        value={this.state.tourSave.time && this.state.tourSave.time.length>0 ? this.state.tourSave.time : textPage.schedule.timePlaceholder}
+                                                        className="dropdownClass dropdownTime"
                                                         style={{ width: "100%", display: !this.state.tourSave.daily ? "" : "none" }}
                                                         onChange={(event, index, value) => {
-                                                            let obj = document.querySelectorAll('.dropdownClass');
+                                                            let obj = document.querySelectorAll('.dropdownTime');
                                                             obj[0].classList.remove("errorColor");
                                                             obj[1].classList.remove("errorColor");
                                                             this.state.tourSave.time = event.target.value; this.setState({ tourSave: this.state.tourSave });
                                                         }}
                                                     >
-                                                        <MenuItem value={textPage.newTourEverydayTime} disabled={true} >{textPage.newTourEverydayTime}</MenuItem>
+                                                        <MenuItem value={textPage.schedule.timePlaceholder} disabled>{textPage.schedule.timePlaceholder}</MenuItem>
                                                         {this.props.globalReduser.time.map((element, index) =>
                                                             <MenuItem value={element}>{element}</MenuItem>
                                                         )}
@@ -1641,19 +1661,20 @@ class AgencyProfileTourClass extends React.Component {
                                     <FormControl className="d-flex flex-wrap col-md-4 col-12 p-0">
                                         {isMobileOnly ?
                                             <InputLabel>{/*textPage.basicInfoLanguage.label*/textPageAgencyProfile.currencyPlaceholder}</InputLabel>
-                                            : <div />}
-                                        <Select
-                                            value={this.state.tourSave.currency}
-                                            className="dropdownClass"
+                                        : <div />}
+                                        <Select                                  
+                                            value={this.state.tourSave.currency && this.state.tourSave.currency.length>0 ? this.state.tourSave.currency : textPageAgencyProfile.currencyPlaceholder}
+                                            className="dropdownClass dropdownCurrency"
                                             onChange={(event, index, value) => {
-                                                let obj = document.querySelectorAll('dropdownClass');
-                                                if (obj[2]) {
-                                                    obj[2].classList.remove("errorColor");
+                                                let obj = document.querySelectorAll('dropdownCurrency');
+                                                if (obj && obj.length>0) {
+                                                    obj[0].classList.remove("errorColor");
                                                 }
 
                                                 this.setState({ tourSave: { ...this.state.tourSave, currency: event.target.value } })
                                             }}
                                         >
+                                            <MenuItem value={textPageAgencyProfile.currencyPlaceholder} disabled>{textPageAgencyProfile.currencyPlaceholder}</MenuItem>
                                             {availableCurrencies.map((element, index) =>
                                                 <MenuItem value={element.id}>{element.ISO}</MenuItem>
                                             )}
@@ -1738,7 +1759,7 @@ class AgencyProfileTourClass extends React.Component {
                                 //ниже лежат блоки с флагами - directions, categories, tags
                             }
                             <div className="paddingL10 addPhotoTour d-flex flex-column align-items-start mt-3 border-top">
-                                <div className="tourContentTitle d-flex align-items-center col-2 p-0">
+                                <div className="tourContentTitle d-flex align-items-center col-2 p-0" style={{minWidth: '300px'}}>
                                     <p className="mb-0">{textPageAgencyProfile.tourClassification}</p>
                                 </div>
                                 <div className="d-flex flex-md-row flex-column w-100">
@@ -1748,7 +1769,7 @@ class AgencyProfileTourClass extends React.Component {
                                             <InputLabel>{textPage.directionsValue}</InputLabel>
                                             : <div />}
                                         <Select
-                                            value={this.state.tourSave.directionId}
+                                            value={this.state.tourSave.directionId && this.state.tourSave.directionId.length>0 ? this.state.tourSave.directionId : textPage.directionsValue}
                                             onChange={(event, index, value) => {
                                                 this.setState({ tourSave: { ...this.state.tourSave, directionId: event.target.value } })
                                             }}
@@ -1769,7 +1790,7 @@ class AgencyProfileTourClass extends React.Component {
                                 <label className="d-md-block d-none col-2 " style={{ margin: 'auto 0' }}>{textPage.additionalInformation.categories.floatingLabelText}:</label>
                                 <FormControl className="col-md-4 col-12 p-0">
                                     <Select
-                                        value={this.state.categoriesValue}
+                                        value={textPage.categoriesValue}
                                         onChange={(event, index, value) => { this.handleChange(event.target.value, "categories") }}
                                         style={{ width: '100%' }}
                                         className="dropdownClass"
@@ -1804,7 +1825,7 @@ class AgencyProfileTourClass extends React.Component {
                                 <FormControl className="col-md-4 col-12 p-0">
 
                                     <Select
-                                        value={this.state.tagsValue}
+                                        value={textPage.tagsValue}
                                         className="dropdownClass"
                                         style={{ width: '100%' }}
                                         onChange={(event, index, value) => {
@@ -1835,9 +1856,7 @@ class AgencyProfileTourClass extends React.Component {
                                     )}
                                 </div>
                             </div>
-
-
-
+                            
                             {
                                 //ниже лежат блоки с фотками
                             }

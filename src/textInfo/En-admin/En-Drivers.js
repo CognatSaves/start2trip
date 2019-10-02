@@ -225,6 +225,7 @@ const driverProfileRegistration = {
         schedule: {
             title: "Schedule",
             newTourEveryday: "Daily",
+            timePlaceholder: 'Time',
             newTourDatepicker: "On certain days",
             selectDates: "Select Dates"
         },

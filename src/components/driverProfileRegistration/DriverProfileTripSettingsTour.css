@@ -27,6 +27,7 @@
     border-color: #a5252580 !important;
     border-width: 2px!important;
     outline-width: 2px!important;
+    color: #e81123!important;
 }
 .errorColor hr{
     border-color: #a5252580 !important;
@@ -565,7 +566,31 @@ img.tourPhotoMini {
     }
 }
 
+.driverTourLabel{
+    padding: 15px;
+
+}
+.driverTourDataBlock{
+    padding: 15px;
+}
+.driverTourCurrencySelector{
+    margin-left: 10px!important;
+}
+@media (max-width: 1068px) {
+    .driverTourLabel{
+        padding-bottom: 0;
+    }
+    .driverTourDataBlock{
+        padding-top: 0;
+    }
+}
+@media (max-width: 768px) {
+    .driverTourCurrencySelector{
+        margin-top: 19px!important;
+    }
+}
 @media (max-width: 576px) {
+
     .newTourCalendarStyle .Cal__Day__selection {
         height: 43px !important;
         width: 43px !important;
@@ -575,4 +600,8 @@ img.tourPhotoMini {
     .newTourCalendarStyle .Cal__Day__selection span {
         font-size: 14px !important;
     }
+
 }
+
+
+

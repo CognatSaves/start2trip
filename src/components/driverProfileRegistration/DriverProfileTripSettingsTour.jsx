@@ -180,7 +180,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                     </div>
                     <div className="d-flex flex-row flex-wrap">
                         <div>
-                            <div className = 'd-flex flex-row' style={{padding: '15px'}}> 
+                            <div className = 'd-flex flex-row driverTourLabel'> 
                                 <label htmlFor={"guideId"} style={{margin: 'auto 0'}}>{textPage.guideLabel}</label>
                                 <Checkbox id="guideId" checked={this.state.guide} onClick={()=>this.guideStateChanged()}/>
                             </div>
@@ -188,10 +188,10 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                         {
                             this.state.guide ? 
                             <>
-                                <div className="d-flex flex-column" style={{padding: '15px'}}>
-                                    <div className="d-flex flex-md-row flex-column tourContent">
+                                <div className="d-flex flex-column driverTourDataBlock">
+                                    <div /*flex-sm-row flex-column*/ className="d-flex flex-sm-row flex-column tourContent" /*style={{maxWidth: '300px'}}*/>
                                         <label htmlFor="guideHourPrice" className="d-md-block d-none" style={{margin: 'auto 0', paddingRight: '15px'}}>{textPage.hourPrice}:</label>
-                                        <div className="d-flex flex-md-row flex-column p-0">
+                                        <div /*flex-md-row flex-column*/ className="d-flex flex-row p-0" /*style={{maxWidth: '250px'}}*/>
                                             <TextField
                                                 floatingLabelText={textPage.hourPrice}
                                                 className="d-md-none d-block inputClass"
@@ -225,7 +225,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                                         this.setState({ guideHourPrice: 0 });
                                                     }
                                                 }} />
-                                            <FormControl className="" style={{minWidth: '100px'}}>
+                                            <FormControl className="driverTourCurrencySelector" style={{minWidth: '100px'}}>
                                                 <Select 
                                                     value={this.state.guidePriceCurrency}
                                                     className="dropdownClass"
@@ -245,7 +245,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                             <button onClick={()=>this.guideParamsChanged()}>{textPage.saveButton}</button>
                                         </div>
                                     </div>
-                                    <div className="d-flex flex-column" style={{fontSize: '12px'}}>
+                                    <div className="d-flex flex-column" style={{fontSize: '12px', marginTop: '5px'}}>
                                         <text>{textPage.info.info1}</text>
                                         <text>{textPage.info.info2}</text>
                                     </div>
