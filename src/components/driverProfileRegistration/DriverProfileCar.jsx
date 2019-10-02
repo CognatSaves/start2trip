@@ -471,7 +471,6 @@ class DriverProfileCarClass extends React.Component {
         let carTypes = findCarTypeNames(cars, this.props.globalReduser.profile.carTypes, this.props.storeState);
 
         let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileCar;
-        debugger
         return (
             <div className="_ThisTagIsNeeded">
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />

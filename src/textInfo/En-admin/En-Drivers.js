@@ -276,7 +276,8 @@ const driverProfileRegistration = {
         info: {
             info1: 'Indicate the cost of a guide for an hour. When building an individual route, the user has 2 hours for each attraction.',
             info2: 'The cost per hour will be added to the automatic calculation of the cost of the trip.'
-        }
+        },
+        errorText: 'Check the completion of the tour fields, including the language versions you have completed'
 
     },
     DriverProfileTrevelHistory: {
