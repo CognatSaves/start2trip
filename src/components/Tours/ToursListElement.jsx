@@ -81,7 +81,7 @@ class ToursListElementClass extends React.Component {
                 <div className="drivers_block_element d-flex p-0 flex-column" id={index}>
 
                     <div className="driversBlock_carImage" style={{ background: "url(" + (element.image ? (requests.serverAddressImg + element.image) : '') + ") no-repeat", backgroundSize: "cover", width: '100%' }}>
-                        <div className="toursDate">{this.props.departureDate}</div>
+                        <div className="toursDate">{this.props.departureDate+" | "+element.time}</div>
                         <div className="toursDuration">{element.daysNumber + " " + textInfo.daysNumber}</div>
                         <Link to={address} className="driversBlock_carBlackout">
                             <div className="driversBlock_carBlackout_detailed">{textInfo.detailed}</div>

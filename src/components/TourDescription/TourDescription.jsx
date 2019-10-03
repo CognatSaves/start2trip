@@ -11,7 +11,6 @@ import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIn
 import Header from '../header/Header';
 import PlaceInfo from '../PlaceDescription/PlaceInfo.jsx';
 import PlacePhotoShow from '../PlaceDescription/PlacePhotoShow.jsx';
-import PlaceTravelBlock from '../PlaceDescription/PlaceTravelBlock';
 import PlaceProgramm from '../PlaceDescription/PlaceProgramm.jsx';
 import PlacePhotos from '../PlaceDescription/PlacePhotos.jsx';
 import RouteTravelBlock from '../RouteDescription/RouteTravelBlock';
@@ -19,6 +18,8 @@ import SimularToursBlock from './SimularToursBlock.jsx';
 import CommentBlock from '../TourDescription/CommentBlock.jsx';
 import TourPanel from '../TourDescription/TourPanel.jsx';
 import StartTravelForm from '../startTravelForm/StartTravelForm'
+import StartTravelSuccess from '../startTravelForm/StartTravelSuccess'
+
 import Stars from '../stars/Stars'
 import {
     FacebookShareButton,
@@ -86,6 +87,7 @@ class ToureDescriptionClass extends React.Component {
             elementPrice: 0,
             author: null,
             btMore: false,
+            elementActive: null,
         }
 
 
@@ -139,11 +141,17 @@ class ToureDescriptionClass extends React.Component {
         }
         return idIndex
     }
-    changeTravelVisibility = (elementPrice) => {
-
+    changeTravelVisibility = (elementPrice, elementActive) => {
         this.setState({
             travelVisibility: !this.state.travelVisibility,
-            elementPrice: elementPrice
+            elementPrice: elementPrice,
+            elementActive: elementActive,
+        })
+    }
+
+    changeSuccessVisibility = (value) => {
+        this.setState({
+            successVisibility: value
         })
     }
 
@@ -273,7 +281,7 @@ class ToureDescriptionClass extends React.Component {
             cars = this.state.author.cars
         }
 
-        
+
         return (
             <>
                 {
@@ -372,7 +380,7 @@ class ToureDescriptionClass extends React.Component {
                                                     removeElements={this.state.newTour.additionalTours.length === 0 ? [simularPlaceBlockId] : []} />
                                             }
 
-                                            <div className="placeDescription_block d-flex flex-column p-0" style={this.state.btMore?{maxHeight:"max-content"}:{maxHeight:"480px"}} id={topBlockId + "1"}>
+                                            <div className="placeDescription_block d-flex flex-column p-0" style={this.state.btMore ? { maxHeight: "max-content" } : { maxHeight: "480px" }} id={topBlockId + "1"}>
                                                 <div className="placeDescription_fragmentName" style={{ marginBottom: "15px" }} >{textInfo.placeDescription.variantsArray[0]}</div>
                                                 {/* <div key={JSON.stringify(this.state.newTour.local.endPlace)}>
                                                     <PlaceTravelBlock id={topBlockId + "3"} place={{ ...this.state.newTour.local, country: this.state.newTour.country, capital: this.state.newTour.capital }} />
@@ -380,7 +388,7 @@ class ToureDescriptionClass extends React.Component {
                                                 <PlaceProgramm id={topBlockId + "1"} tagsArray={[]} place={{ ...this.state.newTour.local/*, tags: this.state.newTour.tour.tags, rating: this.state.newTour.tour.rating, comments: this.state.newTour.tour.commentNumber*/ }} />
                                             </div>
                                             <div className="placeDescription_block_btMore d-flex justify-content-end">
-                                                <span onClick={()=>{this.setState({btMore:!this.state.btMore})}}>{this.state.btMore?"Скрыть":"Подробнее"}</span>
+                                                <span onClick={() => { this.setState({ btMore: !this.state.btMore }) }}>{this.state.btMore ? "Скрыть" : "Подробнее"}</span>
                                             </div>
                                             {isMobileOnly ? <>
                                                 <div className="placeDescription_fragmentName" style={{ marginBottom: "15px" }} >{textInfo.share}</div>
@@ -477,7 +485,7 @@ class ToureDescriptionClass extends React.Component {
                                                                 <span>{textInfo.language}</span>
                                                                 {language.map((el, index) => (<i className="placesList_info_icons" style={{ background: "url(" + requests.serverAddressImg + el.icon.url + ")no-repeat" }} />))}
                                                             </div>
-                                                            {cars.length>0 &&
+                                                            {cars.length > 0 &&
                                                                 <div className="d-flex flex-wrap align-items-center">
                                                                     <span>{textInfo.cars}</span>
                                                                     {cars.map((el, index) => (<span>{el.carBrand + (cars.length - 1 === index ? " " : ", ")}</span>))}
@@ -494,19 +502,14 @@ class ToureDescriptionClass extends React.Component {
                                             </div>
                                             <RouteTravelBlock points={points} id={topBlockId + "4"} isTours={true} textInfo={textInfo}
                                                 daily={this.state.newTour.tour.daily} departureDate={this.state.departureDate}
-                                                author={this.state.author}
-                                                dateWork={this.state.newTour.tour.calendary} price={price} />
+                                                author={this.state.author} changeTravelVisibility={this.changeTravelVisibility}
+                                                dateWork={this.state.newTour.tour.calendary} price={price} elementActive={this.state.newTour} />
+
                                             <div className="placeDescription_block flex-column" id={simularPlaceBlockId} style={{ display: this.state.newTour.additionalTours.length > 0 ? 'flex' : 'none' }}>
                                                 <SimularToursBlock outerBlock={simularPlaceBlockId} tours={this.state.newTour.additionalTours}
                                                     tags={this.state.newTour.tags} changeTravelVisibility={this.changeTravelVisibility}
-                                                    fragmentName={textInfo.placeDescription.variantsArray[3]} priseDisplay={"none"} />
+                                                    fragmentName={textInfo.placeDescription.variantsArray[4]} priseDisplay={"none"} />
                                             </div>
-                                            <StartTravelForm {...this.props} changeTravelVisibility={this.changeTravelVisibility}
-                                                changeSuccessVisibility={this.changeSuccessVisibility} travelVisibility={this.state.travelVisibility}
-                                                elementPrice={this.state.elementPrice} activeCurrency={activeCurrency}
-                                                isoCountryMap={this.props.storeState.isoCountryMap}
-                                                textInfo={this.props.storeState.languageTextMain.startTravelForm}
-                                            />
 
                                             <CommentBlock targetType="tour" comments={this.state.newTour.comments} targetId={this.state.newTour.tour.id} page={this.state.page} setPage={this.setPage}
                                                 showMorePages={this.showMorePages} showPages={this.state.showPages} id={topBlockId + "6"} startRolling={() => this.startRolling()} endRolling={(result) => this.endRolling(result)} />
@@ -517,7 +520,19 @@ class ToureDescriptionClass extends React.Component {
                             </div>
                             : <React.Fragment />
                     }
+                    <StartTravelForm {...this.props} changeTravelVisibility={this.changeTravelVisibility}
+                        changeSuccessVisibility={this.changeSuccessVisibility} travelVisibility={this.state.travelVisibility}
+                        elementPrice={this.state.elementPrice} elementActive={this.state.elementActive}
+                        activeCurrency={activeCurrency} isoCountryMap={this.props.storeState.isoCountryMap}
+                        textInfo={this.props.storeState.languageTextMain.startTravelForm}
+                        isTourDescription={true}
+
+                    />
+                    <StartTravelSuccess successVisibility={this.state.successVisibility} changeSuccessVisibility={this.changeSuccessVisibility}
+                        textInfo={this.props.storeState.languageTextMain.startTravelForm}
+                    />
                 </div>
+
             </>
         )
     }
@@ -527,7 +542,8 @@ const ToureDescription = connect(
     (state) => ({
         storeState: state.AppReduser,
         globalReduser: state.GlobalReduser,
-        placesState: state.PlacesReduser
+        placesState: state.PlacesReduser,
+        toursState: state.ToursReduser
     }),
 
 )(ToureDescriptionClass);

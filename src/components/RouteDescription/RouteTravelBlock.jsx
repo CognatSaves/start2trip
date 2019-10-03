@@ -161,7 +161,7 @@ class RouteTravelBlockClass extends React.Component {
                             <div className={"routeTravelBlock_element d-flex " + ((points.length + 1) % 2 === 0 ? 'col-12' : 'col-md-6 col-12')}>
                                 <button className="placesDescription_travelBlock_applyButton p-0"
                                     style={{/*marginBottom: '15px',*/ width: '100%', border: 'none', borderRadius: '5px' }}
-                                    onClick={() => { if (!this.props.isTours) { this.lookAvailable() } }}>
+                                    onClick={() => { if (!this.props.isTours) { this.lookAvailable() }else{this.props.changeTravelVisibility(this.props.elementActive.tour.price,this.props.elementActive)} }}>
                                     <text style={{ margin: "auto", fontSize: '16px' }} >{textInfo.lookAvailable + (this.props.isTours ? this.props.price : "")}</text>
                                 </button>
                             </div>

@@ -50,15 +50,29 @@ export default class StartTravelContent extends React.Component {
         }
         let seats = [];
         let time = "";
+        let departurePoint = "";
         
         if (this.props.elementActive && this.props.elementActive !== "backdropClick") {
-            
+
+            if(this.props.isTourDescription){
+                for (let i = 1; i < this.props.elementActive.tour.seats + 1; i++) {
+                    seats.push(i)
+                }
+                time = this.props.elementActive.tour.time
+                 departurePoint = this.props.elementActive.local.departurePoint.point
+            }else{
             for (let i = 1; i < this.props.elementActive.element.seats + 1; i++) {
                 seats.push(i)
             }
             time = this.props.elementActive.element.time
+             departurePoint = this.props.elementActive.element.tourlocalization.departurePoint.point
         }
-
+        if(that.state.placeDeparture === ""){
+            that.setState({ placeDeparture: departurePoint })
+        }
+        }
+        
+        debugger
         return (
             <>
                 <DriverRefreshIndicator isRefreshExist={that.state.isRefreshExist} isRefreshing={that.state.isRefreshing} isGoodAnswer={that.state.isGoodAnswer} />
@@ -178,6 +192,7 @@ export default class StartTravelContent extends React.Component {
                                     label={textInfo.placeDepartureLabel + '*'}
                                     multiline
                                     rowsMax="4"
+                                    disabled={this.props.isTour}
                                     defaultValue={that.state.placeDeparture}
                                     onChange={(event) => { that.setState({ placeDeparture: event.target.value }); event.target.previousSibling.classList.remove("draver_route-error") }}
                                     className="textField placeDeparture w-100"
@@ -211,7 +226,7 @@ export default class StartTravelContent extends React.Component {
                             </div>
                             <span className="errorMes col-12" style={{ display: !that.state.checkBoxes && that.state.errorMes ? "block" : "none" }}>{textInfo.errorContract}</span>
                         </div>
-                        <span className="drivers_route_messege">{textInfo.returnToPoint}</span>
+                        <span className="drivers_route_messege">{this.props.isTour?"":textInfo.returnToPoint}</span>
                         <div className=" d-flex align-items-center justify-content-between flex-md-row flex-column col-12 py-md-0 py-4">
                             <div className="d-flex flex-column">
                                 <div className="d-flex drivers_routePromo">
