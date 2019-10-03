@@ -1,6 +1,8 @@
 import React from 'react';
 import requests from '../../config';
 import Stars from '../stars/Stars';
+import guideIcon from '../media/tour-guide.svg';
+import agencyIcon from '../media/agencyIcon.svg';
 class DriverInfoProfile extends React.Component{
     render(){
         //компонент, отрисовывающий информацию о водителе в DriverInfo
@@ -21,6 +23,7 @@ class DriverInfoProfile extends React.Component{
         
         let languageIdsArray = getLanguageNumbers(element.language ? element.language : [], this.props.storeState.languages);
         let textInfo = this.props.storeState.languageTextMain.drivers;
+        let textInfoTour = this.props.storeState.languageTextMain.tours;
         return (
             <>
                 <div className="driverInfo_left_line">
@@ -28,8 +31,18 @@ class DriverInfoProfile extends React.Component{
                         <img src={requests.serverAddressImg + element.avatar} alt={"photo " + element.name} />
                     </div>
                     <div className="block_element_infoBlock">
-                        <div style={{ paddingBottom: "2px" }} key={element.rating}>
-                            <div className="block_element_infoBlock_name driversInfo_driverName">{element.name}</div>
+                        <div className="d-flex flex-column" style={{ paddingBottom: "2px" }} key={element.rating}>
+                            <div className="d-flex flex-row">
+                                <div className="block_element_infoBlock_name driversInfo_driverName" style={{whiteSpace: 'nowrap'}}>{element.name}</div>
+                                {
+                                    this.props.needGuideIcon &&
+                                    <i className="placesList_info_guide my-auto col-2" style={{marginLeft: '10px', background: "url(" + (element.guide  ? guideIcon : agencyIcon) + ")no-repeat" }}>
+                                        <span className="placesList_info_guide-toolTip">{element.guide  ? textInfoTour.guide : textInfoTour.agency}</span>
+                                    </i>
+                                }
+                                
+                            </div>
+                            
                             <Stars value={element.rating} commentNumber={element.comments ? element.comments.length + " "+textInfo.driversBlock.comments : 0} valueDisplay={true} commentNumberDisplay={true} />
                         </div>
                         <div className="block_element_infoBlock_bot">

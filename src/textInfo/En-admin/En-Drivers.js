@@ -201,8 +201,8 @@ const driverProfileRegistration = {
     },
     DriverProfileTripSettingsTour: {
         directionsValue: "All directions",
-        categoriesValue: "All Categories",
-        tagsValue: "All Tags",
+        categoriesValue: "All categories",
+        tagsValue: "All tags",
         newTourEverydayTime: "Choose a time",
         newTourDatepickerTime: "Choose a time",
         tourContentTitle: "Add Tour",
@@ -263,11 +263,11 @@ const driverProfileRegistration = {
             emptySeats: "Empty Seats"
         },
         photos:{
-            imageLabelError: 'Вставьте сюда фотографии(ю)(ENG)',
-            mainImageLabel: 'Это загрузка фонового фото(ENG)',
-            mainImageInfo: 'Эта картинка будет использоваться как фон на странице Вашего тура(ENG)',
-            blockListLabel: 'Это загрузка фото для блока в списке(ENG)',
-            blockListImageInfo: 'Эта картинка будет использоваться в качестве оформления Вашего тура в списке(ENG)'
+            imageLabelError: 'Insert photos here',
+            mainImageLabel: 'Upload background photo',
+            mainImageInfo: 'This picture will be used as a background on your tour page.',
+            blockListLabel: 'Upload block list image',
+            blockListImageInfo: 'This picture will be used as a decoration of Your tour in tour list'
         },
         pageLabel: 'Guide settings',
         guideLabel: `I'm a guide`,

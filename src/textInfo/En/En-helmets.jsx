@@ -14,9 +14,13 @@ const helmets  = {
             }
         },
         guideProfile:{
-            basic: {
+            guide: {
                 title: ['Guide ', ', profile data, cars, list of tours.'],
                 description: ['Guide page ', ', profile, cars, list of tours']
+            },
+            agency: {
+                title: ['Agency ', ', organization description, list of tours.'],
+                description: ['Agency page ', ', description, list of tours']
             }
         },
         tripConfirmation: {

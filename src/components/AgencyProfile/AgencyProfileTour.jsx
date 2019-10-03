@@ -1932,9 +1932,9 @@ class AgencyProfileTourClass extends React.Component {
                                 <div className="d-flex flex-md-row flex-column w-100">
                                     <label className="d-md-block d-none col-2 " style={{ margin: 'auto 0' }}>{textPage.additionalInformation.directions.floatingLabelText}:</label>
                                     <FormControl className="col-md-4 col-12 p-0">
-                                        {isMobileOnly ?
+                                        {/*isMobileOnly ?
                                             <InputLabel>{textPage.directionsValue}</InputLabel>
-                                            : <div />}
+                                            : <div />*/}
                                         <Select
                                             value={this.state.tourSave.directionId && this.state.tourSave.directionId.length>0 ? this.state.tourSave.directionId : textPage.directionsValue}
                                             onChange={(event, index, value) => {

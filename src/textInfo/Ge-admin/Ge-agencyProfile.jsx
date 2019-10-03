@@ -1,28 +1,28 @@
 const agencyProfile = {
     lang: 'GEO',
     agencyProfile: {
-        loading: 'Loading(GEO)'
+        loading: 'იტვირთება'
     },
     agencyProfileBasicInformation:{
-        header: 'Редактировать профиль(GEO)',
+        header: 'პროფილის რედაქტირება',
         organizationData: {
-            header: 'Данные организации(GEO)',
-            organizationName: 'Название организации(GEO)',
-            registrationNumber: 'Регистрационный номер(GEO)',
-            legalAddress: 'Юридический адрес(GEO)',
-            bankAccount: 'Расчётный счёт(GEO)',
-            bankCode: 'Код банка(GEO)',
-            bankAddress: 'Адрес банка(GEO)',
-            dataAbout: 'О себе(GEO)',
+            header: 'ორგანიზაციის მონაცემები',
+            organizationName: 'ორგანიზაციის სახელი',
+            registrationNumber: 'რეგისტრაციის ნომერი',
+            legalAddress: 'იურიდიული მისამართი',
+            bankAccount: 'მიმდინარე ანგარიში',
+            bankCode: 'საბანკო კოდი',
+            bankAddress: 'საბანკო მისამართი',
+            dataAbout: 'ჩემს შესახებ',
         },
         contactPerson: {
-            header: 'Данные контактного лица(GEO)',
-            firstName: 'Имя(GEO)',
-            lastName: 'Фамилия(GEO)',
-            workPhone: 'Рабочий телефон(GEO)',
-            basicInfoLanguageText: 'Выберите языки(GEO)',
+            header: 'საკონტაქტო ინფორმაცია',
+            firstName: 'სახელი',
+            lastName: 'გვარი',
+            workPhone: 'სამუშაო ტელეფონი',
+            basicInfoLanguageText: 'ენების არჩევა',
         },
-        saveText: 'Сохранить Изменения(GEO)'
+        saveText: 'შეინახეთ ცვლილებები'
     },
     agencyProfileAffiliateProgramm:{
         affiliateProgramsTitle: "პარტნიორული პროგრამა",
@@ -41,14 +41,14 @@ const agencyProfile = {
         affiliateProgramTableHeader: ["EMAIL", "რეგისტრაციის თარიღი", "რეგისტრაციის წყარო", "დარიცხვა"]
     },
     agencyProfileDrivers:{
-        driversText: 'Подключённые водители(GEO)',
-        linkTitle: 'Ваша ссылка на регистрацию нового водителя в автопарк(GEO)',
-        linkButton: 'Копировать(GEO)',
-        headerTable: ["Водитель(GEO)", "Автомобили(GEO)", "Число поездок(GEO)",
-        "Рейтинг(GEO)", "Штрафные баллы(GEO)", "Действия(GEO)"]
+        driversText: 'დაკავშირებული მძღოლები',
+        linkTitle: 'თქვენი ბმული ფლოტში ახალი მძღოლის რეგისტრაციისთვის',
+        linkButton: 'დააკოპირეთ',
+        headerTable: ["მძღოლი", "მანქანები", "რბოლების რაოდენობა",
+        "რეიტინგი", "საჯარიმო ქულები", "მოქმედებები"]
     },
     agencyProfileNavigation:{
-        navigationText: ["ჩემი  მოგზაურობები", "პროფილი", "Водители(GEO)", "Туры(GEO)", "გამოხმაურებები",
+        navigationText: ["ჩემი  მოგზაურობები", "პროფილი", "მძღოლები", "ტურები", "გამოხმაურებები",
          "პარამეტრები", "ბილინგი", "პარტნიორული პროგრამა"],
          updatePhoto: "ფოტოს განახლება",
          totalTrips: {
@@ -59,8 +59,8 @@ const agencyProfile = {
         starsReviews: "გამოხმაურებების",
         totalDrivers:{
             first: 'სულ',
-            last: 'водителей(GEO)',
-            full: 'სულ водителей(GEO)'
+            last: 'მძღოლები',
+            full: 'სულ მძღოლები'
         } 
     },
     agencyProfileHistory: {
@@ -68,38 +68,38 @@ const agencyProfile = {
         story: "ისტორია",
     },
     agencyProfileTrevelHistory: {
-        tripId: 'ID поездки(GEO)',
-        drivercar: "Водитель и автомобиль(GEO)",
-        comments: 'отзывов(GEO)',
-        client: 'Клиент(GEO)',
-        costOfTravel: "Стоимость поездки(GEO)",
-        tripStart: 'Начало поездки(GEO)',
-        notStarted: 'Поездка не была начата(GEO)',
-        tripEnd: 'Окончание поездки(GEO)',
-        notEnded: 'Поездка не была закончена(GEO)'
+        tripId: 'მოგზაურობის ID',
+        drivercar: "მძღოლი და მანქანა",
+        comments: 'მიმოხილვები',
+        client: 'მომხმარებელს',
+        costOfTravel: "მოგზაურობის ღირებულება",
+        tripStart: 'მოგზაურობის დასაწყისი',
+        notStarted: 'მოგზაურობა არ დაწყებულა',
+        tripEnd: 'მოგზაურობის დასრულება',
+        notEnded: 'მოგზაურობა არ დასრულებულა'
     },
     agencyProfileTour:{
         tourSeatsModalContent: {
-            tour: 'Тур(GEO)',
-            headerArray: ['День(GEO)', 'Mест свободно(GEO)', 'Mecт зaнятo(GEO)'],
-            calendaryInfo: 'В этом календаре кликабельными будут только выбранные Вами в настройках тура дни, при нажатии на любые другие ничего происходить не будет. Если их число ограничено, то они будут выбраны изначально.(GEO)',
-            saveChangesButton: 'Сохранить(GEO)',
-            closeWindow: 'Закрыть(GEO)'
+            tour: 'ტური',
+            headerArray: ['დღე', 'თავისუფალი ადგილი', 'ადგილი დაიკავა'],
+            calendaryInfo: 'ამ კალენდარში მხოლოდ თქვენი პარამეტრების მიხედვით შეგიძლიათ აირჩიოთ ტურის პარამეტრები, არაფერი მოხდება, თუ სხვას დააჭერთ. თუ მათი რაოდენობა შეზღუდულია, ისინი თავიდან შეირჩევიან.',
+            saveChangesButton: 'დაზოგე',
+            closeWindow: 'დახურვა'
         },
         excursionIncludesBlock: {
-            label: 'Стоимость экскурсии включает(GEO)',
-            hotelMeeting: 'Встреча в отеле(GEO)',
-            hotelDelivery: 'Доставка в отель(GEO)',
-            fare: 'Транспортные расходы(GEO)',
-            entryTickets: 'Входные билеты(GEO)',
-            food: 'Еда и напитки(GEO)',
-            accommodation: 'Проживание(GEO)'
+            label: 'ტურის ფასში შედის',
+            hotelMeeting: 'შეხვედრა სასტუმროში',
+            hotelDelivery: 'სასტუმროს მიტანა',
+            fare: 'მოგზაურობის ხარჯები',
+            entryTickets: 'შესასვლელი ბილეთები',
+            food: 'საჭმელი და სასმელი',
+            accommodation: 'განსახლების'
         },
-        daysNumber: 'Количество дней(GEO)',
-        tourClassification: 'Классификация тура(GEO)',
-        imagesLabel: 'Изображения(GEO)',
-        seatsModalLabel: 'Таблица мест(GEO)',
-        comments: 'отзывов(GEO)',
+        daysNumber: 'დღეების რაოდენობა',
+        tourClassification: 'ტურის კლასიფიკაცია',
+        imagesLabel: 'სურათები',
+        seatsModalLabel: 'ადგილების ცხრილი',
+        comments: 'მიმოხილვები',
         tourOnSite: 'ტური საიტზე',
         seatsTable: 'ადგილების ცხრილი',
 

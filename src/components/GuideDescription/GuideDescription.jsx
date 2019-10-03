@@ -111,6 +111,7 @@ class GuideDescriptionClass extends React.Component {
         let lang = cookies.get('userLang', {path: '/'});
         let guideBody = JSON.stringify({
             id: this.props.match.params.id,
+            slug: this.props.match.params.slug,
             lang: lang
         })
         this.setState({
@@ -126,7 +127,7 @@ class GuideDescriptionClass extends React.Component {
             return response.json();
         })
         .then(function (data) {
-
+            
             if (data.error) {
                 console.log("bad");
                 throw data.error;
@@ -147,7 +148,7 @@ class GuideDescriptionClass extends React.Component {
                 else{
                     //иначе делаем перенаправление на страницу гидов, пускай выбирает
                     //тех гидов, что заполнили локализации на выбранном языке
-                    that.props.globalReduser.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/guides/');
+                    that.props.globalReduser.history.push("/" + that.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/guides/');
                 }
                 
             }
@@ -298,13 +299,6 @@ class GuideDescriptionClass extends React.Component {
             }
             return true;
         }
-        /*
-        window.scroll({
-            top: 0,
-            left: 0,
-            behavior: 'smooth'
-        });
-        */
         let lang =cookies.get('userLang', {path: '/'});
 
         if(this.state.dataLang!==lang && !(this.state.isRefreshExist)){
@@ -339,7 +333,8 @@ class GuideDescriptionClass extends React.Component {
         let textInfo = this.props.storeState.languageTextMain.drivers.driversBlock;
         let defaultPrice = this.props.driversState.driverCarDescription.price * (100 - this.state.discount) / 100;
         let isCurrencyLoaded = activeCurrency && activeCurrency.symbol;
-        let helmet = this.props.storeState.languageTextMain.helmets.guideProfile;
+        let helmet = this.props.guidesReduser.guideData.isDriver ? this.props.storeState.languageTextMain.helmets.guideProfile.guide :
+        this.props.storeState.languageTextMain.helmets.guideProfile.agency;
 
         let windowImg = null
         if (this.props.storeState.languages.length > 0) {
@@ -370,13 +365,13 @@ class GuideDescriptionClass extends React.Component {
                             {
                                 this.props.guidesReduser.guideData.id ?
                                 <Helmet>
-                                    <title>{helmet.basic.title[0]+this.props.guidesReduser.guideData.name+helmet.basic.title[1]}</title>
-                                    <meta name="description" content={helmet.basic.description[0]+this.props.guidesReduser.guideData.name+helmet.basic.description[1]} />
+                                    <title>{helmet.title[0]+this.props.guidesReduser.guideData.name+helmet.title[1]}</title>
+                                    <meta name="description" content={helmet.description[0]+this.props.guidesReduser.guideData.name+helmet.description[1]} />
                                     <meta property="og:site_name" content="Tripfer" />
                                     <meta property="og:type" content="website" />
                                     <meta property="og:url" content={document.URL} />
-                                    <meta property="og:title" content={helmet.basic.title[0]+this.props.guidesReduser.guideData.name+helmet.basic.title[1]} />
-                                    <meta property="og:description" content={helmet.basic.description[0]+this.props.guidesReduser.guideData.name+helmet.basic.description[1]} />
+                                    <meta property="og:title" content={helmet.title[0]+this.props.guidesReduser.guideData.name+helmet.title[1]} />
+                                    <meta property="og:description" content={helmet.description[0]+this.props.guidesReduser.guideData.name+helmet.description[1]} />
                                 </Helmet>
                                 : <React.Fragment/>
                             }                        
