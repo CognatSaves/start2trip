@@ -120,8 +120,8 @@ const driverProfileRegistration = {
         cardInformation: {
             span: "ადგილების"
         },
-        noPhotoText: 'Вставьте фото вашего автомобиля.(GEO)',
-        badDataText: 'Заполните корректно выделенные поля!(GEO)',
+        noPhotoText: 'ჩადეთ თქვენი მანქანის ფოტო.',
+        badDataText: 'შეავსეთ სწორად შერჩეული ველები!',
         indexMainPhoto:["მთავარი","მთავარზე დაყენება"],
     },
     DriverProfileTripSettingsTrip: {
@@ -145,7 +145,7 @@ const driverProfileRegistration = {
             description: "მიუთითეთ მგზავრის გადაყვანის მარშრუტის მაქსიმალური კილომეტრაჟი"
         },
         tripSaveBt: "ცვლილებების შენახვა",
-        badRequestText: 'Вы допустили ошибки. Поправьте их перед сохранением!(GEO)'
+        badRequestText: 'შეცდომა დაუშვი. შეასწორეთ ისინი დაზოგვის წინ!'
     },
     DriverProfileSettings: {
         settingsBodyTitle: "პროფილის პარამეტრები",
@@ -172,7 +172,7 @@ const driverProfileRegistration = {
             telflag: "ru"
         },
         sittingsSaveBt: "ცვლილებების შენახვა",
-        infoText: 'Пароль будет проверяться и сохраняться только в случае заполнения всех трёх полей.(GEO)',
+        infoText: 'პაროლი შემოწმდება და შეინახება მხოლოდ იმ შემთხვევაში, თუ სამივე ველი შევსებულია.',
         unsubscribeButton: {
             mailing: {
                 unsubscribe: "გამოწერა გაზეთებიდან",
@@ -261,11 +261,11 @@ const driverProfileRegistration = {
             emptySeats: "თავისუფალი ადგილების"
         },
         photos:{
-            imageLabelError: 'Вставьте сюда фотографии(ю)(GEO)',
-            mainImageLabel: 'Это загрузка фонового фото(GEO)',
-            mainImageInfo: 'Эта картинка будет использоваться как фон на странице Вашего тура(GEO)',
-            blockListLabel: 'Это загрузка фото для блока в списке(GEO)',
-            blockListImageInfo: 'Эта картинка будет использоваться в качестве оформления Вашего тура в списке(GEO)'
+            imageLabelError: 'აქ ჩადეთ ფოტოები',
+            mainImageLabel: 'ეს იტვირთება ფონის ფოტოზე',
+            mainImageInfo: 'ეს სურათი გამოყენებული იქნება, როგორც ფონზე თქვენი ტურის გვერდზე.',
+            blockListLabel: 'ეს იტვირთება ფოტოში სიაში განთავსებული ბლოკისთვის.',
+            blockListImageInfo: 'ეს სურათი გამოყენებული იქნება სიაში თქვენი ტურისთვის დეკორაციისთვის.'
         },
         pageLabel: 'სახელმძღვანელოს პარამეტრები',
         guideLabel: `მე მეგზური ვარ`,
@@ -274,20 +274,20 @@ const driverProfileRegistration = {
         info: {
             info1: 'მიუთითეთ სახელმძღვანელოს ღირებულება ერთი საათის განმავლობაში. ინდივიდუალური მარშრუტის აგებისას მომხმარებელს აქვს 2 საათი თითოეული მოზიდვისთვის.',
             info2: 'საათის ღირებულებას დაემატება მოგზაურობის ღირებულების ავტომატური გაანგარიშება.'
-        }
-
+        },
+        errorText: 'შეამოწმეთ ტურის ველების დასრულება, მათ მიერ დასრულებული ენობრივი ვერსიების ჩათვლით'
     },
     DriverProfileTrevelHistory: {
-        tripId: 'ID поездки(GEO)',
+        tripId: 'მოგზაურობის ID',
         customer: "კლიენტი",
         venue: "შეხვედრის ადგილი",
         costOfTravel: "მოგზაურობის ღირებულება",
         comment: "კომენტარი",
         car: "მანქანა",
         tripStart: 'მოგზაურობის დასაწყისი',
-        noStart: 'Поездка не была начата(GEO)',
-        tripEnd: 'Окончание поездки(GEO)',
-        noEnd: 'Поездка не была закончена(GEO)',
+        noStart: 'მოგზაურობა არ დაწყებულა',
+        tripEnd: 'მოგზაურობის დასრულება',
+        noEnd: 'მოგზაურობა არ დასრულებულა',
         stateVariants: ['დაასრულეთ მოგზაურობა', 'დაიწყეთ მოგზაურობა'],
         historyBodyHeaderBtn:["დამალვა","დეტალები"],
     },
@@ -297,19 +297,19 @@ const driverProfileRegistration = {
     },
     DriverProfileBilling: {
         billingModalA: {
-            header: 'Доступно к выводу(GEO)',
-            summ: 'Сумма USD(GEO)',
-            cardNumber: 'Номер карты(GEO)',
-            cardType: 'Тип карты(GEO)',
-            cancel: 'Отмена(GEO)',
-            submit: 'Вывод средств(GEO)'
+            header: 'დასკვნისთვის შესაძლებელია',
+            summ: 'თანხა აშშ დოლარი',
+            cardNumber: 'ბარათის ნომერი',
+            cardType: 'ბარათის ტიპი',
+            cancel: 'გაუქმება',
+            submit: 'თანხების ამოღება'
         },
         billingModalB: {
-            header: 'Сумма к оплате(GEO)',
-            summ: 'Сумма USD(GEO)',
-            description: '(GEO)Оплата осуществляется с помощью банковской карты. После ввода суммы и подтверждения вы будете переадресованы в специализированный сервис.',
-            cancel: 'Отмена(GEO)',
-            submit: 'Оплатить(GEO)'
+            header: 'გადასახდელი თანხა',
+            summ: 'თანხა აშშ დოლარი',
+            description: 'გადახდა ხდება საკრედიტო ბარათით. თანხის შეტანის და დადასტურების შემდეგ, გადაგიგზავნით სპეციალურ მომსახურებას.',
+            cancel: 'გაუქმება',
+            submit: 'რომ გადაიხადოს'
         },
         currentBalance: {
             currentBalanceText: 'მიმდინარე ბალანსი',
@@ -339,8 +339,8 @@ const driverProfileRegistration = {
                 payedByCard: ',გადახდა ბარათებით',
                 payedByPartners: ',პარტნიორული დარიცხვები',
                 payedForPeriod: 'სულ პერიოდში',
-                datePickerStart: 'Дата начала(GEO)',
-                datePickerEnd: 'Дата конца(GEO)'
+                datePickerStart: 'დაწყების თარიღი',
+                datePickerEnd: 'დასრულების თარიღი'
             },
             valueTableText: [
                 'გარიგების ID',
@@ -352,7 +352,7 @@ const driverProfileRegistration = {
         }
     },
     DriverProfileRegistration: {
-        loading: 'Загрузка(GEO)',
+        loading: 'იტვირთება',
 
     }
 

@@ -19,7 +19,7 @@ import checkBtUp from '../../redusers/GlobalFunction'
 // import { disablePageScroll, clearQueueScrollLocks, enablePageScroll } from 'scroll-lock';
 //import pageTextInfo from '../../textInfo/RenderModalRegistration';
 
-import mapWorldIcon from '../media/mapWorld.svg'
+import mapWorldIcon from '../media/map.png'
 import crossIconModal from '../media/closeGray.svg'
 import backpackIcon from '../media/backpack.svg'
 import dealIcon from '../media/deal.svg'

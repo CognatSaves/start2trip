@@ -14,9 +14,13 @@ const helmets /*helmetStorage - aka armory */ = {
         }
     },
     guideProfile:{
-        basic: {
+        guide: {
             title: ['Гид ', ', данные профиля, автомобилей, список туров.'],
             description: ['Страница гида ', ', профиль, автомобили, список туров']
+        },
+        agency:{
+            title: ['Агенство ', ', описание организации, список туров.'],
+            description: ['Страница агенства ', ', описание, список туров']
         }
     },
     tripConfirmation: {

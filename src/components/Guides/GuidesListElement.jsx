@@ -9,6 +9,8 @@ import tagBlue from '../media/tag_blue.svg';
 
 import Stars from '../stars/Stars';
 import Cookies from 'universal-cookie';
+import guideIcon from '../media/tour-guide.svg';
+import agencyIcon from '../media/agencyIcon.svg';
 
 const cookies = new Cookies();
 
@@ -23,10 +25,10 @@ class GuidesListElementClass extends React.Component {
             return undefined;
         }
         let textInfo = this.props.storeState.languageTextMain.home.homeBottom.routeListElement;
-
+        let textInfoTour = this.props.storeState.languageTextMain.tours;
         let element = this.props.element;
         let index = this.props.index;
-        let linkAddress = "/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + `/guides/${element.id},${element.userSlug}/`;
+        let linkAddress = "/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + `/guides/${element.userSlug}/`;
         return (
             <div className={this.props.placeListElementClass ? this.props.placeListElementClass : "col-lg-3 col-md-4 col-sm-6 col-12 p-2 pb-3"} >
                 <div className={"drivers_block_element d-flex p-0 flex-column"} id={index}>
@@ -56,9 +58,15 @@ class GuidesListElementClass extends React.Component {
                                 }
                             </div>
                         </div>
-                        <div className="placesList_stars">
-                            <Stars key={index + "/" + element.rating} value={Math.ceil(element.rating * 10) / 10} commentNumber={element.comments + " " + textInfo.comments} valueDisplay={element.rating > 0 ? true : false} commentNumberDisplay={true} />
+                        <div className="d-flex flex-row justify-content-between">
+                            <div className="placesList_stars">
+                                <Stars key={index + "/" + element.rating} value={Math.ceil(element.rating * 10) / 10} commentNumber={element.comments + " " + textInfo.comments} valueDisplay={element.rating > 0 ? true : false} commentNumberDisplay={true} />
+                            </div>
+                            <i className="placesList_info_guide my-auto col-2" style={{ background: "url(" + (element.guide  ? guideIcon : agencyIcon) + ")no-repeat" }}>
+                                <span className="placesList_info_guide-toolTip">{element.guide  ? textInfoTour.guide : textInfoTour.agency}</span>
+                            </i>
                         </div>
+
                         <div className="d-flex ">
                             <div className="">{textInfo.excursions+": "+element.departurePointArray.length}</div>
                         </div>

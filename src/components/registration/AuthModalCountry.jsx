@@ -6,7 +6,7 @@ import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 import { Helmet } from 'react-helmet';
 import requests from '../../config'
 
-import mapWorldIcon from '../media/mapWorld.svg'
+import mapWorldIcon from '../media/map.png'
 import crossIconModal from '../media/closeGray.svg'
 
 import RenderModalCountry from '../header/RenderModalCountry'

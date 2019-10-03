@@ -21,7 +21,7 @@ class GuideInfoClass extends React.Component {
         return (
             <div className="driverInfo_background d-flex flex-lg-row flex-column align-items-lg-start align-items-center">
                 <div className={"block_element_left d-flex flex-column col-12 "+(guideData.cars && guideData.cars.length>0 ? "col-lg-6" : '')}>
-                    <DriverInfoProfile element={guideData} storeState={this.props.storeState}/>
+                    <DriverInfoProfile element={guideData} storeState={this.props.storeState} needGuideIcon={true}/>
                 </div>
                 <div className="driverInfo_element d-flex flex-column col-lg-6 col-12 p-0" >
                     {

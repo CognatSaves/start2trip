@@ -170,3 +170,7 @@
     user-select: none;
     color: rgba(0, 0, 0, 0.3);
 }
+.errorText{
+    display: none;
+    font-size: 12px;
+}

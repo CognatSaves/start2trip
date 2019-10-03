@@ -210,7 +210,6 @@ class AgencyProfileTourClass extends React.Component {
         super(props);
         let profile = this.props.globalReduser.profile;
         let local = [];
-        
         for (let i = 0; i < this.props.storeState.untranslatedlanguages.length; i++) {
             if (this.props.storeState.untranslatedlanguages[i].isTransfer) {
                 local[i] = {
@@ -365,17 +364,19 @@ class AgencyProfileTourClass extends React.Component {
         let profile = this.props.globalReduser.profile;
         if (!element) {
             let local = [];
-            for (let i = 0; i < profile.allLanguages.length; i++) {
-                local[i] = {
-                    name: "",
-                    departurePoint: {
-                        point: "",
-                        lat: "",
-                        long: ""
-                    },
-                    points: [],
-                    info: "",
-                    language: profile.allLanguages[i].ISO
+            for (let i = 0; i < this.props.storeState.untranslatedlanguages.length; i++) {
+                if (this.props.storeState.untranslatedlanguages[i].isTransfer) {
+                    local[i] = {
+                        name: "",
+                        departurePoint: {
+                            point: "",
+                            lat: "",
+                            long: ""
+                        },
+                        points: [],
+                        info: "",
+                        language: profile.allLanguages[i].ISO
+                    }
                 }
             }
             let categoriesUnselected = [];
@@ -435,17 +436,19 @@ class AgencyProfileTourClass extends React.Component {
         }
         else {            
             let local = [];
-            for (let i = 0; i < profile.allLanguages.length; i++) {
-                local[i] = {
-                    name: "",
-                    departurePoint: {
-                        point: "",
-                        lat: "",
-                        long: ""
-                    },
-                    points: [],
-                    info: "",
-                    language: profile.allLanguages[i].ISO
+            for (let i = 0; i < this.props.storeState.untranslatedlanguages.length; i++) {
+                if (this.props.storeState.untranslatedlanguages[i].isTransfer) {
+                    local[i] = {
+                        name: "",
+                        departurePoint: {
+                            point: "",
+                            lat: "",
+                            long: ""
+                        },
+                        points: [],
+                        info: "",
+                        language: profile.allLanguages[i].ISO
+                    }
                 }
             }
             for (let i = 0; i < element.local.length; i++) {
@@ -616,9 +619,90 @@ class AgencyProfileTourClass extends React.Component {
         let jwt = this.props.globalReduser.readCookie('jwt');
 
         function checkCorrectTour(tourSave) {
-
+            function checkCorrectLocal(local, index){
+                console.log('checkCorrectLocal');
+                let result = true;
+                let isNameGood = local.name && local.name.length>0;
+                let isDeparturePointGood = local.departurePoint && local.departurePoint.point.length>0;
+                let isPointsGood = local.points.length>0;
+                let isInfoGood = local.info.length>0;
+                if(isNameGood || isDeparturePointGood || isPointsGood || isInfoGood){
+                    //if anything is filled by any, even a little bit valid, data
+                    //look throw that values and if find fields without data -> turn them red
+                    if(!isNameGood){
+                        let obj = document.querySelectorAll('.inputTourName'+index);
+                        if(obj[0]){
+                            obj[0].classList.add("errorColor");
+                        }
+                        if(obj[1]){
+                            obj[1].classList.add("errorColor");
+                        }
+                        result=false; 
+                    }
+                    if(!isDeparturePointGood){
+                        let obj = document.querySelectorAll('.departurePointClass'+index);
+                        if(obj[0]){
+                            obj[0].classList.add("errorColor");
+                        }
+                        result=false; 
+                    }
+                    if(!isPointsGood){
+                        let obj = document.querySelectorAll('.routePointsClass'+index);
+                        if(obj[0]){
+                            obj[0].classList.add("errorColor");
+                        }
+                        result=false; 
+                    }
+                    if(!isInfoGood){
+                        let obj = document.querySelectorAll('.descriptionClass'+index);
+                        if(obj[0]){
+                            obj[0].classList.add("errorColor");
+                        }
+                        if(obj[1]){
+                            obj[1].classList.add("errorColor");
+                        }
+                        result=false; 
+                    }
+                }
+                else{   
+                    //if every field is empty, then remove all red
+                    let obj = document.querySelectorAll('.inputTourName'+index);
+                    if(obj[0]){
+                        obj[0].classList.remove("errorColor");
+                    }
+                    if(obj[1]){
+                        obj[1].classList.remove("errorColor");
+                    }
+                    obj = document.querySelectorAll('.departurePointClass'+index);
+                    if(obj[0]){
+                        obj[0].classList.remove("errorColor");
+                    }
+                    obj = document.querySelectorAll('.routePointsClass'+index);
+                    if(obj[0]){
+                        obj[0].classList.remove("errorColor");
+                    }
+                    obj = document.querySelectorAll('.descriptionClass'+index);
+                    if(obj[0]){
+                        obj[0].classList.remove("errorColor");
+                    }
+                    if(obj[1]){
+                        obj[1].classList.remove("errorColor");
+                    }
+                }              
+                return result;
+            }
             let obj = "";
             let result = true;
+            
+      
+            //////////////// local validation
+            for(let i=0; i<tourSave.local.length; i++){
+                let isLocalGood = checkCorrectLocal(tourSave.local[i], i);
+                if(!isLocalGood){
+                    result = false;
+                }
+            }
+            //////////////// main block validation
             if (!tourSave.time) {
                 obj = document.querySelectorAll('.dropdownTime');
                 obj[0].classList.add("errorColor");
@@ -696,9 +780,17 @@ class AgencyProfileTourClass extends React.Component {
                 result = false;
             }
 
+
             return result;
         }
+        let errorTextBlock =  document.querySelectorAll('.errorText');
+        
+        if(errorTextBlock[0]){
+            errorTextBlock[0].classList.remove('d-block');
+            errorTextBlock[0].classList.remove('errorColor');         
+        }  
         if (jwt && jwt !== "-" && checkCorrectTour(this.state.tourSave)) {
+            
             let that = this;
             this.startRefresher();
 
@@ -765,7 +857,6 @@ class AgencyProfileTourClass extends React.Component {
                 request.setRequestHeader('Authorization', `Bearer ${jwt}`);
             }
             request.onreadystatechange = function () {
-                
                 if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
                     console.log(request.responseText);
                     that.getProfileData(that.thenFunc, that.catchFunc);
@@ -777,6 +868,13 @@ class AgencyProfileTourClass extends React.Component {
             request.send(tourForm);
         }
         else {
+            
+            let errorTextBlock =  document.querySelectorAll('.errorText');
+            if(errorTextBlock[0]){
+                errorTextBlock[0].classList.add('d-block');
+                errorTextBlock[0].classList.add('errorColor');
+                
+            }
             if (jwt && jwt !== "-") {//если пользователь залогинен, но тур некорректен
                 this.setState({
                     errorStringVisibility: true
@@ -799,7 +897,29 @@ class AgencyProfileTourClass extends React.Component {
         event.preventDefault();
     }
     toggle = (element, props) => {
+        function removeErrorColorElems(){
+            //function must remove all colorification from blocks that created by validator
+            let errorTextBlock =  document.querySelectorAll('.errorText');
+            if(errorTextBlock[0]){
+                errorTextBlock[0].classList.remove('d-block');
+                errorTextBlock[0].classList.remove('errorColor');         
+            }
+            let errorElements = document.querySelectorAll('.errorColor');
+            for(let i=0; i<errorElements.length; i++){
+                errorElements[i].classList.remove('errorColor');
+            }
+            let imageLabel;
+            imageLabel = document.getElementById('imageLabelError');
+            imageLabel.style.display = 'none';
 
+            imageLabel = document.getElementById('mainImageLabelError');
+            imageLabel.style.display = 'none';
+
+            imageLabel = document.getElementById('blockListImageLabelError');
+            imageLabel.style.display = 'none';
+
+        }
+        removeErrorColorElems();
         let collapseValue = props ? props.collapse : !this.state.collapse;
         this.setState(state => ({ collapse: collapseValue, tour: {} }));
         if (this.props.props && this.props.props.changeTourOpened) {//если AgencyProfileTour является потомком Driver...Tour, то ему передаётся ещё одна ф-ция, которуд надо вызвать
@@ -825,6 +945,8 @@ class AgencyProfileTourClass extends React.Component {
                 behavior: 'smooth'
             });
         }
+
+
     }
     calendarModalShow = () => {
         this.setState({ calendarModal: !this.state.calendarModal });
@@ -1379,7 +1501,6 @@ class AgencyProfileTourClass extends React.Component {
         let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileTripSettingsTour;
         
         let textPageAgencyProfile = this.props.storeState.languageText.agencyProfile.agencyProfileTour;
-        
         console.log(textPageAgencyProfile.currencyPlaceholder);
 
         
@@ -1470,15 +1591,33 @@ class AgencyProfileTourClass extends React.Component {
                                         <label htmlFor="nameNewTour" className="d-md-block d-none col-2">{textPage.nameNewTour.floatingLabelText}:</label>
                                         <TextField
                                             floatingLabelText={textPage.nameNewTour.floatingLabelText}
-                                            className="d-md-none d-block inputClass"
+                                            className={"d-md-none d-block inputClass "+('inputTourName'+index)}
                                             fullWidth="100%"
                                             floatingLabelFocusStyle={{ color: "#304269" }}
                                             underlineFocusStyle={{ borderColor: "#304269" }}
                                             value={element.name}
-                                            onChange={(e) => { this.handleChange(e.currentTarget.value, 'name', { number: index }) }}
+                                            onChange={(e) => {
+                                                let obj = document.querySelectorAll('.inputTourName'+index);
+                                                if(obj[0]){
+                                                    obj[0].classList.remove("errorColor");
+                                                }
+                                                if(obj[1]){
+                                                    obj[1].classList.remove("errorColor");
+                                                }  
+                                                this.handleChange(e.currentTarget.value, 'name', { number: index })
+                                            }}
                                         />
-                                        <input className="d-md-block d-none col-md-4 col-12 " id="nameNewTour" type="text"
-                                            value={element.name} onChange={(e) => { this.handleChange(e.currentTarget.value, 'name', { number: index }) }} />
+                                        <input className={"d-md-block d-none col-md-4 col-12 "+('inputTourName'+index)} id="nameNewTour" type="text"
+                                            value={element.name} onChange={(e) => { 
+                                                let obj = document.querySelectorAll('.inputTourName'+index);
+                                                if(obj[0]){
+                                                    obj[0].classList.remove("errorColor");
+                                                }
+                                                if(obj[1]){
+                                                    obj[1].classList.remove("errorColor");
+                                                }  
+                                                this.handleChange(e.currentTarget.value, 'name', { number: index })
+                                            }} />
                                         <p className=" d-md-block d-none m-0 col-md-6 col-5">{textPage.nameNewTour.description}</p>
                                     </div>
                                     <div className="d-flex flex-md-row flex-column align-items-md-center align-items-start">
@@ -1489,17 +1628,27 @@ class AgencyProfileTourClass extends React.Component {
                                                 changeCity={(id, value, extraData) => {
                                                     let tourSave = this.state.tourSave;
                                                     tourSave.local[index].departurePoint = { point: value, lat: extraData.location.lat, long: extraData.location.long };
+                                                    let obj = document.querySelectorAll('.departurePointClass'+index);
+                                                    if(obj[0]){
+                                                        obj[0].classList.remove("errorColor");
+                                                    }
                                                     this.setState({ tourSave: tourSave })
                                                 }}
-                                                classDropdown="searchDropdownDriverTour" id="newTourAttractions" classInput="w-100 searchInputClass" classDiv='w-100' />
+                                                classDropdown="searchDropdownDriverTour" id="newTourAttractions" classInput={"w-100 searchInputClass "+('departurePointClass'+index)} classDiv='w-100' />
                                         </div>
                                         <p className=" d-md-block d-none m-0 col-md-6 col-5">{textPage.newTourAttractions.description}</p>
                                     </div>
                                     <div className="d-flex flex-md-row flex-column align-items-md-center align-items-start">
                                         <label htmlFor="attractionsAlongTheRoute" className="d-md-block d-none col-2">{textPage.attractionsAlongTheRoute.floatingLabelText}:</label>
                                         <div className="d-flex col-md-4 col-12 p-0" key={element.points.length}>
-                                            <LocationSearchInput address='' changeCity={(id, value, extraData) => { this.handleChange(value, "attractionsAlongTheRoute", { number: index, location: extraData.location }) }}
-                                                classDropdown="searchDropdownDriverTour" id="attractionsAlongTheRoute" classInput="w-100 searchInputClass" classDiv='w-100'
+                                            <LocationSearchInput address='' changeCity={(id, value, extraData) => { 
+                                                    let obj = document.querySelectorAll('.routePointsClass'+index);
+                                                    if(obj[0]){
+                                                        obj[0].classList.remove("errorColor");
+                                                    }
+                                                    this.handleChange(value, "attractionsAlongTheRoute", { number: index, location: extraData.location })
+                                                }}
+                                                classDropdown="searchDropdownDriverTour" id="attractionsAlongTheRoute" classInput={"w-100 searchInputClass "+('routePointsClass'+index)} classDiv='w-100'
                                                 placeholder={textPageAgencyProfile.pointsPlaceholder} />
                                         </div>
                                         <p className=" d-md-block d-none m-0 col-md-6 col-5">{textPage.attractionsAlongTheRoute.description}</p>
@@ -1522,18 +1671,36 @@ class AgencyProfileTourClass extends React.Component {
                                     </div>
                                     <div className="d-flex align-items-start mb-2">
                                         <label htmlFor="newTourDescription" className="d-md-block d-none col-2">{textPage.newTourDescription.floatingLabelText}:</label>
-                                        <textarea id="newTourDescription" className="d-md-block d-none col-md-4 col-12 " name="" cols="30" rows="3"
-                                            onChange={(e) => { this.handleChange(e.currentTarget.value, 'info', { number: index }) }} value={element.info} />
+                                        <textarea id="newTourDescription" className={"d-md-block d-none col-md-4 col-12 "+("descriptionClass"+index)} name="" cols="30" rows="3"
+                                            onChange={(e) => { 
+                                                let obj = document.querySelectorAll('.descriptionClass'+index);
+                                                if(obj[0]){
+                                                    obj[0].classList.remove("errorColor");
+                                                }
+                                                if(obj[1]){
+                                                    obj[1].classList.remove("errorColor");
+                                                }
+                                                this.handleChange(e.currentTarget.value, 'info', { number: index })
+                                            }} value={element.info} />
                                         <TextField
                                             floatingLabelText={textPage.newTourDescription.floatingLabelText}
-                                            className="d-md-none d-block multiLineInputClass multiLineInputClassAdditional"
+                                            className={"d-md-none d-block multiLineInputClass multiLineInputClassAdditional "+("descriptionClass"+index)}
                                             fullWidth="100%"
                                             floatingLabelFocusStyle={{ color: "#304269" }}
                                             underlineFocusStyle={{ borderColor: "#304269" }}
                                             multiLine={true}
                                             rows={1}
                                             value={element.info}
-                                            onChange={(e) => { this.handleChange(e.currentTarget.value, 'info', { number: index }) }}
+                                            onChange={(e) => {
+                                                let obj = document.querySelectorAll('.descriptionClass'+index);
+                                                if(obj[0]){
+                                                    obj[0].classList.remove("errorColor");
+                                                }
+                                                if(obj[1]){
+                                                    obj[1].classList.remove("errorColor");
+                                                } 
+                                                this.handleChange(e.currentTarget.value, 'info', { number: index })
+                                            }}
                                         />
                                         <p className=" d-md-block d-none m-0 col-md-6 col-5">{textPage.newTourDescription.description}</p>
                                     </div>
@@ -1765,9 +1932,9 @@ class AgencyProfileTourClass extends React.Component {
                                 <div className="d-flex flex-md-row flex-column w-100">
                                     <label className="d-md-block d-none col-2 " style={{ margin: 'auto 0' }}>{textPage.additionalInformation.directions.floatingLabelText}:</label>
                                     <FormControl className="col-md-4 col-12 p-0">
-                                        {isMobileOnly ?
+                                        {/*isMobileOnly ?
                                             <InputLabel>{textPage.directionsValue}</InputLabel>
-                                            : <div />}
+                                            : <div />*/}
                                         <Select
                                             value={this.state.tourSave.directionId && this.state.tourSave.directionId.length>0 ? this.state.tourSave.directionId : textPage.directionsValue}
                                             onChange={(event, index, value) => {
@@ -1928,8 +2095,16 @@ class AgencyProfileTourClass extends React.Component {
 
                             <div className="paddingL10 tourContentAddButton pb-4 d-flex justify-content-xl-start justify-content-lg-start justify-content-md-start justify-content-sm-center justify-content-center mt-3">
                                 <span className="col-2 d-md-block d-none" />
-                                <button htmlFor="newTourForm" type="submit" className="col-8">{this.state.tourId && this.state.tourId.length > 0 ? textPage.additionalInformation.editTour : textPage.additionalInformation.addTour}</button>
-                                <span className="ml-3" onClick={() => this.toggle()}>{textPage.additionalInformation.cancel}</span>
+                                <div className="d-flex flex-column">
+                                    <div className="d-flex flex-row">
+                                        <button htmlFor="newTourForm" type="submit" className="col-8">{this.state.tourId &&
+                                            this.state.tourId.length > 0 ? textPage.additionalInformation.editTour : textPage.additionalInformation.addTour}</button>               
+                                        <span className="ml-3" onClick={() => this.toggle()}>{textPage.additionalInformation.cancel}</span>
+                                    </div>     
+                                    <text className="errorText">
+                                        {textPage.errorText}
+                                    </text>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -2003,15 +2178,12 @@ class AgencyProfileTourClass extends React.Component {
                                         </div>
                                         <div className="d-flex flex-row" onClick={() => this.tourSeatsModalShow(element)}>
                                             <div className="d-flex col-6 cardHelpButtonBlocks agencyButtonTextStyle">{textPageAgencyProfile.seatsTable}</div>
-                                            <div className="d-flex col-6 p-0 agencyButtonStyle justify-content-center ">
-                                                <button className="w-100">
+                                            <div className="d-flex flex-column col-6 p-0 agencyButtonStyle justify-content-center ">
+                                                <button className="w-100 h-100">
                                                     <div className="agencyCalendarButton" style={{ margin: '0 auto' }}></div>
                                                 </button>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div className="d-flex flex-row">
-
                                     </div>
                                 </div>
                             </div>
