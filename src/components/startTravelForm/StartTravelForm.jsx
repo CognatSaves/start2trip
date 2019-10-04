@@ -249,6 +249,97 @@ export default class StartTravelForm extends React.Component {
 
         }
     }
+
+    validateTours = () => {
+        debugger
+        let massValidate = document.querySelectorAll(".validate");
+        let phoneInput = document.querySelector(".route_datePhoneInput");
+        let departureTime = document.querySelector(".departureTime");
+        let numberOfPeople = document.querySelector(".numberOfPeople");
+        let placeDeparture = document.querySelector(".placeDeparture");
+        let checkBoxes = document.querySelector(".checkboxStyle");
+        let email = document.querySelector(".validateEmail");
+        // let description = document.querySelector(".description");
+
+        let isAllGood = true;
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        let emailValid = re.test(String(this.state.email).toLowerCase());
+        for (let i = 0; i < massValidate.length; i++) {
+            let el = massValidate[i].children[1];
+            if (el.children.length == 2) {
+                if (el.children[1].value == "") {
+                    massValidate[i].children[1].children[0].classList.add("draver_route-error");
+                    isAllGood = false;
+                }
+            }
+        }
+        if (this.state.email === "" || !emailValid /*|| !this.state.emailValid*/) {
+            email.children[1].children[0].classList.add("draver_route-error");
+            isAllGood = false;
+        }
+        if (this.state.telNumber === undefined || this.state.telNumber.length < 5) {
+            phoneInput.children[1].classList.add("draver_route-error");
+            isAllGood = false;
+        }
+        if (this.state.checkBoxes === false) {
+            checkBoxes.classList.add("draver_route-error");
+            isAllGood = false;
+        }
+        if (this.state.departureTime === "") {
+            departureTime.classList.add("draver_route-error");
+            isAllGood = false;
+        }
+        if (this.state.numberOfPeople === "") {
+            numberOfPeople.classList.add("draver_route-error");
+            isAllGood = false;
+        }
+        if (this.state.placeDeparture === "") {
+            placeDeparture.children[1].children[0].classList.add("draver_route-error");
+            isAllGood = false;
+        }
+        if (this.state.placeDeparture === "") {
+            placeDeparture.children[1].children[0].classList.add("draver_route-error");
+            isAllGood = false;
+        }
+        // if (this.state.description === "") {
+        //     description.children[1].children[0].classList.add("draver_route-error");
+        //     isAllGood = false;
+        // }
+
+        this.setState({ errorMes: !isAllGood, emailValid: emailValid })
+
+        if (isAllGood) {
+
+          
+            let body = {
+                newFirstName: this.state.firstName,
+                newSecondName: this.state.lastName,
+                startDate: this.state.date ,
+                startTime: this.state.departureTime,
+                tourId:this.props.isTourDescription?this.props.elementActive.tour.id:this.props.elementActive.element.id,
+                startPlace: this.state.placeDeparture,
+                price: this.props.elementPrice,
+                tripCommentary: this.state.description,
+                carrier: this.props.isTourDescription?this.props.elementActive.tour.author.id:this.props.elementActive.element.author.id,
+                currencyType: this.props.storeState.currencies.length > 0 ? this.props.storeState.currencies[this.props.storeState.activeCurrencyNumber].id : undefined,
+                tripType: 'Tour',
+                newPhone: this.state.telNumber,
+                passengerNumber: this.state.numberOfPeople,
+                promocode: this.state.promoCode,
+                clientEmail: this.state.email,
+                frontendAddress: requests.frontendAddress,
+                userLangCookies: (cookies.get('userLang', { path: '/' })).toUpperCase(),
+                country: cookies.get('country', { path: '/' })
+            };
+            console.log("--------------------------------")
+            console.log(body);
+            console.log("--------------------------------")
+            this.sendTripRequest(JSON.stringify(body));
+
+
+        }
+    }
+
     promocodeVerification = () => {
 
         this.setState({

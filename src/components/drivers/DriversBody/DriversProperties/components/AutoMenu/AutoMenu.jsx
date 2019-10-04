@@ -22,7 +22,7 @@ const MenuProps = {
         style: {
             maxHeight: 300,
             width: 220,
-            background: "#828ca5",
+            background: "#fff",
             color: "#fff",
             marginTop: '56px',
             boxShadow: "0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22)",

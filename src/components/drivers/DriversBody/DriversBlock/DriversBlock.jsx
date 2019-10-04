@@ -117,8 +117,8 @@ class DriversBlockClass extends React.Component {
 
     selectedElements.map((element, index) => {
       element.language.map((el, i) => {
-        for (let t = 0; t < that.props.storeState.languages.length; t++) {
-          if (el === that.props.storeState.languages[t].ISO) {
+        for (let t = 0; t < that.props.storeState.untranslatedlanguages.length; t++) {
+          if (el === that.props.storeState.untranslatedlanguages[t].ISO) {
             element.language[i] = t;
           }
         }
@@ -144,7 +144,7 @@ class DriversBlockClass extends React.Component {
 
 
     console.log('DriversBlock render');
-
+debugger
     let driversArray = this.driversSort([...this.props.driversState.driversList], this.props.storeState.sortMenuValue);
     let from = (this.props.driversState.page - this.props.driversState.showPages) * this.props.storeState.pagesMenuValue;
     let number = (this.props.driversState.page) * this.props.storeState.pagesMenuValue;
@@ -248,8 +248,14 @@ class DriversBlockClass extends React.Component {
                       <div className="langi">
 
                         {
-                          element.language.map((langElement, index) =>
-                            <div className="driversBlock_languages_flag" style={{ background: "url(" + (this.props.storeState.languages.length > 0 ? requests.serverAddressImg + this.props.storeState.languages[langElement].icon.url : '') + ")", backgroundSize: "15px 15px" }} />
+                          
+                          element.language.map((langElement, index) =>{
+                            debugger;
+                            return(
+<div className="driversBlock_languages_flag" style={{ background: "url(" + (this.props.storeState.untranslatedlanguages.length > 0 ? requests.serverAddressImg + this.props.storeState.untranslatedlanguages[langElement].icon.url : '') + ")", backgroundSize: "15px 15px" }} />
+                            )
+                          }
+                            
                           )
                         }
                       </div>

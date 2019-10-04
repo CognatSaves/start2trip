@@ -122,7 +122,7 @@ class ToursListClass extends React.Component {
         el.isGood = false
         for (let i = 0; i < el.element.language.length; i++) {
             for (let j = 0; j < this.props.storeState.languageValue.length; j++) {
-                if (el.element.language[i] === this.props.storeState.languages[this.props.storeState.languageValue[j]].id) {
+                if (el.element.language[i] === this.props.storeState.untranslatedlanguages[this.props.storeState.languageValue[j]].id) {
                     el.isGood = true
                     return el
                 }

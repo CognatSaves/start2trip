@@ -20,7 +20,8 @@
     /* box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); */
     z-index: 30;
 }
-.classFormControl .MuiSelect-icon{
+
+.classFormControl .MuiSelect-icon {
     color: #fff !important;
 }
 
@@ -50,7 +51,7 @@
     padding-bottom: 0px !important;
     padding-top: 0px !important;
     min-height: 30px !important;
-	line-height: 2.4!important;
+    line-height: 2.4 !important;
 }
 
 .MuiCheckbox-root {
@@ -79,7 +80,7 @@
     position: relative;
     width: 128px;
     height: 30px;
-    background: rgba(48, 66, 105, 0.6);
+    background: #fff;
     border: none;
     transition: all 0.3s;
 }
@@ -125,4 +126,36 @@
     font-weight: 400;
     font-size: 9pt;
     color: #fff;
+}
+
+.MuiMenu-paper::-webkit-scrollbar-button {
+    background-image: url('');
+    background-repeat: no-repeat;
+    width: 5px;
+    height: 0px
+}
+
+.MuiMenu-paper:-webkit-scrollbar-track {
+    background-color: rgb(240, 240, 240);
+}
+
+.MuiMenu-paper::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    background-color: #ccc;
+}
+
+.MuiMenu-paper::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(240, 240, 240);
+}
+
+.MuiMenu-paper::-webkit-resizer {
+    background-image: url('');
+    background-repeat: no-repeat;
+    width: 4px;
+    height: 0px
+}
+
+.MuiMenu-paper::-webkit-scrollbar {
+    width: 4px;
 }

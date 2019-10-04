@@ -208,7 +208,7 @@ export default class StartTravelContent extends React.Component {
                                 rows="2"
                                 rowsMax="2"
                                 defaultValue={that.state.description}
-                                onChange={(event) => { that.setState({ description: event.target.value }); event.target.previousSibling.classList.remove("draver_route-error") }}
+                                onChange={(event) => { that.setState({ description: event.target.value }); }}
                                 className="textField w-100 description"
                                 margin="normal"
                                 variant="outlined"
@@ -257,7 +257,7 @@ export default class StartTravelContent extends React.Component {
 
                                 {
                                     isCurrencyLoaded ? /**пока валюты не загружены - не будет отображаться кнопка "заказать тур" */
-                                        <div className={flagAllOk ? "drivers_routeBtn drivers_routeBtn-active" : "drivers_routeBtn"} onClick={() => { that.validate() }}>
+                                        <div className={flagAllOk ? "drivers_routeBtn drivers_routeBtn-active" : "drivers_routeBtn"} onClick={() => { this.props.isTour ?that.validateTours():that.validate()  }}>
                                             <span>{textInfo.bookTour}</span>
                                         </div>
                                         : <React.Fragment />

@@ -90,7 +90,7 @@ class LanguageMenuClass extends React.Component {
                         MenuProps={MenuProps}
                     >
                         {/* <MenuItem disabled>Выберите типы</MenuItem> */}
-                        {this.props.storeState.languages.map((element, index) => (
+                        {this.props.storeState.untranslatedlanguages.map((element, index) => (
                             <MenuItem key={index} value={element.languageName}>
                                 <Checkbox color="#fff" checked={this.state.languageName.indexOf(element.languageName) > -1} />
                                 <ListItemText primary={element.languageName} />
