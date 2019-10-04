@@ -24,8 +24,10 @@ class UserProfileTrevelHistoryClass extends React.Component {
         }
         let that = this;
         let textInfo = this.props.storeState.languageTextMain.userProfile.userProfileTravelHistory;
+        let textInfoAgency = this.props.storeState.languageText.agencyProfile.agencyProfileHistory;
+
         return (
-            <div className="d-flex flex-wrap justify-content-center">
+            <div className="d-flex flex-wrap justify-content-center" style={{height: '100%'}}>
                 {this.props.trevelHistory.map((element, index) =>
                     <div className="col-lg-3 col-md-4 col-sm-6 col-11 p-2">
                         <div className="trevelHistoryBody  d-flex flex-column">
@@ -82,6 +84,10 @@ class UserProfileTrevelHistoryClass extends React.Component {
                         </div>
                     </div>
                 )}
+                {
+                    this.props.trevelHistory.length===0 &&
+                    <div style={{margin: 'auto', paddingBottom: '7%'}}>{this.props.isHistory ?  textInfoAgency.emptyHistory : textInfoAgency.emptyUpcoming}</div>
+                }
             </div>
         );
     }

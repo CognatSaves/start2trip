@@ -66,6 +66,8 @@ const agencyProfile = {
     agencyProfileHistory: {
         upcoming: "Upcoming",
         story: "History",
+        emptyUpcoming: 'There are no upcoming trips.',
+        emptyHistory: 'Travel history is clear.'
     },
     agencyProfileTrevelHistory: {
         tripId: 'trip ID',

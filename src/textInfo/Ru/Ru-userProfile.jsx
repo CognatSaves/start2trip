@@ -97,7 +97,9 @@ let userProfile = {
         startFact: 'Начало поездки',
         notStart: 'Поездка не была начата',
         endFact: 'Окончание поездки',
-        notEnd: 'Поездка не была закончена'
+        notEnd: 'Поездка не была закончена',
+        emptyTrips: 'Предстоящие поездки отсутствуют.',
+        emptyHistory: 'История поездок чиста.'
     },
     userProfileSettings: {
         settingsBodyTitle: "Настройки профиля",

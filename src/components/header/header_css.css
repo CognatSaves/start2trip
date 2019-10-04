@@ -187,6 +187,7 @@
     padding: 0px 15px;
     color: #fff;
     line-height: 65px;
+    white-space: nowrap;
 }
 
 .buttonMassLink:hover {

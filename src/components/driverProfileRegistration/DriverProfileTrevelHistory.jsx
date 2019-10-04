@@ -163,23 +163,15 @@ class DriverProfileTrevelHistoryClass extends React.Component {
             routeString += ' (' + length + ', ' + time + ")";
             return routeString;
         }
-        /*
-        function createDateTimeString(start){
-            let date = new Date(start);
-            let month = date.getUTCMonth(); let day = date.getUTCDate(); let hours = date.getUTCHours(); let minutes = date.getMinutes();
-            let res = date.getUTCFullYear()+"-"+(month>=10 ? month : '0'+month)+"-"+(day>=10 ? day : '0'+day)+'; '+
-            (hours>=10 ? hours : '0'+hours)+":"+(minutes>=10 ? minutes : '0'+minutes);
-            return res;
-        }
-        */
+
         let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileTrevelHistory;
 
         let that = this;
-
+        let textInfoAgency = this.props.storeState.languageText.agencyProfile.agencyProfileHistory;
 
 
         return (
-            <div className="d-flex flex-wrap justify-content-md-start justify-content-center">
+            <div className="d-flex flex-wrap justify-content-md-start justify-content-center" style={{height: '100%'}}>
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
 
                 {this.props.trevelHistory.map((element, index) =>
@@ -260,6 +252,10 @@ class DriverProfileTrevelHistoryClass extends React.Component {
 
                     </div>
                 )}
+                {
+                    this.props.trevelHistory.length===0 &&
+                    <div style={{margin: 'auto', paddingBottom: '7%'}}>{this.props.isHistory ? textInfoAgency.emptyHistory : textInfoAgency.emptyUpcoming}</div>
+                }
             </div>
         );
     }
