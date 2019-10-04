@@ -339,7 +339,50 @@ const initialState = {
         cookies.set('userCurr', that.props.storeState.currencies[selectedId].ISO, { path: '/', expires: date });
         that.setLocals('userCurr', selectedId)
     },
+    changeActiveCountry(selectedCountry, modalCountryDispatchFunction, cookies, currencies, setActiveCurrDispatchFunction){
+        
+        //эта функция осуществляет переключение страны на выбранную
+        //это включает в себя переключение массива разрешённых валют
+        //и даже переключение активной валюты (всё это обговаривалось)
 
+        function findTargetCurrency(currencies, selectedId) {
+            //если набор валют корректен, то отработает только этот цикл
+            for (let i = 0; i < currencies.length; i++) {
+                if (currencies[i].id === selectedId) {
+                    return i;
+                }
+            }
+            //если пользовательскую валюту не нашли, выбираем доллары (желательно конечно было бы подтягивать базовую валюту, но то долго
+            //и пока у нас базовая валюта - доллар, так что пойдёт)
+            for (let i = 0; i < currencies.length; i++) {
+                if (currencies[i].ISO === 'USD') {
+                    return i;
+                }
+            }
+            //если всё уже совсем плохо, но что-то всё-таки пришло, берём первое попавшееся
+            return 0;
+        }
+        modalCountryDispatchFunction(selectedCountry.ISO, selectedCountry.isoMap);
+        //this.props.dispatch(modalCountryDispatch(selectedCountry.ISO, selectedCountry.isoMap));
+        let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
+        cookies.set("country", selectedCountry.ISO, { path: '/', expires: date });
+
+        //данный блок меняет язык при смене страны  - сначала отыскивает номер языка по id, потом
+        //вешает соответствующую куку и запись в редусер
+        let selectedCurrenctIndex = findTargetCurrency(currencies, selectedCountry.nationalCurrency);
+        cookies.set('userCurr', currencies[selectedCurrenctIndex].ISO, { path: '/', expires: date });
+        setActiveCurrDispatchFunction(selectedCurrenctIndex);
+        //this.props.dispatch(setActiveCurr(selectedCurrenctIndex));       
+    },
+    findCountryById(id, countries){
+        //возвращает страну - элемент, иначе undefined
+        for(let i=0; i<countries.length; i++){
+            if(countries[i].id===id){
+                return countries[i];
+            }
+        }
+        return undefined;
+    }
 };
 
 

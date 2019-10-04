@@ -2097,7 +2097,7 @@ class AgencyProfileTourClass extends React.Component {
                                 <span className="col-2 d-md-block d-none" />
                                 <div className="d-flex flex-column">
                                     <div className="d-flex flex-row">
-                                        <button htmlFor="newTourForm" type="submit" className="col-8">{this.state.tourId &&
+                                        <button htmlFor="newTourForm" type="submit" className="col-8" style={{whiteSpace: 'nowrap'}}>{this.state.tourId &&
                                             this.state.tourId.length > 0 ? textPage.additionalInformation.editTour : textPage.additionalInformation.addTour}</button>               
                                         <span className="ml-3" onClick={() => this.toggle()}>{textPage.additionalInformation.cancel}</span>
                                     </div>     
