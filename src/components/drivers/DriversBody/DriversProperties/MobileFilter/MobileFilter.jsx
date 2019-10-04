@@ -290,7 +290,7 @@ class MobileFilterClass extends React.Component {
                 
                 <Collapse isOpen={this.state.collapseLanguageMenu}>
                   <div className="modalBodyElementlanguage" >
-                    {this.props.storeState.languages.map((element, index) => {
+                    {this.props.storeState.untranslatedlanguages.map((element, index) => {
                       let checked = false
                       for (let i = 0; i < this.state.languagesVariants.length; i++) {
                         if (this.state.languagesVariants[i] === index) {

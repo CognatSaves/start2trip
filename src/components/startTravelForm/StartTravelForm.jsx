@@ -251,7 +251,7 @@ export default class StartTravelForm extends React.Component {
     }
 
     validateTours = () => {
-        debugger
+        
         let massValidate = document.querySelectorAll(".validate");
         let phoneInput = document.querySelector(".route_datePhoneInput");
         let departureTime = document.querySelector(".departureTime");

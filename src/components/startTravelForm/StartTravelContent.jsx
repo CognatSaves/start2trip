@@ -72,7 +72,7 @@ export default class StartTravelContent extends React.Component {
         }
         }
         
-        debugger
+        
         return (
             <>
                 <DriverRefreshIndicator isRefreshExist={that.state.isRefreshExist} isRefreshing={that.state.isRefreshing} isGoodAnswer={that.state.isGoodAnswer} />

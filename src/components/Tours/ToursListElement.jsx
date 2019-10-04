@@ -44,45 +44,48 @@ class ToursListElementClass extends React.Component {
 
         let seats = element.seats
 
-         let language = element.language.map((el,index)=>{
-             debugger
-             for(let i=0;i<this.props.storeState.untranslatedlanguages.length;i++){
-                if(this.props.storeState.untranslatedlanguages[i].id === el){
+        let language = element.language.map((el, index) => {
+
+            for (let i = 0; i < this.props.storeState.untranslatedlanguages.length; i++) {
+                if (this.props.storeState.untranslatedlanguages[i].id === el) {
                     return this.props.storeState.untranslatedlanguages[i]
                 }
-             }
-         })
+            }
+        })
 
         let isoCurrencies = cookies.get('userCurr', { path: "/" })
-        let idIndex = this.getCurrencies(element.currency,"id")
+        let idIndex = this.getCurrencies(element.currency, "id")
         let price = null
-        if(this.props.storeState.currencies.length>0){
+        if (this.props.storeState.currencies.length > 0) {
 
-        let usd = element.price / this.props.storeState.currencies[idIndex].costToDefault
-        if (isoCurrencies === "USD") {
-            let idIndex = this.getCurrencies("USD","ISO")
-            usd = Math.ceil(usd)
-            price = this.props.storeState.currencies[idIndex].symbol+" "+usd
-        } else {
-            let idIndex = this.getCurrencies(isoCurrencies,"ISO")
-            usd = usd *this.props.storeState.currencies[idIndex].costToDefault
-            usd = Math.ceil(usd)
-            price = this.props.storeState.currencies[idIndex].isLeft ?(this.props.storeState.currencies[idIndex].symbol+" "+usd):
-            (usd+" "+this.props.storeState.currencies[idIndex].symbol)
-        }
+            let usd = element.price / this.props.storeState.currencies[idIndex].costToDefault
+            if (isoCurrencies === "USD") {
+                let idIndex = this.getCurrencies("USD", "ISO")
+                usd = Math.ceil(usd)
+                price = this.props.storeState.currencies[idIndex].symbol + " " + usd
+            } else {
+                let idIndex = this.getCurrencies(isoCurrencies, "ISO")
+                usd = usd * this.props.storeState.currencies[idIndex].costToDefault
+                usd = Math.ceil(usd)
+                price = this.props.storeState.currencies[idIndex].isLeft ? (this.props.storeState.currencies[idIndex].symbol + " " + usd) :
+                    (usd + " " + this.props.storeState.currencies[idIndex].symbol)
+            }
         }
         let validDepartureDate = null;
-        if (this.props.departureDate){
+        if (this.props.departureDate) {
             validDepartureDate = this.props.departureDate.split(".");
-            validDepartureDate = validDepartureDate[2]+"-"+validDepartureDate[1]+"-"+validDepartureDate[0];
+            validDepartureDate = validDepartureDate[2] + "-" + validDepartureDate[1] + "-" + validDepartureDate[0];
         }
-        let address = "/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + `/tours/${slug}`+(validDepartureDate ? `?date=`+validDepartureDate : ``);
+        let address = "/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + `/tours/${slug}` + (validDepartureDate ? `?date=` + validDepartureDate : ``);
         return (
             <div className={this.props.placeListElementClass ? this.props.placeListElementClass : "col-lg-3 col-md-4 col-sm-6 col-12 p-2 pb-3"} >
                 <div className="drivers_block_element d-flex p-0 flex-column" id={index}>
 
                     <div className="driversBlock_carImage" style={{ background: "url(" + (element.image ? (requests.serverAddressImg + element.image) : '') + ") no-repeat", backgroundSize: "cover", width: '100%' }}>
-                        <div className="toursDate">{this.props.departureDate+" | "+element.time}</div>
+                        {!this.props.isGudeTours &&
+                            <div className="toursDate">{this.props.departureDate + " | " + element.time}</div>
+                        }
+
                         <div className="toursDuration">{element.daysNumber + " " + textInfo.daysNumber}</div>
                         <Link to={address} className="driversBlock_carBlackout">
                             <div className="driversBlock_carBlackout_detailed">{textInfo.detailed}</div>
@@ -103,7 +106,7 @@ class ToursListElementClass extends React.Component {
                                     <div className="placesList_info_position_textStyle">{textInfo.seats + " " + seats}</div>
                                 </div>
                             </div>
-                            <i className="placesList_info_guide my-auto col-2" style={{ background: "url(" + (element.isGuide  ? guideIcon : agencyIcon) + ")no-repeat" }}><span className="placesList_info_guide-toolTip">{element.isGuide  ? textInfo.guide : textInfo.agency}</span></i>
+                            <i className="placesList_info_guide my-auto col-2" style={{ background: "url(" + (element.isGuide ? guideIcon : agencyIcon) + ")no-repeat" }}><span className="placesList_info_guide-toolTip">{element.isGuide ? textInfo.guide : textInfo.agency}</span></i>
                         </div>
 
                         {/* <div className="d-flex align-items-center placesList_info_position placesList_info_position_tags mb-1">
@@ -113,20 +116,20 @@ class ToursListElementClass extends React.Component {
                         <div className="d-flex pt-1">
                             <div className="placesList_info_position_textStyle d-flex align-items-center">
                                 <p className="placesList_info_textCss">Языки тура :</p>
-                            {language.map((el,index)=>(<i className="placesList_info_icons" style={{background:"url("+requests.serverAddressImg+el.icon.url+")no-repeat"}}/>))}
+                                {language.map((el, index) => (<i className="placesList_info_icons" style={{ background: "url(" + requests.serverAddressImg + el.icon.url + ")no-repeat" }} />))}
                             </div>
                         </div>
 
                     </div>
                     <button className="driversBlock_driverInfoBlock_element driversBlock_buttonStyle"
-                        onClick={() => { 
-                            
+                        onClick={() => {
+
                             console.log(element);
-                            
-                            this.props.changeTravelVisibility(element.price,this.props.elementActive);
+
+                            this.props.changeTravelVisibility(element.price, this.props.elementActive);
                             /*this.props.dispatch(setDriverCarDescription(element))*/
-                        }}>{textInfo.bookTours+" "+price }</button>
-                    {   
+                        }}>{textInfo.bookTours + " " + price}</button>
+                    {
                         /*
                         <div className="d-flex justify-content-center align-items-center col-12 toursBookBt">BOOK tours</div>
                         */

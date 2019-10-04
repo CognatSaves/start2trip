@@ -21,7 +21,7 @@ class DriverInfoProfile extends React.Component{
         }
         let element = this.props.element;
         
-        let languageIdsArray = getLanguageNumbers(element.language ? element.language : [], this.props.storeState.languages);
+        let languageIdsArray = getLanguageNumbers(element.language ? element.language : [], this.props.storeState.untranslatedlanguages);
         let textInfo = this.props.storeState.languageTextMain.drivers;
         let textInfoTour = this.props.storeState.languageTextMain.tours;
         return (
@@ -52,7 +52,7 @@ class DriverInfoProfile extends React.Component{
 
                                     {
                                         languageIdsArray.map((langElement, index) =>
-                                            <div className="driversBlock_languages_flag" style={{ background: "url(" + requests.serverAddressImg + this.props.storeState.languages[langElement].icon.url + ") no-repeat", backgroundSize: "15px 15px", margin: "auto 5px auto 0" }} />
+                                            <div className="driversBlock_languages_flag" style={{ background: "url(" + requests.serverAddressImg + this.props.storeState.untranslatedlanguages[langElement].icon.url + ") no-repeat", backgroundSize: "15px 15px", margin: "auto 5px auto 0" }} />
                                         )
                                     }
                                 </div>

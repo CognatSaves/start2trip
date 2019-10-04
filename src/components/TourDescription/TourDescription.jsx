@@ -269,9 +269,9 @@ class ToureDescriptionClass extends React.Component {
         let language = [];
         if (this.state.author !== null && this.state.author.language.length > 0) {
             language = this.state.author.language.map((el, index) => {
-                for (let i = 0; i < this.props.storeState.languages.length; i++) {
-                    if (this.props.storeState.languages[i].id === el) {
-                        return this.props.storeState.languages[i]
+                for (let i = 0; i < this.props.storeState.untranslatedlanguages.length; i++) {
+                    if (this.props.storeState.untranslatedlanguages[i].id === el) {
+                        return this.props.storeState.untranslatedlanguages[i]
                     }
                 }
             })
