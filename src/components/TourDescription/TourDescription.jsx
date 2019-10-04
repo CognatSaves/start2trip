@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { changePlacesFixedClass, setPlacesPanelSelectedElement } from '../../redusers/ActionPlaces';
 import { isMobileOnly } from 'react-device-detect';
 import { Helmet } from 'react-helmet';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import requests from '../../config';
 import './TourDescription.css'
@@ -479,7 +480,7 @@ class ToureDescriptionClass extends React.Component {
                                                             <img src={requests.serverAddressImg + this.state.author.avatar.url} alt={this.state.author.firstName + " avatar"} />
                                                         </div>
                                                         <div className="d-flex flex-column justify-content-center pl-4">
-                                                            <h5>{this.state.author.firstName + " " + this.state.author.lastName}</h5>
+                                                            <h5><Link to={"/" + cookies.get('country', { path: "/" }) + "-" + cookies.get('userLangISO', { path: "/" }) +"/guides/"+this.state.author.userSlug +"/"}>{this.state.author.firstName + " " + this.state.author.lastName}</Link></h5>
                                                             <Stars value={this.state.author.rating} commentNumber={this.state.author.comments ? this.state.author.comments.length + " отзывов" : 0} valueDisplay={true} commentNumberDisplay={true} />
                                                             <div className="d-flex align-items-center">
                                                                 <span>{textInfo.language}</span>

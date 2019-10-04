@@ -4,7 +4,7 @@ const tours = {
     seats:"Количество свободных мест",
     guide:"Гид водитель",
     agency:"Агентство",
-    daysNumber:"ден.",
+    daysNumber:"дн.",
     bookTours:"Заказать тур ",
 }
 

@@ -310,11 +310,12 @@ export default class StartTravelForm extends React.Component {
 
         if (isAllGood) {
 
-          
+            let date = new Date(this.state.date);
+            let year = date.getUTCFullYear(); let month = date.getUTCMonth() + 1; let day = date.getUTCDate();
             let body = {
                 newFirstName: this.state.firstName,
                 newSecondName: this.state.lastName,
-                startDate: this.state.date ,
+                startDate: year + '-' + (month > 10 ? month : '0' + month) + '-' + (day > 10 ? day : '0' + day),
                 startTime: this.state.departureTime,
                 tourId:this.props.isTourDescription?this.props.elementActive.tour.id:this.props.elementActive.element.id,
                 startPlace: this.state.placeDeparture,
@@ -448,7 +449,7 @@ export default class StartTravelForm extends React.Component {
                     this.props.toursState ?
                         <>
                             <Dialog open={this.props.travelVisibility} onClose={this.props.changeTravelVisibility} >
-                                {/* <div className="d-flex justify-content-center align-items-center p-5">В Разроботке</div> */}
+                                {/* <div className="d-flex justify-content-center align-items-center p-5">В Разработке</div> */}
                                 <StartTravelContent that={this} flagAllOk={flagAllOk} carCapacityArray={carCapacityArray} activeCurrency={this.props.activeCurrency}
                                     textInfo={this.props.textInfo} changeSuccessVisibility={this.props.changeSuccessVisibility} isTour={true} elementActive={this.props.elementActive}
                                     isTourDescription={this.props.isTourDescription}

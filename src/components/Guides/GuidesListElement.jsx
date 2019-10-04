@@ -41,12 +41,12 @@ class GuidesListElementClass extends React.Component {
                         
                     <div className="d-flex flex-column guidesList_info">
                         <div className="d-flex flex-row">
-                            <Link to={linkAddress} className="placesList_placeName d-flex">
+                            <Link to={linkAddress} className="guideList_placeName d-flex">
                                 <div>
                                     {element.name}
                                 </div>
                             </Link>
-                            <div className="langi placesList_placeName d-flex" style={{paddingTop: '2px'}} key={"key"+element.id}>
+                            <div className="langi guideList_placeName d-flex" style={{paddingTop: '2px'}} key={"key"+element.id}>
                                 {
                                     element.language.map((langElement, index) =>{
                                         
@@ -68,7 +68,7 @@ class GuidesListElementClass extends React.Component {
                         </div>
 
                         <div className="d-flex ">
-                            <div className="">{textInfo.excursions+": "+element.departurePointArray.length}</div>
+                            <div className="guideList_tours">{textInfo.excursions+": "+element.departurePointArray.length}</div>
                         </div>
                     </div>
                 </div>

@@ -21,6 +21,24 @@
     /* text-transform: capitalize; */
 }
 
+.guideList_placeName{
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 500;
+    min-height: max-content;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    color: #304269;
+    margin-top: 12px;
+
+}
+
+.guideList_tours{
+    font-size: 14px;
+    font-weight: 400;
+    color: #304269;
+}
+
 .placesList_picture {
     display: flex;
     width: 190px;

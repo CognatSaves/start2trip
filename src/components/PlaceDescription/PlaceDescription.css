@@ -60,7 +60,7 @@ h2 {
     font-weight: 500;
 }
 
-.placeDescription_author span{
+.placeDescription_author span {
     color: #304269;
     font-size: 14px;
     font-weight: 400;
@@ -68,18 +68,26 @@ h2 {
 }
 
 
-.placeDescription_author h5{
+.placeDescription_author h5 {
     color: #304269;
     margin-bottom: 0px;
 }
 
-.placeDescription_author p{
+.placeDescription_author h5 a {
+    color: #304269;
+}
+
+.placeDescription_author h5:hover a {
+    color: #007bff;
+}
+
+.placeDescription_author p {
     font-size: 14px;
     font-weight: 400;
     color: #666;
 }
 
-.placeDescription_author img{
+.placeDescription_author img {
     object-fit: cover;
     width: 160px;
     height: 160px;
@@ -92,17 +100,17 @@ h2 {
     color: rgb(0, 0, 0, 0.8);
     overflow-y: hidden;
     transition: all 0.3s;
-    
+
 }
 
-.placeDescription_block_btMore{
+.placeDescription_block_btMore {
     cursor: pointer;
     padding-right: 1.5%;
     color: #304269;
     transition: all 0.3s;
 }
 
-.placeDescription_block_btMore:hover{
+.placeDescription_block_btMore:hover {
     color: #f60;
 }
 
@@ -297,7 +305,7 @@ h2 {
     font-size: 14px !important;
     max-height: 41px;
     line-height: 41px;
-   
+
 }
 
 .routeDescrDate input,
@@ -464,12 +472,13 @@ h2 {
 }
 
 @media (max-width: 742px) {
-    .placeDescription_author img{
+    .placeDescription_author img {
         object-fit: cover;
         width: 90px;
         height: 90px;
         border-radius: 50%;
     }
+
     #placeDescriptionId {
         max-height: 210px;
         height: 210px;
@@ -484,24 +493,25 @@ h2 {
     }
 
     .routeDescrDate input,
-.placeDescrDate input {
-    margin-top: 0px;
-}
+    .placeDescrDate input {
+        margin-top: 0px;
+    }
 
     .placePhotos_elementBlock {
         margin: 0px 0;
         position: relative;
         padding: 0 3px !important;
     }
+
     @keyframes glowing {
         0% {
             background: rgba(34, 157, 78, .49);
         }
-    
+
         50% {
             background: #fff;
         }
-    
+
         100% {
             background: rgba(34, 157, 78, .49);
         }
