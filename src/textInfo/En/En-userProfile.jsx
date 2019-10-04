@@ -97,7 +97,7 @@ let userProfile = {
         startFact: 'Start Trip',
         notStart: 'Trip was not started',
         endFact: 'End of Trip',
-        notEnd: 'The trip was not finished'
+        notEnd: 'The trip was not finished',
     },
     userProfileSettings: {
         settingsBodyTitle: "Profile Settings",

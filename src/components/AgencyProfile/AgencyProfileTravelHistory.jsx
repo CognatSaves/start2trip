@@ -161,10 +161,10 @@ class AgencyProfileTravelHistoryClass extends React.Component {
         }
 
         let textInfo = this.props.storeState.languageText.agencyProfile.agencyProfileTrevelHistory;
-
+        let textInfoAgency = this.props.storeState.languageText.agencyProfile.agencyProfileHistory;
         let that = this;
         return (
-            <div className="d-flex flex-wrap justify-content-center">
+            <div className="d-flex flex-wrap justify-content-center" style={{height: '100%'}}>
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
 
                 {this.props.trevelHistory.map((element, index) =>
@@ -256,6 +256,10 @@ class AgencyProfileTravelHistoryClass extends React.Component {
                         </div>
                     </div>
                 )}
+                {
+                    this.props.trevelHistory.length===0 &&
+                    <div style={{margin: 'auto', paddingBottom: '7%'}}>{this.props.isHistory ? textInfoAgency.emptyHistory : textInfoAgency.emptyUpcoming}</div>
+                }
             </div>
         );
     }

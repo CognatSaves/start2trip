@@ -66,6 +66,8 @@ const agencyProfile = {
     agencyProfileHistory: {
         upcoming: "მოსალოდნელი",
         story: "ისტორია",
+        emptyUpcoming: 'უახლოესი ვიზიტები არ არის.',
+        emptyHistory: 'მოგზაურობის ისტორია ნათელია.'
     },
     agencyProfileTrevelHistory: {
         tripId: 'მოგზაურობის ID',

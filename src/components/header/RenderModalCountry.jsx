@@ -16,38 +16,7 @@ class RenderModalCountryClass extends React.Component {
         };
     }
     onSelect = (element) => {
-        /*
-        function findTargetCurrency(currencies, selectedId) {
-            //если набор валют корректен, то отработает только этот цикл
-            for (let i = 0; i < currencies.length; i++) {
-                if (currencies[i].id === selectedId) {
-                    return i;
-                }
-            }
-            //если пользовательскую валюту не нашли, выбираем доллары (желательно конечно было бы подтягивать базовую валюту, но то долго
-            //и пока у нас базовая валюта - доллар, так что пойдёт)
-            for (let i = 0; i < currencies.length; i++) {
-                if (currencies[i].ISO === 'USD') {
-                    return i;
-                }
-            }
-            //если всё уже совсем плохо, но что-то всё-таки пришло, берём первое попавшееся
-            return 0;
-        }
 
-        this.props.dispatch(modalCountryDispatch(element.ISO, element.isoMap));
-        let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
-        cookies.set("country", element.ISO, { path: '/', expires: date });
-
-        //данный блок меняет язык при смене страны  - сначала отыскивает номер языка по id, потом
-        //вешает соответствующую куку и запись в редусер
-        let selectedCurrenctIndex = findTargetCurrency(this.props.storeState.currencies, element.nationalCurrency);
-        cookies.set('userCurr', this.props.storeState.currencies[selectedCurrenctIndex].ISO, { path: '/', expires: date });
-        this.props.dispatch(setActiveCurr(selectedCurrenctIndex));
-
-
-        let cookiesLangISO = cookies.get('userLangISO', { path: '/' })
-        */
         this.props.globalhistory.changeActiveCountry(element,
             (ISO, isoMap)=>this.props.dispatch(modalCountryDispatch(ISO,isoMap)),
             cookies, this.props.storeState.currencies,
@@ -58,7 +27,6 @@ class RenderModalCountryClass extends React.Component {
         // namePage = namePage.join('/')//в случае, когда мы стоим в countrySelect при первом заходе в namePage остаётся пустая строка
         let cookiesLangISO = cookies.get('userLangISO', { path: '/' })
         this.props.globalhistory.history.push("/" + element.ISO + "-" + cookiesLangISO + "/routes/")
-        // window.location.reload()
     }
     render() {
         return (

@@ -278,7 +278,7 @@ class AccountRedirectorClass extends React.Component {
       let parseLocationPathnameResult = parseLocationPathname(pathname, profile);
 
       if (parseLocationPathnameResult) {
-        debugger;
+        
         let country = this.props.globalReduser.findCountryById(profile.country, this.props.storeState.countries);
         if(country && this.props.storeState.country!==country.ISO){
           this.props.globalReduser.changeActiveCountry(country, (ISO, isoMap)=>this.props.dispatch(modalCountryDispatch(ISO,isoMap)),
