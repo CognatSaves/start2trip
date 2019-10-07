@@ -16,17 +16,16 @@ export default class StartTravelForm extends React.Component {
 
     constructor(props) {
         super(props);
-
+        
         this.state = {
-            travelVisibility: false,
-            // successVisibility: 'none',
-            page: 1,
-            // mapRwanda:true,
-            showPages: 1,
-            showPanelVariant: 0,
+            travelVisibility: props.travelVisibility,
+            //page: 1,
+            //showPages: 1,
+            //showPanelVariant: 0,
             //Form value Begin
+            
             firstName: props.storeState.userData ? props.storeState.userData.firstName : "",
-            lastName: props.storeState.userData ? props.storeState.userData.lastName : "",
+            //lastName: props.storeState.userData ? props.storeState.userData.lastName : "",
             telNumber: props.storeState.userData ? props.storeState.userData.workPhone : "",
             email: props.storeState.userData ? props.storeState.userData.email : "",
             date: props.elementActive ? props.elementActive.date : new Date(),
@@ -38,13 +37,14 @@ export default class StartTravelForm extends React.Component {
             discount: 0,
             checkBoxes: false,
             emailValid: false,
+            
             //Form value end
             errorMes: false,
-            flagAllOk: false,
+            //flagAllOk: false,
             promoCod: "",
-            isRefreshExist: false,
-            isRefreshing: false,
-            isGoodAnswer: false,
+            //isRefreshExist: false,
+            //isRefreshing: false,
+            //isGoodAnswer: false,
             promoCodIsOk: true,
             time: props.globalReduser.time,
         }
@@ -90,7 +90,7 @@ export default class StartTravelForm extends React.Component {
                 emailValid: false,
                 //Form value end
                 errorMes: false,
-                flagAllOk: false,
+                //flagAllOk: false,
                 promoCod: "",
                 isRefreshExist: false,
                 isRefreshing: false,
@@ -114,7 +114,7 @@ export default class StartTravelForm extends React.Component {
                     return response.json();
                 })
                 .then(function (data) {
-
+                    debugger;
                     if (data.error) {
 
                         console.log("bad");
@@ -221,7 +221,7 @@ export default class StartTravelForm extends React.Component {
             let body = {
                 newFirstName: this.state.firstName,
                 newSecondName: this.state.lastName,
-                startDate: year + '-' + (month > 10 ? month : '0' + month) + '-' + (day > 10 ? day : '0' + day),
+                startDate: year + '-' + (month >= 10 ? month : '0' + month) + '-' + (day >= 10 ? day : '0' + day),
                 startTime: this.state.departureTime,
                 route: [...this.props.storeState.cities],
                 startPlace: this.state.placeDeparture,
@@ -309,15 +309,16 @@ export default class StartTravelForm extends React.Component {
         this.setState({ errorMes: !isAllGood, emailValid: emailValid })
 
         if (isAllGood) {
-
+            
             let date = new Date(this.state.date);
             let year = date.getUTCFullYear(); let month = date.getUTCMonth() + 1; let day = date.getUTCDate();
             let body = {
                 newFirstName: this.state.firstName,
                 newSecondName: this.state.lastName,
-                startDate: year + '-' + (month > 10 ? month : '0' + month) + '-' + (day > 10 ? day : '0' + day),
+                startDate: year + '-' + (month >= 10 ? month : '0' + month) + '-' + (day >= 10 ? day : '0' + day),
                 startTime: this.state.departureTime,
                 tourId:this.props.isTourDescription?this.props.elementActive.tour.id:this.props.elementActive.element.id,
+                tourlocId: this.props.isTourDescription? this.props.elementActive.local.id:this.props.elementActive.element.tourlocalization.id,
                 startPlace: this.state.placeDeparture,
                 price: this.props.elementPrice,
                 tripCommentary: this.state.description,
@@ -389,6 +390,41 @@ export default class StartTravelForm extends React.Component {
             })
     }
     render() {
+        if(this.state.travelVisibility !== this.props.travelVisibility){
+            
+            this.setState({
+                
+                travelVisibility: this.props.travelVisibility,
+                //page: 1,
+                //showPages: 1,
+                //showPanelVariant: 0,
+                //Form value Begin
+                
+                firstName: this.props.storeState.userData ? this.props.storeState.userData.firstName : "",
+                //lastName: props.storeState.userData ? props.storeState.userData.lastName : "",
+                telNumber: this.props.storeState.userData ? this.props.storeState.userData.workPhone : "",
+                email: this.props.storeState.userData ? this.props.storeState.userData.email : "",
+                date: this.props.elementActive ? this.props.elementActive.date : new Date(),
+                departureTime: "",
+                numberOfPeople: "",
+                placeDeparture: "",
+                description: "",
+                promoCode: "",
+                discount: 0,
+                checkBoxes: false,
+                emailValid: false,
+                
+                //Form value end
+                errorMes: false,
+                //flagAllOk: false,
+                promoCod: "",
+                //isRefreshExist: false,
+                //isRefreshing: false,
+                //isGoodAnswer: false,
+                promoCodIsOk: true,
+                time: this.props.globalReduser.time,
+            })
+        }
         let flagAllOk = false;
         if (
             this.state.firstName !== "" &&
