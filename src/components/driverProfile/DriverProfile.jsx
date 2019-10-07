@@ -72,7 +72,7 @@ class DriverProfileClass extends React.Component {
             emailValid: false,
             //Form value end
             errorMes: false,
-            flagAllOk: false,
+            //flagAllOk: false,
             promoCod: "",
             isRefreshExist: true,//в конструкторе происходит вызов ф-ции
             isRefreshing: true,//следовательно можно крутить по кд с начала
