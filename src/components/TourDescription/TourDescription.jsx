@@ -282,7 +282,6 @@ class ToureDescriptionClass extends React.Component {
             cars = this.state.author.cars
         }
 
-
         return (
             <>
                 {
@@ -381,16 +380,20 @@ class ToureDescriptionClass extends React.Component {
                                                     removeElements={this.state.newTour.additionalTours.length === 0 ? [simularPlaceBlockId] : []} />
                                             }
 
-                                            <div className="placeDescription_block d-flex flex-column p-0" style={this.state.btMore ? { maxHeight: "max-content" } : { maxHeight: "480px" }} id={topBlockId + "1"}>
+                                            <div className="placeDescription_block d-flex flex-column p-0" style={this.state.btMore ? { maxHeight: "max-content" } : { maxHeight: "462px" }} id={topBlockId + "1"}>
                                                 <div className="placeDescription_fragmentName" style={{ marginBottom: "15px" }} >{textInfo.placeDescription.variantsArray[0]}</div>
                                                 {/* <div key={JSON.stringify(this.state.newTour.local.endPlace)}>
                                                     <PlaceTravelBlock id={topBlockId + "3"} place={{ ...this.state.newTour.local, country: this.state.newTour.country, capital: this.state.newTour.capital }} />
                                                 </div> */}
                                                 <PlaceProgramm id={topBlockId + "1"} tagsArray={[]} place={{ ...this.state.newTour.local/*, tags: this.state.newTour.tour.tags, rating: this.state.newTour.tour.rating, comments: this.state.newTour.tour.commentNumber*/ }} />
                                             </div>
-                                            <div className="placeDescription_block_btMore d-flex justify-content-end">
+                                            {
+                                                this.state.newTour.local.info.length>1455 &&
+                                                <div className="placeDescription_block_btMore d-flex justify-content-end">
                                                 <span onClick={() => { this.setState({ btMore: !this.state.btMore }) }}>{this.state.btMore ? "Скрыть" : "Подробнее"}</span>
                                             </div>
+                                            }
+                                           
                                             {isMobileOnly ? <>
                                                 <div className="placeDescription_fragmentName" style={{ marginBottom: "15px" }} >{textInfo.share}</div>
                                                 <div className="d-flex ">

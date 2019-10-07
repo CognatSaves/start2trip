@@ -274,7 +274,7 @@ export default class StartTravelForm extends React.Component {
             }
         }
         if (this.state.email === "" || !emailValid /*|| !this.state.emailValid*/) {
-            email.children[1].children[0].classList.add("draver_route-error");
+            // email.children[1].children[0].classList.add("draver_route-error");
             isAllGood = false;
         }
         if (this.state.telNumber === undefined || this.state.telNumber.length < 5) {

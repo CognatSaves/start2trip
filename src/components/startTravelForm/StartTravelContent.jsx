@@ -71,7 +71,7 @@ export default class StartTravelContent extends React.Component {
             that.setState({ placeDeparture: departurePoint })
         }
         }
-        
+        debugger
         
         return (
             <>
@@ -88,9 +88,10 @@ export default class StartTravelContent extends React.Component {
                         <div className="d-flex flex-sm-row flex-wrap flex-column col-12 p-0">
                             <div className="col-sm-6 col-12 order-0">
                                 <TextField
+                                    error={that.state.errorMes && !that.state.firstName}
                                     label={textInfo.nameLabel + '*'}
                                     value={that.state.firstName}
-                                    onChange={(event) => { that.setState({ firstName: event.target.value }); event.target.previousSibling.classList.remove("driver_route-error") }}
+                                    onChange={(event) => { that.setState({ firstName: event.target.value }); }}
                                     className="textField validate w-100"
                                     margin="normal"
                                     variant="outlined"
@@ -123,10 +124,11 @@ export default class StartTravelContent extends React.Component {
                             </div>
                             <div className="col-sm-6 col-12 order-3">
                                 <TextField
+                                    error={that.state.errorMes && !that.state.emailValid && !that.state.email}
                                     label="Email*"
                                     value={that.state.email}
-                                    onChange={(event) => { that.setState({ email: event.target.value }); event.target.previousSibling.classList.remove("driver_route-error") }}
-                                    className="textField validateEmail w-100"
+                                    onChange={(event) => { that.setState({ email: event.target.value }); }}
+                                    className="textField w-100"
                                     margin="normal"
                                     variant="outlined"
                                 />

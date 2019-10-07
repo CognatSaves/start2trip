@@ -1,11 +1,12 @@
 const tours = {
     detailed:"Подробнее",
     comments:"отзыва(ов)",
-    seats:"Количество свободных мест",
+    seats:["Осталось: ","Всего мест: "," мест"],
     guide:"Гид водитель",
     agency:"Агентство",
     daysNumber:"дн.",
-    bookTours:"Заказать тур ",
+    bookTours:["Бронировать место ","Бронировать тур "],
+    Languages:"Языки:",
 }
 
 export default tours;

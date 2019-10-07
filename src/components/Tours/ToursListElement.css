@@ -49,7 +49,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    min-height: 145px;
+    min-height: 82px;
     max-height: 175px;
     padding: 0px 10px;
 }
@@ -84,4 +84,55 @@
     font-weight: 400;
     font-style: normal;
     font-family: "Roboto";
+}
+
+.placesList_topBlock{
+    min-height: 82px;
+    max-height: 82px;
+}
+
+.toursListEl_avatar img{
+    position: relative;
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    transition: all 0.3s;
+    z-index: 10;
+}
+
+.toursListEl_avatar img:hover{
+    transform: scale(2)
+}
+
+.toursListEl_bottomContent h5 {
+    margin: 0px;
+}
+
+.toursListEl_bottomContent h5 a{
+    
+    white-space: nowrap;
+    font-size: 16px;
+    color: #304269;
+    cursor: pointer;
+}
+
+.toursListEl_bottomContent h5:hover a{
+    font-size: 16px;
+    color: #007bff;
+    
+}
+
+.toursList_ToursElHeader{
+    top: 23px;
+    position: relative;
+    z-index: 20;
+    font-size: 11px;
+    font-weight: 500;
+    color: #fff;
+    background: #304269;
+    max-width: max-content;
+    padding: 0px 5px;
+    border-radius: 0px 0px 5px 0px;
+    
 }

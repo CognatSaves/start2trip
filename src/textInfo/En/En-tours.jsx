@@ -1,11 +1,12 @@
 const tours = {
     detailed:"More",
     comments:"comments",
-    seats:"Number of free places",
+    seats:["Left: ","Total Seats: "," places"],
     guide:"Driver guide",
     agency:"Agency",
     daysNumber:"day",
-    bookTours:"BOOK tours ",
+    bookTours:["BOOK seat","BOOK tour "],
+    Languages:"Languages:",
 }
 
 export default tours;
