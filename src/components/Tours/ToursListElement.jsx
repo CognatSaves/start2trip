@@ -39,7 +39,7 @@ class ToursListElementClass extends React.Component {
         let element = this.props.element;
         let index = this.props.index;
         let imageAddress = element.image ? (requests.serverAddressImg + element.image) : '';
-        debugger
+        
         console.log(imageAddress);
         let slug = element.tourlocalization.slug;
 
@@ -77,7 +77,7 @@ class ToursListElementClass extends React.Component {
             validDepartureDate = this.props.departureDate.split(".");
             validDepartureDate = validDepartureDate[2] + "-" + validDepartureDate[1] + "-" + validDepartureDate[0];
         }
-        let address = "/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + `/tours/${slug}` + (validDepartureDate ? `?date=` + validDepartureDate : ``);
+        let address = "/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + `/tours/${slug}/` + (validDepartureDate ? `?date=` + validDepartureDate : ``);
         return (
             <div className={this.props.placeListElementClass ? this.props.placeListElementClass : "col-lg-3 col-md-4 col-sm-6 col-12 p-2 pb-3"} >
                 <div className="drivers_block_element d-flex p-0 flex-column" id={index}>

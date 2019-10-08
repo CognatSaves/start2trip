@@ -17,9 +17,9 @@ const cookies = new Cookies();
 class GuidesListElementClass extends React.Component {
     render() {
         function findLanguageByISO(value, storeState){
-            for(let i=0; i<storeState.languages.length; i++){
-                if(storeState.languages[i].id===value){
-                    return storeState.languages[i];
+            for(let i=0; i<storeState.untranslatedlanguages.length; i++){
+                if(storeState.untranslatedlanguages[i].id===value){
+                    return storeState.untranslatedlanguages[i];
                 }
             }
             return undefined;

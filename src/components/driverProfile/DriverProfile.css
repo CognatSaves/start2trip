@@ -18,6 +18,19 @@
     font-size: 16px;
 }
 
+.route_time_howLong{
+    padding-left: 20px;
+    background: url(../media/clock.svg)no-repeat;
+    background-size: 15px 15px;
+    background-position: left top 4px;
+}
+
+.route_howMuchPeople{
+    padding-left: 20px;
+    background-size: 15px 15px !important;
+    background-position: left top 4px !important;
+}
+
 .route_time_text span,
 .route_comment span {
     padding-top: 10px;
@@ -421,10 +434,12 @@ h3.drivers_routePrice {
 }
 
 .param {
+    color: #686868;
     display: inline-block !important;
 }
 
 .par {
+    color: #686868;
     padding-left: 15px;
 }
 

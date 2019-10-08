@@ -17,7 +17,7 @@ const tourDescription = {
         fragmentName: 'Как добраться',
         startPointPlaceholder: 'Введите место отправления',
         startDate:'Дата отправления',
-        lookAvailable: 'Заказать тур ',
+        lookAvailable: ["Бронировать место ","Бронировать тур "],
         goToEdit: 'Перейти к редактированию',
         route: 'Ваш маршрут',
         time: 'Время в пути',
@@ -29,6 +29,8 @@ const tourDescription = {
     share:"Поделиться",
     language:"Языки: ",
     cars:"Автомобили: ",
+    seats:["Осталось: ","Всего мест: "," мест"],
+    daysNumber:"Кол-во дней: ",
 }
 
 export default tourDescription;
