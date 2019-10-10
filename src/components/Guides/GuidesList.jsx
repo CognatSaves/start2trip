@@ -89,7 +89,7 @@ class GuidesListClass extends React.Component {
                             <>
                                 {isLoading ?
                                     <div className="placesList_loading">
-                                        <span>{'Загружаемся!'}</span>
+                                        <span>{pageNotFound.loading}</span>
                                     </div> :
                                     <div className="placesList_noElementsBlock">
                                         <span>{pageNotFound.text1 + " " + pageNotFound.text2}<br />{pageNotFound.text3}</span>

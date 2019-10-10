@@ -1,11 +1,10 @@
 import React from 'react';
 import './DriverProfileNavigation.css'
 import { connect } from 'react-redux';
-import { readAndCompressImage } from 'browser-image-resizer';
 import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
-import { setUser } from '../../redusers/Action';
 import requests from '../../config';
 import getUserData from './DriverProfileRequest';
+
 
 import calendarBG from '../media/illustrations_calendar.svg'
 import carBg from '../media/illustrations_nastroiki-01.svg'
@@ -15,11 +14,13 @@ import sittingsBG from '../media/illustrations_nastroiki-04.svg'
 import feedbackBG from '../media/illustrations_otzivi.svg'
 import preHistoryBG from '../media/illustrations_predstoishie.svg'
 
+import AvatarEditorCustom from '../usefulСomponents/AvatarEditorCustom'
 import Stars from '../stars/Stars'
 import DriverRefreshIndicator from './DriverRefreshIndicator';
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
+
 
 class DriverProfileNavigationClass extends React.Component {
     constructor(props) {
@@ -27,8 +28,6 @@ class DriverProfileNavigationClass extends React.Component {
 
         this.state = {
 
-            //avatar: "",
-            //profile: this.props.globalReduser.profile,
             route: [
 
                 "/account/driver/trips",
@@ -45,6 +44,8 @@ class DriverProfileNavigationClass extends React.Component {
             isRefreshing: true,
             isGoodAnswer: true,
             index: this.props.globalReduser.pageRender,
+            imgModal: false,
+
         };
     }
     getProfileData = (thenFunc, catchFunc) => {
@@ -104,70 +105,22 @@ class DriverProfileNavigationClass extends React.Component {
 
         event.currentTarget.parentElement.scrollLeft = event.currentTarget.offsetLeft - 120;
     }
-    _handleImageChange = (e) => {
-        e.preventDefault();
 
-        let file = e.target.files[0];
-
-        if (file && file.type.match('image')) {
-            let that = this;
-            this.startRefresher();
-
-            readAndCompressImage(file, this.props.globalReduser.compressConfig)
-                .then(resizedImage => {
-                    let sizFile = new File([resizedImage], file.name);
-                    return sizFile;
-                })
-                .then(sizFile => {
-                    let reader = new FileReader();
-                    reader.onloadend = () => {
-                        let jwt = this.props.globalReduser.readCookie('jwt');
-                        if (jwt && jwt !== "-") {
-                            var img = reader.result;
-                            var carForm = new FormData();
-                            carForm.append('avatar', sizFile);
-                            const request = new XMLHttpRequest();
-                            request.open('PUT', requests.userAvatarChangeRequest);
-                            request.setRequestHeader('Authorization', `Bearer ${jwt}`);
-                            request.onreadystatechange = function () {
-
-                                if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
-                                    let responseText = JSON.parse(request.responseText);
-                                    let avatar = requests.serverAddressImg + responseText.avatar;
-                                    let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
-                                    cookies.set("avatarUrl", avatar, { path: '/', expires: date });
-                                    that.props.dispatch(setUser(that.props.AppReduser.userName, avatar));
-                                    that.thenFunc();
-                                }
-                                if (request.readyState === XMLHttpRequest.DONE && request.status === 0) {
-                                    that.catchFunc();
-                                }
-
-                            }
-                            request.send(carForm);
-                        }
-                        else {
-                            this.props.dispatch(setUrlAddress(window.location.pathname));
-                            this.props.history.push('/' + cookies.get('userLangISO', { path: "/" }) + '/login/');
-                            //return null;
-                        }
-                    }
-                    reader.readAsDataURL(sizFile)
-                });
-        }
-    }
+    imgModalShow = () => {
+        this.setState({ imgModal: !this.state.imgModal });
+    };
+    
 
     render() {
-        /*if (!this.state.avatar) {
-            let img = requests.serverAddressImg + this.state.profile.avatar.url
-            this.setState({ avatar: img })
-        }*/
+
+
         let textPage = this.props.AppReduser.languageText.driverProfileRegistration.DriverProfileNavigation;
         let profile = this.props.globalReduser.profile;
         let navigationText = this.props.AppReduser.languageText.driverProfileRegistration.DriverProfileNavigation.navigationText;
         let that = this;
         return (
             <>
+                <AvatarEditorCustom imgModalShow={this.imgModalShow} imgModal={this.state.imgModal} />
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
                 <div className="registrationWrapper driverBG col-12 p-0" style={{
                     "/account/driver/trips": { backgroundImage: "url(" + preHistoryBG + ")" },
@@ -181,9 +134,8 @@ class DriverProfileNavigationClass extends React.Component {
                 }[this.props.globalhistory.history.location.pathname]}>
                     <div className="basicInformationBodyTop d-flex align-items-center ">
                         <div className="basicInformationBodyTopImgHover">
-                            <label className="basicInformationBodyTopImg" htmlFor="addFile">{textPage.updatePhoto}</label>
+                            <label className="basicInformationBodyTopImg" onClick={() =>this.imgModalShow()}>{textPage.updatePhoto}</label>
                             <img src={this.props.AppReduser.avatarUrl} alt="imgPerson" />
-                            <input type="file" id="addFile" style={{ display: "none" }} onChange={this._handleImageChange} />
                         </div>
                         <div className="bodyTopDriverInfo col-8">
                             <div className="bodyTopDriverInfoName d-flex flex-column align-items-start">
@@ -237,7 +189,7 @@ class DriverProfileNavigationClass extends React.Component {
                                     <span key={that.state.route[index]} className={{ [that.state.route[index]]: "navigationBodyActive", }[that.props.globalhistory.history.location.pathname] + " navigationButton mb-0 " + (that.state.route[index].length === 0 ? "blockedSpan" : "")}
                                         onClick={(event) => {
                                             if (that.state.route[index].length > 0) {
-                                                
+
                                                 that.setState({ index: index });
                                                 that.shiftLeft(event);
                                                 that.props.globalhistory.history.push(that.state.route[index])

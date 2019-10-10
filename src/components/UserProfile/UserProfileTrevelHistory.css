@@ -74,7 +74,7 @@
 .openCollapse {
     position: relative;
     z-index: 80;
-    background: #fff;
+    background: none;
 }
 
 .trevelHistoryBody img:hover {

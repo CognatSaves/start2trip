@@ -118,7 +118,8 @@ const home = {
             text1: "We even searched on Mars,",
             text2: "but didn’t find anything.",
             text3: 'Try to change your search',
-            link: "Return to Homepage"
+            link: "Return to Homepage",
+            loading:"loading",
         },
     };
     

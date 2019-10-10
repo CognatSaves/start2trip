@@ -149,7 +149,7 @@ class DriverProfileClass extends React.Component {
                     isGoodAnswer: false
                 })
                 let address = '/404'
-                if(that.props.storeState.country && that.props.storeState.languages && that.props.storeState.languages.length>0 && that.props.storeState.activeLanguageNumber){
+                if (that.props.storeState.country && that.props.storeState.languages && that.props.storeState.languages.length > 0 && that.props.storeState.activeLanguageNumber) {
                     address = '/' + that.props.storeState.country + "-" + that.props.storeState.languages[that.props.storeState.activeLanguageNumber].isoAutocomplete + '/routes';
                 }
                 setTimeout(() => { that.props.history.push(address) }, 1000);
@@ -538,7 +538,7 @@ class DriverProfileClass extends React.Component {
                                                     <div class="param par">{textInfo.tripParams.lengthParam + ': '}<span>{this.props.driversState.travelLength}</span></div>
                                                 </div>
                                             </div>
-                                            <div className=" col-12 p-0 d-flex flex-wrap" >
+                                            <div className="w-100 p-0 d-flex flex-wrap" >
 
                                                 <div className="d-flex flex-wrap routeTravelBlock_pointBlock">
                                                     {

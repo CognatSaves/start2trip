@@ -12,6 +12,7 @@ import historyBG from '../media/history.svg'
 import sittingsBG from '../media/user_settings.svg'
 import preHistoryBG from '../media/user_predstoiashie.svg'
 
+import AvatarEditorCustom from '../usefulСomponents/AvatarEditorCustom'
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
@@ -33,6 +34,7 @@ class UserProfileNavigationClass extends React.Component {
             isRefreshing: true,
             isGoodAnswer: true,
             activePage: this.props.globalReduser.pageRender,
+            imgModal: false,
         };
 
     }
@@ -93,60 +95,9 @@ class UserProfileNavigationClass extends React.Component {
 
         event.currentTarget.parentElement.scrollLeft = event.currentTarget.offsetLeft - 120;
     }
-    _handleImageChange = (e) => {
-        e.preventDefault();
-
-
-        let file = e.target.files[0];
-
-        if (file && file.type.match('image')) {
-            let that = this;
-            this.startRefresher();
-
-            readAndCompressImage(file, this.props.globalReduser.compressConfig)
-                .then(resizedImage => {
-                    let sizFile = new File([resizedImage], file.name);
-                    return sizFile;
-                })
-                .then(sizFile => {
-                    let reader = new FileReader();
-                    reader.onloadend = () => {
-                        let jwt = this.props.globalReduser.readCookie('jwt');
-                        if (jwt && jwt !== "-") {
-                            var img = reader.result;
-                            var carForm = new FormData();
-                            carForm.append('avatar', sizFile);
-                            const request = new XMLHttpRequest();
-                            request.open('PUT', requests.userAvatarChangeRequest);
-                            request.setRequestHeader('Authorization', `Bearer ${jwt}`);
-                            request.onreadystatechange = function () {
-
-                                if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
-                                    let responseText = JSON.parse(request.responseText);
-                                    let avatar = requests.serverAddressImg + responseText.avatar;
-                                    let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
-                                    cookies.set("avatarUrl", avatar, { path: '/', expires: date });
-                                    that.props.dispatch(setUser(that.props.AppReduser.userName, avatar));
-                                    that.thenFunc();
-                                }
-                                if (request.readyState === XMLHttpRequest.DONE && request.status === 0) {
-                                    that.catchFunc();
-                                }
-
-
-                            }
-                            request.send(carForm);
-                        }
-                        else {
-                            this.props.dispatch(setUrlAddress(window.location.pathname));
-                            this.props.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
-                            //return null;
-                        }
-                    }
-                    reader.readAsDataURL(sizFile)
-                });
-        }
-    }
+    imgModalShow = () => {
+        this.setState({ imgModal: !this.state.imgModal });
+    };
 
     render() {
         // if (!this.state.avatar) {
@@ -157,6 +108,8 @@ class UserProfileNavigationClass extends React.Component {
         let textPage = this.props.storeState.languageTextMain.userProfile.userProfileNavigation;
         let profile = this.props.globalReduser.profile;
         return (
+            <>
+            <AvatarEditorCustom imgModalShow={this.imgModalShow} imgModal={this.state.imgModal} />
             <div className="registrationWrapper driverBG col-12 p-0" style={{
                 "/account/user/trips": { backgroundImage: "url(" + preHistoryBG + ")" },
                 // "/account/user/profile": { backgroundImage: "url(" + historyBG + ")" },
@@ -167,9 +120,9 @@ class UserProfileNavigationClass extends React.Component {
             }[this.props.globalhistory.history.location.pathname]}>
                 <div className="basicInformationBodyTop d-flex align-items-center ">
                     <div className="basicInformationBodyTopImgHover">
-                        <label className="basicInformationBodyTopImg" htmlFor="addFile">{textPage.updatePhoto}</label>
+                        <label className="basicInformationBodyTopImg" onClick={()=>this.imgModalShow()}>{textPage.updatePhoto}</label>
                         <img src={this.props.AppReduser.avatarUrl} alt="imgPerson" />
-                        <input type="file" id="addFile" style={{ display: "none" }} onChange={this._handleImageChange} />
+                        
                     </div>
                     <div className="bodyTopDriverInfo col-8">
 
@@ -222,6 +175,7 @@ class UserProfileNavigationClass extends React.Component {
                     )}
                 </div>
             </div>
+        </>
         );
     }
 }

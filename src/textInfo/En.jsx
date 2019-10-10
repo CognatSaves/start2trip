@@ -20,6 +20,7 @@ import helmets from './En/En-helmets';
 import userProfile from './En/En-userProfile';
 import mobileFilter from './En/En-mobileFilter'
 import tours from './En/En-tours'
+import usefulСomponents from './En/En-usefulСomponents'
 export default {
     driverProfile: driverProfile,
     //routeDescription: routeDescription,
@@ -43,4 +44,5 @@ export default {
     userProfile:userProfile,
     mobileFilter:mobileFilter,
     tours:tours,
+    usefulСomponents:usefulСomponents,
 }

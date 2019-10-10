@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setUser } from '../../redusers/Action';
 import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 import requests from '../../config';
 import getUserData from '../driverProfileRegistration/DriverProfileRequest';
@@ -15,8 +14,7 @@ import sittingsBG from '../media/illustrations_nastroiki-04.svg'
 import feedbackBG from '../media/illustrations_otzivi.svg'
 import preHistoryBG from '../media/illustrations_predstoishie.svg'
 
-import { readAndCompressImage } from 'browser-image-resizer';
-import Stars from '../stars/Stars'
+import AvatarEditorCustom from '../usefulСomponents/AvatarEditorCustom'
 import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 import Cookies from 'universal-cookie';
 
@@ -41,7 +39,8 @@ class AgencyProfileNavigationClass extends React.Component {
             isRefreshExist: false,
             isRefreshing: true,
             isGoodAnswer: true,
-            index: -1
+            index: -1,
+            imgModal: false,
         }
 
     }
@@ -102,57 +101,11 @@ class AgencyProfileNavigationClass extends React.Component {
 
         event.currentTarget.parentElement.scrollLeft = event.currentTarget.offsetLeft - 120;
     }
-    _handleImageChange = (e) => {
-        e.preventDefault();
 
-        let file = e.target.files[0];
+    imgModalShow = () => {
+        this.setState({ imgModal: !this.state.imgModal });
+    };
 
-        if (file && file.type.match('image')) {
-            let that = this;
-            this.startRefresher();
-
-            readAndCompressImage(file, this.props.globalReduser.compressConfig)
-                .then(resizedImage => {
-                    let sizFile = new File([resizedImage], file.name);
-                    return sizFile;
-                })
-                .then(sizFile => {
-                    let reader = new FileReader();
-                    reader.onloadend = () => {
-                        let jwt = this.props.globalReduser.readCookie('jwt');
-                        if (jwt && jwt !== "-") {
-                            var img = reader.result;
-                            var carForm = new FormData();
-                            carForm.append('avatar', sizFile);
-                            const request = new XMLHttpRequest();
-                            request.open('PUT', requests.userAvatarChangeRequest);
-                            request.setRequestHeader('Authorization', `Bearer ${jwt}`);
-                            request.onreadystatechange = function () {
-
-                                if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
-                                    let responseText = JSON.parse(request.responseText);
-                                    let avatar = requests.serverAddressImg + responseText.avatar;
-                                    let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
-                                    cookies.set("avatarUrl", avatar, { path: '/', expires: date });
-                                    that.props.dispatch(setUser(that.props.AppReduser.userName, avatar));
-                                    that.thenFunc();
-                                }
-                                if (request.readyState === XMLHttpRequest.DONE && request.status === 0) {
-                                    that.catchFunc();
-                                }
-                            }
-                            request.send(carForm);
-                        }
-                        else {
-                            this.props.dispatch(setUrlAddress(window.location.pathname));
-                            this.props.history.push('/' + cookies.get('userLangISO', { path: "/" }) + '/login/');
-                            //return null;
-                        }
-                    }
-                    reader.readAsDataURL(sizFile)
-                });
-        }
-    }
     render() {
         console.log('agency profile navigation render');
         console.log(this.props);
@@ -161,6 +114,7 @@ class AgencyProfileNavigationClass extends React.Component {
         let textInfo = this.props.AppReduser.languageText.agencyProfile.agencyProfileNavigation;
         return (
             <>
+                <AvatarEditorCustom imgModalShow={this.imgModalShow} imgModal={this.state.imgModal} />
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
                 <div className="registrationWrapper driverBG col-12 p-0" style={{
                     "/account/agency/trips": { backgroundImage: "url(" + preHistoryBG + ")" },
@@ -176,9 +130,8 @@ class AgencyProfileNavigationClass extends React.Component {
                 }[this.props.globalhistory.history.location.pathname]}>
                     <div className="basicInformationBodyTop d-flex align-items-center ">
                         <div className="basicInformationBodyTopImgHover">
-                            <label className="basicInformationBodyTopImg" htmlFor="addFile">{textInfo.updatePhoto}</label>
+                            <label className="basicInformationBodyTopImg" onClick={()=>this.imgModalShow()} >{textInfo.updatePhoto}</label>
                             <img src={this.props.AppReduser.avatarUrl} alt="imgPerson" />
-                            <input type="file" id="addFile" style={{ display: "none" }} onChange={this._handleImageChange} />
                         </div>
                         <div className="bodyTopDriverInfo col-8">
                             {

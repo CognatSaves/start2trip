@@ -89,15 +89,15 @@
 }
 
 .tourContentTitle p {
-    padding-left: 10px;
     font-weight: 400;
     font-size: 16px;
     color: #304269;
+    margin: 0px;
 }
 
 .tourContent input {
     width: 100%;
-    color: #333;
+    color: #686868;
     font-family: "Roboto";
     font-weight: 400;
     font-size: 14px;
@@ -106,7 +106,12 @@
     border: 1px solid #ccc;
     padding-left: 10px !important;
     min-height: 40px;
+    max-height: 40px;
     transition: all 0.3s;
+}
+
+.tourContent input::placeholder {
+    color: #686868;
 }
 
 
@@ -317,7 +322,7 @@ div.tourContentCheckbox {
 
 .languageTourItem {
     display: none;
-    padding-left: 10px;
+    padding: 0px 10px;
 }
 
 .languageTourItemActive {
@@ -361,13 +366,12 @@ span.newTourDatepickerSpan {
     cursor: pointer;
     font-weight: 400;
     font-size: 14px;
-    color: #304269;
+    color: #007bff;
     padding: 8.5px 15px;
     padding-left: 25px;
     background: url(../media/calendarGray.svg)no-repeat;
     background-size: 14px 14px;
-    background-position: center left 5px;
-    border: 1px solid #ccc;
+    background-position: center left;
     border-radius: 5px;
     text-decoration: none;
 }
@@ -523,10 +527,23 @@ img.tourPhotoMini {
     background-size: 20px 20px;
 }
 
-
 /* addPhotoTour End */
 
+.tourContentBorderTop{
+    border-top: 1px solid #dee2e6;
+}
+
 @media (max-width: 768px) {
+
+    .tourContentBorderTop{
+        border-top: none;
+    }
+
+    .dividingStrip{
+        background: #ccc;
+        height: 20px;
+        width: 100%;
+    }
     .tourSettingsBody {
         box-shadow: none;
     }
@@ -537,6 +554,8 @@ img.tourPhotoMini {
         border: none;
         border-radius: 0px;
         border-bottom: 1px solid #ccc;
+        min-height: 22px;
+        padding-left: 0px !important;
     }
 
     .tourContent textarea:hover,

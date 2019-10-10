@@ -7,7 +7,7 @@ const serverAuthorizationRequest = serverAddress + '/auth/local';
 const facebookRequest = serverAddress + '/connect/facebook';
 const googleRequest = serverAddress + '/connect/google';
 const meRequest = serverAddress + '/users/me/auth';
-const routeMap = "(blr-en|blr-ru|rus-en|rus-ru|geo-en|geo-ru|arm-en|arm-ru|aze-en|aze-ru|tur-en|tur-ru|isr-en|isr-ru)";
+const routeMap = "(blr-en|blr-ru|rus-en|rus-ru|geo-en|geo-ru|arm-en|arm-ru|aze-en|aze-ru|tur-en|tur-ru|isr-en|isr-ru|esp-ru|esp-en)";
 
 const profileRequest = serverAddress + '/users/me/profile'; //получение данных профиля в админке
 const profileUpdateRequest = serverAddress + "/users/me/update"; //сохранение данных профиля(базовых данных - имя и т.д.) в админке

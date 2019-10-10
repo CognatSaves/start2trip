@@ -829,7 +829,7 @@ class HeaderClass extends React.Component {
                   )
                 }
               </div>
-              <div className="headerSelect d-flex align-items-center justify-content-end col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+              <div className="headerSelect d-flex align-items-center justify-content-end col-3">
                 <Dropdown setActiveFromChild="true" isOpen={this.state.dropdownOpen} toggle={this.toggleDropdownOpen} className={availableCurrencies.length > 0 ? "selectGeneral" : "selectGeneral preloadHiddenBlock"}>
                   <DropdownToggle className="selectGeneralButton" caret size="sm">
                     {/*this.state.activeCurrency[this.state.activeCurrencyNumber]*/ availableCurrencies.length > 0 ?

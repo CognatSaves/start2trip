@@ -72,14 +72,15 @@
 .inputClass input {
     font-weight: 400 !important;
     font-size: 16px !important;
-    color: #333 !important;
+    color: #686868 !important;
     margin: 0 !important;
     margin-top: 30px !important;
     height: 30px !important;
     overflow: hidden;
 }
 .multiLineInputClassAdditional{
-    height: 250px!important;
+    height: 80px!important;
+    /* border: 1px solid #000000; */
     /*min-height: 200px!important;*/
 }
 .multiLineInputClassAdditional textarea{
@@ -87,13 +88,14 @@
     min-height: 200px!important;
 }
 .MuiSelect-icon{
-    color: rgba(0, 0, 0, 0.5) !important;
+    color: #686868 !important;
 }
 
 .multiLineInputClass label,
 .inputClass label {
+    color: #686868 !important;
     font-weight: 400 !important;
-    font-size: 18px !important;
+    font-size: 16px !important;
     width: max-content !important;
 }
 
