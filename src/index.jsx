@@ -121,7 +121,7 @@ function getLocals() {
   //то используем его, если нет, то будем, в случае отсутствия кук, записывать туда
   //значения браузера
 
-  let userBrowserLanguageISO = ((urlLang && urlLang.length === 2) ? urlLang : userBrowserLanguage.substr(0, 2));
+  let userBrowserLanguageISO = 'ru';//((urlLang && urlLang.length === 2) ? urlLang : userBrowserLanguage.substr(0, 2));
   let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
   //*****//
   //здесь проверка - заходим, если какой-то (хоть какой) из кук нет
