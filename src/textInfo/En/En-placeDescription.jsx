@@ -14,7 +14,7 @@ let placeDescription = {
          fragmentName: 'How to get there',
          startPointPlaceholder: 'Enter Departure Point',
          startDate: "Departure Date",
-         lookAvailable: 'SEE OFFERS',
+         lookAvailable: ["",'SEE OFFERS'],
          goToEdit: 'Go to edit',
          route: 'Your trip',
          time: 'Trip time',

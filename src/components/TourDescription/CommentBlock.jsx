@@ -37,7 +37,7 @@ class CommentBlockClass extends React.Component {
                 {
                     selectedComments.length > 0 ?
                         <Manipulator number={this.props.comments.length} page={this.props.page} elementsNumber={5}
-                            setPage={this.props.setPage} showMorePages={this.props.showMorePages} />
+                            setPage={this.props.setPage} showMorePages={this.props.showMorePages} isCommentBlock={true} />
                         : <React.Fragment />
                 }
 

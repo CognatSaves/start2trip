@@ -486,11 +486,11 @@ export default class StartTravelForm extends React.Component {
                         <>
                             <Dialog open={this.props.travelVisibility} onClose={this.props.changeTravelVisibility} >
                                 
-                                {/* <div className="d-flex justify-content-center align-items-center p-5">В Разработке</div> */}
-                                <StartTravelContent that={this} flagAllOk={flagAllOk} carCapacityArray={carCapacityArray} activeCurrency={this.props.activeCurrency}
+                                <div className="d-flex justify-content-center align-items-center p-5">В Разработке</div>
+                                {/* <StartTravelContent that={this} flagAllOk={flagAllOk} carCapacityArray={carCapacityArray} activeCurrency={this.props.activeCurrency}
                                     textInfo={this.props.textInfo} changeSuccessVisibility={this.props.changeSuccessVisibility} isTour={true} elementActive={this.props.elementActive}
                                     isTourDescription={this.props.isTourDescription}
-                                    />
+                                    /> */}
                             </Dialog>
                         </>
                         : <React.Fragment />

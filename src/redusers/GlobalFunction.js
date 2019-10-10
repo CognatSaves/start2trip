@@ -1,4 +1,5 @@
 import { isMobileOnly } from 'react-device-detect';
+import {setMorePagesShow} from '../redusers/ActionPlaces'
 
  const checkBtUp = (e,that) => {
     
@@ -18,14 +19,19 @@ import { isMobileOnly } from 'react-device-detect';
           document.querySelector(".btUp").classList.remove("btUp-active");
         }
         if((document.scrollingElement.offsetHeight-e.currentTarget.top.pageYOffset )< document.scrollingElement.clientHeight+80){
-            document.querySelector(".footerMobile").classList.remove("footerMobile_active");
+          that.props.dispatch(setMorePagesShow()); 
+          // document.querySelector(".footerMobile").classList.remove("footerMobile_active");
         }else{
-            document.querySelector(".footerMobile").classList.add("footerMobile_active");
+            // document.querySelector(".footerMobile").classList.add("footerMobile_active");
         }
         
         
       }
     } else {
+      if((document.scrollingElement.offsetHeight-e.currentTarget.top.pageYOffset )< document.scrollingElement.clientHeight+80){
+        that.props.dispatch(setMorePagesShow()); 
+        
+      }
       if (that.state.previousPageYOffset > scrollEvent) {
         if (document.querySelector(".footerButtonUp") !== null) {
           if (scrollEvent > 400) {

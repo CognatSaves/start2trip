@@ -76,7 +76,7 @@ class AvatarEditorCustomClass extends React.Component {
         let file = e.target.files[0];
 
         if (file && file.type.match('image')) {
-
+            this.startRefresher();
 
             readAndCompressImage(file, this.props.globalReduser.compressConfig)
                 .then(resizedImage => {
@@ -86,11 +86,9 @@ class AvatarEditorCustomClass extends React.Component {
                 })
                 .then(sizFile => {
                     let that = this;
-                    this.startRefresher();
                     let reader = new FileReader();
                     reader.onloadend = () => {
                         that.sendImgToServer(sizFile)
-                        that.thenFunc();
                     }
                     reader.readAsDataURL(sizFile)
 
@@ -190,7 +188,8 @@ class AvatarEditorCustomClass extends React.Component {
                     open={this.props.imgModal}
                     onRequestClose={this.props.imgModalShow}
                 >
-
+                    <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
+                    
                     <div className="d-flex flex-column justify-content-center  align-items-center col-12 p-3">
                         <div className="d-flex w-100 justify-content-end">
                             <span className="avatarEditorCustomClose" onClick={() => { this.props.imgModalShow() }} />
@@ -236,7 +235,7 @@ class AvatarEditorCustomClass extends React.Component {
                 </Dialog>
 
 
-                <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
+               
 
             </>
         );

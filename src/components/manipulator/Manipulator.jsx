@@ -50,6 +50,13 @@ class ManipulatorClass extends React.Component {
         let isEnoughPages = (maxPage > 1);
         return (
             <>
+            {!this.props.isCommentBlock &&
+            <div className="pt-5"></div>
+            }
+            
+            {this.props.isCommentBlock &&
+
+            <>
             {this.props.page > 0 && maxPage > 0 ? 
             <div style={{ display: (this.props.page > 0 && maxPage > 0 ? 'none' : 'flex')}}/>
             :
@@ -95,6 +102,8 @@ class ManipulatorClass extends React.Component {
                             <React.Fragment />
                     }
                 </div>
+                </>
+            }
             </>
         )
 

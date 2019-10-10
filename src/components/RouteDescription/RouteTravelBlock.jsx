@@ -119,10 +119,12 @@ class RouteTravelBlockClass extends React.Component {
                                     <div className="d-flex align-items-center justify-content-between">
                                         <div class="marsh mt-auto">{textInfo.route + ':'}</div>
                                     </div>
+                                    {this.props.isTours &&
                                     <div className="d-flex">
                                         <div className="pr-4 route_time_howLong">{this.props.textInfo.daysNumber + " " + this.props.daysNumber}</div>
                                         <div className="route_howMuchPeople" style={{background:"url("+(this.props.isPricePerPerson ? peopleSvg:groupPeopleSvg)+") no-repeat"}}>{(this.props.isPricePerPerson ? this.props.textInfo.seats[0] : this.props.textInfo.seats[1]) + " " + this.props.seats + (this.props.isPricePerPerson ? this.props.textInfo.seats[2] : "")}</div>
                                     </div>
+                                    }
                                 </div>
                             </div>
                             {

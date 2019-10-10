@@ -123,7 +123,7 @@
 
 .refreshIndicatorModal {
     position: fixed;
-    z-index: 999;
+    z-index: 1600;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
