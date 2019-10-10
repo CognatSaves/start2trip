@@ -616,10 +616,13 @@ class AgencyProfileTourClass extends React.Component {
         }
     }
     applyChanges(type) {
+        debugger
         let jwt = this.props.globalReduser.readCookie('jwt');
 
         function checkCorrectTour(tourSave) {
+            debugger
             function checkCorrectLocal(local, index){
+                debugger
                 console.log('checkCorrectLocal');
                 let result = true;
                 let isNameGood = local.name && local.name.length>0;
@@ -888,6 +891,7 @@ class AgencyProfileTourClass extends React.Component {
         }
     }
     formSubmit = (event) => {
+        debugger
         if (!this.state.tour.id) {
             this.applyChanges(true);//если новый, то true
         }
@@ -952,6 +956,7 @@ class AgencyProfileTourClass extends React.Component {
         this.setState({ calendarModal: !this.state.calendarModal });
     };
     tourSeatsModalShow = (element) => {
+        debugger;
         let now = new Date();
         let year = now.getUTCFullYear();
         let month = now.getUTCMonth();
@@ -1869,6 +1874,20 @@ class AgencyProfileTourClass extends React.Component {
                                         this.setState({ tourSave: { ...this.state.tourSave, seats: e.currentTarget.value } })
                                     }
                                     } />
+                                     <TextField
+                                        floatingLabelText={textPage.additionalInformation.newTourPeople}
+                                        className="d-md-none d-block inputClass"
+                                        fullWidth="100%"
+                                        floatingLabelFocusStyle={{ color: "#304269" }}
+                                        underlineFocusStyle={{ borderColor: "#304269" }}
+                                        value={this.state.tourSave.seats}
+                                        onChange={(e) => {
+
+                                            let obj = document.getElementById('newTourPeople');
+                                            obj.classList.remove("errorColor");
+                                            this.setState({  tourSave: { ...this.state.tourSave, seats: e.currentTarget.value } });
+                                        }}
+                                    />
                             </div>
                             <div className="paddingL10 d-flex flex-md-row flex-column align-items-md-center align-items-start">
                                 <label htmlFor="daysNumber" className="d-md-block d-none col-2">{textPageAgencyProfile.daysNumber}:</label>

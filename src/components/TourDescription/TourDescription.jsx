@@ -491,8 +491,8 @@ class ToureDescriptionClass extends React.Component {
                                                             </div>
                                                             {cars.length > 0 &&
                                                                 <div className="d-flex flex-wrap align-items-center">
-                                                                    <span>{textInfo.cars}</span>
-                                                                    {cars.map((el, index) => (<span>{el.carBrand + (cars.length - 1 === index ? " " : ", ")}</span>))}
+                                                                    <span>{textInfo.cars}&nbsp;</span>
+                                                                    {cars.map((el, index) => (<span style={{color:"#686868",textTransform:"capitalize"}}>{el.carBrand + (cars.length - 1 === index ? " " : ",")}&nbsp;</span>))}
                                                                 </div>
                                                             }
 
@@ -507,7 +507,9 @@ class ToureDescriptionClass extends React.Component {
                                             <RouteTravelBlock points={points} id={topBlockId + "4"} isTours={true} textInfo={textInfo}
                                                 daily={this.state.newTour.tour.daily} departureDate={this.state.departureDate}
                                                 author={this.state.author} changeTravelVisibility={this.changeTravelVisibility}
-                                                dateWork={this.state.newTour.tour.calendary} price={price} elementActive={this.state.newTour} />
+                                                dateWork={this.state.newTour.tour.calendary} price={price} elementActive={this.state.newTour} 
+                                                seats={this.state.newTour.tour.seats} isPricePerPerson={this.state.newTour.tour.isPricePerPerson}
+                                                daysNumber={this.state.newTour.tour.daysNumber}/>
 
                                             <div className="placeDescription_block flex-column" id={simularPlaceBlockId} style={{ display: this.state.newTour.additionalTours.length > 0 ? 'flex' : 'none' }}>
                                                 <SimularToursBlock outerBlock={simularPlaceBlockId} tours={this.state.newTour.additionalTours}

@@ -17,7 +17,7 @@ const tourDescription = {
         fragmentName: 'How to get there',
         startPointPlaceholder: 'Enter Departure Point',
         startDate: "Departure Date",
-        lookAvailable: 'BOOK tours',
+        lookAvailable: ["BOOK seat","BOOK tour "],
         goToEdit: 'Go to edit',
         route: 'Your trip',
         time: 'Trip time',
@@ -29,6 +29,8 @@ const tourDescription = {
     share: "Share",
     language:"Languages: ",
     cars:"Cars: ",
+    seats:["Left: ","Total Seats: "," places"],
+    daysNumber:"Duration: ",
 }
 
 export default tourDescription;

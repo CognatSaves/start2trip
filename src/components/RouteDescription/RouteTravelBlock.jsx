@@ -5,6 +5,8 @@ import { isMobileOnly } from 'react-device-detect';
 import { setLengthTime } from '../../redusers/ActionDrivers'
 import requests from '../../config';
 
+import groupPeopleSvg from '../media/multiple-users-silhouette.svg'
+import peopleSvg from '../media/man-user.svg'
 // import LocationSearchInput from '../home/HomeBody/Search';
 
 
@@ -112,16 +114,20 @@ class RouteTravelBlockClass extends React.Component {
 
                         <div className="d-flex flex-wrap routeTravelBlock_pointBlock" >
 
-                            <div style={{ paddingBottom: '10px' }} className="col-md-12 col">
-                                <div className="route_time_text col-12">
-                                    <div class="marsh mt-auto">{textInfo.route + ':'}</div>
-                                    <div class="param">{textInfo.time + ':'}<span>{this.props.driversState.travelTime}</span></div>
-                                    <div class="param par">{textInfo.length + ':'}<span>{this.props.driversState.travelLength}</span></div>
+                            <div style={{ paddingBottom: '10px' }} className="col-md-12 col p-0">
+                                <div className="route_time_text col-12 p-0">
+                                    <div className="d-flex align-items-center justify-content-between">
+                                        <div class="marsh mt-auto">{textInfo.route + ':'}</div>
+                                    </div>
+                                    <div className="d-flex">
+                                        <div className="pr-4 route_time_howLong">{this.props.textInfo.daysNumber + " " + this.props.daysNumber}</div>
+                                        <div className="route_howMuchPeople" style={{background:"url("+(this.props.isPricePerPerson ? peopleSvg:groupPeopleSvg)+") no-repeat"}}>{(this.props.isPricePerPerson ? this.props.textInfo.seats[0] : this.props.textInfo.seats[1]) + " " + this.props.seats + (this.props.isPricePerPerson ? this.props.textInfo.seats[2] : "")}</div>
+                                    </div>
                                 </div>
                             </div>
                             {
                                 points.map((element, index) =>
-                                    <div className={"routeTravelBlock_element d-flex col-md-6 col-12 "}>
+                                    <div className={"routeTravelBlock_element d-flex col-md-6 col-12 p-0"}>
                                         <div className="routeTravelBlock_pointValue d-flex flex-row">
                                             <div style={{ paddingRight: '10px', margin: 'auto 0' }}>{this.props.globalhistory.alphabet[index]}</div>
                                             <div className="d-flex routeTravelBlock_height">
@@ -131,7 +137,7 @@ class RouteTravelBlockClass extends React.Component {
                                     </div>
                                 )
                             }
-                            <div className={"routeTravelBlock_element d-flex col-md-6 col-12 "}>
+                            <div className={"routeTravelBlock_element d-flex col-md-6 col-12 p-0"}>
                                 <div className={"routeTravelBlock_pointValue specialDate anidate  d-flex flex-row "
                                     + (this.state.isDateHighlighted ? 'placesDescription_travelBlock_highlighted' : '')}
                                     onClick={() => { if (this.state.isDateHighlighted) { this.setState({ isDateHighlighted: false }) } }}>
@@ -159,20 +165,20 @@ class RouteTravelBlockClass extends React.Component {
                                         onChange={(e, date) => { this.setState({ date: this.props.globalhistory.convertDateToUTC(date) }); }} className="routeDescrDate" />
                                 </div>
                             </div>
-                            <div className={"routeTravelBlock_element d-flex " + ((points.length + 1) % 2 === 0 ? 'col-12' : 'col-md-6 col-12')}>
+                            <div className={"routeTravelBlock_element d-flex " + ((points.length + 1) % 2 === 0 ? 'col-12 p-0' : 'col-md-6 col-12')}>
                                 <button className="placesDescription_travelBlock_applyButton p-0"
                                     style={{/*marginBottom: '15px',*/ width: '100%', border: 'none', borderRadius: '5px' }}
-                                    onClick={() => { 
-                                        if (!this.props.isTours) { 
-                                            this.lookAvailable({ noDate:this.state.date ? false : true  })
+                                    onClick={() => {
+                                        if (!this.props.isTours) {
+                                            this.lookAvailable({ noDate: this.state.date ? false : true })
                                         }
-                                        else{
-                                            
+                                        else {
+
                                             this.props.changeTravelVisibility(this.props.elementActive.tour.price,
-                                            {...this.props.elementActive, date: new Date(this.props.departureDate)})
+                                                { ...this.props.elementActive, date: new Date(this.props.departureDate) })
                                         }
                                     }}>
-                                    <text style={{ margin: "auto", fontSize: '16px' }} >{textInfo.lookAvailable + (this.props.isTours ? this.props.price : "")}</text>
+                                    <text style={{ margin: "auto", fontSize: '16px' }} >{(this.props.isPricePerPerson ? textInfo.lookAvailable[0] : textInfo.lookAvailable[1]) + (this.props.isTours ? this.props.price : "")}</text>
                                 </button>
                             </div>
                             {!this.props.isTours &&
@@ -180,6 +186,10 @@ class RouteTravelBlockClass extends React.Component {
                                     <text className="routeTravelBlock_change" onClick={() => { this.lookAvailable({ noDate: true }) }}>{textInfo.goToEdit}</text>
                                 </div>
                             }
+                        </div>
+                        <div className="d-flex">
+                            <div class="param">{textInfo.time + ': '}<span>{this.props.driversState.travelTime}</span></div>
+                            <div class="param par">{textInfo.length + ': '}<span>{this.props.driversState.travelLength}</span></div>
                         </div>
                     </div>
                     {isMobileOnly ?

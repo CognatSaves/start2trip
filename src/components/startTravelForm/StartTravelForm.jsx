@@ -114,7 +114,7 @@ export default class StartTravelForm extends React.Component {
                     return response.json();
                 })
                 .then(function (data) {
-                    debugger;
+                    
                     if (data.error) {
 
                         console.log("bad");
