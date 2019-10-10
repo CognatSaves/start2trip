@@ -237,7 +237,7 @@ export default class StartTravelContent extends React.Component {
                         <div className=" d-flex align-items-center justify-content-between flex-md-row flex-column col-12 py-md-0 py-4">
                             <div className="d-flex flex-column">
                                 <div className="d-flex drivers_routePromo">
-                                    <input placeholder={textInfo.promoPlaceholder} readOnly={that.state.promoCode} value={that.state.promoCod} onChange={(event) => { that.setState({ promoCod: event.target.value, promoCodIsOk: false }) }} type="text" />
+                                    <input placeholder={textInfo.promoPlaceholder} readOnly={that.state.promoCode} value={that.state.promoCod} onChange={(event) => { that.setState({ promoCod: event.target.value }) }} type="text" />
                                     <span onClick={() => {
                                         that.state.promoCode ? (that.setState({ promoCod: "", promoCode: "", discount: 0 })) :
                                             (that.promocodeVerification())
