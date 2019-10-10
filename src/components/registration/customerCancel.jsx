@@ -56,6 +56,8 @@ class customerCancelClass extends React.Component {
             clientId: this.props.match.params.clientId
         });
         let that = this;
+        debugger;
+        console.log(requests.customerCancel);
 
         fetch(requests.customerCancel, {
             method: 'POST', body: body,
