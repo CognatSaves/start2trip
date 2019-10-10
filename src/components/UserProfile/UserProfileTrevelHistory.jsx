@@ -29,7 +29,7 @@ class UserProfileTrevelHistoryClass extends React.Component {
         return (
             <div className="d-flex flex-wrap justify-content-center" style={{height: '100%'}}>
                 {this.props.trevelHistory.map((element, index) =>
-                    <div className="col-lg-3 col-md-4 col-sm-6 col-11 p-2">
+                    <div className="col-lg-3 col-md-4 col-sm-6 col-11 p-2" style={{height: 'maxContent'}}>
                         <div className="trevelHistoryBody  d-flex flex-column">
                             <div className="d-flex flex-column historyBodyHeader">
                                 <div className="d-flex justify-content-between">

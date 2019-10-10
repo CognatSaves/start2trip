@@ -168,7 +168,7 @@ class AgencyProfileTravelHistoryClass extends React.Component {
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
 
                 {this.props.trevelHistory.map((element, index) =>
-                    <div className="col-lg-3 col-md-4 col-sm-6 col-11 p-2" key={element}>
+                    <div className="col-lg-3 col-md-4 col-sm-6 col-11 p-2" key={element} style={{height: 'maxContent'}}>
                         <div className="trevelHistoryBody  d-flex flex-column">
                             <div className="d-flex flex-column historyBodyHeader">
                                 <div className="d-flex justify-content-between">

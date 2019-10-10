@@ -336,8 +336,8 @@ const driverProfileRegistration = {
             searchButton: 'ნახვა',
             infoTableText: {
                 payedByCash: 'ფულადი თანხის გადახდა',
-                payedByCard: ',გადახდა ბარათებით',
-                payedByPartners: ',პარტნიორული დარიცხვები',
+                payedByCard: 'გადახდა ბარათებით',
+                payedByPartners: 'პარტნიორული დარიცხვები',
                 payedForPeriod: 'სულ პერიოდში',
                 datePickerStart: 'დაწყების თარიღი',
                 datePickerEnd: 'დასრულების თარიღი'

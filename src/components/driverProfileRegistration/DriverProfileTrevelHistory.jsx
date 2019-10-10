@@ -171,7 +171,7 @@ class DriverProfileTrevelHistoryClass extends React.Component {
 
 
         return (
-            <div className="d-flex flex-wrap justify-content-md-start justify-content-center" style={{height: '100%'}}>
+            <div className="d-flex flex-wrap justify-content-md-start justify-content-center">
                 <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
 
                 {this.props.trevelHistory.map((element, index) =>
@@ -254,7 +254,7 @@ class DriverProfileTrevelHistoryClass extends React.Component {
                 )}
                 {
                     this.props.trevelHistory.length===0 &&
-                    <div style={{margin: 'auto', paddingBottom: '7%'}}>{this.props.isHistory ? textInfoAgency.emptyHistory : textInfoAgency.emptyUpcoming}</div>
+                    <div style={{margin: 'auto', paddingTop: '7%'}}>{this.props.isHistory ? textInfoAgency.emptyHistory : textInfoAgency.emptyUpcoming}</div>
                 }
             </div>
         );

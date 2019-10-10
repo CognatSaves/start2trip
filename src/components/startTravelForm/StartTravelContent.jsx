@@ -196,7 +196,12 @@ export default class StartTravelContent extends React.Component {
                                     rowsMax="4"
                                     disabled={this.props.isTour}
                                     defaultValue={that.state.placeDeparture}
-                                    onChange={(event) => { that.setState({ placeDeparture: event.target.value }); event.target.previousSibling.classList.remove("draver_route-error") }}
+                                    onChange={(event) => { 
+                                        that.setState({ placeDeparture: event.target.value });
+                                        if(event.target.previousSibling){
+                                             event.target.previousSibling.classList.remove("draver_route-error")
+                                        }
+                                    }}
                                     className="textField placeDeparture w-100"
                                     margin="normal"
                                     variant="outlined"
