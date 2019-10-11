@@ -18,7 +18,7 @@ import CommentBlock from '../TourDescription/CommentBlock.jsx';
 import TourPanel from '../TourDescription/TourPanel.jsx';
 import SimularPlaceBlock from './SimularPlaceBlock';
 import PlacePhotoShow from './PlacePhotoShow.jsx';
-import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
 import {
     FacebookShareButton,
     TwitterShareButton,
@@ -60,9 +60,6 @@ class PlaceDescriptionClass extends React.Component {
             //place: this.props.placesState.places[/*countryId*/0].places[/*placeId*/0],
             newPlace: {},
             couldSendRequest: true,
-            isRefreshExist: true,
-            isRefreshing: true,
-            isGoodAnswer: true,
             //photoArray: [ippodrom, ippodrom4, ippodrom2, ippodrom3, ippodrom, ippodrom4, ippodrom2, ippodrom3, ippodrom, ippodrom4, ippodrom2, ippodrom3, ippodrom, ippodrom4, ippodrom2, ippodrom3, ippodrom, ippodrom4, ippodrom2, ippodrom3],
             selectedLanguage: -1,
             images: null,
@@ -80,21 +77,10 @@ class PlaceDescriptionClass extends React.Component {
     }
     */
     startRolling = () => {
-        this.setState({
-            isRefreshExist: true
-        });
+        startRefresherGlobal(this)
     }
     endRolling = (result) => {
-        let that = this;
-        this.setState({
-            isRefreshing: false,
-            isGoodAnswer: result
-        });
-        setTimeout(
-            function () {
-                that.setState({ isRefreshExist: false, isRefreshing: true })
-            }, 2000
-        )
+        thenFuncGlobal(this)
     }
     /*
     shouldComponentUpdate(nextProps, nextState){
@@ -190,9 +176,9 @@ class PlaceDescriptionClass extends React.Component {
 
             this.setState({
                 couldSendRequest: false,
-                isRefreshExist: true,
                 selectedLanguage: this.props.storeState.activeLanguageNumber
             })
+            startRefresherGlobal(this)
             let that = this;
             axios.get(requests.showPlace + "?slug=" + (slug ? slug : '') /*+ "&country=" + cookies.get('country', { path: '/' })*/ /*+"&lang="+this.props.storeState.languages[this.props.storeState.activeLanguageNumber].id*/)
                 .then(response => {
@@ -215,13 +201,14 @@ class PlaceDescriptionClass extends React.Component {
 
                         console.log('good');
                         console.log(data);
-                        that.setState({ isRefreshExist: false, newPlace: data, couldSendRequest: true, slug: data.local.slug, selectedLanguage: this.props.storeState.activeLanguageNumber });
+                        thenFuncGlobal(that)
+                        that.setState({ newPlace: data, couldSendRequest: true, slug: data.local.slug, selectedLanguage: this.props.storeState.activeLanguageNumber });
                         that.props.match.params.slug = data.local.slug;
                         //this.props.dispatch(setPlacesList(data.places, data.tags, data.directions,data.country));
                     }
                 })
                 .catch(error => {
-
+                    catchFuncGlobal(that)
                     console.log('get wasted answer');
                     that.props.globalReduser.history.push('/404/');
                 });
@@ -302,7 +289,6 @@ class PlaceDescriptionClass extends React.Component {
                         <React.Fragment />
                 }
 
-                <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
 
                 <div style={{ position: 'relative' }}>
                     {

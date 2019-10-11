@@ -496,10 +496,6 @@ export default class AgencyTourForm extends React.Component {
                             imageCounter++;
 
                             if (imageCounter === fullfile.length) {
-                                that.setState({
-                                    isRefreshExist: false,
-                                    isRefreshing: false
-                                })
                             }
                             that.setState({
                                 tourSave: tourSave,
@@ -532,10 +528,6 @@ export default class AgencyTourForm extends React.Component {
                                     imagePreviewUrl: img,
                                 });
                             }
-                            that.setState({
-                                isRefreshExist: false,
-                                isRefreshing: false
-                            })
                         }
                     }
                     reader.readAsDataURL(sizFile)

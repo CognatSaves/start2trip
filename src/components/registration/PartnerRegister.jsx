@@ -1,11 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
 
-export default class PartnerRegister extends React.Component {
+class PartnerRegisterClass extends React.Component {
     constructor(props) {
         super(props);
 
@@ -27,9 +28,28 @@ export default class PartnerRegister extends React.Component {
             default:
         }
     }
+
+    componentWillMount(){
+        startRefresherGlobal(this)
+    }
+    componentWillUnmount(){
+        thenFuncGlobal(this)
+    }
     render() {
         return (
-            <DriverRefreshIndicator isRefreshExist={true} isRefreshing={true} isGoodAnswer={true} />
+            <></>
+            
         )
     }
+
 }
+
+const PartnerRegister = connect(
+    (state) => ({
+        storeState: state.AppReduser,
+        globalReduser: state.GlobalReduser,
+
+    }),
+)(PartnerRegisterClass);
+
+export default PartnerRegister;

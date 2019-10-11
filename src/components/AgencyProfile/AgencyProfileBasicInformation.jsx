@@ -10,7 +10,7 @@ import MenuItem from 'material-ui/MenuItem';
 import Chip from 'material-ui/Chip';
 import flags from '../media/flags.png'
 import ReactTelInput from 'react-telephone-input'
-import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
@@ -47,9 +47,6 @@ class AgencyProfileBasicInformationClass extends React.Component {
             value: "Выберите языки",
             chipData: languageArrays.chipData,
             language: languageArrays.langList,
-            isRefreshExist: false,
-            isRefreshing: true,
-            isGoodAnswer: true,
             profileData: {
                 firstName: profile.firstName,
                 lastName: profile.lastName,
@@ -90,36 +87,13 @@ class AgencyProfileBasicInformationClass extends React.Component {
         }
     }
     startRefresher = () => {
-        this.setState({
-            isRefreshExist: true,
-            isRefreshing: true
-        });
+        startRefresherGlobal(this)
     }
     thenFunc = () => {
-        console.log('thenFunc');
-        this.setState({
-            isRefreshExist: true,
-            isRefreshing: false,
-            isGoodAnswer: true,
-        });
-        setTimeout(() => {
-            this.setState({
-                isRefreshExist: false
-            })
-        }, 1000);
+        thenFuncGlobal(this)
     }
     catchFunc = () => {
-        console.log('catchFunc');
-        this.setState({
-            isRefreshExist: true,
-            isRefreshing: false,
-            isGoodAnswer: false,
-        });
-        setTimeout(() => {
-            this.setState({
-                isRefreshExist: false
-            })
-        }, 2000);
+        catchFuncGlobal(this)
     }
     applyChanges = () => {
         let jwt = this.props.globalReduser.readCookie('jwt');
@@ -278,7 +252,6 @@ class AgencyProfileBasicInformationClass extends React.Component {
 
         return (
             <div className="basicInformationBody d-flex flex-column">
-                <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
                 <div className="basicInformationBodyBottom d-flex flex-column mb-5 p-0">
                     <div className="basicInformationBodyBottomHeader d-md-block d-none">
                         <p>{textInfo.header}</p>

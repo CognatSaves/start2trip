@@ -5,7 +5,7 @@ import getUserData from '../driverProfileRegistration/DriverProfileRequest';
 import requests from '../../config';
 
 import Stars from '../stars/Stars';
-import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
@@ -13,43 +13,17 @@ const cookies = new Cookies();
 class AgencyProfileTravelHistoryClass extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            isRefreshExist: false,
-            isRefreshing: true,
-            isGoodAnswer: true,
-        };
+        // this.state = {
+        // };
     }
     startRefresher = () => {
-        this.setState({
-            isRefreshExist: true,
-            isRefreshing: true
-        });
+        startRefresherGlobal(this)
     }
     thenFunc = () => {
-        console.log('thenFunc');
-        this.setState({
-            isRefreshExist: true,
-            isRefreshing: false,
-            isGoodAnswer: true,
-        });
-        setTimeout(() => {
-            this.setState({
-                isRefreshExist: false
-            })
-        }, 1000);
+        thenFuncGlobal(this)
     }
     catchFunc = () => {
-        console.log('catchFunc');
-        this.setState({
-            isRefreshExist: true,
-            isRefreshing: false,
-            isGoodAnswer: false,
-        });
-        setTimeout(() => {
-            this.setState({
-                isRefreshExist: false
-            })
-        }, 2000);
+        catchFuncGlobal(this)
     }
     getProfileData = () => {
         console.log('getProfileData');
@@ -165,7 +139,6 @@ class AgencyProfileTravelHistoryClass extends React.Component {
         let that = this;
         return (
             <div className="d-flex flex-wrap justify-content-center" style={{height: '100%'}}>
-                <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
 
                 {this.props.trevelHistory.map((element, index) =>
                     <div className="col-lg-3 col-md-4 col-sm-6 col-11 p-2" key={element} style={{height: 'maxContent'}}>

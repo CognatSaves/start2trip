@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import requests from '../../config';
 
-import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
 import Header from '../header/Header';
 import Cookies from 'universal-cookie';
 import { changeLanguagePart } from '../../redusers/Action';
@@ -20,8 +20,8 @@ class DriverConfirmationClass extends React.Component {
         if (confirmation) {
             console.log("-------------------------------")
             console.log(confirmation)
+            startRefresherGlobal(this)
             this.state = {
-                isRefreshExist: true,
                 heAgrees: confirmation,
                 id: id,
                 carrierId: carrierId,
@@ -32,12 +32,7 @@ class DriverConfirmationClass extends React.Component {
         } else {
             console.log("-------------------------------")
             console.log(confirmation)
-            /*this.setState({
-                isRefreshExist: false,
-                heAgrees: props.match.params.confirmation,
-            })*/
             this.state = {
-                isRefreshExist: false,
                 heAgrees: confirmation,
                 id: id,
                 carrierId: carrierId,
@@ -79,17 +74,17 @@ class DriverConfirmationClass extends React.Component {
                     console.log(data);
                     that.setState({
                         heAgrees: data.confirmation,
-                        isRefreshExist: false
                     })
+                    thenFuncGlobal(that)
                 }
             })
             .catch(function (error) {
                 console.log('bad');
 
                 that.setState({
-                    isRefreshExist: false,
                     notConfirmed: false
                 })
+                catchFuncGlobal(that)
                 console.log('An error occurred:', error);
             });
     }
@@ -116,8 +111,8 @@ class DriverConfirmationClass extends React.Component {
 
                 <>
                     {
-                        this.state.isRefreshExist ?
-                            <DriverRefreshIndicator isRefreshExist={true} isRefreshing={true} isGoodAnswer={true} />
+                        this.props.storeState.isRefreshExist ?
+                        <></>
                             :
                             <div className="forgotPasswordBody d-flex flex-column align-items-center">
                                 <Header driver={true} history={this.props.history} />

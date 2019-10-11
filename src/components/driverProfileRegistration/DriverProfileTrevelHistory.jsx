@@ -6,7 +6,7 @@ import requests from '../../config';
 import getUserData from '../driverProfileRegistration/DriverProfileRequest';
 
 import Stars from '../stars/Stars';
-import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
 import Cookies from 'universal-cookie';
 
 
@@ -17,43 +17,18 @@ class DriverProfileTrevelHistoryClass extends React.Component {
         super(props);
         let arrayCollapse = new Array(props.trevelHistory.length).fill(false)
         this.state = {
-            isRefreshExist: false,
-            isRefreshing: true,
-            isGoodAnswer: true,
+
             collapse: arrayCollapse,
         };
     }
     startRefresher = () => {
-        this.setState({
-            isRefreshExist: true,
-            isRefreshing: true
-        });
+        startRefresherGlobal(this)
     }
     thenFunc = () => {
-        console.log('thenFunc');
-        this.setState({
-            isRefreshExist: true,
-            isRefreshing: false,
-            isGoodAnswer: true,
-        });
-        setTimeout(() => {
-            this.setState({
-                isRefreshExist: false
-            })
-        }, 1000);
+        thenFuncGlobal(this)
     }
     catchFunc = () => {
-        console.log('catchFunc');
-        this.setState({
-            isRefreshExist: true,
-            isRefreshing: false,
-            isGoodAnswer: false,
-        });
-        setTimeout(() => {
-            this.setState({
-                isRefreshExist: false
-            })
-        }, 2000);
+        catchFuncGlobal(this)
     }
     getProfileData = () => {
         console.log('getProfileData');
@@ -172,7 +147,6 @@ class DriverProfileTrevelHistoryClass extends React.Component {
 
         return (
             <div className="d-flex flex-wrap justify-content-md-start justify-content-center">
-                <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
 
                 {this.props.trevelHistory.map((element, index) =>
                     <div className={this.state.collapse[index] ? " openCollapse col-md-6 col-12 p-2" : "col-lg-3 col-md-4 col-sm-6 col-11 p-2 "} key={element}>

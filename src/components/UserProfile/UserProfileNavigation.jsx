@@ -12,6 +12,7 @@ import historyBG from '../media/history.svg'
 import sittingsBG from '../media/user_settings.svg'
 import preHistoryBG from '../media/user_predstoiashie.svg'
 
+import { startRefresherGlobal, thenFuncGlobal, catchFuncGlobal, } from '../../redusers/GlobalFunction'
 import AvatarEditorCustom from '../usefulСomponents/AvatarEditorCustom'
 import Cookies from 'universal-cookie';
 
@@ -30,9 +31,6 @@ class UserProfileNavigationClass extends React.Component {
                 "/account/user/billing",
                 "/account/user/referrals"
             ],
-            isRefreshExist: false,
-            isRefreshing: true,
-            isGoodAnswer: true,
             activePage: this.props.globalReduser.pageRender,
             imgModal: false,
         };
@@ -54,42 +52,18 @@ class UserProfileNavigationClass extends React.Component {
         }
         else {
             this.props.dispatch(setUrlAddress(window.location.pathname));
-            this.props.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
+            this.props.history.push('/' + cookies.get('userLangISO', { path: "/" }) + '/login/');
             //return null;
         }
     }
     startRefresher = () => {
-        this.setState({
-            isRefreshExist: true,
-            isRefreshing: true
-        });
+        startRefresherGlobal(this)
     }
     thenFunc = () => {
-        console.log('thenFunc');
-        console.log(this.props.profileReduser);
-        this.setState({
-            isRefreshExist: true,
-            isRefreshing: false,
-            isGoodAnswer: true,
-        });
-        setTimeout(() => {
-            this.setState({
-                isRefreshExist: false
-            })
-        }, 1000);
+        thenFuncGlobal(this)
     }
     catchFunc = () => {
-        console.log('catchFunc');
-        this.setState({
-            isRefreshExist: true,
-            isRefreshing: false,
-            isGoodAnswer: false
-        });
-        setTimeout(() => {
-            this.setState({
-                isRefreshExist: false
-            })
-        }, 2000);
+        catchFuncGlobal(this)
     }
     shiftLeft = (event) => {
 
@@ -109,73 +83,73 @@ class UserProfileNavigationClass extends React.Component {
         let profile = this.props.globalReduser.profile;
         return (
             <>
-            <AvatarEditorCustom imgModalShow={this.imgModalShow} imgModal={this.state.imgModal} />
-            <div className="registrationWrapper driverBG col-12 p-0" style={{
-                "/account/user/trips": { backgroundImage: "url(" + preHistoryBG + ")" },
-                // "/account/user/profile": { backgroundImage: "url(" + historyBG + ")" },
-                "/account/user/profile": { backgroundImage: "url(" + historyBG + ")" },
-                "/account/user/settings": { backgroundImage: "url(" + sittingsBG + ")" },
-                "/account/user/billing": { backgroundImage: "url(" + billingBG + ")" },
-                "/account/user/referrals": { backgroundImage: "url(" + referralsBG + ")" },
-            }[this.props.globalhistory.history.location.pathname]}>
-                <div className="basicInformationBodyTop d-flex align-items-center ">
-                    <div className="basicInformationBodyTopImgHover">
-                        <label className="basicInformationBodyTopImg" onClick={()=>this.imgModalShow()}>{textPage.updatePhoto}</label>
-                        <img src={this.props.AppReduser.avatarUrl} alt="imgPerson" />
-                        
-                    </div>
-                    <div className="bodyTopDriverInfo col-8">
+                <AvatarEditorCustom imgModalShow={this.imgModalShow} imgModal={this.state.imgModal} />
+                <div className="registrationWrapper driverBG col-12 p-0" style={{
+                    "/account/user/trips": { backgroundImage: "url(" + preHistoryBG + ")" },
+                    // "/account/user/profile": { backgroundImage: "url(" + historyBG + ")" },
+                    "/account/user/profile": { backgroundImage: "url(" + historyBG + ")" },
+                    "/account/user/settings": { backgroundImage: "url(" + sittingsBG + ")" },
+                    "/account/user/billing": { backgroundImage: "url(" + billingBG + ")" },
+                    "/account/user/referrals": { backgroundImage: "url(" + referralsBG + ")" },
+                }[this.props.globalhistory.history.location.pathname]}>
+                    <div className="basicInformationBodyTop d-flex align-items-center ">
+                        <div className="basicInformationBodyTopImgHover">
+                            <label className="basicInformationBodyTopImg" onClick={() => this.imgModalShow()}>{textPage.updatePhoto}</label>
+                            <img src={this.props.AppReduser.avatarUrl} alt="imgPerson" />
 
-                        <div className="bodyTopDriverInfoName d-flex flex-column align-items-start">
-                            <p className="mb-0 mr-2">{profile.firstName.length !== 0 ? profile.firstName : profile.email}</p>
                         </div>
+                        <div className="bodyTopDriverInfo col-8">
 
-                        <div className="bodyTopDriverInfoPlace">
-                            <p>{profile.hometown.length !== 0 ? (profile.hometown + ", " + profile.homecountry) : ""}</p>
-                        </div>
-                        <div className="bodyTopDriverInfoRide p-0 d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column">
-                            <div className=" d-md-flex d-none align-items-center  col-lg-3 col-md-4  col-6 p-0">
-                                <span>{profile.futureTrips.length + profile.historyTrips.length}</span>
-                                <div className="d-flex flex-column">
-                                    <p>{textPage.totalTrips.first}</p>
-                                    <p>{textPage.totalTrips.last}</p>
+                            <div className="bodyTopDriverInfoName d-flex flex-column align-items-start">
+                                <p className="mb-0 mr-2">{profile.firstName.length !== 0 ? profile.firstName : profile.email}</p>
+                            </div>
+
+                            <div className="bodyTopDriverInfoPlace">
+                                <p>{profile.hometown.length !== 0 ? (profile.hometown + ", " + profile.homecountry) : ""}</p>
+                            </div>
+                            <div className="bodyTopDriverInfoRide p-0 d-flex flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column">
+                                <div className=" d-md-flex d-none align-items-center  col-lg-3 col-md-4  col-6 p-0">
+                                    <span>{profile.futureTrips.length + profile.historyTrips.length}</span>
+                                    <div className="d-flex flex-column">
+                                        <p>{textPage.totalTrips.first}</p>
+                                        <p>{textPage.totalTrips.last}</p>
+                                    </div>
+                                </div>
+                                <div className="bodyTopDriverInfoRideMobail d-md-none d-flex align-items-center justify-content-between col-md-3 col-sm-5 col-12 p-0">
+                                    <p>{textPage.totalTrips.full}:</p>
+                                    <span className="pl-1">{profile.futureTrips.length + profile.historyTrips.length}</span>
+                                </div>
+                                <div className=" d-md-flex  d-none align-items-center  col-md-2  col-6 p-0">
+                                    <span>{profile.futureTrips.length}</span>
+                                    <div className="d-flex flex-column ">
+                                        <p>{textPage.upcomingTrips.first}</p>
+                                        <p>{textPage.upcomingTrips.last}</p>
+                                    </div>
+                                </div>
+                                <div className="bodyTopDriverInfoRideMobail  d-md-none d-flex align-items-center justify-content-between col-md-3 col-sm-5 col-12 p-0">
+                                    <p>{textPage.upcomingTrips.full}:</p>
+                                    <span className="pl-1">{profile.futureTrips.length}</span>
                                 </div>
                             </div>
-                            <div className="bodyTopDriverInfoRideMobail d-md-none d-flex align-items-center justify-content-between col-md-3 col-sm-5 col-12 p-0">
-                                <p>{textPage.totalTrips.full}:</p>
-                                <span className="pl-1">{profile.futureTrips.length + profile.historyTrips.length}</span>
-                            </div>
-                            <div className=" d-md-flex  d-none align-items-center  col-md-2  col-6 p-0">
-                                <span>{profile.futureTrips.length}</span>
-                                <div className="d-flex flex-column ">
-                                    <p>{textPage.upcomingTrips.first}</p>
-                                    <p>{textPage.upcomingTrips.last}</p>
-                                </div>
-                            </div>
-                            <div className="bodyTopDriverInfoRideMobail  d-md-none d-flex align-items-center justify-content-between col-md-3 col-sm-5 col-12 p-0">
-                                <p>{textPage.upcomingTrips.full}:</p>
-                                <span className="pl-1">{profile.futureTrips.length}</span>
-                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div className="navigationBody d-flex align-items-center">
-                    {this.state.navigationText.map((element, index) =>
-                        <span className={{ [this.state.route[index]]: "navigationBodyActive", }[this.props.globalhistory.history.location.pathname] + " navigationButton mb-0 " + (this.state.route[index].length === 0 ? "blockedSpan" : "")}
-                            onClick={(event) => {
-                                if (this.state.route[index].length > 0) {
-                                    this.props.dispatch(whichPageRender(index));
-                                    this.shiftLeft(event);
-                                    this.props.globalhistory.history.push(this.state.route[index]);
+                    <div className="navigationBody d-flex align-items-center">
+                        {this.state.navigationText.map((element, index) =>
+                            <span className={{ [this.state.route[index]]: "navigationBodyActive", }[this.props.globalhistory.history.location.pathname] + " navigationButton mb-0 " + (this.state.route[index].length === 0 ? "blockedSpan" : "")}
+                                onClick={(event) => {
+                                    if (this.state.route[index].length > 0) {
+                                        this.props.dispatch(whichPageRender(index));
+                                        this.shiftLeft(event);
+                                        this.props.globalhistory.history.push(this.state.route[index]);
+                                    }
+                                    this.setState({ activePage: this.state.route[index] })
                                 }
-                                this.setState({ activePage: this.state.route[index] })
-                            }
-                            }>{textPage.navigationText[index]}</span>
-                    )}
+                                }>{textPage.navigationText[index]}</span>
+                        )}
+                    </div>
                 </div>
-            </div>
-        </>
+            </>
         );
     }
 }

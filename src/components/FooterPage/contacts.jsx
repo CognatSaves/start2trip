@@ -17,7 +17,7 @@ import Header from '../header/Header';
 import * as EmailValidator from 'email-validator';
 import Cookies from 'universal-cookie';
 import requests from '../../config';
-import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
 const cookies = new Cookies();
 
 class contactsClass extends React.Component {
@@ -30,17 +30,12 @@ class contactsClass extends React.Component {
             valideEmail: true,
             message: "",
             valideMessage: true,
-            isRefreshExist: false,
-            isRefreshing: false,
-            isGoodAnswer: false
+
         }
     }
     sendMessage = () => {
 
-        this.setState({
-            isRefreshExist: true,
-            isRefreshing: true
-        })
+        startRefresherGlobal(this)
 
         let userLang = (cookies.get('userLang', { path: "/" })).toUpperCase()
         let country = (cookies.get('country', { path: "/" }))
@@ -88,9 +83,6 @@ class contactsClass extends React.Component {
                 let responseText = JSON.parse(request.responseText);
                 console.log(responseText)
                 that.setState({
-                    isRefreshExist: true,
-                    isRefreshing: false,
-                    isGoodAnswer: true,
                     name: "",
                     valideName: true,
                     email: "",
@@ -98,24 +90,11 @@ class contactsClass extends React.Component {
                     message: "",
                     valideMessage: true,
                 })
-                setTimeout(() => {
-                    that.setState({
-                        isRefreshExist: false
-                    })
-                }, 2000)
+                thenFuncGlobal(that)
             }
             if (request.readyState === XMLHttpRequest.DONE && request.status === 0) {
                 console.log('we lose');
-                that.setState({
-                    isRefreshExist: true,
-                    isRefreshing: false,
-                    isGoodAnswer: false
-                })
-                setTimeout(() => {
-                    that.setState({
-                        isRefreshExist: false
-                    })
-                }, 2000)
+                catchFuncGlobal(that)
             }
         }
         request.send(messageInfo);
@@ -136,7 +115,6 @@ class contactsClass extends React.Component {
                     <meta property="og:title" content={helmet.basic.title} />
                     <meta property="og:description" content={helmet.basic.description} />
                 </Helmet>
-                <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
                 <Header driver={true} history={this.props.history} />
                 <div className="wrapper" style={{ minHeight: "79vh" }}>
                     <div className="contacts d-flex" >

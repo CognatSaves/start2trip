@@ -14,7 +14,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import Checkbox from '@material-ui/core/Checkbox';
 import DatePicker from 'material-ui/DatePicker';
-import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
 
 import Cookies from 'universal-cookie';
 
@@ -75,7 +75,6 @@ export default class StartTravelContent extends React.Component {
         let key = JSON.stringify(this.props.that.state);
         return (
             <>
-                <DriverRefreshIndicator isRefreshExist={that.state.isRefreshExist} isRefreshing={that.state.isRefreshing} isGoodAnswer={that.state.isGoodAnswer} />
 
                 <div className="startTravelForm p-3"/* key={key}*/>
                     <div className="startTravelForm_element mx-auto">
@@ -244,7 +243,7 @@ export default class StartTravelContent extends React.Component {
                                     }}>{that.state.promoCode ? textInfo.promoVerification[0] : textInfo.promoVerification[1]}</span>
                                 </div>
                                 <div className="d-flex justify-content-start errorMes">
-                                    {!that.state.isGoodAnswer && !that.state.promoCodIsOk ? <error>{textInfo.uncorrectPromocode}</error> : <div />}
+                                    {!that.props.storeState.isGoodAnswer && !that.state.promoCodIsOk ? <error>{textInfo.uncorrectPromocode}</error> : <div />}
                                 </div>
                             </div>
                             <div className="d-flex justify-content-between align-items-center pt-md-0 pt-4">

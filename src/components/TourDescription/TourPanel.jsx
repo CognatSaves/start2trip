@@ -2,7 +2,7 @@ import React from 'react';
 import '../Places/PlacesPanel.css';
 import './TourDescription.css';
 import { connect } from 'react-redux';
-import checkBtUp from '../../redusers/GlobalFunction'
+import {checkBtUp} from '../../redusers/GlobalFunction'
 import requests from '../../config';
 import Stars from '../stars/Stars'
 

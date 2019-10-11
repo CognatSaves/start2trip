@@ -18,7 +18,7 @@ import Select from '@material-ui/core/Select';
 
 // import RefreshIndicator from 'material-ui/RefreshIndicator';
 
-import DriverRefreshIndicator from './DriverRefreshIndicator';
+import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
@@ -37,9 +37,6 @@ class DriverProfileCarClass extends React.Component {
             collapse: false,
             newCarCard: { nameCar: "", yearCar: "", plateNumberCar: "", typeCar: "", fuelType: "", fuelConsumption: "", carClass: "", onWork: true, numberOfSeats: "" },
             car: {},
-            isRefreshExist: false,
-            isRefreshing: true,
-            isGoodAnswer: true,
             badDataTextVisibility: false,
             indexMainPhoto: 0,
         }
@@ -58,37 +55,13 @@ class DriverProfileCarClass extends React.Component {
         getUserData(requestValues, thenFunc, catchFunc);
     }
     startRefresher = () => {
-        this.setState({
-            isRefreshExist: true,
-            isRefreshing: true
-        });
+        startRefresherGlobal(this)
     }
     thenFunc = () => {
-        console.log('thenFunc');
-        this.setState({
-            isRefreshExist: true,
-            isRefreshing: false,
-            isGoodAnswer: true,
-            collapse: false
-        });
-        setTimeout(() => {
-            this.setState({
-                isRefreshExist: false
-            })
-        }, 1000);
+        thenFuncGlobal(this)
     }
     catchFunc = () => {
-        console.log('catchFunc');
-        this.setState({
-            isRefreshExist: true,
-            isRefreshing: false,
-            isGoodAnswer: false
-        });
-        setTimeout(() => {
-            this.setState({
-                isRefreshExist: false
-            })
-        }, 2000);
+        catchFuncGlobal(this)
     }
     applyChanges = (type) => {
         let jwt = this.props.globalReduser.readCookie('jwt');
@@ -381,10 +354,7 @@ class DriverProfileCarClass extends React.Component {
 
 
                         if (imageCounter === fullfile.length) {
-                            this.setState({
-                                isRefreshExist: false,
-                                isRefreshing: false
-                            })
+                            
                         }
                         this.setState({
                             file: sizFile,
@@ -473,7 +443,6 @@ class DriverProfileCarClass extends React.Component {
         let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileCar;
         return (
             <div className="_ThisTagIsNeeded">
-                <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
 
                 <Collapse isOpen={this.state.collapse} className="col-12">
                     <div className="carAddNewCar d-flex flex-column align-items-end">

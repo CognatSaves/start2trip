@@ -6,7 +6,7 @@ import requests from '../../config'
 
 import Header from '../header/Header'
 import CreateComment from '../driverProfile/CreateComment';
-import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
 import Cookies from 'universal-cookie';
 import { changeLanguagePart } from '../../redusers/Action';
 import axios from 'axios';
@@ -17,25 +17,25 @@ class feedbackClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isRefreshExist: true,
-            isRefreshing: true,
-            isGoodAnswer: true,
             isCommented: false
         };
         props.dispatch(changeLanguagePart(false, true)); //эта ересь сообщает шапке, что мы в админке за пользователя, т.е. работает 1я партия языков, но ломать адрес не надо
         let address = requests.isCommentedTrip + '/?id=' + this.props.match.params.id + "&clientId=" + this.props.match.params.clientId;
+        startRefresherGlobal(this)
+        let that = this
         axios.get(address)
             .then(response => {
                 return response.data;
             })
             .then(data => {
                 console.log(data.isCommented);
-                this.setState({
+                thenFuncGlobal(that)
+                that.setState({
                     isCommented: data.isCommented,
-                    isRefreshExist: false
                 });
             })
             .catch(error => {
+                catchFuncGlobal(that)
                 console.log('Error happened');
             });
     }
@@ -43,24 +43,10 @@ class feedbackClass extends React.Component {
         this.props.dispatch(changeLanguagePart(false, false))//эта ересь сообщает шапке, что мы валим из пользователя, т.е. работает 1я партия языков, но ломать адрес не надо
     }
     startRolling = () => {
-
-        this.setState({
-            isRefreshExist: true,
-            isRefreshing: true
-        });
+        startRefresherGlobal(this)
     }
     endRolling = (result) => {
-
-        let that = this;
-        this.setState({
-            isRefreshing: false,
-            isGoodAnswer: result
-        });
-        setTimeout(
-            function () {
-                that.setState({ isRefreshExist: false, isRefreshing: true })
-            }, 2000
-        )
+        thenFuncGlobal(this)
     }
 
 
@@ -103,7 +89,6 @@ class feedbackClass extends React.Component {
                         <meta property="og:title" content={helmet.title} />
                         <meta property="og:description" content={helmet.description} />
                     </Helmet>
-                    <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
                     {
                         this.state.isCommented ?
                             <div className="col-md-6 col-12">

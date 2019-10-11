@@ -10,7 +10,7 @@ import Header from '../header/Header';
 import DriverInfo from './DriverInfo.jsx';
 import DatePicker from 'material-ui/DatePicker';
 import MapContainer from '../home/HomeBody/MapContainer';
-import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
 import CommentBlock from '../TourDescription/CommentBlock';
 import StartTravelForm from '../startTravelForm/StartTravelForm';
 import StartTravelSuccess from '../startTravelForm/StartTravelSuccess';
@@ -47,6 +47,7 @@ class DriverProfileClass extends React.Component {
 
         let resultString = dateValue.toUTCString();
         props.dispatch(set_state(props.storeState.cities, resultString));
+        
 
         this.state = {
             travelVisibility: false,
@@ -74,9 +75,6 @@ class DriverProfileClass extends React.Component {
             errorMes: false,
             //flagAllOk: false,
             promoCod: "",
-            isRefreshExist: true,//в конструкторе происходит вызов ф-ции
-            isRefreshing: true,//следовательно можно крутить по кд с начала
-            isGoodAnswer: false,
             promoCodIsOk: true,
             elementPrice: 0,
             comments: [],
@@ -103,12 +101,7 @@ class DriverProfileClass extends React.Component {
             date: this.state.date
         });
 
-        /*
-                that.setState({
-                    isRefreshExist: true,
-                    isRefreshing: true
-                });
-        */
+       startRefresherGlobal(this)
         fetch(requests.getDriverDescription, {
             method: 'PUT', body: body,
             headers: { 'content-type': 'application/json' }
@@ -123,31 +116,20 @@ class DriverProfileClass extends React.Component {
                     throw data.error;
                 }
                 else {
-
+                    thenFuncGlobal(that)
                     console.log('****************************');
                     console.log('getDriverDescription answer', data);
                     that.setState({ comments: data.driverCarDescription.comments })
                     that.props.dispatch(setDriverCarDescription(data.driverCarDescription));
                     //that.props.dispatch(setCarTypes(data.carTypes));
-                    /*that.setState({
-                        isRefreshExist: true,
-                        isRefreshing: false,
-                        isGoodAnswer: true
-                    })
-                    setTimeout(()=>{that.setState({isRefreshExist: false})}, 1000);*/
 
                 }
 
             })
             .catch(function (error) {
-
+                catchFuncGlobal(that)
                 console.log('bad');
                 console.log('An error occurred:', error);
-                that.setState({
-                    isRefreshExist: true,
-                    isRefreshing: false,
-                    isGoodAnswer: false
-                })
                 let address = '/404'
                 if (that.props.storeState.country && that.props.storeState.languages && that.props.storeState.languages.length > 0 && that.props.storeState.activeLanguageNumber) {
                     address = '/' + that.props.storeState.country + "-" + that.props.storeState.languages[that.props.storeState.activeLanguageNumber].isoAutocomplete + '/routes';
@@ -393,7 +375,6 @@ class DriverProfileClass extends React.Component {
                 });
 
                 console.log(requests.getDriverInfo);
-
                 fetch(requests.getDriverInfo, {
 
                     method: 'PUT', body: body,
@@ -415,17 +396,12 @@ class DriverProfileClass extends React.Component {
                             //that.setState({comments:data.driverCarDescription.comments})
                             that.props.dispatch(setDriverCarDescription({ ...that.props.driversState.driverCarDescription, price: data.price }));
 
-                            that.setState({
-                                isRefreshExist: false,
-                                isRefreshing: false,
-                                isGoodAnswer: true
-                            })
+                            thenFuncGlobal(that)
                             window.scroll({
                                 top: 0,
                                 left: 0,
                                 behavior: 'smooth'
                             });
-                            //setTimeout(()=>{that.setState({isRefreshExist: false})}, 1000);
 
                         }
 
@@ -434,23 +410,14 @@ class DriverProfileClass extends React.Component {
 
                         console.log('bad');
                         console.log('An error occurred:', error);
-                        that.setState({
-                            isRefreshExist: true,
-                            isRefreshing: false,
-                            isGoodAnswer: false
-                        })
+                        catchFuncGlobal(that)
                         setTimeout(() => { that.props.history.push('/' +/*that.props.storeState.country*/undefined + "-" + /*that.props.storeState.languages[that.props.storeState.activeLanguageNumber].isoAutocomplete*/undefined + '/routes') }, 1000);
                     });
             });
             this.setState({ isLoaded: true });
         }
-        if (!this.state.isLoaded && !this.state.isRefreshExist) {
-            /*
-            this.setState({
-                isRefreshExist: true,
-                isRefreshing: true
-            });
-            */
+        if (!this.state.isLoaded && !this.props.storeState.isRefreshExist) {
+
         }
         let carCapacityArray = [];
         if (this.props.driversState.driverCarDescription.carCapacity) {
@@ -505,7 +472,6 @@ class DriverProfileClass extends React.Component {
 
         return (
             <>
-                <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
 
                 <div className="drivers_top_background" style={{ background: "url(" + windowImg + ")no-repeat" }}>
                     <Header history={this.props.history} showBtnBack={true} />

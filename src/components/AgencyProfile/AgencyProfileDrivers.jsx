@@ -12,7 +12,7 @@ import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 import getUserData from '../driverProfileRegistration/DriverProfileRequest';
 import requests from '../../config';
 
-import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
 import RenderShareLink from '../driverProfileRegistration/RenderShareLink';
 
 import messengerIcon from '../media/messenger.svg'
@@ -31,9 +31,6 @@ class AgencyProfileDriversClass extends React.Component {
                 "Рейтинг", "Штрафные баллы", "Действия"],//этот блок будет использоваться
             // для размера, сами значения будут браться из переводов
             headerWidth: ["30%", "16%", "12%", "12%", "12%", "18%"],
-            isRefreshExist: false,
-            isRefreshing: true,
-            isGoodAnswer: true,
             iconsArray: [messengerIcon, whatsappIcon, viberIcon, telegramIcon, messengerIcon, whatsappIcon, viberIcon, telegramIcon, messengerIcon, whatsappIcon, viberIcon, telegramIcon],
             howMuchRender: 4,
         }
@@ -65,37 +62,13 @@ class AgencyProfileDriversClass extends React.Component {
         }
     }
     startRefresher = () => {
-        this.setState({
-            isRefreshExist: true,
-            isRefreshing: true
-        });
+        startRefresherGlobal(this)
     }
     thenFunc = () => {
-        console.log('thenFunc');
-        this.setState({
-            isRefreshExist: true,
-            isRefreshing: false,
-            isGoodAnswer: true,
-            collapse: false
-        });
-        setTimeout(() => {
-            this.setState({
-                isRefreshExist: false
-            })
-        }, 1000);
+        thenFuncGlobal(this)
     }
     catchFunc = () => {
-        console.log('catchFunc');
-        this.setState({
-            isRefreshExist: true,
-            isRefreshing: false,
-            isGoodAnswer: false
-        });
-        setTimeout(() => {
-            this.setState({
-                isRefreshExist: false
-            })
-        }, 2000);
+        catchFuncGlobal(this)
     }
     sendChangeDriverRequest = (driverId, type) => {
         let jwt = this.props.globalReduser.readCookie('jwt');
@@ -143,7 +116,6 @@ class AgencyProfileDriversClass extends React.Component {
         let linkAddress = requests.frontendAddress + '/' + (userLang ? userLang : 'en') + '/login?agency=' + this.props.globalReduser.profile._id;
         return (
             <div className="billingBody">
-                <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
 
                 <div className="basicInformationBodyBottomHeader d-xl-block d-lg-block d-md-block d-sm-none d-none">
                     <p>{textInfo.driversText}</p>

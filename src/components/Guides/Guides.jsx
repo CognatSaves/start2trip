@@ -16,7 +16,7 @@ import PopularPlaces from './PopularPlaces';
 import PlacesList from './PlacesList';
 import PlacesTagList from './PlacesTagList';
 */
-import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
@@ -27,7 +27,6 @@ class GuidesClass extends React.Component {
     this.state = {
       country: "",
       language: "",
-      isRefreshExist: false,
       departurePoint: ''
     }
     //сначала уборка
@@ -43,7 +42,7 @@ class GuidesClass extends React.Component {
     let country = cookies.get('country', { path: '/' });
     let lang = cookies.get('userLang', { path: '/' });
 
-    let shouldSendRequest = !this.state.isRefreshExist &&
+    let shouldSendRequest = !this.props.storeState.isRefreshExist &&
       (
         this.state.country !== country ||
         (this.state.language !== lang)
@@ -57,8 +56,8 @@ class GuidesClass extends React.Component {
       this.setState({
         country: country,
         language: lang,
-        isRefreshExist: true,
       });
+      startRefresherGlobal(this)
 
       //let country = cookies.get('country', { path: '/' });
       let that = this;
@@ -84,17 +83,13 @@ class GuidesClass extends React.Component {
           
 
           that.props.dispatch(setGuidesList(data.guides, data.country, data.departurePoints));
-          that.setState({
-            isRefreshExist: false
-          })
+          thenFuncGlobal(that)
         }
       })
       .catch(function(error){
         console.log('bad');
         console.log('An error occurred:', error);
-        /*that.setState({
-          isRefreshExist: false
-        })*/
+        catchFuncGlobal(that)
       })
     }
   }
@@ -150,8 +145,6 @@ class GuidesClass extends React.Component {
 
     return (
         <>
-            <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={true} isGoodAnswer={/*this.state.isGoodAnswer*/true} />
-
             {
 
                 countryName.length > 0 ?
@@ -204,7 +197,7 @@ class GuidesClass extends React.Component {
                             <GuidesPanel guidesState={this.props.guidesState} departurePoints={this.props.guidesState.departurePoints}
                               departurePoint={this.state.departurePoint} departurePointChange={this.departurePointChange}
                             />
-                            <GuidesList isStaying={!this.state.isRefreshExist} departurePoint={this.state.departurePoint}/>
+                            <GuidesList isStaying={!this.props.storeState.isRefreshExist} departurePoint={this.state.departurePoint}/>
                         </div>
                     </div>
                 </div>
