@@ -451,11 +451,12 @@ class RouteMenuClass extends React.Component {
             //that.props.dispatch(setCarTypes(data.carTypes));
             that.props.dispatch(setDriversList(data.drivers));
 
-            thenFuncGlobal(that)
+            
             that.props.dispatch(setWaitingDriverRequest(false));
             if (allGoodAfterfunc) {
               allGoodAfterfunc(that, cities, date, langISO);
             }
+              thenFuncGlobal(that)
           }
         })
         .catch(function (error) {
@@ -473,7 +474,7 @@ class RouteMenuClass extends React.Component {
     console.log(this.props.storeState);
 
     if (!this.state.isLoaded && this.props.storeState.languages.length > 0) {
-      debugger
+      
       function isFindAllElems(cities) {
         let answer = true;
         let citiesCopy = [...cities];

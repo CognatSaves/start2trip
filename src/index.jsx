@@ -153,8 +153,12 @@ function getLocals() {
     }
   }
 
-
-
+   // tours need this shit{
+  let userCurr = cookies.get('userCurr', { path: '/' });
+  if(userCurr === undefined){
+    cookies.set('userCurr', "USD", { path: '/', expires: date });
+  }
+  //}
 
   let langSelector = 'ENG'; let smallLangSelector = 'en';
   if (userBrowserLanguageISO === 'ru') {
@@ -311,7 +315,10 @@ function getLocals() {
           //здесь должна быть переадресация
         }
       }
+      setTimeout(()=>{
+        
       thenFuncGlobal(store)
+    },1000)
     })
     .catch(error => {
       catchFuncGlobal(store)

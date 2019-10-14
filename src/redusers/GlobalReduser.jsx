@@ -347,11 +347,12 @@ const initialState = {
 
         function findTargetCurrency(currencies, selectedId) {
             //если набор валют корректен, то отработает только этот цикл
-            for (let i = 0; i < currencies.length; i++) {
-                if (currencies[i].id === selectedId) {
-                    return i;
-                }
-            }
+            // TODO Разкоментировать при необходимости( что бы валюта стала национальной при выборе страны)
+            // for (let i = 0; i < currencies.length; i++) {
+            //     if (currencies[i].id === selectedId) {
+            //         return i;
+            //     }
+            // }
             //если пользовательскую валюту не нашли, выбираем доллары (желательно конечно было бы подтягивать базовую валюту, но то долго
             //и пока у нас базовая валюта - доллар, так что пойдёт)
             for (let i = 0; i < currencies.length; i++) {

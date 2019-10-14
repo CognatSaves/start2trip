@@ -45,7 +45,7 @@ class GuidesListClass extends React.Component {
         array.map((element, index)=>{
             for(let j=0; j<storeState.languageValue.length; j++){
                 for(let k=0; k<element.language.length; k++){
-                    if(storeState.languages[storeState.languageValue[j]].id === element.language[k]){
+                    if(storeState.untranslatedlanguages[storeState.languageValue[j]].id === element.language[k]){
                         filteredArray.push(element);
                         k=element.language.length;
                         j=storeState.languageValue.length;

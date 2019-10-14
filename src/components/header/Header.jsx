@@ -13,7 +13,7 @@ import { Modal, ModalBody } from 'reactstrap';
 import { isMobileOnly, isMobile } from 'react-device-detect';
 import requests from '../../config';
 import axios from 'axios';
-import {checkBtUp} from '../../redusers/GlobalFunction'
+import { checkBtUp } from '../../redusers/GlobalFunction'
 
 // import RenderModalCountry from './RenderModalCountry'
 // import { disablePageScroll, clearQueueScrollLocks, enablePageScroll } from 'scroll-lock';
@@ -28,7 +28,7 @@ import wheelIcon from '../media/wheel.svg'
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 import RenderModalRegistration from './RenderModalRegistration'
-import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
+import { startRefresherGlobal, thenFuncGlobal, catchFuncGlobal, } from '../../redusers/GlobalFunction'
 import Dialog from 'material-ui/Dialog';
 import Cookies from 'universal-cookie';
 
@@ -86,7 +86,7 @@ const ModalUserType = (props) => {
     }
     else {
       this.props.dispatch(setUrlAddress(window.location.pathname));
-      this.props.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
+      this.props.history.push('/' + cookies.get('userLangISO', { path: "/" }) + '/login/');
       //return null;
     }
   }
@@ -206,7 +206,7 @@ const CountrySelect = (props) => {
   if (/prerendercloud/.test(window.navigator.userAgent)) {
     console.log("Chrome headless detected");
     renderModal = false;
-  } 
+  }
   return (
     <Modal isOpen={modalCountry} toggle={toggleModalCountry} className={className}>
       <ModalBody>
@@ -218,7 +218,7 @@ const CountrySelect = (props) => {
           <div className="modalCountry d-flex flex-column align-items-center mb-5">
             <span className="mb-4">{textInfo.modalCountrySelect.selectCountryText}</span>
             {renderModal ?
-              <Suspense fallback={<div>{textInfo.loading+'...'}</div>}>
+              <Suspense fallback={<div>{textInfo.loading + '...'}</div>}>
                 <RenderModalCountry close={toggleModalCountry} />
               </Suspense>
               :
@@ -230,13 +230,13 @@ const CountrySelect = (props) => {
     </Modal>
   )
 }
-const BurgerMenuLanguageDropDown = (props)=>{
-  let {labelValue, dropdownValue, onChange, languageArray} = props;
+const BurgerMenuLanguageDropDown = (props) => {
+  let { labelValue, dropdownValue, onChange, languageArray } = props;
   return (
     <div className="d-flex align-items-end justify-content-between w-100 border-bottom">
       <label>{labelValue}</label>
       <DropDownMenu anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
-        className="burgerMenuTopDropDown" menuStyle={{ maxWidth:"93px",overflow:"hidden"}}
+        className="burgerMenuTopDropDown" menuStyle={{ maxWidth: "93px", overflow: "hidden" }}
         value={dropdownValue/*this.props.storeState.activeLanguageNumberAdmin*/}
         onChange={(event, index, value) => { onChange('adminLang', index)/*this.setLocals('adminLang', index)*/ }}>
         {/*adminLanguages*/languageArray.map((element, index) =>
@@ -252,12 +252,12 @@ const BurgerMenuLanguageDropDown = (props)=>{
     </div>
   )
 }
-const BasicLanguageDropDown = (props) =>{
-  let {isOpen, toggle, languages, activeLanguageNumber, onClick} = props;
+const BasicLanguageDropDown = (props) => {
+  let { isOpen, toggle, languages, activeLanguageNumber, onClick } = props;
 
   return (
     <Dropdown setActiveFromChild="true" isOpen={/*this.state.dropdownLanguageOpen*/isOpen} toggle={/*this.toggleLanguage*/toggle}
-     className={languages.length > 0 ? "selectGeneral" : "selectGeneral preloadHiddenBlock"}>
+      className={languages.length > 0 ? "selectGeneral" : "selectGeneral preloadHiddenBlock"}>
       <DropdownToggle className="selectGeneralButton" caret size="sm">
         <img src={languages.length > 0 ? requests.serverAddressImg + languages[activeLanguageNumber/*this.state.activLanguageNumber*/].icon.url : ''} height="15px" width="15px" alt="flag" />
         {languages.length > 0 ? languages[activeLanguageNumber/*this.props.storeState.activeLanguageNumberAdmin*/].ISO : ''}
@@ -357,8 +357,8 @@ class HeaderClass extends React.Component {
       savedNumber: 0,
       selectedUserType: 0
     };
-    
-    window.onscroll = (e) => checkBtUp(e,this);
+
+    window.onscroll = (e) => checkBtUp(e, this);
 
     //this.getLocals();
   }
@@ -387,7 +387,7 @@ class HeaderClass extends React.Component {
   }
 
   setLocals = (type, index, isAdmin) => {
-    
+
     let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
     thenFuncGlobal(this)
     switch (type) {
@@ -409,25 +409,25 @@ class HeaderClass extends React.Component {
               that.props.dispatch(setActiveLang(index));
               cookies.set('userLang', that.props.storeState.languages[index].ISO, { path: '/', expires: date });
               cookies.set('userLangISO', that.props.storeState.languages[index].isoAutocomplete, { path: '/', expires: date });
-              
+
               let flag = true
               let namePage = that.props.globalhistory.history.location.pathname.split("/");
-              if(namePage[1].length === 6){
+              if (namePage[1].length === 6) {
                 namePage = namePage.splice(2)
                 namePage = namePage.join('/')
-              }else{
-                if(namePage[1] === "en"){
+              } else {
+                if (namePage[1] === "en") {
                   namePage = "ru/" + namePage[2]
-                }else{
+                } else {
                   namePage = "en/" + namePage[2]
                 }
                 flag = false
               }
-              
-              if(!isAdmin){
-                that.props.history.push((flag?("/" + that.props.storeState.country + "-" + that.props.storeState.languages[index].isoAutocomplete + "/"):'/') + (namePage === "" ? "routes/" : (namePage+(flag?"":"/"))))
+
+              if (!isAdmin) {
+                that.props.history.push((flag ? ("/" + that.props.storeState.country + "-" + that.props.storeState.languages[index].isoAutocomplete + "/") : '/') + (namePage === "" ? "routes/" : (namePage + (flag ? "" : "/"))))
               }
-              
+
             }
           });
         }
@@ -532,7 +532,7 @@ class HeaderClass extends React.Component {
         cookies.remove('userType', { path: '/' });
 
 
-        that.props.dispatch(setUser("", "",{}));
+        that.props.dispatch(setUser("", "", {}));
         that.props.dispatch(setProfileData({}));
         let newJwt = that.props.globalReduser.readCookie('jwt');
         let tempJWT = cookies.get('jwt', { path: '/' });
@@ -558,7 +558,7 @@ class HeaderClass extends React.Component {
 
       console.log(that);
       console.log(address);
-      
+
       let profile = that.props.globalReduser.profile;
       let fullAddress = '/account';
       if ((profile.isDriver && profile.country) || profile.isCustomer || (profile.isAgency && profile.country)) {
@@ -598,7 +598,7 @@ class HeaderClass extends React.Component {
     const that = this;
     let jwt = this.props.globalReduser.readCookie('jwt');
     if (jwt && jwt !== '-') {
-      
+
       let profile = that.props.globalReduser.profile;
       if (!((profile.isDriver && profile.country) || profile.isCustomer || (profile.isAgency && profile.country))) {
         startRefresherGlobal(that)
@@ -625,7 +625,7 @@ class HeaderClass extends React.Component {
     }
     else {
       this.props.dispatch(setUrlAddress(window.location.pathname));
-      this.props.history.push('/'+ cookies.get('userLangISO', { path: "/" }) +'/login/');
+      this.props.history.push('/' + cookies.get('userLangISO', { path: "/" }) + '/login/');
       //return null;
     }
   }
@@ -656,22 +656,22 @@ class HeaderClass extends React.Component {
       return res;
     }
     */
-   /*
-    function changeActiveCurrency(that,availableCurrencies, value){
-      //эта функция устанавливает activeCurrencyNumber в соответствие с общим массивом
-      //т.е. по номеру в доступных находит номер в общих
-      
-      let currId = availableCurrencies[value].id;
-      let selectedId = that.props.storeState.activeCurrencyNumber;
-      for(let i=0;i<that.props.storeState.currencies.length;i++){
-        if(currId===that.props.storeState.currencies[i].id){
-          selectedId=i;
-          break;
-        }
-      }
-      that.setLocals('userCurr', selectedId)
-    }
-    */
+    /*
+     function changeActiveCurrency(that,availableCurrencies, value){
+       //эта функция устанавливает activeCurrencyNumber в соответствие с общим массивом
+       //т.е. по номеру в доступных находит номер в общих
+       
+       let currId = availableCurrencies[value].id;
+       let selectedId = that.props.storeState.activeCurrencyNumber;
+       for(let i=0;i<that.props.storeState.currencies.length;i++){
+         if(currId===that.props.storeState.currencies[i].id){
+           selectedId=i;
+           break;
+         }
+       }
+       that.setLocals('userCurr', selectedId)
+     }
+     */
     /*
     function findSelectedCurrency(that,availableCurrencies){
       //по номеру в общих находит номер в доступных валютах
@@ -690,7 +690,7 @@ class HeaderClass extends React.Component {
     console.log('Header render', this.props, window, document);
     //console.log(this.state);
     //console.log(this.props);
-    
+
     let languages = this.props.storeState.languages;
     let currencies = this.props.storeState.currencies;
     let adminLanguages = this.props.storeState.adminLanguages;
@@ -705,38 +705,56 @@ class HeaderClass extends React.Component {
         value: textInfo.menuElements[0]
       },
       {
-        to: "/places/",
-        value: textInfo.menuElements[1]
-      },
-      {
         to: "/tours/",
         value: textInfo.menuElements[2]
       },
       {
         to: '/guides/',
         value: textInfo.menuElements[3]
-      }
+      },
+      {
+        to: "/places/",
+        value: textInfo.menuElements[1]
+      },
     ];
-    
+
     let availableCurrencies = this.props.globalReduser.currencyFilter(this.props.storeState);
-    let selectedCurrNumber = this.props.globalReduser.findSelectedCurrency(this,availableCurrencies);
-      return (
+    let selectedCurrNumber = this.props.globalReduser.findSelectedCurrency(this, availableCurrencies);
+    return (
       <>
 
         <ModalRegistration modalRegistration={this.props.storeState.modalRegistration} toggle={this.toggleModalRegistration} className={this.props.className} authorization={this.authorization} />
-        <CountrySelect textInfo={textInfo} modalCountry={this.state.modalCountry} toggleModalCountry={this.toggleModalCountry} className={this.props.className}/>
+        <CountrySelect textInfo={textInfo} modalCountry={this.state.modalCountry} toggleModalCountry={this.toggleModalCountry} className={this.props.className} />
         {
           this.state.isWaiting ?
-          <React.Fragment />
+            <React.Fragment />
             : <React.Fragment />
         }
 
         <ModalUserType textInfo={textInfo} isOpen={this.state.isUsertypeLooking} that={this} pageTextInfo={pageTextInfo} />
-        <div style={this.state.burgerMenu ? { position: "fixed", top: "0", zIndex: "40" } : {}} className="headerMobail  d-md-none d-flex align-items-center justify-content-between">
-          <Link className="logoSite" to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes/"} />
-          <div onClick={this.toggleModalCountry} style={{ visibility: this.props.storeState.countries.length > 0 ? 'visible' : 'hidden' }} className="headerGeoButton col-lg-5 col-md-4 col-6">
+        <div style={this.state.burgerMenu ? { position: "fixed", top: "0", zIndex: "40" } : {}} className="headerMobail  d-md-none d-flex align-items-center justify-content-around">
+          <Link className="logoSite col-3" to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes/"} />
+          <div onClick={this.toggleModalCountry} style={{ visibility: this.props.storeState.countries.length > 0 ? 'visible' : 'hidden' }} className={!this.state.burgerMenu?"headerGeoButton col-lg-5 col-md-4 col-3":"headerGeoButton col-lg-5 col-md-4 col-6"}>
             <span>{this.props.storeState.country}</span>
           </div>
+          {!this.state.burgerMenu &&
+            <>
+              {
+                this.props.storeState.isSecondLanguageGroupPart ?
+                  <BasicLanguageDropDown isOpen={this.state.dropdownLanguageOpen}
+                    toggle={this.toggleLanguage} languages={adminLanguages}
+                    activeLanguageNumber={this.props.storeState.activeLanguageNumberAdmin}
+                    onClick={(index) => this.setLocals('adminLang', index)}
+                  />
+                  :
+                  <BasicLanguageDropDown isOpen={this.state.dropdownLanguageOpen}
+                    toggle={this.toggleLanguage} languages={languages}
+                    activeLanguageNumber={this.props.storeState.activeLanguageNumber}
+                    onClick={(index) => this.setLocals('userLang', index, this.props.storeState.isAdminLanguageType)}
+                  />
+              }
+            </>
+          }
           <div className="headerSelect d-flex align-items-center justify-content-end ">
             <button className={this.state.burgerMenu ? "headerMobailButton-active" : "headerMobailButton"} onClick={() => {
               this.setState({ burgerMenu: !this.state.burgerMenu });
@@ -749,22 +767,22 @@ class HeaderClass extends React.Component {
                     {
                       this.props.storeState.isSecondLanguageGroupPart ?
                         <BurgerMenuLanguageDropDown labelValue={textInfo.burgerMenu.settingsDrop[0]}
-                          dropdownValue={this.props.storeState.activeLanguageNumberAdmin} onChange={(a,b)=>{this.setLocals('adminLang',b)}}
+                          dropdownValue={this.props.storeState.activeLanguageNumberAdmin} onChange={(a, b) => { this.setLocals('adminLang', b) }}
                           languageArray={adminLanguages}
                         />
                         :
                         <BurgerMenuLanguageDropDown labelValue={textInfo.burgerMenu.settingsDrop[0]}
-                          dropdownValue={this.props.storeState.activeLanguageNumber} onChange={(a,b)=>this.setLocals('userLang', b, this.props.storeState.isAdminLanguageType)}
+                          dropdownValue={this.props.storeState.activeLanguageNumber} onChange={(a, b) => this.setLocals('userLang', b, this.props.storeState.isAdminLanguageType)}
                           languageArray={languages}
                         />
                     }
                     <div className="d-flex align-items-end justify-content-between w-100 ">
                       <label>{textInfo.burgerMenu.settingsDrop[1]}</label>
                       <DropDownMenu menuItemStyle={{ color: "#304269", fontSize: "14px", fontWeight: "400" }} selectedMenuItemStyle={{ color: "#f60" }}
-                        anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }} className="burgerMenuTopDropDown" menuStyle={{ maxWidth:"96px",overflow:"hidden"}}
-                        value={selectedCurrNumber} onChange={(event, index, value) => { this.props.globalReduser.changeActiveCurrency(this,availableCurrencies, index, cookies, (selectedId)=>this.setLocals('userCurr', selectedId)) /*changeActiveCurrency(this,availableCurrencies,index)*/}}>
+                        anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }} className="burgerMenuTopDropDown" menuStyle={{ maxWidth: "96px", overflow: "hidden" }}
+                        value={selectedCurrNumber} onChange={(event, index, value) => { this.props.globalReduser.changeActiveCurrency(this, availableCurrencies, index, cookies, (selectedId) => this.setLocals('userCurr', selectedId)) /*changeActiveCurrency(this,availableCurrencies,index)*/ }}>
                         {availableCurrencies.map((element, index) =>
-                          <MenuItem value={index} primaryText={<span className="pl-2">{element.symbol === element.ISO ? element.ISO:(element.symbol + " " + element.ISO)}</span>} />
+                          <MenuItem value={index} primaryText={<span className="pl-2">{element.symbol === element.ISO ? element.ISO : (element.symbol + " " + element.ISO)}</span>} />
                         )}
                       </DropDownMenu>
                     </div>
@@ -782,14 +800,14 @@ class HeaderClass extends React.Component {
                     {
                       this.props.storeState.isAuthorized ?
                         <>
-                          <span className="border-bottom profile" onClick={() => { this.setState({burgerMenu: false}); this.accountRedirect("/profile", 1) }}>{textInfo.burgerMenu.profile}</span>
-                          <span className="border-bottom blockedSpan timetable" onClick={() => { this.setState({burgerMenu: false});this.accountRedirect("/trips", 0) }}>{textInfo.burgerMenu.trips}</span>
-                          <span className="border-bottom settingsGears" onClick={() => { this.setState({burgerMenu: false}); this.accountRedirect("/settings", 6) }}>{textInfo.burgerMenu.settings}</span>
+                          <span className="border-bottom profile" onClick={() => { this.setState({ burgerMenu: false }); this.accountRedirect("/profile", 1) }}>{textInfo.burgerMenu.profile}</span>
+                          <span className="border-bottom blockedSpan timetable" onClick={() => { this.setState({ burgerMenu: false }); this.accountRedirect("/trips", 0) }}>{textInfo.burgerMenu.trips}</span>
+                          <span className="border-bottom settingsGears" onClick={() => { this.setState({ burgerMenu: false }); this.accountRedirect("/settings", 6) }}>{textInfo.burgerMenu.settings}</span>
                           {
                             this.props.storeState.userData && this.props.storeState.userData.isAffiliatedDriver ?
-                              <React.Fragment/> :
-                              <span className="border-bottom saveMoney" onClick={() => { this.setState({burgerMenu: false}); this.accountRedirect("/referrals", 8) }}>{textInfo.burgerMenu.partnership}</span>
-                          }                
+                              <React.Fragment /> :
+                              <span className="border-bottom saveMoney" onClick={() => { this.setState({ burgerMenu: false }); this.accountRedirect("/referrals", 8) }}>{textInfo.burgerMenu.partnership}</span>
+                          }
                           <span className="exit" onClick={() => { this.logOffFunc() }}>{textInfo.burgerMenu.exit}</span>
                         </>
                         :
@@ -798,11 +816,11 @@ class HeaderClass extends React.Component {
                   </div>
                   <text className="col-11 pt-4 pb-2">{textInfo.burgerMenu.titlesName[3]}</text>
                   <div className="burgerMenuBlock d-flex flex-column justify-content-center align-items-start col-11 p-0">
-                    <Link to={"/"+ cookies.get('userLangISO', { path: "/" }) + "/about-service/"} className="border-bottom logoIcon" >{textInfo.burgerMenu.usefulLinks[0]}</Link>
-                    <Link to={"/"+ cookies.get('userLangISO', { path: "/" }) + "/affiliate-program/"} className="border-bottom partner" >{textInfo.burgerMenu.usefulLinks[1]}</Link>
-                    <Link to={"/"+ cookies.get('userLangISO', { path: "/" }) + "/terms/"} className="border-bottom contract" >{textInfo.burgerMenu.usefulLinks[2]}</Link>
+                    <Link to={"/" + cookies.get('userLangISO', { path: "/" }) + "/about-service/"} className="border-bottom logoIcon" >{textInfo.burgerMenu.usefulLinks[0]}</Link>
+                    <Link to={"/" + cookies.get('userLangISO', { path: "/" }) + "/affiliate-program/"} className="border-bottom partner" >{textInfo.burgerMenu.usefulLinks[1]}</Link>
+                    <Link to={"/" + cookies.get('userLangISO', { path: "/" }) + "/terms/"} className="border-bottom contract" >{textInfo.burgerMenu.usefulLinks[2]}</Link>
                     <Link to="" className="border-bottom questionMarkGray" >{textInfo.burgerMenu.usefulLinks[3]}</Link>
-                    <Link to={"/"+ cookies.get('userLangISO', { path: "/" }) + "/contacts/"} className="phoneBook " >{textInfo.burgerMenu.usefulLinks[4]}</Link>
+                    <Link to={"/" + cookies.get('userLangISO', { path: "/" }) + "/contacts/"} className="phoneBook " >{textInfo.burgerMenu.usefulLinks[4]}</Link>
                   </div>
                 </div>
               </div>
@@ -814,14 +832,14 @@ class HeaderClass extends React.Component {
           <i className="footerMobileIconUp" />
         </div>
         <div className={this.props.driver ? "driverHeader" : "homeHeader"}>
-          {this.props.showBtnBack ? <div className="driversGoBack" style={{ display: isMobileOnly ? "flex" : "none" }}>
-            <span onClick={() => {if(this.props.history.length > 2){this.props.history.goBack()}else{this.props.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/routes/')};  }}>Назад</span>
+          {/* {this.props.showBtnBack ? <div className="driversGoBack" style={{ display: isMobileOnly ? "flex" : "none" }}>
+            <span onClick={() => { if (this.props.history.length > 2) { this.props.history.goBack() } else { this.props.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/routes/') }; }}>Назад</span>
           </div> :
-            <React.Fragment />}
+            <React.Fragment />} */}
 
-          <div className='header d-xl-flex d-lg-flex d-md-flex d-sm-none d-none align-items-stretch justify-content-between'>
+          <div className='header d-md-flex d-none align-items-stretch justify-content-between'>
             <div className="d-flex align-items-center col-xl-2 col-lg-2 col-md-3 col-sm-2 col-2">
-              <Link className="logoSite col-xl-8 col-lg-9 col-md-8 col-sm-8 col-7" to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes/"}/>
+              <Link className="logoSite col-xl-8 col-lg-9 col-md-8 col-sm-8 col-7" to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes/"} />
               <div onClick={this.toggleModalCountry} style={{ visibility: this.props.storeState.countries.length > 0 ? 'visible' : 'hidden' }} className="headerGeoButton col-xl-5 col-lg-5 col-md-4 col-sm-5 col-5">
                 <span>{this.props.storeState.country}</span>
               </div>
@@ -829,9 +847,23 @@ class HeaderClass extends React.Component {
             <div className="d-flex align-items-center justify-content-end col-xl-7 col-lg-9 col-md-8 col-sm-6 col-6">
               <div className="headerButtonMass d-flex align-self-stretch justify-content-end col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 p-0">
                 {
-                  buttonMassElements.map((element, index) =>
-                    <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + element.to}
-                     className="buttonMassLink align-self-stretch">{element.value}</Link>
+                  buttonMassElements.map((element, index) => {
+                    let myClass = "";
+                    let url = this.props.history.location.pathname.split("/");
+                    let result = url[2]
+                    result = result.split("-")
+                    if (("/" + result[0] + "/") === element.to) {
+                      myClass = "buttonMassLink align-self-stretch buttonMassLink_active"
+                    } else {
+                      myClass = "buttonMassLink align-self-stretch"
+                    }
+                    return (
+                      <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + element.to}
+                        className={myClass}>{element.value}</Link>
+                    )
+                  }
+
+
                   )
                 }
               </div>
@@ -839,30 +871,30 @@ class HeaderClass extends React.Component {
                 <Dropdown setActiveFromChild="true" isOpen={this.state.dropdownOpen} toggle={this.toggleDropdownOpen} className={availableCurrencies.length > 0 ? "selectGeneral" : "selectGeneral preloadHiddenBlock"}>
                   <DropdownToggle className="selectGeneralButton" caret size="sm">
                     {/*this.state.activeCurrency[this.state.activeCurrencyNumber]*/ availableCurrencies.length > 0 ?
-                    /*далее я оставил просто currencies, т.к. они и availableCurrencies должны быть взаимосвязаны */
-                    (currencies[this.props.storeState.activeCurrencyNumber].symbol === currencies[this.props.storeState.activeCurrencyNumber].ISO ? " " + currencies[this.props.storeState.activeCurrencyNumber].ISO:(currencies[this.props.storeState.activeCurrencyNumber].symbol + " " + currencies[this.props.storeState.activeCurrencyNumber].ISO)) : ''}
+                      /*далее я оставил просто currencies, т.к. они и availableCurrencies должны быть взаимосвязаны */
+                      (currencies[this.props.storeState.activeCurrencyNumber].symbol === currencies[this.props.storeState.activeCurrencyNumber].ISO ? " " + currencies[this.props.storeState.activeCurrencyNumber].ISO : (currencies[this.props.storeState.activeCurrencyNumber].symbol + " " + currencies[this.props.storeState.activeCurrencyNumber].ISO)) : ''}
                   </DropdownToggle>
                   <DropdownMenu className="dropdownMenu currenty" >
                     {
                       availableCurrencies.map((element, index) =>
-                        <DropdownItem className="dropdownMenu" onClick={() => {this.props.globalReduser.changeActiveCurrency(this,availableCurrencies, index, cookies, (selectedId)=>this.setLocals('userCurr', selectedId))/* changeActiveCurrency(this,availableCurrencies,index)*/}}>{element.symbol=== element.ISO ? " " + element.ISO : (element.symbol + " " + element.ISO)}</DropdownItem>
+                        <DropdownItem className="dropdownMenu" onClick={() => { this.props.globalReduser.changeActiveCurrency(this, availableCurrencies, index, cookies, (selectedId) => this.setLocals('userCurr', selectedId))/* changeActiveCurrency(this,availableCurrencies,index)*/ }}>{element.symbol === element.ISO ? " " + element.ISO : (element.symbol + " " + element.ISO)}</DropdownItem>
                       )
                     }
                   </DropdownMenu>
                 </Dropdown>
                 {
-                  this.props.storeState.isSecondLanguageGroupPart ? 
+                  this.props.storeState.isSecondLanguageGroupPart ?
                     <BasicLanguageDropDown isOpen={this.state.dropdownLanguageOpen}
                       toggle={this.toggleLanguage} languages={adminLanguages}
                       activeLanguageNumber={this.props.storeState.activeLanguageNumberAdmin}
-                      onClick={(index)=>this.setLocals('adminLang', index)}
-                      />
+                      onClick={(index) => this.setLocals('adminLang', index)}
+                    />
                     :
                     <BasicLanguageDropDown isOpen={this.state.dropdownLanguageOpen}
                       toggle={this.toggleLanguage} languages={languages}
                       activeLanguageNumber={this.props.storeState.activeLanguageNumber}
-                      onClick={(index)=>this.setLocals('userLang', index, this.props.storeState.isAdminLanguageType)}
-                      />
+                      onClick={(index) => this.setLocals('userLang', index, this.props.storeState.isAdminLanguageType)}
+                    />
                 }
               </div>
               <div className="headerRegistration d-flex justify-content-start col-xl-1 col-lg-1 col-md-2 col-sm-1 col-1">
@@ -875,10 +907,10 @@ class HeaderClass extends React.Component {
                     <span /*className="blockedSpan"*/ onClick={() => { this.accountRedirect("/trips", 0) }}>{textInfo.burgerMenu.trips}</span>
                     <span onClick={() => { this.accountRedirect("/settings", 6) }}>{textInfo.burgerMenu.settings}</span>
                     {
-                      this.props.storeState.userData && this.props.storeState.userData.isAffiliatedDriver ? 
-                       <React.Fragment/> : 
-                       <span onClick={() => { this.accountRedirect("/referrals", 8) }}>{textInfo.burgerMenu.partnership}</span>
-                    }                
+                      this.props.storeState.userData && this.props.storeState.userData.isAffiliatedDriver ?
+                        <React.Fragment /> :
+                        <span onClick={() => { this.accountRedirect("/referrals", 8) }}>{textInfo.burgerMenu.partnership}</span>
+                    }
                     <span onClick={this.logOffFunc}>{textInfo.burgerMenu.exit}</span>
                   </div>
                 </div>

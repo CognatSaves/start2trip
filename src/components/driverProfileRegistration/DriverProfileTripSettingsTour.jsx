@@ -47,7 +47,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
         catchFuncGlobal(this)
     }
     guideStateChanged = () => {
-        debugger
+        
         console.log('guideStateChanged call');
         let jwt = this.props.globalReduser.readCookie('jwt');
         if (jwt && jwt !== "-" && !this.props.storeState.isRefreshExist) {

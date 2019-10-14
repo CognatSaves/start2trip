@@ -334,7 +334,7 @@ class DriverProfileBasicInformationClass extends React.Component {
                                 <p className=" d-md-block d-none m-0 col-md-6 col-5">{textPage.basicInfoLanguage.description}</p>
                             </div>
                             <div className="d-flex align-items-center">
-                                <label style={{ display: this.state.chipData.length ? "block" : "none" }} htmlFor="basicInfoLanguage" className="col-xl-2 col-lg-2 col-md-2 col-sm-0 col-0"></label>
+                                <label style={{ display: this.state.chipData.length ? "block" : "none" }} htmlFor="basicInfoLanguage" className="d-md-flex d-none col-2"></label>
                                 <div className="d-flex flex-wrap align-items-сenter col-xl-10 col-lg-10 col-md-10 col-12 p-0 mt-1 mb-2">
 
                                     {this.state.chipData.map((element, index) =>

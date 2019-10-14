@@ -6,28 +6,32 @@ function getUserData(requestValues, thenFunc, catchFunc, params) {
   let userLang = requestValues.readCookie('userLang');
   let country = requestValues.readCookie('country')
   if (jwt && jwt !== "-") {
-    
-    axios.get(requestValues.requestAddress + '?ISO='+userLang/*+'&countryISO='+country*/, {
+
+    axios.get(requestValues.requestAddress + '?ISO=' + userLang/*+'&countryISO='+country*/, {
       headers: {
         Authorization: `Bearer ${jwt}`
       }
     })
       .then(response => {
-        
+
         console.log('get answer');
         requestValues.setProfileData(response.data);
 
         if (thenFunc) {
           if (params && params.thenFunc) {
-            thenFunc(params.thenFunc);
+            setTimeout(() => {
+              thenFunc(params.thenFunc);
+            }, 700)
           }
           else {
-            thenFunc();
+            setTimeout(() => {
+              thenFunc();
+            }, 700)
           }
         }
       })
       .catch(error => {
-        
+
         if (catchFunc) {
           if (params && params.catchFunc) {
             catchFunc(params.catchFunc)
