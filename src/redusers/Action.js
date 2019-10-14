@@ -50,6 +50,14 @@ const SET_ACTIVE_LANG_ISO = 'SET_ACTIVE_LANG_ISO';
 
 const CLEAR_FILTERS = 'CLEAR_FILTERS'
 
+const START_REFRESHER = 'START_REFRESHER'
+
+const THEN_FUNC = 'THEN_FUNC'
+
+const CATCH_FUNC = 'CATCH_FUNC'
+
+const IS_REFRESH_EXIST_TO_FALSE = 'IS_REFRESH_EXIST_TO_FALSE'
+
 const changeLanguagePart = function(isSecondLanguageGroupPart,isAdminLanguageType) {
     return {
         type: CHANGE_LANGUAGE_PART,
@@ -241,6 +249,29 @@ const clearFilters = function(){
     }
 }
 
+const startRefresher = function(){
+    return{
+        type: START_REFRESHER,
+    }
+}
+
+const thenFunc = function(){
+    return{
+        type: THEN_FUNC,
+    }
+}
+
+const catchFunc = function(){
+    return{
+        type: CATCH_FUNC,
+    }
+}
+
+const isRefreshExistToFalse = function(){
+    return{
+        type: IS_REFRESH_EXIST_TO_FALSE ,
+    }
+}
 
 export {
     set_state,
@@ -294,5 +325,13 @@ export {
     SET_ACTIVE_LANG_ISO,
     setActiveLangISO,
     CLEAR_FILTERS,
-    clearFilters
+    clearFilters,
+    START_REFRESHER,
+    startRefresher,
+    THEN_FUNC,
+    thenFunc,
+    CATCH_FUNC,
+    catchFunc,
+    IS_REFRESH_EXIST_TO_FALSE,
+    isRefreshExistToFalse,
 }

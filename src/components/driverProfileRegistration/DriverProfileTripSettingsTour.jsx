@@ -21,6 +21,7 @@ import AgencyProfileTour from '../AgencyProfile/AgencyProfileTour';
 import Checkbox from '@material-ui/core/Checkbox';
 import { Collapse } from 'reactstrap'
 
+import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
@@ -28,11 +29,9 @@ const cookies = new Cookies();
 class DriverProfileTripSettingsTourClass extends React.Component {
     constructor(props) {
         super(props);
+        
         let profile = this.props.globalReduser.profile;
         this.state = {
-            isRefreshExist: false,
-            isRefreshing: false,
-            isGoodAnswer: false,
             guide: profile.guide,
             guideHourPrice: profile.guideHourPrice,
             guidePriceCurrency: profile.guidePriceCurrency,
@@ -40,45 +39,24 @@ class DriverProfileTripSettingsTourClass extends React.Component {
             isTourOpened: false 
         };
     }
+
     thenFunc = () => {
-        console.log('thenFunc');
-        this.setState({
-            isRefreshExist: true,
-            isRefreshing: false,
-            isGoodAnswer: true,
-        });
-        setTimeout(() => {
-            this.setState({
-                isRefreshExist: false
-            })
-        }, 1000);
+        thenFuncGlobal(this)
     }
     catchFunc = () => {
-        console.log('catchFunc');
-        this.setState({
-            isRefreshExist: true,
-            isRefreshing: false,
-            isGoodAnswer: false,
-        });
-        setTimeout(() => {
-            this.setState({
-                isRefreshExist: false
-            })
-        }, 2000);
+        catchFuncGlobal(this)
     }
     guideStateChanged = () => {
+        debugger
         console.log('guideStateChanged call');
         let jwt = this.props.globalReduser.readCookie('jwt');
-        if (jwt && jwt !== "-" && !this.state.isRefreshExist) {
-            this.setState({
-                isRefreshExist: true,
-                isRefreshing: true
-            })
+        if (jwt && jwt !== "-" && !this.props.storeState.isRefreshExist) {
             let body = JSON.stringify({
                 guide: !this.state.guide,
                 guideStatusChange: true
             });
             let that = this;
+            startRefresherGlobal(this)
             fetch(requests.profileUpdateRequest,{
                 method: 'PUT', body: body,
                 headers: { 'content-type': 'application/json', Authorization: `Bearer ${jwt}`} 
@@ -119,16 +97,13 @@ class DriverProfileTripSettingsTourClass extends React.Component {
     guideParamsChanged = () => {
         console.log('guideParamsChanged');
         let jwt = this.props.globalReduser.readCookie('jwt');
-        if(jwt && jwt !== '-' && !this.state.isRefreshExist){
-            this.setState({
-                isRefreshExist: true,
-                isRefreshing: true
-            });
+        if(jwt && jwt !== '-' && !this.props.storeState.isRefreshExist){
             let body = JSON.stringify({
                 guideHourPrice: this.state.guideHourPrice,
                 guidePriceCurrency: this.state.guidePriceCurrency
             });
             let that = this;
+            startRefresherGlobal(this)
             fetch(requests.profileUpdateRequest,{
                 method: 'PUT', body: body,
                 headers: { 'content-type': 'application/json', Authorization: `Bearer ${jwt}`}
@@ -170,8 +145,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
        return(
 
             <>
-                <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist}
-                    isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
+                
 
                 <Collapse isOpen={!this.state.isTourOpened}>
                     <div className="profileFeedbackBlock_comments d-flex flex-column" style={{marginBottom: '10px'}}>

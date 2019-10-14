@@ -49,6 +49,10 @@ import {
     CHANGE_LANGUAGE_PART,
     SET_ACTIVE_LANG_ISO,
     CLEAR_FILTERS,
+    START_REFRESHER,
+    THEN_FUNC,
+    CATCH_FUNC,
+    IS_REFRESH_EXIST_TO_FALSE,
 } from './Action';
 
 const langArrayMassAdmin = [En_admin, Ru_admin, Ge_admin];
@@ -76,7 +80,7 @@ const initialState = {
     autoValue: [], // Участвует в фильтрации
     autoMenu: false,
     languages: [],
-    untranslatedlanguages:[],
+    untranslatedlanguages: [],
     adminLanguages: [],
     activeLanguageNumber: 0,
 
@@ -88,8 +92,7 @@ const initialState = {
     currencies: [],
     countries: [],
     activeCurrencyNumber: 0,
-    comfort: [
-        {
+    comfort: [{
             icon: seatIcon,
             title: "Кожаный салон"
         },
@@ -138,7 +141,15 @@ const initialState = {
     isAuthorized: false,
     openFilter: false,
 
-    modalRegistration: false
+    modalRegistration: false,
+
+    //driverRefreshIndicator
+    isRefreshExist: false,
+    isRefreshing: true,
+    isGoodAnswer: true,
+    numberOfRefresh: 0,
+    //driverRefreshIndicator
+
 };
 
 export const AppReduser = (state = initialState, action) => {
@@ -184,7 +195,7 @@ export const AppReduser = (state = initialState, action) => {
             return newState;
         }
         case SET_ACTIVE_LANG_ISO: {
-            
+
             let newState = {
                 ...state
             };
@@ -447,7 +458,54 @@ export const AppReduser = (state = initialState, action) => {
             newState.personsOld = [1, 0];
             newState.autoValue = [];
             newState.pricePart = 0;
-            newState.languageValue =[];
+            newState.languageValue = [];
+            return newState;
+        }
+
+        case START_REFRESHER: {
+            let newState = {
+                ...state
+            };
+            debugger
+            newState.numberOfRefresh = newState.numberOfRefresh+1
+            newState.isRefreshExist = true;
+            newState.isRefreshing = true;
+            return newState;
+        }
+
+        case THEN_FUNC: {
+            let newState = {
+                ...state
+            };
+            debugger
+            newState.isRefreshExist = true;
+            if(newState.numberOfRefresh === 1){
+                
+                newState.isRefreshing = false;
+            }
+            newState.numberOfRefresh = newState.numberOfRefresh-1
+            newState.isGoodAnswer = true;
+
+            return newState;
+        }
+
+        case CATCH_FUNC: {
+            let newState = {
+                ...state
+            };
+            newState.isRefreshExist = true;
+            newState.isRefreshing = false;
+            newState.isGoodAnswer = false;
+
+            return newState;
+        }
+        
+        case IS_REFRESH_EXIST_TO_FALSE: {
+            let newState = {
+                ...state
+            };
+            newState.isRefreshExist = false;
+
             return newState;
         }
 

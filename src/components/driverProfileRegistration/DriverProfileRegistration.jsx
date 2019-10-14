@@ -27,7 +27,7 @@ import '../startTravelForm/StartTravelForm.css';
 
 import Header from '../header/Header'
 import DriverProfileNavigation from './DriverProfileNavigation'
-import DriverRefreshIndicator from './DriverRefreshIndicator';
+import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
 
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
@@ -62,6 +62,7 @@ class DriverProfileRegistrationClass extends React.Component {
     let userType = this.props.globalReduser.readCookie('userType');
     let that = this;
     let textInfo = this.props.storeState.languageText.driverProfileRegistration.DriverProfileRegistration;
+    
     if (this.props.globalReduser.profile.isDriver) {
       return (
         <>
@@ -107,8 +108,10 @@ class DriverProfileRegistrationClass extends React.Component {
         return null;
       }
       else {
+        
         let jwt = this.props.globalReduser.readCookie('jwt');
         if (jwt && jwt !== '-') {
+          startRefresherGlobal(that)
           let that = this;
           let requestValues = {
             readCookie: this.props.globalReduser.readCookie,
@@ -117,10 +120,8 @@ class DriverProfileRegistrationClass extends React.Component {
             },
             requestAddress: requests.profileRequest
           }
-          getUserData(requestValues);
-          return (
-            <DriverRefreshIndicator isRefreshExist={true} isRefreshing={true} isGoodAnswer={true} />
-          )
+          getUserData(requestValues,()=>thenFuncGlobal(that),()=>catchFuncGlobal(that));
+          
         }
         else {
           this.props.dispatch(setUrlAddress(window.location.pathname));

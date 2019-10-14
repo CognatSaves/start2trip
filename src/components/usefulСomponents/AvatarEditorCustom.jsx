@@ -3,7 +3,8 @@ import '../driverProfileRegistration/DriverProfileNavigation.css'
 import { connect } from 'react-redux';
 import { readAndCompressImage } from 'browser-image-resizer';
 import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
-import { setUser } from '../../redusers/Action';
+import { setUser} from '../../redusers/Action';
+import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
 import { isMobile, isMobileOnly } from 'react-device-detect';
 import requests from '../../config';
 import Dialog from 'material-ui/Dialog';
@@ -12,7 +13,6 @@ import './AvatarEditorCustom.css'
 
 import Slider from '@material-ui/core/Slider';
 import AvatarEditor from 'react-avatar-editor'
-import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
@@ -23,51 +23,11 @@ class AvatarEditorCustomClass extends React.Component {
 
         this.state = {
 
-            isRefreshExist: false,
-            isRefreshing: true,
-            isGoodAnswer: true,
-
             zoomDefaultValue: 1,
             zoomValue: 1,
             rotate: 0,
 
         };
-    }
-
-    startRefresher = () => {
-        this.setState({
-            isRefreshExist: true,
-            isRefreshing: true
-        });
-    }
-
-    thenFunc = () => {
-        console.log('thenFunc');
-        console.log(this.props.profileReduser);
-        this.setState({
-            isRefreshExist: true,
-            isRefreshing: false,
-            isGoodAnswer: true,
-        });
-        setTimeout(() => {
-            this.setState({
-                isRefreshExist: false
-            })
-        }, 1000);
-    }
-
-    catchFunc = () => {
-        console.log('catchFunc');
-        this.setState({
-            isRefreshExist: true,
-            isRefreshing: false,
-            isGoodAnswer: false
-        });
-        setTimeout(() => {
-            this.setState({
-                isRefreshExist: false
-            })
-        }, 2000);
     }
 
     _handleImageChange = (e) => {
@@ -76,7 +36,7 @@ class AvatarEditorCustomClass extends React.Component {
         let file = e.target.files[0];
 
         if (file && file.type.match('image')) {
-            this.startRefresher();
+            startRefresherGlobal(this);
 
             readAndCompressImage(file, this.props.globalReduser.compressConfig)
                 .then(resizedImage => {
@@ -98,10 +58,8 @@ class AvatarEditorCustomClass extends React.Component {
     }
 
     sendImgToServer = (img) => {
-        let resultArray = this.props.AppReduser.avatarUrl.split("/")
-        let imgFile = new File([img], resultArray[4]);
+        let imgFile = new File([img], "avatar.jpg");
         let that = this;
-        this.startRefresher();
         let jwt = this.props.globalReduser.readCookie('jwt');
         if (jwt && jwt !== "-") {
             var carForm = new FormData();
@@ -117,10 +75,10 @@ class AvatarEditorCustomClass extends React.Component {
                     let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
                     cookies.set("avatarUrl", avatar, { path: '/', expires: date });
                     that.props.dispatch(setUser(that.props.AppReduser.userName, avatar));
-                    that.thenFunc();
+                    thenFuncGlobal(that);
                 }
                 if (request.readyState === XMLHttpRequest.DONE && request.status === 0) {
-                    that.catchFunc();
+                    catchFuncGlobal(that);
                 }
 
             }
@@ -137,6 +95,7 @@ class AvatarEditorCustomClass extends React.Component {
 
     onClickSave = () => {
         if (this.editor) {
+            startRefresherGlobal(this);
             const canvas = this.editor.getImage()
             let img = canvas.toBlob((blob) => {
 
@@ -188,7 +147,6 @@ class AvatarEditorCustomClass extends React.Component {
                     open={this.props.imgModal}
                     onRequestClose={this.props.imgModalShow}
                 >
-                    <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
                     
                     <div className="d-flex flex-column justify-content-center  align-items-center col-12 p-3">
                         <div className="d-flex w-100 justify-content-end">

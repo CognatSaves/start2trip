@@ -10,7 +10,7 @@ import requests from '../../config';
 
 import georgiaImg from '../media/georgia.png'
 
-import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
 import HomePopularPlaces from './HomeBottom/HomePopularPlaces';
 import HomeRoutesList from './HomeBottom/HomeRoutesList';
 import HomePlacesPanel from './HomeBottom/HomePlacesPanel';
@@ -25,7 +25,6 @@ class HomeBodyBottomClass extends React.Component {
     this.state = {
       country: "",
       language: "",
-      isRefreshExist: false,
       selectedDirection: ""
     };
     //this.sendRequestFunc();
@@ -67,17 +66,17 @@ class HomeBodyBottomClass extends React.Component {
       lang = "";
       couldSendRequest = false;
     }
-    let shouldSendRequest = !this.state.isRefreshExist && couldSendRequest &&
+    let shouldSendRequest = !this.props.storeState.isRefreshExist && couldSendRequest &&
       (
         this.state.selectedDirection !== (selectedDirection) ||
         this.state.country !== country ||
         (this.state.language !== lang)
       );
     if (shouldSendRequest) {
+      startRefresherGlobal(this)
       this.setState({
         country: country,
         language: lang,
-        isRefreshExist: true,
         selectedDirection: selectedDirection
       });
       let that = this;
@@ -91,7 +90,9 @@ class HomeBodyBottomClass extends React.Component {
 
           if (data.error) {
             console.log("bad");
+            catchFuncGlobal(that)
             throw data.error;
+            
           }
           else {
             function findSelectedDirectionId(directions, slug) {
@@ -122,15 +123,13 @@ class HomeBodyBottomClass extends React.Component {
             else {
               that.props.dispatch(setSelectedDirection(''));
             }
-            that.setState({
-              isRefreshExist: false
-            });
+            thenFuncGlobal(that)
           }
 
         })
         .catch(error => {
           console.log('get wasted answer');
-          alert('')
+          catchFuncGlobal(that)
           //this.props.globalhistory.history.push('/');       
         });
     }
@@ -160,7 +159,7 @@ class HomeBodyBottomClass extends React.Component {
 
     return (
       <>
-        <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={true} isGoodAnswer={true} />
+       
         {
           selectedDirection.length > 0 && name.length > 0 ?
             <Helmet>
@@ -176,7 +175,7 @@ class HomeBodyBottomClass extends React.Component {
         <div className="home_block col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
           <HomePopularPlaces />
           <HomePlacesPanel />
-          <HomeRoutesList isStaying={!this.state.isRefreshExist} /*isStaying - переменная, показывающая, что на данный момент мы отправили запрос, и отображать картинку, что мы ничего
+          <HomeRoutesList isStaying={!this.props.storeState.isRefreshExist} /*isStaying - переменная, показывающая, что на данный момент мы отправили запрос, и отображать картинку, что мы ничего
           не нашли, не нужно *//>
           <Manipulator number={this.props.placesState.routesList.length} page={this.props.placesState.page} setPage={this.setPageFunc}
             elementsNumber={this.props.placesState.pagesMenuValue} showMorePages={this.showMorePages}

@@ -7,6 +7,7 @@ import axios from 'axios';
 import requests from '../../config';
 import StartTravelContent from './StartTravelContent';
 import Dialog from '@material-ui/core/Dialog';
+import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
 
 import Cookies from 'universal-cookie';
 
@@ -42,9 +43,6 @@ export default class StartTravelForm extends React.Component {
             errorMes: false,
             //flagAllOk: false,
             promoCod: "",
-            //isRefreshExist: false,
-            //isRefreshing: false,
-            //isGoodAnswer: false,
             promoCodIsOk: true,
             time: props.globalReduser.time,
         }
@@ -92,9 +90,6 @@ export default class StartTravelForm extends React.Component {
                 errorMes: false,
                 //flagAllOk: false,
                 promoCod: "",
-                isRefreshExist: false,
-                isRefreshing: false,
-                isGoodAnswer: false,
                 promoCodIsOk: true,
                 time: that.props.globalReduser.time,
             })
@@ -102,10 +97,7 @@ export default class StartTravelForm extends React.Component {
         if (body) {
 
             let that = this;
-            that.setState({
-                isRefreshExist: true,
-                isRefreshing: true
-            });
+            startRefresherGlobal(this)
             fetch(requests.createNewTrip, {
                 method: 'POST', body: body,
                 headers: { 'content-type': 'application/json' }
@@ -124,11 +116,7 @@ export default class StartTravelForm extends React.Component {
 
                         console.log('good');
                         console.log(data);
-                        that.setState({
-                            isRefreshExist: true,
-                            isRefreshing: false,
-                            isGoodAnswer: true
-                        });
+                        thenFuncGlobal(that)
 
                         setTimeout(() => {
 
@@ -144,11 +132,7 @@ export default class StartTravelForm extends React.Component {
 
                     console.log('bad');
                     console.log('An error occurred:', error);
-                    that.setState({
-                        isRefreshExist: true,
-                        isRefreshing: false,
-                        isGoodAnswer: false
-                    });
+                    catchFuncGlobal(that)
                     setTimeout(() => {
                         //уборка - откат к старым данным
                         returnToStartData(that);
@@ -344,15 +328,11 @@ export default class StartTravelForm extends React.Component {
 
     promocodeVerification = () => {
 
-        this.setState({
-            isRefreshExist: true,
-            isRefreshing: true
-        });
         let that = this;
 
         //ЭтО ЗаПрОс На ПрОвЕрКу ПрОмОкОдА. ОчЕнЬ НуЖеН
 
-
+        startRefresherGlobal(this)
         axios.get(requests.checkPromocode + "?code=" + this.state.promoCod)
             .then(response => {
                 console.log(response);
@@ -370,23 +350,17 @@ export default class StartTravelForm extends React.Component {
                     that.setState({
                         promoCode: this.state.promoCod,
                         discount: data.discount,
-                        isRefreshExist: true,
-                        isRefreshing: false,
-                        isGoodAnswer: true,
                         promoCodIsOk: true
                     });
-                    setTimeout(() => { that.setState({ isRefreshExist: false }) }, 1000);
+                    thenFuncGlobal(that)
                 }
             })
             .catch(error => {
                 console.log('get wasted promocode answer');
                 that.setState({
-                    isRefreshExist: true,
-                    isRefreshing: false,
-                    isGoodAnswer: false,
                     promoCodIsOk: false
                 });
-                setTimeout(() => { that.setState({ isRefreshExist: false }) }, 1000);
+                catchFuncGlobal(that)
             })
     }
     render() {
@@ -418,9 +392,6 @@ export default class StartTravelForm extends React.Component {
                 errorMes: false,
                 //flagAllOk: false,
                 promoCod: "",
-                //isRefreshExist: false,
-                //isRefreshing: false,
-                //isGoodAnswer: false,
                 promoCodIsOk: true,
                 time: this.props.globalReduser.time,
             })

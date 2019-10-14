@@ -23,6 +23,7 @@ import TripConfirmation from './components/driverProfile/TripConfirmation';
 import DriverConfirmation from './components/driverProfile/DriverConfirmation';
 // import DriverProfile from './components/driverProfile/DriverProfile';
 import AuthModalCountry from './components/registration/AuthModalCountry';
+import DriverRefreshIndicator from './components/driverProfileRegistration/DriverRefreshIndicator'
 import pageNotFound from './pageNotFound'
 import axios from 'axios';
 import requests from './config';
@@ -44,6 +45,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import Cookies from 'universal-cookie';
 import { setLocals, modalCountryDispatch } from './redusers/Action';
 import { setActiveCurr, setActiveLang, setActiveLangAdmin, setActiveLangISO } from './redusers/Action';
+import { startRefresherGlobal, thenFuncGlobal, catchFuncGlobal, } from './redusers/GlobalFunction'
 import { setCarTypes } from './redusers/ActionDrivers';
 import config from './config.js'
 
@@ -93,6 +95,7 @@ const muiTheme = getMuiTheme({
 });
 
 function getLocals() {
+  startRefresherGlobal(store)
   //эта функция подгружает языки и прочее с сервера, попутно устанавливает
   //кое-какие значения, например языки
   let redusers = store.getState();
@@ -116,7 +119,7 @@ function getLocals() {
   let adminLang = cookies.get('adminLang', { path: '/' });
   let userLang = cookies.get('userLang', { path: '/' });
   let cookiesLangISO = cookies.get('userLangISO', { path: '/' })
-  let userBrowserLanguage = 'ru'//window.navigator.language;
+  let userBrowserLanguage = "ru"/*window.navigator.language*/;
   //здесь выбираем приоритетное значение - если выше мы смогли взять язык из адреса,
   //то используем его, если нет, то будем, в случае отсутствия кук, записывать туда
   //значения браузера
@@ -160,7 +163,7 @@ function getLocals() {
   }
   //если значение в куке не совпадает с языком в адресной строке, то мы
   //используем язык из адресной строки, он имеет более высокий приоритет
-  if (userLang !== langSelector || smallLangSelector !==cookiesLangISO/* && urlLang.length === 2 - эта проверка выполнена раньше*/) {
+  if (userLang !== langSelector || smallLangSelector !== cookiesLangISO/* && urlLang.length === 2 - эта проверка выполнена раньше*/) {
     //если происходит несовпадение, то нужно заполнить валидным значением
     //сейчас(19.08.19) у нас 2 языка, делаем как и выше - если у нас русский('ru'),
     //то ставим его, иначе английский
@@ -189,7 +192,7 @@ function getLocals() {
   //console.log(window.navigator);
 
   axios.get(requests.getLocals, props)
-    .then(response => { 
+    .then(response => {
       let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
       let languages = response.data.languages;
       let currencies = response.data.currencies;
@@ -197,7 +200,7 @@ function getLocals() {
       let adminLanguages = response.data.adminLanguages;
       let carTypes = response.data.carTypes;
 
-      store.dispatch(setLocals(languages, adminLanguages, currencies, countries,response.data.untranslatedlanguages));
+      store.dispatch(setLocals(languages, adminLanguages, currencies, countries, response.data.untranslatedlanguages));
       store.dispatch(setCarTypes(carTypes));
 
       let lang = redusers.GlobalReduser.readCookie('userLang');
@@ -308,8 +311,10 @@ function getLocals() {
           //здесь должна быть переадресация
         }
       }
+      thenFuncGlobal(store)
     })
     .catch(error => {
+      catchFuncGlobal(store)
       console.log(error);
     })
 }
@@ -364,8 +369,10 @@ getLocals();
 
 ReactDOM.render(
   <Provider store={store}>
+
     <BrowserRouter >
       <>
+        <DriverRefreshIndicator />
         <MuiThemeProvider muiTheme={muiTheme}>
           <Suspense fallback={<div>{store.getState().AppReduser.languageTextMain.home.loading + "..."}</div>}>
             <Switch>
@@ -384,9 +391,9 @@ ReactDOM.render(
               <Route path={"/" + config.routeMap + "/tours-:direction/"} component={Tours} />
               <Route path={"/" + config.routeMap + "/tours/"} component={Tours} />
 
-              <Route path={"/"+config.routeMap+'/guides/:slug'} component={GuideDescription}/>
-              <Route path={"/"+config.routeMap+"/guides/"} component={Guides}/>
-              
+              <Route path={"/" + config.routeMap + '/guides/:slug'} component={GuideDescription} />
+              <Route path={"/" + config.routeMap + "/guides/"} component={Guides} />
+
 
               <Route path="/account/" component={AccountRedirector} />
               <Route path="/forgot-password/" component={ForgotPassword} />
@@ -423,6 +430,7 @@ ReactDOM.render(
             </Switch>
           </Suspense>
           <Footer />
+
         </MuiThemeProvider>
       </>
     </BrowserRouter>

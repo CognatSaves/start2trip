@@ -7,7 +7,7 @@ import requests from '../../config';
 import getUserData from '../driverProfileRegistration/DriverProfileRequest';
 import { Collapse } from 'reactstrap'
 import DayPicker, { DateUtils } from 'react-day-picker';
-import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import Cookies from 'universal-cookie';
@@ -113,9 +113,6 @@ class AgencyProfileTourClass extends React.Component {
             tour: {},
             tourId: "",
 
-            isRefreshExist: false,
-            isRefreshing: true,
-            isGoodAnswer: true,
             errorStringVisibility: false,
             errorString: ""
         }
@@ -141,38 +138,13 @@ class AgencyProfileTourClass extends React.Component {
         }
     }
     startRefresher = () => {
-        this.setState({
-            isRefreshExist: true,
-            isRefreshing: true
-        });
+        startRefresherGlobal(this)
     }
     thenFunc = () => {
-        console.log('thenFunc');
-        console.log(this.props.globalReduser);
-        this.setState({
-            isRefreshExist: true,
-            isRefreshing: false,
-            isGoodAnswer: true,
-            collapse: false
-        });
-        setTimeout(() => {
-            this.setState({
-                isRefreshExist: false
-            })
-        }, 1000);
+        thenFuncGlobal(this)
     }
     catchFunc = () => {
-        console.log('catchFunc');
-        this.setState({
-            isRefreshExist: true,
-            isRefreshing: false,
-            isGoodAnswer: false
-        });
-        setTimeout(() => {
-            this.setState({
-                isRefreshExist: false
-            })
-        }, 2000);
+        catchFuncGlobal(this)
     }
     fillForm = (element) => {
         let profile = this.props.globalReduser.profile;
@@ -668,10 +640,6 @@ class AgencyProfileTourClass extends React.Component {
 
         let that = this;
         let jwt = cookies.get('jwt', { path: '/' });
-        this.setState({
-            isRefreshExist: true,
-            isRefreshing: true
-        })
         if (jwt) {
 
             let body = JSON.stringify({
@@ -748,9 +716,6 @@ class AgencyProfileTourClass extends React.Component {
                         that.setState({
                             tourSeatsModalSelectedElement: profile.tours[index],
                             tourSeatsErrorElementArray: data.errorElementsArray,
-                            isRefreshExist: true,
-                            isRefreshing: false,
-                            isGoodAnswer: true
                         })
                         that.thenFunc();
 
@@ -822,7 +787,6 @@ class AgencyProfileTourClass extends React.Component {
         return (
 
             <>
-                <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
 
                 <Dialog
                     actions={actions}
@@ -852,8 +816,6 @@ class AgencyProfileTourClass extends React.Component {
                                 <TourSeatsModalContent that={this} pseudoTableHeaderArray={pseudoTableHeaderArray}
                                     tableElementsWidth={tableElementsWidth} isErrorBlock={isErrorBlock} translation={textPageAgencyProfile.tourSeatsModalContent}
                                     selectActiveDays={this.selectActiveDays} textPageMonthArray={textPageMonthArray} />
-
-                                <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
                             </Dialog>
                         </> :
                         <>
@@ -868,8 +830,6 @@ class AgencyProfileTourClass extends React.Component {
                                 <TourSeatsModalContent that={this} pseudoTableHeaderArray={pseudoTableHeaderArray}
                                     tableElementsWidth={tableElementsWidth} isErrorBlock={isErrorBlock} translation={textPageAgencyProfile.tourSeatsModalContent}
                                     selectActiveDays={this.selectActiveDays} textPageMonthArray={textPageMonthArray} />
-
-                                <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
                             </Dialog>
                         </>
                 }

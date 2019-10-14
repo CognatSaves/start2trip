@@ -8,7 +8,7 @@ import axios from 'axios';
 import requests from '../../config';
 import './TourDescription.css'
 
-import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
 import Header from '../header/Header';
 import PlaceInfo from '../PlaceDescription/PlaceInfo.jsx';
 import PlacePhotoShow from '../PlaceDescription/PlacePhotoShow.jsx';
@@ -71,9 +71,6 @@ class ToureDescriptionClass extends React.Component {
         }
 
         this.state = {
-            isRefreshExist: false,
-            isRefreshing: true,
-            isGoodAnswer: true,
             newTour: {},
             couldSendRequest: true,
             slug: '',
@@ -110,21 +107,10 @@ class ToureDescriptionClass extends React.Component {
         }
     }
     startRolling = () => {
-        this.setState({
-            isRefreshExist: true
-        });
+        startRefresherGlobal(this)
     }
     endRolling = (result) => {
-        let that = this;
-        this.setState({
-            isRefreshing: false,
-            isGoodAnswer: result
-        });
-        setTimeout(
-            function () {
-                that.setState({ isRefreshExist: false, isRefreshing: true })
-            }, 2000
-        )
+        thenFuncGlobal(this)
     }
     getCurrencies = (currency, criterion) => {
         let idIndex = null
@@ -177,20 +163,13 @@ class ToureDescriptionClass extends React.Component {
             }
             //надо что-то сделать, если не нашли          
         }
-        if (!this.state.newTour.local && !this.state.isRefreshExist) {
-            this.setState({
-                isRefreshExist: true,
-                isRefreshing: true,
-            });
-        }
         if (this.state.couldSendRequest && (!this.state.newTour.local || this.state.slug !== slug) && this.props.storeState.languages.length > 0) {
             this.setState({
                 couldSendRequest: false,
-                isRefreshExist: true,
-                isRefreshing: true,
                 selectedLanguage: this.props.storeState.activeLanguageNumber
             });
             let that = this;
+            startRefresherGlobal(this)
             axios.get(requests.showTour + "?slug=" + (slug ? slug : ''))
                 .then(response => {
                     return response.data;
@@ -208,8 +187,8 @@ class ToureDescriptionClass extends React.Component {
                             behavior: 'smooth'
                         });
                         console.log('good, data=', data);
+                        thenFuncGlobal(that)
                         that.setState({
-                            isRefreshExist: false,
                             newTour: data,
                             couldSendRequest: true,
                             slug: data.local.slug,
@@ -218,7 +197,7 @@ class ToureDescriptionClass extends React.Component {
                     }
                 })
                 .catch(function (error) {
-
+                    catchFuncGlobal(that)
                     console.log('get wasted answer');
                     that.props.globalReduser.history.push('/404/');
                 })
@@ -327,9 +306,6 @@ class ToureDescriptionClass extends React.Component {
                         </Helmet> :
                         <React.Fragment />
                 }
-
-                <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist}
-                    isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
 
                 <div style={{ position: 'relative' }}>
                     {

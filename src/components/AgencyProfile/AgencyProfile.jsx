@@ -4,11 +4,12 @@ import { Route } from 'react-router-dom';
 import { changeLanguagePart } from '../../redusers/Action';
 import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 import requests from '../../config';
+import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
 
 import Header from '../header/Header'
 import getUserData from '../driverProfileRegistration/DriverProfileRequest';
 import AgencyProfileNavigation from './AgencyProfileNavigation';
-import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+
 
 
 
@@ -94,6 +95,7 @@ class AgencyProfileClass extends React.Component {
                 let jwt = this.props.globalReduser.readCookie('jwt');
                 if (jwt && jwt !== '-') {
                     let that = this;
+                    startRefresherGlobal(this)
                     let requestValues = {
                         readCookie: this.props.globalReduser.readCookie,
                         setProfileData: function (data) {
@@ -102,10 +104,7 @@ class AgencyProfileClass extends React.Component {
                         },
                         requestAddress: requests.profileRequest
                     }
-                    getUserData(requestValues);
-                    return (
-                        <DriverRefreshIndicator isRefreshExist={true} isRefreshing={true} isGoodAnswer={true} />
-                    )
+                    getUserData(requestValues,()=>thenFuncGlobal(that),()=>catchFuncGlobal(that));
                 }
                 else {
                     this.props.dispatch(setUrlAddress(window.location.pathname));

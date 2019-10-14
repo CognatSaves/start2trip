@@ -11,7 +11,7 @@ import Header from '../header/Header';
 import DriverInfo from '../driverProfile/DriverInfo.jsx';
 import DatePicker from 'material-ui/DatePicker';
 import MapContainer from '../home/HomeBody/MapContainer';
-import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
 import CommentBlock from '../TourDescription/CommentBlock';
 import StartTravelForm from '../startTravelForm/StartTravelForm';
 import StartTravelSuccess from '../startTravelForm/StartTravelSuccess';
@@ -51,7 +51,7 @@ class GuideDescriptionClass extends React.Component {
 
         let resultString = dateValue.toUTCString();
         props.dispatch(set_state(props.storeState.cities, resultString));
-
+        startRefresherGlobal(this)
         this.state = {
             travelVisibility: false,
             successVisibility: 'none',
@@ -78,9 +78,6 @@ class GuideDescriptionClass extends React.Component {
             errorMes: false,
             //flagAllOk: false,
             promoCod: "",
-            isRefreshExist: true,//в конструкторе происходит вызов ф-ции
-            isRefreshing: true,//следовательно можно крутить по кд с начала
-            isGoodAnswer: false,
             promoCodIsOk: true,
             elementPrice: 0,
             comments: [],
@@ -106,6 +103,7 @@ class GuideDescriptionClass extends React.Component {
     sendDataRequest = () => {
         this.props.dispatch(setLengthTime("-", "-"));
         let that = this;
+        startRefresherGlobal(this)
         console.log(this.props.match);
         this.props.dispatch(setDriverCarDescription({}));//зачищает старое значение
         let lang = cookies.get('userLang', {path: '/'});
@@ -116,8 +114,6 @@ class GuideDescriptionClass extends React.Component {
         })
         this.setState({
             dataLang: lang,
-            isRefreshExist: true,
-            isRefreshing: true
         })
         fetch(requests.showGuide, {
             method: 'PUT', body: guideBody,
@@ -139,11 +135,7 @@ class GuideDescriptionClass extends React.Component {
                     //если туры у человека пришли, то отрабатываем стандартно - 
                     //проверка на наличие локализаций на выбранном языке
                     that.props.dispatch(setGuideData(data.guideData, data.carTypes));
-                    that.setState({
-                        isRefreshExist: false,
-                        isRefreshing: false,
-                        isGoodAnswer: true,
-                    })
+                    thenFuncGlobal(that)
                 }
                 else{
                     //иначе делаем перенаправление на страницу гидов, пускай выбирает
@@ -156,11 +148,7 @@ class GuideDescriptionClass extends React.Component {
         .catch(function (error) {
             console.log('bad');
             console.log('An error occurred:', error);
-            that.setState({
-                isRefreshExist: true,
-                isRefreshing: false,
-                isGoodAnswer: false
-            })
+            catchFuncGlobal(that)
             let address = '/404'
             if(that.props.storeState.country && that.props.storeState.languages && that.props.storeState.languages.length>0 && that.props.storeState.activeLanguageNumber){
                 address = '/' + that.props.storeState.country + "-" + that.props.storeState.languages[that.props.storeState.activeLanguageNumber].isoAutocomplete + '/guides';
@@ -301,7 +289,7 @@ class GuideDescriptionClass extends React.Component {
         }
         let lang =cookies.get('userLang', {path: '/'});
 
-        if(this.state.dataLang!==lang && !(this.state.isRefreshExist)){
+        if(this.state.dataLang!==lang && !(this.props.storeState.isRefreshExist)){
             this.sendDataRequest();
         }
         console.log('DriverProfile render');
@@ -355,7 +343,6 @@ class GuideDescriptionClass extends React.Component {
 
         return (
             <>
-                <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
 
                 <div className="drivers_top_background" style={{ background: "url(" + windowImg + ")no-repeat" }}>
                     <Header history={this.props.history} showBtnBack={true} />
@@ -406,7 +393,7 @@ class GuideDescriptionClass extends React.Component {
                                 {
                                     this.state.visibilityArray[0] &&
                                     <div /*drivers_route*/ className="col-12 d-flex flex-column" >
-                                        <GuideTours isStaying={!this.state.isRefreshExist} departureDate={new Date()/*this.state.departureDate*/} 
+                                        <GuideTours isStaying={!this.props.storeState.isRefreshExist} departureDate={new Date()/*this.state.departureDate*/} 
                                             changeTravelVisibility={()=>{}/*this.changeTravelVisibility*/} tourType={this.state.tourType}/>
                                     </div>
                                 }

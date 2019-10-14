@@ -6,7 +6,7 @@ import { Helmet } from 'react-helmet';
 import axios from 'axios';
 import requests from '../../config';
 
-import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
 import Header from '../header/Header';
 import PlaceInfo from '../PlaceDescription/PlaceInfo.jsx';
 import PlacePhotoShow from '../PlaceDescription/PlacePhotoShow.jsx';
@@ -42,9 +42,6 @@ class RouteDescriptionClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isRefreshExist: false,
-            isRefreshing: true,
-            isGoodAnswer: true,
             newRoute: {},
             couldSendRequest: true,
             slug: '',
@@ -73,21 +70,10 @@ class RouteDescriptionClass extends React.Component {
         }
     }
     startRolling = () => {
-        this.setState({
-            isRefreshExist: true
-        });
+        startRefresherGlobal(this)
     }
     endRolling = (result) => {
-        let that = this;
-        this.setState({
-            isRefreshing: false,
-            isGoodAnswer: result
-        });
-        setTimeout(
-            function () {
-                that.setState({ isRefreshExist: false, isRefreshing: true })
-            }, 2000
-        )
+        thenFuncGlobal(this)
     }
     render() {
 
@@ -112,10 +98,10 @@ class RouteDescriptionClass extends React.Component {
         if (this.state.couldSendRequest && (!this.state.newRoute.local || this.state.slug !== slug) && this.props.storeState.languages.length > 0) {
             this.setState({
                 couldSendRequest: false,
-                isRefreshExist: true,
                 selectedLanguage: this.props.storeState.activeLanguageNumber
             });
             let that = this;
+            startRefresherGlobal(this)
             axios.get(requests.showRoute + "?slug=" + (slug ? slug : ''))
                 .then(response => {
                     console.log(response);
@@ -134,8 +120,8 @@ class RouteDescriptionClass extends React.Component {
                         })
                         console.log('good');
                         console.log(data);
+                        thenFuncGlobal(that)
                         that.setState({
-                            isRefreshExist: false,
                             newRoute: data,
                             couldSendRequest: true,
                             slug: data.local.slug
@@ -144,6 +130,7 @@ class RouteDescriptionClass extends React.Component {
                 })
                 .catch(error => {
                     console.log('get wasted answer');
+                    catchFuncGlobal(that)
                     that.props.globalReduser.history.push('/404/');
                 });
 
@@ -209,8 +196,6 @@ class RouteDescriptionClass extends React.Component {
                         <React.Fragment />
                 }
 
-                <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist}
-                    isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
 
                 <div style={{ position: 'relative' }}>
                     {

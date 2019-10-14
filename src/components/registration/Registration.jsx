@@ -4,8 +4,9 @@ import requests from '../../config';
 import axios from 'axios';
 
 
-import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
 import { connect } from 'react-redux';
+
 class RegistrationClass extends React.Component {
     constructor(props) {
         super(props);
@@ -67,6 +68,7 @@ class RegistrationClass extends React.Component {
         }
         function socialWebRegistrationRequest(body) {
             console.log("registration");
+            startRefresherGlobal(this)
             fetch(requests.serverRegistrationRequest, {
                 method: 'POST', body: body,
                 headers: { 'content-type': 'application/json' }
@@ -85,16 +87,19 @@ class RegistrationClass extends React.Component {
                         console.log("You registered");
                         console.log(data);
                         that.state.sendResult(true, { jwt: data.jwt, user: data.user });
+                        thenFuncGlobal(that)
                     }
                 })
                 .catch(function (error) {
                     console.log("bad");
                     console.log('An error occurred:', error);
                     that.state.sendResult(false, { error: error });
+                    catchFuncGlobal(that)
                 });
         }
         function socialWebAuthorizationRequest(body) {
             //alert('web registration');
+            startRefresherGlobal(this)
             fetch(requests.serverAuthorizationRequest, {
                 method: 'POST', body: body,
                 headers: { 'content-type': 'application/json' }
@@ -110,11 +115,13 @@ class RegistrationClass extends React.Component {
                     console.log("You authorized");
                     console.log(data);
                     that.state.sendResult(true, { jwt: data.jwt, user: data.user });
+                    thenFuncGlobal(that)
                 })
                 .catch(function (error) {
                     console.log('An error occurred:');
                     console.log(error);
                     that.state.sendResult(false, { error: error });
+                    catchFuncGlobal(that)
                 });
             console.log(body);
         }
@@ -154,6 +161,7 @@ class RegistrationClass extends React.Component {
                 // console.log('window.name');
                 // console.log(window.name);
                 if (type === "Registration") {
+                    startRefresherGlobal(this)
                     axios.get('https://graph.facebook.com/me?fields=id,name,first_name,last_name,email&access_token=' + token)
                         .then(response => {
                             //  console.log("get answer from facebook");
@@ -173,14 +181,17 @@ class RegistrationClass extends React.Component {
                             });
                             console.log()
                             this.state.socialWebRegistrationRequest(body);
+                            thenFuncGlobal(that)
                         })
                         .catch(function (error) {
+                            catchFuncGlobal(that)
                             console.log('An error occurred:', error);
                         });
                 }
                 if (type === "Authorization") {
                     console.log("Try to authorizate facebook");
                     let password = generatePassword(10);
+                    startRefresherGlobal(this)
                     axios.get('https://graph.facebook.com/me?fields=id,name,first_name,last_name,email&access_token=' + token)
                         .then(response => {
                             let body = JSON.stringify({
@@ -197,8 +208,10 @@ class RegistrationClass extends React.Component {
                                 userLangCookies: userLangCookies
                             });
                             this.state.socialWebAuthorizationRequest(body);
+                            thenFuncGlobal(that)
                         })
                         .catch(function (error) {
+                            catchFuncGlobal(that)
                             console.log('An error occurred:', error);
                         });
                 }
@@ -208,6 +221,7 @@ class RegistrationClass extends React.Component {
             if (token) {
                 let id_token = urlParams.get('raw[id_token]');
                 if (type === "Registration") {
+                    startRefresherGlobal(this)
                     axios.get('https://www.googleapis.com/oauth2/v2/userinfo?access_token=' + token + '&id_token=' + id_token)
                         .then(response => {
                             let password = generatePassword(10);
@@ -224,13 +238,16 @@ class RegistrationClass extends React.Component {
                                 userLangCookies: userLangCookies
                             });
                             this.state.socialWebRegistrationRequest(body);
+                            thenFuncGlobal(that)
                         })
                         .catch(function (error) {
+                            catchFuncGlobal(that)
                             console.log('An error occurred:', error);
                         });
                 }
                 if (type === "Authorization") {
                     let password = generatePassword(10);
+                    startRefresherGlobal(this)
                     axios.get('https://www.googleapis.com/oauth2/v2/userinfo?access_token=' + token + '&id_token=' + id_token)
                         .then(response => {
                             console.log("Try to authorizate google");
@@ -249,8 +266,10 @@ class RegistrationClass extends React.Component {
                                 userLangCookies: userLangCookies
                             });
                             this.state.socialWebAuthorizationRequest(body);
+                            thenFuncGlobal(that)
                         })
                         .catch(function (error) {
+                            catchFuncGlobal(that)
                             console.log('An error occurred:', error);
                         });
                 }
@@ -274,7 +293,7 @@ class RegistrationClass extends React.Component {
                     <meta property="og:description" content={helmet.basic.description} />
                 </Helmet>
                 <div style={{ margin: 'auto' }}>
-                    <DriverRefreshIndicator isRefreshExist={true} isRefreshing={true} isGoodAnswer={true} />
+                   
                 </div>
             </div>
         )

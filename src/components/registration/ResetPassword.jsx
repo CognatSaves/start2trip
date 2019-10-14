@@ -5,9 +5,11 @@ import { connect } from 'react-redux'
 import requests from '../../config';
 
 import Header from '../header/Header';
-import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
+
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
+
 class ResetPasswordClass extends React.Component {
     constructor(props) {
         super(props);
@@ -15,10 +17,6 @@ class ResetPasswordClass extends React.Component {
         this.state = {
             passwords: ["", ""],
             code: code,
-            isSended: false,
-            isRefreshExist: false,
-            isGood: false,
-            isRefreshing: true,
             isChanged: false,
             falde: false,
             noChange: false,
@@ -43,9 +41,6 @@ class ResetPasswordClass extends React.Component {
         if (this.state.isChanged) {
             if (this.state.passwords[0] === this.state.passwords[1] && this.state.passwords[0].length > 0) {
                 this.setState({
-                    isSended: false,
-                    isRefreshExist: true,
-                    isRefreshing: true,
                     isChanged: false
                 })
                 let body = JSON.stringify({
@@ -54,6 +49,7 @@ class ResetPasswordClass extends React.Component {
                     code: this.state.code
                 });
                 let that = this;
+                startRefresherGlobal(this)
                 fetch(requests.resetPassword, {
                     method: 'POST', body: body
                 })
@@ -71,39 +67,15 @@ class ResetPasswordClass extends React.Component {
                             if (data.message === "Too many attempts, please try again in a minute.") {
                                 //throw Error('не кликой. подумой! а то я сейчас кликну!');
                                 //that.props.history.push('/');
-                                setTimeout(() => {
-                                    that.setState({
-                                        isSended: true,
-                                        isGood: false,
-                                        isRefreshExist: false
-                                    });
-                                }, 60000);
+                                thenFuncGlobal(that)
                             }
-                        }
-                        else {
-                            that.setState({
-                                isSended: true,
-                                isGood: true,
-                                isRefreshing: false
-                            });
-                            setTimeout(() => {
-                                that.setState({
-                                    isRefreshExist: false
-                                });
-                                that.props.history.push("/" + that.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/routes/');
-                            }, 1000);
                         }
 
                     })
                     .catch(function (error) {
                         console.log("bad");
                         console.log('An error occurred:', error);
-                        that.setState({
-                            isSended: true,
-                            isGood: false,
-                            isRefreshExist: false,
-                            falde: true,
-                        });
+                        catchFuncGlobal(that)
                     });
             }
             else {
@@ -137,7 +109,6 @@ class ResetPasswordClass extends React.Component {
                     <meta property="og:title" content={helmet.basic.title} />
                     <meta property="og:description" content={helmet.basic.description} />
                 </Helmet>
-                <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={true} />
                 <div className="forgotPasswordBody d-flex flex-column align-items-center">
                     <Header driver={true} history={this.props.history} />
                     <div className="forgotPasswordContent d-flex flex-column align-items-center col-md-8 col-11">

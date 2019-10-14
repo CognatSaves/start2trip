@@ -17,7 +17,8 @@ import ToursList from './ToursList';
 import TourInfo from '../TourDescription/TourInfo'
 import DriversProperties from '../drivers/DriversBody/DriversProperties/DriversProperties'
 // import PlacesTagList from '../Places/PlacesTagList';
-import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+
+import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
 import MobileFilter from '../drivers/DriversBody/DriversProperties/MobileFilter/MobileFilter'
 import Cookies from 'universal-cookie';
 
@@ -29,7 +30,6 @@ class ToursClass extends React.Component {
     this.state = {
       country: "",
       language: "",
-      isRefreshExist: false,
       selectedDirection: '',
       departureDate: new Date(),
       departurePoint: "",
@@ -67,7 +67,7 @@ class ToursClass extends React.Component {
     let country = cookies.get('country', { path: '/' });
     let lang = cookies.get('userLang', { path: '/' });
 
-    let shouldSendRequest = !this.state.isRefreshExist &&
+    let shouldSendRequest = !this.props.storeState.isRefreshExist &&
       (
         this.state.selectedDirection !== (selectedDirection) ||
         this.state.country !== country ||
@@ -82,7 +82,6 @@ class ToursClass extends React.Component {
       this.setState({
         country: country,
         language: lang,
-        isRefreshExist: true,
         selectedDirection: selectedDirection,
       });
 
@@ -105,7 +104,7 @@ class ToursClass extends React.Component {
       if (Number(this.state.duration)) {
         durationCorrect = this.state.duration
       }
-
+      startRefresherGlobal(this)
       axios.get(requests.getTours + "?country=" + country + "&lang=" + lang + (selectedDirection ? "&slug=" + selectedDirection : '') + "&departurePoint=" + pointSelect + "&duration=" + durationCorrect + "&departureDate=" + this.state.departureDate + "&isFirst=" + isFirst)
         .then(response => {
           return response.data;
@@ -117,7 +116,7 @@ class ToursClass extends React.Component {
             throw data.error;
           }
           else {
-            
+            thenFuncGlobal(that)
             console.log('tour request data', data);
             that.props.dispatch(setToursList(data.tours, data.categories, data.tags, data.directions, data.daysNumber, data.departurePoint));
 
@@ -137,13 +136,12 @@ class ToursClass extends React.Component {
             that.props.dispatch(setSelectedDirection(''));
           }
           that.setState({
-            isRefreshExist: false,
             temp: that.state.temp + 1,
             countryDescription: data.country
           });
         })
         .catch(error => {
-
+          catchFuncGlobal(that)
           console.log('get wasted answer');
           this.props.globalReduser.history.push('/');
         });
@@ -256,7 +254,6 @@ class ToursClass extends React.Component {
     return (
       <>
         <MobileFilter maxPrice={this.props.toursState.maxPrice} hideTypeOfTransport={true} tourTypeChange={this.tourTypeChange} tourType={this.state.tourType}  /*departureDateChange={this.departureDateChange} departureDate={this.state.departureDate} */ />
-        <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={/*this.state.isRefreshing*/true} isGoodAnswer={/*this.state.isGoodAnswer*/true} />
 
         {
 
@@ -355,7 +352,7 @@ class ToursClass extends React.Component {
                 <DriversProperties hideTypeOfTransport={true}
                   tourTypeChange={this.tourTypeChange} tourType={this.state.tourType} />
 
-                <ToursList isStaying={!this.state.isRefreshExist} departureDate={this.state.departureDate}
+                <ToursList isStaying={!this.props.storeState.isRefreshExist} departureDate={this.state.departureDate}
                   changeTravelVisibility={this.changeTravelVisibility} tourType={this.state.tourType} />
 
 

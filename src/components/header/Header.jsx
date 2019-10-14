@@ -13,7 +13,7 @@ import { Modal, ModalBody } from 'reactstrap';
 import { isMobileOnly, isMobile } from 'react-device-detect';
 import requests from '../../config';
 import axios from 'axios';
-import checkBtUp from '../../redusers/GlobalFunction'
+import {checkBtUp} from '../../redusers/GlobalFunction'
 
 // import RenderModalCountry from './RenderModalCountry'
 // import { disablePageScroll, clearQueueScrollLocks, enablePageScroll } from 'scroll-lock';
@@ -28,7 +28,7 @@ import wheelIcon from '../media/wheel.svg'
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 import RenderModalRegistration from './RenderModalRegistration'
-import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
 import Dialog from 'material-ui/Dialog';
 import Cookies from 'universal-cookie';
 
@@ -53,6 +53,7 @@ const ModalUserType = (props) => {
   function sendUserType(that) {
     let jwt = that.props.globalReduser.readCookie('jwt');
     if (jwt && jwt !== "-") {
+      startRefresherGlobal(that)
       that.setState({
         isWaiting: true,
         isUsertypeLooking: false
@@ -74,12 +75,13 @@ const ModalUserType = (props) => {
           else {
             console.log("good");
             that.accountRedirect(that.state.savedAddress, that.state.savedNumber);
+            thenFuncGlobal(that)
           }
         })
         .catch(function (error) {
           console.log("bad");
           console.log('An error occurred:', error);
-          //that.catchFunc();
+          catchFuncGlobal(that)
         });
     }
     else {
@@ -387,6 +389,7 @@ class HeaderClass extends React.Component {
   setLocals = (type, index, isAdmin) => {
     
     let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
+    thenFuncGlobal(this)
     switch (type) {
       case 'userLang': {
         let that = this;
@@ -594,10 +597,11 @@ class HeaderClass extends React.Component {
 
     const that = this;
     let jwt = this.props.globalReduser.readCookie('jwt');
-
     if (jwt && jwt !== '-') {
+      
       let profile = that.props.globalReduser.profile;
       if (!((profile.isDriver && profile.country) || profile.isCustomer || (profile.isAgency && profile.country))) {
+        startRefresherGlobal(that)
         axios.get(requests.profileCheck, {
           headers: {
             Authorization: `Bearer ${jwt}`
@@ -608,8 +612,10 @@ class HeaderClass extends React.Component {
             console.log();
             that.props.dispatch(setProfileData(response.data));
             thenFunc(that, address, number);
+            thenFuncGlobal(that)
           })
           .catch(error => {
+            catchFuncGlobal(this)
             this.props.dispatch(setUser("", "", {}));
           });
       }
@@ -721,7 +727,7 @@ class HeaderClass extends React.Component {
         <CountrySelect textInfo={textInfo} modalCountry={this.state.modalCountry} toggleModalCountry={this.toggleModalCountry} className={this.props.className}/>
         {
           this.state.isWaiting ?
-            <DriverRefreshIndicator isRefreshExist={true} isRefreshing={true} isGoodAnswer={true} />
+          <React.Fragment />
             : <React.Fragment />
         }
 

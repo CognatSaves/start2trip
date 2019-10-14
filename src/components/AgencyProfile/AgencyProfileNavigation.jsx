@@ -15,7 +15,7 @@ import feedbackBG from '../media/illustrations_otzivi.svg'
 import preHistoryBG from '../media/illustrations_predstoishie.svg'
 
 import AvatarEditorCustom from '../usefulСomponents/AvatarEditorCustom'
-import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
@@ -36,9 +36,6 @@ class AgencyProfileNavigationClass extends React.Component {
                 "/account/agency/billing",
                 "/account/agency/referrals",
             ],
-            isRefreshExist: false,
-            isRefreshing: true,
-            isGoodAnswer: true,
             index: -1,
             imgModal: false,
         }
@@ -65,37 +62,13 @@ class AgencyProfileNavigationClass extends React.Component {
         }
     }
     startRefresher = () => {
-        this.setState({
-            isRefreshExist: true,
-            isRefreshing: true
-        });
+        startRefresherGlobal(this)
     }
     thenFunc = () => {
-        console.log('thenFunc');
-        console.log(this.props.profileReduser);
-        this.setState({
-            isRefreshExist: true,
-            isRefreshing: false,
-            isGoodAnswer: true,
-        });
-        setTimeout(() => {
-            this.setState({
-                isRefreshExist: false
-            })
-        }, 1000);
+        thenFuncGlobal(this)
     }
     catchFunc = () => {
-        console.log('catchFunc');
-        this.setState({
-            isRefreshExist: true,
-            isRefreshing: false,
-            isGoodAnswer: false
-        });
-        setTimeout(() => {
-            this.setState({
-                isRefreshExist: false
-            })
-        }, 2000);
+        catchFuncGlobal(this)
     }
     shiftLeft = (event) => {
 
@@ -115,7 +88,6 @@ class AgencyProfileNavigationClass extends React.Component {
         return (
             <>
                 <AvatarEditorCustom imgModalShow={this.imgModalShow} imgModal={this.state.imgModal} />
-                <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
                 <div className="registrationWrapper driverBG col-12 p-0" style={{
                     "/account/agency/trips": { backgroundImage: "url(" + preHistoryBG + ")" },
                     // 1: { backgroundImage: "url(" + historyBG + ")" },

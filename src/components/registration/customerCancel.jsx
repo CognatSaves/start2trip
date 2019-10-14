@@ -6,7 +6,7 @@ import requests from '../../config'
 
 import Header from '../header/Header'
 import CreateComment from '../driverProfile/CreateComment';
-import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
 import Cookies from 'universal-cookie';
 import { Link } from 'react-router-dom';
 import { changeLanguagePart } from '../../redusers/Action';
@@ -16,10 +16,6 @@ class customerCancelClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isSended: false,
-            isRefreshExist: false,
-            isRefreshing: false,
-            isGoodAnswer: false,
             falde: null,
             onClickSpan: false,
         };
@@ -30,24 +26,10 @@ class customerCancelClass extends React.Component {
     }
 
     startRolling = () => {
-
-        this.setState({
-            isRefreshExist: true,
-            isRefreshing: true
-        });
+        startRefresherGlobal(this)
     }
     endRolling = (result) => {
-
-        let that = this;
-        this.setState({
-            isRefreshing: false,
-            isGoodAnswer: result
-        });
-        setTimeout(
-            function () {
-                that.setState({ isRefreshExist: false, isRefreshing: true })
-            }, 2000
-        )
+        thenFuncGlobal(this)
     }
 
     sendMessege = () => {
@@ -56,9 +38,9 @@ class customerCancelClass extends React.Component {
             clientId: this.props.match.params.clientId
         });
         let that = this;
-        debugger;
+        
         console.log(requests.customerCancel);
-
+        startRefresherGlobal(this)
         fetch(requests.customerCancel, {
             method: 'POST', body: body,
             headers: { 'content-type': 'application/json' }
@@ -78,20 +60,18 @@ class customerCancelClass extends React.Component {
 
                     }
                 }
+                thenFuncGlobal(that)
                 that.setState({
                     isSended: true,
-                    isGoodAnswer: true,
-                    isRefreshExist: false,
                     falde: false,
                 });
             })
             .catch(function (error) {
                 console.log("bad");
                 console.log('An error occurred:', error);
+                catchFuncGlobal(that)
                 that.setState({
                     isSended: true,
-                    isGoodAnswer: false,
-                    isRefreshExist: false,
                     falde: true
                 });
             })
@@ -133,7 +113,6 @@ class customerCancelClass extends React.Component {
                         <meta property="og:title" content={helmet.title} />
                         <meta property="og:description" content={helmet.description} />
                     </Helmet>
-                    <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
 
                     <div className="customerCancelForm d-flex flex-column align-items-center align-self-center justify-content-center my-auto col-md-6 col-12" >
                         <h2>{textInfo.headerText}</h2>

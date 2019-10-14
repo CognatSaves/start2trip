@@ -11,7 +11,7 @@ import getUserData from '../driverProfileRegistration/DriverProfileRequest';
 import { modalCountryDispatch } from '../../redusers/Action'
 import { setActiveCurr } from '../../redusers/Action';
 
-import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
 import DriverProfileRegistration from '../driverProfileRegistration/DriverProfileRegistration';
 import UserProfileRegistration from '../UserProfile/UserProfileRegistration';
 import AgencyProfile from '../AgencyProfile/AgencyProfile';
@@ -28,13 +28,13 @@ import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 const ModalUserType = (props) => {
   function sendUserType(that) {
-
     let jwt = that.props.globalReduser.readCookie('jwt');
     if (jwt && jwt !== "-") {
       that.setState({
         isWaiting: true,
         isUsertypeLooking: false
       });
+      startRefresherGlobal(that)
       let body = JSON.stringify({ userType: that.state.selectedUserType, country: that.state.selectedUserCountry });
       fetch(requests.profileUpdateRequest, {
         method: 'PUT', body: body,
@@ -57,10 +57,11 @@ const ModalUserType = (props) => {
             that.props.history.push(newPath);
             that.props.dispatch(setProfileData({}))
             getProfileData(that);
+            thenFuncGlobal(that)
           }
         })
         .catch(function (error) {
-
+          catchFuncGlobal(that)
           console.log("bad");
           console.log('An error occurred:', error);
           //that.catchFunc();
@@ -185,8 +186,10 @@ const ModalUserType = (props) => {
   )
 }
 function getProfileData(that) {
+  
   let jwt = that.props.globalReduser.readCookie('jwt');
   if (jwt && jwt !== '-') {
+    startRefresherGlobal(that)
     let requestValues = {
       readCookie: that.props.globalReduser.readCookie,
       setProfileData: function (data) {
@@ -194,7 +197,7 @@ function getProfileData(that) {
       },
       requestAddress: requests.profileRequest
     }
-    getUserData(requestValues);
+    getUserData(requestValues,()=>{thenFuncGlobal(that)},()=>catchFuncGlobal(that));
   }
   else {
     that.props.dispatch(setUrlAddress(window.location.pathname));
@@ -268,11 +271,11 @@ class AccountRedirectorClass extends React.Component {
     if (!profile.email) {
       return (
         <>
-          <DriverRefreshIndicator isRefreshExist={true} isRefreshing={true} isGoodAnswer={true} />
         </>
       )
     }
     else {
+
       let selected = false;
 
       let parseLocationPathnameResult = parseLocationPathname(pathname, profile);
@@ -285,6 +288,7 @@ class AccountRedirectorClass extends React.Component {
           cookies, this.props.storeState.currencies,
           (currencyIndex) => this.props.dispatch(setActiveCurr(currencyIndex)));
         }
+     
         return (
           <>
             <Helmet>
@@ -300,7 +304,7 @@ class AccountRedirectorClass extends React.Component {
             <Route path="/account/driver" component={DriverProfileRegistration} />
             <Route path="/account/user" component={UserProfileRegistration} />
             <Route path="/account/agency" component={AgencyProfile} />
-
+            
           </>
         )
       }

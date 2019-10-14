@@ -20,7 +20,7 @@ import './UserProfileTrevelHistory.css'
 
 import Header from '../header/Header'
 import UserProfileNavigation from './UserProfileNavigation'
-import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
 import Cookies from 'universal-cookie';
 import { changeLanguagePart } from '../../redusers/Action';
 
@@ -92,6 +92,7 @@ class UserProfileRegistrationClass extends React.Component {
       else {
         let jwt = this.props.globalReduser.readCookie('jwt');
         if (jwt && jwt !== '-') {
+          startRefresherGlobal(this)
           let that = this;
           let requestValues = {
             readCookie: this.props.globalReduser.readCookie,
@@ -100,9 +101,9 @@ class UserProfileRegistrationClass extends React.Component {
             },
             requestAddress: requests.profileRequest
           }
-          getUserData(requestValues);
+          getUserData(requestValues,()=>thenFuncGlobal(that),()=>catchFuncGlobal(that));
           return (
-            <DriverRefreshIndicator isRefreshExist={true} isRefreshing={true} isGoodAnswer={true} />
+            <></>
           )
         }
         else {

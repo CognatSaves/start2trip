@@ -12,7 +12,7 @@ import addIcon from '../../media/addWhite.svg'
 
 import LocationSearchInput from './Search'
 import DatePicker from 'material-ui/DatePicker';
-import DriverRefreshIndicator from '../../driverProfileRegistration/DriverRefreshIndicator';
+import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../../redusers/GlobalFunction'
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
@@ -184,9 +184,6 @@ class RouteMenuClass extends React.Component {
     console.log(resultString);
     this.state = {
       correctDate: dateValue,
-      isWaiting: false,
-      isRefreshing: true,
-      isGoodAnswer: true,
       date: resultString,
       isLoaded: !resultpathname//переменная для загрузки 1 раза водителей - если есть города, то не загружено пока.
       //language: this.props.storeState.activeLanguageNumber
@@ -331,7 +328,7 @@ class RouteMenuClass extends React.Component {
   }
   requestFunction = (allGoodAfterfunc) => {
 
-    this.setState({ isWaiting: true, isRefreshing: true, isGoodAnswer: true, isLoaded: true });
+    this.setState({ isLoaded: true });
     this.props.dispatch(setWaitingDriverRequest(true));
     let that = this;
 
@@ -431,7 +428,7 @@ class RouteMenuClass extends React.Component {
         distance: routeProps.distance,
         duration: routeProps.duration
       });
-
+      startRefresherGlobal(that)
       fetch(requests.getDrivers, {
         method: 'PUT', body: body,
         headers: { 'content-type': 'application/json' }
@@ -454,7 +451,7 @@ class RouteMenuClass extends React.Component {
             //that.props.dispatch(setCarTypes(data.carTypes));
             that.props.dispatch(setDriversList(data.drivers));
 
-            that.setState({ isWaiting: false });
+            thenFuncGlobal(that)
             that.props.dispatch(setWaitingDriverRequest(false));
             if (allGoodAfterfunc) {
               allGoodAfterfunc(that, cities, date, langISO);
@@ -464,11 +461,7 @@ class RouteMenuClass extends React.Component {
         .catch(function (error) {
           console.log("bad");
           console.log('An error occurred:', error);
-          that.setState({ isRefreshing: false, isGoodAnswer: false });
-            setTimeout(() => {
-              that.setState({ isWaiting: false });
-              
-           }, 1000);
+          catchFuncGlobal(that)
           that.props.dispatch(setWaitingDriverRequest(false));
         });
     })
@@ -480,7 +473,7 @@ class RouteMenuClass extends React.Component {
     console.log(this.props.storeState);
 
     if (!this.state.isLoaded && this.props.storeState.languages.length > 0) {
-
+      debugger
       function isFindAllElems(cities) {
         let answer = true;
         let citiesCopy = [...cities];
@@ -578,11 +571,6 @@ class RouteMenuClass extends React.Component {
     return (
       <>
         <div className="routemenu_container d-flex flex-column col-12">
-          {
-            this.state.isWaiting ?
-              <DriverRefreshIndicator isRefreshExist={true} isRefreshing={this.state.isRefreshing} isGoodAnswer={this.state.isGoodAnswer} />
-              : <React.Fragment />
-          }
           {
             isMobileOnly ?
               <>

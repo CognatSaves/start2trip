@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import requests from '../../config';
 
 import Header from '../header/Header';
-import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
@@ -17,7 +17,6 @@ class ForgotPasswordClass extends React.Component {
         this.state = {
             email: '',
             isSended: false,
-            isRefreshExist: false,
             isGood: false,
             isChanged: false,
             falde: false,
@@ -35,9 +34,9 @@ class ForgotPasswordClass extends React.Component {
             console.log(this.state.email);
             this.setState({
                 isSended: false,
-                isRefreshExist: true,
                 isChanged: false
             })
+            startRefresherGlobal(this)
             let body = JSON.stringify({
                 email: this.state.email,
                 url: requests.frontendAddress + '/reset-password'
@@ -61,20 +60,20 @@ class ForgotPasswordClass extends React.Component {
                             that.props.history.push('/');
                         }
                     }
+                    thenFuncGlobal(that)
                     that.setState({
                         isSended: true,
                         isGood: true,
-                        isRefreshExist: false,
                         falde: false,
                     });
                 })
                 .catch(function (error) {
                     console.log("bad");
                     console.log('An error occurred:', error);
+                    catchFuncGlobal(that)
                     that.setState({
                         isSended: true,
                         isGood: false,
-                        isRefreshExist: false,
                         falde: true
                     });
                 })
@@ -110,7 +109,6 @@ class ForgotPasswordClass extends React.Component {
         }
         return (
             <>
-                <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={true} isGoodAnswer={true} />
                 <div className="forgotPasswordBody d-flex flex-column align-items-center" style={{ background: "url(" + windowImg + ")no-repeat", minHeight: "95vh" }}>
                     <Header driver={false} history={this.props.history} />
                     <Helmet>

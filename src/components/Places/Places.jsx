@@ -13,7 +13,7 @@ import PlacesPanel from './PlacesPanel';
 import PopularPlaces from './PopularPlaces';
 import PlacesList from './PlacesList';
 import PlacesTagList from './PlacesTagList';
-import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
@@ -24,7 +24,6 @@ class PlacesClass extends React.Component {
     this.state = {
       country: "",
       language: "",
-      isRefreshExist: false,
       selectedDirection: ''
     }
     //сначала уборка
@@ -50,7 +49,7 @@ class PlacesClass extends React.Component {
     let country = cookies.get('country', { path: '/' });
     let lang = cookies.get('userLang', { path: '/' });
 
-    let shouldSendRequest = !this.state.isRefreshExist &&
+    let shouldSendRequest = !this.props.storeState.isRefreshExist &&
       (
         this.state.selectedDirection !== (selectedDirection) ||
         this.state.country !== country ||
@@ -65,10 +64,9 @@ class PlacesClass extends React.Component {
       this.setState({
         country: country,
         language: lang,
-        isRefreshExist: true,
         selectedDirection: selectedDirection
       });
-
+      startRefresherGlobal(this)
       //let country = cookies.get('country', { path: '/' });
       let that = this;
 
@@ -87,6 +85,7 @@ class PlacesClass extends React.Component {
 
             console.log('good');
             console.log(data);
+            thenFuncGlobal(that)
             that.props.dispatch(setPlacesList(data.places, data.tags, data.directions, data.country));
             //следующие строки проверяют, смогли ли мы воспользоваться slug направления, если он, конечно, был
 
@@ -104,14 +103,12 @@ class PlacesClass extends React.Component {
             else {
               that.props.dispatch(setSelectedDirection(''));
             }
-            that.setState({
-              isRefreshExist: false
-            });
 
           }
         })
         .catch(error => {
           console.log('get wasted answer');
+          catchFuncGlobal(that)
           this.props.globalReduser.history.push('/');
         });
     }
@@ -182,7 +179,6 @@ class PlacesClass extends React.Component {
 
     return (
       <>
-        <DriverRefreshIndicator isRefreshExist={this.state.isRefreshExist} isRefreshing={/*this.state.isRefreshing*/true} isGoodAnswer={/*this.state.isGoodAnswer*/true} />
 
         {
 
@@ -272,7 +268,7 @@ class PlacesClass extends React.Component {
                 <PopularPlaces placesState={this.props.placesState} where={"places"} />
                 <PlacesTagList placesState={this.props.placesState} />
                 <PlacesPanel placesState={this.props.placesState} />
-                <PlacesList isStaying={!this.state.isRefreshExist} />
+                <PlacesList isStaying={!this.props.storeState.isRefreshExist} />
               </div>
               {/* <div className="right_body_part col-3">
                 <DriversCommercial />

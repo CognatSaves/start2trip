@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet';
 import { changeLanguagePart } from '../../redusers/Action';
 import requests from '../../config';
 
-import DriverRefreshIndicator from '../driverProfileRegistration/DriverRefreshIndicator';
+import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
 import Header from '../header/Header';
 import Cookies from 'universal-cookie';
 
@@ -21,10 +21,10 @@ class TripConfirmationClass extends React.Component {
         let userId = this.props.match.params.userId;
         let body = JSON.stringify({ id: id, userId: userId, frontendAddress: requests.frontendAddress });
         let that = this;
+        startRefresherGlobal(this)
         this.state = {
             isServerGood: true,
             text: 'Ожидайте ответа',
-            isRefreshExist: true
         }
         fetch(requests.customerConfirmation, {
             method: 'POST', body: body,
@@ -43,18 +43,17 @@ class TripConfirmationClass extends React.Component {
                     console.log(data);
                     that.setState({
                         text: 'Всё прекрасно',
-                        isRefreshExist: false,
-
                     })
+                    thenFuncGlobal(that)
                 }
             })
             .catch(function (error) {
                 console.log('bad');
                 that.setState({
                     text: 'Всё плохо',
-                    isRefreshExist: false,
                     isServerGood: false
                 })
+                catchFuncGlobal(that)
                 console.log('An error occurred:', error);
             });
         props.dispatch(changeLanguagePart(false, true)); //эта ересь сообщает шапке, что мы в админке за пользователя, т.е. работает 1я партия языков, но ломать адрес не надо
@@ -102,8 +101,8 @@ class TripConfirmationClass extends React.Component {
                     <meta property="og:description" content={helmet.basic.description} />
                 </Helmet>
                 {
-                    this.state.isRefreshExist ?
-                        <DriverRefreshIndicator isRefreshExist={true} isRefreshing={true} isGoodAnswer={true} />
+                    this.props.storeState.isRefreshExist ?
+                    <></>
                         :
                         (
                             this.state.isServerGood ?
