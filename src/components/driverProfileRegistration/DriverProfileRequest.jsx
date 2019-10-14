@@ -19,14 +19,10 @@ function getUserData(requestValues, thenFunc, catchFunc, params) {
 
         if (thenFunc) {
           if (params && params.thenFunc) {
-            setTimeout(() => {
               thenFunc(params.thenFunc);
-            }, 700)
           }
           else {
-            setTimeout(() => {
               thenFunc();
-            }, 700)
           }
         }
       })

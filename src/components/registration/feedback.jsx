@@ -21,7 +21,7 @@ class feedbackClass extends React.Component {
         };
         props.dispatch(changeLanguagePart(false, true)); //эта ересь сообщает шапке, что мы в админке за пользователя, т.е. работает 1я партия языков, но ломать адрес не надо
         let address = requests.isCommentedTrip + '/?id=' + this.props.match.params.id + "&clientId=" + this.props.match.params.clientId;
-        startRefresherGlobal(this)
+        startRefresherGlobal(this,true)
         let that = this
         axios.get(address)
             .then(response => {
@@ -43,7 +43,7 @@ class feedbackClass extends React.Component {
         this.props.dispatch(changeLanguagePart(false, false))//эта ересь сообщает шапке, что мы валим из пользователя, т.е. работает 1я партия языков, но ломать адрес не надо
     }
     startRolling = () => {
-        startRefresherGlobal(this)
+        startRefresherGlobal(this,true)
     }
     endRolling = (result) => {
         thenFuncGlobal(this)

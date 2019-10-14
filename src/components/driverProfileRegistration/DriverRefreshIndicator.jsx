@@ -31,7 +31,7 @@ import coffee from '../media/coffee.svg'
                     this.props.storeState.isRefreshExist ?
                         <div className="refreshIndicatorModal" >
                             {this.props.storeState.isRefreshing ? <img src={this.state.loadings[this.state.randomNumber]} alt="" /> : <div />}
-                            <i className={this.props.storeState.isRefreshing ? "" : (this.props.storeState.isGoodAnswer ? "refreshIndicatorSuccess" : "refreshIndicatorFail")}></i>
+                            <i className={!this.props.storeState.isRefreshing && this.props.storeState.isNeedRefreshIndicator ? (this.props.storeState.isGoodAnswer ? "refreshIndicatorSuccess" : "refreshIndicatorFail"):""}></i>
                         </div>
                         : <React.Fragment />
                 }

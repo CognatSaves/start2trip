@@ -20,7 +20,7 @@ class DriverConfirmationClass extends React.Component {
         if (confirmation) {
             console.log("-------------------------------")
             console.log(confirmation)
-            startRefresherGlobal(this)
+            startRefresherGlobal(this,true)
             this.state = {
                 heAgrees: confirmation,
                 id: id,

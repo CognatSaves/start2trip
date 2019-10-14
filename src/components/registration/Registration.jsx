@@ -68,7 +68,7 @@ class RegistrationClass extends React.Component {
         }
         function socialWebRegistrationRequest(body) {
             console.log("registration");
-            startRefresherGlobal(this)
+            startRefresherGlobal(this,true)
             fetch(requests.serverRegistrationRequest, {
                 method: 'POST', body: body,
                 headers: { 'content-type': 'application/json' }
@@ -99,7 +99,7 @@ class RegistrationClass extends React.Component {
         }
         function socialWebAuthorizationRequest(body) {
             //alert('web registration');
-            startRefresherGlobal(this)
+            startRefresherGlobal(this,true)
             fetch(requests.serverAuthorizationRequest, {
                 method: 'POST', body: body,
                 headers: { 'content-type': 'application/json' }
@@ -161,7 +161,7 @@ class RegistrationClass extends React.Component {
                 // console.log('window.name');
                 // console.log(window.name);
                 if (type === "Registration") {
-                    startRefresherGlobal(this)
+                    startRefresherGlobal(this,true)
                     axios.get('https://graph.facebook.com/me?fields=id,name,first_name,last_name,email&access_token=' + token)
                         .then(response => {
                             //  console.log("get answer from facebook");
@@ -191,7 +191,7 @@ class RegistrationClass extends React.Component {
                 if (type === "Authorization") {
                     console.log("Try to authorizate facebook");
                     let password = generatePassword(10);
-                    startRefresherGlobal(this)
+                    startRefresherGlobal(this,true)
                     axios.get('https://graph.facebook.com/me?fields=id,name,first_name,last_name,email&access_token=' + token)
                         .then(response => {
                             let body = JSON.stringify({
@@ -221,7 +221,7 @@ class RegistrationClass extends React.Component {
             if (token) {
                 let id_token = urlParams.get('raw[id_token]');
                 if (type === "Registration") {
-                    startRefresherGlobal(this)
+                    startRefresherGlobal(this,true)
                     axios.get('https://www.googleapis.com/oauth2/v2/userinfo?access_token=' + token + '&id_token=' + id_token)
                         .then(response => {
                             let password = generatePassword(10);
@@ -247,7 +247,7 @@ class RegistrationClass extends React.Component {
                 }
                 if (type === "Authorization") {
                     let password = generatePassword(10);
-                    startRefresherGlobal(this)
+                    startRefresherGlobal(this,true)
                     axios.get('https://www.googleapis.com/oauth2/v2/userinfo?access_token=' + token + '&id_token=' + id_token)
                         .then(response => {
                             console.log("Try to authorizate google");

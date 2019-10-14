@@ -147,6 +147,7 @@ const initialState = {
     isRefreshExist: false,
     isRefreshing: true,
     isGoodAnswer: true,
+    isNeedRefreshIndicator:false,
     numberOfRefresh: 0,
     //driverRefreshIndicator
 
@@ -470,6 +471,7 @@ export const AppReduser = (state = initialState, action) => {
             newState.numberOfRefresh = newState.numberOfRefresh+1
             newState.isRefreshExist = true;
             newState.isRefreshing = true;
+            newState.isNeedRefreshIndicator = action.isNeedRefreshIndicator;
             return newState;
         }
 
@@ -495,7 +497,7 @@ export const AppReduser = (state = initialState, action) => {
             newState.isRefreshExist = true;
             newState.isRefreshing = false;
             newState.isGoodAnswer = false;
-
+            newState.isNeedRefreshIndicator = true;
             return newState;
         }
         
@@ -504,7 +506,7 @@ export const AppReduser = (state = initialState, action) => {
                 ...state
             };
             newState.isRefreshExist = false;
-
+            newState.isNeedRefreshIndicator = false;
             return newState;
         }
 

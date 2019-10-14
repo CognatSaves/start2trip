@@ -21,7 +21,7 @@ class TripConfirmationClass extends React.Component {
         let userId = this.props.match.params.userId;
         let body = JSON.stringify({ id: id, userId: userId, frontendAddress: requests.frontendAddress });
         let that = this;
-        startRefresherGlobal(this)
+        startRefresherGlobal(this,true)
         this.state = {
             isServerGood: true,
             text: 'Ожидайте ответа',

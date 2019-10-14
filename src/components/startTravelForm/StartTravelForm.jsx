@@ -1,6 +1,7 @@
 import React from 'react';
 import './StartTravelForm.css';
 import './StartTravelBlockStyles.css';
+import { connect } from 'react-redux';
 
 import { isMobileOnly } from 'react-device-detect';
 import axios from 'axios';
@@ -13,7 +14,7 @@ import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
 
-export default class StartTravelForm extends React.Component {
+ class StartTravelFormClass extends React.Component {
 
     constructor(props) {
         super(props);
@@ -97,7 +98,8 @@ export default class StartTravelForm extends React.Component {
         if (body) {
 
             let that = this;
-            startRefresherGlobal(this)
+            debugger
+            startRefresherGlobal(this,true)
             fetch(requests.createNewTrip, {
                 method: 'POST', body: body,
                 headers: { 'content-type': 'application/json' }
@@ -332,7 +334,7 @@ export default class StartTravelForm extends React.Component {
 
         //ЭтО ЗаПрОс На ПрОвЕрКу ПрОмОкОдА. ОчЕнЬ НуЖеН
 
-        startRefresherGlobal(this)
+        startRefresherGlobal(this,true)
         axios.get(requests.checkPromocode + "?code=" + this.state.promoCod)
             .then(response => {
                 console.log(response);
@@ -474,3 +476,11 @@ export default class StartTravelForm extends React.Component {
     }
 
 }
+
+const StartTravelForm = connect(
+    (state) => ({
+        storeState: state.AppReduser,
+    }),
+)(StartTravelFormClass);
+
+export default StartTravelForm;

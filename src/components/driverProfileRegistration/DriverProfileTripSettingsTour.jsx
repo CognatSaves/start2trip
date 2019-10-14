@@ -56,7 +56,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                 guideStatusChange: true
             });
             let that = this;
-            startRefresherGlobal(this)
+            startRefresherGlobal(this,true)
             fetch(requests.profileUpdateRequest,{
                 method: 'PUT', body: body,
                 headers: { 'content-type': 'application/json', Authorization: `Bearer ${jwt}`} 
@@ -103,7 +103,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                 guidePriceCurrency: this.state.guidePriceCurrency
             });
             let that = this;
-            startRefresherGlobal(this)
+            startRefresherGlobal(this,true)
             fetch(requests.profileUpdateRequest,{
                 method: 'PUT', body: body,
                 headers: { 'content-type': 'application/json', Authorization: `Bearer ${jwt}`}

@@ -36,7 +36,7 @@ class AvatarEditorCustomClass extends React.Component {
         let file = e.target.files[0];
 
         if (file && file.type.match('image')) {
-            startRefresherGlobal(this);
+            startRefresherGlobal(this,true);
 
             readAndCompressImage(file, this.props.globalReduser.compressConfig)
                 .then(resizedImage => {
@@ -95,7 +95,7 @@ class AvatarEditorCustomClass extends React.Component {
 
     onClickSave = () => {
         if (this.editor) {
-            startRefresherGlobal(this);
+            startRefresherGlobal(this,true);
             const canvas = this.editor.getImage()
             let img = canvas.toBlob((blob) => {
 

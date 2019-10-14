@@ -92,7 +92,7 @@ class UserProfileRegistrationClass extends React.Component {
       else {
         let jwt = this.props.globalReduser.readCookie('jwt');
         if (jwt && jwt !== '-') {
-          startRefresherGlobal(this)
+          startRefresherGlobal(this,true)
           let that = this;
           let requestValues = {
             readCookie: this.props.globalReduser.readCookie,

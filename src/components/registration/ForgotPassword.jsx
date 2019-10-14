@@ -36,7 +36,7 @@ class ForgotPasswordClass extends React.Component {
                 isSended: false,
                 isChanged: false
             })
-            startRefresherGlobal(this)
+            startRefresherGlobal(this,true)
             let body = JSON.stringify({
                 email: this.state.email,
                 url: requests.frontendAddress + '/reset-password'
