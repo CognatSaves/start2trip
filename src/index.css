@@ -292,6 +292,11 @@ body {
         padding: .5rem !important;
 
     }
+
+    .pb-md-0, .py-md-0 {
+        padding-top: 0!important;
+        padding-bottom: 0!important;
+    }
 }
     @media (max-width: 450px) {
         #omni_widget_iframe_3112-5mvjsjtu {
