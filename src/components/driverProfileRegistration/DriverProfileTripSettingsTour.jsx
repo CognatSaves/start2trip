@@ -146,7 +146,6 @@ class DriverProfileTripSettingsTourClass extends React.Component {
 
             <>
                 
-
                 <Collapse isOpen={!this.state.isTourOpened}>
                     <div className="profileFeedbackBlock_comments d-flex flex-column" style={{marginBottom: '10px'}}>
                     <div className="driverProfilesettingsBodyTitle  d-md-block d-none">
@@ -162,10 +161,12 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                         {
                             this.state.guide ? 
                             <>
+                            {
+                                /*
                                 <div className="d-flex flex-column driverTourDataBlock">
-                                    <div /*flex-sm-row flex-column*/ className="d-flex flex-sm-row flex-column tourContent" /*style={{maxWidth: '300px'}}*/>
+                                    <div  className="d-flex flex-sm-row flex-column tourContent" >
                                         <label htmlFor="guideHourPrice" className="d-md-block d-none" style={{margin: 'auto 0', paddingRight: '15px'}}>{textPage.hourPrice}:</label>
-                                        <div /*flex-md-row flex-column*/ className="d-flex flex-row p-0" /*style={{maxWidth: '250px'}}*/>
+                                        <div  className="d-flex flex-row p-0">
                                             <TextField
                                                 floatingLabelText={textPage.hourPrice}
                                                 className="d-md-none d-block inputClass"
@@ -225,8 +226,11 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                                     </div>
                                 </div>
                                 
+                                */
+                            }
+                                
                             </>                           
-                            :   <React.Fragment/>
+                            :  <React.Fragment/>
                         }
                     </div>
                 </div>
