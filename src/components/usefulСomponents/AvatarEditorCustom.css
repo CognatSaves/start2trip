@@ -16,6 +16,18 @@
     font-weight: 500;
 }
 
+.avatarEditorCustomBottem span{
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 400;
+    color: #304269;
+    transition: all 0.3s;
+}
+
+.avatarEditorCustomBottem span:hover{
+    color: #f60;
+}
+
 .avatarEditorCustomCharacteristics .zoomSmall{ 
     width: 20px;
     height: 20px;

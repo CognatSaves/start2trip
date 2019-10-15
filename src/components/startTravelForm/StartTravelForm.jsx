@@ -52,16 +52,20 @@ const cookies = new Cookies();
     }
     componentDidUpdate(prevProps, prevState) {
 
-        if (prevProps.storeState.userData.firstName !== this.props.storeState.userData.firstName) {
+if(prevProps.storeState.userData && this.props.storeState.userData){
+    if (prevProps.storeState.userData.firstName !== this.props.storeState.userData.firstName) {
 
-            this.setState({
-                firstName: this.props.storeState.userData.firstName,//"",
-                lastName: this.props.storeState.userData.lastName,//"",
-                telNumber: this.props.storeState.userData.workPhone,//"",
-                email: this.props.storeState.userData.email,//"",
-            })
-        }
-        return true
+        this.setState({
+            firstName: this.props.storeState.userData.firstName,//"",
+            lastName: this.props.storeState.userData.lastName,//"",
+            telNumber: this.props.storeState.userData.workPhone,//"",
+            email: this.props.storeState.userData.email,//"",
+        })
+    }
+    return true
+}
+        
+        
     }
     sendTripRequest = (body) => {
 
@@ -98,7 +102,7 @@ const cookies = new Cookies();
         if (body) {
 
             let that = this;
-            debugger
+            
             startRefresherGlobal(this,true)
             fetch(requests.createNewTrip, {
                 method: 'POST', body: body,

@@ -20,6 +20,7 @@ const userCarActivateRequest = serverAddress + '/cars/me/activate'; //запро
 const userAvatarChangeRequest = serverAddress + '/users/me/avatar'; //запрос для админки
 const userTourCreateRequest = serverAddress + '/tours/me/create'; //запрос для админки
 const userTourDestroyRequest = serverAddress + '/tours/me'; //запрос для админки
+const userTourEditImgRequest = serverAddress +'/tours/me/toursMainImg' // Запрос на изменение фотографии в header тура
 
 const userTourUpdateRequest = serverAddress + '/tours/me'; //запрос для админки
 const userTourActivateRequest = serverAddress + '/tours/me/activate'; //запрос для админки
@@ -119,5 +120,6 @@ export default {
     showTour:showTour,
     setTourSeatsData:setTourSeatsData,
     findGuides:findGuides,
-    showGuide:showGuide
+    showGuide:showGuide,
+    userTourEditImgRequest:userTourEditImgRequest,
 };

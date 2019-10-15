@@ -60,7 +60,7 @@ const checkBtUp = (e, that) => {
 }
 
 const startRefresherGlobal = (that,isNeedRefreshIndicator) => {
-    debugger
+    
   let props = that.props
   if(props === undefined){
     that.dispatch(startRefresher(isNeedRefreshIndicator))

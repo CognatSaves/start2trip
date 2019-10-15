@@ -3,12 +3,11 @@ import '../driverProfileRegistration/DriverProfileNavigation.css'
 import { connect } from 'react-redux';
 import { readAndCompressImage } from 'browser-image-resizer';
 import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
-import { setUser} from '../../redusers/Action';
-import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
+import { setUser } from '../../redusers/Action';
+import { startRefresherGlobal, thenFuncGlobal, catchFuncGlobal, } from '../../redusers/GlobalFunction'
 import { isMobile, isMobileOnly } from 'react-device-detect';
 import requests from '../../config';
-import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
+import Dialog from '@material-ui/core/Dialog';
 import './AvatarEditorCustom.css'
 
 import Slider from '@material-ui/core/Slider';
@@ -36,7 +35,7 @@ class AvatarEditorCustomClass extends React.Component {
         let file = e.target.files[0];
 
         if (file && file.type.match('image')) {
-            startRefresherGlobal(this,true);
+            startRefresherGlobal(this, true);
 
             readAndCompressImage(file, this.props.globalReduser.compressConfig)
                 .then(resizedImage => {
@@ -75,10 +74,9 @@ class AvatarEditorCustomClass extends React.Component {
                     let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
                     cookies.set("avatarUrl", avatar, { path: '/', expires: date });
                     that.props.dispatch(setUser(that.props.AppReduser.userName, avatar));
-                    thenFuncGlobal(that);
-                }
-                if (request.readyState === XMLHttpRequest.DONE && request.status === 0) {
-                    catchFuncGlobal(that);
+                    thenFuncGlobal(that,true);
+                }else{
+                    catchFuncGlobal(that,true);
                 }
 
             }
@@ -95,7 +93,7 @@ class AvatarEditorCustomClass extends React.Component {
 
     onClickSave = () => {
         if (this.editor) {
-            startRefresherGlobal(this,true);
+            startRefresherGlobal(this, true);
             const canvas = this.editor.getImage()
             let img = canvas.toBlob((blob) => {
 
@@ -110,49 +108,22 @@ class AvatarEditorCustomClass extends React.Component {
 
         let textPage = this.props.AppReduser.languageText.usefulСomponents.avatarEditorCustom;
 
-        const customContentStyle = {
-            width: '100%',
-            maxWidth: 'none',
-        };
-        const desktopContentStyle = {
-            width: '100%',
-            maxWidth: '600px',
-        }
-        const actions = [
-
-            <div className="d-flex justify-content-between align-items-center avatarEditorCustomBottem px-2 pb-2">
-                <div>
-                    <label htmlFor="addFile">{textPage.download}</label>
-                    <input type="file" id="addFile" style={{ display: "none" }} onChange={this._handleImageChange} />
-                </div>
-
-                <FlatButton
-                    label={textPage.save}
-                    primary={true}
-                    keyboardFocused={true}
-                    onClick={() => { this.props.imgModalShow(); this.onClickSave(); }}
-                />
-            </div>,
-
-        ];
-
 
         return (
             <>
-                <Dialog
-                    actions={actions}
-                    modal={false}
-                    bodyStyle={{ padding: 0 }}
-                    contentStyle={isMobile ? customContentStyle : desktopContentStyle}
-                    open={this.props.imgModal}
-                    onRequestClose={this.props.imgModalShow}
-                >
-                    
-                    <div className="d-flex flex-column justify-content-center  align-items-center col-12 p-3">
-                        <div className="d-flex w-100 justify-content-end">
-                            <span className="avatarEditorCustomClose" onClick={() => { this.props.imgModalShow() }} />
-                        </div>
-                        <div className="d-flex align-items-center col-7">
+                <Dialog fullScreen={isMobile ? true : false} open={this.props.imgModal} onClose={this.props.imgModal}>
+                    <div className="d-flex w-100 align-items-center justify-content-md-end justify-content-between avatarEditorCustomBottem">
+                        {isMobile &&
+                            <div className="pl-2">
+                                <label htmlFor="addFile">{textPage.download}</label>
+                                <input type="file" id="addFile" style={{ display: "none" }} onChange={this._handleImageChange} />
+                            </div>
+                        }
+                        <span className="avatarEditorCustomClose" onClick={() => { this.props.imgModalShow() }} />
+                    </div>
+                    <div className="d-flex flex-column justify-content-center  align-items-center px-md-5 py-2 px-1">
+
+                        <div className="d-flex align-items-center w-100">
                             <AvatarEditor
                                 ref={this.setEditorRef}
                                 image={this.props.AppReduser.avatarUrl}
@@ -167,11 +138,11 @@ class AvatarEditorCustomClass extends React.Component {
                             />
 
                         </div>
-                        <div className="avatarEditorCustomCharacteristics d-flex flex-column justify-content-center align-items-center col-12 ">
+                        <div className="avatarEditorCustomCharacteristics d-flex flex-column justify-content-center align-items-center w-100">
                             <div className="d-flex justify-content-between px-3">
                                 <span className="rotate" onClick={() => { this.setState({ rotate: (this.state.rotate + 90) }) }}></span>
                             </div>
-                            <div className="d-flex align-items-center col-8 px-3">
+                            <div className="d-flex align-items-center w-75 px-3">
                                 <span className="zoomSmall" />
                                 <Slider
                                     defaultValue={this.state.zoomDefaultValue}
@@ -189,11 +160,20 @@ class AvatarEditorCustomClass extends React.Component {
 
                         </div>
                     </div>
+                    <div className="d-flex flex-md-row flex-column justify-content-between align-items-center avatarEditorCustomBottem px-2 py-2">
+                        {!isMobile &&
+                            <div>
+                                <label htmlFor="addFile">{textPage.download}</label>
+                                <input type="file" id="addFile" style={{ display: "none" }} onChange={this._handleImageChange} />
+                            </div>
+                        }
+                        <span className="align-self-end " onClick={() => { this.props.imgModalShow(); this.onClickSave(); }}>{textPage.save}</span>
+                    </div>
 
                 </Dialog>
 
 
-               
+
 
             </>
         );
