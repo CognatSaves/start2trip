@@ -95,7 +95,7 @@ class AgencyProfileClass extends React.Component {
                 let jwt = this.props.globalReduser.readCookie('jwt');
                 if (jwt && jwt !== '-') {
                     let that = this;
-                    startRefresherGlobal(this)
+                    startRefresherGlobal(this,true)
                     let requestValues = {
                         readCookie: this.props.globalReduser.readCookie,
                         setProfileData: function (data) {

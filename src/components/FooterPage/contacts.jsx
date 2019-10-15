@@ -35,7 +35,7 @@ class contactsClass extends React.Component {
     }
     sendMessage = () => {
 
-        startRefresherGlobal(this)
+        startRefresherGlobal(this,true)
 
         let userLang = (cookies.get('userLang', { path: "/" })).toUpperCase()
         let country = (cookies.get('country', { path: "/" }))

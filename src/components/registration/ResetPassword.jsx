@@ -49,7 +49,7 @@ class ResetPasswordClass extends React.Component {
                     code: this.state.code
                 });
                 let that = this;
-                startRefresherGlobal(this)
+                startRefresherGlobal(this,true)
                 fetch(requests.resetPassword, {
                     method: 'POST', body: body
                 })

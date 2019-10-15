@@ -90,7 +90,7 @@ class DriverProfileBasicInformationClass extends React.Component {
         }
     }
     startRefresher = () => {
-        startRefresherGlobal(this)
+        startRefresherGlobal(this,true)
     }
     thenFunc = () => {
         thenFuncGlobal(this)

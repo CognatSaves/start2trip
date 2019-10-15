@@ -69,7 +69,7 @@ class DriverProfileCarClass extends React.Component {
         getUserData(requestValues, thenFunc, catchFunc);
     }
     startRefresher = () => {
-        startRefresherGlobal(this)
+        startRefresherGlobal(this,true)
     }
     thenFunc = () => {
         thenFuncGlobal(this)

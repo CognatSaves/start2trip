@@ -315,10 +315,7 @@ function getLocals() {
           //здесь должна быть переадресация
         }
       }
-      setTimeout(()=>{
-        
       thenFuncGlobal(store)
-    },1000)
     })
     .catch(error => {
       catchFuncGlobal(store)

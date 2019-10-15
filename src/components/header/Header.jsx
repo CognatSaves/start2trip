@@ -165,6 +165,7 @@ const ModalUserType = (props) => {
         {
           that.state.selectedUserType > 1 ?
             <>
+              {/* TODO Перевод */}
               <span>{"Укажите страну, в которой вы будете работать"}</span>
               <DropDownMenu
                 value={that.state.selectedUserCountry}
@@ -498,6 +499,7 @@ class HeaderClass extends React.Component {
             let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
             cookies.set('userName', userName, { path: '/', expires: date });
             cookies.set('avatarUrl', avatarUrl, { path: '/', expires: date });
+            cookies.set('userId', userData.userId, { path: '/', expires: date });
             this.props.dispatch(setUser(userName, avatarUrl, userData, isCustomer));
           }
 
@@ -734,10 +736,10 @@ class HeaderClass extends React.Component {
         <ModalUserType textInfo={textInfo} isOpen={this.state.isUsertypeLooking} that={this} pageTextInfo={pageTextInfo} />
         <div style={this.state.burgerMenu ? { position: "fixed", top: "0", zIndex: "40" } : {}} className="headerMobail  d-md-none d-flex align-items-center justify-content-around">
           <Link className="logoSite col-3" to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes/"} />
-          <div onClick={this.toggleModalCountry} style={{ visibility: this.props.storeState.countries.length > 0 ? 'visible' : 'hidden' }} className={!this.state.burgerMenu?"headerGeoButton col-lg-5 col-md-4 col-3":"headerGeoButton col-lg-5 col-md-4 col-6"}>
+          <div onClick={this.toggleModalCountry} style={{ visibility: this.props.storeState.countries.length > 0 ? 'visible' : 'hidden' }} className={!this.state.burgerMenu ? "headerGeoButton col-lg-5 col-md-4 col-3" : "headerGeoButton col-lg-5 col-md-4 col-6"}>
             <span>{this.props.storeState.country}</span>
           </div>
-          {!this.state.burgerMenu &&
+          {!this.state.burgerMenu && isMobile &&
             <>
               {
                 this.props.storeState.isSecondLanguageGroupPart ?
@@ -888,19 +890,23 @@ class HeaderClass extends React.Component {
                     }
                   </DropdownMenu>
                 </Dropdown>
-                {
-                  this.props.storeState.isSecondLanguageGroupPart ?
-                    <BasicLanguageDropDown isOpen={this.state.dropdownLanguageOpen}
-                      toggle={this.toggleLanguage} languages={adminLanguages}
-                      activeLanguageNumber={this.props.storeState.activeLanguageNumberAdmin}
-                      onClick={(index) => this.setLocals('adminLang', index)}
-                    />
-                    :
-                    <BasicLanguageDropDown isOpen={this.state.dropdownLanguageOpen}
-                      toggle={this.toggleLanguage} languages={languages}
-                      activeLanguageNumber={this.props.storeState.activeLanguageNumber}
-                      onClick={(index) => this.setLocals('userLang', index, this.props.storeState.isAdminLanguageType)}
-                    />
+                {!isMobile &&
+                  <>
+                    {
+                      this.props.storeState.isSecondLanguageGroupPart ?
+                        <BasicLanguageDropDown isOpen={this.state.dropdownLanguageOpen}
+                          toggle={this.toggleLanguage} languages={adminLanguages}
+                          activeLanguageNumber={this.props.storeState.activeLanguageNumberAdmin}
+                          onClick={(index) => this.setLocals('adminLang', index)}
+                        />
+                        :
+                        <BasicLanguageDropDown isOpen={this.state.dropdownLanguageOpen}
+                          toggle={this.toggleLanguage} languages={languages}
+                          activeLanguageNumber={this.props.storeState.activeLanguageNumber}
+                          onClick={(index) => this.setLocals('userLang', index, this.props.storeState.isAdminLanguageType)}
+                        />
+                    }
+                  </>
                 }
               </div>
               <div className="headerRegistration d-flex justify-content-start col-xl-1 col-lg-1 col-md-2 col-sm-1 col-1">

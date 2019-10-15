@@ -30,7 +30,7 @@ class PartnerRegisterClass extends React.Component {
     }
 
     componentWillMount(){
-        startRefresherGlobal(this)
+        startRefresherGlobal(this,true)
     }
     componentWillUnmount(){
         thenFuncGlobal(this)

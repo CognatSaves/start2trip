@@ -249,9 +249,10 @@ const clearFilters = function(){
     }
 }
 
-const startRefresher = function(){
+const startRefresher = function(isNeedRefreshIndicator){
     return{
         type: START_REFRESHER,
+        isNeedRefreshIndicator:isNeedRefreshIndicator,
     }
 }
 

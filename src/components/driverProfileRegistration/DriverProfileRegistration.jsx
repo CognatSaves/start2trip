@@ -111,7 +111,7 @@ class DriverProfileRegistrationClass extends React.Component {
         
         let jwt = this.props.globalReduser.readCookie('jwt');
         if (jwt && jwt !== '-') {
-          startRefresherGlobal(that)
+          startRefresherGlobal(that,true)
           let that = this;
           let requestValues = {
             readCookie: this.props.globalReduser.readCookie,

@@ -1,6 +1,6 @@
-const serverAddress = 'http://localhost:1337'; //'https://tripfer.com:41337'; //
-const serverAddressImg = 'http://localhost:1337'; //'https://tripfer.com';//
-const frontendAddress = 'http://localhost:3000'; //'https://tripfer.com'; //
+const serverAddress = 'https://tripfer.com:41337'; //'http://localhost:1337'; //
+const serverAddressImg = 'https://tripfer.com';//'http://localhost:1337'; //
+const frontendAddress = 'https://tripfer.com'; //'http://localhost:3000'; //
 
 const serverRegistrationRequest = serverAddress + '/auth/local/register';
 const serverAuthorizationRequest = serverAddress + '/auth/local';
@@ -20,6 +20,7 @@ const userCarActivateRequest = serverAddress + '/cars/me/activate'; //запро
 const userAvatarChangeRequest = serverAddress + '/users/me/avatar'; //запрос для админки
 const userTourCreateRequest = serverAddress + '/tours/me/create'; //запрос для админки
 const userTourDestroyRequest = serverAddress + '/tours/me'; //запрос для админки
+const userTourEditImgRequest = serverAddress +'/tours/me/toursMainImg' // Запрос на изменение фотографии в header тура
 
 const userTourUpdateRequest = serverAddress + '/tours/me'; //запрос для админки
 const userTourActivateRequest = serverAddress + '/tours/me/activate'; //запрос для админки
@@ -119,5 +120,6 @@ export default {
     showTour:showTour,
     setTourSeatsData:setTourSeatsData,
     findGuides:findGuides,
-    showGuide:showGuide
+    showGuide:showGuide,
+    userTourEditImgRequest:userTourEditImgRequest,
 };
