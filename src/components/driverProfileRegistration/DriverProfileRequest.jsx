@@ -24,7 +24,7 @@ function getUserData(requestValues, thenFunc, catchFunc,that) {
       .catch(error => {
 
         if (catchFunc) {
-            catchFunc()
+            catchFunc(that)
         }
         console.log('error, here must be return to authorization window! or smth else');
       })
