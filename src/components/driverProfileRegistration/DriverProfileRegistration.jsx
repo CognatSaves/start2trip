@@ -120,7 +120,7 @@ class DriverProfileRegistrationClass extends React.Component {
             },
             requestAddress: requests.profileRequest
           }
-          getUserData(requestValues,()=>thenFuncGlobal(that),()=>catchFuncGlobal(that));
+          getUserData(requestValues,thenFuncGlobal,catchFuncGlobal,that);
           
         }
         else {

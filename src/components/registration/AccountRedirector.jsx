@@ -189,6 +189,7 @@ function getProfileData(that) {
   
   let jwt = that.props.globalReduser.readCookie('jwt');
   if (jwt && jwt !== '-') {
+    debugger
     startRefresherGlobal(that)
     let requestValues = {
       readCookie: that.props.globalReduser.readCookie,
@@ -197,7 +198,7 @@ function getProfileData(that) {
       },
       requestAddress: requests.profileRequest
     }
-    getUserData(requestValues,()=>{thenFuncGlobal(that)},()=>catchFuncGlobal(that));
+    getUserData(requestValues,thenFuncGlobal,catchFuncGlobal,that);
   }
   else {
     that.props.dispatch(setUrlAddress(window.location.pathname));

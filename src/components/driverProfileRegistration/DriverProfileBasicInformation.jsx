@@ -81,7 +81,7 @@ class DriverProfileBasicInformationClass extends React.Component {
                 },
                 requestAddress: requests.profileRequest
             }
-            getUserData(requestValues, that.thenFunc, that.catchFunc);
+            getUserData(requestValues, thenFuncGlobal, catchFuncGlobal,that);
         }
         else {
             this.props.dispatch(setUrlAddress(window.location.pathname));
@@ -91,12 +91,6 @@ class DriverProfileBasicInformationClass extends React.Component {
     }
     startRefresher = () => {
         startRefresherGlobal(this,true)
-    }
-    thenFunc = () => {
-        thenFuncGlobal(this)
-    }
-    catchFunc = () => {
-        catchFuncGlobal(this)
     }
     applyChanges = () => {
         let jwt = this.props.globalReduser.readCookie('jwt');

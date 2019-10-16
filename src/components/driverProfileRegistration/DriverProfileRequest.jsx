@@ -1,7 +1,7 @@
 import axios from 'axios';
 import requests from '../../config';
 
-function getUserData(requestValues, thenFunc, catchFunc, params) {
+function getUserData(requestValues, thenFunc, catchFunc,that) {
   let jwt = requestValues.readCookie('jwt');
   let userLang = requestValues.readCookie('userLang');
   let country = requestValues.readCookie('country')
@@ -18,23 +18,13 @@ function getUserData(requestValues, thenFunc, catchFunc, params) {
         requestValues.setProfileData(response.data);
 
         if (thenFunc) {
-          if (params && params.thenFunc) {
-              thenFunc(params.thenFunc);
-          }
-          else {
-              thenFunc();
-          }
+          // thenFunc(that)
         }
       })
       .catch(error => {
 
         if (catchFunc) {
-          if (params && params.catchFunc) {
-            catchFunc(params.catchFunc)
-          }
-          else {
-            catchFunc();
-          }
+            catchFunc()
         }
         console.log('error, here must be return to authorization window! or smth else');
       })

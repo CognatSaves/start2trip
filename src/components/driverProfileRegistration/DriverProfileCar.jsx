@@ -66,17 +66,12 @@ class DriverProfileCarClass extends React.Component {
             },
             requestAddress: requests.profileRequest
         };
-        getUserData(requestValues, thenFunc, catchFunc);
+        getUserData(requestValues, thenFuncGlobal, catchFuncGlobal, that);
     }
     startRefresher = () => {
         startRefresherGlobal(this,true)
     }
-    thenFunc = () => {
-        thenFuncGlobal(this)
-    }
-    catchFunc = () => {
-        catchFuncGlobal(this)
-    }
+
     applyChanges = (type) => {
         let jwt = this.props.globalReduser.readCookie('jwt');
         if (this.state.badDataTextVisibility === true) {

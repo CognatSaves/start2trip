@@ -77,7 +77,7 @@ class AgencyProfileBasicInformationClass extends React.Component {
                 },
                 requestAddress: requests.profileRequest
             }
-            getUserData(requestValues, that.thenFunc, that.catchFunc);
+            getUserData(requestValues, thenFuncGlobal, catchFuncGlobal,that);
         }
         else {
 
@@ -89,12 +89,7 @@ class AgencyProfileBasicInformationClass extends React.Component {
     startRefresher = () => {
         startRefresherGlobal(this,true)
     }
-    thenFunc = () => {
-        thenFuncGlobal(this)
-    }
-    catchFunc = () => {
-        catchFuncGlobal(this)
-    }
+
     applyChanges = () => {
         let jwt = this.props.globalReduser.readCookie('jwt');
 

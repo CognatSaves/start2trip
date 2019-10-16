@@ -58,7 +58,7 @@ class DriverProfileNavigationClass extends React.Component {
                 },
                 requestAddress: requests.profileRequest
             };
-            getUserData(requestValues, thenFunc, catchFunc);
+            getUserData(requestValues, thenFuncGlobal, catchFuncGlobal,that);
         }
         else {
             this.props.dispatch(setUrlAddress(window.location.pathname));
@@ -69,12 +69,7 @@ class DriverProfileNavigationClass extends React.Component {
     startRefresher = () => {
         startRefresherGlobal(this,true)
     }
-    thenFunc = () => {
-        thenFuncGlobal(this)
-    }
-    catchFunc = () => {
-        catchFuncGlobal(this)
-    }
+
     shiftLeft = (event) => {
 
         event.currentTarget.parentElement.scrollLeft = event.currentTarget.offsetLeft - 120;

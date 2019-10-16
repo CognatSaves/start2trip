@@ -101,7 +101,7 @@ class UserProfileRegistrationClass extends React.Component {
             },
             requestAddress: requests.profileRequest
           }
-          getUserData(requestValues,()=>thenFuncGlobal(that),()=>catchFuncGlobal(that));
+          getUserData(requestValues,thenFuncGlobal,catchFuncGlobal,that);
           return (
             <></>
           )

@@ -72,7 +72,6 @@ const startRefresherGlobal = (that,isNeedRefreshIndicator) => {
 }
 
 const thenFuncGlobal = (that) => {
-  
   let props = that.props
   if(props === undefined){
     let tempThat = that

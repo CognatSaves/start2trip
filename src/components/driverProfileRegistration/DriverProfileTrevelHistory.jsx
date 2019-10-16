@@ -24,12 +24,7 @@ class DriverProfileTrevelHistoryClass extends React.Component {
     startRefresher = () => {
         startRefresherGlobal(this,true)
     }
-    thenFunc = () => {
-        thenFuncGlobal(this)
-    }
-    catchFunc = () => {
-        catchFuncGlobal(this)
-    }
+
     getProfileData = () => {
         console.log('getProfileData');
         let that = this;
@@ -42,7 +37,7 @@ class DriverProfileTrevelHistoryClass extends React.Component {
                 },
                 requestAddress: requests.profileRequest
             }
-            getUserData(requestValues, that.thenFunc, that.catchFunc);
+            getUserData(requestValues, thenFuncGlobal, catchFuncGlobal,that);
         }
         else {
 
