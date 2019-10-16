@@ -874,12 +874,18 @@ class HeaderClass extends React.Component {
                   <DropdownToggle className="selectGeneralButton" caret size="sm">
                     {/*this.state.activeCurrency[this.state.activeCurrencyNumber]*/ availableCurrencies.length > 0 ?
                       /*далее я оставил просто currencies, т.к. они и availableCurrencies должны быть взаимосвязаны */
-                      (currencies[this.props.storeState.activeCurrencyNumber].symbol === currencies[this.props.storeState.activeCurrencyNumber].ISO ? " " + currencies[this.props.storeState.activeCurrencyNumber].ISO : (currencies[this.props.storeState.activeCurrencyNumber].symbol + " " + currencies[this.props.storeState.activeCurrencyNumber].ISO)) : ''}
+                      (currencies[this.props.storeState.activeCurrencyNumber].symbol === currencies[this.props.storeState.activeCurrencyNumber].ISO ?
+                       " " + currencies[this.props.storeState.activeCurrencyNumber].ISO : (currencies[this.props.storeState.activeCurrencyNumber].symbol
+                        + " " + currencies[this.props.storeState.activeCurrencyNumber].ISO)) : ''}
                   </DropdownToggle>
                   <DropdownMenu className="dropdownMenu currenty" >
                     {
                       availableCurrencies.map((element, index) =>
-                        <DropdownItem className="dropdownMenu" onClick={() => { this.props.globalReduser.changeActiveCurrency(this, availableCurrencies, index, cookies, (selectedId) => this.setLocals('userCurr', selectedId))/* changeActiveCurrency(this,availableCurrencies,index)*/ }}>{element.symbol === element.ISO ? " " + element.ISO : (element.symbol + " " + element.ISO)}</DropdownItem>
+                        <DropdownItem className="dropdownMenu" onClick={() => { 
+                          this.props.globalReduser.changeActiveCurrency(this, availableCurrencies, index, cookies, (selectedId) =>
+                          this.setLocals('userCurr', selectedId))/* changeActiveCurrency(this,availableCurrencies,index)*/ }}>
+                            {element.symbol === element.ISO ? " " + element.ISO : (element.symbol + " " + element.ISO)}
+                        </DropdownItem>
                       )
                     }
                   </DropdownMenu>
