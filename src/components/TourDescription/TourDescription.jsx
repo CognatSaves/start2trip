@@ -277,7 +277,15 @@ class ToureDescriptionClass extends React.Component {
         if (this.state.author !== null && this.state.author.cars.length > 0) {
             cars = this.state.author.cars
         }
+        
+        let renderEl =false
         let userId = cookies.get('userId', { path: "/" })
+        if(this.state.newTour.local){
+            if(("5d8c748f2af67f052213a249" === userId) || (this.state.newTour.tour.author.id === userId)){
+                renderEl =true
+            }
+        }
+        
         return (
             <>
                 {
@@ -361,11 +369,12 @@ class ToureDescriptionClass extends React.Component {
                             this.state.newTour.local &&
                             <>
                                 {
-                                    (("5d8c748f2af67f052213a249" === userId) || (this.state.newTour.local ? this.state.newTour.tour.author.id : "") === userId) &&
+                                    renderEl ?
                                     <div className="editTourHeaderBG">
-                                        <i onClick={() => { this.imgModalShow() }} >Редактировать обложку</i>
+                                        <i onClick={() => { this.imgModalShow() }} >{textInfo.editCover}</i>
                                     </div>
-
+                                    :
+                                    <></>
                                 }
                             </>
                         }

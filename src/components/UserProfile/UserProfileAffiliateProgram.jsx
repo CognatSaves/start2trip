@@ -9,6 +9,7 @@ import {
     TableRowColumn,
 } from 'material-ui/Table';
 import requests from '../../config';
+import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
 
 import messengerIcon from '../media/messenger.svg'
 import whatsappIcon from '../media/whatsapp.svg'
@@ -29,6 +30,10 @@ class UserProfileAffiliateProgramClass extends React.Component {
         let selectedInput = document.getElementById(id);
         selectedInput.select();
         document.execCommand("copy");
+    }
+
+    componentDidMount(){
+        thenFuncGlobal(this)
     }
 
     render() {

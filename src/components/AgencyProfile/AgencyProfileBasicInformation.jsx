@@ -130,12 +130,13 @@ class AgencyProfileBasicInformationClass extends React.Component {
                     else {
                         console.log("good");
                         that.getProfileData();
+                        thenFuncGlobal(that)
                     }
                 })
                 .catch(function (error) {
                     console.log("bad");
                     console.log('An error occurred:', error);
-                    that.catchFunc();
+                    catchFuncGlobal(that);
                 });
         }
         else {
@@ -242,6 +243,11 @@ class AgencyProfileBasicInformationClass extends React.Component {
             profileData: { ...this.state.profileData, city: value }
         })
     }
+
+    componentDidMount(){
+        thenFuncGlobal(this)
+    }
+
     render() {
         let textInfo = this.props.storeState.languageText.agencyProfile.agencyProfileBasicInformation;
 

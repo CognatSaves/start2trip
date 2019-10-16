@@ -132,31 +132,6 @@
     background: #000;
 }
 
-@media (max-width: 900) {}
-
-@media (max-width: 560px) {
-    .routeTravelBlock_pointPart {
-        margin-top: 0px;
-        box-shadow: none;
-    }
-}
-
-@media (max-width: 430px) {
-    @keyframes glowing {
-        0% {
-            background: rgba(34, 157, 78, .49);
-        }
-    
-        50% {
-            background: #fff;
-        }
-    
-        100% {
-            background: rgba(34, 157, 78, .49);
-        }
-    }
-}
-
 .tourDescription_markerLine {
     position: relative;
     width: 17px;
@@ -329,4 +304,33 @@
 .tourPanel_panel a:hover {
     color: #f60;
     /*border-bottom: 3px solid #f60;*/
+}
+
+@media (max-width: 900px) {
+    .editTourHeaderBG{
+        top:80%;
+    }
+}
+
+@media (max-width: 560px) {
+    .routeTravelBlock_pointPart {
+        margin-top: 0px;
+        box-shadow: none;
+    }
+}
+
+@media (max-width: 430px) {
+    @keyframes glowing {
+        0% {
+            background: rgba(34, 157, 78, .49);
+        }
+    
+        50% {
+            background: #fff;
+        }
+    
+        100% {
+            background: rgba(34, 157, 78, .49);
+        }
+    }
 }

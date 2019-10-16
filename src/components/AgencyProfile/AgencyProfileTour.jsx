@@ -356,10 +356,10 @@ class AgencyProfileTourClass extends React.Component {
             request.onreadystatechange = function () {
                 if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
                     console.log(request.responseText);
-                    that.getProfileData(that.thenFunc, that.catchFunc);
+                    that.getProfileData();
                 }
                 if (request.readyState === XMLHttpRequest.DONE && request.status === 0) {
-                    that.catchFunc();
+                    catchFuncGlobal(that)
                 }
             }
             request.send(tourForm);
@@ -379,10 +379,10 @@ class AgencyProfileTourClass extends React.Component {
             request.onreadystatechange = function () {
                 if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
                     console.log(request.responseText);
-                    that.getProfileData(that.thenFunc, that.catchFunc);
+                    that.getProfileData();
                 }
                 if (request.readyState === XMLHttpRequest.DONE && request.status === 0) {
-                    that.catchFunc();
+                    catchFuncGlobal(that);
                 }
             }
             request.open('DELETE', requests.userTourDestroyRequest + "/" + element.id);
@@ -711,7 +711,7 @@ class AgencyProfileTourClass extends React.Component {
                             tourSeatsModalSelectedElement: profile.tours[index],
                             tourSeatsErrorElementArray: data.errorElementsArray,
                         })
-                        that.thenFunc();
+                        thenFuncGlobal(that);
 
                         //that.tourSeatsModalShow();
                         /*that.setState({
@@ -722,7 +722,7 @@ class AgencyProfileTourClass extends React.Component {
                     }
                 })
                 .catch(error => {
-                    that.catchFunc();
+                    catchFuncGlobal(that);
                     console.log('Error happened');
                 });
 

@@ -31,6 +31,7 @@ const tourDescription = {
     cars:"Cars: ",
     seats:["Left: ","Total Seats: "," places"],
     daysNumber:"Duration: ",
+    editCover:"Edit cover",
 }
 
 export default tourDescription;

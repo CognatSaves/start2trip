@@ -240,7 +240,7 @@ class DriverProfileCarClass extends React.Component {
                     that.getProfileData(that.thenFunc, that.catchFunc);
                 }
                 if (request.readyState === XMLHttpRequest.DONE && request.status === 0) {
-                    that.catchFunc();
+                    catchFuncGlobal(that);
                 }
             }
             request.send(carForm);
@@ -343,7 +343,7 @@ class DriverProfileCarClass extends React.Component {
                     that.getProfileData(that.thenFunc, that.catchFunc);
                 }
                 if (request.readyState === XMLHttpRequest.DONE && request.status === 0) {
-                    that.catchFunc();
+                    catchFuncGlobal(that);
                 }
             }
             request.onmessage =
@@ -369,7 +369,7 @@ class DriverProfileCarClass extends React.Component {
                     that.getProfileData(that.thenFunc, that.catchFunc);
                 }
                 if (request.readyState === XMLHttpRequest.DONE && request.status === 0) {
-                    that.catchFunc();
+                    catchFuncGlobal(that);
                 }
             }
             request.open('DELETE', requests.userCarDestroyRequest + "/" + element.id);

@@ -101,6 +101,7 @@
     /* white-space: nowrap; */
     overflow: hidden;
     color: #686868;
+    padding-left: 4px;
 }
 .placesList_info_textCss{
     color: #686868;

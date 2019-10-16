@@ -1,11 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import requests from '../../config';
+import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
 
 import Stars from '../stars/Stars';
 
 class UserProfileTrevelHistoryClass extends React.Component {
-
+    componentDidMount(){
+        thenFuncGlobal(this)
+    }
     render() {
         function createCorrectRoute(route, length, time) {
             let routeString = route[0].point;

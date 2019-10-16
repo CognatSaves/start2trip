@@ -75,12 +75,13 @@ class DriverProfileTrevelHistoryClass extends React.Component {
                             console.log('good');
                             console.log(data);
                             that.getProfileData();
+                            thenFuncGlobal(that)
                         }
                     })
                     .catch(function (error) {
                         console.log("bad");
                         console.log('An error occurred:', error);
-                        that.catchFunc();
+                        catchFuncGlobal(that);
                     });
             }
             if (element.startFact) {
@@ -101,12 +102,13 @@ class DriverProfileTrevelHistoryClass extends React.Component {
                             console.log('good');
                             console.log(data);
                             that.getProfileData();
+                            thenFuncGlobal(that)
                         }
                     })
                     .catch(function (error) {
                         console.log("bad");
                         console.log('An error occurred:', error);
-                        that.catchFunc();
+                        catchFuncGlobal(that);
                     });
             }
         }
@@ -115,6 +117,9 @@ class DriverProfileTrevelHistoryClass extends React.Component {
             this.props.history.push('/' + cookies.get('userLangISO', { path: "/" }) + '/login/');
             return null;
         }
+    }
+    componentDidMount(){
+        thenFuncGlobal(this)
     }
 
     render() {

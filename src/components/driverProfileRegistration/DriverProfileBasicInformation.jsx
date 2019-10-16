@@ -131,12 +131,13 @@ class DriverProfileBasicInformationClass extends React.Component {
                     else {
                         console.log("good");
                         that.getProfileData();
+                        thenFuncGlobal(that)
                     }
                 })
                 .catch(function (error) {
                     console.log("bad");
                     console.log('An error occurred:', error);
-                    that.catchFunc();
+                    catchFuncGlobal(that);
                 });
         }
         else {

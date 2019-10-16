@@ -70,7 +70,6 @@ class CreateCommentClass extends React.Component {
                         console.log("bad");
                         console.log('An error occurred:', error);
                         that.props.endRolling(false);
-                        //that.catchFunc();
                     });
             } else {
                 fetch(address, {
@@ -100,7 +99,6 @@ class CreateCommentClass extends React.Component {
                         console.log("bad");
                         console.log('An error occurred:', error);
                         that.props.endRolling(false);
-                        //that.catchFunc();
                     });
             }
 

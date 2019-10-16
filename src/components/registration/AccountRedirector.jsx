@@ -64,7 +64,6 @@ const ModalUserType = (props) => {
           catchFuncGlobal(that)
           console.log("bad");
           console.log('An error occurred:', error);
-          //that.catchFunc();
         });
     }
     else {
@@ -190,6 +189,7 @@ function getProfileData(that) {
   let jwt = that.props.globalReduser.readCookie('jwt');
   if (jwt && jwt !== '-') {
     startRefresherGlobal(that)
+    startRefresherGlobal(that)
     let requestValues = {
       readCookie: that.props.globalReduser.readCookie,
       setProfileData: function (data) {
@@ -198,6 +198,7 @@ function getProfileData(that) {
       requestAddress: requests.profileRequest
     }
     getUserData(requestValues,thenFuncGlobal,catchFuncGlobal,that);
+   
   }
   else {
     that.props.dispatch(setUrlAddress(window.location.pathname));

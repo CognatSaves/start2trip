@@ -114,7 +114,7 @@ class DriverProfileBillingClass extends React.Component {
 
                     console.log("bad");
                     console.log('An error occurred:', error);
-                    //that.catchFunc();
+                    catchFuncGlobal(that)
                 });
         }
         else {

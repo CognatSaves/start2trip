@@ -88,13 +88,13 @@ class AgencyProfileDriversClass extends React.Component {
                     else {
                         console.log("good");
                         console.log('data', data);
-                        that.getProfileData(that.thenFunc, that.catchFunc);
+                        that.getProfileData();
                     }
                 })
                 .catch(function (error) {
                     console.log("bad");
                     console.log('An error occurred:', error);
-                    that.catchFunc();
+                    catchFuncGlobal(that)
                 });
         }
         else {

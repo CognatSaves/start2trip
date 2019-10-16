@@ -49,12 +49,6 @@ class DriverProfileBillingClass extends React.Component {
     startRefresher = () => {
         startRefresherGlobal(this,true)
     }
-    thenFunc = () => {
-        thenFuncGlobal(this)
-    }
-    catchFunc = () => {
-        catchFuncGlobal(this)
-    }
     handleClose = (name, value) => {
         switch (name) {
             case 'withdrawal':
@@ -85,6 +79,7 @@ class DriverProfileBillingClass extends React.Component {
         let jwt = this.props.globalReduser.readCookie('jwt');
         let that = this;
         if (jwt && jwt !== '-') {
+            this.startRefresher()
             let body = JSON.stringify({
                 tableStartDate: this.state.tableStartDate,
                 tableEndDate: this.state.tableEndDate
@@ -108,13 +103,14 @@ class DriverProfileBillingClass extends React.Component {
                         console.log(data);
                         that.props.dispatch(setTransactionData(data));
                         //that.getProfileData();
+                        thenFuncGlobal(that)
                     }
                 })
                 .catch(function (error) {
 
                     console.log("bad");
                     console.log('An error occurred:', error);
-                    //that.catchFunc();
+                    catchFuncGlobal(that)
                 });
         }
         else {

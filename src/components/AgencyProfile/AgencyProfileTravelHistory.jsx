@@ -74,7 +74,7 @@ class AgencyProfileTravelHistoryClass extends React.Component {
                     .catch(function (error) {
                         console.log("bad");
                         console.log('An error occurred:', error);
-                        that.catchFunc();
+                        catchFuncGlobal(that);
                     });
             }
             if (element.startFact) {
@@ -100,7 +100,7 @@ class AgencyProfileTravelHistoryClass extends React.Component {
                     .catch(function (error) {
                         console.log("bad");
                         console.log('An error occurred:', error);
-                        that.catchFunc();
+                        catchFuncGlobal(that);
                     });
             }
         }

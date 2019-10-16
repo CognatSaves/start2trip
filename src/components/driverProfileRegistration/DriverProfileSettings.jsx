@@ -124,7 +124,7 @@ class DriverProfileSettingsClass extends React.Component {
                         console.log("bad");
                         console.log('An error occurred:');
                         console.log(error);
-                        that.catchFunc();
+                        catchFuncGlobal(that);
                         //that.state.sendResultLocal(false,{error: error});
                     });
             }
@@ -180,6 +180,10 @@ class DriverProfileSettingsClass extends React.Component {
             }
             default:
         }
+    }
+
+    componentDidMount(){
+        thenFuncGlobal(this)
     }
 
     render() {

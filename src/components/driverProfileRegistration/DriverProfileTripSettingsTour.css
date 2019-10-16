@@ -449,7 +449,7 @@ span.newTourDatepickerSpan:hover {
 
 .settingsTourPlace p {
     text-indent: 15px;
-    background: url(../media/locationGray.svg)no-repeat;
+    background: url(../media/geo_icon.svg)no-repeat;
     background-size: 14px 14px;
     background-position: top 2px left 0;
 }

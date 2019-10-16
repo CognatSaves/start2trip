@@ -9,7 +9,7 @@ import {
     TableRowColumn,
 } from 'material-ui/Table';
 import requests from '../../config';
-
+import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
 // import copy from '../media/copy.svg';
 
 import messengerIcon from '../media/messenger.svg'
@@ -34,7 +34,9 @@ class DriverProfileAffiliateProgramClass extends React.Component {
         selectedInput.select();
         document.execCommand("copy");
     }
-
+    componentDidMount(){
+        thenFuncGlobal(this)
+    }
 
     render() {
         function paymentsCalculation(partners) {

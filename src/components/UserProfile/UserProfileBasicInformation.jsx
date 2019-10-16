@@ -97,7 +97,7 @@ class UserProfileBasicInformationClass extends React.Component {
                 .catch(function (error) {
                     console.log("bad");
                     console.log('An error occurred:', error);
-                    that.catchFunc();
+                    catchFuncGlobal(that);
                 });
         }
         else {
