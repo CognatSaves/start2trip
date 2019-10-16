@@ -18,13 +18,13 @@ function getUserData(requestValues, thenFunc, catchFunc,that) {
         requestValues.setProfileData(response.data);
 
         if (thenFunc) {
-          // thenFunc(that)
+           thenFunc(that)
         }
       })
       .catch(error => {
 
         if (catchFunc) {
-            catchFunc()
+            catchFunc(that)
         }
         console.log('error, here must be return to authorization window! or smth else');
       })

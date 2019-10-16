@@ -116,7 +116,7 @@ class ToursClass extends React.Component {
             throw data.error;
           }
           else {
-            thenFuncGlobal(that)
+            
             console.log('tour request data', data);
             that.props.dispatch(setToursList(data.tours, data.categories, data.tags, data.directions, data.daysNumber, data.departurePoint));
 
@@ -139,6 +139,7 @@ class ToursClass extends React.Component {
             temp: that.state.temp + 1,
             countryDescription: data.country
           });
+          thenFuncGlobal(that)
         })
         .catch(error => {
           catchFuncGlobal(that)
