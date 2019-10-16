@@ -53,7 +53,7 @@ const ModalUserType = (props) => {
   function sendUserType(that) {
     let jwt = that.props.globalReduser.readCookie('jwt');
     if (jwt && jwt !== "-") {
-      startRefresherGlobal(that)
+      startRefresherGlobal(that,true)
       that.setState({
         isWaiting: true,
         isUsertypeLooking: false
@@ -603,7 +603,7 @@ class HeaderClass extends React.Component {
 
       let profile = that.props.globalReduser.profile;
       if (!((profile.isDriver && profile.country) || profile.isCustomer || (profile.isAgency && profile.country))) {
-        startRefresherGlobal(that)
+        startRefresherGlobal(that,true)
         axios.get(requests.profileCheck, {
           headers: {
             Authorization: `Bearer ${jwt}`
@@ -617,7 +617,7 @@ class HeaderClass extends React.Component {
             thenFuncGlobal(that)
           })
           .catch(error => {
-            catchFuncGlobal(this)
+            catchFuncGlobal(that)
             this.props.dispatch(setUser("", "", {}));
           });
       }

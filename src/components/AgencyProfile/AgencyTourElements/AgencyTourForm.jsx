@@ -529,6 +529,7 @@ export default class AgencyTourForm extends React.Component {
                                 });
                             }
                         }
+                        that.thenFunc(that)
                     }
                     reader.readAsDataURL(sizFile)
                 });

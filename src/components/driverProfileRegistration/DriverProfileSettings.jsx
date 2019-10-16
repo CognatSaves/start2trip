@@ -47,7 +47,7 @@ class DriverProfileSettingsClass extends React.Component {
                 },
                 requestAddress: requests.profileRequest
             }
-            getUserData(requestValues, that.thenFunc, that.catchFunc);
+            getUserData(requestValues, thenFuncGlobal, catchFuncGlobal,that);
         }
         else {
             this.props.dispatch(setUrlAddress(window.location.pathname));
@@ -57,12 +57,6 @@ class DriverProfileSettingsClass extends React.Component {
     }
     startRefresher = () => {
         startRefresherGlobal(this,true)
-    }
-    thenFunc = () => {
-        thenFuncGlobal(this)
-    }
-    catchFunc = () => {
-        catchFuncGlobal(this)
     }
     applyChanges = (sendedData) => {
 

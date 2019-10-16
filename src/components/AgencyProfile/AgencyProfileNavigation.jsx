@@ -41,7 +41,7 @@ class AgencyProfileNavigationClass extends React.Component {
         }
 
     }
-    getProfileData = (thenFunc, catchFunc) => {
+    getProfileData = () => {
         console.log('getProfileData');
         let that = this;
         let jwt = this.props.globalReduser.readCookie('jwt');
@@ -53,7 +53,7 @@ class AgencyProfileNavigationClass extends React.Component {
                 },
                 requestAddress: requests.profileRequest
             };
-            getUserData(requestValues, thenFunc, catchFunc);
+            getUserData(requestValues, thenFuncGlobal, catchFuncGlobal,that);
         }
         else {
             this.props.dispatch(setUrlAddress(window.location.pathname));
@@ -63,12 +63,6 @@ class AgencyProfileNavigationClass extends React.Component {
     }
     startRefresher = () => {
         startRefresherGlobal(this,true)
-    }
-    thenFunc = () => {
-        thenFuncGlobal(this)
-    }
-    catchFunc = () => {
-        catchFuncGlobal(this)
     }
     shiftLeft = (event) => {
 

@@ -117,7 +117,7 @@ class AgencyProfileTourClass extends React.Component {
             errorString: ""
         }
     }
-    getProfileData = (thenFunc, catchFunc) => {
+    getProfileData = () => {
         console.log('getProfileData');
         let that = this;
         let jwt = this.props.globalReduser.readCookie('jwt');
@@ -129,7 +129,7 @@ class AgencyProfileTourClass extends React.Component {
                 },
                 requestAddress: requests.profileRequest
             };
-            getUserData(requestValues, thenFunc, catchFunc);
+            getUserData(requestValues, thenFuncGlobal, catchFuncGlobal,that);
         }
         else {
             this.props.dispatch(setUrlAddress(window.location.pathname));
@@ -139,12 +139,6 @@ class AgencyProfileTourClass extends React.Component {
     }
     startRefresher = () => {
         startRefresherGlobal(this,true)
-    }
-    thenFunc = () => {
-        thenFuncGlobal(this)
-    }
-    catchFunc = () => {
-        catchFuncGlobal(this)
     }
     fillForm = (element) => {
         let profile = this.props.globalReduser.profile;

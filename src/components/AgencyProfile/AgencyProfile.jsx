@@ -104,7 +104,7 @@ class AgencyProfileClass extends React.Component {
                         },
                         requestAddress: requests.profileRequest
                     }
-                    getUserData(requestValues,()=>thenFuncGlobal(that),()=>catchFuncGlobal(that));
+                    getUserData(requestValues,thenFuncGlobal,catchFuncGlobal,that);
                 }
                 else {
                     this.props.dispatch(setUrlAddress(window.location.pathname));
