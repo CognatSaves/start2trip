@@ -123,6 +123,8 @@ const driverProfileRegistration = {
         noPhotoText: 'Insert the photo of your car.',
         badDataText: 'Fill in the selected fields correctly.',
         indexMainPhoto:["Main","Make main"],
+        routePrice: 'Price per work day',
+        priceCurrency: 'Price currency'
     },
     DriverProfileTripSettingsTrip: {
         titlePage: "Edit Trips",

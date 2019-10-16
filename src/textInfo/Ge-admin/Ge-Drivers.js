@@ -123,6 +123,8 @@ const driverProfileRegistration = {
         noPhotoText: 'ჩადეთ თქვენი მანქანის ფოტო.',
         badDataText: 'შეავსეთ სწორად შერჩეული ველები!',
         indexMainPhoto:["მთავარი","მთავარზე დაყენება"],
+        routePrice: 'ფასი სამუშაო დღეში',
+        priceCurrency: 'ფასის ვალუტა'
     },
     DriverProfileTripSettingsTrip: {
         titlePage: "საჭმლის რედაქტირება",

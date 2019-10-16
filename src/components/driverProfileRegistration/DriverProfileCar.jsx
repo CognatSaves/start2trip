@@ -45,8 +45,8 @@ class DriverProfileCarClass extends React.Component {
                 carClass: "", 
                 onWork: true, 
                 numberOfSeats: "",
-                littleRoutePrice: 0,
-                mediumRoutePrice: 0,
+                //littleRoutePrice: 0,
+                //mediumRoutePrice: 0,
                 bigRoutePrice: 0,
                 priceCurrency: ''
             },
@@ -146,6 +146,7 @@ class DriverProfileCarClass extends React.Component {
                 obj.style.visibility = 'visible';
                 result = false;
             }
+            /*
             if (!newCarCard.littleRoutePrice || newCarCard.littleRoutePrice<0){
                 let obj = document.getElementById('profileCarLittleRoutePrice');
                 obj.classList.add("errorColor");
@@ -162,6 +163,7 @@ class DriverProfileCarClass extends React.Component {
                 obj[0].classList.add("errorColor");
                 result = false;
             }
+            */
             if (!newCarCard.bigRoutePrice || newCarCard.bigRoutePrice<0){
                 let obj = document.getElementById('profileCarBigRoutePrice');
                 obj.classList.add("errorColor");
@@ -202,8 +204,8 @@ class DriverProfileCarClass extends React.Component {
             carForm.append('leatherInterior', comfort[1]);
             carForm.append('freeWiFi', comfort[2]);
             carForm.append('smokingPermit', comfort[3]);
-            carForm.append('littleRoutePrice', this.state.newCarCard.littleRoutePrice);
-            carForm.append('mediumRoutePrice', this.state.newCarCard.mediumRoutePrice);
+            //carForm.append('littleRoutePrice', this.state.newCarCard.littleRoutePrice);
+            //carForm.append('mediumRoutePrice', this.state.newCarCard.mediumRoutePrice);
             carForm.append('bigRoutePrice', this.state.newCarCard.bigRoutePrice);
             carForm.append('priceCurrency', this.state.newCarCard.priceCurrency);
             for (let i = 0; i < this.state.imgFiles.length; i++) {
@@ -284,8 +286,8 @@ class DriverProfileCarClass extends React.Component {
                     carClass: "", 
                     onWork: true, 
                     numberOfSeats: "",
-                    littleRoutePrice: 0,
-                    mediumRoutePrice: 0,
+                    //littleRoutePrice: 0,
+                    //mediumRoutePrice: 0,
                     bigRoutePrice: 0,
                     priceCurrency:''
                 },
@@ -304,8 +306,8 @@ class DriverProfileCarClass extends React.Component {
                     nameCar: element.carBrand, yearCar: element.manufactureYear, plateNumberCar: element.carNumber,
                     typeCar: element.cartype, fuelType: element.fueltype, numberOfSeats: element.seats, carClass: element.carclass,
                     fuelConsumption: element.fuelConsumption,
-                    littleRoutePrice: element.littleRoutePrice && element.littleRoutePrice>=0 ? element.littleRoutePrice : 0,
-                    mediumRoutePrice: element.mediumRoutePrice && element.mediumRoutePrice>=0 ? element.mediumRoutePrice : 0,
+                    //littleRoutePrice: element.littleRoutePrice && element.littleRoutePrice>=0 ? element.littleRoutePrice : 0,
+                    //mediumRoutePrice: element.mediumRoutePrice && element.mediumRoutePrice>=0 ? element.mediumRoutePrice : 0,
                     bigRoutePrice: element.bigRoutePrice && element.bigRoutePrice>=0 ? element.bigRoutePrice : 0,
                     priceCurrency: element.priceCurrency ? element.priceCurrency : ''
                 },
@@ -442,6 +444,7 @@ class DriverProfileCarClass extends React.Component {
                 newCarCard: { ...this.state.newCarCard, carClass: value, badDataTextVisibility: false }
             })
         }
+        /*
         if(key === 'littleRoutePrice'){
             //debugger;
             let tempValue = Number.parseInt(value);
@@ -469,16 +472,19 @@ class DriverProfileCarClass extends React.Component {
                 badDataTextVisibility: false
             })
         }
+        */
         if(key==='bigRoutePrice'){
-            let tempValue = Number.parseInt(value);
+            debugger;
+            let tempValue = Number.parseInt(value,10);
             tempValue = tempValue>=0 ? tempValue : 0;
+            let newTemp =tempValue
             let obj = document.getElementById('profileCarBigRoutePrice');
             obj.classList.remove("errorColor");
 
             obj = document.querySelectorAll('.bigRoutePriceInput');
             obj[0].classList.remove("errorColor");
             this.setState({
-                newCarCard: { ...this.state.newCarCard, bigRoutePrice: tempValue },
+                newCarCard: { ...this.state.newCarCard, bigRoutePrice: newTemp },
                 badDataTextVisibility: false
             })
         }
@@ -852,35 +858,17 @@ class DriverProfileCarClass extends React.Component {
                                         </label>
                                     </div>
                                 </div>
-                            
-                                <div className="d-flex flex-md-row flex-column align-items-md-center align-items-start">
+                                {
+                                    /*
+                                    <div className="d-flex flex-md-row flex-column align-items-md-center align-items-start">
                                     <label htmlFor="profileCarLittleRoutePrice" className="d-md-block d-sm-none d-none col-md-4 col-12 p-0">{'Price per little routes(below 100km)'}:</label>
                                     <input id="profileCarLittleRoutePrice" className="d-md-block d-none " value={this.state.newCarCard.littleRoutePrice} onChange={(event, index) => {
-                                        /*let obj = document.getElementById('profileCarLittleRoutePrice');
-                                        obj.classList.remove("errorColor");
-
-                                        obj = document.querySelectorAll('.littleRoutePriceInput');
-                                        obj[0].classList.remove("errorColor");
-                                        this.setState({
-                                            newCarCard: { ...this.state.newCarCard, littleRoutePrice: e.currentTarget.value },
-                                            badDataTextVisibility: false
-                                        })*/
                                         this.handleChange(event, index, event.target.value, 'littleRoutePrice');
                                     }} type="number" />
                                     <TextField
                                         value={this.state.newCarCard.littleRoutePrice}
                                         type="number"
                                         onChange={(event, index) => {
-                                            /*
-                                            let obj = document.getElementById('profileCarLittleRoutePrice');
-                                            obj.classList.remove("errorColor");
-
-                                            obj = document.querySelectorAll('.littleRoutePriceInput');
-                                            obj[0].classList.remove("errorColor");
-                                            this.setState({
-                                                newCarCard: { ...this.state.newCarCard, littleRoutePrice: e.currentTarget.value },
-                                                badDataTextVisibility: false
-                                            })*/
                                             this.handleChange(event, index, event.target.value, 'littleRoutePrice');
                                         }}
                                         floatingLabelText={'textPage.profileCarFuelConsumption.label'}
@@ -894,34 +882,12 @@ class DriverProfileCarClass extends React.Component {
                                     <label htmlFor="profileCarMediumRoutePrice" className="d-md-block d-sm-none d-none col-md-4 col-12 p-0">{'Price per medium routes(100-300km)'}:</label>
                                     <input id="profileCarMediumRoutePrice" className="d-md-block d-none " value={this.state.newCarCard.mediumRoutePrice} 
                                         onChange={(event, index) => {
-                                        /*
-                                        let obj = document.getElementById('profileCarMediumRoutePrice');
-                                        obj.classList.remove("errorColor");
-
-                                        obj = document.querySelectorAll('.mediumRoutePriceInput');
-                                        obj[0].classList.remove("errorColor");
-                                        this.setState({
-                                            newCarCard: { ...this.state.newCarCard, mediumRoutePrice: e.currentTarget.value },
-                                            badDataTextVisibility: false
-                                        })
-                                        */
                                        this.handleChange(event, index, event.target.value, 'mediumRoutePrice');
                                     }} type="number" />
                                     <TextField
                                         value={this.state.newCarCard.mediumRoutePrice}
                                         type="number"
                                         onChange={(event, index) => {
-                                            /*
-                                            let obj = document.getElementById('mediumRoutePriceInput');
-                                            obj.classList.remove("errorColor");
-
-                                            obj = document.querySelectorAll('.mediumRoutePriceInput');
-                                            obj[0].classList.remove("errorColor");
-                                            this.setState({
-                                                newCarCard: { ...this.state.newCarCard, mediumRoutePrice: e.currentTarget.value },
-                                                badDataTextVisibility: false
-                                            })
-                                            */
                                            this.handleChange(event, index, event.target.value, 'mediumRoutePrice');
                                         }}
                                         floatingLabelText={'textPage.profileCarFuelConsumption.label'}
@@ -931,38 +897,21 @@ class DriverProfileCarClass extends React.Component {
                                         underlineFocusStyle={{ borderColor: "#304269" }}
                                     />
                                 </div>
+                                    */
+                                }                               
                                 <div className="d-flex flex-md-row flex-column align-items-md-center align-items-start">
-                                    <label htmlFor="profileCarBigRoutePrice" className="d-md-block d-sm-none d-none col-md-4 col-12 p-0">{'Price per large routes(more than 300km)'}:</label>
+                                    <label htmlFor="profileCarBigRoutePrice" className="d-md-block d-sm-none d-none col-md-4 col-12 p-0">{textPage.routePrice}:</label>
                                     <input id="profileCarBigRoutePrice" className="d-md-block d-none " value={this.state.newCarCard.bigRoutePrice} 
                                         onChange={(event, index) => {
-                                        /*let obj = document.getElementById('profileCarBigRoutePrice');
-                                        obj.classList.remove("errorColor");
-
-                                        obj = document.querySelectorAll('.bigRoutePriceInput');
-                                        obj[0].classList.remove("errorColor");
-                                        this.setState({
-                                            newCarCard: { ...this.state.newCarCard, bigRoutePrice: e.currentTarget.value },
-                                            badDataTextVisibility: false
-                                        })*/
                                         this.handleChange(event, index, event.target.value, 'bigRoutePrice');
                                     }} type="number" />
                                     <TextField
                                         value={this.state.newCarCard.bigRoutePrice}
                                         type="number"
                                         onChange={(event, index) => {
-                                            
-                                            /*let obj = document.getElementById('profileCarBigRoutePrice');
-                                            obj.classList.remove("errorColor");
-
-                                            obj = document.querySelectorAll('.bigRoutePriceInput');
-                                            obj[0].classList.remove("errorColor");
-                                            this.setState({
-                                                newCarCard: { ...this.state.newCarCard, bigRoutePrice: e.currentTarget.value },
-                                                badDataTextVisibility: false
-                                            })*/
                                             this.handleChange(event, index, event.target.value, 'bigRoutePrice');
                                         }}
-                                        floatingLabelText={'textPage.profileCarFuelConsumption.label'}
+                                        floatingLabelText={textPage.routePrice}
                                         className=" d-md-none d-block inputClass bigRoutePriceInput"
                                         fullWidth="100%"
                                         floatingLabelFocusStyle={{ color: "#304269" }}
@@ -970,10 +919,10 @@ class DriverProfileCarClass extends React.Component {
                                     />
                                 </div>
                                 <div className="d-flex flex-md-row flex-column align-items-md-center align-items-start">
-                                    <label className="d-md-block d-sm-none d-none col-md-4 col-12 p-0">{/*textPage.typeFuel.label*/'Price currency'}:</label>
+                                    <label className="d-md-block d-sm-none d-none col-md-4 col-12 p-0">{textPage.priceCurrency}:</label>
                                     <FormControl className="d-flex flex-wrap col-md-8 col-12 p-0 mt-2">
                                         {isMobileOnly ?
-                                            <InputLabel>{/*textPage.typeFuel.label*/'Price currency'}</InputLabel>
+                                            <InputLabel>{textPage.priceCurrency}</InputLabel>
                                             : <div />}
                                         <Select
                                             value={this.state.newCarCard.priceCurrency}
@@ -985,7 +934,7 @@ class DriverProfileCarClass extends React.Component {
                                         >
                                             {
                                                 availableCurrencies.map((element, index) =>
-                                                    <MenuItem value={element.id} >{/*findOneCarProp(element.id, this.props.globalReduser.profile.fuelTypes, this.props.storeState)*/element.ISO}</MenuItem>
+                                                    <MenuItem value={element.id} >{element.ISO}</MenuItem>
                                                 )
                                             }
 
