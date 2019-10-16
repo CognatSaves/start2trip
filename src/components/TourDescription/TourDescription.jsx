@@ -357,13 +357,18 @@ class ToureDescriptionClass extends React.Component {
                                 </div>
                                 : <React.Fragment />
                         }
-                        {/* {(("5d8c748f2af67f052213a249" === userId)||(this.state.newTour.local ? this.state.newTour.tour.author.id : "") === userId) ?
-                            <div className="editTourHeaderBG">
-                                <i onClick={() => { this.imgModalShow() }} >Редактировать обложку</i>
-                            </div>
-                            :
-                            <></>
-                        } */}
+                        {
+                            this.state.newTour.local &&
+                            <>
+                                {
+                                    (("5d8c748f2af67f052213a249" === userId) || (this.state.newTour.local ? this.state.newTour.tour.author.id : "") === userId) &&
+                                    <div className="editTourHeaderBG">
+                                        <i onClick={() => { this.imgModalShow() }} >Редактировать обложку</i>
+                                    </div>
+
+                                }
+                            </>
+                        }
 
 
 

@@ -443,7 +443,6 @@ class DriverProfileCarClass extends React.Component {
             })
         }
         if(key === 'littleRoutePrice'){
-            //debugger;
             let tempValue = Number.parseInt(value);
             tempValue = tempValue>=0 ? tempValue : 0;
             let obj = document.getElementById('profileCarLittleRoutePrice');
@@ -483,7 +482,6 @@ class DriverProfileCarClass extends React.Component {
             })
         }
         if(key==='priceCurrency'){
-            debugger;
             console.log(event.target.value);
             let obj = document.querySelectorAll('.priceCurrencySelector');
             obj[0].classList.remove("errorColor");

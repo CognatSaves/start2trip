@@ -467,7 +467,6 @@ export const AppReduser = (state = initialState, action) => {
             let newState = {
                 ...state
             };
-            debugger
             newState.numberOfRefresh = ++newState.numberOfRefresh
             newState.isRefreshExist = true;
             newState.isRefreshing = true;
@@ -479,7 +478,6 @@ export const AppReduser = (state = initialState, action) => {
             let newState = {
                 ...state
             };
-            debugger
             newState.isRefreshExist = true;
             if (newState.numberOfRefresh <= 1) {
                 newState.isRefreshing = false;
@@ -505,7 +503,7 @@ export const AppReduser = (state = initialState, action) => {
             let newState = {
                 ...state
             };
-            debugger
+
             if (newState.numberOfRefresh <= 1) {
                 newState.isRefreshExist = false;
                 newState.isNeedRefreshIndicator = false;

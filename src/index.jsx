@@ -315,7 +315,8 @@ function getLocals() {
           //здесь должна быть переадресация
         }
       }
-      thenFuncGlobal(store)
+        thenFuncGlobal(store)
+    
     })
     .catch(error => {
       catchFuncGlobal(store)
@@ -324,6 +325,7 @@ function getLocals() {
 }
 function setLocalsFunc(type, index) {
   let redusers = store.getState();
+
   let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
   switch (type) {
     case 'userLang': {
@@ -365,6 +367,7 @@ function setLocalsFunc(type, index) {
     }
     default:
   }
+  
 }
 getLocals();
 

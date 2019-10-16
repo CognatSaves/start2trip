@@ -189,7 +189,6 @@ function getProfileData(that) {
   
   let jwt = that.props.globalReduser.readCookie('jwt');
   if (jwt && jwt !== '-') {
-    debugger
     startRefresherGlobal(that)
     let requestValues = {
       readCookie: that.props.globalReduser.readCookie,
