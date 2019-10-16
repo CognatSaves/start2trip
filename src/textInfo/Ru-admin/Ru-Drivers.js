@@ -123,6 +123,8 @@ const driverProfileRegistration = {
         noPhotoText: 'Вставьте фото вашего автомобиля.',
         badDataText: 'Заполните корректно выделенные поля!',
         indexMainPhoto:["Главная","Сделать главной"],
+        routePrice: 'Оплата работы за день',
+        priceCurrency: 'Валюта оплаты'
     },
     DriverProfileTripSettingsTrip: {
         titlePage: "Редактировать поездки",
