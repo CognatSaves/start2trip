@@ -110,7 +110,7 @@ class ToursClass extends React.Component {
           return response.data;
         })
         .then(function (data) {
-
+          debugger;
           if (data.error) {
             console.log('bad tour request');
             throw data.error;
