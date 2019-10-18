@@ -136,7 +136,7 @@ class HomeClass extends React.Component {
               {!isMobileOnly ?
                 <div className="home_text col-xl-10 col-lg-10 col-md-12 col-sm-11 col-11 p-0">
                   <h1 className="text_firstLine">{textInfo.homeTextFirstLine}</h1>
-                  <div className="text_secondLine">{textInfo.homeTextSecondLine}</div>
+                  <div className="text_secondLine">{textInfo.homeTextSecondLine[0]}<br/>{textInfo.homeTextSecondLine[1]}</div>
                   <div className="text_changeBodyBlock">
                     <div className="text_changeBodyBlock_element changeBody_element_select changeBodyBlock_element_left">{textInfo.changeBodyBlock.left}</div>
                     <div className="text_changeBodyBlock_element changeBodyBlock_element_right">{textInfo.changeBodyBlock.right}</div>
@@ -160,8 +160,8 @@ class HomeClass extends React.Component {
               </div>
               <div className="d-flex flex-md-row flex-column justify-content-center align-items-md-stretch align-items-center col-md-10 col-12">
                 {renderArray.map((element, index) => 
-                  <div className="homeBottomNewEl position-relative d-flex flex-column col-md-3 col-11 p-2" >
-                    <div className="homeBottomNewElContent d-flex flex-column align-items-center p-2 h-100">
+                  <div className="homeBottomNewEl position-relative d-flex flex-column col-md-3 col-11 p-2 " >
+                    <div className="homeBottomNewElContent d-flex flex-column align-items-center p-2 pt-4 h-100">
                       <i style={{background: "url(" + element.img + ")no-repeat"}}></i>
                       <h5 className="align-self-start">{element.title}</h5>
                       <p>{element.text}</p>

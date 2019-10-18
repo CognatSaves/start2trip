@@ -143,7 +143,7 @@ class HomeBodyClass extends React.Component {
               <div className="mobailRoutMenu">
                 <div className="d-flex flex-column align-items-center">
                   <h1 className="mobailRoutMenuTitle">{textInfo.mobileRouteMenuTitle}</h1>
-                  <span className="mobailRoutMenuText">{textInfo.mobileRouteMenuText.mobileRouteMenuText}<br />{textInfo.mobileRouteMenuText.secondLine}</span>
+                  <span className="mobailRoutMenuText">{textInfo.mobileRouteMenuText.firstLine}<br />{textInfo.mobileRouteMenuText.secondLine}<br />{textInfo.mobileRouteMenuText.thirdLine}</span>
                   <ConstructorButtonsBlock that={this} textInfo={textInfo}
                     buttonClasses={["mobailRoutMenuBtList", "mobailRoutMenuBt-active mobailRoutMenuBtList",
                       "mobailRoutMenuBt-active mobailRoutMenuBtMap", "mobailRoutMenuBtMap"]} />
