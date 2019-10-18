@@ -473,7 +473,7 @@ class DriverProfileCarClass extends React.Component {
         }
         */
         if(key==='bigRoutePrice'){
-            debugger;
+            
             let tempValue = Number.parseInt(value,10);
             tempValue = tempValue>=0 ? tempValue : 0;
             let newTemp =tempValue

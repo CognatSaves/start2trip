@@ -640,12 +640,14 @@ class AgencyProfileTourClass extends React.Component {
                 tour: that.state.tourSeatsModalSelectedElement.id,
                 tourSeatsData: that.state.tourSeatsBlocks
             })
+            startRefresherGlobal(that,true)
             let requestAddress = requests.setTourSeatsData;
             fetch(requestAddress, {
                 method: 'PUT', body: body,
                 headers: { 'content-type': 'application/json', Authorization: `Bearer ${jwt}` }
             })
                 .then(response => {
+
                     console.log('get answer');
                     return response.json();
                 })

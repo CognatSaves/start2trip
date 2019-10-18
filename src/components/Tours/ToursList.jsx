@@ -55,42 +55,115 @@ class ToursListClass extends React.Component {
         return idIndex
     }
     sortArrayByDate = (element, departureDate) => {
+        function findFreeSeatsNumber(element, selectedDate){
+            let tourSeatsData = element.tourSeatsData;
+            for(let i=0; i<tourSeatsData.length; i++){
+                if(tourSeatsData[i].startDefault === selectedDate){
+                    return {freeSeats:tourSeatsData[i].seatsLeft, seatsReserved: tourSeatsData[i].seatsReserved};
+                }
+            }
+            return {freeSeats:element.seats, seatsReserved: 0};
+        }
+        function dateSeatsVerification(element, departureDate, that){
+            let isGoodVariant = false;
+            let step = 0;let isGood = true;let findFreeSeatsNumberResult;
+            let selectedDay;let selectedYear; let selectedMonth;let selectedDate;
+            while(!isGoodVariant){
+                
+                let move = 86400000 * step;
+                selectedDay = departureDate === null ? new Date(Date.now()+move) : new Date(new Date(departureDate).getTime()+move);
+                selectedYear = selectedDay.getFullYear();selectedMonth = selectedDay.getMonth(); selectedDate =  selectedDay.getDate();
+                let tempDepartureDate = selectedYear + '-' + (selectedMonth + 1 < 10 ? "0" + (selectedMonth + 1) :selectedMonth + 1) + '-' + (selectedDate<10 ? '0'+selectedDate : selectedDate); 
+                findFreeSeatsNumberResult = findFreeSeatsNumber(element, tempDepartureDate);
+                let canBook = element.isPricePerPerson || findFreeSeatsNumberResult.seatsReserved===0;
+                if(findFreeSeatsNumberResult.freeSeats>= (that.props.storeState.persons[0] + that.props.storeState.persons[1]) && canBook){
+                    isGoodVariant=true;
+                    isGood=true;
+                }
+                step++;
+                if(step>10 && !isGoodVariant){
+                    //if it takes too long - then, maybe, we can not find the correct
+                    
+                    isGoodVariant=true;
+                    isGood=false;
+                }
+            }
+            let date; let departureDateString;
+            if(isGood){
+                date = new Date(selectedYear, selectedMonth, selectedDate);
+                departureDateString = (selectedDate<10 ? '0'+selectedDate : selectedDate) + "." +
+                (selectedMonth + 1 < 10 ? "0" + (selectedMonth + 1) :(selectedMonth + 1))
+                 + "." + selectedYear;
+            }           
+            return {
+                isGood: isGood,
+                freeSeats: findFreeSeatsNumberResult.freeSeats,
+                selectedYear: selectedYear,
+                selectedMonth:selectedMonth,
+                selectedDate:selectedDate,
+                date:date,
+                departureDate:departureDateString
+            }
+        }
         let calendary = element.calendary;
-        let isGood = false;
-        let daily = element.daily;
+        let isGood = false;let freeSeats;
+        let daily = element.daily;let date;let savedDepartureDate;
         if (!daily) {
             if (calendary.length > 0) {
                 let today = this.props.departureDate === null ? new Date() : new Date(this.props.departureDate)
                 let day = today.getDate();
-                let mounth = today.getMonth();
+                let month = today.getMonth();
                 let year = today.getFullYear();
+                
                 for (let i = 0; i < calendary.length; i++) {
+                    
                     let calendaryDate = new Date(calendary[i])
                     let calendaryDay = calendaryDate.getDate();
-                    let calendaryMounth = calendaryDate.getMonth();
+                    let calendaryMonth = calendaryDate.getMonth();
                     let calendaryYear = calendaryDate.getFullYear();
-                    if (year <= calendaryYear && mounth <= calendaryMounth && day <= calendaryDay) {
+                    if (year <= calendaryYear && month <= calendaryMonth && day <= calendaryDay) {
+                        let isValidDepartureDate= false;
                         if (departureDate === null) {
-                            departureDate = calendaryDate;
-                        } else if (departureDate.getDate() >= calendaryDay && departureDate.getMonth() >= calendaryMounth) {
-                            departureDate = calendaryDate;
+                            isValidDepartureDate=true;
+                            //departureDate = calendaryDate;
+                        } else if (departureDate.getFullYear() >= calendaryYear && departureDate.getMonth() >= calendaryMonth && departureDate.getDate() >= calendaryDay) {
+                            isValidDepartureDate=true;
+                            //departureDate = calendaryDate;
+                        }
+                        if(isValidDepartureDate){
+                            let dateSeatsVerificationResult = dateSeatsVerification(element, calendaryDate, this);
+                            if(dateSeatsVerificationResult.isGood){
+                                //if we find the correct variant from not daily tour
+                                date = dateSeatsVerificationResult.date;
+                                departureDate = calendaryDate;
+                                savedDepartureDate=dateSeatsVerificationResult.departureDate;
+                                isGood = dateSeatsVerificationResult.isGood;
+                                freeSeats = dateSeatsVerificationResult.freeSeats;
+                            }
                         }
                     }
                 }
             }
         }
 
-        let date = departureDate
+        //let date = departureDate;
+        /*
         if (departureDate !== null && !daily) {
+            
             departureDate = departureDate.getDate() + "." + ((departureDate.getMonth() + 1) < 10 ? "0" + (departureDate.getMonth() + 1) : (departureDate.getMonth() + 1)) + "." + departureDate.getFullYear();
             isGood = true;
-        } else if (daily) {
-            let today = this.props.departureDate === null ? new Date() : new Date(this.props.departureDate);
-            date = new Date(today.getFullYear(), today.getMonth(), today.getDate())
-            departureDate = today.getDate() + "." + ((today.getMonth() + 1) < 10 ? "0" + (today.getMonth() + 1) : (today.getMonth() + 1)) + "." + today.getFullYear();
-            isGood = true;
+        } 
+        */
+        else/*(daily)*/ {
+            //variant for everyday tours
+            
+            let dateSeatsVerificationResult = dateSeatsVerification(element, this.props.departureDate, this);
+            date = dateSeatsVerificationResult.date;
+            savedDepartureDate = dateSeatsVerificationResult.departureDate;
+            isGood = dateSeatsVerificationResult.isGood;
+            freeSeats = dateSeatsVerificationResult.freeSeats;           
         }
-        return ({ isGood: isGood, departureDate: departureDate, date: date, element: element });
+        return ({ isGood: isGood, departureDate: savedDepartureDate, date: date, element: {...element,freeSeats:freeSeats} });
     }
     sortArrayByPrice = (el) => {
         let idIndex = this.getCurrencies(el.element.currency, "id")
@@ -227,17 +300,17 @@ class ToursListClass extends React.Component {
                 let departureDate = null;
                 let result = this.sortArrayByDate(element, departureDate);
 
-                if ((this.props.storeState.persons[0] + this.props.storeState.persons[1]) > 1) {
+                if ((this.props.storeState.persons[0] + this.props.storeState.persons[1]) > 1 && result.isGood) {
                     result = this.sortArrayByPeople(result)
                 }
 
-                if (this.props.storeState.languages.length > 0 && this.props.storeState.languageValue.length > 0) {
+                if (this.props.storeState.languages.length > 0 && this.props.storeState.languageValue.length > 0  && result.isGood) {
                     result = this.sortArrayByLanguage(result)
                 }
-
-                result = this.sortArrayByTourType(result)
-
-                if (this.props.toursState.tempPricePart !== 0) {
+                if( result.isGood){
+                    result = this.sortArrayByTourType(result)
+                }
+                if (this.props.toursState.tempPricePart !== 0 && result.isGood) {
                     result = this.sortArrayByPrice(result)
                 }
 

@@ -39,7 +39,7 @@ const cookies = new Cookies();
             discount: 0,
             checkBoxes: false,
             emailValid: false,
-            
+            freeSeats: 0,
             //Form value end
             errorMes: false,
             //flagAllOk: false,
@@ -91,6 +91,7 @@ if(prevProps.storeState.userData && this.props.storeState.userData){
                 discount: 0,
                 checkBoxes: false,
                 emailValid: false,
+                freeSeats: 0,
                 //Form value end
                 errorMes: false,
                 //flagAllOk: false,
@@ -393,7 +394,7 @@ if(prevProps.storeState.userData && this.props.storeState.userData){
                 discount: 0,
                 checkBoxes: false,
                 emailValid: false,
-                
+                freeSeats: this.props.freeSeats,
                 //Form value end
                 errorMes: false,
                 //flagAllOk: false,

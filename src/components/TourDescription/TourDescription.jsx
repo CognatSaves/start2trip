@@ -88,6 +88,9 @@ class ToureDescriptionClass extends React.Component {
             btMore: false,
             elementActive: null,
             imgModal: false,
+
+            savedDate: '',//date that connected with savedSeatsNumber
+            savedDateSeatsData: {}
         }
 
 
@@ -131,23 +134,25 @@ class ToureDescriptionClass extends React.Component {
         return idIndex
     }
     changeTravelVisibility = (elementPrice, elementActive) => {
+        
+        let obj = elementActive ? (elementActive.tour ? elementActive.tour : elementActive.element) : null;
         this.setState({
             travelVisibility: !this.state.travelVisibility,
-            elementPrice: elementPrice,
-            elementActive: elementActive,
+            elementPrice: !this.state.travelVisibility ? elementPrice : 0,
+            savedDate: elementActive && obj && this.state.newTour.tour.id === obj.id ? this.state.savedDate : '',//if id's is not equal - we must calculate savedDateSeatsData again
+            elementActive: !this.state.travelVisibility ? elementActive : null,
+            
         })
     }
-
     changeSuccessVisibility = (value) => {
         this.setState({
-            successVisibility: value
+            successVisibility: value,
+
         })
     }
-
     imgModalShow = () => {
         this.setState({ imgModal: !this.state.imgModal });
     };
-
     changeImg = (newImg, typeImg) => {
         let newTour = { ...this.state.newTour }
         if (typeImg === "mainImage") {
@@ -158,10 +163,73 @@ class ToureDescriptionClass extends React.Component {
         this.setState({ newTour: newTour })
 
     }
-
+    resetSelectedSeatsNumber = () => {
+        //this function reset the seats number if date is changed
+        //
+        let departureDateDay = this.state.departureDate.toISOString().substring(0,10);
+        if(this.state.savedDate!==departureDateDay){
+            
+            let selectedSeatsNumber = this.findSelectedSeatsNumber(departureDateDay);
+            this.setState({
+                savedDateSeatsData: selectedSeatsNumber,
+                savedDate: departureDateDay
+            })
+        }
+    }
+    findSelectedSeatsNumber = (departureDateDay) => {
+        //this function returns the seats number in selected departureDate
+        //visited tour will be calculated for newTour if the elementActive is not null (that means, that we do not visit startTravelForm)
+  
+        
+        let visitedTour = this.state.elementActive ? (this.state.elementActive.tour ? this.state.elementActive.tour : this.state.elementActive.element)
+            : this.state.newTour.tour;
+        let calendary = visitedTour.calendary;
+        let isCalendaryValid = false;
+        const daily = visitedTour.daily;
+        const isPricePerPerson = visitedTour.isPricePerPerson;
+        
+        
+        if(!daily){
+            //if tour !daily - firstly check, is the day is good enough for us, 
+            //it will be good, if it exist in calendary
+            for(let i=0; i<calendary.length; i++){
+                let calendaryDay = new Date(calendary[i]).toISOString().substring(0,10);
+                if(calendaryDay===departureDateDay){
+                    isCalendaryValid=true;
+                    break;
+                }
+            }
+        }
+        if(daily || isCalendaryValid){
+            let tourSeatsDataArray = visitedTour.tourSeatsData;
+            for(let i=0; i<tourSeatsDataArray.length; i++){
+                if(tourSeatsDataArray[i].startDefault===departureDateDay){
+                    return {
+                        //startDefault: tourSeatsDataArray[i].startDefault,
+                        //if tour is !isPricePerPerson and there are any book on that day - say, that there are no seats for new customers
+                        //this function must be on server, but, maybe, can be not everywhere
+                        //additional check can be inportant for us
+                        //later this place can be tested and additional check can be removed
+                        seatsLeft: !isPricePerPerson && tourSeatsDataArray[i].seatsReserved>0 ? 0 :  tourSeatsDataArray[i].seatsLeft,
+                        seatsReserved: tourSeatsDataArray[i].seatsReserved
+                    }
+                }
+            }
+            return {
+                //startDefault: departureDateDay,
+                seatsLeft: visitedTour.seats,
+                seatsReserved: 0
+            }
+        }
+        return {
+            //startDefault: departureDateDay,
+            seatsLeft: 0,
+            seatsReserved: 0
+        }
+    }
     render() {
 
-        console.log('RouteDescription render', this.state, this.props);
+        console.log('TourDescription render', this.state, this.props);
         let topBlockId = "routeDescriptionId";
         let slug = this.props.match.params.slug;
         if (this.props.storeState.languages.length > 0 && this.state.newTour.local && this.state.selectedLanguage !== this.props.storeState.activeLanguageNumber) {
@@ -192,6 +260,7 @@ class ToureDescriptionClass extends React.Component {
                     return response.data;
                 })
                 .then(function (data) {
+                    
                     if (data.error) {
 
                         console.log('bad tour descr request');
@@ -211,6 +280,7 @@ class ToureDescriptionClass extends React.Component {
                             slug: data.local.slug,
                             author: data.tour.author,
                         });
+                        
                     }
                 })
                 .catch(function (error) {
@@ -219,6 +289,10 @@ class ToureDescriptionClass extends React.Component {
                     that.props.globalReduser.history.push('/404/');
                 })
 
+        }
+        if(this.state.newTour.tour){
+            //if tour data exist, call the func that check tourSeatsData
+            this.resetSelectedSeatsNumber();
         }
         let textInfo = this.props.storeState.languageTextMain.tourDescription;
         let simularPlaceBlockId = topBlockId + '5';
@@ -529,8 +603,9 @@ class ToureDescriptionClass extends React.Component {
                                                 daily={this.state.newTour.tour.daily} departureDate={this.state.departureDate}
                                                 author={this.state.author} changeTravelVisibility={this.changeTravelVisibility}
                                                 dateWork={this.state.newTour.tour.calendary} price={price} elementActive={this.state.newTour}
-                                                seats={this.state.newTour.tour.seats} isPricePerPerson={this.state.newTour.tour.isPricePerPerson}
-                                                daysNumber={this.state.newTour.tour.daysNumber} />
+                                                seats={/*this.state.newTour.tour.seats*/this.state.savedDateSeatsData.seatsLeft} 
+                                                isPricePerPerson={this.state.newTour.tour.isPricePerPerson}
+                                                daysNumber={this.state.newTour.tour.daysNumber} tourDescriptionDateTransferFunction={(utcDate)=>this.setState({departureDate:utcDate})}/>
 
                                             <div className="placeDescription_block flex-column" id={simularPlaceBlockId} style={{ display: this.state.newTour.additionalTours.length > 0 ? 'flex' : 'none' }}>
                                                 <SimularToursBlock outerBlock={simularPlaceBlockId} tours={this.state.newTour.additionalTours}
@@ -552,7 +627,7 @@ class ToureDescriptionClass extends React.Component {
                         elementPrice={this.state.elementPrice} elementActive={this.state.elementActive}
                         activeCurrency={activeCurrency} isoCountryMap={this.props.storeState.isoCountryMap}
                         textInfo={this.props.storeState.languageTextMain.startTravelForm}
-                        isTourDescription={true}
+                        isTourDescription={this.state.elementActive && this.state.elementActive.element ? false : true} freeSeats = {this.state.savedDateSeatsData.seatsLeft}
 
                     />
                     <StartTravelSuccess successVisibility={this.state.successVisibility} changeSuccessVisibility={this.changeSuccessVisibility}

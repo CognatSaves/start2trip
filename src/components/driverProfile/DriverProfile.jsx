@@ -110,7 +110,7 @@ class DriverProfileClass extends React.Component {
                 return response.json();
             })
             .then(function (data) {
-
+                
                 if (data.error) {
                     console.log("bad");
                     throw data.error;
@@ -127,6 +127,7 @@ class DriverProfileClass extends React.Component {
 
             })
             .catch(function (error) {
+                
                 catchFuncGlobal(that)
                 console.log('bad');
                 console.log('An error occurred:', error);
@@ -384,7 +385,7 @@ class DriverProfileClass extends React.Component {
                         return response.json();
                     })
                     .then(function (data) {
-
+                        
                         if (data.error) {
                             console.log("bad");
                             throw data.error;
@@ -407,7 +408,7 @@ class DriverProfileClass extends React.Component {
 
                     })
                     .catch(function (error) {
-
+                        
                         console.log('bad');
                         console.log('An error occurred:', error);
                         catchFuncGlobal(that)

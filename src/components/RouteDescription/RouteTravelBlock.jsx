@@ -144,27 +144,45 @@ class RouteTravelBlockClass extends React.Component {
                                     + (this.state.isDateHighlighted ? 'placesDescription_travelBlock_highlighted' : '')}
                                     onClick={() => { if (this.state.isDateHighlighted) { this.setState({ isDateHighlighted: false }) } }}>
                                     <div className="placesDescription_travelBlock_icon placesDescription_calendary" />
-                                    <DatePicker disabled={this.props.isTours} hintText={textInfo.startDate} defaultDate={this.props.isTours ? new Date(this.props.departureDate) : new Date()} minDate={new Date()} shouldDisableDate={(date) => {
-                                        let flag = true;
-                                        if (!this.props.daily && this.props.isTours) {
-                                            for (let i = 0; i < this.props.dateWork.length; i++) {
-                                                let newDate = new Date(this.props.dateWork[i])
-                                                let newDay = newDate.getDate();
-                                                let newMonth = newDate.getMonth();
-                                                let newYear = newDate.getFullYear();
-                                                let day = date.getDate();
-                                                let month = date.getMonth();
-                                                let year = date.getFullYear()
-                                                if (newDay === day && newMonth === month && newYear === year) {
-                                                    flag = false
+                                    <DatePicker /*disabled={this.props.isTours}*/ hintText={textInfo.startDate} defaultDate={this.props.isTours ? new Date(this.props.departureDate) : new Date()}
+                                     minDate={new Date()} 
+                                        shouldDisableDate={(date) => {
+                                            let flag = true;
+                                            debugger;
+                                            let tourSeatsData = this.props.elementActive.tour.tourSeatsData;
+                                            if (!this.props.daily && this.props.isTours) {
+                                                for (let i = 0; i < this.props.dateWork.length; i++) {
+                                                    //dateWork - calendary of tour
+                                                    let newDate = new Date(this.props.dateWork[i])
+                                                    let newDay = newDate.getDate();
+                                                    let newMonth = newDate.getMonth();
+                                                    let newYear = newDate.getFullYear();
+                                                    let day = date.getDate();
+                                                    let month = date.getMonth();
+                                                    let year = date.getFullYear()
+                                                    if (newDay === day && newMonth === month && newYear === year) {
+                                                        flag = false;
+                                                        i=this.props.dateWork.length;
+                                                    }
                                                 }
+                                                if(flag){
+                                                    //if flag === false, then go to exit. If not - we must check tourSeatsData elems, that shows us,
+                                                    //is that tour in selected date have more free seats than 0
+                                                    
+                                                }
+                                            } else {
+                                                flag = false;
                                             }
-                                        } else {
-                                            flag = false;
-                                        }
-                                        return flag
-                                    }}
-                                        onChange={(e, date) => { this.setState({ date: this.props.globalhistory.convertDateToUTC(date) }); }} className="routeDescrDate" />
+                                            return flag
+                                        }}
+                                        onChange={(e, date) => { 
+                                            let utcDate = this.props.globalhistory.convertDateToUTC(date);
+                                            this.setState({ date:  utcDate});
+                                            if(this.props.isTours){
+                                                this.props.tourDescriptionDateTransferFunction(utcDate)
+                                            }
+
+                                        }} className="routeDescrDate" />
                                 </div>
                             </div>
                             <div className={"routeTravelBlock_element d-flex " + ((points.length + 1) % 2 === 0 ? 'col-12 p-0' : 'col-md-6 col-12')}>

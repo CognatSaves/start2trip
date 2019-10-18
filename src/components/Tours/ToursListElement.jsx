@@ -43,7 +43,7 @@ class ToursListElementClass extends React.Component {
         console.log(imageAddress);
         let slug = element.tourlocalization.slug;
 
-        let seats = element.seats
+        let seats =element.freeSeats ? element.freeSeats : element.seats;
 
         let language = element.language.map((el, index) => {
 
@@ -77,13 +77,18 @@ class ToursListElementClass extends React.Component {
             validDepartureDate = this.props.departureDate.split(".");
             validDepartureDate = validDepartureDate[2] + "-" + validDepartureDate[1] + "-" + validDepartureDate[0];
         }
+        //let addressFunc = function(slug){return }
         let address = "/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + `/tours/${slug}/` + (validDepartureDate ? `?date=` + validDepartureDate : ``);
+        
+        let addressFunc = function (slug, that) {
+            return "/" + that.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + `/tours/${slug}/`
+        }
         return (
             <div className={this.props.placeListElementClass ? this.props.placeListElementClass : "col-lg-3 col-md-4 col-sm-6 col-12 p-2 pb-3"} >
                 <div className="drivers_block_element d-flex p-0 flex-column" id={index}>
 
                     <div className="driversBlock_carImage" style={{ background: "url(" + (element.image ? (requests.serverAddressImg + element.image) : '') + ") no-repeat", backgroundSize: "cover", width: '100%' }}>
-                        {!this.props.isGudeTours &&
+                        {!this.props.noDateSeatsData &&
                             <>
                                 <div className="toursDate">{this.props.departureDate + " | " + element.time}</div>
                                 <div className="toursList_ToursElHeader">{(element.isPricePerPerson ? textInfo.seats[0] : textInfo.seats[1]) + " " + seats + (element.isPricePerPerson ? textInfo.seats[2] : "")}</div>
@@ -110,7 +115,7 @@ class ToursListElementClass extends React.Component {
 
                             </div>
                         </div>
-                        {!this.props.isGudeTours &&
+                        {!this.props.isGuideTours &&
                             <div className="d-flex py-3 border-top">
                                 <div className="toursListEl_avatar col-2">
                                     <img src={(element.author ? (requests.serverAddressImg + element.author.avatar.url) : '')} alt="" />
@@ -126,14 +131,21 @@ class ToursListElementClass extends React.Component {
                             </div>
                         }
                     </div>
-                    <button className="driversBlock_driverInfoBlock_element driversBlock_buttonStyle"
-                        onClick={() => {
-
-                            console.log(element);
-
-                            this.props.changeTravelVisibility(element.price, this.props.elementActive);
-                            /*this.props.dispatch(setDriverCarDescription(element))*/
+                    {
+                        !this.props.isRedirectButton ?
+                        <button className="driversBlock_driverInfoBlock_element driversBlock_buttonStyle"
+                            onClick={() => {
+                                
+                                console.log(element);
+                                this.props.changeTravelVisibility(element.price, this.props.elementActive, seats);
                         }}>{(element.isPricePerPerson ? textInfo.bookTours[0] : textInfo.bookTours[1]) + " " + price}</button>
+                        :
+                        <Link to={addressFunc(element.tourlocalization.slug, this)} className="w-100">
+                            <button className="driversBlock_driverInfoBlock_element driversBlock_buttonStyle"
+                            >{"Стоимость:" + " " + price +". Подробнее?"}</button>
+                        </Link>
+                    }
+                    
                     {
                         /*
                         <div className="d-flex justify-content-center align-items-center col-12 toursBookBt">BOOK tours</div>
