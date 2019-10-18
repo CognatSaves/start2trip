@@ -8,6 +8,38 @@ const home = {
                 left: "LIST",
                 right: "MAP"
             },
+    homeBottomNewText:{
+        h3:["Going on a trip, but don’t know where to go?","Where to find tours and excursions at competitive prices?"],
+        p:[
+        "Indicate the direction and date in the route planner, and select a warrior.",
+        "If you could not decide on a route, do not worry!",
+        "We have selected for you",
+        "ready routes",
+        " tours",
+        " guides",
+        " and ",
+        "interesting places.",
+    ]
+    },
+    look:"More",
+    renderArray:{
+        first:{
+            title:"Ready routes",
+            text:"Ready-made routes for independent travel."
+        },
+        second:{
+            title:"Tours",
+            text:"Tours from local guides"
+        },
+        third:{
+            title:"Guides",
+            text:"Base of professional guides speaking the same language with you."
+        },
+        fourth:{
+            title:"Interesting places",
+            text:"The rating is based on the opinions of travelers and locals."
+        }
+    }
         },
         homeBottom: {
             homePopularPlaces: {

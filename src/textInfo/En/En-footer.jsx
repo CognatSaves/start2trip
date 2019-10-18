@@ -11,7 +11,7 @@ let footer = {
     footerMobileTextTours: 'Tours',
     footerMobileTextPlaces: 'Sights',
     footerMobileTextGuides: 'Guides',
-    footerMobileTextProfile: 'Account'
+    footerMobileTextProfile: 'Constructor'
 }
     
     export default footer;

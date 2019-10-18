@@ -117,7 +117,7 @@ class customerCancelClass extends React.Component {
                     <div className="customerCancelForm d-flex flex-column align-items-center align-self-center justify-content-center my-auto col-md-6 col-12" >
                         <h2>{textInfo.headerText}</h2>
                         {this.state.falde !== null || this.state.onClickSpan ?
-                            <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes/"}>{textInfo.goHome}</Link>
+                            <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/"}>{textInfo.goHome}</Link>
                             :
                             <div className="d-flex justify-content-between align-items-center col-md-4 col-12">
                                 <span onClick={() => { this.sendMessege(); this.setState({ onClickSpan: true }) }}>{textInfo.ok}</span>

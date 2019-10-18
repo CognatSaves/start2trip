@@ -135,7 +135,7 @@ class CreateCommentClass extends React.Component {
                         <text style={{ margin: 'auto auto auto 0', color: 'green', fontSize: '14px', display: this.state.isAllCorrect ? 'flex' : 'none' }}>{textInfo.infoText}</text>
                         <text style={{ margin: 'auto auto auto 0', color: 'red', fontSize: '14px', display: this.state.isNotFilled ? 'flex' : 'none' }}>{textInfo.nonFilledText}</text>
                         {this.props.clientId && this.state.isAllCorrect ?
-                            <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes/"} className="createComment_Link">{textInfo.createCommentLinkHome}</Link>
+                            <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/"} className="createComment_Link">{textInfo.createCommentLinkHome}</Link>
                             :
                             <button className="driversAdaptedRoute_sendRequest createComment_sendButton" onClick={() => this.sendComment(this.props.targetId)}>
                                 <text>{textInfo.sendText}</text>

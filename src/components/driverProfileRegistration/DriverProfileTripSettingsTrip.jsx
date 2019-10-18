@@ -164,7 +164,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                             /*that.setState({
                                 onWork: data.travelsetting.onWork
                             });*/
-                            that.thenFunc();
+                            thenFuncGlobal(that)
                             //that.getProfileData();
                             //document.location.reload(true);
                             //that.state.sendResultLocal(true, {jwt:data.jwt, user: data.user});

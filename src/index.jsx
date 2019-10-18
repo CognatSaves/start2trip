@@ -21,7 +21,7 @@ import TourDescription from './components/TourDescription/TourDescription.jsx';
 import AccountRedirector from './components/registration/AccountRedirector';
 import TripConfirmation from './components/driverProfile/TripConfirmation';
 import DriverConfirmation from './components/driverProfile/DriverConfirmation';
-// import DriverProfile from './components/driverProfile/DriverProfile';
+import ReadyRoutes from './components/ReadyRoutes/ReadyRoutes';
 import AuthModalCountry from './components/registration/AuthModalCountry';
 import DriverRefreshIndicator from './components/driverProfileRegistration/DriverRefreshIndicator'
 import pageNotFound from './pageNotFound'
@@ -384,8 +384,9 @@ ReactDOM.render(
           <Suspense fallback={<div>{store.getState().AppReduser.languageTextMain.home.loading + "..."}</div>}>
             <Switch>
               <Route path={"/" + config.routeMap + "/routes/:slug/"} component={RouteDescription} />
-              <Route path={"/" + config.routeMap + "/routes-:direction/"} component={Home} />
-              <Route path={"/" + config.routeMap + "/routes/"} component={Home} />
+              <Route path={"/" + config.routeMap + "/routes-:direction/"} component={ReadyRoutes} />
+              <Route path={"/" + config.routeMap + "/routes/"} component={ReadyRoutes} />
+             
 
               <Route path={"/" + config.routeMap + "/drivers/"} component={Home} />
               <Route path={"/" + config.routeMap + "/driverProfile/:id-:carId-:cities/"} component={DriverProfile} />
@@ -401,6 +402,7 @@ ReactDOM.render(
               <Route path={"/" + config.routeMap + '/guides/:slug'} component={GuideDescription} />
               <Route path={"/" + config.routeMap + "/guides/"} component={Guides} />
 
+              <Route path={"/" + config.routeMap + "/"} component={Home} />
 
               <Route path="/account/" component={AccountRedirector} />
               <Route path="/forgot-password/" component={ForgotPassword} />
@@ -429,7 +431,7 @@ ReactDOM.render(
 
 
                 window.location.pathname === "/" ?
-                  <Redirect from="/" to={"/" + (redirectPage === "undefined-undefined" || redirectPage === "undefined-en" || redirectPage === "undefined-ru" || redirectPage === "-en" || redirectPage === "-ru" ? "countrySelection/" : redirectPage + "/routes/")} />
+                  <Redirect from="/" to={"/" + (redirectPage === "undefined-undefined" || redirectPage === "undefined-en" || redirectPage === "undefined-ru" || redirectPage === "-en" || redirectPage === "-ru" ? "countrySelection/" : redirectPage + "/")} />
                   :
                   <Route path="*" component={pageNotFound} status={404} />
               }

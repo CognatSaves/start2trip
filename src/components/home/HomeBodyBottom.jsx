@@ -172,11 +172,11 @@ class HomeBodyBottomClass extends React.Component {
               <meta property="og:description" content={helmet.basic.description[0] + name + helmet.basic.description[1]} />
             </Helmet> : <React.Fragment />
         }
-        <div className="home_block col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
+        <div className="home_block col-12 p-0">
           <HomePopularPlaces />
           <HomePlacesPanel />
-          <HomeRoutesList isStaying={!this.props.storeState.isRefreshExist} /*isStaying - переменная, показывающая, что на данный момент мы отправили запрос, и отображать картинку, что мы ничего
-          не нашли, не нужно *//>
+          <HomeRoutesList isStaying={!this.props.storeState.isRefreshExist} /> 
+          {/* isStaying - переменная, показывающая, что на данный момент мы отправили запрос, и отображать картинку, что мы ничего не нашли, не нужно  */}
           <Manipulator number={this.props.placesState.routesList.length} page={this.props.placesState.page} setPage={this.setPageFunc}
             elementsNumber={this.props.placesState.pagesMenuValue} showMorePages={this.showMorePages}
           />

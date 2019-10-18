@@ -384,7 +384,6 @@ class DriverProfileClass extends React.Component {
                         return response.json();
                     })
                     .then(function (data) {
-
                         if (data.error) {
                             console.log("bad");
                             throw data.error;
@@ -407,11 +406,10 @@ class DriverProfileClass extends React.Component {
 
                     })
                     .catch(function (error) {
-
                         console.log('bad');
                         console.log('An error occurred:', error);
                         catchFuncGlobal(that)
-                        setTimeout(() => { that.props.history.push('/' +/*that.props.storeState.country*/undefined + "-" + /*that.props.storeState.languages[that.props.storeState.activeLanguageNumber].isoAutocomplete*/undefined + '/routes') }, 1000);
+                        setTimeout(() => { that.props.history.push('/' +/*that.props.storeState.country*/undefined + "-" + /*that.props.storeState.languages[that.props.storeState.activeLanguageNumber].isoAutocomplete*/undefined +"/routes/") }, 1000);
                     });
             });
             this.setState({ isLoaded: true });

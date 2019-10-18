@@ -56,7 +56,7 @@ class DriverProfileCarClass extends React.Component {
         }
     }
 
-    getProfileData = (thenFunc, catchFunc) => {
+    getProfileData = () => {
         console.log('getProfileData');
         let that = this;
         let requestValues = {
@@ -239,7 +239,7 @@ class DriverProfileCarClass extends React.Component {
 
                 if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
                     console.log(request.responseText);
-                    that.getProfileData(that.thenFunc, that.catchFunc);
+                    that.getProfileData();
                 }
                 if (request.readyState === XMLHttpRequest.DONE && request.status === 0) {
                     catchFuncGlobal(that);
@@ -342,7 +342,7 @@ class DriverProfileCarClass extends React.Component {
             request.onreadystatechange = function () {
                 if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
                     console.log(request.responseText);
-                    that.getProfileData(that.thenFunc, that.catchFunc);
+                    that.getProfileData();
                 }
                 if (request.readyState === XMLHttpRequest.DONE && request.status === 0) {
                     catchFuncGlobal(that);
@@ -368,7 +368,7 @@ class DriverProfileCarClass extends React.Component {
             request.onreadystatechange = function () {
                 if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
                     console.log(request.responseText);
-                    that.getProfileData(that.thenFunc, that.catchFunc);
+                    that.getProfileData();
                 }
                 if (request.readyState === XMLHttpRequest.DONE && request.status === 0) {
                     catchFuncGlobal(that);
@@ -423,6 +423,7 @@ class DriverProfileCarClass extends React.Component {
                             imgFiles: imgFiles
                         });
                         this.setState(state => { const carImg = this.state.carImg.push(img); return carImg });
+                        thenFuncGlobal(this)
                     }
                     reader.readAsDataURL(sizFile)
                 });
@@ -473,7 +474,7 @@ class DriverProfileCarClass extends React.Component {
         }
         */
         if(key==='bigRoutePrice'){
-            debugger;
+            
             let tempValue = Number.parseInt(value,10);
             tempValue = tempValue>=0 ? tempValue : 0;
             let newTemp =tempValue

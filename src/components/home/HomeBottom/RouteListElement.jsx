@@ -45,7 +45,7 @@ class RouteListElementClass extends React.Component {
         let linkString = "/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) +
             `/routes/${element.placelocalization.slug}/`;
         return (
-            <div className={this.props.routeListElementClass ? this.props.routeListElementClass : "col-lg-3 col-md-4 col-sm-6 col-12 p-2 pb-3 "}>
+            <div className={this.props.routeListElementClass ? this.props.routeListElementClass : "col-lg-3 col-md-4 col-sm-6 col-10 p-2 mb-3 "}>
                 <div className={"drivers_block_element d-flex p-0 flex-column"} id={index}>
                     <div className="driversBlock_carImage" style={{ background: "url(" + (element.image ? (requests.serverAddressImg + element.image) : '') + ") no-repeat", backgroundSize: "cover", width: '100%' }}>
                         <Link to={linkString} className="driversBlock_carBlackout">

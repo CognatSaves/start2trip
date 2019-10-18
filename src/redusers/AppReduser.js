@@ -495,6 +495,7 @@ export const AppReduser = (state = initialState, action) => {
             newState.isRefreshExist = true;
             newState.isRefreshing = false;
             newState.isGoodAnswer = false;
+            newState.numberOfRefresh = 0;
             newState.isNeedRefreshIndicator = true;
             return newState;
         }

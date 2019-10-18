@@ -51,7 +51,6 @@ class GuideDescriptionClass extends React.Component {
 
         let resultString = dateValue.toUTCString();
         props.dispatch(set_state(props.storeState.cities, resultString));
-        startRefresherGlobal(this)
         this.state = {
             travelVisibility: false,
             successVisibility: 'none',
@@ -128,14 +127,14 @@ class GuideDescriptionClass extends React.Component {
                 console.log("bad");
                 throw data.error;
             }
-            else {               
+            else {           
+                thenFuncGlobal(that)    
                 console.log('good - you get a guide description');
                 console.log(data);
                 if(data.guideData.tours.length>0){
                     //если туры у человека пришли, то отрабатываем стандартно - 
                     //проверка на наличие локализаций на выбранном языке
                     that.props.dispatch(setGuideData(data.guideData, data.carTypes));
-                    thenFuncGlobal(that)
                 }
                 else{
                     //иначе делаем перенаправление на страницу гидов, пускай выбирает

@@ -1,4 +1,8 @@
+.mainHomePage {}
+
+
 .home_window {
+    position: relative;
     background-size: cover !important;
     background-position: center center !important;
 }
@@ -198,9 +202,128 @@ h2.homeBottomTitle {
     color: #f60;
 }
 
+.homeBottomNew {
+    background: #fff;
+    position: relative;
+}
+
+.homeBottomNewText h3 {
+    text-align: center;
+    padding-bottom: 20px;
+    margin: 0px;
+    font-size: 24px;
+    color: #304269;
+}
+
+.homeBottomNewText p {
+    text-align: center;
+    width: 80%;
+    font-size: 16px;
+    color: #333;
+}
+.homeBottomNewEl{
+    transition: all 0.3s;
+}
+
+.homeBottomNewEl:hover{
+    transform: scale(1.04);
+}
+
+.homeBottomNewEl:hover span{
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.homeBottomNewEl:hover .homeBottomNewElContent{
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.homeBottomNewEl span {
+    background: #304269;
+    width: 100%;
+    display: block;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 0px 0px 5px 5px;
+    color: #fff;
+    box-shadow: 0 6px 10px 1px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.homeBottomNewEl span a{
+    color: #fff;
+}
+
+.homeBottomNewEl span:hover {
+    background: #f60;
+}
+
+.homeBottomNewElContent {
+    background: #fff;
+    border-radius: 5px 5px 0px 0px;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
+}
+
+.homeBottomNewElContent i {
+    background-size: contain !important;
+    background-position: center !important;
+    width: 100%;
+    height: 100px;
+    margin: 0px auto;
+    margin-bottom: 20px;
+}
+
+.homeBottomNewElContent h5 {
+    margin: 0px;
+    padding-bottom: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    color: rgb(0, 0, 0,0.7);
+}
+
+.homeBottomNewElContent p {
+    margin: 0px;
+    padding-bottom: 5px;
+    font-size: 12px;
+    color: #333;
+    text-align: left;
+    width: 100%;
+}
+
+
 @media (max-width: 1140px) {}
 
 @media (max-width: 768px) {
+
+    /* .mainHomePage{
+        max-height: 100vh;
+        scroll-snap-type: mandatory;
+        scroll-snap-points-y: repeat(100vh);
+        scroll-snap-type: y mandatory;
+        -webkit-overflow-scrolling: touch;
+        overflow-y: scroll;
+    } */
+
+    .homeBottomNewText p{
+        width: 100%;
+    }
+    .homeBottomNewElContent i {
+        height: 150px;
+    }
+
+    .homeBottomNew {
+        padding: 80px 0px;
+    }
+
+    .home_window {
+        position: relative;
+        background-size: cover !important;
+        background-position: center center !important;
+        min-height: 85vh;
+        /* scroll-snap-align: start; */
+    }
+
     .home_block {
         padding: 0 !important;
     }

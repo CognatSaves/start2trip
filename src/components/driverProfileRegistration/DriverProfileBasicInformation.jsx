@@ -212,6 +212,9 @@ class DriverProfileBasicInformationClass extends React.Component {
             profileData: { ...this.state.profileData, city: value }
         })
     }
+    componentDidMount(){
+        thenFuncGlobal(this)
+    }
 
     render() {
         let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileBasicInformation;

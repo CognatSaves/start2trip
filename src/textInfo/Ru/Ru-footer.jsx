@@ -11,7 +11,7 @@ let footer = {
     footerMobileTextTours:'Туры',
     footerMobileTextPlaces:'Места',
     footerMobileTextGuides: 'Гиды',
-    footerMobileTextProfile:'Профиль'
+    footerMobileTextProfile:'Конструктор'
 }
 
 export default footer;

@@ -60,6 +60,8 @@ const setTourSeatsData = serverAddress + '/setTourSeatsData';//запрос на
 
 const findGuides = serverAddress + '/users/findGuides';//запрос на получение списка гидов на странице guides
 const showGuide = serverAddress + '/users/showGuide';//запрос на получение описания гида на странице /guides/:id -> GuideDescription
+const errorMessage = serverAddress+'/errorMessage'; // как-бы это небыло странно но нужно выдавать ошибку 404 на странице pageNotFound
+
 export default {
     frontendAddress: frontendAddress,
     serverAddress: serverAddress,
@@ -122,4 +124,5 @@ export default {
     findGuides:findGuides,
     showGuide:showGuide,
     userTourEditImgRequest:userTourEditImgRequest,
+    errorMessage:errorMessage,
 };

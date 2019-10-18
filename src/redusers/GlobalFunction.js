@@ -77,13 +77,13 @@ const thenFuncGlobal = (that) => {
     that.dispatch(thenFunc())
     setTimeout(() => {
       tempThat.dispatch(isRefreshExistToFalse())
-    }, 1000);
+    }, 500);
   }else{
     let tempThat = that
     that.props.dispatch(thenFunc())
     setTimeout(() => {
       tempThat.props.dispatch(isRefreshExistToFalse())
-    }, 1000);
+    }, 500);
   }
   
 }
@@ -96,13 +96,13 @@ const catchFuncGlobal = (that) => {
     that.dispatch(catchFunc())
     setTimeout(() => {
       tempThat.dispatch(isRefreshExistToFalse())
-    }, 1000);
+    }, 500);
   }else{
     let tempThat = that
     that.props.dispatch(catchFunc())
     setTimeout(() => {
       tempThat.props.dispatch(isRefreshExistToFalse())
-    }, 2000);
+    }, 500);
   }
 }
 

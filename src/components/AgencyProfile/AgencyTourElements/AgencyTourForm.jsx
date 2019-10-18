@@ -8,6 +8,7 @@ import LocationSearchInput from '../../home/HomeBody/Search';
 import Chip from 'material-ui/Chip';
 import TextField from 'material-ui/TextField';
 import Cookies from 'universal-cookie';
+import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../../redusers/GlobalFunction'
 
 import ExcursionIncludesBlock from './ExcursionIncludesBlock'
 
@@ -280,7 +281,7 @@ export default class AgencyTourForm extends React.Component {
                     }
 
                 }
-                request.open('PUT', requests.userTourUpdateRequest + "/" + this.state.tourId);
+                request.open('PUT', requests.userTourUpdateRequest + "/" + that.state.tourId);
                 request.setRequestHeader('Authorization', `Bearer ${jwt}`);
             }
             request.onreadystatechange = function () {
@@ -486,7 +487,7 @@ export default class AgencyTourForm extends React.Component {
                     let reader = new FileReader();
                     reader.onloadend = () => {
                         // 
-
+                        
                         if (type === 'image') {
                             var img = reader.result;
                             let tourSave = that.state.tourSave;
@@ -529,7 +530,8 @@ export default class AgencyTourForm extends React.Component {
                                 });
                             }
                         }
-                        that.thenFunc(that)
+                        
+                        thenFuncGlobal(that)
                     }
                     reader.readAsDataURL(sizFile)
                 });

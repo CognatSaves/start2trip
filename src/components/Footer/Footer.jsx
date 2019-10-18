@@ -34,6 +34,13 @@ class FooterClass extends React.Component {
     let textInfo = this.props.storeState.languageTextMain.footer;
     let mobileElemArray = [
       {
+        pathname: "/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) +"/",
+        pathnamesInner: ["/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) +"/"],
+        iconClasses: ['footerMobileIconProfile_active', 'footerMobileIconProfile'],
+        classValue: 'footerMobileTextProfile',
+        value: textInfo.footerMobileTextProfile
+      },
+      {
         pathname: "/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes/",
         pathnamesInner: ["/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes/"],
         iconClasses: ['footerMobileIconRoutes_active', 'footerMobileIconRoutes'],
@@ -61,13 +68,7 @@ class FooterClass extends React.Component {
         classValue: 'footerMobileTextPlaces',
         value: textInfo.footerMobileTextPlaces
       },     
-      {
-        pathname: "/account/",
-        pathnamesInner: ["/account/user/profile/", "/account/driver/profile/", "/account/agency/profile/"],
-        iconClasses: ['footerMobileIconProfile_active', 'footerMobileIconProfile'],
-        classValue: 'footerMobileTextProfile',
-        value: textInfo.footerMobileTextProfile
-      }
+      
     ]
 
     return (
@@ -75,7 +76,7 @@ class FooterClass extends React.Component {
         <div className="footer d-md-flex d-none justify-content-center align-items-center  col-12 p-0">
           <div className="footerButtonUp" onClick={() => { window.scroll({ top: 0, left: 0, behavior: 'smooth' }) }}><img src={upArrowIcon} width="20px" height="20px" alt="upArrowIcon" /></div>
           <div className="footer_block d-flex  justify-content-between align-items-center col-12 p-0">
-            <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes"} className="col-md-1 col-2 p-0 "><img src={logoTripfer} width="110px" height="18px" alt="logoWhiteIcon" /></Link>
+            <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/"} className="col-md-1 col-2 p-0 "><img src={logoTripfer} width="110px" height="18px" alt="logoWhiteIcon" /></Link>
             <div className="footerButtons d-flex justify-content-between col-lg-8 col-md-10 col-sm-12 col-12">
               <Link to={"/" + cookies.get('userLangISO', { path: "/" }) + "/about-service/"} className="footerButtons_button">{textInfo.footerButtons[0]}</Link>
               <Link to={"/" + cookies.get('userLangISO', { path: "/" }) + "/affiliate-program/"} className="footerButtons_button">{textInfo.footerButtons[1]}</Link>

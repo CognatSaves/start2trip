@@ -426,7 +426,7 @@ class HeaderClass extends React.Component {
               }
 
               if (!isAdmin) {
-                that.props.history.push((flag ? ("/" + that.props.storeState.country + "-" + that.props.storeState.languages[index].isoAutocomplete + "/") : '/') + (namePage === "" ? "routes/" : (namePage + (flag ? "" : "/"))))
+                that.props.history.push((flag ? ("/" + that.props.storeState.country + "-" + that.props.storeState.languages[index].isoAutocomplete + "/") : '/') + (namePage === "" ? "" : (namePage + (flag ? "" : "/"))))
               }
 
             }
@@ -735,7 +735,7 @@ class HeaderClass extends React.Component {
 
         <ModalUserType textInfo={textInfo} isOpen={this.state.isUsertypeLooking} that={this} pageTextInfo={pageTextInfo} />
         <div style={this.state.burgerMenu ? { position: "fixed", top: "0", zIndex: "40" } : {}} className="headerMobail  d-md-none d-flex align-items-center justify-content-around">
-          <Link className="logoSite col-3" to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes/"} />
+          <Link className="logoSite col-3" to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/"} />
           <div onClick={this.toggleModalCountry} style={{ visibility: this.props.storeState.countries.length > 0 ? 'visible' : 'hidden' }} className={!this.state.burgerMenu ? "headerGeoButton col-lg-5 col-md-4 col-3" : "headerGeoButton col-lg-5 col-md-4 col-6"}>
             <span>{this.props.storeState.country}</span>
           </div>
@@ -841,7 +841,7 @@ class HeaderClass extends React.Component {
 
           <div className='header d-md-flex d-none align-items-stretch justify-content-between'>
             <div className="d-flex align-items-center col-xl-2 col-lg-2 col-md-3 col-sm-2 col-2">
-              <Link className="logoSite col-xl-8 col-lg-9 col-md-8 col-sm-8 col-7" to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes/"} />
+              <Link className="logoSite col-xl-8 col-lg-9 col-md-8 col-sm-8 col-7" to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/"} />
               <div onClick={this.toggleModalCountry} style={{ visibility: this.props.storeState.countries.length > 0 ? 'visible' : 'hidden' }} className="headerGeoButton col-xl-5 col-lg-5 col-md-4 col-sm-5 col-5">
                 <span>{this.props.storeState.country}</span>
               </div>
@@ -853,12 +853,17 @@ class HeaderClass extends React.Component {
                     let myClass = "";
                     let url = this.props.history.location.pathname.split("/");
                     let result = url[2]
-                    result = result.split("-")
-                    if (("/" + result[0] + "/") === element.to) {
-                      myClass = "buttonMassLink align-self-stretch buttonMassLink_active"
-                    } else {
+                    if(result === undefined){
                       myClass = "buttonMassLink align-self-stretch"
+                    }else{
+                      result = result.split("-")
+                      if (("/" + result[0] + "/") === element.to) {
+                        myClass = "buttonMassLink align-self-stretch buttonMassLink_active"
+                      } else {
+                        myClass = "buttonMassLink align-self-stretch"
+                      }
                     }
+                   
                     return (
                       <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + element.to}
                         className={myClass}>{element.value}</Link>

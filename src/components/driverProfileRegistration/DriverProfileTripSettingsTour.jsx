@@ -40,12 +40,6 @@ class DriverProfileTripSettingsTourClass extends React.Component {
         };
     }
 
-    thenFunc = () => {
-        thenFuncGlobal(this)
-    }
-    catchFunc = () => {
-        catchFuncGlobal(this)
-    }
     guideStateChanged = () => {
         
         console.log('guideStateChanged call');
@@ -78,7 +72,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                     let profile = that.props.globalReduser.profile;
                     profile.guide = guideValue;
                     that.props.dispatch(setProfileData(profile));
-                    that.thenFunc();
+                    thenFuncGlobal(that)
                 }
             })
             .catch(function (error){
@@ -120,7 +114,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
                     profile.guideHourPrice = that.state.guideHourPrice;
                     profile.guidePriceCurrency = that.state.guidePriceCurrency;
                     that.props.dispatch(setProfileData(profile));
-                    that.thenFunc();
+                    thenFuncGlobal(that)
                 }
             })
             .catch(function (error){

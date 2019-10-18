@@ -72,7 +72,7 @@ class feedbackClass extends React.Component {
             windowImg = requests.serverAddressImg + this.props.storeState.countries[j].windowImg.url
         }
         let redirectAddress = coockisIso && coockisIso.length > 0 ?
-            ("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes/") :
+            ("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/") :
             ('/countrySelection');
         let helmet = this.props.storeState.languageTextMain.helmets.feedback;
         return (

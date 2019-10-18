@@ -46,7 +46,7 @@ class DriverProfileNavigationClass extends React.Component {
 
         };
     }
-    getProfileData = (thenFunc, catchFunc) => {
+    getProfileData = () => {
         console.log('getProfileData');
         let that = this;
         let jwt = this.props.globalReduser.readCookie('jwt');

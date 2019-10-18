@@ -8,24 +8,24 @@ import axios from 'axios';
 import requests from '../../config';
 import StartTravelContent from './StartTravelContent';
 import Dialog from '@material-ui/core/Dialog';
-import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
+import { startRefresherGlobal, thenFuncGlobal, catchFuncGlobal, } from '../../redusers/GlobalFunction'
 
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
 
- class StartTravelFormClass extends React.Component {
+class StartTravelFormClass extends React.Component {
 
     constructor(props) {
         super(props);
-        
+
         this.state = {
             travelVisibility: props.travelVisibility,
             //page: 1,
             //showPages: 1,
             //showPanelVariant: 0,
             //Form value Begin
-            
+
             firstName: props.storeState.userData ? props.storeState.userData.firstName : "",
             //lastName: props.storeState.userData ? props.storeState.userData.lastName : "",
             telNumber: props.storeState.userData ? props.storeState.userData.workPhone : "",
@@ -39,7 +39,7 @@ const cookies = new Cookies();
             discount: 0,
             checkBoxes: false,
             emailValid: false,
-            
+
             //Form value end
             errorMes: false,
             //flagAllOk: false,
@@ -52,20 +52,20 @@ const cookies = new Cookies();
     }
     componentDidUpdate(prevProps, prevState) {
 
-if(prevProps.storeState.userData && this.props.storeState.userData){
-    if (prevProps.storeState.userData.firstName !== this.props.storeState.userData.firstName) {
+        if (prevProps.storeState.userData && this.props.storeState.userData) {
+            if (prevProps.storeState.userData.firstName !== this.props.storeState.userData.firstName) {
 
-        this.setState({
-            firstName: this.props.storeState.userData.firstName,//"",
-            lastName: this.props.storeState.userData.lastName,//"",
-            telNumber: this.props.storeState.userData.workPhone,//"",
-            email: this.props.storeState.userData.email,//"",
-        })
-    }
-    return true
-}
-        
-        
+                this.setState({
+                    firstName: this.props.storeState.userData.firstName,//"",
+                    lastName: this.props.storeState.userData.lastName,//"",
+                    telNumber: this.props.storeState.userData.workPhone,//"",
+                    email: this.props.storeState.userData.email,//"",
+                })
+            }
+            return true
+        }
+
+
     }
     sendTripRequest = (body) => {
 
@@ -102,8 +102,8 @@ if(prevProps.storeState.userData && this.props.storeState.userData){
         if (body) {
 
             let that = this;
-            
-            startRefresherGlobal(this,true)
+
+            startRefresherGlobal(this, true)
             fetch(requests.createNewTrip, {
                 method: 'POST', body: body,
                 headers: { 'content-type': 'application/json' }
@@ -112,7 +112,7 @@ if(prevProps.storeState.userData && this.props.storeState.userData){
                     return response.json();
                 })
                 .then(function (data) {
-                    
+
                     if (data.error) {
 
                         console.log("bad");
@@ -135,7 +135,6 @@ if(prevProps.storeState.userData && this.props.storeState.userData){
                     }
                 })
                 .catch(function (error) {
-
                     console.log('bad');
                     console.log('An error occurred:', error);
                     catchFuncGlobal(that)
@@ -241,7 +240,7 @@ if(prevProps.storeState.userData && this.props.storeState.userData){
     }
 
     validateTours = () => {
-        
+
         let massValidate = document.querySelectorAll(".validate");
         let phoneInput = document.querySelector(".route_datePhoneInput");
         let departureTime = document.querySelector(".departureTime");
@@ -299,7 +298,7 @@ if(prevProps.storeState.userData && this.props.storeState.userData){
         this.setState({ errorMes: !isAllGood, emailValid: emailValid })
 
         if (isAllGood) {
-            
+
             let date = new Date(this.state.date);
             let year = date.getFullYear(); let month = date.getMonth() + 1; let day = date.getDate();
             let body = {
@@ -307,12 +306,12 @@ if(prevProps.storeState.userData && this.props.storeState.userData){
                 newSecondName: this.state.lastName,
                 startDate: year + '-' + (month >= 10 ? month : '0' + month) + '-' + (day >= 10 ? day : '0' + day),
                 startTime: this.state.departureTime,
-                tourId:this.props.isTourDescription?this.props.elementActive.tour.id:this.props.elementActive.element.id,
-                tourlocId: this.props.isTourDescription? this.props.elementActive.local.id:this.props.elementActive.element.tourlocalization.id,
+                tourId: this.props.isTourDescription ? this.props.elementActive.tour.id : this.props.elementActive.element.id,
+                tourlocId: this.props.isTourDescription ? this.props.elementActive.local.id : this.props.elementActive.element.tourlocalization.id,
                 startPlace: this.state.placeDeparture,
                 price: this.props.elementPrice,
                 tripCommentary: this.state.description,
-                carrier: this.props.isTourDescription?this.props.elementActive.tour.author.id:this.props.elementActive.element.author.id,
+                carrier: this.props.isTourDescription ? this.props.elementActive.tour.author.id : this.props.elementActive.element.author.id,
                 currencyType: this.props.storeState.currencies.length > 0 ? this.props.storeState.currencies[this.props.storeState.activeCurrencyNumber].id : undefined,
                 tripType: 'Tour',
                 newPhone: this.state.telNumber,
@@ -338,7 +337,7 @@ if(prevProps.storeState.userData && this.props.storeState.userData){
 
         //ЭтО ЗаПрОс На ПрОвЕрКу ПрОмОкОдА. ОчЕнЬ НуЖеН
 
-        startRefresherGlobal(this,true)
+        startRefresherGlobal(this, true)
         axios.get(requests.checkPromocode + "?code=" + this.state.promoCod)
             .then(response => {
                 console.log(response);
@@ -370,16 +369,16 @@ if(prevProps.storeState.userData && this.props.storeState.userData){
             })
     }
     render() {
-        if(this.state.travelVisibility !== this.props.travelVisibility){
-            
+        if (this.state.travelVisibility !== this.props.travelVisibility) {
+
             this.setState({
-                
+
                 travelVisibility: this.props.travelVisibility,
                 //page: 1,
                 //showPages: 1,
                 //showPanelVariant: 0,
                 //Form value Begin
-                
+
                 firstName: this.props.storeState.userData ? this.props.storeState.userData.firstName : "",
                 //lastName: props.storeState.userData ? props.storeState.userData.lastName : "",
                 telNumber: this.props.storeState.userData ? this.props.storeState.userData.workPhone : "",
@@ -393,7 +392,7 @@ if(prevProps.storeState.userData && this.props.storeState.userData){
                 discount: 0,
                 checkBoxes: false,
                 emailValid: false,
-                
+
                 //Form value end
                 errorMes: false,
                 //flagAllOk: false,
@@ -462,12 +461,12 @@ if(prevProps.storeState.userData && this.props.storeState.userData){
                     this.props.toursState ?
                         <>
                             <Dialog open={this.props.travelVisibility} onClose={this.props.changeTravelVisibility} >
-                                
+
                                 {/* <div className="d-flex justify-content-center align-items-center p-5">В Разработке</div> */}
                                 <StartTravelContent that={this} flagAllOk={flagAllOk} carCapacityArray={carCapacityArray} activeCurrency={this.props.activeCurrency}
                                     textInfo={this.props.textInfo} changeSuccessVisibility={this.props.changeSuccessVisibility} isTour={true} elementActive={this.props.elementActive}
                                     isTourDescription={this.props.isTourDescription}
-                                    />
+                                />
                             </Dialog>
                         </>
                         : <React.Fragment />
