@@ -42,6 +42,7 @@ class ToursClass extends React.Component {
       elementActive:null,
       temp: 0,
       countryDescription: null,
+      freeSeats:0
     }
     //сначала уборка
     this.props.dispatch(setPlacesList([], [], [], {}));
@@ -166,12 +167,13 @@ class ToursClass extends React.Component {
     this.setState({ tourType: type })
   }
 
-  changeTravelVisibility = (elementPrice,elementActive) => {
+  changeTravelVisibility = (elementPrice,elementActive, freeSeats) => {
 
     this.setState({
       travelVisibility: !this.state.travelVisibility,
       elementPrice: elementPrice,
       elementActive:elementActive,
+      freeSeats: freeSeats
     })
   }
 
@@ -368,7 +370,7 @@ class ToursClass extends React.Component {
         <StartTravelForm {...this.props} changeTravelVisibility={this.changeTravelVisibility}
           changeSuccessVisibility={this.changeSuccessVisibility} travelVisibility={this.state.travelVisibility}
           elementPrice={this.state.elementPrice} elementActive={this.state.elementActive}
-          activeCurrency={activeCurrency} isoCountryMap={this.props.storeState.isoCountryMap}
+          freeSeats = {this.state.freeSeats} activeCurrency={activeCurrency} isoCountryMap={this.props.storeState.isoCountryMap}
           textInfo={this.props.storeState.languageTextMain.startTravelForm}
 
         />

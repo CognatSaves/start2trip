@@ -51,9 +51,23 @@ export default class StartTravelContent extends React.Component {
         let seats = [];
         let time = "";
         let departurePoint = "";
-        
+        let isPricePerPerson;
+        let seatsNumberMultiplicator;
+        let calculatedPrice
         if (this.props.elementActive && this.props.elementActive !== "backdropClick") {
-
+            
+            //this shitty code means, that if the object is a tour, there can be different number of seats in different days
+            //then I don't like to check tourSeatsData here again. The number of free seats will be taken throw other ways
+            let seatsNumber = this.props.isTourDescription ?
+              (that.state.freeSeats || that.state.freeSeats===0 ? that.state.freeSeats : this.props.elementActive.tour.seats )
+             : (that.state.freeSeats || that.state.freeSeats===0 ? that.state.freeSeats : this.props.elementActive.element.seats);
+            for(let i=1; i<seatsNumber+1; i++){
+                seats.push(i);
+            }
+            
+            time = this.props.isTourDescription ? this.props.elementActive.tour.time : this.props.elementActive.element.time;
+            departurePoint = this.props.isTourDescription ? this.props.elementActive.local.departurePoint.point : this.props.elementActive.element.tourlocalization.departurePoint.point;
+            /*
             if(this.props.isTourDescription){
                 for (let i = 1; i < this.props.elementActive.tour.seats + 1; i++) {
                     seats.push(i)
@@ -61,18 +75,25 @@ export default class StartTravelContent extends React.Component {
                 time = this.props.elementActive.tour.time
                  departurePoint = this.props.elementActive.local.departurePoint.point
             }else{
-            for (let i = 1; i < this.props.elementActive.element.seats + 1; i++) {
-                seats.push(i)
+                for (let i = 1; i < this.props.elementActive.element.seats + 1; i++) {
+                    seats.push(i)
+                }
+                time = this.props.elementActive.element.time
+                departurePoint = this.props.elementActive.element.tourlocalization.departurePoint.point
+            }*/
+            isPricePerPerson = this.props.isTourDescription ? this.props.elementActive.tour.isPricePerPerson : this.props.elementActive.element.isPricePerPerson;
+            seatsNumberMultiplicator = isPricePerPerson && that.state.numberOfPeople && that.state.numberOfPeople>1 ? that.state.numberOfPeople : 1;
+            calculatedPrice = Math.ceil(that.props.elementPrice * activeCurrency.costToDefault * seatsNumberMultiplicator);
+
+            if(that.state.placeDeparture === ""){
+                that.setState({ placeDeparture: departurePoint })
             }
-            time = this.props.elementActive.element.time
-             departurePoint = this.props.elementActive.element.tourlocalization.departurePoint.point
-        }
-        if(that.state.placeDeparture === ""){
-            that.setState({ placeDeparture: departurePoint })
-        }
         }
         
         let key = JSON.stringify(this.props.that.state);
+        
+        
+        
         return (
             <>
 
@@ -252,13 +273,13 @@ export default class StartTravelContent extends React.Component {
                                         <h3 className="drivers_routePrice" style={{ textDecoration: 'line-through', color: 'rgb(144,144,144)', marginRight: '5px', fontSize: '16px', lineHeight: '28px' }}>
                                             {
                                                 isCurrencyLoaded ? ((activeCurrency.isLeft ? activeCurrency.symbol + ' ' : '')
-                                                    + Math.ceil(that.props.elementPrice * activeCurrency.costToDefault)
+                                                    + calculatedPrice
                                                     + (!activeCurrency.isLeft ? ' ' + activeCurrency.symbol : '')) : ''
                                             }
                                         </h3> : <React.Fragment />
                                 }
                                 <h3 className="drivers_routePrice">{isCurrencyLoaded ? ((activeCurrency.isLeft ? activeCurrency.symbol + ' ' : '')
-                                    + Math.ceil(Math.ceil(that.props.elementPrice * activeCurrency.costToDefault) * (100 - that.state.discount) / 100)
+                                    + Math.ceil(calculatedPrice * (100 - that.state.discount) / 100)
                                     + (!activeCurrency.isLeft ? ' ' + activeCurrency.symbol : '')) : ''}</h3>
 
                                 {

@@ -39,7 +39,7 @@ class StartTravelFormClass extends React.Component {
             discount: 0,
             checkBoxes: false,
             emailValid: false,
-
+            freeSeats: 0,
             //Form value end
             errorMes: false,
             //flagAllOk: false,
@@ -91,6 +91,7 @@ class StartTravelFormClass extends React.Component {
                 discount: 0,
                 checkBoxes: false,
                 emailValid: false,
+                freeSeats: 0,
                 //Form value end
                 errorMes: false,
                 //flagAllOk: false,
@@ -392,7 +393,7 @@ class StartTravelFormClass extends React.Component {
                 discount: 0,
                 checkBoxes: false,
                 emailValid: false,
-
+                freeSeats: this.props.freeSeats,
                 //Form value end
                 errorMes: false,
                 //flagAllOk: false,

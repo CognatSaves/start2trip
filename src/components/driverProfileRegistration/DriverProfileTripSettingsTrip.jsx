@@ -139,7 +139,6 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                 console.log('body before json');
                 console.log(value);
                 let body = JSON.stringify(value);
-
                 fetch(requests.travelsettingsUpdateRequest, {
                     method: 'PUT', body: body,
                     headers: { 'content-type': 'application/json', Authorization: `Bearer ${jwt}` }
@@ -354,7 +353,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                                             <LocationSearchInput address={element.point} changeCity={this.changeCity} classDiv="col-md-8 col-12 p-0" classInput="searchInputDriverInformation" index={index} classDropdown="searchDropdownDriverInformation" />
                                             <input className="col-md-2 col-12 ml-1 d-md-block d-none itemRadius"/*класс itemRadius добавил ради класса errorColor - отображения некорректоности заполнения */
                                                 type="number" id="itemRadiu" maxLength="3" max="150" min="0" value={element.radius}
-                                                onChange={(e) =>{if(e.target.value>150){this.inputChange(150, 'radius', index) }else{this.inputChange(e.target.value, 'radius', index)}}}
+                                                onChange={(e) =>{if(e.target.value>300){this.inputChange(300, 'radius', index) }else{this.inputChange(e.target.value, 'radius', index)}}}
                                             />
                                             <TextField
                                                 floatingLabelText={textPage.textField.floatingLabelText}
@@ -365,7 +364,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                                                 floatingLabelFocusStyle={{ color: "#304269" }}
                                                 underlineFocusStyle={{ borderColor: "#304269" }}
                                                 value={element.radius}
-                                                onChange={(e) => {if(e.target.value>150){this.inputChange(150, 'radius', index) }else{this.inputChange(e.target.value, 'radius', index)}}}
+                                                onChange={(e) => {if(e.target.value>300){this.inputChange(300, 'radius', index) }else{this.inputChange(e.target.value, 'radius', index)}}}
                                             />
                                         </div>
                                         <span style={{ display: index ? "block" : "none" }} className="tripSettingsContentDeletButton " title={textPage.textField.title} onClick={() => { this.deleteCityRadius(index) }} />
@@ -373,9 +372,14 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                                     </div>
                                 </>
                             )}
-                            <div className="tripSettingsContentAddCity d-flex align-items-md-center align-items-start justify-content-center pb-2">
-                                <p className="col-md-8 col-sm-12 col-12 " onClick={this.addCityRadius}>{textPage.textField.addCityBt}</p>
-                            </div>
+                            {
+                                /*
+                                <div className="tripSettingsContentAddCity d-flex align-items-md-center align-items-start justify-content-center pb-2">
+                                    <p className="col-md-8 col-sm-12 col-12 " onClick={this.addCityRadius}>{textPage.textField.addCityBt}</p>
+                                </div>
+                                */
+                            }
+                            
                             <div className="d-flex flex-md-row flex-column align-items-md-center align-items-start">
                                 <label htmlFor="maxDailyMileage" className="col-xl-2 col-lg-2 col-md-2 col-sm-11 col-12 p-0 dailymile">{textPage.maxDailyMileage.floatingLabelText}</label>
                                 <div className="d-md-block d-none">
