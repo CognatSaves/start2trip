@@ -55,10 +55,12 @@ class ToursListClass extends React.Component {
         return idIndex
     }
     sortArrayByDate = (element, departureDate) => {
-        function findFreeSeatsNumber(element, selectedDate){
+        function findFreeSeatsNumber(element, selectedDate,selectedDateFull){
             let tourSeatsData = element.tourSeatsData;
             for(let i=0; i<tourSeatsData.length; i++){
+                
                 if(tourSeatsData[i].startDefault === selectedDate){
+                     
                     return {freeSeats:tourSeatsData[i].seatsLeft, seatsReserved: tourSeatsData[i].seatsReserved};
                 }
             }
@@ -68,13 +70,30 @@ class ToursListClass extends React.Component {
             let isGoodVariant = false;
             let step = 0;let isGood = true;let findFreeSeatsNumberResult;
             let selectedDay;let selectedYear; let selectedMonth;let selectedDate;
+            let dateNow = new Date();
+            let timeElems = element.time.split(':');
+            dateNow.setHours(dateNow.getHours()+2);
+            //dateNow.setHours(timeElems[0]);
+            //dateNow.setMinutes(timeElems[1]);
             while(!isGoodVariant){
                 
                 let move = 86400000 * step;
                 selectedDay = departureDate === null ? new Date(Date.now()+move) : new Date(new Date(departureDate).getTime()+move);
+                selectedDay.setHours(timeElems[0]);
+                selectedDay.setMinutes(timeElems[1]);
                 selectedYear = selectedDay.getFullYear();selectedMonth = selectedDay.getMonth(); selectedDate =  selectedDay.getDate();
+                
+                debugger;
+                //console.log(dateNow<selectedDay);
+                //let temp = selectedDay.setHours(selectedDay.getHours()+2);
+                //let tempDate = new Date(temp);
+                console.log(dateNow>selectedDay);
+                if(step===0 && dateNow>selectedDay ){
+                    step++;
+                    continue;
+                }
                 let tempDepartureDate = selectedYear + '-' + (selectedMonth + 1 < 10 ? "0" + (selectedMonth + 1) :selectedMonth + 1) + '-' + (selectedDate<10 ? '0'+selectedDate : selectedDate); 
-                findFreeSeatsNumberResult = findFreeSeatsNumber(element, tempDepartureDate);
+                findFreeSeatsNumberResult = findFreeSeatsNumber(element, tempDepartureDate,selectedDay);
                 let canBook = element.isPricePerPerson || findFreeSeatsNumberResult.seatsReserved===0;
                 if(findFreeSeatsNumberResult.freeSeats>= (that.props.storeState.persons[0] + that.props.storeState.persons[1]) && canBook){
                     isGoodVariant=true;
@@ -105,6 +124,7 @@ class ToursListClass extends React.Component {
                 departureDate:departureDateString
             }
         }
+
         let calendary = element.calendary;
         let isGood = false;let freeSeats;
         let daily = element.daily;let date;let savedDepartureDate;

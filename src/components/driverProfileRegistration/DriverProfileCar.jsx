@@ -66,7 +66,7 @@ class DriverProfileCarClass extends React.Component {
             },
             requestAddress: requests.profileRequest
         };
-        getUserData(requestValues, thenFuncGlobal, catchFuncGlobal, that);
+        getUserData(requestValues, (obj)=>{ thenFuncGlobal(obj, that.setState({collapse: false})); }, catchFuncGlobal, that);
     }
     startRefresher = () => {
         startRefresherGlobal(this,true)
@@ -232,7 +232,6 @@ class DriverProfileCarClass extends React.Component {
                 }
                 request.open('PUT', requests.userCarUpdateRequest + '/' + this.state.car.id);
                 request.setRequestHeader('Authorization', `Bearer ${jwt}`);
-
             }
             request.onreadystatechange = function () {
 

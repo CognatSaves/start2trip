@@ -124,8 +124,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
             })
         }
     }
-    isTourOpenedChange = (value) => {
-        
+    isTourOpenedChange = (value) => {    
         this.setState({
             isTourOpened: value
         })

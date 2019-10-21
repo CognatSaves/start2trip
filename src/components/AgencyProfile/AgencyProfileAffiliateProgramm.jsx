@@ -34,7 +34,7 @@ class AgencyProfileAffiliateProgrammClass extends React.Component {
     }
 
     componentDidMount(){
-        thenFuncGlobal(this)
+        //thenFuncGlobal(this)
     }
     render() {
         function paymentsCalculation(partners) {

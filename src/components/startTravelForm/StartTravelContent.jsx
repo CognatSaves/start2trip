@@ -53,6 +53,7 @@ export default class StartTravelContent extends React.Component {
         let departurePoint = "";
         let isPricePerPerson;
         let seatsNumberMultiplicator;
+        debugger;
         let calculatedPrice
         if (this.props.elementActive && this.props.elementActive !== "backdropClick") {
             
@@ -89,7 +90,9 @@ export default class StartTravelContent extends React.Component {
                 that.setState({ placeDeparture: departurePoint })
             }
         }
-        
+        else{
+            calculatedPrice = Math.ceil(that.props.elementPrice * activeCurrency.costToDefault * 1);
+        }
         let key = JSON.stringify(this.props.that.state);
         
         

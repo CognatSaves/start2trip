@@ -7,7 +7,7 @@ import Stars from '../stars/Stars';
 
 class UserProfileTrevelHistoryClass extends React.Component {
     componentDidMount(){
-        thenFuncGlobal(this)
+        //thenFuncGlobal(this)
     }
     render() {
         function createCorrectRoute(route, length, time) {

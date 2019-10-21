@@ -67,7 +67,6 @@ class DriverProfileBasicInformationClass extends React.Component {
                 dataAbout: profile.dataAbout
             }
         }
-
     }
     getProfileData = () => {
         console.log('getProfileData');
@@ -186,7 +185,6 @@ class DriverProfileBasicInformationClass extends React.Component {
         event.preventDefault();
         this.applyChanges();
     }
-
     handleChange = (event, index, value) => {
         this.chipData = this.state.chipData;
         this.chipData.push(value);
@@ -196,7 +194,6 @@ class DriverProfileBasicInformationClass extends React.Component {
         this.language.splice(languageToDelete, 1);
         this.setState({ language: this.language });
     };
-
     handleRequestDelete = (element) => {
         this.chipData = this.state.chipData;
         const chipToDelete = this.chipData.map((chip) => chip).indexOf(element);
@@ -206,16 +203,14 @@ class DriverProfileBasicInformationClass extends React.Component {
         this.language = this.state.language;
         this.language.push(element);
     };
-
     changeCity = (index, value) => {
         this.setState({
             profileData: { ...this.state.profileData, city: value }
         })
     }
     componentDidMount(){
-        thenFuncGlobal(this)
+        //thenFuncGlobal(this)
     }
-
     render() {
         let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileBasicInformation;
         return (

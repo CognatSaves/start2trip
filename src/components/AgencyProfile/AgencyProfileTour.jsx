@@ -129,7 +129,7 @@ class AgencyProfileTourClass extends React.Component {
                 },
                 requestAddress: requests.profileRequest
             };
-            getUserData(requestValues, thenFuncGlobal, catchFuncGlobal,that);
+            getUserData(requestValues, (obj)=>{thenFuncGlobal(obj, that.setState({collapse: false}))}, catchFuncGlobal,that);
         }
         else {
             this.props.dispatch(setUrlAddress(window.location.pathname));
@@ -780,6 +780,10 @@ class AgencyProfileTourClass extends React.Component {
         let tableElementsWidth = ['40%', '30%', '30%'];
         let availableCurrencies = this.props.globalReduser.currencyFilter(this.props.storeState);
         let selectedCurrNumber = this.props.globalReduser.findSelectedCurrency(this, availableCurrencies);
+        console.log("*****************");
+        console.log('tourId=', this.state.tourId);
+        let buttonText = this.state.tourId && this.state.tourId.length > 0 ? textPage.additionalInformation.editTour : textPage.additionalInformation.addTour;
+        console.log('buttonText=',buttonText);
         return (
 
             <>
@@ -842,9 +846,19 @@ class AgencyProfileTourClass extends React.Component {
                     <div className="p-0 d-flex  justify-content-xl-start justify-content-lg-start justify-content-md-start justify-content-sm-center justify-content-center flex-wrap col-12">
                         <div style={{ display: this.state.collapse ? "none" : "block" }} onClick={() => this.toggle()} className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-11 p-2" >
                             <div className="filledTourImgAddBg">
-                                <div className="d-flex flex-column justify-content-center align-items-center">
+                                <div className="d-flex flex-column justify-content-center align-items-center" key = {this.state.tourId}>
                                     <span />
-                                    <p>{this.state.tourId && this.state.tourId.length > 0 ? textPage.additionalInformation.editTour : textPage.additionalInformation.addTour}</p>
+                                    {
+                                        this.state.tourId && this.state.tourId.length > 0 ? 
+                                        <p>{textPage.additionalInformation.editTour}</p> : 
+                                        <p>{textPage.additionalInformation.addTour}</p>
+                                    }
+                                    {
+                                        /*
+                                        <p>{buttonText}</p>
+                                        */
+                                    }
+
                                 </div>
                             </div>
                         </div>
