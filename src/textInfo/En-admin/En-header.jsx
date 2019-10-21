@@ -7,7 +7,7 @@ const header = {
         selectCountryText: 'SELECT A COUNTRY FOR SEARCHING DRIVERS AND GUIDES'
     },
     menuElements: [
-        "Trip planner", "Sights", "Tours", 'Guides'
+        "Ready Routes", "Sights", "Tours", 'Guides'
     ],
     burgerMenu: {
         profile: 'Account',

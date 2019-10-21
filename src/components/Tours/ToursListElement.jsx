@@ -91,11 +91,14 @@ class ToursListElementClass extends React.Component {
                         {!this.props.noDateSeatsData &&
                             <>
                                 <div className="toursDate">{this.props.departureDate + " | " + element.time}</div>
-                                <div className="toursList_ToursElHeader">{(element.isPricePerPerson ? textInfo.seats[0] : textInfo.seats[1]) + " " + seats + (element.isPricePerPerson ? textInfo.seats[2] : "")}</div>
+                                {/* <div className="toursList_ToursElHeader">{(element.isPricePerPerson ? textInfo.seats[0] : textInfo.seats[1]) + " " + seats + (element.isPricePerPerson ? textInfo.seats[2] : "")}</div> */}
                             </>
                         }
 
-                        <div className="toursDuration">{element.daysNumber + " " + textInfo.daysNumber}</div>
+                        <div className="toursDuration d-flex justify-content-between">
+                            <text>{!this.props.noDateSeatsData?(element.isPricePerPerson ? textInfo.seats[0] : textInfo.seats[1]) + " " + seats + (element.isPricePerPerson ? textInfo.seats[2] : ""):price }</text>
+                            <span>{element.daysNumber + " " + textInfo.daysNumber}</span>
+                        </div>
                         <Link to={address} className="driversBlock_carBlackout">
                             <div className="driversBlock_carBlackout_detailed">{textInfo.detailed}</div>
                         </Link>
@@ -142,7 +145,7 @@ class ToursListElementClass extends React.Component {
                         :
                         <Link to={addressFunc(element.tourlocalization.slug, this)} className="w-100">
                             <button className="driversBlock_driverInfoBlock_element driversBlock_buttonStyle"
-                            >{"Стоимость:" + " " + price +". Подробнее?"}</button>
+                            >{"Подробнее"}</button>
                         </Link>
                     }
                     

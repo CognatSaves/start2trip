@@ -7,7 +7,7 @@ let footer = {
         'Help',
         'Contact us'
     ],
-    footerMobileTextRoutes: 'Trip planner',
+    footerMobileTextRoutes: 'Routes',
     footerMobileTextTours: 'Tours',
     footerMobileTextPlaces: 'Sights',
     footerMobileTextGuides: 'Guides',

@@ -13,6 +13,24 @@ import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
 class RouteListElementClass extends React.Component {
+
+    lookAvailable = (additionalParams) => {
+        console.log('look available');
+
+        let routeDate = this.props.globalhistory.getRoute(additionalParams.point, this.props.storeState.languages[this.props.storeState.activeLanguageNumber].isoAutocomplete);//this.getRoute(this.props.storeState.cities);
+        let newStringCities = routeDate.route;
+        let country = routeDate.country;
+        let langISO = routeDate.langISO;
+        if (additionalParams && additionalParams.noDate) {
+            this.props.globalhistory.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + `/drivers/${newStringCities}/`);
+        }
+        else {
+            let dateString = this.props.globalhistory.createDateTimeString(new Date(), true);
+            this.props.globalhistory.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + `/drivers/${newStringCities}?date=` + dateString);
+        }
+
+
+    }
     render() {
         let textInfo = this.props.storeState.languageTextMain.home.homeBottom.routeListElement;
         function createRouteString(points) {
@@ -20,6 +38,7 @@ class RouteListElementClass extends React.Component {
             let start = textInfo.from;
             res = start;
             function cutLastElement(point) {
+
                 let pieces = point.split(',');
                 if (pieces.length === 1) {
                     return pieces;
@@ -44,13 +63,18 @@ class RouteListElementClass extends React.Component {
         let index = this.props.index;
         let linkString = "/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) +
             `/routes/${element.placelocalization.slug}/`;
+
         return (
-            <div className={this.props.routeListElementClass ? this.props.routeListElementClass : "col-lg-3 col-md-4 col-sm-6 col-10 p-2 mb-3 "}>
-                <div className={"drivers_block_element d-flex p-0 flex-column"} id={index}>
+            <div className={this.props.routeListElementClass ? this.props.routeListElementClass : "col-lg-3 col-md-4 col-sm-6 col-12 p-2 mb-3 "}>
+                <div className="drivers_block_element d-flex p-0 flex-column" id={index}>
                     <div className="driversBlock_carImage" style={{ background: "url(" + (element.image ? (requests.serverAddressImg + element.image) : '') + ") no-repeat", backgroundSize: "cover", width: '100%' }}>
                         <Link to={linkString} className="driversBlock_carBlackout">
                             <div className="driversBlock_carBlackout_detailed">{textInfo.detailed}</div>
                         </Link>
+                        <div className="toursDuration d-flex justify-content-between">
+                            <text>{"от $46"}</text>
+                            <span>{1 + " " + textInfo.daysNumber}</span>
+                        </div>
                     </div>
                     <div className="placesList_info routes_info d-flex flex-column">
                         <Link to={linkString} className="placesList_placeName d-flex">
@@ -76,7 +100,9 @@ class RouteListElementClass extends React.Component {
                             <div className="placesList_info_position_textStyle">{createRouteString(element.placelocalization.points)}</div>
                         </div>
                     </div>
+                    <span className="placesList_info_button" onClick={() => this.lookAvailable({ noDate: false, point: element.placelocalization.points })}>Смотреть предложения</span>
                 </div>
+
             </div>
         )
     }
@@ -84,6 +110,7 @@ class RouteListElementClass extends React.Component {
 const RouteListElement = connect(
     (state) => ({
         storeState: state.AppReduser,
+        globalhistory: state.GlobalReduser,
     }),
 )(RouteListElementClass);
 

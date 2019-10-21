@@ -28,14 +28,25 @@
 .toursDuration {
     position: absolute;
     z-index: 17;
-    right: 2px;
+    right: 0;
     bottom: 0px;
-    background: #304269;
+    width: 100%;
+    background: rgba(48, 66, 105, 0.8);
     color: #fff;
     font-weight: 400;
-    padding: 2px 5px;
-    font-size: 13px;
-    border-radius: 5px 5px 0px 0px;
+    padding: 2px 10px;
+    font-size: 14px;
+}
+
+.toursDuration text{
+    font-weight: 500;
+}
+
+.toursDuration span{
+    padding-left: 20px;
+    background: url(../media/clock-white.svg) no-repeat;
+    background-size: 15px 15px;
+    background-position: left center;
 }
 
 .toursNumberPeoples div {

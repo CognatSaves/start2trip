@@ -46,7 +46,7 @@ class HomeRoutesListClass extends React.Component {
 
             <>
 
-                <div className="homeRoutesList d-flex flex-wrap justify-content-center">
+                <div className="homeRoutesList d-flex flex-wrap justify-content-md-start justify-content-center">
                     {selectedRoutes.map((element, index) =>
                         <>
                             <RouteListElement element={element} index={index} /*findTagName={(tag)=>findTagName(tag,this)}*/ />

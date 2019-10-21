@@ -26,6 +26,7 @@ const tourDescription = {
     placeDescription: {
         variantsArray: ["Description", "Photos",["Your guide","Agency"], "How to get there", "You may be interested in", "Reviews"]
     },
+    btMore:["Hide","More"],
     share: "Share",
     language:"Languages: ",
     cars:"Cars: ",

@@ -6,7 +6,7 @@ import { Helmet } from 'react-helmet';
 import axios from 'axios';
 import requests from '../../config';
 
-import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
+import { startRefresherGlobal, thenFuncGlobal, catchFuncGlobal, } from '../../redusers/GlobalFunction'
 import Header from '../header/Header';
 import PlaceInfo from '../PlaceDescription/PlaceInfo.jsx';
 import PlacePhotoShow from '../PlaceDescription/PlacePhotoShow.jsx';
@@ -330,6 +330,7 @@ class RouteDescriptionClass extends React.Component {
                                                 <div className="placeDescription_fragmentName" style={{ marginBottom: "15px" }} >{textInfo.placeDescription.variantsArray[1]}</div>
                                                 <PlacePhotos photoArray={this.state.newRoute.route.images}
                                                     showMask={(clickedImageIndex) => { this.setState({ isMaskVisible: true, clickedImageIndex: clickedImageIndex }) }} />
+                                                
                                             </div>
                                             <RouteTravelBlock points={this.state.newRoute.local.points} id={topBlockId + "3"} textInfo={textInfo} />
                                             <div className="placeDescription_block flex-column" id={simularPlaceBlockId} style={{ display: this.state.newRoute.additionalRoutes.length > 0 ? 'flex' : 'none' }}>

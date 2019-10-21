@@ -153,10 +153,10 @@ class HomeClass extends React.Component {
           {
             (routeUrl[2]!=="drivers")&&
             <div className="homeBottomNew">
-            <div style={{ minHeight: "70vh" }} className="d-flex flex-column justify-content-center align-items-center">
-              <div className="homeBottomNewText d-flex flex-column align-items-center col-md-8 col-12 pb-4 ">
+            <div style={{ minHeight: "80vh" }} className="d-flex flex-column justify-content-center align-items-center">
+              <div className="homeBottomNewText d-flex flex-column align-items-center col-md-10 col-12 pb-4 ">
                 <h3>{textInfo.homeBottomNewText.h3[0]}<br/>{textInfo.homeBottomNewText.h3[1]}</h3>
-                <p>{textInfo.homeBottomNewText.p[0]}<br/>{textInfo.homeBottomNewText.p[1]}<br/>{textInfo.homeBottomNewText.p[2]}<strong>{textInfo.homeBottomNewText.p[3]}</strong>,<strong>{textInfo.homeBottomNewText.p[4]}</strong>,<strong>{textInfo.homeBottomNewText.p[5]}</strong>{textInfo.homeBottomNewText.p[6]}<strong>{textInfo.homeBottomNewText.p[7]}</strong></p>
+                <p>{textInfo.homeBottomNewText.p[0]}<br/>{textInfo.homeBottomNewText.p[1]}<br/>{textInfo.homeBottomNewText.p[2]}<br/>{textInfo.homeBottomNewText.p[3]}<strong>{textInfo.homeBottomNewText.p[4]}</strong>,<strong>{textInfo.homeBottomNewText.p[5]}</strong>{textInfo.homeBottomNewText.p[6]}<strong>{textInfo.homeBottomNewText.p[7]}</strong></p>
               </div>
               <div className="d-flex flex-md-row flex-column justify-content-center align-items-md-stretch align-items-center col-md-10 col-12">
                 {renderArray.map((element, index) => 
@@ -166,7 +166,7 @@ class HomeClass extends React.Component {
                       <h5 className="align-self-start">{element.title}</h5>
                       <p>{element.text}</p>
                     </div>
-                    <span><Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + element.link}>{textInfo.look}</Link></span>
+                    <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + element.link}><span>{textInfo.look}</span></Link>
                   </div>
                 )}
               </div>

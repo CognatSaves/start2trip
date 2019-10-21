@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { changePlacesFixedClass, setPlacesPanelSelectedElement } from '../../redusers/ActionPlaces';
 import { isMobileOnly } from 'react-device-detect';
 import { Helmet } from 'react-helmet';
-import { Link } from 'react-router-dom';
+
 import axios from 'axios';
 import requests from '../../config';
 import './TourDescription.css'
@@ -22,7 +22,8 @@ import StartTravelForm from '../startTravelForm/StartTravelForm'
 import StartTravelSuccess from '../startTravelForm/StartTravelSuccess'
 import TourHeaderEditorCustom from '../usefulСomponents/TourHeaderEditorCustom'
 
-import Stars from '../stars/Stars'
+import TourGuideInfo from './TourGuideInfo'
+
 import {
     FacebookShareButton,
     TwitterShareButton,
@@ -483,9 +484,9 @@ class ToureDescriptionClass extends React.Component {
                                                 <PlaceProgramm id={topBlockId + "1"} tagsArray={[]} place={{ ...this.state.newTour.local/*, tags: this.state.newTour.tour.tags, rating: this.state.newTour.tour.rating, comments: this.state.newTour.tour.commentNumber*/ }} />
                                             </div>
                                             {
-                                                this.state.newTour.local.info.length > 1455 &&
+                                               (isMobileOnly?(this.state.newTour.local.info.length > 700) :(this.state.newTour.local.info.length > 1455)) &&
                                                 <div className="placeDescription_block_btMore d-flex justify-content-end">
-                                                    <span onClick={() => { this.setState({ btMore: !this.state.btMore }) }}>{this.state.btMore ? "Скрыть" : "Подробнее"}</span>
+                                                    <span onClick={() => { this.setState({ btMore: !this.state.btMore }) }}>{this.state.btMore ? textInfo.btMore[0]: textInfo.btMore[1]}</span>
                                                 </div>
                                             }
 
@@ -571,33 +572,9 @@ class ToureDescriptionClass extends React.Component {
                                             </div>
                                             <div className="placeDescription_block d-flex flex-column" id={topBlockId + "3"}>
                                                 <div className="placeDescription_fragmentName" style={{ marginBottom: "15px" }} >{guideOrAgency[this.state.author.guide ? 0 : 1]}</div>
-                                                {/*  */}
-                                                <div className="placeDescription_author d-flex flex-md-row flex-column align-items-center justify-content-between col-12 p-0 mb-4">
-                                                    <div className="d-flex col-md-6 col-12 mb-md-0 mb-3">
-                                                        <div>
-                                                            <img src={requests.serverAddressImg + this.state.author.avatar.url} alt={this.state.author.firstName + " avatar"} />
-                                                        </div>
-                                                        <div className="d-flex flex-column justify-content-center pl-4">
-                                                            <h5><Link to={"/" + cookies.get('country', { path: "/" }) + "-" + cookies.get('userLangISO', { path: "/" }) + "/guides/" + this.state.author.userSlug + "/"}>{this.state.author.firstName + " " + this.state.author.lastName}</Link></h5>
-                                                            <Stars value={this.state.author.rating} commentNumber={this.state.author.comments ? this.state.author.comments.length + " отзывов" : 0} valueDisplay={true} commentNumberDisplay={true} />
-                                                            <div className="d-flex align-items-center">
-                                                                <span>{textInfo.language}</span>
-                                                                {language.map((el, index) => (<i className="placesList_info_icons" style={{ background: "url(" + requests.serverAddressImg + el.icon.url + ")no-repeat" }} />))}
-                                                            </div>
-                                                            {cars.length > 0 &&
-                                                                <div className="d-flex flex-wrap align-items-center">
-                                                                    <span>{textInfo.cars}&nbsp;</span>
-                                                                    {cars.map((el, index) => (<span style={{ color: "#686868", textTransform: "capitalize" }}>{el.carBrand + (cars.length - 1 === index ? " " : ",")}&nbsp;</span>))}
-                                                                </div>
-                                                            }
-
-                                                        </div>
-                                                    </div>
-                                                    <div className="col-md-6 col-12">
-                                                        <p>{this.state.author.dataAbout}</p>
-                                                    </div>
-                                                </div>
-                                                {/*  */}
+                                                
+                                                <TourGuideInfo that={this} textInfo={textInfo}  cars={cars} language={language}/>
+                                           
                                             </div>
                                             <RouteTravelBlock points={points} id={topBlockId + "4"} isTours={true} textInfo={textInfo}
                                                 daily={this.state.newTour.tour.daily} departureDate={this.state.departureDate}
