@@ -539,7 +539,6 @@ export default class AgencyTourForm extends React.Component {
 
     }
 
-
     render() {
 
         let { textPage, that } = this.props
@@ -567,35 +566,39 @@ export default class AgencyTourForm extends React.Component {
                         </div>
                         <div className="d-flex flex-md-row flex-column align-items-md-center align-items-start mb-0">
                             <label htmlFor="nameNewTour" className="d-md-block d-none col-2">{textPage.nameNewTour.floatingLabelText}:</label>
-                            <TextField
-                                floatingLabelText={textPage.nameNewTour.floatingLabelText}
-                                className={"d-md-none d-block inputClass " + ('inputTourName' + index)}
-                                fullWidth="90%"
-                                floatingLabelFocusStyle={{ color: "#304269" }}
-                                underlineFocusStyle={{ borderColor: "#304269" }}
-                                value={element.name}
-                                onChange={(e) => {
-                                    let obj = document.querySelectorAll('.inputTourName' + index);
-                                    if (obj[0]) {
-                                        obj[0].classList.remove("errorColor");
-                                    }
-                                    if (obj[1]) {
-                                        obj[1].classList.remove("errorColor");
-                                    }
-                                    this.handleChange(e.currentTarget.value, 'name', { number: index })
-                                }}
-                            />
-                            <input className={"d-md-block d-none col-md-4 col-12 " + ('inputTourName' + index)} id="nameNewTour" type="text"
-                                value={element.name} onChange={(e) => {
-                                    let obj = document.querySelectorAll('.inputTourName' + index);
-                                    if (obj[0]) {
-                                        obj[0].classList.remove("errorColor");
-                                    }
-                                    if (obj[1]) {
-                                        obj[1].classList.remove("errorColor");
-                                    }
-                                    this.handleChange(e.currentTarget.value, 'name', { number: index })
-                                }} />
+                            
+                            <div className="col-md-4 col-12 p-0">
+                                <TextField
+                                    floatingLabelText={textPage.nameNewTour.floatingLabelText}
+                                    className={"d-md-none d-block inputClass " + ('inputTourName' + index)}
+                                    fullWidth="90%"
+                                    floatingLabelFocusStyle={{ color: "#304269" }}
+                                    underlineFocusStyle={{ borderColor: "#304269" }}
+                                    value={element.name}
+                                    onChange={(e) => {
+                                        let obj = document.querySelectorAll('.inputTourName' + index);
+                                        if (obj[0]) {
+                                            obj[0].classList.remove("errorColor");
+                                        }
+                                        if (obj[1]) {
+                                            obj[1].classList.remove("errorColor");
+                                        }
+                                        this.handleChange(e.currentTarget.value, 'name', { number: index })
+                                    }}
+                                />                               
+                                <input className={"d-md-block d-none w-100 " + ('inputTourName' + index)} id="nameNewTour" type="text"
+                                    value={element.name} onChange={(e) => {
+                                        let obj = document.querySelectorAll('.inputTourName' + index);
+                                        if (obj[0]) {
+                                            obj[0].classList.remove("errorColor");
+                                        }
+                                        if (obj[1]) {
+                                            obj[1].classList.remove("errorColor");
+                                        }
+                                        this.handleChange(e.currentTarget.value, 'name', { number: index })
+                                    }} />
+                            </div>
+                            
                             <p className=" d-md-block d-none m-0 col-md-6 col-5">{textPage.nameNewTour.description}</p>
                         </div>
                         <div className="d-flex flex-md-row flex-column align-items-md-center align-items-start">

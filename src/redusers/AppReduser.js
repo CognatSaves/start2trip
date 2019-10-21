@@ -464,6 +464,7 @@ export const AppReduser = (state = initialState, action) => {
         }
 
         case START_REFRESHER: {
+            
             let newState = {
                 ...state
             };
@@ -475,6 +476,7 @@ export const AppReduser = (state = initialState, action) => {
         }
 
         case THEN_FUNC: {
+            
             let newState = {
                 ...state
             };
@@ -489,6 +491,7 @@ export const AppReduser = (state = initialState, action) => {
         }
 
         case CATCH_FUNC: {
+            
             let newState = {
                 ...state
             };
@@ -505,9 +508,10 @@ export const AppReduser = (state = initialState, action) => {
                 ...state
             };
 
-            if (newState.numberOfRefresh <= 1) {
+            if (newState.numberOfRefresh <= 0) {
                 newState.isRefreshExist = false;
                 newState.isNeedRefreshIndicator = false;
+                newState.numberOfRefresh=0;
             }
             return newState;
         }

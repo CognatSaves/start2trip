@@ -245,7 +245,7 @@ class AgencyProfileBasicInformationClass extends React.Component {
     }
 
     componentDidMount(){
-        thenFuncGlobal(this)
+        //thenFuncGlobal(this)
     }
 
     render() {

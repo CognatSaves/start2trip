@@ -35,7 +35,7 @@ class DriverProfileAffiliateProgramClass extends React.Component {
         document.execCommand("copy");
     }
     componentDidMount(){
-        thenFuncGlobal(this)
+        //thenFuncGlobal(this)
     }
 
     render() {

@@ -148,7 +148,7 @@ class RouteTravelBlockClass extends React.Component {
                                      minDate={new Date()} 
                                         shouldDisableDate={(date) => {
                                             let flag = true;
-                                            debugger;
+                                            
                                             let tourSeatsData = this.props.elementActive.tour.tourSeatsData;
                                             if (!this.props.daily && this.props.isTours) {
                                                 for (let i = 0; i < this.props.dateWork.length; i++) {
