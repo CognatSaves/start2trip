@@ -420,7 +420,7 @@ class RouteMenuClass extends React.Component {
 
       setLengthTimeFunc(that, routeProps.distance, routeProps.duration, textInfo);
 
-
+      
       let body = JSON.stringify({
         cities: filteredCities,
         country: country,
@@ -438,7 +438,7 @@ class RouteMenuClass extends React.Component {
           return response.json();
         })
         .then(function (data) {
-
+          
           if (data.error) {
             console.log("bad");
             

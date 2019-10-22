@@ -11,18 +11,19 @@ let placeDescription = {
         
      },
      placeTravelBlock: {
-         fragmentName: 'How to get there',
+         fragmentName: 'Your trip',
          startPointPlaceholder: 'Enter Departure Point',
          startDate: "Departure Date",
          lookAvailable: ["",'SEE OFFERS'],
          goToEdit: 'Go to edit',
-         route: 'Your trip',
+         route: '',
          time: 'Trip time',
          length: 'Trip length'
      },
      placeDescription: {
-         variantsArray: ["Description", "Photos", "How to get there", "You may be interested in", "Reviews"]
+         variantsArray: ["Description", "Photos", "Your trip","How to get there", "You may be interested in", "Reviews"]
      },
+    showMore:"View all drivers",
     share:"Share",
 }
 

@@ -9,12 +9,12 @@ const home = {
             right: "MAP"
         },
         homeBottomNewText: {
-            h3: ["Going on a trip, but don’t know where to go?", "Where to find tours and excursions at competitive prices?"],
+            h3: ["Going on a trip, but don’t know where to go?", "Where can I find transfers and excursions at competitive prices?"],
             p: [
                 "Indicate the direction and date in the route planner, and select the driver.",
                 "If you could not decide on a route, do not worry!",
                 "We have selected for you ",
-                "ready routes",
+                "route Ideas",
                 " tours",
                 " guides",
                 " and ",
@@ -24,7 +24,7 @@ const home = {
         look: "More",
         renderArray: {
             first: {
-                title: "Ready routes",
+                title: "Route Ideas",
                 text: "Ready-made routes for independent travel."
             },
             second: {
@@ -51,7 +51,10 @@ const home = {
             detailed: 'More',
             comments: 'reviews',
             from: 'From',
-            excursions: 'Excursions'
+            excursions: 'Excursions',
+            daysNumber: 'day',
+            from:"From ",
+            seeOffers:"See offers",
         }
     },
     homeBodyBottom: {

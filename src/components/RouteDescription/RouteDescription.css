@@ -16,6 +16,23 @@
     width: 100%;
 }
 
+.routesDescriptionShowMore{
+    padding: 0px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 48px;
+    line-height: 48px;
+    background: #304269;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 400;
+    transition: all 0.3s;
+}
+
+.routesDescriptionShowMore:hover{
+    background: #ff6600;
+}
+
 .routeTravelBlock_pointElement_left {
     padding-left: 10px !important;
     padding-right: 5px !important;

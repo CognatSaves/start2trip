@@ -53,7 +53,7 @@ export default class StartTravelContent extends React.Component {
         let departurePoint = "";
         let isPricePerPerson;
         let seatsNumberMultiplicator;
-        debugger;
+        
         let calculatedPrice
         if (this.props.elementActive && this.props.elementActive !== "backdropClick") {
             

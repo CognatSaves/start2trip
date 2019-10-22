@@ -14,12 +14,12 @@ const tourDescription = {
         menuItemDays: "day"
     },
     placeTravelBlock: {
-        fragmentName: 'How to get there',
+        fragmentName: 'Your trip',
         startPointPlaceholder: 'Enter Departure Point',
         startDate: "Departure Date",
         lookAvailable: ["BOOK seat","BOOK tour "],
         goToEdit: 'Go to edit',
-        route: 'Your trip',
+        route: '',
         time: 'Trip time',
         length: 'Trip length'
     },

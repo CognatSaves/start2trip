@@ -83,7 +83,7 @@ class ToursListClass extends React.Component {
                 selectedDay.setMinutes(timeElems[1]);
                 selectedYear = selectedDay.getFullYear();selectedMonth = selectedDay.getMonth(); selectedDate =  selectedDay.getDate();
                 
-                debugger;
+                
                 //console.log(dateNow<selectedDay);
                 //let temp = selectedDay.setHours(selectedDay.getHours()+2);
                 //let tempDate = new Date(temp);

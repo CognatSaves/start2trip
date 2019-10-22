@@ -107,6 +107,7 @@ class HomeBodyBottomClass extends React.Component {
             }
             console.log('good');
             console.log(data);
+            
             that.props.dispatch(setRoutesList(data.routes, data.directions, data.country));
 
             if (selectedDirection.length > 0) {

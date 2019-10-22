@@ -71,7 +71,6 @@ class DriversBlockClass extends React.Component {
     return false
   }
   sortDrivers = (array) => {
-
     let tempArray = [];
     let tempPrice = this.props.storeState.pricePart;
     this.setLanguagesNumbers(this, array)
@@ -87,7 +86,6 @@ class DriversBlockClass extends React.Component {
   }
 
   driversSort = (array, type) => {
-
     let tempArray = this.sortDrivers(array);
     console.log(type, "type")
 
@@ -144,10 +142,13 @@ class DriversBlockClass extends React.Component {
 
 
     console.log('DriversBlock render');
+    let driversArray = []
+    if (this.props.driversState.driversList.length > 0) {
+      driversArray = this.driversSort([...this.props.driversState.driversList], this.props.storeState.sortMenuValue);
+    }
 
-    let driversArray = this.driversSort([...this.props.driversState.driversList], this.props.storeState.sortMenuValue);
     let from = (this.props.driversState.page - this.props.driversState.showPages) * this.props.storeState.pagesMenuValue;
-    let number = (this.props.driversState.page) * this.props.storeState.pagesMenuValue;
+    let number = this.props.howMuchRenderEl ? this.props.howMuchRenderEl :( (this.props.driversState.page) * (this.props.storeState.pagesMenuValue));
     let selectedElements = driversArray.slice(from, number);
     //let srcArray = Array(this.props.storeState.pagesMenuValue * this.props.driversState.showPages).fill(emptyLike);
     //srcArray[0] = selectedFilledLike;
@@ -214,93 +215,94 @@ class DriversBlockClass extends React.Component {
     let isEmpty = (selectedElements.length === 0 && !(this.props.driversState.waitingDriverRequest) && !(this.props.driversState.isFirstSave));
     return (
       <>
-      <div className="drivers_block d-flex flex-wrap">
-        {
-          selectedElements.map((element, index) => {
-            let linkAddress = "/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + `/driverProfile/${element.id}-${element.carId}-${this.props.cities}?date=` + this.props.dateString;
-            return (
-              <div className="col-lg-3 col-md-4 col-sm-6 col-12 p-2 pb-3">
-                <div className="driversBlock_driverCard d-flex flex-column ">
-                  <div className="driversBlock_carImage" style={{ background: "url(" + requests.serverAddressImg + element.carImage + ") no-repeat", backgroundSize: "cover" }}>
-                    <Link to={linkAddress} className="driversBlock_carBlackout">
-                      <div className="driversBlock_carBlackout_detailed">{textInfo.detailed}</div>
-                    </Link>
-                  </div>
 
-                  <div className="driverBlock_driverInfoBlock d-flex flex-column">
-
-                    <Link to={linkAddress} className="driversBlock_driverInfoBlock_element driversBlock_carName">{element.carBrand}</Link>
-                    <div className="driverBlock_carInfoLine d-flex">
-                      <div className="driversBlock_driverCard_carIcon" style={{ background: "url(" + requests.serverAddressImg + this.props.driversState.carTypes[element.carType].carTypeImage + ") no-repeat", backgroundSize: "42px 30px", backgroundPosition: "-5px 0px" }} />
-                      <div className="driversBlock_carInfoLine_value">
-                        {
-                          fingCorrectCartypeName(this.props.driversState.carTypes[element.carType], storeState.languages[storeState.activeLanguageNumber].ISO)
-                          + ", " + element.carCapacity + " " + textInfo.carCapacity
-                        }
-                      </div>
+        <div className="drivers_block d-flex flex-wrap">
+          {
+            selectedElements.map((element, index) => {
+              let linkAddress = "/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + `/driverProfile/${element.id}-${element.carId}-${this.props.cities}?date=` + this.props.dateString;
+              return (
+                <div className="col-lg-3 col-md-4 col-sm-6 col-12 p-2 pb-3">
+                  <div className="driversBlock_driverCard d-flex flex-column ">
+                    <div className="driversBlock_carImage" style={{ background: "url(" + requests.serverAddressImg + element.carImage + ") no-repeat", backgroundSize: "cover" }}>
+                      <Link to={linkAddress} className="driversBlock_carBlackout">
+                        <div className="driversBlock_carBlackout_detailed">{textInfo.detailed}</div>
+                      </Link>
                     </div>
-                    <div className="driversBlock_driverInfoBlock_element d-flex" style={{position: 'relative'}}>
-                      <div className="driversBlock_driverCard_photo" style={{ background: "url(" + requests.serverAddressImg + element.avatar + ") no-repeat" }} />
-                      <div className="d-flex  driversBlock_driverCard_driverInfo">
-                        <Link to={linkAddress} className="driversBlock_driversInfo_name">{element.name}</Link>
 
+                    <div className="driverBlock_driverInfoBlock d-flex flex-column">
+
+                      <Link to={linkAddress} className="driversBlock_driverInfoBlock_element driversBlock_carName">{element.carBrand}</Link>
+                      <div className="driverBlock_carInfoLine d-flex">
+                        <div className="driversBlock_driverCard_carIcon" style={{ background: "url(" + requests.serverAddressImg + this.props.driversState.carTypes[element.carType].carTypeImage + ") no-repeat", backgroundSize: "42px 30px", backgroundPosition: "-5px 0px" }} />
+                        <div className="driversBlock_carInfoLine_value">
+                          {
+                            fingCorrectCartypeName(this.props.driversState.carTypes[element.carType], storeState.languages[storeState.activeLanguageNumber].ISO)
+                            + ", " + element.carCapacity + " " + textInfo.carCapacity
+                          }
+                        </div>
                       </div>
-                      <div className="langi">
+                      <div className="driversBlock_driverInfoBlock_element d-flex" style={{ position: 'relative' }}>
+                        <div className="driversBlock_driverCard_photo" style={{ background: "url(" + requests.serverAddressImg + element.avatar + ") no-repeat" }} />
+                        <div className="d-flex  driversBlock_driverCard_driverInfo">
+                          <Link to={linkAddress} className="driversBlock_driversInfo_name">{element.name}</Link>
 
-                        {
-                          
-                          element.language.map((langElement, index) =>{
-                            
-                            return(
-<div className="driversBlock_languages_flag" style={{ background: "url(" + (this.props.storeState.untranslatedlanguages.length > 0 ? requests.serverAddressImg + this.props.storeState.untranslatedlanguages[langElement].icon.url : '') + ")", backgroundSize: "15px 15px" }} />
+                        </div>
+                        <div className="langi">
+
+                          {
+
+                            element.language.map((langElement, index) => {
+
+                              return (
+                                <div className="driversBlock_languages_flag" style={{ background: "url(" + (this.props.storeState.untranslatedlanguages.length > 0 ? requests.serverAddressImg + this.props.storeState.untranslatedlanguages[langElement].icon.url : '') + ")", backgroundSize: "15px 15px" }} />
+                              )
+                            }
+
                             )
                           }
-                            
-                          )
+                        </div>
+                        {
+                          element.guide &&
+                          <div className="d-flex flex-column driverGuideBlock">
+                            <div className="driverGuideImage" />
+                            <div className="driverGuideText">{textInfo.guide}</div>
+                          </div>
                         }
                       </div>
-                      {
-                        element.guide && 
-                        <div className="d-flex flex-column driverGuideBlock">                     
-                          <div className="driverGuideImage"/>                     
-                          <div className="driverGuideText">{textInfo.guide}</div>
-                        </div>
-                      }                     
+                      <div class="starsd"><Stars key={element.rating} value={element.rating} commentNumber={element.comments + " " + textInfo.comments} valueDisplay={true} commentNumberDisplay={true} /></div>
                     </div>
-                    <div class="starsd"><Stars key={element.rating} value={element.rating} commentNumber={element.comments + " " + textInfo.comments} valueDisplay={true} commentNumberDisplay={true} /></div>
+
+                    <div className="driversBlock_driverInfoBlock_element driversBlock_commentary">{textInfo.commentary}</div>
+                    <button className="driversBlock_driverInfoBlock_element driversBlock_buttonStyle"
+                      onClick={() => { if (this.props.isRouteDescription) { this.props.globalReduser.history.push(linkAddress) } else { this.props.changeTravelVisibility(element.price); this.props.dispatch(setDriverCarDescription(element)) } }}>
+                      {textInfo.book + " " + (activeCurrency.isLeft ? activeCurrency.symbol + ' ' : '')
+                        + Math.ceil(element.price * activeCurrency.costToDefault) +
+                        (!activeCurrency.isLeft ? ' ' + activeCurrency.symbol : '')}</button>
                   </div>
 
-                  <div className="driversBlock_driverInfoBlock_element driversBlock_commentary">{textInfo.commentary}</div>
-                  <button className="driversBlock_driverInfoBlock_element driversBlock_buttonStyle"
-                    onClick={() => { console.log(element); this.props.changeTravelVisibility(element.price);; this.props.dispatch(setDriverCarDescription(element)) }}>
-                    {textInfo.book + " " + (activeCurrency.isLeft ? activeCurrency.symbol + ' ' : '')
-                      + Math.ceil(element.price * activeCurrency.costToDefault) +
-                      (!activeCurrency.isLeft ? ' ' + activeCurrency.symbol : '')}</button>
                 </div>
-
-              </div>
+              )
+            }
             )
           }
-          )
-        }
-        {
-          isLoading || isEmpty ?
-            <>
-              {isLoading ?
-                <div className="placesList_loading">
-                  <span>{pageNotFound.loading}</span>
-                </div> :
-                <div className="placesList_noElementsBlock">
-                  <span>{pageNotFound.text1 + " " + pageNotFound.text2}<br />{pageNotFound.text3}</span>
-                </div>
-              }
-            </>
-            : <React.Fragment />
-        }
-        <Manipulator number={driversArray.length} page={this.props.driversState.page} setPage={this.setPage}
-          elementsNumber={this.props.storeState.pagesMenuValue} showMorePages={this.showMorePages} />
-      </div>
-      <MobileFilter />
+          {
+            isLoading || isEmpty ?
+              <>
+                {isLoading ?
+                  <div className="placesList_loading">
+                    <span>{pageNotFound.loading}</span>
+                  </div> :
+                  <div className="placesList_noElementsBlock">
+                    <span>{pageNotFound.text1 + " " + pageNotFound.text2}<br />{pageNotFound.text3}</span>
+                  </div>
+                }
+              </>
+              : <React.Fragment />
+          }
+          <Manipulator number={driversArray.length} page={this.props.driversState.page} setPage={this.setPage}
+            elementsNumber={this.props.storeState.pagesMenuValue} showMorePages={this.showMorePages} />
+        </div>
+        <MobileFilter />
       </>
     )
   }

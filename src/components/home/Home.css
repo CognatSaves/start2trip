@@ -274,7 +274,7 @@ h2.homeBottomTitle {
     width: 100%;
     height: 150px;
     margin: 0px auto;
-    margin-bottom: 20px;
+    margin: 20px 0;
 }
 
 .homeBottomNewElContent h5 {
@@ -288,7 +288,7 @@ h2.homeBottomTitle {
 .homeBottomNewElContent p {
     margin: 0px;
     padding-bottom: 5px;
-    font-size: 14px;
+    font-size: 15px;
     color: #333;
     text-align: left;
     width: 100%;

@@ -14,12 +14,12 @@ const tourDescription = {
         menuItemDays:"дн."
     },
     placeTravelBlock:{
-        fragmentName: 'Как добраться',
+        fragmentName: 'Ваш маршрут',
         startPointPlaceholder: 'Введите место отправления',
         startDate:'Дата отправления',
         lookAvailable: ["Бронировать место ","Бронировать тур "],
         goToEdit: 'Перейти к редактированию',
-        route: 'Ваш маршрут',
+        route: '',
         time: 'Время в пути',
         length: 'Длина пути'
     },

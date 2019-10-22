@@ -69,11 +69,13 @@ const openFilterShow = function (openFilter){
         openFilter:openFilter
     }
 }
-const setLengthTime = function (travelTime,travelLength){
+const setLengthTime = function (travelTime,travelLength,defulteTime,defulteLength){
     return{
         type: SET_LENGTH_TIME,
         travelTime: travelTime,
-        travelLength: travelLength 
+        travelLength: travelLength,
+        defulteTime:defulteTime,
+        defulteLength:defulteLength
     }
 }
 export {

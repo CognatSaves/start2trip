@@ -10,7 +10,9 @@ const initialState = {
     carTypes: [],
     driverCarDescription:{},
     waitingDriverRequest: false,//эта и след. переменные - флаги для картинки на /drivers
-    isFirstSave: true
+    isFirstSave: true,
+    defulteTime:null,
+    defulteLength:null,
 }
 
 export const DriversReduser = (state=initialState, action)=>{
@@ -27,6 +29,8 @@ export const DriversReduser = (state=initialState, action)=>{
             let newStateLT = {...state};
             newStateLT.travelTime=action.travelTime;
             newStateLT.travelLength=action.travelLength;
+            newStateLT.defulteTime=action.defulteTime;
+            newStateLT.defulteLength=action.defulteLength;
             return newStateLT;
         }
         case SET_DRIVER_CAR_DESCR:{
