@@ -424,11 +424,6 @@ class PlaceDescriptionClass extends React.Component {
                                             <div key={JSON.stringify(this.state.newPlace.local.endPlace)}>
                                                 <PlaceTravelBlock id={topBlockId + "3"} place={{ ...this.state.newPlace.local, country: this.state.newPlace.country, capital: this.state.newPlace.capital }} />
                                             </div>
-                                            {
-                                                /*
-                                                    <PlaceMapBlock />
-                                                */
-                                            }
 
                                             <div className="placeDescription_block flex-column" id={simularPlaceBlockId} style={{ display: this.state.newPlace.additionalPlaces.length > 0 ? 'flex' : 'none' }}>
                                                 {

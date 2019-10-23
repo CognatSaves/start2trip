@@ -438,7 +438,7 @@ class RouteMenuClass extends React.Component {
           return response.json();
         })
         .then(function (data) {
-
+          
           if (data.error) {
             console.log("bad");
             

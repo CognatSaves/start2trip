@@ -147,33 +147,116 @@ class RouteTravelBlockClass extends React.Component {
                                     <DatePicker /*disabled={this.props.isTours}*/ hintText={textInfo.startDate} defaultDate={this.props.isTours ? new Date(this.props.departureDate) : new Date()}
                                      minDate={new Date()} 
                                         shouldDisableDate={(date) => {
-                                            let flag = true;
-                                            
-                                            let tourSeatsData = this.props.elementActive.tour.tourSeatsData;
-                                            if (!this.props.daily && this.props.isTours) {
-                                                for (let i = 0; i < this.props.dateWork.length; i++) {
-                                                    //dateWork - calendary of tour
-                                                    let newDate = new Date(this.props.dateWork[i])
+                                            function calendaryCheck(dateWork, selectedDate){
+                                                //this function makes calendary check
+                                                //we must find element here, if we want show date
+                                                //return true, if not finded, other way - false
+                                                let day = selectedDate.getDate();
+                                                let month = selectedDate.getMonth()+1;
+                                                let year = selectedDate.getFullYear();
+                                                let flag = true;
+                                                for(let i=0; i<dateWork.length; i++){
+                                                    let newDate = new Date(dateWork[i]);
                                                     let newDay = newDate.getDate();
-                                                    let newMonth = newDate.getMonth();
+                                                    let newMonth = newDate.getMonth()+1;
                                                     let newYear = newDate.getFullYear();
-                                                    let day = date.getDate();
-                                                    let month = date.getMonth();
-                                                    let year = date.getFullYear()
                                                     if (newDay === day && newMonth === month && newYear === year) {
                                                         flag = false;
                                                         i=this.props.dateWork.length;
                                                     }
                                                 }
-                                                if(flag){
-                                                    //if flag === false, then go to exit. If not - we must check tourSeatsData elems, that shows us,
-                                                    //is that tour in selected date have more free seats than 0
-                                                    
-                                                }
-                                            } else {
-                                                flag = false;
+                                                return flag;
                                             }
-                                            return flag
+                                            function tourSeatsDataCheck(tourSeatsData, selectedDate, isMulticustomeralTour){
+                                                //this function makes tourSeatsData check
+                                                //we must not find object here or find it and there must be free seats
+                                                //return true, if date is not valid, otherwise - false
+                                                
+                                                let day = selectedDate.getDate();
+                                                let month = selectedDate.getMonth()+1;
+                                                let year = selectedDate.getFullYear();
+                                                let selectedDateString = year + '-'+(month<10 ? '0'+month : month) + '-' + (day<10 ? '0'+day : day);
+                                                //let isMulticustomeralTour = 
+                                                for(let i=0; i<tourSeatsData.length; i++){
+                                                    if(tourSeatsData[i].startDefault === selectedDateString){
+                                                        if(isMulticustomeralTour){
+                                                            //if multicustomeral, we must have at least 1 free seat
+                                                            if(tourSeatsData[i].seatsLeft>0){
+                                                                return false
+                                                            }
+                                                            else{
+                                                                return true;
+                                                            }
+                                                        }
+                                                        else{
+                                                            //if singlecustomeral, there must be another users, that book that tour on that day
+                                                            //server protect us from that(send zeros on needed places), but bonus check is needed
+                                                            if(tourSeatsData[i].seatsLeft>0 && tourSeatsData[i].seatsReserved===0){
+                                                                return false
+                                                            }
+                                                            else{
+                                                                return true;
+                                                            }
+                                                        }
+                                                    }   
+                                                }
+                                                return false;
+                                            }
+                                            if(this.props.isTours){
+                                                debugger;
+                                                if(!this.props.daily){
+                                                    //calendary check
+                                                    let calendaryCheckValue = calendaryCheck(this.props.dateWork,date);
+                                                    if(calendaryCheckValue){
+                                                        //if calendaryCheckValue === true, then this tour can not be driven that day 
+                                                        return calendaryCheckValue;
+                                                    }
+                                                }
+                                                let tourSeatsDataCheckValue = tourSeatsDataCheck(this.props.elementActive.tour.tourSeatsData, date, this.props.elementActive.tour.isPricePerPerson);
+                                                if(tourSeatsDataCheckValue){
+                                                    //if tourSeatsDataCheckValue === true, then this tour can not be driven that day
+                                                    return tourSeatsDataCheckValue;
+                                                }
+                                                //next function returns true, if date is valid, otherwise false; but here we have reversed check, then set "!"
+                                                let busyDaysCheckValue = !(this.props.globalhistory.busyDaysArrayVerification(this.props.busyDays, date, this.props.elementActive.tour.daysNumber));
+                                                return busyDaysCheckValue;
+                                                      
+                                            }
+                                            else{
+                                                //if !isTours, than this is a Route component
+                                                //here you can select any date
+                                                return false;
+                                            }
+                                            /**
+                                                let flag = true;
+                                                debugger;
+                                                let tourSeatsData = this.props.elementActive.tour.tourSeatsData;
+                                                if (!this.props.daily && this.props.isTours) {
+                                                    console.log(this.props.busyDays);
+                                                    for (let i = 0; i < this.props.dateWork.length; i++) {
+                                                        //dateWork - calendary of tour
+                                                        let newDate = new Date(this.props.dateWork[i])
+                                                        let newDay = newDate.getDate();
+                                                        let newMonth = newDate.getMonth();
+                                                        let newYear = newDate.getFullYear();
+                                                        let day = date.getDate();
+                                                        let month = date.getMonth();
+                                                        let year = date.getFullYear()
+                                                        if (newDay === day && newMonth === month && newYear === year) {
+                                                            flag = false;
+                                                            i=this.props.dateWork.length;
+                                                        }
+                                                    }
+                                                    if(flag){
+                                                        //if flag === false, then go to exit. If not - we must check tourSeatsData elems, that shows us,
+                                                        //is that tour in selected date have more free seats than 0
+                                                        
+                                                    }
+                                                } else {
+                                                    flag = false;
+                                                }
+                                                return flag
+                                            */
                                         }}
                                         onChange={(e, date) => { 
                                             let utcDate = this.props.globalhistory.convertDateToUTC(date);
