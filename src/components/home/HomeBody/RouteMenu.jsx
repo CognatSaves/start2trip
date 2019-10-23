@@ -12,7 +12,11 @@ import addIcon from '../../media/addWhite.svg'
 
 import LocationSearchInput from './Search'
 import DatePicker from 'material-ui/DatePicker';
-import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../../redusers/GlobalFunction'
+import {
+  startRefresherGlobal, thenFuncGlobal, 
+  catchFuncGlobal,lengthTimeCalc,
+  setLengthTimeFunc,createRequestElement,
+} from '../../../redusers/GlobalFunction'
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
@@ -326,31 +330,12 @@ class RouteMenuClass extends React.Component {
       );
     }
   }
+  
   requestFunction = (allGoodAfterfunc) => {
 
     this.setState({ isLoaded: true });
     this.props.dispatch(setWaitingDriverRequest(true));
     let that = this;
-
-
-    function createRequestElement(cities, travelMode) {
-
-      let waypoints = [];
-      for (let i = 1; i < cities.length - 1; i++) {
-        waypoints[i - 1] = {
-          location: cities[i].point,
-          stopover: true
-        }
-      }
-      let request =
-      {
-        origin: cities[0].point, //точка старта
-        destination: cities[cities.length - 1].point, //точка финиша
-        waypoints: waypoints,
-        travelMode: travelMode, //режим прокладки маршрута
-      };
-      return request;
-    }
 
     let cities = this.props.storeState.cities;
     let filteredCities = this.props.globalhistory.firstLastCityCompare(cities);//проверка 1-го и последнего городов
@@ -370,49 +355,7 @@ class RouteMenuClass extends React.Component {
         return false;
       }
       let textInfo = that.props.storeState.languageTextMain.home.routeMenu;
-      function lengthTimeCalc(response) {
-
-        let res = {
-          duration: 0,
-          distance: 0
-        };
-        for (let i = 0; i < response.routes[0].legs.length; i++) {
-          res.duration += response.routes[0].legs[i].duration.value;
-          res.distance += response.routes[0].legs[i].distance.value;
-        }
-        res.distance = res.distance / 1000;//конверсия в км
-        res.duration = res.duration / 60;//конверсия в минуты
-        return res;
-      }
-      function setLengthTimeFunc(that, travelLength, travelTime, textInfo) {
-        function getLengthString(travelLength, textInfo) {//дистанция в км
-          let length = travelLength;
-          length = Math.ceil(length);
-          let lengthString = length + " " + textInfo.km;
-          return lengthString;
-        }
-        function getTimeString(travelTime, textInfo) {//время в минутах
-          let hours = travelTime / 60 ^ 0;
-          let minutes = (travelTime - hours * 60) ^ 0;
-          let days = hours / 24 ^ 0;
-          hours = hours - days * 24;
-          let timeString = "";
-          if (days !== 0) {
-            timeString += days + " " + textInfo.days + " " + hours + " " + textInfo.hours;
-          }
-          else {
-            if (hours !== 0) {
-              timeString += hours + " " + textInfo.hours + " ";
-            }
-            timeString += minutes + " " + textInfo.minutes;
-          }
-          return timeString;
-        }
-
-        let lengthString = getLengthString(travelLength, textInfo);
-        let timeString = getTimeString(travelTime, textInfo);
-        that.props.dispatch(setLengthTime(timeString, lengthString));
-      }
+      
       console.log(response);
       console.log(status);
 
@@ -420,7 +363,7 @@ class RouteMenuClass extends React.Component {
 
       setLengthTimeFunc(that, routeProps.distance, routeProps.duration, textInfo);
 
-
+      
       let body = JSON.stringify({
         cities: filteredCities,
         country: country,

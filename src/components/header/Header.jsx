@@ -53,7 +53,7 @@ const ModalUserType = (props) => {
   function sendUserType(that) {
     let jwt = that.props.globalReduser.readCookie('jwt');
     if (jwt && jwt !== "-") {
-      startRefresherGlobal(that,true)
+      startRefresherGlobal(that, true)
       that.setState({
         isWaiting: true,
         isUsertypeLooking: false
@@ -603,7 +603,7 @@ class HeaderClass extends React.Component {
 
       let profile = that.props.globalReduser.profile;
       if (!((profile.isDriver && profile.country) || profile.isCustomer || (profile.isAgency && profile.country))) {
-        startRefresherGlobal(that,true)
+        startRefresherGlobal(that, true)
         axios.get(requests.profileCheck, {
           headers: {
             Authorization: `Bearer ${jwt}`
@@ -703,20 +703,24 @@ class HeaderClass extends React.Component {
     let pageTextInfo = this.props.storeState.languageTextMain.renderModalRegistration;
     let buttonMassElements = [
       {
-        to: "/routes/",
+        to: "/",
         value: textInfo.menuElements[0]
       },
       {
-        to: "/tours/",
-        value: textInfo.menuElements[2]
+        to: "/routes/",
+        value: textInfo.menuElements[1]
       },
       {
-        to: '/guides/',
+        to: "/tours/",
         value: textInfo.menuElements[3]
       },
       {
+        to: '/guides/',
+        value: textInfo.menuElements[4]
+      },
+      {
         to: "/places/",
-        value: textInfo.menuElements[1]
+        value: textInfo.menuElements[2]
       },
     ];
 
@@ -853,17 +857,22 @@ class HeaderClass extends React.Component {
                     let myClass = "";
                     let url = this.props.history.location.pathname.split("/");
                     let result = url[2]
-                    if(result === undefined){
+                    if (result === undefined) {
                       myClass = "buttonMassLink align-self-stretch"
-                    }else{
+                    } else {
                       result = result.split("-")
                       if (("/" + result[0] + "/") === element.to) {
                         myClass = "buttonMassLink align-self-stretch buttonMassLink_active"
                       } else {
-                        myClass = "buttonMassLink align-self-stretch"
+                        if (element.to==="/" && result[0] === "" ) {
+                          myClass = "buttonMassLink align-self-stretch buttonMassLink_active"
+                        } else {
+                          myClass = "buttonMassLink align-self-stretch"
+                        }
+
                       }
                     }
-                   
+
                     return (
                       <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + element.to}
                         className={myClass}>{element.value}</Link>
@@ -880,16 +889,17 @@ class HeaderClass extends React.Component {
                     {/*this.state.activeCurrency[this.state.activeCurrencyNumber]*/ availableCurrencies.length > 0 ?
                       /*далее я оставил просто currencies, т.к. они и availableCurrencies должны быть взаимосвязаны */
                       (currencies[this.props.storeState.activeCurrencyNumber].symbol === currencies[this.props.storeState.activeCurrencyNumber].ISO ?
-                       " " + currencies[this.props.storeState.activeCurrencyNumber].ISO : (currencies[this.props.storeState.activeCurrencyNumber].symbol
-                        + " " + currencies[this.props.storeState.activeCurrencyNumber].ISO)) : ''}
+                        " " + currencies[this.props.storeState.activeCurrencyNumber].ISO : (currencies[this.props.storeState.activeCurrencyNumber].symbol
+                          + " " + currencies[this.props.storeState.activeCurrencyNumber].ISO)) : ''}
                   </DropdownToggle>
                   <DropdownMenu className="dropdownMenu currenty" >
                     {
                       availableCurrencies.map((element, index) =>
-                        <DropdownItem className="dropdownMenu" onClick={() => { 
+                        <DropdownItem className="dropdownMenu" onClick={() => {
                           this.props.globalReduser.changeActiveCurrency(this, availableCurrencies, index, cookies, (selectedId) =>
-                          this.setLocals('userCurr', selectedId))/* changeActiveCurrency(this,availableCurrencies,index)*/ }}>
-                            {element.symbol === element.ISO ? " " + element.ISO : (element.symbol + " " + element.ISO)}
+                            this.setLocals('userCurr', selectedId))/* changeActiveCurrency(this,availableCurrencies,index)*/
+                        }}>
+                          {element.symbol === element.ISO ? " " + element.ISO : (element.symbol + " " + element.ISO)}
                         </DropdownItem>
                       )
                     }

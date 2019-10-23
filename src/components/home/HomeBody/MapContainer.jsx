@@ -43,6 +43,8 @@ export default class MapContainer extends Component {
         centerAroundCurrentLocation
         google={window.google}
         cities={this.props.cities}
+        textInfo={this.props.textInfo}
+        that={this.props.that}
         setLengthTime={this.props.setLengthTime}
         mapUpdate={this.state.mapUpdate}
         mapStyles={this.props.newMapStyles ? this.props.newMapStyles : mapStyles}

@@ -31,6 +31,23 @@ class RouteListElementClass extends React.Component {
 
 
     }
+    getCurrencies = (currency, criterion) => {
+        let idIndex = null
+        switch (criterion) {
+            case "id":
+                this.props.storeState.currencies.map((item, index) => {
+                    if (item.id.indexOf(currency) === 0) { idIndex = index }
+                })
+                break;
+            case "ISO":
+                this.props.storeState.currencies.map((item, index) => {
+                    if (item.ISO.indexOf(currency) === 0) { idIndex = index }
+                })
+                break;
+        }
+        return idIndex
+    }
+
     render() {
         let textInfo = this.props.storeState.languageTextMain.home.homeBottom.routeListElement;
         function createRouteString(points) {
@@ -64,6 +81,24 @@ class RouteListElementClass extends React.Component {
         let linkString = "/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) +
             `/routes/${element.placelocalization.slug}/`;
 
+
+            
+        let isoCurrencies = cookies.get('userCurr', { path: "/" })
+        let price = null
+        let usd = element.price
+        if (isoCurrencies === "USD") {
+            let idIndex = this.getCurrencies("USD", "ISO")
+            usd = Math.ceil(usd)
+            price = "" + this.props.storeState.currencies[idIndex].symbol + usd
+        } else {
+            let idIndex = this.getCurrencies(isoCurrencies, "ISO")
+            usd = usd * this.props.storeState.currencies[idIndex].costToDefault
+            usd = Math.ceil(usd)
+            price = this.props.storeState.currencies[idIndex].isLeft ? (this.props.storeState.currencies[idIndex].symbol + " " + usd) :
+                (usd + " " + this.props.storeState.currencies[idIndex].symbol)
+        }
+
+        
         return (
             <div className={this.props.routeListElementClass ? this.props.routeListElementClass : "col-lg-3 col-md-4 col-sm-6 col-12 p-2 mb-3 "}>
                 <div className="drivers_block_element d-flex p-0 flex-column" id={index}>
@@ -72,7 +107,7 @@ class RouteListElementClass extends React.Component {
                             <div className="driversBlock_carBlackout_detailed">{textInfo.detailed}</div>
                         </Link>
                         <div className="toursDuration d-flex justify-content-between">
-                            <text>{"от $46"}</text>
+                            <text>{textInfo.from + price}</text>
                             <span>{1 + " " + textInfo.daysNumber}</span>
                         </div>
                     </div>
@@ -100,7 +135,7 @@ class RouteListElementClass extends React.Component {
                             <div className="placesList_info_position_textStyle">{createRouteString(element.placelocalization.points)}</div>
                         </div>
                     </div>
-                    <span className="placesList_info_button" onClick={() => this.lookAvailable({ noDate: false, point: element.placelocalization.points })}>Смотреть предложения</span>
+                    <span className="placesList_info_button" onClick={() => this.lookAvailable({ noDate: false, point: element.placelocalization.points })}>{textInfo.seeOffers}</span>
                 </div>
 
             </div>

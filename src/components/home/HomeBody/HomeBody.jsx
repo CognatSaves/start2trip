@@ -4,6 +4,7 @@ import './calendary.css';
 import { connect } from 'react-redux'
 import { isMobileOnly } from 'react-device-detect'
 import { setLengthTime } from '../../../redusers/ActionDrivers'
+import {setLengthTimeFunc} from '../../../redusers/GlobalFunction'
 
 import RouteMenu from './RouteMenu.jsx'
 import MapContainer from './MapContainer.jsx'
@@ -15,11 +16,11 @@ const ChangeMapListBlock = (props) => {
       {
         that.state.changeMapList ?
           <div className={mapContainerClass} style={{ display: that.state.changeMapList ? 'block' : 'none' }}>
-            <MapContainer cities={that.props.storeState.cities} setLengthTime={that.setLengthTime} mapUpdate={true} />
+            <MapContainer cities={that.props.storeState.cities} setLengthTime={setLengthTimeFunc} that={this} mapUpdate={true} textInfo={this.props.storeState.languageTextMain.home.routeMenu} />
           </div>
           :
           <div className={routeMenuClass}>
-            <RouteMenu goToDrivers={that.goToDrivers} date={that.state.date} setLengthTime={that.setLengthTime} validationInput={(cities) => that.validationInput(cities)} />
+            <RouteMenu goToDrivers={that.goToDrivers} date={that.state.date} setLengthTime={setLengthTimeFunc} validationInput={(cities) => that.validationInput(cities)} />
             <div style={{ visibility: that.state.calendaryVisibility }} >
             </div>
           </div>
@@ -78,40 +79,40 @@ class HomeBodyClass extends React.Component {
     this.props.setState(this.state.cities, this.state.date, "drivers");
     this.props.redirectToDrivers();
   }
-  setLengthTime = (travelLength, travelTime) => {
-    let translation = this.props.storeState.languageTextMain.home.routeMenu;
+  // setLengthTime = (travelLength, travelTime) => {
+  //   let translation = this.props.storeState.languageTextMain.home.routeMenu;
 
-    function getLengthString(travelLength) {
-      let length = travelLength;
-      length = Math.ceil(length / 1000);
-      let lengthString = length + " " + translation.km;
-      return lengthString;
-    }
-    function getTimeString(travelTime) {
-      let hours = travelTime / 3600 ^ 0;
-      let minutes = (travelTime - hours * 3600) / 60 ^ 0;
-      let days = hours / 24 ^ 0;
-      hours = hours - days * 24;
-      let timeString = "";
-      if (days !== 0) {
-        timeString += days + " " + translation.days + " " + hours + " " + translation.hours;
-      }
-      else {
-        if (hours !== 0) {
-          timeString += hours + " " + translation.hours + " ";
-        }
-        timeString += minutes + " " + translation.minutes;
-      }
-      return timeString;
-    }
+  //   function getLengthString(travelLength) {
+  //     let length = travelLength;
+  //     length = Math.ceil(length / 1000);
+  //     let lengthString = length + " " + translation.km;
+  //     return lengthString;
+  //   }
+  //   function getTimeString(travelTime) {
+  //     let hours = travelTime / 3600 ^ 0;
+  //     let minutes = (travelTime - hours * 3600) / 60 ^ 0;
+  //     let days = hours / 24 ^ 0;
+  //     hours = hours - days * 24;
+  //     let timeString = "";
+  //     if (days !== 0) {
+  //       timeString += days + " " + translation.days + " " + hours + " " + translation.hours;
+  //     }
+  //     else {
+  //       if (hours !== 0) {
+  //         timeString += hours + " " + translation.hours + " ";
+  //       }
+  //       timeString += minutes + " " + translation.minutes;
+  //     }
+  //     return timeString;
+  //   }
 
-    if ((this.props.driversState.travelLength === "-" && this.props.driversState.travelTime === "-") ||
-      (this.props.driversState.travelLength.length === 0 || this.props.driversState.travelLength.length === 0)) {
-      let lengthString = getLengthString(travelLength);
-      let timeString = getTimeString(travelTime);
-      this.props.setLengthTime(timeString, lengthString);
-    }
-  }
+  //   if ((this.props.driversState.travelLength === "-" && this.props.driversState.travelTime === "-") ||
+  //     (this.props.driversState.travelLength.length === 0 || this.props.driversState.travelLength.length === 0)) {
+  //     let lengthString = getLengthString(travelLength);
+  //     let timeString = getTimeString(travelTime);
+  //     this.props.setLengthTime(timeString, lengthString);
+  //   }
+  // }
   validationInput = (massCities) => {
     //Внимание!(спасибо за внимание) Эта функция использует элементы из RouteMenu(первоначально эта функция и принадлежит вышеупомянутому классу).
     //В случае их изменения, может ругаться и сильно.

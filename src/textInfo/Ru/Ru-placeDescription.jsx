@@ -10,18 +10,22 @@ let placeDescription = {
         
     },
     placeTravelBlock:{
-        fragmentName: 'Как добраться',
+        fragmentName: 'Ваш маршрут',
         startPointPlaceholder: 'Введите место отправления',
         startDate:"Дата отправления",
         lookAvailable: ["",'СМОТРЕТЬ ПРЕДЛОЖЕНИЯ'],
         goToEdit: 'Перейти к редактированию',
-        route: 'Ваш маршрут',
+        route: '',
         time: 'Время в пути',
         length: 'Длина пути'
     },
-    placeDescription:{
-        variantsArray:["Описание","Фотографии","Как добраться","Вас может заинтересовать","Отзывы"]
+    routeDescription:{
+        variantsArray:["Описание","Фотографии","Ваш маршрут","Как добраться","Вас может заинтересовать","Отзывы"]
     },
+    placeDescription:{
+        variantsArray:["Описание","Фотографии","Ваш маршрут","Вас может заинтересовать","Отзывы"]
+    },
+    showMore:"Посмотреть всех водителей",
     share:"Поделиться",
 }
 

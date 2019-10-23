@@ -333,6 +333,10 @@ h2 {
     outline: none;
 }
 
+.routeTravelBlockDate div{
+    width: 218px !important;
+}
+
 .placesDescription_travelBlock_icon {
     width: 25px;
     height: 25px;

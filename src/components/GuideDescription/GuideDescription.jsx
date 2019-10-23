@@ -233,39 +233,39 @@ class GuideDescriptionClass extends React.Component {
         this.props.dispatch(setCities(newCities));
         return newCities;
     }
-    setLengthTime = (travelLength, travelTime) => {
-        let translation = this.props.storeState.languageTextMain.home.routeMenu;
-        function getLengthString(travelLength) {
-            let length = travelLength;
-            length = Math.ceil(length / 1000);
-            let lengthString = length + " " + translation.km;
-            return lengthString;
-        }
-        function getTimeString(travelTime) {
-            let hours = travelTime / 3600 ^ 0;
-            let minutes = (travelTime - hours * 3600) / 60 ^ 0;
-            let days = hours / 24 ^ 0;
-            hours = hours - days * 24;
-            let timeString = "";
-            if (days !== 0) {
-                timeString += days + " " + translation.days + " " + hours + " " + translation.hours;
-            }
-            else {
-                if (hours !== 0) {
-                    timeString += hours + " " + translation.hours + " ";
-                }
-                timeString += minutes + " " + translation.minutes;
-            }
-            return timeString;
-        }
-        if (this.props.driversState.travelLength === "-" && this.props.driversState.travelTime === "-") {
-            let lengthString = getLengthString(travelLength);
-            let timeString = getTimeString(travelTime);
-            this.props.dispatch(setLengthTime(timeString, lengthString));
-        }
+    // setLengthTime = (travelLength, travelTime) => {
+    //     let translation = this.props.storeState.languageTextMain.home.routeMenu;
+    //     function getLengthString(travelLength) {
+    //         let length = travelLength;
+    //         length = Math.ceil(length / 1000);
+    //         let lengthString = length + " " + translation.km;
+    //         return lengthString;
+    //     }
+    //     function getTimeString(travelTime) {
+    //         let hours = travelTime / 3600 ^ 0;
+    //         let minutes = (travelTime - hours * 3600) / 60 ^ 0;
+    //         let days = hours / 24 ^ 0;
+    //         hours = hours - days * 24;
+    //         let timeString = "";
+    //         if (days !== 0) {
+    //             timeString += days + " " + translation.days + " " + hours + " " + translation.hours;
+    //         }
+    //         else {
+    //             if (hours !== 0) {
+    //                 timeString += hours + " " + translation.hours + " ";
+    //             }
+    //             timeString += minutes + " " + translation.minutes;
+    //         }
+    //         return timeString;
+    //     }
+    //     if (this.props.driversState.travelLength === "-" && this.props.driversState.travelTime === "-") {
+    //         let lengthString = getLengthString(travelLength);
+    //         let timeString = getTimeString(travelTime);
+    //         this.props.dispatch(setLengthTime(timeString, lengthString));
+    //     }
 
 
-    }
+    // }
     chooseDate = (value) => {//это не такой же chooseDate, как в RouteMenu, attention please
 
 

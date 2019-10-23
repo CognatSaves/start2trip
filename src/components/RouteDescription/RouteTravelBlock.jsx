@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { isMobileOnly } from 'react-device-detect';
 import { setLengthTime } from '../../redusers/ActionDrivers'
 import requests from '../../config';
+import {setLengthTimeFunc} from '../../redusers/GlobalFunction'
 
 import groupPeopleSvg from '../media/multiple-users-silhouette.svg'
 import peopleSvg from '../media/man-user.svg'
@@ -35,6 +36,12 @@ class RouteTravelBlockClass extends React.Component {
         let country = routeDate.country;
         let langISO = routeDate.langISO;
         if (additionalParams && additionalParams.noDate) {
+            window.scroll(
+                {
+                    top: 0,
+                    left: 0,
+                    behavior: 'smooth'
+                });
             this.props.globalhistory.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + `/drivers/${newStringCities}/`);
         }
         else {
@@ -51,42 +58,42 @@ class RouteTravelBlockClass extends React.Component {
 
 
     }
-    setLengthTime = (travelLength, travelTime) => {
-        //alert('setLengthTime');
-        //TODO переводы
-        function getLengthString(travelLength) {
-            let length = travelLength;
-            length = Math.ceil(length / 1000);
-            let lengthString = length + " км";
-            return lengthString;
-        }
-        function getTimeString(travelTime) {
-            let hours = travelTime / 3600 ^ 0;
-            let minutes = (travelTime - hours * 3600) / 60 ^ 0;
-            let days = hours / 24 ^ 0;
-            hours = hours - days * 24;
-            let timeString = "";
-            if (days !== 0) {
-                timeString += days + " дн. " + hours + " ч.";
-            }
-            else {
-                if (hours !== 0) {
-                    timeString += hours + " ч. ";
-                }
-                timeString += minutes + " мин.";
-            }
-            return timeString;
-        }
-        let lengthString = getLengthString(travelLength);
-        let timeString = getTimeString(travelTime);
-        if (/*(this.props.driversState.travelLength.length===0 || this.props.driversState.travelLength === "-" ) &&
-         (this.props.driversState.travelTime.length===0 || this.props.driversState.travelTime === "-")*/
-            this.props.driversState.travelLength !== lengthString || this.props.driversState.travelTime !== timeString) {
-            this.props.dispatch(setLengthTime(timeString, lengthString));
-        }
+    // setLengthTime = (travelLength, travelTime) => {
+    //     //alert('setLengthTime');
+    //     //TODO переводы
+    //     function getLengthString(travelLength) {
+    //         let length = travelLength;
+    //         length = Math.ceil(length / 1000);
+    //         let lengthString = length + " км";
+    //         return lengthString;
+    //     }
+    //     function getTimeString(travelTime) {
+    //         let hours = travelTime / 3600 ^ 0;
+    //         let minutes = (travelTime - hours * 3600) / 60 ^ 0;
+    //         let days = hours / 24 ^ 0;
+    //         hours = hours - days * 24;
+    //         let timeString = "";
+    //         if (days !== 0) {
+    //             timeString += days + " дн. " + hours + " ч.";
+    //         }
+    //         else {
+    //             if (hours !== 0) {
+    //                 timeString += hours + " ч. ";
+    //             }
+    //             timeString += minutes + " мин.";
+    //         }
+    //         return timeString;
+    //     }
+    //     let lengthString = getLengthString(travelLength);
+    //     let timeString = getTimeString(travelTime);
+    //     if (/*(this.props.driversState.travelLength.length===0 || this.props.driversState.travelLength === "-" ) &&
+    //      (this.props.driversState.travelTime.length===0 || this.props.driversState.travelTime === "-")*/
+    //         this.props.driversState.travelLength !== lengthString || this.props.driversState.travelTime !== timeString) {
+    //         this.props.dispatch(setLengthTime(timeString, lengthString, travelTime, travelLength));
+    //     }
 
 
-    }
+    // }
     render() {
         const mapStyles = {
             map: {
@@ -116,14 +123,14 @@ class RouteTravelBlockClass extends React.Component {
 
                             <div style={{ paddingBottom: '10px' }} className="col-md-12 col p-0">
                                 <div className="route_time_text col-12 p-0">
-                                    <div className="d-flex align-items-center justify-content-between">
+                                    {/* <div className="d-flex align-items-center justify-content-between">
                                         <div class="marsh mt-auto">{textInfo.route + ':'}</div>
-                                    </div>
+                                    </div> */}
                                     {this.props.isTours &&
-                                    <div className="d-flex">
-                                        <div className="pr-4 route_time_howLong">{this.props.textInfo.daysNumber + " " + this.props.daysNumber}</div>
-                                        <div className="route_howMuchPeople" style={{background:"url("+(this.props.isPricePerPerson ? peopleSvg:groupPeopleSvg)+") no-repeat"}}>{(this.props.isPricePerPerson ? this.props.textInfo.seats[0] : this.props.textInfo.seats[1]) + " " + this.props.seats + (this.props.isPricePerPerson ? this.props.textInfo.seats[2] : "")}</div>
-                                    </div>
+                                        <div className="d-flex">
+                                            <div className="pr-4 route_time_howLong">{this.props.textInfo.daysNumber + " " + this.props.daysNumber}</div>
+                                            <div className="route_howMuchPeople" style={{ background: "url(" + (this.props.isPricePerPerson ? peopleSvg : groupPeopleSvg) + ") no-repeat" }}>{(this.props.isPricePerPerson ? this.props.textInfo.seats[0] : this.props.textInfo.seats[1]) + " " + this.props.seats + (this.props.isPricePerPerson ? this.props.textInfo.seats[2] : "")}</div>
+                                        </div>
                                     }
                                 </div>
                             </div>
@@ -145,7 +152,7 @@ class RouteTravelBlockClass extends React.Component {
                                     onClick={() => { if (this.state.isDateHighlighted) { this.setState({ isDateHighlighted: false }) } }}>
                                     <div className="placesDescription_travelBlock_icon placesDescription_calendary" />
                                     <DatePicker /*disabled={this.props.isTours}*/ hintText={textInfo.startDate} defaultDate={this.props.isTours ? new Date(this.props.departureDate) : new Date()}
-                                     minDate={new Date()} 
+                                        minDate={new Date()}
                                         shouldDisableDate={(date) => {
                                             function calendaryCheck(dateWork, selectedDate){
                                                 //this function makes calendary check
@@ -258,14 +265,17 @@ class RouteTravelBlockClass extends React.Component {
                                                 return flag
                                             */
                                         }}
-                                        onChange={(e, date) => { 
+                                        onChange={(e, date) => {
+                                            if(!this.props.isTours){
+                                                this.props.changeDate(date)
+                                            }
                                             let utcDate = this.props.globalhistory.convertDateToUTC(date);
-                                            this.setState({ date:  utcDate});
-                                            if(this.props.isTours){
+                                            this.setState({ date: utcDate });
+                                            if (this.props.isTours) {
                                                 this.props.tourDescriptionDateTransferFunction(utcDate)
                                             }
 
-                                        }} className="routeDescrDate" />
+                                        }} className="routeDescrDate routeTravelBlockDate " />
                                 </div>
                             </div>
                             <div className={"routeTravelBlock_element d-flex " + ((points.length + 1) % 2 === 0 ? 'col-12 p-0' : 'col-md-6 col-12')}>
@@ -299,7 +309,7 @@ class RouteTravelBlockClass extends React.Component {
                         <React.Fragment /> :
                         <>
                             <div className="placeDescription_fragmentName_mapBlock col-6" style={{ marginTop: "15px" }}>
-                                <MapContainer newMapStyles={mapStyles} cities={points} setLengthTime={this.setLengthTime} mapUpdate={true} />
+                                <MapContainer newMapStyles={mapStyles} cities={points} setLengthTime={setLengthTimeFunc} that={this} mapUpdate={true}  textInfo={this.props.storeState.languageTextMain.home.routeMenu}/>
                             </div>
                         </>}
 
