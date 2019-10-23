@@ -115,7 +115,7 @@ export class CurrentLocation extends React.Component {
 
       this.map = new maps.Map(node, mapConfig);
       let request = createRequestElement(this.props.cities, google, this.state.travelMode);
-
+      
       let service = new google.maps.DirectionsService();
       let directionsDisplay = new google.maps.DirectionsRenderer({
       });
@@ -136,7 +136,7 @@ export class CurrentLocation extends React.Component {
             var TempLeg = response.routes[0].legs[i];
             var step = TempLeg.steps.length;
             step = Number.parseInt(step / 2);
-
+            
             tempTravelTime += TempLeg.duration.value;
             tempTravelLength += TempLeg.distance.value;
             var contentString2 =
@@ -157,8 +157,8 @@ export class CurrentLocation extends React.Component {
             infowindow2.open(theMap);
             */
           }
-
-          obj.props.setLengthTime(tempTravelLength, tempTravelTime);
+          
+          obj.props.setLengthTime(obj.props.that,(tempTravelLength/ 1000), (tempTravelTime/ 60),obj.props.textInfo);
 
         }
         else {

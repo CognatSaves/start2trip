@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { isMobileOnly } from 'react-device-detect';
+import {setLengthTimeFunc} from '../../redusers/GlobalFunction'
 
 // import CurrentLocation from '../home/HomeBody/CurrentLocation.jsx';
 
@@ -113,7 +114,7 @@ class PlaceTravelBlockClass extends React.Component {
                         :
                         <>
                             <div className="placeDescription_fragmentName_mapBlock col-6" style={{ marginTop: "15px" }}>
-                                <MapContainer newMapStyles={mapStyles} cities={cities} setLengthTime={() => { console.log('setLengthTime at work') }} mapUpdate={true} />
+                                <MapContainer newMapStyles={mapStyles} cities={cities} setLengthTime={setLengthTimeFunc} that={this} mapUpdate={true} textInfo={this.props.storeState.languageTextMain.home.routeMenu} />
                             </div>
                         </>}
                 </div>

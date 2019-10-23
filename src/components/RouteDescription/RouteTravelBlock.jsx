@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { isMobileOnly } from 'react-device-detect';
 import { setLengthTime } from '../../redusers/ActionDrivers'
 import requests from '../../config';
+import {setLengthTimeFunc} from '../../redusers/GlobalFunction'
 
 import groupPeopleSvg from '../media/multiple-users-silhouette.svg'
 import peopleSvg from '../media/man-user.svg'
@@ -57,42 +58,42 @@ class RouteTravelBlockClass extends React.Component {
 
 
     }
-    setLengthTime = (travelLength, travelTime) => {
-        //alert('setLengthTime');
-        //TODO переводы
-        function getLengthString(travelLength) {
-            let length = travelLength;
-            length = Math.ceil(length / 1000);
-            let lengthString = length + " км";
-            return lengthString;
-        }
-        function getTimeString(travelTime) {
-            let hours = travelTime / 3600 ^ 0;
-            let minutes = (travelTime - hours * 3600) / 60 ^ 0;
-            let days = hours / 24 ^ 0;
-            hours = hours - days * 24;
-            let timeString = "";
-            if (days !== 0) {
-                timeString += days + " дн. " + hours + " ч.";
-            }
-            else {
-                if (hours !== 0) {
-                    timeString += hours + " ч. ";
-                }
-                timeString += minutes + " мин.";
-            }
-            return timeString;
-        }
-        let lengthString = getLengthString(travelLength);
-        let timeString = getTimeString(travelTime);
-        if (/*(this.props.driversState.travelLength.length===0 || this.props.driversState.travelLength === "-" ) &&
-         (this.props.driversState.travelTime.length===0 || this.props.driversState.travelTime === "-")*/
-            this.props.driversState.travelLength !== lengthString || this.props.driversState.travelTime !== timeString) {
-            this.props.dispatch(setLengthTime(timeString, lengthString, travelTime, travelLength));
-        }
+    // setLengthTime = (travelLength, travelTime) => {
+    //     //alert('setLengthTime');
+    //     //TODO переводы
+    //     function getLengthString(travelLength) {
+    //         let length = travelLength;
+    //         length = Math.ceil(length / 1000);
+    //         let lengthString = length + " км";
+    //         return lengthString;
+    //     }
+    //     function getTimeString(travelTime) {
+    //         let hours = travelTime / 3600 ^ 0;
+    //         let minutes = (travelTime - hours * 3600) / 60 ^ 0;
+    //         let days = hours / 24 ^ 0;
+    //         hours = hours - days * 24;
+    //         let timeString = "";
+    //         if (days !== 0) {
+    //             timeString += days + " дн. " + hours + " ч.";
+    //         }
+    //         else {
+    //             if (hours !== 0) {
+    //                 timeString += hours + " ч. ";
+    //             }
+    //             timeString += minutes + " мин.";
+    //         }
+    //         return timeString;
+    //     }
+    //     let lengthString = getLengthString(travelLength);
+    //     let timeString = getTimeString(travelTime);
+    //     if (/*(this.props.driversState.travelLength.length===0 || this.props.driversState.travelLength === "-" ) &&
+    //      (this.props.driversState.travelTime.length===0 || this.props.driversState.travelTime === "-")*/
+    //         this.props.driversState.travelLength !== lengthString || this.props.driversState.travelTime !== timeString) {
+    //         this.props.dispatch(setLengthTime(timeString, lengthString, travelTime, travelLength));
+    //     }
 
 
-    }
+    // }
     render() {
         const mapStyles = {
             map: {
@@ -228,7 +229,7 @@ class RouteTravelBlockClass extends React.Component {
                         <React.Fragment /> :
                         <>
                             <div className="placeDescription_fragmentName_mapBlock col-6" style={{ marginTop: "15px" }}>
-                                <MapContainer newMapStyles={mapStyles} cities={points} setLengthTime={this.setLengthTime} mapUpdate={true} />
+                                <MapContainer newMapStyles={mapStyles} cities={points} setLengthTime={setLengthTimeFunc} that={this} mapUpdate={true}  textInfo={this.props.storeState.languageTextMain.home.routeMenu}/>
                             </div>
                         </>}
 

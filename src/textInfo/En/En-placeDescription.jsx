@@ -20,8 +20,11 @@ let placeDescription = {
          time: 'Trip time',
          length: 'Trip length'
      },
+    routeDescription: {
+             variantsArray: ["Description", "Photos", "Your trip","How to get there", "You may be interested in", "Reviews"]
+         },
      placeDescription: {
-         variantsArray: ["Description", "Photos", "Your trip","How to get there", "You may be interested in", "Reviews"]
+         variantsArray: ["Description", "Photos", "Your trip", "You may be interested in", "Reviews"]
      },
     showMore:"View all drivers",
     share:"Share",

@@ -10,7 +10,10 @@ import Header from '../header/Header';
 import DriverInfo from './DriverInfo.jsx';
 import DatePicker from 'material-ui/DatePicker';
 import MapContainer from '../home/HomeBody/MapContainer';
-import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
+import {
+    startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,
+    lengthTimeCalc,setLengthTimeFunc,createRequestElement
+} from '../../redusers/GlobalFunction'
 import CommentBlock from '../TourDescription/CommentBlock';
 import StartTravelForm from '../startTravelForm/StartTravelForm';
 import StartTravelSuccess from '../startTravelForm/StartTravelSuccess';
@@ -215,39 +218,39 @@ class DriverProfileClass extends React.Component {
         this.props.dispatch(setCities(newCities));
         return newCities;
     }
-    setLengthTime = (travelLength, travelTime) => {
-        let translation = this.props.storeState.languageTextMain.home.routeMenu;
-        function getLengthString(travelLength) {
-            let length = travelLength;
-            length = Math.ceil(length / 1000);
-            let lengthString = length + " " + translation.km;
-            return lengthString;
-        }
-        function getTimeString(travelTime) {
-            let hours = travelTime / 3600 ^ 0;
-            let minutes = (travelTime - hours * 3600) / 60 ^ 0;
-            let days = hours / 24 ^ 0;
-            hours = hours - days * 24;
-            let timeString = "";
-            if (days !== 0) {
-                timeString += days + " " + translation.days + " " + hours + " " + translation.hours;
-            }
-            else {
-                if (hours !== 0) {
-                    timeString += hours + " " + translation.hours + " ";
-                }
-                timeString += minutes + " " + translation.minutes;
-            }
-            return timeString;
-        }
-        if (this.props.driversState.travelLength === "-" && this.props.driversState.travelTime === "-") {
-            let lengthString = getLengthString(travelLength);
-            let timeString = getTimeString(travelTime);
-            this.props.dispatch(setLengthTime(timeString, lengthString));
-        }
+    // setLengthTime = (travelLength, travelTime) => {
+    //     let translation = this.props.storeState.languageTextMain.home.routeMenu;
+    //     function getLengthString(travelLength) {
+    //         let length = travelLength;
+    //         length = Math.ceil(length / 1000);
+    //         let lengthString = length + " " + translation.km;
+    //         return lengthString;
+    //     }
+    //     function getTimeString(travelTime) {
+    //         let hours = travelTime / 3600 ^ 0;
+    //         let minutes = (travelTime - hours * 3600) / 60 ^ 0;
+    //         let days = hours / 24 ^ 0;
+    //         hours = hours - days * 24;
+    //         let timeString = "";
+    //         if (days !== 0) {
+    //             timeString += days + " " + translation.days + " " + hours + " " + translation.hours;
+    //         }
+    //         else {
+    //             if (hours !== 0) {
+    //                 timeString += hours + " " + translation.hours + " ";
+    //             }
+    //             timeString += minutes + " " + translation.minutes;
+    //         }
+    //         return timeString;
+    //     }
+    //     if (this.props.driversState.travelLength === "-" && this.props.driversState.travelTime === "-") {
+    //         let lengthString = getLengthString(travelLength);
+    //         let timeString = getTimeString(travelTime);
+    //         this.props.dispatch(setLengthTime(timeString, lengthString));
+    //     }
 
 
-    }
+    // }
     chooseDate = (value) => {//это не такой же chooseDate, как в RouteMenu, attention please
 
 
@@ -313,23 +316,6 @@ class DriverProfileClass extends React.Component {
 
             let cities;
             let country;
-            function createRequestElement(cities, travelMode) {
-                let waypoints = [];
-                for (let i = 1; i < cities.length - 1; i++) {
-                    waypoints[i - 1] = {
-                        location: cities[i].point,
-                        stopover: true
-                    }
-                }
-                let request =
-                {
-                    origin: cities[0].point, //точка старта
-                    destination: cities[cities.length - 1].point, //точка финиша
-                    waypoints: waypoints,
-                    travelMode: travelMode, //режим прокладки маршрута
-                };
-                return request;
-            }
 
             cities = this.props.storeState.cities;
             let filteredCities = this.props.globalReduser.firstLastCityCompare(cities);//проверка 1-го и последнего городов
@@ -349,19 +335,6 @@ class DriverProfileClass extends React.Component {
             service.route(request, function (response, status) {
                 if (status !== window.google.maps.DirectionsStatus.OK) {
                     return false;
-                }
-                function lengthTimeCalc(response) {
-                    let res = {
-                        duration: 0,
-                        distance: 0
-                    };
-                    for (let i = 0; i < response.routes[0].legs.length; i++) {
-                        res.duration += response.routes[0].legs[i].duration.value;
-                        res.distance += response.routes[0].legs[i].distance.value;
-                    }
-                    res.distance = res.distance / 1000;//конверсия в км
-                    res.duration = res.duration / 60;//конверсия в минуты
-                    return res;
                 }
 
                 let routeProps = lengthTimeCalc(response);
@@ -574,7 +547,7 @@ class DriverProfileClass extends React.Component {
                                         <div className="col-6 d-md-block d-none " style={{ height: '400px' }}>
                                             {
                                                 this.props.storeState.cities && isPointsLoaded(this.props.storeState.cities) ?
-                                                    <MapContainer cities={this.props.storeState.cities} setLengthTime={this.setLengthTime} mapUpdate={true} />
+                                                    <MapContainer cities={this.props.storeState.cities} setLengthTime={setLengthTimeFunc} mapUpdate={true} that={this} textInfo={this.props.storeState.languageTextMain.home.routeMenu} />
                                                     : <React.Fragment />
                                             }
 

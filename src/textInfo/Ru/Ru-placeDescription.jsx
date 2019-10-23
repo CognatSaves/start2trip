@@ -19,8 +19,11 @@ let placeDescription = {
         time: 'Время в пути',
         length: 'Длина пути'
     },
-    placeDescription:{
+    routeDescription:{
         variantsArray:["Описание","Фотографии","Ваш маршрут","Как добраться","Вас может заинтересовать","Отзывы"]
+    },
+    placeDescription:{
+        variantsArray:["Описание","Фотографии","Ваш маршрут","Вас может заинтересовать","Отзывы"]
     },
     showMore:"Посмотреть всех водителей",
     share:"Поделиться",
