@@ -262,6 +262,7 @@ class ToureDescriptionClass extends React.Component {
                 })
                 .then(function (data) {
                     
+                    //
                     if (data.error) {
 
                         console.log('bad tour descr request');
@@ -582,6 +583,7 @@ class ToureDescriptionClass extends React.Component {
                                                 dateWork={this.state.newTour.tour.calendary} price={price} elementActive={this.state.newTour}
                                                 seats={/*this.state.newTour.tour.seats*/this.state.savedDateSeatsData.seatsLeft} 
                                                 isPricePerPerson={this.state.newTour.tour.isPricePerPerson}
+                                                busyDays= {this.state.newTour.tour.busyDays}
                                                 daysNumber={this.state.newTour.tour.daysNumber} tourDescriptionDateTransferFunction={(utcDate)=>this.setState({departureDate:utcDate})}/>
 
                                             <div className="placeDescription_block flex-column" id={simularPlaceBlockId} style={{ display: this.state.newTour.additionalTours.length > 0 ? 'flex' : 'none' }}>

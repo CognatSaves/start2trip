@@ -383,6 +383,37 @@ const initialState = {
             }
         }
         return undefined;
+    },
+    busyDaysArrayVerification(busyDaysArray,  selectedDay, daysNumber){
+        //this function must check, if selectedDay and all nextDays (look daysNumber) are not in busyDays
+        //if no (means that at least one looked day is in), say "false" - can not show it here
+        //otherwise say "true" - can show, this date is valid
+        //busyDaysArray = array of strings like "yyyy-mm-dd"
+        //selectedDay - typeof Date(), daysNumber - Integer
+        if(busyDaysArray.length===0){
+            //if array length =0, we can not check anything, no need to generate strings
+            return true;
+        }
+        let numberOfDays = daysNumber>=1 ? daysNumber : 1;//if somebody loose daysNumber
+        let step =0; let dateStringArray = [];
+        while(step<numberOfDays){
+            let dateElement = new Date(selectedDay);
+            dateElement.setDate(dateElement.getDate() + step);
+            let year = dateElement.getFullYear();let month = dateElement.getMonth()+1; let day = dateElement.getDate();
+            let dateString = year + '-' + (month<10 ? '0'+month : month) + '-' + (day<10 ? '0'+day : day);
+            dateStringArray.push(dateString);
+            step++;
+        }
+        for(let i=0;i<busyDaysArray.length; i++){
+            for(let j=0; j<dateStringArray.length;j++){
+                if(busyDaysArray[i]===dateStringArray[j]){
+                    //if find, than loose
+                    return false;
+                }
+            }
+        }
+        //if not, you win
+        return true;
     }
 };
 

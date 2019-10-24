@@ -50,10 +50,13 @@ class TourInfoClass extends React.Component {
                     </datalist>
                     <DatePicker hintText={textInfo.datePickerLabel} minDate={new Date()} id="basicInfoBirthday" className="calendarModal tourInfoContentDate col-md-4 col-10 p-md-2 p-0" value={this.props.departureDate}
                         onChange={(undefined, data) => {
-                            if (Math.abs(data - this.state.departureDateOld) > 7 * 86400000) {
-                                this.props.sendRequestFunc(false);
-                            }
+                            debugger;
                             this.props.departureDateChange(data);
+                            if (Math.abs(data - this.state.departureDateOld) > 7 * 86400000) {
+                                //this must be here, because otherway this func will be called earlier than we save new value
+                                setTimeout(()=>this.props.sendRequestFunc(false), 0);
+                                //this.props.sendRequestFunc(false);
+                            }
                             this.setState({ departureDateOld: this.props.departureDate })
                         }}
                     />

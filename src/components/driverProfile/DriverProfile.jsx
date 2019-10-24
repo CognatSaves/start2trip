@@ -506,6 +506,25 @@ class DriverProfileClass extends React.Component {
                                                             onClick={() => { if (this.state.isDateHighlighted) { this.setState({ isDateHighlighted: false }) } }}>
                                                             <div className="placesDescription_travelBlock_icon placesDescription_calendary" />
                                                             <DatePicker defaultDate={this.state.date} shouldDisableDate={(date) => {
+                                                                
+                                                                console.log(this.props.driversState.driverCarDescription.busyDays);
+                                                                let flag = false;
+
+                                                                for (let i = 0; i < this.props.driversState.driverCarDescription.busyDays.length; i++) {
+                                                                    let newDate = new Date(this.props.driversState.driverCarDescription.busyDays[i])
+                                                                    let newDay = newDate.getDate();
+                                                                    let newMonth = newDate.getMonth();
+                                                                    let newYear = newDate.getFullYear();
+                                                                    let day = date.getDate();
+                                                                    let month = date.getMonth();
+                                                                    let year = date.getFullYear()
+                                                                    if (newDay === day && newMonth === month && newYear === year) {
+
+                                                                        flag = true
+                                                                    }
+                                                                }
+                                                                return flag
+                                                                /*
                                                                 let flag = false;
 
                                                                 for (let i = 0; i < this.props.driversState.driverCarDescription.weekend.length; i++) {
@@ -522,6 +541,7 @@ class DriverProfileClass extends React.Component {
                                                                     }
                                                                 }
                                                                 return flag
+                                                                */
                                                             }} hintText={textInfo.startDate} minDate={new Date()} onChange={(e, date) => { this.chooseDate(date); }} className="routeDescrDate" />
                                                         </div>
                                                     </div>
