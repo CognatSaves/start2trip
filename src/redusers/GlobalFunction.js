@@ -111,7 +111,7 @@ const setLengthTimeFunc = (that, travelLength, travelTime, textInfo) => {
 
   let lengthString = getLengthString(travelLength, textInfo);
   let timeString = getTimeString(travelTime, textInfo);
-  debugger
+  
   that.props.dispatch(setLengthTime(timeString, lengthString,travelTime, travelLength));
 }
 

@@ -294,10 +294,8 @@ class GuideDescriptionClass extends React.Component {
             this.sendDataRequest();
         }
         console.log('DriverProfile render');
-        console.log(this.props);
-
-        console.log('cities', this.props.storeState.cities);
-        
+        //console.log(this.props);
+        //console.log('cities', this.props.storeState.cities);
         let flagAllOk = false;
         if (
             this.state.firstName !== "" &&
@@ -322,7 +320,8 @@ class GuideDescriptionClass extends React.Component {
         let textInfo = this.props.storeState.languageTextMain.drivers.driversBlock;
         let defaultPrice = this.props.driversState.driverCarDescription.price * (100 - this.state.discount) / 100;
         let isCurrencyLoaded = activeCurrency && activeCurrency.symbol;
-        let helmet = this.props.guidesReduser.guideData.isDriver ? this.props.storeState.languageTextMain.helmets.guideProfile.guide :
+        debugger;
+        let helmet = this.props.guidesReduser.guideData.guide ? this.props.storeState.languageTextMain.helmets.guideProfile.guide :
         this.props.storeState.languageTextMain.helmets.guideProfile.agency;
 
         let windowImg = null

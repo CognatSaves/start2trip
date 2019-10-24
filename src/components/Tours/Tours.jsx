@@ -106,6 +106,7 @@ class ToursClass extends React.Component {
         durationCorrect = this.state.duration
       }
       startRefresherGlobal(this)
+      debugger;
       axios.get(requests.getTours + "?country=" + country + "&lang=" + lang + (selectedDirection ? "&slug=" + selectedDirection : '') + "&departurePoint=" + pointSelect + "&duration=" + durationCorrect + "&departureDate=" + this.state.departureDate)
         .then(response => {
           return response.data;

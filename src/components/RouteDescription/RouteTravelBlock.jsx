@@ -169,7 +169,7 @@ class RouteTravelBlockClass extends React.Component {
                                                     let newYear = newDate.getFullYear();
                                                     if (newDay === day && newMonth === month && newYear === year) {
                                                         flag = false;
-                                                        i=this.props.dateWork.length;
+                                                        i=dateWork.length;
                                                     }
                                                 }
                                                 return flag;
@@ -210,7 +210,7 @@ class RouteTravelBlockClass extends React.Component {
                                                 return false;
                                             }
                                             if(this.props.isTours){
-                                                debugger;
+                                                
                                                 if(!this.props.daily){
                                                     //calendary check
                                                     let calendaryCheckValue = calendaryCheck(this.props.dateWork,date);
@@ -236,7 +236,7 @@ class RouteTravelBlockClass extends React.Component {
                                             }
                                             /**
                                                 let flag = true;
-                                                debugger;
+                                                
                                                 let tourSeatsData = this.props.elementActive.tour.tourSeatsData;
                                                 if (!this.props.daily && this.props.isTours) {
                                                     console.log(this.props.busyDays);

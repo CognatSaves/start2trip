@@ -262,7 +262,7 @@ class ToureDescriptionClass extends React.Component {
                 })
                 .then(function (data) {
                     
-                    //debugger;
+                    //
                     if (data.error) {
 
                         console.log('bad tour descr request');

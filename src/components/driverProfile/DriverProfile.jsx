@@ -506,7 +506,7 @@ class DriverProfileClass extends React.Component {
                                                             onClick={() => { if (this.state.isDateHighlighted) { this.setState({ isDateHighlighted: false }) } }}>
                                                             <div className="placesDescription_travelBlock_icon placesDescription_calendary" />
                                                             <DatePicker defaultDate={this.state.date} shouldDisableDate={(date) => {
-                                                                debugger;
+                                                                
                                                                 console.log(this.props.driversState.driverCarDescription.busyDays);
                                                                 let flag = false;
 
