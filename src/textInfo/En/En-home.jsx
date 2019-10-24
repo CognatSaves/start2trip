@@ -147,7 +147,13 @@ const home = {
         km: 'km',
         days: 'd.',
         hours: 'h.',
-        minutes: 'min.'
+        minutes: 'min.',
+        routeMenuFooter:[
+            "Free stops on your route",
+            "Return to departure point forfree",
+            "No prepayment or credit card needed",
+            "Experienced and professional guides and drivers"
+        ]
     },
     pageNotFound: {
         title: "Page not found",

@@ -89,7 +89,7 @@ class PopularPlacesClass extends React.Component {
                         <h2>{textInfo.popularPlacesTitle}</h2>
                     </div>
                     <div className="d-flex col-12 p-0">
-                        <div className="d-flex col-12 flex-md-wrap flex-nowrap p-0 py-1 popularPlacesRender">
+                        <div className="d-flex col-12 flex-md-wrap flex-nowrap p-3 pb-4 popularPlacesRender">
                             {placeRender.map((element, index) => {
                                 let address = this.directionHrefCreator(element.id);
                                 if (arrayRender.length !== placeRender.length) {

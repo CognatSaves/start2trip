@@ -547,6 +547,21 @@ p.routemenu_search_text {
         margin: 0 2px;
     }
 
+    .routemenu_footerIcon i {
+        width: 70px;
+        height: 70px;
+        background-size: 100% 100% !important;
+        margin-bottom: 10px;
+    }
+
+    .routemenu_footerIcon span {
+        text-align: center;
+        color: #fff;
+        line-height: 18px;
+        font-size: 14px;
+        font-weight: 400;
+    }
+
     .addCitiesLocationDropDown {
         margin: 2px 0;
     }

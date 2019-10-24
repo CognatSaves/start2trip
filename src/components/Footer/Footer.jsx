@@ -93,7 +93,7 @@ class FooterClass extends React.Component {
                   <i style={{ background: "url(" + visa + ")no-repeat", backgroundSize: "100% 100%", width: "60px", height: "24px" }} />
                 </div>
                 <div className="footerButtonsIcon d-flex align-items-center">
-                  <i style={{ background: "url(" + facebookIcon + ")no-repeat", backgroundSize: "100% 100%", width: "30px", height: "20px" }} />
+                  <a target="_blank" href="https://www.facebook.com/Tripfer.com.LLC/"><i style={{ background: "url(" + facebookIcon + ")no-repeat", backgroundSize: "100% 100%", width: "30px", height: "20px" }} /></a>
                   <i style={{ background: "url(" + instagramIcon + ")no-repeat", backgroundSize: "100% 100%", width: "28px", height: "20px" }} />
                 </div>
               </div>

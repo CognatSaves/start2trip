@@ -158,7 +158,9 @@ export class CurrentLocation extends React.Component {
             */
           }
           
-          obj.props.setLengthTime(obj.props.that,(tempTravelLength/ 1000), (tempTravelTime/ 60),obj.props.textInfo);
+            obj.props.setLengthTime(obj.props.that,(tempTravelLength/ 1000), (tempTravelTime/ 60),obj.props.textInfo);
+         
+          
 
         }
         else {

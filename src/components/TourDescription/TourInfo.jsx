@@ -24,8 +24,8 @@ class TourInfoClass extends React.Component {
         }
     }
     render() {
-
-        if (this.props.toursState.categories.length > 0 && this.state.days.length === 0 && this.props.toursState.daysNumber.length>0) {
+        
+        if (this.props.toursState.departurePoint.length > 0 && this.state.days.length === 0 && this.props.toursState.daysNumber.length>0) {
             //эта функция отрабатывает ровно 1 раз, но только когда пришли this.props.toursState.daysNumber. 
             let sortArrayDaysNumber = this.props.toursState.daysNumber.sort((a, b) => { return a < b ? -1 : 1 })
             this.setState({

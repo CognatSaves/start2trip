@@ -46,7 +46,7 @@ class SimularToursBlockClass extends React.Component {
                     */
                 }
                 <div className="placeDescription_fragmentName">{this.props.fragmentName}</div>
-                <div className="d-flex col-12 flex-md-wrap flex-nowrap p-0 popularPlacesRender" >
+                <div className="d-flex col-12 flex-md-wrap flex-nowrap p-3 pb-4 popularPlacesRender" >
                     {
                         this.props.places.map((element, index) => {
                             if (index > 0) {

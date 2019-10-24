@@ -16,7 +16,7 @@ const ChangeMapListBlock = (props) => {
       {
         that.state.changeMapList ?
           <div className={mapContainerClass} style={{ display: that.state.changeMapList ? 'block' : 'none' }}>
-            <MapContainer cities={that.props.storeState.cities} setLengthTime={setLengthTimeFunc} that={this} mapUpdate={true} textInfo={this.props.storeState.languageTextMain.home.routeMenu} />
+            <MapContainer cities={that.props.storeState.cities} setLengthTime={setLengthTimeFunc} that={that} mapUpdate={true} textInfo={that.props.storeState.languageTextMain.home.routeMenu} />
           </div>
           :
           <div className={routeMenuClass}>

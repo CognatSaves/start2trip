@@ -1,4 +1,3 @@
-
 import {
   isMobileOnly
 } from 'react-device-detect';
@@ -77,21 +76,21 @@ const lengthTimeCalc = (response) => {
     res.duration += response.routes[0].legs[i].duration.value;
     res.distance += response.routes[0].legs[i].distance.value;
   }
-  res.distance = res.distance / 1000;//конверсия в км
-  res.duration = res.duration / 60;//конверсия в минуты
+  res.distance = res.distance / 1000; //конверсия в км
+  res.duration = res.duration / 60; //конверсия в минуты
   return res;
 }
 
 const setLengthTimeFunc = (that, travelLength, travelTime, textInfo) => {
 
-  function getLengthString(travelLength, textInfo) {//дистанция в км
+  function getLengthString(travelLength, textInfo) { //дистанция в км
     let length = travelLength;
     length = Math.ceil(length);
     let lengthString = length + " " + textInfo.km;
     return lengthString;
   }
 
-  function getTimeString(travelTime, textInfo) {//время в минутах
+  function getTimeString(travelTime, textInfo) { //время в минутах
     let hours = travelTime / 60 ^ 0;
     let minutes = (travelTime - hours * 60) ^ 0;
     let days = hours / 24 ^ 0;
@@ -99,8 +98,7 @@ const setLengthTimeFunc = (that, travelLength, travelTime, textInfo) => {
     let timeString = "";
     if (days !== 0) {
       timeString += days + " " + textInfo.days + " " + hours + " " + textInfo.hours;
-    }
-    else {
+    } else {
       if (hours !== 0) {
         timeString += hours + " " + textInfo.hours + " ";
       }
@@ -111,11 +109,14 @@ const setLengthTimeFunc = (that, travelLength, travelTime, textInfo) => {
 
   let lengthString = getLengthString(travelLength, textInfo);
   let timeString = getTimeString(travelTime, textInfo);
-  debugger
-  that.props.dispatch(setLengthTime(timeString, lengthString,travelTime, travelLength));
+  
+  if (that.props.dispatch === undefined) {
+  } else {
+    that.props.dispatch(setLengthTime(timeString, lengthString, travelTime, travelLength));
+  }
 }
 
-const createRequestElement = (cities, travelMode) =>{
+const createRequestElement = (cities, travelMode) => {
 
   let waypoints = [];
   for (let i = 1; i < cities.length - 1; i++) {
@@ -124,8 +125,7 @@ const createRequestElement = (cities, travelMode) =>{
       stopover: true
     }
   }
-  let request =
-  {
+  let request = {
     origin: cities[0].point, //точка старта
     destination: cities[cities.length - 1].point, //точка финиша
     waypoints: waypoints,

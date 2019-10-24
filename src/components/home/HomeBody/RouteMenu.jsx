@@ -7,15 +7,20 @@ import { setDriversList, setCarTypes, setWaitingDriverRequest } from '../../../r
 import { AppReduser } from '../../../redusers/AppReduser';
 import requests from '../../../config';
 import { setLengthTime } from '../../../redusers/ActionDrivers'
+
 import addIcon from '../../media/addWhite.svg'
-// import crossIcon from './pictures/close.svg'
+import stopPoint from '../../media/stopPoint-white.svg'
+import comeback from '../../media/comeback-white.svg'
+import whitOutMoney from '../../media/whitOutMoney-white.svg'
+import driverIcon from '../../media/driverIcon-white.svg'
+
 
 import LocationSearchInput from './Search'
 import DatePicker from 'material-ui/DatePicker';
 import {
-  startRefresherGlobal, thenFuncGlobal, 
-  catchFuncGlobal,lengthTimeCalc,
-  setLengthTimeFunc,createRequestElement,
+  startRefresherGlobal, thenFuncGlobal,
+  catchFuncGlobal, lengthTimeCalc,
+  setLengthTimeFunc, createRequestElement,
 } from '../../../redusers/GlobalFunction'
 import Cookies from 'universal-cookie';
 
@@ -330,7 +335,7 @@ class RouteMenuClass extends React.Component {
       );
     }
   }
-  
+
   requestFunction = (allGoodAfterfunc) => {
 
     this.setState({ isLoaded: true });
@@ -355,7 +360,7 @@ class RouteMenuClass extends React.Component {
         return false;
       }
       let textInfo = that.props.storeState.languageTextMain.home.routeMenu;
-      
+
       console.log(response);
       console.log(status);
 
@@ -363,7 +368,7 @@ class RouteMenuClass extends React.Component {
 
       setLengthTimeFunc(that, routeProps.distance, routeProps.duration, textInfo);
 
-      
+
       let body = JSON.stringify({
         cities: filteredCities,
         country: country,
@@ -381,25 +386,25 @@ class RouteMenuClass extends React.Component {
           return response.json();
         })
         .then(function (data) {
-          
+
           if (data.error) {
             console.log("bad");
-            
+
             throw data.error;
           }
           else {
-            
+
             console.log("good");
             console.log(data);
             //that.props.dispatch(setCarTypes(data.carTypes));
             that.props.dispatch(setDriversList(data.drivers));
 
-            
+
             that.props.dispatch(setWaitingDriverRequest(false));
             if (allGoodAfterfunc) {
               allGoodAfterfunc(that, cities, date, langISO);
             }
-              thenFuncGlobal(that)
+            thenFuncGlobal(that)
           }
         })
         .catch(function (error) {
@@ -417,7 +422,7 @@ class RouteMenuClass extends React.Component {
     console.log(this.props.storeState);
 
     if (!this.state.isLoaded && this.props.storeState.languages.length > 0) {
-      
+
       function isFindAllElems(cities) {
         let answer = true;
         let citiesCopy = [...cities];
@@ -510,6 +515,13 @@ class RouteMenuClass extends React.Component {
       this.chooseDate(dateValue);
     }
 
+    let massFooterContent = [
+      { img: stopPoint, text: textInfo.routeMenuFooter[0] },
+      { img: comeback, text: textInfo.routeMenuFooter[1] },
+      { img: whitOutMoney, text: textInfo.routeMenuFooter[2] },
+      { img: driverIcon, text: textInfo.routeMenuFooter[3] }
+    ]
+
     //функция имеет внутри себя проверку на то, чтобы не было зацикливания, а именно
     // если в редусере лежит то же, что мы туда кладём, то ничего класть мы не будем
     return (
@@ -590,16 +602,22 @@ class RouteMenuClass extends React.Component {
         </div>
 
         <div className="routemenu_footer  col-12 p-0">
-          <div className="routemenu_comment d-flex flex-sm-row flex-column-reverse align-items-center">
-            <div className="routemenu_comment_text col-sm-6 col-12 p-0">{textInfo.infoText.first}</div>
-            {/*
-              this.props.showBtPrice ?
-              <div className="routemenu_comment_text col-sm-6 col-12 p-0 pb-2">{textInfo.infoText.second}</div>
-              :
-              <div />
-              */
-            }
-          </div>
+          {!isMobileOnly &&
+            <div className="routemenu_comment d-flex flex-sm-row flex-column-reverse align-items-center">
+              <div className="routemenu_comment_text col-sm-6 col-12 p-0">{textInfo.infoText.first}</div>
+            </div>
+          }
+
+          {isMobileOnly &&
+            <div className="d-flex flex-wrap py-3">
+              {massFooterContent.map((el, index) =>
+                <div className="routemenu_footerIcon d-flex flex-column align-items-center py-3 col-6">
+                  <i style={{ background: "url(" + el.img + ")no-repeat" }} />
+                  <span>{el.text}</span>
+                </div>
+              )}
+            </div>
+          }
         </div>
 
       </ >
