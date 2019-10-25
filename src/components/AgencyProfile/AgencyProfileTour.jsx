@@ -129,7 +129,8 @@ class AgencyProfileTourClass extends React.Component {
                 },
                 requestAddress: requests.profileRequest
             };
-            getUserData(requestValues, (obj)=>{thenFuncGlobal(obj, that.setState({collapse: false}))}, catchFuncGlobal,that);
+            getUserData(requestValues, (obj)=>{thenFuncGlobal(obj, that.setState({collapse: false,
+                 languageTour: [...this.props.storeState.untranslatedlanguages]}))}, catchFuncGlobal,that);
         }
         else {
             this.props.dispatch(setUrlAddress(window.location.pathname));
@@ -141,6 +142,7 @@ class AgencyProfileTourClass extends React.Component {
         startRefresherGlobal(this,true)
     }
     fillForm = (element) => {
+        debugger;
         let profile = this.props.globalReduser.profile;
         if (!element) {
             let local = [];
@@ -211,7 +213,7 @@ class AgencyProfileTourClass extends React.Component {
                 file: '',
                 imagePreviewUrl: '',
                 tourId: "",
-                unselectedTourLanguages: this.props.storeState.untranslatedlanguages
+                unselectedTourLanguages: [...this.props.storeState.untranslatedlanguages]
             });
         }
         else {
