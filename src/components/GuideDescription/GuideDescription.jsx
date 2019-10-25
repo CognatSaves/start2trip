@@ -320,7 +320,7 @@ class GuideDescriptionClass extends React.Component {
         let textInfo = this.props.storeState.languageTextMain.drivers.driversBlock;
         let defaultPrice = this.props.driversState.driverCarDescription.price * (100 - this.state.discount) / 100;
         let isCurrencyLoaded = activeCurrency && activeCurrency.symbol;
-        debugger;
+        
         let helmet = this.props.guidesReduser.guideData.guide ? this.props.storeState.languageTextMain.helmets.guideProfile.guide :
         this.props.storeState.languageTextMain.helmets.guideProfile.agency;
 
