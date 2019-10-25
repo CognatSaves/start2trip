@@ -1058,7 +1058,7 @@ export default class AgencyTourForm extends React.Component {
                     <div className="tourPhotoMiniContainer d-flex flex-wrap">
 
                         {that.state.tourSave.mainImage.length > 0 ?
-                            <div className="position-relative" style={{ width: '100%' }}>
+                            <div className="position-relative" style={{display:"block",width:"100%"}}>
                                 <img src={that.state.tourSave.mainImage} className="tourPhotoMini" alt="add_mainImage" onClick={() => { that.setState({ imagePreviewUrl: that.state.tourSave.mainImage }) }} />
                                 <span onClick={() => { that.state.tourSave.mainImage = ''; that.state.tourSave.mainImageFile = ""; that.setState({ tourSave: { ...that.state.tourSave }, imagePreviewUrl: '' }) }}></span>
                             </div>
@@ -1079,7 +1079,7 @@ export default class AgencyTourForm extends React.Component {
                     <div className="tourPhotoMiniContainer d-flex flex-wrap">
 
                         {that.state.tourSave.blockListImage.length > 0 ?
-                            <div className="position-relative" style={{ width: '100%' }}>
+                            <div className="position-relative" style={{display:"block",width:"100%"}}>
                                 <img src={that.state.tourSave.blockListImage} className="tourPhotoMini" alt="add_blockListImage" onClick={() => { that.setState({ imagePreviewUrl: that.state.tourSave.blockListImage }) }} />
                                 <span onClick={() => { that.state.tourSave.blockListImage = ''; that.state.tourSave.blockListImageFile = ""; that.setState({ tourSave: { ...that.state.tourSave }, imagePreviewUrl: '' }) }}></span>
                             </div>

@@ -155,7 +155,7 @@ class AgencyProfileTourClass extends React.Component {
                         },
                         points: [],
                         info: "",
-                        language: profile.allLanguages[i].ISO
+                        language: this.props.storeState.untranslatedlanguages[i].ISO
                     }
                 }
             }
@@ -227,7 +227,7 @@ class AgencyProfileTourClass extends React.Component {
                         },
                         points: [],
                         info: "",
-                        language: profile.allLanguages[i].ISO
+                        language: this.props.storeState.untranslatedlanguages[i].ISO
                     }
                 }
             }
