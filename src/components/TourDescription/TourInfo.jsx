@@ -82,6 +82,7 @@ class TourInfoClass extends React.Component {
                                 durationOld: this.props.duration,
                                 departureDateOld: this.props.departureDate
                             })
+                            
                         }
                     }}>{textInfo.findText}</span>
                 </div>

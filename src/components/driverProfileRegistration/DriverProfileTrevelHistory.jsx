@@ -212,9 +212,11 @@ class DriverProfileTrevelHistoryClass extends React.Component {
                             {
                                 !this.props.isHistory &&
                                 <>
-                                    <div className={(Math.abs(new Date(element.startDefault) - new Date()) < 86400000) ? "d-flex flex-column historyBodyBtn" : "d-flex flex-column historyBodyBtnNotActive"}>
+                                    <div className={(Math.abs(new Date(element.startDefault) - new Date()) < 86400000)||element.startFact ? "d-flex flex-column historyBodyBtn" : "d-flex flex-column historyBodyBtnNotActive"}>
                                         <button onClick={() => {
                                             if (Math.abs(new Date(element.startDefault) - new Date()) < 86400000) {
+                                                this.stateButtonClicked(element)
+                                            }else if(element.startFact){
                                                 this.stateButtonClicked(element)
                                             }
                                         }}>{element.startFact ? textPage.stateVariants[0] : textPage.stateVariants[1]}</button>
