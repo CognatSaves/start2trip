@@ -45,7 +45,12 @@ class UserProfileTrevelHistoryClass extends React.Component {
                                 <hr />
                             </div>
                             <div className="d-flex flex-column historyBodyElement ">
+
                                 <h5>{textInfo.drivercar}</h5>
+                                {
+                                    !element.isCarrierConfirmed && 
+                                    <div style={{color: 'red'}}>NOT CONFIRMED</div> 
+                                }
                                 <div className="historyBodyElementDriver d-flex align-items-center">
                                     <img src={requests.serverAddressImg + element.carrier.image} alt={''} />
                                     <div className="d-flex flex-column ml-1">
