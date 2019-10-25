@@ -135,15 +135,19 @@ class ToureDescriptionClass extends React.Component {
         return idIndex
     }
     changeTravelVisibility = (elementPrice, elementActive) => {
-        
         let obj = elementActive ? (elementActive.tour ? elementActive.tour : elementActive.element) : null;
-        this.setState({
-            travelVisibility: !this.state.travelVisibility,
-            elementPrice: !this.state.travelVisibility ? elementPrice : 0,
-            savedDate: elementActive && obj && this.state.newTour.tour.id === obj.id ? this.state.savedDate : '',//if id's is not equal - we must calculate savedDateSeatsData again
-            elementActive: !this.state.travelVisibility ? elementActive : null,
-            
-        })
+        if(this.state.savedDate.length>0){
+            this.setState({
+                travelVisibility: !this.state.travelVisibility,
+                elementPrice: !this.state.travelVisibility ? elementPrice : 0,
+                savedDate: elementActive && obj && this.state.newTour.tour.id === obj.id ? this.state.savedDate : '',//if id's is not equal - we must calculate savedDateSeatsData again
+                elementActive: !this.state.travelVisibility ? elementActive : null,           
+            })
+        }
+        else{
+
+        }
+        
     }
     changeSuccessVisibility = (value) => {
         this.setState({
@@ -167,14 +171,25 @@ class ToureDescriptionClass extends React.Component {
     resetSelectedSeatsNumber = () => {
         //this function reset the seats number if date is changed
         //
-        let departureDateDay = this.state.departureDate.toISOString().substring(0,10);
-        if(this.state.savedDate!==departureDateDay){
-            
-            let selectedSeatsNumber = this.findSelectedSeatsNumber(departureDateDay);
-            this.setState({
-                savedDateSeatsData: selectedSeatsNumber,
-                savedDate: departureDateDay
-            })
+        if(this.state.departureDate){
+            let departureDateDay = this.state.departureDate.toISOString().substring(0,10);
+            if(this.state.savedDate!==departureDateDay){
+                
+                let selectedSeatsNumber = this.findSelectedSeatsNumber(departureDateDay);
+                this.setState({
+                    savedDateSeatsData: selectedSeatsNumber,
+                    savedDate: departureDateDay
+                })
+            }
+        }
+        else{
+            //if no date - set default values
+            if(this.state.savedDate!==''){
+                this.setState({
+                    savedDate: '',
+                    savedDateSeatsData: {}
+                })
+            }   
         }
     }
     findSelectedSeatsNumber = (departureDateDay) => {
@@ -227,6 +242,89 @@ class ToureDescriptionClass extends React.Component {
             seatsLeft: 0,
             seatsReserved: 0
         }
+    }
+    shouldDisableTourDateFunc = (params) => {
+        //dont use "this" in that func, if you need "this" - send "that" throw params
+
+        //this function check dates in calendary, if we have a possibility to book
+        //tour on that day)
+        //I send it to routeTravelBlock calendary, but also that func should check 
+        //is the date, that we take from url is valid
+        function calendaryCheck(dateWork, selectedDate){
+            //this function makes calendary check
+            //we must find element here, if we want show date
+            //return true, if not finded, other way - false
+            let day = selectedDate.getDate();
+            let month = selectedDate.getMonth()+1;
+            let year = selectedDate.getFullYear();
+            let flag = true;
+            for(let i=0; i<dateWork.length; i++){
+                let newDate = new Date(dateWork[i]);
+                let newDay = newDate.getDate();
+                let newMonth = newDate.getMonth()+1;
+                let newYear = newDate.getFullYear();
+                if (newDay === day && newMonth === month && newYear === year) {
+                    flag = false;
+                    i=dateWork.length;
+                }
+            }
+            return flag;
+        }
+        function tourSeatsDataCheck(tourSeatsData, selectedDate, isMulticustomeralTour){
+            //this function makes tourSeatsData check
+            //we must not find object here or find it and there must be free seats
+            //return true, if date is not valid, otherwise - false
+            
+            let day = selectedDate.getDate();
+            let month = selectedDate.getMonth()+1;
+            let year = selectedDate.getFullYear();
+            let selectedDateString = year + '-'+(month<10 ? '0'+month : month) + '-' + (day<10 ? '0'+day : day);
+            //let isMulticustomeralTour = 
+            for(let i=0; i<tourSeatsData.length; i++){
+                if(tourSeatsData[i].startDefault === selectedDateString){
+                    if(isMulticustomeralTour){
+                        //if multicustomeral, we must have at least 1 free seat
+                        if(tourSeatsData[i].seatsLeft>0){
+                            return false
+                        }
+                        else{
+                            return true;
+                        }
+                    }
+                    else{
+                        //if singlecustomeral, there must be another users, that book that tour on that day
+                        //server protect us from that(send zeros on needed places), but bonus check is needed
+                        if(tourSeatsData[i].seatsLeft>0 && tourSeatsData[i].seatsReserved===0){
+                            return false
+                        }
+                        else{
+                            return true;
+                        }
+                    }
+                }   
+            }
+            return false;
+        }
+        
+        let {daily,dateWork,date,tourSeatsData,isPricePerPerson,
+            busyDaysArrayVerification,busyDays,daysNumber} = params;
+        
+        if(!daily){
+            let calendaryCheckValue = calendaryCheck(dateWork,date);
+            if(calendaryCheckValue){
+                //if calendaryCheckValue === true, then this tour can not be driven that day 
+                return calendaryCheckValue;
+            }
+        }
+        let tourSeatsDataCheckValue = tourSeatsDataCheck(tourSeatsData,
+             date, isPricePerPerson);
+        if(tourSeatsDataCheckValue){
+            //if tourSeatsDataCheckValue === true, then this tour can not be driven that day
+            return tourSeatsDataCheckValue;
+        }
+        //busyDaysArrayVerification func 
+        let busyDaysCheckValue = !(busyDaysArrayVerification(busyDays, date, daysNumber));
+        return busyDaysCheckValue;
     }
     render() {
 
@@ -282,7 +380,17 @@ class ToureDescriptionClass extends React.Component {
                             slug: data.local.slug,
                             author: data.tour.author,
                         });
-                        
+                        debugger;
+                        /*let dateValidationResult = !(that.shouldDisableTourDateFunc({
+                            daily: data.tour.daily, dateWork: data.tour.calendary,
+                            date: that.state.departureDate, tourSeatsData: data.tour.tourSeatsData,
+                            isPricePerPerson: data.tour.isPricePerPerson, 
+                            busyDaysArrayVerification: (busyDays, date, daysNumber)=>that.props.globalReduser.busyDaysArrayVerification(busyDays, date, daysNumber),
+                            busyDays: data.tour.busyDays, daysNumber:data.tour.daysNumber
+                        }));
+                        if(!dateValidationResult){
+                            that.setState({departureDate: undefined});
+                        }*/
                     }
                 })
                 .catch(function (error) {
@@ -584,7 +692,10 @@ class ToureDescriptionClass extends React.Component {
                                                 seats={/*this.state.newTour.tour.seats*/this.state.savedDateSeatsData.seatsLeft} 
                                                 isPricePerPerson={this.state.newTour.tour.isPricePerPerson}
                                                 busyDays= {this.state.newTour.tour.busyDays}
-                                                daysNumber={this.state.newTour.tour.daysNumber} tourDescriptionDateTransferFunction={(utcDate)=>this.setState({departureDate:utcDate})}/>
+                                                daysNumber={this.state.newTour.tour.daysNumber}
+                                                tourDescriptionDateTransferFunction={(utcDate)=>this.setState({departureDate:utcDate})}
+                                                shouldDisableTourDateFunc={this.shouldDisableTourDateFunc}   
+                                                />
 
                                             <div className="placeDescription_block flex-column" id={simularPlaceBlockId} style={{ display: this.state.newTour.additionalTours.length > 0 ? 'flex' : 'none' }}>
                                                 <SimularToursBlock outerBlock={simularPlaceBlockId} tours={this.state.newTour.additionalTours}

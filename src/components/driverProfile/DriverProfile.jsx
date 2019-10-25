@@ -524,24 +524,6 @@ class DriverProfileClass extends React.Component {
                                                                     }
                                                                 }
                                                                 return flag
-                                                                /*
-                                                                let flag = false;
-
-                                                                for (let i = 0; i < this.props.driversState.driverCarDescription.weekend.length; i++) {
-                                                                    let newDate = new Date(this.props.driversState.driverCarDescription.weekend[i].substr(0, 10))
-                                                                    let newDay = newDate.getDate();
-                                                                    let newMonth = newDate.getMonth();
-                                                                    let newYear = newDate.getFullYear();
-                                                                    let day = date.getDate();
-                                                                    let month = date.getMonth();
-                                                                    let year = date.getFullYear()
-                                                                    if (newDay === day && newMonth === month && newYear === year) {
-
-                                                                        flag = true
-                                                                    }
-                                                                }
-                                                                return flag
-                                                                */
                                                             }} hintText={textInfo.startDate} minDate={new Date()} onChange={(e, date) => { this.chooseDate(date); }} className="routeDescrDate" />
                                                         </div>
                                                     </div>

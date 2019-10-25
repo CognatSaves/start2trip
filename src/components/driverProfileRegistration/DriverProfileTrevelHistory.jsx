@@ -158,6 +158,10 @@ class DriverProfileTrevelHistoryClass extends React.Component {
                                     <span>{element.startDefault ? this.props.globalReduser.createDateTimeString(element.startDefault) : ''}</span>
                                     <span className="historyBodyHeaderType">{element.tripType.type_en}</span>
                                 </div>
+                                {
+                                    !element.isCarrierConfirmed && 
+                                    <div style={{color: 'red'}}>NOT CONFIRMED</div> 
+                                }
                                 <span className="historyBodyHeaderRoute">{createCorrectRoute(element.route, element.travelLength, element.travelTime)}</span>
                                 <span className="historyBodyHeaderBtn pt-2"
                                     onClick={() => {
