@@ -123,7 +123,7 @@ class ToursListElementClass extends React.Component {
                                 <div className="toursListEl_avatar col-2">
                                     <img src={(element.author ? (requests.serverAddressImg + element.author.avatar.url) : '')} alt="" />
                                 </div>
-                                <div className="toursListEl_bottomContent col">
+                                <div className="toursListEl_bottomContent col pr-0">
                                     <h5><Link to={"/" + cookies.get('country', { path: "/" }) + "-" + cookies.get('userLangISO', { path: "/" }) + "/guides/" + (element.author ? element.author.userSlug : "") + "/"}>{element.author ? (element.author.firstName + " " + element.author.lastName) : ""}</Link></h5>
                                     <div className="placesList_info_position_textStyle d-flex align-items-center">
                                         <p className="placesList_info_textCss">{textInfo.Languages}</p>

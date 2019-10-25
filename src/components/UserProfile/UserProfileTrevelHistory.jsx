@@ -29,7 +29,7 @@ class UserProfileTrevelHistoryClass extends React.Component {
         let textInfo = this.props.storeState.languageTextMain.userProfile.userProfileTravelHistory;
         let textInfoAgency = this.props.storeState.languageText.agencyProfile.agencyProfileHistory;
         if(this.props.trevelHistory.length>0){
-            debugger;
+            
         }
         return (
             <div className="d-flex flex-wrap justify-content-center" style={{height: '100%'}}>

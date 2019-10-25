@@ -291,6 +291,7 @@
 .driversBlock_driverCard_driverInfo {
     padding-left: 8px;
     padding-top: 4px;
+    max-width: 130px;
     display: inline-block;
     overflow: hidden;
     white-space: nowrap;

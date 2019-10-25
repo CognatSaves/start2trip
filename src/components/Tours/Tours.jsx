@@ -18,7 +18,7 @@ import TourInfo from '../TourDescription/TourInfo'
 import DriversProperties from '../drivers/DriversBody/DriversProperties/DriversProperties'
 // import PlacesTagList from '../Places/PlacesTagList';
 
-import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
+import { startRefresherGlobal, thenFuncGlobal, catchFuncGlobal, } from '../../redusers/GlobalFunction'
 import MobileFilter from '../drivers/DriversBody/DriversProperties/MobileFilter/MobileFilter'
 import Cookies from 'universal-cookie';
 
@@ -27,22 +27,24 @@ const cookies = new Cookies();
 class ToursClass extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       country: "",
       language: "",
       selectedDirection: '',
       departureDate: new Date(),
       departurePoint: "",
-      duration: "default",
+      duration: this.props.match.params.duration === undefined ? "default" : this.props.match.params.duration,
       tourType: "default",
       clickButton: false,
       travelVisibility: false,
       successVisibility: 'none',
       elementPrice: 0,
-      elementActive:null,
+      elementActive: null,
       temp: 0,
       countryDescription: null,
-      freeSeats:0
+      freeSeats: 0,
+      isFirst: true,
     }
     //сначала уборка
     this.props.dispatch(setPlacesList([], [], [], {}));
@@ -89,6 +91,9 @@ class ToursClass extends React.Component {
       //let country = cookies.get('country', { path: '/' });
       let that = this;
       let pointSelect = "";
+      let lat = this.props.match.params.lat
+      let long = this.props.match.params.long
+
       if (this.props.toursState.departurePoint && this.props.toursState.departurePoint.length > 0) {
         for (let i = 0; i < this.props.toursState.departurePoint.length; i++) {
           if (this.props.toursState.departurePoint[i].point === this.state.departurePoint) {
@@ -97,7 +102,12 @@ class ToursClass extends React.Component {
           }
         }
       } else {
-        pointSelect = this.state.departurePoint
+        if (lat !== undefined && lat !== "default" && long !== undefined && long !== "default") {
+
+          pointSelect = { point: "", lat: lat, long: long }
+        } else {
+          pointSelect = this.state.departurePoint
+        }
       }
       pointSelect = JSON.stringify(pointSelect)
       let durationCorrect = null;
@@ -106,19 +116,19 @@ class ToursClass extends React.Component {
         durationCorrect = this.state.duration
       }
       startRefresherGlobal(this)
-      
+
       axios.get(requests.getTours + "?country=" + country + "&lang=" + lang + (selectedDirection ? "&slug=" + selectedDirection : '') + "&departurePoint=" + pointSelect + "&duration=" + durationCorrect + "&departureDate=" + this.state.departureDate)
         .then(response => {
           return response.data;
         })
         .then(function (data) {
-          
+
           if (data.error) {
             console.log('bad tour request');
             throw data.error;
           }
           else {
-            
+            debugger
             console.log('tour request data', data);
             that.props.dispatch(setToursList(data.tours, data.categories, data.tags, data.directions, data.daysNumber, data.departurePoint));
 
@@ -131,7 +141,7 @@ class ToursClass extends React.Component {
             else {
 
               //если не нашли - пускаем ещё раз крутилку - если не нашли, сервер не нашёл направление-> вернул всё
-              that.props.globalReduser.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/places/');
+              that.props.globalReduser.history.push("/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/tours/');
             }
           }
           else {
@@ -168,12 +178,12 @@ class ToursClass extends React.Component {
     this.setState({ tourType: type })
   }
 
-  changeTravelVisibility = (elementPrice,elementActive, freeSeats) => {
+  changeTravelVisibility = (elementPrice, elementActive, freeSeats) => {
 
     this.setState({
       travelVisibility: !this.state.travelVisibility,
       elementPrice: elementPrice,
-      elementActive:elementActive,
+      elementActive: elementActive,
       freeSeats: freeSeats
     })
   }
@@ -183,6 +193,7 @@ class ToursClass extends React.Component {
       successVisibility: value
     })
   }
+
 
 
   render() {
@@ -202,15 +213,12 @@ class ToursClass extends React.Component {
     console.log("Tours render", this.props);
 
 
-    /*
-    console.log(this.props);
-    console.log(this.state);
-    console.log(document);
-    console.log(window);*/
     let selectedDirection = this.props.match.params.direction;
     if (!selectedDirection) {//защита от undefined
       selectedDirection = '';
     }
+
+
 
     let countryName = this.props.storeState.countries.length > 0 ?
       this.props.globalReduser.findCountryNameByISO(this, cookies.get('country', { path: '/' }), cookies.get('userLang', { path: '/' }))
@@ -238,6 +246,17 @@ class ToursClass extends React.Component {
     let windowImg = null
     if (this.props.storeState.languages.length > 0) {
 
+      let search = this.props.globalReduser.history.location.search.split("?date=")
+
+      if (search[1] !== undefined) {
+        let searchDate = new Date(search[1])
+        if (this.state.departureDate.toISOString() !== searchDate.toISOString()) {
+          debugger
+          this.departureDateChange(searchDate);
+          this.props.globalReduser.history.push(this.props.globalReduser.history.location.pathname + "?date=" + this.props.globalReduser.createDateTimeString(searchDate, true))
+        }
+      }
+
       let coockisIso = cookies.get('country', { path: '/' })
       let j;
       for (let i = 0; i < this.props.storeState.countries.length; i++) {
@@ -254,6 +273,22 @@ class ToursClass extends React.Component {
 
     let storeState = this.props.storeState;
     let activeCurrency = storeState.currencies[storeState.activeCurrencyNumber];
+
+    let lat = this.props.match.params.lat
+    let long = this.props.match.params.long
+
+
+
+    if (this.props.toursState.departurePoint.length > 0 && this.state.isFirst && this.state.departurePoint === "" && lat !== undefined && lat !== "default" && long !== undefined && long !== "default") {
+      for (let i = 0; i < this.props.toursState.departurePoint.length; i++) {
+        if (this.props.toursState.departurePoint[i].lat.toFixed(5) === lat && this.props.toursState.departurePoint[i].long.toFixed(5) === long) {
+          this.departurePointChange(this.props.toursState.departurePoint[i].point)
+          this.setState({ isFirst: false })
+
+          break;
+        }
+      }
+    }
 
     return (
       <>
@@ -371,7 +406,7 @@ class ToursClass extends React.Component {
         <StartTravelForm {...this.props} changeTravelVisibility={this.changeTravelVisibility}
           changeSuccessVisibility={this.changeSuccessVisibility} travelVisibility={this.state.travelVisibility}
           elementPrice={this.state.elementPrice} elementActive={this.state.elementActive}
-          freeSeats = {this.state.freeSeats} activeCurrency={activeCurrency} isoCountryMap={this.props.storeState.isoCountryMap}
+          freeSeats={this.state.freeSeats} activeCurrency={activeCurrency} isoCountryMap={this.props.storeState.isoCountryMap}
           textInfo={this.props.storeState.languageTextMain.startTravelForm}
 
         />

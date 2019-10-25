@@ -44,7 +44,7 @@ class TourInfoClass extends React.Component {
                     {this.props.departurePointChange(e.target.value) }} value={this.props.departurePoint}
                     placeholder={textInfo.searchPlaceholder} list="places" name="myPlaces" />
                     <datalist id="places">
-                        {this.state.departurePoint.map((element, index) =>
+                        {this.props.toursState.departurePoint.map((element, index) =>
                             <option value={element.point} >{element.point}</option>
                         )}
                     </datalist>
@@ -57,6 +57,8 @@ class TourInfoClass extends React.Component {
                                 setTimeout(()=>this.props.sendRequestFunc(false), 0);
                                 //this.props.sendRequestFunc(false);
                             }
+                            let pathname = this.props.globalReduser.history.location.pathname
+                            this.props.globalReduser.history.push(pathname+"?date="+this.props.globalReduser.createDateTimeString(data,true))
                             this.setState({ departureDateOld: this.props.departureDate })
                         }}
                     />
@@ -82,6 +84,23 @@ class TourInfoClass extends React.Component {
                                 durationOld: this.props.duration,
                                 departureDateOld: this.props.departureDate
                             })
+                            let departurePointLat = "default";
+                            let departurePointLong = "default";
+                            for(let i=0; i<this.state.departurePoint.length;i++){
+                                if(this.state.departurePoint[i].point === this.props.departurePoint){
+                                    departurePointLat = this.state.departurePoint[i].lat.toFixed(5) 
+                                    departurePointLong = this.state.departurePoint[i].long.toFixed(5) 
+                                    break;
+                                }
+                            }
+                            
+                            let pathname = this.props.globalReduser.history.location.pathname.split("/")
+                            pathname = pathname[0] + "/"+pathname[1]+"/"+pathname[2]+"/"
+                            if(departurePointLat !== "default" && departurePointLong !== "default" || this.props.duration !== "default"){
+                                this.props.globalReduser.history.push(pathname+"params="+departurePointLat+"-"+departurePointLong+"-"+ this.props.duration+"/"+"?date="+this.props.globalReduser.createDateTimeString(this.props.departureDate,true))
+                            }else{
+                                this.props.globalReduser.history.push(pathname+"?date="+this.props.globalReduser.createDateTimeString(this.props.departureDate,true))
+                            }
                             
                         }
                     }}>{textInfo.findText}</span>

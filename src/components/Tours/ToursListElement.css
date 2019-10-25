@@ -117,6 +117,8 @@
 }
 
 .toursListEl_bottomContent h5 {
+    overflow: hidden;
+    max-width: 167px;
     margin: 0px;
 }
 
