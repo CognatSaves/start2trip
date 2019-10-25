@@ -373,7 +373,7 @@ export default class AgencyTourForm extends React.Component {
                 break;
             }
             case "tourLanguages": {
-
+                debugger;
                 console.log(that, value, name, params);
                 let selectedLanguages = tourSave.tourLanguages;
                 let unselectedLanguages = that.state.unselectedTourLanguages;
@@ -431,7 +431,7 @@ export default class AgencyTourForm extends React.Component {
                 break;
             }
             case "tourLanguages": {
-
+                debugger;
                 console.log(that, element, name, params);
                 let selectedLanguages = tourSave.tourLanguages;
                 let unselectedLanguages = that.state.unselectedTourLanguages;
@@ -890,7 +890,7 @@ export default class AgencyTourForm extends React.Component {
                         <Select
                             value={/*this.state.tourSave.directionId*/this.props.textPageAgencyProfile.tourLanguagesPlaceholder}
                             onChange={(event, index, value) => {
-
+                                debugger;
                                 this.handleChange(event.target.value, "tourLanguages");
                             }}
                             style={{ width: '100%' }}
@@ -909,7 +909,7 @@ export default class AgencyTourForm extends React.Component {
                         {that.state.tourSave.tourLanguages.map((element, index) =>
                             <Chip
                                 key={element}
-                                onRequestDelete={() => { this.handleRequestDelete(element, "tourLanguages") }}
+                                onRequestDelete={() => { debugger; this.handleRequestDelete(element, "tourLanguages") }}
                                 labelStyle={{ color: "#000" }}
                                 labelColor="#f60"
                                 textColor="#304269"
