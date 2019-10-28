@@ -380,7 +380,7 @@ class ToureDescriptionClass extends React.Component {
                             slug: data.local.slug,
                             author: data.tour.author,
                         });
-                        debugger;
+                        
                         /*let dateValidationResult = !(that.shouldDisableTourDateFunc({
                             daily: data.tour.daily, dateWork: data.tour.calendary,
                             date: that.state.departureDate, tourSeatsData: data.tour.tourSeatsData,

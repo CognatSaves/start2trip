@@ -23,10 +23,14 @@ class TourPanelClass extends React.Component {
         this.checkPanelFixed();
     }
     checkPanelFixed = () => {
-
+        
         console.log("checkPanelFixed");
         if (document.getElementById(this.props.topBlockId)) {
             var scrolled = window.pageYOffset || document.documentElement.scrollTop;
+            // debugger
+            let  eventObj =  document.getElementsByClassName("tourPanel_panel")
+            eventObj = eventObj[0]
+            
             let headerHeight = document.getElementById(this.props.topBlockId).scrollHeight;
             if (headerHeight > scrolled) {
                 if (this.props.panelFixedClass !== "") {
@@ -43,18 +47,41 @@ class TourPanelClass extends React.Component {
             let distanceTop = headerHeight;
             let selected = -1;
             for (let i = 0; i < this.props.variantsArray.length; i++) {
-
+                
                 let pageElement = document.getElementById(this.props.descriptionId + (i + 1));
                 
                 let elementHeight = pageElement.offsetHeight;
-
                 if (distanceTop - scrolled < 50) {
                     selected = i;
+                    
                 }
                 distanceTop = distanceTop + elementHeight;
             }
             if (/*this.state.selectedElement*/null !== selected) {
+                if(selected===1){
+                    eventObj.scrollLeft = 0
+                }
+                if(selected===2 && this.props.panelSelectedElement !== 2){
+                    eventObj.scrollLeft = eventObj.offsetWidth/3
+                }
+                if(selected===3 && this.props.panelSelectedElement !== 3){
+                    this.props.isTour ?
+                    eventObj.scrollLeft = eventObj.offsetWidth/2
+                    :
+                    eventObj.scrollLeft = eventObj.offsetWidth+55
+                }
+                if(selected===4 && this.props.panelSelectedElement !== 4){
+                    this.props.isTour ?
+                    eventObj.scrollLeft = eventObj.offsetWidth+95
+                    :
+                    eventObj.scrollLeft = eventObj.offsetWidth*2
+                }
+                if(selected===5 && this.props.panelSelectedElement !== 5){
+                    eventObj.scrollLeft = eventObj.offsetWidth*2
+                }
                 this.props.dispatch(this.props.setPanelSelectedElement(selected));
+                
+                
                 //  эксперементы прокрутки TODO
                 // let aasdsadsa = document.querySelector(".tourPanel_panel")
                 // console.log(aasdsadsa)
@@ -71,7 +98,7 @@ class TourPanelClass extends React.Component {
         console.log("TourPanel render");
         return (
             <>
-                <div className={"tourPanel_panel driverProfileComments_panel d-flex "}>
+                <div className="tourPanel_panel driverProfileComments_panel d-flex ">
                     {
                         this.props.variantsArray.map((element, index) => {
                             let indexOfRemovedElement;

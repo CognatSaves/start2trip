@@ -166,7 +166,7 @@ class HomeClass extends React.Component {
                       <h5 className="align-self-start">{element.title}</h5>
                       <p>{element.text}</p>
                     </div>
-                    <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + element.link}><span>{textInfo.look}</span></Link>
+                    <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + element.link} onClick={()=>{window.scroll({top: 0,left: 0})}}><span>{textInfo.look}</span></Link>
                   </div>
                 )}
               </div>

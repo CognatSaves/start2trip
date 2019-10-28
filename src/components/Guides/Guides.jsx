@@ -81,7 +81,6 @@ class GuidesClass extends React.Component {
           console.log("good");
           console.log(data);
           
-
           that.props.dispatch(setGuidesList(data.guides, data.country, data.departurePoints));
           thenFuncGlobal(that)
         }

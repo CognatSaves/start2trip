@@ -51,7 +51,7 @@ class ReadyRoutesClass extends React.Component {
 
     let windowImg = null
     if (this.props.storeState.languages.length > 0) {
-
+      
       let coockisIso = cookies.get('country', { path: '/' })
       let j;
       for (let i = 0; i < this.props.storeState.countries.length; i++) {
@@ -60,7 +60,18 @@ class ReadyRoutesClass extends React.Component {
           break;
         }
       }
-      windowImg = requests.serverAddressImg + this.props.storeState.countries[j].windowImg.url
+      if(this.props.placesState.selectedDirection !== ""){
+        let url = ''
+        for(let k = 0; k<this.props.placesState.directions.length;k++){
+          if(this.props.placesState.directions[k].id === this.props.placesState.selectedDirection){
+            url = this.props.placesState.directions[k].bigImage.url
+          }
+        }
+        windowImg = requests.serverAddressImg + url
+      }else{
+        windowImg = requests.serverAddressImg + this.props.storeState.countries[j].windowImg.url
+      }
+     
      
     }
     // let routeUrl = null;
@@ -102,7 +113,7 @@ class ReadyRoutesClass extends React.Component {
           <div className="home_window" style={{ background: "url(" + windowImg + ")no-repeat" }}>
             <Header history={this.props.history} />
             <div className="wrapper d-flex flex-column">
-            <PlacesCountryInfo placesState={this.state.countryDescription !== null ? { country: this.state.countryDescription } : { country: {} }} />
+            <PlacesCountryInfo placesState={this.props.placesState.country ? { country: this.props.placesState.country } : { country: {} }} />
           </div>
           </div>
 
@@ -124,7 +135,8 @@ const ReadyRoutes = connect(
   (state) => ({
     storeState: state.AppReduser,
     globalhistory: state.GlobalReduser,
-    globalReduser: state.GlobalReduser
+    globalReduser: state.GlobalReduser,
+    placesState: state.PlacesReduser
   }),
 )(ReadyRoutesClass);
 

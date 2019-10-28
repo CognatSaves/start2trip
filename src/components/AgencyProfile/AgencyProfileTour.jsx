@@ -142,7 +142,7 @@ class AgencyProfileTourClass extends React.Component {
         startRefresherGlobal(this,true)
     }
     fillForm = (element) => {
-        debugger;
+        
         let profile = this.props.globalReduser.profile;
         if (!element) {
             let local = [];
