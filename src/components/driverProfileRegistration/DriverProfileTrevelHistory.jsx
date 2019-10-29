@@ -26,6 +26,24 @@ const TravelHistoryElementInnerPart = (props) => {
     let element = that.state.filteredTravelHistory[index];
     let isMulticustomeral = (element.union.length>0);
     let selectedElement = isMulticustomeral ? element.union[that.state.selectedElement[index]] : element;
+
+
+    let filteredTravelHistory = that.state.filteredTravelHistory;
+    debugger;
+    let selectedElementIndex = that.state.selectedElement[index];
+    let isStarted = false;/*filteredTravelHistory[index].union[selectedElementIndex].startFact ? true : false;*/
+    let isConfirmed = false;
+    let canChangeSelected = false;
+    if(isMulticustomeral && !isHistory){
+        isConfirmed = filteredTravelHistory[index].union[selectedElementIndex].isCarrierConfirmed;
+        //if common block is started, we can not change 'selected' value of union element
+        //if common block is not started, we can change 'selected' value of union element only if it confirmed
+        canChangeSelected = filteredTravelHistory[index].startFact ? isStarted : isConfirmed;
+    }
+    
+    
+    
+
     return (
         <>
             {
@@ -107,18 +125,27 @@ const TravelHistoryElementInnerPart = (props) => {
             {
                 isMulticustomeral && !isHistory &&
                 <div className="d-flex flex-column historyBodyElement">
-                    <h5>{"Is selected:"}</h5>
-                    <Checkbox checked={selectedElement.selected} onClick={()=>{
-                        
-                        let filteredTravelHistory = that.state.filteredTravelHistory;
-                        let selectedElementIndex = that.state.selectedElement[index];
-                        if(selectedElementIndex && filteredTravelHistory[index].union[selectedElementIndex].isCarrierConfirmed){
-                            filteredTravelHistory[index].union[selectedElementIndex].selected = !filteredTravelHistory[index].union[that.state.selectedElement[index]].selected;
-                        }                      
-                        that.setState({
-                            filteredTravelHistory:filteredTravelHistory
-                        })
-                    }}/>
+                    {
+                        filteredTravelHistory[index].startFact ?
+                        <div className="d-flex flex-row">
+                            <h5>{"Is started:"}</h5>
+                            <span>{filteredTravelHistory[index].union[selectedElementIndex].startFact}</span>
+                        </div>
+                        :
+                        <div className="d-flex flex-column">
+                            <h5>{"Is selected:"}</h5>
+                            <Checkbox checked={selectedElement.selected} onClick={()=>{
+                                
+                                if((selectedElementIndex || selectedElementIndex===0) && canChangeSelected){
+                                    filteredTravelHistory[index].union[selectedElementIndex].selected = !filteredTravelHistory[index].union[selectedElementIndex].selected;
+                                }                      
+                                that.setState({
+                                    filteredTravelHistory:filteredTravelHistory
+                                })
+                            }}/>
+                        </div>
+                    }
+                    
                 </div>
             }           
         </>
@@ -164,7 +191,9 @@ class DriverProfileTrevelHistoryClass extends React.Component {
         function idArrayCreator(union){
             let res = [];
             for(let i=0; i<union.length; i++){
-                res.push(union[i].id);
+                if(union[i].selected){
+                    res.push(union[i].id);
+                }               
             }
             return res;
         }
@@ -283,9 +312,9 @@ class DriverProfileTrevelHistoryClass extends React.Component {
                             
                             
                             if(changedTravelHistory[i].union.length===0){
-                                changedTravelHistory[i].union.push({...changedTravelHistory[i], selected: changedTravelHistory[i].isCarrierConfirmed});
+                                changedTravelHistory[i].union.push({...changedTravelHistory[i]/*, selected: changedTravelHistory[i].isCarrierConfirmed*/});
                             }
-                            changedTravelHistory[i].union.push({...changedTravelHistory[j], selected: changedTravelHistory[j].isCarrierConfirmed});
+                            changedTravelHistory[i].union.push({...changedTravelHistory[j]/*, selected: changedTravelHistory[j].isCarrierConfirmed*/});
                             changedTravelHistory[j].united=true;
                             //next line set isCarrierConfirmed like if any united object is not confirmed, the main obj is also not confirmed
                             changedTravelHistory[i].isCarrierConfirmed= changedTravelHistory[i].isCarrierConfirmed && changedTravelHistory[j].isCarrierConfirmed;
@@ -297,6 +326,14 @@ class DriverProfileTrevelHistoryClass extends React.Component {
             }
             for(let i=0; i<changedTravelHistory.length; i++){
                 if(!changedTravelHistory[i].united){
+                    for(let j=0; j<changedTravelHistory[i].union.length; j++){
+                        debugger;
+                        let isStarted = changedTravelHistory[i].union[j].startFact ? true : false;
+                        let isConfirmed = changedTravelHistory[i].union[j].isCarrierConfirmed;
+                        //if no started objects - then trip is not started -> selected = isCarrierConfirmed
+                        //if started objects exist - then trip is started -> selected = startFact.toBoolean = startFact ? true : false
+                        changedTravelHistory[i].union[j].selected = changedTravelHistory[i].startFact ? isStarted : isConfirmed;
+                    }
                     res.push(changedTravelHistory[i]);
                 }
             }
