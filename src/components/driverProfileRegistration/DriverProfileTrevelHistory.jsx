@@ -117,7 +117,7 @@ const TravelHistoryElementInnerPart = (props) => {
                     </div>
                     <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "") + "d-flex historyBodyElement"}>
                         <h5>{textPage.costOfTravel + ":"}</h5>
-                        <span>{that.props.globalReduser.profile.currencies ? that.props.globalReduser.profile.currencies[findCurrencyEl(that, element.currencyType)].symbol + element.price : ''}</span>
+                        <span>{that.props.globalReduser.profile.currencies ? that.props.globalReduser.profile.currencies[findCurrencyEl(that, selectedElement.currencyType)].symbol + selectedElement.price : ''}</span>
                     </div>
                     <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "") + "d-flex flex-column historyBodyElement"}>
                         <h5>{textPage.customer + ":"}</h5>
@@ -137,7 +137,7 @@ const TravelHistoryElementInnerPart = (props) => {
                             filteredTravelHistory[index].startFact ?
                             <div className="d-flex flex-row">
                                 <h5>{"Is started:"}</h5>
-                                <span>{filteredTravelHistory[index].union[selectedElementIndex].startFact}</span>
+                                <span>{filteredTravelHistory[index].union[selectedElementIndex].startFact ? 'true' : 'false'}</span>
                             </div>
                             :
                             <div className="d-flex flex-column">
@@ -199,10 +199,12 @@ class DriverProfileTrevelHistoryClass extends React.Component {
         }
     }
     stateButtonClicked = (element) => {
-        function idArrayCreator(union) {
+        function idArrayCreator(union, startFact) {
             let res = [];
+            //if !startFact - we start a trip. Then, we must send only selected ids
+            //if startFact - we end a trip. Then, we must send all ids
             for(let i=0; i<union.length; i++){
-                if(union[i].selected){
+                if(union[i].selected || startFact){
                     res.push(union[i].id);
                 }               
             }
@@ -210,7 +212,7 @@ class DriverProfileTrevelHistoryClass extends React.Component {
         }
         debugger;
         let body = JSON.stringify({
-            id: element.union.length > 0 ? idArrayCreator(element.union) : element.id
+            id: element.union.length > 0 ? idArrayCreator(element.union,element.startFact) : element.id
         });
 
         //console.log(requests);
