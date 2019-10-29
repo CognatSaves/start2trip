@@ -26,6 +26,22 @@
     padding: 0px 5px;
 }
 
+.historyBodyMultiUser{
+    box-shadow: 0px 7px 9px 2px rgba(167, 112, 112, 0.3);
+    margin-bottom: 20px;
+}
+
+.trevelHistoryBody .historyBodyMultiUserEl h5{
+    color:#fff;
+    padding: 10px;
+    margin: 0px;
+}
+
+.historyBodyMultiUserEl{
+    padding-right: 5px;
+    background: #304269;
+}
+
 .historyBodyHeaderBtn {
     cursor: pointer;
 }
@@ -44,19 +60,30 @@
     transition: all 0.3s;
 }
 
-.historyBodyButton {
+.trevelHistoryBody  span.historyBodyButton {
+    cursor: pointer;
     background: #999;
     color: #fff;
-    outline: none;
-    border: none;
-    padding: 5px 5px;
-    border-radius: 5px;
+    padding: 5px 10px !important;
     transition: all 0.3s;
-    margin: 0 1px
+    margin: 0px;
 }
-.historyBodyButtonSelected {
-    background: #304269!important;
+
+.historyBodyBottomMultiUserEl{
+    padding: 7px 10px;
+    border-bottom: 1px solid #ccc;
 }
+
+.trevelHistoryBody  span.historyBodyButton:hover {
+    background: #fff;
+    color: #304269;
+}
+
+.trevelHistoryBody span.historyBodyButtonSelected {
+    background: #fff;
+    color: #304269;
+}
+
 .historyBodyButtonErrorText {
     color: red!important;
 }
@@ -136,7 +163,7 @@
 .trevelHistoryBody span {
     font-size: 14px;
     font-weight: 400;
-    padding-left: 0px;
+    /* padding-left: 0px; */
     color: #686868;
     margin: 0;
 }
