@@ -310,7 +310,7 @@ class DriverProfileTrevelHistoryClass extends React.Component {
                 changedTravelHistory.push({ ...travelHistory[i], united: false, union: [] });
             }
             for (let i = 0; i < changedTravelHistory.length; i++) {
-                if (changedTravelHistory[i].united) {
+                if (changedTravelHistory[i].united || changedTravelHistory[i].tripType.type_en !== 'Tour') {
                     //if this object is united with someone, then skip it
                     continue;
                 }
