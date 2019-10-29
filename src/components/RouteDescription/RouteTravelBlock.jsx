@@ -86,7 +86,7 @@ class RouteTravelBlockClass extends React.Component {
 
         console.log(this.props.driversState);
         if(this.props.isTours && this.props.departureDate){
-            debugger;
+            
             let result = this.props.shouldDisableTourDateFunc({
                 daily:this.props.daily, dateWork:this.props.dateWork, date: this.props.departureDate, 
                 tourSeatsData:this.props.elementActive.tour.tourSeatsData, 
@@ -147,7 +147,7 @@ class RouteTravelBlockClass extends React.Component {
                                                     let dateCropped = date.toISOString().substring(0,10);
                                                     let departureDateCropped = this.props.tourDepartureDate.toISOString().substring(0,10);
                                                     if(dateCropped === departureDateCropped){
-                                                        debugger;
+                                                        
                                                     }
                                                 */
                                                 let result = this.props.shouldDisableTourDateFunc({

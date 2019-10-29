@@ -128,7 +128,7 @@ class ToursClass extends React.Component {
             throw data.error;
           }
           else {
-            debugger
+            
             console.log('tour request data', data);
             that.props.dispatch(setToursList(data.tours, data.categories, data.tags, data.directions, data.daysNumber, data.departurePoint));
 
@@ -251,7 +251,7 @@ class ToursClass extends React.Component {
       if (search[1] !== undefined) {
         let searchDate = new Date(search[1])
         if (this.state.departureDate.toISOString() !== searchDate.toISOString()) {
-          debugger
+          
           this.departureDateChange(searchDate);
           this.props.globalReduser.history.push(this.props.globalReduser.history.location.pathname + "?date=" + this.props.globalReduser.createDateTimeString(searchDate, true))
         }

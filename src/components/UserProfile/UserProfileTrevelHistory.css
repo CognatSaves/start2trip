@@ -44,6 +44,25 @@
     transition: all 0.3s;
 }
 
+.historyBodyButton {
+    background: #999;
+    color: #fff;
+    outline: none;
+    border: none;
+    padding: 5px 5px;
+    border-radius: 5px;
+    transition: all 0.3s;
+    margin: 0 1px
+}
+.historyBodyButtonSelected {
+    background: #304269!important;
+}
+.historyBodyButtonErrorText {
+    color: red!important;
+}
+.historyBodyButton:focus {
+    outline: none;
+}
 .historyBodyBtnNotActive button {
     background: #999;
     color: #fff;

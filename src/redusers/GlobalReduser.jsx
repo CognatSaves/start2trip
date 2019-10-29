@@ -385,7 +385,7 @@ const initialState = {
         return undefined;
     },
     busyDaysArrayVerification(busyDaysArray,  selectedDay, daysNumber){
-        debugger;
+        
         //this function must check, if selectedDay and all nextDays (look daysNumber) are not in busyDays
         //if no (means that at least one looked day is in), say "false" - can not show it here
         //otherwise say "true" - can show, this date is valid
