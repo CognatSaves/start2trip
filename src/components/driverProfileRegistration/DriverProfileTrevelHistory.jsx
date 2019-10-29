@@ -6,7 +6,7 @@ import requests from '../../config';
 import getUserData from '../driverProfileRegistration/DriverProfileRequest';
 
 import Stars from '../stars/Stars';
-import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
+import { startRefresherGlobal, thenFuncGlobal, catchFuncGlobal, } from '../../redusers/GlobalFunction'
 import Cookies from 'universal-cookie';
 import { Checkbox } from '@material-ui/core';
 
@@ -21,10 +21,10 @@ const TravelHistoryElementInnerPart = (props) => {
             }
         }
     }
-    let {isHistory, textPage, /*element, */that,index} = props;
-    
+    let { isHistory, textPage, /*element, */that, index } = props;
+
     let element = that.state.filteredTravelHistory[index];
-    let isMulticustomeral = (element.union.length>0);
+    let isMulticustomeral = (element.union.length > 0);
     let selectedElement = isMulticustomeral ? element.union[that.state.selectedElement[index]] : element;
 
 
@@ -45,110 +45,121 @@ const TravelHistoryElementInnerPart = (props) => {
     
 
     return (
-        <>
-            {
-                isMulticustomeral &&
-                <div className="d-flex flex-column historyBodyElement">
+        <div className={isMulticustomeral?"historyBodyMultiUser":""}>
+            {isMulticustomeral &&
+                <div className="historyBodyMultiUserEl" >
                     <h5>{"Пользователи"}</h5>
-                    <div className="d-flex flex-row">
-                    {
-                        element.union.map((elUn, inUn)=>{
-                            let selectedElementIndex = that.state.selectedElement[index] ? that.state.selectedElement[index] : 0;
-                            return(
-                                <button className={"historyBodyButton "+(selectedElementIndex===inUn ? 'historyBodyButtonSelected ' : '') 
-                                    + (isMulticustomeral && !elUn.isCarrierConfirmed ? 'historyBodyButtonErrorText' : '')} 
-                                    onClick={()=>{
-                                        let selectedElementsArray = that.state.selectedElement;
-                                        selectedElementsArray[index]=inUn;
-                                        that.setState({
-                                            selectedElement: selectedElementsArray
-                                        });
-                                }}>{elUn.client.firstName}</button>
-                            )
-                            }                  
-                        )
-                    }
-                    </div>
-                
                 </div>
             }
 
-            {
-                isHistory &&
-                <> 
-                    <div className="d-flex">
-                        <div className="d-flex flex-column historyBodyElement">
-                            <h5>{textPage.tripStart}</h5>
-                            <span>{selectedElement.startFact ? that.props.globalReduser.createDateTimeString(selectedElement.startFact) : textPage.noStart}</span>
-                        </div>
-                        <div className="d-flex flex-column historyBodyElement">
-                            <h5>{textPage.tripEnd}</h5>
-                            <span>{selectedElement.endFact ? that.props.globalReduser.createDateTimeString(selectedElement.endFact) : textPage.noEnd}</span>
-                        </div>
-                    </div>
-                </>
-            }
-            <div className="d-flex  historyBodyElement">
-                <h5>{textPage.tripId + ":"}</h5>
-                <span>{selectedElement.id}</span>
+            <div className="d-flex ">
+
+
                 {
-                    //you can see that this trip is not confirmed in the header of trip;
-                    //we mush write it again only if this is a multicustomeral tour, where you mush find not confirmed user
-                    //otherwise it's clear for you who is not confirmed)
-                    isMulticustomeral && !selectedElement.isCarrierConfirmed && 
-                    <div style={{color: 'red'}}>NOT CONFIRMED</div> 
-                }
-            </div>
-            <div className="d-flex  historyBodyElement">
-                <h5>{textPage.venue + ":"}</h5>
-                <span>{selectedElement.startPlace}</span>
-            </div>
-            <div className="d-flex  historyBodyElement">
-                <h5>{textPage.car + ":"}</h5>
-                <span>{selectedElement.car}</span>
-            </div>
-            <div className="d-flex  historyBodyElement">
-                <h5>{textPage.costOfTravel + ":"}</h5>
-                <span>{that.props.globalReduser.profile.currencies ? that.props.globalReduser.profile.currencies[findCurrencyEl(that, element.currencyType)].symbol + element.price : ''}</span>
-            </div>
-            <div className="d-flex flex-column historyBodyElement">
-                <h5>{textPage.customer + ":"}</h5>
-                <span>{selectedElement.client.firstName}</span>
-                <span>{selectedElement.client.phone}</span>
-                <span>{selectedElement.client.email}</span>
-                {/* <span>{element.passengerNumber+" чел."}</span> */}
-            </div>
-            <div className="d-flex flex-column historyBodyElement">
-                <h5>{textPage.comment + ":"}</h5>
-                <span>{selectedElement.commentary}</span>
-            </div>
-            {
-                isMulticustomeral && !isHistory &&
-                <div className="d-flex flex-column historyBodyElement">
-                    {
-                        filteredTravelHistory[index].startFact ?
-                        <div className="d-flex flex-row">
-                            <h5>{"Is started:"}</h5>
-                            <span>{filteredTravelHistory[index].union[selectedElementIndex].startFact}</span>
-                        </div>
-                        :
+                    isMulticustomeral &&
+                    <div className="d-flex flex-column historyBodyMultiUserEl">
                         <div className="d-flex flex-column">
-                            <h5>{"Is selected:"}</h5>
-                            <Checkbox checked={selectedElement.selected} onClick={()=>{
-                                
-                                if((selectedElementIndex || selectedElementIndex===0) && canChangeSelected){
-                                    filteredTravelHistory[index].union[selectedElementIndex].selected = !filteredTravelHistory[index].union[selectedElementIndex].selected;
-                                }                      
-                                that.setState({
-                                    filteredTravelHistory:filteredTravelHistory
-                                })
-                            }}/>
+                            {
+                                element.union.map((elUn, inUn) => {
+                                    let selectedElementIndex = that.state.selectedElement[index] ? that.state.selectedElement[index] : 0;
+                                    return (
+                                        <span className={"historyBodyButton " + (selectedElementIndex === inUn ? 'historyBodyButtonSelected ' : '')
+                                            + (isMulticustomeral && !elUn.isCarrierConfirmed ? 'historyBodyButtonErrorText' : '')}
+                                            onClick={() => {
+                                                let selectedElementsArray = that.state.selectedElement;
+                                                selectedElementsArray[index] = inUn;
+                                                that.setState({
+                                                    selectedElement: selectedElementsArray
+                                                });
+                                            }}>{elUn.client.firstName}</span>
+                                    )
+                                }
+                                )
+                            }
+                        </div>
+
+                    </div>
+                }
+                <div className="w-100">
+                    {
+                        isHistory &&
+                        <>
+                            <div className="d-flex">
+                                <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "") + "d-flex flex-column historyBodyElement"}>
+                                    <h5>{textPage.tripStart}</h5>
+                                    <span>{selectedElement.startFact ? that.props.globalReduser.createDateTimeString(selectedElement.startFact) : textPage.noStart}</span>
+                                </div>
+                                <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "") + "d-flex flex-column historyBodyElement"}>
+                                    <h5>{textPage.tripEnd}</h5>
+                                    <span>{selectedElement.endFact ? that.props.globalReduser.createDateTimeString(selectedElement.endFact) : textPage.noEnd}</span>
+                                </div>
+                            </div>
+                        </>
+                    }
+                    <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "") + "d-flex historyBodyElement"}>
+                        <h5>{textPage.tripId + ":"}</h5>
+                        <span>{selectedElement.id}</span>
+                        {
+                            //you can see that this trip is not confirmed in the header of trip;
+                            //we mush write it again only if this is a multicustomeral tour, where you mush find not confirmed user
+                            //otherwise it's clear for you who is not confirmed)
+                            isMulticustomeral && !selectedElement.isCarrierConfirmed &&
+                            <div style={{ color: 'red' }}>NOT CONFIRMED</div>
+                        }
+                    </div>
+                    <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "") + "d-flex historyBodyElement"}>
+                        <h5>{textPage.venue + ":"}</h5>
+                        <span>{selectedElement.startPlace}</span>
+                    </div>
+                    <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "")  + "d-flex historyBodyElement"}>
+                        <h5>{textPage.car + ":"}</h5>
+                        <span>{selectedElement.car}</span>
+                    </div>
+                    <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "") + "d-flex historyBodyElement"}>
+                        <h5>{textPage.costOfTravel + ":"}</h5>
+                        <span>{that.props.globalReduser.profile.currencies ? that.props.globalReduser.profile.currencies[findCurrencyEl(that, element.currencyType)].symbol + element.price : ''}</span>
+                    </div>
+                    <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "") + "d-flex flex-column historyBodyElement"}>
+                        <h5>{textPage.customer + ":"}</h5>
+                        <span>{selectedElement.client.firstName}</span>
+                        <span>{selectedElement.client.phone}</span>
+                        <span>{selectedElement.client.email}</span>
+                        {/* <span>{element.passengerNumber+" чел."}</span> */}
+                    </div>
+                    <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "") + "d-flex flex-column historyBodyElement"}>
+                        <h5>{textPage.comment + ":"}</h5>
+                        <span>{selectedElement.commentary}</span>
+                    </div>
+                    {
+                        isMulticustomeral && !isHistory &&
+                        <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "") + "d-flex flex-column historyBodyElement"}>
+                        {
+                            filteredTravelHistory[index].startFact ?
+                            <div className="d-flex flex-row">
+                                <h5>{"Is started:"}</h5>
+                                <span>{filteredTravelHistory[index].union[selectedElementIndex].startFact}</span>
+                            </div>
+                            :
+                            <div className="d-flex flex-column">
+                                <h5>{"Is selected:"}</h5>
+                                <Checkbox checked={selectedElement.selected} onClick={()=>{
+                                    
+                                    if((selectedElementIndex || selectedElementIndex===0) && canChangeSelected){
+                                        filteredTravelHistory[index].union[selectedElementIndex].selected = !filteredTravelHistory[index].union[selectedElementIndex].selected;
+                                    }                      
+                                    that.setState({
+                                        filteredTravelHistory:filteredTravelHistory
+                                    })
+                                }}/>
+                            </div>
+                        }
                         </div>
                     }
-                    
+
                 </div>
-            }           
-        </>
+
+            </div>
+        </div>
     )
 }
 
@@ -157,14 +168,14 @@ class DriverProfileTrevelHistoryClass extends React.Component {
         super(props);
         let arrayCollapse = new Array(props.trevelHistory.length).fill(false)
         this.state = {
-            oldTravelHistory:'[]',
-            filteredTravelHistory:[], 
+            oldTravelHistory: '[]',
+            filteredTravelHistory: [],
             collapse: arrayCollapse,
             selectedElement: new Array(props.trevelHistory.length).fill(0)
         };
     }
     startRefresher = () => {
-        startRefresherGlobal(this,true)
+        startRefresherGlobal(this, true)
     }
     getProfileData = () => {
         console.log('getProfileData');
@@ -178,7 +189,7 @@ class DriverProfileTrevelHistoryClass extends React.Component {
                 },
                 requestAddress: requests.profileRequest
             }
-            getUserData(requestValues, thenFuncGlobal, catchFuncGlobal,that);
+            getUserData(requestValues, thenFuncGlobal, catchFuncGlobal, that);
         }
         else {
 
@@ -188,7 +199,7 @@ class DriverProfileTrevelHistoryClass extends React.Component {
         }
     }
     stateButtonClicked = (element) => {
-        function idArrayCreator(union){
+        function idArrayCreator(union) {
             let res = [];
             for(let i=0; i<union.length; i++){
                 if(union[i].selected){
@@ -199,12 +210,12 @@ class DriverProfileTrevelHistoryClass extends React.Component {
         }
         debugger;
         let body = JSON.stringify({
-            id: element.union.length>0 ? idArrayCreator(element.union) : element.id
+            id: element.union.length > 0 ? idArrayCreator(element.union) : element.id
         });
 
         //console.log(requests);
         let jwt = this.props.globalReduser.readCookie('jwt');
-        
+
         if (jwt && jwt !== '-') {
             let that = this;
             that.startRefresher();
@@ -214,52 +225,52 @@ class DriverProfileTrevelHistoryClass extends React.Component {
                     method: 'POST', body: body,
                     headers: { 'content-type': 'application/json', Authorization: `Bearer ${jwt}` }
                 })
-                .then(response => {
-                    return response.json();
-                })
-                .then(function (data) {
-                    if (data.error) {
+                    .then(response => {
+                        return response.json();
+                    })
+                    .then(function (data) {
+                        if (data.error) {
+                            console.log("bad");
+                            throw data.error;
+                        }
+                        else {
+                            console.log('good');
+                            console.log(data);
+                            that.getProfileData();
+                            thenFuncGlobal(that)
+                        }
+                    })
+                    .catch(function (error) {
                         console.log("bad");
-                        throw data.error;
-                    }
-                    else {
-                        console.log('good');
-                        console.log(data);
-                        that.getProfileData();
-                        thenFuncGlobal(that)
-                    }
-                })
-                .catch(function (error) {
-                    console.log("bad");
-                    console.log('An error occurred:', error);
-                    catchFuncGlobal(that);
-                });
+                        console.log('An error occurred:', error);
+                        catchFuncGlobal(that);
+                    });
             }
             if (element.startFact) {
                 fetch(requests.tripEnd, {
                     method: 'POST', body: body,
                     headers: { 'content-type': 'application/json', Authorization: `Bearer ${jwt}` }
                 })
-                .then(response => {
-                    return response.json();
-                })
-                .then(function (data) {
-                    if (data.error) {
+                    .then(response => {
+                        return response.json();
+                    })
+                    .then(function (data) {
+                        if (data.error) {
+                            console.log("bad");
+                            throw data.error;
+                        }
+                        else {
+                            console.log('good');
+                            console.log(data);
+                            that.getProfileData();
+                            thenFuncGlobal(that)
+                        }
+                    })
+                    .catch(function (error) {
                         console.log("bad");
-                        throw data.error;
-                    }
-                    else {
-                        console.log('good');
-                        console.log(data);
-                        that.getProfileData();
-                        thenFuncGlobal(that)
-                    }
-                })
-                .catch(function (error) {
-                    console.log("bad");
-                    console.log('An error occurred:', error);
-                    catchFuncGlobal(that);
-                });
+                        console.log('An error occurred:', error);
+                        catchFuncGlobal(that);
+                    });
             }
         }
         else {
@@ -267,9 +278,9 @@ class DriverProfileTrevelHistoryClass extends React.Component {
             this.props.history.push('/' + cookies.get('userLangISO', { path: "/" }) + '/login/');
             return null;
         }
-        
+
     }
-    componentDidMount(){
+    componentDidMount() {
         //thenFuncGlobal(this)
     }
     render() {
@@ -288,26 +299,26 @@ class DriverProfileTrevelHistoryClass extends React.Component {
             routeString += ' (' + length + ', ' + time + ")";
             return routeString;
         }
-        function travelHistoryFiltration(travelHistory){
-            
+        function travelHistoryFiltration(travelHistory) {
+
             //this function must return an array of history elements, where multicustomeral tours elements are united into one
             let res = [];
             let changedTravelHistory = [];
-            for(let i=0; i<travelHistory.length; i++){
-                changedTravelHistory.push({...travelHistory[i], united: false, union:[]});
+            for (let i = 0; i < travelHistory.length; i++) {
+                changedTravelHistory.push({ ...travelHistory[i], united: false, union: [] });
             }
-            for(let i=0; i<changedTravelHistory.length; i++){
-                if(changedTravelHistory[i].united){
+            for (let i = 0; i < changedTravelHistory.length; i++) {
+                if (changedTravelHistory[i].united) {
                     //if this object is united with someone, then skip it
                     continue;
                 }
-                for(let j=i+1; j<changedTravelHistory.length; j++){
-                    if(changedTravelHistory[j].tripType.type_en==='Tour'){
-                        if(changedTravelHistory[j].united){
+                for (let j = i + 1; j < changedTravelHistory.length; j++) {
+                    if (changedTravelHistory[j].tripType.type_en === 'Tour') {
+                        if (changedTravelHistory[j].united) {
                             //if this object is united with someone, then skip it
                             continue;
                         }
-                        if(changedTravelHistory[i].startDefault.substring(0,10)===changedTravelHistory[j].startDefault.substring(0,10)){
+                        if (changedTravelHistory[i].startDefault.substring(0, 10) === changedTravelHistory[j].startDefault.substring(0, 10)) {
                             //if dates are equal, then unite j to i
                             
                             
@@ -317,7 +328,7 @@ class DriverProfileTrevelHistoryClass extends React.Component {
                             changedTravelHistory[i].union.push({...changedTravelHistory[j]/*, selected: changedTravelHistory[j].isCarrierConfirmed*/});
                             changedTravelHistory[j].united=true;
                             //next line set isCarrierConfirmed like if any united object is not confirmed, the main obj is also not confirmed
-                            changedTravelHistory[i].isCarrierConfirmed= changedTravelHistory[i].isCarrierConfirmed && changedTravelHistory[j].isCarrierConfirmed;
+                            changedTravelHistory[i].isCarrierConfirmed = changedTravelHistory[i].isCarrierConfirmed && changedTravelHistory[j].isCarrierConfirmed;
                             //next line set startFace like if any element have startFact, then all object have startFact
                             changedTravelHistory[i].startFact = changedTravelHistory[i].startFact || changedTravelHistory[j].startFact;
                         }
@@ -340,12 +351,12 @@ class DriverProfileTrevelHistoryClass extends React.Component {
             return res;
         }
         let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileTrevelHistory;
-        
+
         let that = this;
         let textInfoAgency = this.props.storeState.languageText.agencyProfile.agencyProfileHistory;
         //
         let JSONTravelHistory = JSON.stringify(this.props.trevelHistory);
-        if(this.state.oldTravelHistory !== JSONTravelHistory){
+        if (this.state.oldTravelHistory !== JSONTravelHistory) {
             let filteredTravelHistory = travelHistoryFiltration(this.props.trevelHistory);
             console.log(filteredTravelHistory);
             this.setState({
@@ -353,14 +364,14 @@ class DriverProfileTrevelHistoryClass extends React.Component {
                 filteredTravelHistory: filteredTravelHistory,
                 selectedElement: new Array(filteredTravelHistory.length).fill(0)
             })
-        }       
+        }
         return (
             <div className="d-flex flex-wrap justify-content-md-start justify-content-center">
                 {
-                    this.state.filteredTravelHistory.map((element, index) =>{
+                    this.state.filteredTravelHistory.map((element, index) => {
                         let isToday = Math.abs(new Date(element.startDefault) - new Date()) < 86400000;
                         let canStartTrip = element.isCarrierConfirmed && (isToday || element.startFact);
-                        return(
+                        return (
                             <div className={this.state.collapse[index] ? " openCollapse col-md-6 col-12 p-2" : "col-lg-3 col-md-4 col-sm-6 col-11 p-2 "} key={element}>
                                 <div className={isToday && !this.props.isHistory ? "trevelHistoryBody trevelHistoryBodyActiveDay  d-flex flex-column" : "trevelHistoryBody  d-flex flex-column"}>
                                     <div className="d-flex flex-column historyBodyHeader">
@@ -368,21 +379,25 @@ class DriverProfileTrevelHistoryClass extends React.Component {
                                             <span>{element.startDefault ? this.props.globalReduser.createDateTimeString(element.startDefault) : ''}</span>
                                             <span className="historyBodyHeaderType">{element.tripType.type_en}</span>
                                         </div>
-                                        {
-                                            !element.isCarrierConfirmed && 
-                                            <div style={{color: 'red'}}>NOT CONFIRMED</div> 
-                                        }
+
                                         <span className="historyBodyHeaderRoute">{createCorrectRoute(element.route, element.travelLength, element.travelTime)}</span>
-                                        <span className="historyBodyHeaderBtn pt-2"
-                                            onClick={() => {
-                                                debugger;
-                                                let array = this.state.collapse;
-                                                array[index] = !array[index];
-                                                this.setState({ collapse: array })
-                                            }}>{this.state.collapse[index] ? textPage.historyBodyHeaderBtn[0] : textPage.historyBodyHeaderBtn[1]}</span>
+                                        <div className="d-flex align-items-center justify-content-between">
+                                            <span className="historyBodyHeaderBtn pt-2"
+                                                onClick={() => {
+                                                    debugger;
+                                                    let array = this.state.collapse;
+                                                    array[index] = !array[index];
+                                                    this.setState({ collapse: array })
+                                                }}>{this.state.collapse[index] ? textPage.historyBodyHeaderBtn[0] : textPage.historyBodyHeaderBtn[1]}</span>
+                                            {
+                                                !element.isCarrierConfirmed &&
+                                                <div style={{ color: 'red', fontSize: "14px" }}>NOT CONFIRMED</div>
+                                            }
+                                        </div>
+
                                     </div>
                                     <Collapse isOpen={this.state.collapse[index]} className={this.state.collapse[index] ? "d-flex flex-column px-3" : ""} >
-                                        <TravelHistoryElementInnerPart isHistory={this.props.isHistory} textPage={textPage} /*element={element}*/ that={this} index={index}/>
+                                            <TravelHistoryElementInnerPart isHistory={this.props.isHistory} textPage={textPage} /*element={element}*/ that={this} index={index} />
                                     </Collapse>
 
                                     {
@@ -404,11 +419,11 @@ class DriverProfileTrevelHistoryClass extends React.Component {
 
                             </div>
                         )
-                    }    
-                )}
+                    }
+                    )}
                 {
-                    this.props.trevelHistory.length===0 &&
-                    <div style={{margin: 'auto', paddingTop: '7%'}}>{this.props.isHistory ? textInfoAgency.emptyHistory : textInfoAgency.emptyUpcoming}</div>
+                    this.props.trevelHistory.length === 0 &&
+                    <div style={{ margin: 'auto', paddingTop: '7%' }}>{this.props.isHistory ? textInfoAgency.emptyHistory : textInfoAgency.emptyUpcoming}</div>
                 }
             </div>
         );
@@ -452,7 +467,7 @@ const TravelHistoryElementInnerPart = (props) => {
         <>
             {
                 isHistory &&
-                <> 
+                <>
                     <div className="d-flex">
                         <div className="d-flex flex-column historyBodyElement">
                             <h5>{textPage.tripStart}</h5>
@@ -621,7 +636,7 @@ class DriverProfileTrevelHistoryClass extends React.Component {
             return routeString;
         }
         function travelHistoryFiltration(travelHistory){
-            
+
             //this function must return an array of history elements, where multicustomeral tours elements are united into one
             let res = [];
             let changedTravelHistory = [];
@@ -661,10 +676,10 @@ class DriverProfileTrevelHistoryClass extends React.Component {
             return res;
         }
         let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileTrevelHistory;
-        
+
         let that = this;
         let textInfoAgency = this.props.storeState.languageText.agencyProfile.agencyProfileHistory;
-        
+
         let filteredTravelHistory = travelHistoryFiltration(this.props.trevelHistory);
         console.log(filteredTravelHistory);
         return (
@@ -686,12 +701,12 @@ class DriverProfileTrevelHistoryClass extends React.Component {
                                         this.setState({ collapse: array })
                                     }}>{this.state.collapse[index] ? textPage.historyBodyHeaderBtn[0] : textPage.historyBodyHeaderBtn[1]}</span>
                                     {
-                                    !element.isCarrierConfirmed && 
-                                    <div style={{color: 'red',fontSize:"14px"}}>NOT CONFIRMED</div> 
+                                    !element.isCarrierConfirmed &&
+                                    <div style={{color: 'red',fontSize:"14px"}}>NOT CONFIRMED</div>
                                 }
 
                                 </div>
-                                
+
                             </div>
                             <Collapse isOpen={this.state.collapse[index]} className={this.state.collapse[index] ? "d-flex flex-column px-3" : ""} >
                                 <TravelHistoryElementInnerPart isHistory={this.props.isHistory} textPage={textPage} element={element} that={this} />
