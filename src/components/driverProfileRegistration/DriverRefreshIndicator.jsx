@@ -9,12 +9,12 @@ import sunny from '../media/sunny.svg'
 import gearSet from '../media/gearSet.svg'
 import coffee from '../media/coffee.svg'
 
- class DriverRefreshIndicatorClass extends React.Component {
+class DriverRefreshIndicatorClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             loadings: [loupe, loading, azure, rainy, sunny, gearSet, coffee],
-            randomNumber:2, 
+            randomNumber: 2,
         }
     }
 
@@ -24,15 +24,19 @@ import coffee from '../media/coffee.svg'
     //     this.setState({randomNumber:randomNumber})
     // }
     render() {
-        
+
         return (
             <>
                 {
                     this.props.storeState.isRefreshExist ?
-                        <div className="refreshIndicatorModal" >
-                            {this.props.storeState.isRefreshing ? <img src={this.state.loadings[this.state.randomNumber]} alt="" /> : <div />}
-                            <i className={!this.props.storeState.isRefreshing && this.props.storeState.isNeedRefreshIndicator ? (this.props.storeState.isGoodAnswer ? "refreshIndicatorSuccess" : "refreshIndicatorFail"):""}></i>
-                        </div>
+                        <>
+                            <div className="refreshIndicatorModal" style={{background:"none"}} >
+                                {this.props.storeState.isRefreshing ? <img src={this.state.loadings[this.state.randomNumber]} alt="" /> : <div />}
+                            </div>
+                            <div className={this.props.storeState.isNeedRefreshIndicator ?"refreshIndicatorModal":""} >
+                                <i className={!this.props.storeState.isRefreshing && this.props.storeState.isNeedRefreshIndicator ? (this.props.storeState.isGoodAnswer ? "refreshIndicatorSuccess" : "refreshIndicatorFail") : ""}></i>
+                            </div>
+                        </>
                         : <React.Fragment />
                 }
             </>

@@ -85,18 +85,18 @@ const TravelHistoryElementInnerPart = (props) => {
                         isHistory &&
                         <>
                             <div className="d-flex">
-                                <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "") + "d-flex flex-column historyBodyElement"}>
+                                <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "historyBodyElement ") + "d-flex flex-column "}>
                                     <h5>{textPage.tripStart}</h5>
                                     <span>{selectedElement.startFact ? that.props.globalReduser.createDateTimeString(selectedElement.startFact) : textPage.noStart}</span>
                                 </div>
-                                <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "") + "d-flex flex-column historyBodyElement"}>
+                                <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "historyBodyElement ") + "d-flex flex-column "}>
                                     <h5>{textPage.tripEnd}</h5>
                                     <span>{selectedElement.endFact ? that.props.globalReduser.createDateTimeString(selectedElement.endFact) : textPage.noEnd}</span>
                                 </div>
                             </div>
                         </>
                     }
-                    <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "") + "d-flex historyBodyElement"}>
+                    <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "historyBodyElement ") + "d-flex "}>
                         <h5>{textPage.tripId + ":"}</h5>
                         <span>{selectedElement.id}</span>
                         {
@@ -107,32 +107,32 @@ const TravelHistoryElementInnerPart = (props) => {
                             <div style={{ color: 'red' }}>NOT CONFIRMED</div>
                         }
                     </div>
-                    <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "") + "d-flex historyBodyElement"}>
+                    <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "historyBodyElement ") + "d-flex "}>
                         <h5>{textPage.venue + ":"}</h5>
                         <span>{selectedElement.startPlace}</span>
                     </div>
-                    <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "")  + "d-flex historyBodyElement"}>
+                    <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "historyBodyElement ")  + "d-flex "}>
                         <h5>{textPage.car + ":"}</h5>
                         <span>{selectedElement.car}</span>
                     </div>
-                    <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "") + "d-flex historyBodyElement"}>
+                    <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "historyBodyElement ") + "d-flex "}>
                         <h5>{textPage.costOfTravel + ":"}</h5>
                         <span>{that.props.globalReduser.profile.currencies ? that.props.globalReduser.profile.currencies[findCurrencyEl(that, element.currencyType)].symbol + element.price : ''}</span>
                     </div>
-                    <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "") + "d-flex flex-column historyBodyElement"}>
+                    <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "historyBodyElement ") + "d-flex flex-column "}>
                         <h5>{textPage.customer + ":"}</h5>
                         <span>{selectedElement.client.firstName}</span>
                         <span>{selectedElement.client.phone}</span>
                         <span>{selectedElement.client.email}</span>
                         {/* <span>{element.passengerNumber+" чел."}</span> */}
                     </div>
-                    <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "") + "d-flex flex-column historyBodyElement"}>
+                    <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "historyBodyElement ") + "d-flex flex-column "}>
                         <h5>{textPage.comment + ":"}</h5>
                         <span>{selectedElement.commentary}</span>
                     </div>
                     {
                         isMulticustomeral && !isHistory &&
-                        <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "") + "d-flex flex-column historyBodyElement"}>
+                        <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "historyBodyElement ") + "d-flex flex-column "}>
                         {
                             filteredTravelHistory[index].startFact ?
                             <div className="d-flex flex-row">

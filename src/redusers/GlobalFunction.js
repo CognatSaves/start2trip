@@ -147,7 +147,7 @@ const startRefresherGlobal = (that, isNeedRefreshIndicator) => {
 }
 
 const thenFuncGlobal = (that, endFunc) => {
-
+  debugger
   let props = that.props;
   let tempThat;
   if (props === undefined) {
@@ -161,7 +161,7 @@ const thenFuncGlobal = (that, endFunc) => {
     if (endFunc) {
       endFunc();
     }
-  }, 500);
+  }, tempThat.storeState?(tempThat.storeState.isNeedRefreshIndicator?700:0):0);
   /*
   if(props === undefined){  
     tempThat.dispatch(thenFunc())
@@ -195,7 +195,7 @@ const catchFuncGlobal = (that) => {
   tempThat.dispatch(catchFunc());
   setTimeout(() => {
     tempThat.dispatch(isRefreshExistToFalse())
-  }, 500);
+  }, tempThat.storeState?(tempThat.storeState.isNeedRefreshIndicator?700:0):0);
   /*
   let props = that.props
   if(props === undefined){

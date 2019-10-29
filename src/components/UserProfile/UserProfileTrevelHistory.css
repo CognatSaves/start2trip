@@ -22,7 +22,7 @@
 
 .historyBodyElement {
     margin-bottom: 15px;
-    margin-right: 20px;
+    /* margin-right: 20px; */
     padding: 0px 5px;
 }
 
@@ -65,18 +65,24 @@
     background: #999;
     color: #fff;
     padding: 5px 10px !important;
-    transition: all 0.3s;
     margin: 0px;
+    transition: all 0.3s;
 }
 
 .historyBodyBottomMultiUserEl{
-    padding: 7px 10px;
+    padding: 10px;
     border-bottom: 1px solid #ccc;
 }
 
+.trevelHistoryBody .historyBodyBottomMultiUserEl h5{
+    line-height: 21px;
+    margin-bottom: 0px;
+    padding-right: 5px;
+}
+
 .trevelHistoryBody  span.historyBodyButton:hover {
-    background: #fff;
-    color: #304269;
+    background: #f60;
+    color: #fff;
 }
 
 .trevelHistoryBody span.historyBodyButtonSelected {
@@ -119,7 +125,7 @@
 
 .openCollapse {
     position: relative;
-    z-index: 80;
+    z-index: 30;
     background: none;
 }
 
@@ -178,6 +184,20 @@
 
 .historyBodyElementDriver {
     margin-bottom: 10px;
+}
+
+.historyBodyElementDriverCar img{
+    border-radius:  5px;
+    max-width: 100%;
+    margin: 0px;
+    height: 200px;
+    margin-bottom: 5px;
+
+}
+
+.historyBodyElementDriverCar img:hover{
+    transform: scale(1)
+
 }
 
 .historyBodyElementDriver span {
