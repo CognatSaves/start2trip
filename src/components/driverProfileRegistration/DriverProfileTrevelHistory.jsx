@@ -640,17 +640,21 @@ class DriverProfileTrevelHistoryClass extends React.Component {
                                     <span>{element.startDefault ? this.props.globalReduser.createDateTimeString(element.startDefault) : ''}</span>
                                     <span className="historyBodyHeaderType">{element.tripType.type_en}</span>
                                 </div>
-                                {
-                                    !element.isCarrierConfirmed && 
-                                    <div style={{color: 'red'}}>NOT CONFIRMED</div> 
-                                }
                                 <span className="historyBodyHeaderRoute">{createCorrectRoute(element.route, element.travelLength, element.travelTime)}</span>
+                                <div className="d-flex align-items-center justify-content-between">
                                 <span className="historyBodyHeaderBtn pt-2"
                                     onClick={() => {
                                         let array = this.state.collapse;
                                         array[index] = !array[index];
                                         this.setState({ collapse: array })
                                     }}>{this.state.collapse[index] ? textPage.historyBodyHeaderBtn[0] : textPage.historyBodyHeaderBtn[1]}</span>
+                                    {
+                                    !element.isCarrierConfirmed && 
+                                    <div style={{color: 'red',fontSize:"14px"}}>NOT CONFIRMED</div> 
+                                }
+
+                                </div>
+                                
                             </div>
                             <Collapse isOpen={this.state.collapse[index]} className={this.state.collapse[index] ? "d-flex flex-column px-3" : ""} >
                                 <TravelHistoryElementInnerPart isHistory={this.props.isHistory} textPage={textPage} element={element} that={this} />

@@ -46,7 +46,7 @@ class ToursListElementClass extends React.Component {
         let seats =element.freeSeats ? element.freeSeats : element.seats;
 
         let language = element.language.map((el, index) => {
-
+            
             for (let i = 0; i < this.props.storeState.untranslatedlanguages.length; i++) {
                 if (this.props.storeState.untranslatedlanguages[i].id === el) {
                     return this.props.storeState.untranslatedlanguages[i]

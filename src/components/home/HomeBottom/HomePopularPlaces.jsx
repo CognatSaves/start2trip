@@ -31,6 +31,7 @@ class PopularPlacesClass extends React.Component {
                         let lang2 = storeState.languages[storeState.activeLanguageNumber].id;
                         if (lang1 === lang2) {
                             return directions[i].loc[k].slug
+                            
                         }
                     }
                 }
@@ -42,7 +43,7 @@ class PopularPlacesClass extends React.Component {
 
         let selectedDirection = this.props.placesState.selectedDirection;
         let slug = findSelectedDirectionName(this.props.placesState.directions, id, this.props.storeState);
-
+        
         if (selectedDirection !== id && slug) {
             return "/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + `/routes-${slug}`
         }
@@ -79,7 +80,6 @@ class PopularPlacesClass extends React.Component {
             }
         })
         if (arrayRender.length > this.state.howMuchRender) {
-
             for (let i = 0; i < this.state.howMuchRender; i++) {
                 if (i < this.state.howMuchRender) {
                     placeRender.push(arrayRender[i]);
@@ -100,6 +100,7 @@ class PopularPlacesClass extends React.Component {
         // let textInfo = this.props.storeState.languageTextMain.places;
         /*let directions = arrayRender;
         */
+       
         console.log(placeRender);
         let textInfo = this.props.storeState.languageTextMain.home.homeBottom.homePopularPlaces;
         return (

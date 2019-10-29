@@ -174,7 +174,17 @@ class PlacesClass extends React.Component {
       if (coockisIso === undefined) {
         j = 1
       }
-      windowImg = requests.serverAddressImg + this.props.storeState.countries[j].windowImg.url
+      if(this.props.placesState.selectedDirection !== ""){
+        let url = ''
+        for(let k = 0; k<this.props.placesState.directions.length;k++){
+          if(this.props.placesState.directions[k].id === this.props.placesState.selectedDirection){
+            url = this.props.placesState.directions[k].bigImage.url
+          }
+        }
+        windowImg = requests.serverAddressImg + url
+      }else{
+        windowImg = requests.serverAddressImg + this.props.storeState.countries[j].windowImg.url
+      }
     }
 
     return (

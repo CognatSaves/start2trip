@@ -1,11 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import requests from '../../config';
+import { Collapse } from 'reactstrap'
 import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
 
 import Stars from '../stars/Stars';
 
 class UserProfileTrevelHistoryClass extends React.Component {
+    constructor(props) {
+        super(props);
+        let arrayCollapse = new Array(props.trevelHistory.length).fill(false)
+        this.state = {
+
+            collapse: arrayCollapse,
+        };
+    }
     componentDidMount(){
         //thenFuncGlobal(this)
     }
@@ -26,6 +35,7 @@ class UserProfileTrevelHistoryClass extends React.Component {
             }
         }
         let that = this;
+        let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileTrevelHistory;
         let textInfo = this.props.storeState.languageTextMain.userProfile.userProfileTravelHistory;
         let textInfoAgency = this.props.storeState.languageText.agencyProfile.agencyProfileHistory;
         if(this.props.trevelHistory.length>0){
@@ -44,6 +54,13 @@ class UserProfileTrevelHistoryClass extends React.Component {
                                 <span className="historyBodyHeaderRoute">{createCorrectRoute(element.route, element.travelLength, element.travelTime)}</span>
                                 <hr />
                             </div>
+                            <span className="historyBodyHeaderBtn pt-2"
+                                    onClick={() => {
+                                        let array = this.state.collapse;
+                                        array[index] = !array[index];
+                                        this.setState({ collapse: array })
+                                    }}>{this.state.collapse[index] ? textPage.historyBodyHeaderBtn[0] : textPage.historyBodyHeaderBtn[1]}</span>
+                            <Collapse isOpen={this.state.collapse[index]} className={this.state.collapse[index] ? "d-flex flex-column px-3" : ""} >
                             <div className="d-flex flex-column historyBodyElement ">
 
                                 <h5>{textInfo.drivercar}</h5>
@@ -91,6 +108,7 @@ class UserProfileTrevelHistoryClass extends React.Component {
                                     </>
                                     : <React.Fragment />
                             }
+                            </Collapse>
                         </div>
                     </div>
                 )}

@@ -45,6 +45,7 @@ class ToursClass extends React.Component {
       countryDescription: null,
       freeSeats: 0,
       isFirst: true,
+      activeSlug: "",
     }
     //сначала уборка
     this.props.dispatch(setPlacesList([], [], [], {}));
@@ -268,7 +269,18 @@ class ToursClass extends React.Component {
       if (coockisIso === undefined) {
         j = 1
       }
-      windowImg = requests.serverAddressImg + this.props.storeState.countries[j].windowImg.url
+      if(this.props.placesState.selectedDirection !== ""){
+        let url = ''
+        for(let k = 0; k<this.props.toursState.directions.length;k++){
+          if(this.props.toursState.directions[k].id === this.props.placesState.selectedDirection){
+            url = this.props.toursState.directions[k].bigImage.url
+          }
+        }
+        windowImg = requests.serverAddressImg + url
+      }else{
+        windowImg = requests.serverAddressImg + this.props.storeState.countries[j].windowImg.url
+      }
+      
     }
 
     let storeState = this.props.storeState;
