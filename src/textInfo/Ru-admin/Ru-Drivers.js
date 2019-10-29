@@ -295,6 +295,10 @@ const driverProfileRegistration = {
         noEnd: 'Поездка не была закончена',
         stateVariants: ['Закончить поездку','Начать поездку'],
         historyBodyHeaderBtn:["Скрыть","Подробнее"],
+        numberPersons:"Количество человек",
+        placesLeft:"Осталось мест",
+        users:"Пользователи",
+        notConfirmed:"Не подтверждено",
     },
     DriverProfileHistory: {
         upcoming: "Предстоящие",

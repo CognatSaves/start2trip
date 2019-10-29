@@ -147,7 +147,7 @@ const startRefresherGlobal = (that, isNeedRefreshIndicator) => {
 }
 
 const thenFuncGlobal = (that, endFunc) => {
-  debugger
+  
   let props = that.props;
   let tempThat;
   if (props === undefined) {

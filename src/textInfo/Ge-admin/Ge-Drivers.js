@@ -292,6 +292,10 @@ const driverProfileRegistration = {
         noEnd: 'მოგზაურობა არ დასრულებულა',
         stateVariants: ['დაასრულეთ მოგზაურობა', 'დაიწყეთ მოგზაურობა'],
         historyBodyHeaderBtn:["დამალვა","დეტალები"],
+        numberPersons:"ხალხის რაოდენობა",
+        placesLeft:"დარჩა ადგილები",
+        users:"მომხმარებლები",
+        notConfirmed:"არა დადასტურებული",
     },
     DriverProfileHistory: {
         upcoming: "მოსალოდნელი",

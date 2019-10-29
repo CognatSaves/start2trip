@@ -295,6 +295,10 @@ const driverProfileRegistration = {
         noEnd: 'The trip was not finished',
         stateVariants: ['End the trip', 'Start the trip'],
         historyBodyHeaderBtn:["Hide","More details"],
+        numberPersons:"Number of persons",
+        placesLeft:"Places left",
+        users:"Users",
+        notConfirmed:"Not confirmed",
     },
     DriverProfileHistory: {
         upcoming: "Upcoming",
