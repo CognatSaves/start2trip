@@ -66,6 +66,9 @@ const contacts = lazy(() => import('./components/FooterPage/contacts'));
 const LicenseAgreement = lazy(() => import('./components/FooterPage/LicenseAgreement'));
 const feedback = lazy(() => import('./components/registration/feedback'));
 const customerCancel = lazy(() => import('./components/registration/customerCancel'));
+const GetPromoCode = lazy(() => import('./components/usefulСomponents/GetPromoCode'));
+
+
 
 const redux = require('redux');
 
@@ -424,6 +427,7 @@ ReactDOM.render(
               <Route path="/countrySelection/" component={AuthModalCountry} />
               <Route path="/feedback-:id-:clientId/" component={feedback} />
               <Route path="/customer-cancel-:id-:clientId/" component={customerCancel} />
+              <Route path="/getPromoCode/" component={GetPromoCode} />
 
 
               <Redirect from='/-en' to='/countrySelection' />

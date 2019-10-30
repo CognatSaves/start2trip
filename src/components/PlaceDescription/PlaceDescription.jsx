@@ -19,23 +19,7 @@ import TourPanel from '../TourDescription/TourPanel.jsx';
 import SimularPlaceBlock from './SimularPlaceBlock';
 import PlacePhotoShow from './PlacePhotoShow.jsx';
 import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
-import {
-    FacebookShareButton,
-    TwitterShareButton,
-    PinterestShareButton,
-    VKShareButton,
-    TelegramShareButton,
-    WhatsappShareButton,
-    ViberShareButton,
 
-    FacebookIcon,
-    TwitterIcon,
-    PinterestIcon,
-    VKIcon,
-    TelegramIcon,
-    WhatsappIcon,
-    ViberIcon,
-} from 'react-share';
 import ShareLinkElements from '../driverProfileRegistration/ShareLinkElements';
 import Cookies from 'universal-cookie';
 

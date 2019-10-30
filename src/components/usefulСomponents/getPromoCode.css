@@ -1,0 +1,7 @@
+.getPromoCodeContent {
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.9);
+    height: 30%;
+    margin-top: 10%;
+    padding: 20px !important;
+}
