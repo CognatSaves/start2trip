@@ -211,6 +211,76 @@ const dateStringConversion=(datestr)=> {
   return (day < 10 ? '0' + day : day) + "." + (month < 10 ? '0' + month : month) + "." + year + ", " + (hours < 10 ? '0' + hours : hours) + ":" + (minutes < 10 ? '0' + minutes : minutes);
 }
 
+const findTagName=(tagId, that)=> {
+
+  if (that.props.placesState.tags.length > 0) {
+
+      let tags = that.props.placesState.tags;
+      let id = -1;
+
+      for (let i = 0; i < that.props.placesState.tags.length; i++) {
+          if (that.props.placesState.tags[i].id === tagId) {
+              id = i;
+              break;
+          }
+      }
+      if (id === -1) {
+          return '';
+      }
+
+      return tags[id].tagLoc.name;
+  }
+  return '';
+}
+
+const getCurrencies = (currency, criterion,that) => {
+  let idIndex = null
+  switch (criterion) {
+      case "id":
+        that.props.storeState.currencies.map((item, index) => {
+              if (item.id.indexOf(currency) === 0) { idIndex = index }
+          })
+          break;
+      case "ISO":
+        that.props.storeState.currencies.map((item, index) => {
+              if (item.ISO.indexOf(currency) === 0) { idIndex = index }
+          })
+          break;
+  }
+  return idIndex
+}
+
+const placesSort = (array, type) => {
+
+  switch (type) {
+      case 0:
+          return array.sort((a, b) => { return a.rating > b.rating ? -1 : 1 });
+      case 1:
+          return array.sort((a, b) => { return a.comments > b.comments ? -1 : 1 });
+      case 2:
+          return array.sort((a, b) => { return a.placelocalization.name < b.placelocalization.name ? -1 : 1 });
+
+      default: return array;
+  }
+
+}
+
+const tagFilterFunction =(placesList, selectedTags)=> {
+  let res = [];
+  if (selectedTags.length === 0) {
+      return placesList;
+  }
+  for (let i = 0; i < placesList.length; i++) {
+      for (let k = 0; k < selectedTags.length; k++) {
+          if (placesList[i].tagsArray.indexOf(selectedTags[k]) !== -1) {
+              res.push(placesList[i]);
+              break;
+          }
+      }
+  }
+  return res;
+}
+
 
 
 
@@ -225,4 +295,8 @@ export {
   findCurrencyEl,
   createCorrectRoute,
   dateStringConversion,
+  findTagName,
+  getCurrencies,
+  placesSort,
+  tagFilterFunction,
 }

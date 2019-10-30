@@ -2,6 +2,8 @@ import React from 'react';
 import './PlacesList.css';
 import { connect } from 'react-redux';
 import { setPage, setMorePagesShow } from '../../redusers/ActionPlaces';
+import {startRefresherGlobal, thenFuncGlobal, 
+    catchFuncGlobal,findTagName,placesSort,tagFilterFunction} from '../../redusers/GlobalFunction'
 
 import PlaceListElement from './PlaceListElement';
 import Manipulator from '../manipulator/Manipulator';
@@ -13,20 +15,7 @@ class PlacesListClass extends React.Component {
         super(props);
         this.state = {}
     }
-    placesSort = (array, type) => {
 
-        switch (type) {
-            case 0:
-                return array.sort((a, b) => { return a.rating > b.rating ? -1 : 1 });
-            case 1:
-                return array.sort((a, b) => { return a.comments > b.comments ? -1 : 1 });
-            case 2:
-                return array.sort((a, b) => { return a.placelocalization.name < b.placelocalization.name ? -1 : 1 });
-
-            default: return array;
-        }
-
-    }
     showMorePages = () => {
         this.props.dispatch(setMorePagesShow());
     }
@@ -37,42 +26,8 @@ class PlacesListClass extends React.Component {
     }
 
     render() {
-        function tagFilterFunction(placesList, selectedTags) {
-            let res = [];
-            if (selectedTags.length === 0) {
-                return placesList;
-            }
-            for (let i = 0; i < placesList.length; i++) {
-                for (let k = 0; k < selectedTags.length; k++) {
-                    if (placesList[i].tagsArray.indexOf(selectedTags[k]) !== -1) {
-                        res.push(placesList[i]);
-                        break;
-                    }
-                }
-            }
-            return res;
-        }
-        function findTagName(tagId, that) {
-
-            if (that.props.placesState.tags.length > 0) {
-
-                let tags = that.props.placesState.tags;
-                let id = -1;
-
-                for (let i = 0; i < that.props.placesState.tags.length; i++) {
-                    if (that.props.placesState.tags[i].id === tagId) {
-                        id = i;
-                        break;
-                    }
-                }
-                if (id === -1) {
-                    return '';
-                }
-
-                return tags[id].tagLoc.name;
-            }
-            return '';
-        }
+        
+        
         console.log('PlacesList render');
         console.log(this.props);
         let tagFilteredArray = tagFilterFunction([...this.props.placesState.placesList], this.props.placesState.selectedTags);
@@ -81,7 +36,7 @@ class PlacesListClass extends React.Component {
         // 
         // if(tagFilteredArray.length !== 0){
 
-        sortedArray = this.placesSort(/*[...this.props.placesState.placesList]*/tagFilteredArray, this.props.placesState.sortMenuValue);
+        sortedArray = placesSort(/*[...this.props.placesState.placesList]*/tagFilteredArray, this.props.placesState.sortMenuValue);
         // }
 
         let selectedPlaces = sortedArray.slice((this.props.placesState.page - this.props.placesState.showPages) * this.props.placesState.pagesMenuValue,
