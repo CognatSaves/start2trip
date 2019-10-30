@@ -78,7 +78,7 @@ const TravelHistoryElementInnerPart = (props) => {
                         </div>
 
                     </div>
-                } 
+                }
                 <div className="w-100 ">
                     {
                         isHistory &&
@@ -107,27 +107,27 @@ const TravelHistoryElementInnerPart = (props) => {
                         }
                     </div>
                     <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "historyBodyElement ") + "d-flex align-items-center h5lineHeight"}>
-                        <h5>{'Is confirmed'}</h5>
+                        <h5>{textPage.isСonfirmed}</h5>
                         {
                             //you can see that this trip is not confirmed in the header of trip;
                             //we mush write it again only if this is a multicustomeral tour, where you mush find not confirmed user
                             //otherwise it's clear for you who is not confirmed)
                             /*isMulticustomeral && */!selectedElement.isCarrierConfirmed ?
-                            <>
-                                <span style={{ color: 'red', fontSize: "14px" }}>
-                                    {textPage.notConfirmed}
-                                </span>
-                                {
-                                    !isHistory && 
-                                    <Link to={'/driverConfirmation/'+selectedElement.id+'-'+that.props.globalReduser.profile._id+'-true'}>
-                                        <button style={{paddingLeft: '5px'}}>Confirm</button>
-                                    </Link>
-                                }
-                            </>
-                            :
-                            <div style={{fontSize: '14px'}}>
-                                {'Confirmed'}
-                            </div>
+                                <>
+                                    <span style={{ color: 'red', fontSize: "14px" }}>
+                                        {textPage.notConfirmed}
+                                    </span>
+                                    {
+                                        !isHistory &&
+                                        <Link className="historyBodyBottomMultiUserElLink" to={'/driverConfirmation/' + selectedElement.id + '-' + that.props.globalReduser.profile._id + '-true'}>
+                                            {textPage.confirmed}
+                                        </Link>
+                                    }
+                                </>
+                                :
+                                <div className="historyBodyBottomMultiUserElText" >
+                                    {textPage.confirmed}
+                                </div>
                         }
                     </div>
                     <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "historyBodyElement ") + "d-flex h5lineHeight"}>
@@ -403,7 +403,7 @@ class DriverProfileTrevelHistoryClass extends React.Component {
             <div className="d-flex flex-wrap justify-content-md-start justify-content-center">
                 {
                     this.state.filteredTravelHistory.map((element, index) => {
-                        
+
                         let isToday = Math.abs(new Date(element.startDefault) - new Date()) < 86400000;
                         let canStartTrip = element.isCarrierConfirmed && (isToday || element.startFact);
                         return (
@@ -416,7 +416,7 @@ class DriverProfileTrevelHistoryClass extends React.Component {
                                         </div>
                                         {element.tripType.type_en === "Tour" &&
 
-                                            <span style={{minHeight:"42px"}}>{element.tourName}</span>
+                                            <span style={{ minHeight: "42px" }}>{element.tourName}</span>
                                         }
 
                                         {element.tripType.type_en !== "Tour" &&

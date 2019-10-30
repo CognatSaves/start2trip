@@ -18,7 +18,7 @@ import CommentBlock from '../TourDescription/CommentBlock.jsx';
 import TourPanel from '../TourDescription/TourPanel.jsx';
 import SimularPlaceBlock from './SimularPlaceBlock';
 import PlacePhotoShow from './PlacePhotoShow.jsx';
-import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
+import { startRefresherGlobal, thenFuncGlobal, catchFuncGlobal, } from '../../redusers/GlobalFunction'
 
 import ShareLinkElements from '../driverProfileRegistration/ShareLinkElements';
 import Cookies from 'universal-cookie';
@@ -320,16 +320,17 @@ class PlaceDescriptionClass extends React.Component {
                                                 panelSelectedElement={this.props.placesState.placePanelSelectedElement} setPanelSelectedElement={setPlacesPanelSelectedElement}
                                                 removeElements={this.state.newPlace.additionalPlaces.length === 0 ? [simularPlaceBlockId] : []} />
 
-                                            <div className="placeDescription_block d-flex flex-column p-0" id={topBlockId + "1"}>
+                                            <div className="placeDescription_block d-flex flex-column p-0" style={this.state.btMore ? { maxHeight: "max-content" } : { maxHeight: "454px" }} id={topBlockId + "1"}>
                                                 <div className="placeDescription_fragmentName" style={{ marginBottom: "15px" }} >{textInfo.placeDescription.variantsArray[0]}</div>
                                                 <PlaceProgramm tagsArray={this.state.newPlace.tags} place={/*this.state.place*/{ ...this.state.newPlace.local, tags: this.state.newPlace.place.tags, rating: this.state.newPlace.place.rating, comments: this.state.newPlace.place.commentNumber }} />
                                             </div>
-                                            {isMobileOnly ? <>
-                                                <div className="placeDescription_fragmentName" style={{ marginBottom: "15px" }} >{textInfo.share}</div>
-                                                <div className="d-flex ">
-                                                    <ShareLinkElements shareUrl={shareUrl} title={title} isAdmin={false}/>   
+                                            {
+                                                (isMobileOnly ? (this.state.newPlace.local.info.length > 700) : (this.state.newPlace.local.info.length > 1455)) &&
+                                                <div className="placeDescription_block_btMore d-flex justify-content-end">
+                                                    <span onClick={() => { this.setState({ btMore: !this.state.btMore }) }}>{this.state.btMore ? textInfo.btMore[0] : textInfo.btMore[1]}</span>
                                                 </div>
-                                            </> : <React.Fragment />}
+                                            }
+
 
                                             <div className="placeDescription_block d-flex flex-column" id={topBlockId + "2"}>
                                                 <div className="placeDescription_fragmentName" style={{ marginBottom: "15px" }} >{textInfo.placeDescription.variantsArray[1]}</div>
@@ -337,6 +338,12 @@ class PlaceDescriptionClass extends React.Component {
                                                 <PlacePhotos photoArray={/*this.state.photoArray*/this.state.newPlace.place.images}
                                                     showMask={(clickedImageIndex, images) => { this.setState({ isMaskVisible: true, clickedImageIndex: clickedImageIndex, images: images }) }}/*width={this.state.width} height={this.state.height} number={this.state.n}*/ />
                                             </div>
+                                            {isMobileOnly ? <>
+                                                <div className="placeDescription_fragmentName" style={{ marginBottom: "15px" }} >{textInfo.share}</div>
+                                                <div className="d-flex ">
+                                                    <ShareLinkElements shareUrl={shareUrl} title={title} isAdmin={false} />
+                                                </div>
+                                            </> : <React.Fragment />}
                                             <div key={JSON.stringify(this.state.newPlace.local.endPlace)}>
                                                 <PlaceTravelBlock id={topBlockId + "3"} place={{ ...this.state.newPlace.local, country: this.state.newPlace.country, capital: this.state.newPlace.capital }} />
                                             </div>

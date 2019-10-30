@@ -22,23 +22,7 @@ import SimularRouteBlock from './SimularRouteBlock';
 import CommentBlock from '../TourDescription/CommentBlock.jsx';
 import TourPanel from '../TourDescription/TourPanel.jsx';
 import DriversBlock from '../drivers/DriversBody/DriversBlock/DriversBlock';
-import {
-    FacebookShareButton,
-    TwitterShareButton,
-    PinterestShareButton,
-    VKShareButton,
-    TelegramShareButton,
-    WhatsappShareButton,
-    ViberShareButton,
 
-    FacebookIcon,
-    TwitterIcon,
-    PinterestIcon,
-    VKIcon,
-    TelegramIcon,
-    WhatsappIcon,
-    ViberIcon,
-} from 'react-share';
 import ShareLinkElements from '../driverProfileRegistration/ShareLinkElements';
 import Cookies from 'universal-cookie';
 
@@ -58,6 +42,7 @@ class RouteDescriptionClass extends React.Component {
             showPages: 1,
             isRequestSend: false,
             date: "",
+            btMore: false,
         }
 
     }
@@ -380,17 +365,18 @@ class RouteDescriptionClass extends React.Component {
                                                     removeElements={this.state.newRoute.additionalRoutes.length === 0 ? [simularPlaceBlockId] : []} />
                                             }
 
-                                            <div className="placeDescription_block d-flex flex-column p-0" id={topBlockId + "1"}>
+                                            <div className="placeDescription_block d-flex flex-column p-0" style={this.state.btMore ? { maxHeight: "max-content" } : { maxHeight: "454px" }} id={topBlockId + "1"}>
                                                 <div className="placeDescription_fragmentName" style={{ marginBottom: "15px" }} >{textInfo.routeDescription.variantsArray[0]}</div>
 
                                                 <PlaceProgramm id={topBlockId + "1"} tagsArray={[]} place={{ ...this.state.newRoute.local, tags: []/*this.state.newPlace.place.tags*/, rating: this.state.newRoute.route.rating, comments: this.state.newRoute.route.commentNumber }} />
                                             </div>
-                                            {isMobileOnly ? <>
-                                                <div className="placeDescription_fragmentName" style={{ marginBottom: "15px" }} >{textInfo.share}</div>
-                                                <div className="d-flex ">
-                                                    <ShareLinkElements shareUrl={shareUrl} title={title} isAdmin={false}/>                                                 
+                                            {
+                                               (isMobileOnly?(this.state.newRoute.local.info.length > 700) :(this.state.newRoute.local.info.length > 1455)) &&
+                                                <div className="placeDescription_block_btMore d-flex justify-content-end">
+                                                    <span onClick={() => { this.setState({ btMore: !this.state.btMore }) }}>{this.state.btMore ? textInfo.btMore[0]: textInfo.btMore[1]}</span>
                                                 </div>
-                                            </> : <React.Fragment />}
+                                            }
+                                            
 
                                             <div className="placeDescription_block d-flex flex-column" id={topBlockId + "2"}>
                                                 <div className="placeDescription_fragmentName" style={{ marginBottom: "15px" }} >{textInfo.routeDescription.variantsArray[1]}</div>
@@ -398,6 +384,12 @@ class RouteDescriptionClass extends React.Component {
                                                     showMask={(clickedImageIndex) => { this.setState({ isMaskVisible: true, clickedImageIndex: clickedImageIndex }) }} />
 
                                             </div>
+                                            {isMobileOnly ? <>
+                                                <div className="placeDescription_fragmentName" style={{ marginBottom: "15px" }} >{textInfo.share}</div>
+                                                <div className="d-flex ">
+                                                    <ShareLinkElements shareUrl={shareUrl} title={title} isAdmin={false}/>                                                 
+                                                </div>
+                                            </> : <React.Fragment />}
                                             <RouteTravelBlock points={this.state.newRoute.local.points} id={topBlockId + "3"} textInfo={textInfo} changeDate={this.changeDate} />
                                             <div className="placeDescription_block d-flex flex-column" id={topBlockId + "4"}>
                                                 <div className="placeDescription_fragmentName" style={{ marginBottom: "15px" }} >{textInfo.routeDescription.variantsArray[3]}</div>

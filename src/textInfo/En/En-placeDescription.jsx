@@ -28,6 +28,7 @@ let placeDescription = {
      },
     showMore:"View all drivers",
     share:"Share",
+    btMore:["Hide","More"],
 }
 
 export default placeDescription

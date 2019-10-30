@@ -299,6 +299,8 @@ const driverProfileRegistration = {
         placesLeft:"Осталось мест",
         users:"Пользователи",
         notConfirmed:"Не подтверждено",
+        confirmed:"Подтверждено",
+        isСonfirmed:"Подтвержден ?",
     },
     DriverProfileHistory: {
         upcoming: "Предстоящие",

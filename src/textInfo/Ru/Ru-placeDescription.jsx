@@ -27,6 +27,7 @@ let placeDescription = {
     },
     showMore:"Посмотреть всех водителей",
     share:"Поделиться",
+    btMore:["Скрыть","Подробнее"],
 }
 
 export default placeDescription

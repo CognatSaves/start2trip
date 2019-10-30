@@ -24,23 +24,6 @@ import TourHeaderEditorCustom from '../usefulСomponents/TourHeaderEditorCustom'
 
 import TourGuideInfo from './TourGuideInfo'
 
-import {
-    FacebookShareButton,
-    TwitterShareButton,
-    PinterestShareButton,
-    VKShareButton,
-    TelegramShareButton,
-    WhatsappShareButton,
-    ViberShareButton,
-
-    FacebookIcon,
-    TwitterIcon,
-    PinterestIcon,
-    VKIcon,
-    TelegramIcon,
-    WhatsappIcon,
-    ViberIcon,
-} from 'react-share';
 import ShareLinkElements from '../driverProfileRegistration/ShareLinkElements';
 import Cookies from 'universal-cookie';
 
@@ -599,18 +582,19 @@ class ToureDescriptionClass extends React.Component {
                                                 </div>
                                             }
 
-                                            {isMobileOnly ? <>
-                                                <div className="placeDescription_fragmentName" style={{ marginBottom: "15px" }} >{textInfo.share}</div>
-                                                <div className="d-flex ">
-                                                    <ShareLinkElements shareUrl={shareUrl} title={title} isAdmin={false}/>                                                   
-                                                </div>
-                                            </> : <React.Fragment />}
+                                            
 
                                             <div className="placeDescription_block d-flex flex-column" id={topBlockId + "2"}>
                                                 <div className="placeDescription_fragmentName" style={{ marginBottom: "15px" }} >{textInfo.placeDescription.variantsArray[1]}</div>
                                                 <PlacePhotos photoArray={this.state.newTour.tour.images}
                                                     showMask={(clickedImageIndex) => { this.setState({ isMaskVisible: true, clickedImageIndex: clickedImageIndex }) }} />
                                             </div>
+                                            {isMobileOnly ? <>
+                                                <div className="placeDescription_fragmentName" style={{ marginBottom: "15px" }} >{textInfo.share}</div>
+                                                <div className="d-flex ">
+                                                    <ShareLinkElements shareUrl={shareUrl} title={title} isAdmin={false}/>                                                   
+                                                </div>
+                                            </> : <React.Fragment />}
                                             <div className="placeDescription_block d-flex flex-column" id={topBlockId + "3"}>
                                                 <div className="placeDescription_fragmentName" style={{ marginBottom: "15px" }} >{guideOrAgency[this.state.author.guide ? 0 : 1]}</div>
                                                 
