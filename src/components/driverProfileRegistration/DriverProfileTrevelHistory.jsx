@@ -9,7 +9,8 @@ import Stars from '../stars/Stars';
 import { startRefresherGlobal, thenFuncGlobal, catchFuncGlobal, } from '../../redusers/GlobalFunction'
 import Cookies from 'universal-cookie';
 import { Checkbox } from '@material-ui/core';
-
+import { Link } from 'react-router-dom';
+import './DriverProfileTripSettings.css';
 
 const cookies = new Cookies();
 
@@ -26,7 +27,6 @@ const TravelHistoryElementInnerPart = (props) => {
     let element = that.state.filteredTravelHistory[index];
     let isMulticustomeral = (element.union.length > 0);
     let selectedElement = isMulticustomeral ? element.union[that.state.selectedElement[index]] : element;
-
 
     let filteredTravelHistory = that.state.filteredTravelHistory;
 
@@ -78,12 +78,12 @@ const TravelHistoryElementInnerPart = (props) => {
                         </div>
 
                     </div>
-                }
-                <div className="w-100">
+                } 
+                <div className="w-100 ">
                     {
                         isHistory &&
                         <>
-                            <div className="d-flex">
+                            <div className="d-flex h5lineHeight">
                                 <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "historyBodyElement ") + "d-flex flex-column "}>
                                     <h5>{textPage.tripStart}</h5>
                                     <span>{selectedElement.startFact ? that.props.globalReduser.createDateTimeString(selectedElement.startFact) : textPage.noStart}</span>
@@ -95,50 +95,74 @@ const TravelHistoryElementInnerPart = (props) => {
                             </div>
                         </>
                     }
-                    <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "historyBodyElement ") + "d-flex "}>
+                    <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "historyBodyElement ") + "d-flex h5lineHeight"}>
                         <h5>{textPage.tripId + ":"}</h5>
                         <span>{selectedElement.id}</span>
                         {
                             //you can see that this trip is not confirmed in the header of trip;
                             //we mush write it again only if this is a multicustomeral tour, where you mush find not confirmed user
                             //otherwise it's clear for you who is not confirmed)
-                            isMulticustomeral && !selectedElement.isCarrierConfirmed &&
-                            <div style={{ color: 'red', fontSize: "14px" }}>{textPage.notConfirmed}</div>
+                            //isMulticustomeral && !selectedElement.isCarrierConfirmed &&
+                            //<div style={{ color: 'red', fontSize: "14px" }}>{textPage.notConfirmed}</div>
                         }
                     </div>
-                    <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "historyBodyElement ") + "d-flex "}>
+                    <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "historyBodyElement ") + "d-flex align-items-center h5lineHeight"}>
+                        <h5>{'Is confirmed'}</h5>
+                        {
+                            //you can see that this trip is not confirmed in the header of trip;
+                            //we mush write it again only if this is a multicustomeral tour, where you mush find not confirmed user
+                            //otherwise it's clear for you who is not confirmed)
+                            /*isMulticustomeral && */!selectedElement.isCarrierConfirmed ?
+                            <>
+                                <span style={{ color: 'red', fontSize: "14px" }}>
+                                    {textPage.notConfirmed}
+                                </span>
+                                {
+                                    !isHistory && 
+                                    <Link to={'/driverConfirmation/'+selectedElement.id+'-'+that.props.globalReduser.profile._id+'-true'}>
+                                        <button style={{paddingLeft: '5px'}}>Confirm</button>
+                                    </Link>
+                                }
+                            </>
+                            :
+                            <div style={{fontSize: '14px'}}>
+                                {'Confirmed'}
+                            </div>
+                        }
+                    </div>
+                    <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "historyBodyElement ") + "d-flex h5lineHeight"}>
                         <h5>{textPage.venue + ":"}</h5>
                         <span>{selectedElement.startPlace}</span>
                     </div>
                     {props.tripType ?
-                        <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "historyBodyElement ") + "d-flex "}>
+                        <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "historyBodyElement ") + "d-flex h5lineHeight"}>
                             <h5>{textPage.numberPersons + ":"}</h5>
                             <span>{selectedElement.passengerNumber}</span>
                         </div>
                         :
-                        <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "historyBodyElement ") + "d-flex "}>
+                        <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "historyBodyElement ") + "d-flex h5lineHeight"}>
                             <h5>{textPage.car + ":"}</h5>
                             <span>{selectedElement.car}</span>
                         </div>
                     }
-                    <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "historyBodyElement ") + "d-flex "}>
+                    <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "historyBodyElement ") + "d-flex h5lineHeight"}>
                         <h5>{textPage.costOfTravel + ":"}</h5>
                         <span>{that.props.globalReduser.profile.currencies ? that.props.globalReduser.profile.currencies[findCurrencyEl(that, selectedElement.currencyType)].symbol + selectedElement.price : ''}</span>
                     </div>
-                    <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "historyBodyElement ") + "d-flex flex-column "}>
+                    <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "historyBodyElement ") + "d-flex flex-column h5lineHeight"}>
                         <h5>{textPage.customer + ":"}</h5>
                         <span>{selectedElement.client.firstName}</span>
                         <span>{selectedElement.client.phone}</span>
                         <span>{selectedElement.client.email}</span>
                         {/* <span>{element.passengerNumber+" чел."}</span> */}
                     </div>
-                    <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "historyBodyElement ") + "d-flex flex-column "}>
+                    <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "historyBodyElement ") + "d-flex flex-column h5lineHeight"}>
                         <h5>{textPage.comment + ":"}</h5>
                         <span>{selectedElement.commentary}</span>
                     </div>
                     {
                         isMulticustomeral && !isHistory &&
-                        <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "historyBodyElement ") + "d-flex flex-column "}>
+                        <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "historyBodyElement ") + "d-flex flex-column h5lineHeight"}>
                             {
                                 filteredTravelHistory[index].startFact ?
                                     <div className="d-flex flex-row">
@@ -379,7 +403,7 @@ class DriverProfileTrevelHistoryClass extends React.Component {
             <div className="d-flex flex-wrap justify-content-md-start justify-content-center">
                 {
                     this.state.filteredTravelHistory.map((element, index) => {
-                        debugger
+                        
                         let isToday = Math.abs(new Date(element.startDefault) - new Date()) < 86400000;
                         let canStartTrip = element.isCarrierConfirmed && (isToday || element.startFact);
                         return (
