@@ -117,30 +117,7 @@ class AgencyProfileTourClass extends React.Component {
             errorString: ""
         }
     }
-    getProfileData = () => {
-        console.log('getProfileData');
-        let that = this;
-        let jwt = this.props.globalReduser.readCookie('jwt');
-        if (jwt && jwt !== '-') {
-            let requestValues = {
-                readCookie: this.props.globalReduser.readCookie,
-                setProfileData: function (data) {
-                    that.props.dispatch(setProfileData(data))
-                },
-                requestAddress: requests.profileRequest
-            };
-            getUserData(requestValues, (obj)=>{thenFuncGlobal(obj, that.setState({collapse: false,
-                 languageTour: [...this.props.storeState.untranslatedlanguages]}))}, catchFuncGlobal,that);
-        }
-        else {
-            this.props.dispatch(setUrlAddress(window.location.pathname));
-            this.props.history.push('/' + cookies.get('userLangISO', { path: "/" }) + '/login/');
-            //return null;
-        }
-    }
-    startRefresher = () => {
-        startRefresherGlobal(this,true)
-    }
+ 
     fillForm = (element) => {
         
         let profile = this.props.globalReduser.profile;
@@ -348,7 +325,7 @@ class AgencyProfileTourClass extends React.Component {
     changeActive = (element) => {
         let jwt = this.props.globalReduser.readCookie('jwt');
         if (jwt && jwt !== "-") {
-            this.startRefresher();
+            startRefresherGlobal(this,true)
             let that = this;
             var tourForm = new FormData();
             tourForm.append('onWork', !element.onWork);
@@ -358,7 +335,8 @@ class AgencyProfileTourClass extends React.Component {
             request.onreadystatechange = function () {
                 if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
                     console.log(request.responseText);
-                    that.getProfileData();
+                    getUserData((obj)=>{thenFuncGlobal(obj, that.setState({collapse: false,
+                        languageTour: [...this.props.storeState.untranslatedlanguages]}))}, catchFuncGlobal,that);
                 }
                 if (request.readyState === XMLHttpRequest.DONE && request.status === 0) {
                     catchFuncGlobal(that)
@@ -375,13 +353,14 @@ class AgencyProfileTourClass extends React.Component {
     destroy = (element) => {
         let jwt = this.props.globalReduser.readCookie('jwt');
         if (jwt && jwt !== "-") {
-            this.startRefresher();
+            startRefresherGlobal(this,true)
             let that = this;
             const request = new XMLHttpRequest();
             request.onreadystatechange = function () {
                 if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
                     console.log(request.responseText);
-                    that.getProfileData();
+                    getUserData((obj)=>{thenFuncGlobal(obj, that.setState({collapse: false,
+                        languageTour: [...this.props.storeState.untranslatedlanguages]}))}, catchFuncGlobal,that);
                 }
                 if (request.readyState === XMLHttpRequest.DONE && request.status === 0) {
                     catchFuncGlobal(that);

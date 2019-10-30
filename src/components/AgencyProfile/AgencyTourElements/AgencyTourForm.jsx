@@ -8,6 +8,7 @@ import LocationSearchInput from '../../home/HomeBody/Search';
 import Chip from 'material-ui/Chip';
 import TextField from 'material-ui/TextField';
 import Cookies from 'universal-cookie';
+import getUserData from '../../driverProfileRegistration/DriverProfileRequest';
 import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../../redusers/GlobalFunction'
 
 import ExcursionIncludesBlock from './ExcursionIncludesBlock'
@@ -220,7 +221,7 @@ export default class AgencyTourForm extends React.Component {
 
             let notThisbutthat = that;
             
-            that.startRefresher();
+            startRefresherGlobal(that,true)
 
             var tourForm = new FormData();
             let tourSave = notThisbutthat.state.tourSave;
@@ -287,7 +288,7 @@ export default class AgencyTourForm extends React.Component {
             request.onreadystatechange = function () {
                 if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
                     console.log(request.responseText);
-                    notThisbutthat.getProfileData(notThisbutthat.thenFunc, notThisbutthat.catchFunc);
+                    getUserData(thenFuncGlobal,catchFuncGlobal,notThisbutthat)
                 }
                 if (request.readyState === XMLHttpRequest.DONE && request.status === 400) {
                     notThisbutthat.catchFunc();
@@ -470,7 +471,7 @@ export default class AgencyTourForm extends React.Component {
         let imageCounter = 0;
         for (let i = 0; i < fullfile.length; i++) {
             if (i === 0) {
-                that.startRefresher();
+                startRefresherGlobal(that,true)
             }
 
             let file = fullfile[i]

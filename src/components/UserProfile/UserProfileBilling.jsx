@@ -6,6 +6,7 @@ import FlatButton from 'material-ui/FlatButton';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 import TextField from '@material-ui/core/TextField';
+import { startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,findCurrencyEl,dateStringConversion } from '../../redusers/GlobalFunction'
 
 class UserProfileBillingClass extends React.Component {
     constructor(props) {
@@ -37,22 +38,7 @@ class UserProfileBillingClass extends React.Component {
 
     render() {
         let profile = this.props.globalReduser.profile;
-        function findCurrencyEl(that, iso) {
-            for (let i = 0; i < that.props.globalReduser.profile.currencies.length; i++) {
-                if (iso === that.props.globalReduser.profile.currencies[i].ISO) {
-                    return i;
-                }
-            }
-        }
-        function dateStringConversion(datestr) {
-            let date = new Date(datestr);
-            let day = date.getUTCDate();
-            let month = date.getUTCMonth() + 1;
-            let year = date.getUTCFullYear();
-            let hours = date.getUTCHours();
-            let minutes = date.getMinutes();
-            return (day < 10 ? '0' + day : day) + "." + (month < 10 ? '0' + month : month) + "." + year + ", " + (hours < 10 ? '0' + hours : hours) + ":" + (minutes < 10 ? '0' + minutes : minutes);
-        }
+
         let that = this;
         console.log('DriverProfileBilling render');
         console.log(this.state);

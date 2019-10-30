@@ -46,29 +46,6 @@ class DriverProfileNavigationClass extends React.Component {
 
         };
     }
-    getProfileData = () => {
-        console.log('getProfileData');
-        let that = this;
-        let jwt = this.props.globalReduser.readCookie('jwt');
-        if (jwt && jwt !== '-') {
-            let requestValues = {
-                readCookie: this.props.globalReduser.readCookie,
-                setProfileData: function (data) {
-                    that.props.dispatch(setProfileData(data))
-                },
-                requestAddress: requests.profileRequest
-            };
-            getUserData(requestValues, thenFuncGlobal, catchFuncGlobal,that);
-        }
-        else {
-            this.props.dispatch(setUrlAddress(window.location.pathname));
-            this.props.history.push('/' + cookies.get('userLangISO', { path: "/" }) + '/login/');
-            //return null;
-        }
-    }
-    startRefresher = () => {
-        startRefresherGlobal(this,true)
-    }
 
     shiftLeft = (event) => {
 

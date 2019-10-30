@@ -5,7 +5,7 @@ import getUserData from '../driverProfileRegistration/DriverProfileRequest';
 import requests from '../../config';
 
 import Stars from '../stars/Stars';
-import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
+import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,findCurrencyEl,createCorrectRoute} from '../../redusers/GlobalFunction'
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
@@ -16,30 +16,8 @@ class AgencyProfileTravelHistoryClass extends React.Component {
         // this.state = {
         // };
     }
-    startRefresher = () => {
-        startRefresherGlobal(this,true)
-    }
-    getProfileData = () => {
-        console.log('getProfileData');
-        let that = this;
-        let jwt = this.props.globalReduser.readCookie('jwt');
-        if (jwt && jwt !== '-') {
-            let requestValues = {
-                readCookie: this.props.globalReduser.readCookie,
-                setProfileData: function (data) {
-                    that.props.dispatch(setProfileData(data))
-                },
-                requestAddress: requests.profileRequest
-            }
-            getUserData(requestValues, thenFuncGlobal, catchFuncGlobal,that);
-        }
-        else {
 
-            this.props.dispatch(setUrlAddress(window.location.pathname));
-            this.props.history.push('/' + cookies.get('userLangISO', { path: "/" }) + '/login/');
-            //return null;
-        }
-    }
+ 
     stateButtonClicked = (element) => {
         let body = JSON.stringify({
             id: element.id
@@ -50,7 +28,7 @@ class AgencyProfileTravelHistoryClass extends React.Component {
 
         if (jwt && jwt !== '-') {
             let that = this;
-            that.startRefresher();
+            startRefresherGlobal(this,true)
 
             if (!(element.startFact)) {
                 fetch(requests.tripStart, {
@@ -68,7 +46,7 @@ class AgencyProfileTravelHistoryClass extends React.Component {
                         else {
                             console.log('good');
                             console.log(data);
-                            that.getProfileData();
+                            getUserData(thenFuncGlobal, catchFuncGlobal,that);
                         }
                     })
                     .catch(function (error) {
@@ -94,7 +72,7 @@ class AgencyProfileTravelHistoryClass extends React.Component {
                         else {
                             console.log('good');
                             console.log(data);
-                            that.getProfileData();
+                            getUserData(thenFuncGlobal, catchFuncGlobal,that);
                         }
                     })
                     .catch(function (error) {
@@ -112,21 +90,7 @@ class AgencyProfileTravelHistoryClass extends React.Component {
     }
 
     render() {
-        function findCurrencyEl(that, iso) {
-            for (let i = 0; i < that.props.globalReduser.profile.currencies.length; i++) {
-                if (iso === that.props.globalReduser.profile.currencies[i].ISO) {
-                    return i;
-                }
-            }
-        }
-        function createCorrectRoute(route, length, time) {
-            let routeString = route[0].point;
-            for (let i = 1; i < route.length; i++) {
-                routeString += ' - ' + route[i].point;
-            }
-            routeString += ' (' + length + ', ' + time + ")";
-            return routeString;
-        }
+
 
         let textInfo = this.props.storeState.languageText.agencyProfile.agencyProfileTrevelHistory;
         let textInfoAgency = this.props.storeState.languageText.agencyProfile.agencyProfileHistory;

@@ -53,29 +53,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
             badRequestTextVisibility: false,
         }
     }
-    getProfileData = () => {
-        console.log('getProfileData');
-        let that = this;
-        let jwt = this.props.globalReduser.readCookie('jwt');
-        if (jwt && jwt !== '-') {
-            let requestValues = {
-                readCookie: this.props.globalReduser.readCookie,
-                setProfileData: function (data) {
-                    that.props.dispatch(setProfileData(data))
-                },
-                requestAddress: requests.profileRequest
-            }
-            getUserData(requestValues, thenFuncGlobal, catchFuncGlobal,that);
-        }
-        else {
-            this.props.dispatch(setUrlAddress(window.location.pathname));
-            this.props.history.push('/' + cookies.get('userLangISO', { path: "/" }) + '/login/');
-            //return null;
-        }
-    }
-    startRefresher = () => {
-        startRefresherGlobal(this,true)
-    }
+
 
     validate = () => {
 
@@ -119,7 +97,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
         else {
             if (jwt && jwt !== "-") {
                 let that = this;
-                this.startRefresher();
+                startRefresherGlobal(this,true)
                 let value;
                 if (props) {
                     value = { onWork: props.onWork, changeOnWork: true };
@@ -163,7 +141,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                             /*that.setState({
                                 onWork: data.travelsetting.onWork
                             });*/
-                            thenFuncGlobal(that)
+                            // thenFuncGlobal(that)
                             //that.getProfileData();
                             //document.location.reload(true);
                             //that.state.sendResultLocal(true, {jwt:data.jwt, user: data.user});

@@ -41,33 +41,11 @@ class AgencyProfileDriversClass extends React.Component {
         selectedInput.select();
         document.execCommand("copy");
     }
-    getProfileData = () => {
-        console.log('getProfileData');
-        let that = this;
-        let jwt = this.props.globalReduser.readCookie('jwt');
-        if (jwt && jwt !== '-') {
-            let requestValues = {
-                readCookie: this.props.globalReduser.readCookie,
-                setProfileData: function (data) {
-                    that.props.dispatch(setProfileData(data))
-                },
-                requestAddress: requests.profileRequest
-            };
-            getUserData(requestValues, thenFuncGlobal, catchFuncGlobal,that);
-        }
-        else {
-            this.props.dispatch(setUrlAddress(window.location.pathname));
-            this.props.history.push('/' + cookies.get('userLangISO', { path: "/" }) + '/login/');
-            //return null;
-        }
-    }
-    startRefresher = () => {
-        startRefresherGlobal(this,true)
-    }
+
     sendChangeDriverRequest = (driverId, type) => {
         let jwt = this.props.globalReduser.readCookie('jwt');
         if (jwt && jwt !== "-") {
-            this.startRefresher();
+            startRefresherGlobal(this,true)
             let body = JSON.stringify({
                 type: type,
                 driverId: driverId
@@ -88,7 +66,7 @@ class AgencyProfileDriversClass extends React.Component {
                     else {
                         console.log("good");
                         console.log('data', data);
-                        that.getProfileData();
+                        getUserData(thenFuncGlobal, catchFuncGlobal,that);
                     }
                 })
                 .catch(function (error) {

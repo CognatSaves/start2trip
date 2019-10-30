@@ -6,7 +6,7 @@ import requests from '../../config';
 import getUserData from '../driverProfileRegistration/DriverProfileRequest';
 
 import Stars from '../stars/Stars';
-import { startRefresherGlobal, thenFuncGlobal, catchFuncGlobal, } from '../../redusers/GlobalFunction'
+import { startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,findCurrencyEl,createCorrectRoute } from '../../redusers/GlobalFunction'
 import Cookies from 'universal-cookie';
 import { Checkbox } from '@material-ui/core';
 import { Link } from 'react-router-dom';
@@ -15,19 +15,13 @@ import './DriverProfileTripSettings.css';
 const cookies = new Cookies();
 
 const TravelHistoryElementInnerPart = (props) => {
-    function findCurrencyEl(that, iso) {
-        for (let i = 0; i < that.props.globalReduser.profile.currencies.length; i++) {
-            if (iso === that.props.globalReduser.profile.currencies[i].ISO) {
-                return i;
-            }
-        }
-    }
+
     let { isHistory, textPage, /*element, */that, index } = props;
 
     let element = that.state.filteredTravelHistory[index];
     let isMulticustomeral = (element.union.length > 0);
     let selectedElement = isMulticustomeral ? element.union[that.state.selectedElement[index]] : element;   
-    debugger;
+    
     let filteredTravelHistory = that.state.filteredTravelHistory;
 
     let selectedElementIndex = that.state.selectedElement[index];
@@ -204,30 +198,8 @@ class DriverProfileTrevelHistoryClass extends React.Component {
             selectedElement: new Array(props.trevelHistory.length).fill(0)
         };
     }
-    startRefresher = () => {
-        startRefresherGlobal(this, true)
-    }
-    getProfileData = () => {
-        console.log('getProfileData');
-        let that = this;
-        let jwt = this.props.globalReduser.readCookie('jwt');
-        if (jwt && jwt !== '-') {
-            let requestValues = {
-                readCookie: this.props.globalReduser.readCookie,
-                setProfileData: function (data) {
-                    that.props.dispatch(setProfileData(data))
-                },
-                requestAddress: requests.profileRequest
-            }
-            getUserData(requestValues, thenFuncGlobal, catchFuncGlobal, that);
-        }
-        else {
 
-            this.props.dispatch(setUrlAddress(window.location.pathname));
-            this.props.history.push('/' + cookies.get('userLangISO', { path: "/" }) + '/login/');
-            //return null;
-        }
-    }
+ 
     stateButtonClicked = (element) => {
         function idArrayCreator(union, startFact) {
             let res = [];
@@ -250,7 +222,7 @@ class DriverProfileTrevelHistoryClass extends React.Component {
 
         if (jwt && jwt !== '-') {
             let that = this;
-            that.startRefresher();
+            startRefresherGlobal(this, true)
 
             if (!(element.startFact)) {
                 fetch(requests.tripStart, {
@@ -268,9 +240,8 @@ class DriverProfileTrevelHistoryClass extends React.Component {
                         else {
                             console.log('good');
                             console.log(data);
-
-                            that.getProfileData();
-                            //thenFuncGlobal(that)
+                            getUserData(thenFuncGlobal, catchFuncGlobal, that);
+                            
                         }
                     })
                     .catch(function (error) {
@@ -295,9 +266,8 @@ class DriverProfileTrevelHistoryClass extends React.Component {
                         else {
                             console.log('good');
                             console.log(data);
-
-                            that.getProfileData();
-                            //thenFuncGlobal(that)
+                            getUserData(thenFuncGlobal, catchFuncGlobal, that);
+                           
                         }
                     })
                     .catch(function (error) {
@@ -318,21 +288,7 @@ class DriverProfileTrevelHistoryClass extends React.Component {
         //thenFuncGlobal(this)
     }
     render() {
-        function findCurrencyEl(that, iso) {
-            for (let i = 0; i < that.props.globalReduser.profile.currencies.length; i++) {
-                if (iso === that.props.globalReduser.profile.currencies[i].ISO) {
-                    return i;
-                }
-            }
-        }
-        function createCorrectRoute(route, length, time) {
-            let routeString = route[0].point;
-            for (let i = 1; i < route.length; i++) {
-                routeString += ' - ' + route[i].point;
-            }
-            routeString += ' (' + length + ', ' + time + ")";
-            return routeString;
-        }
+
         function travelHistoryFiltration(travelHistory) {
 
             //this function must return an array of history elements, where multicustomeral tours elements are united into one

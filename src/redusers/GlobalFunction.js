@@ -16,6 +16,9 @@ import {
   setWaitingDriverRequest,
 } from '../redusers/ActionDrivers'
 import requests from '../config';
+import Cookies from 'universal-cookie';
+
+
 
 
 const checkBtUp = (e, that) => {
@@ -147,7 +150,6 @@ const startRefresherGlobal = (that, isNeedRefreshIndicator) => {
 }
 
 const thenFuncGlobal = (that, endFunc) => {
-  
   let props = that.props;
   let tempThat;
   if (props === undefined) {
@@ -162,24 +164,7 @@ const thenFuncGlobal = (that, endFunc) => {
       endFunc();
     }
   }, tempThat.storeState?(tempThat.storeState.isNeedRefreshIndicator?700:0):0);
-  /*
-  if(props === undefined){  
-    tempThat.dispatch(thenFunc())
-    setTimeout(() => {
-      tempThat.dispatch(isRefreshExistToFalse());
-      if(endFunc){
-        endFunc();
-      }
-    }, 500);
-  }else{
-    that.props.dispatch(thenFunc())
-    setTimeout(() => {
-      tempThat.props.dispatch(isRefreshExistToFalse())
-      if(endFunc){
-        endFunc();
-      }
-    }, 500);
-  }*/
+  
 
 }
 
@@ -196,23 +181,38 @@ const catchFuncGlobal = (that) => {
   setTimeout(() => {
     tempThat.dispatch(isRefreshExistToFalse())
   }, tempThat.storeState?(tempThat.storeState.isNeedRefreshIndicator?700:0):0);
-  /*
-  let props = that.props
-  if(props === undefined){
-    let tempThat = that
-    that.dispatch(catchFunc())
-    setTimeout(() => {
-      tempThat.dispatch(isRefreshExistToFalse())
-    }, 500);
-  }else{
-    let tempThat = that
-    that.props.dispatch(catchFunc())
-    setTimeout(() => {
-      tempThat.props.dispatch(isRefreshExistToFalse())
-    }, 500);
-  }
-  */
+  
 }
+
+const findCurrencyEl =(that, iso)=> {
+  for (let i = 0; i < that.props.globalReduser.profile.currencies.length; i++) {
+      if (iso === that.props.globalReduser.profile.currencies[i].ISO) {
+          return i;
+      }
+  }
+}
+
+const createCorrectRoute=(route, length, time)=> {
+  let routeString = route[0].point;
+  for (let i = 1; i < route.length; i++) {
+      routeString += ' - ' + route[i].point;
+  }
+  routeString += ' (' + length + ', ' + time + ")";
+  return routeString;
+}
+
+const dateStringConversion=(datestr)=> {
+  let date = new Date(datestr);
+  let day = date.getUTCDate();
+  let month = date.getUTCMonth() + 1;
+  let year = date.getUTCFullYear();
+  let hours = date.getUTCHours();
+  let minutes = date.getMinutes();
+  return (day < 10 ? '0' + day : day) + "." + (month < 10 ? '0' + month : month) + "." + year + ", " + (hours < 10 ? '0' + hours : hours) + ":" + (minutes < 10 ? '0' + minutes : minutes);
+}
+
+
+
 
 export {
   checkBtUp,
@@ -222,4 +222,7 @@ export {
   lengthTimeCalc,
   setLengthTimeFunc,
   createRequestElement,
+  findCurrencyEl,
+  createCorrectRoute,
+  dateStringConversion,
 }

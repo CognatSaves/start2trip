@@ -1,13 +1,17 @@
 import axios from 'axios';
 import requests from '../../config';
+import Cookies from 'universal-cookie';
+import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 
-function getUserData(requestValues, thenFunc, catchFunc,that) {
-  let jwt = requestValues.readCookie('jwt');
-  let userLang = requestValues.readCookie('userLang');
-  let country = requestValues.readCookie('country')
+const cookies = new Cookies();
+
+function getUserData(thenFunc, catchFunc,that) {
+  let jwt = cookies.get('jwt', { path: "/" });
+  let userLang = cookies.get('userLang', { path: "/" });
+
   if (jwt && jwt !== "-") {
 
-    axios.get(requestValues.requestAddress + '?ISO=' + userLang/*+'&countryISO='+country*/, {
+    axios.get(requests.profileRequest + '?ISO=' + userLang, {
       headers: {
         Authorization: `Bearer ${jwt}`
       }
@@ -15,8 +19,7 @@ function getUserData(requestValues, thenFunc, catchFunc,that) {
       .then(response => {
 
         console.log('get answer');
-        requestValues.setProfileData(response.data);
-
+        that.props.dispatch(setProfileData(response.data))
         if (thenFunc) {
            thenFunc(that)
         }
@@ -28,6 +31,9 @@ function getUserData(requestValues, thenFunc, catchFunc,that) {
         }
         console.log('error, here must be return to authorization window! or smth else');
       })
+  }else{
+    that.props.dispatch(setUrlAddress(window.location.pathname));
+    that.props.history.push('/' + cookies.get('userLangISO', { path: "/" }) + '/login/');
   }
 }
 

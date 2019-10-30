@@ -56,8 +56,7 @@ const ModalUserType = (props) => {
             let newPath = '/account' + addressArray[that.state.selectedUserType] + '/profile';
             that.props.history.push(newPath);
             that.props.dispatch(setProfileData({}))
-            getProfileData(that);
-            thenFuncGlobal(that)
+            getUserData(thenFuncGlobal,catchFuncGlobal,that);
           }
         })
         .catch(function (error) {
@@ -184,28 +183,7 @@ const ModalUserType = (props) => {
 
   )
 }
-function getProfileData(that) {
-  
-  let jwt = that.props.globalReduser.readCookie('jwt');
-  if (jwt && jwt !== '-') {
-    startRefresherGlobal(that)
-    //startRefresherGlobal(that)
-    let requestValues = {
-      readCookie: that.props.globalReduser.readCookie,
-      setProfileData: function (data) {
-        that.props.dispatch(setProfileData(data))
-      },
-      requestAddress: requests.profileRequest
-    }
-    getUserData(requestValues,thenFuncGlobal,catchFuncGlobal,that);
-   
-  }
-  else {
-    that.props.dispatch(setUrlAddress(window.location.pathname));
-    that.props.history.push('/' + cookies.get('userLangISO', { path: "/" }) + '/login/');
-    //return null;
-  }
-}
+
 class AccountRedirectorClass extends React.Component {
   constructor(props) {
     super(props);
@@ -216,7 +194,9 @@ class AccountRedirectorClass extends React.Component {
       selectedUserCountry: '',
       selectedUserType: 0
     }
-    getProfileData(that);
+    startRefresherGlobal(that)
+    getUserData(thenFuncGlobal,catchFuncGlobal,that);
+
   }
 
   render() {

@@ -12,7 +12,7 @@ const cookies = new Cookies();
 class DriverConfirmationClass extends React.Component {
     constructor(props) {
         super(props);
-        debugger;
+        
         let id = props.match.params.id;
         let carrierId = props.match.params.carrierId;
         let confirmation = JSON.parse(props.match.params.confirmation);

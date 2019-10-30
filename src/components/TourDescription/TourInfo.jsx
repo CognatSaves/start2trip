@@ -24,8 +24,8 @@ class TourInfoClass extends React.Component {
         }
     }
     render() {
-        
-        if (this.props.toursState.departurePoint.length > 0 && this.state.days.length === 0 && this.props.toursState.daysNumber.length>0) {
+
+        if (this.props.toursState.departurePoint.length > 0 && this.state.days.length === 0 && this.props.toursState.daysNumber.length > 0) {
             //эта функция отрабатывает ровно 1 раз, но только когда пришли this.props.toursState.daysNumber. 
             let sortArrayDaysNumber = this.props.toursState.daysNumber.sort((a, b) => { return a < b ? -1 : 1 })
             this.setState({
@@ -40,9 +40,8 @@ class TourInfoClass extends React.Component {
             <div className="tourInfoBlock ">
                 <div className="d-flex flex-md-row flex-column justify-content-around align-items-center tourInfoContent">
                     <p>{textInfo.headerText}</p>
-                    <input className="searchInputTourInfoContent col-md-3 col-10" onChange={(e) => 
-                    {this.props.departurePointChange(e.target.value) }} value={this.props.departurePoint}
-                    placeholder={textInfo.searchPlaceholder} list="places" name="myPlaces" />
+                    <input className="searchInputTourInfoContent col-md-3 col-10" onChange={(e) => { this.props.departurePointChange(e.target.value) }} value={this.props.departurePoint}
+                        placeholder={textInfo.searchPlaceholder} list="places" name="myPlaces" />
                     <datalist id="places">
                         {this.props.toursState.departurePoint.map((element, index) =>
                             <option value={element.point} >{element.point}</option>
@@ -50,15 +49,15 @@ class TourInfoClass extends React.Component {
                     </datalist>
                     <DatePicker hintText={textInfo.datePickerLabel} minDate={new Date()} id="basicInfoBirthday" className="calendarModal tourInfoContentDate col-md-4 col-10 p-md-2 p-0" value={this.props.departureDate}
                         onChange={(undefined, data) => {
-                            
+
                             this.props.departureDateChange(data);
                             if (Math.abs(data - this.state.departureDateOld) > 7 * 86400000) {
                                 //this must be here, because otherway this func will be called earlier than we save new value
-                                setTimeout(()=>this.props.sendRequestFunc(false), 0);
+                                setTimeout(() => this.props.sendRequestFunc(false), 0);
                                 //this.props.sendRequestFunc(false);
                             }
                             let pathname = this.props.globalReduser.history.location.pathname
-                            this.props.globalReduser.history.push(pathname+"?date="+this.props.globalReduser.createDateTimeString(data,true))
+                            this.props.globalReduser.history.push(pathname + "?date=" + this.props.globalReduser.createDateTimeString(data, true))
                             this.setState({ departureDateOld: this.props.departureDate })
                         }}
                     />
@@ -76,7 +75,7 @@ class TourInfoClass extends React.Component {
                             )}
                         </Select>
                     </FormControl>
-                    <span className="tourInfoContentBt" onClick={() => {
+                    <span className="tourInfoContentBt col-md-2 col-10 " onClick={() => {
                         if (this.props.departurePoint !== this.state.departurePointOld || this.props.duration !== this.state.durationOld || (Math.abs(this.props.departureDate - this.state.departureDateOld) > 7 * 86400000)) {
                             this.props.sendRequestFunc(false);
                             this.setState({
@@ -86,22 +85,22 @@ class TourInfoClass extends React.Component {
                             })
                             let departurePointLat = "default";
                             let departurePointLong = "default";
-                            for(let i=0; i<this.state.departurePoint.length;i++){
-                                if(this.state.departurePoint[i].point === this.props.departurePoint){
-                                    departurePointLat = this.state.departurePoint[i].lat.toFixed(5) 
-                                    departurePointLong = this.state.departurePoint[i].long.toFixed(5) 
+                            for (let i = 0; i < this.state.departurePoint.length; i++) {
+                                if (this.state.departurePoint[i].point === this.props.departurePoint) {
+                                    departurePointLat = this.state.departurePoint[i].lat.toFixed(5)
+                                    departurePointLong = this.state.departurePoint[i].long.toFixed(5)
                                     break;
                                 }
                             }
-                            
+
                             let pathname = this.props.globalReduser.history.location.pathname.split("/")
-                            pathname = pathname[0] + "/"+pathname[1]+"/"+pathname[2]+"/"
-                            if(departurePointLat !== "default" && departurePointLong !== "default" || this.props.duration !== "default"){
-                                this.props.globalReduser.history.push(pathname+"params="+departurePointLat+"-"+departurePointLong+"-"+ this.props.duration+"/"+"?date="+this.props.globalReduser.createDateTimeString(this.props.departureDate,true))
-                            }else{
-                                this.props.globalReduser.history.push(pathname+"?date="+this.props.globalReduser.createDateTimeString(this.props.departureDate,true))
+                            pathname = pathname[0] + "/" + pathname[1] + "/" + pathname[2] + "/"
+                            if (departurePointLat !== "default" && departurePointLong !== "default" || this.props.duration !== "default") {
+                                this.props.globalReduser.history.push(pathname + "params=" + departurePointLat + "-" + departurePointLong + "-" + this.props.duration + "/" + "?date=" + this.props.globalReduser.createDateTimeString(this.props.departureDate, true))
+                            } else {
+                                this.props.globalReduser.history.push(pathname + "?date=" + this.props.globalReduser.createDateTimeString(this.props.departureDate, true))
                             }
-                            
+
                         }
                     }}>{textInfo.findText}</span>
                 </div>

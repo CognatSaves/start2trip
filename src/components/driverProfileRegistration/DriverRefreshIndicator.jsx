@@ -30,10 +30,14 @@ class DriverRefreshIndicatorClass extends React.Component {
                 {
                     this.props.storeState.isRefreshExist ?
                         <>
+                        {!this.props.storeState.isNeedRefreshIndicator &&
                             <div className="refreshIndicatorModal" style={{background:"none"}} >
                                 {this.props.storeState.isRefreshing ? <img src={this.state.loadings[this.state.randomNumber]} alt="" /> : <div />}
                             </div>
+                        }
+                            
                             <div className={this.props.storeState.isNeedRefreshIndicator ?"refreshIndicatorModal":""} >
+                                {this.props.storeState.isNeedRefreshIndicator && this.props.storeState.isRefreshing ? <img src={this.state.loadings[this.state.randomNumber]} alt="" /> : <div />}
                                 <i className={!this.props.storeState.isRefreshing && this.props.storeState.isNeedRefreshIndicator ? (this.props.storeState.isGoodAnswer ? "refreshIndicatorSuccess" : "refreshIndicatorFail") : ""}></i>
                             </div>
                         </>

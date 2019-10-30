@@ -56,21 +56,6 @@ class DriverProfileCarClass extends React.Component {
         }
     }
 
-    getProfileData = () => {
-        console.log('getProfileData');
-        let that = this;
-        let requestValues = {
-            readCookie: this.props.globalReduser.readCookie,
-            setProfileData: function (data) {
-                that.props.dispatch(setProfileData(data))
-            },
-            requestAddress: requests.profileRequest
-        };
-        getUserData(requestValues, (obj)=>{ thenFuncGlobal(obj, that.setState({collapse: false})); }, catchFuncGlobal, that);
-    }
-    startRefresher = () => {
-        startRefresherGlobal(this,true)
-    }
 
     applyChanges = (type) => {
         let jwt = this.props.globalReduser.readCookie('jwt');
@@ -187,7 +172,7 @@ class DriverProfileCarClass extends React.Component {
 
         if (jwt && jwt !== "-" && checkCorrectData(this.state.newCarCard, this.state.imgFiles, this)) {
             let that = this;
-            this.startRefresher();
+            startRefresherGlobal(this,true)
             var carForm = new FormData();
             carForm.append('carBrand', this.state.newCarCard.nameCar);
             carForm.append('manufactureYear', this.state.newCarCard.yearCar);
@@ -238,7 +223,7 @@ class DriverProfileCarClass extends React.Component {
 
                 if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
                     console.log(request.responseText);
-                    that.getProfileData();
+                    getUserData( (obj)=>{ thenFuncGlobal(obj, that.setState({collapse: false})); }, catchFuncGlobal, that);
                 }
                 if (request.readyState === XMLHttpRequest.DONE && request.status === 0) {
                     catchFuncGlobal(that);
@@ -331,7 +316,7 @@ class DriverProfileCarClass extends React.Component {
     changeActive = (element) => {
         let jwt = this.props.globalReduser.readCookie('jwt');
         if (jwt && jwt !== "-") {
-            this.startRefresher();
+            startRefresherGlobal(this,true)
             let that = this;
             var carForm = new FormData();
             carForm.append('onWork', !element.onWork);
@@ -341,7 +326,7 @@ class DriverProfileCarClass extends React.Component {
             request.onreadystatechange = function () {
                 if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
                     console.log(request.responseText);
-                    that.getProfileData();
+                    getUserData( (obj)=>{ thenFuncGlobal(obj, that.setState({collapse: false})); }, catchFuncGlobal, that);
                 }
                 if (request.readyState === XMLHttpRequest.DONE && request.status === 0) {
                     catchFuncGlobal(that);
@@ -360,14 +345,14 @@ class DriverProfileCarClass extends React.Component {
     destroy = (element) => {
         let jwt = this.props.globalReduser.readCookie('jwt');
         if (jwt && jwt !== "-") {
-            this.startRefresher();
+            startRefresherGlobal(this,true)
             let that = this;
             console.log('try to destroy a car');
             const request = new XMLHttpRequest();
             request.onreadystatechange = function () {
                 if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
                     console.log(request.responseText);
-                    that.getProfileData();
+                    getUserData( (obj)=>{ thenFuncGlobal(obj, that.setState({collapse: false})); }, catchFuncGlobal, that);
                 }
                 if (request.readyState === XMLHttpRequest.DONE && request.status === 0) {
                     catchFuncGlobal(that);
@@ -395,7 +380,7 @@ class DriverProfileCarClass extends React.Component {
         let imageCounter = 0;
         for (let i = 0; i < fullfile.length; i++) {
             if (i === 0) {
-                this.startRefresher();
+                startRefresherGlobal(this,true)
             }
             let file = fullfile[i]
             if (!file.type.match('image')) continue;

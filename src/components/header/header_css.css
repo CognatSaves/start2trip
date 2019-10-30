@@ -63,7 +63,7 @@
     width: 100px;
     height: 40px;
     margin: 0;
-    margin-left: 5px;
+    /* margin-left: 5px; */
     background: url(../media/logo_tripfer_white.svg) no-repeat;
     background-size: 100% 100%;
     /* background-position: top 0px left 0px; */

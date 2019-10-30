@@ -23,7 +23,8 @@
 
 .tourInfoContent .tourInfoContentBt {
     cursor: pointer;
-    padding: 10px 60px;
+    padding: 12px 0px !important;
+    text-align: center;
     background: #304269;
     border-radius: 5px;
     color: #fff;

@@ -35,29 +35,8 @@ class DriverProfileSettingsClass extends React.Component {
 
         }
     }
-    getProfileData = () => {
-        console.log('getProfileData');
-        let that = this;
-        let jwt = this.props.globalReduser.readCookie('jwt');
-        if (jwt && jwt !== '-') {
-            let requestValues = {
-                readCookie: this.props.globalReduser.readCookie,
-                setProfileData: function (data) {
-                    that.props.dispatch(setProfileData(data))
-                },
-                requestAddress: requests.profileRequest
-            }
-            getUserData(requestValues, thenFuncGlobal, catchFuncGlobal,that);
-        }
-        else {
-            this.props.dispatch(setUrlAddress(window.location.pathname));
-            this.props.history.push('/' + cookies.get('userLangISO', { path: "/" }) + '/login/');
-            //return null;
-        }
-    }
-    startRefresher = () => {
-        startRefresherGlobal(this,true)
-    }
+
+
     applyChanges = (sendedData) => {
 
         let jwt = this.props.globalReduser.readCookie('jwt');
@@ -98,7 +77,7 @@ class DriverProfileSettingsClass extends React.Component {
             }
             if (value.email) {//если не заполнено - значит есть ошибки
                 let that = this;
-                that.startRefresher();
+                startRefresherGlobal(this,true)
                 let body = JSON.stringify(value);
                 fetch(requests.profileUpdateRequest, {
                     method: 'PUT', body: body,
@@ -115,9 +94,8 @@ class DriverProfileSettingsClass extends React.Component {
                         else {
                             console.log("good");
                             console.log(data);
-                            that.getProfileData();
-                            //document.location.reload(true);
-                            //that.state.sendResultLocal(true, {jwt:data.jwt, user: data.user});
+                            getUserData( thenFuncGlobal, catchFuncGlobal,that);
+
                         }
                     })
                     .catch(function (error) {

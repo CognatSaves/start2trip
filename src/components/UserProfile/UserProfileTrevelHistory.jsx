@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import requests from '../../config';
 import { Collapse } from 'reactstrap'
-import { startRefresherGlobal, thenFuncGlobal, catchFuncGlobal, } from '../../redusers/GlobalFunction'
+import { startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,findCurrencyEl,createCorrectRoute } from '../../redusers/GlobalFunction'
 
 import Stars from '../stars/Stars';
 import { isMobileOnly } from 'react-device-detect';
@@ -20,21 +20,8 @@ class UserProfileTrevelHistoryClass extends React.Component {
         //thenFuncGlobal(this)
     }
     render() {
-        function createCorrectRoute(route, length, time) {
-            let routeString = route[0].point;
-            for (let i = 1; i < route.length; i++) {
-                routeString += ' - ' + route[i].point;
-            }
-            routeString += ' (' + length + ', ' + time + ")";
-            return routeString;
-        }
-        function findCurrencyEl(that, iso) {
-            for (let i = 0; i < that.props.globalReduser.profile.currencies.length; i++) {
-                if (iso === that.props.globalReduser.profile.currencies[i].ISO) {
-                    return i;
-                }
-            }
-        }
+
+
         let that = this;
         let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileTrevelHistory;
         let textInfo = this.props.storeState.languageTextMain.userProfile.userProfileTravelHistory;
@@ -63,7 +50,7 @@ class UserProfileTrevelHistoryClass extends React.Component {
                                         }}>{this.state.collapse[index] ? textPage.historyBodyHeaderBtn[0] : textPage.historyBodyHeaderBtn[1]}</span>
                                     {
                                         !element.isCarrierConfirmed &&
-                                        <div style={{ color: 'red', fontSize: "14px" }}>NOT CONFIRMED</div>
+                                        <div style={{ color: 'red', fontSize: "14px" }}>{textPage.notConfirmed}</div>
                                     }
                                 </div>
                             </div>

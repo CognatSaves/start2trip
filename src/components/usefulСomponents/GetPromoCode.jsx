@@ -146,7 +146,7 @@ class GetPromoCodeClass extends React.Component {
                                     <TextField
                                         label={"Количество символов в генерируемом коде"}
                                         value={this.state.wordNumber}
-                                        onChange={(event) => { if (event.target.value <= 8 && event.target.value >= 0) { this.setState({ wordNumber: event.target.value }); } }}
+                                        onChange={(event) => { if (event.target.value <= 8 && event.target.value >= 0) { this.setState({ wordNumber: event.target.value })} }}
                                         className="col p-1"
                                         margin="normal"
                                         variant="outlined"
