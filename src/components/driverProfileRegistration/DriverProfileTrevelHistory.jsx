@@ -26,8 +26,8 @@ const TravelHistoryElementInnerPart = (props) => {
 
     let element = that.state.filteredTravelHistory[index];
     let isMulticustomeral = (element.union.length > 0);
-    let selectedElement = isMulticustomeral ? element.union[that.state.selectedElement[index]] : element;
-
+    let selectedElement = isMulticustomeral ? element.union[that.state.selectedElement[index]] : element;   
+    debugger;
     let filteredTravelHistory = that.state.filteredTravelHistory;
 
     let selectedElementIndex = that.state.selectedElement[index];
@@ -270,7 +270,7 @@ class DriverProfileTrevelHistoryClass extends React.Component {
                             console.log(data);
 
                             that.getProfileData();
-                            thenFuncGlobal(that)
+                            //thenFuncGlobal(that)
                         }
                     })
                     .catch(function (error) {
@@ -297,7 +297,7 @@ class DriverProfileTrevelHistoryClass extends React.Component {
                             console.log(data);
 
                             that.getProfileData();
-                            thenFuncGlobal(that)
+                            //thenFuncGlobal(that)
                         }
                     })
                     .catch(function (error) {
