@@ -3,6 +3,7 @@ import '../Places/PlacesList.css';
 import { connect } from 'react-redux';
 import { setPage, setMorePagesShow } from '../../redusers/ActionGuides';
 import { setMaxPrice } from '../../redusers/ActionTours';
+import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,findTagName,getCurrencies,placesSort} from '../../redusers/GlobalFunction'
 
 import ToursListElement from '../Tours/ToursListElement';
 import Manipulator from '../manipulator/Manipulator';
@@ -14,20 +15,7 @@ class GuideToursClass extends React.Component {
         super(props);
         this.state = {}
     }
-    placesSort = (array, type) => {
 
-        switch (type) {
-            case 0:
-                return array.sort((a, b) => { return a.rating > b.rating ? -1 : 1 });
-            case 1:
-                return array.sort((a, b) => { return a.comments > b.comments ? -1 : 1 });
-            case 2:
-                return array.sort((a, b) => { return a.placelocalization.name < b.placelocalization.name ? -1 : 1 });
-
-            default: return array;
-        }
-
-    }
     showMorePages = () => {
         this.props.dispatch(setMorePagesShow());
     }
@@ -36,22 +24,7 @@ class GuideToursClass extends React.Component {
             this.props.dispatch(setPage(page));
         }
     }
-    getCurrencies = (currency, criterion) => {
-        let idIndex = null
-        switch (criterion) {
-            case "id":
-                this.props.storeState.currencies.map((item, index) => {
-                    if (item.id.indexOf(currency) === 0) { idIndex = index }
-                })
-                break;
-            case "ISO":
-                this.props.storeState.currencies.map((item, index) => {
-                    if (item.ISO.indexOf(currency) === 0) { idIndex = index }
-                })
-                break;
-        }
-        return idIndex
-    }
+    
     sortArrayByDate = (element, departureDate) => {
         let calendary = element.calendary;
         let isGood = false;
@@ -91,27 +64,7 @@ class GuideToursClass extends React.Component {
         return ({ isGood: isGood, departureDate: departureDate, date: date, element: element });
     }
     render() {
-        function findTagName(tagId, that) {
-
-            if (that.props.toursState.tags.length > 0) {
-
-                let tags = that.props.toursState.tags;
-                let id = -1;
-
-                for (let i = 0; i < that.props.toursState.tags.length; i++) {
-                    if (that.props.toursState.tags[i].id === tagId) {
-                        id = i;
-                        break;
-                    }
-                }
-                if (id === -1) {
-                    return '';
-                }
-
-                return tags[id].tagLoc.name;
-            }
-            return '';
-        }
+        
         let tours = this.props.guidesReduser.guideData && this.props.guidesReduser.guideData.tours ?
          [...this.props.guidesReduser.guideData.tours] : [];
         let selectedTours = [];

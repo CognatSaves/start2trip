@@ -13,6 +13,7 @@ import {
   setAuto,
 } from '../../../../../redusers/Action';
 import { setPricePartTour,setTempPricePartTour} from '../../../../../redusers/ActionTours';
+import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,findTagName,getCurrencies} from '../../../../../redusers/GlobalFunction'
 
 import sedan from '../../../../media/sedan.svg';
 import jeep from '../../../../media/jeep.svg';
@@ -104,22 +105,7 @@ class MobileFilterClass extends React.Component {
     this.setState({ languagesVariants: newArrayVariants })
 
   }
-  getCurrencies = (currency, criterion) => {
-    let idIndex = null
-    switch (criterion) {
-        case "id":
-            this.props.storeState.currencies.map((item, index) => {
-                if (item.id.indexOf(currency) === 0) { idIndex = index }
-            })
-            break;
-        case "ISO":
-            this.props.storeState.currencies.map((item, index) => {
-                if (item.ISO.indexOf(currency) === 0) { idIndex = index }
-            })
-            break;
-    }
-    return idIndex
-}
+
 
   render() {
     let peopleDisabledMinus = true;
@@ -154,11 +140,11 @@ class MobileFilterClass extends React.Component {
     if(this.props.storeState.currencies.length>0){
       let statePrice = this.state.price
         if (isoCurrencies === "USD") {
-            let idIndex = this.getCurrencies("USD","ISO")
+            let idIndex = getCurrencies("USD","ISO",this)
             statePrice = Math.ceil(statePrice)
             price = this.props.storeState.currencies[idIndex].symbol+" "+statePrice
         } else {
-            let idIndex = this.getCurrencies(isoCurrencies,"ISO")
+            let idIndex = getCurrencies(isoCurrencies,"ISO",this)
             statePrice = statePrice *this.props.storeState.currencies[idIndex].costToDefault
             statePrice = Math.ceil(statePrice)
             price = this.props.storeState.currencies[idIndex].isLeft ?(this.props.storeState.currencies[idIndex].symbol+" "+statePrice):

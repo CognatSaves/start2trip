@@ -3,6 +3,8 @@ import '../Places/PlacesList.css';
 import { connect } from 'react-redux';
 import { setPage, setMorePagesShow } from '../../redusers/ActionPlaces';
 import { setMaxPrice } from '../../redusers/ActionTours';
+import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,
+    findTagName,getCurrencies,placesSort,tagFilterFunction} from '../../redusers/GlobalFunction'
 
 import ToursListElement from './ToursListElement';
 import Manipulator from '../manipulator/Manipulator';
@@ -16,20 +18,7 @@ class ToursListClass extends React.Component {
             numberOfElements: 0,
         }
     }
-    placesSort = (array, type) => {
 
-        switch (type) {
-            case 0:
-                return array.sort((a, b) => { return a.rating > b.rating ? -1 : 1 });
-            case 1:
-                return array.sort((a, b) => { return a.comments > b.comments ? -1 : 1 });
-            case 2:
-                return array.sort((a, b) => { return a.placelocalization.name < b.placelocalization.name ? -1 : 1 });
-
-            default: return array;
-        }
-
-    }
     showMorePages = () => {
         this.props.dispatch(setMorePagesShow());
     }
@@ -38,22 +27,7 @@ class ToursListClass extends React.Component {
             this.props.dispatch(setPage(page));
         }
     }
-    getCurrencies = (currency, criterion) => {
-        let idIndex = null
-        switch (criterion) {
-            case "id":
-                this.props.storeState.currencies.map((item, index) => {
-                    if (item.id.indexOf(currency) === 0) { idIndex = index }
-                })
-                break;
-            case "ISO":
-                this.props.storeState.currencies.map((item, index) => {
-                    if (item.ISO.indexOf(currency) === 0) { idIndex = index }
-                })
-                break;
-        }
-        return idIndex
-    }
+  
     sortArrayByDate = (element, departureDate) => {
         function findFreeSeatsNumber(element, selectedDate,selectedDateFull){
             let tourSeatsData = element.tourSeatsData;
@@ -193,7 +167,7 @@ class ToursListClass extends React.Component {
         return ({ isGood: isGood, departureDate: savedDepartureDate, date: date, element: {...element,freeSeats:freeSeats} });
     }
     sortArrayByPrice = (el) => {
-        let idIndex = this.getCurrencies(el.element.currency, "id")
+        let idIndex = getCurrencies(el.element.currency, "id",this)
         let usd = el.element.price / this.props.storeState.currencies[idIndex].costToDefault
         usd = Math.ceil(usd)
         if (usd > this.props.toursState.tempPricePart) {
@@ -240,9 +214,9 @@ class ToursListClass extends React.Component {
                 return a.element.rating > b.element.rating ? -1 : 1;
             }
             case "Цене": {
-                let aIdIndex = this.getCurrencies(a.element.currency, "id")
+                let aIdIndex = getCurrencies(a.element.currency, "id",this)
                 let aPrice = a.element.price / this.props.storeState.currencies[aIdIndex].costToDefault
-                let bIdIndex = this.getCurrencies(b.element.currency, "id")
+                let bIdIndex = getCurrencies(b.element.currency, "id",this)
                 let bPrice = b.element.price / this.props.storeState.currencies[bIdIndex].costToDefault
                 if (this.props.storeState.sortMenuWay) {
                     return aPrice < bPrice ? -1 : 1
@@ -251,17 +225,17 @@ class ToursListClass extends React.Component {
                 }
             }
             case "Сначала дешевые": {
-                let aIdIndex = this.getCurrencies(a.element.currency, "id")
+                let aIdIndex = getCurrencies(a.element.currency, "id",this)
                 let aPrice = a.element.price / this.props.storeState.currencies[aIdIndex].costToDefault
-                let bIdIndex = this.getCurrencies(b.element.currency, "id")
+                let bIdIndex = getCurrencies(b.element.currency, "id",this)
                 let bPrice = b.element.price / this.props.storeState.currencies[bIdIndex].costToDefault
                 return aPrice < bPrice ? -1 : 1
             }
 
             case "Сначала дорогие": {
-                let aIdIndex = this.getCurrencies(a.element.currency, "id")
+                let aIdIndex = getCurrencies(a.element.currency, "id",this)
                 let aPrice = a.element.price / this.props.storeState.currencies[aIdIndex].costToDefault
-                let bIdIndex = this.getCurrencies(b.element.currency, "id")
+                let bIdIndex = getCurrencies(b.element.currency, "id",this)
                 let bPrice = b.element.price / this.props.storeState.currencies[bIdIndex].costToDefault
                 if (this.props.storeState.sortMenuWay) {
                     return aPrice < bPrice ? -1 : 1
@@ -273,42 +247,8 @@ class ToursListClass extends React.Component {
     }
 
     render() {
-        function tagFilterFunction(placesList, selectedTags) {
-            let res = [];
-            if (selectedTags.length === 0) {
-                return placesList;
-            }
-            for (let i = 0; i < placesList.length; i++) {
-                for (let k = 0; k < selectedTags.length; k++) {
-                    if (placesList[i].tagsArray.indexOf(selectedTags[k]) !== -1) {
-                        res.push(placesList[i]);
-                        break;
-                    }
-                }
-            }
-            return res;
-        }
-        function findTagName(tagId, that) {
 
-            if (that.props.toursState.tags.length > 0) {
-
-                let tags = that.props.toursState.tags;
-                let id = -1;
-
-                for (let i = 0; i < that.props.toursState.tags.length; i++) {
-                    if (that.props.toursState.tags[i].id === tagId) {
-                        id = i;
-                        break;
-                    }
-                }
-                if (id === -1) {
-                    return '';
-                }
-
-                return tags[id].tagLoc.name;
-            }
-            return '';
-        }
+        
         console.log('PlacesList render');
         console.log(this.props);
         let tagFilteredArray = [], sortedArray = [], sortSelectedPlacesArray = [], selectedPlaces = [];
@@ -319,7 +259,7 @@ class ToursListClass extends React.Component {
         if (this.props.toursState.toursList.length > 0) {
             tagFilteredArray = tagFilterFunction([...this.props.toursState.toursList], []/*this.props.toursState.selectedTags*/);
             console.log('tagFilteredArray', tagFilteredArray);
-            sortedArray = this.placesSort(/*[...this.props.placesState.placesList]*/tagFilteredArray, this.props.toursState.sortMenuValue);
+            sortedArray = placesSort(/*[...this.props.placesState.placesList]*/tagFilteredArray, this.props.toursState.sortMenuValue);
         }
         if (sortedArray.length > 0 && this.props.storeState.currencies.length > 0) {
 
@@ -360,7 +300,7 @@ class ToursListClass extends React.Component {
                 let arrayPrice = [];
                 sortSelectedPlacesArray.map((el, index) => {
                     if (el.isGood) {
-                        let idIndex = this.getCurrencies(el.element.currency, "id")
+                        let idIndex = getCurrencies(el.element.currency, "id",this)
                         let usd = el.element.price / this.props.storeState.currencies[idIndex].costToDefault
                         usd = Math.ceil(usd)
                         arrayPrice.push(usd)

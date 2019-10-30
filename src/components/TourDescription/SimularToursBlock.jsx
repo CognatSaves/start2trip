@@ -1,5 +1,6 @@
 import React from 'react';
 import RenderFourEl from '../home/HomeBody/RenderFourEl.jsx';
+import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,findTagName} from '../../redusers/GlobalFunction'
 import ToursListElement from '../Tours/ToursListElement';
 export default class SimularToursBlock extends React.Component {
     /*constructor(props){
@@ -9,24 +10,7 @@ export default class SimularToursBlock extends React.Component {
         return !(JSON.stringify(this.props) === JSON.stringify(nextProps));
     }
     render() {
-        function findTagName(tagId, that) {
-            if (that.props.tags.length > 0) {
-                let tags = that.props.tags;
-                let id = -1;
 
-                for (let i = 0; i < that.props.tags.length; i++) {
-                    if (that.props.tags[i].id === tagId) {
-                        id = i;
-                        break;
-                    }
-                }
-                if (id === -1) {
-                    return '';
-                }
-                return tags[id].tagLoc.name;
-            }
-            return '';
-        }
         function findDepartureDate(element){
             let calendary = element.calendary;
             let departureDate = null;

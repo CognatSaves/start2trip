@@ -9,6 +9,7 @@ import tagBlue from '../media/tag_blue.svg';
 import guideIcon from '../media/tour-guide.svg';
 import agencyIcon from '../media/agencyIcon.svg';
 // import geoIcon from '../media/geo_icon.svg';
+import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,findTagName,getCurrencies} from '../../redusers/GlobalFunction'
 
 import Stars from '../stars/Stars';
 import Cookies from 'universal-cookie';
@@ -17,22 +18,7 @@ const cookies = new Cookies();
 
 class ToursListElementClass extends React.Component {
 
-    getCurrencies = (currency, criterion) => {
-        let idIndex = null
-        switch (criterion) {
-            case "id":
-                this.props.storeState.currencies.map((item, index) => {
-                    if (item.id.indexOf(currency) === 0) { idIndex = index }
-                })
-                break;
-            case "ISO":
-                this.props.storeState.currencies.map((item, index) => {
-                    if (item.ISO.indexOf(currency) === 0) { idIndex = index }
-                })
-                break;
-        }
-        return idIndex
-    }
+
 
     render() {
         let textInfo = this.props.storeState.languageTextMain.tours;
@@ -55,17 +41,17 @@ class ToursListElementClass extends React.Component {
         })
 
         let isoCurrencies = cookies.get('userCurr', { path: "/" })
-        let idIndex = this.getCurrencies(element.currency, "id")
+        let idIndex = getCurrencies(element.currency, "id",this)
         let price = null
         if (this.props.storeState.currencies.length > 0) {
 
             let usd = element.price / this.props.storeState.currencies[idIndex].costToDefault
             if (isoCurrencies === "USD") {
-                let idIndex = this.getCurrencies("USD", "ISO")
+                let idIndex = getCurrencies("USD", "ISO",this)
                 usd = Math.ceil(usd)
                 price = "" + this.props.storeState.currencies[idIndex].symbol + usd
             } else {
-                let idIndex = this.getCurrencies(isoCurrencies, "ISO")
+                let idIndex = getCurrencies(isoCurrencies, "ISO",this)
                 usd = usd * this.props.storeState.currencies[idIndex].costToDefault
                 usd = Math.ceil(usd)
                 price = this.props.storeState.currencies[idIndex].isLeft ? (this.props.storeState.currencies[idIndex].symbol + " " + usd) :

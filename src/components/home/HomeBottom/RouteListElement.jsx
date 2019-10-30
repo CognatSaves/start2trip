@@ -3,6 +3,7 @@ import '../../Places/PlacesList.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import requests from '../../../config';
+import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,findTagName,getCurrencies} from '../../../redusers/GlobalFunction'
 
 // import tagBlue from '../../media/tag_blue.svg';
 // import geoIcon from '../../media/geo_icon.svg';
@@ -31,22 +32,7 @@ class RouteListElementClass extends React.Component {
 
 
     }
-    getCurrencies = (currency, criterion) => {
-        let idIndex = null
-        switch (criterion) {
-            case "id":
-                this.props.storeState.currencies.map((item, index) => {
-                    if (item.id.indexOf(currency) === 0) { idIndex = index }
-                })
-                break;
-            case "ISO":
-                this.props.storeState.currencies.map((item, index) => {
-                    if (item.ISO.indexOf(currency) === 0) { idIndex = index }
-                })
-                break;
-        }
-        return idIndex
-    }
+ 
 
     render() {
         let textInfo = this.props.storeState.languageTextMain.home.homeBottom.routeListElement;
@@ -87,11 +73,11 @@ class RouteListElementClass extends React.Component {
         let price = null
         let usd = element.price
         if (isoCurrencies === "USD") {
-            let idIndex = this.getCurrencies("USD", "ISO")
+            let idIndex = getCurrencies("USD", "ISO",this)
             usd = Math.ceil(usd)
             price = "" + this.props.storeState.currencies[idIndex].symbol + usd
         } else {
-            let idIndex = this.getCurrencies(isoCurrencies, "ISO")
+            let idIndex = getCurrencies(isoCurrencies, "ISO",this)
             usd = usd * this.props.storeState.currencies[idIndex].costToDefault
             usd = Math.ceil(usd)
             price = this.props.storeState.currencies[idIndex].isLeft ? (this.props.storeState.currencies[idIndex].symbol + " " + usd) :

@@ -8,7 +8,7 @@ import axios from 'axios';
 import requests from '../../config';
 import './TourDescription.css'
 
-import { startRefresherGlobal, thenFuncGlobal, catchFuncGlobal, } from '../../redusers/GlobalFunction'
+import { startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,getCurrencies } from '../../redusers/GlobalFunction'
 import Header from '../header/Header';
 import PlaceInfo from '../PlaceDescription/PlaceInfo.jsx';
 import PlacePhotoShow from '../PlaceDescription/PlacePhotoShow.jsx';
@@ -101,22 +101,7 @@ class ToureDescriptionClass extends React.Component {
     endRolling = (result) => {
         thenFuncGlobal(this)
     }
-    getCurrencies = (currency, criterion) => {
-        let idIndex = null
-        switch (criterion) {
-            case "id":
-                this.props.storeState.currencies.map((item, index) => {
-                    if (item.id.indexOf(currency) === 0) { idIndex = index }
-                })
-                break;
-            case "ISO":
-                this.props.storeState.currencies.map((item, index) => {
-                    if (item.ISO.indexOf(currency) === 0) { idIndex = index }
-                })
-                break;
-        }
-        return idIndex
-    }
+
     changeTravelVisibility = (elementPrice, elementActive) => {
         let obj = elementActive ? (elementActive.tour ? elementActive.tour : elementActive.element) : null;
         if(this.state.savedDate.length>0){
@@ -412,14 +397,14 @@ class ToureDescriptionClass extends React.Component {
         let price = null
 
         if (this.props.storeState.currencies.length > 0 && this.state.newTour.local !== undefined) {
-            let idIndex = this.getCurrencies(this.state.newTour.tour.currency, "id")
+            let idIndex =getCurrencies(this.state.newTour.tour.currency, "id",this)
             let usd = this.state.newTour.tour.price / this.props.storeState.currencies[idIndex].costToDefault
             if (isoCurrencies === "USD") {
-                let idIndex = this.getCurrencies("USD", "ISO")
+                let idIndex = getCurrencies("USD", "ISO",this)
                 usd = Math.ceil(usd)
                 price = this.props.storeState.currencies[idIndex].symbol + " " + usd
             } else {
-                let idIndex = this.getCurrencies(isoCurrencies, "ISO")
+                let idIndex = getCurrencies(isoCurrencies, "ISO",this)
                 usd = usd * this.props.storeState.currencies[idIndex].costToDefault
                 usd = Math.ceil(usd)
                 price = this.props.storeState.currencies[idIndex].isLeft ? (this.props.storeState.currencies[idIndex].symbol + " " + usd) :
