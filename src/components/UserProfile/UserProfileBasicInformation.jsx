@@ -4,6 +4,7 @@ import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 import requests from '../../config';
 import getUserData from '../driverProfileRegistration/DriverProfileRequest';
 
+import UnitedInputBlock from '../AgencyProfile/UnitedInputBlock';
 import LocationSearchInput from '../home/HomeBody/Search'
 import TextField from 'material-ui/TextField';
 import DatePicker from 'material-ui/DatePicker';
@@ -35,8 +36,8 @@ class UserProfileBasicInformationClass extends React.Component {
         let jwt = this.props.globalReduser.readCookie('jwt');
         if (jwt && jwt !== "-") {
             let that = this;
-            that.startRefresher();
-
+            //that.startRefresher();
+            startRefresherGlobal(that);
             function parseCity(city) {
                 let res = city.split(', ');
                 let ht = "";
@@ -159,42 +160,20 @@ class UserProfileBasicInformationClass extends React.Component {
         return (
             <div className="basicInformationBody d-flex flex-column">
                 <div className="basicInformationBodyBottom d-flex flex-column mb-5 p-0">
-                    <div className="basicInformationBodyBottomHeader d-xl-block d-lg-block d-md-block d-sm-none d-none">
+                    <div className="basicInformationBodyBottomHeader d-md-block d-none">
                         <p>{textPage.titlePage}</p>
                     </div>
                     <div className="basicInformationBodyBottomContent d-flex flex-column">
-                        <form onSubmit={this.formSubmit} id="basicInformation" className="d-flex flex-column col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" >
-                            <div className="bottomContentNote d-flex align-items-center">
-                                <label htmlFor="basicInfoName" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">{textPage.firstName.floatingLabelText}:</label>
-                                <TextField
-                                    floatingLabelText={textPage.firstName.floatingLabelText}
-                                    className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
-                                    fullWidth="100%"
-                                    floatingLabelFocusStyle={{ color: "#304269" }}
-                                    underlineFocusStyle={{ borderColor: "#304269" }}
-                                    initialValue={this.state.profileData.firstName}
-                                    onChange={(e) => { this.inputChange(e.target.value, 'firstName'); }}
-                                    value={this.state.profileData.firstName}
-                                />
-                                <input className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " id="basicInfoName" type="text" value={this.state.profileData.firstName}
-                                    onChange={(e) => { this.inputChange(e.target.value, 'firstName'); }} />
-                                <p className=" d-xl-block d-lg-block d-md-block d-sm-none d-none m-0 col-xl-6 col-lg-6 col-md-6 col-sm-5 col-5">{textPage.firstName.description}</p>
-                            </div>
-                            <div className="bottomContentNote d-flex align-items-center">
-                                <label htmlFor="basicInfoLastName" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">{textPage.lastName.floatingLabelText}:</label>
-                                <TextField
-                                    floatingLabelText={textPage.lastName.floatingLabelText}
-                                    className="d-xl-none d-lg-none d-md-none d-sm-block d-block inputClass"
-                                    fullWidth="100%"
-                                    floatingLabelFocusStyle={{ color: "#304269" }}
-                                    underlineFocusStyle={{ borderColor: "#304269" }}
-                                    value={this.state.profileData.lastName}
-                                    onChange={(e) => { this.inputChange(e.target.value, 'lastName'); }}
-                                />
-                                <input className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 " id="basicInfoLastName" type="text" value={this.state.profileData.lastName}
-                                    onChange={(e) => { this.inputChange(e.target.value, 'lastName'); }}
-                                />
-                            </div>
+                        <form onSubmit={this.formSubmit} id="basicInformation" className="d-flex flex-column col-12" >
+                            <UnitedInputBlock inputId={"basicInfoName"} inputValue={this.state.profileData.firstName}
+                                labelText={textPage.firstName.floatingLabelText+':'} textFieldLabelText={textPage.firstName.floatingLabelText}
+                                onChangeFunc={(e) => { this.inputChange(e.target.value, 'firstName')}} pElementText={textPage.firstName.description}
+                            />
+                            <UnitedInputBlock inputId={"basicInfoLastName"} inputValue={this.state.profileData.lastName}
+                                labelText={textPage.lastName.floatingLabelText+":"} textFieldLabelText={textPage.lastName.floatingLabelText}
+                                onChangeFunc={(e) => { this.inputChange(e.target.value, 'lastName') }} pElementClassName="d-none"
+                            />
+                            
                             <div className="bottomContentNote d-flex align-items-center">
                                 <label htmlFor="basicInfoBirthday" className="d-xl-block d-lg-block d-md-block d-sm-none d-none col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">{textPage.basicInfoBirthday.floatingLabelText}:</label>
                                 <DatePicker floatingLabelText={textPage.basicInfoBirthday.floatingLabelText} id="basicInfoBirthday" className="calendarModal col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 p-0" value={this.state.profileData.birthday}

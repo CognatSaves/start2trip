@@ -39,7 +39,7 @@ const DriverProfileTripSettingsTrip = lazy(() => import('./DriverProfileTripSett
 const DriverProfileFeedback = lazy(() => import('./DriverProfileFeedback'));
 const DriverProfileSettings = lazy(() => import('./DriverProfileSettings'));
 const DriverProfileBilling = lazy(() => import('./DriverProfileBilling'));
-const DriverProfileAffiliateProgram = lazy(() => import('./DriverProfileAffiliateProgram'));
+const AgencyProfileAffiliateProgramm = lazy(() => import('../AgencyProfile/AgencyProfileAffiliateProgramm'));
 const FirstEnterModal = lazy(() => import('../home/FirstEnterModal'));
 const DriverProfileTripSettingsTour = lazy(() => import('./DriverProfileTripSettingsTour'));
 
@@ -91,7 +91,8 @@ class DriverProfileRegistrationClass extends React.Component {
                   <Route path="/account/driver/billing" component={DriverProfileBilling} />
                   {
                     !(profile.hostagency) ?
-                      <Route path="/account/driver/referrals" component={DriverProfileAffiliateProgram} />
+                      <Route path="/account/driver/referrals" /*component={DriverProfileAffiliateProgram}*/
+                      render={()=><AgencyProfileAffiliateProgramm textInfo={this.props.storeState.languageText.driverProfileRegistration.DriverProfileAffiliateProgram}/>} />
                       : <React.Fragment />
                   }
 

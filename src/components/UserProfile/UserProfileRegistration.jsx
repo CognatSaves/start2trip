@@ -30,7 +30,7 @@ const UserProfileHistory = lazy(() => import('./UserProfileHistory'));
 const UserProfileBasicInformation = lazy(() => import('./UserProfileBasicInformation'));
 const UserProfileSettings = lazy(() => import('./UserProfileSettings'));
 const UserProfileBilling = lazy(() => import('./UserProfileBilling'));
-const UserProfileAffiliateProgram = lazy(() => import('./UserProfileAffiliateProgram'));
+const AgencyProfileAffiliateProgramm = lazy(() => import('../AgencyProfile/AgencyProfileAffiliateProgramm'));
 const FirstEnterModal = lazy(() => import('../home/FirstEnterModal'));
 
 class UserProfileRegistrationClass extends React.Component {
@@ -69,7 +69,7 @@ class UserProfileRegistrationClass extends React.Component {
                   <Route path="/account/user/profile" component={UserProfileBasicInformation} />
                   <Route path="/account/user/settings" component={UserProfileSettings} />
                   <Route path="/account/user/billing" component={UserProfileBilling} />
-                  <Route path="/account/user/referrals" component={UserProfileAffiliateProgram} />
+                  <Route path="/account/user/referrals" render={()=><AgencyProfileAffiliateProgramm textInfo={this.props.storeState.languageTextMain.userProfile.userProfileAffiliateProgram}/>} /*component={UserProfileAffiliateProgram}*/ />
                 </Suspense>
                 {/* {{
                   0: <UserProfileTrevelHistory trevelHistory={this.state.trevelHistory} />,

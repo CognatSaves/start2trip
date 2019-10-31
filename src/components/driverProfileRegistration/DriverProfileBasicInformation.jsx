@@ -18,6 +18,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
+import UnitedInputBlock from '../AgencyProfile/UnitedInputBlock';
 import LocationSearchInput from '../home/HomeBody/Search'
 import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
 import Cookies from 'universal-cookie';
@@ -198,37 +199,15 @@ class DriverProfileBasicInformationClass extends React.Component {
                     </div>
                     <div className="basicInformationBodyBottomContent d-flex flex-column">
                         <form onSubmit={this.formSubmit} id="basicInformation" className="d-flex flex-column col-12" >
-                            <div className="bottomContentNote d-flex align-items-center">
-                                <label htmlFor="basicInfoName" className=" d-md-block d-none col-2">{textPage.firstName.floatingLabelText}:</label>
-                                <TextField
-                                    floatingLabelText={textPage.firstName.floatingLabelText}
-                                    className="d-md-none d-block inputClass"
-                                    fullWidth="100%"
-                                    floatingLabelFocusStyle={{ color: "#304269" }}
-                                    underlineFocusStyle={{ borderColor: "#304269" }}
-                                    initialValue={this.state.profileData.firstName}
-                                    onChange={(e) => { this.inputChange(e.target.value, 'firstName'); }}
-                                    value={this.state.profileData.firstName}
-                                />
-                                <input className="d-md-block d-none col-md-4 col-12 " id="basicInfoName" type="text" value={this.state.profileData.firstName}
-                                    onChange={(e) => { this.inputChange(e.target.value, 'firstName'); }} />
-                                <p className=" d-md-block d-none m-0 col-md-6 col-5">{textPage.firstName.description}</p>
-                            </div>
-                            <div className="bottomContentNote d-flex align-items-center">
-                                <label htmlFor="basicInfoLastName" className="d-md-block d-none col-2">{textPage.lastName.floatingLabelText}:</label>
-                                <TextField
-                                    floatingLabelText={textPage.lastName.floatingLabelText}
-                                    className="d-md-none d-block inputClass"
-                                    fullWidth="100%"
-                                    floatingLabelFocusStyle={{ color: "#304269" }}
-                                    underlineFocusStyle={{ borderColor: "#304269" }}
-                                    value={this.state.profileData.lastName}
-                                    onChange={(e) => { this.inputChange(e.target.value, 'lastName'); }}
-                                />
-                                <input className="d-md-block d-none col-md-4 col-12 " id="basicInfoLastName" type="text" value={this.state.profileData.lastName}
-                                    onChange={(e) => { this.inputChange(e.target.value, 'lastName'); }}
-                                />
-                            </div>
+                            
+                            <UnitedInputBlock inputId={"basicInfoName"} inputValue={this.state.profileData.firstName}
+                                labelText={textPage.firstName.floatingLabelText+":"} textFieldLabelText={textPage.firstName.floatingLabelText}
+                                onChangeFunc={(e) => { this.inputChange(e.target.value, 'firstName')}} pElementText={textPage.firstName.description}
+                            />
+                            <UnitedInputBlock inputId={"basicInfoLastName"} inputValue={this.state.profileData.lastName}
+                                labelText={textPage.lastName.floatingLabelText+":"} textFieldLabelText={textPage.lastName.floatingLabelText}
+                                onChangeFunc={(e) => { this.inputChange(e.target.value, 'lastName')}} pElementClassName={"d-none"}
+                            />
                             <div className="bottomContentNote d-flex align-items-center">
                                 <label htmlFor="basicInfoBirthday" className="d-md-block d-none col-2">{textPage.basicInfoBirthday.floatingLabelText}:</label>
                                 <DatePicker floatingLabelText={textPage.basicInfoBirthday.floatingLabelText} id="basicInfoBirthday" className="calendarModal col-md-4 col-12 p-0" value={this.state.profileData.birthday}
@@ -236,22 +215,11 @@ class DriverProfileBasicInformationClass extends React.Component {
                                 />
                                 <p className=" d-md-block d-none m-0 col-md-6 col-5">{textPage.basicInfoBirthday.description}</p>
                             </div>
-                            <div className="bottomContentNote d-flex align-items-center">
-                                <label htmlFor="basicInfoNumber" className="d-md-block d-none col-2">{textPage.basicInfoNumber.floatingLabelText}:</label>
-                                <TextField
-                                    floatingLabelText={textPage.basicInfoNumber.floatingLabelText}
-                                    className="d-md-none d-block inputClass"
-                                    fullWidth="100%"
-                                    floatingLabelFocusStyle={{ color: "#304269" }}
-                                    underlineFocusStyle={{ borderColor: "#304269" }}
-                                    value={this.state.profileData.passportNumber}
-                                    onChange={(e) => { this.inputChange(e.target.value, 'passportNumber'); }}
-                                />
-                                <input className="d-md-block d-none col-md-4 col-12 " id="basicInfoNumber" type="text" value={this.state.profileData.passportNumber}
-                                    onChange={(e) => { this.inputChange(e.target.value, 'passportNumber'); }}
-                                />
-                                <p className=" d-md-block d-none m-0 col-md-6 col-5">{textPage.basicInfoNumber.description}</p>
-                            </div>
+                            <UnitedInputBlock inputId={"basicInfoNumber"} inputValue={this.state.profileData.passportNumber}
+                                labelText={textPage.basicInfoNumber.floatingLabelText+":"} textFieldLabelText={textPage.basicInfoNumber.floatingLabelText}
+                                onChangeFunc={(e) => { this.inputChange(e.target.value, 'passportNumber') }} pElementText={textPage.basicInfoNumber.description}
+                            />
+                            
                             <div className="bottomContentNote d-flex align-items-center">
                                 <label htmlFor="basicInfoDay" className="d-md-block d-none col-2">{textPage.basicInfoDay.floatingLabelText}:</label>
                                 <DatePicker floatingLabelText={textPage.basicInfoDay.floatingLabelText} id="basicInfoDay" className="calendarModal col-md-4 col-12 p-0" value={this.state.profileData.passportDate}
@@ -322,23 +290,12 @@ class DriverProfileBasicInformationClass extends React.Component {
 
                                 </div>
                             </div>
-                            <div className="bottomContentNote d-flex align-items-start">
-                                <label htmlFor="basicInfoMultiLine" className="d-md-block d-none col-2">{textPage.basicInfoMultiLine.floatingLabelText}:</label>
-                                <TextField
-                                    floatingLabelText={textPage.basicInfoMultiLine.floatingLabelText}
-                                    className="d-md-none d-block multiLineInputClass"
-                                    fullWidth="100%"
-                                    floatingLabelFocusStyle={{ color: "#304269" }}
-                                    underlineFocusStyle={{ borderColor: "#304269" }}
-                                    multiLine={true}
-                                    rows={1}
-                                    value={this.state.profileData.dataAbout}
-                                    onChange={(e) => { this.inputChange(e.target.value, 'dataAbout'); }}
-                                />
-                                <textarea className="d-md-block d-none col-md-4 col-12 " id="basicInfoMultiLine" name="" cols="30" rows="3" value={this.state.profileData.dataAbout}
-                                    onChange={(e) => { let profileData = this.state.profileData; profileData.dataAbout = e.target.value; this.setState({ profileData: profileData }) }}></textarea>
-                                <p className=" d-md-block d-none m-0 col-md-6 col-5">{textPage.basicInfoMultiLine.description}</p>
-                            </div>
+                            
+                            <UnitedInputBlock inputId={"basicInfoMultiLine"} inputValue={this.state.profileData.dataAbout}
+                                isTextarea={true} 
+                                labelText={textPage.basicInfoMultiLine.floatingLabelText+':'} textFieldLabelText={textPage.basicInfoMultiLine.floatingLabelText}
+                                onChangeFunc={(e) => { this.inputChange(e.target.value, 'dataAbout') }} pElementText={textPage.basicInfoMultiLine.description}
+                            />                         
                             <div className="d-flex justify-content-xl-start justify-content-lg-start justify-content-md-start justify-content-sm-center justify-content-center ">
                                 <label className="d-md-block d-none col-2"></label>
                                 <button className="col-8 mb-5" htmlFor="basicInformation" type="submit">{textPage.buttonSubmit.text}</button>

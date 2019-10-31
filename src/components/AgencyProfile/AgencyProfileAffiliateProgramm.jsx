@@ -9,7 +9,7 @@ import {
     TableRowColumn,
 } from 'material-ui/Table';
 import requests from '../../config';
-import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
+import { startRefresherGlobal, thenFuncGlobal, catchFuncGlobal, } from '../../redusers/GlobalFunction'
 
 
 import messengerIcon from '../media/messenger.svg'
@@ -33,7 +33,7 @@ class AgencyProfileAffiliateProgrammClass extends React.Component {
         document.execCommand("copy");
     }
 
-    componentDidMount(){
+    componentDidMount() {
         //thenFuncGlobal(this)
     }
     render() {
@@ -48,7 +48,9 @@ class AgencyProfileAffiliateProgrammClass extends React.Component {
         }
         var allPayments = paymentsCalculation(this.props.globalReduser.profile.partners ? this.props.globalReduser.profile.partners : []);
         let partners = this.props.globalReduser.profile.partners ? this.props.globalReduser.profile.partners : [];
-        let textInfo = this.props.storeState.languageText.agencyProfile.agencyProfileAffiliateProgramm;
+        let textInfo = this.props.textInfo ?
+            this.props.textInfo :
+            this.props.storeState.languageText.agencyProfile.agencyProfileAffiliateProgramm;
         return (
             <div className="affiliateProgramBody">
                 <div className="d-flex flex-column ">
