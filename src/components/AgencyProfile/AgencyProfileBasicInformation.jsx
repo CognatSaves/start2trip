@@ -12,6 +12,7 @@ import flags from '../media/flags.png'
 import ReactTelInput from 'react-telephone-input'
 import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
 import Cookies from 'universal-cookie';
+import UnitedInputBlock from './UnitedInputBlock';
 
 const cookies = new Cookies();
 
@@ -234,154 +235,44 @@ class AgencyProfileBasicInformationClass extends React.Component {
                     <div className="basicInformationBodyBottomContent d-flex flex-column">
                         <form onSubmit={this.formSubmit} id="basicInformation" className="d-flex flex-column col-12" >
                             <p>{textInfo.organizationData.header}</p>
-                            <div className="bottomContentNote d-flex align-items-center">
-                                <label htmlFor="basicInfoName" className="d-md-block d-none col-2">{textInfo.organizationData.organizationName + ":"}</label>
-                                <TextField
-                                    floatingLabelText={textInfo.organizationData.organizationName}
-                                    className="d-md-none d-block inputClass"
-                                    fullWidth="100%"
-                                    floatingLabelFocusStyle={{ color: "#304269" }}
-                                    underlineFocusStyle={{ borderColor: "#304269" }}
-                                    initialValue={this.state.profileData.organizationName}
-                                    onChange={(e) => { this.agencyDataChange(e.target.value, 'organizationName'); }}
-                                    value={this.state.profileData.organizationName}
-                                />
-                                <input className="d-md-block d-none col-md-4 col-12 " id="basicInfoName" type="text" value={this.state.profileData.organizationName}
-                                    onChange={(e) => { this.agencyDataChange(e.target.value, 'organizationName'); }} />
-                                <p className=" d-md-block d-none m-0 col-md-6 col-5"></p>
-                            </div>
-                            <div className="bottomContentNote d-flex align-items-center">
-                                <label htmlFor="basicInfoName" className="d-md-block d-none col-2">{textInfo.organizationData.registrationNumber + ":"}</label>
-                                <TextField
-                                    floatingLabelText={textInfo.organizationData.registrationNumber}
-                                    className="d-md-none d-block inputClass"
-                                    fullWidth="100%"
-                                    floatingLabelFocusStyle={{ color: "#304269" }}
-                                    underlineFocusStyle={{ borderColor: "#304269" }}
-                                    initialValue={this.state.profileData.registrationNumber}
-                                    onChange={(e) => { this.agencyDataChange(e.target.value, 'registrationNumber'); }}
-                                    value={this.state.profileData.registrationNumber}
-                                />
-                                <input className="d-md-block d-none col-md-4 col-12 " id="basicInfoName" type="text" value={this.state.profileData.registrationNumber}
-                                    onChange={(e) => { this.agencyDataChange(e.target.value, 'registrationNumber'); }} />
-                                <p className=" d-md-block d-none m-0 col-md-6 col-5"></p>
-                            </div>
-                            <div className="bottomContentNote d-flex align-items-center">
-                                <label htmlFor="basicInfoName" className="d-md-block d-none col-2">{textInfo.organizationData.legalAddress + ':'}</label>
-                                <TextField
-                                    floatingLabelText={textInfo.organizationData.legalAddress}
-                                    className="d-md-none d-block inputClass"
-                                    fullWidth="100%"
-                                    floatingLabelFocusStyle={{ color: "#304269" }}
-                                    underlineFocusStyle={{ borderColor: "#304269" }}
-                                    initialValue={this.state.profileData.legalAddress}
-                                    onChange={(e) => { this.agencyDataChange(e.target.value, 'legalAddress'); }}
-                                    value={this.state.profileData.legalAddress}
-                                />
-                                <input className="d-md-block d-none col-md-4 col-12 " id="basicInfoName" type="text" value={this.state.profileData.legalAddress}
-                                    onChange={(e) => { this.agencyDataChange(e.target.value, 'legalAddress'); }} />
-                                <p className=" d-md-block d-none m-0 col-md-6 col-5"></p>
-                            </div>
-                            <div className="bottomContentNote d-flex align-items-center">
-                                <label htmlFor="basicInfoName" className="d-md-block d-none col-2">{textInfo.organizationData.bankAccount + ':'}</label>
-                                <TextField
-                                    floatingLabelText={textInfo.organizationData.bankAccount}
-                                    className="d-md-none d-block inputClass"
-                                    fullWidth="100%"
-                                    floatingLabelFocusStyle={{ color: "#304269" }}
-                                    underlineFocusStyle={{ borderColor: "#304269" }}
-                                    initialValue={this.state.profileData.bankAccount}
-                                    onChange={(e) => { this.agencyDataChange(e.target.value, 'bankAccount'); }}
-                                    value={this.state.profileData.bankAccount}
-                                />
-                                <input className="d-md-block d-none col-md-4 col-12 " id="basicInfoName" type="text" value={this.state.profileData.bankAccount}
-                                    onChange={(e) => { this.agencyDataChange(e.target.value, 'bankAccount'); }} />
-                                <p className=" d-md-block d-none m-0 col-md-6 col-5"></p>
-                            </div>
-                            <div className="bottomContentNote d-flex align-items-center">
-                                <label htmlFor="basicInfoName" className="d-md-block d-none col-2">{textInfo.organizationData.bankCode + ":"}</label>
-                                <TextField
-                                    floatingLabelText={textInfo.organizationData.bankCode}
-                                    className="d-md-none d-block inputClass"
-                                    fullWidth="100%"
-                                    floatingLabelFocusStyle={{ color: "#304269" }}
-                                    underlineFocusStyle={{ borderColor: "#304269" }}
-                                    initialValue={this.state.profileData.bankCode}
-                                    onChange={(e) => { this.agencyDataChange(e.target.value, 'bankCode'); }}
-                                    value={this.state.profileData.bankCode}
-                                />
-                                <input className="d-md-block d-none col-md-4 col-12 " id="basicInfoName" type="text" value={this.state.profileData.bankCode}
-                                    onChange={(e) => { this.agencyDataChange(e.target.value, 'bankCode'); }} />
-                                <p className=" d-md-block d-none m-0 col-md-6 col-5"></p>
-                            </div>
-                            <div className="bottomContentNote d-flex align-items-center">
-                                <label htmlFor="basicInfoName" className="d-md-block d-none col-2">{textInfo.organizationData.bankAddress + ":"}</label>
-                                <TextField
-                                    floatingLabelText={textInfo.organizationData.bankAddress}
-                                    className="d-md-none d-block inputClass"
-                                    fullWidth="100%"
-                                    floatingLabelFocusStyle={{ color: "#304269" }}
-                                    underlineFocusStyle={{ borderColor: "#304269" }}
-                                    initialValue={this.state.profileData.bankAddress}
-                                    onChange={(e) => { this.agencyDataChange(e.target.value, 'bankAddress'); }}
-                                    value={this.state.profileData.bankAddress}
-                                />
-                                <input className="d-md-block d-none col-md-4 col-12 " id="basicInfoName" type="text" value={this.state.profileData.bankAddress}
-                                    onChange={(e) => { this.agencyDataChange(e.target.value, 'bankAddress'); }} />
-                                <p className=" d-md-block d-none m-0 col-md-6 col-5"></p>
-                            </div>
-                            <div className="bottomContentNote d-flex align-items-start">
-                                <label htmlFor="basicInfoMultiLine" className="d-md-block d-none col-2">{textInfo.organizationData.dataAbout + ":"}</label>
-                                <TextField
-                                    floatingLabelText={textInfo.organizationData.dataAbout}
-                                    className="d-md-none d-block multiLineInputClass"
-                                    fullWidth="100%"
-                                    floatingLabelFocusStyle={{ color: "#304269" }}
-                                    underlineFocusStyle={{ borderColor: "#304269" }}
-                                    multiLine={true}
-                                    rows={1}
-                                    value={this.state.profileData.dataAbout}
-                                    onChange={(e) => { this.inputChange(e.target.value, 'dataAbout'); }}
-                                />
-                                <textarea className="d-md-block d-none col-md-4 col-12 " id="basicInfoMultiLine" name="" cols="30" rows="3" value={this.state.profileData.dataAbout}
-                                    onChange={(e) => { let profileData = this.state.profileData; profileData.dataAbout = e.target.value; this.setState({ profileData: profileData }) }}></textarea>
-                                <p className=" d-md-block d-none m-0 col-md-6 col-5"></p>
-                            </div>
-
-
+                            <UnitedInputBlock inputId={"basicInfoName"} inputValue={this.state.profileData.organizationName}
+                                labelText={textInfo.organizationData.organizationName + ":"} textFieldLabelText={textInfo.organizationData.organizationName}
+                                onChangeFunc={(e)=>{this.agencyDataChange(e.target.value, 'organizationName')}}
+                            />
+                            <UnitedInputBlock inputId={"basicInfoName"} inputValue={this.state.profileData.registrationNumber}
+                                labelText={textInfo.organizationData.registrationNumber + ":"} textFieldLabelText={textInfo.organizationData.registrationNumber}
+                                onChangeFunc={(e) => { this.agencyDataChange(e.target.value, 'registrationNumber')}}
+                            />
+                            <UnitedInputBlock inputId={"basicInfoName"} inputValue={this.state.profileData.legalAddress}
+                                labelText={textInfo.organizationData.legalAddress + ':'} textFieldLabelText={textInfo.organizationData.legalAddress}
+                                onChangeFunc={(e) => { this.agencyDataChange(e.target.value, 'legalAddress')}}
+                            />
+                            <UnitedInputBlock inputId={"basicInfoName"} inputValue={this.state.profileData.bankAccount} 
+                                labelText={textInfo.organizationData.bankAccount + ':'} textFieldLabelText={textInfo.organizationData.bankAccount}
+                                onChangeFunc={(e) => { this.agencyDataChange(e.target.value, 'bankAccount')}}
+                            />
+                            <UnitedInputBlock inputId={"basicInfoName"} inputValue={this.state.profileData.bankCode}
+                                labelText={textInfo.organizationData.bankCode + ":"} textFieldLabelText={textInfo.organizationData.bankCode}
+                                onChangeFunc={(e) => { this.agencyDataChange(e.target.value, 'bankCode')}}
+                            />                           
+                            <UnitedInputBlock inputId={"basicInfoName"} inputValue={this.state.profileData.bankAddress}
+                                labelText={textInfo.organizationData.bankAddress + ":"} textFieldLabelText={textInfo.organizationData.bankAddress}
+                                onChangeFunc={(e) => { this.agencyDataChange(e.target.value, 'bankAddress') }}
+                            />
+                            <UnitedInputBlock inputId={"basicInfoMultiLine"} textFieldClassName={"d-md-none d-block multiLineInputClass"}
+                                inputValue={this.state.profileData.dataAbout} isTextarea={true} textareaParams = {{cols: 30, rows: 3, name: ""}}
+                                labelText={textInfo.organizationData.dataAbout + ":"} textFieldLabelText={textInfo.organizationData.dataAbout}
+                                onChangeFunc={(e) => { this.inputChange(e.target.value, 'dataAbout') }}
+                            />
                             <p>{textInfo.contactPerson.header}</p>
-                            <div className="bottomContentNote d-flex align-items-center">
-                                <label htmlFor="basicInfoName" className="d-md-block d-none col-2">{textInfo.contactPerson.firstName + ":"}</label>
-                                <TextField
-                                    floatingLabelText={textInfo.contactPerson.firstName}
-                                    className="d-md-none d-block inputClass"
-                                    fullWidth="100%"
-                                    floatingLabelFocusStyle={{ color: "#304269" }}
-                                    underlineFocusStyle={{ borderColor: "#304269" }}
-                                    initialValue={this.state.profileData.firstName}
-                                    onChange={(e) => { this.inputChange(e.target.value, 'firstName'); }}
-                                    value={this.state.profileData.firstName}
-                                />
-                                <input className="d-md-block d-none col-md-4 col-12 " id="basicInfoName" type="text" value={this.state.profileData.firstName}
-                                    onChange={(e) => { this.inputChange(e.target.value, 'firstName'); }} />
-                                <p className=" d-md-block d-none m-0 col-md-6 col-5"></p>
-                            </div>
-                            <div className="bottomContentNote d-flex align-items-center">
-                                <label htmlFor="basicInfoLastName" className="d-md-block d-none col-2">{textInfo.contactPerson.lastName + ":"}</label>
-                                <TextField
-                                    floatingLabelText={textInfo.contactPerson.lastName}
-                                    className="d-md-none d-block inputClass"
-                                    fullWidth="100%"
-                                    floatingLabelFocusStyle={{ color: "#304269" }}
-                                    underlineFocusStyle={{ borderColor: "#304269" }}
-                                    value={this.state.profileData.lastName}
-                                    onChange={(e) => { this.inputChange(e.target.value, 'lastName'); }}
-                                />
-                                <input className="d-md-block d-none col-md-4 col-12 " id="basicInfoLastName" type="text" value={this.state.profileData.lastName}
-                                    onChange={(e) => { this.inputChange(e.target.value, 'lastName'); }}
-                                />
-                            </div>
-
+                            <UnitedInputBlock inputId={"basicInfoName"} inputValue={this.state.profileData.firstName}
+                                labelText={textInfo.contactPerson.firstName + ":"} textFieldLabelText={textInfo.contactPerson.firstName}
+                                onChangeFunc={(e) => { this.inputChange(e.target.value, 'firstName') }}
+                            />
+                            <UnitedInputBlock inputId={"basicInfoLastName"} inputValue={this.state.profileData.lastName}
+                                labelText={textInfo.contactPerson.lastName + ":"} textFieldLabelText={textInfo.contactPerson.lastName}
+                                onChangeFunc={(e) => { this.inputChange(e.target.value, 'lastName') }}
+                            />
                             <div className="bottomContentNote d-flex align-items-center">
                                 <label htmlFor="basicInfoNumber" className="d-md-block d-none col-2">{textInfo.contactPerson.workPhone + ":"}</label>
                                 <ReactTelInput

@@ -604,7 +604,7 @@ export default class AgencyTourForm extends React.Component {
                         </div>
                         <div className="d-flex flex-md-row flex-column align-items-md-center align-items-start">
                             <label htmlFor="newTourAttractions" className="d-md-block d-none col-2">{textPage.newTourAttractions.floatingLabelText}:</label>
-                            <div className="d-flex col-md-4 col-12 p-md-0 py-2 px-0" key={element.departurePoint.point}>
+                            <div className="d-flex col-md-4 col-12 p-md-0 p-0" key={element.departurePoint.point}>
                                 <LocationSearchInput address={element.departurePoint &&
                                     element.departurePoint.point !== "" ? element.departurePoint.point : ''} placeholder={this.props.textPageAgencyProfile.departurePointPlaceholder}
                                     changeCity={(id, value, extraData) => {
@@ -622,7 +622,7 @@ export default class AgencyTourForm extends React.Component {
                         </div>
                         <div className="d-flex flex-md-row flex-column align-items-md-center align-items-start">
                             <label htmlFor="attractionsAlongTheRoute" className="d-md-block d-none col-2">{textPage.attractionsAlongTheRoute.floatingLabelText}:</label>
-                            <div className="d-flex col-md-4 col-12 p-md-0 py-2 px-0" key={element.points.length}>
+                            <div className="d-flex col-md-4 col-12 p-md-0 p-0" key={element.points.length}>
                                 <LocationSearchInput address='' changeCity={(id, value, extraData) => {
                                     let obj = document.querySelectorAll('.routePointsClass' + index);
                                     if (obj[0]) {
