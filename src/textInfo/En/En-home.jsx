@@ -52,6 +52,8 @@ const home = {
             comments: 'reviews',
             from: 'From',
             excursions: 'Excursions',
+            bestseller:['Bestseller','New'],
+            daysNumber0:'Duration',
             daysNumber: 'day',
             from:"From ",
             seeOffers:"See offers",

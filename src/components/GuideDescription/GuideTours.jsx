@@ -89,7 +89,7 @@ class GuideToursClass extends React.Component {
                             <>
                                 <ToursListElement element={element} index={index} findTagName={(tag) => findTagName(tag, this)}
                                     departureDate={undefined} changeTravelVisibility={this.props.changeTravelVisibility}
-                                    isGuideTours={true} noDateSeatsData={true}
+                                    isGuideTours={true} noDateSeatsData={true} isRedirectButton={true}
                                 />
                             </>
                         )                     

@@ -3,7 +3,7 @@ import './StartTravelForm.css';
 import './StartTravelBlockStyles.css';
 import { connect } from 'react-redux';
 
-import { isMobileOnly } from 'react-device-detect';
+import { isMobile } from 'react-device-detect';
 import axios from 'axios';
 import requests from '../../config';
 import StartTravelContent from './StartTravelContent';
@@ -442,26 +442,20 @@ class StartTravelFormClass extends React.Component {
                     //это на время подключения startTravelForm к турам
                     this.props.driversState ?
                         <>
-                            {
-                                isMobileOnly ?
-                                    <>
-                                        <Dialog fullScreen open={this.props.travelVisibility} onClose={this.props.changeTravelVisibility} >
-                                            <StartTravelContent that={this} flagAllOk={flagAllOk} carCapacityArray={carCapacityArray} activeCurrency={this.props.activeCurrency} textInfo={this.props.textInfo} changeSuccessVisibility={this.props.changeSuccessVisibility} />
-                                        </Dialog>
-                                    </>
-                                    :
-                                    <>
-                                        <Dialog open={this.props.travelVisibility} onClose={this.props.changeTravelVisibility} >
-                                            <StartTravelContent that={this} flagAllOk={flagAllOk} carCapacityArray={carCapacityArray} activeCurrency={this.props.activeCurrency} textInfo={this.props.textInfo} changeSuccessVisibility={this.props.changeSuccessVisibility} />
-                                        </Dialog>
-                                    </>
-                            }
+                            <>
+                                <Dialog fullScreen={isMobile ? true : false} open={this.props.travelVisibility} onClose={this.props.changeTravelVisibility} >
+                                    <StartTravelContent that={this} flagAllOk={flagAllOk} carCapacityArray={carCapacityArray} activeCurrency={this.props.activeCurrency} textInfo={this.props.textInfo} changeSuccessVisibility={this.props.changeSuccessVisibility} />
+                                </Dialog>
+                            </>
+
                         </> : <React.Fragment />
                 }
                 {
                     this.props.toursState ?
                         <>
-                            <Dialog open={this.props.travelVisibility} onClose={this.props.changeTravelVisibility} >
+
+
+                            <Dialog fullScreen={isMobile ? true : false} open={this.props.travelVisibility} onClose={this.props.changeTravelVisibility} >
 
                                 {/* <div className="d-flex justify-content-center align-items-center p-5">В Разработке</div> */}
                                 <StartTravelContent that={this} flagAllOk={flagAllOk} carCapacityArray={carCapacityArray} activeCurrency={this.props.activeCurrency}
@@ -469,6 +463,7 @@ class StartTravelFormClass extends React.Component {
                                     isTourDescription={this.props.isTourDescription}
                                 />
                             </Dialog>
+
                         </>
                         : <React.Fragment />
                 }

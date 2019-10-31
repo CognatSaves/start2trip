@@ -5,3 +5,11 @@
     margin-top: 10%;
     padding: 20px !important;
 }
+
+@media (max-width: 900px) {
+    .getPromoCodeContent {
+        margin-top: 0;
+        padding: 10px !important;
+        padding-bottom: 80px !important;
+    }
+}

@@ -101,8 +101,8 @@ class GetPromoCodeClass extends React.Component {
                     <Header driver={true} history={this.props.history} />
                     {renderEl &&
                         <div className="getPromoCodeContent d-flex flex-column align-items-center col-md-8 col-12 mx-auto">
-                            <div className="col-10">
-                                <div className="d-flex align-items-center">
+                            <div className="col-md-10 col-12">
+                                <div className="d-flex align-items-center flex-md-row flex-column">
                                     <FormControl className="col p-1">
                                         <InputLabel htmlFor="select-multiple">{}</InputLabel>
                                         <Select
@@ -134,7 +134,7 @@ class GetPromoCodeClass extends React.Component {
                                         </Select>
                                     </FormControl>
                                 </div>
-                                <div className="d-flex">
+                                <div className="d-flex flex-md-row flex-column">
                                     <TextField
                                         label={"Символ для конкретного места"}
                                         value={this.state.symbol}
@@ -153,7 +153,7 @@ class GetPromoCodeClass extends React.Component {
                                         type="number"
                                     />
                                 </div>
-                                <div className="d-flex align-items-center">
+                                <div className="d-flex align-items-center flex-md-row flex-column">
                                     <TextField
                                         label={"Сколько промокодов"}
                                         value={this.state.howMuchPromo}

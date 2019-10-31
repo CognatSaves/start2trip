@@ -11,14 +11,15 @@ import Stars from '../stars/Stars';
 import Cookies from 'universal-cookie';
 import guideIcon from '../media/tour-guide.svg';
 import agencyIcon from '../media/agencyIcon.svg';
+import { isMobile } from 'react-device-detect';
 
 const cookies = new Cookies();
 
 class GuidesListElementClass extends React.Component {
     render() {
-        function findLanguageByISO(value, storeState){
-            for(let i=0; i<storeState.untranslatedlanguages.length; i++){
-                if(storeState.untranslatedlanguages[i].id===value){
+        function findLanguageByISO(value, storeState) {
+            for (let i = 0; i < storeState.untranslatedlanguages.length; i++) {
+                if (storeState.untranslatedlanguages[i].id === value) {
                     return storeState.untranslatedlanguages[i];
                 }
             }
@@ -32,13 +33,13 @@ class GuidesListElementClass extends React.Component {
         return (
             <div className={this.props.placeListElementClass ? this.props.placeListElementClass : "col-lg-3 col-md-4 col-sm-6 col-12 p-2 pb-3"} >
                 <div className={"drivers_block_element d-flex p-0 flex-column"} id={index}>
-                    
-                        <div className="driversBlock_carImage" style={{ background: "url(" + (element.image ? (requests.serverAddressImg + element.image) : '') + ") no-repeat", backgroundSize: "cover", width: '100%' }}>
-                            <Link to={linkAddress} className="driversBlock_carBlackout">
-                                <div className="driversBlock_carBlackout_detailed">{textInfo.detailed}</div>
-                            </Link>
-                        </div>
-                        
+
+                    <div className="driversBlock_carImage" style={{ background: "url(" + (element.image ? (requests.serverAddressImg + element.image) : '') + ") no-repeat", backgroundSize: "cover", width: '100%' }}>
+                        <Link to={linkAddress} className="driversBlock_carBlackout">
+                            <div className="driversBlock_carBlackout_detailed">{textInfo.detailed}</div>
+                        </Link>
+                    </div>
+
                     <div className="d-flex flex-column guidesList_info">
                         <div className="d-flex flex-row">
                             <Link to={linkAddress} className="guideList_placeName d-flex">
@@ -46,14 +47,16 @@ class GuidesListElementClass extends React.Component {
                                     {element.name}
                                 </div>
                             </Link>
-                            <div className="langi guideList_placeName d-flex" style={{paddingTop: '2px'}} key={"key"+element.id}>
+                            <div className="langi guideList_placeName d-flex" style={{ paddingTop: '2px' }} key={"key" + element.id}>
                                 {
-                                    element.language.map((langElement, index) =>{
-                                        
-                                        let langObj= findLanguageByISO(langElement,this.props.storeState);
-                                        return <div className="driversBlock_languages_flag" 
-                                            style={{ background: "url(" + (langObj ? requests.serverAddressImg + langObj.icon.url : '') + ")",
-                                            backgroundSize: "15px 15px", marginTop: '0' }} />
+                                    element.language.map((langElement, index) => {
+
+                                        let langObj = findLanguageByISO(langElement, this.props.storeState);
+                                        return <div className="driversBlock_languages_flag"
+                                            style={{
+                                                background: "url(" + (langObj ? requests.serverAddressImg + langObj.icon.url : '') + ")",
+                                                backgroundSize: "15px 15px", marginTop: '0'
+                                            }} />
                                     })
                                 }
                             </div>
@@ -62,13 +65,14 @@ class GuidesListElementClass extends React.Component {
                             <div className="placesList_stars">
                                 <Stars key={index + "/" + element.rating} value={Math.ceil(element.rating * 10) / 10} commentNumber={element.comments + " " + textInfo.comments} valueDisplay={element.rating > 0 ? true : false} commentNumberDisplay={true} />
                             </div>
-                            <i className="placesList_info_guide my-auto col-2" style={{ background: "url(" + (element.guide  ? guideIcon : agencyIcon) + ")no-repeat" }}>
-                                <span className="placesList_info_guide-toolTip">{element.guide  ? textInfoTour.guide : textInfoTour.agency}</span>
+                            <i className="placesList_info_guide my-auto col-2" style={{ background: "url(" + (element.guide ? guideIcon : agencyIcon) + ")no-repeat" }}>
+                                <span className="placesList_info_guide-toolTip">{element.guide ? textInfoTour.guide : textInfoTour.agency}</span>
                             </i>
+
                         </div>
 
                         <div className="d-flex ">
-                            <div className="guideList_tours">{textInfo.excursions+": "+element.departurePointArray.length}</div>
+                            <div className="guideList_tours">{textInfo.excursions + ": " + element.departurePointArray.length}</div>
                         </div>
                     </div>
                 </div>

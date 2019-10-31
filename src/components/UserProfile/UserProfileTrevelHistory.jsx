@@ -56,7 +56,7 @@ class UserProfileTrevelHistoryClass extends React.Component {
                             </div>
 
 
-                            <Collapse isOpen={this.state.collapse[index]} className={this.state.collapse[index] ? "d-flex flex-column px-3" : ""} >
+                            <Collapse isOpen={this.state.collapse[index]} className={this.state.collapse[index] ? "d-flex flex-column px-2" : ""} >
                                 <div className="d-flex flex-column historyBodyElement ">
 
                                     <h5>{textInfo.drivercar}</h5>

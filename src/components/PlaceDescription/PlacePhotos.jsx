@@ -50,7 +50,7 @@ export default class PlacePhotos extends React.Component {
                     */
                 }
 
-                <div id="photoBlock" className="d-flex col-12 flex-md-wrap flex-nowrap p-3 pb-4 popularPlacesRender">
+                <div id="photoBlock" className="d-flex col-12 flex-md-wrap flex-nowrap p-1 pb-4 popularPlacesRender">
                     {
                         this.props.photoArray.map((element, index) => {
 

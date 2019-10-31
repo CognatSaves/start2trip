@@ -216,7 +216,7 @@ class DriversBlockClass extends React.Component {
     return (
       <>
 
-        <div className="drivers_block d-flex flex-wrap">
+        <div className="drivers_block d-flex flex-wrap pb-5">
           {
             selectedElements.map((element, index) => {
               let linkAddress = "/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + `/driverProfile/${element.id}-${element.carId}-${this.props.cities}?date=` + this.props.dateString;

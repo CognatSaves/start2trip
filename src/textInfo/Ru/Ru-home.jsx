@@ -52,6 +52,8 @@ const home = {
             comments: 'отзывов',
             from: 'Из',
             excursions: 'Экскурсий',
+            bestseller:['Хит продаж','Новинка'],
+            daysNumber0:'Длительность',
             daysNumber: 'дн.',
             from:"От ",
             seeOffers:"Смотреть предложения",

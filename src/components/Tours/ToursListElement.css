@@ -26,27 +26,43 @@
 }
 
 .toursDuration {
-    position: absolute;
-    z-index: 17;
-    right: 0;
-    bottom: 0px;
     width: 100%;
-    background: rgba(48, 66, 105, 0.8);
-    color: #fff;
+    color: #999;
     font-weight: 400;
-    padding: 2px 10px;
     font-size: 14px;
 }
 
-.toursDuration text{
-    font-weight: 500;
+.toursDuration div{
+    width: max-content;
+    height: 100%;
+   border-radius: 0px 0px 0px 5px;
+}
+.toursDuration div text {
+    font-weight: 400;
+    font-size: 12px;
+    color: #fff;
+    padding: 0px 5px;
+}
+
+.toursDuration div text.toursText{
+    font-weight: 400;
+    font-size: 12px;
+    color: #999;
+    padding-left: 30px;
+    background: url(../media/user.svg) no-repeat;
+    background-size: 15px 15px;
+    background-position: left 10px top ;
 }
 
 .toursDuration span{
-    padding-left: 20px;
-    background: url(../media/clock-white.svg) no-repeat;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 25px;
+    height: 25px;
+    padding-left: 30px;
+    background: url(../media/clock-Gray.svg) no-repeat;
     background-size: 15px 15px;
-    background-position: left center;
+    background-position: left 10px center;
 }
 
 .toursNumberPeoples div {
@@ -57,11 +73,10 @@
 }
 
 .placesList_info_tours {
-    display: flex;
-    flex-direction: column;
     width: 100%;
-    min-height: 82px;
-    max-height: 175px;
+    height: 100%;
+    /* min-height: 82px; */
+    max-height: 152px;
     padding: 0px 10px;
 }
 
@@ -98,8 +113,10 @@
 }
 
 .placesList_topBlock{
-    min-height: 82px;
-    max-height: 82px;
+    /* min-height: 82px;
+    max-height: 100px; */
+    height: 100%;
+    /* padding-top: 10px; */
 }
 
 .toursListEl_avatar img{
@@ -107,7 +124,7 @@
     width: 40px;
     height: 40px;
     object-fit: cover;
-    border-radius: 50%;
+    border-radius: 5px;
     transition: all 0.3s;
     z-index: 10;
 }
@@ -118,20 +135,19 @@
 
 .toursListEl_bottomContent h5 {
     overflow: hidden;
-    max-width: 167px;
+    max-width: 154px;
     margin: 0px;
 }
 
 .toursListEl_bottomContent h5 a{
-    
     white-space: nowrap;
-    font-size: 16px;
+    font-size: 14px;
     color: #304269;
     cursor: pointer;
 }
 
 .toursListEl_bottomContent h5:hover a{
-    font-size: 16px;
+    font-size: 14px;
     color: #007bff;
     
 }

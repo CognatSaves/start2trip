@@ -394,7 +394,7 @@ class DriverProfileTrevelHistoryClass extends React.Component {
                                         </div>
 
                                     </div>
-                                    <Collapse isOpen={this.state.collapse[index]} className={this.state.collapse[index] ? "d-flex flex-column px-3" : ""} >
+                                    <Collapse isOpen={this.state.collapse[index]} className={this.state.collapse[index] ? "d-flex flex-column px-2" : ""} >
                                         <TravelHistoryElementInnerPart isHistory={this.props.isHistory} textPage={textPage} /*element={element}*/
                                             that={this} index={index} tourSeatsData={element.tripType.type_en === "Tour" ? (element.tourSeatsData.seatsMax - element.tourSeatsData.reservedSeats) : false}
                                             tripType={element.tripType.type_en === "Tour" ? true : false} />
