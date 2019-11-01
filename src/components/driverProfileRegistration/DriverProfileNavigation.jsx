@@ -8,6 +8,7 @@ import getUserData from './DriverProfileRequest';
 
 import calendarBG from '../media/illustrations_calendar.svg'
 import carBg from '../media/illustrations_nastroiki-01.svg'
+import toursBG from '../media/illustrations_poezdki_tours.svg'
 import billingBG from '../media/illustrations_billing.svg'
 import referralsBG from '../media/illustrations_partners.svg'
 import sittingsBG from '../media/illustrations_nastroiki-04.svg'
@@ -72,6 +73,7 @@ class DriverProfileNavigationClass extends React.Component {
                     "/account/driver/profile": { backgroundImage: "url(" + sittingsBG + ")" },
                     "/account/driver/cars": { backgroundImage: "url(" + carBg + ")" },
                     "/account/driver/tripsSettings": { backgroundImage: "url(" + calendarBG + ")" },
+                    "/account/driver/tours": { backgroundImage: "url(" + toursBG + ")" },
                     "/account/driver/reviews": { backgroundImage: "url(" + feedbackBG + ")" },
                     "/account/driver/settings": { backgroundImage: "url(" + sittingsBG + ")" },
                     "/account/driver/billing": { backgroundImage: "url(" + billingBG + ")" },
