@@ -306,7 +306,7 @@ class DriversBlockClass extends React.Component {
                         <div className="d-flex align-items-end justify-content-between px-2 pb-2">
                         <div className="driversBlock_commentary">{textInfo.commentary}</div>
                           <div className="routesPrices d-flex flex-column align-items-end">
-                                <span className="routesPricesSmall flex-row-reverse">{priceold}</span>
+                                <span className="routesPricesSmall">{priceold}</span>
                                 <span className="routesPricesBig">{price}</span>
                             </div>
                         </div>

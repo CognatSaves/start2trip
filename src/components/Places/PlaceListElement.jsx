@@ -38,11 +38,11 @@ class PlaceListElementClass extends React.Component {
                         </div>
                         <div className="d-flex align-items-center placesList_info_position placesList_info_position_tags">
                             <img src={tagBlue} height="12px" width="12px" alt="tagBlue" />
-                            <div className="placesList_info_position_textStyle">{element.tagsArray.map((tag, tagIndex) => <text>{this.props.findTagName(tag) + (element.tagsArray.length - 1 > tagIndex ? "," : "") + " "}</text>)}</div>
+                            <div style={{maxWidth:"max-content"}} className="placesList_info_position_textStyle">{element.tagsArray.map((tag, tagIndex) => <text style={{paddingLeft:"4px"}}>{this.props.findTagName(tag) + (element.tagsArray.length - 1 > tagIndex ? "," : "") + " "}</text>)}</div>
                         </div>
-                        <div className="d-flex placesList_info_position placesList_info_position_loc">
+                        <div style={{paddingTop:"0px", paddingBottom:"20px"}} className="d-flex placesList_info_position placesList_info_position_loc">
 
-                            <div className="placesList_info_position_textStyle">{element.placelocalization.location}</div>
+                            <div style={{maxWidth:"max-content"}} className="placesList_info_position_textStyle">{element.placelocalization.location}</div>
                         </div>
                     </div>
                 </div>

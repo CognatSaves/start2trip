@@ -3,7 +3,7 @@ import '../../Places/PlacesList.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import requests from '../../../config';
-import { startRefresherGlobal, thenFuncGlobal, catchFuncGlobal, findTagName, getCurrencies } from '../../../redusers/GlobalFunction'
+import { startRefresherGlobal, thenFuncGlobal, catchFuncGlobal, findTagName, getCurrencies, isNeedDiscount } from '../../../redusers/GlobalFunction'
 
 // import tagBlue from '../../media/tag_blue.svg';
 // import geoIcon from '../../media/geo_icon.svg';
@@ -73,23 +73,30 @@ class RouteListElementClass extends React.Component {
         let price = null
         let priceold = null
         let usd = element.price
+
+        let discont = isNeedDiscount(element, this.props.storeState.country, this.props.storeState.countries)
         if (isoCurrencies === "USD") {
             let idIndex = getCurrencies("USD", "ISO", this)
             usd = Math.ceil(usd)
             price = "" + this.props.storeState.currencies[idIndex].symbol + usd
-            priceold = Math.ceil(usd*1.2)
-            priceold = "" + this.props.storeState.currencies[idIndex].symbol + (priceold);
-            
+            if (discont.isGood) {
+                priceold = Math.ceil(usd / (1 - discont.discount))
+                priceold = "" + this.props.storeState.currencies[idIndex].symbol + (priceold);
+            }
+
+
         } else {
             let idIndex = getCurrencies(isoCurrencies, "ISO", this)
             usd = usd * this.props.storeState.currencies[idIndex].costToDefault
             usd = Math.ceil(usd)
             price = this.props.storeState.currencies[idIndex].isLeft ? (this.props.storeState.currencies[idIndex].symbol + " " + usd) :
                 (usd + " " + this.props.storeState.currencies[idIndex].symbol);
-            priceold = Math.ceil(usd *1.2)
-            priceold = this.props.storeState.currencies[idIndex].isLeft ? (this.props.storeState.currencies[idIndex].symbol + " " + priceold) :
-            (priceold + " " + this.props.storeState.currencies[idIndex].symbol)
-            
+            if (discont.isGood) {
+                priceold = Math.ceil(usd / (1 - discont.discount))
+                priceold = this.props.storeState.currencies[idIndex].isLeft ? (this.props.storeState.currencies[idIndex].symbol + " " + priceold) :
+                    (priceold + " " + this.props.storeState.currencies[idIndex].symbol)
+            }
+
         }
 
 
@@ -102,10 +109,10 @@ class RouteListElementClass extends React.Component {
                         </Link>
                     </div>
                     <div className="toursDuration d-flex align-items-center justify-content-between">
-                        <span>{textInfo.daysNumber0+": " + 1 + " " + textInfo.daysNumber}</span>
-                        <div style={{ background: "#00aa71", height:"25px" }} className="d-flex align-items-center">
-                                <text>{textInfo.bestseller[1]}</text>
-                        </div>
+                        <span>{textInfo.daysNumber0 + ": " + 1 + " " + textInfo.daysNumber}</span>
+                        {/* <div style={{ background: "#00aa71", height: "25px" }} className="d-flex align-items-center">
+                            <text>{textInfo.bestseller[1]}</text>
+                        </div> */}
                     </div>
                     <div className="placesList_info routes_info d-flex flex-column justify-content-between align-items-stretch">
                         <div>
@@ -115,7 +122,7 @@ class RouteListElementClass extends React.Component {
                                 </div>
                             </Link>
                             <div className="d-flex placesList_info_position placesList_info_position_loc">
-                                <div className="placesList_info_position_textStyle">{createRouteString(element.placelocalization.points)}</div>
+                                <div style={{maxWidth:"max-content"}} className="placesList_info_position_textStyle">{createRouteString(element.placelocalization.points)}</div>
                             </div>
 
                         </div>
