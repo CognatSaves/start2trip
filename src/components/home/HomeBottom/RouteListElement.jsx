@@ -95,7 +95,7 @@ class RouteListElementClass extends React.Component {
 
         return (
             <div className={this.props.routeListElementClass ? this.props.routeListElementClass : "col-lg-3 col-md-4 col-sm-6 col-12 p-2 mb-3 align-items-stretch "}>
-                <div className="drivers_block_element d-flex p-0 flex-column " id={index}>
+                <div className="drivers_block_element p-0 h-100 " id={index}>
                     <div className="driversBlock_carImage" style={{ background: "url(" + (element.image ? (requests.serverAddressImg + element.image) : '') + ") no-repeat", backgroundSize: "cover", width: '100%' }}>
                         <Link to={linkString} className="driversBlock_carBlackout">
                             <div className="driversBlock_carBlackout_detailed">{textInfo.detailed}</div>
@@ -125,8 +125,8 @@ class RouteListElementClass extends React.Component {
                                 <Stars key={index + "/" + element.rating} value={Math.ceil(element.rating * 10) / 10} commentNumber={element.comments + " " + textInfo.comments} valueDisplay={element.rating > 0 ? true : false} commentNumberDisplay={true} />
                             </div>
                             <div className="routesPrices d-flex flex-column justify-content-end align-items-end">
-                                <span className="routesPricesSmall flex-row-reverse">{priceold}</span>
-                                <span className="routesPricesBig"><p>{textInfo.from}</p>{price}</span>
+                                <span className="routesPricesSmall d-flex">{priceold}</span>
+                                <span className="routesPricesBig d-flex" ><p>{textInfo.from}</p>{price}</span>
                             </div>
                         </div>
 

@@ -407,7 +407,7 @@ class RouteDescriptionClass extends React.Component {
                                             </div>
                                             <div className="placeDescription_block flex-column" id={simularPlaceBlockId} style={{ display: this.state.newRoute.additionalRoutes.length > 0 ? 'flex' : 'none' }}>
 
-                                                <SimularRouteBlock outerBlock={simularPlaceBlockId} routes={this.state.newRoute.additionalRoutes} fragmentName={textInfo.routeDescription.variantsArray[4]} priseDisplay={"none"} />
+                                                <SimularRouteBlock  outerBlock={simularPlaceBlockId} routes={this.state.newRoute.additionalRoutes} fragmentName={textInfo.routeDescription.variantsArray[4]} priseDisplay={"none"} />
                                             </div>
 
                                             <CommentBlock targetType="route" comments={this.state.newRoute.comments} targetId={this.state.newRoute.route.id} page={this.state.page} setPage={this.setPage}

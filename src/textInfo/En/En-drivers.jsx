@@ -16,7 +16,7 @@ const drivers = {
             languages: 'Languages',
             carCapacity: 'places',
             comments: 'review (s)',
-            commentary: 'The cost is final. Fuel included. ',
+            commentary: 'The cost is final. ',
             guide: 'Guide',
             book: 'BOOK'
         },

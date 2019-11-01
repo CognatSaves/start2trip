@@ -13,7 +13,7 @@
 }
 
 .driversBlock_driverCard .driversBlock_buttonStyle {
-    height: 50px !important;
+    height: 40px !important;
 }
 
 .infoString {
@@ -26,7 +26,7 @@
     position: relative;
     align-items: center;
     /*width: 100%;*/
-    height: 100%;
+    /* height: 100%; */
     box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
     padding: 30px 20px;
     /* margin-bottom: 10px; */
@@ -237,12 +237,15 @@
 
 .driverBlock_carInfoLine {
     padding-top: 6px;
-    padding-bottom: 7px;
-    border-bottom: 1px solid #686868;
+    /* padding-bottom: 7px; */
+    border-top: 1px solid #ccc;
 }
 
 .driversBlock_commentary {
-    text-align: center;
+    font-size: 12px;
+    font-weight: 400;
+    color: #999;
+
 }
 
 .driversBlock_buttonStyle {
@@ -262,17 +265,18 @@
 }
 
 .driversBlock_driverCard_carIcon {
+    background-size: 100% 100% !important;
+    background-position: left bottom 3px !important;
     width: 33px;
     height: 28px;
     margin-right: 5px;
-    margin-top: -1px;
 }
 
 .driversBlock_carInfoLine_value {
     font-size: 14px;
     line-height: 22px;
     font-weight: 400;
-    padding-top: 4px;
+    /* padding-top: 4px; */
     color: #686868;
 }
 
@@ -282,7 +286,7 @@
     width: 40px;
     min-width: 40px;
     height: 40px;
-    border-radius: 20px;
+    border-radius: 5px;
     background-size: cover !important;
     background-position: center center !important;
     transition: all 0.3s;
@@ -381,10 +385,10 @@
     right: 0
 }
 .driverGuideImage {
-    min-width: 32px;
-    height: 32px;
+    min-width: 25px;
+    height: 25px;
     background: url('../../../media/tour-guide.svg') no-repeat;
-    background-size: 38px 32px;
+    background-size: 100% 100%;
     background-position: center;
 }
 .driverGuideText {

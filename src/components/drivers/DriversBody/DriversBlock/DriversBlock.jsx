@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setPage, setMorePagesShow, setDriverCarDescription } from '../../../../redusers/ActionDrivers'
 import { set_state } from '../../../../redusers/Action'
+import { startRefresherGlobal, thenFuncGlobal, catchFuncGlobal, findTagName, getCurrencies } from '../../../../redusers/GlobalFunction'
 
 import requests from '../../../../config';
 
@@ -213,6 +214,9 @@ class DriversBlockClass extends React.Component {
     let pageNotFound = this.props.storeState.languageTextMain.home.pageNotFound;
     let isLoading = (selectedElements.length === 0 && (this.props.driversState.waitingDriverRequest));
     let isEmpty = (selectedElements.length === 0 && !(this.props.driversState.waitingDriverRequest) && !(this.props.driversState.isFirstSave));
+
+   
+
     return (
       <>
 
@@ -220,6 +224,29 @@ class DriversBlockClass extends React.Component {
           {
             selectedElements.map((element, index) => {
               let linkAddress = "/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + `/driverProfile/${element.id}-${element.carId}-${this.props.cities}?date=` + this.props.dateString;
+              let isoCurrencies = cookies.get('userCurr', { path: "/" })
+              let idIndex = getCurrencies("USD", "ISO", this)
+              let price = null
+              let priceold = null
+              if (this.props.storeState.currencies.length > 0) {
+                  let usd = element.price / this.props.storeState.currencies[idIndex].costToDefault
+                  if (isoCurrencies === "USD") {
+                      let idIndex = getCurrencies("USD", "ISO", this)
+                      usd = Math.ceil(usd)
+                      price = "" + this.props.storeState.currencies[idIndex].symbol + usd
+                      priceold = Math.ceil(usd * 1.2)
+                      priceold = "" + this.props.storeState.currencies[idIndex].symbol + (priceold);
+                  } else {
+                      let idIndex = getCurrencies(isoCurrencies, "ISO", this)
+                      usd = usd * this.props.storeState.currencies[idIndex].costToDefault
+                      usd = Math.ceil(usd)
+                      price = this.props.storeState.currencies[idIndex].isLeft ? (this.props.storeState.currencies[idIndex].symbol + " " + usd) :
+                          (usd + " " + this.props.storeState.currencies[idIndex].symbol)
+                      priceold = Math.ceil(usd * 1.2)
+                      priceold = this.props.storeState.currencies[idIndex].isLeft ? (this.props.storeState.currencies[idIndex].symbol + " " + priceold) :
+                          (priceold + " " + this.props.storeState.currencies[idIndex].symbol)
+                  }
+              }
               return (
                 <div className="col-lg-3 col-md-4 col-sm-6 col-12 p-2 pb-3">
                   <div className="driversBlock_driverCard d-flex flex-column ">
@@ -230,17 +257,7 @@ class DriversBlockClass extends React.Component {
                     </div>
 
                     <div className="driverBlock_driverInfoBlock d-flex flex-column">
-
-                      <Link to={linkAddress} className="driversBlock_driverInfoBlock_element driversBlock_carName">{element.carBrand}</Link>
-                      <div className="driverBlock_carInfoLine d-flex">
-                        <div className="driversBlock_driverCard_carIcon" style={{ background: "url(" + requests.serverAddressImg + this.props.driversState.carTypes[element.carType].carTypeImage + ") no-repeat", backgroundSize: "42px 30px", backgroundPosition: "-5px 0px" }} />
-                        <div className="driversBlock_carInfoLine_value">
-                          {
-                            fingCorrectCartypeName(this.props.driversState.carTypes[element.carType], storeState.languages[storeState.activeLanguageNumber].ISO)
-                            + ", " + element.carCapacity + " " + textInfo.carCapacity
-                          }
-                        </div>
-                      </div>
+                    <div className="pb-2">
                       <div className="driversBlock_driverInfoBlock_element d-flex" style={{ position: 'relative' }}>
                         <div className="driversBlock_driverCard_photo" style={{ background: "url(" + requests.serverAddressImg + element.avatar + ") no-repeat" }} />
                         <div className="d-flex  driversBlock_driverCard_driverInfo">
@@ -271,13 +288,35 @@ class DriversBlockClass extends React.Component {
                       </div>
                       <div class="starsd"><Stars key={element.rating} value={element.rating} commentNumber={element.comments + " " + textInfo.comments} valueDisplay={true} commentNumberDisplay={true} /></div>
                     </div>
+                    
+                      <div className="driverBlock_carInfoLine">
+                      <Link to={linkAddress} className="driversBlock_driverInfoBlock_element driversBlock_carName">{element.carBrand}</Link>
+                      <div className="d-flex">
+                      <div className="driversBlock_driverCard_carIcon" style={{ background: "url(" + requests.serverAddressImg + this.props.driversState.carTypes[element.carType].carTypeImage + ") no-repeat" }} />
+                        <div className="driversBlock_carInfoLine_value">
+                          {
+                            fingCorrectCartypeName(this.props.driversState.carTypes[element.carType], storeState.languages[storeState.activeLanguageNumber].ISO)
+                            + ", " + element.carCapacity + " " + textInfo.carCapacity
+                          }
+                        </div>
+                      </div>
+                      </div>
+                     
+                    </div>
+                        <div className="d-flex align-items-end justify-content-between px-2 pb-2">
+                        <div className="driversBlock_commentary">{textInfo.commentary}</div>
+                          <div className="routesPrices d-flex flex-column align-items-end">
+                                <span className="routesPricesSmall flex-row-reverse">{priceold}</span>
+                                <span className="routesPricesBig">{price}</span>
+                            </div>
+                        </div>
+                    
 
-                    <div className="driversBlock_driverInfoBlock_element driversBlock_commentary">{textInfo.commentary}</div>
                     <button className="driversBlock_driverInfoBlock_element driversBlock_buttonStyle"
                       onClick={() => { if (this.props.isRouteDescription) { this.props.globalReduser.history.push(linkAddress) } else { this.props.changeTravelVisibility(element.price); this.props.dispatch(setDriverCarDescription(element)) } }}>
-                      {textInfo.book + " " + (activeCurrency.isLeft ? activeCurrency.symbol + ' ' : '')
+                      {textInfo.book /*+ " " + (activeCurrency.isLeft ? activeCurrency.symbol + ' ' : '')
                         + Math.ceil(element.price * activeCurrency.costToDefault) +
-                        (!activeCurrency.isLeft ? ' ' + activeCurrency.symbol : '')}</button>
+                        (!activeCurrency.isLeft ? ' ' + activeCurrency.symbol : '')*/}</button>
                   </div>
 
                 </div>

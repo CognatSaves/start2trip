@@ -87,9 +87,9 @@ class ToursListElementClass extends React.Component {
                             </>
                         }
 
-                        <div className="toursDuration d-flex justify-content-between">
+                        {/* <div className="toursDuration d-flex justify-content-between">
                             <text>{!this.props.noDateSeatsData ? (element.isPricePerPerson ? textInfo.seats[0] : textInfo.seats[1]) + " " + seats + (element.isPricePerPerson ? textInfo.seats[2] : "") : price}</text>
-                        </div>
+                        </div> */}
                         <Link to={address} className="driversBlock_carBlackout">
                             <div className="driversBlock_carBlackout_detailed">{textInfo.detailed}</div>
                         </Link>
@@ -97,14 +97,14 @@ class ToursListElementClass extends React.Component {
                     <div className="toursDuration d-flex align-items-center justify-content-between">
                         <div className="d-flex flex-column">
                             <span>{textInfo.daysNumber0 + ": " + element.daysNumber + " " + textInfo.daysNumber}</span>
-                            <text className="toursText">{!this.props.noDateSeatsData ? (element.isPricePerPerson ? textInfo.seats[0] : textInfo.seats[1]) + " " + seats + (element.isPricePerPerson ? textInfo.seats[2] : "") : price}</text>
+                            <text className="toursText">{!this.props.noDateSeatsData ? (element.isPricePerPerson ? textInfo.seats[0] : textInfo.seats[1]) + " " + seats + (element.isPricePerPerson ? textInfo.seats[2] : "") : ""}</text>
                         </div>
                         {/* "#00aa71" */}
                         <div style={{ background: "#f90", height: "25px" }} className="d-flex align-items-center align-self-start">
                             <text>{textInfo.bestseller[2]}</text>
                         </div>
                     </div>
-                    <div className="placesList_info_tours d-flex flex-column justify-content-between">
+                    <div style={this.props.isGuideTours ? { maxHeight: "117px" } : {}} className="placesList_info_tours d-flex flex-column justify-content-between">
 
                         <div className="placesList_topBlock d-flex flex-column justify-content-between">
 
@@ -113,12 +113,16 @@ class ToursListElementClass extends React.Component {
                                     {element.tourlocalization.name}
                                 </div>
                             </Link>
-                            <div className="placesList_stars">
-                                <Stars key={index + "/" + element.rating} value={Math.ceil(element.rating * 10) / 10} commentNumber={element.comments + " " + textInfo.comments} valueDisplay={element.rating > 0 ? true : false} commentNumberDisplay={true} />
-                            </div>
+                            {!this.props.isGuideTours &&
+                                <div className="placesList_stars">
+                                    <Stars key={index + "/" + element.rating} value={Math.ceil(element.rating * 10) / 10} commentNumber={element.comments + " " + textInfo.comments} valueDisplay={element.rating > 0 ? true : false} commentNumberDisplay={true} />
+                                </div>
+                            }
+
                         </div>
-                        {!this.props.isGuideTours &&
-                            <div className="d-flex justify-content-md-between border-top">
+
+                        <div className={this.props.isGuideTours ? "d-flex justify-content-between align-items-center pb-2" : "d-flex justify-content-between  border-top"}>
+                            {!this.props.isGuideTours &&
                                 <div className="d-flex justify-content-between py-3 ">
                                     <div className="toursListEl_avatar">
                                         <img src={(element.author ? (requests.serverAddressImg + element.author.avatar.url) : '')} alt="" />
@@ -131,15 +135,21 @@ class ToursListElementClass extends React.Component {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="routesPrices d-flex flex-column align-items-end">
-                                    <span className="routesPricesSmall flex-row-reverse">{priceold}</span>
-                                    <span className="routesPricesBig">{price}</span>
-                                    <text>{element.isPricePerPerson ? textInfo.bookTours[0] : textInfo.bookTours[1]}</text>
+                            }
+                            {this.props.isGuideTours &&
+                                <div  className="placesList_stars">
+                                    <Stars key={index + "/" + element.rating} value={Math.ceil(element.rating * 10) / 10} commentNumber={element.comments + " " + textInfo.comments} valueDisplay={element.rating > 0 ? true : false} commentNumberDisplay={true} />
                                 </div>
-
-                                {/* <i className="placesList_info_guide my-auto col-2" style={{ background: "url(" + (element.isGuide ? guideIcon : agencyIcon) + ")no-repeat" }}><span className="placesList_info_guide-toolTip">{element.isGuide ? textInfo.guide : textInfo.agency}</span></i> */}
+                            }
+                            <div style={this.props.isGuideTours ? { paddingTop: "0px" } : {}} className="routesPrices d-flex flex-column align-items-end">
+                                <span className="routesPricesSmall flex-row-reverse">{priceold}</span>
+                                <span className="routesPricesBig">{price}</span>
+                                <text>{element.isPricePerPerson ? textInfo.bookTours[0] : textInfo.bookTours[1]}</text>
                             </div>
-                        }
+
+                            {/* <i className="placesList_info_guide my-auto col-2" style={{ background: "url(" + (element.isGuide ? guideIcon : agencyIcon) + ")no-repeat" }}><span className="placesList_info_guide-toolTip">{element.isGuide ? textInfo.guide : textInfo.agency}</span></i> */}
+                        </div>
+
                     </div>
                     {/* {
                         !this.props.isRedirectButton ?
