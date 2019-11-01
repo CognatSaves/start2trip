@@ -90,6 +90,7 @@
     font-size: 12px;
     font-weight: 400;
     color: #999;
+    white-space: nowrap;
 }
 
 .routesPrices .routesPricesSmall {
@@ -98,6 +99,7 @@
     color: #999;
     text-decoration: line-through;
     line-height: 10px;
+    height: 14px;
 }
 
 .routesPrices .routesPricesBig {
@@ -165,6 +167,7 @@
     /* white-space: nowrap; */
     overflow: hidden;
     color: #686868;
+    max-width: 120px;
     /* padding-left: 4px; */
 }
 

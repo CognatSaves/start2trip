@@ -9,7 +9,7 @@ import tagBlue from '../media/tag_blue.svg';
 import guideIcon from '../media/tour-guide.svg';
 import agencyIcon from '../media/agencyIcon.svg';
 // import geoIcon from '../media/geo_icon.svg';
-import { startRefresherGlobal, thenFuncGlobal, catchFuncGlobal, findTagName, getCurrencies } from '../../redusers/GlobalFunction'
+import { startRefresherGlobal, thenFuncGlobal, catchFuncGlobal, findTagName, getCurrencies, isNeedDiscount } from '../../redusers/GlobalFunction'
 
 import Stars from '../stars/Stars';
 import Cookies from 'universal-cookie';
@@ -28,7 +28,7 @@ class ToursListElementClass extends React.Component {
 
         console.log(imageAddress);
         let slug = element.tourlocalization.slug;
-
+        
         let seats = element.freeSeats ? element.freeSeats : element.seats;
 
         let language = element.language.map((el, index) => {
@@ -44,24 +44,44 @@ class ToursListElementClass extends React.Component {
         let idIndex = getCurrencies(element.currency, "id", this)
         let price = null
         let priceold = null
-        if (this.props.storeState.currencies.length > 0) {
+        let isNnewTour = false
+        let isPlacesRunOut = false
 
+        if(element.lastUpdate){
+            let today = new Date()
+            let lastUpdate = new Date(element.lastUpdate)
+            if(today-lastUpdate<14 * 86400000){
+                isNnewTour= true
+            }
+        }
+
+        if(element.freeSeats !== element.seats && element.freeSeats < 4){
+            isPlacesRunOut = true
+        }
+
+        if (this.props.storeState.currencies.length > 0) {
+            console.log("isneedDiscountCall");
+            let discont = isNeedDiscount(element, this.props.storeState.country, this.props.storeState.countries)
             let usd = element.price / this.props.storeState.currencies[idIndex].costToDefault
             if (isoCurrencies === "USD") {
                 let idIndex = getCurrencies("USD", "ISO", this)
                 usd = Math.ceil(usd)
                 price = "" + this.props.storeState.currencies[idIndex].symbol + usd
-                priceold = Math.ceil(usd * 1.2)
-                priceold = "" + this.props.storeState.currencies[idIndex].symbol + (priceold);
+                if (discont.isGood) {
+                    priceold = Math.ceil(usd / (1 - discont.discount))
+                    priceold = "" + this.props.storeState.currencies[idIndex].symbol + (priceold);
+                }
             } else {
                 let idIndex = getCurrencies(isoCurrencies, "ISO", this)
                 usd = usd * this.props.storeState.currencies[idIndex].costToDefault
                 usd = Math.ceil(usd)
                 price = this.props.storeState.currencies[idIndex].isLeft ? (this.props.storeState.currencies[idIndex].symbol + " " + usd) :
                     (usd + " " + this.props.storeState.currencies[idIndex].symbol)
-                priceold = Math.ceil(usd * 1.2)
-                priceold = this.props.storeState.currencies[idIndex].isLeft ? (this.props.storeState.currencies[idIndex].symbol + " " + priceold) :
-                    (priceold + " " + this.props.storeState.currencies[idIndex].symbol)
+                if (discont.isGood) {
+                    priceold = Math.ceil(usd / (1 - discont.discount))
+                    priceold = this.props.storeState.currencies[idIndex].isLeft ? (this.props.storeState.currencies[idIndex].symbol + " " + priceold) :
+                        (priceold + " " + this.props.storeState.currencies[idIndex].symbol)
+                }
             }
         }
         let validDepartureDate = null;
@@ -99,10 +119,14 @@ class ToursListElementClass extends React.Component {
                             <span>{textInfo.daysNumber0 + ": " + element.daysNumber + " " + textInfo.daysNumber}</span>
                             <text className="toursText">{!this.props.noDateSeatsData ? (element.isPricePerPerson ? textInfo.seats[0] : textInfo.seats[1]) + " " + seats + (element.isPricePerPerson ? textInfo.seats[2] : "") : ""}</text>
                         </div>
-                        {/* "#00aa71" */}
-                        <div style={{ background: "#f90", height: "25px" }} className="d-flex align-items-center align-self-start">
-                            <text>{textInfo.bestseller[2]}</text>
-                        </div>
+                        {
+                            isPlacesRunOut || isNnewTour &&
+                            <div style={isPlacesRunOut?{ background: "#f90", height: "25px" }:{background: "#00aa71", height: "25px"}} className="d-flex align-items-center align-self-start">
+                                <text>{isPlacesRunOut?textInfo.bestseller[2]:isNnewTour?textInfo.bestseller[1]:""}</text>
+                            </div>
+                        }
+                            
+
                     </div>
                     <div style={this.props.isGuideTours ? { maxHeight: "117px" } : {}} className="placesList_info_tours d-flex flex-column justify-content-between">
 
@@ -137,12 +161,12 @@ class ToursListElementClass extends React.Component {
                                 </div>
                             }
                             {this.props.isGuideTours &&
-                                <div  className="placesList_stars">
+                                <div className="placesList_stars">
                                     <Stars key={index + "/" + element.rating} value={Math.ceil(element.rating * 10) / 10} commentNumber={element.comments + " " + textInfo.comments} valueDisplay={element.rating > 0 ? true : false} commentNumberDisplay={true} />
                                 </div>
                             }
                             <div style={this.props.isGuideTours ? { paddingTop: "0px" } : {}} className="routesPrices d-flex flex-column align-items-end">
-                                <span className="routesPricesSmall flex-row-reverse">{priceold}</span>
+                                <span className="routesPricesSmall">{priceold}</span>
                                 <span className="routesPricesBig">{price}</span>
                                 <text>{element.isPricePerPerson ? textInfo.bookTours[0] : textInfo.bookTours[1]}</text>
                             </div>
