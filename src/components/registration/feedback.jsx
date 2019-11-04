@@ -22,7 +22,7 @@ class feedbackClass extends React.Component {
         props.dispatch(changeLanguagePart(false, true)); //эта ересь сообщает шапке, что мы в админке за пользователя, т.е. работает 1я партия языков, но ломать адрес не надо
         let address = requests.isCommentedTrip + '/?id=' + this.props.match.params.id + "&clientId=" + this.props.match.params.clientId;
         startRefresherGlobal(this,true)
-        let that = this
+        let that = this;
         axios.get(address)
             .then(response => {
                 return response.data;
@@ -51,6 +51,7 @@ class feedbackClass extends React.Component {
 
 
     render() {
+        debugger;
         let id = this.props.match.params.id;
         let clientId = this.props.match.params.clientId;
         let textInfo = this.props.storeState.languageTextMain.driverProfile.createComment;
