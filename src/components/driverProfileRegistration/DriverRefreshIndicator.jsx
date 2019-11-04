@@ -31,7 +31,7 @@ class DriverRefreshIndicatorClass extends React.Component {
                     this.props.storeState.isRefreshExist ?
                         <>
                         {!this.props.storeState.isNeedRefreshIndicator &&
-                            <div className="refreshIndicatorModal" style={{background:"none"}} >
+                            <div className="refreshIndicatorModal" >
                                 {this.props.storeState.isRefreshing ? <img src={this.state.loadings[this.state.randomNumber]} alt="" /> : <div />}
                             </div>
                         }

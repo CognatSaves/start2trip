@@ -252,6 +252,9 @@ class AccountRedirectorClass extends React.Component {
     if (!profile.email) {
       return (
         <>
+        <div style={{minHeight:"93.5vh"}}>
+
+        </div>
         </>
       )
     }

@@ -484,7 +484,7 @@ class ToureDescriptionClass extends React.Component {
                         <React.Fragment />
                 }
 
-                <div style={{ position: 'relative' }}>
+                <div style={{ position: 'relative',minHeight:"94vh" }}>
                     {
                         this.state.newTour.local ?
                             <PlacePhotoShow onClose={() => { this.setState({ isMaskVisible: false }) }}

@@ -410,7 +410,7 @@ class GuideDescriptionClass extends React.Component {
                                 }                               
                             </div>                         
                         </>
-                        : <React.Fragment />
+                        : <div style={{ position: 'relative',minHeight:"55vh" }}></div>
                 }
             </>
         )

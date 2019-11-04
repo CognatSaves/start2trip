@@ -316,7 +316,7 @@ class RouteDescriptionClass extends React.Component {
                 }
 
 
-                <div style={{ position: 'relative' }}>
+                <div style={{ position: 'relative',minHeight:"94vh" }}>
                     {
 
                         this.state.newRoute.local ?
