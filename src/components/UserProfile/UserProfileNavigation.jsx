@@ -55,7 +55,7 @@ class UserProfileNavigationClass extends React.Component {
         let profile = this.props.globalReduser.profile;
         return (
             <>
-                <AvatarEditorCustom imgModalShow={this.imgModalShow} imgModal={this.state.imgModal} />
+                <AvatarEditorCustom img={this.props.storeState.avatarUrl ? this.props.storeState.avatarUrl : requests.serverAddressImg + '/uploads/user.svg'} imgModalShow={this.imgModalShow} imgModal={this.state.imgModal} />
                 <div className="registrationWrapper driverBG col-12 p-0" style={{
                     "/account/user/trips": { backgroundImage: "url(" + preHistoryBG + ")" },
                     // "/account/user/profile": { backgroundImage: "url(" + historyBG + ")" },
@@ -67,7 +67,7 @@ class UserProfileNavigationClass extends React.Component {
                     <div className="basicInformationBodyTop d-flex align-items-center ">
                         <div className="basicInformationBodyTopImgHover">
                             <label className="basicInformationBodyTopImg" onClick={() => this.imgModalShow()}>{textPage.updatePhoto}</label>
-                            <img src={this.props.AppReduser.avatarUrl} alt="imgPerson" />
+                            <img src={this.props.storeState.avatarUrl ? this.props.storeState.avatarUrl : requests.serverAddressImg + '/uploads/user.svg'} alt="imgPerson" />
 
                         </div>
                         <div className="bodyTopDriverInfo col-8">

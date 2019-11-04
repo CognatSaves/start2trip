@@ -10,7 +10,10 @@ const driverProfile = {
         sendText: "ОТПРАВИТЬ",
         nonRegisteredElement:['Чтобы оставить отзыв, ', 'войдите',' или ','зарегистрируйтесь'],
         alreadyCommented: 'Эта поездка уже прокомментирована и отправить комментарий по ней ещё раз нельзя',
-        toMain: 'На главную' 
+        toMain: 'На главную' ,
+        newPhoto:"Загрузить фото",
+        name:"Имя",
+        key:"Ключ",
     },
     driverAdaptedRoute:{
         routeDateText: "Дата отправления:",

@@ -91,7 +91,7 @@ class feedbackClass extends React.Component {
                     </Helmet>
                     {
                         this.state.isCommented ?
-                            <div className="col-md-6 col-12">
+                            <div className="col-md-8 col-12">
                                 <div className="commentBlock_createComment d-flex flex-column feedbackbackground align-items-center">
                                     <text style={{ marginBottom: '10px' }}>{textInfo.alreadyCommented}</text>
                                     <button className="driversAdaptedRoute_sendRequest feedback_returnButton">
@@ -100,7 +100,7 @@ class feedbackClass extends React.Component {
                                 </div>
                             </div>
                             :
-                            <div className="col-md-6 col-12">
+                            <div className="col-md-8 col-12">
                                 <CreateComment targetType={"driver"} myclass={"feedbackbackground"} clientId={clientId} targetId={id} createCommentString={textInfo.createCommentString}
                                     startRolling={() => this.startRolling()} endRolling={(result) => this.endRolling(result)} />
                             </div>

@@ -67,7 +67,7 @@ class DriverProfileNavigationClass extends React.Component {
         let that = this;
         return (
             <>
-                <AvatarEditorCustom imgModalShow={this.imgModalShow} imgModal={this.state.imgModal} />
+                <AvatarEditorCustom img={this.props.AppReduser.avatarUrl ? this.props.AppReduser.avatarUrl : requests.serverAddressImg + '/uploads/user.svg'} imgModalShow={this.imgModalShow} imgModal={this.state.imgModal} />
                 <div className="registrationWrapper driverBG col-12 p-0" style={{
                     "/account/driver/trips": { backgroundImage: "url(" + preHistoryBG + ")" },
                     "/account/driver/profile": { backgroundImage: "url(" + sittingsBG + ")" },
@@ -82,7 +82,7 @@ class DriverProfileNavigationClass extends React.Component {
                     <div className="basicInformationBodyTop d-flex align-items-center ">
                         <div className="basicInformationBodyTopImgHover">
                             <label className="basicInformationBodyTopImg" onClick={() =>this.imgModalShow()}>{textPage.updatePhoto}</label>
-                            <img src={this.props.AppReduser.avatarUrl} alt="imgPerson" />
+                            <img src={this.props.AppReduser.avatarUrl ? this.props.AppReduser.avatarUrl : requests.serverAddressImg + '/uploads/user.svg'} alt="imgPerson" />
                         </div>
                         <div className="bodyTopDriverInfo col-8">
                             <div className="bodyTopDriverInfoName d-flex flex-column align-items-start">

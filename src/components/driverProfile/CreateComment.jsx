@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import requests from '../../config';
 
+import AvatarEditorCustom from '../usefulСomponents/AvatarEditorCustom'
 import { addComment } from '../../redusers/ActionComments';
 // import tempPicture from './pictures/drivers_body_photo.png'
 
@@ -17,9 +18,15 @@ class CreateCommentClass extends React.Component {
         this.state = {
             isNotFilled: false,
             isAllCorrect: false,
-
+            imgModal: false,
+            img: "",
+            blob: "",
+            userName: "",
+            userKey: "",
+            trySend:false,
         };
     }
+    
     sendComment = (targetId) => {
         function isCorrectComment(comment, commentValue) {
             if (comment.length === 0 || commentValue === 0) {// == -> ===
@@ -112,57 +119,110 @@ class CreateCommentClass extends React.Component {
             }
         }
     }
+
+    imgModalShow = () => {
+        this.setState({ imgModal: !this.state.imgModal });
+    };
+
+    changeImg = (newImg) => {
+        this.setState({ img: newImg })
+    }
+
+    saveBlob = (blob) => {
+        this.setState({ blob: blob })
+    }
+
     render() {
         let jwt = this.props.globalReduser.readCookie('jwt');
         let textInfo = this.props.storeState.languageTextMain.driverProfile.createComment;
 
+        let isSuperUser = false
+        let userId = cookies.get('userId', { path: "/" })
+        if (("5d8c748f2af67f052213a249" === userId
+            || "5cc6b6bbab3b7e111009d58e" === userId
+            || "5d3015c437976716c39c488d" === userId
+            || "5d654ed89523424ba6a6b333" === userId)) {
+            isSuperUser = true
+        }
+
         if (jwt || this.props.clientId) {
             return (
-                <div className={"commentBlock_createComment d-flex flex-column " + this.props.myclass}>
-                    <div className="createComment_element d-flex">
-                        <div className="createComment_picture">
-                            <img style={{ borderRadius: '50%' }} src={this.props.storeState.avatarUrl ? this.props.storeState.avatarUrl : requests.serverAddressImg + '/uploads/user.svg'} width="100%" height="100%" alt=""></img>
+                <>
+                    <AvatarEditorCustom saveBlob={this.saveBlob} changeImg={this.changeImg} img={this.state.img ? this.state.img : (this.props.storeState.avatarUrl ? this.props.storeState.avatarUrl : requests.serverAddressImg + '/uploads/user.svg')} imgModalShow={this.imgModalShow} imgModal={this.state.imgModal} />
+                    <div className={"commentBlock_createComment d-flex flex-column " + this.props.myclass}>
+                        <div className="createComment_element d-flex col-12 p-0">
+                            <div className="basicInformationBodyTopImgHover createComment_picture">
+                                <label className="basicInformationBodyTopImg" onClick={() => this.imgModalShow()}>{textInfo.newPhoto}</label>
+                                <img src={this.state.img ? this.state.img : (this.props.storeState.avatarUrl ? this.props.storeState.avatarUrl : requests.serverAddressImg + '/uploads/user.svg')} alt="imgPerson" />
+                            </div>
+
+                            <div className="d-flex flex-column pl-2 align-items-start col-4" onClick={() => { if (this.state.isNotFilled || this.state.isAllCorrect) { this.setState({ isNotFilled: false, isAllCorrect: false }) } }}>
+                                {isSuperUser ?
+                                    <input value={this.state.userName} style={this.state.trySend&&this.state.userName === ""?{background:"#a52525c7"}:{}} placeholder={textInfo.name} onChange={(e) => { this.setState({ userName: e.target.value }) }} type="text" />
+                                    :
+                                    <span className="pt-2 createComment-text">{this.props.createCommentString}</span>
+                                }
+
+                                <Stars key="SelectStars" valueDisplay={false} commentNumberDisplay={false} changable={true} changeStarsBlock={'placeCreateCommentStars'} />
+                            </div>
+                            <div className='col pl-0'>
+                                <div className='d-flex align-items-center justify-content-end '>
+                                    <div className="pr-3">
+                                        {isSuperUser &&
+                                            <input value={this.state.userKey} style={this.state.trySend&&this.state.userKey === ""?{background:"#a52525c7"}:{}} placeholder={textInfo.key} onChange={(e) => { this.setState({ userKey: e.target.value }) }} type="text" />
+                                        }
+                                    </div>
+
+                                </div>
+
+                            </div>
                         </div>
-                        <div className="d-flex flex-column pl-2 align-items-start" onClick={() => { if (this.state.isNotFilled || this.state.isAllCorrect) { this.setState({ isNotFilled: false, isAllCorrect: false }) } }}>
-                            <span className="pt-2 createComment-text">{this.props.createCommentString}</span>
-                            <Stars key="SelectStars" valueDisplay={false} commentNumberDisplay={false} changable={true} changeStarsBlock={'placeCreateCommentStars'} />
+
+                        <textarea id="createComment_textareaStyle" className="createComment_textareaStyle" placeholder={textInfo.yourCommentPlaceholder}
+                            onClick={() => { if (this.state.isNotFilled || this.state.isAllCorrect) { this.setState({ isNotFilled: false, isAllCorrect: false }) } }}></textarea>
+                        <div className="d-flex flex-row">
+                            <text style={{ margin: 'auto auto auto 0', color: 'green', fontSize: '14px', display: this.state.isAllCorrect ? 'flex' : 'none' }}>{textInfo.infoText}</text>
+                            <text style={{ margin: 'auto auto auto 0', color: 'red', fontSize: '14px', display: this.state.isNotFilled ? 'flex' : 'none' }}>{textInfo.nonFilledText}</text>
+                            {this.props.clientId && this.state.isAllCorrect ?
+                                <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/"} className="createComment_Link">{textInfo.createCommentLinkHome}</Link>
+                                :
+                                <button className="driversAdaptedRoute_sendRequest createComment_sendButton" onClick={() => {
+                                    if (isSuperUser) {
+                                        if (this.state.userKey !== "" && this.state.userName !== "" || this.state.userKey !== "") {
+                                            this.sendComment(this.props.targetId)
+                                        }else{
+                                            this.setState({trySend:true})
+                                        }
+                                    } else { this.sendComment(this.props.targetId) }
+                                }}>
+                                    <text>{textInfo.sendText}</text>
+                                </button>
+                            }
                         </div>
+
                     </div>
-
-                    <textarea id="createComment_textareaStyle" className="createComment_textareaStyle" placeholder={textInfo.yourCommentPlaceholder}
-                        onClick={() => { if (this.state.isNotFilled || this.state.isAllCorrect) { this.setState({ isNotFilled: false, isAllCorrect: false }) } }}></textarea>
-                    <div className="d-flex flex-row">
-                        <text style={{ margin: 'auto auto auto 0', color: 'green', fontSize: '14px', display: this.state.isAllCorrect ? 'flex' : 'none' }}>{textInfo.infoText}</text>
-                        <text style={{ margin: 'auto auto auto 0', color: 'red', fontSize: '14px', display: this.state.isNotFilled ? 'flex' : 'none' }}>{textInfo.nonFilledText}</text>
-                        {this.props.clientId && this.state.isAllCorrect ?
-                            <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/"} className="createComment_Link">{textInfo.createCommentLinkHome}</Link>
-                            :
-                            <button className="driversAdaptedRoute_sendRequest createComment_sendButton" onClick={() => this.sendComment(this.props.targetId)}>
-                                <text>{textInfo.sendText}</text>
-                            </button>
-                        }
-                    </div>
-
-
-                </div>
+                </>
             )
         }
         else {
             return (
-                <div className={"commentBlock_createComment d-flex flex-column " + this.props.myclass}>
-                    <div className="createComment_element d-flex">
-                        <div className="createComment_picture">
-                            <img src={requests.serverAddressImg + '/uploads/user.svg'} width="100%" height="100%" alt=""></img>
-                        </div>
-                        <div className="d-flex align-items-center flex-row flex-wrap mx-2">
-                            <div className="commentTextStyle" >{textInfo.nonRegisteredElement[0]}</div>
-                            <div className="commentLinkStyle" onClick={() => this.props.dispatch(setModalRegister(!this.props.storeState.modalRegistration))}>{textInfo.nonRegisteredElement[1]}</div>
-                            <div className="commentTextStyle" >{textInfo.nonRegisteredElement[2]}</div>
-                            <div className="commentLinkStyle" onClick={() => this.props.dispatch(setModalRegister(!this.props.storeState.modalRegistration))}>{textInfo.nonRegisteredElement[3]}</div>
-                            <div className="commentTextStyle" >.</div>
+                <>
+                    <AvatarEditorCustom img={this.props.storeState.avatarUrl ? this.props.storeState.avatarUrl : requests.serverAddressImg + '/uploads/user.svg'} imgModalShow={this.imgModalShow} imgModal={this.state.imgModal} />
+                    <div className={"commentBlock_createComment d-flex flex-column " + this.props.myclass}>
+                        <div className="createComment_element d-flex">
+                            <div className="createComment_picture">
+                                <img src={requests.serverAddressImg + '/uploads/user.svg'} width="100%" height="100%" alt=""></img>
+                            </div>
+                            <div className="d-flex align-items-center flex-row flex-wrap mx-2">
+                                <div className="commentTextStyle" >{textInfo.nonRegisteredElement[0]}</div>
+                                <div className="commentLinkStyle" onClick={() => this.props.dispatch(setModalRegister(!this.props.storeState.modalRegistration))}>{textInfo.nonRegisteredElement[1]}</div>
+                                <div className="commentTextStyle" >{textInfo.nonRegisteredElement[2]}</div>
+                                <div className="commentLinkStyle" onClick={() => this.props.dispatch(setModalRegister(!this.props.storeState.modalRegistration))}>{textInfo.nonRegisteredElement[3]}</div>
+                                <div className="commentTextStyle" >.</div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </>
             )
         }
     }

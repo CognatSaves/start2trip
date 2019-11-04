@@ -33,6 +33,7 @@ class AvatarEditorCustomClass extends React.Component {
         e.preventDefault();
 
         let file = e.target.files[0];
+        
 
         if (file && file.type.match('image')) {
             startRefresherGlobal(this, true);
@@ -47,7 +48,15 @@ class AvatarEditorCustomClass extends React.Component {
                     let that = this;
                     let reader = new FileReader();
                     reader.onloadend = () => {
-                        that.sendImgToServer(sizFile)
+                        if(this.props.changeImg){
+                            thenFuncGlobal(that);
+                            debugger
+                            let imageURL = window.URL.createObjectURL(sizFile)
+                            this.props.changeImg(imageURL)
+                        }else{
+                            that.sendImgToServer(sizFile)
+                        }
+                       
                     }
                     reader.readAsDataURL(sizFile)
 
@@ -95,10 +104,21 @@ class AvatarEditorCustomClass extends React.Component {
         if (this.editor) {
             startRefresherGlobal(this, true);
             const canvas = this.editor.getImage()
-            let img = canvas.toBlob((blob) => {
 
-                this.sendImgToServer(blob)
+                let img = canvas.toBlob((blob) => {
+                    if(this.props.changeImg||this.props.saveBlob){
+                        thenFuncGlobal(this);
+                        let imageURL = window.URL.createObjectURL(blob)
+                        this.props.changeImg(imageURL)
+                        this.props.saveBlob(blob)
+                    }else{
+                    
+                    this.sendImgToServer(blob)
+                    }
             }, "image/jpg", 0.7);
+
+            
+            
         }
     }
 
@@ -126,7 +146,7 @@ class AvatarEditorCustomClass extends React.Component {
                         <div className="d-flex align-items-center w-100">
                             <AvatarEditor
                                 ref={this.setEditorRef}
-                                image={this.props.AppReduser.avatarUrl}
+                                image={this.props.img}
                                 width={156}
                                 height={156}
                                 border={80}

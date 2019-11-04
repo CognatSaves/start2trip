@@ -10,7 +10,10 @@
             sendText: "Send",
             nonRegisteredElement: ['To leave a review ', 'login', ' or register'],
             alreadyCommented: 'This trip has already been commented on and you can`t post a comment on it again.',
-            toMain: 'Home'
+            toMain: 'Home',
+            newPhoto:"Upload a photo",
+            name:"Name",
+            key:"Key",
         },
         driverAdaptedRoute: {
             routeDateText: "departure date",
