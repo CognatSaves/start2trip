@@ -13,8 +13,6 @@ class AgencyProfileFeedbackClass extends React.Component {
     }
 
     render() {
-
-        // TODO добавить кнопку показать еще и пагинацию
         return (
             <div className="d-flex flex-wrap">
                 <ShowComments selectedComments={this.state.comments} />

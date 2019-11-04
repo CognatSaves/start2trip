@@ -45,7 +45,7 @@ class DriverInfoProfile extends React.Component{
                                 
                             </div>
                             
-                            <Stars value={element.rating} commentNumber={element.comments ? element.comments.length + " "+textInfo.driversBlock.comments : 0} valueDisplay={true} commentNumberDisplay={true} />
+                            <Stars value={Math.ceil(element.rating*10)/10} commentNumber={element.comments ? element.comments.length + " "+textInfo.driversBlock.comments : 0} valueDisplay={true} commentNumberDisplay={true} />
                         </div>
                         <div className="block_element_infoBlock_bot">
                             <div className="d-flex ">
