@@ -15,6 +15,7 @@
     position: relative;
     top: 0;
     width: 100%;
+    
     max-width: 1200px;
     height: auto;
     margin: 0 auto;
@@ -27,6 +28,7 @@
 }
 
 .drivers_bottom_background {
+    min-height: 66.2vh;
     padding-top: 10px;
 }
 

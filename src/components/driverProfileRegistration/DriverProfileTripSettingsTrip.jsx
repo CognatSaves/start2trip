@@ -141,7 +141,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                             /*that.setState({
                                 onWork: data.travelsetting.onWork
                             });*/
-                            // thenFuncGlobal(that)
+                             thenFuncGlobal(that)
                             //that.getProfileData();
                             //document.location.reload(true);
                             //that.state.sendResultLocal(true, {jwt:data.jwt, user: data.user});
@@ -330,7 +330,7 @@ class DriverProfileTripSettingsTripClass extends React.Component {
                                         <div className="d-flex flex-md-row flex-column col-md-6 col-sm-12 col-12 p-0" >
                                             <LocationSearchInput address={element.point} changeCity={this.changeCity} classDiv="col-md-8 col-12 p-0" classInput="searchInputDriverInformation" index={index} classDropdown="searchDropdownDriverInformation" />
                                             <input className="col-md-2 col-12 ml-1 d-md-block d-none itemRadius"/*класс itemRadius добавил ради класса errorColor - отображения некорректоности заполнения */
-                                                type="number" id="itemRadiu" maxLength="3" max="150" min="0" value={element.radius}
+                                                type="number" id="itemRadiu" maxLength="3" max="300" min="0" value={element.radius}
                                                 onChange={(e) =>{if(e.target.value>300){this.inputChange(300, 'radius', index) }else{this.inputChange(e.target.value, 'radius', index)}}}
                                             />
                                             <TextField

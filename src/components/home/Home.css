@@ -10,6 +10,7 @@
 .home_block {
     max-width: 1200px !important;
     width: 100%;
+    min-height: 66.2vh;
     margin: 0 auto;
 }
 

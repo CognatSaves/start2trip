@@ -17,7 +17,7 @@ import Header from '../header/Header';
 import * as EmailValidator from 'email-validator';
 import Cookies from 'universal-cookie';
 import requests from '../../config';
-import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
+import { startRefresherGlobal, thenFuncGlobal, catchFuncGlobal, } from '../../redusers/GlobalFunction'
 const cookies = new Cookies();
 
 class contactsClass extends React.Component {
@@ -34,8 +34,6 @@ class contactsClass extends React.Component {
         }
     }
     sendMessage = () => {
-
-        startRefresherGlobal(this,true)
 
         let userLang = (cookies.get('userLang', { path: "/" })).toUpperCase()
         let country = (cookies.get('country', { path: "/" }))
@@ -58,6 +56,7 @@ class contactsClass extends React.Component {
         // Validate
 
         if (this.state.valideName && valideEmail && this.state.valideMessage) {
+            startRefresherGlobal(this, true)
             messageInfo.append('name', this.state.name);
             messageInfo.append('email', this.state.email);
             messageInfo.append('message', this.state.message);
@@ -73,32 +72,34 @@ class contactsClass extends React.Component {
             messageInfo.append('osVersion', osVersion);
             messageInfo.append('browserName', browserName);
             messageInfo.append('browserVersion', fullBrowserVersion);
+
+            const request = new XMLHttpRequest();
+            request.open('PUT', requests.userFeedback);
+            let that = this;
+            request.onreadystatechange = function () {
+                if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
+                    let responseText = JSON.parse(request.responseText);
+                    console.log(responseText)
+                    that.setState({
+                        name: "",
+                        valideName: true,
+                        email: "",
+                        valideEmail: true,
+                        message: "",
+                        valideMessage: true,
+                    })
+                    thenFuncGlobal(that)
+                }
+                if (request.readyState === XMLHttpRequest.DONE && request.status === 0) {
+                    console.log('we lose');
+                    catchFuncGlobal(that)
+                }
+            }
+            request.send(messageInfo);
         }
 
-        const request = new XMLHttpRequest();
-        request.open('PUT', requests.userFeedback);
-        let that = this;
-        request.onreadystatechange = function () {
-            if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
-                let responseText = JSON.parse(request.responseText);
-                console.log(responseText)
-                that.setState({
-                    name: "",
-                    valideName: true,
-                    email: "",
-                    valideEmail: true,
-                    message: "",
-                    valideMessage: true,
-                })
-                thenFuncGlobal(that)
-            }
-            if (request.readyState === XMLHttpRequest.DONE && request.status === 0) {
-                console.log('we lose');
-                catchFuncGlobal(that)
-            }
-        }
-        request.send(messageInfo);
-        //TODO sendMessege
+       
+
     }
     render() {
         let text = this.props.storeState.languageTextMain.footerPage.contacts;
@@ -116,7 +117,7 @@ class contactsClass extends React.Component {
                     <meta property="og:description" content={helmet.basic.description} />
                 </Helmet>
                 <Header driver={true} history={this.props.history} />
-                <div className="wrapper" style={{ minHeight: "79vh" }}>
+                <div className="wrapper" style={{ minHeight: "82.1vh" }}>
                     <div className="contacts d-flex" >
                         <div className="contacts_Title col-12 p-0">
                             <h2>{text.h2}</h2>

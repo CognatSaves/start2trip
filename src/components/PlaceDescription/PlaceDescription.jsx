@@ -274,7 +274,7 @@ class PlaceDescriptionClass extends React.Component {
                 }
 
 
-                <div style={{ position: 'relative' }}>
+                <div style={{ position: 'relative',minHeight:"94vh" }}>
                     {
                         this.state.images !== null ?
                             <PlacePhotoShow onClose={() => this.setState({ isMaskVisible: false })}
