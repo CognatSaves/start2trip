@@ -57,6 +57,7 @@ const home = {
             daysNumber: 'day',
             from:"From ",
             seeOffers:"See offers",
+            cars: 'Number of cars'
         }
     },
     homeBodyBottom: {

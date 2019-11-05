@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { setDriversRouteChange, setDriverCarDescription, setCarTypes } from '../../redusers/ActionDrivers';
+import { setDriversRouteChange, setDriverCarDescription } from '../../redusers/ActionDrivers';
 import { setGuideData } from '../../redusers/ActionGuides';
 import { setCities, set_state } from '../../redusers/Action'
 import { setLengthTime } from '../../redusers/ActionDrivers'
@@ -8,22 +8,15 @@ import { Helmet } from 'react-helmet';
 import requests from '../../config';
 
 import Header from '../header/Header';
-import DriverInfo from '../driverProfile/DriverInfo.jsx';
-import DatePicker from 'material-ui/DatePicker';
-import MapContainer from '../home/HomeBody/MapContainer';
 import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
 import CommentBlock from '../TourDescription/CommentBlock';
-import StartTravelForm from '../startTravelForm/StartTravelForm';
-import StartTravelSuccess from '../startTravelForm/StartTravelSuccess';
-import LocationSearchInput from '../home/HomeBody/Search';
-import GuideTours from './GuideTours';
-import GuideInfo from './GuideInfo';
+import DriverPageInfo from './DriverPageInfo';
 import Cookies from 'universal-cookie';
-import './GuideDescription.css';
+import '../GuideDescription/GuideDescription.css';
 
 const cookies = new Cookies();
 
-class GuideDescriptionClass extends React.Component {
+class DriversPageDescriptionClass extends React.Component {
     constructor(props) {
         super(props);
 
@@ -83,8 +76,8 @@ class GuideDescriptionClass extends React.Component {
             isLoaded: false,
 
             tourType:"default",
-            visibilityArray: [true, false],
-            visibilityValues: ['Мои туры', "Отзывы"],
+            visibilityArray: [true],
+            visibilityValues: ["Отзывы"],
             dataLang: ''//Язык, на котором загружены данные
         }
         this.state = { ...this.state, "mapRwanda": true }
@@ -114,16 +107,17 @@ class GuideDescriptionClass extends React.Component {
         this.setState({
             dataLang: lang,
         })
-        fetch(requests.showGuide, {
+
+        fetch(requests.showDriverPage,{
             method: 'PUT', body: guideBody,
-            headers: { 'content-type': 'application/json' }
+            headers: { 'content-type': 'application/json'}
         })
         .then(response => {
             return response.json();
         })
-        .then(function (data) {
-            
-            if (data.error) {
+        .then(function(data){
+            debugger;
+            if(data.error){
                 console.log("bad");
                 throw data.error;
             }
@@ -131,29 +125,21 @@ class GuideDescriptionClass extends React.Component {
                 thenFuncGlobal(that)    
                 console.log('good - you get a guide description');
                 console.log(data);
-                if(data.guideData.tours.length>0){
-                    //если туры у человека пришли, то отрабатываем стандартно - 
-                    //проверка на наличие локализаций на выбранном языке
-                    that.props.dispatch(setGuideData(data.guideData, data.carTypes));
-                }
-                else{
-                    //иначе делаем перенаправление на страницу гидов, пускай выбирает
-                    //тех гидов, что заполнили локализации на выбранном языке
-                    that.props.globalReduser.history.push("/" + that.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + '/guides/');
-                }
-                
+                that.props.dispatch(setGuideData(data.driverData, data.carTypes));            
             }
         })
-        .catch(function (error) {
+        .catch(function(error){
+            debugger;
             console.log('bad');
             console.log('An error occurred:', error);
             catchFuncGlobal(that)
             let address = '/404'
             if(that.props.storeState.country && that.props.storeState.languages && that.props.storeState.languages.length>0 && that.props.storeState.activeLanguageNumber){
-                address = '/' + that.props.storeState.country + "-" + that.props.storeState.languages[that.props.storeState.activeLanguageNumber].isoAutocomplete + '/guides';
+                address = '/' + that.props.storeState.country + "-" + that.props.storeState.languages[that.props.storeState.activeLanguageNumber].isoAutocomplete + '/drivers-page';
             }
-            setTimeout(() => { that.props.history.push(address) }, 1000);       
-        });
+            setTimeout(() => { that.props.history.push(address) }, 1000); 
+            
+        })
     }
     changeTravelVisibility = (elementPrice) => {
 
@@ -330,7 +316,7 @@ class GuideDescriptionClass extends React.Component {
                                 </Helmet>
                                 : <React.Fragment/>
                             }                        
-                            <GuideInfo guideData={this.props.guidesReduser.guideData} />                                  
+                            <DriverPageInfo guideData={this.props.guidesReduser.guideData} />                                  
                         </div>
                     </div> 
 
@@ -360,13 +346,6 @@ class GuideDescriptionClass extends React.Component {
                                 </div>
                                 {
                                     this.state.visibilityArray[0] &&
-                                    <div /*drivers_route*/ className="col-12 d-flex flex-column" >
-                                        <GuideTours isStaying={!this.props.storeState.isRefreshExist} departureDate={new Date()/*this.state.departureDate*/} 
-                                            changeTravelVisibility={()=>{}/*this.changeTravelVisibility*/} tourType={this.state.tourType}/>
-                                    </div>
-                                }
-                                {
-                                    this.state.visibilityArray[1] &&
                                     <div className="drivers_bottom_background d-flex flex-column" >
                                         <div className="drivers_body d-flex">
                                             <div className="left_body_part col-12">
@@ -385,7 +364,7 @@ class GuideDescriptionClass extends React.Component {
     }
 }
 
-const GuideDescription = connect(
+const DriversPageDescription = connect(
     (state) => ({
         storeState: state.AppReduser,
         driversState: state.DriversReduser,
@@ -393,6 +372,6 @@ const GuideDescription = connect(
         globalReduser: state.GlobalReduser,
         guidesReduser: state.GuidesReduser
     }),
-)(GuideDescriptionClass);
+)(DriversPageDescriptionClass);
 
-export default GuideDescription;
+export default DriversPageDescription;

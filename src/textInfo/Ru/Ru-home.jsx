@@ -57,6 +57,7 @@ const home = {
             daysNumber: 'дн.',
             from:"От ",
             seeOffers:"Смотреть предложения",
+            cars: 'Автомобилей'
         }
     },
     homeBodyBottom:{
