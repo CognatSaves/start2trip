@@ -158,6 +158,12 @@
     border: 1px solid #666;
 }
 
+.createComment_footerBt span{
+    font-size: 14px;
+    font-weight: 500;
+    color: #304269;
+}
+
 a.createComment_Link {
     text-decoration: none;
     color: #fff;

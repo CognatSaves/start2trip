@@ -83,9 +83,9 @@ class AvatarEditorCustomClass extends React.Component {
                     let date = new Date(Date.now() + 1000 * 3600 * 24 * 60);
                     cookies.set("avatarUrl", avatar, { path: '/', expires: date });
                     that.props.dispatch(setUser(that.props.AppReduser.userName, avatar));
-                    thenFuncGlobal(that,true);
+                    thenFuncGlobal(that);
                 }else{
-                    catchFuncGlobal(that,true);
+                    catchFuncGlobal(that);
                 }
 
             }
@@ -108,9 +108,10 @@ class AvatarEditorCustomClass extends React.Component {
                 let img = canvas.toBlob((blob) => {
                     if(this.props.changeImg||this.props.saveBlob){
                         thenFuncGlobal(this);
+                        this.props.saveBlob(blob)
                         let imageURL = window.URL.createObjectURL(blob)
                         this.props.changeImg(imageURL)
-                        this.props.saveBlob(blob)
+                        
                     }else{
                     
                     this.sendImgToServer(blob)

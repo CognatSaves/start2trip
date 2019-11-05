@@ -1,6 +1,6 @@
 const serverAddress = 'http://localhost:1337'; //'https://tripfer.com:41337'; //
 const frontendAddress = 'http://localhost:3000'; //'https://tripfer.com'; //
-const serverAddressImg = 'https://tripfer.com';//'http://localhost:1337'; //
+const serverAddressImg = 'http://localhost:1337'; //'https://tripfer.com';//
 
 const serverRegistrationRequest = serverAddress + '/auth/local/register';
 const serverAuthorizationRequest = serverAddress + '/auth/local';
@@ -43,6 +43,7 @@ const showPlace = serverAddress + "/showPlace"; //отобразить одно 
 
 const createComment = serverAddress + "/createComment"; //создание немодерированного комментария
 const changeCommentary = serverAddress + "/changeCommentary"; //изменение комментария
+const fakeCommentCreation = serverAddress + "/fakeCommentCreation"; // Создание фейкового пользователя с новым комментарием
 const forgotPassword = serverAddress + "/auth/forgotPassword";
 const resetPassword = serverAddress + "/auth/reset-password";
 const changeMyDriver = serverAddress + "/users/me/changeDriver";
@@ -112,6 +113,7 @@ export default {
 
     createComment: createComment,
     changeCommentary:changeCommentary,
+    fakeCommentCreation:fakeCommentCreation,
     getRoutes: getRoutes,
     showRoute: showRoute,
     getDriverDescription: getDriverDescription,

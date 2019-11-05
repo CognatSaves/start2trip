@@ -7,6 +7,7 @@ import requests from '../../config';
 import Stars from '../stars/Stars';
 import Dialog from '@material-ui/core/Dialog';
 import AvatarEditorCustom from '../usefulСomponents/AvatarEditorCustom'
+import { startRefresherGlobal, thenFuncGlobal, catchFuncGlobal, getCurrencies } from '../../redusers/GlobalFunction'
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
@@ -20,49 +21,48 @@ class ShowCommentsClass extends React.Component {
             imgModal: false,
             img: "",
             blob: "",
-            isEdit: false,
             userName: "",
             userKey: "",
             newText: "",
             trySend: false,
+            isEdit: false,
         }
     }
 
-    changeCommentary =()=>{
+    changeCommentary = (element) => {
 
         debugger;
-        let body = JSON.stringify({ targetId: "this.props.targetId", text: "newComment", mark: "this.props.commentState.commentValue", clientId: "this.props.clientId" });
+        startRefresherGlobal(this, true)
+        let imgFile = undefined
+        if (this.state.blob !== "") {
+            imgFile = new File([this.state.blob], "avatar.jpg");
+        }
+
         let that = this;
 
-        fetch(requests.changeCommentary, {
-            method: 'POST', body: body,
-            headers: { 'content-type': 'application/json' }
-        })
-            .then(response => {
-                return response.json();
-            })
-            .then(function (data) {
+        var commentForm = new FormData();
+        commentForm.append('text', this.state.newText !== "" ? this.state.newText : element.value);
+        commentForm.append('mark', this.props.commentState.commentValue ? this.props.commentState.commentValue : element.rating);
+        commentForm.append('id', element.id);
+        commentForm.append('key', this.state.userKey !== "" ? this.state.userKey : (element.fakecustomer ? element.fakecustomer.key : undefined));
+        commentForm.append('userName', this.state.userName !== "" ? this.state.userName : (element.fakecustomer ? element.fakecustomer.name : undefined));
+        commentForm.append('avatar', imgFile);
+
+        const request = new XMLHttpRequest();
+        request.open('POST', requests.changeCommentary);
+        request.onreadystatechange = function () {
+
+            if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
+                let responseText = JSON.parse(request.responseText);
                 debugger
-                if (data.error) {
-                    console.log("bad");
-                    throw data.error;
-                }
-                else {
-                    console.log('good');
-                    console.log(data);
-                    that.props.endRolling(true);
-                    //that.getProfileData();
-                    that.setState({
-                        isAllCorrect: true,
-                        isNotFilled: false
-                    })
-                }
-            })
-            .catch(function (error) {
-                console.log("bad");
-                console.log('An error occurred:', error);
-                that.props.endRolling(false);
-            });
+                thenFuncGlobal(that);
+            } else {
+                catchFuncGlobal(that);
+            }
+
+        }
+        request.send(commentForm);
+
     }
 
     imgModalShow = () => {
@@ -99,36 +99,63 @@ class ShowCommentsClass extends React.Component {
                 <>
                     <Dialog
                         open={this.state.openModal}
-                        onClose={() => { this.setState({ openModal: !this.state.openModal, isEdit:false }) }}
+                        onClose={() => {
+                            this.setState({
+                                openModal: !this.state.openModal,
+                                isEdit: false, img: "",
+                                blob: "",
+                                userName: "",
+                                userKey: "",
+                                newText: "",
+                            })
+                        }}
                         aria-labelledby="alert-dialog-title"
                         aria-describedby="alert-dialog-description"
                     >
                         {this.state.openModal ? <>
-                            <AvatarEditorCustom saveBlob={this.saveBlob} changeImg={this.changeImg} img={this.state.img ? this.state.img : (requests.serverAddressImg + this.state.element.avatar.url)} imgModalShow={this.imgModalShow} imgModal={this.state.imgModal} />
+                            <AvatarEditorCustom saveBlob={this.saveBlob} changeImg={this.changeImg} img={this.state.img ? this.state.img : (requests.serverAddressImg + (this.state.element.fakecustomer ? this.state.element.fakecustomer.avatar.url : this.state.element.avatar.url))} imgModalShow={this.imgModalShow} imgModal={this.state.imgModal} />
                             <div className="commentBlock_element" >
-                                <i className="commentBlock_elementIconCross" onClick={() => { this.setState({ openModal: !this.state.openModal, isEdit:false }) }} />
+                                <i className="commentBlock_elementIconCross" onClick={() => {
+                                    this.setState({
+                                        openModal: !this.state.openModal,
+                                        isEdit: false, img: "",
+                                        blob: "",
+                                        userName: "",
+                                        userKey: "",
+                                        newText: "",
+                                    })
+                                }} />
                                 <div className="commentBlock_valueBlock d-flex flex-column">
                                     <div className="commentBlock_picture d-flex pb-2">
                                         {isSuperUser && this.state.isEdit ?
                                             <div className="basicInformationBodyTopImgHover createComment_picture">
                                                 <label className="basicInformationBodyTopImg" onClick={() => this.imgModalShow()}>{textInfo.newPhoto}</label>
-                                                <img src={this.state.img ? this.state.img : (requests.serverAddressImg + this.state.element.avatar.url)} alt="imgPerson" />
+                                                <img src={this.state.img ? this.state.img : (requests.serverAddressImg + (this.state.element.fakecustomer ? this.state.element.fakecustomer.avatar.url : this.state.element.avatar.url))} alt="imgPerson" />
                                             </div>
                                             :
-                                            <img src={requests.serverAddressImg + this.state.element.avatar.url} width="auto" height="100%" alt=""></img>}
+                                            <img src={requests.serverAddressImg + (this.state.element.fakecustomer ? this.state.element.fakecustomer.avatar.url : this.state.element.avatar.url)} width="auto" height="100%" alt=""></img>}
 
 
-                                        <div className="d-flex flex-column justify-content-center col pr-0 createComment_element">
+                                        <div className="d-flex flex-column justify-content-center col createComment_element">
 
                                             {isSuperUser && this.state.isEdit ?
-                                            <>
-                                                <input value={this.state.userName} style={this.state.trySend && this.state.userName === "" ? { background: "#a52525c7" } : {}} placeholder={this.state.element.name} onChange={(e) => { this.setState({ userName: e.target.value }) }} type="text" />
-                                                <input value={this.state.userKey} style={this.state.trySend&&this.state.userKey === ""?{background:"#a52525c7"}:{}} placeholder={textInfo.key} onChange={(e) => { this.setState({ userKey: e.target.value }) }} type="text" />
+                                                <>
+                                                    <input
+                                                        value={this.state.userName !== "" ? this.state.userName : this.state.element.fakecustomer ? this.state.element.fakecustomer.name : this.state.element.name}
+                                                        style={this.state.trySend && this.state.userName === "" ? { background: "#a52525c7" } : {}}
+                                                        placeholder={this.state.element.fakecustomer ? this.state.element.fakecustomer.name : this.state.element.name}
+                                                        onChange={(e) => { this.setState({ userName: e.target.value }) }} type="text" />
+
+                                                    <input
+                                                        value={this.state.userKey !== "" ? this.state.userKey : this.state.element.fakecustomer ? this.state.element.fakecustomer.key : textInfo.key}
+                                                        style={this.state.trySend && this.state.userKey === "" ? { background: "#a52525c7" } : {}}
+                                                        placeholder={this.state.element.fakecustomer ? this.state.element.fakecustomer.key : textInfo.key}
+                                                        onChange={(e) => { this.setState({ userKey: e.target.value }) }} type="text" />
                                                 </>
                                                 :
-                                                <div className="valueBlock_firstElement_name">{this.state.element.name}</div>
+                                                <div className="valueBlock_firstElement_name">{this.state.element.fakecustomer ? this.state.element.fakecustomer.name : this.state.element.name}</div>
                                             }
-                                                <Stars key={this.state.isEdit} value={this.state.element.rating} valueDisplay={true} changable={isSuperUser && this.state.isEdit ?true:false} commentNumberDisplay={false} />
+                                            <Stars key={this.state.isEdit} value={this.state.element.rating} valueDisplay={true} changable={isSuperUser && this.state.isEdit ? true : false} commentNumberDisplay={false} />
 
                                             <div className="valueBlock_firstElement_date">{this.state.date.getDate() + " " + getMonthName(this.state.date.getMonth()) + " " + this.state.date.getFullYear()}</div>
                                         </div>
@@ -143,9 +170,15 @@ class ShowCommentsClass extends React.Component {
                                         </div>
 
                                     }
-                                    <div className="d-flex justify-content-end">
-                                        <span onClick={() => {this.setState({ isEdit: !this.state.isEdit });this.changeCommentary()}}>edit</span>
-                                    </div>
+                                    {isSuperUser &&
+                                        <div className="createComment_footerBt d-flex justify-content-end">
+                                            <span style={this.state.isEdit ?{color:"#999"}:{}} onClick={() => { this.setState({ isEdit: !this.state.isEdit }); }}>{this.state.isEdit ? textInfo.cancel : textInfo.edit}</span>
+                                            {this.state.isEdit ?
+                                                <span className="pl-2" onClick={() => { this.changeCommentary(this.state.element) }}>{textInfo.save}</span>
+                                                : <React.Fragment />
+                                            }
+                                        </div>
+                                    }
                                 </div>
                             </div>
                         </> : <React.Fragment />}
@@ -159,15 +192,15 @@ class ShowCommentsClass extends React.Component {
                             // let openModal = false
 
                             let date = element.date ? new Date(element.date) : new Date(element.createdAt);
-                            debugger
+
                             return (
                                 <div className="col-lg-3 col-md-6 col-12 p-1">
                                     <div className="commentBlock_comments  commentBlock_element" key={element + "/" + index} onClick={(e) => { if (!isMobileOnly) { this.setState({ element: element, date: date, openModal: true }) } }} >
                                         <div className="commentBlock_valueBlock d-flex flex-column">
                                             <div className="commentBlock_picture d-flex pb-2">
-                                                <img src={requests.serverAddressImg + element.avatar.url} width="auto" height="100%" alt=""></img>
+                                                <img src={requests.serverAddressImg + (element.fakecustomer ? element.fakecustomer.avatar.url : element.avatar.url)} width="auto" height="100%" alt=""></img>
                                                 <div className="d-flex flex-column justify-content-center col pr-0">
-                                                    <div className="valueBlock_firstElement_name">{element.name}</div>
+                                                    <div className="valueBlock_firstElement_name">{element.fakecustomer ? element.fakecustomer.name : element.name}</div>
 
                                                     <Stars key={element.rating + "/" + element.index} value={element.rating} valueDisplay={true} commentNumberDisplay={false} />
                                                     <div className="valueBlock_firstElement_date">{date.getDate() + " " + getMonthName(date.getMonth()) + " " + date.getFullYear()}</div>
@@ -211,6 +244,7 @@ class ShowCommentsClass extends React.Component {
 
 const ShowComments = connect(
     (state) => ({
+        commentState: state.CommentReduser,
         storeState: state.AppReduser,
     }),
 )(ShowCommentsClass);

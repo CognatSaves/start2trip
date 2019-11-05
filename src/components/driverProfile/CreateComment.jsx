@@ -8,6 +8,7 @@ import AvatarEditorCustom from '../usefulСomponents/AvatarEditorCustom'
 import { addComment } from '../../redusers/ActionComments';
 // import tempPicture from './pictures/drivers_body_photo.png'
 
+import { startRefresherGlobal, thenFuncGlobal, catchFuncGlobal, getCurrencies } from '../../redusers/GlobalFunction'
 import Stars from '../stars/Stars';
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
@@ -23,6 +24,7 @@ class CreateCommentClass extends React.Component {
             blob: "",
             userName: "",
             userKey: "",
+            newText:"",
             trySend:false,
             
         };
@@ -43,7 +45,7 @@ class CreateCommentClass extends React.Component {
         let isCorrect = isCorrectComment(newComment, this.props.commentState.commentValue);
         if (isCorrect && ((jwt && jwt !== '-') || this.props.clientId)) {
 
-            this.props.startRolling();
+            startRefresherGlobal(this,true);
             debugger;
             let body = JSON.stringify({ targetId: this.props.targetId, text: newComment, mark: this.props.commentState.commentValue, clientId: this.props.clientId });
             let that = this;
@@ -67,7 +69,7 @@ class CreateCommentClass extends React.Component {
                         else {
                             console.log('good');
                             console.log(data);
-                            that.props.endRolling(true);
+                            thenFuncGlobal(that);
                             //that.getProfileData();
                             that.setState({
                                 isAllCorrect: true,
@@ -78,7 +80,7 @@ class CreateCommentClass extends React.Component {
                     .catch(function (error) {
                         console.log("bad");
                         console.log('An error occurred:', error);
-                        that.props.endRolling(false);
+                        catchFuncGlobal(that);
                     });
             } else {
                 fetch(address, {
@@ -96,7 +98,7 @@ class CreateCommentClass extends React.Component {
                         else {
                             console.log('good');
                             console.log(data);
-                            that.props.endRolling(true);
+                            thenFuncGlobal(that);
                             //that.getProfileData();
                             that.setState({
                                 isAllCorrect: true,
@@ -107,7 +109,7 @@ class CreateCommentClass extends React.Component {
                     .catch(function (error) {
                         console.log("bad");
                         console.log('An error occurred:', error);
-                        that.props.endRolling(false);
+                        catchFuncGlobal(that);
                     });
             }
 
@@ -120,6 +122,42 @@ class CreateCommentClass extends React.Component {
                 });
             }
         }
+    }
+
+    changeCommentary = (targetId) => {
+
+        startRefresherGlobal(this, true)
+        let imgFile = undefined
+        if (this.state.blob !== "") {
+            imgFile = new File([this.state.blob], "avatar.jpg");
+        }
+
+        let that = this;
+        debugger
+        var commentForm = new FormData();
+        commentForm.append('text', this.state.newText);
+        commentForm.append('mark', this.props.commentState.commentValue );
+        commentForm.append('key', this.state.userKey);
+        commentForm.append('userName', this.state.userName );
+        commentForm.append('targetType', this.props.targetType);
+        commentForm.append('targetId', targetId);
+        commentForm.append('avatar', imgFile);
+
+        const request = new XMLHttpRequest();
+        request.open('POST', requests.fakeCommentCreation);
+        request.onreadystatechange = function () {
+
+            if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
+                let responseText = JSON.parse(request.responseText);
+                debugger
+                thenFuncGlobal(that);
+            } else {
+                catchFuncGlobal(that);
+            }
+
+        }
+        request.send(commentForm);
+
     }
 
     imgModalShow = () => {
@@ -180,7 +218,7 @@ class CreateCommentClass extends React.Component {
                             </div>
                         </div>
 
-                        <textarea id="createComment_textareaStyle" className="createComment_textareaStyle" placeholder={textInfo.yourCommentPlaceholder}
+                        <textarea id="createComment_textareaStyle" value={this.state.newText} onChange={(e)=>{this.setState({newText:e.target.value})}} className="createComment_textareaStyle" placeholder={textInfo.yourCommentPlaceholder}
                             onClick={() => { if (this.state.isNotFilled || this.state.isAllCorrect) { this.setState({ isNotFilled: false, isAllCorrect: false }) } }}></textarea>
                         <div className="d-flex flex-row">
                             <text style={{ margin: 'auto auto auto 0', color: 'green', fontSize: '14px', display: this.state.isAllCorrect ? 'flex' : 'none' }}>{textInfo.infoText}</text>
@@ -191,7 +229,7 @@ class CreateCommentClass extends React.Component {
                                 <button className="driversAdaptedRoute_sendRequest createComment_sendButton" onClick={() => {
                                     if (isSuperUser) {
                                         if (this.state.userKey !== "" && this.state.userName !== "" || this.state.userKey !== "") {
-                                            this.sendComment(this.props.targetId)
+                                            this.changeCommentary(this.props.targetId)
                                         }else{
                                             this.setState({trySend:true})
                                         }

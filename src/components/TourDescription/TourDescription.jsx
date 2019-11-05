@@ -432,12 +432,16 @@ class ToureDescriptionClass extends React.Component {
         
         let renderEl = false
         let userId = cookies.get('userId', { path: "/" })
+        let autorId = null;
+        if(this.state.newTour.tour){
+            autorId = this.state.newTour.tour.author.id
+        }
         if (
             "5d8c748f2af67f052213a249" === userId
             || "5cc6b6bbab3b7e111009d58e" === userId
             || "5d3015c437976716c39c488d" === userId
             || "5d654ed89523424ba6a6b333" === userId
-            || (this.state.newTour.tour.author.id === userId)) {
+            || (autorId === userId)) {
             renderEl = true
         }
     

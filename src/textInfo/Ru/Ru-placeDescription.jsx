@@ -3,12 +3,16 @@ let placeDescription = {
         more: 'Ещё'
     },
     placeProgramm: {
+        yourCommentPlaceholder: "Ваш отзыв",
         monthArray: ["января", "февраля", "марта",
             "апреля", "мая", "июня", "июля", "августа",
             "сентября", "октября", "ноября", "декабря"],
         comments: 'отзывов',
         newPhoto: 'Изменить фото',
         key:"Ключ",
+        save:"Сохранить",
+        cancel:"Отменить",
+        edit:"Редактировать",
 
     },
     placeTravelBlock: {

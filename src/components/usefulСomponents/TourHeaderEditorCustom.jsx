@@ -74,9 +74,9 @@ class AvatarEditorCustomClass extends React.Component {
                 if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
                     let responseText = JSON.parse(request.responseText);
                     that.props.changeImg(responseText.tourImg,responseText.typeImg)
-                    thenFuncGlobal(that,true);
+                    thenFuncGlobal(that);
                 }else{
-                    catchFuncGlobal(that,true);
+                    catchFuncGlobal(that);
                 }
 
             }

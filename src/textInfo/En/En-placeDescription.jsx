@@ -3,6 +3,7 @@ let placeDescription = {
         more: 'More'
     },
     placeProgramm: {
+        yourCommentPlaceholder: "Your feedback",
         monthArray: ["January", "February", "March",
             "April", "May", "June", "July",
             "August", "September", "October",
@@ -10,6 +11,9 @@ let placeDescription = {
         comments: 'reviews',
         newPhoto: 'Change photo',
         key:"Key",
+        save:"Save",
+        cancel:"Cancel",
+        edit:"Edit",
 
     },
     placeTravelBlock: {
