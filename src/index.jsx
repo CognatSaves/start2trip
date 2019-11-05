@@ -15,6 +15,8 @@ import Home from './components/home/Home.jsx';
 import Places from './components/Places/Places.jsx';
 import Tours from './components/Tours/Tours.jsx';
 import Guides from './components/Guides/Guides.jsx';
+import DriversPage from './components/DriversPage/DriversPage.jsx';
+import DriversPageDescription from './components/DriversPageDescription/DriversPageDescription.jsx';
 import GuideDescription from './components/GuideDescription/GuideDescription.jsx';
 import Footer from './components/Footer/Footer'
 import TourDescription from './components/TourDescription/TourDescription.jsx';
@@ -23,7 +25,7 @@ import TripConfirmation from './components/driverProfile/TripConfirmation';
 import DriverConfirmation from './components/driverProfile/DriverConfirmation';
 import ReadyRoutes from './components/ReadyRoutes/ReadyRoutes';
 import AuthModalCountry from './components/registration/AuthModalCountry';
-import DriverRefreshIndicator from './components/driverProfileRegistration/DriverRefreshIndicator'
+import DriverRefreshIndicator from './components/driverProfileRegistration/DriverRefreshIndicator';
 import pageNotFound from './pageNotFound'
 import axios from 'axios';
 import requests from './config';
@@ -397,6 +399,10 @@ ReactDOM.render(
               <Route path={"/" + config.routeMap + "/places/:slug/"} component={PlaceDescription} />
               <Route path={"/" + config.routeMap + "/places-:direction/"} component={Places} />
               <Route path={"/" + config.routeMap + "/places/"} component={Places} />
+
+              <Route path={'/' + config.routeMap + '/drivers-page/:slug'} component={DriversPageDescription} />
+              <Route path={'/' + config.routeMap + '/drivers-page/'} component={DriversPage} />
+
 
               <Route path={"/" + config.routeMap + "/tours-:direction/params=:lat-:long-:duration/"} component={Tours} />
               <Route path={"/" + config.routeMap + "/tours/params=:lat-:long-:duration/"} component={Tours} />

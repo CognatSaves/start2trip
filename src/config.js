@@ -1,6 +1,6 @@
 const serverAddress = 'http://localhost:1337'; //'https://tripfer.com:41337'; //
 const frontendAddress = 'http://localhost:3000'; //'https://tripfer.com'; //
-const serverAddressImg = 'https://tripfer.com';//'http://localhost:1337'; //
+const serverAddressImg = 'http://localhost:1337'; //'https://tripfer.com';//
 
 const serverRegistrationRequest = serverAddress + '/auth/local/register';
 const serverAuthorizationRequest = serverAddress + '/auth/local';
@@ -58,12 +58,13 @@ const getTours = serverAddress + '/getTours';//запрос на получен�
 const userFeedback = serverAddress + '/users/me/userFeedback';//запрос на отправку отзыва пользователя о работе системы
 const showTour = serverAddress + '/showTour';//запрос на получение описания тура для tourDescription
 const setTourSeatsData = serverAddress + '/setTourSeatsData';//запрос на установку количества мест для тура по дням
-
 const findGuides = serverAddress + '/users/findGuides';//запрос на получение списка гидов на странице guides
+
 const showGuide = serverAddress + '/users/showGuide';//запрос на получение описания гида на странице /guides/:id -> GuideDescription
 const errorMessage = serverAddress+'/errorMessage'; // как-бы это небыло странно но нужно выдавать ошибку 404 на странице pageNotFound
 const getPromoCode = serverAddress+'/createPromocodeArray'; // Полуение промокодов массивом 
-
+const getDriversList = serverAddress + '/users/getDriversList';//получить список водителей в стране
+const showDriverPage = serverAddress + "/users/showDriverPage";//получить описание одного водителя
 
 export default {
     frontendAddress: frontendAddress,
@@ -71,63 +72,67 @@ export default {
     serverAddressImg: serverAddressImg,
     serverRegistrationRequest: serverRegistrationRequest,
     facebookRequest: facebookRequest,
-    googleRequest: googleRequest,
 
+    googleRequest: googleRequest,
     serverAuthorizationRequest: serverAuthorizationRequest,
     meRequest: meRequest,
     profileRequest: profileRequest,
     profileUpdateRequest: profileUpdateRequest,
-    travelsettingsUpdateRequest: travelsettingsUpdateRequest,
 
+    travelsettingsUpdateRequest: travelsettingsUpdateRequest,
     userCarsCreateRequest: userCarsCreateRequest,
     userCarDestroyRequest: userCarDestroyRequest,
     userCarUpdateRequest: userCarUpdateRequest,
     userCarActivateRequest: userCarActivateRequest,
-    userAvatarChangeRequest: userAvatarChangeRequest,
 
+    userAvatarChangeRequest: userAvatarChangeRequest,
     userTourCreateRequest: userTourCreateRequest,
     userTourDestroyRequest: userTourDestroyRequest,
     userTourUpdateRequest: userTourUpdateRequest,
     userTourActivateRequest: userTourActivateRequest,
-    getLocals: getLocals,
 
+    getLocals: getLocals,
     forgotPassword: forgotPassword,
     resetPassword: resetPassword,
     changeMyDriver: changeMyDriver,
     getDrivers: getDrivers,
-    getDriverData: getDriverData,
 
+    getDriverData: getDriverData,
     checkPromocode: checkPromocode,
     createNewTrip: createNewTrip,
     customerConfirmation: customerConfirmation,
     customerCancel: customerCancel,
+
     carrierConfirmation: carrierConfirmation,
     tripStart: tripStart,
-
     tripEnd: tripEnd,
     executeSystemPayment: executeSystemPayment,
     getUserTransactions: getUserTransactions,
+
     getPlacesList: getPlacesList,
     showPlace: showPlace,
-
     createComment: createComment,
     changeCommentary:changeCommentary,
     getRoutes: getRoutes,
+
     showRoute: showRoute,
     getDriverDescription: getDriverDescription,
     getDriverInfo: getDriverInfo,
-
     profileCheck: profileCheck,
     routeMap: routeMap,
+
     isCommentedTrip: isCommentedTrip,
     getTours: getTours,
     userFeedback: userFeedback,
-
     showTour:showTour,
     setTourSeatsData:setTourSeatsData,
+
     findGuides:findGuides,
     showGuide:showGuide,
     userTourEditImgRequest:userTourEditImgRequest,
     errorMessage:errorMessage,
     getPromoCode:getPromoCode,
+
+    getDriversList:getDriversList,
+    showDriverPage:showDriverPage
 };
