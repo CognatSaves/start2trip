@@ -42,6 +42,7 @@ const getPlacesList = serverAddress + "/getPlaces"; //получить спис�
 const showPlace = serverAddress + "/showPlace"; //отобразить одно место подробно
 
 const createComment = serverAddress + "/createComment"; //создание немодерированного комментария
+const changeCommentary = serverAddress + "/changeCommentary"; //изменение комментария
 const forgotPassword = serverAddress + "/auth/forgotPassword";
 const resetPassword = serverAddress + "/auth/reset-password";
 const changeMyDriver = serverAddress + "/users/me/changeDriver";
@@ -110,6 +111,7 @@ export default {
     showPlace: showPlace,
 
     createComment: createComment,
+    changeCommentary:changeCommentary,
     getRoutes: getRoutes,
     showRoute: showRoute,
     getDriverDescription: getDriverDescription,

@@ -24,6 +24,7 @@ class CreateCommentClass extends React.Component {
             userName: "",
             userKey: "",
             trySend:false,
+            
         };
     }
     

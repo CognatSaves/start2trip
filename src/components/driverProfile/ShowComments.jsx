@@ -21,12 +21,49 @@ class ShowCommentsClass extends React.Component {
             img: "",
             blob: "",
             isEdit: false,
-            userName:"",
-            newText:"",
-            trySend:false,
+            userName: "",
+            userKey: "",
+            newText: "",
+            trySend: false,
         }
     }
 
+    changeCommentary =()=>{
+
+        debugger;
+        let body = JSON.stringify({ targetId: "this.props.targetId", text: "newComment", mark: "this.props.commentState.commentValue", clientId: "this.props.clientId" });
+        let that = this;
+
+        fetch(requests.changeCommentary, {
+            method: 'POST', body: body,
+            headers: { 'content-type': 'application/json' }
+        })
+            .then(response => {
+                return response.json();
+            })
+            .then(function (data) {
+                debugger
+                if (data.error) {
+                    console.log("bad");
+                    throw data.error;
+                }
+                else {
+                    console.log('good');
+                    console.log(data);
+                    that.props.endRolling(true);
+                    //that.getProfileData();
+                    that.setState({
+                        isAllCorrect: true,
+                        isNotFilled: false
+                    })
+                }
+            })
+            .catch(function (error) {
+                console.log("bad");
+                console.log('An error occurred:', error);
+                that.props.endRolling(false);
+            });
+    }
 
     imgModalShow = () => {
         this.setState({ imgModal: !this.state.imgModal });
@@ -62,15 +99,14 @@ class ShowCommentsClass extends React.Component {
                 <>
                     <Dialog
                         open={this.state.openModal}
-                        onClose={() => { this.setState({ openModal: !this.state.openModal }) }}
+                        onClose={() => { this.setState({ openModal: !this.state.openModal, isEdit:false }) }}
                         aria-labelledby="alert-dialog-title"
                         aria-describedby="alert-dialog-description"
                     >
-                        
                         {this.state.openModal ? <>
                             <AvatarEditorCustom saveBlob={this.saveBlob} changeImg={this.changeImg} img={this.state.img ? this.state.img : (requests.serverAddressImg + this.state.element.avatar.url)} imgModalShow={this.imgModalShow} imgModal={this.state.imgModal} />
                             <div className="commentBlock_element" >
-                                <i className="commentBlock_elementIconCross" onClick={() => { this.setState({ openModal: !this.state.openModal }) }} />
+                                <i className="commentBlock_elementIconCross" onClick={() => { this.setState({ openModal: !this.state.openModal, isEdit:false }) }} />
                                 <div className="commentBlock_valueBlock d-flex flex-column">
                                     <div className="commentBlock_picture d-flex pb-2">
                                         {isSuperUser && this.state.isEdit ?
@@ -85,26 +121,30 @@ class ShowCommentsClass extends React.Component {
                                         <div className="d-flex flex-column justify-content-center col pr-0 createComment_element">
 
                                             {isSuperUser && this.state.isEdit ?
-                                    <input value={this.state.userName} style={this.state.trySend&&this.state.userName === ""?{background:"#a52525c7"}:{}} placeholder={this.state.element.name} onChange={(e) => { this.setState({ userName: e.target.value }) }} type="text" />
-                                    :
+                                            <>
+                                                <input value={this.state.userName} style={this.state.trySend && this.state.userName === "" ? { background: "#a52525c7" } : {}} placeholder={this.state.element.name} onChange={(e) => { this.setState({ userName: e.target.value }) }} type="text" />
+                                                <input value={this.state.userKey} style={this.state.trySend&&this.state.userKey === ""?{background:"#a52525c7"}:{}} placeholder={textInfo.key} onChange={(e) => { this.setState({ userKey: e.target.value }) }} type="text" />
+                                                </>
+                                                :
                                                 <div className="valueBlock_firstElement_name">{this.state.element.name}</div>
                                             }
-                                            <Stars value={this.state.element.rating} valueDisplay={true} commentNumberDisplay={false} />
+                                                <Stars key={this.state.isEdit} value={this.state.element.rating} valueDisplay={true} changable={isSuperUser && this.state.isEdit ?true:false} commentNumberDisplay={false} />
+
                                             <div className="valueBlock_firstElement_date">{this.state.date.getDate() + " " + getMonthName(this.state.date.getMonth()) + " " + this.state.date.getFullYear()}</div>
                                         </div>
                                     </div>
                                     {isSuperUser && this.state.isEdit ?
-                                    <textarea id="createComment_textareaStyle"  onChange={(e)=>this.setState({ newText: e.target.value })}
-                                    value={this.state.newText !=="" ?this.state.newText:this.state.element.value} 
-                                    className="createComment_textareaStyle" placeholder={textInfo.yourCommentPlaceholder}></textarea>
-                                    :
-                                    <div className="">
-                                        <label>{this.state.element.value}</label>
-                                    </div>
-                                    
+                                        <textarea id="createComment_textareaStyle" onChange={(e) => this.setState({ newText: e.target.value })}
+                                            value={this.state.newText !== "" ? this.state.newText : this.state.element.value}
+                                            className="createComment_textareaStyle" placeholder={textInfo.yourCommentPlaceholder}></textarea>
+                                        :
+                                        <div className="">
+                                            <label>{this.state.element.value}</label>
+                                        </div>
+
                                     }
                                     <div className="d-flex justify-content-end">
-                                        <span onClick={() => this.setState({ isEdit: !this.state.isEdit })}>edit</span>
+                                        <span onClick={() => {this.setState({ isEdit: !this.state.isEdit });this.changeCommentary()}}>edit</span>
                                     </div>
                                 </div>
                             </div>
@@ -119,7 +159,7 @@ class ShowCommentsClass extends React.Component {
                             // let openModal = false
 
                             let date = element.date ? new Date(element.date) : new Date(element.createdAt);
-
+                            debugger
                             return (
                                 <div className="col-lg-3 col-md-6 col-12 p-1">
                                     <div className="commentBlock_comments  commentBlock_element" key={element + "/" + index} onClick={(e) => { if (!isMobileOnly) { this.setState({ element: element, date: date, openModal: true }) } }} >
