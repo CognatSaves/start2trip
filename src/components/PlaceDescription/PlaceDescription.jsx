@@ -336,7 +336,7 @@ class PlaceDescriptionClass extends React.Component {
                                                 <SimularPlaceBlock outerBlock={simularPlaceBlockId} places={this.state.newPlace.additionalPlaces} tags={this.state.newPlace.tags} /*tours={this.state.popularPlaces}*/ fragmentName={textInfo.placeDescription.variantsArray[3]} priseDisplay={"none"} />
                                             </div>
                                             <CommentBlock targetType="place" comments={this.state.newPlace.comments} newComments={this.newComments}
-                                            targetId={this.state.newPlace.place.id} page={this.state.page} setPage={this.setPage}
+                                            targetId={this.state.newPlace.place.id} page={this.state.page} setPage={this.setPage} showCreateComment={true}
                                             showMorePages={this.showMorePages} showPages={this.state.showPages} id={topBlockId + '5'} />
 
                                         </div>

@@ -108,6 +108,7 @@
 .createComment_picture img{
     height: 90px !important;
     width: 90px !important;
+    display: block;
     object-fit: cover;
 }
 

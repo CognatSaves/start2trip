@@ -19,7 +19,7 @@ class GuideCarSelector extends React.Component {
                                         <div className="d-flex flex-column col p-0 guideCarSelectorBlock"
                                             onClick={() => this.props.carSelection(index)}>
                                             <div className="col-12 p-0"
-                                                style={{ background: 'url(' + requests.serverAddressImg + cars[index].carImages[0] + ') no-repeat', backgroundSize: '100% 100%', minHeight: '70px' }} />
+                                                style={{ background: 'url(' + requests.serverAddressImg + cars[index].carImages[0] + ') no-repeat', backgroundSize: 'cover', backgroundPosition:"center", minHeight: '70px' }} />
                                             <text className="guideCarSelectorText" style={{ color: (this.props.selectedCar === index) ? '#f60' : '#304269' }}>
                                                 {cars[index].carBrand}
                                             </text>

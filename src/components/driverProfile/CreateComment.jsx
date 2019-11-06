@@ -151,6 +151,13 @@ class CreateCommentClass extends React.Component {
                 let responseText = JSON.parse(request.responseText);
                 that.props.newComments(responseText)
                 debugger
+                that.setState({
+                    img: "",
+                    blob: "",
+                    userName: "",
+                    userKey: "",
+                    newText:"",
+                })
                 thenFuncGlobal(that);
             } else {
                 catchFuncGlobal(that);

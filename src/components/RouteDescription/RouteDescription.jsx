@@ -1,15 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { changePlacesFixedClass, setPlacesPanelSelectedElement } from '../../redusers/ActionPlaces';
-import { isMobileOnly,isMobile } from 'react-device-detect';
+import { isMobileOnly, isMobile } from 'react-device-detect';
 import { Helmet } from 'react-helmet';
 import axios from 'axios';
 import requests from '../../config';
 
-import { 
-    startRefresherGlobal, thenFuncGlobal, 
-    catchFuncGlobal,lengthTimeCalc,
-    setLengthTimeFunc,createRequestElement, } from '../../redusers/GlobalFunction'
+import {
+    startRefresherGlobal, thenFuncGlobal,
+    catchFuncGlobal, lengthTimeCalc,
+    setLengthTimeFunc, createRequestElement,
+} from '../../redusers/GlobalFunction'
 import { setDriversList, setLengthTime, setWaitingDriverRequest } from '../../redusers/ActionDrivers';
 import { setMaxPrice } from '../../redusers/Action';
 import Header from '../header/Header';
@@ -63,12 +64,6 @@ class RouteDescriptionClass extends React.Component {
             )
         }
     }
-    startRolling = () => {
-        startRefresherGlobal(this)
-    }
-    endRolling = (result) => {
-        thenFuncGlobal(this)
-    }
     maxPriceCalc = (array) => {
         let maxValue = 0;
         for (let i = 0; i < array.length; i++) {
@@ -108,69 +103,74 @@ class RouteDescriptionClass extends React.Component {
         this.setState({ isRequestSend: true })
         this.props.dispatch(setWaitingDriverRequest(true));
         let that = this;
-    
+
         let cities = this.state.newRoute.local.points
         let filteredCities = this.props.globalhistory.firstLastCityCompare(cities);//проверка 1-го и последнего городов
-    
+
         let request = createRequestElement(filteredCities, window.google.maps.DirectionsTravelMode.DRIVING);
         let service = new window.google.maps.DirectionsService();
-    
-    
+
+
         service.route(request, function (response, status) {
-    
-          if (status !== window.google.maps.DirectionsStatus.OK) {
-            //необходима обработка случая, когда не смог построить маршрут)))
-            return false;
-          }
-          let textInfo = that.props.storeState.languageTextMain.home.routeMenu;
-          
-          console.log(response);
-          console.log(status);
-    
-          let routeProps = lengthTimeCalc(response);
-    
-          setLengthTimeFunc(that, routeProps.distance, routeProps.duration, textInfo);
-    
-          
-          let body = JSON.stringify({
-            cities: filteredCities,
-            country: that.props.storeState.country,
-            date: that.state.date ? that.state.date : new Date(),
-            distance: routeProps.distance,
-            duration: routeProps.duration
-        });
-        
-        fetch(requests.getDrivers, {
-            method: 'PUT', body: body,
-            headers: { 'content-type': 'application/json' }
-        })
-            .then(response => {
 
-                return response.json();
-            })
-            .then(function (data) {
+            if (status !== window.google.maps.DirectionsStatus.OK) {
+                //необходима обработка случая, когда не смог построить маршрут)))
+                return false;
+            }
+            let textInfo = that.props.storeState.languageTextMain.home.routeMenu;
 
-                if (data.error) {
-                    console.log("bad");
+            console.log(response);
+            console.log(status);
 
-                    throw data.error;
-                }
-                else {
-                    console.log("good");
-                    console.log(data);
+            let routeProps = lengthTimeCalc(response);
 
-                    let maxPrice = that.maxPriceCalc(data.drivers)
-                    that.props.dispatch(setMaxPrice(maxPrice, maxPrice));
-                    that.props.dispatch(setDriversList(data.drivers));
-                    that.props.dispatch(setWaitingDriverRequest(false));
-                }
-            })
-            .catch(function (error) {
-                console.log("bad");
-                console.log('An error occurred:', error);
+            setLengthTimeFunc(that, routeProps.distance, routeProps.duration, textInfo);
+
+
+            let body = JSON.stringify({
+                cities: filteredCities,
+                country: that.props.storeState.country,
+                date: that.state.date ? that.state.date : new Date(),
+                distance: routeProps.distance,
+                duration: routeProps.duration
             });
+
+            fetch(requests.getDrivers, {
+                method: 'PUT', body: body,
+                headers: { 'content-type': 'application/json' }
+            })
+                .then(response => {
+
+                    return response.json();
+                })
+                .then(function (data) {
+
+                    if (data.error) {
+                        console.log("bad");
+
+                        throw data.error;
+                    }
+                    else {
+                        console.log("good");
+                        console.log(data);
+
+                        let maxPrice = that.maxPriceCalc(data.drivers)
+                        that.props.dispatch(setMaxPrice(maxPrice, maxPrice));
+                        that.props.dispatch(setDriversList(data.drivers));
+                        that.props.dispatch(setWaitingDriverRequest(false));
+                    }
+                })
+                .catch(function (error) {
+                    console.log("bad");
+                    console.log('An error occurred:', error);
+                });
         })
-      }
+    }
+    newComments = (newArray) => {
+        let newRoute = { ...this.state.newRoute }
+        newRoute.comments = newArray
+        this.setState({ newRoute: newRoute })
+    }
 
     render() {
 
@@ -257,7 +257,7 @@ class RouteDescriptionClass extends React.Component {
         if (!this.state.isRequestSend) {
             if (this.props.driversState.driversList.length <= 0 && this.state.newRoute.local) {
                 this.requestFunction(false)
-            }else if(isMobile && this.props.driversState.driversList.length <= 0 && this.state.newRoute.local){
+            } else if (isMobile && this.props.driversState.driversList.length <= 0 && this.state.newRoute.local) {
                 this.requestFunction(true)
             }
         }
@@ -316,7 +316,7 @@ class RouteDescriptionClass extends React.Component {
                 }
 
 
-                <div style={{ position: 'relative',minHeight:"94vh" }}>
+                <div style={{ position: 'relative', minHeight: "94vh" }}>
                     {
 
                         this.state.newRoute.local ?
@@ -371,12 +371,12 @@ class RouteDescriptionClass extends React.Component {
                                                 <PlaceProgramm id={topBlockId + "1"} tagsArray={[]} place={{ ...this.state.newRoute.local, tags: []/*this.state.newPlace.place.tags*/, rating: this.state.newRoute.route.rating, comments: this.state.newRoute.route.commentNumber }} />
                                             </div>
                                             {
-                                               (isMobileOnly?(this.state.newRoute.local.info.length > 700) :(this.state.newRoute.local.info.length > 1455)) &&
+                                                (isMobileOnly ? (this.state.newRoute.local.info.length > 700) : (this.state.newRoute.local.info.length > 1455)) &&
                                                 <div className="placeDescription_block_btMore d-flex justify-content-end">
-                                                    <span onClick={() => { this.setState({ btMore: !this.state.btMore }) }}>{this.state.btMore ? textInfo.btMore[0]: textInfo.btMore[1]}</span>
+                                                    <span onClick={() => { this.setState({ btMore: !this.state.btMore }) }}>{this.state.btMore ? textInfo.btMore[0] : textInfo.btMore[1]}</span>
                                                 </div>
                                             }
-                                            
+
 
                                             <div className="placeDescription_block d-flex flex-column" id={topBlockId + "2"}>
                                                 <div className="placeDescription_fragmentName" style={{ marginBottom: "15px" }} >{textInfo.routeDescription.variantsArray[1]}</div>
@@ -387,7 +387,7 @@ class RouteDescriptionClass extends React.Component {
                                             {isMobileOnly ? <>
                                                 <div className="placeDescription_fragmentName" style={{ marginBottom: "15px" }} >{textInfo.share}</div>
                                                 <div className="d-flex ">
-                                                    <ShareLinkElements shareUrl={shareUrl} title={title} isAdmin={false}/>                                                 
+                                                    <ShareLinkElements shareUrl={shareUrl} title={title} isAdmin={false} />
                                                 </div>
                                             </> : <React.Fragment />}
                                             <RouteTravelBlock points={this.state.newRoute.local.points} id={topBlockId + "3"} textInfo={textInfo} changeDate={this.changeDate} />
@@ -407,11 +407,12 @@ class RouteDescriptionClass extends React.Component {
                                             </div>
                                             <div className="placeDescription_block flex-column" id={simularPlaceBlockId} style={{ display: this.state.newRoute.additionalRoutes.length > 0 ? 'flex' : 'none' }}>
 
-                                                <SimularRouteBlock  outerBlock={simularPlaceBlockId} routes={this.state.newRoute.additionalRoutes} fragmentName={textInfo.routeDescription.variantsArray[4]} priseDisplay={"none"} />
+                                                <SimularRouteBlock outerBlock={simularPlaceBlockId} routes={this.state.newRoute.additionalRoutes} fragmentName={textInfo.routeDescription.variantsArray[4]} priseDisplay={"none"} />
                                             </div>
 
-                                            <CommentBlock targetType="route" comments={this.state.newRoute.comments} targetId={this.state.newRoute.route.id} page={this.state.page} setPage={this.setPage}
-                                                showMorePages={this.showMorePages} showPages={this.state.showPages} id={topBlockId + "6"} startRolling={() => this.startRolling()} endRolling={(result) => this.endRolling(result)} />
+                                            <CommentBlock targetType="route" comments={this.state.newRoute.comments} newComments={this.newComments}
+                                                targetId={this.state.newRoute.route.id} page={this.state.page} setPage={this.setPage} showCreateComment={true}
+                                                showMorePages={this.showMorePages} showPages={this.state.showPages} id={topBlockId + "6"} />
 
                                         </div>
                                     </div>
