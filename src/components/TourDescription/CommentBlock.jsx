@@ -16,7 +16,8 @@ class CommentBlockClass extends React.Component {
 
         console.log("CommentBlock render");
 
-        let selectedComments = this.props.comments.slice((this.props.page - this.props.showPages) * 5, (this.props.page) * 5);
+        let selectedComments = this.props.comments.slice((this.props.page - this.props.showPages) * this.props.storeState.pagesMenuValue,
+            (this.props.page) * this.props.storeState.pagesMenuValue);
         let textInfo = this.props.storeState.languageTextMain.tourDescription.commentBlock;
 
         return (
@@ -37,7 +38,7 @@ class CommentBlockClass extends React.Component {
                 </div>
                 {
                     selectedComments.length > 0 ?
-                        <Manipulator number={this.props.comments.length} page={this.props.page} elementsNumber={5}
+                        <Manipulator number={this.props.comments.length} page={this.props.page} elementsNumber={this.props.storeState.pagesMenuValue}
                             setPage={this.props.setPage} showMorePages={this.props.showMorePages} isCommentBlock={true} />
                         : <React.Fragment />
                 }

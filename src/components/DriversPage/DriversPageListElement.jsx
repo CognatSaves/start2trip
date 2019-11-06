@@ -29,7 +29,7 @@ class DriversPageListElementClass extends React.Component {
         let textInfoTour = this.props.storeState.languageTextMain.tours;
         
         let element = this.props.element;
-        debugger;
+        
         let index = this.props.index;
         let linkAddress = "/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + `/drivers-page/${element.userSlug}/`;
         return (
@@ -52,7 +52,7 @@ class DriversPageListElementClass extends React.Component {
                             <div className="langi guideList_placeName d-flex" style={{ paddingTop: '2px' }} key={"key" + element.id}>
                                 {
                                     element.language.map((langElement, index) => {
-                                        debugger;
+                                        
                                         let langObj = findLanguageByISO(langElement, this.props.storeState);
                                         return <div className="driversBlock_languages_flag"
                                             style={{
