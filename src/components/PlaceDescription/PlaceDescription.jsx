@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { changePlacesFixedClass, setPlacesPanelSelectedElement } from '../../redusers/ActionPlaces';
+import { changePlacesFixedClass, setPlacesPanelSelectedElement,setPlacesList } from '../../redusers/ActionPlaces';
 import { isMobileOnly } from 'react-device-detect'
 import { Helmet } from 'react-helmet';
 import axios from 'axios';
@@ -143,6 +143,7 @@ class PlaceDescriptionClass extends React.Component {
             })
             startRefresherGlobal(this)
             let that = this;
+            
             axios.get(requests.showPlace + "?slug=" + (slug ? slug : '') /*+ "&country=" + cookies.get('country', { path: '/' })*/ /*+"&lang="+this.props.storeState.languages[this.props.storeState.activeLanguageNumber].id*/)
                 .then(response => {
 
@@ -167,7 +168,8 @@ class PlaceDescriptionClass extends React.Component {
                         thenFuncGlobal(that)
                         that.setState({ newPlace: data, couldSendRequest: true, slug: data.local.slug, selectedLanguage: this.props.storeState.activeLanguageNumber });
                         that.props.match.params.slug = data.local.slug;
-                        //this.props.dispatch(setPlacesList(data.places, data.tags, data.directions,data.country));
+                        
+                        that.props.dispatch(setPlacesList([], data.tags, [],{}));
                     }
                 })
                 .catch(error => {

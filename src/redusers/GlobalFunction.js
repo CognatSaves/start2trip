@@ -211,9 +211,9 @@ const dateStringConversion = (datestr) => {
 }
 
 const findTagName = (tagId, that) => {
-
+  
   if (that.props.placesState.tags.length > 0) {
-
+    debugger;
     let tags = that.props.placesState.tags;
     let id = -1;
 
@@ -226,7 +226,7 @@ const findTagName = (tagId, that) => {
     if (id === -1) {
       return '';
     }
-
+    debugger;
     return tags[id].tagLoc.name;
   }
   return '';
