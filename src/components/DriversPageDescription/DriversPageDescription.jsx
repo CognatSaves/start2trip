@@ -125,6 +125,7 @@ class DriversPageDescriptionClass extends React.Component {
                 thenFuncGlobal(that)    
                 console.log('good - you get a guide description');
                 console.log(data);
+                debugger
                 that.props.dispatch(setGuideData(data.driverData, data.carTypes));            
             }
         })
@@ -231,6 +232,13 @@ class DriversPageDescriptionClass extends React.Component {
             });
         }
     }
+
+    newComments = (newArray)=>{
+        let guideData = {...this.props.guidesReduser.guideData}
+        guideData.comments = newArray
+        this.props.dispatch(setGuideData(guideData, this.props.guidesReduser.carTypes));
+    }
+
     render() {
         function isPointsLoaded(cities) {
             for (let i = 0; i < cities.length; i++) {
@@ -277,7 +285,7 @@ class DriversPageDescriptionClass extends React.Component {
         
         let helmet = this.props.guidesReduser.guideData.guide ? this.props.storeState.languageTextMain.helmets.guideProfile.guide :
         this.props.storeState.languageTextMain.helmets.guideProfile.agency;
-
+        
         let windowImg = null
         if (this.props.storeState.languages.length > 0) {
 
@@ -293,6 +301,15 @@ class DriversPageDescriptionClass extends React.Component {
                 j = 1
             }
             windowImg = requests.serverAddressImg + this.props.storeState.countries[j].windowImg.url
+        }
+
+        let isSuperUser = false
+        let userId = cookies.get('userId', { path: "/" })
+        if (("5d8c748f2af67f052213a249" === userId
+            || "5cc6b6bbab3b7e111009d58e" === userId
+            || "5d3015c437976716c39c488d" === userId
+            || "5d654ed89523424ba6a6b333" === userId)) {
+            isSuperUser = true
         }
 
         return (
@@ -349,8 +366,9 @@ class DriversPageDescriptionClass extends React.Component {
                                     <div className="drivers_bottom_background d-flex flex-column" >
                                         <div className="drivers_body d-flex">
                                             <div className="left_body_part col-12">
-                                                <CommentBlock comments={this.props.guidesReduser.guideData.comments} page={this.state.page} setPage={this.setPage}
-                                                    showMorePages={this.showMorePages} showPages={this.state.showPages} id={"commentBlockId"} noHeader={true}/>
+                                                <CommentBlock comments={this.props.guidesReduser.guideData.comments} isSuperUser={isSuperUser} showCreateComment={false}
+                                                page={this.state.page} setPage={this.setPage} newComments={this.newComments} targetType="user" targetId={this.props.guidesReduser.guideData.id}
+                                                showMorePages={this.showMorePages} showPages={this.state.showPages} id={"commentBlockId"} noHeader={true}/>
                                             </div>
                                         </div>
                                     </div>

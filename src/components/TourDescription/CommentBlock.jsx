@@ -27,13 +27,13 @@ class CommentBlockClass extends React.Component {
                         <div className="placeDescription_fragmentName">{textInfo.comments}</div>
                 }               
                 <div className="render_otherPlaces" style={{ marginTop: "15px" }}>
-                    {this.props.targetId ? <>
+                    {this.props.targetId && (this.props.isSuperUser ||this.props.showCreateComment) ? <>
                         <CreateComment targetType={this.props.targetType} targetId={this.props.targetId} 
                         newComments={this.props.newComments}
                         createCommentString={textInfo.createCommentString}/>
                     </> : <React.Fragment />}
 
-                    <ShowComments selectedComments={selectedComments} />
+                    <ShowComments selectedComments={selectedComments} newComments={this.props.newComments} />
 
                 </div>
                 {

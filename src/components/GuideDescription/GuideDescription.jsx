@@ -134,6 +134,7 @@ class GuideDescriptionClass extends React.Component {
                 if(data.guideData.tours.length>0){
                     //если туры у человека пришли, то отрабатываем стандартно - 
                     //проверка на наличие локализаций на выбранном языке
+                    debugger
                     that.props.dispatch(setGuideData(data.guideData, data.carTypes));
                 }
                 else{
@@ -245,6 +246,13 @@ class GuideDescriptionClass extends React.Component {
             });
         }
     }
+
+    newComments = (newArray)=>{
+        let guideData = {...this.props.guidesReduser.guideData}
+        guideData.comments = newArray
+        this.props.dispatch(setGuideData(guideData, this.props.guidesReduser.carTypes));
+    }
+
     render() {
         function isPointsLoaded(cities) {
             for (let i = 0; i < cities.length; i++) {
@@ -308,6 +316,14 @@ class GuideDescriptionClass extends React.Component {
             }
             windowImg = requests.serverAddressImg + this.props.storeState.countries[j].windowImg.url
         }
+        let isSuperUser = false
+        let userId = cookies.get('userId', { path: "/" })
+        if (("5d8c748f2af67f052213a249" === userId
+            || "5cc6b6bbab3b7e111009d58e" === userId
+            || "5d3015c437976716c39c488d" === userId
+            || "5d654ed89523424ba6a6b333" === userId)) {
+            isSuperUser = true
+        }
 
         return (
             <>
@@ -370,8 +386,9 @@ class GuideDescriptionClass extends React.Component {
                                     <div className="drivers_bottom_background d-flex flex-column" >
                                         <div className="drivers_body d-flex">
                                             <div className="left_body_part col-12">
-                                                <CommentBlock comments={this.props.guidesReduser.guideData.comments} page={this.state.page} setPage={this.setPage}
-                                                    showMorePages={this.showMorePages} showPages={this.state.showPages} id={"commentBlockId"} noHeader={true}/>
+                                                <CommentBlock comments={this.props.guidesReduser.guideData.comments} isSuperUser={isSuperUser} showCreateComment={false}
+                                                page={this.state.page} setPage={this.setPage} newComments={this.newComments} targetType="user" targetId={this.props.guidesReduser.guideData.id}
+                                                showMorePages={this.showMorePages} showPages={this.state.showPages} id={"commentBlockId"} noHeader={true}/>
                                             </div>
                                         </div>
                                     </div>

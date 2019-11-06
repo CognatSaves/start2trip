@@ -95,12 +95,6 @@ class ToureDescriptionClass extends React.Component {
             )
         }
     }
-    startRolling = () => {
-        startRefresherGlobal(this)
-    }
-    endRolling = (result) => {
-        thenFuncGlobal(this)
-    }
 
     changeTravelVisibility = (elementPrice, elementActive) => {
         let obj = elementActive ? (elementActive.tour ? elementActive.tour : elementActive.element) : null;
@@ -294,6 +288,12 @@ class ToureDescriptionClass extends React.Component {
         let busyDaysCheckValue = !(busyDaysArrayVerification(busyDays, date, daysNumber));
         return busyDaysCheckValue;
     }
+    newComments = (newArray) => {
+        let newTour = { ...this.state.newTour }
+        newTour.comments = newArray
+        this.setState({ newTour: newTour })
+    }
+
     render() {
 
         console.log('TourDescription render', this.state, this.props);
@@ -433,16 +433,19 @@ class ToureDescriptionClass extends React.Component {
         let renderEl = false
         let userId = cookies.get('userId', { path: "/" })
         let autorId = null;
+        let isSuperUser = false
         if(this.state.newTour.tour){
             autorId = this.state.newTour.tour.author.id
         }
-        if (
-            "5d8c748f2af67f052213a249" === userId
+
+        if (("5d8c748f2af67f052213a249" === userId
             || "5cc6b6bbab3b7e111009d58e" === userId
             || "5d3015c437976716c39c488d" === userId
-            || "5d654ed89523424ba6a6b333" === userId
-            || (autorId === userId)) {
-            renderEl = true
+            || "5d654ed89523424ba6a6b333" === userId)) {
+                if(autorId === userId) {
+                    renderEl = true
+                }
+            isSuperUser = true
         }
     
         return (
@@ -610,9 +613,10 @@ class ToureDescriptionClass extends React.Component {
                                                     tags={this.state.newTour.tags} changeTravelVisibility={this.changeTravelVisibility}
                                                     fragmentName={textInfo.placeDescription.variantsArray[4]} priseDisplay={"none"} />
                                             </div>
-
-                                            <CommentBlock targetType="tour" comments={this.state.newTour.comments} targetId={this.state.newTour.tour.id} page={this.state.page} setPage={this.setPage}
-                                                showMorePages={this.showMorePages} showPages={this.state.showPages} id={topBlockId + "6"} startRolling={() => this.startRolling()} endRolling={(result) => this.endRolling(result)} />
+                                            
+                                            <CommentBlock targetType="tour" comments={this.state.newTour.comments} newComments={this.newComments}
+                                            targetId={this.state.newTour.tour.id} page={this.state.page} setPage={this.setPage} isSuperUser={isSuperUser} showCreateComment={false}
+                                            showMorePages={this.showMorePages} showPages={this.state.showPages} id={topBlockId + "6"} />
 
                                         </div>
                                     </div>

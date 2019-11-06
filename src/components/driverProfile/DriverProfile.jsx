@@ -262,6 +262,12 @@ class DriverProfileClass extends React.Component {
             });
         }
     }
+    newComments = (newArray)=>{
+        let comments = {...this.state.comments}
+        comments = newArray
+        this.setState({comments:comments})
+    }
+
     render() {
         function isPointsLoaded(cities) {
             for (let i = 0; i < cities.length; i++) {
@@ -568,8 +574,9 @@ class DriverProfileClass extends React.Component {
                                 <div className="drivers_bottom_background d-flex flex-column" >
                                     <div className="drivers_body d-flex">
                                         <div className="left_body_part col-12">
-                                            <CommentBlock comments={this.state.comments} page={this.state.page} setPage={this.setPage}
-                                                showMorePages={this.showMorePages} showPages={this.state.showPages} id={"commentBlockId"} />
+                                            <CommentBlock comments={this.state.comments} 
+                                            page={this.state.page} setPage={this.setPage} newComments={this.newComments}
+                                            showMorePages={this.showMorePages} showPages={this.state.showPages} id={"commentBlockId"} />
 
                                         </div>
                                     </div>
