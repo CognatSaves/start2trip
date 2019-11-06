@@ -149,6 +149,7 @@ class CreateCommentClass extends React.Component {
 
             if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
                 let responseText = JSON.parse(request.responseText);
+                that.props.newComments(responseText)
                 debugger
                 thenFuncGlobal(that);
             } else {

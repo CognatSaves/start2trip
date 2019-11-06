@@ -38,41 +38,15 @@ class PlaceDescriptionClass extends React.Component {
             slug: '',
             selectedPhotoIndex: 0,
             photoSlice: 0,
-            //width: 870,
-            //height: 500,
-            //n: 7,
-            //place: this.props.placesState.places[/*countryId*/0].places[/*placeId*/0],
             newPlace: {},
             couldSendRequest: true,
-            //photoArray: [ippodrom, ippodrom4, ippodrom2, ippodrom3, ippodrom, ippodrom4, ippodrom2, ippodrom3, ippodrom, ippodrom4, ippodrom2, ippodrom3, ippodrom, ippodrom4, ippodrom2, ippodrom3, ippodrom, ippodrom4, ippodrom2, ippodrom3],
             selectedLanguage: -1,
             images: null,
             //isMobile: false,
             //topBlockImage:''
         };
     }
-    /*
-    shouldComponentUpdate(nextProps, nextState){
-        
-        let a = (JSON.stringify(nextProps)!==JSON.stringify(this.props));
-        let b = (JSON.stringify(nextState)!==JSON.stringify(this.state));
-        //let c = (isMobile!==this.state.isMobile);
-        return a || b ;
-    }
-    */
-    startRolling = () => {
-        startRefresherGlobal(this)
-    }
-    endRolling = (result) => {
-        thenFuncGlobal(this)
-    }
-    /*
-    shouldComponentUpdate(nextProps, nextState){
-        
-        let result = (JSON.stringify(nextProps)!==JSON.stringify(this.props) || JSON.stringify(nextState)!==JSON.stringify(this.state)); 
-        return result;
-    }
-    */
+
     selectPhoto = (photoIndex) => {
         function calculatePhotoSlice(photoIndex, length, OldPhotoIndex, OldPhotoSlice) {
             let photoSlice = 0;
@@ -117,6 +91,11 @@ class PlaceDescriptionClass extends React.Component {
                 }
             )
         }
+    }
+    newComments = (newArray)=>{
+        let newPlace = {...this.state.newPlace}
+        newPlace.comments = newArray
+        this.setState({newPlace:newPlace})
     }
 
     render() {
@@ -356,8 +335,9 @@ class PlaceDescriptionClass extends React.Component {
                                                 }
                                                 <SimularPlaceBlock outerBlock={simularPlaceBlockId} places={this.state.newPlace.additionalPlaces} tags={this.state.newPlace.tags} /*tours={this.state.popularPlaces}*/ fragmentName={textInfo.placeDescription.variantsArray[3]} priseDisplay={"none"} />
                                             </div>
-                                            <CommentBlock targetType="place" comments={this.state.newPlace.comments} targetId={this.state.newPlace.place.id} page={this.state.page} setPage={this.setPage}
-                                                showMorePages={this.showMorePages} showPages={this.state.showPages} id={topBlockId + '5'} startRolling={() => this.startRolling()} endRolling={(result) => this.endRolling(result)} />
+                                            <CommentBlock targetType="place" comments={this.state.newPlace.comments} newComments={this.newComments}
+                                            targetId={this.state.newPlace.place.id} page={this.state.page} setPage={this.setPage}
+                                            showMorePages={this.showMorePages} showPages={this.state.showPages} id={topBlockId + '5'} />
 
                                         </div>
                                         {
