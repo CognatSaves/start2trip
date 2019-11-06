@@ -44,8 +44,12 @@ class ShowCommentsClass extends React.Component {
         commentForm.append('text', this.state.newText !== "" ? this.state.newText : element.value);
         commentForm.append('mark', this.props.commentState.commentValue ? this.props.commentState.commentValue : element.rating);
         commentForm.append('id', element.id);
-        commentForm.append('key', this.state.userKey !== "" ? this.state.userKey : (element.fakecustomer ? element.fakecustomer.key : undefined));
-        commentForm.append('userName', this.state.userName !== "" ? this.state.userName : (element.fakecustomer ? element.fakecustomer.name : undefined));
+        if (this.state.userKey !== "" && element.fakecustomer) {
+            commentForm.append('key', this.state.userKey !== "" ? this.state.userKey : element.fakecustomer.key);
+        }
+        if (this.state.userName !== "" && element.fakecustomer) {
+            commentForm.append('userName', this.state.userName !== "" ? this.state.userName : element.fakecustomer.userName);
+        }
         commentForm.append('avatar', imgFile);
 
         const request = new XMLHttpRequest();
@@ -55,6 +59,7 @@ class ShowCommentsClass extends React.Component {
             if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
                 let responseText = JSON.parse(request.responseText);
                 debugger
+                that.props.newComments(responseText)
                 thenFuncGlobal(that);
             } else {
                 catchFuncGlobal(that);
@@ -141,13 +146,15 @@ class ShowCommentsClass extends React.Component {
                                             {isSuperUser && this.state.isEdit ?
                                                 <>
                                                     <input
-                                                        value={this.state.userName !== "" ? this.state.userName : this.state.element.fakecustomer ? this.state.element.fakecustomer.name : this.state.element.name}
+                                                        value={this.state.userName}
+                                                        defaultValue={this.state.userName !== "" ? this.state.userName : this.state.element.fakecustomer ? this.state.element.fakecustomer.name : this.state.element.name}
                                                         style={this.state.trySend && this.state.userName === "" ? { background: "#a52525c7" } : {}}
                                                         placeholder={this.state.element.fakecustomer ? this.state.element.fakecustomer.name : this.state.element.name}
                                                         onChange={(e) => { this.setState({ userName: e.target.value }) }} type="text" />
 
                                                     <input
-                                                        value={this.state.userKey !== "" ? this.state.userKey : this.state.element.fakecustomer ? this.state.element.fakecustomer.key : textInfo.key}
+                                                        value={this.state.userKey}
+                                                        defaultValue={this.state.userKey !== "" ? this.state.userKey : this.state.element.fakecustomer ? this.state.element.fakecustomer.key : textInfo.key}
                                                         style={this.state.trySend && this.state.userKey === "" ? { background: "#a52525c7" } : {}}
                                                         placeholder={this.state.element.fakecustomer ? this.state.element.fakecustomer.key : textInfo.key}
                                                         onChange={(e) => { this.setState({ userKey: e.target.value }) }} type="text" />
@@ -172,7 +179,7 @@ class ShowCommentsClass extends React.Component {
                                     }
                                     {isSuperUser &&
                                         <div className="createComment_footerBt d-flex justify-content-end">
-                                            <span style={this.state.isEdit ?{color:"#999"}:{}} onClick={() => { this.setState({ isEdit: !this.state.isEdit }); }}>{this.state.isEdit ? textInfo.cancel : textInfo.edit}</span>
+                                            <span style={this.state.isEdit ? { color: "#999" } : {}} onClick={() => { this.setState({ isEdit: !this.state.isEdit }); }}>{this.state.isEdit ? textInfo.cancel : textInfo.edit}</span>
                                             {this.state.isEdit ?
                                                 <span className="pl-2" onClick={() => { this.changeCommentary(this.state.element) }}>{textInfo.save}</span>
                                                 : <React.Fragment />

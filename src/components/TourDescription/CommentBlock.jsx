@@ -27,8 +27,9 @@ class CommentBlockClass extends React.Component {
                 }               
                 <div className="render_otherPlaces" style={{ marginTop: "15px" }}>
                     {this.props.targetId ? <>
-                        <CreateComment targetType={this.props.targetType} targetId={this.props.targetId} createCommentString={textInfo.createCommentString}
-                            startRolling={this.props.startRolling ? () => this.props.startRolling() : () => { }} endRolling={this.props.endRolling ? (result) => this.props.endRolling(result) : () => { }} />
+                        <CreateComment targetType={this.props.targetType} targetId={this.props.targetId} 
+                        newComments={this.props.newComments}
+                        createCommentString={textInfo.createCommentString}/>
                     </> : <React.Fragment />}
 
                     <ShowComments selectedComments={selectedComments} />
