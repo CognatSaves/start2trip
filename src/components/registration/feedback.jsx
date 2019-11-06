@@ -51,7 +51,7 @@ class feedbackClass extends React.Component {
 
 
     render() {
-        debugger;
+        
         let id = this.props.match.params.id;
         let clientId = this.props.match.params.clientId;
         let textInfo = this.props.storeState.languageTextMain.driverProfile.createComment;

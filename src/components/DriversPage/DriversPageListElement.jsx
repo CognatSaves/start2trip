@@ -27,7 +27,9 @@ class DriversPageListElementClass extends React.Component {
         }
         let textInfo = this.props.storeState.languageTextMain.home.homeBottom.routeListElement;
         let textInfoTour = this.props.storeState.languageTextMain.tours;
+        
         let element = this.props.element;
+        debugger;
         let index = this.props.index;
         let linkAddress = "/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + `/drivers-page/${element.userSlug}/`;
         return (
@@ -50,7 +52,7 @@ class DriversPageListElementClass extends React.Component {
                             <div className="langi guideList_placeName d-flex" style={{ paddingTop: '2px' }} key={"key" + element.id}>
                                 {
                                     element.language.map((langElement, index) => {
-
+                                        debugger;
                                         let langObj = findLanguageByISO(langElement, this.props.storeState);
                                         return <div className="driversBlock_languages_flag"
                                             style={{
@@ -65,9 +67,13 @@ class DriversPageListElementClass extends React.Component {
                             <div className="placesList_stars">
                                 <Stars key={index + "/" + element.rating} value={Math.ceil(element.rating * 10) / 10} commentNumber={element.comments + " " + textInfo.comments} valueDisplay={element.rating > 0 ? true : false} commentNumberDisplay={true} />
                             </div>
-                            <i className="placesList_info_guide my-auto col-2" style={{ background: "url(" + (element.guide ? guideIcon : agencyIcon) + ")no-repeat" }}>
-                                <span className="placesList_info_guide-toolTip">{element.guide ? textInfoTour.guide : textInfoTour.agency}</span>
-                            </i>
+                            {
+                                element.guide && 
+                                <i className="placesList_info_guide my-auto col-2" style={{ background: "url(" + (guideIcon) + ")no-repeat" }}>
+                                    <span className="placesList_info_guide-toolTip">{textInfoTour.guide}</span>
+                                </i>
+                            }
+                            
 
                         </div>
 

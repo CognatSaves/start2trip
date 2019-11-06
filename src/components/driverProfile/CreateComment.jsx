@@ -46,7 +46,7 @@ class CreateCommentClass extends React.Component {
         if (isCorrect && ((jwt && jwt !== '-') || this.props.clientId)) {
 
             startRefresherGlobal(this,true);
-            debugger;
+            
             let body = JSON.stringify({ targetId: this.props.targetId, text: newComment, mark: this.props.commentState.commentValue, clientId: this.props.clientId });
             let that = this;
 

@@ -116,7 +116,7 @@ class DriversPageDescriptionClass extends React.Component {
             return response.json();
         })
         .then(function(data){
-            debugger;
+            
             if(data.error){
                 console.log("bad");
                 throw data.error;
@@ -129,7 +129,7 @@ class DriversPageDescriptionClass extends React.Component {
             }
         })
         .catch(function(error){
-            debugger;
+            
             console.log('bad');
             console.log('An error occurred:', error);
             catchFuncGlobal(that)

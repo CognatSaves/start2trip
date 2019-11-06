@@ -17,6 +17,7 @@ export default class Carousel extends React.Component {
         super(props);
         this.state = {
             selectedPhotoIndex: 0,
+            oldPhotoArray: JSON.stringify(props.photoArray)
         }
     }
     selectPhoto = (photoIndex, event) => {
@@ -39,8 +40,13 @@ export default class Carousel extends React.Component {
         })
     }
     render() {
-
-
+        let JSONPhotoArray = JSON.stringify(this.props.photoArray);
+        if(this.state.oldPhotoArray!==JSONPhotoArray){
+            this.setState({
+                oldPhotoArray: JSONPhotoArray,
+                selectedPhotoIndex:0
+            });
+        }
         switch (this.props.type) {
             case "vertical": {
                 return (

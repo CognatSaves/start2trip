@@ -31,7 +31,7 @@ class ShowCommentsClass extends React.Component {
 
     changeCommentary = (element) => {
 
-        debugger;
+        
         startRefresherGlobal(this, true)
         let imgFile = undefined
         if (this.state.blob !== "") {
