@@ -193,15 +193,48 @@
 
 .buttonMassLink:hover {
     color: #fff;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.3);
     text-decoration: none;
 }
 
 .buttonMassLink_active{
     transition: all 0.3s;
     color: #fff;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.3);
     text-decoration: none;
+}
+
+.moreLink{
+    position: relative;
+    transition: all 0.3s;
+}
+
+.moreLink span{
+    cursor: pointer;
+    padding: 0 10px;
+    padding-right: 15px;
+    background: url(../media/da_tru_big_arrow.svg)no-repeat;
+    background-size: 10px 10px;
+    background-position: right center;
+}
+
+.moreBlock{
+    display: none;
+    z-index: 30;
+    flex-direction: column;
+    position: absolute;
+    top: 65px;
+    right: 0px;
+    background: #304269;
+    transition: all 0.3s;
+}
+
+.moreLink:hover .moreBlock{
+    display: flex;
+}
+
+.moreBlock:hover{
+    display: flex;
 }
 
 .selectGeneral {
