@@ -36,7 +36,7 @@
     text-decoration: none;
 }
 
-.customerCancelForm span{
+.customerCancelFormSpanDetector span{
     background: #304269;
     padding: 10px 40px;
     border-radius: 5px;
@@ -46,7 +46,7 @@
     font-weight: 400;
     color: #fff;
 }
-.customerCancelForm span:first-child{
+.customerCancelFormSpanDetector span:first-child{
     background: #686868;
     padding: 10px 40px;
     border-radius: 5px;
@@ -56,11 +56,11 @@
     font-weight: 400;
     color: #fff;
 }
-.customerCancelForm span:hover{
+.customerCancelFormSpanDetector span:hover{
     background: #f60;
 }
 
-.customerCancelForm span:first-child:hover {
+.customerCancelFormSpanDetector span:first-child:hover {
     background: rgb(201, 82, 3);
 }
 
@@ -74,10 +74,10 @@
         font-size: 20px !important;
         text-align: center;
     }
-    .customerCancelForm span{
+    .customerCancelFormSpanDetector span{
         padding: 10px 30px;
     }
-    .customerCancelForm span:first-child{
+    .customerCancelFormSpanDetector span:first-child{
         padding: 10px 30px;
     }
 }
