@@ -162,7 +162,7 @@ class ShowCommentsClass extends React.Component {
                                                 :
                                                 <div className="valueBlock_firstElement_name">{this.state.element.fakecustomer ? this.state.element.fakecustomer.name : this.state.element.name}</div>
                                             }
-                                            <Stars key={this.state.isEdit} value={this.state.element.rating} valueDisplay={true} changable={isSuperUser && this.state.isEdit ? true : false} commentNumberDisplay={false} />
+                                            <Stars key={this.state.isEdit} value={Math.ceil(this.state.element.rating*10)/10} valueDisplay={true} changable={isSuperUser && this.state.isEdit ? true : false} commentNumberDisplay={false} />
 
                                             <div className="valueBlock_firstElement_date">{this.state.date.getDate() + " " + getMonthName(this.state.date.getMonth()) + " " + this.state.date.getFullYear()}</div>
                                         </div>
@@ -209,7 +209,7 @@ class ShowCommentsClass extends React.Component {
                                                 <div className="d-flex flex-column justify-content-center col pr-0">
                                                     <div className="valueBlock_firstElement_name">{element.fakecustomer ? element.fakecustomer.name : element.name}</div>
 
-                                                    <Stars key={element.rating + "/" + element.index} value={element.rating} valueDisplay={true} commentNumberDisplay={false} />
+                                                    <Stars key={element.rating + "/" + element.index} value={Math.ceil(element.rating*10)/10} valueDisplay={true} commentNumberDisplay={false} />
                                                     <div className="valueBlock_firstElement_date">{date.getDate() + " " + getMonthName(date.getMonth()) + " " + date.getFullYear()}</div>
 
                                                 </div>

@@ -38,7 +38,7 @@ class SimularToursBlockClass extends React.Component {
                                 console.log('temp', temp ? temp.offsetWidth : 0);
                             }
                             return (
-                                <PlaceListElement element={element} index={'addPlace' + index} findTagName={(tagId) => {findTagName(tagId, this)}}
+                                <PlaceListElement element={element} index={'addPlace' + index} findTagName={(tagId) => findTagName(tagId, this)}
                                     placeListElementClass={"col-xl-3 col-lg-3 col-md-4 col-sm-6 col-10 p-2 pb-3"}
                                 />
                             )

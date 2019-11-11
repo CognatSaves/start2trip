@@ -71,7 +71,7 @@ class UserProfileTrevelHistoryClass extends React.Component {
                                             <img src={requests.serverAddressImg + element.carrier.image} alt={''} />
                                             <div className="d-flex flex-column ml-1">
                                                 <span>{element.carrier.firstName}</span>
-                                                <Stars value={element.carrier.rating} commentNumber={element.carrier.comments + " " + textInfo.comments} valueDisplay={true} commentNumberDisplay={true} />
+                                                <Stars value={Math.ceil(element.carrier.rating*10)/10} commentNumber={element.carrier.comments + " " + textInfo.comments} valueDisplay={true} commentNumberDisplay={true} />
                                             </div>
                                         </div>
 
