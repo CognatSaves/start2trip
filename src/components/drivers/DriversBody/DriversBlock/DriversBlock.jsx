@@ -286,7 +286,7 @@ class DriversBlockClass extends React.Component {
                           </div>
                         }
                       </div>
-                      <div class="starsd"><Stars key={element.rating} value={element.rating} commentNumber={element.comments + " " + textInfo.comments} valueDisplay={true} commentNumberDisplay={true} /></div>
+                      <div class="starsd"><Stars key={element.rating} value={Math.ceil(element.rating*10)/10} commentNumber={element.comments + " " + textInfo.comments} valueDisplay={true} commentNumberDisplay={true} /></div>
                     </div>
                     
                       <div className="driverBlock_carInfoLine">

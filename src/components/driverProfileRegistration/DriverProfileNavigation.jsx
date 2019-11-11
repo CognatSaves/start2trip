@@ -87,7 +87,7 @@ class DriverProfileNavigationClass extends React.Component {
                         <div className="bodyTopDriverInfo col-8">
                             <div className="bodyTopDriverInfoName d-flex flex-column align-items-start">
                                 <p className="mb-0 mr-2">{profile.firstName.length !== 0 ? profile.firstName : profile.email}</p>
-                                <Stars value={profile.rating} valueDisplay={true} commentNumberDisplay={true} commentNumber={profile.comments.length + " " + textPage.starsReviews} />
+                                <Stars value={Math.ceil(profile.rating*10)/10} valueDisplay={true} commentNumberDisplay={true} commentNumber={profile.comments.length + " " + textPage.starsReviews} />
                             </div>
                             <div className="bodyTopDriverInfoPlace">
                                 <p>{profile.hometown.length !== 0 ? (profile.hometown + ", " + profile.homecountry) : ""}</p>

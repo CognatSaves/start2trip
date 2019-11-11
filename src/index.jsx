@@ -124,7 +124,9 @@ function getLocals() {
   let adminLang = cookies.get('adminLang', { path: '/' });
   let userLang = cookies.get('userLang', { path: '/' });
   let cookiesLangISO = cookies.get('userLangISO', { path: '/' })
-  let userBrowserLanguage = "ru"/*window.navigator.language*/;
+
+  let windowNavigatorLanguage = window.navigator.language.substr(0,2);
+  let userBrowserLanguage = windowNavigatorLanguage==="en" ? "en" : "ru"/*window.navigator.language*/;
   //здесь выбираем приоритетное значение - если выше мы смогли взять язык из адреса,
   //то используем его, если нет, то будем, в случае отсутствия кук, записывать туда
   //значения браузера

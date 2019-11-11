@@ -51,7 +51,7 @@ class AgencyProfileTourClass extends React.Component {
         for (let i = 0; i < profile.tags.length; i++) {
             tagsUnselected[i] = {
                 key: profile.tags[i].id,
-                value: profile.tags[i].local.name
+                value: profile.tags[i].tagLoc.name
             }
         }
         this.state = {
@@ -149,7 +149,7 @@ class AgencyProfileTourClass extends React.Component {
             for (let i = 0; i < profile.tags.length; i++) {
                 tagsUnselected[i] = {
                     key: profile.tags[i].id,
-                    value: profile.tags[i].local.name
+                    value: profile.tags[i].tagLoc.name
                 }
             }
             let tourSave = {
@@ -243,14 +243,14 @@ class AgencyProfileTourClass extends React.Component {
                     if (profile.tags[i].id === element.tags[k]) {
                         tagsSelected.push({
                             key: profile.tags[i].id,
-                            value: profile.tags[i].local.name
+                            value: profile.tags[i].tagLoc.name
                         });
                         k = element.tags.length;
                     }
                     if (k === element.tags.length - 1) {
                         tagsUnselected.push({
                             key: profile.tags[i].id,
-                            value: profile.tags[i].local.name
+                            value: profile.tags[i].tagLoc.name
                         });
                     }
                 }
