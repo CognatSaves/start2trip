@@ -803,7 +803,8 @@ class HeaderClass extends React.Component {
                     <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/routes/"} className="border-bottom routes" >{textInfo.burgerMenu.services[0]}</Link>
                     <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/tours/"} className="border-bottom tours" >{textInfo.burgerMenu.services[1]}</Link>
                     <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/places/"} className="border-bottom places" >{textInfo.burgerMenu.services[2]}</Link>
-                    <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/guides/"} className="guides" >{textInfo.burgerMenu.services[3]}</Link>
+                    <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/guides/"} className="border-bottom guides" >{textInfo.burgerMenu.services[3]}</Link>
+                    <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/drivers-page/"} className="drivers" >{textInfo.burgerMenu.services[4]}</Link>
                   </div>
 
                   <text className="col-11 pt-4 pb-2">{textInfo.burgerMenu.titlesName[2]}</text>

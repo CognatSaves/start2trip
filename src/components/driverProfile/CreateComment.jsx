@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import requests from '../../config';
 
 import AvatarEditorCustom from '../usefulСomponents/AvatarEditorCustom'
+import DatePicker from 'material-ui/DatePicker';
 import { addComment } from '../../redusers/ActionComments';
 // import tempPicture from './pictures/drivers_body_photo.png'
 
@@ -25,6 +26,7 @@ class CreateCommentClass extends React.Component {
             userName: "",
             userKey: "",
             newText:"",
+            date:new Date(),
             trySend:false,
             
         };
@@ -141,6 +143,8 @@ class CreateCommentClass extends React.Component {
         commentForm.append('userName', this.state.userName );
         commentForm.append('targetType', this.props.targetType);
         commentForm.append('targetId', targetId);
+        commentForm.append('date', this.state.date);
+
         commentForm.append('avatar', imgFile);
 
         const request = new XMLHttpRequest();
@@ -157,6 +161,7 @@ class CreateCommentClass extends React.Component {
                     userName: "",
                     userKey: "",
                     newText:"",
+                    date:new Date(),
                 })
                 thenFuncGlobal(that);
             } else {
@@ -217,7 +222,11 @@ class CreateCommentClass extends React.Component {
                                 <div className='d-flex align-items-center justify-content-end '>
                                     <div className="pr-3">
                                         {isSuperUser &&
+                                        <>
+                                            <DatePicker onChange={(nul, date) => { this.setState({ date: date }); }}
+                                            floatingspanText="Дата комментария" className="" value={this.state.date} />
                                             <input value={this.state.userKey} style={this.state.trySend&&this.state.userKey === ""?{background:"#a52525c7"}:{}} placeholder={textInfo.key} onChange={(e) => { this.setState({ userKey: e.target.value }) }} type="text" />
+                                            </>
                                         }
                                     </div>
 

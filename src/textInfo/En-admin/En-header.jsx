@@ -20,7 +20,7 @@ const header = {
         burgerEnter: "Login or create an Account",
         titlesName: ["Settings", "Services", "Profile", "Useful links"],
         settingsDrop: ["Change language", "Change currency"],
-        services: ["Trips", "Tours", "Places","Guides"],
+        services: ["Trips", "Tours", "Places","Guides","Drivers"],
         usefulLinks: ["About Service", "Affiliate program", "License Agreement", "Help", "Contacts"],
     },
     toPageStart: 'Go to top',
