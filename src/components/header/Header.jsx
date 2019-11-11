@@ -25,6 +25,7 @@ import backpackIcon from '../media/backpack.svg'
 import dealIcon from '../media/deal.svg'
 import wheelIcon from '../media/wheel.svg'
 
+import HeaderLinkRender from './HeaderLinkRender'
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 import RenderModalRegistration from './RenderModalRegistration'
@@ -719,6 +720,10 @@ class HeaderClass extends React.Component {
         value: textInfo.menuElements[4]
       },
       {
+        to: "/drivers-page/",
+        value: textInfo.menuElements[5]
+      },
+      {
         to: "/places/",
         value: textInfo.menuElements[2]
       },
@@ -852,36 +857,7 @@ class HeaderClass extends React.Component {
             </div>
             <div className="d-flex align-items-center justify-content-end col-xl-7 col-lg-9 col-md-8 col-sm-6 col-6">
               <div className="headerButtonMass d-flex align-self-stretch justify-content-end col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 p-0">
-                {
-                  buttonMassElements.map((element, index) => {
-                    let myClass = "";
-                    let url = this.props.history.location.pathname.split("/");
-                    let result = url[2]
-                    if (result === undefined) {
-                      myClass = "buttonMassLink align-self-stretch"
-                    } else {
-                      result = result.split("-")
-                      if (("/" + result[0] + "/") === element.to) {
-                        myClass = "buttonMassLink align-self-stretch buttonMassLink_active"
-                      } else {
-                        if (element.to==="/" && result[0] === "" ) {
-                          myClass = "buttonMassLink align-self-stretch buttonMassLink_active"
-                        } else {
-                          myClass = "buttonMassLink align-self-stretch"
-                        }
-
-                      }
-                    }
-
-                    return (
-                      <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + element.to}
-                        className={myClass}>{element.value}</Link>
-                    )
-                  }
-
-
-                  )
-                }
+                <HeaderLinkRender array={buttonMassElements} history={this.props.history} more={textInfo.burgerMenu.more} />
               </div>
               <div className="headerSelect d-flex align-items-center justify-content-end col-3">
                 <Dropdown setActiveFromChild="true" isOpen={this.state.dropdownOpen} toggle={this.toggleDropdownOpen} className={availableCurrencies.length > 0 ? "selectGeneral" : "selectGeneral preloadHiddenBlock"}>

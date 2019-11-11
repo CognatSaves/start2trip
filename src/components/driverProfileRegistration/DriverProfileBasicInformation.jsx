@@ -66,7 +66,8 @@ class DriverProfileBasicInformationClass extends React.Component {
                 city: profile.hometown.length !== 0 ? (profile.hometown + ', ' + profile.homecountry) : "",
                 workPhone: profile.workPhone,
                 dataAbout: profile.dataAbout
-            }
+            },
+            isWorkPhone:true,
         }
     }
 
@@ -161,7 +162,13 @@ class DriverProfileBasicInformationClass extends React.Component {
     }
     formSubmit = (event) => {
         event.preventDefault();
-        this.applyChanges();
+        if(this.state.profileData.workPhone !== "+" && this.state.profileData.workPhone !== ""){
+            this.setState({isWorkPhone:true})
+            this.applyChanges();
+        }else{
+            this.setState({isWorkPhone:false})
+        }
+       
     }
     handleChange = (event, index, value) => {
         this.chipData = this.state.chipData;
@@ -238,7 +245,7 @@ class DriverProfileBasicInformationClass extends React.Component {
                                 <label htmlFor="basicInfoTelNumber" className="d-md-block d-none col-2">{textPage.basicInfoTelNumber.label}:</label>
                                 <ReactTelInput
                                     defaultCountry={this.props.storeState.isoCountryMap}
-                                    classNames="myPhoneInput"
+                                    classNames={this.state.isWorkPhone?"myPhoneInput":"myPhoneInput errorColor"}
                                     flagsImagePath={flags}
                                     onChange={(telNumber, selectedCountry) => { this.inputChange(telNumber, 'workPhone'); }}
                                     initialValue={this.state.profileData.workPhone}
