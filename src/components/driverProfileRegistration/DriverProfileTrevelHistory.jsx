@@ -113,9 +113,14 @@ const TravelHistoryElementInnerPart = (props) => {
                                     </span>
                                     {
                                         !isHistory &&
-                                        <Link className="historyBodyBottomMultiUserElLink" to={'/driverConfirmation/' + selectedElement.id + '-' + that.props.globalReduser.profile._id + '-true'}>
-                                            {textPage.confirmed}
-                                        </Link>
+                                        <>
+                                            <Link className="historyBodyBottomMultiUserElLink" to={'/driverConfirmation/' + selectedElement.id + '-' + that.props.globalReduser.profile._id + '-true'}>
+                                                {textPage.confirm}
+                                            </Link>
+                                            <Link className="historyBodyBottomMultiUserElLink" to={'/driverConfirmation/' + selectedElement.id + '-' + that.props.globalReduser.profile._id + '-false'}>
+                                                {textPage.refuse}
+                                            </Link>
+                                        </>
                                     }
                                 </>
                                 :
