@@ -7,8 +7,11 @@ import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redu
 import Header from '../header/Header';
 import Cookies from 'universal-cookie';
 import { changeLanguagePart } from '../../redusers/Action';
+import Checkbox from '@material-ui/core/Checkbox';
 const cookies = new Cookies();
 
+let answerVariants = ['Сломал машину.', 'Помню этого персонажа по прошлой поездке. Больше мне такого счастья не надо.', 'Опять забыл поставить флажок "Не работаю". Не стукайте, я исправлюсь!', 
+    'У меня сегодня выходной, вне зависимости, указал я его или нет.', 'Не люблю таких (угадай каких, в меру своей испорченности)', 'Ничего из вышеперечисленного'];
 class DriverConfirmationClass extends React.Component {
     constructor(props) {
         super(props);
@@ -27,7 +30,9 @@ class DriverConfirmationClass extends React.Component {
                 id: id,
                 carrierId: carrierId,
                 confirmation: confirmation,
-                notConfirmed: true
+                notConfirmed: true,
+                selectedIndex:answerVariants.length-1,
+                textValue: ''
             }
             this.sendRequest(id, carrierId, confirmation);
         } else {
@@ -38,7 +43,9 @@ class DriverConfirmationClass extends React.Component {
                 id: id,
                 carrierId: carrierId,
                 confirmation: confirmation,
-                notConfirmed: true
+                notConfirmed: true,
+                selectedIndex:answerVariants.length-1,
+                textValue: ''
             }
 
 
@@ -49,12 +56,13 @@ class DriverConfirmationClass extends React.Component {
         this.props.dispatch(changeLanguagePart(false, false))//эта ересь сообщает шапке, что мы валим из пользователя, т.е. работает 1я партия языков, но ломать адрес не надо
     }
     sendRequest = (id, carrierId, confirmation) => {
-
+        debugger;
         let body = JSON.stringify({
             id: id,
             carrierId: carrierId,
             frontendAddress: requests.frontendAddress,
-            confirmation: confirmation
+            confirmation: confirmation,
+            cancelCause:this.state.textValue
         });
         let that = this;
         fetch(requests.carrierConfirmation, {
@@ -145,7 +153,7 @@ class DriverConfirmationClass extends React.Component {
                                                     </>
                                                     :
                                                     <>
-                                                        <div className="forgotPasswordContent forgotPasswordContent d-flex flex-column align-items-center py-md-4 py-2 mb-0 mb-5 col-md-9 col-11">
+                                                        <div className="forgotPasswordContent d-flex flex-column align-items-center py-md-4 py-2 mb-0 mb-5 col-md-9 col-11">
                                                             <div className="d-flex flex-column justify-content-center align-items-center">
                                                                 <span className="pt-2 pb-1">{textInfo.bad.header}</span>
                                                                 <span1>
@@ -174,7 +182,29 @@ class DriverConfirmationClass extends React.Component {
                                                             <div className="d-flex flex-column justify-content-center align-items-center col-md-5 col-12">
                                                                 <p>{'* ' + textInfo.infoBlock}</p>
                                                             </div>
+                                                            <div className="d-flex flex-column">
+                                                                <div>
+                                                                    Укажите, если это не приведёт к коллапсу вашей жизнедеятельности, причину отказа от поездки.
+                                                                </div>
+                                                                <div className="d-flex flex-column">
+                                                                {
+                                                                    answerVariants.map((element, index)=>{
+                                                                        let checkboxId = element + '-'+index;
+                                                                        let isChecked = (index===this.state.selectedIndex);
+                                                                        return (
+                                                                            <div className="d-flex flex-row align-items-center ">
+                                                                                <Checkbox id={checkboxId} checked={isChecked} 
+                                                                                    onChange={()=>{debugger; this.setState({selectedIndex:index, textValue: index!==answerVariants.length-1 ? answerVariants[index] : ''})}} />
+                                                                                <label style={{marginBottom: 0}} htmlFor={checkboxId}>{answerVariants[index]}</label>
+                                                                            </div>
+                                                                        )
+                                                                    })
+                                                                }
+                                                                </div>
+                                                                <textarea key={'textarea'+this.state.selectedIndex} value={this.state.textValue} onChange={(e)=> {this.setState({textValue: e.target.value})}}/>
+                                                            </div>
                                                         </div>
+                                                        
                                                     </>
                                             }
                                         </>

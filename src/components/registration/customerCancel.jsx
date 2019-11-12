@@ -10,14 +10,19 @@ import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redu
 import Cookies from 'universal-cookie';
 import { Link } from 'react-router-dom';
 import { changeLanguagePart } from '../../redusers/Action';
+import Checkbox from '@material-ui/core/Checkbox';
 const cookies = new Cookies();
 
+let answerVariants = ['Водитель не очень', 'Сделал заказ по приколу, не благодарите', 'Решил, что дома лучше. Оказался прав.', 
+    'Протрезвел, и решил не брать кредит на ваши поездки', 'Сам водитель, проверил работоспособность', 'Ничего из вышеперечисленного'];
 class customerCancelClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             falde: null,
             onClickSpan: false,
+            selectedIndex:answerVariants.length-1,
+            textValue: ''
         };
         props.dispatch(changeLanguagePart(false, true)); //эта ересь сообщает шапке, что мы в админке за пользователя, т.е. работает 1я партия языков, но ломать адрес не надо
     }
@@ -33,9 +38,11 @@ class customerCancelClass extends React.Component {
     }
 
     sendMessege = () => {
+        debugger;
         let body = JSON.stringify({
             id: this.props.match.params.id,
-            clientId: this.props.match.params.clientId
+            clientId: this.props.match.params.clientId,
+            cancelCause: this.state.textValue
         });
         let that = this;
         
@@ -119,12 +126,34 @@ class customerCancelClass extends React.Component {
                         {this.state.falde !== null || this.state.onClickSpan ?
                             <Link to={"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + "/"}>{textInfo.goHome}</Link>
                             :
-                            <div className="d-flex justify-content-between align-items-center col-md-4 col-12">
+                            <div className="customerCancelFormSpanDetector d-flex justify-content-between align-items-center col-md-4 col-12">
                                 <span onClick={() => { this.sendMessege(); this.setState({ onClickSpan: true }) }}>{textInfo.ok}</span>
                                 <span onClick={() => { this.setState({ onClickSpan: true }) }}>{textInfo.cancel}</span>
                             </div>
                         }
                         <text className="col-md-9 col-12 p-0" style={this.state.falde ? { color: "red" } : { color: "green" }}>{this.state.falde === null ? "" : this.state.falde ? textInfo.error : textInfo.success}</text>
+                        <div className="d-flex flex-column">
+                            <div>
+                                Укажите, если это не приведёт к коллапсу вашей жизнедеятельности, причину отказа от поездки.
+                            </div>
+                            <div className="d-flex flex-column">
+                            {
+                                answerVariants.map((element, index)=>{
+                                    let checkboxId = element + '-'+index;
+                                    let isChecked = (index===this.state.selectedIndex);
+                                    return (
+                                        <div className="d-flex flex-row align-items-center">
+                                            <Checkbox id={checkboxId} checked={isChecked} 
+                                                onChange={()=>{debugger; this.setState({selectedIndex:index, textValue: index!==answerVariants.length-1 ? answerVariants[index] : ''})}} />
+                                            <label style={{marginBottom: 0}} htmlFor={checkboxId}>{answerVariants[index]}</label>
+                                        </div>
+                                    )
+                                })
+                            }
+                            </div>
+                            <textarea key={'textarea'+this.state.selectedIndex} value={this.state.textValue} onChange={(e)=> {this.setState({textValue: e.target.value})}}/>
+                        </div>
+                    
                     </div>
                 </div>
             </>
