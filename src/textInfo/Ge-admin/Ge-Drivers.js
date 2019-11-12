@@ -296,7 +296,9 @@ const driverProfileRegistration = {
         placesLeft:"დარჩა ადგილები",
         users:"მომხმარებლები",
         notConfirmed:"არა დადასტურებული",
+        confirm:"დაადასტუროს",
         confirmed:"დაადასტურა",
+        refuse: 'უარი თქვან',
         isСonfirmed:"დაადასტურა?",
     },
     DriverProfileHistory: {

@@ -299,8 +299,10 @@ const driverProfileRegistration = {
         placesLeft:"Places left",
         users:"Users",
         notConfirmed:"Not confirmed",
+        confirm:"Confirm",
         confirmed:"Confirmed",
-        isСonfirmed:"Is confirmed ?",
+        refuse: 'Refuse',
+        isСonfirmed:"Is confirmed?",
     },
     DriverProfileHistory: {
         upcoming: "Upcoming",
