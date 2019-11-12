@@ -32,7 +32,7 @@ class GuidesListElementClass extends React.Component {
         let linkAddress = "/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + `/guides/${element.userSlug}/`;
         return (
             <div className={this.props.placeListElementClass ? this.props.placeListElementClass : "col-lg-3 col-md-4 col-sm-6 col-12 p-2 pb-3"} >
-                <div className={"drivers_block_element d-flex p-0 flex-column"} id={index}>
+                <div className={"drivers_block_element d-flex p-0 flex-column h-100"} id={index}>
 
                     <div className="driversBlock_carImage" style={{ background: "url(" + (element.image ? (requests.serverAddressImg + element.image) : '') + ") no-repeat", backgroundSize: "cover", width: '100%' }}>
                         <Link to={linkAddress} className="driversBlock_carBlackout">

@@ -191,10 +191,7 @@ class CreateCommentClass extends React.Component {
 
         let isSuperUser = false
         let userId = cookies.get('userId', { path: "/" })
-        if (("5d8c748f2af67f052213a249" === userId
-            || "5cc6b6bbab3b7e111009d58e" === userId
-            || "5d3015c437976716c39c488d" === userId
-            || "5d654ed89523424ba6a6b333" === userId)) {
+        if (requests.isSuperUser(userId)) {
             isSuperUser = true
         }
 

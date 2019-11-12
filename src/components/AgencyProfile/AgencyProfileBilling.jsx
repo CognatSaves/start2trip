@@ -101,6 +101,7 @@ class DriverProfileBillingClass extends React.Component {
                         console.log(data);
                         that.props.dispatch(setTransactionData(data));
                     }
+                    thenFuncGlobal(that)
                 })
                 .catch(function (error) {
 

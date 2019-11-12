@@ -1,6 +1,6 @@
 const serverAddress = 'https://tripfer.com:41337'; //'http://localhost:1337'; //
 const frontendAddress = 'https://tripfer.com'; //'http://localhost:3000'; //
-const serverAddressImg = 'https://tripfer.com';//'http://localhost:1337'; //
+const serverAddressImg = 'http://localhost:1337'; //'https://tripfer.com';//
 
 const serverRegistrationRequest = serverAddress + '/auth/local/register';
 const serverAuthorizationRequest = serverAddress + '/auth/local';
@@ -8,6 +8,12 @@ const facebookRequest = serverAddress + '/connect/facebook';
 const googleRequest = serverAddress + '/connect/google';
 const meRequest = serverAddress + '/users/me/auth';
 const routeMap = "(blr-en|blr-ru|rus-en|rus-ru|geo-en|geo-ru|arm-en|arm-ru|aze-en|aze-ru|tur-en|tur-ru|isr-en|isr-ru|esp-ru|esp-en)";
+const isSuperUser = (userId)=> (
+   "5d8c748f2af67f052213a249"=== userId || "5cc6b6bbab3b7e111009d58e"=== userId 
+|| "5d56c865bfa40751352b55c8"=== userId || "5d3015c437976716c39c488d"=== userId
+|| "5dca674ebe7a224f4cff4ba0"=== userId || "5dca676ebe7a224f4cff4ba1"=== userId
+|| "5dca6786be7a224f4cff4ba2"=== userId || "5dca67dbbe7a224f4cff4ba3"=== userId
+|| "5d654ed89523424ba6a6b333"=== userId || "5dca6617be7a224f4cff4b9f"=== userId )
 
 const profileRequest = serverAddress + '/users/me/profile'; //получение данных профиля в админке
 const profileUpdateRequest = serverAddress + "/users/me/update"; //сохранение данных профиля(базовых данных - имя и т.д.) в админке
@@ -136,5 +142,6 @@ export default {
     getPromoCode:getPromoCode,
 
     getDriversList:getDriversList,
-    showDriverPage:showDriverPage
+    showDriverPage:showDriverPage,
+    isSuperUser:isSuperUser,
 };

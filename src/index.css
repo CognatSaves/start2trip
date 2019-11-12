@@ -95,13 +95,7 @@ body {
     padding: 0 10px !important;
 }
 
-.p-0 {
-    padding: 0px !important;
-}
 
-.pl-0 {
-    padding-left: 0px !important;
-}
 
 .pl-1,
 .px-1 {
@@ -118,9 +112,7 @@ body {
     padding-left: 1rem !important;
 }
 
-.pr-0 {
-    padding-right: 0px !important;
-}
+
 
 .pr-1,
 .px-1 {
@@ -137,9 +129,7 @@ body {
     padding-right: 3rem !important;
 }
 
-.pt-0 {
-    padding-top: 0px !important;
-}
+
 
 .pt-2,
 .py-2 {
@@ -169,9 +159,7 @@ body {
     padding: .5rem !important;
 }
 
-.pb-0 {
-    padding-bottom: 0px !important;
-}
+
 
 .pb-1,
 .py-1 {
@@ -191,9 +179,24 @@ body {
     padding: 1.5rem !important;
 }
 
-.mb-0,
-.my-0 {
-    margin-bottom: 0 !important;
+.pb-0 {
+    padding-bottom: 0px !important;
+}
+
+.pt-0 {
+    padding-top: 0px !important;
+}
+
+.pr-0 {
+    padding-right: 0px !important;
+}
+
+.p-0 {
+    padding: 0px !important;
+}
+
+.pl-0 {
+    padding-left: 0px !important;
 }
 
 .mb-1,
@@ -221,9 +224,7 @@ body {
     margin-bottom: 3rem !important;
 }
 
-.m-0 {
-    margin: 0 !important;
-}
+
 
 .ml-2,
 .mx-2 {
@@ -270,6 +271,15 @@ body {
     margin-top: 3rem !important;
 }
 
+.m-0 {
+    margin: 0 !important;
+}
+
+.mb-0,
+.my-0 {
+    margin-bottom: 0 !important;
+}
+
 @media (min-width: 1200px) {
     .container {
         max-width: 1200px !important;
@@ -283,29 +293,33 @@ body {
         margin-right: .5rem !important;
     }
 
-    .mt-md-0,
-    .my-md-0 {
-        margin-top: 0 !important;
-    }
+
 
     .p-md-2 {
         padding: .5rem !important;
 
     }
 
-    .pb-md-0, .py-md-0 {
-        padding-top: 0!important;
-        padding-bottom: 0!important;
-    }
-}
-    @media (max-width: 450px) {
-        #omni_widget_iframe_3112-5mvjsjtu {
-            right: 8px !important;
-            bottom: 63px !important;
-        }
+    .pb-md-0,
+    .py-md-0 {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
     }
 
-    /*
+    .mt-md-0,
+    .my-md-0 {
+        margin-top: 0 !important;
+    }
+}
+
+@media (max-width: 450px) {
+    #omni_widget_iframe_3112-5mvjsjtu {
+        right: 8px !important;
+        bottom: 63px !important;
+    }
+}
+
+/*
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }*/

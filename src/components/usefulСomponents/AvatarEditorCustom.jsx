@@ -9,6 +9,7 @@ import { isMobile, isMobileOnly } from 'react-device-detect';
 import requests from '../../config';
 import Dialog from '@material-ui/core/Dialog';
 import './AvatarEditorCustom.css'
+import styled from 'styled-components';
 
 import Slider from '@material-ui/core/Slider';
 import AvatarEditor from 'react-avatar-editor'
@@ -140,6 +141,7 @@ class AvatarEditorCustomClass extends React.Component {
                                 <input type="file" id="addFile" style={{ display: "none" }} onChange={this._handleImageChange} />
                             </div>
                         }
+                        
                         <span className="avatarEditorCustomClose" onClick={() => { this.props.imgModalShow() }} />
                     </div>
                     <div className="d-flex flex-column justify-content-center  align-items-center px-md-5 py-2 px-1">
