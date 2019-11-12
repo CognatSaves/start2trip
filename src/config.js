@@ -1,6 +1,6 @@
 const serverAddress = 'https://tripfer.com:41337'; //'http://localhost:1337'; //
 const frontendAddress = 'https://tripfer.com'; //'http://localhost:3000'; //
-const serverAddressImg = 'http://localhost:1337'; //'https://tripfer.com';//
+const serverAddressImg ='https://tripfer.com';// 'http://localhost:1337'; //
 
 const serverRegistrationRequest = serverAddress + '/auth/local/register';
 const serverAuthorizationRequest = serverAddress + '/auth/local';

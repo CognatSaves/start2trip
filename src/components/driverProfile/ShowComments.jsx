@@ -198,7 +198,7 @@ class ShowCommentsClass extends React.Component {
                             let date = element.date ? new Date(element.date) : new Date(element.createdAt);
 
                             return (
-                                <div className="col-lg-3 col-md-6 col-12 p-1">
+                                <div className="col-md-6 col-12 p-1">
                                     <div className="commentBlock_comments  commentBlock_element" key={element + "/" + index} onClick={(e) => { if (!isMobileOnly) { this.setState({ element: element, date: date, openModal: true }) } }} >
                                         <div className="commentBlock_valueBlock d-flex flex-column">
                                             <div className="commentBlock_picture d-flex pb-2">
