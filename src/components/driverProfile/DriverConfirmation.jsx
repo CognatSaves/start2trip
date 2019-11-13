@@ -194,8 +194,8 @@ class DriverConfirmationClass extends React.Component {
                                                                         return (
                                                                             <div className="d-flex flex-row align-items-center ">
                                                                                 <Checkbox id={checkboxId} checked={isChecked} 
-                                                                                    onChange={()=>{ this.setState({selectedIndex:index, textValue: index!==answerVariants.length-1 ? answerVariants[index] : ''})}} />
-                                                                                <label style={{marginBottom: 0}} htmlFor={checkboxId}>{answerVariants[index]}</label>
+                                                                                    onChange={()=>{ this.setState({selectedIndex:index, textValue: index!==textInfo.answerVariants.length-1 ? textInfo.answerVariants[index] : ''})}} />
+                                                                                <label style={{marginBottom: 0}} htmlFor={checkboxId}>{textInfo.answerVariants[index]}</label>
                                                                             </div>
                                                                         )
                                                                     })
