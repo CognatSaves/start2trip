@@ -44,6 +44,9 @@ const drivers = {
             price: 'price'
         },
         driverConfirmation: {
+    headerText:"Indicate, if this does not lead to the collapse of your life, the reason for refusing to travel.",
+    answerVariants : ['The car broke down.', 'Health problems.', 'Again I forgot to check the box "I don’t work" (I forgot to put the weekend).', 
+    'Not satisfied with the start time of the trip.', 'Not satisfied with the route.', 'None of the above'],
             good: {
                 header: 'You have confirmed the order!',
                 header2: ['Everything is fine, you have confirmed the trip',

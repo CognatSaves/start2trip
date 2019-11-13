@@ -3,6 +3,9 @@
         lang: 'ENG',
         createComment: {
             yourCommentPlaceholder: "Your feedback",
+            yourAnswerPlaceholder: "Your Answer",
+            answer:"Answer",
+            more:"More",
             createCommentString:"Leave your review",
             createCommentLinkHome:"Go to Main page",
             infoText: 'Your review will become visible after moderation',

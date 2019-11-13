@@ -21,12 +21,14 @@ const registration = {
                 sendRequest: 'Send data'
         },
         customerCancel: {
+                headerText: "Indicate, if this does not lead to the collapse of your life, the reason for refusing to travel.",
+                answerVariants: ['Found cheaper.', 'Changed plans.', 'None of the above'],
                 headerText: "Are you sure you want to cancel the order?",
                 ok: "Yes",
                 cancel: "No",
                 error: "An error occurred, the trip was already canceled or the trip was not created. \n Try again or contact us.",
                 success: "You have successfully canceled the trip!",
-                goHome:"Go to Home page"
+                goHome: "Go to Home page"
         }
 }
 export default registration;

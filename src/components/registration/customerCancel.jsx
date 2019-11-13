@@ -6,22 +6,21 @@ import requests from '../../config'
 
 import Header from '../header/Header'
 import CreateComment from '../driverProfile/CreateComment';
-import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
+import { startRefresherGlobal, thenFuncGlobal, catchFuncGlobal, } from '../../redusers/GlobalFunction'
 import Cookies from 'universal-cookie';
 import { Link } from 'react-router-dom';
 import { changeLanguagePart } from '../../redusers/Action';
 import Checkbox from '@material-ui/core/Checkbox';
 const cookies = new Cookies();
 
-let answerVariants = ['Водитель не очень', 'Сделал заказ по приколу, не благодарите', 'Решил, что дома лучше. Оказался прав.', 
-    'Протрезвел, и решил не брать кредит на ваши поездки', 'Сам водитель, проверил работоспособность', 'Ничего из вышеперечисленного'];
+
 class customerCancelClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             falde: null,
             onClickSpan: false,
-            selectedIndex:answerVariants.length-1,
+            selectedIndex: this.props.storeState.languageTextMain.registration.customerCancel.answerVariants.length - 1,
             textValue: ''
         };
         props.dispatch(changeLanguagePart(false, true)); //эта ересь сообщает шапке, что мы в админке за пользователя, т.е. работает 1я партия языков, но ломать адрес не надо
@@ -45,7 +44,7 @@ class customerCancelClass extends React.Component {
             cancelCause: this.state.textValue
         });
         let that = this;
-        
+
         console.log(requests.customerCancel);
         startRefresherGlobal(this)
         fetch(requests.customerCancel, {
@@ -134,26 +133,27 @@ class customerCancelClass extends React.Component {
                         <text className="col-md-9 col-12 p-0" style={this.state.falde ? { color: "red" } : { color: "green" }}>{this.state.falde === null ? "" : this.state.falde ? textInfo.error : textInfo.success}</text>
                         <div className="d-flex flex-column">
                             <div>
-                                Укажите, если это не приведёт к коллапсу вашей жизнедеятельности, причину отказа от поездки.
+                                {textInfo.headerText}
+
                             </div>
                             <div className="d-flex flex-column">
-                            {
-                                answerVariants.map((element, index)=>{
-                                    let checkboxId = element + '-'+index;
-                                    let isChecked = (index===this.state.selectedIndex);
-                                    return (
-                                        <div className="d-flex flex-row align-items-center">
-                                            <Checkbox id={checkboxId} checked={isChecked} 
-                                                onChange={()=>{debugger; this.setState({selectedIndex:index, textValue: index!==answerVariants.length-1 ? answerVariants[index] : ''})}} />
-                                            <label style={{marginBottom: 0}} htmlFor={checkboxId}>{answerVariants[index]}</label>
-                                        </div>
-                                    )
-                                })
-                            }
+                                {
+                                    textInfo.answerVariants.map((element, index) => {
+                                        let checkboxId = element + '-' + index;
+                                        let isChecked = (index === this.state.selectedIndex);
+                                        return (
+                                            <div className="d-flex flex-row align-items-center">
+                                                <Checkbox id={checkboxId} checked={isChecked}
+                                                    onChange={() => { debugger; this.setState({ selectedIndex: index, textValue: index !== textInfo.answerVariants.length - 1 ? textInfo.answerVariants[index] : '' }) }} />
+                                                <label style={{ marginBottom: 0 }} htmlFor={checkboxId}>{textInfo.answerVariants[index]}</label>
+                                            </div>
+                                        )
+                                    })
+                                }
                             </div>
-                            <textarea key={'textarea'+this.state.selectedIndex} value={this.state.textValue} onChange={(e)=> {this.setState({textValue: e.target.value})}}/>
+                            <textarea key={'textarea' + this.state.selectedIndex} value={this.state.textValue} onChange={(e) => { this.setState({ textValue: e.target.value }) }} />
                         </div>
-                    
+
                     </div>
                 </div>
             </>

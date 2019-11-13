@@ -10,8 +10,7 @@ import { changeLanguagePart } from '../../redusers/Action';
 import Checkbox from '@material-ui/core/Checkbox';
 const cookies = new Cookies();
 
-let answerVariants = ['Сломал машину.', 'Помню этого персонажа по прошлой поездке. Больше мне такого счастья не надо.', 'Опять забыл поставить флажок "Не работаю". Не стукайте, я исправлюсь!', 
-    'У меня сегодня выходной, вне зависимости, указал я его или нет.', 'Не люблю таких (угадай каких, в меру своей испорченности)', 'Ничего из вышеперечисленного'];
+
 class DriverConfirmationClass extends React.Component {
     constructor(props) {
         super(props);
@@ -31,7 +30,7 @@ class DriverConfirmationClass extends React.Component {
                 carrierId: carrierId,
                 confirmation: confirmation,
                 notConfirmed: true,
-                selectedIndex:answerVariants.length-1,
+                selectedIndex:this.props.storeState.languageTextMain.drivers.driverConfirmation.answerVariants.length-1,
                 textValue: ''
             }
             this.sendRequest(id, carrierId, confirmation);
@@ -44,7 +43,7 @@ class DriverConfirmationClass extends React.Component {
                 carrierId: carrierId,
                 confirmation: confirmation,
                 notConfirmed: true,
-                selectedIndex:answerVariants.length-1,
+                selectedIndex:this.props.storeState.languageTextMain.drivers.driverConfirmation.answerVariants.length-1,
                 textValue: ''
             }
 
@@ -131,7 +130,7 @@ class DriverConfirmationClass extends React.Component {
                                             {
                                                 this.state.heAgrees ?
                                                     <>
-                                                        <div className="forgotPasswordContent forgotPasswordContent d-flex flex-column align-items-center col-md-7 col-11">
+                                                        <div style={{padding:"20px"}} className="forgotPasswordContent forgotPasswordContent d-flex flex-column align-items-center col-md-7 col-11">
                                                             <div className="d-flex flex-column justify-content-center align-items-center">
                                                                 <span className="pt-2 pb-1">{textInfo.good.header}</span>
                                                                 <span1>
@@ -184,18 +183,19 @@ class DriverConfirmationClass extends React.Component {
                                                             </div>
                                                             <div className="d-flex flex-column">
                                                                 <div>
-                                                                    Укажите, если это не приведёт к коллапсу вашей жизнедеятельности, причину отказа от поездки.
+                                                                {textInfo.headerText}
+                                                                    
                                                                 </div>
                                                                 <div className="d-flex flex-column">
                                                                 {
-                                                                    answerVariants.map((element, index)=>{
+                                                                    textInfo.answerVariants.map((element, index)=>{
                                                                         let checkboxId = element + '-'+index;
                                                                         let isChecked = (index===this.state.selectedIndex);
                                                                         return (
                                                                             <div className="d-flex flex-row align-items-center ">
                                                                                 <Checkbox id={checkboxId} checked={isChecked} 
-                                                                                    onChange={()=>{debugger; this.setState({selectedIndex:index, textValue: index!==answerVariants.length-1 ? answerVariants[index] : ''})}} />
-                                                                                <label style={{marginBottom: 0}} htmlFor={checkboxId}>{answerVariants[index]}</label>
+                                                                                    onChange={()=>{debugger; this.setState({selectedIndex:index, textValue: index!==textInfo.answerVariants.length-1 ? textInfo.answerVariants[index] : ''})}} />
+                                                                                <label style={{marginBottom: 0}} htmlFor={checkboxId}>{textInfo.answerVariants[index]}</label>
                                                                             </div>
                                                                         )
                                                                     })

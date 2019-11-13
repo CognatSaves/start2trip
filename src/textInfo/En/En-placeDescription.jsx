@@ -4,6 +4,9 @@ let placeDescription = {
     },
     placeProgramm: {
         yourCommentPlaceholder: "Your feedback",
+        yourAnswerPlaceholder: "Your Answer",
+        answer:"Answer",
+        more:"More",
         monthArray: ["January", "February", "March",
             "April", "May", "June", "July",
             "August", "September", "October",
