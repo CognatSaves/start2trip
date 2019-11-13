@@ -55,7 +55,7 @@ class DriverConfirmationClass extends React.Component {
         this.props.dispatch(changeLanguagePart(false, false))//эта ересь сообщает шапке, что мы валим из пользователя, т.е. работает 1я партия языков, но ломать адрес не надо
     }
     sendRequest = (id, carrierId, confirmation) => {
-        debugger;
+        
         let body = JSON.stringify({
             id: id,
             carrierId: carrierId,
@@ -194,8 +194,8 @@ class DriverConfirmationClass extends React.Component {
                                                                         return (
                                                                             <div className="d-flex flex-row align-items-center ">
                                                                                 <Checkbox id={checkboxId} checked={isChecked} 
-                                                                                    onChange={()=>{debugger; this.setState({selectedIndex:index, textValue: index!==textInfo.answerVariants.length-1 ? textInfo.answerVariants[index] : ''})}} />
-                                                                                <label style={{marginBottom: 0}} htmlFor={checkboxId}>{textInfo.answerVariants[index]}</label>
+                                                                                    onChange={()=>{ this.setState({selectedIndex:index, textValue: index!==answerVariants.length-1 ? answerVariants[index] : ''})}} />
+                                                                                <label style={{marginBottom: 0}} htmlFor={checkboxId}>{answerVariants[index]}</label>
                                                                             </div>
                                                                         )
                                                                     })

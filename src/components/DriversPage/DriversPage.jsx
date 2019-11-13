@@ -150,7 +150,7 @@ class DriversPageClass extends React.Component {
       this.props.globalReduser.findCountryNameByISO(this, cookies.get('country', { path: '/' }), cookies.get('userLang', { path: '/' }))
       : '';
     //let name = findSelectedDirectionName(this.props.guidesState.directions, selectedDirection);
-    let helmet = this.props.storeState.languageTextMain.helmets.guides;
+    let helmet = this.props.storeState.languageTextMain.helmets.driverPage;
 
     //let a = this.props.placesState.placesList;
     let directions = [];

@@ -111,7 +111,7 @@ class AgencyProfileTravelHistoryClass extends React.Component {
                             </div>
                             <div className="d-flex flex-column historyBodyElement ">
                                 <h5>{textInfo.tripId}</h5>
-                                <span>{element.id}</span>
+                                <span>{element.simpleId ? element.simpleId : element.id}</span>
                             </div>
                             <div className="d-flex flex-column historyBodyElement ">
                                 <h5>{textInfo.drivercar}</h5>

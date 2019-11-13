@@ -18,6 +18,10 @@ const helmets  = {
                 title: ['Guide ', ', profile data, cars, list of tours.'],
                 description: ['Guide page ', ', profile, cars, list of tours']
             },
+            driver: {
+                title: ['Driver ', ', profile data, cars.'],
+                description: ['Driver page ', ', profile, cars, comments']
+            },
             agency: {
                 title: ['Agency ', ', organization description, list of tours.'],
                 description: ['Agency page ', ', description, list of tours']
@@ -102,6 +106,12 @@ const helmets  = {
             country:{
                 title: ['Guides ', ', ratings, the number of tours provided.'],
                 description: ['Guides in ','. List of guides, ratings, number of reviews.']
+            }
+        },
+        driverPage:{
+            country: {
+                title: ['Drivers ', ', rating, the number of cars provided.'],
+                description: ['Drivers in ', '. List of drivers, ratings, number of reviews.']
             }
         },
         authModalCountry: {

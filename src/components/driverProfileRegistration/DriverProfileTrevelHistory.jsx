@@ -89,9 +89,9 @@ const TravelHistoryElementInnerPart = (props) => {
                             </div>
                         </>
                     }
-                    <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "historyBodyElement ") + "d-flex h5lineHeight"}>
+                    <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "historyBodyElement ") + "d-flex align-items-center h5lineHeight"}>
                         <h5>{textPage.tripId + ":"}</h5>
-                        <span>{selectedElement.id}</span>
+                        <span>{selectedElement.simpleId ? selectedElement.simpleId : selectedElement.id}</span>
                         {
                             //you can see that this trip is not confirmed in the header of trip;
                             //we mush write it again only if this is a multicustomeral tour, where you mush find not confirmed user
@@ -129,22 +129,22 @@ const TravelHistoryElementInnerPart = (props) => {
                                 </div>
                         }
                     </div>
-                    <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "historyBodyElement ") + "d-flex h5lineHeight"}>
+                    <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "historyBodyElement ") + "d-flex align-items-center h5lineHeight"}>
                         <h5>{textPage.venue + ":"}</h5>
                         <span>{selectedElement.startPlace}</span>
                     </div>
                     {props.tripType ?
-                        <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "historyBodyElement ") + "d-flex h5lineHeight"}>
+                        <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "historyBodyElement ") + "d-flex align-items-center h5lineHeight"}>
                             <h5>{textPage.numberPersons + ":"}</h5>
                             <span>{selectedElement.passengerNumber}</span>
                         </div>
                         :
-                        <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "historyBodyElement ") + "d-flex h5lineHeight"}>
+                        <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "historyBodyElement ") + "d-flex align-items-center h5lineHeight"}>
                             <h5>{textPage.car + ":"}</h5>
                             <span>{selectedElement.car}</span>
                         </div>
                     }
-                    <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "historyBodyElement ") + "d-flex h5lineHeight"}>
+                    <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "historyBodyElement ") + "d-flex align-items-center h5lineHeight"}>
                         <h5>{textPage.costOfTravel + ":"}</h5>
                         <span>{that.props.globalReduser.profile.currencies ? that.props.globalReduser.profile.currencies[findCurrencyEl(that, selectedElement.currencyType)].symbol + selectedElement.price : ''}</span>
                     </div>

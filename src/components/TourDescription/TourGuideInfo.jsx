@@ -17,7 +17,7 @@ class TourGuideInfoClass extends React.Component {
     }
     render() {
 
-
+        let textInfo = this.props.storeState.languageTextMain.home.homeBottom.routeListElement;
         return (
             <div className="placeDescription_author d-flex flex-md-row flex-column align-items-center justify-content-between col-12 p-0 mb-4">
                 <div className="d-flex col-md-6 col-12 mb-md-0 mb-3">
@@ -26,7 +26,7 @@ class TourGuideInfoClass extends React.Component {
                     </div>
                     <div className="d-flex flex-column justify-content-center pl-4">
                         <h5><Link to={"/" + cookies.get('country', { path: "/" }) + "-" + cookies.get('userLangISO', { path: "/" }) + "/guides/" + this.props.that.state.author.userSlug + "/"}>{this.props.that.state.author.firstName + " " + this.props.that.state.author.lastName}</Link></h5>
-                        <Stars value={Math.ceil(this.props.that.state.author.rating*10)/10} commentNumber={this.props.that.state.author.comments ? this.props.that.state.author.comments.length + " отзывов" : 0} valueDisplay={true} commentNumberDisplay={true} />
+                        <Stars value={Math.ceil(this.props.that.state.author.rating*10)/10} commentNumber={(this.props.that.state.author.commentNumber ? this.props.that.state.author.commentNumber : 0) + " " + textInfo.comments} valueDisplay={true} commentNumberDisplay={true} />
                         <div className="d-flex align-items-center">
                             <span>{this.props.textInfo.language}</span>
                             {this.props.language.map((el, index) => (<i className="placesList_info_icons" style={{ background: "url(" + requests.serverAddressImg + el.icon.url + ")no-repeat" }} />))}

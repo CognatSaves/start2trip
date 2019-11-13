@@ -37,7 +37,7 @@ class customerCancelClass extends React.Component {
     }
 
     sendMessege = () => {
-        debugger;
+        
         let body = JSON.stringify({
             id: this.props.match.params.id,
             clientId: this.props.match.params.clientId,
@@ -137,19 +137,19 @@ class customerCancelClass extends React.Component {
 
                             </div>
                             <div className="d-flex flex-column">
-                                {
-                                    textInfo.answerVariants.map((element, index) => {
-                                        let checkboxId = element + '-' + index;
-                                        let isChecked = (index === this.state.selectedIndex);
-                                        return (
-                                            <div className="d-flex flex-row align-items-center">
-                                                <Checkbox id={checkboxId} checked={isChecked}
-                                                    onChange={() => { debugger; this.setState({ selectedIndex: index, textValue: index !== textInfo.answerVariants.length - 1 ? textInfo.answerVariants[index] : '' }) }} />
-                                                <label style={{ marginBottom: 0 }} htmlFor={checkboxId}>{textInfo.answerVariants[index]}</label>
-                                            </div>
-                                        )
-                                    })
-                                }
+                            {
+                                answerVariants.map((element, index)=>{
+                                    let checkboxId = element + '-'+index;
+                                    let isChecked = (index===this.state.selectedIndex);
+                                    return (
+                                        <div className="d-flex flex-row align-items-center">
+                                            <Checkbox id={checkboxId} checked={isChecked} 
+                                                onChange={()=>{ this.setState({selectedIndex:index, textValue: index!==answerVariants.length-1 ? answerVariants[index] : ''})}} />
+                                            <label style={{marginBottom: 0}} htmlFor={checkboxId}>{answerVariants[index]}</label>
+                                        </div>
+                                    )
+                                })
+                            }
                             </div>
                             <textarea key={'textarea' + this.state.selectedIndex} value={this.state.textValue} onChange={(e) => { this.setState({ textValue: e.target.value }) }} />
                         </div>
