@@ -32,6 +32,7 @@ class feedbackClass extends React.Component {
                 thenFuncGlobal(that)
                 that.setState({
                     isCommented: data.isCommented,
+                    targetType: data.targetType
                 });
             })
             .catch(error => {
@@ -102,7 +103,7 @@ class feedbackClass extends React.Component {
                             </div>
                             :
                             <div className="col-md-8 col-12">
-                                <CreateComment targetType={"driver"} myclass={"feedbackbackground"} clientId={clientId} targetId={id} createCommentString={textInfo.createCommentString}
+                                <CreateComment targetType={this.state.targetType} myclass={"feedbackbackground"} clientId={clientId} targetId={id} createCommentString={textInfo.createCommentString}
                                     startRolling={() => this.startRolling()} endRolling={(result) => this.endRolling(result)} />
                             </div>
                     }

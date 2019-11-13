@@ -76,7 +76,11 @@ class DriversPropertiesClass extends React.Component {
     let activeCurrency = storeState.currencies[storeState.activeCurrencyNumber]
     let valueText = valueTextGenerator((this.props.hideTypeOfTransport ? this.props.toursState.tempPricePart : this.props.storeState.pricePart), (this.props.hideTypeOfTransport ? this.props.toursState.maxPrice : this.props.storeState.maxPrice), activeCurrency, textInfo);
 
-    if (this.props.toursState.categories.length > 0 && (this.state.tours.length === 0 || (this.state.tours[0].catLoc.name !== this.props.toursState.categories[0].catLoc.name))) {
+    if(this.state.tours.length>0){
+      debugger;
+      console.log(this.state.tours);
+    }
+    if (this.props.toursState.categories.length > 0 && (this.state.tours.length === 0 || (this.state.tours[0].local.name !== this.props.toursState.categories[0].local.name))) {
       this.setState({
         tours: this.props.toursState.categories,
     })
@@ -119,7 +123,7 @@ class DriversPropertiesClass extends React.Component {
                 >
                   <MenuItem value={"default"}>{textInfo.menuItemValue}</MenuItem>
                   {this.state.tours.map((element, index) =>
-                    <MenuItem value={element.id}>{element.catLoc.name}</MenuItem>
+                    <MenuItem value={element.id}>{element.local.name}</MenuItem>
                   )}
                 </Select>
               </FormControl>

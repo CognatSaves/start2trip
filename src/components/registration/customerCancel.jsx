@@ -38,7 +38,7 @@ class customerCancelClass extends React.Component {
     }
 
     sendMessege = () => {
-        debugger;
+        
         let body = JSON.stringify({
             id: this.props.match.params.id,
             clientId: this.props.match.params.clientId,
@@ -144,7 +144,7 @@ class customerCancelClass extends React.Component {
                                     return (
                                         <div className="d-flex flex-row align-items-center">
                                             <Checkbox id={checkboxId} checked={isChecked} 
-                                                onChange={()=>{debugger; this.setState({selectedIndex:index, textValue: index!==answerVariants.length-1 ? answerVariants[index] : ''})}} />
+                                                onChange={()=>{ this.setState({selectedIndex:index, textValue: index!==answerVariants.length-1 ? answerVariants[index] : ''})}} />
                                             <label style={{marginBottom: 0}} htmlFor={checkboxId}>{answerVariants[index]}</label>
                                         </div>
                                     )

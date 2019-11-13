@@ -41,7 +41,7 @@ class PlaceListElementClass extends React.Component {
                             <div style={{maxWidth:"max-content"}} className="placesList_info_position_textStyle">{element.tagsArray.map((tag, tagIndex) => {
                                 
                                 let tagName = this.props.findTagName(tag);
-                                debugger;
+                                
                                 let value = tagName + (element.tagsArray.length - 1 > tagIndex ? "," : "") + " ";
                                 return (
                                     <text style={{paddingLeft:"4px"}}>{this.props.findTagName(tag) + (element.tagsArray.length - 1 > tagIndex ? "," : "") + " "}</text>

@@ -126,7 +126,7 @@ class MobileFilterClass extends React.Component {
       childrenDisabledMinus = false;
     }
 
-    if (this.props.toursState.categories.length > 0 && (this.state.tours.length === 0 || (this.state.tours[0].catLoc.name !== this.props.toursState.categories[0].catLoc.name))) {
+    if (this.props.toursState.categories.length > 0 && (this.state.tours.length === 0 || (this.state.tours[0].local.name !== this.props.toursState.categories[0].local.name))) {
       this.setState({
         tours: this.props.toursState.categories,
     })
@@ -263,7 +263,7 @@ class MobileFilterClass extends React.Component {
                         >
                             <MenuItem value={"default"}>{textInfo.menuItemValue}</MenuItem>
                             {this.state.tours.map((element, index) =>
-                                <MenuItem value={element.id}>{element.catLoc.name}</MenuItem>
+                                <MenuItem value={element.id}>{element.local.name}</MenuItem>
                             )}
                         </Select>
                     </FormControl>

@@ -283,9 +283,10 @@ class DriversPageDescriptionClass extends React.Component {
         let defaultPrice = this.props.driversState.driverCarDescription.price * (100 - this.state.discount) / 100;
         let isCurrencyLoaded = activeCurrency && activeCurrency.symbol;
         
-        let helmet = this.props.guidesReduser.guideData.guide ? this.props.storeState.languageTextMain.helmets.guideProfile.guide :
-        this.props.storeState.languageTextMain.helmets.guideProfile.agency;
+        // let helmet = this.props.guidesReduser.guideData.guide ? this.props.storeState.languageTextMain.helmets.guideProfile.guide :
+        // this.props.storeState.languageTextMain.helmets.guideProfile.agency;
         
+        let helmet = this.props.storeState.languageTextMain.helmets.guideProfile.driver;
         let windowImg = null
         if (this.props.storeState.languages.length > 0) {
 
