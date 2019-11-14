@@ -1,10 +1,10 @@
 import React from 'react';
 import { isMobileOnly, isMobile } from 'react-device-detect'
 import requests from '../../config';
+import { connect } from 'react-redux';
+// import Carousel from '../usefulСomponents/Carousel';
 
-// import Carousel from '../driverProfile/Carousel';
-
-export default class PlacePhotos extends React.Component {
+class PlacePhotosClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -37,6 +37,7 @@ export default class PlacePhotos extends React.Component {
         let maxWidth = photoBlock ? photoBlock.offsetWidth * 2 : 0;
         //let textInfo = this.props.storeState.languageTextMain.placePhotos;
         let className = "col-8 col-md-6 col-lg-3 placePhotos_elementBlock";/*placePhotos_elementBlock*/
+        let textInfo = this.props.storeState.languageTextMain.places.popularPlaces;
         return (
             <>
                 {
@@ -92,7 +93,7 @@ export default class PlacePhotos extends React.Component {
                                                         <img className="placePhotos_imageStyle" src={requests.serverAddressImg + element.url} width="100%" height="100%" alt={"/picture " + index} />
                                                         <div className="col-12 placePhotos_maskBlock" onClick={() => this.photoStateChange(false)}>
                                                             <div className="d-flex placePhotos_maskBlock_inner">
-                                                                <div className="placePhotos_maskBlock_innerText">Ещё</div>
+                                                                <div className="placePhotos_maskBlock_innerText">{textInfo.more}</div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -114,3 +115,11 @@ export default class PlacePhotos extends React.Component {
         )
     }
 }
+
+const PlacePhotos = connect(
+    (state) => ({
+        storeState: state.AppReduser
+    })
+)(PlacePhotosClass);
+
+export default PlacePhotos;
