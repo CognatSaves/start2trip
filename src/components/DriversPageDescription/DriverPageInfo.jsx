@@ -21,7 +21,8 @@ class DriverPageInfoClass extends React.Component {
         return (
             <div className="driverInfo_background d-flex flex-lg-row flex-column align-items-lg-start align-items-center">
                 <div className={"block_element_left d-flex flex-column col-12 "+(guideData.cars && guideData.cars.length>0 ? "col-lg-6" : '')}>
-                    <DriverInfoProfile element={guideData} storeState={this.props.storeState} needGuideIcon={true}/>
+                    <DriverInfoProfile element={guideData} storeState={this.props.storeState} needGuideIcon={true} 
+                        isDriverPage={!guideData.guide/*if our driver is not a guide that not means, that he is an agency*/}/>
                 </div>
                 <div className="driverInfo_element d-flex flex-column col-lg-6 col-12 p-0" >
                     {

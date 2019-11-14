@@ -37,7 +37,7 @@ class DriverInfoProfile extends React.Component{
                             <div className="d-flex flex-row">
                                 <div className="block_element_infoBlock_name driversInfo_driverName" style={{whiteSpace: 'nowrap'}}>{element.name}</div>
                                 {
-                                    this.props.needGuideIcon && !isMobile &&
+                                    this.props.needGuideIcon && !isMobile && !this.props.isDriverPage &&
                                     <i className="placesList_info_guide my-auto col-2" style={{marginLeft: '10px', background: "url(" + (element.guide  ? guideIcon : agencyIcon) + ")no-repeat" }}>
                                         <span className="placesList_info_guide-toolTip">{element.guide  ? textInfoTour.guide : textInfoTour.agency}</span>
                                     </i>
