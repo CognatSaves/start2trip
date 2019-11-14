@@ -209,7 +209,7 @@ class ShowCommentsClass extends React.Component {
                 driverAnswerDate = new Date(this.state.element.driverAnswerDate)
             }
                 
-
+            debugger;
             return (
                 <>
                 {this.state.openModal&&

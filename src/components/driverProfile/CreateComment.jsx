@@ -3,6 +3,7 @@ import { setModalRegister } from '../../redusers/Action';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import requests from '../../config';
+import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 
 import AvatarEditorCustom from '../usefulСomponents/AvatarEditorCustom'
 import DatePicker from 'material-ui/DatePicker';
@@ -127,7 +128,11 @@ class CreateCommentClass extends React.Component {
     }
 
     changeCommentary = (targetId) => {
-
+        let jwt = this.props.globalReduser.readCookie('jwt');
+        if(!jwt || jwt==='-'){
+            this.props.dispatch(setUrlAddress(window.location.pathname));
+            this.props.history.push('/' + cookies.get('userLangISO', { path: "/" }) + '/login/');
+        }
         startRefresherGlobal(this, true)
         let imgFile = undefined
         if (this.state.blob !== "") {
@@ -135,7 +140,8 @@ class CreateCommentClass extends React.Component {
         }
 
         let that = this;
-        debugger
+        
+
         var commentForm = new FormData();
         commentForm.append('text', this.state.newText);
         commentForm.append('mark', this.props.commentState.commentValue );
@@ -149,6 +155,8 @@ class CreateCommentClass extends React.Component {
 
         const request = new XMLHttpRequest();
         request.open('POST', requests.fakeCommentCreation);
+        request.setRequestHeader('Authorization', `Bearer ${jwt}`);
+
         request.onreadystatechange = function () {
 
             if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {

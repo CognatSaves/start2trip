@@ -51,7 +51,7 @@ class CommentModalClass extends React.Component {
             <>
                 <Dialog
                     open={openModal}
-                    onClose={this.props.closeModal()}
+                    onClose={this.props.closeModal}
                     aria-labelledby="alert-dialog-title"
                     aria-describedby="alert-dialog-description"
                 >
@@ -59,7 +59,7 @@ class CommentModalClass extends React.Component {
                     <AvatarEditorCustom saveBlob={this.saveBlob} changeImg={this.changeImg} imgModalShow={this.imgModalShow} imgModal={this.state.imgModal}
                     img={this.state.img ? this.state.img : (requests.serverAddressImg + (element.fakecustomer ? element.fakecustomer.avatar.url : element.avatar.url))}  />
                     <div className="commentBlock_element" >
-                        <i className="commentBlock_elementIconCross" onClick={this.props.closeModal()} />
+                        <i className="commentBlock_elementIconCross" onClick={this.props.closeModal} />
                         <div className="commentBlock_valueBlock d-flex flex-column ">
                             <div className="commentBlock_picture d-flex pb-2">
                                 {isSuperUser && isEdit ?
@@ -137,7 +137,7 @@ class CommentModalClass extends React.Component {
                                     <div className="commentBlock_picture d-flex justify-content-end pb-2">
                                         <div className="d-flex flex-column justify-content-center align-items-end col pl-0">
                                             <div className="valueBlock_firstElement_name">{profile.name}</div>
-                                            {this.state.element.driverText ?
+                                            {element.driverText ?
                                                 <div className="valueBlock_firstElement_date">{driverAnswerDate.getDate() + " " + getMonthName(driverAnswerDate.getMonth()) + " " + driverAnswerDate.getFullYear()}</div>
                                                 :
                                                 <div className="valueBlock_firstElement_date">{new Date().getDate() + " " + getMonthName(new Date().getMonth()) + " " + new Date().getFullYear()}</div>

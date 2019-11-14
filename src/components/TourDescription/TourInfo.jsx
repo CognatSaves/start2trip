@@ -44,7 +44,7 @@ class TourInfoClass extends React.Component {
                         placeholder={textInfo.searchPlaceholder} list="places" name="myPlaces" />
                     <datalist id="places">
                         {this.props.toursState.departurePoint.map((element, index) =>
-                            <option value={element.point} >{element.elementsNumber}</option>
+                            <option value={element.point} >{textInfo.tourNumber +": " + element.elementsNumber}</option>
                         )}
                     </datalist>
                     <DatePicker hintText={textInfo.datePickerLabel} minDate={new Date()} id="basicInfoBirthday" className="calendarModal tourInfoContentDate col-md-4 col-10 p-md-2 p-0" value={this.props.departureDate}

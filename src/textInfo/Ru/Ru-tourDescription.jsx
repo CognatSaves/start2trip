@@ -11,7 +11,8 @@ const tourDescription = {
         menuItemValue: 'Все туры',
         findText: 'Найти',
         menuItemDaysValue:"Количество дней",
-        menuItemDays:"дн."
+        menuItemDays:"дн.",
+        tourNumber: 'Количество туров'
     },
     placeTravelBlock:{
         fragmentName: 'Ваш маршрут',
