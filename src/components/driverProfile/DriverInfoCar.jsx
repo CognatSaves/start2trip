@@ -1,5 +1,5 @@
 import React from 'react';
-import Carousel from './Carousel';
+import Carousel from '../usefulСomponents/Carousel';
 import { isMobileOnly } from 'react-device-detect';
 import requests from '../../config';
 import information from '../media/information.svg';
