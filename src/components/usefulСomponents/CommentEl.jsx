@@ -1,5 +1,5 @@
 import React from 'react';
-import './DriversProfileComments.css';
+import '../driverProfile/DriversProfileComments.css';
 import { isMobileOnly } from 'react-device-detect';
 import { connect } from 'react-redux';
 import requests from '../../config';
@@ -11,16 +11,10 @@ import { startRefresherGlobal, thenFuncGlobal, catchFuncGlobal, getCurrencies } 
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
-class ShowCommentsClass extends React.Component {
+class CommentElClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            openModal: false,
-            element: null,
-            date: null,
-            imgModal: false,
-            img: "",
-            blob: "",
             userName: "",
             userKey: "",
             newText: "",
@@ -33,62 +27,6 @@ class ShowCommentsClass extends React.Component {
             clickedImageIndex: 0,
             images: null,
         }
-    }
-
-    changeCommentary = (element) => {
-
-
-        startRefresherGlobal(this, true)
-        let imgFile = undefined
-        if (this.state.blob !== "") {
-            imgFile = new File([this.state.blob], "avatar.jpg");
-        }
-
-        let that = this;
-
-        var commentForm = new FormData();
-        commentForm.append('text', this.state.newText !== "" ? this.state.newText : element.value);
-        commentForm.append('mark', this.props.commentState.commentValue ? this.props.commentState.commentValue : element.rating);
-        commentForm.append('id', element.id);
-        debugger
-        commentForm.append('targetId', this.props.targetId);
-        if (this.state.userKey !== "" && element.fakecustomer) {
-            commentForm.append('key', this.state.userKey !== "" ? this.state.userKey : element.fakecustomer.key);
-        }
-        if (this.state.userName !== "" && element.fakecustomer) {
-            commentForm.append('userName', this.state.userName !== "" ? this.state.userName : element.fakecustomer.name);
-        }
-        if (this.state.driverText !== "") {
-            commentForm.append('driverText', this.state.driverText);
-            commentForm.append('driverAnswerDate', new Date());
-        }
-
-        if (this.state.driverImg.length > 0) {
-            for (let i = 0; i < this.state.driverImg.length; i++) {
-                let imgFile = new File([this.state.driverImg[i]], "avatar.jpg");
-                commentForm.append('driverImg', imgFile);
-            }
-
-        }
-
-        commentForm.append('avatar', imgFile);
-
-        const request = new XMLHttpRequest();
-        request.open('POST', requests.changeCommentary);
-        request.onreadystatechange = function () {
-
-            if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
-                let responseText = JSON.parse(request.responseText);
-                debugger
-                that.props.newComments(responseText)
-                thenFuncGlobal(that);
-            } else {
-                catchFuncGlobal(that);
-            }
-
-        }
-        request.send(commentForm);
-
     }
 
     _handleImageChange = (e) => {
@@ -150,21 +88,14 @@ class ShowCommentsClass extends React.Component {
         })
     }
 
-    // imgModalShow = () => {
-    //     this.setState({ imgModal: !this.state.imgModal });
-    // };
-
-    // changeImg = (newImg) => {
-    //     this.setState({ img: newImg })
-    // }
-
-    // saveBlob = (blob) => {
-    //     this.setState({ blob: blob })
-    // }
-
+   
     render() {
         let textInfo = this.props.storeState.languageTextMain.placeDescription.placeProgramm;
-
+        function getMonthName(number) {
+            let monthArray = textInfo.monthArray;
+            return monthArray[number];
+        }
+        let {element,index,date,driverAnswerDate,isAuthor,isSuperUser} = this.props
         return (
             <>
 
@@ -179,14 +110,14 @@ class ShowCommentsClass extends React.Component {
                                     <Stars key={element.rating + "/" + element.index} value={Math.ceil(element.rating * 10) / 10} valueDisplay={true} commentNumberDisplay={false} />
                                     <div className="valueBlock_firstElement_date">{date.getDate() + " " + getMonthName(date.getMonth()) + " " + date.getFullYear()}</div>
                                 </div>
-                                <div style={{ cursor: "pointer", color: "#304269", fontWeight: "500" }} onClick={(e) => { if (!isMobileOnly) { this.setState({ element: element, date: date, openModal: true }) } }}>{textInfo.more}</div>
+                                <div style={{ cursor: "pointer", color: "#304269", fontWeight: "500" }} onClick={(e) => { this.props.openModal(element,date) }}>{textInfo.more}</div>
                             </div>
                             <input className="put" id={"put" + element + index} type="checkbox"></input>
                             <div className="news">
                                 <label htmlFor={"put" + element + index}>{element.value}</label>
                             </div>
                             <PlacePhotos photoArray={element.userImg}
-                                showMask={(clickedImageIndex, images) => { this.setState({ isMaskVisible: true, clickedImageIndex: clickedImageIndex, images: element.userImg }) }} />
+                                showMask={(clickedImageIndex, images) => {this.props.showPhoto(clickedImageIndex,element.userImg)  }} />
                         </div>
                         {
                             element.driverText ?
@@ -202,7 +133,7 @@ class ShowCommentsClass extends React.Component {
                                         <label style={{ textAlign: "right" }} htmlFor={"put" + element + index}>{element.driverText}</label>
                                     </div>
                                     <PlacePhotos photoArray={element.driverImg}
-                                        showMask={(clickedImageIndex, images) => { this.setState({ isMaskVisible: true, clickedImageIndex: clickedImageIndex, images: element.driverImg }) }} />
+                                        showMask={(clickedImageIndex, images) => { this.props.showPhoto(clickedImageIndex,element.driverImg) }} />
                                 </div>
                                 :
                                 isAuthor || isSuperUser &&
@@ -259,12 +190,12 @@ class ShowCommentsClass extends React.Component {
     }
 }
 
-const ShowComments = connect(
+const CommentEl = connect(
     (state) => ({
         commentState: state.CommentReduser,
         storeState: state.AppReduser,
         globalReduser: state.GlobalReduser,
     }),
-)(ShowCommentsClass);
+)(CommentElClass);
 
-export default ShowComments;
+export default CommentEl;
