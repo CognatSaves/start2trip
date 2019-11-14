@@ -28,7 +28,7 @@ class DriversProfileCommentsClass extends React.Component {
         return (
             <>
                 <div className="driverProfileComments_commentBlock d-flex flex-column">
-                    <ShowComments selectedComments={selectedComments} />
+                    <ShowComments selectedComments={selectedComments} profile={this.props.profile} />
                 </div>
             </>
         )

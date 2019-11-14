@@ -15,7 +15,7 @@ class DriverProfileFeedbackClass extends React.Component {
     render() {
         return (
             <div className="profileFeedbackBlock_comments d-flex flex-column">
-                <ShowComments selectedComments={this.state.comments} />
+                <ShowComments selectedComments={this.state.comments} profile={this.props.profile} />
             </div>
         )
     }

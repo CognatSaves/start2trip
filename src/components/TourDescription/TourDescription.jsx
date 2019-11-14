@@ -615,6 +615,7 @@ class ToureDescriptionClass extends React.Component {
                                             </div>
                                             
                                             <CommentBlock targetType="tour" comments={this.state.newTour.comments} newComments={this.newComments}
+                                            profile={this.state.author}
                                             targetId={this.state.newTour.tour.id} page={this.state.page} setPage={this.setPage} isSuperUser={isSuperUser} showCreateComment={false}
                                             showMorePages={this.showMorePages} showPages={this.state.showPages} id={topBlockId + "6"} />
 

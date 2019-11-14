@@ -33,7 +33,9 @@ class CommentBlockClass extends React.Component {
                         createCommentString={textInfo.createCommentString}/>
                     </> : <React.Fragment />}
 
-                    <ShowComments selectedComments={selectedComments} targetId={this.props.targetId} newComments={this.props.newComments} profile={this.props.profile} />
+                    <ShowComments selectedComments={selectedComments} 
+                    targetId={this.props.targetId}  isNeedAnswer={this.props.isNeedAnswer}
+                    newComments={this.props.newComments} profile={this.props.profile} />
 
                 </div>
                 {
