@@ -59,22 +59,23 @@ class ShowCommentsClass extends React.Component {
             commentForm.append('key', this.state.userKey !== "" ? this.state.userKey : element.fakecustomer.key);
         }
         if (this.state.userName !== "" && element.fakecustomer) {
-            commentForm.append('userName', this.state.userName !== "" ? this.state.userName : element.fakecustomer.userName);
+            commentForm.append('userName', this.state.userName !== "" ? this.state.userName : element.fakecustomer.name);
         }
         if (this.state.driverText !== "") {
             commentForm.append('driverText', this.state.driverText);
             commentForm.append('driverAnswerDate', new Date());
         }
+
         if (this.state.driverImg.length > 0) {
-            for(let i=0; i<this.state.driverImg.length; i++){
+            for (let i = 0; i < this.state.driverImg.length; i++) {
                 let imgFile = new File([this.state.driverImg[i]], "avatar.jpg");
-                commentForm.append('driverImg',imgFile );
+                commentForm.append('driverImg', imgFile);
             }
-            
+
         }
 
         commentForm.append('avatar', imgFile);
-        
+
         const request = new XMLHttpRequest();
         request.open('POST', requests.changeCommentary);
         request.onreadystatechange = function () {
@@ -118,7 +119,6 @@ class ShowCommentsClass extends React.Component {
                     reader.onloadend = () => {
                         // 
 
-
                         var img = reader.result;
                         let driverImgPreviewUrl = that.state.driverImgPreviewUrl;
                         let driverImg = that.state.driverImg;
@@ -133,9 +133,6 @@ class ShowCommentsClass extends React.Component {
                             driverImgPreviewUrl: driverImgPreviewUrl,
                             driverImg: driverImg,
                         });
-
-
-
 
                         thenFuncGlobal(that)
                     }
@@ -181,10 +178,11 @@ class ShowCommentsClass extends React.Component {
         let userId = cookies.get('userId', { path: "/" })
         if (requests.isSuperUser(userId)) {
             isSuperUser = true
-        } else if (this.props.profile.id === userId) {
-            isAuthor = true
+        } else if (this.props.profile) {
+            if (this.props.profile.id === userId)
+                isAuthor = true
         }
-        
+
         if (this.props.selectedComments.length > 0) {
             let driverAnswerDate = null
             if (this.state.openModal)
@@ -293,7 +291,7 @@ class ShowCommentsClass extends React.Component {
                                                 </div>
                                                 <img src={requests.serverAddressImg + this.props.profile.avatar} width="auto" height="100%" alt=""></img>
                                             </div>
-                                            <div style={{ maxHeight: "100%" }} className="news">
+                                            <div style={{ maxHeight: "100%" }} className="news d-flex justify-content-end">
                                                 <label style={{ textAlign: "right" }} htmlFor={"put" + this.state.element}>{this.state.element.driverText}</label>
                                             </div>
                                         </div>
@@ -336,7 +334,7 @@ class ShowCommentsClass extends React.Component {
                                                 </div>
                                             </div>
                                             <div className="d-flex justify-content-end">
-                                                <span onClick={() => { this.changeCommentary(this.state.element) }} style={{ cursor: "pointer", color: "#304269", fontWeight: "500" }}>{textInfo.answer}</span>
+                                                <span onClick={() => { if (this.state.driverText !== "") { this.changeCommentary(this.state.element) } }} style={{ cursor: "pointer", color: "#304269", fontWeight: "500" }}>{textInfo.answer}</span>
                                             </div>
                                         </div>
 
@@ -413,31 +411,31 @@ class ShowCommentsClass extends React.Component {
                                                         </div>
                                                         <img src={requests.serverAddressImg + this.props.profile.avatar} width="auto" height="100%" alt=""></img>
                                                     </div>
-                                                    <div className="news">
+                                                    <div className="news d-flex justify-content-end">
                                                         <textarea id="createComment_textareaStyle" onChange={(e) => this.setState({ driverText: e.target.value })}
                                                             value={this.state.driverText} style={{ margin: "0px", height: "80px" }}
                                                             className="createComment_textareaStyle" placeholder={textInfo.yourAnswerPlaceholder}></textarea>
                                                     </div>
                                                     <div className="d-flex flex-md-row flex-column w-100">
-                                                <div className=" col-xl-2 col-lg-2 col-md-2 col-12">
-                                                    <label id="imageLabel" >{"Upload photo"}:</label>
-                                                    <label id="imageLabelError" className="imageLabelError" style={{ display: 'none' }} >{"error"}</label>
-                                                </div>
-                                                <div className="tourPhotoMiniContainer d-flex flex-wrap">
-                                                    <div className="addPhotoTourLabel">
-                                                        <label htmlFor="addCarFile" ></label>
-                                                        <input type="file" id="addCarFile" style={{ display: "none" }} multiple onChange={(e) => { this._handleImageChange(e) }} />
-                                                    </div>
-                                                    {this.state.driverImgPreviewUrl.map((element, index) =>
-                                                        <div className="position-relative" >
-                                                            <img src={element} className="tourPhotoMini" alt="add_car" />
-                                                            <span onClick={() => { this.deletePhoto(index) }}></span>
+                                                        <div className=" col-xl-2 col-lg-2 col-md-2 col-12">
+                                                            <label id="imageLabel" >{"Upload photo"}:</label>
+                                                            <label id="imageLabelError" className="imageLabelError" style={{ display: 'none' }} >{"error"}</label>
                                                         </div>
-                                                    )}
-                                                </div>
-                                            </div>
+                                                        <div className="tourPhotoMiniContainer d-flex flex-wrap">
+                                                            <div className="addPhotoTourLabel">
+                                                                <label htmlFor="addCarFile" ></label>
+                                                                <input type="file" id="addCarFile" style={{ display: "none" }} multiple onChange={(e) => { this._handleImageChange(e) }} />
+                                                            </div>
+                                                            {this.state.driverImgPreviewUrl.map((element, index) =>
+                                                                <div className="position-relative" >
+                                                                    <img src={element} className="tourPhotoMini" alt="add_car" />
+                                                                    <span onClick={() => { this.deletePhoto(index) }}></span>
+                                                                </div>
+                                                            )}
+                                                        </div>
+                                                    </div>
                                                     <div className="d-flex justify-content-end">
-                                                        <span onClick={() => { this.changeCommentary(element) }} style={{ cursor: "pointer", color: "#304269", fontWeight: "500" }}>{textInfo.answer}</span>
+                                                        <span onClick={() => { if (this.state.driverText !== "") { this.changeCommentary(element) } }} style={{ cursor: "pointer", color: "#304269", fontWeight: "500" }}>{textInfo.answer}</span>
                                                     </div>
                                                 </div>
                                         }
