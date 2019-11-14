@@ -1,5 +1,5 @@
 import React from 'react';
-import './DriverProfileAffiliateProgram.css'
+import '../driverProfileRegistration/DriverProfileAffiliateProgram.css'
 import ShareLinkElements from './ShareLinkElements.jsx';
 import { connect } from 'react-redux';
 

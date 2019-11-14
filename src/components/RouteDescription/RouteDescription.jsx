@@ -24,7 +24,7 @@ import CommentBlock from '../TourDescription/CommentBlock.jsx';
 import TourPanel from '../TourDescription/TourPanel.jsx';
 import DriversBlock from '../drivers/DriversBody/DriversBlock/DriversBlock';
 
-import ShareLinkElements from '../driverProfileRegistration/ShareLinkElements';
+import ShareLinkElements from '../usefulСomponents/ShareLinkElements';
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
