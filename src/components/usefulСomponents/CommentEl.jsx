@@ -15,17 +15,9 @@ class CommentElClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            userName: "",
-            userKey: "",
-            newText: "",
             driverText: "",
             driverImg: [],
             driverImgPreviewUrl: [],
-            trySend: false,
-            isEdit: false,
-            isMaskVisible: false,
-            clickedImageIndex: 0,
-            images: null,
         }
     }
 
@@ -156,8 +148,9 @@ class CommentElClass extends React.Component {
                                             value={this.state.driverText} style={{ margin: "0px", height: "80px" }}
                                             className="createComment_textareaStyle" placeholder={textInfo.yourAnswerPlaceholder}></textarea>
                                     </div>
+
                                     <div className="d-flex flex-md-row flex-column w-100">
-                                        <div className=" col-xl-2 col-lg-2 col-md-2 col-12">
+                                        <div className="col-md-3 col-12 d-flex align-items-center pr-0">
                                             <label id="imageLabel" >{"Upload photo"}:</label>
                                             <label id="imageLabelError" className="imageLabelError" style={{ display: 'none' }} >{"error"}</label>
                                         </div>
@@ -174,6 +167,7 @@ class CommentElClass extends React.Component {
                                             )}
                                         </div>
                                     </div>
+
                                     <div className="d-flex justify-content-end">
                                         <span onClick={() => { if (this.state.driverText !== "") { this.props.changeCommentary(element,this.state) } }} style={{ cursor: "pointer", color: "#304269", fontWeight: "500" }}>{textInfo.answer}</span>
                                     </div>
