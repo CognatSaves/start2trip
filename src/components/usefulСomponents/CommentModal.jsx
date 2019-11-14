@@ -45,13 +45,13 @@ class CommentModalClass extends React.Component {
             let monthArray = textInfo.monthArray;
             return monthArray[number];
         }
-        let { driverAnswerDate, isAuthor, isSuperUser, element, isEdit ,date, openModal, profile} = this.props
+        let { driverAnswerDate, isAuthor, isSuperUser, element, isEdit ,date, openModal, profile ,isNeedAnswer} = this.props
         debugger
         return (
             <>
                 <Dialog
                     open={openModal}
-                    onClose={this.props.closeModal()}
+                    onClose={this.props.closeModal}
                     aria-labelledby="alert-dialog-title"
                     aria-describedby="alert-dialog-description"
                 >
@@ -59,7 +59,7 @@ class CommentModalClass extends React.Component {
                     <AvatarEditorCustom saveBlob={this.saveBlob} changeImg={this.changeImg} imgModalShow={this.imgModalShow} imgModal={this.state.imgModal}
                     img={this.state.img ? this.state.img : (requests.serverAddressImg + (element.fakecustomer ? element.fakecustomer.avatar.url : element.avatar.url))}  />
                     <div className="commentBlock_element" >
-                        <i className="commentBlock_elementIconCross" onClick={this.props.closeModal()} />
+                        <i className="commentBlock_elementIconCross" onClick={this.props.closeModal} />
                         <div className="commentBlock_valueBlock d-flex flex-column ">
                             <div className="commentBlock_picture d-flex pb-2">
                                 {isSuperUser && isEdit ?
@@ -109,16 +109,17 @@ class CommentModalClass extends React.Component {
                             }
                             {isSuperUser &&
                                 <div className="createComment_footerBt d-flex justify-content-end pb-2">
-                                    <span style={isEdit ? { color: "#999" } : {}} onClick={() => { this.setState({ isEdit: !isEdit }); }}>{isEdit ? textInfo.cancel : textInfo.edit}</span>
+                                    <span style={isEdit ? { color: "#999" } : {}} onClick={() => {this.props.isNeedEdit() }}>{isEdit ? textInfo.cancel : textInfo.edit}</span>
                                     {isEdit ?
-                                        <span className="pl-2" onClick={() => { this.changeCommentary(element) }}>{textInfo.save}</span>
+                                        <span className="pl-2" onClick={() => { this.props.changeCommentary(element,this.state) }}>{textInfo.save}</span>
                                         : <React.Fragment />
                                     }
                                 </div>
                             }
                         </div>
-                        {
-                            element.driverText ?
+                        {   
+                         isNeedAnswer ?
+                            element.driverText  ?
                                 <div className="commentBlock_valueBlock d-flex flex-column my-2 pt-4 border-top">
                                     <div className="commentBlock_picture d-flex justify-content-end pb-2">
                                         <div className="d-flex flex-column justify-content-center align-items-end col pl-0">
@@ -137,7 +138,7 @@ class CommentModalClass extends React.Component {
                                     <div className="commentBlock_picture d-flex justify-content-end pb-2">
                                         <div className="d-flex flex-column justify-content-center align-items-end col pl-0">
                                             <div className="valueBlock_firstElement_name">{profile.name}</div>
-                                            {this.state.element.driverText ?
+                                            {element.driverText ?
                                                 <div className="valueBlock_firstElement_date">{driverAnswerDate.getDate() + " " + getMonthName(driverAnswerDate.getMonth()) + " " + driverAnswerDate.getFullYear()}</div>
                                                 :
                                                 <div className="valueBlock_firstElement_date">{new Date().getDate() + " " + getMonthName(new Date().getMonth()) + " " + new Date().getFullYear()}</div>
@@ -170,10 +171,10 @@ class CommentModalClass extends React.Component {
                                         </div>
                                     </div>
                                     <div className="d-flex justify-content-end">
-                                        <span onClick={() => { if (this.state.driverText !== "") { this.changeCommentary(element) } }} style={{ cursor: "pointer", color: "#304269", fontWeight: "500" }}>{textInfo.answer}</span>
+                                        <span onClick={() => { if (this.state.driverText !== "") { this.props.changeCommentary(element,this.state) } }} style={{ cursor: "pointer", color: "#304269", fontWeight: "500" }}>{textInfo.answer}</span>
                                     </div>
                                 </div>
-
+                            :<React.Fragment />
                         }
 
                     </div>

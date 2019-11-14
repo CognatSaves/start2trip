@@ -34,37 +34,37 @@ class ShowCommentsClass extends React.Component {
         }
     }
 
-    changeCommentary = (element) => {
+    changeCommentary = (element,elementState) => {
 
 
         startRefresherGlobal(this, true)
         let imgFile = undefined
-        if (this.state.blob !== "") {
-            imgFile = new File([this.state.blob], "avatar.jpg");
+        if (elementState.blob !== "") {
+            imgFile = new File([elementState.blob], "avatar.jpg");
         }
 
         let that = this;
 
         var commentForm = new FormData();
-        commentForm.append('text', this.state.newText !== "" ? this.state.newText : element.value);
+        commentForm.append('text', elementState.newText !== "" ? elementState.newText : element.value);
         commentForm.append('mark', this.props.commentState.commentValue ? this.props.commentState.commentValue : element.rating);
         commentForm.append('id', element.id);
         debugger
         commentForm.append('targetId', this.props.targetId);
-        if (this.state.userKey !== "" && element.fakecustomer) {
-            commentForm.append('key', this.state.userKey !== "" ? this.state.userKey : element.fakecustomer.key);
+        if (elementState.userKey !== "" && element.fakecustomer) {
+            commentForm.append('key', elementState.userKey !== "" ? elementState.userKey : element.fakecustomer.key);
         }
-        if (this.state.userName !== "" && element.fakecustomer) {
-            commentForm.append('userName', this.state.userName !== "" ? this.state.userName : element.fakecustomer.name);
+        if (elementState.userName !== "" && element.fakecustomer) {
+            commentForm.append('userName', elementState.userName !== "" ? elementState.userName : element.fakecustomer.name);
         }
-        if (this.state.driverText !== "") {
-            commentForm.append('driverText', this.state.driverText);
+        if (elementState.driverText !== "") {
+            commentForm.append('driverText', elementState.driverText);
             commentForm.append('driverAnswerDate', new Date());
         }
 
-        if (this.state.driverImg.length > 0) {
-            for (let i = 0; i < this.state.driverImg.length; i++) {
-                let imgFile = new File([this.state.driverImg[i]], "avatar.jpg");
+        if (elementState.driverImg.length > 0) {
+            for (let i = 0; i < elementState.driverImg.length; i++) {
+                let imgFile = new File([elementState.driverImg[i]], "avatar.jpg");
                 commentForm.append('driverImg', imgFile);
             }
 
@@ -109,7 +109,6 @@ class ShowCommentsClass extends React.Component {
     }
 
     showPhoto = (clickedImageIndex,element)=>{
-        debugger
         this.setState({ 
             isMaskVisible: true, 
             clickedImageIndex: clickedImageIndex, 
@@ -117,76 +116,6 @@ class ShowCommentsClass extends React.Component {
         })
     }
 
-    // _handleImageChange = (e) => {
-    //     e.preventDefault();
-    //     let that = this
-    //     let fullfile = e.target.files;
-    //     let imageCounter = 0;
-    //     for (let i = 0; i < fullfile.length; i++) {
-    //         if (i === 0) {
-    //             startRefresherGlobal(that, true)
-    //         }
-
-    //         let file = fullfile[i]
-
-    //         if (!file.type.match('image')) continue;
-
-    //         readAndCompressImage(file, that.props.globalReduser.compressConfig)
-    //             .then(resizedImage => {
-
-    //                 let sizFile = new File([resizedImage], file.name);
-    //                 return sizFile;
-    //             })
-    //             .then(sizFile => {
-    //                 let reader = new FileReader();
-    //                 reader.onloadend = () => {
-    //                     // 
-
-    //                     var img = reader.result;
-    //                     let driverImgPreviewUrl = that.state.driverImgPreviewUrl;
-    //                     let driverImg = that.state.driverImg;
-    //                     driverImgPreviewUrl.push(img);
-    //                     driverImg.push(sizFile);
-
-    //                     imageCounter++;
-
-    //                     if (imageCounter === fullfile.length) {
-    //                     }
-    //                     that.setState({
-    //                         driverImgPreviewUrl: driverImgPreviewUrl,
-    //                         driverImg: driverImg,
-    //                     });
-
-    //                     thenFuncGlobal(that)
-    //                 }
-    //                 reader.readAsDataURL(sizFile)
-    //             });
-    //     }
-
-    // }
-
-    // deletePhoto = (index) => {
-    //     let newDriverImg = [...this.state.driverImg]
-    //     let newDriverImgPreviewUrl = [...this.state.driverImgPreviewUrl]
-    //     newDriverImg.splice(index, 1);
-    //     newDriverImgPreviewUrl.splice(index, 1);
-    //     this.setState({
-    //         driverImg: newDriverImg,
-    //         driverImgPreviewUrl: newDriverImgPreviewUrl,
-    //     })
-    // }
-
-    // imgModalShow = () => {
-    //     this.setState({ imgModal: !this.state.imgModal });
-    // };
-
-    // changeImg = (newImg) => {
-    //     this.setState({ img: newImg })
-    // }
-
-    // saveBlob = (blob) => {
-    //     this.setState({ blob: blob })
-    // }
 
     render() {
         let textInfo = this.props.storeState.languageTextMain.placeDescription.placeProgramm;
@@ -214,7 +143,8 @@ class ShowCommentsClass extends React.Component {
                 <>
                 {this.state.openModal&&
                  <CommentModal driverAnswerDate={driverAnswerDate} isEdit={this.state.isEdit} openModal={this.state.openModal} element={this.state.element}
-                 closeModal={this.closeModal} date={this.state.date} profile={this.props.profile} isAuthor={isAuthor} isSuperUser={isSuperUser} />
+                 closeModal={this.closeModal} isNeedEdit={()=>{this.setState({isEdit:!this.state.isEdit})}} date={this.state.date} profile={this.props.profile} 
+                 isAuthor={isAuthor} isSuperUser={isSuperUser} isNeedAnswer={this.props.isNeedAnswer} />
                 }
                    
                     {
@@ -230,8 +160,8 @@ class ShowCommentsClass extends React.Component {
                             let driverAnswerDate = new Date(element.driverAnswerDate)
                             return (
                                 <CommentEl element={element} index={index} date={date} openModal={this.openModal}
-                                    driverAnswerDate={driverAnswerDate} profile={this.props.profile}
-                                    isAuthor={isAuthor} isSuperUser={isSuperUser} showPhoto={this.showPhoto}/>
+                                    driverAnswerDate={driverAnswerDate} profile={this.props.profile} changeCommentary={this.changeCommentary}
+                                    isAuthor={isAuthor} isNeedAnswer={this.props.isNeedAnswer} isSuperUser={isSuperUser} showPhoto={this.showPhoto}/>
                             )
                         }
                         )}

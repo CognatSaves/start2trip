@@ -364,8 +364,10 @@ class DriversPageDescriptionClass extends React.Component {
                                     <div className="drivers_bottom_background d-flex flex-column" >
                                         <div className="drivers_body d-flex">
                                             <div className="left_body_part col-12">
-                                                <CommentBlock comments={this.props.guidesReduser.guideData.comments} isSuperUser={isSuperUser} showCreateComment={false} profile={this.props.guidesReduser.guideData}
-                                                page={this.state.page} setPage={this.setPage} newComments={this.newComments} targetType="user" targetId={this.props.guidesReduser.guideData.id}
+                                                <CommentBlock comments={this.props.guidesReduser.guideData.comments} 
+                                                isSuperUser={isSuperUser} showCreateComment={false} profile={this.props.guidesReduser.guideData}
+                                                page={this.state.page} setPage={this.setPage} newComments={this.newComments} 
+                                                targetType="user" targetId={this.props.guidesReduser.guideData.id} isNeedAnswer={true}
                                                 showMorePages={this.showMorePages} showPages={this.state.showPages} id={"commentBlockId"} noHeader={true}/>
                                             </div>
                                         </div>

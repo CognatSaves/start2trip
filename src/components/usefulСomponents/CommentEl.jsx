@@ -95,7 +95,7 @@ class CommentElClass extends React.Component {
             let monthArray = textInfo.monthArray;
             return monthArray[number];
         }
-        let {element,index,date,driverAnswerDate,isAuthor,isSuperUser} = this.props
+        let {element,index,date,driverAnswerDate,isAuthor,isSuperUser, isNeedAnswer} = this.props
         return (
             <>
 
@@ -120,6 +120,7 @@ class CommentElClass extends React.Component {
                                 showMask={(clickedImageIndex, images) => {this.props.showPhoto(clickedImageIndex,element.userImg)  }} />
                         </div>
                         {
+                            isNeedAnswer?
                             element.driverText ?
                                 <div className="commentBlock_valueBlock d-flex flex-column my-2 pt-4 border-top">
                                     <div className="commentBlock_picture d-flex justify-content-end pb-2">
@@ -174,10 +175,11 @@ class CommentElClass extends React.Component {
                                         </div>
                                     </div>
                                     <div className="d-flex justify-content-end">
-                                        <span onClick={() => { if (this.state.driverText !== "") { this.changeCommentary(element) } }} style={{ cursor: "pointer", color: "#304269", fontWeight: "500" }}>{textInfo.answer}</span>
+                                        <span onClick={() => { if (this.state.driverText !== "") { this.props.changeCommentary(element,this.state) } }} style={{ cursor: "pointer", color: "#304269", fontWeight: "500" }}>{textInfo.answer}</span>
                                     </div>
                                 </div>
-                        }
+                        :<React.Fragment />
+                    }
 
                     </div>
                 </div>
