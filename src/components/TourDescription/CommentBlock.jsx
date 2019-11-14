@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import CreateComment from '../driverProfile/CreateComment';
-import ShowComments from '../driverProfile/ShowComments';
+import ShowComments from '../usefulСomponents/ShowComments';
 import Manipulator from '../manipulator/Manipulator';
 
 class CommentBlockClass extends React.Component {

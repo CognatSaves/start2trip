@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
-import ShowComments from '../driverProfile/ShowComments';
+import ShowComments from '../usefulСomponents/ShowComments';
 
 class DriverProfileFeedbackClass extends React.Component {
     constructor(props) {
