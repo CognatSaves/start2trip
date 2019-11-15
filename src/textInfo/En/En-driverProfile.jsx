@@ -2,6 +2,7 @@
         //Attention! this is driverProfileRegistration
         lang: 'ENG',
         createComment: {
+            uploadPhoto:"Upload Photo",
             yourCommentPlaceholder: "Your feedback",
             yourAnswerPlaceholder: "Your Answer",
             answer:"Answer",

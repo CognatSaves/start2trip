@@ -237,7 +237,7 @@ class CommentModalClass extends React.Component {
 
                                     <div className="d-flex flex-md-row flex-column w-100">
                                         <div className="col-md-3 col-12 d-flex align-items-center pr-0">
-                                            <label id="imageLabel" >{"Upload photo"}:</label>
+                                            <label id="imageLabel" >{textInfo.uploadPhoto}:</label>
                                             <label id="imageLabelError" className="imageLabelError" style={{ display: 'none' }} >{"error"}</label>
                                         </div>
                                         <div className="tourPhotoMiniContainer d-flex flex-wrap">

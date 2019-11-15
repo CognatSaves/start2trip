@@ -341,7 +341,7 @@ class CreateCommentClass extends React.Component {
                             onClick={() => { if (this.state.isNotFilled || this.state.isAllCorrect) { this.setState({ isNotFilled: false, isAllCorrect: false }) } }}></textarea>
                         <div className="d-flex flex-md-row flex-column w-100">
                             <div className="col-md-2 col-12 d-flex align-items-center pr-0">
-                                <label id="imageLabel" >{"Upload photo"}:</label>
+                                <label id="imageLabel" >{textInfo.uploadPhoto}:</label>
                                 <label id="imageLabelError" className="imageLabelError" style={{ display: 'none' }} >{"error"}</label>
                             </div>
                             <div className="tourPhotoMiniContainer d-flex flex-wrap">
