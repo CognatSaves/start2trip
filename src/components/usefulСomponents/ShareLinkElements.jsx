@@ -1,5 +1,5 @@
 import React from 'react';
-import './DriverProfileAffiliateProgram.css'
+import '../driverProfileRegistration/DriverProfileAffiliateProgram.css'
 import {
     TwitterShareButton,
     FacebookShareButton,

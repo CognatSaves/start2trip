@@ -3,6 +3,7 @@ import { setModalRegister } from '../../redusers/Action';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import requests from '../../config';
+import { setProfileData, setUrlAddress } from "../../redusers/ActionGlobal"
 
 import AvatarEditorCustom from '../usefulСomponents/AvatarEditorCustom'
 import DatePicker from 'material-ui/DatePicker';
@@ -152,7 +153,11 @@ class CreateCommentClass extends React.Component {
     }
 
     changeCommentary = (targetId) => {
-
+        let jwt = this.props.globalReduser.readCookie('jwt');
+        if(!jwt || jwt==='-'){
+            this.props.dispatch(setUrlAddress(window.location.pathname));
+            this.props.history.push('/' + cookies.get('userLangISO', { path: "/" }) + '/login/');
+        }
         startRefresherGlobal(this, true)
         let imgFile = undefined
         if (this.state.blob !== "") {

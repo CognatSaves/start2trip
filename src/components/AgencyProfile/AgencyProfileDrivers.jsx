@@ -13,7 +13,7 @@ import getUserData from '../driverProfileRegistration/DriverProfileRequest';
 import requests from '../../config';
 
 import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../redusers/GlobalFunction'
-import RenderShareLink from '../driverProfileRegistration/RenderShareLink';
+import RenderShareLink from '../usefulСomponents/RenderShareLink';
 
 import messengerIcon from '../media/messenger.svg'
 import whatsappIcon from '../media/whatsapp.svg'

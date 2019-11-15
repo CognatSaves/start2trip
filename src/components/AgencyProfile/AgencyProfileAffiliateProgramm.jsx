@@ -17,7 +17,7 @@ import whatsappIcon from '../media/whatsapp.svg'
 import viberIcon from '../media/viber.svg'
 import telegramIcon from '../media/telegram.svg'
 
-import RenderShareLink from '../driverProfileRegistration/RenderShareLink';
+import RenderShareLink from '../usefulСomponents/RenderShareLink.jsx';
 
 class AgencyProfileAffiliateProgrammClass extends React.Component {
     constructor(props) {
