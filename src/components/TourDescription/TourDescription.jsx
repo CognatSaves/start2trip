@@ -438,10 +438,7 @@ class ToureDescriptionClass extends React.Component {
             autorId = this.state.newTour.tour.author.id
         }
 
-        if (("5d8c748f2af67f052213a249" === userId
-            || "5cc6b6bbab3b7e111009d58e" === userId
-            || "5d3015c437976716c39c488d" === userId
-            || "5d654ed89523424ba6a6b333" === userId)) {
+        if (requests.isSuperUser(userId)) {
                 if(autorId === userId) {
                     renderEl = true
                 }
@@ -614,8 +611,8 @@ class ToureDescriptionClass extends React.Component {
                                                     fragmentName={textInfo.placeDescription.variantsArray[4]} priseDisplay={"none"} />
                                             </div>
                                             
-                                            <CommentBlock targetType="tour" comments={this.state.newTour.comments} newComments={this.newComments}
-                                            profile={this.state.author}
+                                            <CommentBlock targetType={isSuperUser?"superTour":"tour"} comments={this.state.newTour.comments} newComments={this.newComments}
+                                            profile={this.state.author} isNeedAnswer={true}
                                             targetId={this.state.newTour.tour.id} page={this.state.page} setPage={this.setPage} isSuperUser={isSuperUser} showCreateComment={false}
                                             showMorePages={this.showMorePages} showPages={this.state.showPages} id={topBlockId + "6"} />
 

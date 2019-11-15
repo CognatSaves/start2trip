@@ -16,12 +16,16 @@ class CommentElClass extends React.Component {
         super(props);
         this.state = {
             driverText: "",
+            newText:"",
+            userKey:"",
+            userName:"",
             driverImg: [],
             driverImgPreviewUrl: [],
         }
     }
 
     _handleImageChange = (e) => {
+        
         e.preventDefault();
         let that = this
         let fullfile = e.target.files;
@@ -48,7 +52,7 @@ class CommentElClass extends React.Component {
 
                         var img = reader.result;
                         let driverImgPreviewUrl = that.state.driverImgPreviewUrl;
-                        let driverImg = that.state.driverImg;
+                        let driverImg = that.props.driverImg;
                         driverImgPreviewUrl.push(img);
                         driverImg.push(sizFile);
 
@@ -56,9 +60,10 @@ class CommentElClass extends React.Component {
 
                         if (imageCounter === fullfile.length) {
                         }
+                        
+                        that.props.changeDriverImg(driverImg)
                         that.setState({
                             driverImgPreviewUrl: driverImgPreviewUrl,
-                            driverImg: driverImg,
                         });
 
                         thenFuncGlobal(that)
@@ -70,12 +75,12 @@ class CommentElClass extends React.Component {
     }
 
     deletePhoto = (index) => {
-        let newDriverImg = [...this.state.driverImg]
+        let newDriverImg = [...this.props.driverImg]
         let newDriverImgPreviewUrl = [...this.state.driverImgPreviewUrl]
         newDriverImg.splice(index, 1);
         newDriverImgPreviewUrl.splice(index, 1);
+        this.props.changeDriverImg(newDriverImg)
         this.setState({
-            driverImg: newDriverImg,
             driverImgPreviewUrl: newDriverImgPreviewUrl,
         })
     }
@@ -156,8 +161,8 @@ class CommentElClass extends React.Component {
                                         </div>
                                         <div className="tourPhotoMiniContainer d-flex flex-wrap">
                                             <div className="addPhotoTourLabel">
-                                                <label htmlFor="addCarFile" ></label>
-                                                <input type="file" id="addCarFile" style={{ display: "none" }} multiple onChange={(e) => { this._handleImageChange(e) }} />
+                                                <label htmlFor={"addCarFileCommentEl"+element.value+index} ></label>
+                                                <input type="file" id={"addCarFileCommentEl"+element.value+index} style={{ display: "none" }} multiple onChange={(e) => { this._handleImageChange(e) }} />
                                             </div>
                                             {this.state.driverImgPreviewUrl.map((element, index) =>
                                                 <div className="position-relative" >

@@ -134,7 +134,7 @@ class GuideDescriptionClass extends React.Component {
                 if(data.guideData.tours.length>0){
                     //если туры у человека пришли, то отрабатываем стандартно - 
                     //проверка на наличие локализаций на выбранном языке
-                    debugger
+                    
                     that.props.dispatch(setGuideData(data.guideData, data.carTypes));
                 }
                 else{

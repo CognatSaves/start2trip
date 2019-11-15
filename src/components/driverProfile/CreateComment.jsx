@@ -52,133 +52,92 @@ class CreateCommentClass extends React.Component {
 
             startRefresherGlobal(this, true);
 
-            
 
-            let body = JSON.stringify({ targetId: this.props.targetId, text: newComment, mark: this.props.commentState.commentValue, clientId: this.props.clientId });
+
+            // let body = JSON.stringify({ targetId: this.props.targetId, text: newComment, mark: this.props.commentState.commentValue, clientId: this.props.clientId });
             let that = this;
             let address = requests.createComment + "?target=" + this.props.targetType;
 
-            // var commentForm = new FormData();
-            //     commentForm.append('targetId', this.props.targetId);
-            //     commentForm.append('text', newComment);
-            //     commentForm.append('mark', this.props.commentState.commentValue);
-            //     commentForm.append('clientId', "5d3015c437976716c39c488d");
-            //     // this.props.clientId
-            //     if (this.state.driverImg.length > 0) {
-            //         for (let i = 0; i < this.state.driverImg.length; i++) {
-            //             let imgFile = new File([this.state.driverImg[i]], "avatar.jpg");
-            //             commentForm.append('userImg',imgFile);
-            //         }
-    
-            //     }
+            var commentForm = new FormData();
+            commentForm.append('targetId', this.props.targetId);
+            commentForm.append('text', newComment);
+            commentForm.append('mark', this.props.commentState.commentValue);
+            
+            commentForm.append('clientId', this.props.clientId);
+            if (this.state.driverImg.length > 0) {
+                for (let i = 0; i < this.state.driverImg.length; i++) {
+                    let imgFile = new File([this.state.driverImg[i]], "avatar.jpg");
+                    commentForm.append('userImg', imgFile);
+                }
+
+            }
 
             //console.log(this.props.commentState);
 
             if (this.props.clientId) {
 
-               
 
-                // const request = new XMLHttpRequest();
-                // request.open('POST', address);
-                // // request.setRequestHeader('content-type', 'application/json')
-                // request.onreadystatechange = function () {
 
-                //     if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
-                //         let responseText = JSON.parse(request.responseText);
-                //         that.setState({
-                //             isAllCorrect: true,
-                //             isNotFilled: false
-                //         })
+                const request = new XMLHttpRequest();
+                request.open('POST', address);
+                // request.setRequestHeader('content-type', 'application/json')
+                request.onreadystatechange = function () {
 
-                //         thenFuncGlobal(that);
-                //     } else {
-                //         catchFuncGlobal(that);
-                //     }
+                    if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
+                        let responseText = JSON.parse(request.responseText);
+                        that.setState({
+                            isAllCorrect: true,
+                            isNotFilled: false,
+                            img: "",
+                            blob: "",
+                            userName: "",
+                            userKey: "",
+                            newText: "",
+                            driverImg: [],
+                            driverImgPreviewUrl: [],
+                            date: new Date(),
+                        })
 
-                // }
-                // request.send(commentForm);
-
-                fetch(address, {
-                    method: 'POST', body: body,
-                    headers: { 'content-type': 'application/json' }
-                })
-                    .then(response => {
-                        return response.json();
-                    })
-                    .then(function (data) {
-                        if (data.error) {
-                            console.log("bad");
-                            throw data.error;
-                        }
-                        else {
-                            console.log('good');
-                            console.log(data);
-                            thenFuncGlobal(that);
-                            //that.getProfileData();
-                            that.setState({
-                                isAllCorrect: true,
-                                isNotFilled: false
-                            })
-                        }
-                    })
-                    .catch(function (error) {
-                        console.log("bad");
-                        console.log('An error occurred:', error);
+                        thenFuncGlobal(that);
+                    } else {
                         catchFuncGlobal(that);
-                    });
+                    }
+
+                }
+                request.send(commentForm);
+
+              
             } else {
-                
-                // const request = new XMLHttpRequest();
-                // request.open('POST', address);
-                // // request.setRequestHeader('content-type', 'application/json')
-                // request.setRequestHeader('Authorization' , `Bearer ${jwt}`)
-                // request.onreadystatechange = function () {
 
-                //     if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
-                //         let responseText = JSON.parse(request.responseText);
-                //         that.setState({
-                //             isAllCorrect: true,
-                //             isNotFilled: false
-                //         })
+                const request = new XMLHttpRequest();
+                request.open('POST', address);
+                // request.setRequestHeader('content-type', 'application/json')
+                request.setRequestHeader('Authorization', `Bearer ${jwt}`)
+                request.onreadystatechange = function () {
 
-                //         thenFuncGlobal(that);
-                //     } else {
-                //         catchFuncGlobal(that);
-                //     }
+                    if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
+                        let responseText = JSON.parse(request.responseText);
+                        that.setState({
+                            isAllCorrect: true,
+                            isNotFilled: false,
+                            img: "",
+                            blob: "",
+                            userName: "",
+                            userKey: "",
+                            newText: "",
+                            driverImg: [],
+                            driverImgPreviewUrl: [],
+                            date: new Date(),
+                        })
 
-                // }
-                // request.send(commentForm);
-               
-
-
-                fetch(address, {
-                    method: 'POST', body: body,
-                    headers: { 'content-type': 'application/json', Authorization: `Bearer ${jwt}` }
-                })
-                    .then(response => {
-                        return response.json();
-                    })
-                    .then(function (data) {
-                        if (data.error) {
-                            console.log("bad");
-                            throw data.error;
-                        }
-                        else {
-                            console.log('good');
-                            console.log(data);
-                            thenFuncGlobal(that);
-                            //that.getProfileData();
-                            that.setState({
-                                isAllCorrect: true,
-                                isNotFilled: false
-                            })
-                        }
-                    })
-                    .catch(function (error) {
-                        console.log("bad");
-                        console.log('An error occurred:', error);
+                        thenFuncGlobal(that);
+                    } else {
                         catchFuncGlobal(that);
-                    });
+                    }
+
+                }
+                request.send(commentForm);
+
             }
 
         }
@@ -199,9 +158,10 @@ class CreateCommentClass extends React.Component {
         if (this.state.blob !== "") {
             imgFile = new File([this.state.blob], "avatar.jpg");
         }
+        let jwt = this.props.globalReduser.readCookie('jwt');
 
         let that = this;
-        debugger
+        
         var commentForm = new FormData();
         commentForm.append('text', this.state.newText);
         commentForm.append('mark', this.props.commentState.commentValue);
@@ -214,7 +174,7 @@ class CreateCommentClass extends React.Component {
         if (this.state.driverImg.length > 0) {
             for (let i = 0; i < this.state.driverImg.length; i++) {
                 let imgFile = new File([this.state.driverImg[i]], "avatar.jpg");
-                commentForm.append('driverImg', imgFile);
+                commentForm.append('userImg', imgFile);
             }
 
         }
@@ -223,12 +183,13 @@ class CreateCommentClass extends React.Component {
 
         const request = new XMLHttpRequest();
         request.open('POST', requests.fakeCommentCreation);
+        request.setRequestHeader('Authorization', `Bearer ${jwt}`)
         request.onreadystatechange = function () {
 
             if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
                 let responseText = JSON.parse(request.responseText);
                 that.props.newComments(responseText)
-                debugger
+                
                 that.setState({
                     img: "",
                     blob: "",
@@ -262,6 +223,7 @@ class CreateCommentClass extends React.Component {
     }
 
     _handleImageChange = (e) => {
+        
         e.preventDefault();
         let that = this
         let fullfile = e.target.files;
@@ -376,8 +338,8 @@ class CreateCommentClass extends React.Component {
                             </div>
                             <div className="tourPhotoMiniContainer d-flex flex-wrap">
                                 <div className="addPhotoTourLabel">
-                                    <label htmlFor="addCarFile" ></label>
-                                    <input type="file" id="addCarFile" style={{ display: "none" }} multiple onChange={(e) => { this._handleImageChange(e) }} />
+                                    <label htmlFor="addCarFileCreateComment" ></label>
+                                    <input type="file" id="addCarFileCreateComment" style={{ display: "none" }} multiple onChange={(e) => { this._handleImageChange(e) }} />
                                 </div>
                                 {this.state.driverImgPreviewUrl.map((element, index) =>
                                     <div className="position-relative" >
@@ -396,11 +358,11 @@ class CreateCommentClass extends React.Component {
                                 <button className="driversAdaptedRoute_sendRequest createComment_sendButton" onClick={() => {
                                     if (isSuperUser) {
                                         if (this.state.userKey !== "" && this.state.userName !== "" || this.state.userKey !== "") {
-                                            this.sendComment(this.props.targetId)
+                                            this.changeCommentary(this.props.targetId)
                                         } else {
                                             this.setState({ trySend: true })
                                         }
-                                    } else { this.changeCommentary(this.props.targetId) }
+                                    } else { this.sendComment(this.props.targetId) }
                                 }}>
                                     <text>{textInfo.sendText}</text>
                                 </button>

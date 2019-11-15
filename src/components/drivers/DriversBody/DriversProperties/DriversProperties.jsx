@@ -77,7 +77,7 @@ class DriversPropertiesClass extends React.Component {
     let valueText = valueTextGenerator((this.props.hideTypeOfTransport ? this.props.toursState.tempPricePart : this.props.storeState.pricePart), (this.props.hideTypeOfTransport ? this.props.toursState.maxPrice : this.props.storeState.maxPrice), activeCurrency, textInfo);
 
     if(this.state.tours.length>0){
-      debugger;
+      ;
       console.log(this.state.tours);
     }
     if (this.props.toursState.categories.length > 0 && (this.state.tours.length === 0 || (this.state.tours[0].local.name !== this.props.toursState.categories[0].local.name))) {

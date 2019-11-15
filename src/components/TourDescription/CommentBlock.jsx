@@ -18,6 +18,12 @@ class CommentBlockClass extends React.Component {
 
         let selectedComments = this.props.comments.slice((this.props.page - this.props.showPages) * this.props.storeState.pagesMenuValue,
             (this.props.page) * this.props.storeState.pagesMenuValue);
+            
+            selectedComments = selectedComments.sort((a,b)=>{
+                let first = new Date(a.createdAt)
+                let last = new Date(b.createdAt)
+                return first<last ? 1:(first===last ? 0: -1)
+            })
         let textInfo = this.props.storeState.languageTextMain.tourDescription.commentBlock;
 
         return (
@@ -34,7 +40,7 @@ class CommentBlockClass extends React.Component {
                     </> : <React.Fragment />}
 
                     <ShowComments selectedComments={selectedComments} 
-                    targetId={this.props.targetId}  isNeedAnswer={this.props.isNeedAnswer}
+                    targetId={this.props.targetId} isNeedAnswer={this.props.isNeedAnswer}
                     newComments={this.props.newComments} profile={this.props.profile} />
 
                 </div>
