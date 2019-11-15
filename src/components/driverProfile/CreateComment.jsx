@@ -59,127 +59,128 @@ class CreateCommentClass extends React.Component {
             let that = this;
             let address = requests.createComment + "?target=" + this.props.targetType;
 
-            // var commentForm = new FormData();
-            //     commentForm.append('targetId', this.props.targetId);
-            //     commentForm.append('text', newComment);
-            //     commentForm.append('mark', this.props.commentState.commentValue);
-            //     commentForm.append('clientId', "5d3015c437976716c39c488d");
-            //     // this.props.clientId
-            //     if (this.state.driverImg.length > 0) {
-            //         for (let i = 0; i < this.state.driverImg.length; i++) {
-            //             let imgFile = new File([this.state.driverImg[i]], "avatar.jpg");
-            //             commentForm.append('userImg',imgFile);
-            //         }
+            var commentForm = new FormData();
+                commentForm.append('targetId', this.props.targetId);
+                commentForm.append('text', newComment);
+                commentForm.append('mark', this.props.commentState.commentValue);
+                commentForm.append('clientId', "5d3015c437976716c39c488d");
+                // this.props.clientId
+                if (this.state.driverImg.length > 0) {
+                    for (let i = 0; i < this.state.driverImg.length; i++) {
+                        let imgFile = new File([this.state.driverImg[i]], "avatar.jpg");
+                        commentForm.append('userImg',imgFile);
+                    }
     
-            //     }
+                }
 
-            //console.log(this.props.commentState);
+            console.log(this.props.commentState);
 
             if (this.props.clientId) {
 
                
+                alert('clientId est`');
+                const request = new XMLHttpRequest();
+                request.open('POST', address);
+                // request.setRequestHeader('content-type', 'application/json')
+                request.onreadystatechange = function () {
 
-                // const request = new XMLHttpRequest();
-                // request.open('POST', address);
-                // // request.setRequestHeader('content-type', 'application/json')
-                // request.onreadystatechange = function () {
+                    if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
+                        let responseText = JSON.parse(request.responseText);
+                        that.setState({
+                            isAllCorrect: true,
+                            isNotFilled: false
+                        })
 
-                //     if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
-                //         let responseText = JSON.parse(request.responseText);
-                //         that.setState({
-                //             isAllCorrect: true,
-                //             isNotFilled: false
-                //         })
-
-                //         thenFuncGlobal(that);
-                //     } else {
-                //         catchFuncGlobal(that);
-                //     }
-
-                // }
-                // request.send(commentForm);
-
-                fetch(address, {
-                    method: 'POST', body: body,
-                    headers: { 'content-type': 'application/json' }
-                })
-                    .then(response => {
-                        return response.json();
-                    })
-                    .then(function (data) {
-                        if (data.error) {
-                            console.log("bad");
-                            throw data.error;
-                        }
-                        else {
-                            console.log('good');
-                            console.log(data);
-                            thenFuncGlobal(that);
-                            //that.getProfileData();
-                            that.setState({
-                                isAllCorrect: true,
-                                isNotFilled: false
-                            })
-                        }
-                    })
-                    .catch(function (error) {
-                        console.log("bad");
-                        console.log('An error occurred:', error);
+                        thenFuncGlobal(that);
+                    } else {
                         catchFuncGlobal(that);
-                    });
+                    }
+
+                }
+                request.send(commentForm);
+
+                // fetch(address, {
+                //     method: 'POST', body: body,
+                //     headers: { 'content-type': 'application/json' }
+                // })
+                //     .then(response => {
+                //         return response.json();
+                //     })
+                //     .then(function (data) {
+                //         if (data.error) {
+                //             console.log("bad");
+                //             throw data.error;
+                //         }
+                //         else {
+                //             console.log('good');
+                //             console.log(data);
+                //             thenFuncGlobal(that);
+                //             //that.getProfileData();
+                //             that.setState({
+                //                 isAllCorrect: true,
+                //                 isNotFilled: false
+                //             })
+                //         }
+                //     })
+                //     .catch(function (error) {
+                //         console.log("bad");
+                //         console.log('An error occurred:', error);
+                //         catchFuncGlobal(that);
+                //     });
             } else {
                 
-                // const request = new XMLHttpRequest();
-                // request.open('POST', address);
-                // // request.setRequestHeader('content-type', 'application/json')
-                // request.setRequestHeader('Authorization' , `Bearer ${jwt}`)
-                // request.onreadystatechange = function () {
+                alert('clientId nyet');
+                const request = new XMLHttpRequest();
+                request.open('POST', address);
+                // request.setRequestHeader('content-type', 'application/json')
+                request.setRequestHeader('Authorization' , `Bearer ${jwt}`)
+                request.onreadystatechange = function () {
 
-                //     if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
-                //         let responseText = JSON.parse(request.responseText);
-                //         that.setState({
-                //             isAllCorrect: true,
-                //             isNotFilled: false
-                //         })
+                    if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
+                        let responseText = JSON.parse(request.responseText);
+                        that.setState({
+                            isAllCorrect: true,
+                            isNotFilled: false
+                        })
 
-                //         thenFuncGlobal(that);
-                //     } else {
-                //         catchFuncGlobal(that);
-                //     }
+                        thenFuncGlobal(that);
+                    } else {
+                        catchFuncGlobal(that);
+                    }
 
-                // }
-                // request.send(commentForm);
+                }
+                request.send(commentForm);
                
 
 
-                fetch(address, {
-                    method: 'POST', body: body,
-                    headers: { 'content-type': 'application/json', Authorization: `Bearer ${jwt}` }
-                })
-                    .then(response => {
-                        return response.json();
-                    })
-                    .then(function (data) {
-                        if (data.error) {
-                            console.log("bad");
-                            throw data.error;
-                        }
-                        else {
-                            console.log('good');
-                            console.log(data);
-                            thenFuncGlobal(that);
-                            //that.getProfileData();
-                            that.setState({
-                                isAllCorrect: true,
-                                isNotFilled: false
-                            })
-                        }
-                    })
-                    .catch(function (error) {
-                        console.log("bad");
-                        console.log('An error occurred:', error);
-                        catchFuncGlobal(that);
-                    });
+                // fetch(address, {
+                //     method: 'POST', body: body,
+                //     headers: { 'content-type': 'application/json', Authorization: `Bearer ${jwt}` }
+                // })
+                //     .then(response => {
+                //         return response.json();
+                //     })
+                //     .then(function (data) {
+                //         if (data.error) {
+                //             console.log("bad");
+                //             throw data.error;
+                //         }
+                //         else {
+                //             console.log('good');
+                //             console.log(data);
+                //             thenFuncGlobal(that);
+                //             //that.getProfileData();
+                //             that.setState({
+                //                 isAllCorrect: true,
+                //                 isNotFilled: false
+                //             })
+                //         }
+                //     })
+                //     .catch(function (error) {
+                //         console.log("bad");
+                //         console.log('An error occurred:', error);
+                //         catchFuncGlobal(that);
+                //     });
             }
 
         }
