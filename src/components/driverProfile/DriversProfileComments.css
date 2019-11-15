@@ -124,6 +124,10 @@
     padding-bottom: 5px;
 }
 
+.createCommentDate div{
+    max-width: 110px;
+}
+
 .createComment_textBlock {
     margin: 0 10px 0 20px;
     height: 60px;
@@ -268,7 +272,8 @@ a.createComment_Link:hover {
 }
 
 .news {
-    max-height: 145px;
+    max-height: 90px;
+    min-height: 90px;
     line-height: 21px;
     overflow: hidden;
     /* Обрезаем все, что не помещается в область */
@@ -332,6 +337,9 @@ label {
 
     .valueBlock_commentary {
         max-height: none;
+    }
+    .createComment_element input{
+        max-width: 110px;
     }
 }
 

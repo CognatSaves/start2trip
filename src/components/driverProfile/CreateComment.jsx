@@ -53,32 +53,32 @@ class CreateCommentClass extends React.Component {
 
             startRefresherGlobal(this, true);
 
-            
 
-            let body = JSON.stringify({ targetId: this.props.targetId, text: newComment, mark: this.props.commentState.commentValue, clientId: this.props.clientId });
+
+            // let body = JSON.stringify({ targetId: this.props.targetId, text: newComment, mark: this.props.commentState.commentValue, clientId: this.props.clientId });
             let that = this;
             let address = requests.createComment + "?target=" + this.props.targetType;
 
             var commentForm = new FormData();
-                commentForm.append('targetId', this.props.targetId);
-                commentForm.append('text', newComment);
-                commentForm.append('mark', this.props.commentState.commentValue);
-                commentForm.append('clientId', "5d3015c437976716c39c488d");
-                // this.props.clientId
-                if (this.state.driverImg.length > 0) {
-                    for (let i = 0; i < this.state.driverImg.length; i++) {
-                        let imgFile = new File([this.state.driverImg[i]], "avatar.jpg");
-                        commentForm.append('userImg',imgFile);
-                    }
-    
+            commentForm.append('targetId', this.props.targetId);
+            commentForm.append('text', newComment);
+            commentForm.append('mark', this.props.commentState.commentValue);
+            
+            commentForm.append('clientId', this.props.clientId);
+            if (this.state.driverImg.length > 0) {
+                for (let i = 0; i < this.state.driverImg.length; i++) {
+                    let imgFile = new File([this.state.driverImg[i]], "avatar.jpg");
+                    commentForm.append('userImg', imgFile);
                 }
+
+            }
 
             console.log(this.props.commentState);
 
             if (this.props.clientId) {
 
-               
-                alert('clientId est`');
+
+
                 const request = new XMLHttpRequest();
                 request.open('POST', address);
                 // request.setRequestHeader('content-type', 'application/json')
@@ -88,7 +88,15 @@ class CreateCommentClass extends React.Component {
                         let responseText = JSON.parse(request.responseText);
                         that.setState({
                             isAllCorrect: true,
-                            isNotFilled: false
+                            isNotFilled: false,
+                            img: "",
+                            blob: "",
+                            userName: "",
+                            userKey: "",
+                            newText: "",
+                            driverImg: [],
+                            driverImgPreviewUrl: [],
+                            date: new Date(),
                         })
 
                         thenFuncGlobal(that);
@@ -99,48 +107,28 @@ class CreateCommentClass extends React.Component {
                 }
                 request.send(commentForm);
 
-                // fetch(address, {
-                //     method: 'POST', body: body,
-                //     headers: { 'content-type': 'application/json' }
-                // })
-                //     .then(response => {
-                //         return response.json();
-                //     })
-                //     .then(function (data) {
-                //         if (data.error) {
-                //             console.log("bad");
-                //             throw data.error;
-                //         }
-                //         else {
-                //             console.log('good');
-                //             console.log(data);
-                //             thenFuncGlobal(that);
-                //             //that.getProfileData();
-                //             that.setState({
-                //                 isAllCorrect: true,
-                //                 isNotFilled: false
-                //             })
-                //         }
-                //     })
-                //     .catch(function (error) {
-                //         console.log("bad");
-                //         console.log('An error occurred:', error);
-                //         catchFuncGlobal(that);
-                //     });
+              
             } else {
-                
-                alert('clientId nyet');
+
                 const request = new XMLHttpRequest();
                 request.open('POST', address);
                 // request.setRequestHeader('content-type', 'application/json')
-                request.setRequestHeader('Authorization' , `Bearer ${jwt}`)
+                request.setRequestHeader('Authorization', `Bearer ${jwt}`)
                 request.onreadystatechange = function () {
 
                     if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
                         let responseText = JSON.parse(request.responseText);
                         that.setState({
                             isAllCorrect: true,
-                            isNotFilled: false
+                            isNotFilled: false,
+                            img: "",
+                            blob: "",
+                            userName: "",
+                            userKey: "",
+                            newText: "",
+                            driverImg: [],
+                            driverImgPreviewUrl: [],
+                            date: new Date(),
                         })
 
                         thenFuncGlobal(that);
@@ -150,37 +138,6 @@ class CreateCommentClass extends React.Component {
 
                 }
                 request.send(commentForm);
-               
-
-
-                // fetch(address, {
-                //     method: 'POST', body: body,
-                //     headers: { 'content-type': 'application/json', Authorization: `Bearer ${jwt}` }
-                // })
-                //     .then(response => {
-                //         return response.json();
-                //     })
-                //     .then(function (data) {
-                //         if (data.error) {
-                //             console.log("bad");
-                //             throw data.error;
-                //         }
-                //         else {
-                //             console.log('good');
-                //             console.log(data);
-                //             thenFuncGlobal(that);
-                //             //that.getProfileData();
-                //             that.setState({
-                //                 isAllCorrect: true,
-                //                 isNotFilled: false
-                //             })
-                //         }
-                //     })
-                //     .catch(function (error) {
-                //         console.log("bad");
-                //         console.log('An error occurred:', error);
-                //         catchFuncGlobal(that);
-                //     });
             }
 
         }
@@ -208,7 +165,6 @@ class CreateCommentClass extends React.Component {
 
         let that = this;
         
-
         var commentForm = new FormData();
         commentForm.append('text', this.state.newText);
         commentForm.append('mark', this.props.commentState.commentValue);
@@ -221,7 +177,7 @@ class CreateCommentClass extends React.Component {
         if (this.state.driverImg.length > 0) {
             for (let i = 0; i < this.state.driverImg.length; i++) {
                 let imgFile = new File([this.state.driverImg[i]], "avatar.jpg");
-                commentForm.append('driverImg', imgFile);
+                commentForm.append('userImg', imgFile);
             }
 
         }
@@ -230,14 +186,13 @@ class CreateCommentClass extends React.Component {
 
         const request = new XMLHttpRequest();
         request.open('POST', requests.fakeCommentCreation);
-        request.setRequestHeader('Authorization', `Bearer ${jwt}`);
-
+        request.setRequestHeader('Authorization', `Bearer ${jwt}`)
         request.onreadystatechange = function () {
 
             if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
                 let responseText = JSON.parse(request.responseText);
                 that.props.newComments(responseText)
-                debugger
+                
                 that.setState({
                     img: "",
                     blob: "",
@@ -271,6 +226,7 @@ class CreateCommentClass extends React.Component {
     }
 
     _handleImageChange = (e) => {
+        
         e.preventDefault();
         let that = this
         let fullfile = e.target.files;
@@ -344,13 +300,14 @@ class CreateCommentClass extends React.Component {
                 <>
                     <AvatarEditorCustom saveBlob={this.saveBlob} changeImg={this.changeImg} img={this.state.img ? this.state.img : (this.props.storeState.avatarUrl ? this.props.storeState.avatarUrl : requests.serverAddressImg + '/uploads/user.svg')} imgModalShow={this.imgModalShow} imgModal={this.state.imgModal} />
                     <div className={"commentBlock_createComment d-flex flex-column " + this.props.myclass}>
-                        <div className="createComment_element d-flex col-12 p-0">
+                        <div className="createComment_element d-flex flex-md-row flex-column col-12 p-0">
+                            <div className="d-flex col">
                             <div className="basicInformationBodyTopImgHover createComment_picture">
                                 <label className="basicInformationBodyTopImg" onClick={() => this.imgModalShow()}>{textInfo.newPhoto}</label>
                                 <img src={this.state.img ? this.state.img : (this.props.storeState.avatarUrl ? this.props.storeState.avatarUrl : requests.serverAddressImg + '/uploads/user.svg')} alt="imgPerson" />
                             </div>
 
-                            <div className="d-flex flex-column pl-2 align-items-start col-4" onClick={() => { if (this.state.isNotFilled || this.state.isAllCorrect) { this.setState({ isNotFilled: false, isAllCorrect: false }) } }}>
+                            <div className="d-flex flex-column pl-2 align-items-start col-md-8 col-6 pr-0" onClick={() => { if (this.state.isNotFilled || this.state.isAllCorrect) { this.setState({ isNotFilled: false, isAllCorrect: false }) } }}>
                                 {isSuperUser ?
                                     <input value={this.state.userName} style={this.state.trySend && this.state.userName === "" ? { background: "#a52525c7" } : {}} placeholder={textInfo.name} onChange={(e) => { this.setState({ userName: e.target.value }) }} type="text" />
                                     :
@@ -359,14 +316,17 @@ class CreateCommentClass extends React.Component {
 
                                 <Stars key="SelectStars" valueDisplay={false} commentNumberDisplay={false} changable={true} changeStarsBlock={'placeCreateCommentStars'} />
                             </div>
-                            <div className='col pl-0'>
+
+                            </div>
+                            
+                            <div className='pl-0'>
                                 <div className='d-flex align-items-center justify-content-end '>
                                     <div className="pr-3">
                                         {isSuperUser &&
                                             <>
                                                 <DatePicker onChange={(nul, date) => { this.setState({ date: date }); }}
-                                                    floatingspanText="Дата комментария" className="" value={this.state.date} />
-                                                <input value={this.state.userKey} style={this.state.trySend && this.state.userKey === "" ? { background: "#a52525c7" } : {}} placeholder={textInfo.key} onChange={(e) => { this.setState({ userKey: e.target.value }) }} type="text" />
+                                                    floatingspanText="Дата комментария" className="createCommentDate" value={this.state.date} />
+                                                <input className="" value={this.state.userKey} style={this.state.trySend && this.state.userKey === "" ? { background: "#a52525c7" } : {}} placeholder={textInfo.key} onChange={(e) => { this.setState({ userKey: e.target.value }) }} type="text" />
                                             </>
                                         }
                                     </div>
@@ -380,13 +340,13 @@ class CreateCommentClass extends React.Component {
                             onClick={() => { if (this.state.isNotFilled || this.state.isAllCorrect) { this.setState({ isNotFilled: false, isAllCorrect: false }) } }}></textarea>
                         <div className="d-flex flex-md-row flex-column w-100">
                             <div className="col-md-2 col-12 d-flex align-items-center pr-0">
-                                <label id="imageLabel" >{"Upload photo"}:</label>
+                                <label id="imageLabel" >{textInfo.uploadPhoto}:</label>
                                 <label id="imageLabelError" className="imageLabelError" style={{ display: 'none' }} >{"error"}</label>
                             </div>
                             <div className="tourPhotoMiniContainer d-flex flex-wrap">
                                 <div className="addPhotoTourLabel">
-                                    <label htmlFor="addCarFile" ></label>
-                                    <input type="file" id="addCarFile" style={{ display: "none" }} multiple onChange={(e) => { this._handleImageChange(e) }} />
+                                    <label htmlFor="addCarFileCreateComment" ></label>
+                                    <input type="file" id="addCarFileCreateComment" style={{ display: "none" }} multiple onChange={(e) => { this._handleImageChange(e) }} />
                                 </div>
                                 {this.state.driverImgPreviewUrl.map((element, index) =>
                                     <div className="position-relative" >
@@ -405,11 +365,11 @@ class CreateCommentClass extends React.Component {
                                 <button className="driversAdaptedRoute_sendRequest createComment_sendButton" onClick={() => {
                                     if (isSuperUser) {
                                         if (this.state.userKey !== "" && this.state.userName !== "" || this.state.userKey !== "") {
-                                            this.sendComment(this.props.targetId)
+                                            this.changeCommentary(this.props.targetId)
                                         } else {
                                             this.setState({ trySend: true })
                                         }
-                                    } else { this.changeCommentary(this.props.targetId) }
+                                    } else { this.sendComment(this.props.targetId) }
                                 }}>
                                     <text>{textInfo.sendText}</text>
                                 </button>

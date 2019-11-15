@@ -2,6 +2,7 @@ const driverProfile = {
     //внимание! это driverProfileRegistration
     lang: 'RUS',
     createComment:{
+        uploadPhoto:"Загрузить фото",
         yourCommentPlaceholder: "Ваш отзыв",
         yourAnswerPlaceholder: "Ваш ответ",
         answer:"Ответить",

@@ -6,6 +6,8 @@ import requests from '../../config';
 import Stars from '../stars/Stars';
 import Dialog from '@material-ui/core/Dialog';
 import AvatarEditorCustom from '../usefulСomponents/AvatarEditorCustom'
+import { readAndCompressImage } from 'browser-image-resizer';
+import { startRefresherGlobal, thenFuncGlobal, catchFuncGlobal, getCurrencies } from '../../redusers/GlobalFunction'
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
@@ -24,6 +26,66 @@ class CommentModalClass extends React.Component {
             driverImgPreviewUrl: [],
             trySend: false,
         }
+    }
+    _handleImageChange = (e) => {
+        
+        e.preventDefault();
+        let that = this
+        let fullfile = e.target.files;
+        let imageCounter = 0;
+        for (let i = 0; i < fullfile.length; i++) {
+            if (i === 0) {
+                startRefresherGlobal(that, true)
+            }
+
+            let file = fullfile[i]
+
+            if (!file.type.match('image')) continue;
+
+            readAndCompressImage(file, that.props.globalReduser.compressConfig)
+                .then(resizedImage => {
+
+                    let sizFile = new File([resizedImage], file.name);
+                    return sizFile;
+                })
+                .then(sizFile => {
+                    let reader = new FileReader();
+                    reader.onloadend = () => {
+                        // 
+
+                        var img = reader.result;
+                        let driverImgPreviewUrl = that.state.driverImgPreviewUrl;
+                        let driverImg = that.props.driverImg;
+                        driverImgPreviewUrl.push(img);
+                        driverImg.push(sizFile);
+
+                        imageCounter++;
+
+                        if (imageCounter === fullfile.length) {
+                        }
+                        
+                        that.props.changeDriverImg(driverImg)
+                        that.setState({
+                            driverImgPreviewUrl: driverImgPreviewUrl,
+                        });
+
+                        thenFuncGlobal(that)
+                    }
+                    reader.readAsDataURL(sizFile)
+                });
+        }
+
+    }
+
+    deletePhoto = (index) => {
+        let newDriverImg = [...this.props.driverImg]
+        let newDriverImgPreviewUrl = [...this.state.driverImgPreviewUrl]
+        newDriverImg.splice(index, 1);
+        newDriverImgPreviewUrl.splice(index, 1);
+        this.props.changeDriverImg(newDriverImg)
+        this.setState({
+            driverImgPreviewUrl: newDriverImgPreviewUrl,
+        })
     }
 
     imgModalShow = () => {
@@ -45,8 +107,10 @@ class CommentModalClass extends React.Component {
             let monthArray = textInfo.monthArray;
             return monthArray[number];
         }
-        let { driverAnswerDate, isAuthor, isSuperUser, element, isEdit ,date, openModal, profile ,isNeedAnswer} = this.props
-        debugger
+        let { driverAnswerDate, isAuthor, isSuperUser, 
+            element, isEdit ,date, openModal, profile ,
+            isNeedAnswer} = this.props
+        
         return (
             <>
                 <Dialog
@@ -152,7 +216,7 @@ class CommentModalClass extends React.Component {
                                             value={this.state.driverText} style={{ margin: "0px", height: "80px" }}
                                             className="createComment_textareaStyle" placeholder={textInfo.yourAnswerPlaceholder}></textarea>
                                     </div>
-                                    <div className="d-flex flex-md-row flex-column w-100">
+                                    {/* <div className="d-flex flex-md-row flex-column w-100">
                                         <div className=" col-xl-2 col-lg-2 col-md-2 col-12">
                                             <label id="imageLabel" >{"Upload photo"}:</label>
                                             <label id="imageLabelError" className="imageLabelError" style={{ display: 'none' }} >{"error"}</label>
@@ -169,7 +233,27 @@ class CommentModalClass extends React.Component {
                                                 </div>
                                             )}
                                         </div>
+                                    </div> */}
+
+                                    <div className="d-flex flex-md-row flex-column w-100">
+                                        <div className="col-md-3 col-12 d-flex align-items-center pr-0">
+                                            <label id="imageLabel" >{textInfo.uploadPhoto}:</label>
+                                            <label id="imageLabelError" className="imageLabelError" style={{ display: 'none' }} >{"error"}</label>
+                                        </div>
+                                        <div className="tourPhotoMiniContainer d-flex flex-wrap">
+                                            <div className="addPhotoTourLabel">
+                                                <label htmlFor={"addCarFileCommentEl"+element.value} ></label>
+                                                <input type="file" id={"addCarFileCommentEl"+element.value} style={{ display: "none" }} multiple onChange={(e) => { this._handleImageChange(e) }} />
+                                            </div>
+                                            {this.state.driverImgPreviewUrl.map((element, index) =>
+                                                <div className="position-relative" >
+                                                    <img src={element} className="tourPhotoMini" alt="add_car" />
+                                                    <span onClick={() => { this.deletePhoto(index) }}></span>
+                                                </div>
+                                            )}
+                                        </div>
                                     </div>
+
                                     <div className="d-flex justify-content-end">
                                         <span onClick={() => { if (this.state.driverText !== "") { this.props.changeCommentary(element,this.state) } }} style={{ cursor: "pointer", color: "#304269", fontWeight: "500" }}>{textInfo.answer}</span>
                                     </div>

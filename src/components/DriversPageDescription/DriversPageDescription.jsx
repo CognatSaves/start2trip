@@ -125,7 +125,7 @@ class DriversPageDescriptionClass extends React.Component {
                 thenFuncGlobal(that)    
                 console.log('good - you get a guide description');
                 console.log(data);
-                debugger
+                
                 that.props.dispatch(setGuideData(data.driverData, data.carTypes));            
             }
         })

@@ -57,12 +57,23 @@
     width: 60px;
 }
 
-@media (max-width: 900) {}
+@media (max-width: 900) {
+    
+}
 
 @media (max-width: 560px) {
     .driverProfileComments_panel_element {
         margin: 0px !important;
     }
+    .commentBlock_element {
+        min-width: 350px;
+        padding: 25px 5px;
+    }
 }
 
-@media (max-width: 430px) {}
+@media (max-width: 430px) { 
+    .commentBlock_element {
+    min-width: 290px;
+    padding: 25px 5px;
+}
+}

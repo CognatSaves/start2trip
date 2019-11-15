@@ -81,12 +81,15 @@
     }
 
     .infoBlock_starsBlock_number {
-        font-size: 14px;
+        font-size: 10px;
     }
 
     .placesList_info_position_textStyle {
         line-height: 16px !important;
         color: rgb(104, 104, 104);
         font-size: 14px;
+    }
+    .infoBlock_starsBlock_value {
+        font-size: 12px;
     }
 }

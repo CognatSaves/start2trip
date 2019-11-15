@@ -36,7 +36,7 @@ class PlacePhotosClass extends React.Component {
         var widthSum = 0;
         let maxWidth = photoBlock ? photoBlock.offsetWidth * 2 : 0;
         //let textInfo = this.props.storeState.languageTextMain.placePhotos;
-        let className = "col-8 col-md-6 col-lg-3 placePhotos_elementBlock";/*placePhotos_elementBlock*/
+        let className = " col-lg-3 col-md-6 col-3  placePhotos_elementBlock";/*placePhotos_elementBlock*/
         let textInfo = this.props.storeState.languageTextMain.places.popularPlaces;
         return (
             <>

@@ -51,7 +51,7 @@ class AvatarEditorCustomClass extends React.Component {
                     reader.onloadend = () => {
                         if(this.props.changeImg){
                             thenFuncGlobal(that);
-                            debugger
+                            
                             let imageURL = window.URL.createObjectURL(sizFile)
                             this.props.changeImg(imageURL)
                         }else{

@@ -3,6 +3,7 @@ let placeDescription = {
         more: 'Ещё'
     },
     placeProgramm: {
+        uploadPhoto:"Загрузить фото",
         yourCommentPlaceholder: "Ваш отзыв",
         yourAnswerPlaceholder: "Ваш ответ",
         answer:"Ответить",
