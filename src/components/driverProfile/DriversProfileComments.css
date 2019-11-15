@@ -124,6 +124,10 @@
     padding-bottom: 5px;
 }
 
+.createCommentDate div{
+    max-width: 110px;
+}
+
 .createComment_textBlock {
     margin: 0 10px 0 20px;
     height: 60px;
@@ -332,6 +336,9 @@ label {
 
     .valueBlock_commentary {
         max-height: none;
+    }
+    .createComment_element input{
+        max-width: 110px;
     }
 }
 

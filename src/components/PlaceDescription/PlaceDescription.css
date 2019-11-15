@@ -476,6 +476,9 @@ h2 {
 }
 
 @media (max-width: 742px) {
+    .placePhotos_elementBlock img {
+        max-height: 105px;
+    }
     .placeDescription_author img {
         object-fit: cover;
         width: 90px;

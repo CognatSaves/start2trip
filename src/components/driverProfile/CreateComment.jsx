@@ -163,7 +163,6 @@ class CreateCommentClass extends React.Component {
         if (this.state.blob !== "") {
             imgFile = new File([this.state.blob], "avatar.jpg");
         }
-        let jwt = this.props.globalReduser.readCookie('jwt');
 
         let that = this;
         
@@ -302,13 +301,14 @@ class CreateCommentClass extends React.Component {
                 <>
                     <AvatarEditorCustom saveBlob={this.saveBlob} changeImg={this.changeImg} img={this.state.img ? this.state.img : (this.props.storeState.avatarUrl ? this.props.storeState.avatarUrl : requests.serverAddressImg + '/uploads/user.svg')} imgModalShow={this.imgModalShow} imgModal={this.state.imgModal} />
                     <div className={"commentBlock_createComment d-flex flex-column " + this.props.myclass}>
-                        <div className="createComment_element d-flex col-12 p-0">
+                        <div className="createComment_element d-flex flex-md-row flex-column col-12 p-0">
+                            <div className="d-flex col">
                             <div className="basicInformationBodyTopImgHover createComment_picture">
                                 <label className="basicInformationBodyTopImg" onClick={() => this.imgModalShow()}>{textInfo.newPhoto}</label>
                                 <img src={this.state.img ? this.state.img : (this.props.storeState.avatarUrl ? this.props.storeState.avatarUrl : requests.serverAddressImg + '/uploads/user.svg')} alt="imgPerson" />
                             </div>
 
-                            <div className="d-flex flex-column pl-2 align-items-start col-4" onClick={() => { if (this.state.isNotFilled || this.state.isAllCorrect) { this.setState({ isNotFilled: false, isAllCorrect: false }) } }}>
+                            <div className="d-flex flex-column pl-2 align-items-start col-md-8 col-6 pr-0" onClick={() => { if (this.state.isNotFilled || this.state.isAllCorrect) { this.setState({ isNotFilled: false, isAllCorrect: false }) } }}>
                                 {isSuperUser ?
                                     <input value={this.state.userName} style={this.state.trySend && this.state.userName === "" ? { background: "#a52525c7" } : {}} placeholder={textInfo.name} onChange={(e) => { this.setState({ userName: e.target.value }) }} type="text" />
                                     :
@@ -317,14 +317,17 @@ class CreateCommentClass extends React.Component {
 
                                 <Stars key="SelectStars" valueDisplay={false} commentNumberDisplay={false} changable={true} changeStarsBlock={'placeCreateCommentStars'} />
                             </div>
-                            <div className='col pl-0'>
+
+                            </div>
+                            
+                            <div className='pl-0'>
                                 <div className='d-flex align-items-center justify-content-end '>
                                     <div className="pr-3">
                                         {isSuperUser &&
                                             <>
                                                 <DatePicker onChange={(nul, date) => { this.setState({ date: date }); }}
-                                                    floatingspanText="Дата комментария" className="" value={this.state.date} />
-                                                <input value={this.state.userKey} style={this.state.trySend && this.state.userKey === "" ? { background: "#a52525c7" } : {}} placeholder={textInfo.key} onChange={(e) => { this.setState({ userKey: e.target.value }) }} type="text" />
+                                                    floatingspanText="Дата комментария" className="createCommentDate" value={this.state.date} />
+                                                <input className="" value={this.state.userKey} style={this.state.trySend && this.state.userKey === "" ? { background: "#a52525c7" } : {}} placeholder={textInfo.key} onChange={(e) => { this.setState({ userKey: e.target.value }) }} type="text" />
                                             </>
                                         }
                                     </div>

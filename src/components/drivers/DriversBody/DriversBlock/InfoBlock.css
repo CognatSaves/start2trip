@@ -36,6 +36,9 @@
     .block_element_infoBlock {
         padding-left: 20px;
     }
+    .block_element_infoBlock_name {
+        font-size: 18px;
+    }
 }
 
 @media (max-width: 386px) {

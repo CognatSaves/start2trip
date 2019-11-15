@@ -96,18 +96,18 @@ class CommentElClass extends React.Component {
         return (
             <>
 
-                <div className="col-md-6 col-12 p-1">
+                <div className="col-md-6 col-12 p-1 pb-md-2 pb-4">
                     <div style={{ height: "100%" }} className="commentBlock_comments  commentBlock_element" key={element + "/" + index}  >
                         <div className="commentBlock_valueBlock d-flex flex-column">
-                            <div className="commentBlock_picture d-flex pb-2">
+                            <div className="commentBlock_picture d-flex justify-content-md-start justify-content-between pb-2">
                                 <img src={requests.serverAddressImg + (element.fakecustomer ? element.fakecustomer.avatar.url : element.avatar.url)} width="auto" height="100%" alt=""></img>
-                                <div className="d-flex flex-column justify-content-center col pr-0">
+                                <div className="d-flex flex-column justify-content-center col-md-8 col-5 pr-0">
                                     <div className="valueBlock_firstElement_name">{element.fakecustomer ? element.fakecustomer.name : element.name}</div>
 
                                     <Stars key={element.rating + "/" + element.index} value={Math.ceil(element.rating * 10) / 10} valueDisplay={true} commentNumberDisplay={false} />
                                     <div className="valueBlock_firstElement_date">{date.getDate() + " " + getMonthName(date.getMonth()) + " " + date.getFullYear()}</div>
                                 </div>
-                                <div style={{ cursor: "pointer", color: "#304269", fontWeight: "500" }} onClick={(e) => { this.props.openModal(element,date) }}>{textInfo.more}</div>
+                                <div className="col p-0 d-flex justify-content-end" style={{ cursor: "pointer", color: "#304269", fontWeight: "500" }} onClick={(e) => { this.props.openModal(element,date) }}>{textInfo.more}</div>
                             </div>
                             <input className="put" id={"put" + element + index} type="checkbox"></input>
                             <div className="news">
