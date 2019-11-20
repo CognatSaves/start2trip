@@ -73,7 +73,7 @@ class CreateCommentClass extends React.Component {
 
             }
 
-            //console.log(this.props.commentState);
+            console.log(this.props.commentState);
 
             if (this.props.clientId) {
 
@@ -138,7 +138,6 @@ class CreateCommentClass extends React.Component {
 
                 }
                 request.send(commentForm);
-
             }
 
         }

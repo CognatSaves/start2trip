@@ -23,6 +23,7 @@ import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,findCurrencyEl,dat
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
+const ecommpayWindowProps = "resizable=yes, scrollbars=yes, status=yes";
 
 class DriverProfileBillingClass extends React.Component {
     constructor(props) {
@@ -67,9 +68,12 @@ class DriverProfileBillingClass extends React.Component {
         event.preventDefault();
     }
     changePaymentValue = (value) => {
-        this.setState({
-            paymentValue: value
-        })
+        if(isFinite(value)){
+            this.setState({
+                paymentValue: value
+            })
+        }
+       
     }
 
     getTransactionTable = () => {
@@ -117,6 +121,53 @@ class DriverProfileBillingClass extends React.Component {
         }
         console.log(this);
     }
+    systemPaymentStart = () => {
+        debugger;
+        let value = Number.parseFloat(this.state.paymentValue);
+        if(!value || value<=0){
+            alert('No valid number here');
+            return;
+        }
+        let jwt = this.props.globalReduser.readCookie('jwt');
+        if(jwt && jwt !== '-'){
+            let body = JSON.stringify({
+                paymentValue: value
+            });
+            fetch(requests.transactionStart, {
+                method: 'POST', body: body,
+                headers: {
+                    'content-type': 'application/json', Authorization: `Bearer ${jwt}`
+                }
+            })
+            .then(response => {
+                return response.json();
+            })
+            .then(function (data) {
+                if(data.error){
+                    console.log('bad');
+                    throw data.error;
+                }
+                else{
+                    //alert(data);
+                    console.log(data);
+                    //let newWin = window.open(data.url, '', ecommpayWindowProps);
+                    window.location.replace(data.url);
+                }
+            })
+            .catch(function (error){
+                alert(error);
+                console.log('An error occurred:', error);
+                
+            })
+        }
+        else{
+            
+            this.props.dispatch(setUrlAddress(window.location.pathname));
+            this.props.globalReduser.history.push('/' + cookies.get('userLangISO', { path: "/" }) + '/login/');
+
+        }
+        
+    }
     render() {
         let profile = this.props.globalReduser.profile;
 
@@ -159,7 +210,7 @@ class DriverProfileBillingClass extends React.Component {
                     onRequestClose={() => { this.handleClose('withdrawal') }}
                 >
                     <div className="billingModalHeder">
-                        <span>{textPage.billingModalA.header + ": " + accountTotal + "$"}</span>
+                        <span>{textPage.billingModalA.header + ": " + accountTotal}</span>
                     </div>
                     <form action="" className="billingModalContent">
                         <div className="d-flex align-items-center mt-1">
@@ -222,7 +273,7 @@ class DriverProfileBillingClass extends React.Component {
                     onRequestClose={() => { this.handleClose('toPay') }}
                 >
                     <div className="billingModalHeder">
-                        <span>{textPage.billingModalB.header + ': ' + systemPayingsTotal + '$'}</span>
+                        <span>{textPage.billingModalB.header + ': ' + systemPayingsTotal}</span>
                     </div>
                     <form onSubmit={this.formSubmit} className="billingModalContent">
                         <div className="d-flex align-items-center mt-1">
@@ -264,7 +315,7 @@ class DriverProfileBillingClass extends React.Component {
                                 primary={true}
                                 onClick={() => { this.handleClose('toPay') }}
                             />
-                            <button className="billingBtSubmit" type="submit">{textPage.billingModalB.submit}</button>
+                            <button className="billingBtSubmit" type="submit" onClick={()=>{this.systemPaymentStart()}}>{textPage.billingModalB.submit}</button>
                         </div>
 
                     </form>

@@ -1,5 +1,5 @@
-const serverAddress = 'https://tripfer.com:41337'; //'http://localhost:1337'; //
-const frontendAddress = 'https://tripfer.com'; //'http://localhost:3000'; //
+const serverAddress = 'http://localhost:1337'; //'https://tripfer.com:41337'; //
+const frontendAddress = 'http://localhost:3000'; //'https://tripfer.com'; //
 const serverAddressImg = 'https://tripfer.com';//'http://localhost:1337'; //
 
 const serverRegistrationRequest = serverAddress + '/auth/local/register';
@@ -72,6 +72,7 @@ const getPromoCode = serverAddress+'/createPromocodeArray'; // Полуение 
 const getDriversList = serverAddress + '/users/getDriversList';//получить список водителей в стране
 const showDriverPage = serverAddress + "/users/showDriverPage";//получить описание одного водителя
 
+const transactionStart = serverAddress + "/paymenttransaction/start";//начать оплату пользователем услуг системы
 export default {
     frontendAddress: frontendAddress,
     serverAddress: serverAddress,
@@ -143,4 +144,5 @@ export default {
     getDriversList:getDriversList,
     showDriverPage:showDriverPage,
     isSuperUser:isSuperUser,
+    transactionStart:transactionStart
 };

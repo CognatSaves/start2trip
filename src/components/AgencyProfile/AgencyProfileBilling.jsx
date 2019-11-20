@@ -1,3 +1,4 @@
+/*
 import React from 'react';
 import { connect } from 'react-redux';
 import { setTransactionData, setUrlAddress } from "../../redusers/ActionGlobal"
@@ -165,8 +166,6 @@ class DriverProfileBillingClass extends React.Component {
                                 margin="normal"
                                 variant="outlined"
                             />
-                            {/* <label htmlFor="withdrawalSum" className="col-3">Sum</label>
-                            <input id="withdrawalSum" className="col-md-9 " type="text" required /> */}
                         </div>
                         <div className="d-flex align-items-center mt-1">
                             <TextField
@@ -177,8 +176,6 @@ class DriverProfileBillingClass extends React.Component {
                                 margin="normal"
                                 variant="outlined"
                             />
-                            {/* <label htmlFor="NumberCard" className="col-3">Number</label>
-                            <input id="NumberCard" className="col-md-9 " type="text" required /> */}
                         </div>
 
                         <DropDownMenu
@@ -228,28 +225,25 @@ class DriverProfileBillingClass extends React.Component {
                                 margin="normal"
                                 variant="outlined"
                             />
-                            {/* <label htmlFor="toPaySum" className="col-3">Sum</label>
-                            <input id="toPaySum" className="col-md-6 " type="text"
-                                required value={this.state.paymentValue} onChange={(e) => this.changePaymentValue(e.target.value)} /> */}
                         </div>
                         <div className="billingModalContentText d-flex align-items-center mt-1">
                             {textPage.billingModalB.description}
                         </div>
                         {
-                            /*
-                            <div className="d-flex align-items-center mt-1">
-                            <input id="toPayPersonalAccount" type="radio"
-                                checked={this.state.toPayPersonalAccountValue}
-                                onClick={()=>{ this.setState({toPayPersonalAccountValue: true ,toPayCardValue: false})}} />
-                            <label htmlFor="toPayPersonalAccount" className="col-md-6 ">С лицевого счета</label>
-                            </div>
-                            <div className="d-flex align-items-center">
-                                <input id="toPayCard" type="radio" 
-                                    checked={this.state.toPayCardValue}
-                                    onClick={()=>{this.setState({toPayPersonalAccountValue: false ,toPayCardValue: true})}} />
-                                <label htmlFor="toPayCard" className="col-md-6 ">с банковской карты</label>
-                            </div>
-                            */
+                            
+                            // <div className="d-flex align-items-center mt-1">
+                            // <input id="toPayPersonalAccount" type="radio"
+                            //     checked={this.state.toPayPersonalAccountValue}
+                            //     onClick={()=>{ this.setState({toPayPersonalAccountValue: true ,toPayCardValue: false})}} />
+                            // <label htmlFor="toPayPersonalAccount" className="col-md-6 ">С лицевого счета</label>
+                            // </div>
+                            // <div className="d-flex align-items-center">
+                            //     <input id="toPayCard" type="radio" 
+                            //         checked={this.state.toPayCardValue}
+                            //         onClick={()=>{this.setState({toPayPersonalAccountValue: false ,toPayCardValue: true})}} />
+                            //     <label htmlFor="toPayCard" className="col-md-6 ">с банковской карты</label>
+                            // </div>
+                            
                         }
 
                         <div className="billingModalFooter d-flex justify-content-end mt-2">
@@ -401,17 +395,17 @@ class DriverProfileBillingClass extends React.Component {
                                         <TableRowColumn style={{ width: this.state.headerWidth[1], textAlign: 'center' }}>{element.paymentType}</TableRowColumn>
                                         <TableRowColumn style={{ width: this.state.headerWidth[2], textAlign: 'center' }}>{profile.currencies[findCurrencyEl(that, element.currencyType)].symbol + element.sum}</TableRowColumn>
                                         {
-                                            /**
-                                            <TableRowColumn>{element.transactionComission}</TableRowColumn>
-                                            */
+                                            
+                                            //<TableRowColumn>{element.transactionComission}</TableRowColumn>
+                                            
                                         }
                                         <TableRowColumn style={{ width: this.state.headerWidth[3], textAlign: 'center' }}>{dateStringConversion(element.paymentDate)}</TableRowColumn>
                                         <TableRowColumn style={{ width: this.state.headerWidth[4], textAlign: 'center' }}>{element.tripId}</TableRowColumn>
                                         {
-                                            /**
-                                            <TableRowColumn>{element.route.map((city,index)=><text>{city.point+(element.route.length-1<index ? '-':'')}</text>)}</TableRowColumn>
-                                            <TableRowColumn>{element.client}</TableRowColumn>
-                                            */
+                                            
+                                            //<TableRowColumn>{element.route.map((city,index)=><text>{city.point+(element.route.length-1<index ? '-':'')}</text>)}</TableRowColumn>
+                                            //<TableRowColumn>{element.client}</TableRowColumn>
+                                            
                                         }
                                     </TableRow>
                                 ) : <React.Fragment />}
@@ -432,3 +426,4 @@ const DriverProfileBilling = connect(
 )(DriverProfileBillingClass);
 
 export default DriverProfileBilling;
+*/
