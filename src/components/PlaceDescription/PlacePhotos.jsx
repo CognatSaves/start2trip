@@ -86,7 +86,8 @@ class PlacePhotosClass extends React.Component {
                                         let temp = document.getElementById("photono" + (index - 1));
                                         if (temp) {
                                             widthSum += temp.offsetWidth;
-                                            if (maxWidth - widthSum < 2 * temp.offsetWidth && index !== this.props.photoArray.length - 1) {
+                                            
+                                            if (maxWidth - widthSum < 2 * temp.offsetWidth && index !== this.props.photoArray.length-1) {
                                                 isOver = true;
                                                 return (
                                                     <div className={className} id={"photono" + index} >

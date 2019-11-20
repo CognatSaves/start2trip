@@ -147,7 +147,7 @@ class PlaceDescriptionClass extends React.Component {
             axios.get(requests.showPlace + "?slug=" + (slug ? slug : '') /*+ "&country=" + cookies.get('country', { path: '/' })*/ /*+"&lang="+this.props.storeState.languages[this.props.storeState.activeLanguageNumber].id*/)
                 .then(response => {
 
-                    console.log(response);
+                    // console.log(response);
                     return response.data;
                 })
                 .then(data => {

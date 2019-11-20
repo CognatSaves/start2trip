@@ -101,7 +101,7 @@ class PopularPlacesClass extends React.Component {
         /*let directions = arrayRender;
         */
        
-        console.log(placeRender);
+        // console.log(placeRender);
         let textInfo = this.props.storeState.languageTextMain.home.homeBottom.homePopularPlaces;
         return (
             <>

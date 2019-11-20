@@ -94,6 +94,7 @@ class FirstEnterModalClass extends React.Component {
     }
 
     scrollDiv = (e) => {
+        
         let widthOneWindow = e.currentTarget.scrollWidth / this.state.renderContent.length - 3.5;
         let marginLeft = e.currentTarget.scrollLeft;
         let firstOn = widthOneWindow;
@@ -121,6 +122,8 @@ class FirstEnterModalClass extends React.Component {
         }
     }
     render() {
+        debugger
+        let textPage = this.props.storeState.languageTextMain
         if (this.state.renderContent == 0) {
             let whatRender;
             switch (this.props.whatRender) {
@@ -152,7 +155,7 @@ class FirstEnterModalClass extends React.Component {
                                     <div className="modalStartInformation " style={{ display: this.state.openModalStart ? "block" : "none" }} >
                                         <div className="d-flex align-items-center justify-content-end col-11 mt-3 mx-auto">
                                             <div className="modalStartInformation_logo" />
-                                            <span className="modalStartInformationSkip" onClick={this.handleClose}>Пропустить</span>
+                                            <span className="modalStartInformationSkip" onClick={this.handleClose}>{textPage.home.firstEnterModal.skipButton}</span>
                                         </div>
 
                                         <div className="modalStartInformationContent d-flex align-items-start pt-4 col-12 " onScroll={(e) => { this.scrollDiv(e) }}>
@@ -171,7 +174,7 @@ class FirstEnterModalClass extends React.Component {
                                             )}
                                         </div>
                                         <div className="modalStartInformationDivNext d-flex align-items-center justify-content-center col-11 " onClick={() => { this.state.activeWindow == this.state.renderContent.length - 1 ? this.handleClose() : this.ChangeinputChecked() }}>
-                                            <span className="modalStartInformationNext">{this.state.activeWindow == this.state.renderContent.length - 1 ? "Закрыть" : "Далее"}</span>
+                                            <span className="modalStartInformationNext">{this.state.activeWindow == this.state.renderContent.length - 1 ? textPage.renderModalRegistration.registrationUserType.buttonClose : textPage.renderModalRegistration.registrationUserType.buttonNext}</span>
                                         </div>
                                     </div>
                                 </>
@@ -184,7 +187,7 @@ class FirstEnterModalClass extends React.Component {
                                     <div className="col-12 " >
                                         <div className="d-flex align-items-center justify-content-end col-11 mt-3"/*  */ style={{ margin: '0 auto' }}>
                                             <div className="modalStartInformation_logo" />
-                                            <span className="modalStartInformationSkip" onClick={this.handleClose}>Пропустить</span>
+                                            <span className="modalStartInformationSkip" onClick={this.handleClose}>{textPage.home.firstEnterModal.skipButton}</span>
                                         </div>
 
                                         <div className="modalStartInformationContentmodal d-flex align-items-center col-12 " onScroll={(e) => { this.scrollDiv(e) }}>
@@ -203,7 +206,7 @@ class FirstEnterModalClass extends React.Component {
                                             )}
                                         </div>
                                         <div className="modalStartInformationDivNext d-flex align-items-center justify-content-center col-6 " onClick={() => { this.state.activeWindow == this.state.renderContent.length - 1 ? this.handleClose() : this.ChangeinputChecked() }}>
-                                            <span className="modalStartInformationNext">{this.state.activeWindow == this.state.renderContent.length - 1 ? "Закрыть" : "Далее"}</span>
+                                            <span className="modalStartInformationNext">{this.state.activeWindow == this.state.renderContent.length - 1 ? textPage.renderModalRegistration.registrationUserType.buttonClose : textPage.renderModalRegistration.registrationUserType.buttonNext}</span>
                                         </div>
                                     </div>
 

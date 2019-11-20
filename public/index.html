@@ -2,37 +2,93 @@
 <html>
 
 <head>
-    <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-TK6XQHZ');</script>
-        <!-- End Google Tag Manager -->
-    <meta charset="utf-8" />
+  <!-- Google Tag Manager -->
+  <script>
+    (function (w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({
+        'gtm.start': new Date().getTime(),
+        event: 'gtm.js'
+      });
+      var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src =
+        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-TK6XQHZ');
+  </script>
+  <!-- End Google Tag Manager -->
+  <meta charset="utf-8" />
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEs5_ZKOKPM_sm6kKsQ_pXyRFUwWrLSNQ&libraries=places&callback=initialize&language=en" id="langScript">
-    </script>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEs5_ZKOKPM_sm6kKsQ_pXyRFUwWrLSNQ&libraries=places&callback=initialize&language=en"
+    id="langScript">
+  </script>
 
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
-    <title>Tripfer</title>
-    <link rel="icon" sizes="any" type="image/svg+xml" href="favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="theme-color" content="#000000" />
-    <meta property="og:image" content="https://tripfer.com/uploads/email/logo_tripfer_blue.svg" />
-		
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+  <title>Tripfer</title>
+  <link rel="icon" sizes="any" type="image/svg+xml" href="favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="theme-color" content="#000000" />
+  <meta property="og:image" content="https://tripfer.com/uploads/email/logo_tripfer_blue.svg" />
+
+
+  <style type="text/css">
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+    }
+
+    .App {
+      height: 80vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-end;
+      text-align: center;
+      background: url(https://tripfer.com/static/media/no-result.3bb4b6c6.svg) no-repeat;
+      background-size: 50%;
+      background-position: center center;
+    }
+
+    .imgAzure {
+      display: block;
+      position: relative;
+      z-index: 50;
+      width: 50px;
+      height: 50px;
+      background: url("../src/components/media/azure.svg") 100% 100%;
+    }
+
+    .App-intro {
+      font-size: 30px;
+      color: #304269;
+    }
+  </style>
 
 </head>
 
 <body>
-    <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TK6XQHZ"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-    <div id="root"></div>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TK6XQHZ" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <div id="root">
+    <div class="App">
+      <i class="imgAzure"></i>
+      <p class="App-intro">
+          Loading data...
+      </p>
+    </div>
+    
+  </div>
 </body>
 <style>
-    @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext');
+  @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext');
 </style>
 <link rel="stylesheet" src='../src/index.css'>
 

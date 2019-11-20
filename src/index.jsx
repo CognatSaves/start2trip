@@ -1,5 +1,6 @@
 import React, { Suspense, lazy } from 'react';
 import ReactDOM from 'react-dom';
+
 //import css
 import './index.css';
 import './components/driverProfile/DriverProfile.css'
@@ -63,6 +64,7 @@ const Registration = lazy(() => import('./components/registration/Registration')
 const AuthRedirect = lazy(() => import('./components/registration/AuthRedirect'));
 // const AuthModalCountry = lazy(() => import('./components/registration/AuthModalCountry'));
 const AboutService = lazy(() => import('./components/FooterPage/aboutService'));
+const HelpPage = lazy(() => import('./components/FooterPage/HelpPage'));
 const affiliateProgram = lazy(() => import('./components/FooterPage/affiliateProgram'));
 const contacts = lazy(() => import('./components/FooterPage/contacts'));
 const LicenseAgreement = lazy(() => import('./components/FooterPage/LicenseAgreement'));
@@ -426,6 +428,8 @@ ReactDOM.render(
               <Route path={"/(ru|en)/contacts/"} component={contacts} />
               <Route path={"/(ru|en)/affiliate-program/"} component={affiliateProgram} />
               <Route path={"/(ru|en)/about-service/"} component={AboutService} />
+              <Route path={"/(ru|en)/help-:type-:index/"} component={HelpPage} />
+              <Route path={"/(ru|en)/help/"} component={HelpPage} />
 
               <Route path="/driverConfirmation/:id-:carrierId-:confirmation/" component={DriverConfirmation} />
               <Route path="/tripConfirmation/:id-:userId" component={TripConfirmation} />

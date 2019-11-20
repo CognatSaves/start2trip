@@ -6,6 +6,7 @@ import { Route } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import requests from '../../config'
 
+
 import PlacesCountryInfo from '../Places/PlacesCountryInfo'
 import HomeBodyBottom from '../home/HomeBodyBottom'
 import Header from '../header/Header';
@@ -28,15 +29,16 @@ class ReadyRoutesClass extends React.Component {
     this.props.history.push(where);
 
   }
+  
   render() {
 
     //console.log(isMobileOnly , "isMobileOnly")
     //console.log(isTablet , "isTablet")
-    console.log('Home render');
-    console.log('this.props')
-    console.log(this.props);
-    console.log('this.state');
-    console.log(this.state);
+    // console.log('Home render');
+    // console.log('this.props')
+    // console.log(this.props);
+    // console.log('this.state');
+    // console.log(this.state);
 
 
 

@@ -341,7 +341,7 @@ class StartTravelFormClass extends React.Component {
         startRefresherGlobal(this, true)
         axios.get(requests.checkPromocode + "?code=" + this.state.promoCod)
             .then(response => {
-                console.log(response);
+                // console.log(response);
                 return response.data;
             })
             .then(data => {
@@ -352,7 +352,7 @@ class StartTravelFormClass extends React.Component {
                 }
                 else {
                     console.log('good');
-                    console.log(data);
+                    // console.log(data);
                     that.setState({
                         promoCode: this.state.promoCod,
                         discount: data.discount,

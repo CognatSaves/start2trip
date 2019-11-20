@@ -74,7 +74,7 @@ class RegistrationClass extends React.Component {
             })
                 .then(response => {
                     console.log("response");
-                    console.log(response);
+                    // console.log(response);
                     return response.json();
                 })
                 .then(function (data) {
@@ -84,7 +84,7 @@ class RegistrationClass extends React.Component {
                     }
                     else {
                         console.log("You registered");
-                        console.log(data);
+                        // console.log(data);
                         that.state.sendResult(true, { jwt: data.jwt, user: data.user });
                     }
                 })

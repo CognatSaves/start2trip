@@ -63,7 +63,7 @@ class ToursListClass extends React.Component {
                 //console.log(dateNow<selectedDay);
                 //let temp = selectedDay.setHours(selectedDay.getHours()+2);
                 //let tempDate = new Date(temp);
-                console.log(dateNow>selectedDay);
+                // console.log(dateNow>selectedDay);
                 
                 //this small check is for day skip if, on example 
                 if(step===0 && dateNow>selectedDay ){
@@ -249,8 +249,8 @@ class ToursListClass extends React.Component {
     render() {
 
         
-        console.log('PlacesList render');
-        console.log(this.props);
+        // console.log('PlacesList render');
+        // console.log(this.props);
         let tagFilteredArray = [], sortedArray = [], sortSelectedPlacesArray = [], selectedPlaces = [];
         let isGoodElmentLength = 0;
         let numberOfElements = 0;
@@ -258,7 +258,7 @@ class ToursListClass extends React.Component {
 
         if (this.props.toursState.toursList.length > 0) {
             tagFilteredArray = tagFilterFunction([...this.props.toursState.toursList], []/*this.props.toursState.selectedTags*/);
-            console.log('tagFilteredArray', tagFilteredArray);
+            // console.log('tagFilteredArray', tagFilteredArray);
             sortedArray = placesSort(/*[...this.props.placesState.placesList]*/tagFilteredArray, this.props.toursState.sortMenuValue);
         }
         if (sortedArray.length > 0 && this.props.storeState.currencies.length > 0) {
@@ -331,7 +331,7 @@ class ToursListClass extends React.Component {
         }
 
 
-        console.log('selectedPlaces', selectedPlaces);
+        // console.log('selectedPlaces', selectedPlaces);
         let textInfo = this.props.storeState.languageTextMain.home.homeBottom.homeRoutesList;
         let pageNotFound = this.props.storeState.languageTextMain.home.pageNotFound;
         let isEmpty = (selectedPlaces.length === 0 && this.props.isStaying);

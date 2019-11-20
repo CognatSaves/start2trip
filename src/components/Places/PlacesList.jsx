@@ -28,10 +28,10 @@ class PlacesListClass extends React.Component {
     render() {
         
         
-        console.log('PlacesList render');
-        console.log(this.props);
+        // console.log('PlacesList render');
+        // console.log(this.props);
         let tagFilteredArray = tagFilterFunction([...this.props.placesState.placesList], this.props.placesState.selectedTags);
-        console.log('tagFilteredArray', tagFilteredArray);
+        // console.log('tagFilteredArray', tagFilteredArray);
         let sortedArray;
         // 
         // if(tagFilteredArray.length !== 0){
@@ -42,7 +42,7 @@ class PlacesListClass extends React.Component {
         let selectedPlaces = sortedArray.slice((this.props.placesState.page - this.props.placesState.showPages) * this.props.placesState.pagesMenuValue,
             this.props.placesState.page * this.props.placesState.pagesMenuValue);
 
-        console.log('selectedPlaces', selectedPlaces);
+        // console.log('selectedPlaces', selectedPlaces);
         let textInfo = this.props.storeState.languageTextMain.home.homeBottom.homeRoutesList;
         let pageNotFound = this.props.storeState.languageTextMain.home.pageNotFound;
         let isEmpty = (selectedPlaces.length === 0 && this.props.isStaying);

@@ -361,8 +361,8 @@ class RouteMenuClass extends React.Component {
       }
       let textInfo = that.props.storeState.languageTextMain.home.routeMenu;
 
-      console.log(response);
-      console.log(status);
+      // console.log(response);
+      // console.log(status);
 
       let routeProps = lengthTimeCalc(response);
 

@@ -247,10 +247,10 @@ class DriverProfileClass extends React.Component {
             }
             return true;
         }
-        console.log('DriverProfile render');
-        console.log(this.props);
+        // console.log('DriverProfile render');
+        // console.log(this.props);
 
-        console.log('cities', this.props.storeState.cities);
+        // console.log('cities', this.props.storeState.cities);
 
 
         let driver = this.props.driversState.driverCarDescription;

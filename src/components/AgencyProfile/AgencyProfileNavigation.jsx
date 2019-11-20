@@ -52,9 +52,9 @@ class AgencyProfileNavigationClass extends React.Component {
     };
 
     render() {
-        console.log('agency profile navigation render');
-        console.log(this.props);
-        console.log(this.state);
+        // console.log('agency profile navigation render');
+        // console.log(this.props);
+        // console.log(this.state);
         let profile = this.props.globalReduser.profile;
         let textInfo = this.props.AppReduser.languageText.agencyProfile.agencyProfileNavigation;
         return (

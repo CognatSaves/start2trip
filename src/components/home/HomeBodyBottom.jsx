@@ -37,8 +37,8 @@ class HomeBodyBottomClass extends React.Component {
   }
   shouldComponentUpdate(nextProps, nextState) {
 
-    console.log(this.props);
-    console.log(this.state);
+    // console.log(this.props);
+    // console.log(this.state);
     return true;
   }
   setPageFunc = (page) => {
@@ -83,7 +83,7 @@ class HomeBodyBottomClass extends React.Component {
 
       axios.get(requests.getRoutes + "?country=" + country + "&lang=" + lang + (selectedDirection ? "&slug=" + selectedDirection : ''))
         .then(response => {
-          console.log(response);
+          // console.log(response);
           return response.data;
         })
         .then(data => {
@@ -146,7 +146,7 @@ class HomeBodyBottomClass extends React.Component {
       }
       return '';
     }
-    console.log('HomeBodyBottom render state=', this.state, 'props=', this.props);
+    // console.log('HomeBodyBottom render state=', this.state, 'props=', this.props);
 
     this.sendRequestFunc();
     let selectedDirection = this.props.match.params.direction;
@@ -155,7 +155,7 @@ class HomeBodyBottomClass extends React.Component {
     }
 
     let name = findSelectedDirectionName(this.props.placesState.directions, selectedDirection);
-    console.log('a');
+    // console.log('a');
     let helmet = this.props.storeState.languageTextMain.helmets.homeBodyBottom;
 
     return (

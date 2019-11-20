@@ -38,6 +38,7 @@ const pageTextInfo = {
         userTypeText: "Выберите тип пользователя",
         userTypeTextError: "Сделайте выбор",
         buttonNext:"Далее",
+        buttonClose:"Закрыть",
         buttonReturn:"Назад",
         userTypes:[
             {

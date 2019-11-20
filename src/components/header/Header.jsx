@@ -690,7 +690,7 @@ class HeaderClass extends React.Component {
         return 0;
       }
     }*/
-    console.log('Header render', this.props, window, document);
+    // console.log('Header render', this.props, window, document);
     //console.log(this.state);
     //console.log(this.props);
 

@@ -46,8 +46,8 @@ export const GuidesReduser = (state = initialState, action) => {
             return newState;
         }
         case SET_PAGE: {
-            console.log("Set page placeReduser");
-            console.log(action);
+            // console.log("Set page placeReduser");
+            // console.log(action);
             let newState = {...state};
             newState.page=action.page;
             newState.showPages=1;

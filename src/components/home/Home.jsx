@@ -41,11 +41,11 @@ class HomeClass extends React.Component {
 
     //console.log(isMobileOnly , "isMobileOnly")
     //console.log(isTablet , "isTablet")
-    console.log('Home render');
-    console.log('this.props')
-    console.log(this.props);
-    console.log('this.state');
-    console.log(this.state);
+    // console.log('Home render');
+    // console.log('this.props')
+    // console.log(this.props);
+    // console.log('this.state');
+    // console.log(this.state);
 
 
 

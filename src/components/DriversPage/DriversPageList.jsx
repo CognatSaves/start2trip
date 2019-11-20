@@ -57,8 +57,8 @@ class DriversPageListClass extends React.Component {
         return filteredArray;
     }
     render() {
-        console.log('PlacesList render');
-        console.log(this.props);
+        // console.log('PlacesList render');
+        // console.log(this.props);
         let filteredGuidesArray = this.guidesLanguageFilter([...this.props.guidesState.guidesList])
 
         let sortedArray;
@@ -68,7 +68,7 @@ class DriversPageListClass extends React.Component {
         let selectedPlaces = sortedArray.slice((this.props.guidesState.page - this.props.guidesState.showPages) * this.props.guidesState.pagesMenuValue,
             this.props.guidesState.page * this.props.guidesState.pagesMenuValue);
 
-        console.log('selectedPlaces', selectedPlaces);
+        // console.log('selectedPlaces', selectedPlaces);
         let textInfo = this.props.storeState.languageTextMain.home.homeBottom.homeRoutesList;
         let pageNotFound = this.props.storeState.languageTextMain.home.pageNotFound;
         let isEmpty = (selectedPlaces.length === 0 && this.props.isStaying);

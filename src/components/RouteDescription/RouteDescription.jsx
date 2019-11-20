@@ -119,8 +119,8 @@ class RouteDescriptionClass extends React.Component {
             }
             let textInfo = that.props.storeState.languageTextMain.home.routeMenu;
 
-            console.log(response);
-            console.log(status);
+            // console.log(response);
+            // console.log(status);
 
             let routeProps = lengthTimeCalc(response);
 
@@ -203,7 +203,7 @@ class RouteDescriptionClass extends React.Component {
 
             axios.get(requests.showRoute + "?slug=" + (slug ? slug : ''))
                 .then(response => {
-                    console.log(response);
+                    // console.log(response);
                     return response.data;
                 })
                 .then(data => {

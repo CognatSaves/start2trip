@@ -26,7 +26,7 @@ class StarsClass extends React.Component {
 
     }
 
-    console.log(this.props);
+    // console.log(this.props);
     let classString = "infoBlock_starsBlock_stars d-flex flex-row " + (this.props.changeStarsBlock ? this.props.changeStarsBlock + ' ' : '');
 
     return (

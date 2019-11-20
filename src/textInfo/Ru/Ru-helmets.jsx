@@ -49,6 +49,12 @@ const helmets /*helmetStorage - aka armory */ = {
             description: "О сервисе tripfer.com"
         }
     },
+    help: {
+        basic: {
+            title: 'Помощь',
+            description: "Помощь в сервисе tripfer.com"
+        }
+    },
     affiliateProgram: {
         basic: {
             title: 'Нашим партнёрам',

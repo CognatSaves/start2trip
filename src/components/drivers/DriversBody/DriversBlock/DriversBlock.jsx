@@ -198,7 +198,7 @@ class DriversBlockClass extends React.Component {
     console.log(this.props.storeState.languages, "this.props.storeState.languagess");
 
     console.log('DriversBlock render');
-    console.log(this.props);
+    // console.log(this.props);
     let storeState = this.props.storeState;
     let activeCurrency = storeState.currencies[storeState.activeCurrencyNumber]
 

@@ -130,7 +130,7 @@ class ToursClass extends React.Component {
           }
           else {
             
-            console.log('tour request data', data);
+            // console.log('tour request data', data);
             that.props.dispatch(setToursList(data.tours, data.categories, data.tags, data.directions, data.daysNumber, data.departurePoint));
 
           }
@@ -211,7 +211,7 @@ class ToursClass extends React.Component {
 
     this.sendRequestFunc(true);
 
-    console.log("Tours render", this.props);
+    // console.log("Tours render", this.props);
 
 
     let selectedDirection = this.props.match.params.direction;

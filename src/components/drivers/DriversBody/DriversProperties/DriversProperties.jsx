@@ -78,7 +78,7 @@ class DriversPropertiesClass extends React.Component {
 
     if(this.state.tours.length>0){
       ;
-      console.log(this.state.tours);
+      // console.log(this.state.tours);
     }
     if (this.props.toursState.categories.length > 0 && (this.state.tours.length === 0 || (this.state.tours[0].local.name !== this.props.toursState.categories[0].local.name))) {
       this.setState({
@@ -86,8 +86,8 @@ class DriversPropertiesClass extends React.Component {
     })
     }
 
-    console.log("driversProperties render");
-    console.log(this.props.storeState.maxPrice);
+    // console.log("driversProperties render");
+    // console.log(this.props.storeState.maxPrice);
 
     return (
 

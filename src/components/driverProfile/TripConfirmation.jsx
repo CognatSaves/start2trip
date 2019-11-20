@@ -16,7 +16,7 @@ class TripConfirmationClass extends React.Component {
         super(props);
 
         //TODO обработка отказа (Trello)
-        console.log(this.props);
+        // console.log(this.props);
         let id = this.props.match.params.id;
         let userId = this.props.match.params.userId;
         let body = JSON.stringify({ id: id, userId: userId, frontendAddress: requests.frontendAddress });

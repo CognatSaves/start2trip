@@ -26,7 +26,7 @@ class ToursListElementClass extends React.Component {
         let index = this.props.index;
         let imageAddress = element.image ? (requests.serverAddressImg + element.image) : '';
 
-        console.log(imageAddress);
+        // console.log(imageAddress);
         let slug = element.tourlocalization.slug;
         
         let seats = element.freeSeats ? element.freeSeats : element.seats;
@@ -60,7 +60,7 @@ class ToursListElementClass extends React.Component {
         }
 
         if (this.props.storeState.currencies.length > 0) {
-            console.log("isneedDiscountCall");
+            // console.log("isneedDiscountCall");
             let discont = isNeedDiscount(element, this.props.storeState.country, this.props.storeState.countries)
             let usd = element.price / this.props.storeState.currencies[idIndex].costToDefault
             if (isoCurrencies === "USD") {

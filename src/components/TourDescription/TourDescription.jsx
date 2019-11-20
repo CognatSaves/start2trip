@@ -439,10 +439,11 @@ class ToureDescriptionClass extends React.Component {
         }
 
         if (requests.isSuperUser(userId)) {
-                if(autorId === userId) {
-                    renderEl = true
-                }
+               
             isSuperUser = true
+        }
+        if(autorId === userId) {
+            renderEl = true
         }
     
         return (
@@ -528,7 +529,7 @@ class ToureDescriptionClass extends React.Component {
                             this.state.newTour.local &&
                             <>
                                 {
-                                    renderEl ?
+                                    renderEl||isSuperUser ?
                                     <div className="editTourHeaderBG">
                                         <i onClick={() => { this.imgModalShow() }} >{textInfo.editCover}</i>
                                     </div>

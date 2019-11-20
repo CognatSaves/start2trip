@@ -12,21 +12,21 @@ class HomeRoutesListClass extends React.Component {
     // }
 
     render() {
-        console.log('PlacesList render');
-        console.log(this.props);
+        // console.log('PlacesList render');
+        // console.log(this.props);
 
         if (this.props.placesState.routesList.length > 0) {
 
         }
         let tagFilteredArray = [...this.props.placesState.routesList];//no tag filtering bcs no tags
-        console.log('tagFilteredArray', tagFilteredArray);
+        // console.log('tagFilteredArray', tagFilteredArray);
 
         let sortedArray = placesSort(tagFilteredArray, this.props.placesState.sortMenuValue);
 
         let selectedRoutes = sortedArray.slice((this.props.placesState.page - this.props.placesState.showPages) * this.props.placesState.pagesMenuValue,
             this.props.placesState.page * this.props.placesState.pagesMenuValue);
 
-        console.log('selectedRoutes', selectedRoutes);
+        // console.log('selectedRoutes', selectedRoutes);
         let textInfo = this.props.storeState.languageTextMain.home.homeBottom.homeRoutesList;
         let pageNotFound = this.props.storeState.languageTextMain.home.pageNotFound;
         let isLoading = (selectedRoutes.length === 0 && !this.props.isStaying);

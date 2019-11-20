@@ -38,6 +38,7 @@ const pageTextInfo = {
             userTypeText: "Select an account type",
             userTypeTextError: "Make a choice",
             buttonNext: "Next",
+            buttonClose:"Close",
             buttonReturn: "Return",
             userTypes: [
                 {

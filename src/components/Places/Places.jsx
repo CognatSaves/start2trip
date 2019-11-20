@@ -72,7 +72,7 @@ class PlacesClass extends React.Component {
 
       axios.get(requests.getPlacesList + "?country=" + country + "&lang=" + lang + (selectedDirection ? "&slug=" + selectedDirection : ''))
         .then(response => {
-          console.log(response);
+          // console.log(response);
           return response.data;
         })
         .then(data => {
@@ -84,7 +84,7 @@ class PlacesClass extends React.Component {
           else {
 
             console.log('good');
-            console.log(data);
+            // console.log(data);
             thenFuncGlobal(that)
             that.props.dispatch(setPlacesList(data.places, data.tags, data.directions, data.country));
             //следующие строки проверяют, смогли ли мы воспользоваться slug направления, если он, конечно, был
