@@ -37,7 +37,7 @@ const AgencyProfileDrivers = lazy(() => import('./AgencyProfileDrivers'));
 const AgencyProfileSettings = lazy(() => import('./AgencyProfileSettings'));
 const AgencyProfileTour = lazy(() => import('./AgencyProfileTour'));
 const AgencyProfileFeedback = lazy(() => import('./AgencyProfileFeedback'));
-const AgencyProfileBilling = lazy(() => import('./AgencyProfileBilling'));
+const DriverProfileBilling = lazy(() => import('../driverProfileRegistration/DriverProfileBilling'));
 const FirstEnterModal = lazy(() => import('../home/FirstEnterModal'));
 
 class AgencyProfileClass extends React.Component {
@@ -78,7 +78,7 @@ class AgencyProfileClass extends React.Component {
                                     <Route path="/account/agency/settings" component={AgencyProfileSettings} />
                                     <Route path="/account/agency/tours" component={AgencyProfileTour} />
                                     <Route path="/account/agency/reviews" component={AgencyProfileFeedback} />
-                                    <Route path="/account/agency/billing" component={AgencyProfileBilling} />
+                                    <Route path="/account/agency/billing" component={DriverProfileBilling} />
                                 </Suspense>
                             </div>
                         </div>
