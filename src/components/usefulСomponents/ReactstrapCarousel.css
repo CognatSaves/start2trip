@@ -1,0 +1,34 @@
+
+.carousel-control-next-icon{
+    transition: all 0.3s;
+    cursor: pointer;
+    background: url(../media/arrow_gray_right.svg) no-repeat;
+    width: 50px;
+    height: 50px;
+}
+
+.carousel-control-next-icon:hover{
+    width: 60px;
+    height: 60px;
+}
+
+.carousel-control-prev-icon{
+    transition: all 0.3s;
+    cursor: pointer;
+    background: url(../media/arrow_gray_left.svg) no-repeat;
+    width: 50px;
+    height: 50px;
+}
+
+.carousel-control-prev-icon:hover{
+    width: 60px;
+    height: 60px;
+}
+
+.carousel-indicators li{
+    background-color: #999;
+}
+
+.carousel-indicators .active{
+    background-color: #304269;
+}

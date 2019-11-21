@@ -6,6 +6,7 @@ import {
     CarouselIndicators,
     CarouselCaption
 } from 'reactstrap';
+import './ReactstrapCarousel.css'
 
 
 export default class ReactstrapCarousel extends React.Component {
@@ -42,22 +43,35 @@ export default class ReactstrapCarousel extends React.Component {
                     activeIndex={this.state.activeIndex}
                     next={this.next}
                     previous={this.previous}
+                    slide={true}
+                    interval={false}
                 >
-                    <CarouselIndicators items={this.props.items} activeIndex={this.state.activeIndex} onClickHandler={this.goToIndex} />
+                    {this.props.items.length > 1 &&
+                        <CarouselIndicators items={this.props.items} activeIndex={this.state.activeIndex} onClickHandler={this.goToIndex} />
+                    }
                     {this.props.items.map((item) => {
                         return (
                             <CarouselItem
                                 onExiting={() => this.setState({ animating: true })}
                                 onExited={() => this.setState({ animating: false })}
-                                key={item.src}
+                                key={item.url}
+
                             >
-                                <img src={item.src} alt={item.altText} />
+                                <div className="d-flex justify-content-center pb-5">
+                                    <img src={item.url} alt={item.altText} />
+                                </div>
+
                                 <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
                             </CarouselItem>
                         );
                     })}
-                    <CarouselControl direction="prev" directionText="Previous" onClickHandler={this.previous} />
-                    <CarouselControl direction="next" directionText="Next" onClickHandler={this.next} />
+                    {this.props.items.length > 1 &&
+                        <>
+                            <CarouselControl direction="prev" directionText="Previous" onClickHandler={this.previous} />
+                            <CarouselControl direction="next" directionText="Next" onClickHandler={this.next} />
+                        </>
+                    }
+
                 </Carousel>
 
             </>

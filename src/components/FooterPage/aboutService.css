@@ -59,6 +59,7 @@
 }
 
 .helpCard a{
+    cursor: pointer;
     color: #999;
     transition: all 0.3s;
     padding-bottom: 5px;
@@ -66,6 +67,26 @@
 
 .helpCard a:hover{
     color: #f60;
+}
+
+.helpCard .activeLink{
+    color: #f60;
+}
+
+.helpCardContent h5{
+    color: #304269;
+    font-size: 22px;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.helpCardContent p {
+    font-size: 16px;
+    font-weight: 400;
+    color: #686868;
+    margin: 0;
+    white-space: pre-wrap;
 }
 
 @media (max-width: 800px) {
@@ -90,9 +111,11 @@
 
 @media (max-width: 420px) {
     .aboutService {
-        padding: 20px 10px !important;
+        padding: 20px 0px !important;
         box-shadow: none;
+        margin: 40px 0px;
         margin-top: 20px;
+       
     }
 
     .aboutService_content i {

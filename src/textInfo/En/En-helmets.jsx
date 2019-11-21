@@ -52,7 +52,8 @@ const helmets = {
     help: {
         basic: {
             title: 'Help',
-            description: "Help in tripfer.com"
+            description: "Help in tripfer.com",
+            
         }
     },
     affiliateProgram: {
