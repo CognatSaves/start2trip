@@ -28,6 +28,8 @@ import ReadyRoutes from './components/ReadyRoutes/ReadyRoutes';
 import AuthModalCountry from './components/registration/AuthModalCountry';
 import DriverRefreshIndicator from './components/driverProfileRegistration/DriverRefreshIndicator';
 import pageNotFound from './pageNotFound'
+import TripTable from './components/usefulСomponents/TripsTable';
+
 import axios from 'axios';
 import requests from './config';
 // import { hydrate } from "react-dom"
@@ -436,6 +438,9 @@ ReactDOM.render(
               <Route path={"/(register|start)/"} component={PartnerRegister} />
               <Route path={"/registration/"} component={Registration} />
               <Route path={"/(ru|en)/login/"} component={AuthRedirect} />
+
+              <Route path={'/(ru|en)/tripTable'} component={TripTable} />
+
               <Route path="/countrySelection/" component={AuthModalCountry} />
               <Route path="/feedback-:id-:clientId/" component={feedback} />
               <Route path="/customer-cancel-:id-:clientId/" component={customerCancel} />

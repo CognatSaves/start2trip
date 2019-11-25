@@ -84,14 +84,17 @@ class FooterClass extends React.Component {
               <Link to="" className="footerButtons_button">{textInfo.footerButtons[3]}</Link>
               <Link to={"/" + cookies.get('userLangISO', { path: "/" }) + "/contacts/"} className="footerButtons_button">{textInfo.footerButtons[4]}</Link>
               <div className="d-flex">
-                <div className="d-flex flex-column justify-content-center">
+                
+                  
+                <div className="d-flex flex-column justify-content-center" style={{visibility: 'hidden'}}>
                   <i style={{ background: "url(" + ecommpay_logo + ")no-repeat", backgroundSize: "100% 100%", width: "70px", height: "24px" }} />
                   <i style={{ background: "url(" + mastercard + ")no-repeat", backgroundSize: "100% 100%", width: "70px", height: "25px" }} />
                 </div>
-                <div className="d-flex flex-column justify-content-center">
+                <div className="d-flex flex-column justify-content-center" style={{visibility: 'hidden'}}>
                   <i style={{ background: "url(" + logo_square + ")no-repeat", backgroundSize: "100% 100%", width: "70px", height: "21px" }} />
                   <i style={{ background: "url(" + visa + ")no-repeat", backgroundSize: "100% 100%", width: "60px", height: "24px" }} />
                 </div>
+              
                 <div className="footerButtonsIcon d-flex align-items-center">
                   <a target="_blank" href="https://www.facebook.com/Tripfer.com.LLC/"><i style={{ background: "url(" + facebookIcon + ")no-repeat", backgroundSize: "100% 100%", width: "30px", height: "20px" }} /></a>
                   <i style={{ background: "url(" + instagramIcon + ")no-repeat", backgroundSize: "100% 100%", width: "28px", height: "20px" }} />
