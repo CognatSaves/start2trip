@@ -831,7 +831,7 @@ class HeaderClass extends React.Component {
                     <Link to={"/" + cookies.get('userLangISO', { path: "/" }) + "/about-service/"} className="border-bottom logoIcon" >{textInfo.burgerMenu.usefulLinks[0]}</Link>
                     <Link to={"/" + cookies.get('userLangISO', { path: "/" }) + "/affiliate-program/"} className="border-bottom partner" >{textInfo.burgerMenu.usefulLinks[1]}</Link>
                     <Link to={"/" + cookies.get('userLangISO', { path: "/" }) + "/terms/"} className="border-bottom contract" >{textInfo.burgerMenu.usefulLinks[2]}</Link>
-                    <Link to="" className="border-bottom questionMarkGray" >{textInfo.burgerMenu.usefulLinks[3]}</Link>
+                    <Link to={"/" + cookies.get('userLangISO', { path: "/" }) + "/help/"} className="border-bottom questionMarkGray" >{textInfo.burgerMenu.usefulLinks[3]}</Link>
                     <Link to={"/" + cookies.get('userLangISO', { path: "/" }) + "/contacts/"} className="phoneBook " >{textInfo.burgerMenu.usefulLinks[4]}</Link>
                   </div>
                 </div>
