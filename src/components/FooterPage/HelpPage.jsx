@@ -129,7 +129,12 @@ class HelpPageClass extends React.Component {
                                     <h5>{element.title}</h5>
                                     <p className="text-center">{element.text}</p>
                                     <div className="col">
+                                    {
+                                        isMobile?
+                                        <ReactstrapCarousel items={element.srcMobail} />
+                                        :
                                         <ReactstrapCarousel items={element.src} />
+                                    }
                                     </div>
 
                                 </div>

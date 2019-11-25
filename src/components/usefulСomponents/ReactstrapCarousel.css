@@ -32,3 +32,21 @@
 .carousel-indicators .active{
     background-color: #304269;
 }
+
+.reactstrapCarouselMobail{
+    width: 100%;
+    overflow-x: auto;
+    scroll-snap-type: mandatory;
+    scroll-snap-points-x: repeat(100%);
+}
+
+/* .reactstrapCarouselMobailImg {
+    
+} */
+
+.reactstrapCarouselMobail img{
+    margin: 50px 10px;
+    max-width: 70vw;
+    scroll-snap-align: center;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
+}

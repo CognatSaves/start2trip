@@ -81,7 +81,7 @@ class FooterClass extends React.Component {
               <Link to={"/" + cookies.get('userLangISO', { path: "/" }) + "/about-service/"} className="footerButtons_button">{textInfo.footerButtons[0]}</Link>
               <Link to={"/" + cookies.get('userLangISO', { path: "/" }) + "/affiliate-program/"} className="footerButtons_button">{textInfo.footerButtons[1]}</Link>
               <Link to={"/" + cookies.get('userLangISO', { path: "/" }) + "/terms/"} className="footerButtons_button">{textInfo.footerButtons[2]}</Link>
-              <Link to="" className="footerButtons_button">{textInfo.footerButtons[3]}</Link>
+              <Link to={"/" + cookies.get('userLangISO', { path: "/" }) + "/help/"} className="footerButtons_button">{textInfo.footerButtons[3]}</Link>
               <Link to={"/" + cookies.get('userLangISO', { path: "/" }) + "/contacts/"} className="footerButtons_button">{textInfo.footerButtons[4]}</Link>
               <div className="d-flex">
                 
