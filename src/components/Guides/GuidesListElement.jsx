@@ -65,7 +65,7 @@ const InfoBlock = (params) => {
                                         valueEl.length>0 ? valueEl.map((car, carID) => {
                                             debugger;
                                             return <div className="d-flex flex-row" style={{marginRight: '5px'}}>
-                                                <text>{car.carBrand + ' ('+car.seats+')'}</text>
+                                                <text>{car.carBrand + ' ('+car.seats+' '+textInfo.seats+')'}</text>
                                                 <CarParamsIcon value={car.leatherInterior} icon={seatIcon}/>
                                                 <CarParamsIcon value={!car.smokingPermit} icon ={no_smokingIcon}  />
                                                 <CarParamsIcon value={car.climatControl} icon={snowflakeIcon} />
@@ -174,14 +174,14 @@ class GuidesListElementClass extends React.Component {
                 */
             }
                 <div className={"drivers_block_element d-flex p-0 flex-md-row flex-column h-md-100"} id={index}>
-                    <div className="col-12 col-md-4 col-lg-3 p-0 h-md-100" style={{minHeight: '249px'}}>
-                        <div className="driversBlock_carImage h-md-100" style={{ borderRadius: 'none', minHeight: '249px', background: "url(" + (element.image ? (requests.serverAddressImg + element.image) : '') + ") no-repeat", backgroundSize: "cover", width: '100%' }}>
-                            <Link to={linkAddress} className="driversBlock_carBlackout" style={{borderRadius: 'none'}}>
+                    <div className="col-12 col-md-4 col-lg-3 p-0 h-md-100 imageMinHeight">
+                        <div className="driversBlock_carImage h-md-100 noBorderRaduis imageMinHeight" style={{ background: "url(" + (element.image ? (requests.serverAddressImg + element.image) : '') + ") no-repeat", backgroundSize: "cover", width: '100%' }}>
+                            <Link to={linkAddress} className="driversBlock_carBlackout noBorderRaduis">
                                 <div className="driversBlock_carBlackout_detailed">{textInfo.detailed}</div>
                             </Link>
                         </div>
                     </div>
-                    <div className="col-12 col-md-8 col-lg-9 p-3 d-flex flex-column">
+                    <div className="col-12 col-md-8 col-lg-9 d-flex flex-column dataBlockStyle">
                         <div className="col-12 d-flex flex-row justify-content-between p-0 mb-auto">
                             <div className="flex-column">
                                 <Link to={linkAddress} className="guideList_placeName d-flex">

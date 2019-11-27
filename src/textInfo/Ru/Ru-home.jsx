@@ -43,7 +43,7 @@ const home = {
     },
     homeBottom:{
         guideListElement:{
-            nameArr: ['Город', 'Языки', 'Транспорт', 'Экскурсий', 'Типы туров', 'О себе']
+            nameArr: ['Город', 'Языки', 'Транспорт', 'Кол-во туров', 'Типы туров', 'О себе']
         },
         driversPageListElement:{
             nameArr:['Город', 'Языки', 'Транспорт', 'О себе']
@@ -66,7 +66,8 @@ const home = {
             cars: 'Автомобилей',
             empty: 'Пусто',
             exist: 'Есть',
-            notExist: 'Нет'
+            notExist: 'Нет',
+            seats: 'мест(a)'
         }
     },
     homeBodyBottom:{

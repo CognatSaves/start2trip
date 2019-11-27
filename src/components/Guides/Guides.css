@@ -30,8 +30,26 @@
 .listElementLeftColumn{
     min-width: 150px
 }
+.noBorderRaduis{
+    border-radius: 0;
+}
+.imageMinHeight{
+
+}
+.dataBlockStyle{
+    padding: 20px!important;
+}
+.h-md-100{
+    height: 100%;
+}
 @media (max-width: 768px){
     .listElementLeftColumn{
         min-width: 100px;
+    }
+    .imageMinHeight{
+        min-height: 249px;
+    }
+    .h-md-100{
+        height: auto;
     }
 }

@@ -43,7 +43,7 @@ const home = {
     },
     homeBottom: {
         guideListElement:{
-            nameArr: ['City', 'Languages', 'Vehicles', 'Tours', 'Tour types', 'About']
+            nameArr: ['City', 'Languages', 'Vehicles', 'Tours number', 'Tour types', 'About']
         },
         driversPageListElement:{
             nameArr:['City', 'Languages', 'Vehicle', 'About']
@@ -66,7 +66,8 @@ const home = {
             cars: 'Number of cars',
             empty: 'Empty',
             exist: 'Exist',
-            notExist: 'No'
+            notExist: 'No',
+            seats: 'seats'
         }
     },
     homeBodyBottom: {
