@@ -52,7 +52,7 @@ class TripTableClass extends React.Component{
     arrayFilter = () => {
         let that = this;
         function driverConfirmationFilter(array){
-            debugger;
+            
             let driverFilter = [];
             if(that.state.isDriverConfirmedIndex === 0) {
                 return array;
@@ -83,7 +83,7 @@ class TripTableClass extends React.Component{
             return driverFilter;
         }
         function customerConfirmationFilter(array){
-            debugger;
+            
             let customerFilter = [];
             if(that.state.isCustomerConfirmedIndex === 0) {
                 return array;
@@ -113,7 +113,11 @@ class TripTableClass extends React.Component{
             }
             return customerFilter;
         }
+        
         let filterResult = driverConfirmationFilter(customerConfirmationFilter(this.state.value));
+        if(!filterResult){
+            debugger;
+        }
         filterResult.sort((a,b)=> {return a.startDefault<b.startDefault ? -1 : (a.startDefault===b.startDefault ? 0 : 1)})
         return filterResult;
     }

@@ -14,7 +14,7 @@ const initialState = {
 
     guidesList: [],
     departurePoints: [],
-
+    categories: [],
     guideData: {},
     carTypes: []
 }
@@ -32,6 +32,7 @@ export const GuidesReduser = (state = initialState, action) => {
             newState.guidesList = action.guidesList;
             newState.country = action.country;
             newState.departurePoints = action.departurePoints;
+            newState.categories = action.categories;
             return newState;
         }
         case SET_PAGES_MENU_VALUE: {

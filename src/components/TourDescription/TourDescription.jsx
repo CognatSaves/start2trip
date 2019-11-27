@@ -170,6 +170,7 @@ class ToureDescriptionClass extends React.Component {
         if(!daily){
             //if tour !daily - firstly check, is the day is good enough for us, 
             //it will be good, if it exist in calendary
+            
             for(let i=0; i<calendary.length; i++){
                 let calendaryDay = new Date(calendary[i]).toISOString().substring(0,10);
                 if(calendaryDay===departureDateDay){

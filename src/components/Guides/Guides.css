@@ -24,4 +24,14 @@
 .guidesSortElementsBlock span{
     margin: 0 15px!important
 }
-
+.guidesBigStars{
+    font-size: 20px;
+}
+.listElementLeftColumn{
+    min-width: 150px
+}
+@media (max-width: 768px){
+    .listElementLeftColumn{
+        min-width: 100px;
+    }
+}

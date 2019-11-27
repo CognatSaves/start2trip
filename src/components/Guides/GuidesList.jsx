@@ -7,7 +7,8 @@ import { setPage, setMorePagesShow } from '../../redusers/ActionGuides';
 import Manipulator from '../manipulator/Manipulator';
 import GuidesListElement from './GuidesListElement';
 // import requests from '../../config';
-
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 class GuidesListClass extends React.Component {
     constructor(props) {
         super(props);
@@ -69,7 +70,7 @@ class GuidesListClass extends React.Component {
             this.props.guidesState.page * this.props.guidesState.pagesMenuValue);
 
         // console.log('selectedPlaces', selectedPlaces);
-        let textInfo = this.props.storeState.languageTextMain.home.homeBottom.homeRoutesList;
+        let textInfo = this.props.storeState.languageTextMain.home.homeBottom;
         let pageNotFound = this.props.storeState.languageTextMain.home.pageNotFound;
         let isEmpty = (selectedPlaces.length === 0 && this.props.isStaying);
         let isLoading = (selectedPlaces.length === 0 && !this.props.isStaying);
@@ -79,8 +80,11 @@ class GuidesListClass extends React.Component {
                 <div className="drivers_block d-flex flex-wrap">
                     {selectedPlaces.map((element, index) =>
                         <>
-                            <GuidesListElement element={element} index={index} /*findTagName={(tag) => findTagName(tag, this)}*/
-
+                            <GuidesListElement element={element} index={index} 
+                                nameArr = {textInfo.guideListElement.nameArr}
+                                typeArr = {['string', 'array', 'boolean', 'number', 'array', 'textarea']}
+                                linkAddress = {"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + `/guides/${element.userSlug}/`}
+                                elementType={'guide'}
                             />
                         </>
                     )}

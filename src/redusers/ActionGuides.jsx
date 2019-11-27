@@ -21,12 +21,13 @@ const setGuideData = function(guideData,carTypes){
     carTypes:carTypes
   }
 }
-const setGuidesList = function (guidesList, country, departurePoints){
+const setGuidesList = function (guidesList, country, departurePoints, categories){
     return{
         type: SET_GUIDES_LIST,
         guidesList: guidesList,
         country: country,
-        departurePoints:departurePoints
+        departurePoints:departurePoints,
+        categories:categories
     }
 }
 const setPagesMenuValue = function (pagesMenuValue){

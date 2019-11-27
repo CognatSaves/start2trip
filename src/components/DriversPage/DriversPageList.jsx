@@ -7,7 +7,9 @@ import { setPage, setMorePagesShow } from '../../redusers/ActionGuides';
 import Manipulator from '../manipulator/Manipulator';
 import DriversPageListElement from './DriversPageListElement';
 // import requests from '../../config';
-
+import GuidesListElement from '../Guides/GuidesListElement';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 class DriversPageListClass extends React.Component {
     constructor(props) {
         super(props);
@@ -69,7 +71,7 @@ class DriversPageListClass extends React.Component {
             this.props.guidesState.page * this.props.guidesState.pagesMenuValue);
 
         // console.log('selectedPlaces', selectedPlaces);
-        let textInfo = this.props.storeState.languageTextMain.home.homeBottom.homeRoutesList;
+        let textInfo = this.props.storeState.languageTextMain.home.homeBottom;
         let pageNotFound = this.props.storeState.languageTextMain.home.pageNotFound;
         let isEmpty = (selectedPlaces.length === 0 && this.props.isStaying);
         let isLoading = (selectedPlaces.length === 0 && !this.props.isStaying);
@@ -79,8 +81,13 @@ class DriversPageListClass extends React.Component {
                 <div className="drivers_block d-flex flex-wrap">
                     {selectedPlaces.map((element, index) =>
                         <>
-                            <DriversPageListElement element={element} index={index} /*findTagName={(tag) => findTagName(tag, this)}*/
-
+                            {/* <DriversPageListElement element={element} index={index} 
+                            /> */}
+                            <GuidesListElement element={element} index={index} 
+                                nameArr = {textInfo.driversPageListElement.nameArr}
+                                typeArr = {['string', 'array', 'car', 'textarea']}
+                                linkAddress = {"/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + `/drivers-page/${element.userSlug}/`}
+                                elementType={'driverPage'} isNotAgency={true}
                             />
                         </>
                     )}

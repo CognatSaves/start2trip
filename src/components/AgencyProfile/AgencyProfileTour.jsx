@@ -217,9 +217,11 @@ class AgencyProfileTourClass extends React.Component {
                     }
                 }
             }
+            debugger;
             let categoriesUnselected = [];
             let categoriesSelected = [];
             for (let i = 0; i < profile.categories.length; i++) {
+                let isSelected = false;
                 for (let k = 0; k < element.categoryIds.length; k++) {
                     if (profile.categories[i].id === element.categoryIds[k]) {
                         categoriesSelected.push({
@@ -227,15 +229,17 @@ class AgencyProfileTourClass extends React.Component {
                             value: profile.categories[i].local.name
                         });
                         k = element.categoryIds.length;
-                    }
-                    if (k === element.categoryIds.length - 1) {
-                        categoriesUnselected.push({
-                            key: profile.categories[i].id,
-                            value: profile.categories[i].local.name
-                        });
+                        isSelected = true;
                     }
                 }
+                if (!isSelected) {
+                    categoriesUnselected.push({
+                        key: profile.categories[i].id,
+                        value: profile.categories[i].local.name
+                    });
+                }
             }
+            debugger;
             let tagsSelected = [];
             let tagsUnselected = [];
             for (let i = 0; i < profile.tags.length; i++) {
