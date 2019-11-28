@@ -42,6 +42,12 @@ const home = {
         }
     },
     homeBottom: {
+        guideListElement:{
+            nameArr: ['City', 'Languages', 'Vehicles', 'Tours number', 'Tour types', 'About']
+        },
+        driversPageListElement:{
+            nameArr:['City', 'Languages', 'Vehicle', 'About']
+        },
         homePopularPlaces: {
             popularPlacesTitle: 'Ready trips from',
             cancel: 'Cancel',
@@ -57,7 +63,11 @@ const home = {
             daysNumber: 'day',
             from:"From ",
             seeOffers:"See offers",
-            cars: 'Number of cars'
+            cars: 'Number of cars',
+            empty: 'Empty',
+            exist: 'Exist',
+            notExist: 'No',
+            seats: 'seats'
         }
     },
     homeBodyBottom: {

@@ -380,7 +380,49 @@ const isNeedDiscount = (el, activeCountry, countries) => {
   }
 }
 
+const findLanguageById = (params) => {
+  //function used for conv id or array of id to language or languageArr. if onlyNames - return array of names
+  //params = {el, array, isElArray, languages=untranslatedLanguages, onlyNames}
 
+  let {el, array, isElArray, languages, onlyNames} = params;
+  let tempArray = isElArray ? array : [el];
+  let resultArray = [];
+  for(let i=0; i<tempArray.length; i++){
+    let element = tempArray[i];
+    languages.map((langEl, langId)=>{
+      if(element===langEl.id){
+        resultArray[i]=(onlyNames ? langEl.languageName : langEl);
+      }
+    });
+  }
+  if(!isElArray){
+    return resultArray.length>0 ? resultArray[0] : undefined;
+  }
+  else{
+    return resultArray;
+  }
+}
+
+const findCategoryById = (params) => {
+  //function used for conv id or array of id to category or categoryArr. if onlyNames - return 
+  let {el, array, isElArray, categories, onlyNames} = params;
+  let tempArray = isElArray ? array : [el];
+  let resultArray = [];
+  for(let i=0; i<tempArray.length; i++){
+    let element = tempArray[i];
+    categories.map((catEl, catId)=>{
+      if(element===catEl.id){
+        resultArray[i]=(onlyNames ? catEl.local.name : catEl);
+      }
+    });
+  }
+  if(!isElArray){
+    return resultArray.length>0 ? resultArray[0] : undefined;
+  }
+  else{
+    return resultArray;
+  }
+}
 
 
 export {
@@ -399,4 +441,6 @@ export {
   placesSort,
   tagFilterFunction,
   isNeedDiscount,
+  findLanguageById,
+  findCategoryById
 }

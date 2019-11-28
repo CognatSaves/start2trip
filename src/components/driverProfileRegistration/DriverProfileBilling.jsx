@@ -122,7 +122,7 @@ class DriverProfileBillingClass extends React.Component {
         console.log(this);
     }
     systemPaymentStart = () => {
-        debugger;
+        
         let value = Number.parseFloat(this.state.paymentValue);
         if(!value || value<=0){
             alert('No valid number here');

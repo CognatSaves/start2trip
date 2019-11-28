@@ -50,14 +50,14 @@
 }
 
 .guideList_placeName {
-    font-size: 16px;
+    font-size: 20px;
     line-height: 20px;
     font-weight: 500;
     min-height: max-content;
     text-overflow: ellipsis;
     overflow: hidden;
     color: #304269;
-    margin-top: 12px;
+    margin-top: 5px;
 
 }
 

@@ -42,6 +42,12 @@ const home = {
         }
     },
     homeBottom:{
+        guideListElement:{
+            nameArr: ['Город', 'Языки', 'Транспорт', 'Кол-во туров', 'Типы туров', 'О себе']
+        },
+        driversPageListElement:{
+            nameArr:['Город', 'Языки', 'Транспорт', 'О себе']
+        },
         homePopularPlaces: {
             popularPlacesTitle: 'Идеи маршрутов из',
             cancel: 'Отменить',
@@ -57,7 +63,11 @@ const home = {
             daysNumber: 'дн.',
             from:"От ",
             seeOffers:"Смотреть предложения",
-            cars: 'Автомобилей'
+            cars: 'Автомобилей',
+            empty: 'Пусто',
+            exist: 'Есть',
+            notExist: 'Нет',
+            seats: 'мест(a)'
         }
     },
     homeBodyBottom:{
