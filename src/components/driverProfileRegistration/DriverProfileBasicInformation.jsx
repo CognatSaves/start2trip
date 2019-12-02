@@ -28,6 +28,43 @@ const cookies = new Cookies();
 class DriverProfileBasicInformationClass extends React.Component {
     constructor(props) {
         super(props);
+        // function languageArraysConstr(language, allLanguages) {
+        //     let langList = [];
+        //     let chipData = [];
+        //     for (let i = 0; i < allLanguages.length; i++) {
+        //         let j = 0; let max = language.length;
+        //         for (; j < max; j++) {
+        //             if (language[j] === allLanguages[i].ISO) {
+        //                 chipData.push(allLanguages[i].languageName);
+        //                 j = max + 5;
+        //             }
+        //         }
+        //         if (j === max) {
+        //             langList.push(allLanguages[i].languageName);
+        //         }
+        //     }
+        //     return { langList: langList, chipData: chipData };
+        // }
+        let profile = this.props.globalReduser.profile;
+        //console.log('profile');
+        // let birthday; let passportDate;
+
+        // birthday = new Date(profile.birthday);
+        // passportDate = new Date(profile.passportDate);
+        
+
+        // let languageArrays = languageArraysConstr(profile.language, this.props.storeState.untranslatedlanguages);
+        debugger;
+        let profileConstructorResult = this.profileConstructor(profile, this.props.storeState.untranslatedlanguages);
+        this.state = {
+            value: this.props.storeState.languageText.driverProfileRegistration.DriverProfileBasicInformation.MenuItem.value,
+            chipData: profileConstructorResult.chipData,
+            language: profileConstructorResult.language,
+            profileData: profileConstructorResult.profileData,
+            isWorkPhone:true,
+        }
+    }
+    profileConstructor = (profile, untranslatedlanguages) => {
         function languageArraysConstr(language, allLanguages) {
             let langList = [];
             let chipData = [];
@@ -45,16 +82,19 @@ class DriverProfileBasicInformationClass extends React.Component {
             }
             return { langList: langList, chipData: chipData };
         }
-        let profile = this.props.globalReduser.profile;
-        //console.log('profile');
-        let birthday; let passportDate;
-
-        birthday = new Date(profile.birthday);
-        passportDate = new Date(profile.passportDate);
+        let langArray = profile.language;
+        if(profile.language.length>0 && profile.language[0].ISO){
+            let isoLangArray = [];
+            for(let i=0; i<profile.language.length; i++){
+                isoLangArray.push(profile.language[i].ISO);
+            }
+            langArray=isoLangArray;
+        }
+        let languageArrays = languageArraysConstr(langArray, untranslatedlanguages);
+        let birthday = new Date(profile.birthday);
+        let passportDate = new Date(profile.passportDate);
         
-        let languageArrays = languageArraysConstr(profile.language, this.props.storeState.untranslatedlanguages);
-        this.state = {
-            value: this.props.storeState.languageText.driverProfileRegistration.DriverProfileBasicInformation.MenuItem.value,
+        let result = {
             chipData: languageArrays.chipData,
             language: languageArrays.langList,
             profileData: {
@@ -66,11 +106,10 @@ class DriverProfileBasicInformationClass extends React.Component {
                 city: profile.hometown.length !== 0 ? (profile.hometown + ', ' + profile.homecountry) : "",
                 workPhone: profile.workPhone,
                 dataAbout: profile.dataAbout
-            },
-            isWorkPhone:true,
+            }
         }
+        return result;
     }
-
     applyChanges = () => {
         let jwt = this.props.globalReduser.readCookie('jwt');
         if (jwt && jwt !== "-") {
@@ -108,8 +147,33 @@ class DriverProfileBasicInformationClass extends React.Component {
                         throw data.error;
                     }
                     else {
+                        debugger;
+                        function profileUpdate(newProfile, data){
+                            let profile = {...newProfile};
+                            profile.language=data.language;
+                            profile.firstName = data.firstName;
+                            profile.lastName = data.lastName;
+                            profile.birthday = data.birthday;
+                            profile.passportNumber = data.passportNumber;
+                            profile.passportData = data.passportDate;
+                            profile.hometown = data.hometown;
+                            profile.homecountry = data.homecountry;
+                            profile.workPhone = data.workPhone;
+                            profile.dataAbout = data.dataAbout;
+                            return profile;
+                        }
+                        let profileConstructorResult = that.profileConstructor(data, that.props.storeState.untranslatedlanguages);
+                        that.setState({
+                            chipData: profileConstructorResult.chipData,
+                            language: profileConstructorResult.language,
+                            profileData: profileConstructorResult.profileData,
+                        });
+                        ///let newProfile = that.props.globalReduser.profile;
+                        let newProfile = profileUpdate(that.props.globalReduser.profile, data);
+                        that.props.dispatch(setProfileData(newProfile));
+                        thenFuncGlobal(that);
                         console.log("good");
-                        getUserData(thenFuncGlobal, catchFuncGlobal,that);
+                        //getUserData(thenFuncGlobal, catchFuncGlobal,that);
                     }
                 })
                 .catch(function (error) {

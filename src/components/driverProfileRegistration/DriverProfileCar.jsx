@@ -222,10 +222,51 @@ class DriverProfileCarClass extends React.Component {
 
 
                 if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
+                    function updateCarArray (oldArray, car){
+                        let index = -1;
+                        for(let i=0; i<oldArray.length; i++){
+                            if(oldArray[i]._id===car._id){
+                                index = i;
+                                break;
+                            }
+                        }
+                        let arr = [...oldArray];
+                        if(index!==-1){
+                            arr[index]=car;
+                        }
+                        else{
+                            arr.push(car); 
+                        }
+                        return {
+                            array: arr,
+                            status: true
+                        }
+                    }
+                    debugger;
                     console.log(request.responseText);
-                    getUserData( (obj)=>{ thenFuncGlobal(obj, that.setState({collapse: false})); }, catchFuncGlobal, that);
+                    let temp = JSON.parse(request.responseText);
+                    if(!temp.status){
+                        getUserData( (obj)=>{ thenFuncGlobal(obj, that.setState({collapse: false})); }, catchFuncGlobal, that);
+                    }
+                    else{
+                        let updateArrayResult = updateCarArray(that.props.globalReduser.profile.cars, temp.car);
+                        if(updateArrayResult.status){
+                            that.setState({
+                                collapse: false
+                            });
+                            let newProfile =  that.props.globalReduser.profile;
+                            newProfile.cars = updateArrayResult.array;
+                            that.props.dispatch(setProfileData(newProfile));
+                            thenFuncGlobal(that);
+                        }
+                        else{
+                            getUserData( (obj)=>{ thenFuncGlobal(obj, that.setState({collapse: false})); }, catchFuncGlobal, that);
+                        }
+                    }
+                    
                 }
                 if (request.readyState === XMLHttpRequest.DONE && request.status === 0) {
+                    debugger;
                     catchFuncGlobal(that);
                 }
             }
@@ -314,6 +355,29 @@ class DriverProfileCarClass extends React.Component {
         }
     }
     changeActive = (element) => {
+        function carUpdate(carArray, car){
+            let index = -1;
+            for(let i=0; i<carArray.length; i++){
+                if(carArray[i].id === car.id){
+                    index = i;
+                    break;
+                }
+            }
+            if(index !==-1){
+                let array = carArray;
+                array[index]=car;
+                return {
+                    status: true,
+                    array: array
+                }
+            }
+            else{
+                return {
+                    status: false,
+                    array: carArray
+                }
+            }
+        }
         let jwt = this.props.globalReduser.readCookie('jwt');
         if (jwt && jwt !== "-") {
             startRefresherGlobal(this,true)
@@ -325,8 +389,28 @@ class DriverProfileCarClass extends React.Component {
             request.setRequestHeader('Authorization', `Bearer ${jwt}`);
             request.onreadystatechange = function () {
                 if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
+                    debugger;
                     console.log(request.responseText);
-                    getUserData( (obj)=>{ thenFuncGlobal(obj, that.setState({collapse: false})); }, catchFuncGlobal, that);
+                    let temp = JSON.parse(request.responseText);
+                    if(temp.status){
+                        let carUpdateResult = carUpdate(that.props.globalReduser.profile.cars, temp.car);
+                        if(carUpdateResult.status){
+                            that.setState({
+                                collapse: false
+                            });
+                            let newProfile =  that.props.globalReduser.profile;
+                            newProfile.cars = carUpdateResult.array;
+                            that.props.dispatch(setProfileData(newProfile));
+                            thenFuncGlobal(that);
+                        }
+                        else{
+                            getUserData( (obj)=>{ thenFuncGlobal(obj, that.setState({collapse: false})); }, catchFuncGlobal, that);
+                        }
+                    }
+                    else{
+                        getUserData( (obj)=>{ thenFuncGlobal(obj, that.setState({collapse: false})); }, catchFuncGlobal, that);
+                    }
+                    
                 }
                 if (request.readyState === XMLHttpRequest.DONE && request.status === 0) {
                     catchFuncGlobal(that);
@@ -351,8 +435,51 @@ class DriverProfileCarClass extends React.Component {
             const request = new XMLHttpRequest();
             request.onreadystatechange = function () {
                 if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
+                    function carArrayElementDelete(oldArray, car){
+                        let index = -1;
+                        for(let i=0; i<oldArray.length; i++){
+                            if(oldArray[i]._id===car._id){
+                                index = i;
+                                break;
+                            }
+                        }
+                        if(index !== -1){
+                            let array =[...oldArray];
+                            array.splice(index,1);
+                            return {
+                                status: true,
+                                array: array
+                            };
+                        }
+                        else{
+                            return{
+                                status: false,
+                                array: oldArray
+                            }
+                        };
+                    }
+                    debugger;
                     console.log(request.responseText);
-                    getUserData( (obj)=>{ thenFuncGlobal(obj, that.setState({collapse: false})); }, catchFuncGlobal, that);
+                    let temp = JSON.parse(request.responseText);
+                    if(!temp.status){
+                        getUserData( (obj)=>{ thenFuncGlobal(obj, that.setState({collapse: false})); }, catchFuncGlobal, that);
+                    }
+                    else{
+                        let deleteResult = carArrayElementDelete(that.props.globalReduser.profile.cars, temp.car);
+                        if(deleteResult.status){
+                            that.setState({
+                                collapse: false
+                            });
+                            let newProfile =  that.props.globalReduser.profile;
+                            newProfile.cars = deleteResult.array;
+                            that.props.dispatch(setProfileData(newProfile));
+                            thenFuncGlobal(that);
+                        }
+                        else{
+                            getUserData( (obj)=>{ thenFuncGlobal(obj, that.setState({collapse: false})); }, catchFuncGlobal, that);
+                        }
+                    }
+                    
                 }
                 if (request.readyState === XMLHttpRequest.DONE && request.status === 0) {
                     catchFuncGlobal(that);

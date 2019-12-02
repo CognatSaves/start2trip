@@ -151,6 +151,7 @@ class DriverProfileBillingClass extends React.Component {
                     //alert(data);
                     console.log(data);
                     //let newWin = window.open(data.url, '', ecommpayWindowProps);
+                    debugger;
                     window.location.replace(data.url);
                 }
             })

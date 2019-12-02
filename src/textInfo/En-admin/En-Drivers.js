@@ -238,15 +238,18 @@ const driverProfileRegistration = {
             },
             directions: {
                 floatingLabelText: "Directions",
-                description: "Regional Tour Affiliation"
+                description: "Regional Tour Affiliation",
+                notSelectedDirectionText: 'Direction is not selected'
             },
             categories: {
                 floatingLabelText: "Categories",
-                description: "Type of vacation"
+                description: "Type of vacation",
+                notSelectedCategoryText: 'Categories are not selected'
             },
             tags: {
                 floatingLabelText: "Tags",
-                description: "Enter tags to tag your tour"
+                description: "Enter tags to tag your tour",
+                notSelectedTagText: 'Tags are not selected'
             },
             newTourPeople: "Seats",
             uploadPhoto: "Upload photo",

@@ -236,15 +236,18 @@ const driverProfileRegistration = {
             },
             directions: {
                 floatingLabelText: "მიმართულებები",
-                description: "ტურის რეგიონალური მიკუთვნება"
+                description: "ტურის რეგიონალური მიკუთვნება",
+                notSelectedDirectionText: 'მიმართულება არ არის შერჩეული'
             },
             categories: {
                 floatingLabelText: "კატეგორიები",
-                description: "დასვენების სახე"
+                description: "დასვენების სახე",
+                notSelectedCategoryText: 'კატეგორიები არ არის შერჩეული'
             },
             tags: {
                 floatingLabelText: "თეგები",
-                description: "შეიყვანეთ თეგები თქვენი ტურის ჩასანიშნად"
+                description: "შეიყვანეთ თეგები თქვენი ტურის ჩასანიშნად",
+                notSelectedTagText: 'არჩეულია ტეგები'
             },
             newTourPeople: "ადგილების რაოდენობა",
             uploadPhoto: "ფოტოს ჩატვირთვა",

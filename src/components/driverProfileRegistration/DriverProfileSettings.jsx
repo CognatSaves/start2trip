@@ -92,9 +92,21 @@ class DriverProfileSettingsClass extends React.Component {
                             throw data.error;
                         }
                         else {
+                            debugger;
                             console.log("good");
                             console.log(data);
-                            getUserData( thenFuncGlobal, catchFuncGlobal,that);
+                            that.setState({
+                                password: '',
+                                newPassword: '',
+                                privatePhone: data.privatePhone,
+                                subscription: data.subscription
+                            });
+                            let profile = that.props.globalReduser.profile;
+                            profile.privatePhone = data.privatePhone;
+                            profile.subscription = data.subscription;
+                            that.props.dispatch(setProfileData(profile));
+                            thenFuncGlobal(that);
+                            //getUserData( thenFuncGlobal, catchFuncGlobal,that);
 
                         }
                     })

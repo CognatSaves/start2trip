@@ -1,6 +1,6 @@
 import React from 'react';
 import { isMobileOnly } from 'react-device-detect';
-import { setUrlAddress } from "../../../redusers/ActionGlobal"
+import { setProfileData,setUrlAddress } from "../../../redusers/ActionGlobal"
 import 'react-day-picker/lib/style.css';
 import { readAndCompressImage } from 'browser-image-resizer';
 import requests from '../../../config';
@@ -10,6 +10,7 @@ import TextField from 'material-ui/TextField';
 import Cookies from 'universal-cookie';
 import getUserData from '../../driverProfileRegistration/DriverProfileRequest';
 import {startRefresherGlobal, thenFuncGlobal, catchFuncGlobal,} from '../../../redusers/GlobalFunction'
+
 
 import ExcursionIncludesBlock from './ExcursionIncludesBlock'
 
@@ -189,6 +190,22 @@ export default class AgencyTourForm extends React.Component {
                 obj.classList.add("errorColor");
                 result = false;
             }
+            ///////////////////
+            if(tourSave.directionId.length===0){
+                //obj = document.getElementById('notSelectedDirectionText');
+                //obj.style.display = 'block';
+                result = false;
+            }
+            if(tourSave.categoriesSelected.length===0){
+                //obj = document.getElementById('notSelectedCategoryText');
+                //obj.style.display = 'block';
+                result = false;
+            }
+            if(tourSave.tagsSelected.length===0){
+                //obj = document.getElementById('notSelectedTagText');
+                //obj.style.display = 'block';
+                result = false;
+            }
             /////////////////
 
             if (tourSave.imageFiles.length === 0) {
@@ -287,8 +304,64 @@ export default class AgencyTourForm extends React.Component {
             }
             request.onreadystatechange = function () {
                 if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
+                    function updateTourArray(oldArray, tour, isNew){
+                        let array = [...oldArray];
+                        if(isNew){
+                            array.push(tour);
+                            return {
+                                status: true,
+                                array: array
+                            }
+                        }
+                        else{
+                            let index = -1;
+                            for(let i=0; i<oldArray.length; i++){
+                                if(oldArray[i].id===tour.id){
+                                    index = i;
+                                    break;
+                                }
+                            }
+                            if(index !==-1){
+                                array[index]=tour;
+                                return {
+                                    status: true,
+                                    array: array
+                                }
+                            }
+                            else{
+                                return {
+                                    status: false,
+                                    array: array
+                                }
+                            }
+                            
+                        }
+                    }
+                    debugger;
                     console.log(request.responseText);
-                    getUserData(thenFuncGlobal,catchFuncGlobal,notThisbutthat)
+                    let temp = JSON.parse(request.responseText);
+                    if(temp.status){
+                        let tourArrayResult = updateTourArray(that.props.globalReduser.profile.tours, temp.tour, temp.isNew);
+                        if(!tourArrayResult.status){
+                            getUserData(thenFuncGlobal,catchFuncGlobal,notThisbutthat)
+                        }
+                        else{
+                            
+                            notThisbutthat.setState({
+                                collapse: false,
+                                calendarModal: false,
+                                tourSeatsModal: false,
+                            });
+                            let newProfile = that.props.globalReduser.profile;
+                            newProfile.tours = tourArrayResult.array;
+                            that.props.dispatch(setProfileData(newProfile)); 
+                            thenFuncGlobal(notThisbutthat);
+                        }
+                    }
+                    else{
+                        getUserData(thenFuncGlobal,catchFuncGlobal,notThisbutthat)
+                    }
+                    
                 }
                 if (request.readyState === XMLHttpRequest.DONE && request.status === 400) {
                     notThisbutthat.catchFunc();
@@ -951,7 +1024,15 @@ export default class AgencyTourForm extends React.Component {
                         </FormControl>
                         <p className=" d-md-block d-none col-md-6 col-5" style={{ margin: 'auto 0' }}>{textPage.additionalInformation.directions.description}</p>
                     </div>
+
                 </div>
+                
+                <div className="paddingL10 d-flex flex-row">
+                    <label className="d-md-block d-none col-2 " style={{ margin: 'auto 0' }}>{''}</label>
+                    <label className="imageLabelError" id="notSelectedDirectionText" 
+                    style={{display: that.state.tourSave.directionId.length>0 ? 'none' : 'block'}}>{textPage.additionalInformation.directions.notSelectedDirectionText}</label>
+                </div>
+                
 
                 <div className="paddingL10 d-flex flex-md-row flex-column align-items-md-center align-items-start">
                     <label className="d-md-block d-none col-2 " style={{ margin: 'auto 0' }}>{textPage.additionalInformation.categories.floatingLabelText}:</label>
@@ -969,7 +1050,16 @@ export default class AgencyTourForm extends React.Component {
                         </Select>
                     </FormControl>
                     <p className=" d-md-block d-none m-0 col-md-6 col-5">{textPage.additionalInformation.categories.description}</p>
+                    
                 </div>
+
+                <div className="paddingL10 d-flex flex-row">
+                    <label className="d-md-block d-none col-2 " style={{ margin: 'auto 0' }}>{''}</label>
+                    <label className="imageLabelError" id="notSelectedCategoryText" 
+                    style={{display: that.state.tourSave.categoriesSelected.length>0 ? 'none' : 'block'}}>{textPage.additionalInformation.categories.notSelectedCategoryText}</label>
+                </div>
+                
+
                 <div className="paddingL10 d-flex justify-content-end col-12 p-0">
                     <div className="d-flex flex-wrap col-md-10 col-12 p-0 mb-2">
                         {that.state.tourSave.categoriesSelected.map((element, index) =>
@@ -985,6 +1075,7 @@ export default class AgencyTourForm extends React.Component {
                             </Chip>
                         )}
                     </div>
+                   
                 </div>
 
                 <div className="paddingL10 d-flex flex-md-row flex-column align-items-md-center align-items-start">
@@ -1006,7 +1097,15 @@ export default class AgencyTourForm extends React.Component {
                         </Select>
                     </FormControl>
                     <p className=" d-md-block d-none m-0 col-md-6 col-5">{textPage.additionalInformation.tags.description}</p>
+                    
                 </div>
+                <div className="paddingL10 d-flex flex-row">
+                    <label className="d-md-block d-none col-2 " style={{ margin: 'auto 0' }}>{''}</label>
+                    <label className="imageLabelError" id="notSelectedTagText" 
+                    style={{display: that.state.tourSave.tagsSelected.length>0 ? 'none' : 'block'}}>{textPage.additionalInformation.tags.notSelectedTagText}</label>
+                </div>
+                
+
                 <div className="paddingL10 d-flex justify-content-end col-12 p-0">
                     <div className="d-flex flex-wrap col-md-10 col-12 p-0 mb-2">
                         {that.state.tourSave.tagsSelected.map((element, index) =>
@@ -1022,6 +1121,7 @@ export default class AgencyTourForm extends React.Component {
                             </Chip>
                         )}
                     </div>
+                    
                 </div>
 
                 {

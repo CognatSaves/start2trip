@@ -217,7 +217,7 @@ class AgencyProfileTourClass extends React.Component {
                     }
                 }
             }
-            debugger;
+            
             let categoriesUnselected = [];
             let categoriesSelected = [];
             for (let i = 0; i < profile.categories.length; i++) {
@@ -239,7 +239,7 @@ class AgencyProfileTourClass extends React.Component {
                     });
                 }
             }
-            debugger;
+            
             let tagsSelected = [];
             let tagsUnselected = [];
             for (let i = 0; i < profile.tags.length; i++) {
@@ -327,6 +327,29 @@ class AgencyProfileTourClass extends React.Component {
         }
     }
     changeActive = (element) => {
+        function updateToursArray (oldToursArray, updatedTour){
+            let index = -1;
+            for(let i=0; i<oldToursArray.length; i++){
+                if(oldToursArray[i].id===updatedTour.id){
+                    index = i;
+                    break;
+                }
+            }
+            if(index===-1){
+                return {
+                    status: false,
+                    array: oldToursArray
+                }
+            }
+            else{
+                let array = [...oldToursArray];
+                array[index]=updatedTour;
+                return{
+                    status: true,
+                    array: array
+                }
+            }
+        }
         let jwt = this.props.globalReduser.readCookie('jwt');
         if (jwt && jwt !== "-") {
             startRefresherGlobal(this,true)
@@ -338,11 +361,31 @@ class AgencyProfileTourClass extends React.Component {
             request.setRequestHeader('Authorization', `Bearer ${jwt}`);
             request.onreadystatechange = function () {
                 if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
+                    
                     console.log(request.responseText);
-                    getUserData((obj)=>{thenFuncGlobal(obj, that.setState({collapse: false,
-                        languageTour: [...this.props.storeState.untranslatedlanguages]}))}, catchFuncGlobal,that);
+                    let temp = JSON.parse(request.responseText);
+                    console.log(temp);
+                    let tourArrayUpdate = updateToursArray(that.props.globalReduser.profile.tours, temp.tour);
+                    that.setState({
+                        collapse: false,
+                        calendarModal: false,
+                        tourSeatsModal: false,
+                    });
+                    if(tourArrayUpdate.status){
+                        let newProfile = that.props.globalReduser.profile;
+                        newProfile.tours = tourArrayUpdate.array;
+                        that.props.dispatch(setProfileData(newProfile));                     
+                        thenFuncGlobal(that);
+                    }
+                    else{
+                        //if status bad, than call all data
+                        getUserData((obj)=>{thenFuncGlobal(obj, that.setState({collapse: false,
+                            languageTour: [...that.props.storeState.untranslatedlanguages]}))}, catchFuncGlobal,that);
+                    }
+
                 }
                 if (request.readyState === XMLHttpRequest.DONE && request.status === 0) {
+                    
                     catchFuncGlobal(that)
                 }
             }
@@ -355,6 +398,29 @@ class AgencyProfileTourClass extends React.Component {
         }
     }
     destroy = (element) => {
+        function toursArrayRemoveElement (oldToursArray, updatedTour){
+            let index = -1;
+            for(let i=0; i<oldToursArray.length; i++){
+                if(oldToursArray[i].id===updatedTour.id){
+                    index = i;
+                    break;
+                }
+            }
+            if(index===-1){
+                return {
+                    status: false,
+                    array: oldToursArray
+                }
+            }
+            else{
+                let array = [...oldToursArray];
+                array.splice(index,1);
+                return{
+                    status: true,
+                    array: array
+                }
+            }
+        }
         let jwt = this.props.globalReduser.readCookie('jwt');
         if (jwt && jwt !== "-") {
             startRefresherGlobal(this,true)
@@ -362,9 +428,30 @@ class AgencyProfileTourClass extends React.Component {
             const request = new XMLHttpRequest();
             request.onreadystatechange = function () {
                 if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
+                    debugger;
                     console.log(request.responseText);
-                    getUserData((obj)=>{thenFuncGlobal(obj, that.setState({collapse: false,
-                        languageTour: [...this.props.storeState.untranslatedlanguages]}))}, catchFuncGlobal,that);
+                    console.log(request.responseText);
+                    console.log(request.responseText);
+                    let temp = JSON.parse(request.responseText);
+                    console.log(temp);
+                    that.setState({
+                        collapse: false,
+                        calendarModal: false,
+                        tourSeatsModal: false,
+                    });
+                    let removeResult = toursArrayRemoveElement(that.props.globalReduser.profile.tours, temp.tour);
+                    if(removeResult.status){
+                        let newProfile = that.props.globalReduser.profile;
+                        newProfile.tours = removeResult.array;
+                        that.props.dispatch(setProfileData(newProfile));
+                        thenFuncGlobal(that);  
+                    }
+                    else{
+                        //if smth wrong - take all data
+                        getUserData((obj)=>{thenFuncGlobal(obj, that.setState({collapse: false,
+                            languageTour: [...this.props.storeState.untranslatedlanguages]}))}, catchFuncGlobal,that);
+                    }
+                    
                 }
                 if (request.readyState === XMLHttpRequest.DONE && request.status === 0) {
                     catchFuncGlobal(that);
