@@ -30,8 +30,11 @@ class FooterClass extends React.Component {
     if (this.props.globalhistory.history !== "") {
       pathname = this.props.globalhistory.history.location.pathname
     }
-
-    let textInfo = this.props.storeState.languageTextMain.footer;
+    let textInfoMain = this.props.storeState.languageTextMain.footer;
+    let textInfoAdmin = this.props.storeState.languageText.footer;
+    let isAdmin = this.props.storeState.isSecondLanguageGroupPart;
+    let textInfo = isAdmin ? textInfoAdmin : textInfoMain;
+    //let textInfo = this.props.storeState.languageTextMain.footer;
     let mobileElemArray = [
       {
         pathname: "/" + this.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) +"/",

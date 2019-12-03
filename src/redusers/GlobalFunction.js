@@ -184,8 +184,8 @@ const catchFuncGlobal = (that) => {
 }
 
 const findCurrencyEl = (that, iso) => {
-  for (let i = 0; i < that.props.globalReduser.profile.currencies.length; i++) {
-    if (iso === that.props.globalReduser.profile.currencies[i].ISO) {
+  for (let i = 0; i < that.props.storeState.currencies.length; i++) {
+    if (iso === that.props.storeState.currencies[i].ISO) {
       return i;
     }
   }

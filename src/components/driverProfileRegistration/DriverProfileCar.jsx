@@ -662,7 +662,9 @@ class DriverProfileCarClass extends React.Component {
         console.log('state', this.state);
         //console.log();
         console.log('props', this.props);
-        let carTypes = findCarTypeNames(cars, this.props.globalReduser.profile.carTypes, this.props.storeState);
+        debugger;
+
+        let carTypes = findCarTypeNames(cars, this.props.driversState.carTypes, this.props.storeState);
 
         let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileCar;
         let availableCurrencies = this.props.globalReduser.currencyFilter(this.props.storeState);
@@ -814,8 +816,8 @@ class DriverProfileCarClass extends React.Component {
                                             }}
                                         >
                                             {
-                                                this.props.globalReduser.profile.carTypes.map((element, index) =>
-                                                    <MenuItem value={element.id} >{findOneCarProp(element.id, this.props.globalReduser.profile.carTypes, this.props.storeState)} </MenuItem>
+                                                this.props.driversState.carTypes.map((element, index) =>
+                                                    <MenuItem value={element.id} >{findOneCarProp(element.id, this.props.driversState.carTypes, this.props.storeState)} </MenuItem>
                                                 )
                                             }
 
@@ -1122,7 +1124,8 @@ class DriverProfileCarClass extends React.Component {
 const DriverProfileCar = connect(
     (state) => ({
         storeState: state.AppReduser,
-        globalReduser: state.GlobalReduser
+        globalReduser: state.GlobalReduser,
+        driversState: state.DriversReduser,
     }),
 )(DriverProfileCarClass);
 

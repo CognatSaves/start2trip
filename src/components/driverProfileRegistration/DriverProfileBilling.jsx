@@ -171,7 +171,7 @@ class DriverProfileBillingClass extends React.Component {
     }
     render() {
         let profile = this.props.globalReduser.profile;
-
+        let storeState = this.props.storeState;
         let that = this;
         console.log('DriverProfileBilling render');
         console.log(this.state);
@@ -183,19 +183,19 @@ class DriverProfileBillingClass extends React.Component {
             //я также не буду их присылать с сервера
             partnersPayings = profile ? (profile.billing.partnersProfit) : 0;
             partnersPayings = Math.round(partnersPayings * 100);
-            partnersPayings = profile.currencies[findCurrencyEl(that, profile.payments.currencyType)].symbol + partnersPayings / 100;
+            partnersPayings = storeState.currencies[findCurrencyEl(that, profile.payments.currencyType)].symbol + partnersPayings / 100;
 
             accountTotal = profile ? (profile.billing.transactionCardTotal + profile.billing.partnersProfit - profile.billing.payeddriverprofit) : 0;
             accountTotal = Math.round(accountTotal * 100);
-            accountTotal = profile.currencies[findCurrencyEl(that, profile.payments.currencyType)].symbol + accountTotal / 100;
+            accountTotal = storeState.currencies[findCurrencyEl(that, profile.payments.currencyType)].symbol + accountTotal / 100;
 
             systemPayings = profile ? (profile.payments.systemPayments) : 0;
             systemPayings = Math.round(systemPayings * 100);
-            systemPayings = profile.currencies[findCurrencyEl(that, profile.payments.currencyType)].symbol + systemPayings / 100;
+            systemPayings = storeState.currencies[findCurrencyEl(that, profile.payments.currencyType)].symbol + systemPayings / 100;
 
             systemPayingsTotal = profile ? (profile.payments.systemPayments - profile.billing.payedsystempart) : 0;
             systemPayingsTotal = Math.round(systemPayingsTotal * 100);
-            systemPayingsTotal = profile.currencies[findCurrencyEl(that, profile.payments.currencyType)].symbol + systemPayingsTotal / 100;
+            systemPayingsTotal = storeState.currencies[findCurrencyEl(that, profile.payments.currencyType)].symbol + systemPayingsTotal / 100;
         }
         let textPage = this.props.storeState.languageText.driverProfileRegistration.DriverProfileBilling;
         return (
@@ -333,7 +333,7 @@ class DriverProfileBillingClass extends React.Component {
                                             </div>
                                             <div className="border-bottom mb-2 d-flex align-items-center justify-content-between">
                                                 <span className="col-lg-7 col-md-8 col-9 p-0 py-2">{textPage.currentBalance.cardPayments + ':'}</span>
-                                                <span>{profile.currencies[findCurrencyEl(that, profile.payments.currencyType)].symbol + profile.billing.transactionCardTotal}</span>
+                                                <span>{storeState.currencies[findCurrencyEl(that, profile.payments.currencyType)].symbol + profile.billing.transactionCardTotal}</span>
                                             </div>
                                             <div className="specialBorder mb-2 d-flex align-items-center justify-content-between">
                                                 <span className="col-lg-7 col-md-8 col-9 p-0 py-2">{textPage.currentBalance.partnerPayments + ':'}</span>
@@ -341,7 +341,7 @@ class DriverProfileBillingClass extends React.Component {
                                             </div>
                                             <div className="specialBorder mb-2 d-flex align-items-center justify-content-between">
                                                 <span className="col-lg-7 col-md-8 col-9 p-0 py-2">{textPage.currentBalance.withdrawnTotal + ':'}</span>
-                                                <span>{"-" + profile.currencies[findCurrencyEl(that, profile.payments.currencyType)].symbol + profile.billing.payeddriverprofit}</span>
+                                                <span>{"-" + storeState.currencies[findCurrencyEl(that, profile.payments.currencyType)].symbol + profile.billing.payeddriverprofit}</span>
                                             </div>
                                             <div className="d-flex align-items-center justify-content-between">
                                                 <span className="specialText col-lg-7 col-md-8 col-8 p-0 py-2">{textPage.currentBalance.accountTotal + ':'}</span>
@@ -356,7 +356,7 @@ class DriverProfileBillingClass extends React.Component {
                                     <div className="col-12 mt-5 p-0">
                                         <div className="billingText border-bottom d-flex align-items-center justify-content-between">
                                             <span className="">{textPage.currentBalance.receivedByCash + ':'}</span>
-                                            <span>{profile.currencies[findCurrencyEl(that, profile.payments.currencyType)].symbol + profile.billing.transactionCashTotal}</span>
+                                            <span>{storeState.currencies[findCurrencyEl(that, profile.payments.currencyType)].symbol + profile.billing.transactionCashTotal}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -376,7 +376,7 @@ class DriverProfileBillingClass extends React.Component {
                                             </div>
                                             <div className="specialBorder mb-2 d-flex align-items-center justify-content-between">
                                                 <span className="col-lg-7 col-md-8 col-9 p-0 py-2">{textPage.systemPayments.payedPart + ':'}</span>
-                                                <span>{"-" + profile.currencies[findCurrencyEl(that, profile.payments.currencyType)].symbol + profile.billing.payedsystempart}</span>
+                                                <span>{"-" + storeState.currencies[findCurrencyEl(that, profile.payments.currencyType)].symbol + profile.billing.payedsystempart}</span>
                                             </div>
                                             <div className="d-flex align-items-center justify-content-between">
                                                 <span className="specialText col-lg-7 col-md-8 col-9 p-0 py-2">{textPage.systemPayments.systemPaymentsTotal + ':'}</span>
@@ -461,7 +461,7 @@ class DriverProfileBillingClass extends React.Component {
                                     <TableRow>
                                         <TableRowColumn style={{ width: this.state.headerWidth[0], textAlign: 'center' }}>{element.id}</TableRowColumn>
                                         <TableRowColumn style={{ width: this.state.headerWidth[1], textAlign: 'center' }}>{element.paymentType}</TableRowColumn>
-                                        <TableRowColumn style={{ width: this.state.headerWidth[2], textAlign: 'center' }}>{profile.currencies[findCurrencyEl(that, element.currencyType)].symbol + element.sum}</TableRowColumn>
+                                        <TableRowColumn style={{ width: this.state.headerWidth[2], textAlign: 'center' }}>{storeState.currencies[findCurrencyEl(that, element.currencyType)].symbol + element.sum}</TableRowColumn>
                                         {
                                             /**
                                             <TableRowColumn>{element.transactionComission}</TableRowColumn>

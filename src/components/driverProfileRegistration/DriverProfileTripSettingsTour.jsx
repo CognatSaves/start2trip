@@ -35,7 +35,7 @@ class DriverProfileTripSettingsTourClass extends React.Component {
             guide: profile.guide,
             guideHourPrice: profile.guideHourPrice,
             guidePriceCurrency: profile.guidePriceCurrency,
-            currencies: [...profile.currencies],
+            currencies: [...props.storeState.currencies],
             isTourOpened: false 
         };
     }

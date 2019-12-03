@@ -167,7 +167,7 @@ class AgencyProfileTravelHistoryClass extends React.Component {
 
                             <div className="d-flex flex-column historyBodyElement">
                                 <h5>{textInfo.costOfTravel}</h5>
-                                <span>{this.props.globalReduser.profile.currencies ? this.props.globalReduser.profile.currencies[findCurrencyEl(that, element.currencyType)].symbol + element.price : ''}</span>
+                                <span>{this.props.storeState.currencies ? this.props.storeState.currencies[findCurrencyEl(that, element.currencyType)].symbol + element.price : ''}</span>
                             </div>
                             {
                                 this.props.isHistory ?

@@ -215,6 +215,7 @@ function getLocals() {
       let adminLanguages = response.data.adminLanguages;
       let carTypes = response.data.carTypes;
 
+
       store.dispatch(setLocals(languages, adminLanguages, currencies, countries, response.data.untranslatedlanguages));
       store.dispatch(setCarTypes(carTypes));
 

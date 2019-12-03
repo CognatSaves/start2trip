@@ -146,7 +146,7 @@ const TravelHistoryElementInnerPart = (props) => {
                     }
                     <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "historyBodyElement ") + "d-flex align-items-center h5lineHeight"}>
                         <h5>{textPage.costOfTravel + ":"}</h5>
-                        <span>{that.props.globalReduser.profile.currencies ? that.props.globalReduser.profile.currencies[findCurrencyEl(that, selectedElement.currencyType)].symbol + selectedElement.price : ''}</span>
+                        <span>{that.props.storeState.currencies ? that.props.storeState.currencies[findCurrencyEl(that, selectedElement.currencyType)].symbol + selectedElement.price : ''}</span>
                     </div>
                     <div className={(isMulticustomeral ? "historyBodyBottomMultiUserEl " : "historyBodyElement ") + "d-flex flex-column h5lineHeight"}>
                         <h5>{textPage.customer + ":"}</h5>

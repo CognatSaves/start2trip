@@ -98,7 +98,7 @@ class AgencyProfileTourClass extends React.Component {
             tourSeatsBlocks: [],
             tourSeatsErrorElementArray: [],
             unselectedTourLanguages: [],
-            currencies: [...profile.currencies],
+            currencies: [...props.storeState.currencies],
 
             directions: [...profile.directions],
             categories: [...profile.categories],

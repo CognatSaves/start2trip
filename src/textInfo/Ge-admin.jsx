@@ -4,7 +4,8 @@ import driverProfileRegistration from './Ge-admin/Ge-Drivers';
 //import registration from './Ru/Ru-registration';
 import header from './Ge-admin/Ge-header';
 import agencyProfile from './Ge-admin/Ge-agencyProfile';
-import usefulСomponents from './Ge-admin/Ge-usefulСomponents'
+import usefulСomponents from './Ge-admin/Ge-usefulСomponents';
+import footer from './Ge-admin/Ge-footer';
 export default {
     //driverProfile: driverProfile,
     driverProfileRegistration:driverProfileRegistration,
@@ -13,4 +14,5 @@ export default {
     header:header,
     agencyProfile:agencyProfile,
     usefulСomponents:usefulСomponents,
+    footer:footer
 }

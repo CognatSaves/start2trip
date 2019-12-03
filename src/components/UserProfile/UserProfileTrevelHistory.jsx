@@ -104,7 +104,7 @@ class UserProfileTrevelHistoryClass extends React.Component {
                                     </div>
                                     <div className="d-flex flex-column historyBodyElement col">
                                         <h5>{textInfo.price}</h5>
-                                        <span>{this.props.globalReduser.profile.currencies ? this.props.globalReduser.profile.currencies[findCurrencyEl(that, element.currencyType)].symbol + element.price : ''}</span>
+                                        <span>{this.props.storeState.currencies ? this.props.storeState.currencies[findCurrencyEl(that, element.currencyType)].symbol + element.price : ''}</span>
                                     </div>
 
                                 </div>

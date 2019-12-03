@@ -3,7 +3,7 @@ import driverProfile from './En/En-driverProfile';
 import home from './En/En-home';
 import registration from './En/En-registration';
 import renderModalRegistration from './En/En-renderModalRegistration';
-import footer from './En/En-footer';
+import footer from './En-admin/En-footer';
 import places from './En/En-places';
 import manipulator from './En/En-manipulator';
 import placeDescription from './En/En-placeDescription';

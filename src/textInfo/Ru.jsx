@@ -3,7 +3,7 @@ import driverProfile from './Ru/Ru-driverProfile';
 import home from './Ru/Ru-home';
 import registration from './Ru/Ru-registration';
 import renderModalRegistration from './Ru/Ru-renderModalRegistration';
-import footer from './Ru/Ru-footer';
+import footer from './Ru-admin/Ru-footer';
 import places from './Ru/Ru-places';
 import manipulator from './Ru/Ru-manipulator';
 import placeDescription from './Ru/Ru-placeDescription';
