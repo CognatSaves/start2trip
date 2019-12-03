@@ -238,15 +238,18 @@ const driverProfileRegistration = {
             },
             directions: {
                 floatingLabelText: "Направления",
-                description: "Региональная принадложность тура"
+                description: "Региональная принадложность тура",
+                notSelectedDirectionText: 'Направление не выбрано'
             },
             categories: {
                 floatingLabelText: "Категории",
-                description: "Вид отдыха"
+                description: "Вид отдыха",
+                notSelectedCategoryText: 'Категории не выбраны'
             },
             tags: {
                 floatingLabelText: "Теги",
-                description: "Введите теги для пометки Вашего тура"
+                description: "Введите теги для пометки Вашего тура",
+                notSelectedTagText: 'Теги не выбраны'
             },
             newTourPeople: "Количество мест",
             uploadPhoto: "Загрузить фото",

@@ -63,7 +63,7 @@ const InfoBlock = (params) => {
                                 return <div className="d-flex flex-row" style={{overflow: 'hidden', whiteSpace: 'nowrap'}}>
                                     {
                                         valueEl.length>0 ? valueEl.map((car, carID) => {
-                                            debugger;
+                                            
                                             return <div className="d-flex flex-row" style={{marginRight: '5px'}}>
                                                 <text>{car.carBrand + ' ('+car.seats+' '+textInfo.seats+')'}</text>
                                                 <CarParamsIcon value={car.leatherInterior} icon={seatIcon}/>

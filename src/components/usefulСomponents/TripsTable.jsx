@@ -116,7 +116,7 @@ class TripTableClass extends React.Component{
         
         let filterResult = driverConfirmationFilter(customerConfirmationFilter(this.state.value));
         if(!filterResult){
-            debugger;
+            
         }
         filterResult.sort((a,b)=> {return a.startDefault<b.startDefault ? -1 : (a.startDefault===b.startDefault ? 0 : 1)})
         return filterResult;
