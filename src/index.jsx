@@ -34,7 +34,7 @@ import axios from 'axios';
 import requests from './config';
 // import { hydrate } from "react-dom"
 
-import * as serviceWorker from './serviceWorker';
+// import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import { AppReduser } from './redusers/AppReduser';
 import { DriversReduser } from './redusers/DriversReduser';
@@ -476,4 +476,4 @@ ReactDOM.render(
 // Learn more about service workers: http://bit.ly/CRA-PWA
 // <Route path={"/" + config.routeMap + "/tours/"} component={Tours} />
 // <Route path={"/" + config.routeMap + "/tour/:country,:id/"} component={TourDescription} />
-serviceWorker.unregister();
+// serviceWorker.unregister();

@@ -19,7 +19,12 @@ class HelpPageClass extends React.Component {
             collapsedArray: [false, false, false],
 
         }
-
+        window.scroll(
+            {
+                top: 300,
+                left: 0,
+                behavior: 'smooth'
+            });
 
     }
 
