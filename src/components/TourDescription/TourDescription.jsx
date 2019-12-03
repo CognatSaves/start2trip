@@ -508,7 +508,7 @@ class ToureDescriptionClass extends React.Component {
                         <React.Fragment />
                     }
 
-                    <div className="placeDescription_background col-12 p-0" style={{ background: "url(" + (this.state.newTour.local && this.state.newTour.tour.mainImage ? (isMobileOnly ? requests.serverAddressImg + this.state.newTour.tour.blockListImage.url : requests.serverAddressImg + this.state.newTour.tour.mainImage.url) : '') + ") no-repeat" }} id={topBlockId}>
+                    <div className="placeDescription_background col-12 p-0" style={{backgroundSize:"cover !important", backgroundPosition:"center", background: "url(" + (this.state.newTour.local && this.state.newTour.tour.mainImage ? (isMobileOnly ? requests.serverAddressImg + this.state.newTour.tour.blockListImage.url : requests.serverAddressImg + this.state.newTour.tour.mainImage.url) : '') + ") no-repeat" }} id={topBlockId}>
                         {!isMobileOnly ?
                             <Header history={this.props.history} />
                             :

@@ -268,7 +268,7 @@ class PlaceDescriptionClass extends React.Component {
                         :
                         <React.Fragment />
                     }
-                    <div className="placeDescription_background col-12 p-0" style={{ background: isMobileOnly ? smallImage : bigImage }} id={topBlockId}>
+                    <div className="placeDescription_background col-12 p-0" style={{ backgroundSize:"cover !important", backgroundPosition:"center" ,background: isMobileOnly ? smallImage : bigImage }} id={topBlockId}>
 
                         {!isMobileOnly ?
                             <Header history={this.props.history} />

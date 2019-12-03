@@ -36,7 +36,8 @@ h2 {
 .placeDescription_background {
     top: 0;
     /*width: 100%;*/
-    background-size: 100% 100% !important;
+    background-size: cover !important;
+    background-position: center !important;
     /* filter: brightness(0.5); */
     padding-bottom: 50px;
     box-shadow: 0 0 17px rgba(0, 0, 0, 0.5);
