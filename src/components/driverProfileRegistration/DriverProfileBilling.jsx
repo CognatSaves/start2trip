@@ -25,6 +25,68 @@ import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 const ecommpayWindowProps = "resizable=yes, scrollbars=yes, status=yes";
 
+const PaymentForm = (props) => {
+    let {webpayStructure, clearData} = props;
+
+    debugger;
+    return (
+        <form method="post" action={webpayStructure.url/*'http://localhost:1337/paymenttransaction/end'*/} >
+            <input type="hidden" name="*scart"/>
+            <input type="hidden" name="wsb_version" value={webpayStructure.wsb_version}/>
+            {
+                /*
+
+                <input type="hidden" name="wsb_language_id" value="russian"/>
+                <input type="hidden" name="wsb_store" value="Название Вашего магазина"/>
+                <input type="hidden" name="wsb_customer_name" value="Иванов Петр Петрович"/>
+                <input type="hidden" name="wsb_customer_address"
+                value="Минск пр. Независимости д.1 кв.2"/>
+                <input type="hidden" name="wsb_service_date"
+                value="Доставка до 1 января 2016 года"/>
+
+                */
+            }
+            
+            <input type="hidden" name="wsb_storeid" value={webpayStructure.wsb_storeid}/>
+            
+            <input type="hidden" name="wsb_order_num" value={webpayStructure.wsb_order_num}/>
+            <input type="hidden" name="wsb_test" value={webpayStructure.wsb_test}/>
+            <input type="hidden" name="wsb_currency_id" value={webpayStructure.wsb_currency_id}/>
+            <input type="hidden" name="wsb_seed" value={webpayStructure.wsb_seed}/>
+            
+            
+            <input type="hidden" name="wsb_return_url"
+            value="https://tripfer.com/account"/>
+            <input type="hidden" name="wsb_cancel_return_url"
+            value="https://tripfer.com/account"/>
+
+            <input type="hidden" name="wsb_notify_url"
+            value="http://localhost:1337/paymenttransaction/end"/>
+
+
+            <input type="hidden" name="wsb_email" value={webpayStructure.wsb_email}/>
+
+            <input type="hidden" name="wsb_invoice_item_name[0]" value={webpayStructure.wsb_invoice_item_name[0]}/>
+            <input type="hidden" name="wsb_invoice_item_quantity[0]" value={webpayStructure.wsb_invoice_item_quantity[0]}/>
+            <input type="hidden" name="wsb_invoice_item_price[0]" value={webpayStructure.wsb_invoice_item_price[0]}/>
+
+            <input type="hidden" name="wsb_total" value={webpayStructure.wsb_total}/>
+            <input type="hidden" name="wsb_signature"
+            value={webpayStructure.wsb_signature}/>
+            {
+                /*
+                <input type="hidden" name="wsb_tax" value="1050"/>
+                <input type="hidden" name="wsb_shipping_name" value="Стоимость доставки"/>
+                <input type="hidden" name="wsb_shipping_price" value="0.98"/>
+                <input type="hidden" name="wsb_discount_name" value="Скидка на товар"/>
+                <input type="hidden" name="wsb_discount_price" value="0.58"/>
+                <input type="hidden" name="wsb_order_contact" value="Договор №152/12-1 от 12.01.19"/>
+                */
+            }
+            <input type="submit" value="Купить"/>
+        </form>
+    )
+}
 class DriverProfileBillingClass extends React.Component {
     constructor(props) {
         super(props);
@@ -42,7 +104,8 @@ class DriverProfileBillingClass extends React.Component {
             paymentValue: 0,
             tableStartDate: new Date(Date.now() - 2629800000),
             tableEndDate: new Date(),
-
+            webpayFormVisibility:false,
+            webpayStructure: null
         };
 
 
@@ -133,6 +196,7 @@ class DriverProfileBillingClass extends React.Component {
             let body = JSON.stringify({
                 paymentValue: value
             });
+            let that = this;
             fetch(requests.transactionStart, {
                 method: 'POST', body: body,
                 headers: {
@@ -149,10 +213,15 @@ class DriverProfileBillingClass extends React.Component {
                 }
                 else{
                     //alert(data);
-                    console.log(data);
-                    //let newWin = window.open(data.url, '', ecommpayWindowProps);
                     debugger;
-                    window.location.replace(data.url);
+                    console.log(data);
+                    that.setState({
+                        webpayStructure: {...data.body, url: data.url},
+                        webpayFormVisibility: true
+                    })
+                    //let newWin = window.open(data.url, '', ecommpayWindowProps);
+                    
+                    //window.location.replace(data.url);
                 }
             })
             .catch(function (error){
@@ -265,6 +334,7 @@ class DriverProfileBillingClass extends React.Component {
                         </div>
 
                     </form>
+                    
                 </Dialog>
                 <Dialog
                     contentClassName='billingModal'
@@ -317,9 +387,14 @@ class DriverProfileBillingClass extends React.Component {
                                 onClick={() => { this.handleClose('toPay') }}
                             />
                             <button className="billingBtSubmit" type="submit" onClick={()=>{this.systemPaymentStart()}}>{textPage.billingModalB.submit}</button>
+                            
                         </div>
 
                     </form>
+                    {
+                        this.state.webpayFormVisibility && this.state.webpayStructure && 
+                            <PaymentForm webpayStructure={this.state.webpayStructure} clearData={()=>{this.setState({webpayStructure: null, webpayFormVisibility: false})}}/>
+                    }
                 </Dialog>
                 {
                     !(profile.hostagency) ?
