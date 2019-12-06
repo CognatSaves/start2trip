@@ -116,7 +116,7 @@ class CommentElClass extends React.Component {
                             </div>
                             {
                                 element.userImg.length > 0 &&
-                                <PlacePhotos photoArray={element.userImg}
+                                <PlacePhotos photoArray={element.userImg} isComment={true}
                                     showMask={(clickedImageIndex, images) => { this.props.showPhoto(clickedImageIndex, element.userImg) }} />
                             }
                         </div>
