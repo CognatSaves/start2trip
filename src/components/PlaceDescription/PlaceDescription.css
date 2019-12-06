@@ -423,7 +423,7 @@ h2 {
 }
 
 .placePhotos_elementBlock img {
-    max-height: 155px;
+    max-height: 80px;
     object-fit: cover;
     transition: all 0.3s;
     box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);

@@ -160,7 +160,7 @@ class ShowCommentsClass extends React.Component {
 
                     {
                         this.state.images !== null ?
-                            <PlacePhotoShow onClose={() => this.setState({ isMaskVisible: false, clickedImageIndex: 0, images: null })}
+                            <PlacePhotoShow isComment={true} onClose={() => this.setState({ isMaskVisible: false, clickedImageIndex: 0, images: null })}
                                 isMaskVisible={this.state.isMaskVisible} clickedImageIndex={this.state.clickedImageIndex} images={this.state.images} />
                             : <React.Fragment />
                     }

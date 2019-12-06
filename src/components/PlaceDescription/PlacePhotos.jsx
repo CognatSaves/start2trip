@@ -72,7 +72,7 @@ class PlacePhotosClass extends React.Component {
                                 return (
                                     <>
                                         <div className={className} id={"photono" + index}>
-                                            <img style={{ borderRadius: '5px' }} src={requests.serverAddressImg + element.url} width="100%" height="100%" alt={"/picture " + index} onClick={() => this.props.showMask(index)} />
+                                            <img style={{ borderRadius: '5px' , maxHeight:(this.props.isComment?"80px":"155px") }} src={requests.serverAddressImg + element.url} width="100%" height="100%" alt={"/picture " + index} onClick={() => this.props.showMask(index)} />
                                         </div>
                                     </>
                                 )
@@ -91,8 +91,8 @@ class PlacePhotosClass extends React.Component {
                                                 isOver = true;
                                                 return (
                                                     <div className={className} id={"photono" + index} >
-                                                        <img className="placePhotos_imageStyle" src={requests.serverAddressImg + element.url} width="100%" height="100%" alt={"/picture " + index} />
-                                                        <div className="col-12 placePhotos_maskBlock" onClick={() => this.photoStateChange(false)}>
+                                                        <img style={{ borderRadius: '5px' , maxHeight:(this.props.isComment?"80px":"155px") }}  className="placePhotos_imageStyle" src={requests.serverAddressImg + element.url} width="100%" height="100%" alt={"/picture " + index} />
+                                                        <div className="placePhotos_maskBlock" onClick={() => this.photoStateChange(false)}>
                                                             <div className="d-flex placePhotos_maskBlock_inner">
                                                                 <div className="placePhotos_maskBlock_innerText">{textInfo.more}</div>
                                                             </div>
@@ -104,7 +104,7 @@ class PlacePhotosClass extends React.Component {
                                     }
                                     return (
                                         <div className={className} id={"photono" + index}>
-                                            <img style={{ borderRadius: '10px' }} src={requests.serverAddressImg + element.url} width="100%" height="100%" alt={"/picture " + index} onClick={() => { this.props.showMask(index, this.props.photoArray) }} />
+                                            <img style={{ borderRadius: '5px' , maxHeight:(this.props.isComment?"80px":"155px") }} src={requests.serverAddressImg + element.url} width="100%" height="100%" alt={"/picture " + index} onClick={() => { this.props.showMask(index, this.props.photoArray) }} />
                                         </div>
                                     )
                                 }
