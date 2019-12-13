@@ -3,7 +3,7 @@ import '../Places/Places.css';
 import { connect } from 'react-redux';
 import { setPage, setSelectedDirection } from '../../redusers/ActionPlaces';
 import { setPlacesList } from '../../redusers/ActionPlaces';
-import { setToursList } from '../../redusers/ActionTours'
+import { setToursList,changeVisualType } from '../../redusers/ActionTours'
 import { Helmet } from 'react-helmet';
 import axios from 'axios';
 import requests from '../../config';
@@ -46,11 +46,15 @@ class ToursClass extends React.Component {
       freeSeats: 0,
       isFirst: true,
       activeSlug: "",
+
     }
     //сначала уборка
     this.props.dispatch(setPlacesList([], [], [], {}));
     //потом уже дело
     this.props.dispatch(setPage(1));
+  }
+  componentWillUnmount (){
+    this.props.dispatch(changeVisualType(true));
   }
   sendRequestFunc = (isFirst) => {
 
@@ -400,7 +404,7 @@ class ToursClass extends React.Component {
                   durationChange={this.durationChange} duration={this.state.duration}
                 />
 
-                <DriversProperties hideTypeOfTransport={true}
+                <DriversProperties hideTypeOfTransport={true} showTourSwapStyleButton={true}
                   tourTypeChange={this.tourTypeChange} tourType={this.state.tourType} />
 
                 <ToursList isStaying={!this.props.storeState.isRefreshExist} departureDate={this.state.departureDate}

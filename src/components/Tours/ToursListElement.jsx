@@ -16,6 +16,41 @@ import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
 
+const ListElementImage = (props) => {
+    let {element, that, textInfo, address} = props;
+    return (
+        <div className="driversBlock_carImage" style={{ background: "url(" + (element.image ? (requests.serverAddressImg + element.image) : '') + ") no-repeat", backgroundSize: "cover", width: '100%' }}>
+            {!that.props.noDateSeatsData &&
+                <>
+                    <div className="toursDate">{that.props.departureDate + " | " + element.time}</div>
+                </>
+            }
+            <Link to={address} className="driversBlock_carBlackout">
+                <div className="driversBlock_carBlackout_detailed">{textInfo.detailed}</div>
+            </Link>
+        </div>
+    )
+}
+
+const TourNameBlock = (props) => {
+    let {element, address, index, textInfo,  that,tourNameElementClass } = props;
+    return (
+        <div className="placesList_topBlock d-flex flex-column justify-content-between">
+
+            <Link to={address} className={"placesList_placeName d-flex "+(tourNameElementClass ? tourNameElementClass : '')}>
+                <div>
+                    {element.tourlocalization.name}
+                </div>
+            </Link>
+            {!that.props.isGuideTours &&
+                <div className="placesList_stars">
+                    <Stars key={index + "/" + element.rating} value={Math.ceil(element.rating * 10) / 10} commentNumber={element.comments + " " + textInfo.comments} valueDisplay={element.rating > 0 ? true : false} commentNumberDisplay={true} />
+                </div>
+            }
+
+        </div>
+    )
+}
 class ToursListElementClass extends React.Component {
 
 
@@ -95,110 +130,176 @@ class ToursListElementClass extends React.Component {
         let addressFunc = function (slug, that) {
             return "/" + that.props.storeState.country + "-" + cookies.get('userLangISO', { path: "/" }) + `/tours/${slug}/`
         }
-        return (
-            <div className={this.props.placeListElementClass ? this.props.placeListElementClass : "col-lg-3 col-md-4 col-sm-6 col-12 p-2 pb-3"} >
-                <div className="drivers_block_element d-flex p-0 flex-column" id={index}>
+        console.log('TourListElement render');
+        console.log(element);
 
-                    <div className="driversBlock_carImage" style={{ background: "url(" + (element.image ? (requests.serverAddressImg + element.image) : '') + ") no-repeat", backgroundSize: "cover", width: '100%' }}>
-                        {!this.props.noDateSeatsData &&
-                            <>
-                                <div className="toursDate">{this.props.departureDate + " | " + element.time}</div>
-                                {/* <div className="toursList_ToursElHeader">{(element.isPricePerPerson ? textInfo.seats[0] : textInfo.seats[1]) + " " + seats + (element.isPricePerPerson ? textInfo.seats[2] : "")}</div> */}
-                            </>
-                        }
-
-                        {/* <div className="toursDuration d-flex justify-content-between">
-                            <text>{!this.props.noDateSeatsData ? (element.isPricePerPerson ? textInfo.seats[0] : textInfo.seats[1]) + " " + seats + (element.isPricePerPerson ? textInfo.seats[2] : "") : price}</text>
-                        </div> */}
-                        <Link to={address} className="driversBlock_carBlackout">
-                            <div className="driversBlock_carBlackout_detailed">{textInfo.detailed}</div>
-                        </Link>
-                    </div>
-                    <div className="toursDuration d-flex align-items-center justify-content-between">
-                        <div className="d-flex flex-column">
-                            <span>{textInfo.daysNumber0 + ": " + element.daysNumber + " " + textInfo.daysNumber}</span>
-                            <text className="toursText">{!this.props.noDateSeatsData ? (element.isPricePerPerson ? textInfo.seats[0] : textInfo.seats[1]) + " " + seats + (element.isPricePerPerson ? textInfo.seats[2] : "") : ""}</text>
+        switch (this.props.toursState.tourPageVisualType){
+            
+                
+            case 'wide':{
+                return (
+                    <div className='drivers_block_element  d-flex flex-row col-12 p-0' style={{marginBottom: '10px'}}>
+                        <div className='col-3 p-0'>
+                            <ListElementImage element={element} that={this} textInfo={textInfo} address={address}/>
                         </div>
-                        {
-                            isPlacesRunOut || isNnewTour &&
-                            <div style={isPlacesRunOut?{ background: "#f90", height: "25px" }:{background: "#00aa71", height: "25px"}} className="d-flex align-items-center align-self-start">
-                                <text>{isPlacesRunOut?textInfo.bestseller[2]:isNnewTour?textInfo.bestseller[1]:""}</text>
-                            </div>
-                        }
-                            
-
-                    </div>
-                    <div style={this.props.isGuideTours ? { maxHeight: "117px" } : {}} className="placesList_info_tours d-flex flex-column justify-content-between">
-
-                        <div className="placesList_topBlock d-flex flex-column justify-content-between">
-
-                            <Link to={address} className="placesList_placeName d-flex">
-                                <div>
-                                    {element.tourlocalization.name}
+                        <div className="col-9 d-flex flex-row justify-content-between" style={{fontSize: '14px', padding: '0 15px'}}>
+                            <div className="d-flex flex-column" style={{padding: '20px 0'}}>
+                                <div style={{height: '50px'}}>
+                                    <TourNameBlock address={address} element={element} index={index} textInfo={textInfo} that={this}
+                                        tourNameElementClass={'tourNameElementClass'}
+                                    />
                                 </div>
-                            </Link>
-                            {!this.props.isGuideTours &&
-                                <div className="placesList_stars">
-                                    <Stars key={index + "/" + element.rating} value={Math.ceil(element.rating * 10) / 10} commentNumber={element.comments + " " + textInfo.comments} valueDisplay={element.rating > 0 ? true : false} commentNumberDisplay={true} />
-                                </div>
-                            }
-
-                        </div>
-
-                        <div className={this.props.isGuideTours ? "d-flex justify-content-between align-items-center pb-2" : "d-flex justify-content-between  border-top"}>
-                            {!this.props.isGuideTours &&
-                                <div className="d-flex justify-content-between py-3 ">
-                                    <div className="toursListEl_avatar">
-                                        <img src={(element.author ? (requests.serverAddressImg + element.author.avatar.url) : '')} alt="" />
+                                <div style={{height: '30px'}}>
+                                    <div style={isPlacesRunOut?{ background: "#f90" }:{background: "#00aa71"}} className="d-flex wideTourFlagBlock">
+                                        <text style={{margin: 'auto'}}>{isPlacesRunOut?textInfo.bestseller[2]:isNnewTour?textInfo.bestseller[1]:""}</text>
                                     </div>
-                                    <div className="toursListEl_bottomContent col pr-0">
-                                        <h5><Link to={"/" + cookies.get('country', { path: "/" }) + "-" + cookies.get('userLangISO', { path: "/" }) + "/guides/" + (element.author ? element.author.userSlug : "") + "/"}>{element.author ? (element.author.firstName + " " + element.author.lastName) : ""}</Link></h5>
-                                        <div className="placesList_info_position_textStyle d-flex align-items-center">
-                                            <p className="placesList_info_textCss">{textInfo.Languages}</p>
-                                            {language.map((el, index) => (<i className="placesList_info_icons" style={{ background: "url(" + requests.serverAddressImg + el.icon.url + ")no-repeat" }} />))}
+                                </div>
+                                <div className="d-flex flex-column" style={{height: '80px'}}>
+                                <div className="d-flex flex-row">
+                                    <div className="wideTourDataType">Языки:</div>
+                                    <div className="wideTourDataType">{language.map((langEl, langId)=><text>{langEl.languageName}</text>)}</div>
+                                </div>
+                                <div className="d-flex flex-row">
+                                        <div className="wideTourDataType">Гид:</div>
+                                        <div className="wideTourDriverLink">
+                                            <Link to={"/" + cookies.get('country', { path: "/" }) + "-" + cookies.get('userLangISO', { path: "/" }) + "/guides/" +
+                                                (element.author ? element.author.userSlug : "") + "/"}>{element.author ? (element.author.firstName + " " + element.author.lastName) : ""}
+                                            </Link>
                                         </div>
-                                    </div>
                                 </div>
-                            }
-                            {this.props.isGuideTours &&
-                                <div className="placesList_stars">
-                                    <Stars key={index + "/" + element.rating} value={Math.ceil(element.rating * 10) / 10} commentNumber={element.comments + " " + textInfo.comments} valueDisplay={element.rating > 0 ? true : false} commentNumberDisplay={true} />
+                                <div className=" d-flex flex-row" style={{height: '40px', overflow: 'hidden'}}>
+                                    <div className="wideTourDataType">О туре:</div>
+                                    <div className="wideTourInfoStyle">{element.tourlocalization.info}</div>
                                 </div>
-                            }
-                            <div style={this.props.isGuideTours ? { paddingTop: "0px" } : {}} className="routesPrices d-flex flex-column align-items-end">
-                                <span className="routesPricesSmall">{priceold}</span>
-                                <span className="routesPricesBig">{price}</span>
-                                <text>{element.isPricePerPerson ? textInfo.bookTours[0] : textInfo.bookTours[1]}</text>
+                                </div>
                             </div>
+                            <div className="d-flex flex-column" style={{minWidth: '150px', padding: '20px 0'}}>
+                                <div className = 'toursDuration d-flex' style={{height: '50px'}}>
+                                    <div className=" d-flex flex-column" style={{marginLeft: 'auto'}}>
+                                        <span>{textInfo.daysNumber0 + ": " + element.daysNumber + " " + textInfo.daysNumber}</span>
+                                        <text className="toursText">{!this.props.noDateSeatsData ? (element.isPricePerPerson ? textInfo.seats[0] : textInfo.seats[1]) + " " + seats + (element.isPricePerPerson ? textInfo.seats[2] : "") : ""}</text>
+                                    </div> 
+                                </div>
+                                <div style={this.props.isGuideTours ? { paddingTop: "0px" } : {}} className="routesPrices d-flex flex-column align-items-end wideTourPrice">
+                                    <span className="routesPricesSmall" style={{fontSize: '14px'}}>{priceold}</span>
+                                    <span className="routesPricesBig" style={{fontSize: '24px'}}>{price}</span>
+                                    <text>{element.isPricePerPerson ? textInfo.bookTours[0] : textInfo.bookTours[1]}</text>
+                                </div>
+                            </div>
+                            {
+                            }
 
-                            {/* <i className="placesList_info_guide my-auto col-2" style={{ background: "url(" + (element.isGuide ? guideIcon : agencyIcon) + ")no-repeat" }}><span className="placesList_info_guide-toolTip">{element.isGuide ? textInfo.guide : textInfo.agency}</span></i> */}
+                            </div>
                         </div>
+                    )
+                break;
+            }
+                
+            
+            
+            default:{
+                return (
+                    <div className={this.props.placeListElementClass ? this.props.placeListElementClass : "col-lg-3 col-md-4 col-sm-6 col-12 p-2 pb-3"} >
+                        <div className="drivers_block_element d-flex p-0 flex-column" id={index}>
+                            <ListElementImage element={element} that={this} textInfo={textInfo} address={address} />
 
-                    </div>
-                    {/* {
-                        !this.props.isRedirectButton ?
-                        <button className="driversBlock_driverInfoBlock_element driversBlock_buttonStyle"
-                            onClick={() => {
+                            
+                            <div className="toursDuration d-flex align-items-center justify-content-between">
+                                <div className="d-flex flex-column">
+                                    <span>{textInfo.daysNumber0 + ": " + element.daysNumber + " " + textInfo.daysNumber}</span>
+                                    <text className="toursText">{!this.props.noDateSeatsData ? (element.isPricePerPerson ? textInfo.seats[0] : textInfo.seats[1]) + " " + seats + (element.isPricePerPerson ? textInfo.seats[2] : "") : ""}</text>
+                                </div>
+                                {
+                                    isPlacesRunOut || isNnewTour &&
+                                    <div style={isPlacesRunOut?{ background: "#f90", height: "25px" }:{background: "#00aa71", height: "25px"}} className="d-flex align-items-center align-self-start">
+                                        <text>{isPlacesRunOut?textInfo.bestseller[2]:isNnewTour?textInfo.bestseller[1]:""}</text>
+                                    </div>
+                                }
+                                    
+
+                            </div>
+                            <div style={this.props.isGuideTours ? { maxHeight: "117px" } : {}} className="placesList_info_tours d-flex flex-column justify-content-between">
+                                {
+                                    /*
+                                    <div className="placesList_topBlock d-flex flex-column justify-content-between">
+
+                                        <Link to={address} className="placesList_placeName d-flex">
+                                            <div>
+                                                {element.tourlocalization.name}
+                                            </div>
+                                        </Link>
+                                        {!this.props.isGuideTours &&
+                                            <div className="placesList_stars">
+                                                <Stars key={index + "/" + element.rating} value={Math.ceil(element.rating * 10) / 10} commentNumber={element.comments + " " + textInfo.comments} valueDisplay={element.rating > 0 ? true : false} commentNumberDisplay={true} />
+                                            </div>
+                                        }
+
+                                    </div>
+
+                                    */
+                                }
+                                <TourNameBlock address={address} element={element} index={index} textInfo={textInfo} that={this}/>
                                 
-                                console.log(element);
-                                this.props.changeTravelVisibility(element.price, this.props.elementActive, seats);
-                        }}>{(element.isPricePerPerson ? textInfo.bookTours[0] : textInfo.bookTours[1]) + " " + price}</button>
-                        :
-                        <Link to={addressFunc(element.tourlocalization.slug, this)} className="w-100">
-                            <button className="driversBlock_driverInfoBlock_element driversBlock_buttonStyle"
-                            >{"Подробнее"}</button>
-                        </Link>
-                    } */}
 
-                    {
-                        /*
-                        <div className="d-flex justify-content-center align-items-center col-12 toursBookBt">BOOK tours</div>
-                        */
-                    }
+                                <div className={this.props.isGuideTours ? "d-flex justify-content-between align-items-center pb-2" : "d-flex justify-content-between  border-top"}>
+                                    {!this.props.isGuideTours &&
+                                        <div className="d-flex justify-content-between py-3 ">
+                                            <div className="toursListEl_avatar">
+                                                <img src={(element.author ? (requests.serverAddressImg + element.author.avatar.url) : '')} alt="" />
+                                            </div>
+                                            <div className="toursListEl_bottomContent col pr-0">
+                                                <h5><Link to={"/" + cookies.get('country', { path: "/" }) + "-" + cookies.get('userLangISO', { path: "/" }) + "/guides/" + (element.author ? element.author.userSlug : "") + "/"}>{element.author ? (element.author.firstName + " " + element.author.lastName) : ""}</Link></h5>
+                                                <div className="placesList_info_position_textStyle d-flex align-items-center">
+                                                    <p className="placesList_info_textCss">{textInfo.Languages}</p>
+                                                    {language.map((el, index) => (<i className="placesList_info_icons" style={{ background: "url(" + requests.serverAddressImg + el.icon.url + ")no-repeat" }} />))}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    {this.props.isGuideTours &&
+                                        <div className="placesList_stars">
+                                            <Stars key={index + "/" + element.rating} value={Math.ceil(element.rating * 10) / 10} commentNumber={element.comments + " " + textInfo.comments} valueDisplay={element.rating > 0 ? true : false} commentNumberDisplay={true} />
+                                        </div>
+                                    }
+                                    <div style={this.props.isGuideTours ? { paddingTop: "0px" } : {}} className="routesPrices d-flex flex-column align-items-end">
+                                        <span className="routesPricesSmall">{priceold}</span>
+                                        <span className="routesPricesBig">{price}</span>
+                                        <text>{element.isPricePerPerson ? textInfo.bookTours[0] : textInfo.bookTours[1]}</text>
+                                    </div>
 
-                </div>
-            </div>
-        )
+                                    {/* <i className="placesList_info_guide my-auto col-2" style={{ background: "url(" + (element.isGuide ? guideIcon : agencyIcon) + ")no-repeat" }}><span className="placesList_info_guide-toolTip">{element.isGuide ? textInfo.guide : textInfo.agency}</span></i> */}
+                                </div>
+
+                            </div>
+                            {/* {
+                                !this.props.isRedirectButton ?
+                                <button className="driversBlock_driverInfoBlock_element driversBlock_buttonStyle"
+                                    onClick={() => {
+                                        
+                                        console.log(element);
+                                        this.props.changeTravelVisibility(element.price, this.props.elementActive, seats);
+                                }}>{(element.isPricePerPerson ? textInfo.bookTours[0] : textInfo.bookTours[1]) + " " + price}</button>
+                                :
+                                <Link to={addressFunc(element.tourlocalization.slug, this)} className="w-100">
+                                    <button className="driversBlock_driverInfoBlock_element driversBlock_buttonStyle"
+                                    >{"Подробнее"}</button>
+                                </Link>
+                            } */}
+
+                            {
+                                /*
+                                <div className="d-flex justify-content-center align-items-center col-12 toursBookBt">BOOK tours</div>
+                                */
+                            }
+
+                        </div>
+                    </div>
+                )
+            }
+
+            
+        }
+
     }
 }
 const ToursListElement = connect(

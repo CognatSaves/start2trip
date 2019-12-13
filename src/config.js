@@ -1,4 +1,4 @@
-const serverAddress = 'https://tripfer.com:41337'; //'http://localhost:1337'; //
+const serverAddress = 'https://tripfer.com:8443'; //'http://localhost:1337'; //
 const frontendAddress = 'https://tripfer.com'; //'http://localhost:3000'; //
 const serverAddressImg = 'https://tripfer.com';//'http://localhost:1337'; //
 

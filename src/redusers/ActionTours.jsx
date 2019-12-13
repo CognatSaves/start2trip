@@ -15,6 +15,14 @@ const SET_TEMP_PRICE_PART_TOUR = 'SET_TEMP_PRICE_PART_TOUR';
 
 const SET_PRICE_PART_TOUR = 'SET_PRICE_PART_TOUR';
 
+const CHANGE_VISUAL_TYPE = 'CHANGE_VISUAL_TYPE';
+
+const changeVisualType = function(toDefault){
+  return {
+    type: CHANGE_VISUAL_TYPE,
+    toDefault: toDefault
+  }
+}
 const setToursList=function(toursList, categories, tags, directions,daysNumber,departurePoint){
   return{
     type: SET_TOURS_LIST,
@@ -83,4 +91,5 @@ export {
     setMaxPrice,SET_MAX_PRICE,
     setTempPricePartTour,SET_TEMP_PRICE_PART_TOUR,
     setPricePartTour,SET_PRICE_PART_TOUR,
+    changeVisualType,CHANGE_VISUAL_TYPE
 }

@@ -7,7 +7,7 @@ import {
   setTempPricePart, setSortMenuVisible, changePersonsNumberDispatch,
   changePersonsNumberDispatchOld, peopleMenuCall
 } from "../../../../redusers/Action"
-import { setPricePartTour } from "../../../../redusers/ActionTours"
+import { setPricePartTour,changeVisualType } from "../../../../redusers/ActionTours"
 
 import userBlueIcon from '../../../media/userWhite.svg'
 
@@ -88,7 +88,7 @@ class DriversPropertiesClass extends React.Component {
 
     // console.log("driversProperties render");
     // console.log(this.props.storeState.maxPrice);
-
+    console.log('DriversProperties render, tourVisualType='+this.props.toursState.tourPageVisualType);
     return (
 
       <div className="drivers_properties d-flex flex-wrap justify-content-md-between justify-content-sm-center justify-content-center col-12"  >
@@ -103,6 +103,14 @@ class DriversPropertiesClass extends React.Component {
               : <div />}
             <SortMenu isVisible={this.state.sortIsVisible} click={() => { this.setState({ sortIsVisible: false }) }} />
           </div>
+          {
+            
+            <button style={{display: this.props.showTourSwapStyleButton ? 'block' : 'none'}} onClick={()=>this.props.dispatch(changeVisualType())}>
+              CHANGE
+            </button>
+            
+          }
+         
         </div>
 
         <div className="properties_leftBlock">

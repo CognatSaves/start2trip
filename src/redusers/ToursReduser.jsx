@@ -1,7 +1,8 @@
 import { SET_TOURS_LIST,SET_TOUR_PANEL_SELECTED_ELEMENT, 
     SET_TOURS_MORE_PAGES_SHOW, SET_TOURS_PAGE,
      CHANGE_PANEL_FIXED_CLASS,SET_MAX_PRICE,
-     SET_TEMP_PRICE_PART_TOUR,SET_PRICE_PART_TOUR
+     SET_TEMP_PRICE_PART_TOUR,SET_PRICE_PART_TOUR,
+     CHANGE_VISUAL_TYPE
     } from './ActionTours';
     import {SET_PAGE, SET_MORE_PAGES_SHOW,SET_SELECTED_DIRECTION} from './ActionPlaces'
 
@@ -25,6 +26,7 @@ const initialState = {
     departurePoint:[],
     daysNumber:[],
     selectedDirection:'',
+    tourPageVisualType: 'default' //possible variants = 'default', 'wide'
 }
 
 export const ToursReduser = (state = initialState, action)=>{
@@ -108,6 +110,29 @@ export const ToursReduser = (state = initialState, action)=>{
             let newState={...state};
             newState.showPages=newState.showPages+1;
             newState.page=newState.page+1;
+            return newState;
+        }
+        case CHANGE_VISUAL_TYPE:{
+            let newState= {...state};
+            if(!action.toDefault){
+                switch(newState.tourPageVisualType){
+                    case 'default':{
+                        newState.tourPageVisualType='wide';
+                        break;
+                    }
+                    case 'wide':{
+                        newState.tourPageVisualType='default';
+                        break;
+                    }
+                    default: {
+                        newState.tourPageVisualType='default';
+                    }
+                }
+            }
+            else{
+                newState.tourPageVisualType='default';
+            }
+            
             return newState;
         }
         default: return state;

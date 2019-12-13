@@ -243,6 +243,9 @@ class ToursListClass extends React.Component {
                     return aPrice > bPrice ? -1 : 1
                 }
             }
+            default:{
+                
+            }
         }
     }
 

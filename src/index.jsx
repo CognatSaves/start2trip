@@ -29,6 +29,7 @@ import AuthModalCountry from './components/registration/AuthModalCountry';
 import DriverRefreshIndicator from './components/driverProfileRegistration/DriverRefreshIndicator';
 import pageNotFound from './pageNotFound'
 import TripTable from './components/usefulСomponents/TripsTable';
+import TransactionEndRedirectPage from './components/usefulСomponents/TransactionEndRedirectPage';
 
 import axios from 'axios';
 import requests from './config';
@@ -447,6 +448,7 @@ ReactDOM.render(
               <Route path="/customer-cancel-:id-:clientId/" component={customerCancel} />
               <Route path="/getPromoCode/" component={GetPromoCode} />
 
+              <Route path='/TransactionEndRedirectPage' component={TransactionEndRedirectPage} />
 
               <Redirect from='/-en' to='/countrySelection' />
               <Redirect from='/-ru' to='/countrySelection' />

@@ -30,7 +30,7 @@ const PaymentForm = (props) => {
 
     debugger;
     return (
-        <form method="post" action={webpayStructure.url/*'http://localhost:1337/paymenttransaction/end'*/} >
+        <form method="post" action={webpayStructure.url/*'http://localhost:3000/TransactionEndRedirectPage'*/} >
             <input type="hidden" name="*scart"/>
             <input type="hidden" name="wsb_version" value={webpayStructure.wsb_version}/>
             {
@@ -61,7 +61,7 @@ const PaymentForm = (props) => {
             value="https://tripfer.com/account"/>
 
             <input type="hidden" name="wsb_notify_url"
-            value="http://localhost:1337/paymenttransaction/end"/>
+            value="https://tripfer.com:8443/paymenttransaction/end"/>
 
 
             <input type="hidden" name="wsb_email" value={webpayStructure.wsb_email}/>
