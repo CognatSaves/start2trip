@@ -26,11 +26,11 @@ const cookies = new Cookies();
 const ecommpayWindowProps = "resizable=yes, scrollbars=yes, status=yes";
 
 const PaymentForm = (props) => {
-    let {webpayStructure, clearData} = props;
+    let {webpayStructure, clearData, setReadyFlag} = props;
 
     debugger;
     return (
-        <form method="post" action={webpayStructure.url/*'http://localhost:3000/TransactionEndRedirectPage'*/} >
+        <form name="webpaySendForm" method="post" action={webpayStructure.url/*'http://localhost:3000/TransactionEndRedirectPage'*/} >
             <input type="hidden" name="*scart"/>
             <input type="hidden" name="wsb_version" value={webpayStructure.wsb_version}/>
             {
@@ -83,7 +83,21 @@ const PaymentForm = (props) => {
                 <input type="hidden" name="wsb_order_contact" value="Договор №152/12-1 от 12.01.19"/>
                 */
             }
-            <input type="submit" value="Купить"/>
+            <input type="submit" style={{visibility:'hidden'}} value="Купить" 
+                ref={(input, that)=>{
+                    debugger;
+                        if(input){ 
+                            // setTimeout(()=>{
+                            //     input.click();
+                            //     setTimeout(()=>clearData(),0)
+                            // },0)
+                            input.click();
+                            clearData();
+                        }
+
+                    }
+
+                }/>
         </form>
     )
 }
@@ -105,7 +119,8 @@ class DriverProfileBillingClass extends React.Component {
             tableStartDate: new Date(Date.now() - 2629800000),
             tableEndDate: new Date(),
             webpayFormVisibility:false,
-            webpayStructure: null
+            webpayStructure: null,
+            webpaySubmitForm: false
         };
 
 
@@ -136,6 +151,7 @@ class DriverProfileBillingClass extends React.Component {
                 paymentValue: value
             })
         }
+
        
     }
 
@@ -188,15 +204,20 @@ class DriverProfileBillingClass extends React.Component {
         
         let value = Number.parseFloat(this.state.paymentValue);
         if(!value || value<=0){
-            alert('No valid number here');
+            document.getElementById('textfieldContainer').classList.add('errorColor')
             return;
         }
         let jwt = this.props.globalReduser.readCookie('jwt');
+        
         if(jwt && jwt !== '-'){
             let body = JSON.stringify({
                 paymentValue: value
             });
             let that = this;
+            that.setState({
+                webpayStructure: null,
+                webpayFormVisibility: false
+            })
             fetch(requests.transactionStart, {
                 method: 'POST', body: body,
                 headers: {
@@ -239,6 +260,14 @@ class DriverProfileBillingClass extends React.Component {
         
     }
     render() {
+        // debugger;
+        // if(this.state.webpaySubmitForm){
+        //     this.setState({
+        //         webpaySubmitForm: false
+        //     });
+        //     document.webpaySendForm.submit();
+            
+        // }
         let profile = this.props.globalReduser.profile;
         let storeState = this.props.storeState;
         let that = this;
@@ -347,11 +376,11 @@ class DriverProfileBillingClass extends React.Component {
                         <span>{textPage.billingModalB.header + ': ' + systemPayingsTotal}</span>
                     </div>
                     <form onSubmit={this.formSubmit} className="billingModalContent">
-                        <div className="d-flex align-items-center mt-1">
+                        <div id="textfieldContainer" className="d-flex align-items-center mt-1 ">
                             <TextField
                                 label={textPage.billingModalB.summ}
                                 value={this.state.paymentValue}
-                                onChange={(e) => this.changePaymentValue(e.target.value)}
+                                onChange={(e) => {document.getElementById('textfieldContainer').classList.remove('errorColor'); this.changePaymentValue(e.target.value)}}
                                 className="textField validate w-100"
                                 margin="normal"
                                 variant="outlined"
@@ -393,7 +422,10 @@ class DriverProfileBillingClass extends React.Component {
                     </form>
                     {
                         this.state.webpayFormVisibility && this.state.webpayStructure && 
-                            <PaymentForm webpayStructure={this.state.webpayStructure} clearData={()=>{this.setState({webpayStructure: null, webpayFormVisibility: false})}}/>
+                            <PaymentForm webpayStructure={this.state.webpayStructure}
+                                clearData={()=>{this.setState({webpayFormVisibility: false})}}
+                                setReadyFlag={()=>{this.setState({webpaySubmitForm: true})}}
+                            />
                     }
                 </Dialog>
                 {
