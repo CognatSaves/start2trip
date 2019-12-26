@@ -18,7 +18,7 @@ import TourInfo from '../TourDescription/TourInfo'
 import DriversProperties from '../drivers/DriversBody/DriversProperties/DriversProperties'
 // import PlacesTagList from '../Places/PlacesTagList';
 
-import { startRefresherGlobal, thenFuncGlobal, catchFuncGlobal, } from '../../redusers/GlobalFunction'
+import { startRefresherGlobal, thenFuncGlobal, catchFuncGlobal} from '../../redusers/GlobalFunction'
 import MobileFilter from '../drivers/DriversBody/DriversProperties/MobileFilter/MobileFilter'
 import Cookies from 'universal-cookie';
 
@@ -27,7 +27,12 @@ const cookies = new Cookies();
 class ToursClass extends React.Component {
   constructor(props) {
     super(props);
-
+    
+    let visualType =  props.globalReduser.findGetParameter('style');
+    if(!visualType){
+      visualType = 'wide'
+    }
+    props.dispatch(changeVisualType(visualType))
     this.state = {
       country: "",
       language: "",
@@ -53,9 +58,9 @@ class ToursClass extends React.Component {
     //потом уже дело
     this.props.dispatch(setPage(1));
   }
-  componentWillUnmount (){
-    this.props.dispatch(changeVisualType(true));
-  }
+  // componentWillUnmount (){
+  //   this.props.dispatch(changeVisualType(true));
+  // }
   sendRequestFunc = (isFirst) => {
 
     function findSelectedDirectionId(directions, slug) {

@@ -54,7 +54,7 @@ class DriverProfileBasicInformationClass extends React.Component {
         
 
         // let languageArrays = languageArraysConstr(profile.language, this.props.storeState.untranslatedlanguages);
-        debugger;
+        
         let profileConstructorResult = this.profileConstructor(profile, this.props.storeState.untranslatedlanguages);
         this.state = {
             value: this.props.storeState.languageText.driverProfileRegistration.DriverProfileBasicInformation.MenuItem.value,
@@ -147,7 +147,7 @@ class DriverProfileBasicInformationClass extends React.Component {
                         throw data.error;
                     }
                     else {
-                        debugger;
+                        
                         function profileUpdate(newProfile, data){
                             let profile = {...newProfile};
                             profile.language=data.language;

@@ -27,6 +27,14 @@ class DriverInfoCar extends React.Component {
         let carComfort = element.carComfort ? element.carComfort : [];
         let imageUrls = createCorrectUrls(element.carImages ? element.carImages : []);
         let textInfo = this.props.storeState.languageTextMain.drivers;
+
+        debugger;
+        console.log(carComfort);
+        if(carComfort.length>0){
+            carComfort[3]=!carComfort[3];// we paint element when false! not true
+        }
+        console.log(this.props.storeState.comfort);
+        let parallelArray = [1,0,2,3];
         return(
             
             <>
@@ -39,8 +47,8 @@ class DriverInfoCar extends React.Component {
                                     carComfort.map((element, index) =>
                                         element ?
                                             <div className="d-flex">
-                                                <i className="driverInfo_comfortIconStyle" style={{ background: "url(" + this.props.storeState.comfort[index].icon + ") no-repeat", backgroundSize: "15px 15px" }} />
-                                                <span className="driverInfo_comfortTextStyle">{this.props.storeState.comfort[index].title}</span>
+                                                <i className="driverInfo_comfortIconStyle" style={{ background: "url(" + this.props.storeState.comfort[parallelArray[index]].icon + ") no-repeat", backgroundSize: "15px 15px" }} />
+                                                <span className="driverInfo_comfortTextStyle">{this.props.storeState.comfort[parallelArray[index]].title}</span>
                                             </div>
                                             :
                                             <React.Fragment />

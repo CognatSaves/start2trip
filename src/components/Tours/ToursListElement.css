@@ -183,7 +183,7 @@
 }
 
 .wideTourPrice{
-    margin-top: auto;
+    
     margin-left: auto;
 }
 
@@ -203,4 +203,10 @@
 
 .wideTourInfoStyle{
     color: #999;
+}
+
+@media (min-width: 768px){
+    .wideTourPrice{
+        margin-top: auto;
+    }
 }

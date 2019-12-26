@@ -114,25 +114,43 @@ export const ToursReduser = (state = initialState, action)=>{
         }
         case CHANGE_VISUAL_TYPE:{
             let newState= {...state};
+            
             if(!action.toDefault){
-                switch(newState.tourPageVisualType){
-                    case 'default':{
-                        newState.tourPageVisualType='wide';
-                        break;
-                    }
-                    case 'wide':{
-                        newState.tourPageVisualType='default';
-                        break;
-                    }
-                    default: {
-                        newState.tourPageVisualType='default';
+                if(!action.tourPageVisualType){
+                    switch (newState.tourPageVisualType){
+                        case 'thin':{
+                            newState.tourPageVisualType='wide';
+                            break;
+                        }
+                        case 'wide':{
+                            newState.tourPageVisualType='thin';
+                            break;
+                        }
+                        default: {
+                            newState.tourPageVisualType='wide';
+                        }
                     }
                 }
+                else{
+                    switch(action.tourPageVisualType){
+                        case 'thin':{
+                            newState.tourPageVisualType='thin';
+                            break;
+                        }
+                        case 'wide':{
+                            newState.tourPageVisualType='wide';
+                            break;
+                        }
+                        default: {
+                            newState.tourPageVisualType='wide';
+                        }
+                    }
+                }              
             }
             else{
-                newState.tourPageVisualType='default';
+                newState.tourPageVisualType='wide';
             }
-            
+            console.log(document);
             return newState;
         }
         default: return state;

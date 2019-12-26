@@ -337,7 +337,7 @@ export default class AgencyTourForm extends React.Component {
                             
                         }
                     }
-                    debugger;
+                    
                     console.log(request.responseText);
                     let temp = JSON.parse(request.responseText);
                     if(temp.status){

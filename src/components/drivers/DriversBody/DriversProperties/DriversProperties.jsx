@@ -105,7 +105,11 @@ class DriversPropertiesClass extends React.Component {
           </div>
           {
             
-            <button style={{display: this.props.showTourSwapStyleButton ? 'block' : 'none'}} onClick={()=>this.props.dispatch(changeVisualType())}>
+            <button style={{display: /*this.props.showTourSwapStyleButton ? 'block' :*/ 'none'}} onClick={()=>{
+                
+                this.props.dispatch(changeVisualType())
+                }                
+              }>
               CHANGE
             </button>
             

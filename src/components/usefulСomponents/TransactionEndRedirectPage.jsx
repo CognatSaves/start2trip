@@ -5,7 +5,7 @@ import requests from '../../config';
 export default class TransactionEndRedirectPage extends React.Component {
     constructor(props) {
         super(props);
-        debugger;
+        
         let body = JSON.stringify({
             l: 'let',
             a: [1,2]

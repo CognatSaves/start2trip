@@ -28,7 +28,7 @@ const ecommpayWindowProps = "resizable=yes, scrollbars=yes, status=yes";
 const PaymentForm = (props) => {
     let {webpayStructure, clearData, setReadyFlag} = props;
 
-    debugger;
+    
     return (
         <form name="webpaySendForm" method="post" action={webpayStructure.url/*'http://localhost:3000/TransactionEndRedirectPage'*/} >
             <input type="hidden" name="*scart"/>
@@ -85,7 +85,7 @@ const PaymentForm = (props) => {
             }
             <input type="submit" style={{visibility:'hidden'}} value="Купить" 
                 ref={(input, that)=>{
-                    debugger;
+                    
                         if(input){ 
                             // setTimeout(()=>{
                             //     input.click();
@@ -234,7 +234,7 @@ class DriverProfileBillingClass extends React.Component {
                 }
                 else{
                     //alert(data);
-                    debugger;
+                    
                     console.log(data);
                     that.setState({
                         webpayStructure: {...data.body, url: data.url},
@@ -260,7 +260,7 @@ class DriverProfileBillingClass extends React.Component {
         
     }
     render() {
-        // debugger;
+        // 
         // if(this.state.webpaySubmitForm){
         //     this.setState({
         //         webpaySubmitForm: false

@@ -9,6 +9,8 @@ const tours = {
     bestseller:['Хит продаж','Новинка','Места заканчиваются'],
     bookTours:["с человека ","с группы "],
     Languages:"Языки:",
+    author: 'Автор:',
+    about: 'О туре:'
 }
 
 export default tours;

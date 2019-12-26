@@ -27,7 +27,13 @@ class ToursListClass extends React.Component {
             this.props.dispatch(setPage(page));
         }
     }
-  
+    
+    priceByPersonCalculation = (element, idIndex) =>{
+        let seats = element.freeSeats ? element.freeSeats : element.seats;
+        let usd = Math.ceil(element.price / this.props.storeState.currencies[idIndex].costToDefault);            
+        let tempPricePerPerson = element.isPricePerPerson ? usd : Math.ceil(usd / seats * 100)/100;
+        return tempPricePerPerson;
+    }
     sortArrayByDate = (element, departureDate) => {
         function findFreeSeatsNumber(element, selectedDate,selectedDateFull){
             let tourSeatsData = element.tourSeatsData;
@@ -168,9 +174,11 @@ class ToursListClass extends React.Component {
     }
     sortArrayByPrice = (el) => {
         let idIndex = getCurrencies(el.element.currency, "id",this)
-        let usd = el.element.price / this.props.storeState.currencies[idIndex].costToDefault
-        usd = Math.ceil(usd)
-        if (usd > this.props.toursState.tempPricePart) {
+        // let usd = el.element.price / this.props.storeState.currencies[idIndex].costToDefault
+        
+        // usd = Math.ceil(usd)
+        let price = this.priceByPersonCalculation(el.element, idIndex);
+        if (price > this.props.toursState.tempPricePart) {
             el.isGood = false
         }
         return el
@@ -215,9 +223,11 @@ class ToursListClass extends React.Component {
             }
             case "Цене": {
                 let aIdIndex = getCurrencies(a.element.currency, "id",this)
-                let aPrice = a.element.price / this.props.storeState.currencies[aIdIndex].costToDefault
+                let aPrice = this.priceByPersonCalculation(a.element, aIdIndex);
+                // let aPrice = a.element.price / this.props.storeState.currencies[aIdIndex].costToDefault
                 let bIdIndex = getCurrencies(b.element.currency, "id",this)
-                let bPrice = b.element.price / this.props.storeState.currencies[bIdIndex].costToDefault
+                //let bPrice = b.element.price / this.props.storeState.currencies[bIdIndex].costToDefault
+                let bPrice = this.priceByPersonCalculation(b.element, bIdIndex);
                 if (this.props.storeState.sortMenuWay) {
                     return aPrice < bPrice ? -1 : 1
                 } else {
@@ -226,17 +236,21 @@ class ToursListClass extends React.Component {
             }
             case "Сначала дешевые": {
                 let aIdIndex = getCurrencies(a.element.currency, "id",this)
-                let aPrice = a.element.price / this.props.storeState.currencies[aIdIndex].costToDefault
+                // let aPrice = a.element.price / this.props.storeState.currencies[aIdIndex].costToDefault
+                let aPrice = this.priceByPersonCalculation(a.element, aIdIndex);
                 let bIdIndex = getCurrencies(b.element.currency, "id",this)
-                let bPrice = b.element.price / this.props.storeState.currencies[bIdIndex].costToDefault
+                // let bPrice = b.element.price / this.props.storeState.currencies[bIdIndex].costToDefault
+                let bPrice = this.priceByPersonCalculation(b.element, bIdIndex);
                 return aPrice < bPrice ? -1 : 1
             }
 
             case "Сначала дорогие": {
                 let aIdIndex = getCurrencies(a.element.currency, "id",this)
-                let aPrice = a.element.price / this.props.storeState.currencies[aIdIndex].costToDefault
+                // let aPrice = a.element.price / this.props.storeState.currencies[aIdIndex].costToDefault
+                let aPrice = this.priceByPersonCalculation(a.element, aIdIndex);
                 let bIdIndex = getCurrencies(b.element.currency, "id",this)
-                let bPrice = b.element.price / this.props.storeState.currencies[bIdIndex].costToDefault
+                // let bPrice = b.element.price / this.props.storeState.currencies[bIdIndex].costToDefault
+                let bPrice = this.priceByPersonCalculation(b.element, bIdIndex);
                 if (this.props.storeState.sortMenuWay) {
                     return aPrice < bPrice ? -1 : 1
                 } else {

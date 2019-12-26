@@ -17,9 +17,10 @@ const SET_PRICE_PART_TOUR = 'SET_PRICE_PART_TOUR';
 
 const CHANGE_VISUAL_TYPE = 'CHANGE_VISUAL_TYPE';
 
-const changeVisualType = function(toDefault){
+const changeVisualType = function(tourPageVisualType,toDefault){
   return {
     type: CHANGE_VISUAL_TYPE,
+    tourPageVisualType:tourPageVisualType,
     toDefault: toDefault
   }
 }

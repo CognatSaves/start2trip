@@ -9,7 +9,8 @@ const tours = {
     daysNumber:"day",
     bookTours:["per person","from the group "],
     Languages:"Languages:",
-
+    author: 'Author:',
+    about: 'About:'
 }
 
 export default tours;

@@ -428,7 +428,7 @@ class AgencyProfileTourClass extends React.Component {
             const request = new XMLHttpRequest();
             request.onreadystatechange = function () {
                 if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
-                    debugger;
+                    
                     console.log(request.responseText);
                     console.log(request.responseText);
                     console.log(request.responseText);

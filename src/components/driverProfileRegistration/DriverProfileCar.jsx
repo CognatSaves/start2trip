@@ -242,7 +242,7 @@ class DriverProfileCarClass extends React.Component {
                             status: true
                         }
                     }
-                    debugger;
+                    
                     console.log(request.responseText);
                     let temp = JSON.parse(request.responseText);
                     if(!temp.status){
@@ -266,7 +266,7 @@ class DriverProfileCarClass extends React.Component {
                     
                 }
                 if (request.readyState === XMLHttpRequest.DONE && request.status === 0) {
-                    debugger;
+                    
                     catchFuncGlobal(that);
                 }
             }
@@ -389,7 +389,7 @@ class DriverProfileCarClass extends React.Component {
             request.setRequestHeader('Authorization', `Bearer ${jwt}`);
             request.onreadystatechange = function () {
                 if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
-                    debugger;
+                    
                     console.log(request.responseText);
                     let temp = JSON.parse(request.responseText);
                     if(temp.status){
@@ -458,7 +458,7 @@ class DriverProfileCarClass extends React.Component {
                             }
                         };
                     }
-                    debugger;
+                    
                     console.log(request.responseText);
                     let temp = JSON.parse(request.responseText);
                     if(!temp.status){
@@ -662,7 +662,7 @@ class DriverProfileCarClass extends React.Component {
         console.log('state', this.state);
         //console.log();
         console.log('props', this.props);
-        debugger;
+        
 
         let carTypes = findCarTypeNames(cars, this.props.driversState.carTypes, this.props.storeState);
 

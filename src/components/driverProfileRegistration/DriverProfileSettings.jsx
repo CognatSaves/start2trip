@@ -92,7 +92,7 @@ class DriverProfileSettingsClass extends React.Component {
                             throw data.error;
                         }
                         else {
-                            debugger;
+                            
                             console.log("good");
                             console.log(data);
                             that.setState({
